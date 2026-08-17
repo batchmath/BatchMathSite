@@ -1,698 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multiplication Practice</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f6f8;
-      color: #17212b;
-    }
-
-    .page {
-      width: min(900px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 32px 0 48px;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .header h1 {
-      margin: 0 0 8px;
-      font-size: 2.2rem;
-    }
-
-    .header p {
-      margin: 0;
-      color: #5c6670;
-      font-size: 1.05rem;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .settings {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      max-width: 620px;
-      margin: 0 auto;
-    }
-
-    .setting label {
-      display: block;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    select,
-    input[type="number"] {
-      width: 100%;
-      padding: 13px 14px;
-      border: 2px solid #d5dbe0;
-      border-radius: 10px;
-      font-size: 1rem;
-      background: #fff;
-    }
-
-    button {
-      border: 0;
-      border-radius: 10px;
-      padding: 13px 20px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .primary,
-    .check {
-      background: #17212b;
-      color: #fff;
-    }
-
-    .primary {
-      display: block;
-      margin: 26px auto 0;
-      padding: 15px 30px;
-    }
-
-    .check {
-      display: block;
-      min-width: 180px;
-      margin: 16px auto 0;
-    }
-
-    button:disabled {
-      opacity: 0.55;
-      cursor: default;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .stat {
-      text-align: center;
-      background: #f4f6f8;
-      border-radius: 10px;
-      padding: 12px;
-      font-weight: 700;
-    }
-
-    .stat span {
-      display: block;
-      margin-top: 3px;
-      font-size: 1.35rem;
-    }
-
-    .timer-warning {
-      color: #b45309;
-    }
-
-    .timer-danger {
-      color: #b91c1c;
-    }
-
-    .question-area {
-      text-align: center;
-      padding: 18px 10px 8px;
-    }
-
-    .question {
-      margin: 18px 0 28px;
-      font-size: clamp(3rem, 7vw, 5rem);
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    #answer {
-      display: block;
-      width: min(280px, 100%);
-      margin: 0 auto;
-      padding: 15px;
-      text-align: center;
-      font-size: 2rem;
-      border: 3px solid #cbd2d8;
-      border-radius: 12px;
-      outline: none;
-    }
-
-    #answer:focus {
-      border-color: #17212b;
-    }
-
-    .feedback {
-      min-height: 62px;
-      margin-top: 18px;
-      font-size: 1.2rem;
-      font-weight: 700;
-      line-height: 1.4;
-    }
-
-    .feedback.correct {
-      color: #166534;
-    }
-
-    .feedback.incorrect {
-      color: #b91c1c;
-    }
-
-    .results {
-      text-align: center;
-    }
-
-    .results h2 {
-      margin-top: 0;
-      font-size: 2rem;
-    }
-
-    .big-score {
-      margin: 12px 0;
-      font-size: 4rem;
-      font-weight: 800;
-    }
-
-    .results p {
-      color: #5c6670;
-      font-size: 1.1rem;
-    }
-
-    @media (max-width: 600px) {
-      .page {
-        width: min(100% - 20px, 900px);
-        padding-top: 20px;
-      }
-
-      .card {
-        padding: 20px 16px;
-      }
-
-      .settings {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .stats {
-        gap: 7px;
-      }
-
-      .stat {
-        padding: 9px 5px;
-        font-size: 0.85rem;
-      }
-
-      .stat span {
-        font-size: 1.12rem;
-      }
-
-      .header h1 {
-        font-size: 1.8rem;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Free math instruction, interactive practice, videos, worksheets, notes, and resources for AP Calculus AB and Integrated Math 1 from BatchMath.">
+<link rel="canonical" href="https://batchmath.net/">
+<meta property="og:site_name" content="BatchMath">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BatchMath | AP Calculus AB &amp; Integrated Math 1 Resources">
+<meta property="og:description" content="Free math instruction, interactive practice, videos, worksheets, notes, and resources for AP Calculus AB and Integrated Math 1 from BatchMath.">
+<meta property="og:url" content="https://batchmath.net/">
+<title>BatchMath | AP Calculus AB &amp; Integrated Math 1 Resources</title>
+<style>
+:root{
+  --black:#030303;
+  --panel:#080808;
+  --panel2:#101010;
+  --red:#d71920;
+  --red-dark:#9e1116;
+  --yellow:#f5c400;
+  --yellow-soft:#ffd93d;
+  --white:#f4f4f4;
+  --gray:#9a9a9a;
+  --border:#292929;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  background:var(--black);
+  color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;
+}
+a{color:inherit}
+.site-shell{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+}
+.topbar{
+  min-height:82px;
+  border-bottom:1px solid #181818;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 170px;
+  position:relative;
+}
+.logo{
+  color:var(--red);
+  text-decoration:none;
+  font-weight:900;
+  font-size:clamp(2rem,5vw,4rem);
+  line-height:1;
+  letter-spacing:-.05em;
+  text-align:center;
+}
+.corner-person{
+  position:absolute;
+  width:118px;
+  height:145px;
+  object-fit:cover;
+  object-position:50% 20%;
+  border-radius:10px;
+  filter:saturate(1.02) contrast(1.03);
+  user-select:none;
+  pointer-events:none;
+}
+.corner-person.top-left{left:18px;top:10px}
+.profile-area{
+  position:absolute;
+  right:18px;
+  top:8px;
+  width:126px;
+  z-index:50;
+  text-align:center;
+}
+.profile-area img{
+  width:118px;
+  height:145px;
+  object-fit:cover;
+  object-position:50% 20%;
+  border-radius:10px;
+  display:block;
+  margin-left:auto;
+}
+.menu-toggle{
+  margin-top:5px;
+  width:118px;
+  min-height:32px;
+  border:1px solid var(--yellow);
+  background:#050505;
+  color:var(--yellow);
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:900;
+  font-size:.9rem;
+}
+.dropdown{
+  display:none;
+  position:absolute;
+  top:184px;
+  right:0;
+  width:220px;
+  padding:8px;
+  background:#050505;
+  border:1px solid var(--yellow);
+  border-radius:10px;
+  box-shadow:0 15px 45px rgba(0,0,0,.5);
+  text-align:left;
+}
+.dropdown.open{display:block}
+.dropdown a{
+  display:block;
+  text-decoration:none;
+  color:var(--yellow);
+  padding:10px 11px;
+  border-radius:7px;
+  font-weight:800;
+  font-size:.93rem;
+}
+.dropdown a:hover{background:#191300;color:#fff0a5}
+.main{
+  width:min(850px,calc(100% - 36px));
+  margin:0 auto;
+  padding:55px 0 40px;
+}
+.brand-description{
+  text-align:center;
+  margin:0 auto 18px;
+  color:#d7d7d7;
+  font-size:.9rem;
+  font-weight:600;
+}
+.course-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px;
+  max-width:620px;
+  margin:20px auto 0;
+}
+.course-card{
+  min-height:130px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  text-decoration:none;
+  border:2px solid var(--red);
+  border-radius:12px;
+  background:#050505;
+  padding:18px;
+  transition:.15s ease;
+}
+.course-card:hover{
+  transform:translateY(-2px);
+  background:#0d0606;
+  box-shadow:0 0 0 1px rgba(245,196,0,.28),0 10px 28px rgba(0,0,0,.5);
+}
+.course-card h2,.course-card h3{
+  margin:0;
+  color:var(--yellow);
+  font-size:1.25rem;
+  line-height:1.2;
+}
+.math-icon{
+  color:var(--red);
+  font-size:2.2rem;
+  line-height:1;
+  margin-bottom:12px;
+  font-weight:900;
+}
+.socials{
+  margin:48px auto 0;
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.social-link{
+  min-width:125px;
+  padding:10px 14px;
+  text-decoration:none;
+  border:1px solid var(--yellow);
+  border-radius:8px;
+  color:var(--yellow);
+  text-align:center;
+  font-weight:800;
+  background:#050505;
+}
+.social-link:hover{background:#171200}
+.social-handle{
+  display:block;
+  margin-top:3px;
+  color:#ff4b50;
+  font-size:.76rem;
+  font-weight:700;
+}
+.page-title{
+  color:var(--yellow);
+  text-align:center;
+  font-size:clamp(2rem,5vw,3.2rem);
+  margin:0 0 34px;
+}
+.unit-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.small-card{
+  min-height:92px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  text-decoration:none;
+  padding:14px;
+  border:1px solid var(--red);
+  border-radius:9px;
+  color:var(--yellow);
+  background:#060606;
+  font-weight:800;
+}
+.small-card:hover{background:#120707}
+.small-card.disabled{opacity:.38;cursor:default}
+.back-link{
+  display:inline-block;
+  margin:0 0 24px;
+  color:var(--yellow);
+  text-decoration:none;
+  font-weight:800;
+  font-size:.9rem;
+}
+.bottom-portrait{
+  position:fixed;
+  bottom:10px;
+  width:118px;
+  height:145px;
+  object-fit:cover;
+  object-position:50% 20%;
+  opacity:1;
+  pointer-events:none;
+  border-radius:10px;
+}
+.bottom-portrait.left{left:18px}
+.bottom-portrait.right{right:18px}
+.footer{
+  width:min(850px,calc(100% - 36px));
+  margin:65px auto 0;
+  padding:18px 0 25px;
+  border-top:1px solid var(--red-dark);
+  text-align:center;
+  color:var(--yellow);
+  font-size:.8rem;
+}
+@media(max-width:760px){
+  .topbar{padding:13px 100px;min-height:74px}
+  .corner-person{width:72px;height:88px}
+  .profile-area{width:78px;right:8px}
+  .profile-area img{width:72px;height:88px}
+  .menu-toggle{width:72px;font-size:.7rem;padding:5px 2px}
+  .dropdown{top:122px;width:190px}
+  .corner-person.top-left{left:8px}
+  .main{padding-top:38px}
+  .course-grid{grid-template-columns:1fr;max-width:330px}
+  .unit-grid{grid-template-columns:1fr}
+  .bottom-portrait{display:none}
+}
+.tm-mark{
+  font-size:.38em;
+  vertical-align:super;
+  margin-left:.08em;
+  line-height:0;
+}
+</style>
+<script type="application/ld+json" data-batchmath-site-name>{"@context":"https://schema.org","@type":"WebSite","name":"BatchMath","url":"https://batchmath.net/"}</script>
 </head>
-
 <body>
-  <main class="page">
-    <header class="header">
-      <h1>Multiplication Practice</h1>
-    </header>
-
-    <section id="setupCard" class="card">
-      <div class="settings">
-        <div class="setting">
-          <label for="timeSelect">Time Limit</label>
-          <select id="timeSelect">
-            <option value="1">1 minute</option>
-            <option value="2">2 minutes</option>
-            <option value="3" selected>3 minutes</option>
-            <option value="4">4 minutes</option>
-            <option value="5">5 minutes</option>
-          </select>
-        </div>
-
-        <div class="setting">
-          <label for="questionSelect">Number of Questions</label>
-          <select id="questionSelect">
-            <option value="10">10 questions</option>
-            <option value="20" selected>20 questions</option>
-            <option value="30">30 questions</option>
-            <option value="40">40 questions</option>
-            <option value="50">50 questions</option>
-            <option value="60">60 questions</option>
-            <option value="70">70 questions</option>
-            <option value="80">80 questions</option>
-            <option value="90">90 questions</option>
-            <option value="100">100 questions</option>
-          </select>
-        </div>
-      </div>
-
-      <button id="startBtn" class="primary">Start Practice</button>
-    </section>
-
-    <section id="practiceCard" class="card hidden">
-      <div class="stats">
-        <div class="stat">
-          Question
-          <span id="progress">1 / 20</span>
-        </div>
-
-        <div class="stat">
-          Score
-          <span id="score">0</span>
-        </div>
-
-        <div id="timerBox" class="stat">
-          Time
-          <span id="timer">3:00</span>
-        </div>
-      </div>
-
-      <div class="question-area">
-        <div id="question" class="question">7 × 8 = ?</div>
-
-        <input
-          id="answer"
-          type="number"
-          inputmode="numeric"
-          autocomplete="off"
-          aria-label="Answer"
-        >
-
-        <button id="checkBtn" class="check">Check Answer</button>
-
-        <div id="feedback" class="feedback" aria-live="polite"></div>
-      </div>
-    </section>
-
-    <section id="resultsCard" class="card results hidden">
-      <h2>Practice Complete</h2>
-      <div id="finalScore" class="big-score">0 / 20</div>
-      <p id="finalMessage"></p>
-      <button id="againBtn" class="primary">Practice Again</button>
-    </section>
-  </main>
-
-  <script>
-    const setupCard = document.getElementById("setupCard");
-    const practiceCard = document.getElementById("practiceCard");
-    const resultsCard = document.getElementById("resultsCard");
-
-    const timeSelect = document.getElementById("timeSelect");
-    const questionSelect = document.getElementById("questionSelect");
-    const startBtn = document.getElementById("startBtn");
-    const checkBtn = document.getElementById("checkBtn");
-    const againBtn = document.getElementById("againBtn");
-
-    const progressDisplay = document.getElementById("progress");
-    const scoreDisplay = document.getElementById("score");
-    const timerDisplay = document.getElementById("timer");
-    const timerBox = document.getElementById("timerBox");
-    const questionDisplay = document.getElementById("question");
-    const answerInput = document.getElementById("answer");
-    const feedbackDisplay = document.getElementById("feedback");
-
-    const finalScoreDisplay = document.getElementById("finalScore");
-    const finalMessage = document.getElementById("finalMessage");
-
-    let totalQuestions = 20;
-    let currentIndex = 0;
-    let score = 0;
-    let answeredCount = 0;
-    let secondsLeft = 180;
-    let timerId = null;
-    let advanceId = null;
-    let questionPool = [];
-    let acceptingAnswer = false;
-    let sessionFinished = false;
-
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
-
-    function buildWeightedUniquePool() {
-      const tierHigh = [];     // 6–9 and 12: most common
-      const tierMedium = [];   // 3–5: medium frequency
-      const tierLow = [];      // 2s, 10s, and easy 11s: lower frequency
-      const tierRare = [];     // 0s and 1s: very rare
-      const squares = [];      // 13²–20²: about medium frequency
-
-      // Ordered pairs are intentionally separate:
-      // 6 × 8 and 8 × 6 may both appear.
-      for (let a = 0; a <= 12; a++) {
-        for (let b = 0; b <= 12; b++) {
-          const item = {
-            a,
-            b,
-            text: `${a} × ${b} = ?`,
-            answer: a * b,
-            key: `${a}x${b}`
-          };
-
-          const hasZeroOrOne = (a <= 1 || b <= 1);
-          const hasTwo = (a === 2 || b === 2);
-          const hasTen = (a === 10 || b === 10);
-          const hasEleven = (a === 11 || b === 11);
-
-          // 11 × 11 and 11 × 12 (and 12 × 11) stay in the hardest/high tier.
-          const hardEleven =
-            (a === 11 && b === 11) ||
-            (a === 11 && b === 12) ||
-            (a === 12 && b === 11);
-
-          // 0s and 1s are always very rare, even if paired with a harder fact.
-          if (hasZeroOrOne) {
-            tierRare.push(item);
-          }
-          // 2s, 10s, and "easy" 11s are intentionally reduced.
-          // The exceptions 11×11 and 11×12 stay high.
-          else if (
-            hasTwo ||
-            hasTen ||
-            (hasEleven && !hardEleven)
-          ) {
-            tierLow.push(item);
-          }
-          // Facts involving 3, 4, or 5 are medium frequency.
-          else if (
-            a === 3 || a === 4 || a === 5 ||
-            b === 3 || b === 4 || b === 5
-          ) {
-            tierMedium.push(item);
-          }
-          // Remaining facts are dominated by 6–9 and 12,
-          // plus 11×11 and 11×12.
-          else {
-            tierHigh.push(item);
-          }
-        }
-      }
-
-      for (let n = 13; n <= 20; n++) {
-        squares.push({
-          a: n,
-          b: n,
-          text: `${n} × ${n} = ?`,
-          answer: n * n,
-          key: `${n}x${n}`
-        });
-      }
-
-      shuffle(tierHigh);
-      shuffle(tierMedium);
-      shuffle(tierLow);
-      shuffle(tierRare);
-      shuffle(squares);
-
-      const selected = [];
-      const used = new Set();
-
-      function takeFrom(source, count) {
-        for (const item of source) {
-          if (selected.length >= totalQuestions || count <= 0) break;
-
-          if (!used.has(item.key)) {
-            selected.push(item);
-            used.add(item.key);
-            count--;
-          }
-        }
-      }
-
-      /*
-        Approximate overall targets:
-
-        6–9 / 12 / hard 11s:  50%
-        3–5 facts:            24%
-        13²–20² squares:      10%
-        2s / 10s / easy 11s: 14%
-        0s / 1s:               2%
-
-        These are targets, not guarantees. For very short sessions,
-        rounding and uniqueness can shift the exact percentages slightly.
-      */
-
-      let highTarget = Math.round(totalQuestions * 0.50);
-      let mediumTarget = Math.round(totalQuestions * 0.24);
-      let squareTarget = Math.min(
-        squares.length,
-        Math.round(totalQuestions * 0.10)
-      );
-      let lowTarget = Math.round(totalQuestions * 0.14);
-
-      // Make the rare tier whatever remains so the totals equal the
-      // requested number of questions.
-      let rareTarget =
-        totalQuestions -
-        highTarget -
-        mediumTarget -
-        squareTarget -
-        lowTarget;
-
-      if (rareTarget < 0) rareTarget = 0;
-
-      takeFrom(tierHigh, highTarget);
-      takeFrom(tierMedium, mediumTarget);
-      takeFrom(squares, squareTarget);
-      takeFrom(tierLow, lowTarget);
-      takeFrom(tierRare, rareTarget);
-
-      // Fill any remaining slots from unused questions.
-      // The fill order preserves the intended emphasis as much as possible.
-      const leftovers = [
-        ...shuffle([...tierHigh]),
-        ...shuffle([...tierMedium]),
-        ...shuffle([...squares]),
-        ...shuffle([...tierLow]),
-        ...shuffle([...tierRare])
-      ];
-
-      for (const item of leftovers) {
-        if (selected.length >= totalQuestions) break;
-
-        if (!used.has(item.key)) {
-          selected.push(item);
-          used.add(item.key);
-        }
-      }
-
-      return shuffle(selected);
-    }
-
-    function formatTime(totalSeconds) {
-      const minutes = Math.floor(totalSeconds / 60);
-      const seconds = totalSeconds % 60;
-      return `${minutes}:${String(seconds).padStart(2, "0")}`;
-    }
-
-    function updateTimerDisplay() {
-      timerDisplay.textContent = formatTime(secondsLeft);
-
-      timerBox.classList.remove("timer-warning", "timer-danger");
-
-      if (secondsLeft <= 30) {
-        timerBox.classList.add("timer-danger");
-      } else if (secondsLeft <= 60) {
-        timerBox.classList.add("timer-warning");
-      }
-    }
-
-    function startTimer() {
-      clearInterval(timerId);
-
-      updateTimerDisplay();
-
-      timerId = setInterval(() => {
-        secondsLeft--;
-
-        if (secondsLeft <= 0) {
-          secondsLeft = 0;
-          updateTimerDisplay();
-          finishPractice("time");
-          return;
-        }
-
-        updateTimerDisplay();
-      }, 1000);
-    }
-
-    function showCurrentQuestion() {
-      if (sessionFinished) return;
-
-      if (currentIndex >= questionPool.length) {
-        finishPractice("questions");
-        return;
-      }
-
-      const question = questionPool[currentIndex];
-
-      progressDisplay.textContent =
-        `${currentIndex + 1} / ${questionPool.length}`;
-
-      scoreDisplay.textContent = score;
-      questionDisplay.textContent = question.text;
-
-      answerInput.value = "";
-      answerInput.disabled = false;
-      checkBtn.disabled = false;
-
-      feedbackDisplay.textContent = "";
-      feedbackDisplay.className = "feedback";
-
-      acceptingAnswer = true;
-      answerInput.focus();
-    }
-
-    function goToNextQuestion() {
-      if (sessionFinished) return;
-
-      currentIndex++;
-
-      if (currentIndex >= questionPool.length) {
-        finishPractice("questions");
-      } else {
-        showCurrentQuestion();
-      }
-    }
-
-    function submitAnswer() {
-      if (!acceptingAnswer || sessionFinished) return;
-
-      const rawAnswer = answerInput.value.trim();
-
-      if (rawAnswer === "") {
-        answerInput.focus();
-        return;
-      }
-
-      acceptingAnswer = false;
-      answerInput.disabled = true;
-      checkBtn.disabled = true;
-
-      const studentAnswer = Number(rawAnswer);
-      const currentQuestion = questionPool[currentIndex];
-      const isCorrect = studentAnswer === currentQuestion.answer;
-      answeredCount++;
-
-      clearTimeout(advanceId);
-
-      if (isCorrect) {
-        score++;
-        scoreDisplay.textContent = score;
-
-        feedbackDisplay.textContent = "✓ Correct";
-        feedbackDisplay.className = "feedback correct";
-
-        // Correct answers move on almost immediately.
-        advanceId = setTimeout(goToNextQuestion, 180);
-      } else {
-        // Keep the original problem on the screen for one second.
-        feedbackDisplay.textContent =
-          `✗ Incorrect. Correct answer: ${currentQuestion.answer}`;
-        feedbackDisplay.className = "feedback incorrect";
-
-        advanceId = setTimeout(goToNextQuestion, 2000);
-      }
-    }
-
-    function startPractice() {
-      clearInterval(timerId);
-      clearTimeout(advanceId);
-
-      totalQuestions = Number(questionSelect.value);
-      secondsLeft = Number(timeSelect.value) * 60;
-
-      currentIndex = 0;
-      score = 0;
-      answeredCount = 0;
-      sessionFinished = false;
-      acceptingAnswer = false;
-
-      questionPool = buildWeightedUniquePool();
-
-      setupCard.classList.add("hidden");
-      resultsCard.classList.add("hidden");
-      practiceCard.classList.remove("hidden");
-
-      scoreDisplay.textContent = "0";
-
-      startTimer();
-      showCurrentQuestion();
-    }
-
-    function finishPractice(reason) {
-      if (sessionFinished) return;
-
-      sessionFinished = true;
-      acceptingAnswer = false;
-
-      clearInterval(timerId);
-      clearTimeout(advanceId);
-
-      answerInput.disabled = true;
-      checkBtn.disabled = true;
-
-      practiceCard.classList.add("hidden");
-      resultsCard.classList.remove("hidden");
-
-      finalScoreDisplay.textContent = `${score} correct`;
-
-      if (reason === "time") {
-        finalMessage.textContent =
-          `Time is up. You answered ${answeredCount} question${answeredCount === 1 ? "" : "s"}.`;
-      } else {
-        finalMessage.textContent =
-          `You completed all ${questionPool.length} questions.`;
-      }
-    }
-
-    function resetPractice() {
-      clearInterval(timerId);
-      clearTimeout(advanceId);
-
-      resultsCard.classList.add("hidden");
-      practiceCard.classList.add("hidden");
-      setupCard.classList.remove("hidden");
-    }
-
-    startBtn.addEventListener("click", startPractice);
-    checkBtn.addEventListener("click", submitAnswer);
-    againBtn.addEventListener("click", resetPractice);
-
-    answerInput.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        submitAnswer();
-      }
-    });
-  </script>
+<div class="site-shell">
+
+<header class="topbar">
+  <img class="corner-person top-left" src="assets/batchmath-portrait.jpg" alt="">
+  <a class="logo" href="./">BatchMath<span class="tm-mark">™</span></a>
+
+  <div class="profile-area">
+    <img src="assets/batchmath-portrait.jpg" alt="BatchMath">
+    <button class="menu-toggle" aria-expanded="false" aria-label="Open course menu" type="button" aria-haspopup="true" aria-controls="course-menu">COURSES ▼</button>
+    <nav id="course-menu" class="dropdown">
+      <a href="im1/">Integrated Math 1</a>
+      <a href="ap-calculus/">AP Calculus AB</a>
+      <a href="./">Home</a>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main">
+  <h1 class="brand-description">Math instruction, practice, videos, worksheets, and resources.</h1>
+  <div class="course-grid">
+    <a class="course-card" href="im1/">
+      <div class="math-icon">▦</div>
+      <h2>Integrated Math 1</h2>
+    </a>
+
+    <a class="course-card" href="ap-calculus/">
+      <div class="math-icon">∑</div>
+      <h2>AP Calculus AB</h2>
+    </a>
+  </div>
+
+  <div class="socials">
+    <a class="social-link" href="https://www.youtube.com/@batchmath7898" target="_blank" rel="noopener">
+      YouTube
+      <span class="social-handle">@batchmath</span>
+    </a>
+
+    <a class="social-link" href="https://www.instagram.com/batchmath/" target="_blank" rel="noopener">
+      Instagram
+      <span class="social-handle">@batchmath</span>
+    </a>
+  </div>
+</main>
+
+<img class="bottom-portrait left" src="assets/batchmath-portrait.jpg" alt="">
+<img class="bottom-portrait right" src="assets/batchmath-portrait.jpg" alt="">
+
+<footer class="footer">© 2026 BatchMath. All rights reserved.</footer>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const button = document.querySelector(".menu-toggle");
+  const menu = document.querySelector(".dropdown");
+  if (!button || !menu) return;
+
+  button.addEventListener("click", function(e){
+    e.stopPropagation();
+    menu.classList.toggle("open");
+    button.setAttribute("aria-expanded", menu.classList.contains("open") ? "true" : "false");
+  });
+
+  document.addEventListener("click", function(){
+    menu.classList.remove("open");
+    button.setAttribute("aria-expanded","false");
+  });
+
+  menu.addEventListener("click", function(e){ e.stopPropagation(); });
+});
+</script>
+
+
+<script data-batchmath-local-preview="1">
+(function(){
+  if (window.location.protocol !== 'file:') return;
+  function localizeDirectoryUrl(value){
+    if (!value || /^(?:[a-z][a-z0-9+.-]*:|#|\/)/i.test(value)) return value;
+    var hash = '';
+    var query = '';
+    var hashAt = value.indexOf('#');
+    if (hashAt >= 0) { hash = value.slice(hashAt); value = value.slice(0, hashAt); }
+    var queryAt = value.indexOf('?');
+    if (queryAt >= 0) { query = value.slice(queryAt); value = value.slice(0, queryAt); }
+    if (value.endsWith('/')) value += 'index.html';
+    return value + query + hash;
+  }
+  document.querySelectorAll('a[href]').forEach(function(link){
+    link.setAttribute('href', localizeDirectoryUrl(link.getAttribute('href')));
+  });
+  document.querySelectorAll('option[value]').forEach(function(option){
+    option.setAttribute('value', localizeDirectoryUrl(option.getAttribute('value')));
+  });
+})();
+</script>
 </body>
 </html>

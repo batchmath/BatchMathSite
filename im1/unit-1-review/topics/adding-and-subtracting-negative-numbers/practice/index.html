@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Practice Integer Addition &amp; Subtraction for Integrated Math 1 with interactive BatchMath questions, immediate feedback, and worked explanations where appropriate.">
+<link rel="canonical" href="https://batchmath.net/im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/practice/">
+<meta property="og:site_name" content="BatchMath">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Integer Addition &amp; Subtraction Practice | Integrated Math 1 | BatchMath">
+<meta property="og:description" content="Practice Integer Addition &amp; Subtraction for Integrated Math 1 with interactive BatchMath questions, immediate feedback, and worked explanations where appropriate.">
+<meta property="og:url" content="https://batchmath.net/im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/practice/"><title>Integer Addition &amp; Subtraction Practice | Integrated Math 1 | BatchMath</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;background:#030303;color:#f4f4f4}.page{max-width:900px;margin:0 auto;padding:28px 20px 46px}.back{color:#f5c400;text-decoration:none;font-weight:800}.header{text-align:center;margin:20px 0}.header h1{color:#d71920}.card{background:#090909;border:1px solid #292929;border-radius:14px;padding:26px;margin-bottom:18px}.hidden{display:none!important}.settings{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:620px;margin:0 auto}.setting label{display:block;color:#f5c400;font-weight:800;margin-bottom:8px}select,#answer{width:100%;padding:12px 13px;border:2px solid #363636;border-radius:9px;background:#111;color:#fff;font-size:1rem}button{border:0;border-radius:9px;padding:12px 19px;font-size:1rem;font-weight:800;cursor:pointer}.primary,.check{background:#d71920;color:#fff}.primary{display:block;margin:22px auto 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}.stat{text-align:center;background:#121212;color:#f5c400;border-radius:9px;padding:11px;font-weight:800}.stat span{display:block;margin-top:3px;font-size:1.3rem}.question-area{text-align:center}.question{margin:10px 0 16px;color:#f5c400;font-size:clamp(2rem,6vw,3.4rem);font-weight:900}#answer{display:block;width:min(280px,100%);margin:0 auto;text-align:center;font-size:2rem}.check{display:block;margin:14px auto 0}.feedback{min-height:46px;margin-top:12px;font-size:.98rem;font-weight:700;line-height:1.4}.next{display:block;margin:12px auto 0;background:#f5c400;color:#080808}.correct{color:#f5c400}.incorrect{color:#ff4b50}.results{text-align:center}.big-score{font-size:3.6rem;font-weight:900;color:#f5c400}@media(max-width:600px){.settings{grid-template-columns:1fr}}
+</style><link rel="stylesheet" href="../../../../../assets/im1-keypad.css"><script defer src="../../../../../assets/im1-keypad.js"></script></head><body><main class="page"><a class="back" href="../../../">← Unit 1 - Review</a><header class="header"><h1>Integer Addition &amp; Subtraction</h1></header>
+<section id="setupCard" class="card"><div class="settings"><div class="setting"><label>Time Limit</label><select id="timeSelect"><option value="1">1 minute</option><option value="2">2 minutes</option><option value="3" selected>3 minutes</option><option value="4">4 minutes</option><option value="5">5 minutes</option></select></div><div class="setting"><label>Number of Questions</label><select id="questionSelect"><option value="10">10 questions</option><option value="20" selected>20 questions</option><option value="30">30 questions</option><option value="40">40 questions</option><option value="50">50 questions</option><option value="60">60 questions</option><option value="70">70 questions</option><option value="80">80 questions</option><option value="90">90 questions</option><option value="100">100 questions</option></select></div></div><button id="startBtn" class="primary">Start Practice</button></section>
+<section id="practiceCard" class="card hidden"><div class="stats"><div class="stat">Question<span id="progress"></span></div><div class="stat">Score<span id="score">0</span></div><div class="stat">Time<span id="timer"></span></div></div><div class="question-area"><div id="question" class="question"></div><input id="answer" type="text" autocomplete="off" data-bm-keypad="integer"><button id="checkBtn" class="check">Check Answer</button><div id="feedback" class="feedback"></div><button id="nextBtn" class="next hidden">Next Question</button></div></section>
+<section id="resultsCard" class="card results hidden"><h2>Practice Complete</h2><div id="finalScore" class="big-score"></div><p id="finalMessage"></p><button id="againBtn" class="primary">Practice Again</button></section></main>
+<script>
+const $=id=>document.getElementById(id);let total=20,idx=0,score=0,answered=0,left=180,timerId,advanceId,pool=[],finished=false,accepting=false;
+function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function fmt(n){return n<0?`(${n})`:`${n}`}
+function build(){
+  let a=[];
+
+  for(let x=-20;x<=20;x++){
+    for(let y=-20;y<=20;y++){
+      // Zero should never appear as either operand.
+      if(x===0 || y===0) continue;
+
+      for(const op of ["+","-"]){
+        let r=op==="+" ? x+y : x-y;
+
+        // Keep answers between -20 and 20.
+        if(r < -20 || r > 20) continue;
+
+        // Positive + positive is never used.
+        // Excluded: 8 + 4
+        if(op==="+" && x>0 && y>0) continue;
+
+        // Positive - positive is only used when subtracting
+        // a larger positive number, so the result is negative.
+        // Allowed: 4 - 9
+        // Excluded: 9 - 4, 8 - 8
+        if(op==="-" && x>0 && y>0 && y<=x) continue;
+
+        // Positive first numbers ARE allowed when:
+        //  - adding a negative:      8 + (-3)
+        //  - subtracting a negative: 8 - (-3)
+        //  - subtracting a larger positive: 4 - 9
+        //
+        // Negative first numbers may add or subtract either
+        // positive or negative nonzero numbers.
+
+        const explain=op==="-"
+          ? `Rewrite subtraction as addition of the opposite: ${fmt(x)} − ${fmt(y)} = ${fmt(x)} + ${fmt(-y)}. Then combine the integers to get <strong>${r}</strong>.`
+          : ((x<0)===(y<0)
+              ? `The integers have the same sign. Add their absolute values and keep that sign: <strong>${r}</strong>.`
+              : `The integers have different signs. Subtract the smaller absolute value from the larger and use the sign of the number with the larger absolute value: <strong>${r}</strong>.`);
+        a.push({text:`${fmt(x)} ${op} ${fmt(y)} = ?`,answer:r,explain});
+      }
+    }
+  }
+
+  return shuffle(a).slice(0,total);
+}
+function time(){let m=Math.floor(left/60),s=left%60;$("timer").textContent=`${m}:${String(s).padStart(2,"0")}`}
+function tick(){clearInterval(timerId);time();timerId=setInterval(()=>{left--;if(left<=0){left=0;time();finish("time")}else time()},1000)}
+function show(){if(finished)return;if(idx>=pool.length)return finish("questions");let q=pool[idx];$("progress").textContent=`${idx+1} / ${pool.length}`;$("score").textContent=score;$("question").textContent=q.text;$("answer").value="";$("answer").disabled=false;$("checkBtn").disabled=false;$("feedback").textContent="";$("feedback").className="feedback";$("nextBtn").classList.add("hidden");accepting=true;if(!window.BatchMathKeypad?.touchMode) $("answer").focus()}
+function next(){if(finished)return;idx++;show()}
+function submit(){if(!accepting||finished)return;let raw=$("answer").value.trim();if(raw==="")return;accepting=false;$("answer").disabled=true;$("checkBtn").disabled=true;answered++;let q=pool[idx],ok=Number(raw)===q.answer;if(ok){score++;$("score").textContent=score;$("feedback").textContent="✓ Correct";$("feedback").className="feedback correct";advanceId=setTimeout(next,180)}else{$("feedback").innerHTML=`✗ Incorrect. Correct answer: <strong>${q.answer}</strong><br>${q.explain}`;$("feedback").className="feedback incorrect";$("nextBtn").classList.remove("hidden");}}
+function start(){clearInterval(timerId);clearTimeout(advanceId);total=Number($("questionSelect").value);left=Number($("timeSelect").value)*60;idx=0;score=0;answered=0;finished=false;pool=build();$("setupCard").classList.add("hidden");$("resultsCard").classList.add("hidden");$("practiceCard").classList.remove("hidden");tick();show()}
+function finish(reason){if(finished)return;finished=true;clearInterval(timerId);clearTimeout(advanceId);$("practiceCard").classList.add("hidden");$("resultsCard").classList.remove("hidden");$("finalScore").textContent=`${score} correct`;$("finalMessage").textContent=reason==="time"?`Time is up. You answered ${answered} question${answered===1?"":"s"}.`:`You completed all ${pool.length} questions.`}
+$("startBtn").onclick=start;$("checkBtn").onclick=submit;$("nextBtn").onclick=next;$("againBtn").onclick=()=>{$("resultsCard").classList.add("hidden");$("setupCard").classList.remove("hidden")};$("answer").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();if(!$("nextBtn").classList.contains("hidden"))next();else submit()}});
+</script><script data-batchmath-local-preview="1">
+(function(){
+  if (window.location.protocol !== 'file:') return;
+  function localizeDirectoryUrl(value){
+    if (!value || /^(?:[a-z][a-z0-9+.-]*:|#|\/)/i.test(value)) return value;
+    var hash = '';
+    var query = '';
+    var hashAt = value.indexOf('#');
+    if (hashAt >= 0) { hash = value.slice(hashAt); value = value.slice(0, hashAt); }
+    var queryAt = value.indexOf('?');
+    if (queryAt >= 0) { query = value.slice(queryAt); value = value.slice(0, queryAt); }
+    if (value.endsWith('/')) value += 'index.html';
+    return value + query + hash;
+  }
+  document.querySelectorAll('a[href]').forEach(function(link){
+    link.setAttribute('href', localizeDirectoryUrl(link.getAttribute('href')));
+  });
+  document.querySelectorAll('option[value]').forEach(function(option){
+    option.setAttribute('value', localizeDirectoryUrl(option.getAttribute('value')));
+  });
+})();
+</script>
+</body></html>

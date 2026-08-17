@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Practice Square Roots and Exponents for Integrated Math 1 with interactive BatchMath questions, immediate feedback, and worked explanations where appropriate.">
+<link rel="canonical" href="https://batchmath.net/im1/unit-1-review/topics/square-roots-and-exponents/practice/">
+<meta property="og:site_name" content="BatchMath">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Exponents &amp; Radicals Practice | Integrated Math 1 | BatchMath">
+<meta property="og:description" content="Practice Square Roots and Exponents for Integrated Math 1 with interactive BatchMath questions, immediate feedback, and worked explanations where appropriate.">
+<meta property="og:url" content="https://batchmath.net/im1/unit-1-review/topics/square-roots-and-exponents/practice/">
+<title>Exponents &amp; Radicals Practice | Integrated Math 1 | BatchMath</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#030303;
+  color:#f4f4f4;
+}
+.page{
+  max-width:900px;
+  margin:0 auto;
+  padding:28px 20px 46px;
+}
+.back{
+  display:inline-block;
+  color:#f5c400;
+  text-decoration:none;
+  font-weight:800;
+  margin-bottom:16px;
+}
+.header{
+  text-align:center;
+  margin:18px 0 22px;
+}
+.header h1{
+  margin:0;
+  color:#d71920;
+  font-size:2.1rem;
+}
+.card{
+  background:#090909;
+  border:1px solid #292929;
+  border-radius:14px;
+  padding:26px;
+  margin-bottom:18px;
+}
+.hidden{display:none!important}
+.settings{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  max-width:620px;
+  margin:0 auto;
+}
+.setting label{
+  display:block;
+  color:#f5c400;
+  font-weight:800;
+  margin-bottom:8px;
+}
+select,#answer{
+  width:100%;
+  padding:12px 13px;
+  border:2px solid #363636;
+  border-radius:9px;
+  background:#111;
+  color:#fff;
+  font-size:1rem;
+}
+button{
+  border:0;
+  border-radius:9px;
+  padding:12px 19px;
+  font-size:1rem;
+  font-weight:800;
+  cursor:pointer;
+}
+.primary,.check{
+  background:#d71920;
+  color:#fff;
+}
+.primary{
+  display:block;
+  margin:22px auto 0;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:22px;
+}
+.stat{
+  text-align:center;
+  background:#121212;
+  color:#f5c400;
+  border-radius:9px;
+  padding:11px;
+  font-weight:800;
+}
+.stat span{
+  display:block;
+  margin-top:3px;
+  font-size:1.3rem;
+}
+.question-area{text-align:center}
+
+.question{
+  margin:16px 0 24px;
+  color:#f5c400;
+  font-size:clamp(2.5rem,7vw,4.5rem);
+  font-weight:900;
+}
+#answer{
+  display:block;
+  width:min(280px,100%);
+  margin:0 auto;
+  text-align:center;
+  font-size:2rem;
+}
+.check{
+  display:block;
+  margin:14px auto 0;
+}
+.feedback{
+  min-height:60px;
+  margin-top:16px;
+  font-size:1.15rem;
+  font-weight:800;
+}
+.correct{color:#f5c400}
+.incorrect{color:#ff4b50}
+.results{text-align:center}
+.big-score{
+  font-size:3.6rem;
+  font-weight:900;
+  color:#f5c400;
+}
+.results p{color:#aaa}
+@media(max-width:600px){
+  .settings{grid-template-columns:1fr}
+}
+</style>
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']]
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+
+<link rel="stylesheet" href="../../../../../assets/im1-keypad.css"><script defer src="../../../../../assets/im1-keypad.js"></script></head>
+
+<body>
+<main class="page">
+<a class="back" href="../../../">← Unit 1 - Review</a>
+
+<header class="header">
+  <h1>Square Roots and Exponents</h1>
+</header>
+
+<section id="setupCard" class="card">
+  <div class="settings">
+    <div class="setting">
+      <label for="timeSelect">Time Limit</label>
+      <select id="timeSelect">
+        <option value="1">1 minute</option>
+        <option value="2">2 minutes</option>
+        <option value="3" selected>3 minutes</option>
+        <option value="4">4 minutes</option>
+        <option value="5">5 minutes</option>
+      </select>
+    </div>
+
+    <div class="setting">
+      <label for="questionSelect">Number of Questions</label>
+      <select id="questionSelect">
+        <option value="10">10 questions</option>
+        <option value="20" selected>20 questions</option>
+        <option value="30">30 questions</option>
+        <option value="40">40 questions</option>
+        <option value="50">50 questions</option>
+        <option value="60">60 questions</option>
+        <option value="70">70 questions</option>
+        <option value="80">80 questions</option>
+        <option value="90">90 questions</option>
+        <option value="100">100 questions</option>
+      </select>
+    </div>
+  </div>
+
+  <button id="startBtn" class="primary">Start Practice</button>
+</section>
+
+<section id="practiceCard" class="card hidden">
+  <div class="stats">
+    <div class="stat">Question<span id="progress"></span></div>
+    <div class="stat">Score<span id="score">0</span></div>
+    <div class="stat">Time<span id="timer"></span></div>
+  </div>
+
+  <div class="question-area">
+    <div id="question" class="question"></div>
+    <input id="answer" type="text" autocomplete="off" aria-label="Answer" data-bm-keypad="integer">
+    <button id="checkBtn" class="check">Check Answer</button>
+    <div id="feedback" class="feedback" aria-live="polite"></div>
+    <button id="nextBtn" class="check hidden" style="background:#f5c400;color:#080808;">Next Question</button>
+  </div>
+</section>
+
+<section id="resultsCard" class="card results hidden">
+  <h2>Practice Complete</h2>
+  <div id="finalScore" class="big-score"></div>
+  <p id="finalMessage"></p>
+  <button id="againBtn" class="primary">Practice Again</button>
+</section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+
+let total = 20;
+let idx = 0;
+let score = 0;
+let answered = 0;
+let left = 180;
+let timerId = null;
+let advanceId = null;
+let pool = [];
+let finished = false;
+let accepting = false;
+
+function shuffle(array){
+  for(let i=array.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [array[i],array[j]]=[array[j],array[i]];
+  }
+  return array;
+}
+
+function superscript(n){
+  const map = {"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹"};
+  return String(n).split("").map(d=>map[d]).join("");
+}
+
+function addQuestion(list, text, answer, key, explain){
+  list.push({text, answer, key, explain});
+}
+
+function buildPool(){
+  const radicals = [];
+  const exponents = [];
+
+  for(let n=1;n<=20;n++){
+    addQuestion(radicals, `\\(\\sqrt{${n*n}} = ?\\)`, n, `sqrt-${n*n}`, `A square root asks what positive number times itself gives ${n*n}. Since ${n}×${n}=${n*n}, the answer is <strong>${n}</strong>.`);
+  }
+
+  for(let base=2;base<=20;base++){
+    addQuestion(exponents, `\\(${base}^{2} = ?\\)`, base**2, `pow-${base}-2`, `${base}^2 means multiply ${base} by itself 2 times. The value is <strong>${base**2}</strong>.`);
+  }
+
+  for(let base=30;base<=100;base+=10){
+    addQuestion(exponents, `\\(${base}^{2} = ?\\)`, base**2, `pow-${base}-2`, `${base}^2 means multiply ${base} by itself 2 times. The value is <strong>${base**2}</strong>.`);
+  }
+
+  for(let base=2;base<=10;base++){
+    addQuestion(exponents, `\\(${base}^{3} = ?\\)`, base**3, `pow-${base}-3`, `${base}^3 means multiply ${base} by itself 3 times. The value is <strong>${base**3}</strong>.`);
+  }
+
+  for(let base=2;base<=5;base++){
+    addQuestion(exponents, `\\(${base}^{4} = ?\\)`, base**4, `pow-${base}-4`, `${base}^4 means multiply ${base} by itself 4 times. The value is <strong>${base**4}</strong>.`);
+  }
+
+  for(let base=2;base<=3;base++){
+    addQuestion(exponents, `\\(${base}^{5} = ?\\)`, base**5, `pow-${base}-5`, `${base}^5 means multiply ${base} by itself 5 times. The value is <strong>${base**5}</strong>.`);
+  }
+
+  for(let base=2;base<=3;base++){
+    addQuestion(exponents, `\\(${base}^{6} = ?\\)`, base**6, `pow-${base}-6`, `${base}^6 means multiply ${base} by itself 6 times. The value is <strong>${base**6}</strong>.`);
+  }
+
+  for(let exp=2;exp<=10;exp++){
+    addQuestion(exponents, `\\(2^{${exp}} = ?\\)`, 2**exp, `pow-2-${exp}`, `2^${exp} means multiply ${Array(exp).fill(2).join(" × ")}. The value is <strong>${2**exp}</strong>.`);
+  }
+
+  function uniqueByKey(items){
+    const seen = new Set();
+    return items.filter(q=>{
+      if(seen.has(q.key)) return false;
+      seen.add(q.key);
+      return true;
+    });
+  }
+
+  const radicalUnique = uniqueByKey(radicals);
+  const exponentUnique = uniqueByKey(exponents);
+  const result = [];
+
+  while(result.length < total){
+    const remaining = total - result.length;
+    const cycle = [];
+    const cycleUsed = new Set();
+    const rs = shuffle([...radicalUnique]);
+    const es = shuffle([...exponentUnique]);
+
+    const radicalTarget = Math.min(rs.length, Math.round(remaining * 0.40));
+    const exponentTarget = Math.min(es.length, remaining - radicalTarget);
+
+    function take(source,count){
+      for(const q of source){
+        if(cycle.length >= remaining || count <= 0) break;
+        if(!cycleUsed.has(q.key)){
+          cycleUsed.add(q.key);
+          cycle.push(q);
+          count--;
+        }
+      }
+    }
+
+    take(rs, radicalTarget);
+    take(es, exponentTarget);
+
+    const leftovers = shuffle([...rs, ...es]);
+    for(const q of leftovers){
+      if(cycle.length >= remaining) break;
+      if(!cycleUsed.has(q.key)){
+        cycleUsed.add(q.key);
+        cycle.push(q);
+      }
+    }
+
+    shuffle(cycle);
+
+    if(result.length && cycle.length > 1 && result[result.length-1].key === cycle[0].key){
+      const swapIndex = cycle.findIndex((q,i)=>i>0 && q.key !== result[result.length-1].key);
+      if(swapIndex > 0){
+        [cycle[0],cycle[swapIndex]] = [cycle[swapIndex],cycle[0]];
+      }
+    }
+
+    result.push(...cycle);
+    if(cycle.length===0) break;
+  }
+
+  return result.slice(0,total).map(q=>{
+    if(q.explain) return q;
+    if(q.key.startsWith("pow-")){const parts=q.key.split("-"),base=Number(parts[1]),exp=Number(parts[2]);q.explain=`${base}^${exp} means multiply ${base} by itself ${exp} times. The value is <strong>${q.answer}</strong>.`;}
+    if(q.key.startsWith("sqrt-")){const rad=Number(q.key.split("-")[1]);q.explain=`A square root asks what positive number times itself gives ${rad}. The answer is <strong>${q.answer}</strong>.`;}
+    return q;
+  });
+}
+
+function timeText(){
+  const m=Math.floor(left/60);
+  const s=left%60;
+  $("timer").textContent=`${m}:${String(s).padStart(2,"0")}`;
+}
+
+function startTimer(){
+  clearInterval(timerId);
+  timeText();
+
+  timerId=setInterval(()=>{
+    left--;
+    if(left<=0){
+      left=0;
+      timeText();
+      finish("time");
+      return;
+    }
+    timeText();
+  },1000);
+}
+
+function show(){
+  if(finished) return;
+
+  if(idx>=pool.length){
+    finish("questions");
+    return;
+  }
+
+  const q=pool[idx];
+
+  $("progress").textContent=`${idx+1} / ${pool.length}`;
+  $("score").textContent=score;
+  $("question").textContent=q.text;
+  if(window.MathJax && MathJax.typesetPromise){
+    MathJax.typesetClear([$("question")]);
+    MathJax.typesetPromise([$("question")]);
+  }
+  $("answer").value="";
+  $("answer").disabled=false;
+  $("checkBtn").disabled=false;
+  $("feedback").textContent="";
+  $("feedback").className="feedback";
+  $("nextBtn").classList.add("hidden");
+  accepting=true;
+  if(!window.BatchMathKeypad?.touchMode) $("answer").focus();
+}
+
+function next(){
+  if(finished) return;
+  idx++;
+  show();
+}
+
+function submit(){
+  if(!accepting || finished) return;
+
+  const raw=$("answer").value.trim();
+  if(raw==="") return;
+
+  accepting=false;
+  $("answer").disabled=true;
+  $("checkBtn").disabled=true;
+  answered++;
+
+  const q=pool[idx];
+  const ok=Number(raw)===q.answer;
+
+  clearTimeout(advanceId);
+
+  if(ok){
+    score++;
+    $("score").textContent=score;
+    $("feedback").textContent="✓ Correct";
+    $("feedback").className="feedback correct";
+    advanceId=setTimeout(next,180);
+  }else{
+    $("feedback").innerHTML=`✗ Incorrect. Correct answer: <strong>${q.answer}</strong><br>${q.explain}`;
+    $("feedback").className="feedback incorrect";
+    $("nextBtn").classList.remove("hidden");
+    ;
+  }
+}
+
+function start(){
+  clearInterval(timerId);
+  clearTimeout(advanceId);
+
+  total=Number($("questionSelect").value);
+  left=Number($("timeSelect").value)*60;
+  idx=0;
+  score=0;
+  answered=0;
+  finished=false;
+  accepting=false;
+
+  pool=buildPool();
+
+  $("setupCard").classList.add("hidden");
+  $("resultsCard").classList.add("hidden");
+  $("practiceCard").classList.remove("hidden");
+
+  startTimer();
+  show();
+}
+
+function finish(reason){
+  if(finished) return;
+
+  finished=true;
+  accepting=false;
+  clearInterval(timerId);
+  clearTimeout(advanceId);
+
+  $("practiceCard").classList.add("hidden");
+  $("resultsCard").classList.remove("hidden");
+
+  $("finalScore").textContent=`${score} correct`;
+
+  if(reason==="time"){
+    $("finalMessage").textContent=`Time is up. You answered ${answered} question${answered===1?"":"s"}.`;
+  }else{
+    $("finalMessage").textContent=`You completed all ${pool.length} questions.`;
+  }
+}
+
+function reset(){
+  clearInterval(timerId);
+  clearTimeout(advanceId);
+  $("resultsCard").classList.add("hidden");
+  $("practiceCard").classList.add("hidden");
+  $("setupCard").classList.remove("hidden");
+}
+
+$("startBtn").addEventListener("click",start);
+$("checkBtn").addEventListener("click",submit);
+$("nextBtn").addEventListener("click",next);
+$("againBtn").addEventListener("click",reset);
+$("answer").addEventListener("keydown",e=>{
+  if(e.key==="Enter"){
+    e.preventDefault();
+    if(!$("nextBtn").classList.contains("hidden")) next(); else submit();
+  }
+});
+</script>
+<script data-batchmath-local-preview="1">
+(function(){
+  if (window.location.protocol !== 'file:') return;
+  function localizeDirectoryUrl(value){
+    if (!value || /^(?:[a-z][a-z0-9+.-]*:|#|\/)/i.test(value)) return value;
+    var hash = '';
+    var query = '';
+    var hashAt = value.indexOf('#');
+    if (hashAt >= 0) { hash = value.slice(hashAt); value = value.slice(0, hashAt); }
+    var queryAt = value.indexOf('?');
+    if (queryAt >= 0) { query = value.slice(queryAt); value = value.slice(0, queryAt); }
+    if (value.endsWith('/')) value += 'index.html';
+    return value + query + hash;
+  }
+  document.querySelectorAll('a[href]').forEach(function(link){
+    link.setAttribute('href', localizeDirectoryUrl(link.getAttribute('href')));
+  });
+  document.querySelectorAll('option[value]').forEach(function(option){
+    option.setAttribute('value', localizeDirectoryUrl(option.getAttribute('value')));
+  });
+})();
+</script>
+</body>
+</html>

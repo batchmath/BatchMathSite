@@ -1,0 +1,43 @@
+/* BatchMath calculus expression editor and on-screen math keypad */
+.bm-calc-source{
+  position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;
+  overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;
+}
+.bm-calc-editor{
+  flex:1 1 300px;min-width:220px;min-height:48px;display:flex;align-items:center;justify-content:flex-start;
+  padding:8px 12px;border:1px solid var(--yellow,#f5c400);border-radius:8px;background:#050505;color:#fff;
+  font-size:1.35rem;line-height:1.35;cursor:text;overflow-x:auto;white-space:nowrap;
+}
+.bm-calc-editor:focus{outline:2px solid rgba(245,196,0,.35);outline-offset:1px}
+.bm-calc-editor.is-disabled{opacity:.62;cursor:default}
+.bm-calc-editor .bm-calc-empty{color:#777;font-size:.86rem;font-weight:600}
+.bm-calc-editor sup{font-size:.68em;line-height:1;vertical-align:super;margin-left:1px}
+.bm-calc-caret{display:inline-block;width:2px;height:1.15em;margin:0 1px;background:#f5c400;vertical-align:-.16em;animation:bm-caret 1s steps(1) infinite}
+sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
+@keyframes bm-caret{0%,48%{opacity:1}49%,100%{opacity:0}}
+.bm-calc-keypad{max-width:760px;margin:10px auto 0;padding:9px;border:1px solid #292929;border-radius:10px;background:#080808;user-select:none;-webkit-user-select:none}
+.bm-calc-function-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin-bottom:6px}
+.bm-calc-main-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}
+.bm-calc-key{min-height:37px;padding:5px 4px;border:1px solid #3b3b3b;border-radius:7px;background:#141414;color:#fff;font:800 .92rem/1.05 Arial,Helvetica,sans-serif;cursor:pointer}
+.bm-calc-key:hover,.bm-calc-key:focus-visible{outline:none;border-color:#f5c400;background:#202020}
+.bm-calc-key:active{transform:translateY(1px)}
+.bm-calc-key.symbol,.bm-calc-key.function{color:#f5c400}
+.bm-calc-key.utility{color:#cfcfcf;font-size:.82rem}
+.bm-calc-key.check{background:#d71920;border-color:#d71920;color:#fff}
+.bm-calc-key.check:hover,.bm-calc-key.check:focus-visible{background:#ef222b;border-color:#ff4b50}
+.bm-calc-key.wide{grid-column:span 2}
+.bm-calc-keypad.is-disabled .bm-calc-key:not(.navigation){opacity:.45;cursor:default}
+.answer-row.bm-calc-answer-row{align-items:center}
+.answer-row.bm-calc-answer-row .practice-button{flex:0 0 auto}
+@media(max-width:760px){
+  .bm-calc-editor{min-width:0;flex-basis:100%;font-size:1.17rem;min-height:45px;padding:7px 9px}
+  .bm-calc-keypad{margin-top:7px;padding:6px}
+  .bm-calc-function-row,.bm-calc-main-grid{gap:4px}
+  .bm-calc-key{min-height:35px;font-size:.84rem;padding:4px 2px}
+  .bm-calc-key.utility{font-size:.72rem}
+}
+@media(max-width:430px){
+  .bm-calc-function-row{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .bm-calc-main-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .bm-calc-key{min-height:34px;font-size:.79rem}
+}
