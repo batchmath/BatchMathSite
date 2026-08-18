@@ -110,7 +110,7 @@
     if(kind === "integer"){
       pad.appendChild(button("−","symbol",()=>{if(!input.disabled)toggleNegative(input)},"Toggle negative sign"));
     }else if(kind === "fraction"){
-      pad.appendChild(button("/","symbol",()=>{if(!input.disabled)insertSlash(input)},"Fraction slash"));
+      pad.appendChild(button("a⁄b","symbol fraction-key",()=>{if(!input.disabled)insertSlash(input)},"Enter a fraction"));
     }else if(kind === "decimal"){
       pad.appendChild(button(".","symbol",()=>{if(!input.disabled)insertDecimal(input)},"Decimal point"));
     }else{

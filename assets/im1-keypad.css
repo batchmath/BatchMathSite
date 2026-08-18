@@ -25,6 +25,7 @@
 .bm-key:active{transform:translateY(1px)}
 .bm-key.utility{color:#f5c400;font-size:.88rem}
 .bm-key.symbol{color:#f5c400;font-size:1.18rem}
+.bm-key.fraction-key{font-size:.88rem}
 .bm-key.check-key{
   grid-column:5;
   grid-row:2 / span 2;
@@ -82,12 +83,12 @@ html.bm-practice-active .batch-back{
 }
 
 @media(max-width:720px){
-  /* Keep the keypad thumb-friendly, but compact enough that a full practice
-     interaction fits in a phone viewport without the OS keyboard. */
-  .bm-keypad{width:min(265px,100%);grid-auto-rows:30px;gap:2px;margin-top:3px}
-  .bm-key{min-height:30px;padding:1px 1px;font-size:.84rem;border-radius:5px}
-  .bm-key.utility,.bm-key.check-key{font-size:.68rem}
-  .bm-key.symbol{font-size:.96rem}
+  /* On phones, let the keypad use more vertical space instead of compressing
+     every key into a shallow strip at the top of the practice area. */
+  .bm-keypad{width:min(330px,100%);grid-auto-rows:48px;gap:7px;margin-top:8px}
+  .bm-key{min-height:48px;padding:5px 2px;font-size:1rem;border-radius:7px}
+  .bm-key.utility,.bm-key.check-key{font-size:.78rem}
+  .bm-key.symbol{font-size:1.12rem}
 
   /* During an active phone practice session, prioritize the actual problem over
      navigation/intro material. Setup and results still show the normal header. */
@@ -100,7 +101,7 @@ html.bm-practice-active .batch-back{
   html.bm-keypad-touch.bm-practice-active #practiceCard .question{margin:1px 0 3px;font-size:clamp(1.10rem,5.2vw,1.48rem);line-height:1.04}
   html.bm-keypad-touch.bm-practice-active #practiceCard .question.word{font-size:.76rem;line-height:1.12;margin:1px auto 3px;max-width:100%}
   html.bm-keypad-touch.bm-practice-active #practiceCard .instruction{margin:0 auto 3px;font-size:.63rem;line-height:1.10}
-  html.bm-keypad-touch.bm-practice-active #answer.bm-keypad-input{width:min(185px,100%);padding:3px 5px;font-size:.96rem;line-height:1.05;border-radius:5px}
+  html.bm-keypad-touch.bm-practice-active #answer.bm-keypad-input{width:min(225px,100%);padding:3px 5px;font-size:.96rem;line-height:1.05;border-radius:5px}
   html.bm-keypad-touch.bm-practice-active #practiceCard .feedback{min-height:0;margin:3px auto 0;font-size:.69rem;line-height:1.13;max-width:100%}
   html.bm-keypad-touch.bm-practice-active #practiceCard .next{margin:3px auto 0;padding:4px 8px;font-size:.70rem;border-radius:5px}
 

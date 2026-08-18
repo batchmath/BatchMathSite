@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded",function(){
     if(["dne","doesnotexist","doesn'texist","doesntexist","undefined"].includes(s))return {kind:"dne"};
     if(["∞","+∞","inf","+inf","infinity","+infinity"].includes(s))return {kind:"inf",sign:1};
     if(["-∞","-inf","-infinity"].includes(s))return {kind:"inf",sign:-1};
-    const fm=s.match(/^([+-]?(?:\d+(?:\.\d*)?|\.\d+))\/([+-]?(?:\d+(?:\.\d*)?|\.\d+))$/);
+    const fm=s.match(/^\(?([+-]?(?:\d+(?:\.\d*)?|\.\d+))\)?\/\(?([+-]?(?:\d+(?:\.\d*)?|\.\d+))\)?$/);
     if(fm){const d=Number(fm[2]);if(d===0)return null;return {kind:"num",value:Number(fm[1])/d};}
     if(/^[-+]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(s))return {kind:"num",value:Number(s)};
     return null;
