@@ -20,7 +20,7 @@ button{border:0;border-radius:9px;padding:12px 19px;font-size:1rem;font-weight:8
 .question-area{text-align:center}.question{margin:16px 0 24px;color:#f5c400;font-size:clamp(2.2rem,6vw,4rem);font-weight:900;line-height:1.25}.question.word{font-size:clamp(1.3rem,3.5vw,2rem);line-height:1.45;max-width:760px;margin-left:auto;margin-right:auto}
 #answer{display:block;width:min(320px,100%);margin:0 auto;text-align:center;font-size:1.8rem}.feedback{min-height:62px;margin-top:16px;font-size:1.08rem;font-weight:800;line-height:1.4}.correct{color:#f5c400}.incorrect{color:#ff4b50}.results{text-align:center}.big-score{font-size:3.4rem;font-weight:900;color:#f5c400}.results p{color:#aaa}.instruction{max-width:720px;margin:0 auto 18px;color:#c8c8c8;line-height:1.45;text-align:center}
 .choice-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;max-width:760px;margin:0 auto}.choice{display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 7px;border:1px solid #333;border-radius:9px;background:#111;font-weight:800;cursor:pointer}.choice input{width:18px;height:18px;accent-color:#d71920}
-@media(max-width:720px){.settings{grid-template-columns:1fr}.choice-grid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr 1fr}.card{padding:20px 15px}}</style><link rel="stylesheet" href="../../../../../assets/im1-keypad.css"><script defer src="../../../../../assets/im1-keypad.js"></script></head><body><main class="page"><a class="back" href="../../../">← Unit 1 - Review</a>
+@media(max-width:720px){.settings{grid-template-columns:1fr}.choice-grid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr 1fr}.card{padding:20px 15px}}</style><link rel="stylesheet" href="../../../../../assets/im1-keypad.css"><script defer src="../../../../../assets/im1-keypad.js"></script></head><body><main class="page"><a class="back" href="../">← Topic Page</a>
 <header class="header"><h1>Integer Multiplication &amp; Division</h1><p>Practice the sign rules for multiplying and dividing positive and negative integers. Division problems always have exact integer answers.</p></header>
 <section id="setupCard" class="card"><div class="settings">
 <div class="setting"><label for="categorySelect">Practice Type</label><select id="categorySelect"><option value="mixed" selected>Mixed Multiplication &amp; Division</option><option value="multiply">Multiplication Only</option><option value="divide">Division Only</option></select></div>
@@ -30,6 +30,7 @@ button{border:0;border-radius:9px;padding:12px 19px;font-size:1rem;font-weight:8
 <section id="practiceCard" class="card hidden"><div class="stats"><div class="stat">Question<span id="progress"></span></div><div class="stat">Score<span id="score">0</span></div><div class="stat">Time<span id="timer"></span></div></div>
 <div class="question-area"><div id="question" class="question"></div><input id="answer" type="text" autocomplete="off" aria-label="Answer" data-bm-keypad="integer"><button id="checkBtn" class="check">Check Answer</button><div id="feedback" class="feedback" aria-live="polite"></div></div></section>
 <section id="resultsCard" class="card results hidden"><h2>Practice Complete</h2><div id="finalScore" class="big-score"></div><p id="finalMessage"></p><button id="againBtn" class="primary">Practice Again</button></section></main>
+<script src="../../../../../assets/im1-display-math.js"></script>
 <script>const $=id=>document.getElementById(id);
 let total=20,idx=0,score=0,answered=0,left=180,timerId=null,advanceId=null,pool=[],finished=false,accepting=false;
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -63,8 +64,8 @@ function buildPool(category,totalNeeded){
 
 /* ENGINE CORE END */
 
-function showQuestion(){if(finished)return;if(idx>=pool.length)return finish("questions");const q=pool[idx];$("progress").textContent=`${idx+1} / ${pool.length}`;$("score").textContent=score;$("question").className="question";$("question").textContent=q.q;$("answer").value="";$("answer").disabled=false;$("checkBtn").disabled=false;$("feedback").textContent="";$("feedback").className="feedback";accepting=true;if(!window.BatchMathKeypad?.touchMode) $("answer").focus()}
-function submit(){if(!accepting||finished)return;const raw=$("answer").value.trim();if(raw==="")return;const q=pool[idx];accepting=false;$("answer").disabled=true;$("checkBtn").disabled=true;answered++;const ok=Number(raw)===q.answer;if(ok){score++;$("score").textContent=score;$("feedback").textContent="✓ Correct";$("feedback").className="feedback correct";advanceId=setTimeout(nextQuestion,180)}else{$("feedback").textContent=`✗ Incorrect. Correct answer: ${q.answer}`;$("feedback").className="feedback incorrect";advanceId=setTimeout(nextQuestion,2000)}}
+function showQuestion(){if(finished)return;if(idx>=pool.length)return finish("questions");const q=pool[idx];$("progress").textContent=`${idx+1} / ${pool.length}`;$("score").textContent=score;$("question").className="question";BatchMathDisplayMath.set($("question"),q.q);$("answer").value="";$("answer").disabled=false;$("checkBtn").disabled=false;$("feedback").textContent="";$("feedback").className="feedback";accepting=true;if(!window.BatchMathKeypad?.touchMode) $("answer").focus()}
+function submit(){if(!accepting||finished)return;const raw=$("answer").value.trim();if(raw==="")return;const q=pool[idx];accepting=false;$("answer").disabled=true;$("checkBtn").disabled=true;answered++;const ok=Number(raw)===q.answer;if(ok){score++;$("score").textContent=score;$("feedback").textContent="✓ Correct";$("feedback").className="feedback correct";advanceId=setTimeout(nextQuestion,180)}else{BatchMathDisplayMath.setFeedback($("feedback"),`✗ Incorrect. Correct answer: `,q.answer);$("feedback").className="feedback incorrect";advanceId=setTimeout(nextQuestion,2000)}}
 $("checkBtn").onclick=submit;$("answer").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();submit()}});
 
 $("startBtn").onclick=startPractice;$("againBtn").onclick=again;
@@ -88,6 +89,33 @@ $("startBtn").onclick=startPractice;$("againBtn").onclick=again;
   document.querySelectorAll('option[value]').forEach(function(option){
     option.setAttribute('value', localizeDirectoryUrl(option.getAttribute('value')));
   });
+})();
+</script>
+
+<script>
+(function(){
+  const backLink = document.querySelector('.back, .batch-back');
+  if (!backLink) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const source = params.get('from');
+  const referrerIsUnitPractice = /\/im1\/unit-1-review\/practice\/(?:index\.html)?(?:[?#].*)?$/.test(document.referrer || '');
+  const backHref = value => {
+    if (window.location.protocol !== 'file:') return value;
+    let hash = '', query = '';
+    const hashAt = value.indexOf('#'); if (hashAt >= 0) { hash = value.slice(hashAt); value = value.slice(0, hashAt); }
+    const queryAt = value.indexOf('?'); if (queryAt >= 0) { query = value.slice(queryAt); value = value.slice(0, queryAt); }
+    if (value.endsWith('/')) value += 'index.html';
+    return value + query + hash;
+  };
+
+  if (source === 'unit-practice' || (!source && referrerIsUnitPractice)) {
+    backLink.href = backHref('../../../practice/');
+    backLink.textContent = '← Unit 1 Practice';
+  } else {
+    backLink.href = backHref('../');
+    backLink.textContent = '← Topic Page';
+  }
 })();
 </script>
 </body></html>

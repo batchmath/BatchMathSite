@@ -1,0 +1,18 @@
+BatchMath Site v8.38
+
+Fix for MathJax command rendering introduced in v8.37.
+
+Problem:
+- The shared Calculus Prep TeX converter could emit two literal backslashes before commands such as frac and infty.
+- In TeX/MathJax, two backslashes mean a line break, so command names could appear visibly as italic text (for example, fracπ2 or infty) instead of rendering as mathematical notation.
+
+Fix:
+- Corrected the shared fraction conversion to emit exactly one TeX command backslash.
+- Removed redundant second-pass conversions that were doubling already-created TeX commands.
+- Added shared handling for theta, plus/minus, set membership, infinity, pi, union, and integer-set notation.
+- Because every Calculus Prep engine uses assets/calc-prep-common.js, the correction applies across every Calculus Prep display-math path rather than only Function Domains.
+
+QA:
+- Representative TeX conversion tests for fractions, infinity, intervals, logs, trig, inverse trig, radicals, rational functions, degrees, theta, set notation, and plus/minus: PASS.
+- All 15 JavaScript asset files pass node --check.
+- 127 HTML pages checked for local links/assets: 0 broken references.

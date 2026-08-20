@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="Free math instruction, interactive practice, videos, worksheets, notes, and resources for AP Calculus AB and Integrated Math 1 from BatchMath.">
+<meta name="description" content="Free math instruction, interactive practice, videos, worksheets, notes, and resources for Calculus Prep, AP Calculus AB, and Integrated Math 1 from BatchMath.">
 <link rel="canonical" href="https://batchmath.net/">
 <meta property="og:site_name" content="BatchMath">
 <meta property="og:type" content="website">
-<meta property="og:title" content="BatchMath | AP Calculus AB &amp; Integrated Math 1 Resources">
-<meta property="og:description" content="Free math instruction, interactive practice, videos, worksheets, notes, and resources for AP Calculus AB and Integrated Math 1 from BatchMath.">
+<meta property="og:title" content="BatchMath | Calculus Prep, AP Calculus AB &amp; Integrated Math 1 Resources">
+<meta property="og:description" content="Free math instruction, interactive practice, videos, worksheets, notes, and resources for Calculus Prep, AP Calculus AB, and Integrated Math 1 from BatchMath.">
 <meta property="og:url" content="https://batchmath.net/">
-<title>BatchMath | AP Calculus AB &amp; Integrated Math 1 Resources</title>
+<title>BatchMath | Calculus Prep, AP Calculus AB &amp; Integrated Math 1 Resources</title>
 <style>
 :root{
   --black:#030303;
@@ -136,9 +136,9 @@ a{color:inherit}
 }
 .course-grid{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:22px;
-  max-width:620px;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  max-width:820px;
   margin:20px auto 0;
 }
 .course-card{
@@ -192,6 +192,20 @@ a{color:inherit}
   background:#050505;
 }
 .social-link:hover{background:#171200}
+.social-platform{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  line-height:1.1;
+}
+.social-brand-icon{
+  display:block;
+  width:26px;
+  height:26px;
+  flex:0 0 auto;
+}
+.social-brand-icon.youtube{width:30px;height:22px}
 .social-handle{
   display:block;
   margin-top:3px;
@@ -290,6 +304,7 @@ a{color:inherit}
     <button class="menu-toggle" aria-expanded="false" aria-label="Open course menu" type="button" aria-haspopup="true" aria-controls="course-menu">COURSES ▼</button>
     <nav id="course-menu" class="dropdown">
       <a href="im1/">Integrated Math 1</a>
+      <a href="calculus-prep/">Calculus Prep</a>
       <a href="ap-calculus/">AP Calculus AB</a>
       <a href="./">Home</a>
     </nav>
@@ -301,8 +316,13 @@ a{color:inherit}
   <h1 class="brand-description">Math instruction, practice, videos, worksheets, and resources.</h1>
   <div class="course-grid">
     <a class="course-card" href="im1/">
-      <div class="math-icon">▦</div>
+      <div class="math-icon">α</div>
       <h2>Integrated Math 1</h2>
+    </a>
+
+    <a class="course-card" href="calculus-prep/">
+      <div class="math-icon">π</div>
+      <h2>Calculus Prep</h2>
     </a>
 
     <a class="course-card" href="ap-calculus/">
@@ -312,13 +332,36 @@ a{color:inherit}
   </div>
 
   <div class="socials">
-    <a class="social-link" href="https://www.youtube.com/@batchmath7898" target="_blank" rel="noopener">
-      YouTube
+    <a class="social-link" href="https://www.youtube.com/@batchmath7898" target="_blank" rel="noopener" aria-label="BatchMath on YouTube">
+      <span class="social-platform">
+        <svg class="social-brand-icon youtube" viewBox="0 0 30 22" aria-hidden="true" focusable="false">
+          <rect x="0" y="0" width="30" height="22" rx="6" fill="#FF0000"></rect>
+          <path d="M12 6.2 21 11l-9 4.8Z" fill="#FFFFFF"></path>
+        </svg>
+        <span>YouTube</span>
+      </span>
       <span class="social-handle">@batchmath</span>
     </a>
 
-    <a class="social-link" href="https://www.instagram.com/batchmath/" target="_blank" rel="noopener">
-      Instagram
+    <a class="social-link" href="https://www.instagram.com/batchmath/" target="_blank" rel="noopener" aria-label="BatchMath on Instagram">
+      <span class="social-platform">
+        <svg class="social-brand-icon" viewBox="0 0 28 28" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="instagram-gradient" x1="3" y1="25" x2="25" y2="3" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#FFDC80"></stop>
+              <stop offset="0.28" stop-color="#FCAF45"></stop>
+              <stop offset="0.5" stop-color="#F77737"></stop>
+              <stop offset="0.72" stop-color="#E1306C"></stop>
+              <stop offset="1" stop-color="#833AB4"></stop>
+            </linearGradient>
+          </defs>
+          <rect x="1" y="1" width="26" height="26" rx="7" fill="url(#instagram-gradient)"></rect>
+          <rect x="6.2" y="6.2" width="15.6" height="15.6" rx="5" fill="none" stroke="#FFFFFF" stroke-width="2.1"></rect>
+          <circle cx="14" cy="14" r="4" fill="none" stroke="#FFFFFF" stroke-width="2.1"></circle>
+          <circle cx="19.7" cy="8.6" r="1.25" fill="#FFFFFF"></circle>
+        </svg>
+        <span>Instagram</span>
+      </span>
       <span class="social-handle">@batchmath</span>
     </a>
   </div>

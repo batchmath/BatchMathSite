@@ -21,11 +21,12 @@ button{border:0;border-radius:9px;padding:11px 18px;font-size:1rem;font-weight:8
 .question-area{text-align:center}.question{margin:10px 0 16px;color:#f5c400;font-size:clamp(1.75rem,5vw,3rem);font-weight:900;line-height:1.25}.question.word{font-size:clamp(1.12rem,3.1vw,1.55rem);line-height:1.42;max-width:760px;margin-left:auto;margin-right:auto}
 #answer{display:block;width:min(300px,100%);margin:0 auto;text-align:center;font-size:1.55rem}.feedback{min-height:46px;max-width:720px;margin:12px auto 0;font-size:.98rem;font-weight:700;line-height:1.42}.feedback strong{color:#fff}.correct{color:#f5c400}.incorrect{color:#ff6469}.results{text-align:center}.big-score{font-size:3rem;font-weight:900;color:#f5c400}.results p{color:#aaa}.instruction{max-width:720px;margin:0 auto 14px;color:#c8c8c8;line-height:1.4;text-align:center;font-size:.96rem}
 .choice-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;max-width:760px;margin:0 auto}.choice{display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 6px;border:1px solid #333;border-radius:9px;background:#111;font-weight:800;cursor:pointer}.choice input{width:18px;height:18px;accent-color:#d71920}
-@media(max-width:720px){.page{padding:16px 10px 32px}.header{margin:10px 0 14px}.header h1{font-size:1.65rem}.header p{font-size:.92rem}.settings{grid-template-columns:1fr}.stats{grid-template-columns:repeat(var(--stat-cols,3),1fr);gap:6px;margin-bottom:12px}.stat{font-size:.86rem;padding:8px 4px}.stat span{font-size:1.05rem}.card{padding:14px 10px}.question{font-size:clamp(1.5rem,7vw,2.25rem);margin:8px 0 12px}.question.word{font-size:1.06rem}.instruction{font-size:.9rem;margin-bottom:10px}.feedback{font-size:.92rem}.choice-grid{grid-template-columns:1fr 1fr}.choice:last-child{grid-column:1/-1;max-width:50%;width:100%;justify-self:center}}</style><link rel="stylesheet" href="../../../../../assets/im1-keypad.css"><script defer src="../../../../../assets/im1-keypad.js"></script></head><body><main class="page"><a class="back" href="../../../">← Unit 1 - Review</a>
+@media(max-width:720px){.page{padding:16px 10px 32px}.header{margin:10px 0 14px}.header h1{font-size:1.65rem}.header p{font-size:.92rem}.settings{grid-template-columns:1fr}.stats{grid-template-columns:repeat(var(--stat-cols,3),1fr);gap:6px;margin-bottom:12px}.stat{font-size:.86rem;padding:8px 4px}.stat span{font-size:1.05rem}.card{padding:14px 10px}.question{font-size:clamp(1.5rem,7vw,2.25rem);margin:8px 0 12px}.question.word{font-size:1.06rem}.instruction{font-size:.9rem;margin-bottom:10px}.feedback{font-size:.92rem}.choice-grid{grid-template-columns:1fr 1fr}.choice:last-child{grid-column:1/-1;max-width:50%;width:100%;justify-self:center}}</style><link rel="stylesheet" href="../../../../../assets/im1-keypad.css"><script defer src="../../../../../assets/im1-keypad.js"></script></head><body><main class="page"><a class="back" href="../">← Topic Page</a>
 <header class="header"><h1>Decimals</h1><p>Practice decimal addition/subtraction, multiplication built from basic multiplication facts, and division problems whose answers are always whole numbers.</p></header>
 <section id="setupCard" class="card"><div class="settings"><div class="setting"><label for="categorySelect">Practice Type</label><select id="categorySelect"><option value="mixed" selected>Mixed Decimals</option><option value="addsub">Adding &amp; Subtracting</option><option value="multiply">Multiplying</option><option value="divide">Basic Division</option></select></div><div class="setting"><label for="timeSelect">Time Limit</label><select id="timeSelect"><option value="1">1 minute</option><option value="2">2 minutes</option><option value="3" selected>3 minutes</option><option value="4">4 minutes</option><option value="5">5 minutes</option></select></div><div class="setting"><label for="questionSelect">Number of Questions</label><select id="questionSelect"><option value="10">10 questions</option><option value="20" selected>20 questions</option><option value="30">30 questions</option><option value="40">40 questions</option><option value="50">50 questions</option><option value="60">60 questions</option><option value="70">70 questions</option><option value="80">80 questions</option><option value="90">90 questions</option><option value="100">100 questions</option></select></div></div><button id="startBtn" class="primary">Start Practice</button></section>
 <section id="practiceCard" class="card hidden"><div class="stats"><div class="stat">Question<span id="progress"></span></div><div class="stat">Score<span id="score">0</span></div><div class="stat">Time<span id="timer"></span></div></div><div class="question-area"><div id="question" class="question"></div><input id="answer" type="text" autocomplete="off" aria-label="Answer" data-bm-keypad="decimal"><button id="checkBtn" class="check">Check Answer</button><div id="feedback" class="feedback" aria-live="polite"></div><button id="nextBtn" class="next hidden">Next Question</button></div></section>
 <section id="resultsCard" class="card results hidden"><h2>Practice Complete</h2><div id="finalScore" class="big-score"></div><p id="finalMessage"></p><button id="againBtn" class="primary">Practice Again</button></section></main>
+<script src="../../../../../assets/im1-display-math.js"></script>
 <script>const $=id=>document.getElementById(id);
 let total=20,idx=0,score=0,answered=0,left=180,timerId=null,advanceId=null,pool=[],finished=false,accepting=false;
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -55,8 +56,8 @@ function makeDivide(){const divisorFact=ri(2,12),quotient=ri(2,12),dividendFact=
 function makeQuestion(cat){if(cat==="addsub")return makeAddSub();if(cat==="multiply")return makeMultiply();if(cat==="divide")return makeDivide();return pick([makeAddSub,makeMultiply,makeDivide])()}
 function buildPool(category,totalNeeded){const out=[],seen=new Set();for(let tries=0;out.length<totalNeeded&&tries<20000;tries++){const q=makeQuestion(category);if(!seen.has(q.id)){seen.add(q.id);out.push(q)}}return out}
 
-function showQuestion(){if(finished)return;if(idx>=pool.length)return finish("questions");const q=pool[idx];$("progress").textContent=`${idx+1} / ${pool.length}`;$("score").textContent=score;$("question").textContent=q.q;$("answer").value="";$("answer").disabled=false;$("checkBtn").disabled=false;resetFeedback();accepting=true;if(!window.BatchMathKeypad?.touchMode) $("answer").focus()}
-function submit(){if(!accepting||finished)return;const raw=$("answer").value.trim();if(raw===""||!Number.isFinite(Number(raw)))return;const q=pool[idx];accepting=false;$("answer").disabled=true;$("checkBtn").disabled=true;answered++;if(Math.abs(Number(raw)-q.answer)<1e-9){score++;$("score").textContent=score;$("feedback").textContent="✓ Correct";$("feedback").className="feedback correct";advanceId=setTimeout(nextQuestion,180)}else{showExplanation(`✗ Incorrect. Correct answer: <strong>${fmt(q.answer)}</strong><br>${q.explain}`)}}
+function showQuestion(){if(finished)return;if(idx>=pool.length)return finish("questions");const q=pool[idx];$("progress").textContent=`${idx+1} / ${pool.length}`;$("score").textContent=score;BatchMathDisplayMath.set($("question"),q.q);$("answer").value="";$("answer").disabled=false;$("checkBtn").disabled=false;resetFeedback();accepting=true;if(!window.BatchMathKeypad?.touchMode) $("answer").focus()}
+function submit(){if(!accepting||finished)return;const raw=$("answer").value.trim();if(raw===""||!Number.isFinite(Number(raw)))return;const q=pool[idx];accepting=false;$("answer").disabled=true;$("checkBtn").disabled=true;answered++;if(Math.abs(Number(raw)-q.answer)<1e-9){score++;$("score").textContent=score;$("feedback").textContent="✓ Correct";$("feedback").className="feedback correct";advanceId=setTimeout(nextQuestion,180)}else{showExplanation(`✗ Incorrect. Correct answer: ${BatchMathDisplayMath.html(fmt(q.answer))}<br>${q.explain}`);BatchMathDisplayMath.typeset([$("feedback")])}}
 $("checkBtn").onclick=submit;$("nextBtn").onclick=nextQuestion;$("answer").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();if(!$("nextBtn").classList.contains("hidden"))nextQuestion();else submit()}});$("startBtn").onclick=startPractice;$("againBtn").onclick=again;
 </script><script data-batchmath-local-preview="1">
 (function(){
@@ -78,6 +79,33 @@ $("checkBtn").onclick=submit;$("nextBtn").onclick=nextQuestion;$("answer").addEv
   document.querySelectorAll('option[value]').forEach(function(option){
     option.setAttribute('value', localizeDirectoryUrl(option.getAttribute('value')));
   });
+})();
+</script>
+
+<script>
+(function(){
+  const backLink = document.querySelector('.back, .batch-back');
+  if (!backLink) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const source = params.get('from');
+  const referrerIsUnitPractice = /\/im1\/unit-1-review\/practice\/(?:index\.html)?(?:[?#].*)?$/.test(document.referrer || '');
+  const backHref = value => {
+    if (window.location.protocol !== 'file:') return value;
+    let hash = '', query = '';
+    const hashAt = value.indexOf('#'); if (hashAt >= 0) { hash = value.slice(hashAt); value = value.slice(0, hashAt); }
+    const queryAt = value.indexOf('?'); if (queryAt >= 0) { query = value.slice(queryAt); value = value.slice(0, queryAt); }
+    if (value.endsWith('/')) value += 'index.html';
+    return value + query + hash;
+  };
+
+  if (source === 'unit-practice' || (!source && referrerIsUnitPractice)) {
+    backLink.href = backHref('../../../practice/');
+    backLink.textContent = '← Unit 1 Practice';
+  } else {
+    backLink.href = backHref('../');
+    backLink.textContent = '← Topic Page';
+  }
 })();
 </script>
 </body></html>

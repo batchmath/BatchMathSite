@@ -1,0 +1,14 @@
+BatchMath Site v8.44
+
+Calculus fraction-entry fix
+- AP Calculus Derivatives and Integrals now use a true editable stacked fraction at the keypad division position instead of inserting a plain division slash/sign.
+- Fraction keys now display an actual numerator-over-denominator icon.
+- Pressing the physical / key in Derivatives or Integrals creates a stacked fraction.
+- Smart fraction entry promotes the current left-hand term into the numerator when appropriate.
+- Fractions remain stored internally as parser-friendly (numerator)/(denominator), preserving existing equivalence checking.
+- Limits shares the improved fraction-key styling and keeps its existing fraction-entry behavior.
+
+Cross-engine review
+- Calc Prep exact-answer editor already uses stacked fractions and intercepts / as fraction entry; no change required.
+- IM1 Reducing Fractions and Fractions already use a stacked fraction editor; no change required.
+- Other IM1 Unit 1 answer engines do not require algebraic fraction construction.

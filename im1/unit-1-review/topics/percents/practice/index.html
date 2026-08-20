@@ -21,7 +21,7 @@ button{border:0;border-radius:9px;padding:11px 18px;font-size:1rem;font-weight:8
 .question-area{text-align:center}.question{margin:10px 0 16px;color:#f5c400;font-size:clamp(1.75rem,5vw,3rem);font-weight:900;line-height:1.25}.question.word{font-size:clamp(1.12rem,3.1vw,1.55rem);line-height:1.42;max-width:760px;margin-left:auto;margin-right:auto}
 #answer{display:block;width:min(300px,100%);margin:0 auto;text-align:center;font-size:1.55rem}.feedback{min-height:46px;max-width:720px;margin:12px auto 0;font-size:.98rem;font-weight:700;line-height:1.42}.feedback strong{color:#fff}.correct{color:#f5c400}.incorrect{color:#ff6469}.results{text-align:center}.big-score{font-size:3rem;font-weight:900;color:#f5c400}.results p{color:#aaa}.instruction{max-width:720px;margin:0 auto 14px;color:#c8c8c8;line-height:1.4;text-align:center;font-size:.96rem}
 .choice-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;max-width:760px;margin:0 auto}.choice{display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 6px;border:1px solid #333;border-radius:9px;background:#111;font-weight:800;cursor:pointer}.choice input{width:18px;height:18px;accent-color:#d71920}
-@media(max-width:720px){.page{padding:16px 10px 32px}.header{margin:10px 0 14px}.header h1{font-size:1.65rem}.header p{font-size:.92rem}.settings{grid-template-columns:1fr}.stats{grid-template-columns:repeat(var(--stat-cols,3),1fr);gap:6px;margin-bottom:12px}.stat{font-size:.86rem;padding:8px 4px}.stat span{font-size:1.05rem}.card{padding:14px 10px}.question{font-size:clamp(1.5rem,7vw,2.25rem);margin:8px 0 12px}.question.word{font-size:1.06rem}.instruction{font-size:.9rem;margin-bottom:10px}.feedback{font-size:.92rem}.choice-grid{grid-template-columns:1fr 1fr}.choice:last-child{grid-column:1/-1;max-width:50%;width:100%;justify-self:center}}</style><link rel="stylesheet" href="../../../../../assets/im1-keypad.css"><script defer src="../../../../../assets/im1-keypad.js"></script></head><body><main class="page"><a class="back" href="../../../">← Unit 1 - Review</a>
+@media(max-width:720px){.page{padding:16px 10px 32px}.header{margin:10px 0 14px}.header h1{font-size:1.65rem}.header p{font-size:.92rem}.settings{grid-template-columns:1fr}.stats{grid-template-columns:repeat(var(--stat-cols,3),1fr);gap:6px;margin-bottom:12px}.stat{font-size:.86rem;padding:8px 4px}.stat span{font-size:1.05rem}.card{padding:14px 10px}.question{font-size:clamp(1.5rem,7vw,2.25rem);margin:8px 0 12px}.question.word{font-size:1.06rem}.instruction{font-size:.9rem;margin-bottom:10px}.feedback{font-size:.92rem}.choice-grid{grid-template-columns:1fr 1fr}.choice:last-child{grid-column:1/-1;max-width:50%;width:100%;justify-self:center}}</style><link rel="stylesheet" href="../../../../../assets/im1-keypad.css"><script defer src="../../../../../assets/im1-keypad.js"></script><script src="../../../../../assets/im1-display-math.js"></script></head><body><main class="page"><a class="back" href="../">← Topic Page</a>
 <header class="header"><h1>Percents</h1><p>Untimed practice finding percents and solving applications involving values above 100%, discounts, markups, sales tax, and successive percent changes.</p></header>
 <section id="setupCard" class="card"><div class="settings"><div class="setting"><label for="categorySelect">Practice Type</label><select id="categorySelect"><option value="mixed" selected>Mixed Percents</option><option value="percent">Percent of a Number</option><option value="original">Percent of Original Value</option><option value="discount">Discounts &amp; Markups</option><option value="tax">Discount + Tax</option><option value="successive">Successive Percent Changes</option></select></div><div class="setting"><label for="questionSelect">Number of Questions</label><select id="questionSelect"><option value="10">10 questions</option><option value="20" selected>20 questions</option><option value="30">30 questions</option><option value="40">40 questions</option><option value="50">50 questions</option><option value="60">60 questions</option><option value="70">70 questions</option><option value="80">80 questions</option><option value="90">90 questions</option><option value="100">100 questions</option></select></div></div><button id="startBtn" class="primary">Start Practice</button></section>
 <section id="practiceCard" class="card hidden"><div class="stats"><div class="stat">Question<span id="progress"></span></div><div class="stat">Score<span id="score">0</span></div></div><div class="question-area"><div id="question" class="question word"></div><input id="answer" type="text" autocomplete="off" aria-label="Answer" data-bm-keypad="decimal"><button id="checkBtn" class="check">Check Answer</button><div id="feedback" class="feedback" aria-live="polite"></div><button id="nextBtn" class="next hidden">Next Question</button></div></section>
@@ -76,6 +76,33 @@ $("checkBtn").onclick=submit;$("nextBtn").onclick=nextQuestion;$("answer").addEv
   document.querySelectorAll('option[value]').forEach(function(option){
     option.setAttribute('value', localizeDirectoryUrl(option.getAttribute('value')));
   });
+})();
+</script>
+
+<script>
+(function(){
+  const backLink = document.querySelector('.back, .batch-back');
+  if (!backLink) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const source = params.get('from');
+  const referrerIsUnitPractice = /\/im1\/unit-1-review\/practice\/(?:index\.html)?(?:[?#].*)?$/.test(document.referrer || '');
+  const backHref = value => {
+    if (window.location.protocol !== 'file:') return value;
+    let hash = '', query = '';
+    const hashAt = value.indexOf('#'); if (hashAt >= 0) { hash = value.slice(hashAt); value = value.slice(0, hashAt); }
+    const queryAt = value.indexOf('?'); if (queryAt >= 0) { query = value.slice(queryAt); value = value.slice(0, queryAt); }
+    if (value.endsWith('/')) value += 'index.html';
+    return value + query + hash;
+  };
+
+  if (source === 'unit-practice' || (!source && referrerIsUnitPractice)) {
+    backLink.href = backHref('../../../practice/');
+    backLink.textContent = '← Unit 1 Practice';
+  } else {
+    backLink.href = backHref('../');
+    backLink.textContent = '← Topic Page';
+  }
 })();
 </script>
 </body></html>

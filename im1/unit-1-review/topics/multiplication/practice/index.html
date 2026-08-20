@@ -262,7 +262,7 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
 
 <body>
   <main class="page">
-<a class="batch-back" href="../../../">← Unit 1 - Review</a>
+<a class="batch-back" href="../">← Topic Page</a>
     <header class="header">
       <h1>Multiplication Practice</h1>
       <p>Build speed and accuracy.</p>
@@ -344,6 +344,7 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
     </section>
   </main>
 
+  <script src="../../../../../assets/im1-display-math.js"></script>
   <script>
     const setupCard = document.getElementById("setupCard");
     const practiceCard = document.getElementById("practiceCard");
@@ -585,7 +586,7 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
         `${currentIndex + 1} / ${questionPool.length}`;
 
       scoreDisplay.textContent = score;
-      questionDisplay.textContent = question.text;
+      BatchMathDisplayMath.set(questionDisplay, question.text);
 
       answerInput.value = "";
       answerInput.disabled = false;
@@ -642,8 +643,7 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
         advanceId = setTimeout(goToNextQuestion, 180);
       } else {
         // Keep the original problem on the screen for one second.
-        feedbackDisplay.textContent =
-          `✗ Incorrect. Correct answer: ${currentQuestion.answer}`;
+        BatchMathDisplayMath.setFeedback(feedbackDisplay, `✗ Incorrect. Correct answer: `, currentQuestion.answer);
         feedbackDisplay.className = "feedback incorrect";
 
         advanceId = setTimeout(goToNextQuestion, 2000);
@@ -741,6 +741,33 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
   document.querySelectorAll('option[value]').forEach(function(option){
     option.setAttribute('value', localizeDirectoryUrl(option.getAttribute('value')));
   });
+})();
+</script>
+
+<script>
+(function(){
+  const backLink = document.querySelector('.back, .batch-back');
+  if (!backLink) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const source = params.get('from');
+  const referrerIsUnitPractice = /\/im1\/unit-1-review\/practice\/(?:index\.html)?(?:[?#].*)?$/.test(document.referrer || '');
+  const backHref = value => {
+    if (window.location.protocol !== 'file:') return value;
+    let hash = '', query = '';
+    const hashAt = value.indexOf('#'); if (hashAt >= 0) { hash = value.slice(hashAt); value = value.slice(0, hashAt); }
+    const queryAt = value.indexOf('?'); if (queryAt >= 0) { query = value.slice(queryAt); value = value.slice(0, queryAt); }
+    if (value.endsWith('/')) value += 'index.html';
+    return value + query + hash;
+  };
+
+  if (source === 'unit-practice' || (!source && referrerIsUnitPractice)) {
+    backLink.href = backHref('../../../practice/');
+    backLink.textContent = '← Unit 1 Practice';
+  } else {
+    backLink.href = backHref('../');
+    backLink.textContent = '← Topic Page';
+  }
 })();
 </script>
 </body>

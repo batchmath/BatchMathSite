@@ -1,0 +1,13 @@
+BatchMath Site v8.41
+
+Display-math consistency pass
+
+- Standardized Calculus Prep display-only mathematics on the shared MathJax renderer.
+- Legacy custom display markup for fractions, roots, superscripts, subscripts, and log bases is now converted to TeX before MathJax typesets it.
+- Plain log notation is converted to MathJax \\log, including explicit bases such as log_8 and legacy log8 forms, so "log" is upright rather than italicized as three variables.
+- Questions, answer choices, correct-answer displays, rational expressions, radicals, intervals, trig expressions, logarithms, and other display-only math in Calculus Prep now route through MathJax.
+- Student-editable answer fields/keypads remain custom interactive controls and were intentionally not converted to MathJax.
+- Added a shared IM1 display-math helper and applied it to the IM1 arithmetic engines that were still showing standalone problems in ordinary browser fonts (Multiplication, Integer Addition/Subtraction, Signed Multiplication/Division, and Decimals).
+- Updated IM1 wrong-answer displays for fraction, reducing-fraction, order-of-operations, square-root/exponent, decimal, integer, and multiplication practice so mathematical answers can be typeset consistently.
+- AP Calculus comprehensive-review engines were checked and already route display math through MathJax; no unnecessary rewrites were made there.
+- Preserved the v8.40 protection that disables MathJax menu/explorer interactions inside answer controls.

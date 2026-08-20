@@ -77,3 +77,16 @@ sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
   .bm-calc-key.utility{font-size:.68rem}
   .bm-calc-key.fraction{font-size:.74rem}
 }
+
+/* Match displayed infinity symbols to a mathematical font instead of Arial. */
+.bm-calc-key.math-infinity-key{font-family:"Cambria Math","STIX Two Math","DejaVu Math TeX Gyre","Times New Roman",serif;font-weight:400;font-size:1.08rem}
+
+
+/* Fraction keys use a real horizontal fraction bar instead of a slash glyph. */
+.bm-calc-key-frac{
+  display:inline-grid;grid-template-rows:auto auto;line-height:.82;text-align:center;
+  min-width:1.15em;vertical-align:middle;font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;
+  font-weight:600;
+}
+.bm-calc-key-frac span:first-child{border-bottom:1.4px solid currentColor;padding:0 .16em .06em}
+.bm-calc-key-frac span:last-child{padding:.06em .16em 0}

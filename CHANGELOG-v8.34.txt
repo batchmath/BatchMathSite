@@ -1,0 +1,38 @@
+BatchMath v8.34
+Built from v8.33.
+
+CALCULUS PREP — FUNCTION DOMAINS
+- Expanded Combined / Composite practice beyond the earlier radical/log combinations.
+- Added quotients with varied constant/algebraic numerators over expressions such as ln(x-a)+c.
+- Added logarithm/trigonometric composites, reciprocal radical/trig composites, inverse-trigonometric composites, and additional mixed-restriction families.
+- Preserved the existing Combined / Composite families while broadening the pool.
+- Included COMBINED-COMPOSITE-DOMAIN-100-SAMPLES.txt with 100 generated examples for review.
+
+CALCULUS PREP — LOGARITHM RULES
+- Replaced generic symbolic base-b presentation with actual numeric bases and natural logarithms throughout generated practice.
+- Diversified Product Rule practice with eight structural templates.
+- Diversified Quotient Rule practice with eight structural templates.
+- Added safeguards so paired factors in generated product/quotient questions are not identical.
+- Expanded Inverse / Basic Log Facts to include nested functional exponents, including forms analogous to ln(e^(sin x)) and log_2(2^(x^2)).
+- Preserved exact symbolic answers rather than decimal approximations.
+
+SITE-WIDE MATHEMATICAL DISPLAY CLEANUP
+- Added/extended suppression of redundant first powers so generated expressions do not display x^1 or analogous first powers.
+- Added/extended suppression of redundant coefficient 1 in generated expressions.
+- Applied targeted first-power/coefficient cleanup to existing AP Calculus Limits, Derivatives, and Integrals comprehensive-review practice where needed.
+- Corrected two old static Limits navigation/text occurrences of sin(1x) to sin(1/x).
+
+HOMEPAGE
+- Changed the Integrated Math 1 course-card symbol to lowercase Greek alpha (α).
+- Instagram/YouTube logo artwork was NOT added in this version; trademark/brand-use guidance was reviewed separately before making that design change.
+
+QA
+- 127 HTML pages checked.
+- 15 external JavaScript files passed syntax checks.
+- 408 inline JavaScript blocks passed syntax checks.
+- 0 broken internal links detected.
+- 0 duplicate HTML IDs detected.
+- 0 missing sitemap targets detected.
+- 0 missing local canonical targets detected.
+- Logarithm generator stress-tested with 500 generated questions in each of 8 modes; no duplicate answer-choice strings, symbolic base-b display, or generated x^1 found.
+- Combined / Composite domain sample generation checked for 100 unique generated IDs and for redundant +/-0, x^1, and coefficient-1x formatting.

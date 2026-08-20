@@ -1,0 +1,37 @@
+BatchMath Site v8.42
+
+MathJax hardening / site-wide display-math QA
+
+Primary bug fixed
+- Fixed the Calc Prep plain-math -> TeX exponent parser. It was consuming the trig argument as part of an unbraced exponent, so strings such as sin²x and tan²x could become sin^(2x) and tan^(2x). Numeric trig powers now stop after the exponent and leave the argument outside the exponent.
+
+Related converter fixes
+- Added correct nested-exponent parsing. Example: 2^x^2 now renders as 2^(x^2), not (2^x)^2-style sequential superscripts.
+- Reworked slash-division conversion so display-only fractions are consistently sent to MathJax as \frac{...}{...}.
+- Fraction conversion is group-aware and recursive inside trig arguments, logarithms, roots, and nested parentheses.
+- Removed unnecessary outer parentheses when they only served to group a numerator or denominator before conversion.
+- Normalized additional math symbols for MathJax: multiplication dot/cross, <=/>=/!= style relations, Unicode <=/>=/not-equal, pi, infinity, union, element-of, plus/minus, degrees.
+- Added defensive escaping for percent and hash characters in Calc Prep display math so TeX does not interpret them as comment/parameter syntax.
+
+AP Calculus audit/fixes
+- AP Calculus does not use the Calc Prep converter, so the trig-exponent parser bug was not present there.
+- Standardized remaining user-facing slash notation inside MathJax solution/explanation formulas to stacked fractions where appropriate, including:
+  * dy/dx and d²y/dx² notation
+  * logarithmic derivative ratios u'/u
+  * inverse-trigonometric derivative formulas
+  * inverse-function derivative reciprocals
+  * limit ratios such as tan(u)/u and |x|/x
+  * integral/logarithm ratios such as f'(x)/f(x), du/u, dx/x, sin/cos
+  * common constants such as pi/2, 1/2, and 2/pi when shown as mathematics
+
+IM1 audit/fixes
+- IM1 uses a separate lightweight display helper. Its exponent conversion only consumes numeric exponents, so it was not vulnerable to the Calc Prep trig-argument exponent bug.
+- Added defensive percent/hash escaping to the IM1 display helper for MathJax safety.
+
+QA
+- 526 Calc Prep math-like generator strings were passed through the updated converter and compiled with the installed MathJax engine: 0 MathJax errors.
+- Automated checks found no remaining generated trig powers with variable-containing exponents from the converter, no generated display fractions left as raw slash notation, and no generated ^1 display exponents in the scanned Calc Prep corpus.
+- Scanned direct AP Calculus / IM1 MathJax fragments for unmatched left/right delimiters and bare function-name conversion problems.
+- 127 HTML pages checked: 0 broken local references, 0 duplicate-ID pages.
+- 115 sitemap URLs checked: 0 missing targets.
+- All external JavaScript files pass node --check.

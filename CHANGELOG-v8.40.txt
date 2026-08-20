@@ -1,0 +1,27 @@
+BatchMath Site v8.40
+
+Primary fix:
+- Prevent MathJax's built-in contextual/accessibility interaction layer from intercepting clicks on answer-choice buttons.
+
+Site-wide MathJax interaction changes:
+1. Calculus Prep shared MathJax configuration
+   - Disabled the MathJax contextual menu (enableMenu:false).
+   - Disabled expression explorer, click zoom, and MathJax tab stops for displayed math.
+   - Added shared CSS so rendered MathJax inside buttons/answer-choice containers does not receive pointer events or text selection.
+   - The surrounding answer button receives the click normally.
+
+2. Existing AP Calculus and IM1 MathJax pages
+   - Scanned every direct MathJax load point on the site.
+   - Applied the same contextual-menu/accessibility-interaction settings to all 8 direct MathJax pages.
+   - Added the same pointer-event/user-selection protection for MathJax inside interactive answer controls.
+
+Coverage:
+- Calculus Prep: shared dynamic MathJax loader protected.
+- AP Calculus: all direct MathJax practice pages protected.
+- IM1: all direct MathJax practice pages protected.
+
+QA:
+- 127 HTML pages scanned.
+- 0 broken local references.
+- 0 duplicate ID pages.
+- All JavaScript asset files passed syntax checking.

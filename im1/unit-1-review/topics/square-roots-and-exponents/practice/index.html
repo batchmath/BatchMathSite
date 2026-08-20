@@ -153,13 +153,15 @@ window.MathJax = {
   }
 };
 </script>
+<script>window.MathJax=window.MathJax||{};window.MathJax.options=Object.assign({},window.MathJax.options||{},{enableMenu:false});window.MathJax.options.menuOptions=Object.assign({},window.MathJax.options.menuOptions||{});window.MathJax.options.menuOptions.settings=Object.assign({},window.MathJax.options.menuOptions.settings||{},{explorer:false,zoom:'NoZoom',inTabOrder:false});</script>
+<style id="bm-mathjax-control-style">button mjx-container,button mjx-container *,.choice mjx-container,.choice mjx-container *,.choice-grid mjx-container,.choice-grid mjx-container *{pointer-events:none!important;user-select:none!important;-webkit-user-select:none!important;-webkit-touch-callout:none!important}</style>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
 
-<link rel="stylesheet" href="../../../../../assets/im1-keypad.css"><script defer src="../../../../../assets/im1-keypad.js"></script></head>
+<link rel="stylesheet" href="../../../../../assets/im1-keypad.css"><script defer src="../../../../../assets/im1-keypad.js"></script><script src="../../../../../assets/im1-display-math.js"></script></head>
 
 <body>
 <main class="page">
-<a class="back" href="../../../">← Unit 1 - Review</a>
+<a class="back" href="../">← Topic Page</a>
 
 <header class="header">
   <h1>Square Roots and Exponents</h1>
@@ -434,8 +436,9 @@ function submit(){
     $("feedback").className="feedback correct";
     advanceId=setTimeout(next,180);
   }else{
-    $("feedback").innerHTML=`✗ Incorrect. Correct answer: <strong>${q.answer}</strong><br>${q.explain}`;
+    $("feedback").innerHTML=`✗ Incorrect. Correct answer: ${BatchMathDisplayMath.html(q.answer)}<br>${q.explain}`;
     $("feedback").className="feedback incorrect";
+    BatchMathDisplayMath.typeset([$("feedback")]);
     $("nextBtn").classList.remove("hidden");
     ;
   }
@@ -522,6 +525,33 @@ $("answer").addEventListener("keydown",e=>{
   document.querySelectorAll('option[value]').forEach(function(option){
     option.setAttribute('value', localizeDirectoryUrl(option.getAttribute('value')));
   });
+})();
+</script>
+
+<script>
+(function(){
+  const backLink = document.querySelector('.back, .batch-back');
+  if (!backLink) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const source = params.get('from');
+  const referrerIsUnitPractice = /\/im1\/unit-1-review\/practice\/(?:index\.html)?(?:[?#].*)?$/.test(document.referrer || '');
+  const backHref = value => {
+    if (window.location.protocol !== 'file:') return value;
+    let hash = '', query = '';
+    const hashAt = value.indexOf('#'); if (hashAt >= 0) { hash = value.slice(hashAt); value = value.slice(0, hashAt); }
+    const queryAt = value.indexOf('?'); if (queryAt >= 0) { query = value.slice(queryAt); value = value.slice(0, queryAt); }
+    if (value.endsWith('/')) value += 'index.html';
+    return value + query + hash;
+  };
+
+  if (source === 'unit-practice' || (!source && referrerIsUnitPractice)) {
+    backLink.href = backHref('../../../practice/');
+    backLink.textContent = '← Unit 1 Practice';
+  } else {
+    backLink.href = backHref('../');
+    backLink.textContent = '← Topic Page';
+  }
 })();
 </script>
 </body>

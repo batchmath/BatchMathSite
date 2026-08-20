@@ -113,7 +113,34 @@
   }
   function insertFunction(name){insert(name+"()",name.length+1);}
   function insertExponent(){insert("^()",2);}
+
+  // Insert a true editable stacked fraction. Underneath, the value remains
+  // parser-friendly as (numerator)/(denominator).
   function insertFraction(){insert("()/()",1);}
+
+  // Keyboard / and the keypad's division-position key create a stacked fraction.
+  // If a numerator is already immediately to the left, promote that current
+  // top-level term into the numerator instead of showing a plain division glyph.
+  function fractionFromLeft(){
+    if(!state.input||state.input.disabled)return;
+    const left=state.raw.slice(0,state.cursor),right=state.raw.slice(state.cursor);
+    let depth=0,start=0;
+    for(let i=left.length-1;i>=0;i--){
+      const ch=left[i];
+      if(ch===")")depth++;
+      else if(ch==="("){
+        depth--;
+        if(depth<0){start=i+1;break;}
+      }
+      else if(depth===0&&(ch==="+"||ch==="-"||ch===",")){start=i+1;break;}
+    }
+    const numerator=left.slice(start);
+    if(!numerator){insertFraction();return;}
+    state.raw=left.slice(0,start)+`(${numerator})/()`+right;
+    state.cursor=left.slice(0,start).length+numerator.length+4;
+    sync();
+    state.editor.focus();
+  }
 
   function backspace(){
     if(!state.input||state.input.disabled||state.cursor<=0)return;
@@ -161,11 +188,11 @@
     if(btn&&getComputedStyle(btn).display!=="none")btn.click();
   }
 
-  function key(label,cls,fn,aria){
+  function key(label,cls,fn,aria,html=false){
     const b=document.createElement("button");
     b.type="button";
     b.className="bm-calc-key"+(cls?" "+cls:"");
-    b.textContent=label;
+    if(html)b.innerHTML=label;else b.textContent=label;
     if(aria)b.setAttribute("aria-label",aria);
     b.addEventListener("pointerdown",e=>e.preventDefault());
     b.addEventListener("click",fn);
@@ -179,7 +206,8 @@
   }
   function addInsert(grid,label,raw,cls="",aria){grid.appendChild(key(label,cls,()=>insert(raw),aria));}
   function addFunction(grid,label,name){grid.appendChild(key(label,"function",()=>insertFunction(name),`Insert ${label}`));}
-  function addFraction(grid){grid.appendChild(key("a⁄b","symbol fraction",insertFraction,"Insert fraction"));}
+  const fractionKeyHTML='<span class="bm-calc-key-frac" aria-hidden="true"><span>a</span><span>b</span></span>';
+  function addFraction(grid,smart=false){grid.appendChild(key(fractionKeyHTML,"symbol fraction",smart?fractionFromLeft:insertFraction,"Insert stacked fraction",true));}
 
   function buildPad(mode){
     const pad=document.createElement("div");
@@ -192,8 +220,8 @@
       special.className="bm-calc-special-row";
       addFraction(special);
       addInsert(special,"DNE","DNE","function","Insert DNE");
-      addInsert(special,"∞","infinity","function","Insert infinity");
-      addInsert(special,"−∞","-infinity","function","Insert negative infinity");
+      addInsert(special,"∞","infinity","function math-infinity-key","Insert infinity");
+      addInsert(special,"−∞","-infinity","function math-infinity-key","Insert negative infinity");
       pad.appendChild(special);
     }else{
       const funcs=document.createElement("div");
@@ -219,9 +247,11 @@
       // logical rows on both desktop and mobile.
       [["7","7"],["8","8"],["9","9"],["(","("],[")",")"],
        ["4","4"],["5","5"],["6","6"],["+","+"],["−","-"],
-       ["1","1"],["2","2"],["3","3"],["·","*"],["÷","/"],
-       ["0","0"],[".","."],["x","x"]]
-        .forEach(([lab,raw])=>addInsert(g,lab,raw,/[+−·÷()]/.test(lab)?"symbol":""));
+       ["1","1"],["2","2"],["3","3"],["·","*"]]
+        .forEach(([lab,raw])=>addInsert(g,lab,raw,/[+−·()]/.test(lab)?"symbol":""));
+      addFraction(g,true);
+      [["0","0"],[".","."],["x","x"]]
+        .forEach(([lab,raw])=>addInsert(g,lab,raw));
       if(mode==="derivative")addInsert(g,"y","y");
       else if(mode==="integral")addInsert(g,"C","C","function");
       g.appendChild(key("xⁿ","symbol",insertExponent,"Insert exponent"));
@@ -252,7 +282,8 @@
     if(e.key==="Delete"){e.preventDefault();del();return;}
     if(e.key==="Enter"){e.preventDefault();check();return;}
     if(e.key==="^"){e.preventDefault();insertExponent();return;}
-    if(e.key.length===1&&/[0-9a-zA-Z+\-*/().,]/.test(e.key)){e.preventDefault();insert(e.key);return;}
+    if(e.key==="/"){e.preventDefault();fractionFromLeft();return;}
+    if(e.key.length===1&&/[0-9a-zA-Z+\-*().,]/.test(e.key)){e.preventDefault();insert(e.key);return;}
   }
 
   function reset(){

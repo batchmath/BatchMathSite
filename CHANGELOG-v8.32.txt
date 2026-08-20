@@ -1,0 +1,76 @@
+BatchMath v8.32
+Built from BatchMath v8.31 (which was built from v8.30)
+
+CALCULUS PREP REFINEMENTS
+
+1. Unit Circle Exact Values
+- Radian-mode wrong-answer explanations now state reference angles in radians instead of degrees.
+- Degree-mode explanations remain in degrees.
+- Compacted the practice interface and moved feedback/explanations above the keypad so students are much less likely to need to scroll to read feedback.
+
+2. Trig Angle Skills
+- Replaced “Quadrant & Sign” with quadrant-only questions.
+- Removed sign-of-trig-function questions from that category.
+- The note about reference angles extending across several revolutions now appears only for Reference Angles and Mixed Practice.
+- Reference-angle explanations respect the selected radians/degrees format.
+
+3. Trigonometric Identities
+- Fixed Formula Recall questions that could display two mathematically correct answer choices while recognizing only one as correct (for example, equivalent forms of cos(2x)).
+- Distractors now exclude every known valid right-hand side for the same left-hand side.
+- Added a validation safeguard so all stored valid equivalent forms are accepted.
+- Selected multiple-choice answers can now be submitted with Enter.
+
+4. Answer-choice keyboard behavior across BatchMath
+- Added shared Enter-to-submit behavior to all Calculus Prep choice-based engines.
+- After an incorrect locked choice question, Enter advances to Next Question when appropriate.
+- Rational Function Analysis select-answer fields can submit with Enter once all required fields have selections.
+- Reviewed existing AP Calculus practice engines: their current free-response Enter behavior is preserved.
+- Reviewed IM1 practice engines: shared keypad-based engines already support Enter; added Enter submission/advance to the Classifying Numbers checkbox engine.
+
+5. Synthetic Division & Rational Root Theorem
+- Added a visible ± input shortcut and comma shortcut for Possible Rational Roots.
+- Students may also type +/- / ±.
+- As an additional convenience, a complete positive-only list of candidates is accepted as shorthand for the corresponding ± list.
+
+6. Special Factoring
+- Pascal’s Triangle coefficient practice is now capped at n = 8.
+- Other higher-order factoring practice remains available where appropriate.
+
+7. Function Graphs
+- Reduced graph size to avoid excessive page scrolling.
+- Corrected prompt hierarchy: the actual requested feature/question is now the prominent text, while “Use the graph...” is secondary.
+- Reduced oversized question typography for graph-analysis questions.
+- Checked other practice-engine prompt/question structures for the same hierarchy problem.
+
+8. Rational Function Analysis
+- Removed the setup choice between horizontal and slant asymptote problems.
+- Problem generation now targets approximately 75% horizontal-asymptote cases and 25% slant-asymptote cases.
+- Multi-part grading now marks each answer area individually: correct parts green, incorrect parts red.
+- Wrong-answer feedback explains only the fields that were incorrect.
+
+9. Trigonometric Equations
+- Basic one-angle equations no longer include pointless “divide by 1” wording.
+- Added quadratic-in-trig problems where one factor produces an impossible trig value (such as sin(x)=2) while another factor produces legitimate unit-circle solutions.
+- Solvable factors are restricted to exact unit-circle values; no non-unit-circle targets such as sin(x)=1/4 were added.
+
+10. Algebra for Calculus
+- Complex fractions are now displayed as true nested/stacked fractions.
+- Rationalizing practice now focuses on conjugate/binomial denominators rather than single radical denominators.
+- Added variable-radical conjugate forms such as denominators involving √x − 3 or √x + 3.
+- Removed Exponents & Radical Forms.
+- Removed Difference Quotients.
+- Rational Expression Simplification is now free response rather than multiple choice.
+- Algebra for Calculus hub description updated to match the revised engine.
+
+CALCULUS PREP HUB NOTE
+- Logarithm Rules remains a separate Calculus Prep engine.
+- Function Domains remains a separate Calculus Prep engine.
+
+TECHNICAL QA
+- Checked 127 HTML pages for duplicate IDs and broken local links.
+- Checked all 15 local JavaScript files with Node syntax validation.
+- Checked sitemap targets and canonical targets against the generated site tree.
+- Confirmed all Calculus Prep answer-choice pages use the shared keyboard/Enter behavior.
+- Confirmed IM1 Classifying Numbers has Enter submission/advance behavior and existing IM1 keypad engines retain their Enter handling.
+- Regression assertions performed for every requested v8.32 change listed above.
+- Final static QA result: 0 detected broken internal links, 0 duplicate IDs, 0 JavaScript syntax errors, 0 sitemap target errors, and 0 canonical target errors.
