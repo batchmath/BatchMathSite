@@ -277,25 +277,46 @@ BM.legacyHTMLToTeX=function(raw){
  const html=String(raw??'').trim();if(!html)return '';
  if(!/[<>]/.test(html))return BM.toTeX(html);
  const box=document.createElement('div');box.innerHTML=html;
- function walk(node){
-  if(node.nodeType===3)return BM.toTeX(node.nodeValue||'');
-  if(node.nodeType!==1)return '';
-  const el=node,cls=el.classList||{contains:()=>false};
-  if(cls.contains('math-frac')||cls.contains('answer-frac')){
-   const num=[...el.children].find(x=>x.classList.contains('num'));
-   const den=[...el.children].find(x=>x.classList.contains('den'));
-   if(num&&den)return `\\frac{${walk(num)}}{${walk(den)}}`;
+ // IMPORTANT: convert the complete expression as one string.  The older
+ // implementation called BM.toTeX() on each individual text node.  If HTML
+ // math markup split an enclosing pair of parentheses (for example
+ // sec(<fraction>2pi/3</fraction>)), the first text node was "sec(" and was
+ // parsed as an empty group, producing sec() followed by the fraction and an
+ // extra closing parenthesis.  Placeholder tokens keep structural math intact
+ // while allowing the surrounding expression to be parsed in one balanced pass.
+ function convertNodes(nodes){
+  const tokens=[];
+  const tokenFor=tex=>{const key=`ZZBMATH${tokens.length}ZZ`;tokens.push([key,tex]);return key};
+  function childTex(el){return convertNodes([...el.childNodes])}
+  function flatten(node){
+   if(node.nodeType===3)return node.nodeValue||'';
+   if(node.nodeType!==1)return '';
+   const el=node,cls=el.classList||{contains:()=>false};
+   if(cls.contains('math-frac')||cls.contains('answer-frac')){
+    const num=[...el.children].find(x=>x.classList.contains('num'));
+    const den=[...el.children].find(x=>x.classList.contains('den'));
+    if(num&&den)return tokenFor(`\\frac{${childTex(num)}}{${childTex(den)}}`);
+   }
+   if(cls.contains('math-root')){
+    const idx=[...el.children].find(x=>x.classList.contains('root-index'));
+    const body=[...el.children].find(x=>x.classList.contains('root-body'));
+    const index=idx?childTex(idx):'';
+    return tokenFor(`\\sqrt${index?`[${index}]`:''}{${body?childTex(body):''}}`);
+   }
+   if(el.tagName==='SUP')return tokenFor(`^{${childTex(el)}}`);
+   if(el.tagName==='SUB')return tokenFor(`_{${childTex(el)}}`);
+   return [...el.childNodes].map(flatten).join('');
   }
-  if(cls.contains('math-root')){
-   const idx=[...el.children].find(x=>x.classList.contains('root-index'));
-   const body=[...el.children].find(x=>x.classList.contains('root-body'));
-   const index=idx?walk(idx):'';return `\\sqrt${index?`[${index}]`:''}{${body?walk(body):''}}`;
-  }
-  if(el.tagName==='SUP')return `^{${[...el.childNodes].map(walk).join('')}}`;
-  if(el.tagName==='SUB')return `_{${[...el.childNodes].map(walk).join('')}}`;
-  return [...el.childNodes].map(walk).join('');
+  let flat=[...nodes].map(flatten).join('');
+  let tex=BM.toTeX(flat);
+  for(const [key,value] of tokens)tex=tex.split(key).join(value);
+  // A SUP/SUB element can also split a function name from its exponent/base
+  // (cos<sup>2</sup>, log<sub>8</sub>). Restore MathJax operator commands
+  // after structural placeholders have been reassembled so these stay upright.
+  tex=tex.replace(/(^|[^\\A-Za-z])(arcsin|arccos|arctan|sin|cos|tan|csc|sec|cot|ln|log)(?=(?:_\{|\^\{|\s|\(|\\frac|\\sqrt|[A-Za-z0-9]))/g,'$1\\$2');
+  return tex;
  }
- return [...box.childNodes].map(walk).join('').replace(/\s+/g,' ').trim();
+ return convertNodes([...box.childNodes]).replace(/\s+/g,' ').trim();
 };
 BM.texHTML=raw=>`<span class="bm-math">\\(${BM.toTeX(raw)}\\)</span>`;
 BM.displayMathHTML=function(raw){

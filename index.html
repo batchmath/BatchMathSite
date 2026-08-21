@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="description" content="Free math instruction, interactive practice, videos, worksheets, notes, and resources for Calculus Prep, AP Calculus AB, and Integrated Math 1 from BatchMath.">
 <link rel="canonical" href="https://batchmath.net/">
 <meta property="og:site_name" content="BatchMath">
@@ -181,14 +185,18 @@ a{color:inherit}
   flex-wrap:wrap;
 }
 .social-link{
-  min-width:125px;
-  padding:10px 14px;
+  width:54px;
+  height:48px;
+  padding:8px;
   text-decoration:none;
   border:1px solid var(--yellow);
   border-radius:8px;
   color:var(--yellow);
   text-align:center;
   font-weight:800;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   background:#050505;
 }
 .social-link:hover{background:#171200}
@@ -206,13 +214,6 @@ a{color:inherit}
   flex:0 0 auto;
 }
 .social-brand-icon.youtube{width:30px;height:22px}
-.social-handle{
-  display:block;
-  margin-top:3px;
-  color:#ff4b50;
-  font-size:.76rem;
-  font-weight:700;
-}
 .page-title{
   color:var(--yellow);
   text-align:center;
@@ -331,38 +332,30 @@ a{color:inherit}
     </a>
   </div>
 
-  <div class="socials">
-    <a class="social-link" href="https://www.youtube.com/@batchmath7898" target="_blank" rel="noopener" aria-label="BatchMath on YouTube">
-      <span class="social-platform">
-        <svg class="social-brand-icon youtube" viewBox="0 0 30 22" aria-hidden="true" focusable="false">
-          <rect x="0" y="0" width="30" height="22" rx="6" fill="#FF0000"></rect>
-          <path d="M12 6.2 21 11l-9 4.8Z" fill="#FFFFFF"></path>
-        </svg>
-        <span>YouTube</span>
-      </span>
-      <span class="social-handle">@batchmath</span>
+  <div class="socials" aria-label="BatchMath social media">
+    <a class="social-link" href="https://www.youtube.com/@batchmath7898" target="_blank" rel="noopener" aria-label="BatchMath on YouTube" title="YouTube @batchmath">
+      <svg class="social-brand-icon youtube" viewBox="0 0 30 22" aria-hidden="true" focusable="false">
+        <rect x="0" y="0" width="30" height="22" rx="6" fill="#FF0000"></rect>
+        <path d="M12 6.2 21 11l-9 4.8Z" fill="#FFFFFF"></path>
+      </svg>
     </a>
 
-    <a class="social-link" href="https://www.instagram.com/batchmath/" target="_blank" rel="noopener" aria-label="BatchMath on Instagram">
-      <span class="social-platform">
-        <svg class="social-brand-icon" viewBox="0 0 28 28" aria-hidden="true" focusable="false">
-          <defs>
-            <linearGradient id="instagram-gradient" x1="3" y1="25" x2="25" y2="3" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#FFDC80"></stop>
-              <stop offset="0.28" stop-color="#FCAF45"></stop>
-              <stop offset="0.5" stop-color="#F77737"></stop>
-              <stop offset="0.72" stop-color="#E1306C"></stop>
-              <stop offset="1" stop-color="#833AB4"></stop>
-            </linearGradient>
-          </defs>
-          <rect x="1" y="1" width="26" height="26" rx="7" fill="url(#instagram-gradient)"></rect>
-          <rect x="6.2" y="6.2" width="15.6" height="15.6" rx="5" fill="none" stroke="#FFFFFF" stroke-width="2.1"></rect>
-          <circle cx="14" cy="14" r="4" fill="none" stroke="#FFFFFF" stroke-width="2.1"></circle>
-          <circle cx="19.7" cy="8.6" r="1.25" fill="#FFFFFF"></circle>
-        </svg>
-        <span>Instagram</span>
-      </span>
-      <span class="social-handle">@batchmath</span>
+    <a class="social-link" href="https://www.instagram.com/batchmath/" target="_blank" rel="noopener" aria-label="BatchMath on Instagram" title="Instagram @batchmath">
+      <svg class="social-brand-icon" viewBox="0 0 28 28" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="instagram-gradient" x1="3" y1="25" x2="25" y2="3" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#FFDC80"></stop>
+            <stop offset="0.28" stop-color="#FCAF45"></stop>
+            <stop offset="0.5" stop-color="#F77737"></stop>
+            <stop offset="0.72" stop-color="#E1306C"></stop>
+            <stop offset="1" stop-color="#833AB4"></stop>
+          </linearGradient>
+        </defs>
+        <rect x="1" y="1" width="26" height="26" rx="7" fill="url(#instagram-gradient)"></rect>
+        <rect x="6.2" y="6.2" width="15.6" height="15.6" rx="5" fill="none" stroke="#FFFFFF" stroke-width="2.1"></rect>
+        <circle cx="14" cy="14" r="4" fill="none" stroke="#FFFFFF" stroke-width="2.1"></circle>
+        <circle cx="19.7" cy="8.6" r="1.25" fill="#FFFFFF"></circle>
+      </svg>
     </a>
   </div>
 </main>
