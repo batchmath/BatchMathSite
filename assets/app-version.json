@@ -1,0 +1,7 @@
+{
+  "version": "10.2.0",
+  "release": "v10.2",
+  "architecture": "pwa-foundation",
+  "storageSchema": 1,
+  "serviceWorker": "/sw.js"
+}
