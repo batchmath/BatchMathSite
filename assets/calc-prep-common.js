@@ -404,7 +404,6 @@ BM.choiceEnter=function(){
  },true);
 };
 BM.exactListEqual=function(raw,expected,modulo){
- if(String(raw).includes('.'))return false;
  const parts=String(raw).split(/[,;]+/).map(s=>s.trim()).filter(Boolean);if(parts.length!==expected.length)return false;
  const vals=parts.map(BM.safeExactEval);if(vals.some(v=>!Number.isFinite(v)))return false;
  const norm=v=>modulo?((v%modulo)+modulo)%modulo:v;

@@ -294,6 +294,7 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
   
     gtag('config', 'G-377MTFXSF3');
   </script>
+<script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_multiplication",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
 </head>
 
 <body><a class="skip-link" href="#main-content">Skip to main content</a>
@@ -454,6 +455,7 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
 
           // 0s and 1s are always very rare, even if paired with a harder fact.
           if (hasZeroOrOne) {
+            item.problemType = "facts_0_1_rare";
             tierRare.push(item);
           }
           // 2s, 10s, and "easy" 11s are intentionally reduced.
@@ -463,6 +465,7 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
             hasTen ||
             (hasEleven && !hardEleven)
           ) {
+            item.problemType = "facts_2_10_easy_11";
             tierLow.push(item);
           }
           // Facts involving 3, 4, or 5 are medium frequency.
@@ -470,11 +473,13 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
             a === 3 || a === 4 || a === 5 ||
             b === 3 || b === 4 || b === 5
           ) {
+            item.problemType = "facts_3_5_medium";
             tierMedium.push(item);
           }
           // Remaining facts are dominated by 6–9 and 12,
           // plus 11×11 and 11×12.
           else {
+            item.problemType = "facts_6_9_12_hard_11";
             tierHigh.push(item);
           }
         }
@@ -486,7 +491,8 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
           b: n,
           text: `${n} × ${n} = ?`,
           answer: n * n,
-          key: `${n}x${n}`
+          key: `${n}x${n}`,
+          problemType: "squares_13_20"
         });
       }
 
@@ -623,6 +629,7 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
 
       scoreDisplay.textContent = score;
       BatchMathDisplayMath.set(questionDisplay, question.text);
+      window.BMAnalytics?.problemGenerated(question);
 
       answerInput.value = "";
       answerInput.disabled = false;
@@ -665,6 +672,7 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
       const currentQuestion = questionPool[currentIndex];
       const isCorrect = studentAnswer === currentQuestion.answer;
       answeredCount++;
+      window.BMAnalytics?.answerChecked(currentQuestion, isCorrect);
 
       clearTimeout(advanceId);
 
@@ -681,6 +689,7 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
         // Keep the original problem on the screen for one second.
         BatchMathDisplayMath.setFeedback(feedbackDisplay, `✗ Incorrect. Correct answer: `, currentQuestion.answer);
         feedbackDisplay.className = "feedback incorrect";
+        window.BMAnalytics?.solutionRevealed(currentQuestion, {reveal_reason:"incorrect_answer"});
 
         advanceId = setTimeout(goToNextQuestion, 2000);
       }
@@ -700,6 +709,7 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
       acceptingAnswer = false;
 
       questionPool = buildWeightedUniquePool();
+      window.BMAnalytics?.practiceStarted({question_count:totalQuestions,time_limit_minutes:Number(timeSelect.value)});
 
       setupCard.classList.add("hidden");
       resultsCard.classList.add("hidden");

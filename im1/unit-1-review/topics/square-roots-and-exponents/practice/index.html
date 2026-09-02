@@ -193,6 +193,7 @@ window.MathJax = {
   
     gtag('config', 'G-377MTFXSF3');
   </script>
+<script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_exponents_radicals",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
 </head>
 
 <body><a class="skip-link" href="#main-content">Skip to main content</a>
@@ -429,6 +430,7 @@ function show(){
   $("progress").textContent=`${idx+1} / ${pool.length}`;
   $("score").textContent=score;
   $("question").textContent=q.text;
+  window.BMAnalytics?.problemGenerated(q);
   if(window.MathJax && MathJax.typesetPromise){
     MathJax.typesetClear([$("question")]);
     MathJax.typesetPromise([$("question")]);
@@ -462,6 +464,7 @@ function submit(){
 
   const q=pool[idx];
   const ok=Number(raw)===q.answer;
+  window.BMAnalytics?.answerChecked(q,ok);
 
   clearTimeout(advanceId);
 
@@ -475,6 +478,7 @@ function submit(){
     $("feedback").innerHTML=`✗ Incorrect. Correct answer: ${BatchMathDisplayMath.html(q.answer)}<br>${q.explain}`;
     $("feedback").className="feedback incorrect";
     BatchMathDisplayMath.typeset([$("feedback")]);
+    window.BMAnalytics?.solutionRevealed(q,{reveal_reason:"incorrect_answer"});
     $("nextBtn").classList.remove("hidden");
     ;
   }
@@ -493,6 +497,7 @@ function start(){
   accepting=false;
 
   pool=buildPool();
+  window.BMAnalytics?.practiceStarted({question_count:total,time_limit_minutes:Number($("timeSelect").value)});
 
   $("setupCard").classList.add("hidden");
   $("resultsCard").classList.add("hidden");

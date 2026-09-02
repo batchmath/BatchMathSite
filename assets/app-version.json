@@ -1,7 +1,9 @@
 {
-  "version": "10.2.0",
-  "release": "v10.2",
+  "version": "10.3.3",
+  "release": "v10.3.3",
   "architecture": "pwa-foundation",
   "storageSchema": 1,
-  "serviceWorker": "/sw.js"
+  "serviceWorker": "/sw.js",
+  "analyticsSchema": 1,
+  "engineAnalytics": true
 }

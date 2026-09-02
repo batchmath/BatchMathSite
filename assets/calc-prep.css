@@ -106,3 +106,11 @@ button mjx-container *,
   -webkit-user-select:none !important;
   -webkit-touch-callout:none !important;
 }
+
+/* v10.3.3 exact-answer editor caret/navigation refinements */
+.bm-exact-caret{display:inline-block;width:2px;height:1.08em;margin:0 1px;background:var(--yellow);vertical-align:-.14em;animation:bm-exact-caret 1s steps(1) infinite}
+@keyframes bm-exact-caret{0%,48%{opacity:1}49%,100%{opacity:0}}
+.bm-exact-token{display:inline-block;cursor:text}
+.exact-editor:focus{outline:2px solid rgba(245,196,0,.35);outline-offset:1px}
+.answer-frac .num,.answer-frac .den{cursor:text}
+@media(prefers-reduced-motion:reduce){.bm-exact-caret{animation:none}}

@@ -45,7 +45,7 @@ function build(){
  const id=`${type}-${dm}-${N.join('_')}-${D.join('_')}`;
  return {id,type,dm,numText,denText,hole:holeAnswer,vertical:listX(vas),end:ha,xints:xints(zeros),hasHole,vas,zeros,methods:{hole:holeMethod,vertical:verticalMethod,end:endMethod,xints:xMethod}};
 }
-function newQ(){locked=false;clearFieldMarks();$('feedback').innerHTML='';$('feedback').className='feedback';next.style.display='none';let c,tries=0;do{c=build();tries++;if(tries>100){seen.clear();break}}while(seen.has(c.id));seen.add(c.id);current=c;prompt.textContent=`Analyze the rational function (${c.dm} form).`;B.renderHTML(question,`${B.inlineMathHTML('f(x) = ')}${B.fracHTMLText(c.numText,c.denText,'display-frac')}`);
+function newQ(){locked=false;clearFieldMarks();$('feedback').innerHTML='';$('feedback').className='feedback';next.style.display='none';let c,tries=0;do{c=build();tries++;if(tries>100){seen.clear();break}}while(seen.has(c.id));seen.add(c.id);current=c;window.BMAnalytics?.ensurePracticeStarted({practice_mode:(document.getElementById("mode")?.value||document.getElementById("qtype")?.value||document.getElementById("difficulty")?.value||document.getElementById("displayMode")?.value||"default")});window.BMAnalytics?.problemGenerated(current,{practice_mode:(document.getElementById("mode")?.value||document.getElementById("qtype")?.value||document.getElementById("difficulty")?.value||document.getElementById("displayMode")?.value||"default")});prompt.textContent=`Analyze the rational function (${c.dm} form).`;B.renderHTML(question,`${B.inlineMathHTML('f(x) = ')}${B.fracHTMLText(c.numText,c.denText,'display-frac')}`);
  setOptions(holesSel,c.hole,[c.hasHole?'None':'(0, 0)',c.hasHole?'(0, 0)':'(1, 1)','None']);
  setOptions(verticalSel,c.vertical,[c.vas.length?`x = ${-c.vas[0]}`:'x = 0','None',c.vas.length>1?`x = ${c.vas[0]}`:'x = 1']);
  setOptions(endSel,c.end,[c.end==='y = 0'?'y = 1':'y = 0','None',c.type==='slant'?'y = x':'y = 2']);
@@ -60,8 +60,8 @@ function check(){
   {sel:xintsSel,key:'xints',label:'x-intercept(s)',correct:current.xints}
  ];
  const wrong=[];for(const item of checks){const ok=item.sel.value===item.correct,box=item.sel.closest('.feature-box');box?.classList.add(ok?'field-correct':'field-wrong');if(!ok)wrong.push(item)}
- const ok=wrong.length===0;attempted++;if(ok)correct++;B.updateStats(correct,attempted);locked=true;
- if(ok){B.showFeedback(true);setTimeout(newQ,700)}else{
+ const ok=wrong.length===0;window.BMAnalytics?.answerChecked(current,ok);attempted++;if(ok)correct++;B.updateStats(correct,attempted);locked=true;
+ if(ok){B.showFeedback(true);setTimeout(newQ,700)}else{window.BMAnalytics?.solutionRevealed(current,{reveal_reason:"incorrect_answer"});
   const f=$('feedback');f.className='feedback wrong';f.innerHTML=`<div class="status">✗ ${wrong.length===1?'One part needs correction.':`${wrong.length} parts need correction.`}</div>`+wrong.map(item=>`<div class="partial-explanation"><strong>${item.label}:</strong> Correct answer: <span class="correct-answer-text inline">${B.displayMathHTML(item.correct)}</span><br>${current.methods[item.key]}</div>`).join('');B.typeset([f]);next.style.display='inline-block';
  }
 }

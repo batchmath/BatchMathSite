@@ -3,6 +3,7 @@
 
   const state={input:null,editor:null,pad:null,raw:"",cursor:0,mode:"derivative"};
   const fnNames=["sin","cos","tan","sec","csc","cot","ln","sqrt","abs"];
+  const atomicWords=["infinity","undefined","DNE","pi"];
 
   function escapeHtml(s){
     return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -35,6 +36,65 @@
     return {numStart:i+1,numClose,denStart:denOpen+1,denClose,end:denClose+1};
   }
 
+  function renderToken(display,start,end,cls=""){
+    return `<span class="bm-calc-token${cls?" "+cls:""}" data-bm-start="${start}" data-bm-end="${end}">${escapeHtml(display)}</span>`;
+  }
+
+  function functionShellAt(start){
+    const name=fnNames.find(f=>state.raw.startsWith(f+"(",start));
+    if(!name)return null;
+    const open=start+name.length;
+    const close=findClose(state.raw,open);
+    return {name,start,tokenEnd:open,argStart:open+1,close,end:close>=0?close+1:null};
+  }
+  function atomicAt(start){
+    const word=atomicWords.find(w=>state.raw.startsWith(w,start)) ||
+      fnNames.find(w=>state.raw.startsWith(w,start));
+    return word?{word,start,end:start+word.length}:null;
+  }
+  function normalizeCursor(pos,dir=0){
+    let p=Math.max(0,Math.min(Number(pos)||0,state.raw.length));
+    // Invisible fraction syntax )/( is one visual boundary between the stacked
+    // numerator and denominator, so no caret may sit inside those raw characters.
+    for(let start=0;start<state.raw.length;start++){
+      const f=fractionAt(state.raw,start,state.raw.length);
+      if(f&&p>f.numClose&&p<f.denStart){
+        if(dir>0)return f.denStart;
+        if(dir<0)return f.numClose;
+        return (p-f.numClose)<=(f.denStart-p)?f.numClose:f.denStart;
+      }
+    }
+    // Likewise, ^( is rendered as one superscript entry boundary.
+    for(let i=0;i<state.raw.length-1;i++){
+      if(state.raw.startsWith("^(",i)&&p>i&&p<i+2){
+        if(dir>0)return i+2;
+        if(dir<0)return i;
+        return (p-i)<=(i+2-p)?i:i+2;
+      }
+    }
+    // Function names and the opening parenthesis are one semantic entry boundary.
+    // The caret must never disappear inside raw text such as s|q|r|t|( or s|i|n|(.
+    for(let start=0;start<state.raw.length;start++){
+      const sh=functionShellAt(start);
+      if(sh&&p>sh.start&&p<sh.argStart){
+        if(dir>0)return sh.argStart;
+        if(dir<0)return sh.start;
+        return (p-sh.start)<=(sh.argStart-p)?sh.start:sh.argStart;
+      }
+    }
+    // Standalone words that display as a single semantic item are atomic.
+    for(let start=0;start<state.raw.length;start++){
+      const a=atomicAt(start);if(!a)continue;
+      if(fnNames.includes(a.word)&&state.raw[a.end]==="(")continue;
+      if(p>a.start&&p<a.end){
+        if(dir>0)return a.end;
+        if(dir<0)return a.start;
+        return (p-a.start)<=(a.end-p)?a.start:a.end;
+      }
+    }
+    return p;
+  }
+
   function renderPlain(start,end){
     const s=state.raw;
     let out="",i=start;
@@ -47,7 +107,7 @@
         let den=renderPlain(frac.denStart,frac.denClose);
         if(frac.numStart===frac.numClose)num+=emptyBox();
         if(frac.denStart===frac.denClose)den+=emptyBox();
-        out+=`<span class="bm-calc-frac"><span class="bm-calc-frac-num">${num}</span><span class="bm-calc-frac-den">${den}</span></span>`;
+        out+=`<span class="bm-calc-frac" data-bm-frac-start="${i}" data-bm-frac-end="${frac.end}"><span class="bm-calc-frac-num" data-bm-zone="num" data-bm-zone-start="${frac.numStart}" data-bm-zone-end="${frac.numClose}">${num}</span><span class="bm-calc-frac-den" data-bm-zone="den" data-bm-zone-start="${frac.denStart}" data-bm-zone-end="${frac.denClose}">${den}</span></span>`;
         i=frac.end;
         continue;
       }
@@ -57,7 +117,7 @@
         if(close>=0&&close<end){
           let inner=renderPlain(i+2,close);
           if(i+2===close)inner+=emptyBox();
-          out+=`<sup>${inner}</sup>`;
+          out+=`<sup data-bm-zone="exp" data-bm-zone-start="${i+2}" data-bm-zone-end="${close}">${inner}</sup>`;
           i=close+1;
           continue;
         }
@@ -68,22 +128,53 @@
         if(s.startsWith(f,i)){token=f;shown=f==="sqrt"?"√":f;break;}
       }
       if(token){
-        out+=`<span>${escapeHtml(shown)}</span>`;
+        out+=renderToken(shown,i,i+token.length,"function");
         i+=token.length;
         continue;
       }
-      if(s.startsWith("pi",i)){out+="π";i+=2;continue;}
+      if(s.startsWith("infinity",i)){out+=renderToken("∞",i,i+8,"math infinity");i+=8;continue;}
+      if(s.startsWith("undefined",i)){out+=renderToken("Undefined",i,i+9,"word");i+=9;continue;}
+      if(s.startsWith("DNE",i)){out+=renderToken("DNE",i,i+3,"word");i+=3;continue;}
+      if(s.startsWith("pi",i)){out+=renderToken("π",i,i+2,"math");i+=2;continue;}
 
       const ch=s[i];
-      out+=escapeHtml(ch==="*"?"·":ch==="/"?"÷":ch==="-"?"−":ch);
+      out+=renderToken(ch==="*"?"·":ch==="/"?"÷":ch==="-"?"−":ch,i,i+1);
       i++;
     }
     if(state.cursor===end)out+=caret();
     return out;
   }
 
+  function allFractions(start=0,end=state.raw.length,out=[]){
+    let i=start;
+    while(i<end){
+      const frac=fractionAt(state.raw,i,end);
+      if(frac){
+        out.push({...frac,start:i});
+        allFractions(frac.numStart,frac.numClose,out);
+        allFractions(frac.denStart,frac.denClose,out);
+        i=frac.end;continue;
+      }
+      if(state.raw.startsWith("^(",i)){
+        const close=findClose(state.raw,i+1);
+        if(close>=0&&close<end){allFractions(i+2,close,out);i=close+1;continue;}
+      }
+      i++;
+    }
+    return out;
+  }
+
+  function containingFraction(cursor=state.cursor){
+    const matches=allFractions().filter(f=>(cursor>=f.numStart&&cursor<=f.numClose)||(cursor>=f.denStart&&cursor<=f.denClose));
+    if(!matches.length)return null;
+    matches.sort((a,b)=>(a.end-a.start)-(b.end-b.start));
+    return matches[0];
+  }
+
+
   function render(){
     if(!state.editor)return;
+    state.cursor=normalizeCursor(state.cursor,0);
     const disabled=!!state.input?.disabled;
     state.editor.classList.toggle("is-disabled",disabled);
     state.pad?.classList.toggle("is-disabled",disabled);
@@ -100,14 +191,15 @@
   }
   function setRaw(raw,cursor){
     state.raw=String(raw||"");
-    state.cursor=Math.max(0,Math.min(cursor==null?state.raw.length:cursor,state.raw.length));
+    state.cursor=normalizeCursor(cursor==null?state.raw.length:cursor,0);
     sync();
   }
   function insert(text,insideOffset){
     if(!state.input||state.input.disabled)return;
+    state.cursor=normalizeCursor(state.cursor,0);
     const a=state.raw.slice(0,state.cursor),b=state.raw.slice(state.cursor);
     state.raw=a+text+b;
-    state.cursor=a.length+(insideOffset==null?text.length:insideOffset);
+    state.cursor=normalizeCursor(a.length+(insideOffset==null?text.length:insideOffset),1);
     sync();
     state.editor.focus();
   }
@@ -123,6 +215,7 @@
   // top-level term into the numerator instead of showing a plain division glyph.
   function fractionFromLeft(){
     if(!state.input||state.input.disabled)return;
+    state.cursor=normalizeCursor(state.cursor,0);
     const left=state.raw.slice(0,state.cursor),right=state.raw.slice(state.cursor);
     let depth=0,start=0;
     for(let i=left.length-1;i>=0;i--){
@@ -144,6 +237,35 @@
 
   function backspace(){
     if(!state.input||state.input.disabled||state.cursor<=0)return;
+    state.cursor=normalizeCursor(state.cursor,-1);
+    if(state.cursor<=0)return;
+
+    // Keep parser syntax intact. Backspace never peels one hidden character out
+    // of sin/cos/sqrt/pi/infinity/etc. or removes a structural parenthesis.
+    for(let i=Math.max(0,state.cursor-16);i<state.cursor;i++){
+      const sh=functionShellAt(i);
+      if(sh&&sh.end===state.cursor){
+        if(sh.close===sh.argStart){
+          state.raw=state.raw.slice(0,sh.start)+state.raw.slice(sh.end);
+          state.cursor=sh.start;
+        }else state.cursor=sh.close;
+        sync();state.editor.focus();return;
+      }
+      if(sh&&sh.argStart===state.cursor){
+        if(sh.close===sh.argStart){
+          state.raw=state.raw.slice(0,sh.start)+state.raw.slice(sh.end);
+          state.cursor=sh.start;
+        }else state.cursor=sh.start;
+        sync();state.editor.focus();return;
+      }
+      const a=atomicAt(i);
+      if(a&&a.end===state.cursor&&!(fnNames.includes(a.word)&&state.raw[a.end]==="(")){
+        state.raw=state.raw.slice(0,a.start)+state.raw.slice(a.end);
+        state.cursor=a.start;
+        sync();state.editor.focus();return;
+      }
+    }
+
     // Remove an untouched exponent shell as one unit.
     if(state.raw.slice(Math.max(0,state.cursor-2),state.cursor)==="^("&&state.raw[state.cursor]===")"){
       state.raw=state.raw.slice(0,state.cursor-2)+state.raw.slice(state.cursor+1);
@@ -153,27 +275,99 @@
     }
     const a=state.raw.slice(0,state.cursor-1),b=state.raw.slice(state.cursor);
     state.raw=a+b;
-    state.cursor--;
+    state.cursor=normalizeCursor(state.cursor-1,-1);
     sync();
   }
   function del(){
     if(!state.input||state.input.disabled||state.cursor>=state.raw.length)return;
+    state.cursor=normalizeCursor(state.cursor,1);
+    if(state.cursor>=state.raw.length)return;
+
+    const sh=functionShellAt(state.cursor);
+    if(sh){
+      if(sh.close===sh.argStart){
+        state.raw=state.raw.slice(0,sh.start)+state.raw.slice(sh.end);
+        state.cursor=sh.start;
+      }else state.cursor=sh.argStart;
+      sync();state.editor.focus();return;
+    }
+    for(let i=Math.max(0,state.cursor-16);i<=state.cursor;i++){
+      const shell=functionShellAt(i);
+      if(shell&&shell.close===state.cursor){state.cursor=shell.end;sync();state.editor.focus();return;}
+    }
+    const a=atomicAt(state.cursor);
+    if(a&&!(fnNames.includes(a.word)&&state.raw[a.end]==="(")){
+      state.raw=state.raw.slice(0,a.start)+state.raw.slice(a.end);
+      state.cursor=a.start;
+      sync();state.editor.focus();return;
+    }
     state.raw=state.raw.slice(0,state.cursor)+state.raw.slice(state.cursor+1);
+    state.cursor=normalizeCursor(state.cursor,1);
     sync();
   }
   function move(delta){
-    if(delta>0 && state.raw[state.cursor]===")" && state.raw.slice(state.cursor,state.cursor+3)===")/("){
-      // Jump from the end of a fraction numerator directly into the denominator.
-      state.cursor=Math.min(state.raw.length,state.cursor+3);
-    }else if(delta<0 && state.raw.slice(Math.max(0,state.cursor-3),state.cursor)===")/("){
-      // Jump back from the start of a denominator to the end of the numerator.
-      state.cursor=Math.max(0,state.cursor-3);
-    }else{
-      state.cursor=Math.max(0,Math.min(state.raw.length,state.cursor+delta));
+    if(!state.input||state.input.disabled)return;
+    state.cursor=normalizeCursor(state.cursor,delta);
+    if(delta>0){
+      const sh=functionShellAt(state.cursor);
+      if(sh){
+        state.cursor=sh.argStart;
+      }else if(state.raw[state.cursor]===")" && state.raw.slice(state.cursor,state.cursor+3)===")/("){
+        state.cursor=Math.min(state.raw.length,state.cursor+3);
+      }else if(state.raw.slice(state.cursor,state.cursor+2)==="^("){
+        state.cursor=Math.min(state.raw.length,state.cursor+2);
+      }else{
+        const a=atomicAt(state.cursor);
+        if(a)state.cursor=Math.min(state.raw.length,a.end);
+        else state.cursor=Math.min(state.raw.length,state.cursor+1);
+      }
+      state.cursor=normalizeCursor(state.cursor,1);
+    }else if(delta<0){
+      // From the first editable position inside a function/root, one tap exits
+      // to immediately before the whole function rather than entering its raw name.
+      const shStart=Math.max(0,state.cursor-12);
+      let shell=null;
+      for(let i=shStart;i<state.cursor;i++){
+        const candidate=functionShellAt(i);
+        if(candidate&&candidate.argStart===state.cursor){shell=candidate;break;}
+      }
+      if(shell){
+        state.cursor=shell.start;
+      }else if(state.raw.slice(Math.max(0,state.cursor-3),state.cursor)===")/("){
+        state.cursor=Math.max(0,state.cursor-3);
+      }else if(state.raw.slice(Math.max(0,state.cursor-2),state.cursor)==="^("){
+        state.cursor=Math.max(0,state.cursor-2);
+      }else{
+        let a=null;
+        for(let i=Math.max(0,state.cursor-12);i<state.cursor;i++){
+          const candidate=atomicAt(i);
+          if(candidate&&candidate.end===state.cursor&&!(fnNames.includes(candidate.word)&&state.raw[candidate.end]==="(")){a=candidate;break;}
+        }
+        if(a)state.cursor=Math.max(0,a.start);
+        else state.cursor=Math.max(0,state.cursor-1);
+      }
+      state.cursor=normalizeCursor(state.cursor,-1);
     }
     render();
     state.editor.focus();
   }
+  function moveVertical(delta){
+    if(!state.input||state.input.disabled)return;
+    state.cursor=normalizeCursor(state.cursor,delta);
+    const f=containingFraction();
+    if(!f)return;
+    if(delta<0 && state.cursor>=f.denStart&&state.cursor<=f.denClose){
+      const off=state.cursor-f.denStart;
+      state.cursor=f.numStart+Math.min(off,f.numClose-f.numStart);
+    }else if(delta>0 && state.cursor>=f.numStart&&state.cursor<=f.numClose){
+      const off=state.cursor-f.numStart;
+      state.cursor=f.denStart+Math.min(off,f.denClose-f.denStart);
+    }else return;
+    state.cursor=normalizeCursor(state.cursor,delta);
+    render();
+    state.editor.focus();
+  }
+
   function clear(){
     if(!state.input||state.input.disabled)return;
     setRaw("",0);
@@ -263,6 +457,8 @@
     if(mode==="integral")addInsert(u,",",",","symbol","Comma between multiple values");
     u.appendChild(key("←","utility navigation",()=>move(-1),"Move cursor left"));
     u.appendChild(key("→","utility navigation",()=>move(1),"Move cursor right"));
+    u.appendChild(key("↑","utility navigation",()=>moveVertical(-1),"Move from denominator to numerator"));
+    u.appendChild(key("↓","utility navigation",()=>moveVertical(1),"Move from numerator to denominator"));
     u.appendChild(key("⌫","utility",backspace,"Backspace"));
     u.appendChild(key("Del","utility",del,"Delete"));
     u.appendChild(key("Clear","utility",clear,"Clear answer"));
@@ -278,6 +474,8 @@
     }
     if(e.key==="ArrowLeft"){e.preventDefault();move(-1);return;}
     if(e.key==="ArrowRight"){e.preventDefault();move(1);return;}
+    if(e.key==="ArrowUp"){e.preventDefault();moveVertical(-1);return;}
+    if(e.key==="ArrowDown"){e.preventDefault();moveVertical(1);return;}
     if(e.key==="Backspace"){e.preventDefault();backspace();return;}
     if(e.key==="Delete"){e.preventDefault();del();return;}
     if(e.key==="Enter"){e.preventDefault();check();return;}
@@ -293,6 +491,25 @@
     render();
   }
   function focus(){state.editor?.focus();}
+  function placeCursorFromClick(e){
+    if(!state.editor||state.input?.disabled)return;
+    const tok=e.target.closest?.('[data-bm-start]');
+    if(tok&&state.editor.contains(tok)){
+      const a=Number(tok.dataset.bmStart),b=Number(tok.dataset.bmEnd),r=tok.getBoundingClientRect();
+      const sh=functionShellAt(a);
+      state.cursor=e.clientX<r.left+r.width/2?a:(sh?sh.argStart:b);
+      state.cursor=normalizeCursor(state.cursor,e.clientX<r.left+r.width/2?-1:1);
+      render();state.editor.focus();return;
+    }
+    const zone=e.target.closest?.('[data-bm-zone]');
+    if(zone&&state.editor.contains(zone)){
+      const a=Number(zone.dataset.bmZoneStart),b=Number(zone.dataset.bmZoneEnd);
+      state.cursor=Number.isFinite(b)?b:(Number.isFinite(a)?a:state.raw.length);
+      state.cursor=normalizeCursor(state.cursor,0);
+      render();state.editor.focus();return;
+    }
+    state.cursor=state.raw.length;render();state.editor.focus();
+  }
 
   function init(){
     const input=document.querySelector('input[data-bm-calc-keypad]');
@@ -314,7 +531,7 @@
     editor.setAttribute("role","textbox");
     editor.setAttribute("aria-label","Answer");
     editor.addEventListener("keydown",onEditorKey);
-    editor.addEventListener("click",()=>{state.cursor=state.raw.length;render();});
+    editor.addEventListener("click",placeCursorFromClick);
     state.editor=editor;
     input.insertAdjacentElement("beforebegin",editor);
 
@@ -331,5 +548,5 @@
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
   else init();
 
-  window.BatchMathCalculusKeypad={init,reset,focus,setRaw:(v)=>setRaw(v,String(v||"").length)};
+  window.BatchMathCalculusKeypad={init,reset,focus,setRaw:(v)=>setRaw(v,String(v||"").length),move,moveVertical,get raw(){return state.raw},get cursor(){return state.cursor},setCursor:(v)=>{state.cursor=normalizeCursor(Number(v)||0,0);render();}};
 })();

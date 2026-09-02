@@ -76,6 +76,7 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
   
     gtag('config', 'G-377MTFXSF3');
   </script>
+<script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_limits_comprehensive",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
 <img class="corner" src="../../../../../assets/batchmath-portrait.jpg" alt="">
 <a class="logo" href="../../../../../">BatchMath<span class="tm-mark">™</span></a>
@@ -131,6 +132,17 @@ document.addEventListener("DOMContentLoaded",function(){
     return "x^2"+sgnTerm(B,"x",false)+sgnTerm(C,"",false);
   };
   const shifted=(x,a)=>a===0?x:(a>0?`${x}-${a}`:`${x}+${-a}`);
+  const reciprocalConst=n=>n<0?`-\\frac1{${-n}}`:`\\frac1{${n}}`;
+  const reciprocalDifference=(left,n)=>n<0?`${left}+\\frac1{${-n}}`:`${left}-\\frac1{${n}}`;
+  const cleanSigns=s=>{
+    let out=String(s);
+    // Move a simple negative denominator sign in front of the fraction before
+    // cleaning adjacent +/− operators. This prevents displays such as 1/−3.
+    out=out.replace(/\\frac1\{-([0-9]+)\}/g,'-\\frac1{$1}');
+    out=out.replace(/\\frac\{([^{}]+)\}\{-([^{}]+)\}/g,'-\\frac{$1}{$2}');
+    for(let i=0;i<3;i++)out=out.replace(/-\s*-/g,"+").replace(/\+\s*-/g,"-").replace(/\+\s*\+/g,"+");
+    return out;
+  };
   const approach=a=>String(a);
   const categoryLabel={continuous:"Limits of Continuous Functions",factoring:"Using Factoring to Find Limits",substitution:"Using Variable Substitution",rationalizing:"Rationalizing",complex:"Complex Fraction Limits",squeeze:"Squeeze Theorem",trig:"Trigonometric Limits",oneSided:"One-Sided Limits",infinity:"Limits Involving Infinity",special:"Oscillating / DNE Limits",infinitySpecial:"Limits at Infinity and Oscillating/DNE Limits"};
 
@@ -203,20 +215,32 @@ document.addEventListener("DOMContentLoaded",function(){
   }
 
   function complexFraction(){
-    let a=pick([-6,-5,-4,-3,-2,2,3,4,5,6]);
-    const type=ri(1,3);
+    const a=pick([-6,-5,-4,-3,-2,2,3,4,5,6]);
+    const type=ri(1,3),xa=shifted("x",a),absA=Math.abs(a);
     if(type===1){
-      const ans=rat(-1,a*a);
-      return {cat:"complex",id:`cf1-${a}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{\\frac1x-\\frac1{${a}}}{x-${a}}\\)`,ans,sol:`Combine the numerator: \\(\\frac1x-\\frac1{${a}}=\\frac{${a}-x}{${a}x}=-\\frac{x-${a}}{${a}x}\\). Cancel \\(x-${a}\\), leaving \\(-\\frac1{${a}x}\\). Substitution gives \\(${texRat(ans)}\\).`};
+      const ans=rat(-1,a*a),gap=reciprocalDifference('\\frac1x',a);
+      const combined=a>0
+        ? `\\frac{${a}-x}{${a}x}=-\\frac{${xa}}{${a}x}`
+        : `\\frac{${xa}}{${absA}x}`;
+      const after=a>0?`-\\frac1{${a}x}`:`\\frac1{${absA}x}`;
+      return {cat:"complex",id:`cf1-${a}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${gap}}{${xa}}\\)`,ans,sol:`Combine the numerator: \\(${gap}=${combined}\\). Cancel \\(${xa}\\), leaving \\(${after}\\). Substitution gives \\(${texRat(ans)}\\).`};
     }
     if(type===2){
       let c=ri(-4,4);while(a+c===0)c=ri(-4,4);
-      const d=a+c,ans=rat(-1,d*d);
-      const xc=c===0?'x':(c>0?`x+${c}`:`x-${-c}`);
-      return {cat:"complex",id:`cf2-${a}-${c}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{\\frac1{${xc}}-\\frac1{${d}}}{x-${a}}\\)`,ans,sol:`Combine the fractions in the numerator. The numerator simplifies to \\(-\\frac{x-${a}}{${d}(${xc})}\\). Cancel \\(x-${a}\\), then substitute \\(x=${a}\\) to get \\(${texRat(ans)}\\).`};
+      const d=a+c,absD=Math.abs(d),ans=rat(-1,d*d);
+      const xc=shifted('x',-c);
+      const left=`\\frac1{${xc}}`,gap=reciprocalDifference(left,d);
+      const simplified=d>0?`-\\frac{${xa}}{${d}(${xc})}`:`\\frac{${xa}}{${absD}(${xc})}`;
+      const after=d>0?`-\\frac1{${d}(${xc})}`:`\\frac1{${absD}(${xc})}`;
+      return {cat:"complex",id:`cf2-${a}-${c}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${gap}}{${xa}}\\)`,ans,sol:`Combine the fractions in the numerator to get \\(${simplified}\\). Cancel \\(${xa}\\), leaving \\(${after}\\), then substitute \\(x=${a}\\) to get \\(${texRat(ans)}\\).`};
     }
-    const ans=rat(1,a*a);
-    return {cat:"complex",id:`cf3-${a}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{\\frac1x-\\frac1{${a}}}{${a}-x}\\)`,ans,sol:`Combine the numerator to get \\(\\frac{${a}-x}{${a}x}\\). That factor cancels directly with the denominator \\(${a}-x\\), leaving \\(\\frac1{${a}x}\\). Substitution gives \\(${texRat(ans)}\\).`};
+    const ans=rat(1,a*a),gap=reciprocalDifference('\\frac1x',a);
+    const combined=a>0
+      ? `\\frac{${a}-x}{${a}x}=-\\frac{${xa}}{${a}x}`
+      : `\\frac{${xa}}{${absA}x}`;
+    const denom=`-\\left(${xa}\\right)`;
+    const after=a>0?`\\frac1{${a}x}`:`-\\frac1{${absA}x}`;
+    return {cat:"complex",id:`cf3-${a}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${gap}}{${denom}}\\)`,ans,sol:`Combine the numerator: \\(${gap}=${combined}\\). Since the denominator is \\(${denom}\\), cancel the common factor to get \\(${after}\\). Substitution gives \\(${texRat(ans)}\\).`};
   }
 
   function squeeze(){
@@ -309,7 +333,11 @@ document.addEventListener("DOMContentLoaded",function(){
       if(!seen.has(p.id)){seen.add(p.id);break;}
       if(seen.size>500)seen.clear();
     }
+    p.q=cleanSigns(p.q);
+    p.sol=cleanSigns(p.sol);
     current=p;
+    window.BMAnalytics?.ensurePracticeStarted({practice_mode:$("category").value});
+    window.BMAnalytics?.problemGenerated(current,{practice_mode:$("category").value});
     $("question").innerHTML=p.q;
     $("answer").value="";window.BatchMathCalculusKeypad?.reset?.();$("answer").disabled=false;$("submit").disabled=false;
     $("feedback").className="feedback";$("feedback").innerHTML="";$("next").style.display="none";
@@ -342,13 +370,16 @@ document.addEventListener("DOMContentLoaded",function(){
     if(!raw.trim()){ $("feedback").className="feedback wrong";$("feedback").textContent="Enter an answer.";return; }
     attempts++;$("attempted").textContent=attempts;
     const parsed=parse(raw);
-    if(isCorrect(parsed,current.ans)){
+    const ok=isCorrect(parsed,current.ans);
+    window.BMAnalytics?.answerChecked(current,ok);
+    if(ok){
       correctCount++;$("correct-count").textContent=correctCount;
       $("feedback").className="feedback correct";$("feedback").textContent="✓ Correct";
       $("answer").disabled=true;$("submit").disabled=true;
       setTimeout(makeProblem,550);
     }else{
       $("feedback").className="feedback wrong";
+      window.BMAnalytics?.solutionRevealed(current,{reveal_reason:"incorrect_answer"});
       $("feedback").innerHTML=`<div class="correct-answer">Correct answer: \\(${texRat(current.ans)}\\)</div><div class="method"><strong>Method:</strong> ${current.sol}</div>`;
       $("answer").disabled=true;$("submit").disabled=true;$("next").style.display="inline-block";
       typeset([$("feedback")]);

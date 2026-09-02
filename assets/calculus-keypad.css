@@ -34,8 +34,8 @@ sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
 .bm-calc-special-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-bottom:6px}
 .bm-calc-main-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
 .bm-calc-mode-limits .bm-calc-main-grid{grid-template-columns:repeat(4,minmax(0,1fr));max-width:520px;margin:0 auto}
-.bm-calc-utility-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin-top:6px}
-.bm-calc-mode-integral .bm-calc-utility-row{grid-template-columns:repeat(7,minmax(0,1fr))}
+.bm-calc-utility-row{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;margin-top:6px}
+.bm-calc-mode-integral .bm-calc-utility-row{grid-template-columns:repeat(9,minmax(0,1fr))}
 .bm-calc-spacer{visibility:hidden}
 .bm-calc-key{
   min-height:37px;padding:5px 4px;border:1px solid #3b3b3b;border-radius:7px;background:#141414;color:#fff;
@@ -66,8 +66,8 @@ sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
   .bm-calc-special-row{grid-template-columns:repeat(4,minmax(0,1fr))}
   .bm-calc-main-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
   .bm-calc-mode-limits .bm-calc-main-grid{grid-template-columns:repeat(4,minmax(0,1fr));max-width:none}
-  .bm-calc-utility-row{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .bm-calc-mode-integral .bm-calc-utility-row{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .bm-calc-utility-row{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .bm-calc-mode-integral .bm-calc-utility-row{grid-template-columns:repeat(5,minmax(0,1fr))}
 }
 
 @media(max-width:430px){
@@ -90,3 +90,10 @@ sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
 }
 .bm-calc-key-frac span:first-child{border-bottom:1.4px solid currentColor;padding:0 .16em .06em}
 .bm-calc-key-frac span:last-child{padding:.06em .16em 0}
+
+/* v10.3.3 caret hit targets */
+.bm-calc-token{display:inline-block;cursor:text}
+.bm-calc-frac-num,.bm-calc-frac-den,.bm-calc-editor sup{cursor:text}
+
+/* v10.3.3 semantic-token display */
+.bm-calc-token.infinity{font-family:"Cambria Math","STIX Two Math","DejaVu Math TeX Gyre","Times New Roman",serif;font-weight:400}

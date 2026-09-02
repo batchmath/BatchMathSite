@@ -56,6 +56,7 @@ button{border:0;border-radius:9px;padding:12px 19px;font-size:1rem;font-weight:8
   
     gtag('config', 'G-377MTFXSF3');
   </script>
+<script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_integer_multiply_divide",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><main id="main-content" class="page"><a class="back" href="../">← Topic Page</a>
 <header class="header"><h1>Integer Multiplication &amp; Division</h1><p>Practice the sign rules for multiplying and dividing positive and negative integers. Division problems always have exact integer answers.</p></header>
 <section id="setupCard" class="card"><div class="settings">
@@ -76,7 +77,7 @@ function timeText(){const m=Math.floor(left/60),s=left%60;$("timer").textContent
 function tick(){clearInterval(timerId);timeText();timerId=setInterval(()=>{left--;if(left<=0){left=0;timeText();finish("time")}else timeText()},1000)}
 function typeset(nodes){if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise(nodes).catch(()=>{})}
 function nextQuestion(){if(finished)return;idx++;showQuestion()}
-function startPractice(){clearInterval(timerId);clearTimeout(advanceId);total=Number($("questionSelect").value);left=Number($("timeSelect").value)*60;idx=0;score=0;answered=0;finished=false;pool=buildPool($("categorySelect").value,total);$("setupCard").classList.add("hidden");$("resultsCard").classList.add("hidden");$("practiceCard").classList.remove("hidden");tick();showQuestion()}
+function startPractice(){clearInterval(timerId);clearTimeout(advanceId);total=Number($("questionSelect").value);left=Number($("timeSelect").value)*60;idx=0;score=0;answered=0;finished=false;pool=buildPool($("categorySelect").value,total);window.BMAnalytics?.practiceStarted({practice_mode:$("categorySelect").value,question_count:total,time_limit_minutes:Number($("timeSelect").value)});$("setupCard").classList.add("hidden");$("resultsCard").classList.add("hidden");$("practiceCard").classList.remove("hidden");tick();showQuestion()}
 function finish(reason){if(finished)return;finished=true;clearInterval(timerId);clearTimeout(advanceId);$("practiceCard").classList.add("hidden");$("resultsCard").classList.remove("hidden");$("finalScore").textContent=`${score} correct`;$("finalMessage").textContent=reason==="time"?`Time is up. You answered ${answered} question${answered===1?"":"s"}.`:`You completed all ${pool.length} questions.`}
 function again(){$("resultsCard").classList.add("hidden");$("setupCard").classList.remove("hidden")}
 /* ENGINE CORE START */
@@ -86,11 +87,11 @@ function buildPool(category,totalNeeded){
  const all=[];
  for(let a=2;a<=12;a++)for(let b=2;b<=12;b++)for(const sa of [-1,1])for(const sb of [-1,1]){
    const x=sa*a,y=sb*b;
-   all.push({id:`m-${x}-${y}`,q:`${fmtInt(x)}${fmtInt(y)} = ?`,answer:x*y,kind:"multiply"});
+   all.push({id:`m-${x}-${y}`,q:`${fmtInt(x)}${fmtInt(y)} = ?`,answer:x*y,kind:"multiply",problemType:(x<0)===(y<0)?"multiply_same_sign":"multiply_opposite_sign"});
  }
  for(let q=2;q<=12;q++)for(let d=2;d<=12;d++)for(const sq of [-1,1])for(const sd of [-1,1]){
    const quotient=sq*q,divisor=sd*d,dividend=quotient*divisor;
-   all.push({id:`d-${dividend}-${divisor}`,q:`${dividend} ÷ ${divisor<0?`(${divisor})`:divisor} = ?`,answer:quotient,kind:"divide"});
+   all.push({id:`d-${dividend}-${divisor}`,q:`${dividend} ÷ ${divisor<0?`(${divisor})`:divisor} = ?`,answer:quotient,kind:"divide",problemType:(dividend<0)===(divisor<0)?"divide_same_sign":"divide_opposite_sign"});
  }
  let use=all;
  if(category==="multiply")use=all.filter(x=>x.kind==="multiply");
@@ -100,8 +101,8 @@ function buildPool(category,totalNeeded){
 
 /* ENGINE CORE END */
 
-function showQuestion(){if(finished)return;if(idx>=pool.length)return finish("questions");const q=pool[idx];$("progress").textContent=`${idx+1} / ${pool.length}`;$("score").textContent=score;$("question").className="question";BatchMathDisplayMath.set($("question"),q.q);$("answer").value="";$("answer").disabled=false;$("checkBtn").disabled=false;$("feedback").textContent="";$("feedback").className="feedback";accepting=true;if(!window.BatchMathKeypad?.touchMode) $("answer").focus()}
-function submit(){if(!accepting||finished)return;const raw=$("answer").value.trim();if(raw==="")return;const q=pool[idx];accepting=false;$("answer").disabled=true;$("checkBtn").disabled=true;answered++;const ok=Number(raw)===q.answer;if(ok){score++;$("score").textContent=score;$("feedback").textContent="✓ Correct";$("feedback").className="feedback correct";advanceId=setTimeout(nextQuestion,180)}else{BatchMathDisplayMath.setFeedback($("feedback"),`✗ Incorrect. Correct answer: `,q.answer);$("feedback").className="feedback incorrect";advanceId=setTimeout(nextQuestion,2000)}}
+function showQuestion(){if(finished)return;if(idx>=pool.length)return finish("questions");const q=pool[idx];$("progress").textContent=`${idx+1} / ${pool.length}`;$("score").textContent=score;$("question").className="question";BatchMathDisplayMath.set($("question"),q.q);window.BMAnalytics?.problemGenerated(q);$("answer").value="";$("answer").disabled=false;$("checkBtn").disabled=false;$("feedback").textContent="";$("feedback").className="feedback";accepting=true;if(!window.BatchMathKeypad?.touchMode) $("answer").focus()}
+function submit(){if(!accepting||finished)return;const raw=$("answer").value.trim();if(raw==="")return;const q=pool[idx];accepting=false;$("answer").disabled=true;$("checkBtn").disabled=true;answered++;const ok=Number(raw)===q.answer;window.BMAnalytics?.answerChecked(q,ok);if(ok){score++;$("score").textContent=score;$("feedback").textContent="✓ Correct";$("feedback").className="feedback correct";advanceId=setTimeout(nextQuestion,180)}else{BatchMathDisplayMath.setFeedback($("feedback"),`✗ Incorrect. Correct answer: `,q.answer);$("feedback").className="feedback incorrect";window.BMAnalytics?.solutionRevealed(q,{reveal_reason:"incorrect_answer"});advanceId=setTimeout(nextQuestion,2000)}}
 $("checkBtn").onclick=submit;$("answer").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();submit()}});
 
 $("startBtn").onclick=startPractice;$("againBtn").onclick=again;

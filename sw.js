@@ -1,8 +1,8 @@
-/* BatchMath service worker — v10.2.0
+/* BatchMath service worker — v10.3.3
    Network-first while online; reliable runtime caching for offline use.
    Navigation cache keys are normalized so equivalent static-page URLs share one entry.
    MathJax 4 remains unchanged on the site, but its CDN resources are cached explicitly. */
-const VERSION = '10.2.0';
+const VERSION = '10.3.3';
 const CACHE_PREFIX = 'batchmath-';
 const SHELL_CACHE = `${CACHE_PREFIX}shell-${VERSION}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${VERSION}`;
@@ -16,6 +16,7 @@ const APP_SHELL = [
   '/assets/site.css',
   '/assets/pwa.js',
   '/assets/batchmath-storage.js',
+  '/assets/problem-tracking.js',
   '/favicon.svg',
   '/favicon.ico',
   '/favicon-32.png',
@@ -95,8 +96,7 @@ async function cacheSameOriginResponse(request, response, navigation) {
   if (!shouldRuntimeCache(new URL(request.url))) return;
   if (!response || !response.ok || response.type !== 'basic') return;
   const cache = await caches.open(RUNTIME_CACHE);
-  // v10.1 returned the response before this storage operation was guaranteed
-  // to finish. v10.2 deliberately waits for the Cache Storage write.
+  // Runtime writes are awaited so visited pages/resources remain reliable offline.
   await cache.put(cacheKey(request, navigation), response.clone());
 }
 

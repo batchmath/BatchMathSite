@@ -65,6 +65,7 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
   
     gtag('config', 'G-377MTFXSF3');
   </script>
+<script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_integrals_comprehensive",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
 <img class="corner" src="../../../../../assets/batchmath-portrait.jpg" alt="">
 <a class="logo" href="../../../../../">BatchMath<span class="tm-mark">™</span></a>
@@ -428,12 +429,12 @@ function equivalentSet(raw,expected){const parts=splitSet(raw);if(parts.length!=
 function typeset(nodes){if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise(nodes).catch(()=>{})}
 function makeProblem(){
  const selected=$('category').value;let p=null;for(let tries=0;tries<140;tries++){const cat=selected==='mixed'?pick(mixedWeights):selected;p=generators[cat]();if(!seen.has(p.id)){seen.add(p.id);break}if(seen.size>1000)seen.clear()}
- current=p;current.answered=false;$('question').innerHTML=p.q;$('answer').value='';window.BatchMathCalculusKeypad?.reset?.();$('answer').disabled=false;$('submit').disabled=false;$('next').style.display='none';$('feedback').className='feedback';$('feedback').innerHTML='';$('topic-name').textContent=categoryLabel[p.cat];$('answer').placeholder=p.answerType==='set'?'Separate values with commas':(p.answerType==='indef'?'Enter antiderivative':'Enter value');typeset([$('question')]);if(window.BatchMathCalculusKeypad)BatchMathCalculusKeypad.focus();else $('answer').focus();
+ current=p;current.answered=false;window.BMAnalytics?.ensurePracticeStarted({practice_mode:$("category").value});window.BMAnalytics?.problemGenerated(current,{practice_mode:$("category").value});$('question').innerHTML=p.q;$('answer').value='';window.BatchMathCalculusKeypad?.reset?.();$('answer').disabled=false;$('submit').disabled=false;$('next').style.display='none';$('feedback').className='feedback';$('feedback').innerHTML='';$('topic-name').textContent=categoryLabel[p.cat];$('answer').placeholder=p.answerType==='set'?'Separate values with commas':(p.answerType==='indef'?'Enter antiderivative':'Enter value');typeset([$('question')]);if(window.BatchMathCalculusKeypad)BatchMathCalculusKeypad.focus();else $('answer').focus();
 }
 function check(){
  if(!current||current.answered)return;const raw=$('answer').value.trim();if(!raw){$('feedback').className='feedback wrong';$('feedback').innerHTML='<div class="status">Enter an answer first.</div>';return}
  attempts++;let ok=false;if(current.answerType==='indef')ok=hasConstantOfIntegration(raw)&&equivalentUpToConstant(raw,current.answerExpr);else if(current.answerType==='value')ok=equivalentValue(raw,current.answerExpr);else if(current.answerType==='set')ok=equivalentSet(raw,current.answerExprs);
- current.answered=true;if(ok)correctCount++;$('correct-count').textContent=correctCount;$('attempted').textContent=attempts;$('answer').disabled=true;$('submit').disabled=true;$('next').style.display='inline-block';
+ current.answered=true;window.BMAnalytics?.answerChecked(current,ok);window.BMAnalytics?.solutionRevealed(current,{reveal_reason:"answer_feedback"});if(ok)correctCount++;$('correct-count').textContent=correctCount;$('attempted').textContent=attempts;$('answer').disabled=true;$('submit').disabled=true;$('next').style.display='inline-block';
  const shown=current.answerType==='indef'?`${current.answerTex}+C`:current.answerTex;$('feedback').className='feedback '+(ok?'correct':'wrong');$('feedback').innerHTML=`<div class="status">${ok?'Correct.':'Not quite.'}</div><div class="correct-answer">One correct form: \\(${shown}\\)</div><div class="method">${current.solution}</div>`;typeset([$('feedback')]);$('next').focus();
 }
 $('submit').addEventListener('click',check);$('next').addEventListener('click',makeProblem);$('category').addEventListener('change',makeProblem);$('answer').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();current&&current.answered?makeProblem():check()}});

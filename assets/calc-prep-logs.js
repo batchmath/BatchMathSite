@@ -143,10 +143,10 @@ function inverse(){
 function make(){let m=mode.value;if(m==='mixed')m=B.pick(['product','quotient','power','expand','condense','changebase','evaluate','inverse']);return ({product,quotient,power:powerRule,expand,condense,changebase,evaluate,inverse})[m]()}
 function newQ(){
  locked=false;choicesEl.dataset.locked='0';$('feedback').innerHTML='';$('feedback').className='feedback';next.style.display='none';
- let c,tries=0;do{c=make();tries++;if(tries>180){seen.clear();break}}while(seen.has(c.id));seen.add(c.id);current=c;
+ let c,tries=0;do{c=make();tries++;if(tries>180){seen.clear();break}}while(seen.has(c.id));seen.add(c.id);current=c;window.BMAnalytics?.ensurePracticeStarted({practice_mode:(document.getElementById("mode")?.value||document.getElementById("qtype")?.value||document.getElementById("difficulty")?.value||document.getElementById("displayMode")?.value||"default")});window.BMAnalytics?.problemGenerated(current,{practice_mode:(document.getElementById("mode")?.value||document.getElementById("qtype")?.value||document.getElementById("difficulty")?.value||document.getElementById("displayMode")?.value||"default")});
  prompt.textContent=c.prompt;B.renderMath(question,c.question);
  getChoice=B.choiceButtons(choicesEl,c.choices.map(x=>({value:x,html:B.displayMathHTML(x)})));
 }
-function check(){if(locked)return;const v=getChoice();if(v==null)return;const ok=v===current.answer;attempted++;if(ok)correct++;B.updateStats(correct,attempted);locked=true;choicesEl.dataset.locked='1';if(ok){B.showFeedback(true);setTimeout(newQ,600)}else{B.showFeedback(false,current.answer,current.method);next.style.display='inline-block'}}
+function check(){if(locked)return;const v=getChoice();if(v==null)return;const ok=v===current.answer;window.BMAnalytics?.answerChecked(current,ok);attempted++;if(ok)correct++;B.updateStats(correct,attempted);locked=true;choicesEl.dataset.locked='1';if(ok){B.showFeedback(true);setTimeout(newQ,600)}else{window.BMAnalytics?.solutionRevealed(current,{reveal_reason:"incorrect_answer"});B.showFeedback(false,current.answer,current.method);next.style.display='inline-block'}}
 submit.addEventListener('click',check);next.addEventListener('click',newQ);mode.addEventListener('change',()=>{seen.clear();newQ()});newQ();
 })();
