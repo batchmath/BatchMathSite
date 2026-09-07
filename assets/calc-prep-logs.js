@@ -110,7 +110,7 @@ function condense(){
 }
 
 function changebase(){
- const b=B.pick([2,3,4,5,7,8,10]),x=B.pick(['x','17','25','a','x + 3','2x − 1']),useLn=Math.random()<.6;
+ const b=B.pick([2,3,4,5,7,8,10]),x=B.pick(['x','17','25','a','x + 3','2x − 1']),useLn=BatchMathRNG.random()<.6;
  const top=useLn?`ln(${htmlPart(x)})`:`log(${htmlPart(x)})`,bot=useLn?`ln(${b})`:`log(${b})`,a=frac(top,bot);
  return qobj(`cb-${b}-${x}-${useLn}`,'Use the change-of-base formula.',`${L(b,x)} = ?`,a,[frac(bot,top),`${top} − ${bot}`,`${top} + ${bot}`],`Change of base divides a logarithm of the argument by a logarithm of the base. ${useLn?'Natural logarithms':'Common logarithms'} are being used here.`);
 }

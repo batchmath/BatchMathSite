@@ -1,13 +1,13 @@
-/* BatchMath service worker — v10.3.3
+/* BatchMath service worker — v10.6.3.G
    Network-first while online; reliable runtime caching for offline use.
    Navigation cache keys are normalized so equivalent static-page URLs share one entry.
-   MathJax 4 remains unchanged on the site, but its CDN resources are cached explicitly. */
-const VERSION = '10.3.3';
+   MathJax is pinned to v4.1.3 and its CDN resources are cached explicitly. */
+const VERSION = '10.6.3.G';
 const CACHE_PREFIX = 'batchmath-';
 const SHELL_CACHE = `${CACHE_PREFIX}shell-${VERSION}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${VERSION}`;
 const MATHJAX_CACHE = `${CACHE_PREFIX}mathjax-${VERSION}`;
-const MATHJAX_ENTRY = 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js';
+const MATHJAX_ENTRY = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js';
 
 const APP_SHELL = [
   '/',
@@ -17,6 +17,10 @@ const APP_SHELL = [
   '/assets/pwa.js',
   '/assets/batchmath-storage.js',
   '/assets/problem-tracking.js',
+  '/assets/reproducible-rng.js',
+  '/assets/ap-topic-practice.css',
+  '/assets/ap-topic-generators.js',
+  '/assets/ap-topic-practice.js',
   '/favicon.svg',
   '/favicon.ico',
   '/favicon-32.png',
@@ -28,7 +32,8 @@ const APP_SHELL = [
   '/im1/',
   '/calculus-prep/',
   '/ap-calculus/',
-  '/about/'
+  '/about/',
+  '/diagnostics/'
 ];
 
 self.addEventListener('install', event => {
@@ -60,7 +65,11 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('message', event => {
-  if (event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting();
+  if (!event.data) return;
+  if (event.data.type === 'SKIP_WAITING') self.skipWaiting();
+  if (event.data.type === 'GET_VERSION' && event.ports && event.ports[0]) {
+    event.ports[0].postMessage({ version: VERSION });
+  }
 });
 
 function shouldRuntimeCache(url) {
@@ -71,7 +80,7 @@ function shouldRuntimeCache(url) {
 
 function isMathJaxRequest(url) {
   if (url.hostname !== 'cdn.jsdelivr.net') return false;
-  // Includes the main mathjax@4 bundle plus @mathjax font/dynamic component files.
+  // Includes the pinned MathJax bundle plus @mathjax font/dynamic component files.
   return /\/npm\/(?:mathjax@|@mathjax\/)/i.test(url.pathname);
 }
 

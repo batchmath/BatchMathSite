@@ -13,7 +13,7 @@
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"],["$","$"]]},chtml:{scale:1.0}};</script>
 <script>window.MathJax=window.MathJax||{};window.MathJax.options=Object.assign({},window.MathJax.options||{},{enableMenu:false});window.MathJax.options.menuOptions=Object.assign({},window.MathJax.options.menuOptions||{});window.MathJax.options.menuOptions.settings=Object.assign({},window.MathJax.options.menuOptions.settings||{},{explorer:false,zoom:'NoZoom',inTabOrder:false});</script>
 <style id="bm-mathjax-control-style">button mjx-container,button mjx-container *,.choice mjx-container,.choice mjx-container *,.choice-grid mjx-container,.choice-grid mjx-container *{pointer-events:none!important;user-select:none!important;-webkit-user-select:none!important;-webkit-touch-callout:none!important}</style>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js"></script>
 <style>
 :root{--black:#030303;--red:#d71920;--yellow:#f5c400;--white:#f4f4f4}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--black);color:var(--white);font-family:Arial,Helvetica,sans-serif}
@@ -65,7 +65,7 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
   
     gtag('config', 'G-377MTFXSF3');
   </script>
-<script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_derivatives_comprehensive",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_derivatives_comprehensive",generatorVersion:"8"};</script><script src="/assets/problem-tracking.js"></script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
 <img class="corner" src="../../../../../assets/batchmath-portrait.jpg" alt="">
 <a class="logo" href="../../../../../">BatchMath<span class="tm-mark">™</span></a>
@@ -88,8 +88,8 @@ document.addEventListener("DOMContentLoaded",function(){const b=document.querySe
 const $=id=>document.getElementById(id);
 let current=null,correctCount=0,attempts=0;
 const seen=new Set();
-const ri=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
-const pick=a=>a[Math.floor(Math.random()*a.length)];
+const ri=(a,b)=>Math.floor(BatchMathRNG.random()*(b-a+1))+a;
+const pick=a=>a[Math.floor(BatchMathRNG.random()*a.length)];
 const nz=(a,b)=>{let n=0;while(n===0)n=ri(a,b);return n};
 const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1};
 const rat=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d);return [n/g,d/g]};
@@ -110,12 +110,19 @@ const reciprocalTex=(c,p)=>{const den=p===1?"x":`x^{${p}}`,a=Math.abs(c),body=`\
 const sqrtDerivativeTex=c=>{const [n,d]=rat(c,2),sign=n<0?"-":"",a=Math.abs(n);if(d===1){const body=a===1?`\\frac{1}{\\sqrt{x}}`:`\\frac{${a}}{\\sqrt{x}}`;return sign+body}const num=a===1?"1":String(a),coef=d===1?"":String(d);return sign+`\\frac{${num}}{${coef}\\sqrt{x}}`};
 const wrap=x=>`(${x})`;
 const categoryLabel={basic:"Basic Derivative Rules",product:"Product Rule",quotient:"Quotient Rule",trig:"Trigonometric Derivatives",chain:"Chain Rule",exponential:"Exponential Functions",implicit:"Implicit Differentiation",log:"Derivatives of Logarithmic Functions",logdiff:"Logarithmic Differentiation",invtrig:"Inverse Trigonometric Derivatives",inverse:"Derivatives of Inverse Functions",point:"Finding Derivatives at a Point"};
-const mk=(cat,id,prompt,math,answerExpr,answerTex,solution,vars=["x"])=>({cat,id,q:`<div class="question-prompt">${prompt}</div><div>\\(${math}\\)</div>`,answerExpr,answerTex,solution,vars});
+const mk=(cat,id,prompt,math,answerExpr,answerTex,solution,vars=["x"])=>{
+  let neutralPrompt="Find the derivative.";
+  if(/second derivative/i.test(prompt))neutralPrompt="Find the second derivative.";
+  else if(/dy\/dx/i.test(prompt))neutralPrompt="Find \\(\\frac{dy}{dx}\\).";
+  else if(/indicated point|slope of the tangent/i.test(prompt))neutralPrompt="Find the derivative at the indicated point.";
+  else if(/inverse of f|indicated derivative/i.test(prompt))neutralPrompt="Find the indicated derivative.";
+  return {cat,id,q:`<div class="question-prompt">${neutralPrompt}</div><div>\\(${math}\\)</div>`,answerExpr,answerTex,solution,vars};
+};
 
 function basic(){
- const type=ri(1,3);
+ const type=BatchMathRNG.random()<0.20?4:ri(1,3);
  if(type===1){
-   const powers=[5,4,3,2,1].sort(()=>Math.random()-.5).slice(0,3).sort((a,b)=>b-a),cs=powers.map(()=>nz(-6,6)),k=ri(-8,8);
+   const powers=[5,4,3,2,1].sort(()=>BatchMathRNG.random()-.5).slice(0,3).sort((a,b)=>b-a),cs=powers.map(()=>nz(-6,6)),k=ri(-8,8);
    let q="",a="",ae="";
    powers.forEach((p,i)=>{q+=signed(cs[i],p===1?"x":`x^{${p}}`,i===0);const dc=cs[i]*p,dp=p-1;a+=signed(dc,dp===0?"":(dp===1?"x":`x^{${dp}}`),i===0);ae+=exprSigned(dc,dp===0?"":(dp===1?"x":`x^${dp}`),i===0)});q+=signed(k,"",false);
    return mk("basic",`b1-${powers}-${cs}-${k}`,"Find the derivative.",`f(x)=${q}`,ae,a,`Differentiate term by term with the power rule, \\(\\frac{d}{dx}x^n=nx^{n-1}\\). The constant differentiates to \\(0\\), giving \\(f'(x)=${a}\\).`);
@@ -126,59 +133,49 @@ function basic(){
    const ansTex=joinSignedTex([sqrtDerivativeTex(a),reciprocalTex(-b*n,n+1)]),denText=n===1?"x":`x^{${n}}`;
    return mk("basic",`b2-${a}-${b}-${n}`,"Find the derivative.",`f(x)=${q}`,ansExpr,ansTex,`Rewrite \\(\\sqrt{x}=x^{\\frac{1}{2}}\\) and \\(\\frac{1}{${denText}}=x^{-${n}}\\), then use the power rule on each term. This gives \\(f'(x)=${ansTex}\\).`);
  }
- const a=nz(-6,6),b=nz(-6,6),p=pick([[3,2],[5,2],[2,3],[4,3]]),q=pick([[1,2],[-1,2],[-2,3]]);
- const [pn,pd]=p,[qn,qd]=q;
- const qtex=`${signed(a,`x^{${texRat(pn,pd)}}`,true)}${signed(b,`x^{${texRat(qn,qd)}}`,false)}`;
- const c1=a*pn,c2=b*qn;
- const e1n=pn-pd,e2n=qn-qd;
- const ansExpr=`(${c1})/(${pd})*x^((${e1n})/(${pd})) + (${c2})/(${qd})*x^((${e2n})/(${qd}))`;
- const ansTex=joinSignedTex([ratPowerTex(c1,pd,e1n,pd),ratPowerTex(c2,qd,e2n,qd)]);
- return mk("basic",`b3-${a}-${b}-${pn}-${pd}-${qn}-${qd}`,"Find the derivative.",`f(x)=${qtex}`,ansExpr,ansTex,`Apply the power rule to the fractional and negative exponents just as you would to integer exponents. The derivative is \\(f'(x)=${ansTex}\\).`);
+ if(type===3){
+   const a=nz(-6,6),b=nz(-6,6),p=pick([[3,2],[5,2],[2,3],[4,3]]),q=pick([[1,2],[-1,2],[-2,3]]);
+   const [pn,pd]=p,[qn,qd]=q;
+   const qtex=`${signed(a,`x^{${texRat(pn,pd)}}`,true)}${signed(b,`x^{${texRat(qn,qd)}}`,false)}`;
+   const c1=a*pn,c2=b*qn,e1n=pn-pd,e2n=qn-qd;
+   const ansExpr=`(${c1})/(${pd})*x^((${e1n})/(${pd})) + (${c2})/(${qd})*x^((${e2n})/(${qd}))`;
+   const ansTex=joinSignedTex([ratPowerTex(c1,pd,e1n,pd),ratPowerTex(c2,qd,e2n,qd)]);
+   return mk("basic",`b3-${a}-${b}-${pn}-${pd}-${qn}-${qd}`,"Find the derivative.",`f(x)=${qtex}`,ansExpr,ansTex,`Apply the power rule to the fractional and negative exponents just as you would to integer exponents. The derivative is \\(f'(x)=${ansTex}\\).`);
+ }
+ const a=nz(-5,5),b=nz(-5,5),n=ri(1,4),irr=pick([
+   {id:"sqrt2",tex:"\\sqrt{2}",expr:"sqrt(2)"},{id:"sqrt3",tex:"\\sqrt{3}",expr:"sqrt(3)"},{id:"pi",tex:"\\pi",expr:"pi"},{id:"e",tex:"e",expr:"e"}
+ ]);
+ const poly=n===1?"x":`x^{${n}}`,qtex=`${signed(a,`x^{${irr.tex}}`,true)}${signed(b,poly,false)}`;
+ const irrCoeff=a===1?irr.tex:a===-1?`-${irr.tex}`:`${a}${irr.tex}`,irrTex=`${irrCoeff}x^{${irr.tex}-1}`,polyTex=monoTex(b*n,n-1),ansTex=joinSignedTex([irrTex,polyTex]);
+ const ansExpr=`(${a})*(${irr.expr})*x^((${irr.expr})-1)+(${b*n})*x^${n-1}`;
+ return mk("basic",`b4-${irr.id}-${a}-${b}-${n}`,"Find the derivative. Assume x>0.",`f(x)=${qtex}`,ansExpr,ansTex,`The power rule works for real exponents (on the appropriate domain). Treat ${irr.tex} as a constant exponent: \\(\\frac{d}{dx}x^{${irr.tex}}=${irr.tex}x^{${irr.tex}-1}\\). Thus \\(f'(x)=${ansTex}\\).`);
 }
 
 function product(){
- const type=ri(1,3);
- if(type===1){
-   const a=nz(-4,4),b=nz(-7,7),c=nz(-4,4),d=nz(-7,7),m=ri(1,4),n=ri(1,3);
-   const u=`${signed(a,m===1?"x":`x^{${m}}`,true)}${signed(b,"",false)}`,v=`${signed(c,n===1?"x":`x^{${n}}`,true)}${signed(d,"",false)}`;
-   const ue=`${a}*x^${m}+(${b})`,ve=`${c}*x^${n}+(${d})`,up=monoExpr(a*m,m-1),vp=monoExpr(c*n,n-1),upTex=monoTex(a*m,m-1),vpTex=monoTex(c*n,n-1);
-   const ansExpr=`(${up})*(${ve})+(${ue})*(${vp})`,ansTex=`(${upTex})(${v})+(${u})(${vpTex})`;
-   return mk("product",`p1-${a}-${b}-${c}-${d}-${m}-${n}`,"Use the product rule to find the derivative.",`f(x)=(${u})(${v})`,ansExpr,ansTex,`Let \\(u=${u}\\) and \\(v=${v}\\). Then \\(f'=u'v+uv'\\). Substituting the two derivatives gives \\(f'(x)=${ansTex}\\).`);
+ const mode=document.getElementById("ruleMode")?.value||"both";const withChain=mode==="with"||(mode==="both"&&BatchMathRNG.random()<.5);
+ if(!withChain){const type=ri(1,4);
+  if(type===1){const a=nz(-4,4),b=nz(-5,5),m=ri(1,4);const u=`${signed(a,m===1?"x":`x^{${m}}`,true)}${signed(b,"",false)}`,ue=`${a}*x^${m}+(${b})`,up=monoExpr(a*m,m-1),upT=monoTex(a*m,m-1);return mk("product",`pnc1-${a}-${b}-${m}`,"Find the derivative.",`f(x)=(${u})\\sin x`,`(${up})*sin(x)+(${ue})*cos(x)`,`(${upT})\\sin x+(${u})\\cos x`,`Use the product rule. Neither factor requires the chain rule.`)}
+  if(type===2){const m=ri(1,5);return mk("product",`pnc2-${m}`,"Find the derivative.",`f(x)=x^{${m}}\\ln x`,`(${m}*x^${m-1})*ln(x)+x^${m}/x`,`${monoTex(m,m-1)}\\ln x+x^{${m-1}}`,`Use the product rule with \\(u=x^{${m}}\\) and \\(v=\\ln x\\).`)}
+  if(type===3)return mk("product","pnc3","Find the derivative.",`f(x)=e^x\\cos x`,`e^x*cos(x)-e^x*sin(x)`,`e^x(\\cos x-\\sin x)`,`Apply the product rule to \\(e^x\\) and \\(\\cos x\\).`);
+  return mk("product","pnc4","Find the derivative.",`f(x)=\\sqrt{x}\\sin x`,`sin(x)/(2*sqrt(x))+sqrt(x)*cos(x)`,`\\frac{\\sin x}{2\\sqrt{x}}+\\sqrt{x}\\cos x`,`Apply the product rule.`);
  }
- if(type===2){
-   const m=ri(2,5),a=nz(-5,5),b=nz(-6,6),c=ri(-6,6);
-   const v=poly2Tex(a,b,c),ve=poly2Expr(a,b,c),vp=`${2*a}*x+(${b})`;
-   const ansExpr=`${m}*x^${m-1}*(${ve})+x^${m}*(${vp})`,ansTex=`${monoTex(m,m-1)}(${v})+x^{${m}}(${signed(2*a,"x",true)+signed(b,"",false)})`;
-   return mk("product",`p2-${m}-${a}-${b}-${c}`,"Use the product rule to find the derivative.",`f(x)=x^{${m}}(${v})`,ansExpr,ansTex,`Use \\(u=x^{${m}}\\) and \\(v=${v}\\). Then \\(f'=u'v+uv'\\), so \\(f'(x)=${ansTex}\\).`);
- }
- const vals=Array.from({length:6},()=>nz(-5,5)),[a,b,c,d,e,f]=vals;
- const A=linearTex(a,b),B=linearTex(c,d),C=linearTex(e,f),Ae=linearExpr(a,b),Be=linearExpr(c,d),Ce=linearExpr(e,f);
- const ansExpr=`${a}*(${Be})*(${Ce})+(${Ae})*${c}*(${Ce})+(${Ae})*(${Be})*${e}`;
- const ansTex=joinSignedTex([coefProductTex(a,`(${B})`,`(${C})`),coefProductTex(c,`(${A})`,`(${C})`),coefProductTex(e,`(${A})`,`(${B})`)]);
- return mk("product",`p3-${vals}`,"Find the derivative.",`f(x)=(${A})(${B})(${C})`,ansExpr,ansTex,`Apply the product rule twice (or use the three-factor version): differentiate one factor at a time while leaving the other two unchanged. One correct form is \\(f'(x)=${ansTex}\\).`);
+ const type=ri(1,4);
+ if(type===1){const k=ri(2,6),m=ri(1,4);return mk("product",`pc1-${k}-${m}`,"Find the derivative.",`f(x)=x^{${m}}\\sin(${k}x)`,`${m}*x^${m-1}*sin(${k}*x)+x^${m}*${k}*cos(${k}*x)`,`${monoTex(m,m-1)}\\sin(${k}x)+${k}x^{${m}}\\cos(${k}x)`,`Use the product rule and the chain rule on \\(\\sin(${k}x)\\).`)}
+ if(type===2){const k=ri(2,5);return mk("product",`pc2-${k}`,"Find the derivative.",`f(x)=(x^2+1)e^{${k}x}`,`2*x*e^(${k}*x)+(x^2+1)*${k}*e^(${k}*x)`,`2xe^{${k}x}+${k}(x^2+1)e^{${k}x}`,`Use the product rule; differentiating the exponential also requires the chain rule.`)}
+ if(type===3){const a=ri(2,5),b=ri(1,4);return mk("product",`pc3-${a}-${b}`,"Find the derivative.",`f(x)=x^2\\ln(${a}x+${b})`,`2*x*ln(${a}*x+${b})+x^2*${a}/(${a}*x+${b})`,`2x\\ln(${a}x+${b})+\\frac{${a}x^2}{${a}x+${b}}`,`Use the product rule and the chain rule in the logarithmic factor.`)}
+ const k=ri(2,5);return mk("product",`pc4-${k}`,"Find the derivative.",`f(x)=e^x\\cos(${k}x)`,`e^x*cos(${k}*x)-${k}*e^x*sin(${k}*x)`,`e^x\\cos(${k}x)-${k}e^x\\sin(${k}x)`,`Use the product rule and chain rule.`)
 }
-
 function quotient(){
- const type=ri(1,3);
- if(type===1){
-   const a=nz(-5,5),b=ri(-7,7),c=nz(-5,5),d=ri(-7,7),m=ri(1,4),n=ri(1,3);
-   const u=`${signed(a,m===1?"x":`x^{${m}}`,true)}${signed(b,"",false)}`,v=`${signed(c,n===1?"x":`x^{${n}}`,true)}${signed(d,"",false)}`;
-   const ue=`${a}*x^${m}+(${b})`,ve=`${c}*x^${n}+(${d})`,up=monoExpr(a*m,m-1),vp=monoExpr(c*n,n-1),upTex=monoTex(a*m,m-1),vpTex=monoTex(c*n,n-1);
-   const ansExpr=`((${up})*(${ve})-(${ue})*(${vp}))/(${ve})^2`,ansTex=`\\frac{(${upTex})(${v})-(${u})(${vpTex})}{(${v})^2}`;
-   return mk("quotient",`q1-${a}-${b}-${c}-${d}-${m}-${n}`,"Use the quotient rule to find the derivative.",`f(x)=\\frac{${u}}{${v}}`,ansExpr,ansTex,`With numerator \\(u\\) and denominator \\(v\\), use \\(f'=\\frac{u'v-uv'}{v^2}\\). Substitution gives \\(f'(x)=${ansTex}\\).`);
+ const mode=document.getElementById("ruleMode")?.value||"both";const withChain=mode==="with"||(mode==="both"&&BatchMathRNG.random()<.5);const type=ri(1,3);
+ if(!withChain){
+  if(type===1){const a=ri(1,5);return mk("quotient",`qnc1-${a}`,"Find the derivative.",`f(x)=\\frac{x^2+${a}}{\\sin x}`,`(2*x*sin(x)-(x^2+${a})*cos(x))/(sin(x)^2)`,`\\frac{2x\\sin x-(x^2+${a})\\cos x}{\\sin^2x}`,`Use the quotient rule. No chain rule is needed.`)}
+  if(type===2){const a=ri(1,5);return mk("quotient",`qnc2-${a}`,"Find the derivative.",`f(x)=\\frac{e^x}{x+${a}}`,`(e^x*(x+${a})-e^x)/(x+${a})^2`,`\\frac{e^x(x+${a})-e^x}{(x+${a})^2}`,`Use the quotient rule.`)}
+  return mk("quotient","qnc3","Find the derivative.",`f(x)=\\frac{\\ln x}{x+1}`,`((1/x)*(x+1)-ln(x))/(x+1)^2`,`\\frac{\\frac{x+1}{x}-\\ln x}{(x+1)^2}`,`Use the quotient rule.`)
  }
- if(type===2){
-   const a=nz(-4,4),b=nz(-6,6),c=ri(-7,7),d=nz(-5,5),e=ri(-7,7);
-   const u=poly2Tex(a,b,c),ue=poly2Expr(a,b,c),v=linearTex(d,e),ve=linearExpr(d,e),up=`${2*a}*x+(${b})`;
-   const first=`(${signed(2*a,"x",true)+signed(b,"",false)})(${v})`,second=coefProductTex(-d,`(${u})`);
-   const ansExpr=`((${up})*(${ve})-(${ue})*${d})/(${ve})^2`,ansTex=`\\frac{${joinSignedTex([first,second])}}{(${v})^2}`;
-   return mk("quotient",`q2-${a}-${b}-${c}-${d}-${e}`,"Use the quotient rule to find the derivative.",`g(x)=\\frac{${u}}{${v}}`,ansExpr,ansTex,`Differentiate the numerator and denominator separately, then use \\(\\frac{u'v-uv'}{v^2}\\). One correct form is \\(g'(x)=${ansTex}\\).`);
- }
- const a=nz(1,5),b=nz(-7,7);
- const den=linearTex(a,b),dene=linearExpr(a,b),ansExpr=`((1/(2*sqrt(x)))*(${dene})-sqrt(x)*${a})/(${dene})^2`,ansTex=`\\frac{\\frac{1}{2\\sqrt{x}}(${den})-${a}\\sqrt{x}}{(${den})^2}`;
- return mk("quotient",`q3-${a}-${b}`,"Use the quotient rule to find the derivative.",`h(x)=\\frac{\\sqrt{x}}{${den}}`,ansExpr,ansTex,`Treat \\(\\sqrt{x}\\) as the numerator and \\(${den}\\) as the denominator. Since \\((\\sqrt{x})'=\\frac{1}{2\\sqrt{x}}\\), the quotient rule gives \\(h'(x)=${ansTex}\\).`);
+ if(type===1){const k=ri(2,6);return mk("quotient",`qc1-${k}`,"Find the derivative.",`f(x)=\\frac{\\sin(${k}x)}{x^2+1}`,`(${k}*cos(${k}*x)*(x^2+1)-sin(${k}*x)*2*x)/(x^2+1)^2`,`\\frac{${k}\\cos(${k}x)(x^2+1)-2x\\sin(${k}x)}{(x^2+1)^2}`,`Use the quotient rule and the chain rule in the numerator.`)}
+ if(type===2){const k=ri(2,5),a=ri(1,4);return mk("quotient",`qc2-${k}-${a}`,"Find the derivative.",`f(x)=\\frac{e^{${k}x}}{x+${a}}`,`(${k}*e^(${k}*x)*(x+${a})-e^(${k}*x))/(x+${a})^2`,`\\frac{${k}e^{${k}x}(x+${a})-e^{${k}x}}{(x+${a})^2}`,`Use the quotient rule and chain rule.`)}
+ const a=ri(2,5),b=ri(1,4);return mk("quotient",`qc3-${a}-${b}`,"Find the derivative.",`f(x)=\\frac{\\ln(${a}x+${b})}{x^2+1}`,`((${a}/(${a}*x+${b}))*(x^2+1)-ln(${a}*x+${b})*2*x)/(x^2+1)^2`,`\\frac{\\frac{${a}(x^2+1)}{${a}x+${b}}-2x\\ln(${a}x+${b})}{(x^2+1)^2}`,`Use the quotient rule and the chain rule in the logarithm.`)
 }
-
 const trigRules={
  sin:{tex:"\\sin x",dtex:"\\cos x",expr:"sin(x)",dexpr:"cos(x)"},
  cos:{tex:"\\cos x",dtex:"-\\sin x",expr:"cos(x)",dexpr:"-sin(x)"},
@@ -188,24 +185,61 @@ const trigRules={
  cot:{tex:"\\cot x",dtex:"-\\csc^2 x",expr:"cot(x)",dexpr:"-csc(x)^2"}
 };
 function trig(){
- const names=Object.keys(trigRules).sort(()=>Math.random()-.5).slice(0,ri(2,4)),coeffs=names.map(()=>nz(-6,6));
- let q="",ansTex="",ansExpr="";
- names.forEach((name,i)=>{const r=trigRules[name],c=coeffs[i];q+=signed(c,r.tex,i===0);const deNeg=r.dexpr.startsWith("-");const baseExpr=deNeg?r.dexpr.slice(1):r.dexpr;const baseTex=r.dtex.startsWith("-")?r.dtex.slice(1):r.dtex;const dc=deNeg?-c:c;ansTex+=signed(dc,baseTex,i===0);ansExpr+=exprSigned(dc,baseExpr,i===0)});
- if(Math.random()<.35){const c=nz(-5,5),n=ri(1,4);q+=signed(c,n===1?"x":`x^{${n}}`,false);ansTex+=signed(c*n,n===1?"":(n===2?"x":`x^{${n-1}}`),false);ansExpr+=exprSigned(c*n,n===1?"":(n===2?"x":`x^${n-1}`),false)}
- return mk("trig",`t-${names}-${coeffs}-${q}`,"Find the derivative.",`f(x)=${q}`,ansExpr,ansTex,`Differentiate each term separately. Use \\((\\sin x)'=\\cos x\\), \\((\\cos x)'=-\\sin x\\), \\((\\tan x)'=\\sec^2x\\), \\((\\sec x)'=\\sec x\\tan x\\), \\((\\csc x)'=-\\csc x\\cot x\\), and \\((\\cot x)'=-\\csc^2x\\). Thus \\(f'(x)=${ansTex}\\).`);
+ const mode=document.getElementById("ruleMode")?.value||"both";const withChain=mode==="with"||(mode==="both"&&BatchMathRNG.random()<.5);const type=ri(1,6);
+ if(!withChain){const c=nz(-6,6);
+  if(type===1)return mk("trig",`tnc-sin-${c}`,"Find the derivative.",`f(x)=${signed(c,"\\sin x",true)}`,`${c}*cos(x)`,signed(c,"\\cos x",true),`Use \\((\\sin x)'=\\cos x\\).`);
+  if(type===2)return mk("trig",`tnc-cos-${c}`,"Find the derivative.",`f(x)=${signed(c,"\\cos x",true)}`,`${-c}*sin(x)`,signed(-c,"\\sin x",true),`Use \\((\\cos x)'=-\\sin x\\).`);
+  if(type===3)return mk("trig",`tnc-tan-${c}`,"Find the derivative.",`f(x)=${signed(c,"\\tan x",true)}`,`${c}*sec(x)^2`,signed(c,"\\sec^2x",true),`Use \\((\\tan x)'=\\sec^2x\\).`);
+  if(type===4)return mk("trig",`tnc-sec-${c}`,"Find the derivative.",`f(x)=${signed(c,"\\sec x",true)}`,`${c}*sec(x)*tan(x)`,signed(c,"\\sec x\\tan x",true),`Use the secant derivative rule.`);
+  if(type===5)return mk("trig",`tnc-csc-${c}`,"Find the derivative.",`f(x)=${signed(c,"\\csc x",true)}`,`${-c}*csc(x)*cot(x)`,signed(-c,"\\csc x\\cot x",true),`Use the cosecant derivative rule.`);
+  return mk("trig",`tnc-mix-${c}`,"Find the derivative.",`f(x)=${signed(c,"\\sin x",true)}+\\tan x`,`${c}*cos(x)+sec(x)^2`,`${signed(c,"\\cos x",true)}+\\sec^2x`,`Differentiate each trig term.`)
+ }
+ const k=ri(2,6);
+ if(type===1)return mk("trig",`tc-sin-${k}`,"Find the derivative.",`f(x)=\\sin(${k}x)`,`${k}*cos(${k}*x)`,`${k}\\cos(${k}x)`,`Use the chain rule.`);
+ if(type===2)return mk("trig",`tc-cos-${k}`,"Find the derivative.",`f(x)=\\cos(${k}x)`,`-${k}*sin(${k}*x)`,`-${k}\\sin(${k}x)`,`Use the chain rule.`);
+ if(type===3)return mk("trig",`tc-tanq-${k}`,"Find the derivative.",`f(x)=\\tan(${k}x^2)`,`${2*k}*x*sec(${k}*x^2)^2`,`${2*k}x\\sec^2(${k}x^2)`,`Differentiate the outer tangent and multiply by the derivative of the inner quadratic.`);
+ if(type===4)return mk("trig",`tc-sec-${k}`,"Find the derivative.",`f(x)=\\sec(x^${k})`,`${k}*x^${k-1}*sec(x^${k})*tan(x^${k})`,`${monoTex(k,k-1)}\\sec(x^${k})\\tan(x^${k})`,`Use the secant rule and the chain rule.`);
+ if(type===5)return mk("trig",`tc-csc-${k}`,"Find the derivative.",`f(x)=\\csc(${k}x-1)`,`-${k}*csc(${k}*x-1)*cot(${k}*x-1)`,`-${k}\\csc(${k}x-1)\\cot(${k}x-1)`,`Use the cosecant rule and chain rule.`);
+ return mk("trig",`tc-cot-${k}`,"Find the derivative.",`f(x)=\\cot(${k}x+2)`,`-${k}*csc(${k}*x+2)^2`,`-${k}\\csc^2(${k}x+2)`,`Use the cotangent rule and chain rule.`)
 }
-
+function chainSimple(){
+ const type=ri(1,3);
+ if(type===1){const a=nz(-5,5),b=nz(-8,8),n=ri(3,7),inner=linearTex(a,b),ie=linearExpr(a,b),ansExpr=`${n*a}*(${ie})^${n-1}`,ansTex=`${n*a}(${inner})^{${n-1}}`;return mk("chain",`cs1-${a}-${b}-${n}`,"Find the derivative.",`f(x)=(${inner})^{${n}}`,ansExpr,ansTex,`Differentiate the outer power and multiply by the derivative of the linear inside. \\(f'(x)=${ansTex}\\).`)}
+ if(type===2){const a=nz(-4,4),b=nz(-5,5),c=ri(-6,6),inner=poly2Tex(a,b,c),ie=poly2Expr(a,b,c),ip=`${2*a}*x+(${b})`,ansExpr=`(${ip})*cos(${ie})`,ansTex=`(${signed(2*a,"x",true)+signed(b,"",false)})\\cos(${inner})`;return mk("chain",`cs2-${a}-${b}-${c}`,"Find the derivative.",`f(x)=\\sin(${inner})`,ansExpr,ansTex,`For \\(\\sin u\\), use \\(\\cos u\\cdot u'\\). Thus \\(f'(x)=${ansTex}\\).`)}
+ const a=nz(1,5),b=ri(1,9),inner=poly2Tex(a,0,b),ie=`${a}*x^2+${b}`,ansExpr=`${a}*x/sqrt(${ie})`,ansTex=`\\frac{${monoTex(a,1)}}{\\sqrt{${inner}}}`;return mk("chain",`cs3-${a}-${b}`,"Find the derivative.",`f(x)=\\sqrt{${inner}}`,ansExpr,ansTex,`Differentiate the square-root outer function, then multiply by the derivative of the quadratic inside. \\(f'(x)=${ansTex}\\).`)
+}
+function chainMultiple(){
+ const type=ri(1,5);
+ if(type===1){const a=nz(-4,4),b=nz(-6,6),n=ri(2,5),lin=linearTex(a,b),le=linearExpr(a,b),innerTex=`(${lin})^{${n}}`,innerExpr=`(${le})^${n}`,coef=-n*a,powFactor=n-1===1?`(${lin})`:`(${lin})^{${n-1}}`,ansExpr=`${coef}*(${le})^${n-1}*sin(${innerExpr})`,ansTex=coefProductTex(coef,powFactor,`\\sin(${innerTex})`);return mk("chain",`cm1-${a}-${b}-${n}`,"Find the derivative.",`f(x)=\\cos(${innerTex})`,ansExpr,ansTex,`Differentiate cosine, then the power, then the linear expression. \\(f'(x)=${ansTex}\\).`)}
+ if(type===2){const a=nz(-6,6),b=ri(-7,7),n=ri(2,5),inner=linearTex(a,b),ie=linearExpr(a,b),ansExpr=`${n*a}*sin(${ie})^${n-1}*cos(${ie})`,sinFactor=n-1===1?`\\sin(${inner})`:`\\sin^{${n-1}}(${inner})`,ansTex=coefProductTex(n*a,sinFactor,`\\cos(${inner})`);return mk("chain",`cm2-${a}-${b}-${n}`,"Find the derivative.",`f(x)=\\sin^{${n}}(${inner})`,ansExpr,ansTex,`Differentiate the outer power, then sine, then the linear inside. \\(f'(x)=${ansTex}\\).`)}
+ if(type===3){const k=ri(2,6),ansExpr=`-${k}*sin(${k}*x)*cos(cos(${k}*x))`,ansTex=`-${k}\\sin(${k}x)\\cos(\\cos(${k}x))`;return mk("chain",`cm3-${k}`,"Find the derivative.",`f(x)=\\sin(\\cos(${k}x))`,ansExpr,ansTex,`Work from outside inward: sine, cosine, then the linear angle. \\(f'(x)=${ansTex}\\).`)}
+ if(type===4){const k=ri(2,6),ansExpr=`${k}*cos(${k}*x)*exp(sin(${k}*x))`,ansTex=`${k}e^{\\sin(${k}x)}\\cos(${k}x)`;return mk("chain",`cm4-${k}`,"Find the derivative.",`f(x)=e^{\\sin(${k}x)}`,ansExpr,ansTex,`Differentiate the exponential, then sine, then ${k}x. \\(f'(x)=${ansTex}\\).`)}
+ const a=ri(1,5),b=ri(1,8),inner=linearTex(a,b),ie=linearExpr(a,b),ansExpr=`${a}/(4*sqrt(${ie})*sqrt(sqrt(${ie})))`,ansTex=`\\frac{${a}}{4\\sqrt{${inner}}\\sqrt{\\sqrt{${inner}}}}`;return mk("chain",`cm5-${a}-${b}`,"Find the derivative.",`f(x)=\\sqrt{\\sqrt{${inner}}}`,ansExpr,ansTex,`There are two square-root layers before the linear inside. Differentiate each layer in turn. One correct form is \\(f'(x)=${ansTex}\\).`)
+}
 function chain(){
- const type=ri(1,6);
- if(type===1){const a=nz(-5,5),b=nz(-8,8),n=ri(3,7),inner=linearTex(a,b),ie=linearExpr(a,b),ansExpr=`${n*a}*(${ie})^${n-1}`,ansTex=`${n*a}(${inner})^{${n-1}}`;return mk("chain",`c1-${a}-${b}-${n}`,"Use the chain rule.",`f(x)=(${inner})^{${n}}`,ansExpr,ansTex,`The outer function is \\(u^{${n}}\\) and the inner function is \\(u=${inner}\\). Differentiate the outer function and multiply by \\(u'=${a}\\): \\(f'(x)=${ansTex}\\).`)}
- if(type===2){const a=nz(-4,4),b=nz(-5,5),c=ri(-6,6),inner=poly2Tex(a,b,c),ie=poly2Expr(a,b,c),ip=`${2*a}*x+(${b})`,ansExpr=`(${ip})*cos(${ie})`,ansTex=`(${signed(2*a,"x",true)+signed(b,"",false)})\\cos(${inner})`;return mk("chain",`c2-${a}-${b}-${c}`,"Use the chain rule.",`f(x)=\\sin(${inner})`,ansExpr,ansTex,`For \\(\\sin(u)\\), the derivative is \\(\\cos(u)u'\\). Here \\(u'=${signed(2*a,"x",true)+signed(b,"",false)}\\), so \\(f'(x)=${ansTex}\\).`)}
- if(type===3){const a=nz(-4,4),b=nz(-6,6),n=ri(2,5),lin=linearTex(a,b),le=linearExpr(a,b),innerTex=`(${lin})^{${n}}`,innerExpr=`(${le})^${n}`,coef=-n*a,powFactor=n-1===1?`(${lin})`:`(${lin})^{${n-1}}`,ansExpr=`${coef}*(${le})^${n-1}*sin(${innerExpr})`,ansTex=coefProductTex(coef,powFactor,`\\sin(${innerTex})`);return mk("chain",`c3-${a}-${b}-${n}`,"Use the chain rule.",`f(x)=\\cos(${innerTex})`,ansExpr,ansTex,`Differentiate the cosine first, then the power inside it. The two chain-rule factors give \\(f'(x)=${ansTex}\\).`)}
- if(type===4){const a=nz(-6,6),b=ri(-7,7),n=ri(2,5),inner=linearTex(a,b),ie=linearExpr(a,b),ansExpr=`${n*a}*sin(${ie})^${n-1}*cos(${ie})`,sinFactor=n-1===1?`\\sin(${inner})`:`\\sin^{${n-1}}(${inner})`,ansTex=coefProductTex(n*a,sinFactor,`\\cos(${inner})`);return mk("chain",`c4-${a}-${b}-${n}`,"Use the chain rule.",`f(x)=\\sin^{${n}}(${inner})`,ansExpr,ansTex,`View the function as \\([\\sin(${inner})]^{${n}}\\). Differentiate the outer power, then sine, then the linear inner function. This gives \\(f'(x)=${ansTex}\\).`)}
- if(type===5){const a=nz(1,5),b=ri(1,9),inner=poly2Tex(a,0,b),ie=`${a}*x^2+${b}`,ansExpr=`${a}*x/sqrt(${ie})`,ansTex=`\\frac{${monoTex(a,1)}}{\\sqrt{${inner}}}`;return mk("chain",`c5-${a}-${b}`,"Use the chain rule.",`f(x)=\\sqrt{${inner}}`,ansExpr,ansTex,`Rewrite the square root as a \\(\\frac{1}{2}\\) power. The outer derivative contributes \\(\\frac{1}{2\\sqrt{u}}\\) and the inner derivative is \\(${monoTex(2*a,1)}\\), which simplifies to \\(f'(x)=${ansTex}\\).`)}
- const k=ri(2,6),ansExpr=`-${k}*sin(${k}*x)*cos(cos(${k}*x))`,ansTex=`-${k}\\sin(${k}x)\\cos(\\cos(${k}x))`;return mk("chain",`c6-${k}`,"Use the chain rule more than once.",`f(x)=\\sin(\\cos(${k}x))`,ansExpr,ansTex,`Work from the outside inward: sine gives cosine, cosine gives negative sine, and \\(${k}x\\) contributes a factor of \\(${k}\\). Thus \\(f'(x)=${ansTex}\\).`)
+ const mode=$("chain-mode")?.value||"both";
+ if(mode==="simple")return chainSimple();
+ function enhancedMultiple(){
+  if(BatchMathRNG.random()<.30){
+   const style=pick(['product_chain','quotient_chain','exp_trig_chain']);
+   if(style==='product_chain'){const a=ri(1,4),n=ri(2,5),inner=`${a}x+1`,ie=`${a}*x+1`,ansExpr=`2*x*sin((${ie})^${n})+x^2*cos((${ie})^${n})*${n}*(${ie})^${n-1}*${a}`,ansTex=`2x\\sin((${inner})^{${n}})+${n*a}x^2(${inner})^{${n-1}}\\cos((${inner})^{${n}})`;return mk('chain',`cmix-p-${a}-${n}`,'Find the derivative.',`f(x)=x^2\\sin((${inner})^{${n}})`,ansExpr,ansTex,`Use product rule outside and chain rule repeatedly inside the sine.`)}
+   if(style==='quotient_chain'){const a=ri(1,4),k=ri(2,5),ansExpr=`((${k}*cos(${k}*x))*(x+${a})-sin(${k}*x))/((x+${a})^2)`,ansTex=`\\frac{${k}(x+${a})\\cos(${k}x)-\\sin(${k}x)}{(x+${a})^2}`;return mk('chain',`cmix-q-${a}-${k}`,'Find the derivative.',`f(x)=\\frac{\\sin(${k}x)}{x+${a}}`,ansExpr,ansTex,`Use the quotient rule, with the chain rule needed to differentiate the sine numerator.`)}
+   const k=ri(1,5),ansExpr=`e^(sin(${k}*x)^2)*2*sin(${k}*x)*cos(${k}*x)*${k}`,ansTex=`${2*k}e^{\\sin^2(${k}x)}\\sin(${k}x)\\cos(${k}x)`;return mk('chain',`cmix-e-${k}`,'Find the derivative.',`f(x)=e^{\\sin^2(${k}x)}`,ansExpr,ansTex,`Differentiate from the outside inward: exponential, square, sine, then ${k}x.`)
+  }
+  return chainMultiple();
+ }
+ if(mode==="multiple")return enhancedMultiple();
+ return BatchMathRNG.random()<0.5?chainSimple():enhancedMultiple();
 }
 
 function exponential(){
+ if(BatchMathRNG.random()<.28){
+  const style=pick(['e_sec','base_cot','e_tan']);
+  if(style==='e_sec'){const k=ri(1,5),ansExpr=`e^(sec(${k}*x))*sec(${k}*x)*tan(${k}*x)*${k}`,ansTex=`${k}e^{\\sec(${k}x)}\\sec(${k}x)\\tan(${k}x)`;return mk('exponential',`eadv-sec-${k}`,'Find the derivative.',`f(x)=e^{\\sec(${k}x)}`,ansExpr,ansTex,`Use the exponential chain rule, then differentiate secant with its chain factor.`)}
+  if(style==='base_cot'){const base=pick([2,3,5]),k=ri(1,4),ansExpr=`${base}^(cot(${k}*x))*ln(${base})*(-${k})*csc(${k}*x)^2`,ansTex=`-${k}\\ln(${base})${base}^{\\cot(${k}x)}\\csc^2(${k}x)`;return mk('exponential',`eadv-cot-${base}-${k}`,'Find the derivative.',`f(x)=${base}^{\\cot(${k}x)}`,ansExpr,ansTex,`Use (a^u)'=a^u ln(a)u' and then differentiate cotangent.`)}
+  const k=ri(1,5),ansExpr=`e^(tan(${k}*x))*sec(${k}*x)^2*${k}`,ansTex=`${k}e^{\\tan(${k}x)}\\sec^2(${k}x)`;return mk('exponential',`eadv-tan-${k}`,'Find the derivative.',`f(x)=e^{\\tan(${k}x)}`,ansExpr,ansTex,`Differentiate the exponential and then tangent.`)
+ }
+
  const type=ri(1,5);
  if(type===1){const a=nz(-6,6),b=ri(-8,8),inner=linearTex(a,b),ie=linearExpr(a,b),ansExpr=`${a}*e^(${ie})`,ansTex=coefProductTex(a,`e^{${inner}}`);return mk("exponential",`e1-${a}-${b}`,"Find the derivative.",`f(x)=e^{${inner}}`,ansExpr,ansTex,`For \\(e^u\\), the derivative is \\(e^u u'\\). Since \\(u'=${a}\\), \\(f'(x)=${ansTex}\\).`)}
  if(type===2){const a=nz(-4,4),b=nz(-5,5),c=ri(-6,6),inner=poly2Tex(a,b,c),ie=poly2Expr(a,b,c),ip=`${2*a}*x+(${b})`,ansExpr=`(${ip})*e^(${ie})`,ansTex=`(${signed(2*a,"x",true)+signed(b,"",false)})e^{${inner}}`;return mk("exponential",`e2-${a}-${b}-${c}`,"Find the derivative.",`f(x)=e^{${inner}}`,ansExpr,ansTex,`Use \\((e^u)'=e^u u'\\). Here the exponent has derivative \\(${signed(2*a,"x",true)+signed(b,"",false)}\\), so \\(f'(x)=${ansTex}\\).`)}
@@ -215,36 +249,41 @@ function exponential(){
 }
 
 function implicit(){
- const type=ri(1,7);
- if(type===1){const c=pick([9,16,25,36,49]),ansExpr=`-x/y`,ansTex=`-\\frac{x}{y}`;return mk("implicit",`i1-${c}`,"Find \\(\\frac{dy}{dx}\\) by implicit differentiation.",`x^2+y^2=${c}`,ansExpr,ansTex,`Differentiate both sides: \\(2x+2y\\,y'=0\\). Solve for \\(y'\\): \\(y'=${ansTex}\\).`,["x","y"])}
- if(type===2){const a=ri(1,4),b=ri(1,4),c=ri(5,30),ansExpr=`-(${2*a}*x)/(${3*b}*y^2)`,ansTex=`-\\frac{${monoTex(2*a,1)}}{${monoTex(3*b,2,"y")}}`;return mk("implicit",`i2-${a}-${b}-${c}`,"Find \\(\\frac{dy}{dx}\\) by implicit differentiation.",`${signed(a,"x^2",true)}${signed(b,"y^3",false)}=${c}`,ansExpr,ansTex,`Differentiate: \\(${monoTex(2*a,1)}${signed(3*b,"y^2y'",false)}=0\\). Isolate \\(y'\\) to get \\(y'=${ansTex}\\).`,["x","y"])}
- if(type===3){const c=ri(-8,12),ansExpr=`-y/(x+2*y)`,ansTex=`-\\frac{y}{x+2y}`;return mk("implicit",`i3-${c}`,"Find \\(\\frac{dy}{dx}\\) by implicit differentiation.",`xy+y^2=${c}`,ansExpr,ansTex,`Use the product rule on \\(xy\\): \\(y+xy'+2yy'=0\\). Group the \\(y'\\) terms and solve: \\((x+2y)y'=-y\\), so \\(y'=${ansTex}\\).`,["x","y"])}
- if(type===4){const c=ri(-10,15),ansExpr=`-(2*x*y)/(x^2+3*y^2)`,ansTex=`-\\frac{2xy}{x^2+3y^2}`;return mk("implicit",`i4-${c}`,"Find \\(\\frac{dy}{dx}\\) by implicit differentiation.",`x^2y+y^3=${c}`,ansExpr,ansTex,`Differentiate \\(x^2y\\) with the product rule: \\(2xy+x^2y'+3y^2y'=0\\). Then \\((x^2+3y^2)y'=-2xy\\), giving \\(y'=${ansTex}\\).`,["x","y"])}
- if(type===5){const c=ri(-5,8),ansExpr=`-2*x/cos(y)`,ansTex=`-\\frac{2x}{\\cos y}`;return mk("implicit",`i5-${c}`,"Find \\(\\frac{dy}{dx}\\) by implicit differentiation.",`x^2+\\sin y=${c}`,ansExpr,ansTex,`Differentiate: \\(2x+\\cos(y)y'=0\\). Solving for \\(y'\\) gives \\(y'=${ansTex}\\).`,["x","y"])}
- if(type===6){const c=ri(-5,8),ansExpr=`cos(y)/(x*sin(y))`,ansTex=`\\frac{\\cos y}{x\\sin y}`;return mk("implicit",`i6-${c}`,"Find \\(\\frac{dy}{dx}\\) by implicit differentiation.",`x\\cos y=${c}`,ansExpr,ansTex,`Use the product rule: \\(\\cos y-x\\sin(y)y'=0\\). Isolating \\(y'\\) gives \\(y'=${ansTex}\\).`,["x","y"])}
- const a=ri(1,4),b=ri(1,4),c=ri(10,50),ansExpr=`-(${a})*(${b}*y^2+${a}*x^2)/((${b})^2*y^3)`,inside=joinSignedTex([monoTex(b,2,"y"),monoTex(a,2)]),num=coefProductTex(-a,`(${inside})`),den=monoTex(b*b,3,"y"),ansTex=`\\frac{${num}}{${den}}`;return mk("implicit",`i7-${a}-${b}-${c}`,"Find \\(\\frac{d^2y}{dx^2}\\) by implicit differentiation.",`${signed(a,"x^2",true)}${signed(b,"y^2",false)}=${c}`,ansExpr,ansTex,`First, \\(${monoTex(2*a,1)}${signed(2*b,"yy'",false)}=0\\), so \\(y'=-\\frac{${monoTex(a,1)}}{${monoTex(b,1,"y")}}\\). Differentiate that expression and substitute the first derivative back in. One correct form is \\(y''=${ansTex}\\).`,["x","y"])
+ const type=ri(1,10);
+ if(type===1){const R=pick([4,5,6,8]);return mk("implicit",`imp-circle-${R}`,"Find the derivative.",`x^2+y^2=${R*R}`,`-x/y`,`-\\frac{x}{y}`,`Differentiate both sides: \\(2x+2yy'=0\\), then solve for \\(y'\\).`,["x","y"])}
+ if(type===2){const C=pick([4,6,8,10]);return mk("implicit",`imp-xy-${C}`,"Find the derivative.",`xy=${C}`,`-y/x`,`-\\frac{y}{x}`,`Differentiate with the product rule: \\(xy'+y=0\\).`,["x","y"])}
+ if(type===3){const a=ri(1,4),b=ri(1,4);return mk("implicit",`imp-hard1-${a}-${b}`,"Find dy/dx.",`${a===1?'':a}x^2y+${b===1?'':b}y^3=7`,`-(${2*a}*x*y)/(${a}*x^2+${3*b}*y^2)`,`-\\frac{${2*a}xy}{${a===1?'':a}x^2+${3*b}y^2}`,`Differentiate the product and power terms, collect every \\(y'\\) term, and solve.`,["x","y"])}
+ if(type===4){const c=ri(1,4);return mk("implicit",`imp-hard2-${c}`,"Find dy/dx.",`\\sin y+${c===1?'':c}xy=3`,`-(${c}*y)/(cos(y)+${c}*x)`,`-\\frac{${c===1?'':c}y}{\\cos y+${c===1?'':c}x}`,`Differentiate \\(\\sin y\\) with the chain rule and \\(xy\\) with the product rule.`,["x","y"])}
+ if(type===5){const a=ri(1,3),b=ri(1,3),c=ri(1,3);return mk("implicit",`imp-hard3-${a}-${b}-${c}`,"Find dy/dx.",`${a===1?'':a}x^2+${b===1?'':b}xy+${c===1?'':c}y^2=7`,`-(${2*a}*x+${b}*y)/(${b}*x+${2*c}*y)`,`-\\frac{${2*a}x+${b===1?'':b}y}{${b===1?'':b}x+${2*c}y}`,`Differentiate the \\(xy\\) term with the product rule, collect \\(y'\\), and solve.`,["x","y"])}
+ if(type===6){const R=pick([4,5,6,8]);return mk("implicit",`imp-second-circle-${R}`,"Find the second derivative d²y/dx².",`x^2+y^2=${R*R}`,`-${R*R}/y^3`,`-\\frac{${R*R}}{y^3}`,`First \\(y'=-x/y\\). Differentiate again and use \\(x^2+y^2=${R*R}\\).`,["x","y"])}
+ if(type===7){const C=pick([4,6,8,10]);return mk("implicit",`imp-second-xy-${C}`,"Find the second derivative d²y/dx².",`xy=${C}`,`2*y/x^2`,`\\frac{2y}{x^2}`,`From \\(y'=-y/x\\), differentiate again and simplify.`,["x","y"])}
+ if(type===8)return mk("implicit","imp-cubic-curve","Find dy/dx.",`x^3+y^3=6xy`,`(2*y-x^2)/(y^2-2*x)`,`\\frac{2y-x^2}{y^2-2x}`,`Differentiate both cubic terms and the product \\(xy\\), then collect the \\(y'\\) terms.`,["x","y"]);
+ if(type===9)return mk("implicit","imp-exp-xy","Find dy/dx.",`e^{xy}=x+y`,`(1-y*exp(x*y))/(x*exp(x*y)-1)`,`\\frac{1-ye^{xy}}{xe^{xy}-1}`,`Differentiate \\(e^{xy}\\) using both the chain and product rules before solving for \\(y'\\).`,["x","y"]);
+ return mk("implicit","imp-sin-sum","Find dy/dx.",`\\sin(x+y)=xy`,`(y-cos(x+y))/(cos(x+y)-x)`,`\\frac{y-\\cos(x+y)}{\\cos(x+y)-x}`,`Differentiate \\(\\sin(x+y)\\) with the chain rule and \\(xy\\) with the product rule, then solve for \\(y'\\).`,["x","y"])
 }
-
 function logDeriv(){
- const type=ri(1,6);
- if(type===1){const a=nz(1,6),b=ri(1,9),inner=linearTex(a,b),ie=linearExpr(a,b),ansExpr=`${a}/(${ie})`,ansTex=`\\frac{${a}}{${inner}}`;return mk("log",`l1-${a}-${b}`,"Find the derivative.",`f(x)=\\ln(${inner})`,ansExpr,ansTex,`For \\(\\ln u\\), the derivative is \\(\\frac{u'}{u}\\). Here \\(u'=${a}\\), so \\(f'(x)=${ansTex}\\).`)}
- if(type===2){const a=nz(1,4),b=nz(-5,5),c=ri(2,9),inner=poly2Tex(a,b,c),ie=poly2Expr(a,b,c),ip=`${2*a}*x+(${b})`,ansExpr=`(${ip})/(${ie})`,ansTex=`\\frac{${signed(2*a,"x",true)+signed(b,"",false)}}{${inner}}`;return mk("log",`l2-${a}-${b}-${c}`,"Find the derivative.",`f(x)=\\ln(${inner})`,ansExpr,ansTex,`Use \\((\\ln u)'=\\frac{u'}{u}\\). The inner derivative is \\(${signed(2*a,"x",true)+signed(b,"",false)}\\), giving \\(f'(x)=${ansTex}\\).`)}
- if(type===3){const k=ri(2,6),ansExpr=`${k}*cos(${k}*x)/sin(${k}*x)`,ansTex=`\\frac{${k}\\cos(${k}x)}{\\sin(${k}x)}`;return mk("log",`l3-${k}`,"Find the derivative.",`f(x)=\\ln(\\sin(${k}x))`,ansExpr,ansTex,`Let \\(u=\\sin(${k}x)\\). Then \\(u'=${k}\\cos(${k}x)\\), so \\(f'=\\frac{u'}{u}=${ansTex}\\).`)}
- if(type===4){const base=pick([2,3,5,10]),a=nz(1,6),b=ri(1,8),inner=linearTex(a,b),ie=linearExpr(a,b),ansExpr=`${a}/((${ie})*ln(${base}))`,ansTex=`\\frac{${a}}{(${inner})\\ln(${base})}`;return mk("log",`l4-${base}-${a}-${b}`,"Find the derivative.",`f(x)=\\log_{${base}}(${inner})`,ansExpr,ansTex,`For \\(\\log_a u\\), use \\(\\frac{u'}{u\\ln a}\\). Therefore \\(f'(x)=${ansTex}\\).`)}
- if(type===5){const a=nz(1,5),b=ri(1,9),n=ri(2,5),inner=linearTex(a,b),ie=linearExpr(a,b),ansExpr=`${n*a}/(${ie})`,ansTex=`\\frac{${n*a}}{${inner}}`;return mk("log",`l5-${a}-${b}-${n}`,"Find the derivative.",`f(x)=\\ln((${inner})^{${n}})`,ansExpr,ansTex,`Use \\((\\ln u)'=\\frac{u'}{u}\\), or first use the logarithm rule \\(\\ln(u^{${n}})=${n}\\ln u\\). Either way, \\(f'(x)=${ansTex}\\).`)}
- const k=ri(1,5),arg=monoTex(k,1),ansExpr=`2*${k}*cos(${k}*x)/sin(${k}*x)`,ansTex=`${2*k}\\frac{\\cos(${arg})}{\\sin(${arg})}`;return mk("log",`l6-${k}`,"Find the derivative.",`f(x)=\\ln(\\sin^2(${arg}))`,ansExpr,ansTex,`Treat the inside as \\(u=\\sin^2(${arg})\\). Then \\(f'=\\frac{u'}{u}\\), and cancellation gives \\(f'(x)=${ansTex}\\).`)
+ const type=ri(1,5);
+ if(type===1){const a=ri(2,6),b=ri(1,5);return mk("log",`lg-ln-${a}-${b}`,"Find the derivative.",`f(x)=\\ln(${a}x+${b})`,`${a}/(${a}*x+${b})`,`\\frac{${a}}{${a}x+${b}}`,`Use \\((\\ln u)'=u'/u\\).`)}
+ if(type===2){const base=pick([2,3,5,7,10]);return mk("log",`lg-base-${base}`,"Find the derivative.",`f(x)=\\log_{${base}}x`,`1/(x*ln(${base}))`,`\\frac{1}{x\\ln ${base}}`,`For base \\(${base}\\), \\((\\log_bx)'=1/(x\\ln b)\\).`)}
+ if(type===3){const base=pick([2,3,5,10]),a=ri(2,6),b=ri(1,5);return mk("log",`lg-base-lin-${base}-${a}-${b}`,"Find the derivative.",`f(x)=\\log_{${base}}(${a}x+${b})`,`${a}/((${a}*x+${b})*ln(${base}))`,`\\frac{${a}}{(${a}x+${b})\\ln ${base}}`,`Use the logarithm derivative formula and the chain rule.`)}
+ if(type===4)return mk("log","lg-ln-x2","Find the derivative.",`f(x)=\\ln(x^2+1)`,`2*x/(x^2+1)`,`\\frac{2x}{x^2+1}`,`Use \\((\\ln u)'=u'/u\\).`);
+ const base=pick([2,3,5]);return mk("log",`lg-bpow-${base}`,"Find the derivative.",`f(x)=\\log_{${base}}(x^2+4)`,`2*x/((x^2+4)*ln(${base}))`,`\\frac{2x}{(x^2+4)\\ln ${base}}`,`Use the base-${base} logarithm derivative and chain rule.`)
 }
-
 function logDiff(){
  const type=ri(1,5);
- if(type===1){const ansExpr=`x^x*(ln(x)+1)`,ansTex=`x^x(\\ln x+1)`;return mk("logdiff","ld1","Use logarithmic differentiation.",`y=x^x`,ansExpr,ansTex,`Take natural logs: \\(\\ln y=x\\ln x\\). Differentiate: \\(\\frac{y'}{y}=\\ln x+1\\). Multiply by \\(y=x^x\\): \\(y'=${ansTex}\\).`)}
- if(type===2){const a=ri(1,4),b=ri(1,7),base=linearTex(a,b),be=linearExpr(a,b),ansExpr=`(${be})^x*(ln(${be})+x*${a}/(${be}))`,ansTex=`(${base})^x\\left[\\ln(${base})+\\frac{${monoTex(a,1)}}{${base}}\\right]`;return mk("logdiff",`ld2-${a}-${b}`,"Use logarithmic differentiation.",`y=(${base})^x`,ansExpr,ansTex,`Take logs: \\(\\ln y=x\\ln(${base})\\). Differentiate both sides, then multiply by \\(y\\). This gives \\(y'=${ansTex}\\).`)}
- if(type===3){const k=ri(1,4),arg=monoTex(k,1),ansExpr=`x^(sin(${k}*x))*(${k}*cos(${k}*x)*ln(x)+sin(${k}*x)/x)`,inside=joinSignedTex([coefProductTex(k,`\\cos(${arg})\\ln x`),`\\frac{\\sin(${arg})}{x}`]),ansTex=`x^{\\sin(${arg})}\\left(${inside}\\right)`;return mk("logdiff",`ld3-${k}`,"Use logarithmic differentiation.",`y=x^{\\sin(${arg})}`,ansExpr,ansTex,`Take logs: \\(\\ln y=\\sin(${arg})\\ln x\\). Use the product rule on the right, then multiply by \\(y=x^{\\sin(${arg})}\\). The result is \\(y'=${ansTex}\\).`)}
- if(type===4){const ansExpr=`ln(x)^x*(ln(ln(x))+1/ln(x))`,ansTex=`(\\ln x)^x\\left(\\ln(\\ln x)+\\frac{1}{\\ln x}\\right)`;return mk("logdiff","ld4","Use logarithmic differentiation.",`y=(\\ln x)^x`,ansExpr,ansTex,`Take logs: \\(\\ln y=x\\ln(\\ln x)\\). Differentiate with the product and chain rules, then multiply by \\(y\\): \\(y'=${ansTex}\\).`)}
- const ansExpr=`cos(x)^cos(x)*(-sin(x)*(ln(cos(x))+1))`,ansTex=`-(\\cos x)^{\\cos x}\\sin x(\\ln(\\cos x)+1)`;return mk("logdiff","ld5","Use logarithmic differentiation.",`y=(\\cos x)^{\\cos x}`,ansExpr,ansTex,`Take logs: \\(\\ln y=\\cos x\\,\\ln(\\cos x)\\). Differentiate the product on the right and multiply by \\(y\\). One correct form is \\(y'=${ansTex}\\).`)
+ if(type===1)return mk("logdiff","ld-xx","Find the derivative.",`y=x^x`,`x^x*(ln(x)+1)`,`x^x(\\ln x+1)`,`Take natural logs: \\(\\ln y=x\\ln x\\).`);
+ if(type===2){const k=ri(2,5);return mk("logdiff",`ld-xs-${k}`,"Find the derivative.",`y=x^{\\sin(${k}x)}`,`x^(sin(${k}*x))*(${k}*cos(${k}*x)*ln(x)+sin(${k}*x)/x)`,`x^{\\sin(${k}x)}\\left(${k}\\cos(${k}x)\\ln x+\\frac{\\sin(${k}x)}x\\right)`,`Take logs and differentiate the product \\(\\sin(${k}x)\\ln x\\).`)}
+ const baseFn=pick(['sin','cos']),expFn=baseFn==='sin'?pick(['sin','cos']):pick(['sin','cos']),a=ri(2,5),b=ri(2,6),BT=baseFn==='sin'?`\\sin(${a}x)`:`\\cos(${a}x)`,ET=expFn==='sin'?`\\sin(${b}x)`:`\\cos(${b}x)`,BE=baseFn==='sin'?`sin(${a}*x)`:`cos(${a}*x)`,EE=expFn==='sin'?`sin(${b}*x)`:`cos(${b}*x)`,Bp=baseFn==='sin'?`${a}*cos(${a}*x)`:`-${a}*sin(${a}*x)`,Ep=expFn==='sin'?`${b}*cos(${b}*x)`:`-${b}*sin(${b}*x)`;
+ return mk("logdiff",`ld-trig-${baseFn}-${expFn}-${a}-${b}`,"Find the derivative.",`y=(${BT})^{${ET}}`,`(${BE})^(${EE})*((${Ep})*ln(${BE})+(${EE})*(${Bp})/(${BE}))`,`(${BT})^{${ET}}\\left[(${expFn==='sin'?`${b}\\cos(${b}x)`:`-${b}\\sin(${b}x)`})\\ln(${BT})+${ET}\\frac{${baseFn==='sin'?`${a}\\cos(${a}x)`:`-${a}\\sin(${a}x)`}}{${BT}}\\right]`,`The trig function in the base and the trig function in the exponent are differentiated independently after taking natural logs.`)
 }
-
 function invTrig(){
+ if(BatchMathRNG.random()<.30){
+  const style=pick(['atan_exp','atan_log','atan_sin']);
+  if(style==='atan_exp'){const ansExpr=`e^x/(1+e^(2*x))`,ansTex=`\\frac{e^x}{1+e^{2x}}`;return mk('invtrig','vadv-exp','Find the derivative.',`f(x)=\\tan^{-1}(e^x)`,ansExpr,ansTex,`Use arctangent's derivative with u=e^x.`)}
+  if(style==='atan_log'){const ansExpr=`1/(x*(1+ln(x)^2))`,ansTex=`\\frac1{x(1+(\\ln x)^2)}`;return mk('invtrig','vadv-log','Find the derivative.',`f(x)=\\tan^{-1}(\\ln x)`,ansExpr,ansTex,`Use arctangent's derivative and multiply by 1/x.`)}
+  const k=ri(1,5),ansExpr=`${k}*cos(${k}*x)/(1+sin(${k}*x)^2)`,ansTex=`\\frac{${k}\\cos(${k}x)}{1+\\sin^2(${k}x)}`;return mk('invtrig',`vadv-sin-${k}`,'Find the derivative.',`f(x)=\\tan^{-1}(\\sin(${k}x))`,ansExpr,ansTex,`Use arctangent's rule and the chain rule.`)
+ }
+
  const type=ri(1,6);
  if(type===1){const a=ri(1,4),u=monoTex(a,1),ansExpr=`${a}/sqrt(1-(${a}*x)^2)`,ansTex=`\\frac{${a}}{\\sqrt{1-${monoTex(a*a,2)}}}`;return mk("invtrig",`v1-${a}`,"Find the derivative.",`f(x)=\\sin^{-1}(${u})`,ansExpr,ansTex,`Use \\((\\sin^{-1}u)'=\\frac{u'}{\\sqrt{1-u^2}}\\). With \\(u=${u}\\), \\(u'=${a}\\), so \\(f'(x)=${ansTex}\\).`)}
  if(type===2){const a=ri(1,4),b=ri(-3,3),u=linearTex(a,b),ue=linearExpr(a,b),ansExpr=`${a}/(1+(${ue})^2)`,ansTex=`\\frac{${a}}{1+(${u})^2}`;return mk("invtrig",`v2-${a}-${b}`,"Find the derivative.",`f(x)=\\tan^{-1}(${u})`,ansExpr,ansTex,`Use \\((\\tan^{-1}u)'=\\frac{u'}{1+u^2}\\). Therefore \\(f'(x)=${ansTex}\\).`)}
@@ -255,13 +294,22 @@ function invTrig(){
 }
 
 function inverseFunc(){
- const type=ri(1,3);
- if(type===1){const p=ri(1,5),q=ri(-4,4),a=pick([-2,-1,0,1,2]),b=a*a*a+p*a+q,d=3*a*a+p;const ans=rat(1,d);return mk("inverse",`iv1-${p}-${q}-${a}`,"Let \\(g=f^{-1}\\). Find the indicated derivative.",`f(x)=x^3${signed(p,"x",false)}${signed(q,"",false)},\\quad g'(${b})=?`,exprRat(ans[0],ans[1]),texRat(ans[0],ans[1]),`Since \\(f(${a})=${b}\\), we have \\(g(${b})=${a}\\). Use \\((f^{-1})'(b)=\\frac{1}{f'(a)}\\). Here \\(f'(x)=3x^2${signed(p,"",false)}\\), so \\(g'(${b})=\\frac{1}{${d}}=${texRat(ans[0],ans[1])}\\).`,[])}
- if(type===2){const a=ri(2,6),b=ri(-4,5),x0=pick([-1,0,1,2]),y0=a*x0+b,ans=rat(1,a);return mk("inverse",`iv2-${a}-${b}-${x0}`,"Let \\(g=f^{-1}\\). Find the indicated derivative.",`f(x)=${a}x${signed(b,"",false)},\\quad g'(${y0})=?`,exprRat(ans[0],ans[1]),texRat(ans[0],ans[1]),`Because \\(f(${x0})=${y0}\\), \\(g(${y0})=${x0}\\). The inverse-function derivative rule gives \\(g'(${y0})=\\frac{1}{f'(${x0})}=\\frac{1}{${a}}=${texRat(ans[0],ans[1])}\\).`,[])}
- const xs=[-2,-1,1,2],ys=xs.slice().sort(()=>Math.random()-.5),ds=xs.map(()=>pick([1,2,3,4,5,6,-2,-3,-4]));const idx=ri(0,3),target=ys[idx],xTarget=xs[idx],d=ds[idx],ans=rat(1,d);let rows="";for(let i=0;i<4;i++)rows+=`<tr><td>${xs[i]}</td><td>${ys[i]}</td><td>${ds[i]}</td></tr>`;return {cat:"inverse",id:`iv3-${ys}-${ds}-${idx}`,q:`<div class="question-prompt">The table gives values of \\(f\\) and \\(f'\\). If \\(g=f^{-1}\\), find \\(g'(${target})\\).</div><table><tr><th>\\(x\\)</th><th>\\(f(x)\\)</th><th>\\(f'(x)\\)</th></tr>${rows}</table>`,answerExpr:exprRat(ans[0],ans[1]),answerTex:texRat(ans[0],ans[1]),solution:`Find the row where \\(f(x)=${target}\\). That occurs at \\(x=${xTarget}\\). Then \\(g'(${target})=\\frac{1}{f'(${xTarget})}=\\frac{1}{${d}}=${texRat(ans[0],ans[1])}\\).`,vars:[]}
+ const type=ri(1,5);
+ if(type===1){const p=ri(1,5),q=ri(-4,4),a=pick([-2,-1,0,1,2]),b=a*a*a+p*a+q,d=3*a*a+p;const ans=rat(1,d);return mk("inverse",`iv1-${p}-${q}-${a}`,"Let g be the inverse of f. Find the indicated derivative.",`f(x)=x^3${signed(p,"x",false)}${signed(q,"",false)},\\quad g'(${b})=?`,exprRat(ans[0],ans[1]),texRat(ans[0],ans[1]),`Since \\(f(${a})=${b}\\), use \\(g'(${b})=1/f'(${a})\\).`,[])}
+ if(type===2){const a=ri(2,6),b=ri(-4,5),x0=pick([-1,0,1,2]),y0=a*x0+b,ans=rat(1,a);return mk("inverse",`iv2-${a}-${b}-${x0}`,"Let g be the inverse of f. Find the indicated derivative.",`f(x)=${a}x${signed(b,"",false)},\\quad g'(${y0})=?`,exprRat(ans[0],ans[1]),texRat(ans[0],ans[1]),`Find the input that maps to ${y0}, then take the reciprocal of \\(f'\\) there.`,[])}
+ if(type===3){const k=pick([3,4]),c=pick([3,4]),x0=0,y0=c+1,ans=rat(1,k);return mk("inverse",`iv-exp-${k}-${c}`,"Find the indicated derivative.",`f(x)=${c}+e^{${k}x},\\quad g'(${y0})=?`,exprRat(ans[0],ans[1]),texRat(ans[0],ans[1]),`Because \\(f(0)=${y0}\\), \\(g(${y0})=0\\). Then \\(g'(${y0})=1/f'(0)=1/${k}\\).`,[])}
+ if(type===4){const c=ri(1,5);return mk("inverse",`iv-log-${c}`,"Find the indicated derivative.",`f(x)=\\ln x+${c},\\quad g'(${c})=?`,`1`,`1`,`Since \\(f(1)=${c}\\) and \\(f'(1)=1\\), the inverse derivative is 1.`,[])}
+ const xs=[-2,-1,1,2],ys=[3,-1,4,0],ds=[2,-3,5,4],idx=ri(0,3),target=ys[idx],ans=rat(1,ds[idx]);let rows="";for(let i=0;i<4;i++)rows+=`<tr><td>${xs[i]}</td><td>${ys[i]}</td><td>${ds[i]}</td></tr>`;return {cat:"inverse",id:`iv-table-${idx}`,q:`<div class="question-prompt">The table gives values of \\(f\\) and \\(f'\\). If \\(g=f^{-1}\\), find \\(g'(${target})\\).</div><table><tr><th>\\(x\\)</th><th>\\(f(x)\\)</th><th>\\(f'(x)\\)</th></tr>${rows}</table>`,answerExpr:exprRat(ans[0],ans[1]),answerTex:texRat(ans[0],ans[1]),solution:`Find the row where \\(f(x)=${target}\\), then use the reciprocal of \\(f'\\) at that x-value.`,vars:[]}
 }
-
 function atPoint(){
+ if(BatchMathRNG.random()<.35){
+  const style=pick(['product_point','quotient_point','log_point','invtrig_point']);
+  if(style==='product_point'){const k=ri(1,5),x0=0,val=k;return mk('point',`ptadv-prod-${k}`,'Find the derivative at the indicated point.',`f(x)=(x+1)\\sin(${k}x),\\quad f'(0)=?`,String(val),String(val),`Product rule gives sin(${k}x)+(x+1)${k}cos(${k}x); at 0 this is ${k}.`,[])}
+  if(style==='quotient_point'){const a=ri(2,6),val=rat(1,a);return mk('point',`ptadv-q-${a}`,'Find the derivative at the indicated point.',`f(x)=\\frac{x}{x+${a}},\\quad f'(0)=?`,exprRat(val[0],val[1]),texRat(val[0],val[1]),`Quotient rule gives ${a}/(x+${a})^2, so at 0 the value is 1/${a}.`,[])}
+  if(style==='log_point'){const a=ri(2,6);return mk('point',`ptadv-log-${a}`,'Find the derivative at the indicated point.',`f(x)=\\ln(${a}x+1),\\quad f'(0)=?`,String(a),String(a),`f'(x)=${a}/(${a}x+1), so f'(0)=${a}.`,[])}
+  const k=ri(1,5);return mk('point',`ptadv-inv-${k}`,'Find the derivative at the indicated point.',`f(x)=\\tan^{-1}(${k}x),\\quad f'(0)=?`,String(k),String(k),`f'(x)=${k}/(1+${k*k}x^2), so f'(0)=${k}.`,[])
+ }
+
  const type=ri(1,6);
  if(type===1){const a=nz(-4,4),b=nz(-5,5),c=ri(-6,6),x0=ri(-3,3),val=2*a*x0+b;return mk("point",`pt1-${a}-${b}-${c}-${x0}`,`Find the slope of the tangent line at \\(x=${x0}\\).`,`y=${poly2Tex(a,b,c)}`,String(val),String(val),`Differentiate first: \\(y'=${signed(2*a,"x",true)+signed(b,"",false)}\\). Substituting \\(x=${x0}\\) gives \\(y'=${val}\\).`,[])}
  if(type===2){const k=ri(1,7),arg=monoTex(k,1),deriv=coefProductTex(k,`\\cos(${arg})`);return mk("point",`pt2-${k}`,"Find the derivative at the indicated point.",`f(x)=\\sin(${arg}),\\quad f'(0)=?`,String(k),String(k),`\\(f'(x)=${deriv}\\). At \\(x=0\\), \\(\\cos 0=1\\), so \\(f'(0)=${k}\\).`,[])}
@@ -429,8 +477,8 @@ function equivalent(student,expected,vars){
  let good=0;
  if(!vars||vars.length===0){try{return closeEnough(evalTree(A,{}),evalTree(B,{}))}catch(e){return false}}
  const scopes=[];
- if(vars.includes("y")){for(let j=0;j<xvals.length;j++)scopes.push({x:xvals[j],y:yvals[j%yvals.length]});for(let j=0;j<30;j++)scopes.push({x:-4+8*Math.random(),y:-4+8*Math.random()})}
- else{for(const x of xvals)scopes.push({x});for(let j=0;j<35;j++)scopes.push({x:-5+10*Math.random()})}
+ if(vars.includes("y")){for(let j=0;j<xvals.length;j++)scopes.push({x:xvals[j],y:yvals[j%yvals.length]});for(let j=0;j<30;j++)scopes.push({x:-4+8*BatchMathRNG.random(),y:-4+8*BatchMathRNG.random()})}
+ else{for(const x of xvals)scopes.push({x});for(let j=0;j<35;j++)scopes.push({x:-5+10*BatchMathRNG.random()})}
  for(const sc of scopes){let a,b;try{a=evalTree(A,sc);b=evalTree(B,sc)}catch(e){continue}if(!Number.isFinite(a)||!Number.isFinite(b)||Math.abs(a)>1e14||Math.abs(b)>1e14)continue;if(!closeEnough(a,b))return false;if(++good>=14)return true}
  return good>=6;
 }
@@ -439,14 +487,14 @@ function typeset(nodes){if(window.MathJax&&MathJax.typesetPromise)MathJax.typese
 function makeProblem(){
  const selected=$("category").value;let p=null;
  for(let tries=0;tries<120;tries++){const cat=selected==="mixed"?pick(mixedWeights):selected;p=generators[cat]();if(!seen.has(p.id)){seen.add(p.id);break}if(seen.size>900)seen.clear()}
- current=p;current.answered=false;window.BMAnalytics?.ensurePracticeStarted({practice_mode:$("category").value});window.BMAnalytics?.problemGenerated(current,{practice_mode:$("category").value});$("question").innerHTML=p.q;$("answer").value="";window.BatchMathCalculusKeypad?.reset?.();$("answer").disabled=false;$("submit").disabled=false;$("next").style.display="none";$("feedback").className="feedback";$("feedback").innerHTML="";$("topic-name").textContent=categoryLabel[p.cat];typeset([$("question")]);if(window.BatchMathCalculusKeypad)BatchMathCalculusKeypad.focus();else $("answer").focus();
+ current=p;current.answered=false;window.BMAnalytics?.ensurePracticeStarted({practice_mode:$("category").value});window.BMAnalytics?.problemGenerated(current,{practice_mode:$("category").value});$("question").innerHTML=p.q;$("answer").value="";window.BatchMathCalculusKeypad?.reset?.();$("answer").disabled=false;$("submit").disabled=false;$("next").style.display="none";$("feedback").className="feedback";$("feedback").innerHTML="";$("topic-name").textContent=$("category").value==="mixed"?"Mixed Derivative Practice":categoryLabel[p.cat];typeset([$("question")]);if(window.BatchMathCalculusKeypad)BatchMathCalculusKeypad.focus();else $("answer").focus();
 }
 function check(){
  if(!current||current.answered)return;const raw=$("answer").value.trim();if(!raw){$("feedback").className="feedback wrong";$("feedback").innerHTML='<div class="status">Enter an answer first.</div>';return}
  attempts++;current.answered=true;const ok=equivalent(raw,current.answerExpr,current.vars);window.BMAnalytics?.answerChecked(current,ok);window.BMAnalytics?.solutionRevealed(current,{reveal_reason:"answer_feedback"});if(ok)correctCount++;$("correct-count").textContent=correctCount;$("attempted").textContent=attempts;$("answer").disabled=true;$("submit").disabled=true;$("next").style.display="inline-block";
  $("feedback").className="feedback "+(ok?"correct":"wrong");$("feedback").innerHTML=`<div class="status">${ok?"Correct.":"Not quite."}</div><div class="correct-answer">One correct form: \\(${current.answerTex}\\)</div><div class="method">${current.solution}</div>`;typeset([$("feedback")]);$("next").focus();
 }
-$("submit").addEventListener("click",check);$("next").addEventListener("click",makeProblem);$("category").addEventListener("change",makeProblem);$("answer").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();current&&current.answered?makeProblem():check()}});
+$("submit").addEventListener("click",check);$("next").addEventListener("click",makeProblem);$("category").addEventListener("change",makeProblem);if($("ruleMode"))$("ruleMode").addEventListener("change",makeProblem);$("answer").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();current&&current.answered?makeProblem():check()}});
 function boot(){makeProblem()}if(window.MathJax&&MathJax.startup&&MathJax.startup.promise)MathJax.startup.promise.then(boot);else window.addEventListener("load",boot);
 })();
 </script><script data-batchmath-menu-a11y>

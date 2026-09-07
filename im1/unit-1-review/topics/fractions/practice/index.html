@@ -27,7 +27,7 @@ button{border:0;border-radius:9px;padding:11px 18px;font-size:1rem;font-weight:8
 .choice-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;max-width:760px;margin:0 auto}.choice{display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 6px;border:1px solid #333;border-radius:9px;background:#111;font-weight:800;cursor:pointer}.choice input{width:18px;height:18px;accent-color:#d71920}
 @media(max-width:720px){.page{padding:16px 10px 32px}.header{margin:10px 0 14px}.header h1{font-size:1.65rem}.header p{font-size:.92rem}.settings{grid-template-columns:1fr}.stats{grid-template-columns:repeat(var(--stat-cols,3),1fr);gap:6px;margin-bottom:12px}.stat{font-size:.86rem;padding:8px 4px}.stat span{font-size:1.05rem}.card{padding:14px 10px}.question{font-size:clamp(1.5rem,7vw,2.25rem);margin:8px 0 12px}.question.word{font-size:1.06rem}.instruction{font-size:.9rem;margin-bottom:10px}.feedback{font-size:.92rem}.choice-grid{grid-template-columns:1fr 1fr}.choice:last-child{grid-column:1/-1;max-width:50%;width:100%;justify-self:center}}</style><script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script>window.MathJax=window.MathJax||{};window.MathJax.options=Object.assign({},window.MathJax.options||{},{enableMenu:false});window.MathJax.options.menuOptions=Object.assign({},window.MathJax.options.menuOptions||{});window.MathJax.options.menuOptions.settings=Object.assign({},window.MathJax.options.menuOptions.settings||{},{explorer:false,zoom:'NoZoom',inTabOrder:false});</script>
 <style id="bm-mathjax-control-style">button mjx-container,button mjx-container *,.choice mjx-container,.choice mjx-container *,.choice-grid mjx-container,.choice-grid mjx-container *{pointer-events:none!important;user-select:none!important;-webkit-user-select:none!important;-webkit-touch-callout:none!important}</style>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script><link rel="stylesheet" href="../../../../../assets/im1-keypad.css"><script defer src="../../../../../assets/im1-keypad.js"></script><script src="../../../../../assets/im1-display-math.js"></script><link rel="stylesheet" href="../../../../../assets/site.css" data-batchmath-shared-style="v10.0"><meta property="og:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png">
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js"></script><link rel="stylesheet" href="../../../../../assets/im1-keypad.css"><script defer src="../../../../../assets/im1-keypad.js"></script><script src="../../../../../assets/im1-display-math.js"></script><link rel="stylesheet" href="../../../../../assets/site.css" data-batchmath-shared-style="v10.0"><meta property="og:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/png">
@@ -59,7 +59,7 @@ button{border:0;border-radius:9px;padding:11px 18px;font-size:1rem;font-weight:8
   
     gtag('config', 'G-377MTFXSF3');
   </script>
-<script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_fractions",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_fractions",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><main id="main-content" class="page"><a class="back" href="../">← Topic Page</a>
 <header class="header"><h1>Fractions</h1><p>Practice common- and unlike-denominator addition/subtraction, multiplication/division, fractions of numbers, and powers or square roots. Initial operation fractions are proper non-whole fractions.</p></header>
 <section id="setupCard" class="card"><div class="settings"><div class="setting"><label for="categorySelect">Practice Type</label><select id="categorySelect"><option value="mixed" selected>Mixed Fractions</option><option value="common">Add/Subtract — Common Denominators</option><option value="unlike">Add/Subtract — Unlike Denominators</option><option value="muldiv">Multiplying &amp; Dividing</option><option value="of">Fraction of a Number</option><option value="powers">Exponents &amp; Square Roots</option></select></div><div class="setting"><label for="timeSelect">Time Limit</label><select id="timeSelect"><option value="1">1 minute</option><option value="2">2 minutes</option><option value="3" selected>3 minutes</option><option value="4">4 minutes</option><option value="5">5 minutes</option></select></div><div class="setting"><label for="questionSelect">Number of Questions</label><select id="questionSelect"><option value="10">10 questions</option><option value="20" selected>20 questions</option><option value="30">30 questions</option><option value="40">40 questions</option><option value="50">50 questions</option><option value="60">60 questions</option><option value="70">70 questions</option><option value="80">80 questions</option><option value="90">90 questions</option><option value="100">100 questions</option></select></div></div><button id="startBtn" class="primary">Start Practice</button></section>
@@ -67,9 +67,9 @@ button{border:0;border-radius:9px;padding:11px 18px;font-size:1rem;font-weight:8
 <section id="resultsCard" class="card results hidden"><h2>Practice Complete</h2><div id="finalScore" class="big-score"></div><p id="finalMessage"></p><button id="againBtn" class="primary">Practice Again</button></section></main>
 <script>const $=id=>document.getElementById(id);
 let total=20,idx=0,score=0,answered=0,left=180,timerId=null,advanceId=null,pool=[],finished=false,accepting=false;
-function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function ri(a,b){return Math.floor(Math.random()*(b-a+1))+a}
-function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(BatchMathRNG.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function ri(a,b){return Math.floor(BatchMathRNG.random()*(b-a+1))+a}
+function pick(a){return a[Math.floor(BatchMathRNG.random()*a.length)]}
 function timeText(){const m=Math.floor(left/60),s=left%60;$("timer").textContent=`${m}:${String(s).padStart(2,"0")}`}
 function tick(){clearInterval(timerId);timeText();timerId=setInterval(()=>{left--;if(left<=0){left=0;timeText();finish("time")}else timeText()},1000)}
 function typeset(nodes){if(window.MathJax&&MathJax.typesetPromise){if(MathJax.typesetClear)MathJax.typesetClear(nodes);MathJax.typesetPromise(nodes).catch(()=>{})}}
@@ -90,9 +90,9 @@ function properNumerator(d){let n=ri(1,d-1);while(gcd(n,d)!==1)n=ri(1,d-1);retur
 function makeReduce(){let r=properFraction(3,14),k=ri(2,9),N=r.n*k,D=r.d*k;return{id:`r-${N}-${D}`,q:`Reduce: \\(\\frac{${N}}{${D}}\\)`,answer:r,kind:"reduce",explain:`The greatest common factor of ${N} and ${D} is ${gcd(N,D)}. Divide the numerator and denominator by ${gcd(N,D)}: ${N}/${D} = <strong>${answerText(r)}</strong>.`}}
 function makeCommon(){
   for(let tries=0;tries<200;tries++){
-    const d=ri(3,12),count=Math.random()<.38?3:2;
+    const d=ri(3,12),count=BatchMathRNG.random()<.38?3:2;
     const nums=Array.from({length:count},()=>properNumerator(d));
-    const ops=Array.from({length:count-1},()=>Math.random()<.55?1:-1);
+    const ops=Array.from({length:count-1},()=>BatchMathRNG.random()<.55?1:-1);
     let rawN=nums[0];for(let i=1;i<count;i++)rawN+=ops[i-1]*nums[i];
     if(rawN<=0)continue;
     const ans=reduce(rawN,d);
@@ -104,10 +104,10 @@ function makeCommon(){
 }
 function makeUnlike(){
   for(let tries=0;tries<300;tries++){
-    const count=Math.random()<.38?3:2,ds=[];
+    const count=BatchMathRNG.random()<.38?3:2,ds=[];
     while(ds.length<count){const d=ri(2,12);if(!ds.includes(d))ds.push(d)}
     const nums=ds.map(d=>properNumerator(d));
-    const ops=Array.from({length:count-1},()=>Math.random()<.58?1:-1);
+    const ops=Array.from({length:count-1},()=>BatchMathRNG.random()<.58?1:-1);
     const L=ds.reduce((a,b)=>lcm(a,b),1);
     const converted=nums.map((n,i)=>n*(L/ds[i]));
     let rawN=converted[0];for(let i=1;i<count;i++)rawN+=ops[i-1]*converted[i];
@@ -119,9 +119,9 @@ function makeUnlike(){
   }
   return makeCommon();
 }
-function makeMulDiv(){const f1=properFraction(2,12),f2=properFraction(2,12),div=Math.random()<.5;const rawN=div?f1.n*f2.d:f1.n*f2.n,rawD=div?f1.d*f2.n:f1.d*f2.d,ans=reduce(rawN,rawD);return{id:`m-${f1.n}-${f1.d}-${div?"d":"m"}-${f2.n}-${f2.d}`,q:`\\(\\frac{${f1.n}}{${f1.d}} ${div?"\\div":"\\cdot"} \\frac{${f2.n}}{${f2.d}}\\)`,answer:ans,kind:"muldiv",problemType:div?"fraction_division":"fraction_multiplication",explain:div?`To divide fractions, multiply by the reciprocal: ${f1.n}/${f1.d} × ${f2.d}/${f2.n} = ${rawN}/${rawD}. Reduce to <strong>${answerText(ans)}</strong>.`:`Multiply straight across: ${f1.n}×${f2.n}=${rawN} and ${f1.d}×${f2.d}=${rawD}. Reduce ${rawN}/${rawD} to <strong>${answerText(ans)}</strong>.`}}
+function makeMulDiv(){const f1=properFraction(2,12),f2=properFraction(2,12),div=BatchMathRNG.random()<.5;const rawN=div?f1.n*f2.d:f1.n*f2.n,rawD=div?f1.d*f2.n:f1.d*f2.d,ans=reduce(rawN,rawD);return{id:`m-${f1.n}-${f1.d}-${div?"d":"m"}-${f2.n}-${f2.d}`,q:`\\(\\frac{${f1.n}}{${f1.d}} ${div?"\\div":"\\cdot"} \\frac{${f2.n}}{${f2.d}}\\)`,answer:ans,kind:"muldiv",problemType:div?"fraction_division":"fraction_multiplication",explain:div?`To divide fractions, multiply by the reciprocal: ${f1.n}/${f1.d} × ${f2.d}/${f2.n} = ${rawN}/${rawD}. Reduce to <strong>${answerText(ans)}</strong>.`:`Multiply straight across: ${f1.n}×${f2.n}=${rawN} and ${f1.d}×${f2.d}=${rawD}. Reduce ${rawN}/${rawD} to <strong>${answerText(ans)}</strong>.`}}
 function makeOf(){const f=properFraction(2,12),k=ri(2,12),whole=f.d*k,ans=reduce(f.n*whole,f.d);return{id:`o-${f.n}-${f.d}-${whole}`,q:`\\(\\frac{${f.n}}{${f.d}}\\text{ of }${whole}\\)`,answer:ans,kind:"of",problemType:"fraction_of_number",explain:`“Of” means multiply. ${f.n}/${f.d} × ${whole} = ${f.n*whole}/${f.d} = <strong>${answerText(ans)}</strong>.`}}
-function makePowerRoot(){if(Math.random()<.55){const f=properFraction(2,14),e=pick([2,3]),ans=reduce(f.n**e,f.d**e);return{id:`p-${f.n}-${f.d}-${e}`,q:`\\((\\frac{${f.n}}{${f.d}})^{${e}}\\)`,answer:ans,kind:"powers",problemType:"fraction_power",explain:`Apply the exponent to both numerator and denominator: ${f.n}^${e}/${f.d}^${e} = ${f.n**e}/${f.d**e} = <strong>${answerText(ans)}</strong>.`}}const f=properFraction(2,16),ans={n:f.n,d:f.d};return{id:`s-${f.n}-${f.d}`,q:`\\(\\sqrt{\\frac{${f.n*f.n}}{${f.d*f.d}}}\\)`,answer:ans,kind:"powers",problemType:"fraction_square_root",explain:`Take the square root of the numerator and denominator: √${f.n*f.n}/${f.d*f.d} = ${f.n}/${f.d} = <strong>${answerText(ans)}</strong>.`}}
+function makePowerRoot(){if(BatchMathRNG.random()<.55){const f=properFraction(2,14),e=pick([2,3]),ans=reduce(f.n**e,f.d**e);return{id:`p-${f.n}-${f.d}-${e}`,q:`\\((\\frac{${f.n}}{${f.d}})^{${e}}\\)`,answer:ans,kind:"powers",problemType:"fraction_power",explain:`Apply the exponent to both numerator and denominator: ${f.n}^${e}/${f.d}^${e} = ${f.n**e}/${f.d**e} = <strong>${answerText(ans)}</strong>.`}}const f=properFraction(2,16),ans={n:f.n,d:f.d};return{id:`s-${f.n}-${f.d}`,q:`\\(\\sqrt{\\frac{${f.n*f.n}}{${f.d*f.d}}}\\)`,answer:ans,kind:"powers",problemType:"fraction_square_root",explain:`Take the square root of the numerator and denominator: √${f.n*f.n}/${f.d*f.d} = ${f.n}/${f.d} = <strong>${answerText(ans)}</strong>.`}}
 function makeQuestion(cat){if(cat==="reduce")return makeReduce();if(cat==="common")return makeCommon();if(cat==="unlike")return makeUnlike();if(cat==="muldiv")return makeMulDiv();if(cat==="of")return makeOf();if(cat==="powers")return makePowerRoot();return pick([makeCommon,makeUnlike,makeMulDiv,makeOf,makePowerRoot])()}
 function buildPool(category,totalNeeded){const out=[],seen=new Set();for(let tries=0;out.length<totalNeeded&&tries<25000;tries++){const q=makeQuestion(category);if(!seen.has(q.id)){seen.add(q.id);out.push(q)}}return out}
 function parseFraction(raw){const s=String(raw).trim().replace(/\s+/g,"");if(!s)return null;if(/^[-+]?\d+$/.test(s)){const n=Number(s);return{n,d:1,reduced:true}}const m=s.match(/^([-+]?\d+)\/([-+]?\d+)$/);if(!m)return null;let on=Number(m[1]),od=Number(m[2]);if(od===0)return null;const isReduced=gcd(on,od)===1;const rr=reduce(on,od);return{n:rr.n,d:rr.d,reduced:isReduced}}

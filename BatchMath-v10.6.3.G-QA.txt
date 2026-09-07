@@ -1,0 +1,60 @@
+BatchMath v10.6.3.G — Practice / Derivative / Limits Patch
+===========================================================
+
+STATUS
+------
+PASS for all non-browser release gates run for this checkpoint.
+
+CHANGES
+-------
+- Practice-launch labels now allow balanced two-line wrapping and use a slightly smaller responsive font so long topic-specific names fit the glossy buttons.
+- Derivatives Comprehensive Review computational prompts no longer disclose the differentiation method. Method-specific prompts such as “Use logarithmic differentiation” / “Use the chain rule” were replaced by neutral derivative prompts while task-specific distinctions such as second derivative or derivative-at-a-point remain when needed.
+- Derivatives Conceptual & AP-Style Review math display was rebuilt to use MathJax-safe question/choice/explanation markup. Shared AP topic-practice choice rendering now supports mixed prose + MathJax and feedback is re-typeset after answers are checked, which applies sitewide to engines using the shared practice shell.
+- Limits at Infinity now includes broader logarithmic and exponential composition families at both positive and negative infinity, including ln(algebraic expression), ln(reciprocal algebraic expression), logarithms of radicals/rational expressions, e^(algebraic expression), e^(rational algebraic expression), and exponent-to-zero cases.
+- Uploaded Unit 1 Homework Packet and Answer Key are bundled and linked on the Limits & Continuity Comprehensive Review page.
+- Shifted cube-root variable-substitution Limits family hardened: a coefficient multiplying x-a is now explicitly grouped in the displayed numerator (for example 2(x-3), never 2x-3 when the solution factors x-3), and the explanation explicitly carries that coefficient through the substitution. The family now also includes fifth-root-value target k=5 examples such as cube-root expressions approaching 5.
+
+TARGETED PATCH QA
+-----------------
+PASS — v10.6.3.G targeted patch QA
+- 20,000 substitution samples checked.
+- 3,037 shifted cube-root samples observed.
+- 507 k=5 shifted cube-root samples observed.
+- 1,022 nontrivial coefficient/shift numerators independently checked for explicit grouping.
+- 30,000 Limits-at-Infinity samples generated; all 15 infinity families observed, including all new log/exp families 8–15.
+- Derivative comprehensive review checked for removal of method-hint prompts.
+- Derivative conceptual review / shared topic-practice MathJax rendering hooks verified.
+- Unit 1 packet + answer-key files and page links verified.
+- Long practice-label wrapping rule verified.
+
+FULL NON-BROWSER QA
+-------------------
+PASS — Static release QA
+- 239 HTML pages
+- 4,783 internal references
+- 0 broken internal references
+- 191 indexable pages / 191 sitemap URLs
+- 90 practice engines / 90 unique analytics IDs
+- 235 PDFs
+- 0 warnings / 0 errors
+
+PASS — Sitewide display-safety QA: 90 engines, 265 source files, 0 warnings/errors.
+PASS — Semantic answer QA: 12,368 IM1 checks + 39,000 shared AP samples, 0 errors (one informational validator-coverage warning).
+PASS — Calculus Prep semantic QA: 5,500 problems, 0 errors.
+PASS — Analytics QA: 90 engines / 90 unique IDs, 0 errors.
+PASS — PWA/cache QA: version 10.6.3.G, 83 practice pages / 626 dependencies, 0 errors.
+PASS — AP deterministic stress QA: 220,000 generated problems, 0 errors.
+PASS — Targeted Limits family QA: 40,000 generated problems, 0 errors.
+PASS — AP topic-generator QA: 30,000 generated problems, 0 errors.
+PASS — AP individual-topic deep audit: 102,000 samples across 51 topic-practice pages, 0 warnings/errors.
+PASS — Specialized calculus engines QA.
+PASS — Derivative topic enhancements QA.
+PASS — Unit 1 IVT / Limits at Infinity QA.
+PASS — Unit 3 rebuild QA.
+PASS — Unit 4 rebuild QA.
+PASS — Assignment-fidelity QA: 231,074 generated problems, 0 warnings/errors.
+PASS — IM1 Unit 2 QA: 150,000 generated problems, 0 warnings/errors.
+
+BROWSER NOTE
+------------
+Human/browser smoke testing remains the final publish gate.

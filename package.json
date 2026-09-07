@@ -1,0 +1,30 @@
+{
+  "name": "batchmath-site-qa",
+  "private": true,
+  "version": "10.6.3.G",
+  "scripts": {
+    "qa:static": "node tools/release-qa.mjs",
+    "qa:math": "node tools/ap-generator-stress-qa.mjs",
+    "qa:limits": "node tools/limits-family-qa.mjs",
+    "qa:seeded": "node tools/seeded-browser-qa.mjs",
+    "qa": "npm run qa:nobrowser && npm run qa:seeded",
+    "qa:topics": "node tools/ap-topic-generator-qa.mjs",
+    "qa:newcalc": "node tools/new-calculus-engines-qa.mjs",
+    "qa:display": "node tools/display-safety-qa.mjs",
+    "qa:semantic": "node tools/semantic-answer-qa.mjs",
+    "qa:deep": "node tools/ap-topic-deep-audit.mjs",
+    "qa:analytics": "node tools/analytics-qa.mjs",
+    "qa:pwa": "node tools/pwa-cache-qa.mjs",
+    "qa:prep": "node tools/calc-prep-semantic-qa.mjs",
+    "qa:nobrowser": "npm run qa:static && npm run qa:display && npm run qa:semantic && npm run qa:prep && npm run qa:analytics && npm run qa:pwa && npm run qa:math && npm run qa:limits && npm run qa:topics && npm run qa:deep && npm run qa:newcalc && npm run qa:derivative-topics && npm run qa:unit1-ivt && npm run qa:unit3 && npm run qa:unit4 && npm run qa:fidelity && npm run qa:im1-unit2",
+    "qa:derivative-topics": "node tools/derivative-topic-enhancements-qa.mjs",
+    "qa:unit1-ivt": "node tools/unit1-ivt-infinity-qa.mjs",
+    "qa:unit3": "node tools/unit3-rebuild-qa.mjs",
+    "qa:fidelity": "node tools/assignment-fidelity-qa.mjs",
+    "qa:im1-unit2": "node tools/im1-unit2-qa.mjs",
+    "qa:unit4": "node tools/unit4-rebuild-qa.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

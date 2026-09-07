@@ -2,9 +2,9 @@
 'use strict';
 const BM={};
 BM.$=id=>document.getElementById(id);
-BM.pick=a=>a[Math.floor(Math.random()*a.length)];
-BM.shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a};
-BM.randInt=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+BM.pick=a=>a[Math.floor(BatchMathRNG.random()*a.length)];
+BM.shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(BatchMathRNG.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a};
+BM.randInt=(a,b)=>Math.floor(BatchMathRNG.random()*(b-a+1))+a;
 BM.gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1};
 BM.reduce=(n,d)=>{if(d<0){n=-n;d=-d}const g=BM.gcd(n,d);return [n/g,d/g]};
 BM.fracText=(n,d)=>{[n,d]=BM.reduce(n,d);if(d===1)return String(n);return `${n}/${d}`};
@@ -60,7 +60,7 @@ BM.ensureMathJax=function(){
    const existing=document.querySelector('script[data-bm-mathjax="1"]');
    if(existing){existing.addEventListener('load',()=>resolve(window.MathJax),{once:true});return;}
    const s=document.createElement('script');
-   s.defer=true;s.src='https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js';s.dataset.bmMathjax='1';
+   s.defer=true;s.src='https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js';s.dataset.bmMathjax='1';
    s.addEventListener('load',()=>resolve(window.MathJax),{once:true});
    s.addEventListener('error',()=>resolve(null),{once:true});
    document.head.appendChild(s);

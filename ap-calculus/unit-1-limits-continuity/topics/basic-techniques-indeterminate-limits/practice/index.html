@@ -1,0 +1,621 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" href="../../../../../favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../../../../apple-touch-icon.png">
+<meta name="description" content="Practice Basic Techniques for Indeterminate Limits with randomized AP Calculus AB questions, immediate feedback, and worked solutions.">
+<link rel="canonical" href="https://batchmath.net/ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/">
+<meta property="og:site_name" content="BatchMath">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Basic Techniques for Indeterminate Basic Techniques for Indeterminate Limits Practice | AP Calculus AB | BatchMath">
+<meta property="og:description" content="Practice Basic Techniques for Indeterminate Limits with randomized AP Calculus AB questions and worked solutions.">
+<meta property="og:url" content="https://batchmath.net/ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/"><title>Basic Techniques for Indeterminate Basic Techniques for Indeterminate Limits Practice | AP Calculus AB | BatchMath</title>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"],["$","$"]]},chtml:{scale:1.0}};</script>
+<script>window.MathJax=window.MathJax||{};window.MathJax.options=Object.assign({},window.MathJax.options||{},{enableMenu:false});window.MathJax.options.menuOptions=Object.assign({},window.MathJax.options.menuOptions||{});window.MathJax.options.menuOptions.settings=Object.assign({},window.MathJax.options.menuOptions.settings||{},{explorer:false,zoom:'NoZoom',inTabOrder:false});</script>
+<style id="bm-mathjax-control-style">button mjx-container,button mjx-container *,.choice mjx-container,.choice mjx-container *,.choice-grid mjx-container,.choice-grid mjx-container *{pointer-events:none!important;user-select:none!important;-webkit-user-select:none!important;-webkit-touch-callout:none!important}</style>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js"></script>
+<style>
+:root{--black:#030303;--red:#d71920;--yellow:#f5c400;--white:#f4f4f4}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--black);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:flex;align-items:center;justify-content:center;padding:14px 170px;position:relative}
+.logo{color:var(--red);text-decoration:none;font-weight:900;font-size:clamp(2rem,5vw,4rem);letter-spacing:-.05em}.tm-mark{font-size:.38em;vertical-align:super;margin-left:.08em;line-height:0}
+.corner{position:absolute;width:118px;height:145px;object-fit:cover;object-position:50% 20%;border-radius:10px;top:10px;left:18px}
+.profile{position:absolute;right:18px;top:8px;width:126px;z-index:20;text-align:center}.profile img{width:118px;height:145px;object-fit:cover;object-position:50% 20%;border-radius:10px;display:block;margin-left:auto}
+.menu-toggle{margin-top:5px;width:118px;min-height:32px;border:1px solid var(--yellow);background:#050505;color:var(--yellow);border-radius:7px;font-weight:900;cursor:pointer}
+.dropdown{display:none;position:absolute;top:184px;right:0;width:220px;padding:8px;background:#050505;border:1px solid var(--yellow);border-radius:10px;text-align:left}.dropdown.open{display:block}
+.dropdown a{display:block;text-decoration:none;color:var(--yellow);padding:10px 11px;border-radius:7px;font-weight:800}.dropdown a:hover{background:#191300}
+.main{width:min(900px,calc(100% - 36px));margin:0 auto;padding:42px 0 34px}.page-title{color:var(--yellow);text-align:center;font-size:clamp(1.9rem,5vw,3rem);margin:0 0 22px}
+.topic-grid,.unit-grid,.action-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:760px;margin:0 auto}
+.card{min-height:80px;display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:12px;border:1px solid var(--red);border-radius:8px;color:var(--yellow);background:#060606;font-weight:800}.card:hover{background:#120707}
+.back{display:inline-block;margin-bottom:18px;color:var(--yellow);text-decoration:none;font-weight:800;font-size:.88rem}
+.unit-nav{max-width:760px;margin:0 auto 22px;display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}.unit-nav label{color:var(--yellow);font-weight:800}
+.unit-select{min-width:320px;max-width:100%;background:#070707;color:var(--yellow);border:1px solid var(--red);border-radius:7px;padding:9px 11px;font-weight:700}
+.topic-description{max-width:760px;margin:0 auto 18px;color:#d6d6d6;line-height:1.55;text-align:left}
+.resource-section{max-width:760px;margin:28px auto 0}.resource-section h2{color:var(--yellow);font-size:1.15rem;margin:0 0 12px;text-align:left}.resource-list{display:grid;gap:12px}
+.resource-item{border:1px solid #2b2b2b;border-radius:10px;background:#0a0a0a;padding:14px}.resource-title{font-weight:800;margin-bottom:10px}.resource-actions{display:flex;gap:10px;flex-wrap:wrap}
+.resource-link{display:inline-block;text-decoration:none;border:1px solid var(--red);border-radius:7px;padding:8px 12px;font-weight:800;color:#fff;background:#151515}.resource-link:hover{background:#221010}.resource-link.key{border-color:var(--yellow);color:var(--yellow)}
+.footer{width:min(850px,calc(100% - 36px));margin:48px auto 0;padding:16px 0 22px;border-top:1px solid #9e1116;text-align:center;color:var(--yellow);font-size:.78rem}
+.placeholder{opacity:.55}
+@media(max-width:760px){.topbar{padding:13px 100px;min-height:74px}.corner{width:72px;height:88px;left:8px}.profile{width:78px;right:8px}.profile img{width:72px;height:88px}.menu-toggle{width:72px;font-size:.65rem}.dropdown{top:122px;width:190px}.topic-grid,.unit-grid,.action-grid{grid-template-columns:1fr;max-width:380px}.unit-select{width:100%;min-width:0}}
+
+.practice-shell{max-width:760px;margin:0 auto;border:1px solid #292929;border-radius:12px;background:#080808;padding:18px}
+.controls{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin-bottom:18px}.control{flex:1 1 260px}.control label{display:block;color:var(--yellow);font-weight:800;margin-bottom:7px}.control select{width:100%;background:#050505;color:#fff;border:1px solid var(--red);border-radius:7px;padding:10px;font-weight:700}
+.stats{font-size:.86rem;color:#bbb;margin:4px 0 14px}.question-box{min-height:120px;border:1px solid #292929;border-radius:10px;padding:22px 16px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:clamp(1.3rem,4vw,2rem);background:#030303;margin-bottom:16px}
+.answer-row{display:flex;gap:10px;flex-wrap:wrap}.answer-row input{flex:1 1 220px;min-width:0;background:#050505;color:#fff;border:1px solid var(--yellow);border-radius:7px;padding:11px 12px;font-size:1rem}.practice-button{border:1px solid var(--red);border-radius:7px;background:#151515;color:#fff;font-weight:800;padding:10px 14px;cursor:pointer}.practice-button:hover{background:#221010}.practice-button.next{border-color:var(--yellow);color:var(--yellow);display:none}
+.feedback{margin-top:16px;line-height:1.55}.feedback.correct{color:#8dde8d;font-weight:800}.feedback.wrong{color:#fff}.feedback .correct-answer{color:var(--yellow);font-weight:800;margin-bottom:8px}.feedback .method{color:#ddd}.hint{font-size:.82rem;color:#999;margin-top:10px}
+@media(max-width:600px){.practice-shell{padding:14px}.answer-row>*{width:100%;flex-basis:100%}}
+</style><link rel="stylesheet" href="../../../../../assets/calculus-keypad.css"><script defer src="../../../../../assets/calculus-keypad.js"></script><link rel="stylesheet" href="../../../../../assets/site.css" data-batchmath-shared-style="v10.0"><meta property="og:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="BatchMath — math resources for Integrated Math 1, Calculus Prep, and AP Calculus AB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Basic Techniques for Indeterminate Basic Techniques for Indeterminate Limits Practice | AP Calculus AB | BatchMath">
+<meta name="twitter:description" content="Practice Basic Techniques for Indeterminate Limits with randomized AP Calculus AB questions and worked solutions.">
+<meta name="twitter:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png">
+<meta name="twitter:image:alt" content="BatchMath — math resources for Integrated Math 1, Calculus Prep, and AP Calculus AB">
+<script type="application/ld+json" data-batchmath-structured-data="v9.5">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://batchmath.net/ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/#page","name":"Basic Techniques for Indeterminate Limits Practice | AP Calculus AB | BatchMath","url":"https://batchmath.net/ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/","description":"AP Calculus AB: Practice limits by topic or choose All Topics for a mixed review. Enter fractions as a/b; DNE and infinity are accepted when appropriate.","isPartOf":{"@id":"https://batchmath.net/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://batchmath.net/"},{"@type":"ListItem","position":2,"name":"AP Calculus AB","item":"https://batchmath.net/ap-calculus/"},{"@type":"ListItem","position":3,"name":"Unit 1 - Limits and Continuity","item":"https://batchmath.net/ap-calculus/unit-1-limits-continuity/"},{"@type":"ListItem","position":4,"name":"Comprehensive Review","item":"https://batchmath.net/ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/"},{"@type":"ListItem","position":5,"name":"Limits Practice","item":"https://batchmath.net/ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/"}]}]}</script>
+
+<!-- BatchMath installable-app foundation — v10.0 -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#030303">
+<meta name="application-name" content="BatchMath">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="BatchMath">
+<script src="/assets/batchmath-storage.js" defer></script>
+<script src="/assets/pwa.js" defer></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-377MTFXSF3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-377MTFXSF3');
+  </script>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_topic_basic_techniques_indeterminate_limits",generatorVersion:"7"};</script><script src="/assets/problem-tracking.js"></script>
+</head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
+<img class="corner" src="../../../../../assets/batchmath-portrait.jpg" alt="">
+<a class="logo" href="../../../../../">BatchMath<span class="tm-mark">™</span></a>
+<div class="profile"><img src="../../../../../assets/batchmath-portrait.jpg" alt="BatchMath">
+<button class="menu-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="course-menu" aria-label="Open course menu">COURSES ▼</button>
+<nav id="course-menu" class="dropdown"><a href="../../../../../im1/">Integrated Math 1</a><a href="../../../../" class="current-section" aria-current="page">AP Calculus AB</a><a href="../../../../../about/" data-bm-about-nav="1">About</a><a href="../../../../../">Home</a><a href="../../../../../calculus-prep/">Calculus Prep</a></nav>
+</div></header><main id="main-content" class="main"><a class="back" href="../">← Basic Techniques for Indeterminate Limits</a><h1 class="page-title">Basic Techniques for Indeterminate Limits Practice</h1><p class="topic-description">Practice Basic Techniques for Indeterminate Limits with the same generator logic used in the comprehensive review, focused on this topic.</p>
+<div class="practice-shell">
+<div class="controls"><div class="control"><label for="category">Limit Type</label><select id="category">
+<option value="all" selected>Mixed Assignment Practice</option><option value="continuous">Direct Substitution / Continuous Limits</option><option value="factoring">Using Factoring to Find Limits</option><option value="substitution">Using Variable Substitution</option><option value="rationalizing">Rationalizing</option><option value="complex">Complex Fraction Limits</option>
+</select></div></div>
+<div class="stats"><span id="topic-name"></span> &nbsp;•&nbsp; Correct: <span id="correct-count">0</span> &nbsp;•&nbsp; Attempted: <span id="attempted">0</span></div>
+<div id="question" class="question-box"></div>
+<div class="answer-row"><input id="answer" aria-label="Answer" type="text" data-bm-calc-keypad="limits" inputmode="decimal" autocomplete="off" placeholder="Answer"><button id="submit" class="practice-button" type="button">Check Answer</button><button id="next" class="practice-button next" type="button">Next Question</button></div>
+<div id="feedback" class="feedback"></div>
+</div></main><footer class="footer"><div class="bm-footer-main">© 2026 BatchMath. All rights reserved. BatchMath™.</div><div class="bm-footer-links"><a href="../../../../../about/">About BatchMath</a></div><div class="bm-legal-note">AP® is a trademark registered by the College Board, which is not affiliated with, and does not endorse, this website.</div></footer><script>
+document.addEventListener("DOMContentLoaded",function(){
+  const b=document.querySelector(".menu-toggle"),m=document.querySelector(".dropdown");
+  if(b&&m){
+    b.addEventListener("click",e=>{e.stopPropagation();m.classList.toggle("open")});
+    document.addEventListener("click",()=>m.classList.remove("open"));
+    m.addEventListener("click",e=>e.stopPropagation());
+  }
+  document.querySelectorAll(".unit-select").forEach(s=>s.addEventListener("change",function(){if(this.value)location.href=this.value;}));
+});
+
+(function(){
+  const $=id=>document.getElementById(id);
+  let current=null, correctCount=0, attempts=0;
+  const seen=new Set();
+
+  const ri=(a,b)=>Math.floor(BatchMathRNG.random()*(b-a+1))+a;
+  const pick=a=>a[Math.floor(BatchMathRNG.random()*a.length)];
+  const nonzero=(a,b)=>{let n=0;while(n===0)n=ri(a,b);return n;};
+  const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1};
+  const rat=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d);return {kind:"rat",n:n/g,d:d/g}};
+  const dne=()=>({kind:"dne"});
+  const inf=s=>({kind:"inf",sign:s<0?-1:1});
+  const texRat=a=>a.kind==="rat"?(a.d===1?String(a.n):`\\frac{${a.n}}{${a.d}}`):(a.kind==="dne"?"\\text{DNE}":(a.sign<0?"-\\infty":"\\infty"));
+  const textRat=a=>a.kind==="rat"?(a.d===1?String(a.n):`${a.n}/${a.d}`):(a.kind==="dne"?"DNE":(a.sign<0?"-infinity":"infinity"));
+  const sgnTerm=(c,term,first=false)=>{
+    if(c===0)return "";
+    const abs=Math.abs(c), coeff=(abs===1&&term)?"":String(abs);
+    const core=coeff+term;
+    if(first)return (c<0?"-":"")+core;
+    return (c<0?" - ":" + ")+core;
+  };
+  const lin=(a,b)=>sgnTerm(a,"x",true)+sgnTerm(b,"",false);
+  const xPow=p=>p===1?"x":`x^{${p}}`;
+  const absXPow=p=>p===1?"|x|":`|x|^{${p}}`;
+  const mono=(c,p)=>sgnTerm(c,xPow(p),true);
+  const trigArg=k=>k===1?"x":`${k}x`;
+  const quadFromRoots=(r,s)=>{
+    const B=-(r+s), C=r*s;
+    return "x^2"+sgnTerm(B,"x",false)+sgnTerm(C,"",false);
+  };
+  const shifted=(x,a)=>a===0?x:(a>0?`${x}-${a}`:`${x}+${-a}`);
+  const reciprocalConst=n=>n<0?`-\\frac1{${-n}}`:`\\frac1{${n}}`;
+  const reciprocalDifference=(left,n)=>n<0?`${left}+\\frac1{${-n}}`:`${left}-\\frac1{${n}}`;
+  const cleanSigns=s=>{
+    let out=String(s);
+    // Normalize only constant negative denominators. Do not pull a leading
+    // minus out of a multi-term denominator; doing so would require flipping
+    // every remaining term and can change the displayed mathematics.
+    out=out.replace(/\\frac1\{-([0-9]+)\}/g,'-\\frac1{$1}');
+    out=out.replace(/\\frac\{([^{}]+)\}\{-([0-9]+)\}/g,'-\\frac{$1}{$2}');
+    for(let i=0;i<3;i++)out=out.replace(/-\s*-/g,"+").replace(/\+\s*-/g,"-").replace(/\+\s*\+/g,"+");
+    return out;
+  };
+  const approach=a=>String(a);
+  const categoryLabel={continuous:"Limits of Continuous Functions",factoring:"Using Factoring to Find Limits",substitution:"Using Variable Substitution",rationalizing:"Rationalizing",complex:"Complex Fraction Limits",squeeze:"Squeeze Theorem",trig:"Trigonometric Limits",oneSided:"One-Sided Limits",infinity:"Limits Involving Infinity",special:"Oscillating / DNE Limits",infinitySpecial:"Limits at Infinity and Oscillating/DNE Limits"};
+
+  function continuous(){
+    const type=ri(1,3);
+    if(type===1){
+      const a=ri(-4,4), A=nonzero(-3,3),B=ri(-5,5),C=ri(-8,8);
+      const val=A*a*a+B*a+C;
+      const q=`\\(\\displaystyle \\lim_{x\\to ${a}} (${sgnTerm(A,"x^2",true)+sgnTerm(B,"x",false)+sgnTerm(C,"",false)})\\)`;
+      return {cat:"continuous",id:`c-poly-${a}-${A}-${B}-${C}`,q,ans:rat(val),sol:`The polynomial is continuous at \\(x=${a}\\), so substitute directly: \\(${A}(${a})^2${B>=0?"+":""}${B}(${a})${C>=0?"+":""}${C}=${val}\\).`};
+    }
+    if(type===2){
+      let a,A,B,C,D,den;
+      do{a=ri(-4,4);A=nonzero(-5,5);B=ri(-7,7);C=nonzero(-4,4);D=ri(-7,7);den=C*a+D;}while(den===0);
+      const num=A*a+B;
+      const q=`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${lin(A,B)}}{${lin(C,D)}}\\)`;
+      return {cat:"continuous",id:`c-rat-${a}-${A}-${B}-${C}-${D}`,q,ans:rat(num,den),sol:`The denominator is nonzero at \\(x=${a}\\), so the rational function is continuous there. Substitute directly to get \\(\\frac{${num}}{${den}}=${texRat(rat(num,den))}\\).`};
+    }
+    const k=ri(2,9),a=ri(-3,6),c=k*k-a;
+    const inside=c===0?"x":(c>0?`x+${c}`:`x-${-c}`);
+    return {cat:"continuous",id:`c-root-${k}-${a}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\sqrt{${inside}}\\)`,ans:rat(k),sol:`The square-root function is continuous at this input, so substitute \\(x=${a}\\): \\(\\sqrt{${a+c}}=\\sqrt{${k*k}}=${k}\\).`};
+  }
+
+  function factoring(){
+    const type=ri(1,4);
+    if(type===1){
+      const a=ri(2,9);
+      return {cat:"factoring",id:`f-ds-${a}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{x^2-${a*a}}{x-${a}}\\)`,ans:rat(2*a),sol:`Substitution gives \\(\\frac{0}{0}\\). Factor the difference of squares: \\(x^2-${a*a}=(x-${a})(x+${a})\\). Cancel \\(x-${a}\\), then substitute to get \\(${a}+${a}=${2*a}\\).`};
+    }
+    if(type===2){
+      let r=ri(-5,5),s=ri(-6,6);while(s===r)s=ri(-6,6);
+      const ans=r-s;
+      return {cat:"factoring",id:`f-q-${r}-${s}`,q:`\\(\\displaystyle \\lim_{x\\to ${r}} \\frac{${quadFromRoots(r,s)}}{${shifted("x",r)}}\\)`,ans:rat(ans),sol:`Substitution gives \\(\\frac{0}{0}\\). Factor the numerator as \\((${shifted("x",r)})(${shifted("x",s)})\\), cancel the factor that becomes zero, and substitute \\(x=${r}\\). The remaining factor has value \\(${ans}\\).`};
+    }
+    if(type===3){
+      let r=ri(-4,4),s=ri(-6,6),t=ri(-6,6);while(s===r)s=ri(-6,6);while(t===r)t=ri(-6,6);
+      const a=rat(r-s,r-t);
+      return {cat:"factoring",id:`f-ratio-${r}-${s}-${t}`,q:`\\(\\displaystyle \\lim_{x\\to ${r}} \\frac{${quadFromRoots(r,s)}}{${quadFromRoots(r,t)}}\\)`,ans:a,sol:`Both polynomials contain the factor that becomes zero at \\(x=${r}\\). Factor and cancel that common factor. The remaining ratio is \\(\\frac{${r-s}}{${r-t}}=${texRat(a)}\\).`};
+    }
+    const a=ri(2,6),a3=a*a*a;
+    return {cat:"factoring",id:`f-cube-${a}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{x^3-${a3}}{x-${a}}\\)`,ans:rat(3*a*a),sol:`Use the difference-of-cubes factorization \\(x^3-${a3}=(x-${a})(x^2+${a}x+${a*a})\\). Cancel \\(x-${a}\\) and substitute to get \\(${a*a}+${a*a}+${a*a}=${3*a*a}\\).`};
+  }
+
+  const fracPowerTex=(p,n)=>{
+    const g=gcd(p,n);p/=g;n/=g;
+    if(n===1)return p===1?"x":`x^{${p}}`;
+    return p===1?`x^{\\frac{1}{${n}}}`:`x^{\\frac{${p}}{${n}}}`;
+  };
+  const radicalPowerTex=(p,n)=>{
+    if(n===2)return p===1?"\\sqrt{x}":`\\sqrt{x^{${p}}}`;
+    return p===1?`\\sqrt[${n}]{x}`:`\\sqrt[${n}]{x^{${p}}}`;
+  };
+  const fractionalPowerDisplay=(p,n,notation)=>notation==="radical"?radicalPowerTex(p,n):fracPowerTex(p,n);
+  const subProblem=(variant,id,q,ans,sol)=>({cat:"substitution",problemType:"variable_substitution",problemVariant:variant,id,q,ans,sol});
+
+  function substitution(){
+    // U-substitution is deliberately distinct from the Rationalizing category:
+    // no square-root / x^(1/2) problems appear here. About 60% of problems are
+    // cube-root based; the other 40% use fourth-, fifth-, or sixth-root powers.
+    const family=pick([
+      // 12/20 = 60% cube-root based
+      "cube_root_over_power","cube_root_over_power","cube_root_over_power",
+      "power_over_cube_root","power_over_cube_root",
+      "higher_cube_root_power","higher_cube_root_power",
+      "clean_shifted_cube_root","clean_shifted_cube_root","clean_shifted_cube_root",
+      "cube_root_quadratic","cube_root_polynomial_ratio",
+      // 8/20 = 40% other fractional powers (never reducible to denominator 2 or 3)
+      "higher_root_over_power","higher_root_over_power",
+      "power_over_higher_root","power_over_higher_root",
+      "higher_fractional_power","higher_fractional_power",
+      "mixed_fractional_powers","mixed_fractional_powers"
+    ]);
+
+    if(family==="cube_root_over_power" || family==="power_over_cube_root"){
+      const k=pick([1,1,2,2,3,4]),target=k*k*k;
+      const notation=pick(["radical","radical","radical","fractional","fractional"]);
+      const root=fractionalPowerDisplay(1,3,notation),den=shifted("x",target),factor=3*k*k;
+      if(family==="cube_root_over_power"){
+        const ans=rat(1,factor);
+        return subProblem("cube_root_over_power",`sub-cuberoot-over-power-${k}-${notation}`,
+          `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${root}-${k}}{${den}}\\)`,ans,
+          `Let \\(u=x^{\\frac{1}{3}}\\), so \\(x=u^3\\) and \\(u\\to${k}\\). The limit becomes \\(\\frac{u-${k}}{u^3-${target}}\\). Factor the difference of cubes, cancel \\(u-${k}\\), and substitute \\(u=${k}\\) to get \\(${texRat(ans)}\\).`);
+      }
+      const ans=rat(factor);
+      return subProblem("power_over_cube_root",`sub-power-over-cuberoot-${k}-${notation}`,
+        `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${den}}{${root}-${k}}\\)`,ans,
+        `Let \\(u=x^{\\frac{1}{3}}\\), so \\(x=u^3\\) and \\(u\\to${k}\\). The limit becomes \\(\\frac{u^3-${target}}{u-${k}}\\). Factor the difference of cubes, cancel \\(u-${k}\\), and substitute \\(u=${k}\\) to get \\(${texRat(ans)}\\).`);
+    }
+
+    if(family==="higher_cube_root_power"){
+      const k=pick([1,1,2,2,3,4]),target=k*k*k;
+      const notation=pick(["fractional","fractional","fractional","radical"]);
+      const high=fractionalPowerDisplay(2,3,notation),root=fractionalPowerDisplay(1,3,notation);
+      const ans=rat(2*k);
+      return subProblem("higher_cube_root_power",`sub-higher-cuberoot-${k}-${notation}`,
+        `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${high}-${k*k}}{${root}-${k}}\\)`,ans,
+        `Let \\(u=x^{\\frac{1}{3}}\\), so \\(u\\to${k}\\). The expression becomes \\(\\frac{u^2-${k*k}}{u-${k}}\\). Factor \\(u^2-${k*k}=(u-${k})(u+${k})\\), cancel, and substitute to get \\(${2*k}\\).`);
+    }
+
+    if(family==="higher_root_over_power" || family==="power_over_higher_root"){
+      const n=pick([4,4,5,5,6,6]);
+      const k=n>=5?pick([1,1,1,2,2]):pick([1,1,1,2,2,3]);
+      const target=Math.pow(k,n),notation=pick(["fractional","fractional","fractional","fractional","radical"]);
+      const root=fractionalPowerDisplay(1,n,notation),den=shifted("x",target),factor=n*Math.pow(k,n-1);
+      if(family==="higher_root_over_power"){
+        const ans=rat(1,factor);
+        return subProblem("higher_root_over_power",`sub-higher-root-over-power-${n}-${k}-${notation}`,
+          `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${root}-${k}}{${den}}\\)`,ans,
+          `Let \\(u=x^{\\frac{1}{${n}}}\\), so \\(x=u^{${n}}\\) and \\(u\\to${k}\\). Factor \\(u^{${n}}-${target}\\), cancel \\(u-${k}\\), and evaluate the remaining difference-of-powers sum to get \\(${texRat(ans)}\\).`);
+      }
+      const ans=rat(factor);
+      return subProblem("power_over_higher_root",`sub-power-over-higher-root-${n}-${k}-${notation}`,
+        `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${den}}{${root}-${k}}\\)`,ans,
+        `Let \\(u=x^{\\frac{1}{${n}}}\\), so \\(x=u^{${n}}\\) and \\(u\\to${k}\\). Factor the difference of powers, cancel \\(u-${k}\\), and substitute \\(u=${k}\\) to get \\(${texRat(ans)}\\).`);
+    }
+
+    if(family==="higher_fractional_power"){
+      // These exponents stay genuinely outside the square-root and cube-root cases.
+      const [n,m]=pick([[4,3],[5,2],[5,3],[5,4],[6,5]]),k=pick([1,1,1,2,2]);
+      const target=Math.pow(k,n),notation=pick(["fractional","fractional","fractional","fractional","radical"]);
+      const high=fractionalPowerDisplay(m,n,notation),root=fractionalPowerDisplay(1,n,notation);
+      const km=Math.pow(k,m),ans=rat(m*Math.pow(k,m-1));
+      return subProblem("higher_fractional_power",`sub-higher-power-${n}-${m}-${k}-${notation}`,
+        `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${high}-${km}}{${root}-${k}}\\)`,ans,
+        `Let \\(u=x^{\\frac{1}{${n}}}\\), so \\(u\\to${k}\\). Then the expression becomes \\(\\frac{u^{${m}}-${km}}{u-${k}}\\). Factor the difference of powers, cancel \\(u-${k}\\), and substitute to get \\(${texRat(ans)}\\).`);
+    }
+
+    if(family==="mixed_fractional_powers"){
+      // Every displayed fractional exponent below stays reduced and avoids denominator 2 or 3.
+      const patterns=[
+        [4,1,3],
+        [5,1,2],[5,1,3],[5,1,4],[5,2,3],[5,2,4],[5,3,4],
+        [6,1,5]
+      ];
+      const [n,p,q]=pick(patterns),k=pick([1,1,1,2]),target=Math.pow(k,n);
+      const kp=Math.pow(k,p),kq=Math.pow(k,q);
+      const ans=rat(p*Math.pow(k,p-1),q*Math.pow(k,q-1));
+      return subProblem("mixed_fractional_powers",`sub-mixed-powers-${n}-${p}-${q}-${k}`,
+        `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${fracPowerTex(p,n)}-${kp}}{${fracPowerTex(q,n)}-${kq}}\\)`,ans,
+        `Use the common substitution \\(u=x^{\\frac{1}{${n}}}\\), so \\(u\\to${k}\\). The limit becomes \\(\\frac{u^{${p}}-${kp}}{u^{${q}}-${kq}}\\). Factor both differences, cancel \\(u-${k}\\), and evaluate the remaining factors to get \\(${texRat(ans)}\\).`);
+    }
+
+    if(family==="clean_shifted_cube_root"){
+      // Visually "unclean" shifts are welcome when the approach value makes the radicand a perfect cube.
+      // Example: x -> 2 with cubeRoot(x + 62) -> 4, since 2 + 62 = 64.
+      const k=pick([2,2,3,3,4,5]),cube=k*k*k,a=pick([-3,-2,-1,0,0,1,2,2,3,4,5]),m=pick([1,1,1,2,3]);
+      const c=cube-a,inside=shifted("x",-c),xa=shifted("x",a),ans=rat(m*3*k*k);
+      const numerator=m===1?xa:(a===0?`${m}x`:`${m}(${xa})`);
+      return subProblem("clean_shifted_cube_root",`sub-shifted-cuberoot-${k}-${a}-${m}`,
+        `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${numerator}}{\\sqrt[3]{${inside}}-${k}}\\)`,ans,
+        `Let \\(u=\\sqrt[3]{${inside}}\\). Because \\(${a}+${c}=${cube}=${k}^3\\), we have \\(u\\to${k}\\). Also \\(${xa}=u^3-${cube}=(u-${k})(u^2+${k}u+${k*k})\\). The displayed numerator is ${m===1?`\\(${xa}\\)`:`\\(${m}(${xa})\\)`}, so after substitution it becomes ${m===1?`\\(u^3-${cube}\\)`:`\\(${m}(u^3-${cube})\\)`}. Cancel \\(u-${k}\\); the remaining expression approaches \\(${m===1?`${3*k*k}`:`${m}(${3*k*k})`}=${texRat(ans)}\\).`);
+    }
+
+    if(family==="cube_root_quadratic"){
+      const k=pick([2,2,3,3,4]),cube=k*k*k,a=pick([-2,-1,0,0,1,2,3]),m=pick([1,1,2,3]);
+      const c=cube-a,root=`\\sqrt[3]{${shifted("x",-c)}}`,xa=shifted("x",a);
+      const coef=m===1?"":String(m),ans=rat(9*m*Math.pow(k,4)),middle=2*k,constant=k*k;
+      const numerator=m===1?`(${xa})^2`:`${m}(${xa})^2`;
+      return subProblem("cube_root_quadratic_substitution",`sub-cuberoot-quadratic-${k}-${a}-${m}`,
+        `\\(\\displaystyle \\lim_{x\\to${a}} \\frac{${numerator}}{\\left(${root}\\right)^2-${middle}${root}+${constant}}\\)`,ans,
+        `Let \\(u=${root}\\), so \\(u\\to${k}\\) and \\(${xa}=u^3-${cube}=(u-${k})(u^2+${k}u+${k*k})\\). The denominator is \\((u-${k})^2\\). Cancel \\((u-${k})^2\\); at \\(u=${k}\\), the remaining value is \\(${m}(${3*k*k})^2=${texRat(ans)}\\).`);
+    }
+
+    const k=pick([2,2,3,3,4]),cube=k*k*k,a=pick([-2,-1,0,0,1,2,3]);
+    const candidates=[1,2,3,4,5].filter(v=>v!==k),r=pick(candidates),A=pick([1,1,2,3]);
+    const c=cube-a,root=`\\sqrt[3]{${shifted("x",-c)}}`,sum=k+r,prod=k*r;
+    const ans=rat(A*k,k-r),lead=A===1?"":String(A),mid=A*k;
+    return subProblem("cube_root_polynomial_ratio",`sub-cuberoot-poly-${k}-${r}-${A}-${a}`,
+      `\\(\\displaystyle \\lim_{x\\to${a}} \\frac{${lead}\\left(${root}\\right)^2-${mid}${root}}{\\left(${root}\\right)^2-${sum}${root}+${prod}}\\)`,ans,
+      `Let \\(u=${root}\\), so \\(u\\to${k}\\). The expression becomes \\(\\frac{${A===1?"":A}u(u-${k})}{(u-${k})(u-${r})}\\). Cancel \\(u-${k}\\) and substitute \\(u=${k}\\) to get \\(${texRat(ans)}\\).`);
+  }
+
+  function rationalizing(){
+    const k=ri(2,9),a=k*k,type=ri(1,3);
+    if(type===1){
+      const ans=rat(1,2*k);
+      return {cat:"rationalizing",id:`r1-${k}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{\\sqrt{x}-${k}}{x-${a}}\\)`,ans,sol:`Rationalize the numerator by multiplying the numerator and denominator by the conjugate \\(\\sqrt{x}+${k}\\). This gives \\(\\frac{x-${a}}{(x-${a})(\\sqrt{x}+${k})}\\). Cancel \\(x-${a}\\), then substitute \\(x=${a}\\): \\(\\frac{1}{\\sqrt{${a}}+${k}}=${texRat(ans)}\\).`};
+    }
+    if(type===2){
+      const ans=rat(2*k);
+      return {cat:"rationalizing",id:`r2-${k}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{x-${a}}{\\sqrt{x}-${k}}\\)`,ans,sol:`Rationalize the denominator by multiplying the numerator and denominator by the conjugate \\(\\sqrt{x}+${k}\\). The denominator becomes \\((\\sqrt{x}-${k})(\\sqrt{x}+${k})=x-${a}\\), so \\(x-${a}\\) cancels and the expression becomes \\(\\sqrt{x}+${k}\\). Substitute \\(x=${a}\\) to get \\(${k}+${k}=${2*k}\\). This problem can also be simplified by factoring \\(x-${a}\\) as \\((\\sqrt{x}-${k})(\\sqrt{x}+${k})\\).`};
+    }
+    const target=ri(-3,6),c=a-target,inside=c===0?"x":(c>0?`x+${c}`:`x-${-c}`),ans=rat(1,2*k);
+    return {cat:"rationalizing",id:`r3-${k}-${target}`,q:`\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{\\sqrt{${inside}}-${k}}{${shifted("x",target)}}\\)`,ans,sol:`Rationalize the numerator by multiplying the numerator and denominator by the conjugate \\(\\sqrt{${inside}}+${k}\\). The numerator becomes \\((\\sqrt{${inside}}-${k})(\\sqrt{${inside}}+${k})=x-${target}\\), which cancels with the denominator. Substitute \\(x=${target}\\) to get \\(\\frac{1}{2(${k})}=${texRat(ans)}\\).`};
+  }
+
+  const complexProblem=(variant,id,q,ans,sol)=>({cat:"complex",problemType:"complex_fraction_limits",problemVariant:variant,id,q,ans,sol});
+
+  function complexFraction(){
+    // Difficulty comes from the algebraic structure, not from ugly constants.
+    // Rough mix: 44% routine, 31% intermediate, 25% challenging.
+    const family=pick([
+      "reciprocal_basic","reciprocal_basic",
+      "reciprocal_denominator","reciprocal_denominator",
+      "shifted_reciprocal","shifted_reciprocal",
+      "shifted_reciprocal_denominator",
+      "reciprocal_quadratic","reciprocal_quadratic",
+      "reciprocal_square",
+      "rational_linear_difference","rational_linear_difference",
+      "double_reciprocal","double_reciprocal",
+      "reciprocal_square_over_reciprocal",
+      "reciprocal_over_factored"
+    ]);
+    const a=pick([-6,-5,-4,-3,-2,2,3,4,5,6]),xa=shifted("x",a),a2=a*a;
+
+    if(family==="reciprocal_basic"){
+      const gap=reciprocalDifference("\\frac1x",a),ans=rat(-1,a2);
+      const combined=a>0?`-\\frac{${xa}}{${a}x}`:`\\frac{${xa}}{${-a}x}`;
+      return complexProblem("routine_reciprocal_basic",`cf-recip-basic-${a}`,
+        `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${gap}}{${xa}}\\)`,ans,
+        `Combine the numerator: \\(${gap}=${combined}\\). Cancel \\(${xa}\\), then substitute \\(x=${a}\\) to get \\(${texRat(ans)}\\).`);
+    }
+
+    if(family==="reciprocal_denominator"){
+      const gap=reciprocalDifference("\\frac1x",a),ans=rat(-a2);
+      const combined=a>0?`-\\frac{${xa}}{${a}x}`:`\\frac{${xa}}{${-a}x}`;
+      const after=a>0?`-${a}x`:`${-a}x`;
+      return complexProblem("routine_reciprocal_denominator",`cf-recip-den-${a}`,
+        `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${xa}}{${gap}}\\)`,ans,
+        `Combine the denominator: \\(${gap}=${combined}\\). Dividing by this fraction and canceling \\(${xa}\\) leaves \\(${after}\\). Substitution gives \\(${texRat(ans)}\\).`);
+    }
+
+    if(family==="shifted_reciprocal" || family==="shifted_reciprocal_denominator"){
+      let c=ri(-4,4);while(c===0||Math.abs(a+c)<2)c=ri(-4,4);
+      const d=a+c,xc=shifted("x",-c),left=`\\frac1{${xc}}`,gap=reciprocalDifference(left,d);
+      const combined=d>0?`-\\frac{${xa}}{${d}(${xc})}`:`\\frac{${xa}}{${-d}(${xc})}`;
+      if(family==="shifted_reciprocal"){
+        const ans=rat(-1,d*d);
+        return complexProblem("routine_shifted_reciprocal",`cf-shifted-${a}-${c}`,
+          `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${gap}}{${xa}}\\)`,ans,
+          `Combine the numerator. The difference simplifies to \\(${combined}\\). Cancel \\(${xa}\\), then substitute \\(x=${a}\\) to obtain \\(${texRat(ans)}\\).`);
+      }
+      const ans=rat(-(d*d)),after=d>0?`-${d}(${xc})`:`${-d}(${xc})`;
+      return complexProblem("routine_shifted_reciprocal_denominator",`cf-shifted-den-${a}-${c}`,
+        `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${xa}}{${gap}}\\)`,ans,
+        `The denominator simplifies to \\(${combined}\\). Dividing by that fraction and canceling \\(${xa}\\) leaves \\(${after}\\). Substitute \\(x=${a}\\) to get \\(${texRat(ans)}\\).`);
+    }
+
+    if(family==="reciprocal_quadratic"){
+      const c=ri(1,5),A=a2+c,ans=rat(-2*a,A*A);
+      return complexProblem("intermediate_reciprocal_quadratic",`cf-recip-quad-${a}-${c}`,
+        `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{\\frac1{x^2+${c}}-\\frac1{${A}}}{${xa}}\\)`,ans,
+        `Combine the fractions in the numerator: \\(\\frac{${A}-(x^2+${c})}{${A}(x^2+${c})}=\\frac{${a2}-x^2}{${A}(x^2+${c})}\\). Factor \\(${a2}-x^2=-(${xa})(x+${a})\\), cancel \\(${xa}\\), and substitute \\(x=${a}\\). The result is \\(${texRat(ans)}\\).`);
+    }
+
+    if(family==="reciprocal_square"){
+      const ans=rat(-2,a*a*a);
+      return complexProblem("intermediate_reciprocal_square",`cf-recip-square-${a}`,
+        `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{\\frac1{x^2}-\\frac1{${a2}}}{${xa}}\\)`,ans,
+        `Combine the numerator: \\(\\frac{${a2}-x^2}{${a2}x^2}=-\\frac{(${xa})(x+${a})}{${a2}x^2}\\). Cancel \\(${xa}\\) and substitute \\(x=${a}\\), giving \\(${texRat(ans)}\\).`);
+    }
+
+    if(family==="rational_linear_difference"){
+      const aa=ri(1,5);let b=ri(1,5),c=ri(1,5);while(c===b)c=ri(1,5);
+      const denA=aa+c,numA=aa+b,xa2=shifted("x",aa),fx=`\\frac{x+${b}}{x+${c}}`,atA=rat(numA,denA);
+      const ans=rat(c-b,denA*denA);
+      return complexProblem("intermediate_rational_difference",`cf-rational-diff-${aa}-${b}-${c}`,
+        `\\(\\displaystyle \\lim_{x\\to ${aa}} \\frac{${fx}-${texRat(atA)}}{${xa2}}\\)`,ans,
+        `Combine the two rational expressions in the numerator. The difference simplifies to \\(\\frac{${c-b}(${xa2})}{${denA}(x+${c})}\\). Cancel \\(${xa2}\\), then substitute \\(x=${aa}\\) to get \\(${texRat(ans)}\\).`);
+    }
+
+    if(family==="double_reciprocal"){
+      let c=ri(-4,4);while(c===0||Math.abs(a+c)<2)c=ri(-4,4);
+      const d=a+c,xc=shifted("x",-c),top=reciprocalDifference("\\frac1x",a),bottom=reciprocalDifference(`\\frac1{${xc}}`,d);
+      const topCombined=a>0?`-\\frac{${xa}}{${a}x}`:`\\frac{${xa}}{${-a}x}`;
+      const bottomCombined=d>0?`-\\frac{${xa}}{${d}(${xc})}`:`\\frac{${xa}}{${-d}(${xc})}`;
+      const ans=rat(d*d,a2);
+      return complexProblem("challenging_double_reciprocal",`cf-double-recip-${a}-${c}`,
+        `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${top}}{${bottom}}\\)`,ans,
+        `Combine the two differences separately. The numerator is \\(${topCombined}\\), while the denominator is \\(${bottomCombined}\\). Divide by multiplying by the reciprocal and cancel \\(${xa}\\). Substituting \\(x=${a}\\) gives \\(${texRat(ans)}\\).`);
+    }
+
+    if(family==="reciprocal_square_over_reciprocal"){
+      const bottom=reciprocalDifference("\\frac1x",a),ans=rat(2,a);
+      return complexProblem("challenging_reciprocal_square_over_reciprocal",`cf-square-over-recip-${a}`,
+        `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{\\frac1{x^2}-\\frac1{${a2}}}{${bottom}}\\)`,ans,
+        `Factor after combining each difference. The numerator is \\(\\frac{(${a}-x)(${a}+x)}{${a2}x^2}\\) and the denominator is \\(\\frac{${a}-x}{${a}x}\\). Divide, cancel \\(${a}-x\\), and substitute \\(x=${a}\\) to get \\(${texRat(ans)}\\).`);
+    }
+
+    const top=reciprocalDifference("\\frac1x",a),ans=rat(-1,2*a*a*a);
+    const combined=a>0?`-\\frac{${xa}}{${a}x}`:`\\frac{${xa}}{${-a}x}`;
+    return complexProblem("challenging_reciprocal_over_factored",`cf-recip-over-factor-${a}`,
+      `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${top}}{x^2-${a2}}\\)`,ans,
+      `Combine the numerator as \\(${combined}\\) and factor the denominator as \\((${xa})(x+${a})\\). Cancel the common \\(${xa}\\), then substitute \\(x=${a}\\) to obtain \\(${texRat(ans)}\\).`);
+  }
+
+  function squeeze(){
+    const p=ri(1,5),q=ri(1,4),k=ri(1,7),type=ri(1,3),xp=xPow(p),xq=xPow(q),axp=absXPow(p);
+    if(type===1){
+      return {cat:"squeeze",id:`sq1-${p}-${q}-${k}`,q:`\\(\\displaystyle \\lim_{x\\to0} ${xp}\\sin\\left(\\frac{${k}}{${xq}}\\right)\\)`,ans:rat(0),sol:`Because \\(-1\\le\\sin(\\cdot)\\le1\\), the absolute value of the expression is at most \\(${axp}\\). Since \\(${axp}\\to0\\), the Squeeze Theorem gives a limit of \\(0\\).`};
+    }
+    if(type===2){
+      return {cat:"squeeze",id:`sq2-${p}-${q}`,q:`\\(\\displaystyle \\lim_{x\\to0} ${axp}\\cos\\left(\\frac1{${xq}}\\right)\\)`,ans:rat(0),sol:`Since \\(|\\cos(\\cdot)|\\le1\\), the absolute value of the entire expression is at most \\(${axp}\\). Both bounding functions approach \\(0\\), so the Squeeze Theorem gives \\(0\\).`};
+    }
+    return {cat:"squeeze",id:`sq3-${p}-${q}`,q:`\\(\\displaystyle \\lim_{x\\to0} ${xp}\\sin\\left(\\frac1{${xq}}\\right)\\)`,ans:rat(0),sol:`The sine factor remains between \\(-1\\) and \\(1\\), so \\(-${axp}\\le ${xp}\\sin(\\frac{1}{${xq}})\\le ${axp}\\). Both bounds approach \\(0\\), so the limit is \\(0\\).`};
+  }
+
+  function trig(){
+    const type=ri(1,7),k=ri(2,7),m=ri(2,8);
+    if(type===1){const a=rat(k,m);return {cat:"trig",id:`t1-${k}-${m}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{\\sin(${k}x)}{${m}x}\\)`,ans:a,sol:`Rewrite as \\(\\frac{${k}}{${m}}\\cdot\\frac{\\sin(${k}x)}{${k}x}\\). The standard trigonometric limit is \\(1\\), so the result is \\(${texRat(a)}\\).`};}
+    if(type===2){const a=rat(k,m);return {cat:"trig",id:`t2-${k}-${m}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{\\sin(${k}x)}{\\sin(${m}x)}\\)`,ans:a,sol:`Multiply and divide to create two standard limits: \\(\\frac{\\sin(${k}x)}{${k}x}\\cdot\\frac{${m}x}{\\sin(${m}x)}\\cdot\\frac{${k}}{${m}}\\). The first two factors approach \\(1\\), leaving \\(${texRat(a)}\\).`};}
+    if(type===3){const a=rat(k,m);return {cat:"trig",id:`t3-${k}-${m}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{\\tan(${k}x)}{${m}x}\\)`,ans:a,sol:`Use \\(\\frac{\\tan u}{u}\\to1\\). Rewrite the expression as \\(\\frac{${k}}{${m}}\\cdot\\frac{\\tan(${k}x)}{${k}x}\\), so the limit is \\(${texRat(a)}\\).`};}
+    if(type===4){const p=ri(2,4),val=Math.pow(k,p);return {cat:"trig",id:`t4-${k}-${p}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{\\tan^{${p}}(${k}x)}{x^{${p}}}\\)`,ans:rat(val),sol:`Write the expression as \\(\\left(\\frac{\\tan(${k}x)}{${k}x}\\right)^{${p}}${k}^{${p}}\\). The trigonometric factor approaches \\(1\\), leaving \\(${val}\\).`};}
+    if(type===5){const p=ri(2,4),c=pick([2,3,4,5,8]),val=Math.pow(k,p);const a=rat(val,c);return {cat:"trig",id:`t5-${k}-${p}-${c}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{\\sin^{${p}}(${k}x)}{${c}x^{${p}}}\\)`,ans:a,sol:`Factor out \\(\\left(\\frac{\\sin(${k}x)}{${k}x}\\right)^{${p}}\\) and the constant \\(\\frac{${k}^{${p}}}{${c}}\\). The standard limit gives \\(${texRat(a)}\\).`};}
+    if(type===6){const c=ri(2,5);return {cat:"trig",id:`t6-${c}-${k}-${m}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{${c}-${c}\\cos^2(${k}x)}{${m}x}\\)`,ans:rat(0),sol:`Use \\(1-\\cos^2 u=\\sin^2u\\). The expression becomes a constant times \\(\\frac{\\sin^2(${k}x)}x\\), which can be written as \\(\\frac{\\sin(${k}x)}{${k}x}\\sin(${k}x)\\) times a constant. The first factor approaches \\(1\\) and the sine factor approaches \\(0\\), so the limit is \\(0\\).`};}
+    const A=ri(1,4),kk=ri(1,3),mm=ri(1,3),ak=trigArg(kk),am=trigArg(mm);const a=rat(2*A-kk*kk,2*mm*mm);
+    return {cat:"trig",id:`t7-${A}-${kk}-${mm}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{${mono(A,2)}-(1-\\cos(${ak}))}{\\sin^2(${am})}\\)`,ans:a,sol:`Divide numerator and denominator by \\(x^2\\). Use \\(\\frac{1-\\cos(${ak})}{x^2}\\to\\frac{${kk*kk}}2\\) and \\(\\frac{\\sin(${am})}x\\to${mm}\\). The limit is \\(\\frac{${A}-${kk*kk}/2}{${mm*mm}}=${texRat(a)}\\).`};
+  }
+
+  function oneSided(){
+    const a=ri(-5,5),side=pick(["+","-"]),type=ri(1,4),dx=shifted("x",a);
+    if(type===1){
+      const ans=rat(side==="+"?1:-1);
+      return {cat:"oneSided",id:`o1-${a}-${side}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}^{${side}}} \\frac{${dx}}{|${dx}|}\\)`,ans,sol:`On the ${side==="+"?"right":"left"} side of \\(x=${a}\\), \\(${dx}\\) is ${side==="+"?"positive":"negative"}. The quotient is therefore \\(${textRat(ans)}\\).`};
+    }
+    if(type===2){
+      const ans=rat(side==="+"?1:-1);
+      return {cat:"oneSided",id:`o2-${a}-${side}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}^{${side}}} \\frac{|${dx}|}{${dx}}\\)`,ans,sol:`Use the sign of \\(${dx}\\) on the requested side. The absolute value either leaves the expression unchanged or reverses its sign, giving \\(${textRat(ans)}\\).`};
+    }
+    if(type===3){
+      const ans=inf(side==="+"?1:-1);
+      return {cat:"oneSided",id:`o3-${a}-${side}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}^{${side}}} \\frac1{${dx}}\\)`,ans,sol:`As \\(x\\) approaches \\(${a}\\) from the ${side==="+"?"right":"left"}, the denominator approaches \\(0\\) through ${side==="+"?"positive":"negative"} values. The reciprocal therefore approaches \\(${texRat(ans)}\\).`};
+    }
+    return {cat:"oneSided",id:`o4-${a}-${side}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}^{${side}}} \\frac1{(${dx})^2}\\)`,ans:inf(1),sol:`The denominator is a positive square and approaches \\(0^+\\) from either side. Its reciprocal grows without bound, so the limit is \\(\\infty\\).`};
+  }
+
+  function infinityLimit(){
+    const type=ri(1,7);
+    if(type===1){
+      const n=ri(1,4),A=pick([1,2,3,4,5,6]),B=pick([1,2,3,4,5,6]),C=ri(-8,8),D=ri(-8,8),a=rat(A,B);
+      return {cat:"infinity",id:`i1-${n}-${A}-${B}-${C}-${D}`,q:`\\(\\displaystyle \\lim_{x\\to\\infty} \\frac{${mono(A,n)}${sgnTerm(C,"",false)}}{${mono(B,n)}${sgnTerm(D,"",false)}}\\)`,ans:a,sol:`The numerator and denominator have the same degree. Divide by \\(${xPow(n)}\\); all lower-degree terms vanish, leaving the ratio of leading coefficients \\(${texRat(a)}\\).`};
+    }
+    if(type===2){
+      const n=ri(1,3),A=pick([1,2,3,4,5]),B=pick([1,2,3,4,5]),C=ri(-7,7),D=ri(-7,7);
+      return {cat:"infinity",id:`i2-${n}-${A}-${B}-${C}-${D}`,q:`\\(\\displaystyle \\lim_{x\\to\\infty} \\frac{${mono(A,n)}${sgnTerm(C,"",false)}}{${mono(B,n+1)}${sgnTerm(D,"",false)}}\\)`,ans:rat(0),sol:`The denominator has higher degree than the numerator. After dividing by the highest power of \\(x\\), every numerator term approaches \\(0\\), so the limit is \\(0\\).`};
+    }
+    if(type===3){
+      const n=ri(1,3),A=pick([1,2,3,4]),B=pick([1,2,3,4]),neg=pick([false,true]);
+      const sign=neg?-1:1,dir=neg?'-\\infty':'\\infty';
+      return {cat:"infinity",id:`i3-${n}-${A}-${B}-${neg}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${mono(A,n+1)}+1}{${mono(B,n)}+2}\\)`,ans:inf(sign),sol:`The quotient behaves like \\(\\frac{${A}}{${B}}\\cdot x\\) because the numerator degree is exactly one larger. As \\(x\\to${dir}\\), that dominant term approaches \\(${texRat(inf(sign))}\\).`};
+    }
+    if(type===4){
+      const k=ri(2,7),m=ri(1,6),c=ri(1,9),d=ri(-5,5),neg=pick([false,true]),a=rat(neg?-k:k,m),dir=neg?'-\\infty':'\\infty',den=sgnTerm(m,'x',true)+sgnTerm(d,'',false);
+      return {cat:"infinity",id:`i4-${k}-${m}-${c}-${d}-${neg}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${k*k}x^2+${c}}}{${den}}\\)`,ans:a,sol:`Factor \\(x^2\\) from the radical: \\(\\sqrt{x^2(${k*k}+o(1))}=|x|\\sqrt{${k*k}+o(1)}\\). Since \\(\\frac{|x|}{x}\\to${neg?'-1':'1'}\\), the limit is \\(${texRat(a)}\\).`};
+    }
+    if(type===5){
+      const n=ri(1,7),xp=xPow(n);
+      return {cat:"infinity",id:`i5-${n}`,q:`\\(\\displaystyle \\lim_{x\\to\\infty} \\frac{${xp}}{2^x}\\)`,ans:rat(0),sol:`Exponential growth dominates polynomial growth. Therefore \\(2^x\\) grows faster than \\(${xp}\\), and the quotient approaches \\(0\\).`};
+    }
+    if(type===6){
+      const n=ri(1,5),xp=xPow(n);
+      return {cat:"infinity",id:`i6-${n}`,q:`\\(\\displaystyle \\lim_{x\\to\\infty} \\frac{\\ln x}{${xp}}\\)`,ans:rat(0),sol:`Any positive power of \\(x\\) grows faster than \\(\\ln x\\). The denominator dominates, so the quotient approaches \\(0\\).`};
+    }
+    const c=ri(-5,8);
+    return {cat:"infinity",id:`i7-${c}`,q:`\\(\\displaystyle \\lim_{x\\to\\infty} (${c}+e^{-x})\\)`,ans:rat(c),sol:`As \\(x\\to\\infty\\), \\(e^{-x}\\to0\\). The expression therefore approaches \\(${c}\\).`};
+  }
+
+  function special(){
+    const type=ri(1,3),k=ri(1,7);
+    if(type===1)return {cat:"special",id:`sp1-${k}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\sin\\left(\\frac{${k}}x\\right)\\)`,ans:dne(),sol:`As \\(x\\to0\\), the input \\(\\frac{${k}}{x}\\) becomes unbounded and sine continues oscillating between \\(-1\\) and \\(1\\). The function does not approach one value, so the limit does not exist.`};
+    if(type===2)return {cat:"special",id:`sp2-${k}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\cos\\left(\\frac{${k}}x\\right)\\)`,ans:dne(),sol:`The cosine term oscillates indefinitely as \\(x\\to0\\) and does not approach a single number. Therefore the limit is DNE.`};
+    return {cat:"special",id:`sp3-${k}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\left|\\sin\\left(\\frac{${k}}x\\right)\\right|\\)`,ans:dne(),sol:`Even after taking absolute value, the function repeatedly takes values near both \\(0\\) and \\(1\\) arbitrarily close to \\(x=0\\). It has no single limiting value, so the limit is DNE.`};
+  }
+
+  const generators={continuous,factoring,substitution,rationalizing,complex:complexFraction,squeeze,trig,oneSided,infinity:infinityLimit,special,infinitySpecial:()=>pick([infinityLimit,special])()};
+  const mixedWeights=["continuous",...Array(3).fill("factoring"),...Array(3).fill("substitution"),...Array(3).fill("rationalizing"),...Array(3).fill("complex"),...Array(3).fill("squeeze"),...Array(3).fill("trig"),...Array(3).fill("oneSided"),...Array(3).fill("infinity"),...Array(3).fill("special")];
+
+  function makeProblem(){
+    const selected=$("category").value;
+    let p=null;
+    for(let tries=0;tries<100;tries++){
+      const cat=selected==="all"?pick(mixedWeights):selected;
+      p=generators[cat]();
+      if(!seen.has(p.id)){seen.add(p.id);break;}
+      if(seen.size>500)seen.clear();
+    }
+    p.q=cleanSigns(p.q);
+    p.sol=cleanSigns(p.sol);
+    current=p;
+    window.BMAnalytics?.ensurePracticeStarted({practice_mode:$("category").value});
+    window.BMAnalytics?.problemGenerated(current,{practice_mode:$("category").value});
+    $("question").innerHTML=p.q;
+    $("answer").value="";window.BatchMathCalculusKeypad?.reset?.();$("answer").disabled=false;$("submit").disabled=false;
+    $("feedback").className="feedback";$("feedback").innerHTML="";$("next").style.display="none";
+    $("topic-name").textContent=categoryLabel[p.cat];
+    typeset([$("question")]);
+    if(window.BatchMathCalculusKeypad)BatchMathCalculusKeypad.focus();else $("answer").focus();
+  }
+
+  function parse(raw){
+    let s=raw.trim().toLowerCase().replace(/\s+/g,"").replace(/−/g,"-");
+    if(["dne","doesnotexist","doesn'texist","doesntexist","undefined"].includes(s))return {kind:"dne"};
+    if(["∞","+∞","inf","+inf","infinity","+infinity"].includes(s))return {kind:"inf",sign:1};
+    if(["-∞","-inf","-infinity"].includes(s))return {kind:"inf",sign:-1};
+    const fm=s.match(/^\(?([+-]?(?:\d+(?:\.\d*)?|\.\d+))\)?\/\(?([+-]?(?:\d+(?:\.\d*)?|\.\d+))\)?$/);
+    if(fm){const d=Number(fm[2]);if(d===0)return null;return {kind:"num",value:Number(fm[1])/d};}
+    if(/^[-+]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(s))return {kind:"num",value:Number(s)};
+    return null;
+  }
+  function isCorrect(parsed,ans){
+    if(!parsed)return false;
+    if(ans.kind==="dne")return parsed.kind==="dne";
+    if(ans.kind==="inf")return parsed.kind==="inf"&&parsed.sign===ans.sign;
+    if(parsed.kind!=="num")return false;
+    return Math.abs(parsed.value-ans.n/ans.d)<1e-7;
+  }
+  function typeset(nodes){if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetClear(nodes);MathJax.typesetPromise(nodes);}}
+  function submit(){
+    if(!current)return;
+    const raw=$("answer").value;
+    if(!raw.trim()){ $("feedback").className="feedback wrong";$("feedback").textContent="Enter an answer.";return; }
+    attempts++;$("attempted").textContent=attempts;
+    const parsed=parse(raw);
+    const ok=isCorrect(parsed,current.ans);
+    window.BMAnalytics?.answerChecked(current,ok);
+    if(ok){
+      correctCount++;$("correct-count").textContent=correctCount;
+      $("feedback").className="feedback correct";$("feedback").textContent="✓ Correct";
+      $("answer").disabled=true;$("submit").disabled=true;
+      setTimeout(makeProblem,550);
+    }else{
+      $("feedback").className="feedback wrong";
+      window.BMAnalytics?.solutionRevealed(current,{reveal_reason:"incorrect_answer"});
+      $("feedback").innerHTML=`<div class="correct-answer">Correct answer: \\(${texRat(current.ans)}\\)</div><div class="method"><strong>Method:</strong> ${current.sol}</div>`;
+      $("answer").disabled=true;$("submit").disabled=true;$("next").style.display="inline-block";
+      typeset([$("feedback")]);
+    }
+  }
+  $("category").addEventListener("change",makeProblem);
+  $("submit").addEventListener("click",submit);
+  $("next").addEventListener("click",makeProblem);
+  $("answer").addEventListener("keydown",e=>{if(e.key==="Enter"&&!$("submit").disabled)submit();});
+  makeProblem();
+})();
+</script><script data-batchmath-menu-a11y>
+document.addEventListener("DOMContentLoaded",function(){
+  const b=document.querySelector(".menu-toggle"),m=document.querySelector(".dropdown");
+  if(!b||!m)return;
+  const sync=()=>b.setAttribute("aria-expanded",m.classList.contains("open")?"true":"false");
+  b.addEventListener("click",sync);
+  document.addEventListener("click",sync);
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"&&m.classList.contains("open")){
+      m.classList.remove("open");
+      sync();
+      b.focus();
+    }
+  });
+  sync();
+});
+</script><script data-batchmath-local-preview="1">
+(function(){
+  if (window.location.protocol !== 'file:') return;
+  function localizeDirectoryUrl(value){
+    if (!value || /^(?:[a-z][a-z0-9+.-]*:|#|\/)/i.test(value)) return value;
+    var hash = '';
+    var query = '';
+    var hashAt = value.indexOf('#');
+    if (hashAt >= 0) { hash = value.slice(hashAt); value = value.slice(0, hashAt); }
+    var queryAt = value.indexOf('?');
+    if (queryAt >= 0) { query = value.slice(queryAt); value = value.slice(0, queryAt); }
+    if (value.endsWith('/')) value += 'index.html';
+    return value + query + hash;
+  }
+  document.querySelectorAll('a[href]').forEach(function(link){
+    link.setAttribute('href', localizeDirectoryUrl(link.getAttribute('href')));
+  });
+  document.querySelectorAll('option[value]').forEach(function(option){
+    option.setAttribute('value', localizeDirectoryUrl(option.getAttribute('value')));
+  });
+})();
+</script>
+</body></html>

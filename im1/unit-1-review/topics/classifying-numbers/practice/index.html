@@ -27,7 +27,7 @@ button{border:0;border-radius:9px;padding:11px 18px;font-size:1rem;font-weight:8
 .choice-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;max-width:760px;margin:0 auto}.choice{display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 6px;border:1px solid #333;border-radius:9px;background:#111;font-weight:800;cursor:pointer;transition:background .16s ease,border-color .16s ease,box-shadow .16s ease,color .16s ease}.choice input{width:18px;height:18px;accent-color:#d71920}.choice.answer-correct{background:#0d3d1d;border-color:#36c763;color:#eaffef;box-shadow:0 0 0 1px rgba(54,199,99,.24) inset}.choice.answer-wrong{background:#451014;border-color:#ff5b61;color:#fff0f0;box-shadow:0 0 0 1px rgba(255,91,97,.22) inset}.choice.answer-correct input{accent-color:#36c763}.choice.answer-wrong input{accent-color:#ff5b61}
 @media(max-width:720px){.page{padding:16px 10px 32px}.header{margin:10px 0 14px}.header h1{font-size:1.65rem}.header p{font-size:.92rem}.settings{grid-template-columns:1fr}.stats{grid-template-columns:repeat(var(--stat-cols,3),1fr);gap:6px;margin-bottom:12px}.stat{font-size:.86rem;padding:8px 4px}.stat span{font-size:1.05rem}.card{padding:14px 10px}.question{font-size:clamp(1.5rem,7vw,2.25rem);margin:8px 0 12px}.question.word{font-size:1.06rem}.instruction{font-size:.9rem;margin-bottom:10px}.feedback{font-size:.92rem}.choice-grid{grid-template-columns:1fr 1fr}.choice:last-child{grid-column:1/-1;max-width:50%;width:100%;justify-self:center}}</style><script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]}};</script><script>window.MathJax=window.MathJax||{};window.MathJax.options=Object.assign({},window.MathJax.options||{},{enableMenu:false});window.MathJax.options.menuOptions=Object.assign({},window.MathJax.options.menuOptions||{});window.MathJax.options.menuOptions.settings=Object.assign({},window.MathJax.options.menuOptions.settings||{},{explorer:false,zoom:'NoZoom',inTabOrder:false});</script>
 <style id="bm-mathjax-control-style">button mjx-container,button mjx-container *,.choice mjx-container,.choice mjx-container *,.choice-grid mjx-container,.choice-grid mjx-container *{pointer-events:none!important;user-select:none!important;-webkit-user-select:none!important;-webkit-touch-callout:none!important}</style>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script><script src="../../../../../assets/im1-display-math.js"></script><link rel="stylesheet" href="../../../../../assets/site.css" data-batchmath-shared-style="v10.0"><meta property="og:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png">
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js"></script><script src="../../../../../assets/im1-display-math.js"></script><link rel="stylesheet" href="../../../../../assets/site.css" data-batchmath-shared-style="v10.0"><meta property="og:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/png">
@@ -59,7 +59,7 @@ button{border:0;border-radius:9px;padding:11px 18px;font-size:1rem;font-weight:8
   
     gtag('config', 'G-377MTFXSF3');
   </script>
-<script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_classifying_numbers",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_classifying_numbers",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><main id="main-content" class="page"><a class="back" href="../">← Topic Page</a>
 <header class="header"><h1>Classifying Numbers</h1><p>One mixed classification practice set. Some numbers can be classified immediately; others must be simplified before choosing every category that applies.</p></header>
 <section id="setupCard" class="card"><div class="settings"><div class="setting"><label for="timeSelect">Time Limit</label><select id="timeSelect"><option value="1">1 minute</option><option value="2">2 minutes</option><option value="3" selected>3 minutes</option><option value="4">4 minutes</option><option value="5">5 minutes</option></select></div><div class="setting"><label for="questionSelect">Number of Questions</label><select id="questionSelect"><option value="10">10 questions</option><option value="20" selected>20 questions</option><option value="30">30 questions</option><option value="40">40 questions</option><option value="50">50 questions</option><option value="60">60 questions</option><option value="70">70 questions</option><option value="80">80 questions</option><option value="90">90 questions</option><option value="100">100 questions</option></select></div></div><button id="startBtn" class="primary">Start Practice</button></section>
@@ -67,9 +67,9 @@ button{border:0;border-radius:9px;padding:11px 18px;font-size:1rem;font-weight:8
 <section id="resultsCard" class="card results hidden"><h2>Practice Complete</h2><div id="finalScore" class="big-score"></div><p id="finalMessage"></p><button id="againBtn" class="primary">Practice Again</button></section></main>
 <script>const $=id=>document.getElementById(id);
 let total=20,idx=0,score=0,answered=0,left=180,timerId=null,advanceId=null,pool=[],finished=false,accepting=false;
-function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function ri(a,b){return Math.floor(Math.random()*(b-a+1))+a}
-function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(BatchMathRNG.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function ri(a,b){return Math.floor(BatchMathRNG.random()*(b-a+1))+a}
+function pick(a){return a[Math.floor(BatchMathRNG.random()*a.length)]}
 function timeText(){const m=Math.floor(left/60),s=left%60;$("timer").textContent=`${m}:${String(s).padStart(2,"0")}`}
 function tick(){clearInterval(timerId);timeText();timerId=setInterval(()=>{left--;if(left<=0){left=0;timeText();finish("time")}else timeText()},1000)}
 function typeset(nodes){if(window.MathJax&&MathJax.typesetPromise){if(MathJax.typesetClear)MathJax.typesetClear(nodes);MathJax.typesetPromise(nodes).catch(()=>{})}}
@@ -90,7 +90,7 @@ function directQuestion(){
   const t=ri(0,6);
   if(t===0){const n=ri(-25,100);return{id:`di-${n}`,q:`\\(${n}\\)`,answer:classSetForInteger(n),explain:integerExplain(n)}}
   if(t===1){let d=ri(2,15),n=ri(1,d-1);const r=gcdSimple(n,d);n/=r;d/=r;return{id:`df-${n}-${d}`,q:`\\(\\frac{${n}}{${d}}\\)`,answer:["Rational"],explain:`${n}/${d} is a ratio of two integers, so it is <strong>Rational</strong>. It is not an integer, whole, or natural number.`}}
-  if(t===2){const neg=Math.random()<.3?-1:1,places=pick([10,100,1000]),whole=ri(0,20),tail=ri(1,places-1),num=neg*(whole*places+tail),val=(num/places).toFixed(places===10?1:places===100?2:3);return{id:`dd-${num}-${places}`,q:`\\(${val}\\)`,answer:["Rational"],explain:`${val} is a terminating decimal, so it can be written as a fraction. Therefore it is <strong>Rational</strong>.`}}
+  if(t===2){const neg=BatchMathRNG.random()<.3?-1:1,places=pick([10,100,1000]),whole=ri(0,20),tail=ri(1,places-1),num=neg*(whole*places+tail),val=(num/places).toFixed(places===10?1:places===100?2:3);return{id:`dd-${num}-${places}`,q:`\\(${val}\\)`,answer:["Rational"],explain:`${val} is a terminating decimal, so it can be written as a fraction. Therefore it is <strong>Rational</strong>.`}}
   if(t===3){const n=pick(irrationalRoots);return{id:`dr-${n}`,q:`\\(\\sqrt{${n}}\\)`,answer:["Irrational"],explain:`${n} is not a perfect square, so √${n} cannot be written as a ratio of integers. It is <strong>Irrational</strong>.`}}
   if(t===4){return{id:"pi",q:`\\(\\pi\\)`,answer:["Irrational"],explain:`π is a nonterminating, nonrepeating decimal, so it is <strong>Irrational</strong>.`}}
   if(t===5){const whole=ri(0,8),block=pick([3,6,12,18,27,45,72]),digits=String(block).length;return{id:`rep-${whole}-${block}`,q:`\\(${whole}.\\overline{${String(block).padStart(digits,"0")}}\\)`,answer:["Rational"],explain:`This decimal repeats. Every repeating decimal can be written as a fraction, so it is <strong>Rational</strong>.`}}
@@ -107,7 +107,7 @@ function simplifyQuestion(){
   if(t===6){const n=ri(1,20),zeros=pick([1,1,2]);const shown=`${n}.${"0".repeat(zeros)}`;return{id:`wholedec-${n}-${zeros}`,q:`\\(${shown}\\)`,answer:classSetForInteger(n),explain:`${shown}=<strong>${n}</strong>. A decimal ending only in zeros can still equal an integer. ${integerExplain(n)}`}}
   const n=pick(irrationalRoots);return{id:`negirr-${n}`,q:`\\(-\\sqrt{${n}}\\)`,answer:["Irrational"],explain:`${n} is not a perfect square, so √${n} is irrational. Making it negative does not change that classification; −√${n} is <strong>Irrational</strong>.`};
 }
-function makeQuestion(){return Math.random()<.55?simplifyQuestion():directQuestion()}
+function makeQuestion(){return BatchMathRNG.random()<.55?simplifyQuestion():directQuestion()}
 function buildPool(totalNeeded){const out=[],seen=new Set();for(let tries=0;out.length<totalNeeded&&tries<25000;tries++){const q=makeQuestion();if(!seen.has(q.id)){seen.add(q.id);out.push(q)}}return out}
 function sameSet(a,b){if(a.length!==b.length)return false;const A=[...a].sort(),B=[...b].sort();return A.every((x,i)=>x===B[i])}
 

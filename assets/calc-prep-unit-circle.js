@@ -29,7 +29,7 @@ function radTextDeg(deg){if(deg===0)return '0';const g=B.gcd(Math.abs(deg),180),
 function exactText(s){if(s==='undefined')return 'Undefined';return String(s).replace(/^-/, '−')}
 function pool(){if(quad.value==='all')return ANGLES;const set=new Set(pools[quad.value]);return ANGLES.filter(a=>set.has(a.deg))}
 function funcs(){if(mode.value==='sct')return ['sin','cos','tan'];if(mode.value==='recip')return ['csc','sec','cot'];if(mode.value==='all')return ['sin','cos','tan','csc','sec','cot'];return [mode.value]}
-function angleUseRad(){return format.value==='radians'||(format.value==='mixed'&&Math.random()<.5)}
+function angleUseRad(){return format.value==='radians'||(format.value==='mixed'&&BatchMathRNG.random()<.5)}
 function make(){const a=B.pick(pool()),f=B.pick(funcs()),r=angleUseRad();const c=canon(f,a);return {id:`${f}-${a.deg}-${r?'r':'d'}`,a,f,r,canonical:c,expected:numeric(f,a)}}
 function explanation(c){const a=c.a,f=c.f,angle=c.r?radText(a):`${a.deg}°`;if(c.canonical==='undefined'){return `${f} is undefined at ${angle} because the reciprocal/quotient definition would require division by 0.`}if([0,90,180,270].includes(a.deg)){return `Use the unit-circle point (cos θ, sin θ) at ${angle}. The exact value is ${exactText(c.canonical)}.`}const qn=['','I','II','III','IV'][quadrant(a.deg)],ref=c.r?radTextDeg(a.ref):`${a.ref}°`;return `The reference angle is ${ref}. Start with the first-quadrant ${f} value ${exactText(base[a.ref][f])}, then apply the sign of ${f} in Quadrant ${qn}.`}
 const editor=BMExactEditor.mount({input:'#answerRaw',editor:'#exactEditor',keypad:'#exactKeypad',onCheck:check});

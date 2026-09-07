@@ -1,9 +1,11 @@
 {
-  "version": "10.3.3",
-  "release": "v10.3.3",
+  "version": "10.6.3.G",
+  "release": "v10.6.3.G",
   "architecture": "pwa-foundation",
   "storageSchema": 1,
   "serviceWorker": "/sw.js",
   "analyticsSchema": 1,
-  "engineAnalytics": true
+  "engineAnalytics": true,
+  "reproducibleGenerators": true,
+  "releaseQa": true
 }

@@ -9,7 +9,7 @@ function unionEx(a){return `(−∞, ${a}) ∪ (${a}, ∞)`}
 function unionTwo(a,b){[a,b]=[Math.min(a,b),Math.max(a,b)];return `(−∞, ${a}) ∪ (${a}, ${b}) ∪ (${b}, ∞)`}
 function obj(id,q,a,cs,method){return {id,prompt:'Find the domain.',question:`f(x) = ${q}`,answer:a,choices:[a,...cs].filter((v,i,x)=>x.indexOf(v)===i).slice(0,4),method}}
 function rational(){
- const a=B.randInt(-5,5),two=Math.random()<.55;
+ const a=B.randInt(-5,5),two=BatchMathRNG.random()<.55;
  if(!two){const n=B.randInt(1,6);return obj(`r1-${a}-${n}`,`(x + ${n}) / (${xm(a)})`,unionEx(a),[all,`(${a}, ∞)`,`(−∞, ${a})`],`The denominator cannot be 0, so x ≠ ${a}.`)}
  let b;do{b=B.randInt(-5,5)}while(b===a);const ans=unionTwo(a,b),lo=Math.min(a,b),hi=Math.max(a,b);
  return obj(`r2-${a}-${b}`,`(x^2 + 1) / ((${xm(a)})(${xm(b)}))`,ans,[`(−∞, ${lo}) ∪ (${hi}, ∞)`,`(${lo}, ${hi})`,all],'Exclude every value that makes the denominator 0.')
@@ -21,7 +21,7 @@ function radical(){
  const b=a+B.randInt(2,6);return obj(`rad3-${a}-${b}`,`√((${xm(a)})(${aMinusX(b)}))`,`[${a}, ${b}]`,[`(${a}, ${b})`,`(−∞, ${a}] ∪ [${b}, ∞)`,all],'The product under the square root is nonnegative between the two zeros, inclusive.')
 }
 function logarithmic(){
- const a=B.randInt(-5,5),t=Math.random()<.5;
+ const a=B.randInt(-5,5),t=BatchMathRNG.random()<.5;
  if(t)return obj(`log1-${a}`,`ln(${xm(a)})`,`(${a}, ∞)`,[`[${a}, ∞)`,`(−∞, ${a})`,all],'A logarithm requires its argument to be strictly positive.');
  return obj(`log2-${a}`,`log(${aMinusX(a)})`,`(−∞, ${a})`,[`(−∞, ${a}]`,`(${a}, ∞)`,all],'The logarithm argument must be strictly positive.')
 }
@@ -59,7 +59,7 @@ function numerator(){
  if(t===0)return String(c);
  if(t===1)return xm(B.pick([-4,-3,-2,-1,1,2,3,4]));
  if(t===2)return `x^2 + ${c}`;
- if(t===3)return `${B.pick([2,3,4])}x ${Math.random()<.5?'−':'+'} ${d}`;
+ if(t===3)return `${B.pick([2,3,4])}x ${BatchMathRNG.random()<.5?'−':'+'} ${d}`;
  if(t===4)return `(${xm(B.pick([-3,-2,-1,1,2,3]))})^2`;
  return `${B.pick([2,3,5])}x^2 + ${c}`;
 }
@@ -163,17 +163,17 @@ function combined(){
   return obj(`c9-${k}`,`ln(tan(${arg}))`,tanPositive(k),[all,`x ≠ π/2 + nπ, n ∈ ℤ`,sinPositive(k,false)],'tan of the argument must be defined and strictly positive because it is inside a logarithm.');
  }
  if(t===10){
-  const k=B.pick([1,2,3]),useSin=Math.random()<.5,arg=trigArg(k),q=useSin?`arcsin(2sin(${arg}))`:`arccos(2cos(${arg}))`,ans=useSin?absSinHalf(k):absCosHalf(k);
+  const k=B.pick([1,2,3]),useSin=BatchMathRNG.random()<.5,arg=trigArg(k),q=useSin?`arcsin(2sin(${arg}))`:`arccos(2cos(${arg}))`,ans=useSin?absSinHalf(k):absCosHalf(k);
   return obj(`c10-${k}-${useSin?'s':'c'}`,q,ans,[all,useSin?sinPositive(k,true):cosPositive(k,true),useSin?absCosHalf(k):absSinHalf(k)],'The input of arcsin or arccos must stay between −1 and 1. This requires the inner sine or cosine value to have absolute value at most 1/2.');
  }
  if(t===11){
-  const k=B.pick([1,2,3]),useSin=Math.random()<.5,arg=trigArg(k),kind=Math.random()<.5?'sqrtlog':'recipsqrtlog',ans=useSin?sinPositive(k,kind==='sqrtlog'):cosPositive(k,kind==='sqrtlog');
+  const k=B.pick([1,2,3]),useSin=BatchMathRNG.random()<.5,arg=trigArg(k),kind=BatchMathRNG.random()<.5?'sqrtlog':'recipsqrtlog',ans=useSin?sinPositive(k,kind==='sqrtlog'):cosPositive(k,kind==='sqrtlog');
   const inside=useSin?`1 + sin(${arg})`:`1 + cos(${arg})`,q=kind==='sqrtlog'?`√(ln(${inside}))`:`1 / √(ln(${inside}))`;
   const method=kind==='sqrtlog'?'The logarithm must be at least 0, so its argument must be at least 1. That requires the trig value to be nonnegative.':'The logarithm is under a square root in the denominator, so it must be strictly positive. That requires the trig value to be positive.';
   return obj(`c11-${k}-${useSin?'s':'c'}-${kind}`,q,ans,[useSin?sinPositive(k,! (kind==='sqrtlog')):cosPositive(k,! (kind==='sqrtlog')),all,useSin?cosPositive(k,false):sinPositive(k,false)],method);
  }
  if(t===12){
-  const k=B.pick([1,2,3]),useSin=Math.random()<.5,arg=trigArg(k),q=useSin?`ln(1 + sin(${arg}))`:`ln(1 + cos(${arg}))`,ans=useSin?sinNegOneExclusion(k):oddPiExclusion(k);
+  const k=B.pick([1,2,3]),useSin=BatchMathRNG.random()<.5,arg=trigArg(k),q=useSin?`ln(1 + sin(${arg}))`:`ln(1 + cos(${arg}))`,ans=useSin?sinNegOneExclusion(k):oddPiExclusion(k);
   return obj(`c12-${k}-${useSin?'s':'c'}`,q,ans,[all,useSin?sinPositive(k,false):cosPositive(k,false),useSin?oddPiExclusion(k):sinNegOneExclusion(k)],'The logarithm argument must be positive. Since 1 plus the sine or cosine is never negative, exclude only the angles where it equals 0.');
  }
  if(t===13){
@@ -181,7 +181,7 @@ function combined(){
   return obj(`c13-${k}-${num}`,html,ans,[all,`x ≠ π/2 + nπ, n ∈ ℤ`,tanPositive(k)],'The tangent must first be defined, and the entire denominator must also be nonzero. Exclude both sets of values.');
  }
  if(t===14){
-  const k=B.pick([1,2,3]),useSec=Math.random()<.5,arg=trigArg(k),q=useSec?`ln(sec(${arg}))`:`ln(csc(${arg}))`,ans=useSec?cosPositive(k,false):sinPositive(k,false);
+  const k=B.pick([1,2,3]),useSec=BatchMathRNG.random()<.5,arg=trigArg(k),q=useSec?`ln(sec(${arg}))`:`ln(csc(${arg}))`,ans=useSec?cosPositive(k,false):sinPositive(k,false);
   return obj(`c14-${k}-${useSec?'sec':'csc'}`,q,ans,[all,useSec?sinPositive(k,false):cosPositive(k,false),useSec?cosPositive(k,true):sinPositive(k,true)],`The logarithm requires the ${useSec?'secant':'cosecant'} value to be positive. That is equivalent to requiring ${useSec?'cosine':'sine'} to be positive.`);
  }
  const c=B.pick([2,3,4]),kind=B.pick(['sqrtasin','lnacos','sqrtatan']);

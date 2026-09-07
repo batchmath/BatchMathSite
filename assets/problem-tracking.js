@@ -1,11 +1,11 @@
-/* BatchMath engine analytics — v10.3.3
+/* BatchMath engine analytics — v10.6.3.G
    Anonymous usage instrumentation for practice engines.
    No names, email addresses, student IDs, typed answers, or literal problem text are sent.
    Events generated while offline are queued locally and flushed after connectivity returns. */
 (() => {
   'use strict';
 
-  const APP_VERSION = '10.3.3';
+  const APP_VERSION = '10.6.3.G';
   const TRACKING_SCHEMA = '1';
   const QUEUE_KEY = 'batchmath.analytics.queue.v1';
   const DEBUG_KEY = 'batchmath.analytics.debug.v1';
@@ -290,7 +290,7 @@
     inferProblemMeta,
     practiceStarted(extra = {}) { emit('practice_started', extra); },
     ensurePracticeStarted(extra = {}) { if (ensuredPracticeStarted) return; ensuredPracticeStarted = true; emit('practice_started', extra); },
-    problemGenerated(problem, extra = {}) { emit('problem_generated', eventParams(problem, extra)); },
+    problemGenerated(problem, extra = {}) { try { window.BatchMathRepro?.noteProblem(problem); } catch (_) {} emit('problem_generated', eventParams(problem, extra)); },
     answerChecked(problem, correct, extra = {}) {
       const params=eventParams(problem, Object.assign({ answer_result: correct ? 'correct' : 'incorrect' }, extra || {}));
       emit('answer_checked', params);

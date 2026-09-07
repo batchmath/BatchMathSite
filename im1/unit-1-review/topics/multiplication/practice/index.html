@@ -7,12 +7,12 @@
 <link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="../../../../../favicon-32.png">
 <link rel="apple-touch-icon" href="../../../../../apple-touch-icon.png">
-<meta name="description" content="Integrated Math 1: Build speed and accuracy.">
+<meta name="description" content="Integrated Math 1 multiplication practice with customizable question counts and timing to build speed and accuracy with multiplication facts.">
 <link rel="canonical" href="https://batchmath.net/im1/unit-1-review/topics/multiplication/practice/">
 <meta property="og:site_name" content="BatchMath">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Multiplication Practice | Integrated Math 1 | BatchMath">
-<meta property="og:description" content="Integrated Math 1: Build speed and accuracy.">
+<meta property="og:description" content="Integrated Math 1 multiplication practice with customizable question counts and timing to build speed and accuracy with multiplication facts.">
 <meta property="og:url" content="https://batchmath.net/im1/unit-1-review/topics/multiplication/practice/">
   <title>Multiplication Practice | Integrated Math 1 | BatchMath</title>
 
@@ -294,7 +294,7 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
   
     gtag('config', 'G-377MTFXSF3');
   </script>
-<script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_multiplication",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_multiplication",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
 </head>
 
 <body><a class="skip-link" href="#main-content">Skip to main content</a>
@@ -417,7 +417,7 @@ select,input[type="number"],#answer{background:#111 !important;color:#fff !impor
 
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
+        const j = Math.floor(BatchMathRNG.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
       }
       return array;

@@ -6,7 +6,7 @@ function fracHTML(n,d,extra=''){const fmt=v=>String(v).includes('<')?String(v):B
 function choiceObj(id,p,qHTML,a,cs,m){const vals=[a,...cs].filter((v,i,x)=>x.indexOf(v)===i);for(const v of ['0','1','x','x + 1','x − 1','None']){if(vals.length>=4)break;if(!vals.includes(v))vals.push(v)}return {id,kind:'choice',prompt:p,questionHTML:qHTML,answer:a,choices:vals.slice(0,4),method:m}}
 function freeObj(id,p,qHTML,a,m){return {id,kind:'free',prompt:p,questionHTML:qHTML,answer:a,method:m}}
 function rationalize(){
- if(Math.random()<.55){
+ if(BatchMathRNG.random()<.55){
   const cases=[
    {n:'1',d:'2 + √3',a:'2 − √3',bad:['2 + √3','(2 − √3)/7','√3 − 2']},
    {n:'1',d:'2 − √3',a:'2 + √3',bad:['2 − √3','(2 + √3)/7','√3 + 2']},
@@ -17,7 +17,7 @@ function rationalize(){
   ];
   const c=B.pick(cases);return choiceObj(`rat-num-${c.n}-${c.d}`,'Rationalize the denominator.',fracHTML(c.n,c.d,'display-frac'),c.a,c.bad,`Multiply numerator and denominator by the conjugate of ${c.d}. The denominator becomes a difference of squares, then simplify.`)
  }
- const a=B.pick([1,2,3]),b=B.pick([1,2,3,4]),minus=Math.random()<.5;
+ const a=B.pick([1,2,3]),b=B.pick([1,2,3,4]),minus=BatchMathRNG.random()<.5;
  const den=minus?`√x − ${b}`:`√x + ${b}`,conj=minus?`√x + ${b}`:`√x − ${b}`,denFinal=`x − ${b*b}`;
  const numerator=a===1?conj:`${a}(${conj})`,answer=fracHTML(numerator,denFinal);
  const textAnswer=a===1?`(${conj})/(${denFinal})`:`${a}(${conj})/(${denFinal})`;

@@ -17,9 +17,9 @@ function setOptions(sel,correct,extras){const vals=[];for(const v of [correct,..
 function clearFieldMarks(){document.querySelectorAll('.feature-box').forEach(x=>x.classList.remove('field-correct','field-wrong'))}
 function build(){
  // About 75% horizontal asymptote problems and 25% slant asymptote problems.
- const type=Math.random()<.25?'slant':(Math.random()<.5?'equal':'zero');
+ const type=BatchMathRNG.random()<.25?'slant':(BatchMathRNG.random()<.5?'equal':'zero');
  let vals=[];while(vals.length<5){const x=B.randInt(-4,4);if(!vals.includes(x))vals.push(x)}
- const [hole,va,r1,r2,v2]=vals,hasHole=Math.random()<.75;
+ const [hole,va,r1,r2,v2]=vals,hasHole=BatchMathRNG.random()<.75;
  let N,D,redN,redD,ha='',vas=[],zeros=[];
  if(type==='equal'){
   const A=B.pick([-2,-1,1,2]);redN=scale(lin(r1),A);redD=lin(va);N=redN;D=redD;ha=`y = ${A}`;vas=[va];zeros=[r1];
@@ -30,7 +30,7 @@ function build(){
  }
  let holeAnswer='None';
  if(hasHole){N=mul(N,lin(hole));D=mul(D,lin(hole));const hn=evalP(redN,hole),hd=evalP(redD,hole);holeAnswer=coord(hole,hn,hd)}
- const dm=displayMode.value==='mixed'?(Math.random()<.5?'factored':'expanded'):displayMode.value;
+ const dm=displayMode.value==='mixed'?(BatchMathRNG.random()<.5?'factored':'expanded'):displayMode.value;
  let numText,denText;
  if(dm==='expanded'){numText=fmtP(N);denText=fmtP(D)}else{
   if(type==='equal'){const A=redN[0];numText=(A===1?'':A===-1?'−':String(A))+factorText(r1);denText=factorText(va)}

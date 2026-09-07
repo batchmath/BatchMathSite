@@ -56,7 +56,7 @@ button{border:0;border-radius:9px;padding:12px 19px;font-size:1rem;font-weight:8
   
     gtag('config', 'G-377MTFXSF3');
   </script>
-<script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_integer_multiply_divide",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_integer_multiply_divide",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><main id="main-content" class="page"><a class="back" href="../">← Topic Page</a>
 <header class="header"><h1>Integer Multiplication &amp; Division</h1><p>Practice the sign rules for multiplying and dividing positive and negative integers. Division problems always have exact integer answers.</p></header>
 <section id="setupCard" class="card"><div class="settings">
@@ -70,9 +70,9 @@ button{border:0;border-radius:9px;padding:12px 19px;font-size:1rem;font-weight:8
 <script src="../../../../../assets/im1-display-math.js"></script>
 <script>const $=id=>document.getElementById(id);
 let total=20,idx=0,score=0,answered=0,left=180,timerId=null,advanceId=null,pool=[],finished=false,accepting=false;
-function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function ri(a,b){return Math.floor(Math.random()*(b-a+1))+a}
-function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(BatchMathRNG.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function ri(a,b){return Math.floor(BatchMathRNG.random()*(b-a+1))+a}
+function pick(a){return a[Math.floor(BatchMathRNG.random()*a.length)]}
 function timeText(){const m=Math.floor(left/60),s=left%60;$("timer").textContent=`${m}:${String(s).padStart(2,"0")}`}
 function tick(){clearInterval(timerId);timeText();timerId=setInterval(()=>{left--;if(left<=0){left=0;timeText();finish("time")}else timeText()},1000)}
 function typeset(nodes){if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise(nodes).catch(()=>{})}

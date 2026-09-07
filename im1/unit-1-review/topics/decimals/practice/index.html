@@ -57,7 +57,7 @@ button{border:0;border-radius:9px;padding:11px 18px;font-size:1rem;font-weight:8
   
     gtag('config', 'G-377MTFXSF3');
   </script>
-<script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_decimals",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_decimals",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><main id="main-content" class="page"><a class="back" href="../">← Topic Page</a>
 <header class="header"><h1>Decimals</h1><p>Practice decimal addition/subtraction, multiplication built from basic multiplication facts, and division problems whose answers are always whole numbers.</p></header>
 <section id="setupCard" class="card"><div class="settings"><div class="setting"><label for="categorySelect">Practice Type</label><select id="categorySelect"><option value="mixed" selected>Mixed Decimals</option><option value="addsub">Adding &amp; Subtracting</option><option value="multiply">Multiplying</option><option value="divide">Basic Division</option></select></div><div class="setting"><label for="timeSelect">Time Limit</label><select id="timeSelect"><option value="1">1 minute</option><option value="2">2 minutes</option><option value="3" selected>3 minutes</option><option value="4">4 minutes</option><option value="5">5 minutes</option></select></div><div class="setting"><label for="questionSelect">Number of Questions</label><select id="questionSelect"><option value="10">10 questions</option><option value="20" selected>20 questions</option><option value="30">30 questions</option><option value="40">40 questions</option><option value="50">50 questions</option><option value="60">60 questions</option><option value="70">70 questions</option><option value="80">80 questions</option><option value="90">90 questions</option><option value="100">100 questions</option></select></div></div><button id="startBtn" class="primary">Start Practice</button></section>
@@ -66,9 +66,9 @@ button{border:0;border-radius:9px;padding:11px 18px;font-size:1rem;font-weight:8
 <script src="../../../../../assets/im1-display-math.js"></script>
 <script>const $=id=>document.getElementById(id);
 let total=20,idx=0,score=0,answered=0,left=180,timerId=null,advanceId=null,pool=[],finished=false,accepting=false;
-function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function ri(a,b){return Math.floor(Math.random()*(b-a+1))+a}
-function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(BatchMathRNG.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function ri(a,b){return Math.floor(BatchMathRNG.random()*(b-a+1))+a}
+function pick(a){return a[Math.floor(BatchMathRNG.random()*a.length)]}
 function timeText(){const m=Math.floor(left/60),s=left%60;$("timer").textContent=`${m}:${String(s).padStart(2,"0")}`}
 function tick(){clearInterval(timerId);timeText();timerId=setInterval(()=>{left--;if(left<=0){left=0;timeText();finish("time")}else timeText()},1000)}
 function typeset(nodes){if(window.MathJax&&MathJax.typesetPromise){if(MathJax.typesetClear)MathJax.typesetClear(nodes);MathJax.typesetPromise(nodes).catch(()=>{})}}
@@ -83,13 +83,13 @@ function startPractice(){clearInterval(timerId);clearTimeout(advanceId);total=Nu
 function fmt(n){const v=Math.round(n*1000000)/1000000;return String(v)}
 function makeAddSub(){
   const places=pick([10,10,100,100,100,1000]);
-  let a=ri(5,Math.max(60,Math.floor(15*places))),b=ri(5,Math.max(50,Math.floor(10*places))),op=Math.random()<.52?1:-1;
+  let a=ri(5,Math.max(60,Math.floor(15*places))),b=ri(5,Math.max(50,Math.floor(10*places))),op=BatchMathRNG.random()<.52?1:-1;
   if(op===-1&&a<=b){if(a===b)a++;[a,b]=[Math.max(a,b),Math.min(a,b)]}
   const va=a/places,vb=b/places,ans=(a+op*b)/places;
   return{id:`a-${places}-${a}-${op}-${b}`,q:`${fmt(va)} ${op===1?"+":"−"} ${fmt(vb)} = ?`,answer:ans,kind:"addsub",problemType:op===1?"decimal_addition":"decimal_subtraction",explain:`Line up the decimal points by place value${places===1000?", including the thousandths place when needed":""}. ${fmt(va)} ${op===1?"+":"−"} ${fmt(vb)} = <strong>${fmt(ans)}</strong>.`};
 }
 function makeMultiply(){const a=ri(1,12),b=ri(1,12),mode=ri(0,2);let x,y,places;if(mode===0){x=a/10;y=b;places=1}else if(mode===1){x=a;y=b/10;places=1}else{x=a/10;y=b/10;places=2}const fact=a*b,ans=x*y;return{id:`m-${a}-${b}-${mode}`,q:`${fmt(x)} × ${fmt(y)} = ?`,answer:ans,kind:"multiply",problemType:"decimal_multiplication",explain:`Use the basic fact ${a}×${b}=${fact}. There ${places===1?"is 1 decimal place":"are 2 decimal places"} total in the factors, so place the decimal in ${fact} to get <strong>${fmt(ans)}</strong>.`}}
-function makeDivide(){const divisorFact=ri(2,12),quotient=ri(2,12),dividendFact=divisorFact*quotient,mode=Math.random()<.65?1:2;const scale=mode===1?10:100,dividend=dividendFact/scale,divisor=divisorFact/scale,answer=quotient;return{id:`d-${dividendFact}-${divisorFact}-${scale}`,q:`${fmt(dividend)} ÷ ${fmt(divisor)} = ?`,answer,kind:"divide",problemType:"decimal_division",explain:`Move the decimal the same number of places in both numbers: ${fmt(dividend)} ÷ ${fmt(divisor)} = ${dividendFact} ÷ ${divisorFact}. Since ${divisorFact}×${quotient}=${dividendFact}, the answer is <strong>${quotient}</strong>.`}}
+function makeDivide(){const divisorFact=ri(2,12),quotient=ri(2,12),dividendFact=divisorFact*quotient,mode=BatchMathRNG.random()<.65?1:2;const scale=mode===1?10:100,dividend=dividendFact/scale,divisor=divisorFact/scale,answer=quotient;return{id:`d-${dividendFact}-${divisorFact}-${scale}`,q:`${fmt(dividend)} ÷ ${fmt(divisor)} = ?`,answer,kind:"divide",problemType:"decimal_division",explain:`Move the decimal the same number of places in both numbers: ${fmt(dividend)} ÷ ${fmt(divisor)} = ${dividendFact} ÷ ${divisorFact}. Since ${divisorFact}×${quotient}=${dividendFact}, the answer is <strong>${quotient}</strong>.`}}
 function makeQuestion(cat){if(cat==="addsub")return makeAddSub();if(cat==="multiply")return makeMultiply();if(cat==="divide")return makeDivide();return pick([makeAddSub,makeMultiply,makeDivide])()}
 function buildPool(category,totalNeeded){const out=[],seen=new Set();for(let tries=0;out.length<totalNeeded&&tries<20000;tries++){const q=makeQuestion(category);if(!seen.has(q.id)){seen.add(q.id);out.push(q)}}return out}
 

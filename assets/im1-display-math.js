@@ -35,7 +35,7 @@ M.ensure=function(){
     if(window.MathJax&&MathJax.typesetPromise){resolve(window.MathJax);return;}
     existing.addEventListener('load',()=>resolve(window.MathJax),{once:true});return;
    }
-   const script=document.createElement('script');script.defer=true;script.src='https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js';
+   const script=document.createElement('script');script.defer=true;script.src='https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js';
    script.addEventListener('load',()=>resolve(window.MathJax),{once:true});script.addEventListener('error',()=>resolve(null),{once:true});document.head.appendChild(script);
   });
  }
