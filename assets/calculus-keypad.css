@@ -1,0 +1,99 @@
+/* BatchMath calculus expression editor and on-screen math keypad */
+.bm-calc-source{
+  position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;
+  overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;
+}
+.bm-calc-editor{
+  flex:1 1 300px;min-width:220px;min-height:48px;display:flex;align-items:center;justify-content:flex-start;
+  padding:8px 12px;border:1px solid var(--yellow,#f5c400);border-radius:8px;background:#050505;color:#fff;
+  font-size:1.35rem;line-height:1.35;cursor:text;overflow-x:auto;white-space:nowrap;
+}
+.bm-calc-editor:focus{outline:2px solid rgba(245,196,0,.35);outline-offset:1px}
+.bm-calc-editor.is-disabled{opacity:.62;cursor:default}
+.bm-calc-editor .bm-calc-empty{color:#777;font-size:.86rem;font-weight:600}
+.bm-calc-editor .bm-calc-empty-slot{color:#777;font-size:.72em;font-weight:600}
+.bm-calc-editor sup{font-size:.68em;line-height:1;vertical-align:super;margin-left:1px}
+.bm-calc-caret{display:inline-block;width:2px;height:1.15em;margin:0 1px;background:#f5c400;vertical-align:-.16em;animation:bm-caret 1s steps(1) infinite}
+sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
+@keyframes bm-caret{0%,48%{opacity:1}49%,100%{opacity:0}}
+
+/* Fractions inserted with the fraction key remain parser-friendly underneath,
+   but are displayed the way a student would normally write them. */
+.bm-calc-frac{
+  display:inline-grid;grid-template-rows:auto auto;vertical-align:middle;text-align:center;
+  line-height:1.02;margin:0 .12em;min-width:.75em;
+}
+.bm-calc-frac-num{display:block;border-bottom:1.5px solid currentColor;padding:0 .14em .06em}
+.bm-calc-frac-den{display:block;padding:.06em .14em 0}
+
+.bm-calc-keypad{
+  max-width:760px;margin:10px auto 0;padding:9px;border:1px solid #292929;border-radius:10px;
+  background:#080808;user-select:none;-webkit-user-select:none;
+}
+.bm-calc-function-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin-bottom:6px}
+.bm-calc-special-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-bottom:6px}
+.bm-calc-main-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
+.bm-calc-mode-limits .bm-calc-main-grid{grid-template-columns:repeat(4,minmax(0,1fr));max-width:520px;margin:0 auto}
+.bm-calc-utility-row{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;margin-top:6px}
+.bm-calc-mode-integral .bm-calc-utility-row{grid-template-columns:repeat(9,minmax(0,1fr))}
+.bm-calc-spacer{visibility:hidden}
+.bm-calc-key{
+  min-height:37px;padding:5px 4px;border:1px solid #3b3b3b;border-radius:7px;background:#141414;color:#fff;
+  font:800 .92rem/1.05 Arial,Helvetica,sans-serif;cursor:pointer
+}
+.bm-calc-key:hover,.bm-calc-key:focus-visible{outline:none;border-color:#f5c400;background:#202020}
+.bm-calc-key:active{transform:translateY(1px)}
+.bm-calc-key.symbol,.bm-calc-key.function{color:#f5c400}
+.bm-calc-key.fraction{font-size:.86rem}
+.bm-calc-key.utility{color:#cfcfcf;font-size:.82rem}
+.bm-calc-key.check{background:#d71920;border-color:#d71920;color:#fff}
+.bm-calc-key.check:hover,.bm-calc-key.check:focus-visible{background:#ef222b;border-color:#ff4b50}
+.bm-calc-key.wide{grid-column:span 2}
+.bm-calc-keypad.is-disabled .bm-calc-key:not(.navigation){opacity:.45;cursor:default}
+.answer-row.bm-calc-answer-row{align-items:center}
+.answer-row.bm-calc-answer-row .practice-button{flex:0 0 auto}
+
+@media(max-width:760px){
+  .bm-calc-editor{min-width:0;flex-basis:100%;font-size:1.17rem;min-height:45px;padding:7px 9px}
+  .bm-calc-keypad{width:100%;max-width:none;margin-top:7px;padding:6px}
+  .bm-calc-function-row,.bm-calc-special-row,.bm-calc-main-grid,.bm-calc-utility-row{gap:4px}
+  .bm-calc-key{min-height:35px;font-size:.84rem;padding:4px 2px}
+  .bm-calc-key.utility{font-size:.72rem}
+  .bm-calc-key.fraction{font-size:.78rem}
+  /* Keep the mobile controls in intentional rows instead of allowing a
+     six-column desktop layout to wrap at arbitrary places. */
+  .bm-calc-function-row{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .bm-calc-special-row{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .bm-calc-main-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .bm-calc-mode-limits .bm-calc-main-grid{grid-template-columns:repeat(4,minmax(0,1fr));max-width:none}
+  .bm-calc-utility-row{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .bm-calc-mode-integral .bm-calc-utility-row{grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+
+@media(max-width:430px){
+  .bm-calc-keypad{padding:5px}
+  .bm-calc-function-row,.bm-calc-special-row,.bm-calc-main-grid,.bm-calc-utility-row{gap:3px}
+  .bm-calc-key{min-height:34px;font-size:.78rem;padding:3px 1px}
+  .bm-calc-key.utility{font-size:.68rem}
+  .bm-calc-key.fraction{font-size:.74rem}
+}
+
+/* Match displayed infinity symbols to a mathematical font instead of Arial. */
+.bm-calc-key.math-infinity-key{font-family:"Cambria Math","STIX Two Math","DejaVu Math TeX Gyre","Times New Roman",serif;font-weight:400;font-size:1.08rem}
+
+
+/* Fraction keys use a real horizontal fraction bar instead of a slash glyph. */
+.bm-calc-key-frac{
+  display:inline-grid;grid-template-rows:auto auto;line-height:.82;text-align:center;
+  min-width:1.15em;vertical-align:middle;font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;
+  font-weight:600;
+}
+.bm-calc-key-frac span:first-child{border-bottom:1.4px solid currentColor;padding:0 .16em .06em}
+.bm-calc-key-frac span:last-child{padding:.06em .16em 0}
+
+/* v10.3.3 caret hit targets */
+.bm-calc-token{display:inline-block;cursor:text}
+.bm-calc-frac-num,.bm-calc-frac-den,.bm-calc-editor sup{cursor:text}
+
+/* v10.3.3 semantic-token display */
+.bm-calc-token.infinity{font-family:"Cambria Math","STIX Two Math","DejaVu Math TeX Gyre","Times New Roman",serif;font-weight:400}

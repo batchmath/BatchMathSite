@@ -1,0 +1,45 @@
+BatchMath v10.6.3.K — Derivative Variety / Implicit Notation Checkpoint
+======================================================================
+
+STATUS
+------
+PASS for all non-browser release gates run for this checkpoint.
+
+CHANGES
+-------
+1. Implicit Differentiation
+- Worked explanations now consistently use dy/dx notation instead of y-prime notation.
+- This includes first-derivative collection/solving steps and the first-derivative steps used before second derivatives.
+- Matching comprehensive-review generator copy is synchronized.
+
+2. Derivatives of Logarithmic Functions
+- Expanded from a small repetitive pool to 12 major logarithm-argument families.
+- Arguments now include linear and quadratic polynomials, shifted sine/cosine expressions,
+  nested logarithms, exponential expressions, radicals, rational expressions, products,
+  and non-natural-base logarithms with polynomial/trig/log arguments.
+- Matching comprehensive-review generator copy is synchronized.
+
+3. Logarithmic Differentiation
+- Rebuilt around broad function^function combinations.
+- Seven base families: positive linear, polynomial, shifted sine, shifted cosine,
+  exponential-plus-constant, radical-plus-constant, and logarithm-plus-constant.
+- Seven exponent families: quadratic polynomial, sine, cosine, exponential,
+  logarithm, radical, and reciprocal.
+- Prompts remain method-neutral: "Find the derivative."
+- Matching comprehensive-review generator copy is synchronized.
+
+QA
+--
+PASS — Derivative/topic enhancement QA: 0 errors.
+PASS — Targeted v10.6.3.K derivative variety QA:
+       12,000 implicit-differentiation samples,
+       30,000 logarithmic-derivative samples,
+       50,000 logarithmic-differentiation samples,
+       all 7 base and all 7 exponent families observed, 0 errors.
+PASS — Static release QA: 239 HTML pages, 4,783 internal references,
+       0 broken references, 90 practice engines, version 10.6.3.K, 0 errors/warnings.
+PASS — PWA/cache QA: 83 practice pages / 626 dependencies, 0 errors/warnings.
+PASS — Display-safety QA: 90 engines / 265 source files, 0 errors.
+PASS — Semantic-answer QA: IM1 + shared AP generators, 0 errors.
+
+Browser/human smoke testing remains the final publish gate.

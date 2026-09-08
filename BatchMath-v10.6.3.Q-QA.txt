@@ -1,0 +1,83 @@
+BatchMath v10.6.3.Q — Seeded Browser QA / Unit 1 Review Patch
+==============================================================
+
+STATUS
+------
+PASS for all completed local non-browser release and regression gates.
+The GitHub seeded-browser workflow remains the final browser-specific confirmation after deployment.
+
+SOURCE FAILURE REPORT REVIEWED
+------------------------------
+The v10.6.3.P GitHub seeded-browser artifact contained exactly 42 errors:
+- 39 engines: one Enter press generated 2 problems instead of exactly 1.
+- 3 Classifying Discontinuities seeds: seeded QA reported an empty question area.
+No additional seeded-browser error class was present in the uploaded report.
+
+CHANGES
+-------
+1. Calculus / Calculus Prep Enter-to-advance race
+- Replaced the shared capture-phase competing Enter handler with a fallback-only handler.
+- Existing page/engine Enter handlers get first opportunity to act.
+- The shared fallback yields immediately when the event was already handled.
+- Otherwise it waits until the normal/default key handling completes and advances only if
+  the reproducible problem counter has not changed.
+- Added a short Next/New duplicate-click latch as a second guard against two generated problems.
+- IM1 remains excluded from the shared Calculus/Calculus Prep Enter-to-advance convention.
+- Seeded browser QA now waits 220 ms after the first observed advance before judging the final
+  problem count, so delayed double-advance regressions are caught rather than missed.
+
+2. Classifying Discontinuities seeded-QA compatibility
+- Seeded browser QA now recognizes the engine's actual #problem question container.
+- The custom multi-stage discontinuity workflow is excluded from the generic one-step
+  Next/New Enter test, because that engine intentionally requires completing its location / type /
+  more-discontinuities cycle before New Problem is available.
+- Its reproducibility, question content, report-problem control, page errors, and console errors
+  are still checked normally by seeded QA.
+
+3. Limits & Continuity Comprehensive Review cleanup
+- Removed the Limits & Continuity Assignment Review launch.
+- Removed that assignment-review practice engine page entirely.
+- Computational Limits Practice remains as the sole interactive practice launch on that page.
+- Removed the corresponding sitemap URL.
+- Extra video heading changed from
+  "Indeterminate Trigonometric Limit: Known Limits & L’Hôpital’s Rule"
+  to "Indeterminate Trigonometric Limit: Known Limits".
+- Current instrumented practice-engine count is therefore 88.
+
+4. Regression QA strengthened
+- Browser-infrastructure regression QA now asserts the Enter fallback guards,
+  duplicate-click latch, custom discontinuity #problem handling/exclusion,
+  88-engine expectation, removed Unit 1 assignment-review engine, retained Computational Limits
+  Practice, and cleaned extra-video heading.
+
+LOCAL QA COMPLETED
+------------------
+PASS — Static release QA: 237 HTML pages, 4,850 internal references, 0 broken references,
+       189 indexable/sitemap URLs, 88 practice engines, version 10.6.3.Q.
+PASS — Display-safety QA: 88 engines / 264 source files, 0 errors.
+PASS — Semantic-answer QA: 12,368 IM1 checks + 38,000 shared AP samples, 0 errors.
+PASS — Calculus Prep semantic QA: 11 engines / 5,500 generated problems, 0 errors.
+PASS — Analytics QA: 88 engines / 88 unique IDs, 0 errors.
+PASS — PWA/cache QA: 82 practice pages / 700 local dependencies, 0 errors.
+PASS — Browser-infrastructure regression QA: 19 explicit guards, 0 errors.
+PASS — Fraction-sign equivalence QA: 237,606 stress cases + 58,806 production factoring checks, 0 errors.
+PASS — Targeted Limits family QA: 40,000 problems, 0 errors.
+PASS — AP topic generator QA: 29,000 problems, 0 errors.
+PASS — AP deep audit: 100,000 samples across 50 topics, 0 errors.
+PASS — Specialized calculus QA: 50,000 discontinuity + 38,000 advanced-trig samples, 0 errors.
+PASS — Derivative/topic interaction QA, 0 errors.
+PASS — Unit 1 IVT / Limits-at-Infinity QA: 40,000 IVT problems, 0 errors.
+PASS — Limits-at-Infinity variety QA: 100,000 samples, exact 50/50 +/- infinity, 0 errors.
+PASS — Unit 3 rebuild QA, 0 errors.
+PASS — Unit 4 rebuild QA, 0 errors.
+PASS — Assignment-fidelity QA: 228,074 generated problems, 0 errors.
+PASS — IM1 Unit 2 QA: 150,000 generated problems, 0 errors.
+
+NOT RUN LOCALLY TO COMPLETION
+-----------------------------
+- The very large 220,000-problem AP deterministic stress command exceeded the local single-command
+  execution window on this checkpoint. v10.6.3.Q does not change AP generator mathematics; the
+  same suite passed on v10.6.3.P and will run again in GitHub Actions.
+- Seeded Playwright browser QA cannot be executed reliably in this container because local browser
+  navigation is blocked by the environment. The repaired seeded harness is included and is expected
+  to run in GitHub Actions after deployment.

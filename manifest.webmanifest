@@ -1,0 +1,81 @@
+{
+  "id": "/",
+  "name": "BatchMath",
+  "short_name": "BatchMath",
+  "description": "High school math practice, videos, worksheets, notes, and resources for Integrated Math 1, Calculus Prep, and AP Calculus AB.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#030303",
+  "theme_color": "#030303",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": [
+    "education"
+  ],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/assets/icons/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/maskable-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/icons/maskable-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Integrated Math 1",
+      "short_name": "IM1",
+      "url": "/im1/",
+      "icons": [
+        {
+          "src": "/assets/icons/app-icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Calculus Prep",
+      "short_name": "Calc Prep",
+      "url": "/calculus-prep/",
+      "icons": [
+        {
+          "src": "/assets/icons/app-icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "AP Calculus AB",
+      "short_name": "AP Calc",
+      "url": "/ap-calculus/",
+      "icons": [
+        {
+          "src": "/assets/icons/app-icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

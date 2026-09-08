@@ -1,0 +1,61 @@
+BatchMath v10.6.3.H — Squeeze/Trig Mix + Calculus Enter-Advance Checkpoint
+=========================================================================
+
+STATUS
+------
+PASS for all non-browser release gates run locally.
+The corrected seeded-browser QA harness is included and will run in GitHub Actions,
+where Playwright/Chromium are installed by the workflow.
+
+CHANGES
+-------
+1. Squeeze Theorem / Trigonometric Limits course practice
+- Removed infinity-over-infinity / growth-comparison families from this engine.
+- New intended mix is approximately 20% Squeeze Theorem and 80% straightforward trig limits.
+- Squeeze families use bounded oscillatory factors multiplied by powers tending to 0,
+  including x^p sin(k/x^q) and x^p cos(k/x^q) forms.
+- Regular trig families include sin(kx)/x, x/sin(kx), tan(kx)/x, x/tan(kx),
+  (1-cos(kx))/x, and (cos(kx)-1)/x.
+- 50,000-sample targeted check: 19.784% squeeze / 80.216% regular trig;
+  all 8 resulting variants observed; 0 infinity/log/exponential-growth problems; 0 generic fallback choices.
+
+2. Enter-key advance convention
+- AP Calculus and Calculus Prep now share a site-level convention: once feedback is shown
+  and a Next Question / New Problem control is available, pressing Enter advances exactly once.
+- IM1 is intentionally excluded from this convention.
+- This fixes the Advanced Trigonometric Limits case after an incorrect response/explanation.
+- All 62 AP Calculus instrumented engines and all 11 Calculus Prep instrumented engines load
+  the shared PWA script containing this behavior.
+
+3. Seeded browser QA harness
+- Preserves the prior harness fixes: returns snap:s rather than undefined snap and expects 90 engines.
+- Extended browser QA to verify the Enter-advance convention on AP Calculus / Calculus Prep engines
+  and to fail if one Enter press generates more than one new problem.
+
+QA
+--
+PASS — Static release QA: 239 HTML pages, 4,783 internal references, 0 broken references,
+       90 practice engines, 90 unique analytics IDs, version 10.6.3.H, 0 warnings/errors.
+PASS — Display-safety QA: 90 engines / 265 source files, 0 errors.
+PASS — Semantic-answer QA: IM1 + 39 shared AP generators, 0 errors.
+PASS — Calculus Prep semantic QA: 11 engines / 5,500 generated problems, 0 errors.
+PASS — Analytics QA: 90 engines / 90 unique IDs, 0 errors.
+PASS — PWA/cache QA: 83 practice pages / 626 local dependencies, 0 warnings/errors.
+PASS — AP deterministic stress QA: 220,000 generated problems, 0 errors.
+PASS — Targeted Limits QA: 40,000 generated problems, 0 errors.
+PASS — AP topic generator QA: 30,000 generated problems, 0 errors.
+PASS — AP deep audit: 102,000 samples across 51 topics, 0 warnings/errors.
+PASS — Specialized calculus engine QA: 88,000 sampled problems, 0 errors.
+PASS — Derivative topic enhancement QA.
+PASS — Unit 1 IVT / Limits at Infinity QA.
+PASS — Unit 3 rebuild QA.
+PASS — Unit 4 rebuild QA.
+PASS — Assignment-fidelity QA: 231,074 generated problems, 0 errors.
+PASS — IM1 Unit 2 QA: 150,000 generated problems, 0 errors.
+PASS — Seeded browser QA script syntax / harness structure locally.
+
+LOCAL BROWSER NOTE
+------------------
+Playwright was not installed in the local build environment and npm dependency installation timed out,
+so the full Chromium browser run was not executed locally. The GitHub Actions workflow installs
+Playwright + Chromium before running npm run qa:seeded; the corrected harness is included in this ZIP.

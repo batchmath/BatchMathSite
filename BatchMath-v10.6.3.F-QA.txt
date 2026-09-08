@@ -1,0 +1,26 @@
+BatchMath v10.6.3.F — Resource / Practice / Video Polish
+========================================================
+
+STATUS
+------
+PASS for release-facing non-browser UI/structure gates run for this checkpoint.
+
+CHANGES FROM v10.6.3.E
+----------------------
+- Removed assignment/answer-key section headers sitewide where the resource block itself already makes the content clear.
+- Retained individual assignment/resource titles and the smaller Assignment / Answer Key / Walkthrough controls.
+- Removed the word "Open" from all 80 interactive-practice launch buttons so the buttons now use direct topic-specific labels.
+- Reduced interactive-practice CTA dimensions slightly while retaining the glossy red/yellow treatment and unit-specific math symbols.
+- Preserved f(x) for IM1, limit notation for Unit 1, d/dx / d^2/dx^2 for derivative pages with multiple practices, and integral / double-integral symbols for integral-family pages with multiple practices.
+- Refined embedded video windows with a more integrated rounded gold/red frame, subtle glow/sheens, and a polished red/yellow play treatment.
+- Preserved the Advanced Trigonometric Limits custom BatchMath header link to the homepage.
+
+QA
+--
+PASS — Static release QA: 239 HTML pages, 4,781 internal references, 0 broken references, 90 practice engines, 0 errors/warnings.
+PASS — PWA/cache QA: version 10.6.3.F, 83 practice pages / 626 local dependencies, 0 errors/warnings.
+PASS — Display-safety QA: 90 engines / 265 source files, 0 errors/warnings.
+PASS — Analytics QA: 90 instrumented engines / 90 unique IDs, 0 errors/warnings.
+PASS — Custom UI structure audit: 80 practice buttons; 0 remaining labels beginning with "Open"; 0 assignment/answer-key resource sections retaining a redundant h2; Advanced Trig custom brand href = /.
+
+Generator mathematics and answer logic were not intentionally changed in this UI checkpoint.

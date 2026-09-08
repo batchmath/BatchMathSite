@@ -1,0 +1,44 @@
+BatchMath v10.6.3.M — Unit 3 Applications / Math Rendering Checkpoint
+=====================================================================
+
+STATUS
+------
+PASS for the complete non-browser QA suite and fresh-extracted release checks.
+Browser/human smoke testing remains the final publish gate.
+
+CHANGES
+-------
+- Motion (derivatives): numeric answer choices only; removed None-of-the-other-choices fallback; aligned the lower video cards so the bottom-right video sits level with the adjacent video.
+- Sitewide answer/feedback rendering: shared MathJax re-typesetting and display-safety sweep retained and verified across all 89 current practice engines.
+- Absolute/Local Extrema: greatly expanded function variety on closed intervals; absolute-value functions excluded; balanced absolute and local extrema question families.
+- Increasing/Decreasing/Concavity: broadened function families and difficulty; only ~10% already-factored derivative forms; supports f, f', and f'' given, with inc/dec, extrema, and concavity tasks.
+- Graphing Functions practice engine removed entirely; topic/resource page retained without a practice engine.
+- Linearization/Differentials: rebuilt to emphasize desired linearization and true differential/application question types, including geometric, implicit, trig, polynomial, and approximation families.
+- L'Hopital: expanded to substantially harder and more varied forms; simple/trivial families held to ~20%.
+- Rolle/MVT: expanded function and question variety; no None-of-the-other-choices fallback; four meaningful answer choices.
+- Tangent/Secant Line Approximations: explanation logic now bases over/under estimates on concavity (CU: tangent under/secant over; CD: tangent over/secant under); broader function variety and cleaned MathJax.
+- Unit 3 Applications comprehensive review synchronized to the rebuilt generators.
+- Unit 1 and Unit 2 comprehensive review mixed pools were rebalanced so their source-topic generators appear at equal topic-level ratios.
+- Seeded browser QA expected-engine count updated to 89 after Graphing Functions practice removal.
+
+QA
+--
+PASS — Static release: 238 HTML pages, 4,759 internal refs, 0 broken refs, 190 indexable/sitemap URLs, 89 practice engines, 0 warnings/errors.
+PASS — Display safety: 89 engines / 264 source files, 0 errors.
+PASS — Semantic answer QA: IM1 + 38 shared AP generators, 0 errors.
+PASS — Calculus Prep semantic QA: 5,500 generated, 0 errors.
+PASS — Analytics QA: 89 engines / 89 unique IDs, 0 errors.
+PASS — PWA/cache: 82 practice pages / 618 dependencies, 0 errors.
+PASS — AP deterministic stress: 220,000 generated, 0 errors.
+PASS — Limits family QA: 40,000 generated, 0 errors.
+PASS — AP topic QA: 29,000 generated, 0 errors.
+PASS — AP deep audit: 100,000 samples across 50 topics, 0 errors.
+PASS — Specialized calculus QA: 50,000 discontinuity + 38,000 advanced trig, 0 errors.
+PASS — Derivative-topic interaction QA, 0 errors.
+PASS — Unit 1 IVT / infinity QA, 0 errors.
+PASS — Infinity variety QA: 100,000 samples, exactly 50/50 +/- infinity, all 22 families, 0 errors.
+PASS — Unit 3 rebuild QA: extrema mix ~50/50 absolute/local; factored-derivative share 7.404%; L'Hopital trivial share 19.984%; all requested rebuilt families observed, 0 errors.
+PASS — Unit 4 rebuild QA, 0 errors.
+PASS — Assignment fidelity: 228,074 generated, 0 errors.
+PASS — IM1 Unit 2 QA: 150,000 generated, 0 errors.
+PASS — Fresh-extracted ZIP: static, PWA, display-safety, analytics, and Unit 3 rebuild QA all rerun and passed.

@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="../../../../../favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../../../../apple-touch-icon.png">
+<meta name="description" content="Integrated Math 1 multiplication practice with customizable question counts and timing to build speed and accuracy with multiplication facts.">
+<link rel="canonical" href="https://batchmath.net/im1/unit-1-review/topics/multiplication/practice/">
+<meta property="og:site_name" content="BatchMath">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Multiplication Practice | Integrated Math 1 | BatchMath">
+<meta property="og:description" content="Integrated Math 1 multiplication practice with customizable question counts and timing to build speed and accuracy with multiplication facts.">
+<meta property="og:url" content="https://batchmath.net/im1/unit-1-review/topics/multiplication/practice/">
+  <title>Multiplication Practice | Integrated Math 1 | BatchMath</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #17212b;
+    }
+
+    .page {
+      width: min(900px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 48px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .header h1 {
+      margin: 0 0 8px;
+      font-size: 2.2rem;
+    }
+
+    .header p {
+      margin: 0;
+      color: #5c6670;
+      font-size: 1.05rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .settings {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .setting label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    select,
+    input[type="number"] {
+      width: 100%;
+      padding: 13px 14px;
+      border: 2px solid #d5dbe0;
+      border-radius: 10px;
+      font-size: 1rem;
+      background: #fff;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .primary,
+    .check {
+      background: #17212b;
+      color: #fff;
+    }
+
+    .primary {
+      display: block;
+      margin: 26px auto 0;
+      padding: 15px 30px;
+    }
+
+    .check {
+      display: block;
+      min-width: 180px;
+      margin: 16px auto 0;
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: default;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .stat {
+      text-align: center;
+      background: #f4f6f8;
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 700;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 3px;
+      font-size: 1.35rem;
+    }
+
+    .timer-warning {
+      color: #b45309;
+    }
+
+    .timer-danger {
+      color: #b91c1c;
+    }
+
+    .question-area {
+      text-align: center;
+      padding: 18px 10px 8px;
+    }
+
+    .question {
+      margin: 18px 0 28px;
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    #answer {
+      display: block;
+      width: min(280px, 100%);
+      margin: 0 auto;
+      padding: 15px;
+      text-align: center;
+      font-size: 2rem;
+      border: 3px solid #cbd2d8;
+      border-radius: 12px;
+      outline: none;
+    }
+
+    #answer:focus {
+      border-color: #17212b;
+    }
+
+    .feedback {
+      min-height: 62px;
+      margin-top: 18px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .feedback.correct {
+      color: #166534;
+    }
+
+    .feedback.incorrect {
+      color: #b91c1c;
+    }
+
+    .results {
+      text-align: center;
+    }
+
+    .results h2 {
+      margin-top: 0;
+      font-size: 2rem;
+    }
+
+    .big-score {
+      margin: 12px 0;
+      font-size: 4rem;
+      font-weight: 800;
+    }
+
+    .results p {
+      color: #5c6670;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        width: min(100% - 20px, 900px);
+        padding-top: 20px;
+      }
+
+      .card {
+        padding: 20px 16px;
+      }
+
+      .settings {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .stats {
+        gap: 7px;
+      }
+
+      .stat {
+        padding: 9px 5px;
+        font-size: 0.85rem;
+      }
+
+      .stat span {
+        font-size: 1.12rem;
+      }
+
+      .header h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+
+<style>
+body{background:#030303 !important;color:#f4f4f4 !important}
+.page{max-width:900px}
+.header h1{color:#d71920}
+.header p{display:none}
+.card{background:#090909 !important;color:#f4f4f4 !important;border:1px solid #2b2b2b}
+.setting label{color:#f5c400}
+select,input[type="number"],#answer{background:#111 !important;color:#fff !important;border-color:#363636 !important}
+.primary,.check{background:#d71920 !important;color:#fff !important}
+.stat{background:#121212 !important;color:#f5c400}
+.question{color:#f5c400}
+.feedback.correct{color:#f5c400 !important}
+.feedback.incorrect{color:#ff4b50 !important}
+.results p{color:#aaa !important}
+.batch-back{display:inline-block;margin-bottom:14px;color:#f5c400;text-decoration:none;font-weight:800}
+</style>
+
+<link rel="stylesheet" href="../../../../../assets/im1-keypad.css"><script defer src="../../../../../assets/im1-keypad.js"></script><link rel="stylesheet" href="../../../../../assets/site.css" data-batchmath-shared-style="v10.0"><meta property="og:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="BatchMath — math resources for Integrated Math 1, Calculus Prep, and AP Calculus AB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Multiplication Practice | Integrated Math 1 | BatchMath">
+<meta name="twitter:description" content="Integrated Math 1: Build speed and accuracy.">
+<meta name="twitter:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png">
+<meta name="twitter:image:alt" content="BatchMath — math resources for Integrated Math 1, Calculus Prep, and AP Calculus AB">
+<script type="application/ld+json" data-batchmath-structured-data="v9.5">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://batchmath.net/im1/unit-1-review/topics/multiplication/practice/#page","name":"Multiplication Practice | Integrated Math 1 | BatchMath","url":"https://batchmath.net/im1/unit-1-review/topics/multiplication/practice/","description":"Integrated Math 1: Build speed and accuracy.","isPartOf":{"@id":"https://batchmath.net/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://batchmath.net/"},{"@type":"ListItem","position":2,"name":"Integrated Math 1","item":"https://batchmath.net/im1/"},{"@type":"ListItem","position":3,"name":"Unit 1 - Review","item":"https://batchmath.net/im1/unit-1-review/"},{"@type":"ListItem","position":4,"name":"1. Multiplication","item":"https://batchmath.net/im1/unit-1-review/topics/multiplication/"},{"@type":"ListItem","position":5,"name":"Multiplication Practice","item":"https://batchmath.net/im1/unit-1-review/topics/multiplication/practice/"}]}]}</script>
+
+<!-- BatchMath installable-app foundation — v10.0 -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#030303">
+<meta name="application-name" content="BatchMath">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="BatchMath">
+<script src="/assets/batchmath-storage.js" defer></script>
+<script src="/assets/answer-normalization.js" defer></script>
+<script src="/assets/pwa.js" defer></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-377MTFXSF3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-377MTFXSF3');
+  </script>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_multiplication",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
+</head>
+
+<body><a class="skip-link" href="#main-content">Skip to main content</a>
+  <main id="main-content" class="page">
+<a class="batch-back" href="../">← Topic Page</a>
+    <header class="header">
+      <h1>Multiplication Practice</h1>
+      <p>Build speed and accuracy.</p>
+    </header>
+
+    <section id="setupCard" class="card">
+      <div class="settings">
+        <div class="setting">
+          <label for="timeSelect">Time Limit</label>
+          <select id="timeSelect">
+            <option value="1">1 minute</option>
+            <option value="2">2 minutes</option>
+            <option value="3" selected>3 minutes</option>
+            <option value="4">4 minutes</option>
+            <option value="5">5 minutes</option>
+          </select>
+        </div>
+
+        <div class="setting">
+          <label for="questionSelect">Number of Questions</label>
+          <select id="questionSelect">
+            <option value="10">10 questions</option>
+            <option value="20" selected>20 questions</option>
+            <option value="30">30 questions</option>
+            <option value="40">40 questions</option>
+            <option value="50">50 questions</option>
+            <option value="60">60 questions</option>
+            <option value="70">70 questions</option>
+            <option value="80">80 questions</option>
+            <option value="90">90 questions</option>
+            <option value="100">100 questions</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="startBtn" class="primary">Start Practice</button>
+    </section>
+
+    <section id="practiceCard" class="card hidden">
+      <div class="stats">
+        <div class="stat">
+          Question
+          <span id="progress">1 / 20</span>
+        </div>
+
+        <div class="stat">
+          Score
+          <span id="score">0</span>
+        </div>
+
+        <div id="timerBox" class="stat">
+          Time
+          <span id="timer">3:00</span>
+        </div>
+      </div>
+
+      <div class="question-area">
+        <div id="question" class="question">7 × 8 = ?</div>
+
+        <input
+          id="answer"
+          type="text"
+         
+          autocomplete="off"
+          aria-label="Answer"
+         data-bm-keypad="digits">
+
+        <button id="checkBtn" class="check">Check Answer</button>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="resultsCard" class="card results hidden">
+      <h2>Practice Complete</h2>
+      <div id="finalScore" class="big-score">0 / 20</div>
+      <p id="finalMessage"></p>
+      <button id="againBtn" class="primary">Practice Again</button>
+    </section>
+  </main>
+
+  <script src="../../../../../assets/im1-display-math.js"></script>
+  <script>
+    const setupCard = document.getElementById("setupCard");
+    const practiceCard = document.getElementById("practiceCard");
+    const resultsCard = document.getElementById("resultsCard");
+
+    const timeSelect = document.getElementById("timeSelect");
+    const questionSelect = document.getElementById("questionSelect");
+    const startBtn = document.getElementById("startBtn");
+    const checkBtn = document.getElementById("checkBtn");
+    const againBtn = document.getElementById("againBtn");
+
+    const progressDisplay = document.getElementById("progress");
+    const scoreDisplay = document.getElementById("score");
+    const timerDisplay = document.getElementById("timer");
+    const timerBox = document.getElementById("timerBox");
+    const questionDisplay = document.getElementById("question");
+    const answerInput = document.getElementById("answer");
+    const feedbackDisplay = document.getElementById("feedback");
+
+    const finalScoreDisplay = document.getElementById("finalScore");
+    const finalMessage = document.getElementById("finalMessage");
+
+    let totalQuestions = 20;
+    let currentIndex = 0;
+    let score = 0;
+    let answeredCount = 0;
+    let secondsLeft = 180;
+    let timerId = null;
+    let advanceId = null;
+    let questionPool = [];
+    let acceptingAnswer = false;
+    let sessionFinished = false;
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(BatchMathRNG.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function buildWeightedUniquePool() {
+      const tierHigh = [];     // 6–9 and 12: most common
+      const tierMedium = [];   // 3–5: medium frequency
+      const tierLow = [];      // 2s, 10s, and easy 11s: lower frequency
+      const tierRare = [];     // 0s and 1s: very rare
+      const squares = [];      // 13²–20²: about medium frequency
+
+      // Ordered pairs are intentionally separate:
+      // 6 × 8 and 8 × 6 may both appear.
+      for (let a = 0; a <= 12; a++) {
+        for (let b = 0; b <= 12; b++) {
+          const item = {
+            a,
+            b,
+            text: `${a} × ${b} = ?`,
+            answer: a * b,
+            key: `${a}x${b}`
+          };
+
+          const hasZeroOrOne = (a <= 1 || b <= 1);
+          const hasTwo = (a === 2 || b === 2);
+          const hasTen = (a === 10 || b === 10);
+          const hasEleven = (a === 11 || b === 11);
+
+          // 11 × 11 and 11 × 12 (and 12 × 11) stay in the hardest/high tier.
+          const hardEleven =
+            (a === 11 && b === 11) ||
+            (a === 11 && b === 12) ||
+            (a === 12 && b === 11);
+
+          // 0s and 1s are always very rare, even if paired with a harder fact.
+          if (hasZeroOrOne) {
+            item.problemType = "facts_0_1_rare";
+            tierRare.push(item);
+          }
+          // 2s, 10s, and "easy" 11s are intentionally reduced.
+          // The exceptions 11×11 and 11×12 stay high.
+          else if (
+            hasTwo ||
+            hasTen ||
+            (hasEleven && !hardEleven)
+          ) {
+            item.problemType = "facts_2_10_easy_11";
+            tierLow.push(item);
+          }
+          // Facts involving 3, 4, or 5 are medium frequency.
+          else if (
+            a === 3 || a === 4 || a === 5 ||
+            b === 3 || b === 4 || b === 5
+          ) {
+            item.problemType = "facts_3_5_medium";
+            tierMedium.push(item);
+          }
+          // Remaining facts are dominated by 6–9 and 12,
+          // plus 11×11 and 11×12.
+          else {
+            item.problemType = "facts_6_9_12_hard_11";
+            tierHigh.push(item);
+          }
+        }
+      }
+
+      for (let n = 13; n <= 20; n++) {
+        squares.push({
+          a: n,
+          b: n,
+          text: `${n} × ${n} = ?`,
+          answer: n * n,
+          key: `${n}x${n}`,
+          problemType: "squares_13_20"
+        });
+      }
+
+      shuffle(tierHigh);
+      shuffle(tierMedium);
+      shuffle(tierLow);
+      shuffle(tierRare);
+      shuffle(squares);
+
+      const selected = [];
+      const used = new Set();
+
+      function takeFrom(source, count) {
+        for (const item of source) {
+          if (selected.length >= totalQuestions || count <= 0) break;
+
+          if (!used.has(item.key)) {
+            selected.push(item);
+            used.add(item.key);
+            count--;
+          }
+        }
+      }
+
+      /*
+        Approximate overall targets:
+
+        6–9 / 12 / hard 11s:  50%
+        3–5 facts:            24%
+        13²–20² squares:      10%
+        2s / 10s / easy 11s: 14%
+        0s / 1s:               2%
+
+        These are targets, not guarantees. For very short sessions,
+        rounding and uniqueness can shift the exact percentages slightly.
+      */
+
+      let highTarget = Math.round(totalQuestions * 0.50);
+      let mediumTarget = Math.round(totalQuestions * 0.24);
+      let squareTarget = Math.min(
+        squares.length,
+        Math.round(totalQuestions * 0.10)
+      );
+      let lowTarget = Math.round(totalQuestions * 0.14);
+
+      // Make the rare tier whatever remains so the totals equal the
+      // requested number of questions.
+      let rareTarget =
+        totalQuestions -
+        highTarget -
+        mediumTarget -
+        squareTarget -
+        lowTarget;
+
+      if (rareTarget < 0) rareTarget = 0;
+
+      takeFrom(tierHigh, highTarget);
+      takeFrom(tierMedium, mediumTarget);
+      takeFrom(squares, squareTarget);
+      takeFrom(tierLow, lowTarget);
+      takeFrom(tierRare, rareTarget);
+
+      // Fill any remaining slots from unused questions.
+      // The fill order preserves the intended emphasis as much as possible.
+      const leftovers = [
+        ...shuffle([...tierHigh]),
+        ...shuffle([...tierMedium]),
+        ...shuffle([...squares]),
+        ...shuffle([...tierLow]),
+        ...shuffle([...tierRare])
+      ];
+
+      for (const item of leftovers) {
+        if (selected.length >= totalQuestions) break;
+
+        if (!used.has(item.key)) {
+          selected.push(item);
+          used.add(item.key);
+        }
+      }
+
+      return shuffle(selected);
+    }
+
+    function formatTime(totalSeconds) {
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      return `${minutes}:${String(seconds).padStart(2, "0")}`;
+    }
+
+    function updateTimerDisplay() {
+      timerDisplay.textContent = formatTime(secondsLeft);
+
+      timerBox.classList.remove("timer-warning", "timer-danger");
+
+      if (secondsLeft <= 30) {
+        timerBox.classList.add("timer-danger");
+      } else if (secondsLeft <= 60) {
+        timerBox.classList.add("timer-warning");
+      }
+    }
+
+    function startTimer() {
+      clearInterval(timerId);
+
+      updateTimerDisplay();
+
+      timerId = setInterval(() => {
+        secondsLeft--;
+
+        if (secondsLeft <= 0) {
+          secondsLeft = 0;
+          updateTimerDisplay();
+          finishPractice("time");
+          return;
+        }
+
+        updateTimerDisplay();
+      }, 1000);
+    }
+
+    function showCurrentQuestion() {
+      if (sessionFinished) return;
+
+      if (currentIndex >= questionPool.length) {
+        finishPractice("questions");
+        return;
+      }
+
+      const question = questionPool[currentIndex];
+
+      progressDisplay.textContent =
+        `${currentIndex + 1} / ${questionPool.length}`;
+
+      scoreDisplay.textContent = score;
+      BatchMathDisplayMath.set(questionDisplay, question.text);
+      window.BMAnalytics?.problemGenerated(question);
+
+      answerInput.value = "";
+      answerInput.disabled = false;
+      checkBtn.disabled = false;
+
+      feedbackDisplay.textContent = "";
+      feedbackDisplay.className = "feedback";
+
+      acceptingAnswer = true;
+      if(!window.BatchMathKeypad?.touchMode) answerInput.focus();
+    }
+
+    function goToNextQuestion() {
+      if (sessionFinished) return;
+
+      currentIndex++;
+
+      if (currentIndex >= questionPool.length) {
+        finishPractice("questions");
+      } else {
+        showCurrentQuestion();
+      }
+    }
+
+    function submitAnswer() {
+      if (!acceptingAnswer || sessionFinished) return;
+
+      const rawAnswer = answerInput.value.trim();
+
+      if (rawAnswer === "") {
+        if(!window.BatchMathKeypad?.touchMode) answerInput.focus();
+        return;
+      }
+
+      acceptingAnswer = false;
+      answerInput.disabled = true;
+      checkBtn.disabled = true;
+
+      const studentAnswer = Number(rawAnswer);
+      const currentQuestion = questionPool[currentIndex];
+      const isCorrect = studentAnswer === currentQuestion.answer;
+      answeredCount++;
+      window.BMAnalytics?.answerChecked(currentQuestion, isCorrect);
+
+      clearTimeout(advanceId);
+
+      if (isCorrect) {
+        score++;
+        scoreDisplay.textContent = score;
+
+        feedbackDisplay.textContent = "✓ Correct";
+        feedbackDisplay.className = "feedback correct";
+
+        // Correct answers move on almost immediately.
+        advanceId = setTimeout(goToNextQuestion, 180);
+      } else {
+        // Keep the original problem on the screen for one second.
+        BatchMathDisplayMath.setFeedback(feedbackDisplay, `✗ Incorrect. Correct answer: `, currentQuestion.answer);
+        feedbackDisplay.className = "feedback incorrect";
+        window.BMAnalytics?.solutionRevealed(currentQuestion, {reveal_reason:"incorrect_answer"});
+
+        advanceId = setTimeout(goToNextQuestion, 2000);
+      }
+    }
+
+    function startPractice() {
+      clearInterval(timerId);
+      clearTimeout(advanceId);
+
+      totalQuestions = Number(questionSelect.value);
+      secondsLeft = Number(timeSelect.value) * 60;
+
+      currentIndex = 0;
+      score = 0;
+      answeredCount = 0;
+      sessionFinished = false;
+      acceptingAnswer = false;
+
+      questionPool = buildWeightedUniquePool();
+      window.BMAnalytics?.practiceStarted({question_count:totalQuestions,time_limit_minutes:Number(timeSelect.value)});
+
+      setupCard.classList.add("hidden");
+      resultsCard.classList.add("hidden");
+      practiceCard.classList.remove("hidden");
+
+      scoreDisplay.textContent = "0";
+
+      startTimer();
+      showCurrentQuestion();
+    }
+
+    function finishPractice(reason) {
+      if (sessionFinished) return;
+
+      sessionFinished = true;
+      acceptingAnswer = false;
+
+      clearInterval(timerId);
+      clearTimeout(advanceId);
+
+      answerInput.disabled = true;
+      checkBtn.disabled = true;
+
+      practiceCard.classList.add("hidden");
+      resultsCard.classList.remove("hidden");
+
+      finalScoreDisplay.textContent = `${score} correct`;
+
+      if (reason === "time") {
+        finalMessage.textContent =
+          `Time is up. You answered ${answeredCount} question${answeredCount === 1 ? "" : "s"}.`;
+      } else {
+        finalMessage.textContent =
+          `You completed all ${questionPool.length} questions.`;
+      }
+    }
+
+    function resetPractice() {
+      clearInterval(timerId);
+      clearTimeout(advanceId);
+
+      resultsCard.classList.add("hidden");
+      practiceCard.classList.add("hidden");
+      setupCard.classList.remove("hidden");
+    }
+
+    startBtn.addEventListener("click", startPractice);
+    checkBtn.addEventListener("click", submitAnswer);
+    againBtn.addEventListener("click", resetPractice);
+
+    answerInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        submitAnswer();
+      }
+    });
+  </script>
+<script data-batchmath-local-preview="1">
+(function(){
+  if (window.location.protocol !== 'file:') return;
+  function localizeDirectoryUrl(value){
+    if (!value || /^(?:[a-z][a-z0-9+.-]*:|#|\/)/i.test(value)) return value;
+    var hash = '';
+    var query = '';
+    var hashAt = value.indexOf('#');
+    if (hashAt >= 0) { hash = value.slice(hashAt); value = value.slice(0, hashAt); }
+    var queryAt = value.indexOf('?');
+    if (queryAt >= 0) { query = value.slice(queryAt); value = value.slice(0, queryAt); }
+    if (value.endsWith('/')) value += 'index.html';
+    return value + query + hash;
+  }
+  document.querySelectorAll('a[href]').forEach(function(link){
+    link.setAttribute('href', localizeDirectoryUrl(link.getAttribute('href')));
+  });
+  document.querySelectorAll('option[value]').forEach(function(option){
+    option.setAttribute('value', localizeDirectoryUrl(option.getAttribute('value')));
+  });
+})();
+</script>
+
+<script>
+(function(){
+  const backLink = document.querySelector('.back, .batch-back');
+  if (!backLink) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const source = params.get('from');
+  const referrerIsUnitPractice = /\/im1\/unit-1-review\/practice\/(?:index\.html)?(?:[?#].*)?$/.test(document.referrer || '');
+  const backHref = value => {
+    if (window.location.protocol !== 'file:') return value;
+    let hash = '', query = '';
+    const hashAt = value.indexOf('#'); if (hashAt >= 0) { hash = value.slice(hashAt); value = value.slice(0, hashAt); }
+    const queryAt = value.indexOf('?'); if (queryAt >= 0) { query = value.slice(queryAt); value = value.slice(0, queryAt); }
+    if (value.endsWith('/')) value += 'index.html';
+    return value + query + hash;
+  };
+
+  if (source === 'unit-practice' || (!source && referrerIsUnitPractice)) {
+    backLink.href = backHref('../../../practice/');
+    backLink.textContent = '← Unit 1 Practice';
+  } else {
+    backLink.href = backHref('../');
+    backLink.textContent = '← Topic Page';
+  }
+})();
+</script>
+<footer class="footer"><div class="bm-footer-main">© 2026 BatchMath. All rights reserved. BatchMath™.</div><div class="bm-footer-links"><a href="../../../../../about/">About BatchMath</a></div><div class="bm-legal-note">AP® is a trademark registered by the College Board, which is not affiliated with, and does not endorse, this website.</div></footer>
+</body>
+</html>

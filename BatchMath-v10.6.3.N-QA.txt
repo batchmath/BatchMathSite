@@ -1,0 +1,64 @@
+BatchMath v10.6.3.N — Math Rendering + Continuity Parameter Checkpoint
+=====================================================================
+
+STATUS
+------
+PASS for the complete non-browser release suite, targeted continuity-parameter checks,
+and generated-output Chromium/MathJax rendering audit. Human/browser smoke testing on the
+published site remains the final production gate.
+
+CHANGES
+-------
+1. Sitewide practice math rendering
+- Strengthened the shared AP practice rendering path so questions, answer choices, and feedback
+  normalize legacy/raw TeX before MathJax typesetting.
+- Retained a sitewide practice-feedback MathJax safety net for legacy/custom practice engines.
+- Expanded the deep generator audit so explanations/solutions are inspected along with questions
+  and choices for malformed display strings.
+- Corrected display issues surfaced by the deeper audit before release.
+
+2. Continuity Parameter Practice
+- Every single-parameter prompt that asks for k visibly includes k in the displayed piecewise function.
+- Added three-piece continuity problems with middle piece ax^2 + bx + C.
+- Those three-piece problems impose continuity at two breakpoints and require solving a two-equation
+  system for a and b.
+- Generator version bumped to 4.
+- Targeted 10,000-problem check: 3,018 three-piece systems (30.18%), 0 missing-parameter prompts,
+  0 malformed system cases.
+
+RENDERING AUDIT
+---------------
+PASS — Generated-output Chromium/MathJax audit after the v10.6.3.N version bump:
+- 1,500 generated practice samples across AP Calculus, Calculus Prep, and IM1.
+- AP Calculus: 500 samples spanning all 50 individual AP topic-generator audit targets.
+- Calculus Prep: 550 samples spanning all 11 engines.
+- IM1: 450 samples spanning the 9 independently generated Unit 1 engines used by semantic QA.
+- 7,473 user-visible generated string fields rendered/audited.
+- 4,061 MathJax containers produced.
+- 0 visible raw TeX commands/delimiters, 0 dropped frac/quad command words, 0 NaN leakage,
+  and 0 MathJax merror nodes in the compatibility rendering run.
+- The browser audit uses local MathJax 3.2.1 because network access is unavailable in the QA
+  container; the production site remains pinned to MathJax 4.1.3 and release QA verifies that pin.
+
+FULL QA
+-------
+PASS — Static release QA: 238 HTML pages, 4,759 internal refs, 0 broken refs,
+       190 indexable/sitemap URLs, 89 practice engines, 0 warnings/errors.
+PASS — Display-safety QA: 89 engines / 264 source files, 0 errors.
+PASS — Semantic-answer QA: 12,368 IM1 generated/displayed problems + 38,000 shared AP samples,
+       0 errors (one informational validator-coverage warning).
+PASS — Calculus Prep semantic QA: 11 engines / 5,500 generated problems, 0 errors.
+PASS — Analytics QA: 89 engines / 89 unique IDs, 0 errors.
+PASS — PWA/cache QA: version 10.6.3.N, 82 practice pages / 618 local dependencies, 0 errors.
+PASS — AP deterministic stress QA: 220,000 generated problems, 0 errors.
+PASS — Limits family QA: 40,000 generated problems, 0 errors.
+PASS — AP topic generator QA: 29,000 generated problems, 0 errors.
+PASS — AP deep audit: 100,000 samples across 50 topics, 0 warnings/errors.
+PASS — Specialized calculus QA: 50,000 discontinuity + 38,000 advanced trig samples, 0 errors.
+PASS — Derivative-topic interaction QA, 0 errors.
+PASS — Unit 1 IVT / Limits at Infinity QA: 40,000 IVT samples, 0 errors.
+PASS — Infinity variety QA: 100,000 samples, exactly 50/50 +/- infinity, all 22 families, 0 errors.
+PASS — Unit 3 rebuild QA, 0 errors.
+PASS — Unit 4 rebuild QA, 0 errors.
+PASS — Assignment-fidelity QA: 228,074 generated problems, 0 errors.
+PASS — IM1 Unit 2 QA: 150,000 generated problems, 0 errors.

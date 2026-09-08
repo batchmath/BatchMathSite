@@ -1,0 +1,80 @@
+name: BatchMath QA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install QA dependency
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Install Chromium for seeded generator QA
+        run: npx playwright install --with-deps chromium
+
+      - name: Static release QA
+        run: npm run qa:static
+
+      - name: Sitewide display-safety QA
+        run: npm run qa:display
+
+      - name: Independent semantic-answer QA
+        run: npm run qa:semantic
+
+      - name: Calculus Prep semantic QA
+        run: npm run qa:prep
+
+      - name: Analytics instrumentation QA
+        run: npm run qa:analytics
+
+      - name: PWA and cache architecture QA
+        run: npm run qa:pwa
+
+      - name: Deterministic AP generator stress QA
+        run: npm run qa:math
+
+      - name: Targeted Limits family QA
+        run: npm run qa:limits
+
+      - name: AP topic generator structural QA
+        run: npm run qa:topics
+
+      - name: AP individual-topic deep audit
+        run: npm run qa:deep
+
+      - name: New calculus engine stress QA
+        run: npm run qa:newcalc
+
+      - name: Derivative topic enhancement QA
+        run: npm run qa:derivative-topics
+
+      - name: Unit 1 IVT and Limits-at-Infinity QA
+        run: npm run qa:unit1-ivt
+
+      - name: Seeded generator browser QA
+        run: npm run qa:seeded
+
+      - name: Upload QA reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: batchmath-qa-results
+          path: qa-results/
+          if-no-files-found: warn
+

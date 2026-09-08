@@ -1,0 +1,81 @@
+BatchMath v10.6.3.J — Unit 1 Discontinuities + Unit 2 Derivative Engine Rework
+================================================================================
+
+STATUS
+------
+PASS for all non-browser release gates and targeted engine QA run for this checkpoint.
+Browser/human smoke testing remains the final publish gate; GitHub Actions should run the corrected seeded-browser harness.
+
+CHANGES
+-------
+1. Classifying Discontinuities
+- Rebuilt as a location-first, multi-discontinuity cycle.
+- Student enters a discontinuity location before any classification is revealed.
+- A correct location opens three classification buttons: Removable, Jump, Infinite.
+- Classification buttons use green/red correct/incorrect highlighting.
+- A wrong location reveals one actual remaining discontinuity and explains its type and reason.
+- After each resolved discontinuity, student chooses No More Discontinuities or Input Another Discontinuity.
+- The cycle repeats until the student correctly indicates there are no discontinuities left.
+- Problem families include single and multiple removable, jump, and infinite discontinuities.
+
+2. Difference Quotient
+- Removed derivative-limit evaluation prompts from the Difference Quotient engine.
+- Practice now asks only to simplify one of the two intended difference-quotient forms.
+- Expanded/retained linear, polynomial, radical, and reciprocal families.
+- Math in choices and explanations is wrapped for MathJax so raw strings such as \\frac{...} no longer display as text.
+
+3. Product Rule / Quotient Rule
+- Each selector now has exactly two categories: Basic and Using All Function Types.
+- Basic uses only very simple polynomial pieces.
+- Using All Function Types mixes polynomial, trig, logarithmic, exponential, radical, and genuine chain-rule compositions.
+- Matching comprehensive-review copies use the same updated generators.
+
+4. Trig Derivatives
+- With Chain Rule now includes non-polynomial inner functions and multiple chain-rule layers, not just simple polynomial arguments.
+- Includes nested exponential, logarithmic, radical, and trig compositions.
+
+5. Chain Rule
+- Selector now has four categories:
+  * Simple Chain Rule
+  * Multiple Applications of Chain Rule
+  * Chain Rule with Other Rules
+  * Everything Combined
+- Multiple Applications contains pure nested-composition chain-rule problems only.
+- Product/quotient combinations are placed in Chain Rule with Other Rules.
+- Everything Combined mixes all three categories.
+- Student-facing prompt is consistently "Find the derivative."
+- Display formatting suppresses coefficient 1 (for example, no 1x).
+- Matching comprehensive-review copies use the updated derivative generators.
+
+QA
+--
+PASS — Static release QA: 239 HTML pages, 4,783 internal references, 0 broken references,
+       90 practice engines, 90 unique analytics IDs, version 10.6.3.J, 0 warnings/errors.
+PASS — Display-safety QA: 90 engines / 265 source files, 0 errors.
+PASS — Semantic-answer QA: IM1 + shared AP generators, 0 errors.
+PASS — Calculus Prep semantic QA: 11 engines / 5,500 generated problems, 0 errors.
+PASS — Analytics QA: 90 engines / 90 unique IDs, 0 errors.
+PASS — PWA/cache QA: 83 practice pages / 626 local dependencies, 0 warnings/errors.
+PASS — AP deterministic stress QA: 220,000 generated problems, 0 errors.
+PASS — Targeted Limits QA: 40,000 generated problems, 0 errors.
+PASS — AP topic generator QA: 30,000 generated problems, 0 errors.
+PASS — AP deep audit: 102,000 samples across 51 topics, 0 warnings/errors.
+PASS — Specialized calculus engine QA: 50,000 discontinuity + 38,000 advanced trig samples, 0 errors.
+PASS — Derivative/topic interaction QA:
+       Difference Quotient 20,000;
+       Product 8,000 Basic + 8,000 All Function Types;
+       Quotient 8,000 Basic + 8,000 All Function Types;
+       Trig 4,000 without-chain + 12,000 with-chain;
+       Chain 5,000 simple + 7,000 multiple + 7,000 other-rules + 15,000 combined;
+       0 warnings/errors.
+PASS — Unit 1 IVT QA: 40,000 samples, 0 errors.
+PASS — Limits at Infinity variety QA: 100,000 samples, exactly 50,000 +infinity / 50,000 -infinity,
+       all 22 families observed, 0 errors.
+PASS — Unit 3 rebuild QA.
+PASS — Unit 4 rebuild QA.
+PASS — Assignment-fidelity QA: 231,074 generated problems, 0 errors.
+PASS — IM1 Unit 2 QA: 150,000 generated problems, 0 errors.
+
+NOTE
+----
+Local browser/Playwright QA was not run in this container. The corrected seeded-browser harness is included for GitHub Actions.

@@ -1,0 +1,119 @@
+BatchMath v10.6.3.A — Cumulative Working Checkpoint
+====================================================
+
+STATUS
+------
+PASS for the through-Unit-4 non-browser release gates run for this checkpoint.
+
+BASELINE / CONTINUITY
+---------------------
+- Preserves the verified v10.6.1 site and the documented v10.6.2 IM1 future-unit roadmap delta.
+- Carries forward the cumulative Website 6 Unit 1–3 engine corrections.
+- Completes the requested Unit 4 Integrals engine review/rebuild through the remainder of Unit 4.
+- This archive is also the persistent working-copy checkpoint for the next Website chat.
+
+UNIT 3 FINALIZATION
+-------------------
+- Tangent/Normal: retained broad function families and corrected TeX/MathJax escaping, including the literal italic "quad" failure class.
+- Horizontal/Vertical Tangents: broader hand-solvable explicit/vertical-tangent families.
+- Absolute/Local Extrema: prompts explicitly use the given interval; no generic "Cannot be determined" choice; parameterized variety.
+- Increasing/Decreasing/Concavity/Extrema: parameterized sign/concavity/extrema families.
+- Graphing Functions: broader parameterized derivative/second-derivative/trig/rational behavior; TeX infinity only.
+- Linearization: approximation-focused families (square/cube/fourth roots, reciprocal, sine).
+- L'Hopital: evaluation plus applicability reasoning and two-application cases.
+- Motion: velocity/speed/acceleration families with speed = |velocity|.
+- Rolle/MVT and Tangent/Secant: retained the reviewed multi-part/selection behavior and broadened parameterization.
+- Deep-audit narrow-pool warnings for the reviewed Unit 3 engines: eliminated.
+
+UNIT 4 FINALIZATION
+-------------------
+- Rectangular Approximations: explicit "approximate the integral" wording; left/right/midpoint, functions and tables, varied intervals.
+- Trapezoidal Approximations: equal/unequal tables plus function-evaluation problems; explicit integral wording.
+- Sigma Notation: polynomial combinations using k, including k^2, k, constants, and shifted-square structures.
+- Limit/Summation Definite Integrals: two-stage integral -> Riemann sum -> evaluation direction; responsive single-column laptop layout.
+- Integrals Using Geometry: triangle/signed area, upper/lower/shifted/complementary semicircles, quarter circles, absolute value, combined regions, cross-axis lines; removed generic "Cannot be determined" fallback.
+- FTC / Integral Rules: variable lower/upper bounds, two variable/nonlinear bounds, trig/exponential bounds, reverse/split/combine/constant/solve-missing rules.
+- Basic Integrals: powers, negative/fractional powers, divide-each-term/log structure, trig identities/basic trig, definite integrals.
+- U-Substitution: broad trig/sec/csc/exponential/radical/power-composition families.
+- Natural Log / Inverse Trig integral pool: u'/u, polynomial division to log, inverse tangent and inverse sine antiderivatives.
+- MVT for Integrals: average-value families plus find-c families.
+- Comprehensive Review: full Unit 4 mixed selector across approximations, sigma/Riemann, geometry, FTC/rules, basic/u-sub/log/MVT.
+- Deep-audit narrow-pool warnings for the reviewed Unit 4 engines: eliminated.
+
+QA RUNS
+-------
+PASS — Static release QA
+- HTML pages: 239
+- Internal references: 4,780
+- Broken internal references: 0
+- Indexable/sitemap URLs: 191 / 191
+- Practice engines: 90
+- Unique analytics IDs: 90
+- Identifying vendor/assistant string hits: 0
+- Errors: 0
+
+PASS — Sitewide display-safety QA
+- Practice engines: 90
+- Source files audited: 265
+- Errors: 0
+
+PASS — Semantic answer QA
+- IM1 generated/displayed checks: 12,368
+- Shared AP topic problems sampled: 38,000
+- Errors: 0
+- One informational validator-coverage warning only.
+
+PASS — Calculus Prep semantic QA
+- 5,500 generated problems
+- Errors: 0
+
+PASS — Analytics QA
+- 90 engines / 90 unique IDs
+- Errors: 0
+
+PASS — PWA/cache QA
+- Version: 10.6.3.A
+- Practice pages audited: 83
+- Local dependencies audited: 626
+- Errors: 0
+
+PASS — Unit 1 IVT / Limits at Infinity QA
+- 40,000 generated problems
+- Errors: 0
+
+PASS — Derivative topic enhancement QA
+PASS — Specialized calculus engine QA
+PASS — Unit 3 rebuild QA
+PASS — Unit 4 rebuild QA
+PASS — Assignment-fidelity QA
+- 231,023 generated problems
+- 60,009 independent numeric/exact checks
+- 123,193 structural checks
+- Errors: 0
+
+PASS — IM1 Unit 2 QA
+- 150,000 generated problems
+- 50,518 independent semantic checks
+- Errors: 0
+
+PASS — Reduced current AP comprehensive regression
+- 22,000 generated problems across 22 unchanged comprehensive categories
+- Errors: 0
+- The historical full 260,000-problem stress baseline remains established for the unchanged Unit 1/2 comprehensive generator; current Unit 3/4 changes were additionally covered by their dedicated rebuild/fidelity/deep-audit suites.
+
+PASS — Targeted Limits QA
+- 40,000 generated problems
+- Errors: 0
+
+PASS — Shared AP topic generator QA
+- 30,000 generated problems
+- Errors: 0
+
+PASS — AP individual-topic deep audit
+- 102,000 raw generated samples across 51 live topic-practice pages
+- Errors: 0
+- Remaining informational repeat warnings are confined to Units 5–6, outside this checkpoint's requested through-Unit-4 scope.
+
+BROWSER QA NOTE
+---------------
+The existing Playwright browser suite remains in the project. This checkpoint was validated with the non-browser release gates above; browser/human smoke testing remains a final publish gate.
