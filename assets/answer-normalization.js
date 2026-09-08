@@ -1,4 +1,4 @@
-/* BatchMath answer normalization — v10.6.3.Q
+/* BatchMath answer normalization — v10.6.3.R
    Canonicalizes mathematically equivalent negative-fraction sign placement
    before practice engines inspect a typed response. This is intentionally
    sitewide so numerator, denominator, and leading-minus forms are treated

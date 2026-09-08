@@ -1,8 +1,8 @@
-/* BatchMath PWA registration/update foundation — v10.6.3.Q */
+/* BatchMath PWA registration/update foundation — v10.6.3.R */
 (() => {
   'use strict';
 
-  const APP_VERSION = '10.6.3.Q';
+  const APP_VERSION = '10.6.3.R';
   const state = {
     version: APP_VERSION,
     supported: 'serviceWorker' in navigator,
@@ -97,13 +97,10 @@
   // Enter advances. IM1 is intentionally excluded because its engines do not
   // use this auto-advance convention.
   //
-  // IMPORTANT: many older practice pages already have their own Enter handler.
-  // This shared handler is therefore a *fallback*, not a competing capture-phase
-  // handler. Native/engine handlers get the key event first. After the event's
-  // normal/default handling has had a chance to advance, the fallback advances
-  // only if the reproducible-problem counter has not changed. This prevents one
-  // Enter press from generating two problems. A short click latch also protects
-  // against two handlers programmatically clicking the same Next/New button.
+  // Own advancement at the start of the key event, before input handlers can
+  // submit an answer and reveal Next. One event either submits OR advances.
+  // Capture on window also prevents native button activation and competing
+  // document/input handlers from processing an already-consumed advance.
   if (/^\/(?:ap-calculus|calculus-prep)\//.test(location.pathname) && !window.__BM_CALC_ENTER_ADVANCE_BOUND__) {
     window.__BM_CALC_ENTER_ADVANCE_BOUND__ = true;
     const visibleEnabled = button => {
@@ -117,48 +114,17 @@
       const text = (feedback.textContent || '').trim();
       return !!text && (feedback.classList.contains('shown') || feedback.classList.contains('correct') || feedback.classList.contains('wrong') || feedback.classList.contains('incorrect'));
     };
-    const advanceControl = () => {
-      const next = document.querySelector('button#next');
-      if (visibleEnabled(next)) return next;
-      if (feedbackShown()) {
-        const fresh = document.querySelector('button#new');
-        if (visibleEnabled(fresh)) return fresh;
-      }
-      return null;
-    };
-
-    // A rapid duplicate programmatic click on the same advance button is never
-    // useful and was the cause of several two-problem jumps in browser QA.
-    let lastAdvanceButton = null;
-    let lastAdvanceClickAt = -Infinity;
-    document.addEventListener('click', event => {
-      const button = event.target?.closest?.('button#next, button#new');
-      if (!button) return;
-      const now = performance.now();
-      if (button === lastAdvanceButton && now - lastAdvanceClickAt < 180) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        return;
-      }
-      lastAdvanceButton = button;
-      lastAdvanceClickAt = now;
-    }, true);
-
-    document.addEventListener('keydown', event => {
+    window.addEventListener('keydown', event => {
       if (event.key !== 'Enter' || event.isComposing || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) return;
-      const target = advanceControl();
-      if (!target) return;
-
-      // If a page-specific handler already handled Enter, do not compete with it.
-      if (event.defaultPrevented) return;
-      const before = Number(window.BatchMathRepro?.problemCount || 0);
-      setTimeout(() => {
-        const afterNative = Number(window.BatchMathRepro?.problemCount || 0);
-        if (afterNative > before) return;
-        const fallbackTarget = advanceControl();
-        if (fallbackTarget) fallbackTarget.click();
-      }, 0);
-    });
+      if (event.target?.closest?.('dialog, textarea, select, a, .dropdown, .menu-toggle')) return;
+      const next = document.querySelector('button#next');
+      const fresh = document.querySelector('button#new');
+      const target = visibleEnabled(next) ? next : feedbackShown() && visibleEnabled(fresh) ? fresh : null;
+      if (!target && !event.repeat) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      if (!event.repeat && target) target.click();
+    }, true);
   }
 
   if (!state.supported || !/^https?:$/.test(location.protocol)) return;
@@ -218,7 +184,7 @@
 })();
 
 
-// v10.6.3.Q — Practice feedback MathJax safety net.
+// v10.6.3.R — Practice feedback MathJax safety net.
 (function batchMathMathJaxSafety(){
   const commandRE=/\\\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|lt|gt|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|to|le|ge|ne|equiv|partial)\b/;
   const protectedRE=/\\\\\([\\s\\S]*?\\\\\)|\\\\\[[\\s\\S]*?\\\\\]/g;

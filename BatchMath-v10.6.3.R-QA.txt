@@ -1,0 +1,53 @@
+BatchMath v10.6.3.R - Generation counting and Enter behavior
+
+CUMULATIVE BASELINE
+Complete site from uploaded v10.6.3.Q, with the corrections below.
+
+FINDINGS FROM THE UPLOADED GITHUB REPORT
+58 failures: 38 two-generation reports and 20 Enter wait timeouts.
+All 38 two-generation failures map to code paths that called noteProblem
+explicitly and then called BMAnalytics.problemGenerated, which calls noteProblem
+again. Thus these reports alone did not establish two actual new questions.
+The synthetic Enter test also exposed Next without completing an answer. On
+input/editor pages, the input handler prevented the event's default action;
+the Q fallback then returned without clicking the artificially revealed Next.
+
+CHANGES
+- BMAnalytics.problemGenerated is now the sole owner of recording generation.
+  Removed the duplicate direct calls in shared AP and IM1 Unit 2 engines,
+  advanced trig limits, and classifying discontinuities. Real repeated
+  generations are still counted, even if their problem IDs are identical.
+- Shared AP/Calculus Prep advancement handles Enter at window capture when
+  Next is available (or New is available with feedback). It consumes the key
+  event and clicks once. Removed the timer fallback and time-based click latch.
+- Held Enter is suppressed. Modified keys, composition, navigation controls,
+  select/textarea controls, and dialogs are left to their own handlers.
+- Shared AP numeric/two-stage submission cannot also advance on the same
+  prevented Enter event; feedback remains available to read.
+- IM1 keyboard behavior is unchanged.
+- Seeded QA asserts exactly one initial generation. Its all-engine synthetic
+  Enter routing check explicitly clears focus and is labeled as a smoke test.
+- Added six real browser answer/feedback/Enter scenarios covering shared
+  multiple choice, numerical/composite, two-stage, derivative keypad, and
+  Calculus Prep exact editors. Checks for delayed extra generation and repeats.
+- Added executable production-code Node VM regression tests to the existing
+  browser-infrastructure gate and added that gate to GitHub Actions.
+- Updated release/service-worker versions so the corrected assets refresh.
+
+COMPLETED LOCAL VALIDATION
+PASS: 44 executable keyboard/accounting regression cases (Node VM, not Chromium).
+PASS: browser-infrastructure regression suite.
+PASS: static release QA - 237 HTML pages, 88 engines, 4,850 internal references,
+      zero broken internal references, zero errors.
+PASS: analytics QA - 88 engines and 88 unique IDs, zero errors.
+PASS: display-safety QA - 88 engines / 264 source files, zero errors.
+PASS: PWA/cache QA - 82 practice pages / 700 dependencies, zero errors.
+PASS: JavaScript syntax checks for updated browser QA modules.
+
+LIMITATION
+Chromium could not be installed here: the Playwright browser download timed
+out. Neither the full seeded browser suite nor the six new real-answer browser
+scenarios have been run locally. The next GitHub Actions run must confirm
+browser behavior. This release is not claimed to have a full browser PASS.
+Generator mathematics was not changed; large math stress suites were not rerun.
+Historical checkpoint QA documents describe their own releases, not this one.

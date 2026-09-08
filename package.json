@@ -1,7 +1,7 @@
 {
   "name": "batchmath-site-qa",
   "private": true,
-  "version": "10.6.3.Q",
+  "version": "10.6.3.R",
   "scripts": {
     "qa:static": "node tools/release-qa.mjs",
     "qa:math": "node tools/ap-generator-stress-qa.mjs",

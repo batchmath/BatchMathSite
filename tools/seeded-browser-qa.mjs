@@ -4,6 +4,7 @@ import path from 'node:path';
 import http from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
+import { exerciseAnsweredEnter, realEnterEngines } from './answered-enter-browser-qa.mjs';
 
 const HERE=path.dirname(fileURLToPath(import.meta.url));
 const ROOT=path.resolve(HERE,'..');
@@ -12,7 +13,7 @@ fs.mkdirSync(OUT,{recursive:true});
 const PORT=Number(process.env.BM_QA_PORT||4173);
 const SEED_COUNT=Math.max(2,Number(process.env.BM_QA_SEEDS||3));
 const BASE_SEED=Number(process.env.BM_QA_BASE_SEED||1040000);
-const errors=[];const warnings=[];const results=[];let enterAdvanceChecks=0;
+const errors=[];const warnings=[];const results=[];let enterAdvanceChecks=0;let answeredEnterChecks=0;
 const ENTER_ADVANCE_EXCLUSIONS=new Set(['ap_classifying_discontinuities']);
 const norm=p=>p.split(path.sep).join('/');
 
@@ -32,17 +33,17 @@ async function sample(context,engine,seed,checkEnterAdvance=false){
   try{
     const openAndStart=async()=>{
       await page.goto(url,{waitUntil:'domcontentloaded',timeout:15000});
-      await page.waitForFunction(()=>window.BatchMathRepro&&window.BatchMathRNG&&window.BatchMathAnswers,{timeout:5000});
+      await page.waitForFunction(()=>window.BatchMathRepro&&window.BatchMathRNG&&window.BatchMathAnswers,null,{timeout:5000});
       const start=page.locator('#startBtn');if(await start.count())await start.click();
     };
     await openAndStart();
-    try{await page.waitForFunction(()=>window.BatchMathRepro?.problemCount>=1,{timeout:10000});}
+    try{await page.waitForFunction(()=>window.BatchMathRepro?.problemCount>=1,null,{timeout:10000});}
     catch(firstError){
       // One transient CI navigation/render stall should not turn an otherwise
       // deterministic engine into a false failure. Reload once; a genuinely
       // broken engine will fail the second bounded wait as well.
       await openAndStart();
-      await page.waitForFunction(()=>window.BatchMathRepro?.problemCount>=1,{timeout:15000});
+      await page.waitForFunction(()=>window.BatchMathRepro?.problemCount>=1,null,{timeout:15000});
     }
     const fractionNormalization=await page.evaluate(()=>{
       const f=window.BatchMathAnswers?.normalizeFractionSigns;
@@ -59,13 +60,20 @@ async function sample(context,engine,seed,checkEnterAdvance=false){
       return {snap:s,questionSignature:q.slice(0,1000),reportButtonVisible:!!btn&&getComputedStyle(btn).display!=='none'};
     });
     if(String(snap.snap.seed)!==String(seed))throw new Error(`reported seed ${snap.snap.seed} != requested ${seed}`);
+    if(snap.snap.problemCount!==1)throw new Error(`first question recorded ${snap.snap.problemCount} generation events instead of 1`);
     if(!snap.snap.problemId)throw new Error('generated problem has no reproducible problemId/key');
     if(!snap.reportButtonVisible)throw new Error('Report a Problem button did not become available after generation');
     if(!snap.questionSignature)throw new Error('generated question area appears empty');
     if(pageErrors.length)throw new Error(`page error: ${pageErrors.join(' | ')}`);
     if(consoleErrors.length)throw new Error(`console error: ${consoleErrors.join(' | ')}`);
     if(checkEnterAdvance && (engine.course==='ap_calculus_ab'||engine.course==='calculus_prep')){
-      const before=Number(snap.snap.problemCount||1);
+      if(realEnterEngines.has(engine.engineId)){
+        await exerciseAnsweredEnter(page);
+        answeredEnterChecks++;
+      }
+      // Routing-only smoke test for every standard engine. The separate tests
+      // above submit real answers; this synthetic setup tests the visible control.
+      const before=await page.evaluate(()=>window.BatchMathRepro.problemCount);
       const prep=await page.evaluate(()=>{
         const next=document.getElementById('next');
         if(next){next.hidden=false;next.disabled=false;next.style.display='inline-block';return {control:'next'};}
@@ -79,6 +87,7 @@ async function sample(context,engine,seed,checkEnterAdvance=false){
         return {control:null};
       });
       if(!prep.control)throw new Error('no next/new-problem control available for Enter-advance QA');
+      await page.evaluate(()=>document.activeElement?.blur());
       await page.keyboard.press('Enter');
       await page.waitForFunction(n=>Number(window.BatchMathRepro?.problemCount||0)>n,before,{timeout:3000});
       // Allow any competing delayed handler/default button activation to fire before
@@ -88,6 +97,8 @@ async function sample(context,engine,seed,checkEnterAdvance=false){
       if(after!==before+1)throw new Error(`Enter advance generated ${after-before} problems instead of exactly 1`);
       enterAdvanceChecks++;
     }
+    if(pageErrors.length)throw new Error(`page error after interaction: ${pageErrors.join(" | ")}`);
+    if(consoleErrors.length)throw new Error(`console error after interaction: ${consoleErrors.join(" | ")}`);
     return snap;
   } finally {await page.close();}
 }
@@ -121,6 +132,6 @@ try{
 } catch(e){errors.push(`Browser QA infrastructure failure: ${e.stack||e.message||e}`);
 } finally {if(browser)await browser.close().catch(()=>{});await new Promise(r=>server.close(r));}
 
-const report={ok:errors.length===0,generatedAt:new Date().toISOString(),seedCount:SEED_COUNT,engineCount:new Set(results.map(r=>r.engineId)).size,samples:results.length,enterAdvanceChecks,errors,warnings,results};
+const report={ok:errors.length===0,generatedAt:new Date().toISOString(),seedCount:SEED_COUNT,engineCount:new Set(results.map(r=>r.engineId)).size,samples:results.length,enterAdvanceChecks,answeredEnterChecks,errors,warnings,results};
 fs.writeFileSync(path.join(OUT,'seeded-generator-qa.json'),JSON.stringify(report,null,2)+'\n');
-const lines=[`BatchMath seeded generator browser QA`,`Result: ${report.ok?'PASS':'FAIL'}`,`Engines: ${report.engineCount}`,`Seeds per engine: ${SEED_COUNT}`,`Reproducibility samples: ${results.filter(r=>r.ok).length}`,`Calculus/Calculus Prep Enter-advance checks: ${enterAdvanceChecks}`,'',`Warnings: ${warnings.length}`,...warnings.map(x=>`- ${x}`),'',`Errors: ${errors.length}`,...errors.map(x=>`- ${x}`),''];fs.writeFileSync(path.join(OUT,'seeded-generator-qa.txt'),lines.join('\n'));console.log(lines.join('\n'));if(errors.length)process.exit(1);
+const lines=[`BatchMath seeded generator browser QA`,`Result: ${report.ok?'PASS':'FAIL'}`,`Engines: ${report.engineCount}`,`Seeds per engine: ${SEED_COUNT}`,`Reproducibility samples: ${results.filter(r=>r.ok).length}`,`Calculus/Calculus Prep Enter routing checks: ${enterAdvanceChecks}`,`Real answer/Enter workflow checks: ${answeredEnterChecks}`,'',`Warnings: ${warnings.length}`,...warnings.map(x=>`- ${x}`),'',`Errors: ${errors.length}`,...errors.map(x=>`- ${x}`),''];fs.writeFileSync(path.join(OUT,'seeded-generator-qa.txt'),lines.join('\n'));console.log(lines.join('\n'));if(errors.length)process.exit(1);

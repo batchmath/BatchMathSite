@@ -67,6 +67,9 @@ jobs:
       - name: Unit 1 IVT and Limits-at-Infinity QA
         run: npm run qa:unit1-ivt
 
+      - name: Keyboard and browser-infrastructure regressions
+        run: npm run qa:browser-infra
+
       - name: Seeded generator browser QA
         run: npm run qa:seeded
 

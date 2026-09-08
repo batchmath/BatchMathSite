@@ -39,15 +39,9 @@ if(!/snap:s/.test(seeded))fail('seeded browser QA no longer returns snapshot as 
 if(!/BatchMathAnswers/.test(seeded))fail('seeded browser QA no longer waits for/tests answer normalizer');
 stats.seededHarnessGuards=3;
 
-// Enter-to-advance regression: shared calculus handler must be fallback-only so
-// page-native Enter handlers cannot race it and generate two problems.
-const pwa=fs.readFileSync(path.join(ROOT,'assets/pwa.js'),'utf8');
-if(!/If a page-specific handler already handled Enter/.test(pwa))fail('shared calculus Enter handler is not documented/implemented as fallback-only');
-if(!/if \(event\.defaultPrevented\) return;/.test(pwa))fail('shared calculus Enter handler does not yield to native handled events');
-if(!/const before = Number\(window\.BatchMathRepro\?\.problemCount \|\| 0\);/.test(pwa))fail('shared calculus Enter fallback does not snapshot the problem counter');
-if(!/if \(afterNative > before\) return;/.test(pwa))fail('shared calculus Enter fallback does not suppress a second advance after native handling');
-if(!/button#next, button#new/.test(pwa)||!/lastAdvanceClickAt/.test(pwa))fail('Next/New rapid duplicate-click latch missing');
-stats.enterAdvanceRaceGuards=5;
+// Execute keyboard and generation-accounting regressions against production code.
+await import('./keyboard-regression-qa.mjs');
+stats.keyboardBehaviorSuite=1;
 
 // Classifying Discontinuities has a custom multi-stage question container and
 // should not be forced through the standard one-step Enter-advance test.
