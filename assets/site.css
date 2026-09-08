@@ -638,8 +638,12 @@ body .video-play::after{z-index:4!important}
 }
 
 
-/* v10.6.3.G practice-label fitting */
+/* v10.6.3.H practice-label fitting */
 a.bm-practice-launch{min-height:72px!important;padding:9px 19px 9px 15px!important;}
 .bm-practice-label{min-width:0!important;font-size:clamp(.88rem,1.7vw,1.12rem)!important;line-height:1.14!important;white-space:normal!important;text-wrap:balance;overflow-wrap:normal;word-break:normal;}
 .bm-practice-arrow{margin-left:12px!important;}
 @media(max-width:620px){a.bm-practice-launch{min-height:68px!important;padding:8px 14px 8px 11px!important}.bm-practice-label{font-size:.86rem!important;line-height:1.12!important}}
+
+/* v10.6.3.M: keep video frames aligned when titles wrap to different line counts. */
+.video-grid.multi .video-item{display:flex;flex-direction:column}
+.video-grid.multi .video-embed{margin-top:auto}

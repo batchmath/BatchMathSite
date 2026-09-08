@@ -1,9 +1,9 @@
 BatchMath cumulative working copy
-Current checkpoint: 10.6.3.G
-Archive name: batchmath-site-v10.6.3.G.zip
+Current checkpoint: 10.6.3.N
+Archive name: batchmath-site-v10.6.3.N.zip
 
 This checkpoint contains the complete cumulative BatchMath website through the finished AP Calculus Unit 6 engine work, plus the sitewide redesigned interactive-practice launch buttons.
 
 Practice launch buttons are centered and use the glossy red/yellow BatchMath treatment: f(x) for IM1, lim x→∞ for AP Calculus Unit 1, d/dx for Units 2-3, and ∫ for Units 4-6.
 
-Use this 10.6.3.G checkpoint as the working baseline for the next Website chat and preserve/export future cumulative working copies.
+Use this 10.6.3.N checkpoint as the working baseline for the next Website chat and preserve/export future cumulative working copies.

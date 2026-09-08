@@ -7,7 +7,7 @@ const HERE=path.dirname(fileURLToPath(import.meta.url));const ROOT=path.resolve(
 const errors=[],warnings=[];let count=0;
 const expected=[
 'introduction-to-limits','sin-one-over-x','intermediate-value-theorem','difference-quotient',
-'equations-of-tangent-and-normal-lines','horizontal-and-vertical-tangent-lines','horizontal-and-vertical-tangent-lines-implicitly','motion','absolute-and-local-extrema-and-the-extreme-value-theorem','increasing-decreasing-intervals-concavity-and-extrema','graphing-functions','linearization-and-differentials','tangent-and-secant-line-approximations','rolle-s-theorem-and-the-mean-value-theorem','l-hopital-s-rule',
+'equations-of-tangent-and-normal-lines','horizontal-and-vertical-tangent-lines','horizontal-and-vertical-tangent-lines-implicitly','motion','absolute-and-local-extrema-and-the-extreme-value-theorem','increasing-decreasing-intervals-concavity-and-extrema','linearization-and-differentials','tangent-and-secant-line-approximations','rolle-s-theorem-and-the-mean-value-theorem','l-hopital-s-rule',
 'rectangular-approximations','trapezoidal-approximations','introduction-to-sigma-notation','evaluating-definite-integrals-with-a-limit-and-summation','fundamental-theorem-of-calculus-and-integral-rules','integrals-using-geometry',
 'basic-first-order-differential-equations','motion-problems','separable-differential-equations','rate-problems',
 'area-below-and-between-curves','finding-area-in-terms-of-y','integrals-on-piecewise-defined-functions','volume-by-cross-sections','solids-of-revolution'];

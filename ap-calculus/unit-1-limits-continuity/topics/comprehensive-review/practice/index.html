@@ -76,7 +76,7 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
   
     gtag('config', 'G-377MTFXSF3');
   </script>
-<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_limits_comprehensive",generatorVersion:"6"};</script><script src="/assets/problem-tracking.js"></script>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_limits_comprehensive",generatorVersion:"7"};</script><script src="/assets/problem-tracking.js"></script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
 <img class="corner" src="../../../../../assets/batchmath-portrait.jpg" alt="">
 <a class="logo" href="../../../../../">BatchMath<span class="tm-mark">™</span></a>
@@ -470,70 +470,105 @@ document.addEventListener("DOMContentLoaded",function(){
     return {cat:"oneSided",id:`o4-${a}-${side}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}^{${side}}} \\frac1{(${dx})^2}\\)`,ans:inf(1),sol:`The denominator is a positive square and approaches \\(0^+\\) from either side. Its reciprocal grows without bound, so the limit is \\(\\infty\\).`};
   }
 
+  let infinityDirBag=[];
+  function nextInfinityDirection(){
+    if(!infinityDirBag.length){
+      infinityDirBag=BatchMathRNG.random()<0.5?[false,true]:[true,false];
+    }
+    return infinityDirBag.shift();
+  }
+
   function infinityLimit(){
-    const type=ri(1,15);
-    const negDir=pick([false,true]),dir=negDir?'-\\infty':'\\infty';
+    const type=ri(1,22);
+    const negDir=nextInfinityDirection(),dir=negDir?'-\\infty':'\\infty';
+    const dirSign=negDir?-1:1;
     if(type===1){
-      const n=ri(1,5),A=ri(1,7),B=ri(1,7),C=ri(-9,9),D=ri(-9,9),a=rat(A,B);
-      return {cat:"infinity",id:`i1-${n}-${A}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${mono(A,n)}${sgnTerm(C,"",false)}}{${mono(B,n)}${sgnTerm(D,"",false)}}\\)`,ans:a,sol:`The numerator and denominator have the same degree. Divide by \\(${xPow(n)}\\); lower-degree terms vanish, leaving the ratio of leading coefficients \\(${texRat(a)}\\).`};
+      const n=ri(2,6),A=nonzero(-8,8),B=nonzero(-8,8),C=ri(-15,15),D=ri(-15,15),E=ri(-10,10),F=ri(-12,12),a=rat(A,B);
+      return {cat:"infinity",id:`i1-${n}-${A}-${B}-${C}-${D}-${E}-${F}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${mono(A,n)}${sgnTerm(C,"x",false)}${sgnTerm(D,"",false)}}{${mono(B,n)}${sgnTerm(E,"x",false)}${sgnTerm(F,"",false)}}\\)`,ans:a,sol:`Divide numerator and denominator by \\(${xPow(n)}\\). Every lower-degree term approaches \\(0\\), leaving the ratio of leading coefficients \\(${texRat(a)}\\).`};
     }
     if(type===2){
-      const n=ri(1,4),gap=ri(1,2),A=ri(1,6),B=ri(1,6),C=ri(-8,8),D=ri(-8,8);
-      return {cat:"infinity",id:`i2-${n}-${gap}-${A}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${mono(A,n)}${sgnTerm(C,"",false)}}{${mono(B,n+gap)}${sgnTerm(D,"",false)}}\\)`,ans:rat(0),sol:`The denominator has higher degree than the numerator, so the quotient approaches \\(0\\).`};
+      const n=ri(1,4),gap=ri(1,3),A=nonzero(-8,8),B=nonzero(-8,8),C=ri(-12,12),D=ri(-12,12);
+      return {cat:"infinity",id:`i2-${n}-${gap}-${A}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${mono(A,n)}${sgnTerm(C,"",false)}}{${mono(B,n+gap)}${sgnTerm(D,"",false)}}\\)`,ans:rat(0),sol:`After dividing by the highest power in the denominator, every term in the numerator approaches \\(0\\). The limit is \\(0\\).`};
     }
     if(type===3){
-      const n=ri(1,4),A=ri(1,5),B=ri(1,5),C=ri(1,8),D=ri(1,8),sgn=pick([-1,1]),leadA=sgn*A;
-      const sign=(negDir?-1:1)*sgn;
-      return {cat:"infinity",id:`i3-${n}-${leadA}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${mono(leadA,n+1)}${sgnTerm(C,"",false)}}{${mono(B,n)}${sgnTerm(D,"",false)}}\\)`,ans:inf(sign),sol:`The quotient behaves like \\(\\frac{${leadA}}{${B}}x\\). Its sign and magnitude determine the infinite limit.`};
+      const n=ri(1,4),A=nonzero(-6,6),B=nonzero(-7,7),C=ri(-12,12),D=ri(-12,12);
+      const sign=(A*B>0?1:-1)*dirSign;
+      return {cat:"infinity",id:`i3-${n}-${A}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${mono(A,n+1)}${sgnTerm(C,"x",false)}}{${mono(B,n)}${sgnTerm(D,"",false)}}\\)`,ans:inf(sign),sol:`The quotient has the same end behavior as \\(\\frac{${A}}{${B}}x\\). In the stated direction that expression tends to \\(${sign>0?'\\infty':'-\\infty'}\\).`};
     }
     if(type===4){
-      const k=ri(2,8),m=ri(1,7),c=ri(1,12),d=ri(-5,5),a=rat(negDir?-k:k,m),den=sgnTerm(m,'x',true)+sgnTerm(d,'',false);
-      return {cat:"infinity",id:`i4-${k}-${m}-${c}-${d}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${k*k}x^2+${c}}}{${den}}\\)`,ans:a,sol:`Factor \\(x^2\\) from the radical and use \\(\\sqrt{x^2}=|x|\\). Then account for the sign of \\(|x|/x\\) as \\(x\\to${dir}\\).`};
+      const k=ri(2,9),B=nonzero(-14,14),C=ri(-18,18),m=nonzero(-8,8),n=ri(-10,10),a=rat(dirSign*k,m);
+      return {cat:"infinity",id:`i4-radquad-over-lin-${k}-${B}-${C}-${m}-${n}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}}}{${lin(m,n)}}\\)`,ans:a,sol:`Factor \\(x^2\\) from the radical. Since \\(\\sqrt{x^2}=|x|\\), the leading ratio is \\(\\frac{${k}|x|}{${m}x}\\). Using \\(|x|/x\\to${dirSign}\\) gives \\(${texRat(a)}\\).`};
     }
     if(type===5){
-      const n=ri(1,7),base=pick([2,3,5]);
-      return {cat:"infinity",id:`i5-${n}-${base}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${xPow(n)}}{${base}^{|x|}}\\)`,ans:rat(0),sol:`Exponential growth in \\(|x|\\) dominates every polynomial power, so the quotient approaches \\(0\\).`};
+      const k=ri(2,9),B=nonzero(-14,14),C=ri(-18,18),m=nonzero(-8,8),n=ri(-10,10),a=rat(dirSign*m,k);
+      return {cat:"infinity",id:`i5-lin-over-radquad-${k}-${B}-${C}-${m}-${n}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${lin(m,n)}}{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}}}\\)`,ans:a,sol:`The radical behaves like \\(${k}|x|\\), while the numerator behaves like \\(${m}x\\). Therefore the leading ratio is \\(\\frac{${m}x}{${k}|x|}\\), which approaches \\(${texRat(a)}\\).`};
     }
     if(type===6){
-      const n=ri(1,5);
-      return {cat:"infinity",id:`i6-${n}`,q:`\\(\\displaystyle \\lim_{x\\to\\infty} \\frac{\\ln x}{${xPow(n)}}\\)`,ans:rat(0),sol:`Any positive power of \\(x\\) grows faster than \\(\\ln x\\), so the quotient approaches \\(0\\).`};
+      const k=ri(2,9),m=ri(2,9),B=nonzero(-12,12),C=ri(-16,16),D=nonzero(-12,12),E=ri(-16,16),a=rat(k,m);
+      return {cat:"infinity",id:`i6-radquad-ratio-${k}-${m}-${B}-${C}-${D}-${E}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}}}{\\sqrt{${m*m}x^2${sgnTerm(D,'x',false)}${sgnTerm(E,'',false)}}}\\)`,ans:a,sol:`Factor \\(x^2\\) from both radicals. The \\(|x|\\) factors cancel, leaving \\(${texRat(a)}\\).`};
     }
     if(type===7){
-      const c=ri(-6,8),useNeg=pick([false,true]);
-      const q=useNeg?`${c}+e^x`:`${c}+e^{-x}`,d=useNeg?'-\\infty':'\\infty';
-      return {cat:"infinity",id:`i7-${c}-${useNeg}`,q:`\\(\\displaystyle \\lim_{x\\to${d}} (${q})\\)`,ans:rat(c),sol:`The exponential term approaches \\(0\\), leaving the constant \\(${c}\\).`};
+      const k=ri(1,8),B=nonzero(-16,16),C=ri(-20,20),a=rat(dirSign*B,2*k),join=negDir?'+':'-';
+      return {cat:"infinity",id:`i7-conjugate-${k}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\left(\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}} ${join} ${k}x\\right)\\)`,ans:a,sol:`Multiply by the conjugate. The numerator becomes \\(${B}x${sgnTerm(C,'',false)}\\). After comparing the leading terms in the conjugate denominator, the limit is \\(${texRat(a)}\\).`};
     }
     if(type===8){
-      const n=pick([1,2,3]),A=ri(1,6),B=ri(1,8),C=ri(1,10),pow=2*n;
-      return {cat:"infinity",id:`i8-logpoly-${pow}-${A}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\ln\\left(${mono(A,pow)}+${B}x^2+${C}\\right)\\)`,ans:inf(1),sol:`The algebraic expression inside the logarithm is positive and grows without bound, so its natural logarithm also approaches \\(\\infty\\).`};
+      const k=ri(1,8),B=nonzero(-16,16),C=ri(-20,20),a=rat(2*k,dirSign*B),join=negDir?'+':'-';
+      return {cat:"infinity",id:`i8-recip-conjugate-${k}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{1}{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}} ${join} ${k}x}\\)`,ans:a,sol:`Rationalize the denominator. The denominator approaches \\(${texRat(rat(dirSign*B,2*k))}\\), so its reciprocal approaches \\(${texRat(a)}\\).`};
     }
     if(type===9){
-      const n=pick([1,2,3]),A=ri(1,6),B=ri(1,8),C=ri(1,10),pow=2*n;
-      return {cat:"infinity",id:`i9-logrecip-${pow}-${A}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\ln\\left(\\frac{1}{${mono(A,pow)}+${B}x^2+${C}}\\right)\\)`,ans:inf(-1),sol:`The positive fraction inside the logarithm approaches \\(0^+\\). Therefore its natural logarithm approaches \\(-\\infty\\).`};
+      const k=ri(2,9),B=nonzero(-14,14),C=ri(-18,18),A=nonzero(-7,7),D=ri(-10,10);
+      return {cat:"infinity",id:`i9-radquad-over-quad-${k}-${B}-${C}-${A}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}}}{${mono(A,2)}${sgnTerm(D,'',false)}}\\)`,ans:rat(0),sol:`The numerator grows like \\(|x|\\), while the denominator grows like \\(x^2\\). The denominator wins, so the limit is \\(0\\).`};
     }
     if(type===10){
-      const A=ri(1,7),B=ri(1,12);
-      return {cat:"infinity",id:`i10-lograd-${A}-${B}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\ln\\left(\\sqrt{${A}x^2+${B}}\\right)\\)`,ans:inf(1),sol:`The radical is positive and behaves like \\(\\sqrt{${A}}|x|\\), which grows without bound. Taking \\(\\ln\\) preserves that unbounded growth.`};
+      const k=ri(2,9),B=nonzero(-14,14),C=ri(-18,18),A=nonzero(-7,7),D=ri(-10,10),sign=A>0?1:-1;
+      return {cat:"infinity",id:`i10-quad-over-radquad-${k}-${B}-${C}-${A}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${mono(A,2)}${sgnTerm(D,'',false)}}{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}}}\\)`,ans:inf(sign),sol:`The quotient behaves like \\(\\frac{${A}x^2}{${k}|x|}=${texRat(rat(A,k))}|x|\\). Its magnitude grows without bound with sign determined by \\(${A}\\).`};
     }
     if(type===11){
-      const n=ri(1,4),A=ri(1,5),B=ri(-8,8),C=ri(-8,8),lead=negDir&&n%2===1?-A:A,lower=n===1?sgnTerm(C,'',false):sgnTerm(B,'x',false)+sgnTerm(C,'',false);
-      return {cat:"infinity",id:`i11-logalg-${n}-${A}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\ln\\left(${mono(lead,n)}${lower}\\right)\\)`,ans:inf(1),sol:`In the stated direction, the leading term makes the algebraic expression positive and unbounded. Thus the logarithm approaches \\(\\infty\\).`};
+      const A=ri(1,9),B=ri(-12,18),m=nonzero(-8,8),n=ri(-10,10),rad=negDir?lin(-A,B):lin(A,B);
+      return {cat:"infinity",id:`i11-radlin-over-lin-${A}-${B}-${m}-${n}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${rad}}}{${lin(m,n)}}\\)`,ans:rat(0),sol:`The radical grows on the order of \\(\\sqrt{|x|}\\), while the denominator grows on the order of \\(|x|\\). Therefore the quotient approaches \\(0\\).`};
     }
     if(type===12){
-      const hi=pick([4,6]),lo=2,A=ri(1,5),B=ri(1,7),C=ri(1,6),D=ri(1,8);
-      return {cat:"infinity",id:`i12-logratio-${hi}-${A}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\ln\\left(\\frac{${mono(A,hi)}+${B}}{${mono(C,lo)}+${D}}\\right)\\)`,ans:inf(1),sol:`The positive rational expression inside the logarithm grows without bound, so its logarithm approaches \\(\\infty\\).`};
+      const A=ri(1,9),B=ri(-12,18),m=nonzero(-8,8),n=ri(-10,10),rad=negDir?lin(-A,B):lin(A,B),sign=m*dirSign>0?1:-1;
+      return {cat:"infinity",id:`i12-lin-over-radlin-${A}-${B}-${m}-${n}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${lin(m,n)}}{\\sqrt{${rad}}}\\)`,ans:inf(sign),sol:`The numerator grows linearly, while the denominator grows like \\(\\sqrt{|x|}\\). The quotient is unbounded, and its sign in the stated direction gives \\(${sign>0?'\\infty':'-\\infty'}\\).`};
     }
     if(type===13){
-      const n=ri(1,4),A=ri(1,5),B=ri(-7,7),C=ri(-7,7),sgn=pick([-1,1]),lead=sgn*A,lower=n===1?sgnTerm(C,'',false):sgnTerm(B,'x',false)+sgnTerm(C,'',false);
-      const innerSign=sgn*(negDir&&n%2===1?-1:1),ans=innerSign>0?inf(1):rat(0);
-      return {cat:"infinity",id:`i13-exp-poly-${n}-${lead}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} e^{${mono(lead,n)}${lower}}\\)`,ans,sol:`The algebraic exponent approaches \\(${innerSign>0?'\\infty':'-\\infty'}\\), so the exponential approaches \\(${innerSign>0?'\\infty':'0'}\\).`};
+      const A=ri(1,9),B=ri(-10,16),k=ri(2,8),C=nonzero(-12,12),D=ri(-16,16),radLin=negDir?lin(-A,B):lin(A,B);
+      return {cat:"infinity",id:`i13-radlin-over-radquad-${A}-${B}-${k}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${radLin}}}{\\sqrt{${k*k}x^2${sgnTerm(C,'x',false)}${sgnTerm(D,'',false)}}}\\)`,ans:rat(0),sol:`The numerator grows like \\(\\sqrt{|x|}\\), while the denominator grows like \\(|x|\\). Hence the quotient approaches \\(0\\).`};
     }
     if(type===14){
-      const n=ri(1,3),A=ri(1,5),B=ri(1,5),C=ri(1,8),D=ri(1,8),sgn=pick([-1,1]),lead=sgn*A,innerSign=sgn*(negDir?-1:1),ans=innerSign>0?inf(1):rat(0);
-      return {cat:"infinity",id:`i14-exp-rat-${n}-${lead}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} e^{\\frac{${mono(lead,n+1)}${sgnTerm(C,'',false)}}{${mono(B,n)}${sgnTerm(D,'',false)}}}\\)`,ans,sol:`The rational exponent behaves like \\(\\frac{${lead}}{${B}}x\\), so it approaches \\(${innerSign>0?'\\infty':'-\\infty'}\\). Therefore the exponential approaches \\(${innerSign>0?'\\infty':'0'}\\).`};
+      const A=ri(1,9),B=ri(-10,16),k=ri(2,8),C=nonzero(-12,12),D=ri(-16,16),radLin=negDir?lin(-A,B):lin(A,B);
+      return {cat:"infinity",id:`i14-radquad-over-radlin-${A}-${B}-${k}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${k*k}x^2${sgnTerm(C,'x',false)}${sgnTerm(D,'',false)}}}{\\sqrt{${radLin}}}\\)`,ans:inf(1),sol:`The numerator grows like \\(|x|\\), while the denominator grows like \\(\\sqrt{|x|}\\). Both are positive for sufficiently large \\(|x|\\), so the quotient approaches \\(\\infty\\).`};
     }
-    const A=ri(1,8),B=ri(1,10),C=ri(1,8);
-    return {cat:"infinity",id:`i15-exp-small-${A}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} e^{\\frac{${A}}{${B}x^2+${C}}}\\)`,ans:rat(1),sol:`The algebraic exponent approaches \\(0\\). By continuity of the exponential function, the limit is \\(e^0=1\\).`};
+    if(type===15){
+      const n=ri(1,7),base=pick([2,3,5]),coef=ri(1,5);
+      return {cat:"infinity",id:`i15-poly-exp-${n}-${base}-${coef}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${coef===1?'':coef}${xPow(n)}}{${base}^{|x|}}\\)`,ans:rat(0),sol:`Exponential growth in \\(|x|\\) dominates every polynomial power, so the quotient approaches \\(0\\).`};
+    }
+    if(type===16){
+      const n=pick([2,3,4]),A=ri(1,8),B=nonzero(-12,12),C=ri(1,16),pow=2*n;
+      return {cat:"infinity",id:`i16-logpoly-${pow}-${A}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\ln\\left(${mono(A,pow)}${sgnTerm(B,'x^2',false)}${sgnTerm(C,'',false)}\\right)\\)`,ans:inf(1),sol:`The expression inside the logarithm is eventually positive and grows without bound in either direction. Therefore its natural logarithm approaches \\(\\infty\\).`};
+    }
+    if(type===17){
+      const n=pick([1,2,3]),A=ri(1,7),B=ri(1,10),C=ri(1,14),pow=2*n;
+      return {cat:"infinity",id:`i17-logrecip-${pow}-${A}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\ln\\left(\\frac{1}{${mono(A,pow)}+${B}x^2+${C}}\\right)\\)`,ans:inf(-1),sol:`The positive fraction inside the logarithm approaches \\(0^+\\). Hence the logarithm approaches \\(-\\infty\\).`};
+    }
+    if(type===18){
+      const k=ri(2,9),B=nonzero(-14,14),C=ri(-18,18);
+      return {cat:"infinity",id:`i18-lograd-${k}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\ln\\left(\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}}\\right)\\)`,ans:inf(1),sol:`The radical behaves like \\(${k}|x|\\) and grows without bound while remaining positive. Its natural logarithm therefore approaches \\(\\infty\\).`};
+    }
+    if(type===19){
+      const lo=pick([2,4]),hi=lo+pick([2,4]),A=ri(1,6),B=ri(1,10),C=ri(1,6),D=ri(1,10);
+      return {cat:"infinity",id:`i19-logratio-${hi}-${lo}-${A}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\ln\\left(\\frac{${mono(A,hi)}+${B}}{${mono(C,lo)}+${D}}\\right)\\)`,ans:inf(1),sol:`The positive rational expression inside the logarithm grows without bound, so the logarithm approaches \\(\\infty\\).`};
+    }
+    if(type===20){
+      const n=ri(1,4),A=ri(1,6),B=ri(-10,10),C=ri(-10,10),sgn=pick([-1,1]),lead=sgn*A,innerSign=sgn*(negDir&&n%2===1?-1:1),ans=innerSign>0?inf(1):rat(0),lower=n===1?sgnTerm(C,'',false):sgnTerm(B,'x',false)+sgnTerm(C,'',false);
+      return {cat:"infinity",id:`i20-exp-poly-${n}-${lead}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} e^{${mono(lead,n)}${lower}}\\)`,ans,sol:`The exponent approaches \\(${innerSign>0?'\\infty':'-\\infty'}\\). Therefore the exponential approaches \\(${innerSign>0?'\\infty':'0'}\\).`};
+    }
+    if(type===21){
+      const n=ri(1,4),A=nonzero(-6,6),B=nonzero(-7,7),C=ri(-10,10),D=ri(-10,10),linearSign=(A*B>0?1:-1)*dirSign,ans=linearSign>0?inf(1):rat(0);
+      return {cat:"infinity",id:`i21-exp-rat-${n}-${A}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} e^{\\frac{${mono(A,n+1)}${sgnTerm(C,'',false)}}{${mono(B,n)}${sgnTerm(D,'',false)}}}\\)`,ans,sol:`The rational exponent behaves like \\(\\frac{${A}}{${B}}x\\), which approaches \\(${linearSign>0?'\\infty':'-\\infty'}\\). Thus the exponential approaches \\(${linearSign>0?'\\infty':'0'}\\).`};
+    }
+    const A=ri(1,10),B=ri(1,12),C=ri(1,15);
+    return {cat:"infinity",id:`i22-exp-small-${A}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} e^{\\frac{${A}}{${B}x^2+${C}}}\\)`,ans:rat(1),sol:`The exponent approaches \\(0\\). By continuity of the exponential function, the limit is \\(e^0=1\\).`};
   }
 
   function special(){
@@ -544,7 +579,7 @@ document.addEventListener("DOMContentLoaded",function(){
   }
 
   const generators={continuous,factoring,substitution,rationalizing,complex:complexFraction,squeeze,trig,oneSided,infinity:infinityLimit,special,infinitySpecial:()=>pick([infinityLimit,special])()};
-  const mixedWeights=["continuous",...Array(3).fill("factoring"),...Array(3).fill("substitution"),...Array(3).fill("rationalizing"),...Array(3).fill("complex"),...Array(3).fill("squeeze"),...Array(3).fill("trig"),...Array(3).fill("oneSided"),...Array(3).fill("infinity"),...Array(3).fill("special")];
+  const mixedWeights=["continuous","factoring","substitution","rationalizing","complex","squeeze","trig","oneSided","infinity","special"];
 
   function makeProblem(){
     const selected=$("category").value;

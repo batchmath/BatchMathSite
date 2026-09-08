@@ -25,8 +25,11 @@ for(const mode of ['value','root']){
     const p=generate(i*99991+(mode==='root'?17:3),mode);count++;
     if(p.ivtMode!==mode)errors.push(`${mode} seed ${i}: mode leakage -> ${p.ivtMode}`);
     if(mode==='value'&&p.variant!=='guaranteed_value')errors.push(`value seed ${i}: unexpected variant ${p.variant}`);
+    if(mode==='value'){const outsideMath=String(p.explanation||'').replace(/\\\([\s\S]*?\\\)/g,'');if(/\\(?:frac|sqrt|infty|qquad|text)\b/.test(outsideMath))errors.push(`value seed ${i}: raw TeX outside MathJax delimiters in explanation: ${p.explanation}`);}
     if(mode==='root'){
       rootVariants.set(p.variant,(rootVariants.get(p.variant)||0)+1);
+      const outsideMath=String(p.explanation||'').replace(/\\\([\s\S]*?\\\)/g,'');
+      if(/\\(?:frac|sqrt|infty|qquad|text)\b/.test(outsideMath))errors.push(`root seed ${i}: raw TeX outside MathJax delimiters in explanation: ${p.explanation}`);
       if(!p.choicesAreText)errors.push(`root seed ${i}: text-choice flag missing`);
       if(!p.ivtQA)errors.push(`root seed ${i}: QA metadata missing`);
       else {

@@ -29,7 +29,7 @@ function mc(id,variant,prompt,math,correct,wrongs,explanation){
     x=norm(x);if(!seen.has(x)){seen.add(x);vals.push(x)}k++;
   }
   vals=shuffle(vals.slice(0,4));
-  const content=math?(String(math).trim().startsWith('<')?math:`<div>\\(${math}\\)</div>`):'';const choicesAreText=vals.some(v=>/[—]|\b(?:yes|no|local|maximum|minimum|speeding|slowing|rest|rise|fall|intercept|asymptote|continuous|discontinuous|underestimate|overestimate|cannot|guaranteed|increasing|decreasing|concave|tangent|corner)\b/i.test(v));return{id,variant,questionHtml:`<div><div class="question-prompt">${prompt}</div>${content}</div>`,choices:vals,correctIndex:vals.findIndex(x=>norm(x)===correctNorm),choicesAreText,explanation};
+  const content=math?(String(math).trim().startsWith('<')?math:`<div>\\(${math}\\)</div>`):'';const choicesAreText=vals.some(v=>/[—]|\b(?:yes|no|none|all|solution|solutions|local|maximum|minimum|speeding|slowing|rest|rise|fall|intercept|asymptote|continuous|discontinuous|underestimate|overestimate|cannot|guaranteed|increasing|decreasing|concave|tangent|corner)\b/i.test(v));return{id,variant,questionHtml:`<div><div class="question-prompt">${prompt}</div>${content}</div>`,choices:vals,correctIndex:vals.findIndex(x=>norm(x)===correctNorm),choicesAreText,explanation};
 }
 function numChoices(ans,step=1){const a=typeof ans==='number'?ans:Number(ans);return [fmt(a+step),fmt(a-step),fmt(-a===a?a+2*step:-a)];}
 function fracChoices(n,d){const c=texRat(n,d),[a,b]=rat(n,d);return[c,texRat(a+1,b),texRat(a-1||a+2,b),texRat(a,b+1)];}
@@ -54,7 +54,7 @@ G['sin-one-over-x']=()=>{
 function ivtGuaranteedValue(){
   const a=ri(-4,0),b=a+ri(2,6),fa=ri(-8,-1),fb=ri(2,9),target=ri(fa+1,fb-1);
   const wrong1=fb+ri(1,4),wrong2=fa-ri(1,4),wrong3='No value is guaranteed';
-  const p=mc(`ivt-value-${a}-${b}-${fa}-${fb}-${target}`,'guaranteed_value','Suppose f is continuous on the interval. Which value is guaranteed to occur at some c between the endpoints?',`f(${a})=${fa},\\qquad f(${b})=${fb}`,String(target),[String(wrong1),String(wrong2),wrong3],`Because ${target} lies between ${fa} and ${fb}, the Intermediate Value Theorem guarantees some c in (${a},${b}) with f(c)=${target}.`);
+  const p=mc(`ivt-value-${a}-${b}-${fa}-${fb}-${target}`,'guaranteed_value','Suppose f is continuous on the interval. Which value is guaranteed to occur at some c between the endpoints?',`f(${a})=${fa},\\qquad f(${b})=${fb}`,String(target),[String(wrong1),String(wrong2),wrong3],`Because \\(${target}\\) lies between \\(${fa}\\) and \\(${fb}\\), the Intermediate Value Theorem guarantees some \\(c\\in(${a},${b})\\) such that \\(f(c)=${target}\\).`);
   p.ivtMode='value';
   return p;
 }
@@ -69,24 +69,24 @@ function ivtRootVerification(){
     const r=ri(-3,3),left=r-ri(1,4),right=r+ri(1,4),m=pick([-3,-2,-1,1,2,3]),s=right+ri(1,4);
     const fa=m*(left-r)*(left-s)*(left-s),fb=m*(right-r)*(right-s)*(right-s);
     const f=`${m===1?'':m===-1?'-':m}(x${r===0?'':r>0?`-${r}`:`+${-r}`})(x${s===0?'':s>0?`-${s}`:`+${-s}`})^2`;
-    p=mc(`ivt-root-poly-yes-${m}-${r}-${s}-${left}-${right}`,'root_polynomial_yes','Can the Intermediate Value Theorem be used to verify that f has at least one root on the given interval?',`f(x)=${f},\\qquad [${left},${right}]`,yes,[noDisc,noSign,badYes],`Yes. Polynomials are continuous for all real numbers. Here f(${left})=${fa} and f(${right})=${fb}, which have opposite signs, so IVT guarantees some c in (${left},${right}) with f(c)=0.`);
+    p=mc(`ivt-root-poly-yes-${m}-${r}-${s}-${left}-${right}`,'root_polynomial_yes','Can the Intermediate Value Theorem be used to verify that f has at least one root on the given interval?',`f(x)=${f},\\qquad [${left},${right}]`,yes,[noDisc,noSign,badYes],`Yes. Polynomials are continuous for all real numbers. Here \\(f(${left})=${fa}\\) and \\(f(${right})=${fb}\\), which have opposite signs. Therefore IVT guarantees some \\(c\\in(${left},${right})\\) such that \\(f(c)=0\\).`);
     p.ivtQA={mode:'root',kind,continuous:true,signChange:true};
   }else if(kind==='polynomial_no'){
     const h=ri(-3,3),k=ri(1,6),left=h-ri(1,4),right=h+ri(1,4),A=ri(1,4);
     const fa=A*(left-h)**2+k,fb=A*(right-h)**2+k;
     const shift=h===0?'x':h>0?`x-${h}`:`x+${-h}`;
-    p=mc(`ivt-root-poly-no-${A}-${h}-${k}-${left}-${right}`,'root_polynomial_no_sign_change','Can the Intermediate Value Theorem be used to verify that f has at least one root on the given interval?',`f(x)=${A===1?'':A}(${shift})^2+${k},\\qquad [${left},${right}]`,noSign,[yes,noDisc,badYes],`No. The polynomial is continuous, but f(${left})=${fa} and f(${right})=${fb} are both positive. The endpoint values do not straddle 0, so IVT does not verify a root on this interval.`);
+    p=mc(`ivt-root-poly-no-${A}-${h}-${k}-${left}-${right}`,'root_polynomial_no_sign_change','Can the Intermediate Value Theorem be used to verify that f has at least one root on the given interval?',`f(x)=${A===1?'':A}(${shift})^2+${k},\\qquad [${left},${right}]`,noSign,[yes,noDisc,badYes],`No. The polynomial is continuous, but \\(f(${left})=${fa}\\) and \\(f(${right})=${fb}\\) are both positive. The endpoint values do not straddle \\(0\\), so IVT does not verify a root on \\([${left},${right}]\\).`);
     p.ivtQA={mode:'root',kind,continuous:true,signChange:false};
   }else if(kind==='rational_pole_outside_yes'){
     const r=ri(-2,2),left=r-ri(1,4),right=r+ri(1,4),side=pick([-1,1]),c=side<0?left-ri(1,4):right+ri(1,4),m=pick([-3,-2,-1,1,2,3]);
     const fa=rat(m*(left-r),left-c),fb=rat(m*(right-r),right-c);
     const num=`${m===1?'':m===-1?'-':m}(x${r===0?'':r>0?`-${r}`:`+${-r}`})`,den=`x${c===0?'':c>0?`-${c}`:`+${-c}`}`;
-    p=mc(`ivt-root-rat-out-${m}-${r}-${c}-${left}-${right}`,'root_rational_discontinuity_outside','Can the Intermediate Value Theorem be used to verify that f has at least one root on the given interval?',`f(x)=\\frac{${num}}{${den}},\\qquad [${left},${right}]`,yes,[noDisc,noSign,badYes],`Yes. The only discontinuity is at x=${c}, which is outside [${left},${right}], so f is continuous on the entire stated interval. Also f(${left})=${texRat(fa[0],fa[1])} and f(${right})=${texRat(fb[0],fb[1])} have opposite signs. IVT therefore guarantees a root in (${left},${right}).`);
+    p=mc(`ivt-root-rat-out-${m}-${r}-${c}-${left}-${right}`,'root_rational_discontinuity_outside','Can the Intermediate Value Theorem be used to verify that f has at least one root on the given interval?',`f(x)=\\frac{${num}}{${den}},\\qquad [${left},${right}]`,yes,[noDisc,noSign,badYes],`Yes. The only discontinuity is at \\(x=${c}\\), which is outside \\([${left},${right}]\\), so \\(f\\) is continuous on the entire stated interval. Also \\(f(${left})=${texRat(fa[0],fa[1])}\\) and \\(f(${right})=${texRat(fb[0],fb[1])}\\) have opposite signs. IVT therefore guarantees a root in \\(( ${left},${right} )\\).`);
     p.ivtQA={mode:'root',kind,continuous:true,signChange:true,pole:c,left,right};
   }else{
     const c=ri(-2,2),left=c-ri(1,4),right=c+ri(1,4),m=pick([1,2,3,4]);
     const fa=rat(m,left-c),fb=rat(m,right-c),den=`x${c===0?'':c>0?`-${c}`:`+${-c}`}`;
-    p=mc(`ivt-root-rat-in-${m}-${c}-${left}-${right}`,'root_rational_discontinuity_inside','Can the Intermediate Value Theorem be used to verify that f has at least one root on the given interval?',`f(x)=\\frac{${m}}{${den}},\\qquad [${left},${right}]`,noDisc,[yes,noSign,badYes],`No. Although f(${left})=${texRat(fa[0],fa[1])} and f(${right})=${texRat(fb[0],fb[1])} have opposite signs, f is discontinuous at x=${c}, which lies inside [${left},${right}]. IVT cannot be applied on the whole interval.`);
+    p=mc(`ivt-root-rat-in-${m}-${c}-${left}-${right}`,'root_rational_discontinuity_inside','Can the Intermediate Value Theorem be used to verify that f has at least one root on the given interval?',`f(x)=\\frac{${m}}{${den}},\\qquad [${left},${right}]`,noDisc,[yes,noSign,badYes],`No. Although \\(f(${left})=${texRat(fa[0],fa[1])}\\) and \\(f(${right})=${texRat(fb[0],fb[1])}\\) have opposite signs, \\(f\\) is discontinuous at \\(x=${c}\\), which lies inside \\([${left},${right}]\\). IVT cannot be applied on the whole interval.`);
     p.ivtQA={mode:'root',kind,continuous:false,signChange:true,pole:c,left,right};
   }
   p.ivtMode='root';
@@ -887,43 +887,64 @@ G['solids-of-revolution']=()=>{
 
 // Additional assignment-fidelity generators (v10.5.7).
 G['continuity-parameters']=()=>{
-  const kind=pick(['piecewise_value','removable_fill','piecewise_parameter']);
+  // Continuity-parameter practice: every prompt visibly contains the parameter(s)
+  // being solved for.  About 30% are three-piece problems that require a 2x2
+  // system for a and b; the remainder solve a single parameter k.
+  const kind=R()<0.30?'three_piece_system':pick(['piecewise_value','removable_fill','piecewise_parameter','quadratic_parameter']);
+  if(kind==='three_piece_system'){
+    let r=pick([-3,-2,-1,1,2]),s0=pick([-3,-2,-1,1,2,3]);
+    while(s0===r||s0===0||r===0)s0=pick([-3,-2,-1,1,2,3]);
+    const left=Math.min(r,s0),right=Math.max(r,s0);
+    const A=nz(-3,3),B=nz(-5,5),C=ri(-6,6);
+    const m1=nz(-3,3),m2=nz(-3,3);
+    const q=x=>A*x*x+B*x+C;
+    const n1=q(left)-m1*left,n2=q(right)-m2*right;
+    const correct=`a=${A},\\ b=${B}`;
+    const wrongs=[`a=${A+1},\\ b=${B}`,`a=${A},\\ b=${B+(B===0?2:1)}`,`a=${-A},\\ b=${B}`];
+    const leftEq=q(left),rightEq=q(right);
+    return mc(`cont-param-system-${A}-${B}-${C}-${left}-${right}-${m1}-${m2}`,'three_piece_system',
+      'Find a and b so the function is continuous everywhere.',
+      `f(x)=\\begin{cases}${lin(m1,n1)},&x<${left}\\\\ax^2+bx${signed(C,'')},&${left}\\le x<${right}\\\\${lin(m2,n2)},&x\\ge ${right}\\end{cases}`,
+      correct,wrongs,
+      `Continuity is required at both breakpoints. At \\(x=${left}\\), the two adjacent pieces must agree, giving \\(${left*left}a${signed(left,'b')} ${C? (C>0?`+${C}`:`${C}`):''}=${leftEq}\\). At \\(x=${right}\\), continuity gives \\(${right*right}a${signed(right,'b')} ${C? (C>0?`+${C}`:`${C}`):''}=${rightEq}\\). Solving this system gives \\(a=${A}\\) and \\(b=${B}\\).`);
+  }
   if(kind==='piecewise_value'){
     const a=nz(-4,4),b=ri(-6,6),c=ri(-3,3),k=a*c+b;
-    return mc(`cont-param-value-${a}-${b}-${c}`,'piecewise_value','Find the value of k that makes the function continuous at x=c.',`f(x)=\\begin{cases}${lin(a,b)},&x<${c}\\\\k,&x\\ge ${c}\\end{cases}`,String(k),numChoices(k,1),`Continuity requires both pieces to have the same value at x=${c}. The linear piece gives ${k}, so k=${k}.`);
+    return mc(`cont-param-value-${a}-${b}-${c}`,'piecewise_value',`Find k so the function is continuous at x=${c}.`,`f(x)=\\begin{cases}${lin(a,b)},&x<${c}\\\\k,&x\\ge ${c}\\end{cases}`,String(k),numChoices(k,1),`Continuity requires the left-hand value and the right-hand value to agree at \\(x=${c}\\). The linear piece gives \\(${lin(a,b).replace(/x/g,`(${c})`)}=${k}\\), so \\(k=${k}\\).`);
   }
   if(kind==='removable_fill'){
     const a=nz(-5,5),k=2*a;
-    return mc(`cont-param-hole-${a}`,'removable_fill','Find k so the piecewise function is continuous.',`f(x)=\\begin{cases}\\dfrac{x^2-${a*a}}{x-${a}},&x\\ne ${a}\\\\k,&x=${a}\\end{cases}`,String(k),numChoices(k,1),`For x≠${a}, factor and cancel x-${a}. The limit is x+${a}→${k}; therefore k=${k}.`);
+    return mc(`cont-param-hole-${a}`,'removable_fill',`Find k so the function is continuous at x=${a}.`,`f(x)=\\begin{cases}\\dfrac{x^2-${a*a}}{${xm(a)}},&x\\ne ${a}\\\\k,&x=${a}\\end{cases}`,String(k),numChoices(k,1),`For \\(x\\ne ${a}\\), factor the numerator: \\(x^2-${a*a}=(${xm(a)})(x${a>=0?`+${a}`:`-${-a}`})\\). After canceling, the limit as \\(x\\to ${a}\\) is \\(${k}\\). Therefore \\(k=${k}\\).`);
+  }
+  if(kind==='quadratic_parameter'){
+    const c=pick([-3,-2,-1,1,2,3]),A=nz(-3,3),B=ri(-5,5),m=nz(-4,4),n=ri(-5,5);
+    const target=m*c+n;
+    const k=target-(A*c*c+B*c);
+    return mc(`cont-param-quad-${A}-${B}-${c}-${m}-${n}`,'quadratic_parameter',`Find k so the function is continuous at x=${c}.`,`f(x)=\\begin{cases}${lin(m,n)},&x<${c}\\\\${signed(A,'x^2',true)}${signed(B,'x')}${signed(1,'k')},&x\\ge ${c}\\end{cases}`,String(k),numChoices(k,2),`Set the two formulas equal at \\(x=${c}\\): \\(${target}=${A*c*c+B*c}+k\\). Solving gives \\(k=${k}\\).`);
   }
   const m=nz(-4,4),n=ri(-5,5),p=nz(-4,4),c=ri(-3,3),k=(m-p)*c+n;
-  return mc(`cont-param-coeff-${m}-${n}-${p}-${c}`,'piecewise_parameter','Find k so the function is continuous at the breakpoint.',`f(x)=\\begin{cases}${lin(m,n)},&x<${c}\\\\${signed(p,'x',true)}${signed(k,'')},&x\\ge ${c}\\end{cases}`,String(k),numChoices(k,2),`Set the two expressions equal at x=${c}. Solving ${m*c+n}=${p*c}+k gives k=${k}.`);
+  return mc(`cont-param-coeff-${m}-${n}-${p}-${c}`,'piecewise_parameter',`Find k so the function is continuous at x=${c}.`,`f(x)=\\begin{cases}${lin(m,n)},&x<${c}\\\\${signed(p,'x',true)}+k,&x\\ge ${c}\\end{cases}`,String(k),numChoices(k,2),`Continuity requires the two expressions to agree at \\(x=${c}\\). Thus \\(${m*c+n}=${p*c}+k\\), so \\(k=${k}\\).`);
 };
 
 G['squeeze-course-practice']=()=>{
-  const kind=pick(['absolute_one_sided','bounded_squeeze','sin_ratio','cos_difference','growth_exp','growth_log']);
-  if(kind==='absolute_one_sided'){
-    const a=ri(-4,4),side=pick(['+','-']),ans=side==='+'?'1':'-1',sh=xm(a);
-    return mc(`sq-abs-${a}-${side}`,'one_sided_absolute_value','Find the one-sided limit.',`\\displaystyle\\lim_{x\\to ${a}^{${side}}}\\frac{|${sh}|}{${sh}}`,ans,[ans==='1'?'-1':'1','0','DNE'],`On the ${side==='+'?'right':'left'} side of ${a}, ${sh} is ${side==='+'?'positive':'negative'}, so the quotient is ${ans}.`);
+  // Course-assignment mix: about 20% Squeeze Theorem and 80% straightforward trig limits at x -> 0.
+  if(R()<0.20){
+    const power=ri(1,3),innerPower=ri(1,3),k=ri(1,6),coef=ri(1,4),fn=pick(['\\sin','\\cos']);
+    const coefText=coef===1?'':String(coef);
+    const xPow=power===1?'x':`x^${power}`;
+    const innerDen=innerPower===1?'x':`x^${innerPower}`;
+    const isSin=fn==='\\sin',variant=isSin?'squeeze_sine':'squeeze_cosine';
+    const bound=coef===1?(power===1?'|x|':`|x|^${power}`):`${coef}${power===1?'|x|':`|x|^${power}`}`;
+    return mc(`sq-bound-0-${isSin?'sin':'cos'}-${coef}-${power}-${k}-${innerPower}`,variant,'Find the limit.',`\\displaystyle\\lim_{x\\to0}${coefText}${xPow}${fn}\\left(\\frac{${k}}{${innerDen}}\\right)`,'0',['1','-1','DNE'],`The ${isSin?'sine':'cosine'} factor stays between -1 and 1, so the absolute value of the expression is at most ${bound}. Since ${bound} approaches 0, the Squeeze Theorem gives 0.`);
   }
-  if(kind==='bounded_squeeze'){
-    const a=ri(-3,3),k=ri(1,6),sh=xm(a);
-    return mc(`sq-bound-${a}-${k}`,'bounded_times_zero','Use the Squeeze Theorem.',`\\displaystyle\\lim_{x\\to ${a}}(${sh})^2\\sin\\left(\\frac{${k}}{${sh}}\\right)`,'0',['1','-1','DNE'],`The sine factor stays between −1 and 1, while (${sh})²→0. The Squeeze Theorem gives 0.`);
-  }
-  if(kind==='sin_ratio'){
-    const k=ri(2,7);
-    return mc(`sq-sinratio-${k}`,'basic_trig_ratio','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{\\sin(${k}x)}x`,String(k),numChoices(k,1),`Rewrite as ${k}·sin(${k}x)/(${k}x). The standard trig limit is 1, so the answer is ${k}.`);
-  }
-  if(kind==='cos_difference'){
-    const k=ri(1,6);
-    return mc(`sq-cosdiff-${k}`,'cosine_difference','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{1-\\cos(${k}x)}x`,'0',[String(k),String(k*k),'DNE'],`1−cos(${k}x) is second order in x, so dividing by x still tends to 0.`);
-  }
-  if(kind==='growth_exp'){
-    const p=ri(1,5);
-    return mc(`sq-growth-exp-${p}`,'exponential_dominates_power','Find the limit.',`\\displaystyle\\lim_{x\\to\\infty}\\frac{x^{${p}}}{e^x}`,'0',['1','\\infty','DNE'],`Exponential growth dominates every fixed power of x, so the ratio tends to 0.`);
-  }
-  const p=ri(1,4);
-  return mc(`sq-growth-log-${p}`,'power_dominates_log','Find the limit.',`\\displaystyle\\lim_{x\\to\\infty}\\frac{\\ln x}{x^{${p}}}`,'0',['1','\\infty','DNE'],`Every positive power of x grows faster than ln x, so the ratio tends to 0.`);
+  const kind=pick(['sin_over_x','x_over_sin','tan_over_x','x_over_tan','one_minus_cos','cos_minus_one']);
+  const k=ri(1,9);
+  if(kind==='sin_over_x')return mc(`sq-sinx-${k}`,'standard_sine_over_x','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{\\sin(${k}x)}{x}`,String(k),numChoices(k,1),`Rewrite the expression as ${k}\\,\\frac{\\sin(${k}x)}{${k}x}. The standard trig limit is 1, so the limit is ${k}.`);
+  if(kind==='x_over_sin')return mc(`sq-xsin-${k}`,'standard_x_over_sine','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{x}{\\sin(${k}x)}`,texRat(1,k),[String(k),String(-k),'0'],`Use the reciprocal standard limit: x/\\sin(${k}x)=(1/${k})\\,(${k}x/\\sin(${k}x)), so the limit is ${texRat(1,k)}.`);
+  if(kind==='tan_over_x')return mc(`sq-tanx-${k}`,'standard_tangent_over_x','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{\\tan(${k}x)}{x}`,String(k),numChoices(k,1),`Rewrite the expression as ${k}\\,\\frac{\\tan(${k}x)}{${k}x}. The standard trig limit is 1, so the limit is ${k}.`);
+  if(kind==='x_over_tan')return mc(`sq-xtan-${k}`,'standard_x_over_tangent','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{x}{\\tan(${k}x)}`,texRat(1,k),[String(k),String(-k),'0'],`Use the reciprocal standard limit: x/\\tan(${k}x)=(1/${k})\\,(${k}x/\\tan(${k}x)), so the limit is ${texRat(1,k)}.`);
+  if(kind==='one_minus_cos')return mc(`sq-1cos-${k}`,'one_minus_cosine_over_x','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{1-\\cos(${k}x)}{x}`,'0',[String(k),String(-k),'DNE'],`The numerator approaches 0 quadratically. Equivalently, multiply by the conjugate and use the sine limit; the result is 0.`);
+  return mc(`sq-cos1-${k}`,'cosine_minus_one_over_x','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{\\cos(${k}x)-1}{x}`,'0',[String(-k),String(k*k),'DNE'],`This is the negative of (1-cos(${k}x))/x, whose limit is 0, so the limit is 0.`);
 };
 
 G['derivatives-conceptual-review']=()=>{
@@ -1045,7 +1066,7 @@ G['derivatives-conceptual-review']=()=>{
  G['l-hopital-s-rule']=()=>{
    const fam=pick(['evaluate_exp','evaluate_cos','apply_factor_yes','apply_factor_no','apply_radical_yes','apply_cancel_no']);
    if(fam==='evaluate_exp'){const k=ri(2,7);return safeMc(`lh-exp-${k}`,'evaluate_exponential','Evaluate using L’Hôpital’s Rule.',`\\lim_{x\\to0}\\frac{e^{${k}x}-1}{x}`,String(k),[String(k+1),'0','1'],`The original form is \\(0/0\\). Differentiate numerator and denominator once.`)}
-   if(fam==='evaluate_cos'){const k=ri(1,5);return safeMc(`lh-cos-${k}`,'evaluate_two_applications','Evaluate using L’Hôpital’s Rule.',`\\lim_{x\\to0}\\frac{1-\\cos(${k}x)}{x^2}`,texRat(k*k,2),[String(k*k),String(k),texRat(k,2)],`The first differentiated form is still \\(0/0\\), so apply L’Hôpital a second time.`)}
+   if(fam==='evaluate_cos'){const k=ri(1,5);return safeMc(`lh-cos-${k}`,'evaluate_two_applications','Evaluate using L’Hôpital’s Rule.',`\\lim_{x\\to0}\\frac{1-\\cos(${k}x)}{x^2}`,texRat(k*k,2),[String(k*k),texRat(-(k*k),2),texRat(k*k,4)],`The first differentiated form is still \\(0/0\\), so apply L’Hôpital a second time.`)}
    if(fam==='apply_factor_yes'){const a=ri(1,5);return safeMc(`lh-app-y-${a}`,'applicability_factorable_yes','Can L’Hôpital’s Rule be applied directly to the original limit?',`\\lim_{x\\to ${a}}\\frac{x^2-${a*a}}{x-${a}}`,'Yes. Direct substitution gives 0/0.',['No. The expression should be factored first.','No. Direct substitution gives a finite nonzero number.','No. L’Hôpital applies only at infinity.'],`Direct substitution gives \\(0/0\\), an indeterminate form. Factoring is another valid method, but it is not required before L’Hôpital.`)}
    if(fam==='apply_factor_no'){const a=ri(1,5),c=ri(1,4);return safeMc(`lh-app-n-${a}-${c}`,'applicability_factorable_no','Can L’Hôpital’s Rule be applied directly to the original limit?',`\\lim_{x\\to ${a}}\\frac{x^2-${a*a+c}}{x-${a}}`,'No. The numerator is nonzero while the denominator approaches 0.',['Yes. Direct substitution gives 0/0.','Yes. Any rational expression allows L’Hôpital.','No. The denominator must approach infinity.'],`Substitution gives a nonzero numerator over 0, not \\(0/0\\) or \\(\\infty/\\infty\\).`)}
    if(fam==='apply_radical_yes'){const a=ri(2,7);return safeMc(`lh-rad-y-${a}`,'applicability_radical_yes','Can L’Hôpital’s Rule be applied directly?',`\\lim_{x\\to ${a*a}}\\frac{\\sqrt{x}-${a}}{x-${a*a}}`,'Yes. Direct substitution gives 0/0.',['No. Radicals cannot be differentiated with L’Hôpital.','No. Rationalization must be used first.','No. The limit is already a number.'],`Both numerator and denominator approach 0.`)}
@@ -1567,7 +1588,7 @@ G['derivatives-conceptual-review']=()=>{
     if(fam==='shifted_semicircle'){const r=ri(2,5),h=ri(-4,5),a=h-r,b=h+r,inside=h===0?'x^2':h>0?`(x-${h})^2`:`(x+${-h})^2`;return mcV(`geoV-shift-${h}-${r}`,'shifted_semicircle','Evaluate the definite integral using geometry.',`\\int_${a}^{${b}}\\sqrt{${r*r}-${inside}}\\,dx`,piV(r*r,2),[piV(r*r),piV(r,2),piV(2*r*r)],`The horizontal shift changes location but not area; this is an upper semicircle of radius ${r}.`);}
     if(fam==='complement_semicircle'){const r=ri(2,6),rect=2*r*r,semi=piV(r*r,2);return mcV(`geoV-comp-${r}`,'complementary_semicircle','Evaluate the definite integral using geometry.',`\\int_{-${r}}^{${r}}\\left(${r}-\\sqrt{${r*r}-x^2}\\right)\\,dx`,`${rect}-${semi}`,[`${rect}+${semi}`,`${r*r}-${semi}`,semi],`Use rectangle area ${rect} minus the area of the upper semicircle.`);}
     if(fam==='absolute_value'){const r=ri(2,7);return mcV(`geoV-abs-${r}`,'absolute_value_geometry','Evaluate the definite integral using geometry.',`\\int_{-${r}}^{${r}}|x|\\,dx`,String(r*r),['0',String(2*r*r),String(r)],`The graph forms two congruent right triangles; together their area is ${r*r}.`);}
-    if(fam==='rectangle_plus_semicircle'){const r=ri(2,5),c=ri(1,4),rect=2*r*c,semi=piV(r*r,2);return mcV(`geoV-rplus-${r}-${c}`,'rectangle_plus_semicircle','Evaluate the definite integral using geometry.',`\\int_{-${r}}^{${r}}\\left(${c}+\\sqrt{${r*r}-x^2}\\right)\\,dx`,`${rect}+${semi}`,[`${rect}+${piV(r*r)}`,`${rect}-${semi}`,`${r*c}+${semi}`],`Add the rectangle of area ${rect} and the upper semicircle area ${semi}.`);}
+    if(fam==='rectangle_plus_semicircle'){const r=ri(2,5),c=ri(1,4),rect=2*r*c,semi=piV(r*r,2);return mcV(`geoV-rplus-${r}-${c}`,'rectangle_plus_semicircle','Evaluate the definite integral using geometry.',`\\int_{-${r}}^{${r}}\\left(${c}+\\sqrt{${r*r}-x^2}\\right)\\,dx`,`${rect}+${semi}`,[`${rect}+${piV(r*r)}`,`${rect}-${semi}`,`${r*c}+${semi}`],`Add the rectangle of area \\(${rect}\\) and the upper semicircle area \\(${semi}\\).`);}
     const h=ri(-4,4),r=ri(2,6),a=h-r,b=h+r,shift=h===0?'x':h>0?`x-${h}`:`x+${-h}`;return mcV(`geoV-cross-${h}-${r}`,'cross_axis_linear','Evaluate the definite integral using geometry.',`\\int_${a}^{${b}}(${shift})\\,dx`,'0',[String(r*r),String(-r*r),String(2*r)],`The line crosses the x-axis at ${h}; the negative and positive triangles have equal area.`);
   };
 
@@ -1986,7 +2007,7 @@ G['derivatives-conceptual-review']=()=>{
     const fam=pick(['shifted_parabola','line_parabola','two_shifted_parabolas','cubic_sign','cos_between','sin_between','absolute_triangle','semicircle_radical']);
     if(fam==='shifted_parabola'){
       const a=ri(2,5),c=ri(1,3),h=ri(-3,3),H=c*a*a,u=h===0?'x':h>0?`x-${h}`:`x+${-h}`;
-      return ratMc(`u6-area-n1-${a}-${c}-${h}`,'shifted_scaled_parabola_axis','Find the area between the curve and the x-axis.',`y=${H}-${c===1?'':c}(${u})^2,\\quad ${h-a}\\le x\\le${h+a}`,4*c*a**3,3,`Shift with u=x-${h}. The area is the integral of ${c}(a^2-u^2) across the symmetric interval.`);
+      return ratMc(`u6-area-n1-${a}-${c}-${h}`,'shifted_scaled_parabola_axis','Find the area between the curve and the x-axis.',`y=${H}-${c===1?'':c}(${u})^2,\\quad ${h-a}\\le x\\le${h+a}`,4*c*a**3,3,`Shift with \(u=${u}\). The area is the integral of \(${c}(a^2-u^2)\) across the symmetric interval.`);
     }
     if(fam==='line_parabola'){
       const a=ri(2,6),k=ri(1,4);
@@ -2019,7 +2040,7 @@ G['derivatives-conceptual-review']=()=>{
     if(fam==='two_sideways'){const r=ri(1,4),k=ri(1,3);return ratMc(`u6-y3-${r}-${k}`,'horizontal_two_sideways','Find the area using dy.',`x=${k}(y^2-${r*r}),\\qquad x=${k}(${r*r}-y^2)`,8*k*r**3,3,`The curves meet at y=±${r}. Integrate right minus left.`)}
     if(fam==='triangle'){const h=ri(2,6),c=ri(1,4);return ratMc(`u6-y4-${h}-${c}`,'horizontal_triangle','Find the area using horizontal slices.',`x=0,\\qquad x=${c}(${h}-y),\\qquad 0\\le y\\le${h}`,c*h*h,2,`Horizontal width is ${c}(${h}-y).`)}
     if(fam==='cubic_width'){const a=ri(2,5),k=ri(1,3);return ratMc(`u6-y5-${a}-${k}`,'horizontal_cubic_width','Find the area by integrating with respect to y.',`x=${k}y^3,\\qquad x=${k*a**3},\\qquad 0\\le y\\le${a}`,3*k*a**4,4,`Use right minus left: ${k*a**3}-${k}y^3.`)}
-    const h=ri(-2,2),a=ri(2,5),k=ri(1,3),u=h===0?'y':h>0?`y-${h}`:`y+${-h}`;return ratMc(`u6-y6-${h}-${a}-${k}`,'translated_horizontal_parabola','Find the area by integrating with respect to y.',`x=${k*a*a},\\qquad x=${k}(${u})^2,\\qquad ${h-a}\\le y\\le${h+a}`,4*k*a**3,3,`Translate with u=y-${h}; the horizontal width is ${k}(a^2-u^2).`);
+    const h=ri(-2,2),a=ri(2,5),k=ri(1,3),u=h===0?'y':h>0?`y-${h}`:`y+${-h}`;return ratMc(`u6-y6-${h}-${a}-${k}`,'translated_horizontal_parabola','Find the area by integrating with respect to y.',`x=${k*a*a},\\qquad x=${k}(${u})^2,\\qquad ${h-a}\\le y\\le${h+a}`,4*k*a**3,3,`Translate with \(u=${u}\); the horizontal width is \(${k}(a^2-u^2)\).`);
   };
 
   G['integrals-on-piecewise-defined-functions']=()=>{
@@ -2116,6 +2137,561 @@ G['derivatives-conceptual-review']=()=>{
     if(slug==='solids-of-revolution')return G[slug]({solidMethod:R()<0.5?'shell':'disk',solidCalcMode:R()<0.28?'calc':'noncalc'});
     return G[slug]({});
   };
+})();
+
+
+// Difference Quotient final course specification (v10.6.3.J): simplify only.
+// Students practice either [f(x+h)-f(x)]/h or [f(x)-f(a)]/(x-a); no derivative-limit evaluation prompts.
+G['difference-quotient']=()=>{
+  const pointForm=R()<0.38;
+  if(!pointForm){
+    const kind=pick(['linear','quadratic','cubic','radical','reciprocal']);
+    if(kind==='linear'){
+      const A=nz(-7,7),B=ri(-9,9),correct=String(A);
+      return mc(`dqj-lin-${A}-${B}`,'linear_difference_quotient','Simplify the difference quotient.',`f(x)=${lin(A,B)},\\qquad \\frac{f(x+h)-f(x)}{h}`,correct,[String(-A),`${A}h`,`${lin(A,B)}`],`Substitute \\(x+h\\), subtract \\(f(x)\\), factor out \\(h\\), and cancel. The simplified quotient is \\(${correct}\\).`)
+    }
+    if(kind==='quadratic'){
+      const A=nz(-4,4),B=nz(-6,6),C=ri(-7,7),correct=`${signed(2*A,'x',true)}${signed(A,'h')}${signed(B,'')}`;
+      const w1=`${signed(2*A,'x',true)}${signed(B,'')}`,w2=`${signed(A,'x',true)}${signed(A,'h')}${signed(B,'')}`,w3=`${signed(2*A,'x',true)}${signed(A,'h')}${signed(C,'')}`;
+      return mc(`dqj-quad-${A}-${B}-${C}`,'quadratic_difference_quotient','Simplify the difference quotient.',`f(x)=${poly2(A,B,C)},\\qquad \\frac{f(x+h)-f(x)}{h}`,correct,[w1,w2,w3],`Expand \\(f(x+h)\\), subtract \\(f(x)\\), factor out \\(h\\), and cancel. The simplified quotient is \\(${correct}\\).`)
+    }
+    if(kind==='cubic'){
+      const A=nz(-3,3),B=nz(-4,4),C=nz(-5,5),D=ri(-6,6);
+      const correct=`${signed(3*A,'x^2',true)}${signed(3*A,'xh')}${signed(A,'h^2')}${signed(2*B,'x')}${signed(B,'h')}${signed(C,'')}`;
+      const w1=`${signed(3*A,'x^2',true)}${signed(2*B,'x')}${signed(C,'')}`;
+      const w2=`${signed(3*A,'x^2',true)}${signed(A,'xh')}${signed(A,'h^2')}${signed(2*B,'x')}${signed(C,'')}`;
+      const w3=`${signed(3*A,'x^2',true)}${signed(3*A,'xh')}${signed(A,'h^2')}${signed(B,'x')}${signed(B,'h')}${signed(C,'')}`;
+      return mc(`dqj-cubic-${A}-${B}-${C}-${D}`,'cubic_difference_quotient','Simplify the difference quotient.',`f(x)=${poly3(A,B,C,D)},\\qquad \\frac{f(x+h)-f(x)}{h}`,correct,[w1,w2,w3],`Expand \\((x+h)^3\\) and \\((x+h)^2\\), subtract \\(f(x)\\), then factor and cancel \\(h\\). The simplified quotient is \\(${correct}\\).`)
+    }
+    if(kind==='radical'){
+      const c=ri(1,9),root=`\\sqrt{x+${c}}`,shift=`\\sqrt{x+h+${c}}`,correct=`\\frac{1}{${shift}+${root}}`;
+      return mc(`dqj-rad-${c}`,'radical_difference_quotient','Simplify the difference quotient.',`f(x)=${root},\\qquad \\frac{f(x+h)-f(x)}{h}`,correct,[`\\frac{1}{2${root}}`,`\\frac{h}{${shift}+${root}}`,`${shift}+${root}`],`Multiply by the conjugate. The numerator becomes \\(h\\), which cancels the denominator \\(h\\), leaving \\(${correct}\\).`)
+    }
+    const c=ri(1,8),k=nz(-5,5),den1=`x+${c}`,den2=`x+h+${c}`,num=Math.abs(k),correct=k<0?`\\frac{${num}}{(${den1})(${den2})}`:`-\\frac{${num}}{(${den1})(${den2})}`;
+    const kh=k===1?'h':k===-1?'-h':`${k}h`,negKh=k===1?'-h':k===-1?'h':`${-k}h`;
+    return mc(`dqj-recip-${k}-${c}`,'reciprocal_difference_quotient','Simplify the difference quotient.',`f(x)=\\frac{${k}}{${den1}},\\qquad \\frac{f(x+h)-f(x)}{h}`,correct,[`\\frac{${k}}{(${den1})^2}`,`-\\frac{${Math.abs(k)}}{(${den1})^2}`,`\\frac{${kh}}{(${den1})(${den2})}`],`Combine the fractions in the numerator. Their numerator simplifies to \\(${negKh}\\); cancel \\(h\\) to obtain \\(${correct}\\).`)
+  }
+  const kind=pick(['quadratic','cubic','radical','reciprocal']);
+  if(kind==='quadratic'){
+    const A=nz(-4,4),B=nz(-6,6),C=ri(-6,6),a=ri(-3,3),correct=`${signed(A,'x',true)}${signed(A*a+B,'')}`;
+    return mc(`dqj-point-q-${A}-${B}-${C}-${a}`,'point_form_simplification','Simplify the difference quotient.',`f(x)=${poly2(A,B,C)},\\qquad \\frac{f(x)-f(${a})}{${xm(a)}}`,correct,[`${signed(2*A,'x',true)}${signed(B,'')}`,`${signed(A,'x',true)}${signed(B,'')}`,String(2*A*a+B)],`Factor \\(f(x)-f(${a})\\) by \\(${xm(a)}\\), then cancel that factor. The simplified quotient is \\(${correct}\\).`)
+  }
+  if(kind==='cubic'){
+    const A=nz(-2,2),B=nz(-3,3),C=nz(-4,4),D=ri(-5,5),a=ri(-2,2);
+    const q2=A*a+B, q1=A*a*a+B*a+C;
+    const correct=`${signed(A,'x^2',true)}${signed(q2,'x')}${signed(q1,'')}`;
+    const w1=`${signed(3*A,'x^2',true)}${signed(2*B,'x')}${signed(C,'')}`;
+    const w2=`${signed(A,'x^2',true)}${signed(B,'x')}${signed(C,'')}`;
+    const w3=String(3*A*a*a+2*B*a+C);
+    return mc(`dqj-point-c-${A}-${B}-${C}-${D}-${a}`,'point_form_cubic_simplification','Simplify the difference quotient.',`f(x)=${poly3(A,B,C,D)},\\qquad \\frac{f(x)-f(${a})}{${xm(a)}}`,correct,[w1,w2,w3],`Factor the numerator by \\(${xm(a)}\\) and cancel. The remaining quadratic factor is \\(${correct}\\).`)
+  }
+  if(kind==='radical'){
+    const r=ri(2,6),c=ri(0,5),a=r*r-c,root=`\\sqrt{x+${c}}`,correct=`\\frac{1}{${root}+${r}}`;
+    return mc(`dqj-point-r-${r}-${c}`,'point_form_radical_simplification','Simplify the difference quotient.',`f(x)=${root},\\qquad \\frac{f(x)-f(${a})}{${xm(a)}}`,correct,[`\\frac{1}{${2*r}}`,`\\frac{1}{${root}}`,`${root}+${r}`],`Multiply by the conjugate. Since \\(f(${a})=${r}\\), the factor \\(${xm(a)}\\) cancels and the quotient becomes \\(${correct}\\).`)
+  }
+  const c=ri(1,6),a=ri(0,4),A=a+c,den=`x+${c}`,correct=`-\\frac{1}{${A}(${den})}`;
+  return mc(`dqj-point-recip-${a}-${c}`,'point_form_reciprocal_simplification','Simplify the difference quotient.',`f(x)=\\frac1{${den}},\\qquad \\frac{f(x)-f(${a})}{${xm(a)}}`,correct,[`-\\frac{1}{(${den})^2}`,`\\frac{1}{${A}(${den})}`,`-\\frac{1}{${A}^2}`],`Combine the fractions in the numerator. A factor of \\(${xm(a)}\\) cancels, leaving \\(${correct}\\).`)
+};
+
+
+// v10.6.3.L — Unit 2 conceptual cleanup + Unit 3 tangent-line polish/variety.
+(function v1063LUnit23(){
+  const texPoint=(x,y)=>`(${x},${y})`;
+  const ordered=(vals)=>vals.map(String).join(',\\ ');
+  const slopeFactor=m=>m==='1'?'':m==='-1'?'-':m;
+  const pointSlope=(y0,m,a)=>{
+    if(m==='0')return `y=${y0}`;
+    const ys=y0===0?'y':y0>0?`y-${y0}`:`y+${-y0}`;
+    const xs=a===0?'x':a>0?`(x-${a})`:`(x+${-a})`;
+    return `${ys}=${slopeFactor(String(m))}${xs}`;
+  };
+
+  // Conceptual derivative review: keep it genuinely conceptual/AP-style and remove
+  // low-value coefficient-one implicit equations such as 1x+1y=c.
+  G['derivatives-conceptual-review']=()=>{
+    const make=(id,variant,prompt,math,correct,wrongs,explanation)=>{
+      const vals=shuffle([correct,...wrongs]);
+      return {id,variant,questionHtml:`<div><div class="question-prompt">${prompt}</div>${math?`<div>\\(${math}\\)</div>`:''}</div>`,choices:vals,correctIndex:vals.indexOf(correct),choicesAreText:true,choicesHtml:true,explanation};
+    };
+    const kind=pick(['diff_cont','derivative_meaning','second_derivative','inverse_rule','nondifferentiable','critical_point','motion_meaning','linearization_meaning']);
+    if(kind==='diff_cont')return make('dconceptL-diff-cont','differentiability_continuity','Which statement must be true?',`f\\text{ is differentiable at }x=a.`,`\\(f\\) is continuous at \\(x=a\\).`,[`\\(f'(a)=0\\).`,`\\(f\\) has a local extremum at \\(x=a\\).`,`\\(f''(a)\\) exists.`],`Differentiability at a point implies continuity at that point. None of the other statements is required.`);
+    if(kind==='derivative_meaning'){
+      const a=ri(-4,4),m=nz(-6,6);
+      return make(`dconceptL-meaning-${a}-${m}`,'derivative_interpretation','What does the derivative value tell you?',`f'(${a})=${m}`,`The tangent line to the graph of \\(f\\) at \\(x=${a}\\) has slope \\(${m}\\).`,[`\\(f(${a})=${m}\\).`,`The graph has a horizontal tangent at \\(x=${a}\\).`,`The graph is concave ${m>0?'up':'down'} at \\(x=${a}\\).`],`The derivative \\(f'(${a})\\) is the slope of the tangent line at \\(x=${a}\\).`);
+    }
+    if(kind==='second_derivative'){
+      const fp=pick([-5,-3,-1,1,3,5]),fpp=pick([-4,-2,2,4]);
+      const correct=fp>0?(fpp>0?'Increasing and concave up.':'Increasing and concave down.'):(fpp>0?'Decreasing and concave up.':'Decreasing and concave down.');
+      const pool=['Increasing and concave up.','Increasing and concave down.','Decreasing and concave up.','Decreasing and concave down.'].filter(x=>x!==correct);
+      return make(`dconceptL-2nd-${fp}-${fpp}`,'first_second_derivative_signs','Describe the graph at the indicated point.',`f'(a)=${fp},\\qquad f''(a)=${fpp}`,correct,pool,`The sign of \\(f'\\) determines increasing/decreasing behavior, and the sign of \\(f''\\) determines concavity.`);
+    }
+    if(kind==='inverse_rule'){
+      const m=pick([2,3,4,5,6]);
+      return make(`dconceptL-inv-${m}`,'inverse_derivative_rule','Which value is correct?',`f(a)=b,\\qquad f'(a)=${m},\\qquad (f^{-1})'(b)=?`,`\\(\\frac{1}{${m}}\\)`,[`\\(${m}\\)`,`\\(-\\frac{1}{${m}}\\)`,`\\(-${m}\\)`],`For inverse functions, \\((f^{-1})'(b)=\\frac{1}{f'(a)}\\), so the value is \\(\\frac{1}{${m}}\\).`);
+    }
+    if(kind==='nondifferentiable')return make('dconceptL-corner','nondifferentiability','At which feature is a function not differentiable?','', 'A sharp corner.',['A smooth local minimum.','A horizontal tangent.','A point with positive slope.'],'At a sharp corner, the one-sided tangent slopes do not agree, so the derivative does not exist there.');
+    if(kind==='critical_point')return make('dconceptL-critical','critical_point_reasoning','Which statement is sufficient to conclude that f has a local maximum at x=a?',`f'\\text{ changes from positive to negative at }x=a.`,'The derivative changes from positive to negative at \\(x=a\\).',['The derivative is zero at \\(x=a\\), with no other information.','The second derivative is zero at \\(x=a\\).','The function is continuous at \\(x=a\\).'],`A change in \\(f'\\) from positive to negative means the function changes from increasing to decreasing, which gives a local maximum.`);
+    if(kind==='motion_meaning'){
+      const t=ri(1,8),v=nz(-12,12);
+      return make(`dconceptL-motion-${t}-${v}`,'velocity_interpretation','A particle has position s(t). What does the given derivative value mean?',`s'(${t})=${v}`,`At \\(t=${t}\\), the particle's velocity is \\(${v}\\).`,[`At \\(t=${t}\\), the particle's position is \\(${v}\\).`,`At \\(t=${t}\\), the particle's acceleration is \\(${v}\\).`,`At \\(t=${t}\\), the particle's speed must be \\(${v}\\).`],`The first derivative of position is velocity. Speed would be the absolute value of velocity.`);
+    }
+    const a=ri(-3,3),fa=ri(-8,8),fp=nz(-5,5),h=pick([0.1,0.2,-0.1,-0.2]);
+    return make(`dconceptL-lin-${a}-${fa}-${fp}-${String(h).replace('-','m')}`,'linearization_interpretation','Which expression is the tangent-line approximation for f(a+h)?',`f(a)=${fa},\\qquad f'(a)=${fp}`,`\\(f(a+h)\\approx ${fa}+${fp}h\\)`,[`\\(f(a+h)\\approx ${fa}+h^2\\)`,`\\(f(a+h)\\approx ${fp}+${fa}h\\)`,`\\(f(a+h)\\approx ${fa}-${fp}h\\)`],`Near \\(x=a\\), the tangent-line approximation is \\(f(a+h)\\approx f(a)+f'(a)h\\).`);
+  };
+
+  // Tangent/normal lines: suppress coefficient 1 everywhere in given functions
+  // and use cleaner point-slope equations in the choices.
+  G['equations-of-tangent-and-normal-lines']=()=>{
+    const fam=pick(['quadratic_tangent','cubic_normal','radical_tangent','reciprocal_normal','sine_tangent','cosine_normal','exponential_tangent','log_tangent']);
+    if(fam==='quadratic_tangent'){
+      const A=pick([1,2,3,-1,-2]),B=nz(-5,5),C=ri(-4,4),x0=pick([-2,-1,0,1,2]),y0=A*x0*x0+B*x0+C,m=2*A*x0+B;
+      const correct=pointSlope(y0,String(m),x0),wrong1=pointSlope(y0,String(-m||1),x0);
+      return mc(`tnL-q-${A}-${B}-${C}-${x0}`,'quadratic_tangent','Find the equation of the tangent line.',`f(x)=${poly2(A,B,C)},\\qquad x=${x0}`,correct,[wrong1,`y=${m===1?'x':m===-1?'-x':`${m}x`}`,`y=${y0}`],`Differentiate to get \\(f'(x)=${signed(2*A,'x',true)}${signed(B,'')}\\). At \\(x=${x0}\\), the point is \\(${texPoint(x0,y0)}\\) and the tangent slope is \\(${m}\\).`);
+    }
+    if(fam==='cubic_normal'){
+      const A=pick([1,2,-1,-2]),B=pick([-4,-3,-2,2,3,4]),x0=pick([-2,-1,1,2]),y0=A*x0**3+B*x0,m=3*A*x0*x0+B;
+      if(m===0)return mc(`tnL-cv-${A}-${B}-${x0}`,'cubic_normal','Find the equation of the normal line.',`f(x)=${signed(A,'x^3',true)}${signed(B,'x')},\\qquad x=${x0}`,`x=${x0}`,[`y=${y0}`,`y=0`,`x=${-x0}`],`The tangent slope is \\(0\\), so the tangent is horizontal and the normal line is vertical through \\(x=${x0}\\).`);
+      const nm=texRat(-1,m),correct=pointSlope(y0,nm,x0);
+      return mc(`tnL-c-${A}-${B}-${x0}`,'cubic_normal','Find the equation of the normal line.',`f(x)=${signed(A,'x^3',true)}${signed(B,'x')},\\qquad x=${x0}`,correct,[pointSlope(y0,String(m),x0),pointSlope(y0,texRat(1,m),x0),`y=${nm}x`],`The tangent slope is \\(${m}\\), so the normal slope is the negative reciprocal \\(${nm}\\). Use the point \\(${texPoint(x0,y0)}\\).`);
+    }
+    if(fam==='radical_tangent'){
+      const r=ri(2,7),x0=r*r,m=texRat(1,2*r),correct=pointSlope(r,m,x0);
+      return mc(`tnL-root-${r}`,'radical_tangent','Find the equation of the tangent line.',`f(x)=\\sqrt{x},\\qquad x=${x0}`,correct,[pointSlope(r,String(2*r),x0),`y=${m}x`,pointSlope(x0,m,r)],`Since \\(f'(x)=\\frac{1}{2\\sqrt{x}}\\), the slope at \\(x=${x0}\\) is \\(${m}\\), and the point is \\(${texPoint(x0,r)}\\).`);
+    }
+    if(fam==='reciprocal_normal'){
+      const a=pick([1,2,3,4,5]),y0=texRat(1,a),tm=texRat(-1,a*a),nm=String(a*a),correct=`y-${y0}=${nm}${a===0?'x':`(x-${a})`}`;
+      return mc(`tnL-rec-${a}`,'reciprocal_normal','Find the equation of the normal line.',`f(x)=\\frac{1}{x},\\qquad x=${a}`,correct,[`y-${y0}=${tm}(x-${a})`,`y=${nm}x`,`y-${y0}=-${nm}(x-${a})`],`The tangent slope is \\(-\\frac{1}{${a*a}}\\), so the normal slope is \\(${a*a}\\).`);
+    }
+    if(fam==='sine_tangent'){
+      const k=pick([1,2,3,4,5]),arg=k===1?'x':`${k}x`,correct=k===1?'y=x':`y=${k}x`;
+      return mc(`tnL-sin-${k}`,'sine_tangent','Find the equation of the tangent line.',`f(x)=\\sin(${arg}),\\qquad x=0`,correct,[`y=${-k}x`,`y=${k+1}x`,`y=${k}x+1`],`At \\(x=0\\), \\(f(0)=0\\) and \\(f'(0)=${k}\\).`);
+    }
+    if(fam==='cosine_normal'){
+      const k=pick([1,2,3,4]),x0=`\\frac{\\pi}{${2*k}}`,m=-k,nm=texRat(1,k),xf=`(x-${x0})`,correct=`y=${slopeFactor(nm)}${xf}`;
+      return mc(`tnL-cos-${k}`,'cosine_normal','Find the equation of the normal line.',`f(x)=\\cos(${k===1?'x':`${k}x`}),\\qquad x=${x0}`,correct,[`y=${slopeFactor(String(m))}${xf}`,`y=-${slopeFactor(nm)}${xf}`,`y=${nm==='1'?'x':`${nm}x`}`],`At \\(x=${x0}\\), the point is on the x-axis and the tangent slope is \\(${-k}\\), so the normal slope is \\(${nm}\\).`);
+    }
+    if(fam==='exponential_tangent'){
+      const k=pick([1,2,3,4]),arg=k===1?'x':`${k}x`,correct=pointSlope(1,String(k),0);
+      return mc(`tnL-exp-${k}`,'exponential_tangent','Find the equation of the tangent line.',`f(x)=e^{${arg}},\\qquad x=0`,correct,[pointSlope(1,String(-k),0),`y=${k===1?'x':`${k}x`}`,`y-${k}=x`],`The point is \\((0,1)\\), and \\(f'(0)=${k}\\).`);
+    }
+    const k=pick([2,3,4,5,6]);
+    return mc(`tnL-log-${k}`,'log_tangent','Find the equation of the tangent line.',`f(x)=\\ln(${k}x),\\qquad x=1`,`y-\\ln(${k})=x-1`,[`y-\\ln(${k})=${k}(x-1)`,`y=x`,`y-1=x-\\ln(${k})`],`Because \\(f'(x)=\\frac1x\\), the tangent slope at \\(x=1\\) is \\(1\\).`);
+  };
+
+  // Explicit horizontal/vertical tangents: broader families and fully MathJax-safe explanations.
+  G['horizontal-and-vertical-tangent-lines']=()=>{
+    const fam=pick(['cubic_horizontal','quartic_horizontal','sine_horizontal','cosine_horizontal','rational_horizontal','log_horizontal','exponential_horizontal','cube_root_vertical','fifth_root_vertical','cube_root_plus_linear_vertical']);
+    if(fam==='cubic_horizontal'){
+      const h=ri(-4,4),r=ri(1,4),c=ri(-5,5),u=xm(h),a=h-r,b=h+r;
+      return mc(`hvL-cubic-${h}-${r}-${c}`,'horizontal_cubic','Find all x-values where the graph has horizontal tangents.',`f(x)=(${u})^3-${3*r*r}(${u})${signed(c,'')}`,`x=${a},\\ ${b}`,[`x=${h}`,`x=${a}`,`x=${b}`],`Differentiate: \\(f'(x)=3(${u})^2-${3*r*r}\\). Setting \\(f'(x)=0\\) gives \\(x=${a}\\) and \\(x=${b}\\).`);
+    }
+    if(fam==='quartic_horizontal'){
+      const h=ri(-3,3),r=ri(1,3),c=ri(-4,4),u=xm(h),a=h-r,b=h+r;
+      return mc(`hvL-q4-${h}-${r}-${c}`,'horizontal_quartic','Find all x-values where the graph has horizontal tangents.',`f(x)=(${u})^4-${2*r*r}(${u})^2${signed(c,'')}`,`x=${a},\\ ${h},\\ ${b}`,[`x=${a},\\ ${b}`,`x=${h},\\ ${b}`,`x=${a},\\ ${h}`],`Factor \\(f'(x)=4(${u})[(${u})^2-${r*r}]\\). Thus \\(f'(x)=0\\) at \\(x=${a},${h},${b}\\).`);
+    }
+    if(fam==='sine_horizontal'){
+      const A=ri(1,5),c=ri(-4,4);
+      return mc(`hvL-sin-${A}-${c}`,'horizontal_trig','On \\([0,2\\pi]\\), where does the graph have horizontal tangents?',`f(x)=${A===1?'':A}\\sin x${signed(c,'')}`,`x=\\frac{\\pi}{2},\\ \\frac{3\\pi}{2}`,[`x=0,\\ \\pi,\\ 2\\pi`,`x=\\pi`,`x=0,\\ 2\\pi`],`Here \\(f'(x)=${A===1?'':A}\\cos x\\). Horizontal tangents occur where \\(\\cos x=0\\).`);
+    }
+    if(fam==='cosine_horizontal'){
+      const A=ri(1,5),c=ri(-4,4);
+      return mc(`hvL-cos-${A}-${c}`,'horizontal_trig','On \\([0,2\\pi]\\), where does the graph have horizontal tangents?',`f(x)=${A===1?'':A}\\cos x${signed(c,'')}`,`x=0,\\ \\pi,\\ 2\\pi`,[`x=\\frac{\\pi}{2},\\ \\frac{3\\pi}{2}`,`x=\\pi`,`x=0,\\ 2\\pi`],`Here \\(f'(x)=-${A===1?'':A}\\sin x\\). Horizontal tangents occur where \\(\\sin x=0\\).`);
+    }
+    if(fam==='rational_horizontal'){
+      const r=ri(2,6),a=r*r;
+      return mc(`hvL-rat-${r}`,'horizontal_rational','For x>0, where does the graph have a horizontal tangent?',`f(x)=x+\\frac{${a}}{x}`,`x=${r}`,[`x=${a}`,`x=${r+1}`,`x=\\frac1{${r}}`],`Differentiate: \\(f'(x)=1-\\frac{${a}}{x^2}\\). On \\(x>0\\), \\(f'(x)=0\\) at \\(x=${r}\\).`);
+    }
+    if(fam==='log_horizontal'){
+      const a=ri(2,7);
+      return mc(`hvL-log-${a}`,'horizontal_logarithmic','Where does the graph have a horizontal tangent?',`f(x)=${a}\\ln x-x`,`x=${a}`,[`x=1`,`x=${a+1}`,`x=\\frac1{${a}}`],`Since \\(f'(x)=\\frac{${a}}x-1\\), the horizontal tangent occurs when \\(x=${a}\\).`);
+    }
+    if(fam==='exponential_horizontal'){
+      const k=ri(1,4),ans=texRat(1,k);
+      return mc(`hvL-exp-${k}`,'horizontal_exponential','Where does the graph have a horizontal tangent?',`f(x)=xe^{-${k===1?'x':`${k}x`}}`,`x=${ans}`,[`x=${k}`,`x=1`,`x=-${ans}`],`Using the product rule, \\(f'(x)=e^{-${k===1?'x':`${k}x`}}(1-${k}x)\\). Therefore \\(f'(x)=0\\) at \\(x=${ans}\\).`);
+    }
+    if(fam==='cube_root_vertical'){
+      const h=ri(-6,6),A=ri(1,5),c=ri(-4,4),u=xm(h);
+      return mc(`hvL-cuberoot-${h}-${A}-${c}`,'vertical_cube_root','At what x-value does the graph have a vertical tangent?',`f(x)=${A===1?'':A}\\sqrt[3]{${u}}${signed(c,'')}`,`x=${h}`,[`x=${-h}`,`x=${h+1}`,`x=${h-1}`],`The derivative contains a factor of \\(( ${u})^{-2/3}\\), whose magnitude becomes unbounded as \\(x\\to${h}\\).`);
+    }
+    if(fam==='fifth_root_vertical'){
+      const h=ri(-6,6),A=ri(1,5),c=ri(-4,4),u=xm(h);
+      return mc(`hvL-fifth-${h}-${A}-${c}`,'vertical_fifth_root','At what x-value does the graph have a vertical tangent?',`f(x)=${A===1?'':A}\\sqrt[5]{${u}}${signed(c,'')}`,`x=${h}`,[`x=${-h}`,`x=${h+1}`,`x=${h-1}`],`The derivative contains \\(( ${u})^{-4/5}\\), so its magnitude becomes unbounded at \\(x=${h}\\).`);
+    }
+    const h=ri(-5,5),m=nz(-3,3),c=ri(-4,4),u=xm(h);
+    return mc(`hvL-rootlin-${h}-${m}-${c}`,'vertical_root_plus_linear','At what x-value does the graph have a vertical tangent?',`f(x)=\\sqrt[3]{${u}}${signed(m,`(${u})`)}${signed(c,'')}`,`x=${h}`,[`x=${-h}`,`x=${h+1}`,`x=${h-1}`],`The linear term has a finite derivative, while the cube-root derivative contains \\(( ${u})^{-2/3}\\). The unbounded term gives a vertical tangent at \\(x=${h}\\).`);
+  };
+
+  // Implicit horizontal/vertical tangents: broad curve families, mathematical
+  // answer choices, and MathJax-safe worked explanations.
+  G['horizontal-and-vertical-tangent-lines-implicitly']=()=>{
+    const fam=pick(['ellipse_horizontal','ellipse_vertical','hyperbola_horizontal','hyperbola_vertical','mixed_horizontal','mixed_vertical','cubic_horizontal','cubic_vertical','trig_horizontal','trig_vertical','exponential_vertical','product_horizontal','product_vertical']);
+    if(fam==='ellipse_horizontal'||fam==='ellipse_vertical'){
+      const a=ri(2,6),b=ri(2,6),A=b*b,B=a*a,K=A*a*a;
+      const math=`${A}x^2+${B}y^2=${K}`;
+      if(fam==='ellipse_horizontal')return mc(`ihvL-eh-${a}-${b}`,'implicit_ellipse_horizontal','At which points does the curve have horizontal tangents?',math,`(0,\\pm ${b})`,[`(\\pm ${a},0)`,`(0,\\pm ${a})`,`(\\pm ${b},0)`],`Implicit differentiation gives \\(\\frac{dy}{dx}=-\\frac{${A}x}{${B}y}\\). A horizontal tangent requires numerator \\(=0\\) and denominator \\(\\ne0\\), so \\(x=0\\). Substituting into the curve gives \\(y=\\pm${b}\\).`);
+      return mc(`ihvL-ev-${a}-${b}`,'implicit_ellipse_vertical','At which points does the curve have vertical tangents?',math,`(\\pm ${a},0)`,[`(0,\\pm ${b})`,`(\\pm ${b},0)`,`(0,\\pm ${a})`],`From \\(\\frac{dy}{dx}=-\\frac{${A}x}{${B}y}\\), a vertical tangent occurs when \\(y=0\\) and \\(x\\ne0\\). Substitution gives \\(x=\\pm${a}\\).`);
+    }
+    if(fam==='hyperbola_horizontal'){
+      const a=ri(2,6),b=ri(2,6),A=a*a,B=b*b,K=A*b*b;
+      return mc(`ihvL-hyh-${a}-${b}`,'implicit_hyperbola_horizontal','At which points does the curve have horizontal tangents?',`${A}y^2-${B}x^2=${K}`,`(0,\\pm ${b})`,[`(\\pm ${a},0)`,`(0,\\pm ${a})`,`(\\pm ${b},0)`],`Implicit differentiation gives \\(\\frac{dy}{dx}=\\frac{${B}x}{${A}y}\\). Horizontal tangents require \\(x=0\\), which gives \\(y=\\pm${b}\\).`);
+    }
+    if(fam==='hyperbola_vertical'){
+      const a=ri(2,6),b=ri(2,6),A=b*b,B=a*a,K=A*a*a;
+      return mc(`ihvL-hyv-${a}-${b}`,'implicit_hyperbola_vertical','At which points does the curve have vertical tangents?',`${A}x^2-${B}y^2=${K}`,`(\\pm ${a},0)`,[`(0,\\pm ${b})`,`(\\pm ${b},0)`,`(0,\\pm ${a})`],`Implicit differentiation gives \\(\\frac{dy}{dx}=\\frac{${A}x}{${B}y}\\). Vertical tangents require \\(y=0\\), which gives \\(x=\\pm${a}\\).`);
+    }
+    if(fam==='mixed_horizontal'||fam==='mixed_vertical'){
+      const a=ri(1,4),K=3*a*a,ap=String(a),an=String(-a),two=2*a;
+      if(fam==='mixed_horizontal')return mc(`ihvL-mh-${a}`,'implicit_mixed_quadratic_horizontal','At which points does the curve have horizontal tangents?',`x^2+xy+y^2=${K}`,`(${a},${-two}),\\ (${-a},${two})`,[`(${two},${-a}),\\ (${-two},${a})`,`(0,${a}),\\ (0,${-a})`,`(${a},0),\\ (${-a},0)`],`Differentiating gives \\(2x+y+(x+2y)\\frac{dy}{dx}=0\\), so \\(\\frac{dy}{dx}=-\\frac{2x+y}{x+2y}\\). Horizontal tangents satisfy \\(2x+y=0\\); together with the curve this gives the two listed points.`);
+      return mc(`ihvL-mv-${a}`,'implicit_mixed_quadratic_vertical','At which points does the curve have vertical tangents?',`x^2+xy+y^2=${K}`,`(${two},${-a}),\\ (${-two},${a})`,[`(${a},${-two}),\\ (${-a},${two})`,`(0,${a}),\\ (0,${-a})`,`(${a},0),\\ (${-a},0)`],`Here \\(\\frac{dy}{dx}=-\\frac{2x+y}{x+2y}\\). Vertical tangents satisfy \\(x+2y=0\\) while the numerator is nonzero; solving with the curve gives the two listed points.`);
+    }
+    if(fam==='cubic_horizontal'){
+      const c=ri(2,6),K=c**3;
+      return mc(`ihvL-cubh-${c}`,'implicit_cubic_horizontal','At which point does the curve have a horizontal tangent?',`x^3+y^3=${K}`,`(0,${c})`,[`(${c},0)`,`(0,-${c})`,`(-${c},0)`],`Implicit differentiation gives \\(\\frac{dy}{dx}=-\\frac{x^2}{y^2}\\). The slope is zero when \\(x=0\\) and \\(y\\ne0\\), giving \\((0,${c})\\).`);
+    }
+    if(fam==='cubic_vertical'){
+      const c=ri(2,6),K=c**3;
+      return mc(`ihvL-cubv-${c}`,'implicit_cubic_vertical','At which point does the curve have a vertical tangent?',`x^3+y^3=${K}`,`(${c},0)`,[`(0,${c})`,`(0,-${c})`,`(-${c},0)`],`Since \\(\\frac{dy}{dx}=-\\frac{x^2}{y^2}\\), the derivative is undefined with nonzero numerator at \\(( ${c},0)\\), giving a vertical tangent.`);
+    }
+    if(fam==='trig_horizontal')return mc('ihvL-trigh','implicit_trig_horizontal','Which listed point has a horizontal tangent?',`\\sin x+\\cos y=1`,`(\\frac{\\pi}{2},\\frac{\\pi}{2})`,[`(0,0)`,`(\\pi,0)`,`(2\\pi,0)`],`Implicit differentiation gives \\(\\frac{dy}{dx}=\\frac{\\cos x}{\\sin y}\\). At \\((\\frac{\\pi}{2},\\frac{\\pi}{2})\\), the numerator is zero and the denominator is nonzero.`);
+    if(fam==='trig_vertical')return mc('ihvL-trigv','implicit_trig_vertical','Which listed point has a vertical tangent?',`\\sin x+\\cos y=1`,`(0,0)`,[`(\\frac{\\pi}{2},\\frac{\\pi}{2})`,`(\\frac{\\pi}{6},\\frac{\\pi}{3})`,`(\\frac{5\\pi}{6},\\frac{\\pi}{3})`],`Here \\(\\frac{dy}{dx}=\\frac{\\cos x}{\\sin y}\\). At \\((0,0)\\), the denominator is zero while the numerator is nonzero, so the tangent is vertical.`);
+    if(fam==='exponential_vertical')return mc('ihvL-expv','implicit_exponential_vertical','At which point does the curve have a vertical tangent?',`e^x+y^2=2`,`(\\ln 2,0)`,[`(0,1)`,`(0,-1)`,`(1,0)`],`Implicit differentiation gives \\(\\frac{dy}{dx}=-\\frac{e^x}{2y}\\). The denominator is zero at \\(y=0\\); the curve then requires \\(e^x=2\\), so \\(x=\\ln2\\).`);
+    if(fam==='product_horizontal'){
+      const k=ri(2,7);
+      return mc(`ihvL-prodh-${k}`,'implicit_product_horizontal','At which point does the curve have a horizontal tangent?',`y(x^2+1)=${k}`,`(0,${k})`,[`(${k},0)`,`(1,${texRat(k,2)})`,`(-1,${texRat(k,2)})`],`Differentiating gives \\((x^2+1)\\frac{dy}{dx}+2xy=0\\), so \\(\\frac{dy}{dx}=-\\frac{2xy}{x^2+1}\\). Since the denominator is never zero, a horizontal tangent occurs at \\(x=0\\), giving \\(y=${k}\\).`);
+    }
+    const k=ri(2,7);
+    return mc(`ihvL-prodv-${k}`,'implicit_product_vertical','At which point does the curve have a vertical tangent?',`x(y^2+1)=${k}`,`(${k},0)`,[`(0,${k})`,`(${texRat(k,2)},1)`,`(${texRat(k,2)},-1)`],`Differentiating gives \\(y^2+1+2xy\\frac{dy}{dx}=0\\), so \\(\\frac{dy}{dx}=-\\frac{y^2+1}{2xy}\\). The denominator is zero at \\(y=0\\), and the curve then gives \\(x=${k}\\).`);
+  };
+})();
+
+
+
+// v10.6.3.M — Unit 3 manual-review rebuilds: assignment fidelity, variety, concavity reasoning, and numeric motion choices.
+(function v1063MUnit3Rebuild(){
+  const idn=n=>n<0?`m${-n}`:`p${n}`;
+  const plus=n=>n===0?'':n>0?`+${n}`:`-${-n}`;
+  const shift=h=>h===0?'x':h>0?`x-${h}`:`x+${-h}`;
+  const interval=(a,b)=>`(${a},${b})`;
+  const outside=(a,b)=>`(-\\infty,${a})\\cup(${b},\\infty)`;
+  const texN=x=>Number.isInteger(x)?String(x):String(Number(x.toFixed(4)));
+  const numWrongs=(ans,step=1)=>{
+    const vals=[]; const add=v=>{const t=texN(v);if(t!==texN(ans)&&!vals.includes(t))vals.push(t)};
+    [ans+step,ans-step,-ans,ans+2*step,ans-2*step,ans*2,ans/2,ans+3*step].forEach(add);
+    return vals.slice(0,3);
+  };
+  const numericMC=(id,variant,prompt,math,ans,explanation,step=1)=>mc(id,variant,prompt,math,texN(ans),numWrongs(ans,step),explanation);
+  const texPointSlope=(m,x0,y0)=>{
+    const ys=y0===0?'y':y0>0?`y-${y0}`:`y+${-y0}`;
+    const xs=x0===0?'x':x0>0?`(x-${x0})`:`(x+${-x0})`;
+    const mt=m===1?'':m===-1?'-':String(m);
+    return `${ys}=${mt}${xs}`;
+  };
+
+  // Motion: differentiation-based numeric questions only, with four genuinely numeric choices.
+  G['motion']=()=>{
+    const fam=pick(['pos_cubic','pos_quartic','pos_trig','pos_exp','vel_quad','vel_trig','vel_exp','rest_time','height_velocity','projectile_max']);
+    if(fam==='pos_cubic'){
+      const A=nz(-3,3),B=nz(-6,6),C=ri(-6,6),t=ri(0,3),ask=pick(['velocity','acceleration','speed']);
+      const v=3*A*t*t+2*B*t+C,a=6*A*t+2*B,ans=ask==='velocity'?v:ask==='acceleration'?a:Math.abs(v);
+      return numericMC(`motM-pc-${A}-${B}-${C}-${t}-${ask}`,`position_${ask}`,`A particle has position \\(s(t)\\). Find its ${ask} at \\(t=${t}\\).`,`s(t)=${signed(A,'t^3',true)}${signed(B,'t^2')}${signed(C,'t')}`,ans,`Differentiate \\(s(t)\\) to get velocity, and differentiate velocity to get acceleration.${ask==='speed'?' Speed is the absolute value of velocity.':''}`,2);
+    }
+    if(fam==='pos_quartic'){
+      const A=nz(-2,2),B=nz(-4,4),C=ri(-5,5),t=ri(0,2),ask=pick(['velocity','acceleration','speed']);
+      const v=4*A*t**3+3*B*t*t+C,a=12*A*t*t+6*B*t,ans=ask==='velocity'?v:ask==='acceleration'?a:Math.abs(v);
+      return numericMC(`motM-pq-${A}-${B}-${C}-${t}-${ask}`,`position_${ask}`,`A particle has position \\(s(t)\\). Find its ${ask} at \\(t=${t}\\).`,`s(t)=${signed(A,'t^4',true)}${signed(B,'t^3')}${signed(C,'t')}`,ans,`Use \\(v(t)=s'(t)\\) and \\(a(t)=v'(t)\\).${ask==='speed'?' Then take \\(|v(t)|\\).':''}`,2);
+    }
+    if(fam==='pos_trig'){
+      const k=ri(1,5),ask=pick(['velocity','acceleration','speed']),at=pick(['zero','quarter']);
+      const tTex=at==='zero'?'0':`\\frac{\\pi}{${2*k}}`,v=at==='zero'?k:0,a=at==='zero'?0:-k*k,ans=ask==='velocity'?v:ask==='acceleration'?a:Math.abs(v);
+      return numericMC(`motM-pt-${k}-${ask}-${at}`,`trig_position_${ask}`,`A particle has position \\(s(t)\\). Find its ${ask} at \\(t=${tTex}\\).`,`s(t)=\\sin(${k===1?'t':`${k}t`})`,ans,`Differentiate the position function. \\(v(t)=${k===1?'':k}\\cos(${k===1?'t':`${k}t`})\\), and acceleration is the derivative of velocity.`,Math.max(1,k));
+    }
+    if(fam==='pos_exp'){
+      const k=ri(1,4),A=ri(1,5),ask=pick(['velocity','acceleration','speed']),v=A*k,a=A*k*k,ans=ask==='acceleration'?a:v;
+      return numericMC(`motM-pe-${A}-${k}-${ask}`,`exponential_position_${ask}`,`A particle has position \\(s(t)\\). Find its ${ask} at \\(t=0\\).`,`s(t)=${A===1?'':A}e^{${k===1?'t':`${k}t`}}`,ans,`Differentiate the position function and use \\(e^0=1\\).${ask==='speed'?' Speed is \\(|v(0)|\\).':''}`,Math.max(1,k));
+    }
+    if(fam==='vel_quad'){
+      const A=nz(-4,4),B=nz(-7,7),C=ri(-7,7),t=ri(0,3),ask=pick(['acceleration','speed']),v=A*t*t+B*t+C,a=2*A*t+B,ans=ask==='acceleration'?a:Math.abs(v);
+      return numericMC(`motM-vq-${A}-${B}-${C}-${t}-${ask}`,`velocity_${ask}`,`A particle has velocity \\(v(t)\\). Find its ${ask} at \\(t=${t}\\).`,`v(t)=${signed(A,'t^2',true)}${signed(B,'t')}${signed(C,'')}`,ans,ask==='acceleration'?`Differentiate velocity: \\(a(t)=v'(t)\\).`:`Evaluate velocity and take its absolute value to get speed.`,2);
+    }
+    if(fam==='vel_trig'){
+      const A=nz(-6,6),k=ri(1,4),at=pick(['zero','quarter']),ask=pick(['acceleration','speed']),tTex=at==='zero'?'0':`\\frac{\\pi}{${2*k}}`,v=at==='zero'?0:A,a=at==='zero'?A*k:0,ans=ask==='acceleration'?a:Math.abs(v);
+      return numericMC(`motM-vt-${A}-${k}-${at}-${ask}`,`trig_velocity_${ask}`,`A particle has velocity \\(v(t)\\). Find its ${ask} at \\(t=${tTex}\\).`,`v(t)=${A===1?'':A===-1?'-':A}\\sin(${k===1?'t':`${k}t`})`,ans,ask==='acceleration'?`Differentiate \\(v(t)\\) and evaluate.`:`Speed is \\(|v(t)|\\).`,Math.max(1,k));
+    }
+    if(fam==='vel_exp'){
+      const A=nz(-6,6),k=ri(1,4),ask=pick(['acceleration','speed']),v=A,a=A*k,ans=ask==='acceleration'?a:Math.abs(v);
+      return numericMC(`motM-ve-${A}-${k}-${ask}`,`exponential_velocity_${ask}`,`A particle has velocity \\(v(t)\\). Find its ${ask} at \\(t=0\\).`,`v(t)=${A===1?'':A===-1?'-':A}e^{${k===1?'t':`${k}t`}}`,ans,ask==='acceleration'?`Differentiate velocity and evaluate at \\(t=0\\).`:`Evaluate \\(v(0)\\) and take its absolute value.`,Math.max(1,k));
+    }
+    if(fam==='rest_time'){
+      const r=ri(1,6),s=ri(1,5),A=nz(-4,4);
+      return numericMC(`motM-rest-${A}-${r}-${s}`,'rest_time_numeric','At what positive time is the particle at rest?',`v(t)=${A===1?'':A===-1?'-':A}(t-${r})(t+${s})`,r,`A particle is at rest when \\(v(t)=0\\). The roots are \\(t=${r}\\) and \\(t=-${s}\\), so the positive time is \\(t=${r}\\).`,1);
+    }
+    if(fam==='height_velocity'){
+      const B=pick([2,4,6,8]),C=ri(2,12),t0=ri(2,6),height=t0*t0+B*t0+C,ans=2*t0+B;
+      return numericMC(`motM-height-${B}-${C}-${t0}`,'velocity_at_position','A balloon has the given height function for \\(t\ge0\\). Find its velocity when it is at the indicated height.',`s(t)=t^2+${B}t+${C},\\qquad s(t)=${height}`,ans,`Because \\(s(t)\\) is increasing for \\(t\ge0\\), the stated height occurs at \\(t=${t0}\\). Then \\(v(t)=2t+${B}\\), so the velocity is \\(${ans}\\).`,2);
+    }
+    const V=32*ri(3,8),h=ri(0,20),tmax=V/32,ans=-16*tmax*tmax+V*tmax+h;
+    return numericMC(`motM-proj-${V}-${h}`,'projectile_maximum_altitude','Find the maximum altitude of the object.',`s(t)=-16t^2+${V}t+${h}`,ans,`At maximum altitude, \\(v(t)=s'(t)=-32t+${V}=0\\), so \\(t=${tmax}\\). Evaluate the position there.`,16);
+  };
+
+  // Absolute/local extrema: broad function families, no absolute-value functions, and a true mix of absolute and local questions.
+  G['absolute-and-local-extrema-and-the-extreme-value-theorem']=()=>{
+    const fam=pick(['abs_cubic','abs_quartic','abs_rational','abs_radical','abs_trig','abs_exp','local_cubic','local_quartic','local_exp','local_log','local_trig','local_rational']);
+    if(fam==='abs_cubic'){
+      const r=ri(1,4),k=ri(-6,6),want=pick(['maximum','minimum']),f=x=>x**3-3*r*r*x+k,L=-2*r,U=2*r,pts=[L,-r,r,U],vals=pts.map(f),ans=want==='maximum'?Math.max(...vals):Math.min(...vals);
+      return numericMC(`extM-ac-${r}-${idn(k)}-${want}`,'absolute_cubic',`Find the absolute ${want} value on the given closed interval.`,`f(x)=x^3-${3*r*r}x${plus(k)},\\quad [${L},${U}]`,ans,`Find the critical numbers from \\(f'(x)=3x^2-${3*r*r}\\), then compare the function values at those critical numbers and both endpoints.`,Math.max(1,r));
+    }
+    if(fam==='abs_quartic'){
+      const r=ri(1,3),k=ri(-5,5),want=pick(['maximum','minimum']),max=8*r**4+k,min=k-r**4,ans=want==='maximum'?max:min;
+      return numericMC(`extM-aq-${r}-${idn(k)}-${want}`,'absolute_quartic',`Find the absolute ${want} value on the given closed interval.`,`f(x)=x^4-${2*r*r}x^2${plus(k)},\\quad [${-2*r},${2*r}]`,ans,`The derivative factors as \\(4x(x^2-${r*r})\\). Compare the values at \\(x=0,\\pm${r}\\) and the endpoints.`,Math.max(1,r));
+    }
+    if(fam==='abs_rational'){
+      const r=ri(2,6),b=r+ri(2,5),ans=2*r;
+      return numericMC(`extM-ar-${r}-${b}`,'absolute_rational','Find the absolute minimum value on the given closed interval.',`f(x)=x+\\frac{${r*r}}{x},\\quad [1,${b}]`,ans,`On this positive interval, \\(f'(x)=1-${r*r}/x^2\\), so the interior critical point is \\(x=${r}\\). Compare it with both endpoints.`,1);
+    }
+    if(fam==='abs_radical'){
+      const Rr=ri(2,7),h=ri(-4,4),k=ri(-4,5),want=pick(['maximum','minimum']),ans=want==='maximum'?Rr+k:k;
+      return numericMC(`extM-root-${Rr}-${idn(h)}-${idn(k)}-${want}`,'absolute_radical',`Find the absolute ${want} value on the given closed interval.`,`f(x)=\\sqrt{${Rr*Rr}-(x${h===0?'':h>0?`-${h}`:`+${-h}`})^2}${plus(k)},\\quad [${h-Rr},${h+Rr}]`,ans,`The graph is the upper half of a circle shifted horizontally and vertically. The center gives the largest value and the endpoints give the smallest value.`,1);
+    }
+    if(fam==='abs_trig'){
+      const [A,B,Rr]=pick([[3,4,5],[4,3,5],[5,12,13],[12,5,13]]),k=ri(-5,5),want=pick(['maximum','minimum']),ans=want==='maximum'?Rr+k:k-Rr;
+      return numericMC(`extM-trig-${A}-${B}-${idn(k)}-${want}`,'absolute_trig_combination',`Find the absolute ${want} value on \\([0,2\\pi]\\).`,`f(x)=${A}\\sin x+${B}\\cos x${plus(k)}`,ans,`A linear combination \\(A\\sin x+B\\cos x\\) has amplitude \\(\\sqrt{A^2+B^2}=${Rr}\\). Use that amplitude to determine the extreme value.`,1);
+    }
+    if(fam==='abs_exp'){
+      const h=ri(-2,3);const correct='\\frac1e';
+      return mc(`extM-aexp-${idn(h)}`,'absolute_exponential_product','Find the absolute maximum value on the given closed interval.',`f(x)=(x${h===0?'':h>0?`-${h}`:`+${-h}`})e^{-(x${h===0?'':h>0?`-${h}`:`+${-h}`})},\\quad [${h},${h+3}]`,correct,['0','1','\\frac{3}{e^3}'],`Let \\(u=${shift(h)}\\). Then \\(f'(x)=e^{-u}(1-u)\\), so the interior critical point is \\(u=1\\), where the maximum value is \\(1/e\\).`);
+    }
+    if(fam==='local_cubic'){
+      const h=ri(-4,4),r=ri(1,4),which=pick(['maximum','minimum']),x=which==='maximum'?h-r:h+r;
+      return numericMC(`extM-lc-${idn(h)}-${r}-${which}`,'local_cubic',`At what x-value does \\(f\\) have a local ${which}?`,`f(x)=(${shift(h)})^3-${3*r*r}(${shift(h)})`,x,`The critical numbers are \\(x=${h-r}\\) and \\(x=${h+r}\\). A sign chart for \\(f'\\) identifies the local maximum and minimum.`,1);
+    }
+    if(fam==='local_quartic'){
+      const h=ri(-3,3),r=ri(1,3),which=pick(['maximum','minimum']);
+      if(which==='maximum')return numericMC(`extM-lqmax-${idn(h)}-${r}`,'local_quartic_max','At what x-value does \\(f\\) have a local maximum?',`f(x)=(${shift(h)})^4-${2*r*r}(${shift(h)})^2`,h,`The derivative is \\(4(${shift(h)})[(${shift(h)})^2-${r*r}]\\). The middle critical point is a local maximum.`,1);
+      return mc(`extM-lqmin-${idn(h)}-${r}`,'local_quartic_min','At which x-values does \\(f\\) have local minima?',`f(x)=(${shift(h)})^4-${2*r*r}(${shift(h)})^2`,`${h-r}, ${h+r}`,[String(h),`${h-r}, ${h}`,`${h}, ${h+r}`],`The derivative changes from negative to positive at \\(x=${h-r}\\) and \\(x=${h+r}\\).`);
+    }
+    if(fam==='local_exp'){
+      const a=ri(-2,5),x=a-1;
+      return numericMC(`extM-lexp-${idn(a)}`,'local_exponential_product','At what x-value does \\(f\\) have a local minimum?',`f(x)=(${shift(a)})e^x`,x,`Since \\(f'(x)=e^x(${shift(a-1)})\\) and \\(e^x>0\\), the derivative changes from negative to positive at \\(x=${x}\\).`,1);
+    }
+    if(fam==='local_log'){
+      const h=ri(-4,4),d=ri(1,6),inside=`x^2${h?`${-2*h>=0?'+':''}${-2*h}x`:''}+${h*h+d}`;
+      return numericMC(`extM-llog-${idn(h)}-${d}`,'local_logarithm','At what x-value does \\(f\\) have a local minimum?',`f(x)=\\ln(${inside})`,h,`The logarithm is increasing, and its positive quadratic argument has its minimum at \\(x=${h}\\). Equivalently, \\(f'(x)\\) changes from negative to positive there.`,1);
+    }
+    if(fam==='local_trig'){
+      const A=ri(1,5),which=pick(['maximum','minimum']),ans=which==='maximum'?'\\frac{\\pi}{2}':'\\frac{3\\pi}{2}';
+      return mc(`extM-ltrig-${A}-${which}`,'local_trig',`On \\((0,2\\pi)\\), where does \\(f\\) have a local ${which}?`,`f(x)=${A===1?'':A}\\sin x`,ans,[which==='maximum'?'\\frac{3\\pi}{2}':'\\frac{\\pi}{2}','\\pi','2\\pi'],`Use \\(f'(x)=${A===1?'':A}\\cos x\\) and the sign changes at its zeros.`);
+    }
+    const r=ri(2,7);
+    return numericMC(`extM-lrat-${r}`,'local_rational',`At what x-value does \\(f\\) have a local minimum on \\((0,\\infty)\\)?`,`f(x)=x+\\frac{${r*r}}x`,r,`Set \\(f'(x)=1-${r*r}/x^2=0\\). On the positive domain, the derivative changes from negative to positive at \\(x=${r}\\).`,1);
+  };
+
+  // Increasing/decreasing/concavity: about 10% already factored; most require differentiating f or f'.
+  G['increasing-decreasing-intervals-concavity-and-extrema']=()=>{
+    const fam=pick(['f_cubic_inc','f_quartic_dec','f_rational_inc','f_log_inc','f_trig_inc','f_exp_inc','fp_quad_inc','fp_cubic_conc','fpp_quad_conc','f_quartic_conc','f_rational_conc','fp_local_extrema','factored_fp']);
+    if(fam==='f_cubic_inc'){
+      const r=ri(1,5),k=ri(-5,5);return mc(`curveM-fc-${r}-${idn(k)}`,'f_given_increasing','Where is \\(f\\) increasing?',`f(x)=x^3-${3*r*r}x${plus(k)}`,outside(-r,r),[interval(-r,r),`(-\\infty,${r})`,`(${-r},\\infty)`],`Differentiate first: \\(f'(x)=3x^2-${3*r*r}\\). A sign chart shows \\(f'(x)>0\\) outside \\(x=\\pm${r}\\).`);
+    }
+    if(fam==='f_quartic_dec'){
+      const r=ri(1,4),k=ri(-4,4);return mc(`curveM-fq-${r}-${idn(k)}`,'f_given_decreasing','Where is \\(f\\) decreasing?',`f(x)=x^4-${2*r*r}x^2${plus(k)}`,`(-\\infty,-${r})\\cup(0,${r})`,[`(-${r},0)\\cup(${r},\\infty)`,outside(-r,r),`(-${r},${r})`],`Differentiate: \\(f'(x)=4x(x^2-${r*r})\\). Use the three critical numbers \\(-${r},0,${r}\\) in a sign chart.`);
+    }
+    if(fam==='f_rational_inc'){
+      const r=ri(2,7);return mc(`curveM-fr-${r}`,'f_given_rational_increasing','On \\((0,\\infty)\\), where is \\(f\\) increasing?',`f(x)=x+\\frac{${r*r}}x`,`(${r},\\infty)`,[`(0,${r})`,`(0,\\infty)`,`(-\\infty,-${r})\\cup(${r},\\infty)`],`Differentiate: \\(f'(x)=1-${r*r}/x^2\\). On the stated positive domain, \\(f'(x)>0\\) when \\(x>${r}\\).`);
+    }
+    if(fam==='f_log_inc'){
+      const h=ri(-4,4),d=ri(1,6),B=-2*h,C=h*h+d,inside=`x^2${B?`${B>0?'+':''}${B}x`:''}+${C}`;
+      return mc(`curveM-flog-${idn(h)}-${d}`,'f_given_log_increasing','Where is \\(f\\) increasing?',`f(x)=\\ln(${inside})`,`(${h},\\infty)`,[`(-\\infty,${h})`,`(-\\infty,${h})\\cup(${h},\\infty)`,`(${h-1},${h+1})`],`The quadratic argument is always positive. \\(f'(x)=\\frac{2(${shift(h)})}{${inside}}\\), so the sign is determined by \\(${shift(h)}\\).`);
+    }
+    if(fam==='f_trig_inc'){
+      return mc('curveM-ftrig','f_given_trig_increasing','On \\([0,2\\pi]\\), where is \\(f\\) increasing?',`f(x)=\\sin(2x)`,`(0,\\frac{\\pi}{4})\\cup(\\frac{3\\pi}{4},\\frac{5\\pi}{4})\\cup(\\frac{7\\pi}{4},2\\pi)`,[`(\\frac{\\pi}{4},\\frac{3\\pi}{4})\\cup(\\frac{5\\pi}{4},\\frac{7\\pi}{4})`,`(0,\\pi)`,`(\\frac{\\pi}{2},\\frac{3\\pi}{2})`],`Differentiate: \\(f'(x)=2\\cos(2x)\\). Determine where cosine is positive over the stated interval.`);
+    }
+    if(fam==='f_exp_inc'){
+      const a=ri(-2,6),c=a-1;return mc(`curveM-fexp-${idn(a)}`,'f_given_exponential_increasing','Where is \\(f\\) increasing?',`f(x)=(${shift(a)})e^x`,`(${c},\\infty)`,[`(-\\infty,${c})`,`(-\\infty,${a})`,`(${a},\\infty)`],`Differentiate: \\(f'(x)=e^x(${shift(c)})\\). Since \\(e^x>0\\), only the linear factor controls the sign.`);
+    }
+    if(fam==='fp_quad_inc'){
+      const r1=ri(-6,-1),r2=ri(1,6),S=r1+r2,P=r1*r2;return mc(`curveM-fpq-${idn(r1)}-${r2}`,'first_derivative_given_increasing','Where is \\(f\\) increasing?',`f'(x)=x^2${S?`${-S>=0?'+':''}${-S}x`:''}${P?`${P>0?'+':''}${P}`:''}`,outside(r1,r2),[interval(r1,r2),`(-\\infty,${r2})`,`(${r1},\\infty)`],`The given derivative is not factored. Find its zeros \\(${r1}\\) and \\(${r2}\\), then use a sign chart for \\(f'\\).`);
+    }
+    if(fam==='fp_cubic_conc'){
+      const r=ri(1,5),k=ri(-5,5);return mc(`curveM-fpc-${r}-${idn(k)}`,'first_derivative_given_concavity','Where is \\(f\\) concave up?',`f'(x)=x^3-${3*r*r}x${plus(k)}`,outside(-r,r),[interval(-r,r),`(-\\infty,${r})`,`(${-r},\\infty)`],`Differentiate the given \\(f'\\): \\(f''(x)=3x^2-${3*r*r}\\). Concavity is determined by the sign of \\(f''\\).`);
+    }
+    if(fam==='fpp_quad_conc'){
+      const r1=ri(-6,-1),r2=ri(1,6),S=r1+r2,P=r1*r2;return mc(`curveM-fppq-${idn(r1)}-${r2}`,'second_derivative_given_concavity','Where is \\(f\\) concave down?',`f''(x)=x^2${S?`${-S>=0?'+':''}${-S}x`:''}${P?`${P>0?'+':''}${P}`:''}`,interval(r1,r2),[outside(r1,r2),`(-\\infty,${r2})`,`(${r1},\\infty)`],`Find the zeros of the given second derivative, then determine where \\(f''(x)<0\\).`);
+    }
+    if(fam==='f_quartic_conc'){
+      const r=ri(1,4),k=ri(-5,5);return mc(`curveM-fqc-${r}-${idn(k)}`,'f_given_concavity_hard','Where is \\(f\\) concave up?',`f(x)=x^4-${6*r*r}x^2${plus(k)}`,outside(-r,r),[interval(-r,r),`(-\\infty,${r})`,`(${-r},\\infty)`],`Differentiate twice. \\(f''(x)=12x^2-${12*r*r}\\), so \\(f''(x)>0\\) outside \\(x=\\pm${r}\\).`);
+    }
+    if(fam==='f_rational_conc'){
+      const h=ri(-4,4),sh=shift(h);return mc(`curveM-frc-${idn(h)}`,'f_given_rational_concavity','Where is \\(f\\) concave up?',`f(x)=\\frac1{${sh}}`,`(${h},\\infty)`,[`(-\\infty,${h})`,outside(h-1,h+1),`(-\\infty,\\infty)`],`Differentiate twice: \\(f''(x)=\\frac{2}{(${sh})^3}\\). Its sign is positive to the right of the vertical asymptote and negative to the left.`);
+    }
+    if(fam==='fp_local_extrema'){
+      const r1=ri(-6,-1),r2=ri(1,6),S=r1+r2,P=r1*r2,which=pick(['maximum','minimum']),ans=which==='maximum'?r1:r2;
+      return numericMC(`curveM-fpext-${idn(r1)}-${r2}-${which}`,'first_derivative_given_local_extrema',`At what x-value does \\(f\\) have a local ${which}?`,`f'(x)=x^2${S?`${-S>=0?'+':''}${-S}x`:''}${P?`${P>0?'+':''}${P}`:''}`,ans,`Find the two zeros of \\(f'\\). For this upward-opening quadratic derivative, the sign changes \\(+\to-\\) at the smaller zero and \\(-\to+\\) at the larger zero.`,1);
+    }
+    const r1=ri(-6,-1),r2=ri(1,6);return mc(`curveM-fact-${idn(r1)}-${r2}`,'factored_first_derivative','Where is \\(f\\) increasing?',`f'(x)=(${shift(r1)})(${shift(r2)})`,outside(r1,r2),[interval(r1,r2),`(-\\infty,${r2})`,`(${r1},\\infty)`],`This is the small factored portion of the pool. Use the zeros and a sign chart for \\(f'\\).`);
+  };
+
+  // Linearization/differentials rebuilt directly around the Unit 3 assignments.
+  G['linearization-and-differentials']=()=>{
+    const fam=pick(['lin_sqrt','lin_cuberoot','lin_log','lin_sine','lin_tangent','diff_poly','diff_trig_comp','diff_implicit','diff_sphere','diff_triangle','diff_sin_degrees']);
+    if(fam==='lin_sqrt'){
+      const r=ri(3,10),a=r*r,d=pick([-2,-1,1,2]),x=a+d,ans=r+d/(2*r);return numericMC(`linM-sqrt-${r}-${d}`,'linearization_square_root','Use linearization to approximate the value.',`\\sqrt{${x}}`,ans,`Use \\(f(x)=\\sqrt{x}\\) at the nearby perfect square \\(a=${a}\\): \\(L(x)=f(a)+f'(a)(x-a)\\).`,0.05);
+    }
+    if(fam==='lin_cuberoot'){
+      const r=pick([4,5,10]),a=r**3,d=pick([-3,-1,1,3]),x=a+d,ans=r+d/(3*r*r);return numericMC(`linM-cube-${r}-${d}`,'linearization_cube_root','Use linearization to approximate the value.',`\\sqrt[3]{${x}}`,ans,`Linearize \\(f(x)=\\sqrt[3]{x}\\) at \\(a=${a}\\), where \\(f(a)=${r}\\) and \\(f'(a)=1/${3*r*r}\\).`,0.01);
+    }
+    if(fam==='lin_log'){
+      const h=pick([-0.08,-0.05,0.04,0.07]),x=1+h,ans=h;return numericMC(`linM-log-${String(h).replace('.','_')}`,'linearization_logarithm','Use linearization at \\(x=1\\) to approximate the value.',`\\ln(${texN(x)})`,ans,`For \\(f(x)=\\ln x\\), \\(f(1)=0\\) and \\(f'(1)=1\\), so \\(L(x)=x-1\\).`,0.02);
+    }
+    if(fam==='lin_sine'){
+      const h=pick([0.05,0.1,-0.05,-0.1]);return numericMC(`linM-sin-${String(h).replace('.','_')}`,'linearization_sine','Use linearization at \\(x=0\\) to approximate the value.',`\\sin(${h})`,h,`Since \\(\\sin0=0\\) and \\(\\cos0=1\\), the linearization is \\(L(x)=x\\).`,0.02);
+    }
+    if(fam==='lin_tangent'){
+      const h=pick([0.02,0.04,-0.02]),target=Math.PI/4+h,ans=1+2*h;return numericMC(`linM-tan-${String(h).replace('.','_')}`,'linearization_tangent','Use linearization at \\(x=\\pi/4\\) to approximate the value.',`\\tan(\\frac{\\pi}{4}${h>=0?'+':'-'}${Math.abs(h)})`,ans,`At \\(a=\\pi/4\\), \\(\\tan a=1\\) and \\(\\sec^2a=2\\), so \\(L(x)=1+2(x-a)\\).`,0.02);
+    }
+    if(fam==='diff_poly'){
+      const n=ri(2,4),x=ri(1,5),dx=pick([0.01,0.02,-0.01,-0.02]),A=nz(-3,4),B=nz(-5,5),dy=(A*n*x**(n-1)+B)*dx;
+      return numericMC(`diffM-poly-${n}-${x}-${String(dx).replace('.','_')}-${A}-${B}`,'differential_polynomial',`Use differentials to find \\(dy\\).`,`y=${signed(A,`x^${n}`,true)}${signed(B,'x')},\\quad x=${x},\\quad dx=${dx}`,dy,`Compute \\(dy=f'(x)\\,dx\\) at the stated x-value.`,Math.max(0.01,Math.abs(dx)));
+    }
+    if(fam==='diff_trig_comp'){
+      const x=1,dx=pick([0.01,-0.01,0.02]),k=ri(1,4),arg=x*x-1,dy=Math.cos(arg)*2*x*dx;
+      return numericMC(`diffM-trig-${k}-${String(dx).replace('.','_')}`,'differential_trig_composition',`Use differentials to find \\(dy\\).`,`y=\\sin(x^2-1),\\quad x=1,\\quad dx=${dx}`,dy,`Differentiate first: \\(dy=2x\\cos(x^2-1)\\,dx\\). At \\(x=1\\), the cosine factor is \\(1\\).`,0.01);
+    }
+    if(fam==='diff_implicit'){
+      const dx=-0.02,dy=0.032;return mc('diffM-implicit','differential_implicit','Use differentials to find \\(dy\\).',`5+x^2y=y+x^3y,\\quad x=2,\\quad dx=-0.02`,'0.032',['-0.032','0.016','-0.016'],`The equation gives \\(y=1\\) at \\(x=2\\). Implicit differentiation gives \\(dy/dx=-8/5\\) there, so \\(dy\\approx(dy/dx)dx=(-8/5)(-0.02)=0.032\\).`);
+    }
+    if(fam==='diff_sphere'){
+      const r=ri(3,8),dr=pick([0.01,0.05,0.1]),coef=4*r*r*dr,ans=`${texN(coef)}\\pi`;
+      return mc(`diffM-sphere-${r}-${String(dr).replace('.','_')}`,'differential_sphere','Estimate the change in volume using differentials.',`V=\\frac43\\pi r^3,\\quad r=${r},\\quad dr=${dr}`,ans,[`${texN(3*r*r*dr)}\\pi`,`${texN(4*r*dr)}\\pi`,`${texN(4*r*r*dr+dr)}\\pi`],`Use \\(dV=4\\pi r^2\\,dr\\).`);
+    }
+    if(fam==='diff_triangle'){
+      const s=pick([6,8,9,10]),ds=pick([-0.1,-0.2,0.1]),coef=s*ds/2,ans=`${texN(coef)}\\sqrt3`;
+      return mc(`diffM-tri-${s}-${String(ds).replace('.','_')}`,'differential_equilateral_triangle','Estimate the change in area of an equilateral triangle.',`A=\\frac{\\sqrt3}{4}s^2,\\quad s=${s},\\quad ds=${ds}`,ans,[`${texN(s*ds)}\\sqrt3`,`${texN(ds/2)}\\sqrt3`,`${texN(-coef)}\\sqrt3`],`Differentiate the area formula: \\(dA=\\frac{\\sqrt3}{2}s\\,ds\\).`);
+    }
+    return mc('diffM-sin46','differential_trig_degrees','Use differentials to approximate \\(\\sin 46^\\circ\\).',`46^\\circ=45^\\circ+1^\\circ`,`\\frac{\\sqrt2}{2}+\\frac{\\pi\\sqrt2}{360}`,[`\\frac{\\sqrt2}{2}+\\frac{\\pi\\sqrt2}{180}`,`\\frac{\\sqrt2}{2}-\\frac{\\pi\\sqrt2}{360}`,`\\frac12+\\frac{\\pi}{180}`],`Use \\(dy=\\cos x\\,dx\\) at \\(x=45^\\circ=\\pi/4\\), with \\(dx=\\pi/180\\).`);
+  };
+
+  // L'Hopital: 20% straightforward, 80% assignment-style multi-step limits.
+  G['l-hopital-s-rule']=()=>{
+    const trivial=R()<0.20;
+    const fam=trivial?pick(['simple_exp','simple_radical']):pick(['exp_remainder','sin_remainder','cos_ratio','log_cos_sin','log_growth','exp_growth','exp_cos_ratio','cos_exp_ratio','radical_derivative','inverse_sine','shifted_exp_sin']);
+    if(fam==='simple_exp'){
+      const k=ri(2,7);return numericMC(`lhM-se-${k}`,'simple_exponential','Evaluate the limit.',`\\lim_{x\\to0}\\frac{e^{${k}x}-1}{x}`,k,`Direct substitution gives \\(0/0\\). One application of L'Hopital's Rule gives \\(k e^{kx}\to${k}\\).`,1);
+    }
+    if(fam==='simple_radical'){
+      const r=ri(2,7),a=r*r;return mc(`lhM-sr-${r}`,'simple_radical','Evaluate the limit.',`\\lim_{x\\to${a}}\\frac{\\sqrt{x}-${r}}{x-${a}}`,texRat(1,2*r),[texRat(1,r),texRat(-1,2*r),texRat(1,2*r+2)],`The form is \\(0/0\\). Differentiate numerator and denominator once to obtain \\(1/(2\\sqrt{x})\\), then substitute \\(x=${a}\\).`);
+    }
+    if(fam==='exp_remainder'){
+      const k=ri(1,6);return mc(`lhM-er-${k}`,'two_application_exponential','Evaluate the limit.',`\\lim_{x\\to0}\\frac{e^{${k}x}-1-${k}x}{x^2}`,texRat(k*k,2),[String(k*k),texRat(-(k*k),2),texRat(k*k,4)],`The first differentiated quotient is still \\(0/0\\). Apply L'Hopital's Rule a second time to get \\(${k*k}e^{${k}x}/2\to${texRat(k*k,2)}\\).`);
+    }
+    if(fam==='sin_remainder'){
+      const k=ri(1,5);return mc(`lhM-sr3-${k}`,'three_application_trig','Evaluate the limit.',`\\lim_{x\\to0}\\frac{\\sin(${k}x)-${k}x}{x^3}`,texRat(-(k**3),6),[texRat(k**3,6),texRat(-(k**3),3),'0'],`The quotient remains indeterminate after the first two differentiations. After three applications, substitute \\(x=0\\) to obtain \\(-${k**3}/6\\).`);
+    }
+    if(fam==='cos_ratio'){
+      let a=ri(1,6),b=ri(2,7);if(a===b)b+=1;return mc(`lhM-cr-${a}-${b}`,'cosine_ratio','Evaluate the limit.',`\\lim_{x\\to0}\\frac{1-\\cos(${a}x)}{1-\\cos(${b}x)}`,texRat(a*a,b*b),[texRat(a,b),texRat(b*b,a*a),'1'],`Two applications of L'Hopital's Rule reduce the limit to \\(${a*a}\\cos(${a}x)/(${b*b}\\cos(${b}x))\\), giving \\(${texRat(a*a,b*b)}\\).`);
+    }
+    if(fam==='log_cos_sin'){
+      const k=ri(1,5);return mc(`lhM-lcs-${k}`,'nested_log_trig','Evaluate the limit.',`\\lim_{x\\to0}\\frac{\\ln(\\cos(\\sin(${k}x)))}{x^2}`,texRat(-k*k,2),[texRat(k*k,2),String(-k*k),'0'],`This is a nested \\(0/0\\) limit. Repeated differentiation and substitution at \\(0\\) gives \\(-${k*k}/2\\).`);
+    }
+    if(fam==='log_growth'){
+      const p=ri(2,4);return mc(`lhM-lg-${p}`,'logarithm_over_power','Evaluate the limit.',`\\lim_{x\\to\\infty}\\frac{(\\ln x)^{${p}}}{x}`,'0',['1','\\infty',String(p)],`This is \\(\\infty/\\infty\\). Repeated applications of L'Hopital's Rule lower the power of \\(\\ln x\\); eventually the quotient tends to \\(0\\).`);
+    }
+    if(fam==='exp_growth'){
+      const p=ri(2,5),k=ri(1,5);return mc(`lhM-eg-${p}-${k}`,'power_over_exponential','Evaluate the limit.',`\\lim_{x\\to\\infty}\\frac{x^{${p}}}{e^{${k}x}}`,'0',['1','\\infty',texRat(p,k)],`Repeated applications of L'Hopital's Rule eventually remove the polynomial numerator while the exponential remains, so the limit is \\(0\\).`);
+    }
+    if(fam==='exp_cos_ratio'){
+      const a=ri(1,5),b=ri(1,6);return mc(`lhM-ecr-${a}-${b}`,'exponential_cosine_remainders','Evaluate the limit.',`\\lim_{x\\to0}\\frac{e^{${a}x}-1-${a}x}{1-\\cos(${b}x)}`,texRat(a*a,b*b),[texRat(a,b),texRat(-a*a,b*b),'1'],`Both numerator and denominator vanish to second order. Two applications of L'Hopital's Rule give the ratio \\(${a*a}/${b*b}\\).`);
+    }
+    if(fam==='cos_exp_ratio'){
+      const a=ri(1,5),b=ri(1,6);return mc(`lhM-cer-${a}-${b}`,'cosine_exponential_remainders','Evaluate the limit.',`\\lim_{x\\to0}\\frac{\\cos(${a}x)-1}{e^{${b}x}-1-${b}x}`,texRat(-a*a,b*b),[texRat(a*a,b*b),texRat(-a,b),'0'],`After two applications of L'Hopital's Rule, the numerator approaches \\(-${a*a}\\) and the denominator approaches \\(${b*b}\\).`);
+    }
+    if(fam==='radical_derivative'){
+      const r=ri(2,8),t=ri(1,8),c=r*r-t;return mc(`lhM-rd-${r}-${t}`,'radical_difference_quotient','Evaluate the limit.',`\\lim_{x\\to${t}}\\frac{\\sqrt{x${c>=0?`+${c}`:`-${-c}`}}-${r}}{x-${t}}`,texRat(1,2*r),[texRat(1,r),texRat(-1,2*r),texRat(1,2*r+2)],`The form is \\(0/0\\). Differentiate the radical once and evaluate at \\(x=${t}\\), where the square root equals \\(${r}\\).`);
+    }
+    if(fam==='inverse_sine'){
+      const k=ri(1,6);return numericMC(`lhM-asin-${k}`,'inverse_trig_limit','Evaluate the limit.',`\\lim_{x\\to0}\\frac{\\sin^{-1}(${k}x)}{x}`,k,`Differentiate numerator and denominator. The derivative of \\(\\sin^{-1}(${k}x)\\) is \\(${k}/\\sqrt{1-${k*k}x^2}\\), which approaches \\(${k}\\).`,1);
+    }
+    const k=ri(1,5);return mc(`lhM-shift-${k}`,'shifted_exponential_trig','Evaluate the limit.',`\\lim_{x\\to0}\\frac{e^{2+${k}x}-\\sin x-e^2}{x}`,`${k}e^2-1`,[`${k}e^2+1`,`e^2-${k}`,`${k}e^2`],`The form is \\(0/0\\). One application of L'Hopital's Rule gives \\(${k}e^{2+${k}x}-\\cos x\\), which approaches \\(${k}e^2-1\\).`);
+  };
+
+  // Rolle/MVT: broader function variety and four concrete alternatives (no generic fallback choices).
+  G['rolle-s-theorem-and-the-mean-value-theorem']=(opts={})=>{
+    const mode=opts.mvtMode||opts.mode||'both';
+    const all=['mvt_quad','mvt_cubic','mvt_recip','mvt_sqrt','mvt_log','mvt_exp','rolle_quad','rolle_sin','rolle_cos','hyp_rational','hyp_corner'];
+    const theorem=['rolle_quad','rolle_sin','rolle_cos','hyp_rational','hyp_corner'];
+    const findc=['mvt_quad','mvt_cubic','mvt_recip','mvt_sqrt','mvt_log','mvt_exp'];
+    const fam=pick(mode==='theorem'?theorem:mode==='find-c'?findc:all);
+    if(fam==='mvt_quad'){
+      const a=ri(-5,0),b=a+ri(2,7),A=ri(1,4),B=ri(-5,5),c=texRat(a+b,2);return mc(`mvtM-q-${A}-${B}-${idn(a)}-${b}`,'mvt_quadratic','Find every value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=${A}x^2${B?signed(B,'x'):''},\\quad [${a},${b}]`,c,[String(a),String(b),texRat(a+b+2,2)],`Set \\(f'(c)\\) equal to the average rate of change on the interval and solve.`);
+    }
+    if(fam==='mvt_cubic'){
+      const r=pick([3,6,9]),c=`\\pm\\frac{${r}}{\\sqrt3}`;return mc(`mvtM-cub-${r}`,'mvt_cubic_symmetric','Find every value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=x^3,\\quad [-${r},${r}]`,c,[`c=0`,`c=\\pm${r}`,`c=\\pm\\frac{${r}}3`],`The secant slope is \\(${r*r}\\). Solve \\(3c^2=${r*r}\\) and keep both solutions in the open interval.`);
+    }
+    if(fam==='mvt_recip'){
+      const p=ri(1,4),q=p+ri(1,3),a=p*p,b=q*q,c=p*q;return mc(`mvtM-rec-${p}-${q}`,'mvt_reciprocal','Find the value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=\\frac1x,\\quad [${a},${b}]`,String(c),[String(a),String(b),texRat(a+b,2)],`Set \\(-1/c^2\\) equal to the secant slope \\(-1/(${a*b})\\). The solution in the interval is \\(c=${c}\\).`);
+    }
+    if(fam==='mvt_sqrt'){
+      const p=pick([2,4,6]),q=p+pick([2,4]),a=p*p,b=q*q,c=((p+q)/2)**2;return numericMC(`mvtM-root-${p}-${q}`,'mvt_square_root','Find the value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=\\sqrt{x},\\quad [${a},${b}]`,c,`The secant slope is \\(1/(${p+q})\\). Set \\(1/(2\\sqrt c)=1/(${p+q})\\) and solve.`,1);
+    }
+    if(fam==='mvt_log')return mc('mvtM-log','mvt_logarithm','Find the value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=\\ln x,\\quad [1,e]`,'e-1',['1','e','\\ln(e-1)'],`The average rate of change is \\(1/(e-1)\\). Since \\(f'(c)=1/c\\), solve \\(1/c=1/(e-1)\\).`);
+    if(fam==='mvt_exp')return mc('mvtM-exp','mvt_exponential','Find the value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=e^x,\\quad [0,1]`,'\\ln(e-1)',['e-1','1','\\ln e'],`The average rate of change is \\(e-1\\). Solve \\(e^c=e-1\\).`);
+    if(fam==='rolle_quad'){
+      const h=ri(-5,5),r=ri(1,5);return numericMC(`rolleM-q-${idn(h)}-${r}`,'rolle_quadratic','Rolle\'s Theorem applies. Find the value of \\(c\\).',`f(x)=(${shift(h)})^2,\\quad [${h-r},${h+r}]`,h,`The endpoint values agree. Solve \\(f'(c)=2(${h===0?'c':h>0?`c-${h}`:`c+${-h}`})=0\\).`,1);
+    }
+    if(fam==='rolle_sin')return mc('rolleM-sin','rolle_sine','Rolle\'s Theorem applies. Find the value of \\(c\\).',`f(x)=\\sin x,\\quad [0,\\pi]`,'\\frac{\\pi}{2}',['0','\\pi','\\frac{\\pi}{4}'],`The endpoints both have value \\(0\\). Solve \\(\\cos c=0\\) in \\((0,\\pi)\\).`);
+    if(fam==='rolle_cos')return mc('rolleM-cos','rolle_cosine','Rolle\'s Theorem applies. Find the value of \\(c\\).',`f(x)=\\cos x,\\quad [0,2\\pi]`,'\\pi',['0','2\\pi','\\frac{\\pi}{2}'],`The endpoints both equal \\(1\\). Solve \\(-\\sin c=0\\) in the open interval.`);
+    if(fam==='hyp_rational'){
+      const a=ri(-3,3);return mc(`mvtM-hr-${idn(a)}`,'mvt_hypothesis_rational','Can the Mean Value Theorem be applied on the stated interval?',`f(x)=\\frac1{${shift(a)}},\\quad [${a-2},${a+2}]`,'No, because the function is not continuous on the entire interval.',['Yes, because both endpoint values exist.','Yes, because the function is differentiable at the endpoints.','No, because the secant slope is zero.'],`There is a vertical asymptote at \\(x=${a}\\) inside the interval, so the continuity hypothesis fails.`);
+    }
+    return mc('mvtM-hc','mvt_hypothesis_corner','Can the Mean Value Theorem be applied on the stated interval?',`f(x)=|x|,\\quad [-1,1]`,'No, because the function is not differentiable on the entire open interval.',['Yes, because the function is continuous.','Yes, because the endpoint values are equal.','No, because the function is not continuous at x=0.'],`The function is continuous, but it is not differentiable at \\(x=0\\), which lies inside the open interval.`);
+  };
+
+  // Tangent/secant approximations: classification comes explicitly from concavity.
+  const approxProblem=(id,variant,method,prompt,math,approx,classification,concavity,work)=>({
+    id,variant,questionHtml:`<div><div class="question-prompt">${prompt}</div><div>\\(${math}\\)</div></div>`,answerType:'approx-classification',numericAnswer:Number(approx),numericTolerance:0.001,answerTex:Number(approx).toFixed(3),classification,
+    explanation:`${work} The function is ${concavity==='up'?'concave up':'concave down'} on the relevant interval because its second derivative has the corresponding sign. For a concave ${concavity==='up'?'up':'down'} function, the ${method==='tangent'?'tangent line lies '+(concavity==='up'?'below':'above')+' the graph':'secant line lies '+(concavity==='up'?'above':'below')+' the graph'}, so the approximation is an ${classification}estimate.`
+  });
+  G['tangent-and-secant-line-approximations']=()=>{
+    const method=pick(['tangent','secant']),fam=pick(['quadratic_up','quadratic_down','sqrt','log','exp','reciprocal','trig']);
+    if(method==='tangent'){
+      if(fam==='quadratic_up'||fam==='quadratic_down'){
+        const A=(fam==='quadratic_up'?1:-1)*ri(1,4),B=nz(-5,5),C=ri(-5,5),a=ri(-2,3),h=pick([0.2,0.5,-0.2]),t=a+h,f=x=>A*x*x+B*x+C,fp=x=>2*A*x+B,approx=f(a)+fp(a)*h,conc=A>0?'up':'down',cls=conc==='up'?'under':'over';
+        return approxProblem(`tsaM-tq-${A}-${B}-${C}-${a}-${h}`,`tangent_quadratic_${conc}`,'tangent',`Use the tangent line at \\(x=${a}\\) to approximate \\(f(${texN(t)})\\), then classify the approximation.`,`f(x)=${poly2(A,B,C)}`,approx,cls,conc,`The tangent-line approximation is \\(L(${texN(t)})=${texN(approx)}\\).`);
+      }
+      if(fam==='sqrt'){
+        const r=ri(2,7),a=r*r,h=pick([0.5,1,-0.5]),t=a+h,approx=r+h/(2*r);return approxProblem(`tsaM-tsqrt-${r}-${h}`,'tangent_sqrt','tangent',`Use the tangent line at \\(x=${a}\\) to approximate \\(f(${texN(t)})\\), then classify the approximation.`,`f(x)=\\sqrt{x}`,approx,'over','down',`The tangent-line approximation is \\(${texN(approx)}\\).`);
+      }
+      if(fam==='log'){
+        const a=pick([1,2,4]),h=pick([0.1,0.2,-0.1]),t=a+h,approx=Math.log(a)+h/a;return approxProblem(`tsaM-tlog-${a}-${h}`,'tangent_log','tangent',`Use the tangent line at \\(x=${a}\\) to approximate \\(f(${texN(t)})\\), then classify the approximation.`,`f(x)=\\ln x`,approx,'over','down',`Use \\(L(x)=\\ln(${a})+\\frac1{${a}}(x-${a})\\), giving \\(${texN(approx)}\\).`);
+      }
+      if(fam==='exp'){
+        const a=0,h=pick([0.1,0.2,-0.1]),t=h,approx=1+h;return approxProblem(`tsaM-texp-${h}`,'tangent_exponential','tangent',`Use the tangent line at \\(x=0\\) to approximate \\(f(${h})\\), then classify the approximation.`,`f(x)=e^x`,approx,'under','up',`The tangent line at \\(0\\) is \\(L(x)=1+x\\), so the approximation is \\(${texN(approx)}\\).`);
+      }
+      if(fam==='reciprocal'){
+        const a=ri(2,6),h=pick([0.2,0.5,-0.2]),t=a+h,approx=1/a-h/(a*a);return approxProblem(`tsaM-trec-${a}-${h}`,'tangent_reciprocal','tangent',`Use the tangent line at \\(x=${a}\\) to approximate \\(f(${texN(t)})\\), then classify the approximation.`,`f(x)=\\frac1x`,approx,'under','up',`The tangent-line approximation is \\(${texN(approx)}\\).`);
+      }
+      const a=Math.PI/6,h=pick([0.05,0.1,-0.05]),t=a+h,approx=Math.sin(a)+Math.cos(a)*h;return approxProblem(`tsaM-ttrig-${h}`,'tangent_sine','tangent',`Use the tangent line at \\(x=\\pi/6\\) to approximate \\(f(\\pi/6${h>=0?'+':'-'}${Math.abs(h)})\\), then classify the approximation.`,`f(x)=\\sin x`,approx,'over','down',`The tangent-line approximation is \\(${texN(approx)}\\).`);
+    }
+    // Secant problems use a midpoint target so the interpolation is transparent.
+    if(fam==='quadratic_up'||fam==='quadratic_down'){
+      const A=(fam==='quadratic_up'?1:-1)*ri(1,4),B=nz(-5,5),C=ri(-5,5),l=ri(-3,1),r=l+pick([2,4]),t=(l+r)/2,f=x=>A*x*x+B*x+C,approx=(f(l)+f(r))/2,conc=A>0?'up':'down',cls=conc==='up'?'over':'under';
+      return approxProblem(`tsaM-sq-${A}-${B}-${C}-${l}-${r}`,`secant_quadratic_${conc}`,'secant',`Use the secant line through \\(x=${l}\\) and \\(x=${r}\\) to approximate \\(f(${t})\\), then classify the approximation.`,`f(x)=${poly2(A,B,C)}`,approx,cls,conc,`At the midpoint, the secant-line value is the average of the two endpoint values, \\(${texN(approx)}\\).`);
+    }
+    if(fam==='sqrt'){
+      const l=pick([1,4,9]),r=l+pick([3,5,7]),t=(l+r)/2,approx=(Math.sqrt(l)+Math.sqrt(r))/2;return approxProblem(`tsaM-ssqrt-${l}-${r}`,'secant_sqrt','secant',`Use the secant line through \\(x=${l}\\) and \\(x=${r}\\) to approximate \\(f(${texN(t)})\\), then classify the approximation.`,`f(x)=\\sqrt{x}`,approx,'under','down',`The midpoint secant value is \\(${texN(approx)}\\).`);
+    }
+    if(fam==='log'){
+      const l=pick([1,2,3]),r=l+2,t=(l+r)/2,approx=(Math.log(l)+Math.log(r))/2;return approxProblem(`tsaM-slog-${l}`,'secant_log','secant',`Use the secant line through \\(x=${l}\\) and \\(x=${r}\\) to approximate \\(f(${t})\\), then classify the approximation.`,`f(x)=\\ln x`,approx,'under','down',`The midpoint secant value is \\(${texN(approx)}\\).`);
+    }
+    if(fam==='exp'){
+      const l=pick([-1,0]),r=l+2,t=(l+r)/2,approx=(Math.exp(l)+Math.exp(r))/2;return approxProblem(`tsaM-sexp-${l}`,'secant_exponential','secant',`Use the secant line through \\(x=${l}\\) and \\(x=${r}\\) to approximate \\(f(${t})\\), then classify the approximation.`,`f(x)=e^x`,approx,'over','up',`The midpoint secant value is \\(${texN(approx)}\\).`);
+    }
+    if(fam==='reciprocal'){
+      const l=ri(1,4),r=l+ri(2,4),t=(l+r)/2,approx=(1/l+1/r)/2;return approxProblem(`tsaM-srec-${l}-${r}`,'secant_reciprocal','secant',`Use the secant line through \\(x=${l}\\) and \\(x=${r}\\) to approximate \\(f(${texN(t)})\\), then classify the approximation.`,`f(x)=\\frac1x`,approx,'over','up',`The midpoint secant value is \\(${texN(approx)}\\).`);
+    }
+    const l=-0.5,r=0.5,t=0,approx=(Math.cos(l)+Math.cos(r))/2;return approxProblem('tsaM-scos','secant_cosine','secant',`Use the secant line through \\(x=-0.5\\) and \\(x=0.5\\) to approximate \\(f(0)\\), then classify the approximation.`,`f(x)=\\cos x`,approx,'under','down',`The secant-line value at the midpoint is \\(${texN(approx)}\\).`);
+  };
+
+  // The Graphing Functions generator has been intentionally removed.
+  delete G['graphing-functions'];
 })();
 
 window.BatchMathAPTopicGenerators={get:(slug)=>G[slug],slugs:()=>Object.keys(G)};

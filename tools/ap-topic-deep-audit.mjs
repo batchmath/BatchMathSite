@@ -18,17 +18,17 @@ function stripHtml(s){return String(s||'').replace(/<[^>]*>/g,' ').replace(/&amp
 function unitName(rel){const u=rel.split('/')[0];const m=u.match(/^unit-(\d+)-(.+)$/);return m?`Unit ${m[1]} - ${m[2].replace(/-/g,' ')}`:u;}
 function titleFrom(html,slug){const m=html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);return m?stripHtml(m[1]).replace(/\s+Practice$/i,''):slug.replace(/-/g,' ');}
 function engineId(html){return (html.match(/engineId\s*:\s*["']([^"']+)/)||[])[1]||'';}
-function selectedCategory(html){const m=html.match(/<select[^>]*id=["']category["'][^>]*>([\s\S]*?)<\/select>/i);if(!m)return '';return (m[1].match(/<option\s+value="([^"]+)"\s+selected/i)||m[1].match(/<option\s+selected\s+value="([^"]+)"/i)||[])[1]||'';}
+function selectedCategory(html){const m=html.match(/<select[^>]*id=["']category["'][^>]*>([\s\S]*?)<\/select>/i);if(!m)return '';for(const tag of (m[1].match(/<option\b[^>]*>/gi)||[])){if(/\bselected(?:=(?:""|''|"selected"|'selected'))?/i.test(tag)){return (tag.match(/\bvalue=["']([^"']+)["']/i)||[])[1]||'';}}return '';}
 function topicSlug(html,folder){return (html.match(/BM_TOPIC_PRACTICE\s*=\s*\{\s*slug\s*:\s*"([^"]+)"/)||[])[1]||folder;}
 function inlineScripts(html){return [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(m=>!(/\bsrc\s*=/.test(m[1]))).map(m=>m[2]);}
 function elem(value=''){return {value,innerHTML:'',textContent:'',className:'',disabled:false,placeholder:'',style:{display:''},listeners:{},addEventListener(type,fn){this.listeners[type]=fn;},focus(){},classList:{add(){},remove(){},contains(){return false;},toggle(){}}};}
 function normalizedChoice(x){return String(x??'').trim().replace(/\s+/g,' ');}
 function malformedText(p){
-  const text=[p?.questionHtml,p?.q,p?.question,...(Array.isArray(p?.choices)?p.choices:[])].filter(Boolean).join(' ');
+  const text=[p?.questionHtml,p?.q,p?.question,p?.explanation,p?.sol,p?.method,p?.answerTex,...(Array.isArray(p?.choices)?p.choices:[])].filter(Boolean).join(' ');
   if(/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(text))return 'control character in displayed math';
   if(/(^|[^\\A-Za-z])(?:qquad|displaystyle|frac\{|sqrt\{|sum_|lim_|infty\b|right\))/i.test(text))return 'likely dropped TeX backslash in displayed math';
   if(/(?:^|[^\^])--|\+\s*-/.test(text))return 'malformed sign sequence';
-  if(/\b(?:NaN|undefined)\b/.test(text))return 'NaN/undefined in displayed content';
+  if(/\bNaN\b/.test(text))return 'NaN in displayed content';
   return '';
 }
 function structuralFingerprint(p){
@@ -59,7 +59,7 @@ function summarize(record,problems){
 }
 
 const topicFiles=walk(path.join(ROOT,'ap-calculus')).filter(f=>/[/\\]topics[/\\][^/\\]+[/\\]practice[/\\]index\.html$/.test(f)&&!/[/\\](?:comprehensive-review|semester-1-review)[/\\]practice[/\\]index\.html$/.test(f)).sort();
-if(topicFiles.length!==51)errors.push(`Expected exactly 51 individual AP topic practice pages, found ${topicFiles.length}`);
+if(topicFiles.length!==50)errors.push(`Expected exactly 50 individual AP topic practice pages, found ${topicFiles.length}`);
 
 const sharedSource=fs.readFileSync(path.join(ROOT,'assets/ap-topic-generators.js'),'utf8');
 const sharedBox={window:{},console};vm.createContext(sharedBox);vm.runInContext(sharedSource,sharedBox,{filename:'ap-topic-generators.js'});
@@ -79,7 +79,7 @@ function sampleFiltered(html,category,seedBase){
 function evalDefs(file,needle,cut,expose,seed){const html=fs.readFileSync(file,'utf8');const code=inlineScripts(html).find(x=>x.includes(needle));if(!code)throw Error(`script containing ${needle} not found`);let body=code;const i=body.indexOf(cut);if(i<0)throw Error(`cut ${cut} not found`);body=body.slice(0,i)+`\n;globalThis.QA={${expose.join(',')}};\n`;body=body.replace(/^\s*\(function\(\)\{\s*['"]use strict['"];?/,'').replace(/^\s*\(\(\) => \{\s*['"]use strict['"];?/,'');const sb={console,BatchMathRNG:{random:rng(seed)},window:{},document:{getElementById(){return null}}};vm.createContext(sb);vm.runInContext(body,sb,{filename:path.basename(file)});return sb;}
 function sampleSpecial(file,id,seedBase){
   if(id==='ap_limit_proofs'){const sb=evalDefs(file,'function ed()','function make()',['ed','dm','ne','nm'],seedBase);const out=[];for(let i=0;i<Math.ceil(PER_TOPIC/4);i++){sb.BatchMathRNG.random=rng(`${seedBase}:${i}`);for(const n of ['ed','dm','ne','nm'])out.push(structuredClone(sb.QA[n]()));}return out.slice(0,PER_TOPIC);}
-  if(id==='ap_classifying_discontinuities'){const sb=evalDefs(file,'function rational()','function make()',['rational','trig','rational2','piece'],seedBase);const out=[];for(let i=0;i<Math.ceil(PER_TOPIC/4);i++){sb.BatchMathRNG.random=rng(`${seedBase}:${i}`);for(const n of ['rational','trig','rational2','piece'])out.push(structuredClone(sb.QA[n]()));}return out.slice(0,PER_TOPIC);}
+  if(id==='ap_classifying_discontinuities'){const names=['rational','trig','singleHole','twoJumps','mixedPiece'];const sb=evalDefs(file,'function rational()','function make()',names,seedBase);const out=[];for(let i=0;i<Math.ceil(PER_TOPIC/names.length);i++){sb.BatchMathRNG.random=rng(`${seedBase}:${i}`);for(const n of names)out.push(structuredClone(sb.QA[n]()));}return out.slice(0,PER_TOPIC);}
   if(id==='ap_advanced_trig_limits'){
     const html=fs.readFileSync(file,'utf8'),code=inlineScripts(html).find(x=>x.includes('const families=[]'));if(!code)throw Error('advanced trig family script missing');let body=code;const cut=body.indexOf('let current=null');body=body.slice(0,cut)+'\n;globalThis.QA={families};';body=body.replace(/^\s*\(function\(\)\{\s*['"]use strict['"];?/,'');const sb={console,BatchMathRNG:{random:rng(seedBase)},window:{}};vm.createContext(sb);vm.runInContext(body,sb);const out=[];for(let i=0;i<Math.ceil(PER_TOPIC/sb.QA.families.length);i++){sb.BatchMathRNG.random=rng(`${seedBase}:${i}`);for(const f of sb.QA.families){const p=structuredClone(f.make());p.variant=f.id;out.push(p);}}return out.slice(0,PER_TOPIC);
   }

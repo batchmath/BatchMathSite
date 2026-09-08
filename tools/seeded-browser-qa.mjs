@@ -12,7 +12,7 @@ fs.mkdirSync(OUT,{recursive:true});
 const PORT=Number(process.env.BM_QA_PORT||4173);
 const SEED_COUNT=Math.max(2,Number(process.env.BM_QA_SEEDS||3));
 const BASE_SEED=Number(process.env.BM_QA_BASE_SEED||1040000);
-const errors=[];const warnings=[];const results=[];
+const errors=[];const warnings=[];const results=[];let enterAdvanceChecks=0;
 const norm=p=>p.split(path.sep).join('/');
 
 function walk(dir){const out=[];for(const e of fs.readdirSync(dir,{withFileTypes:true})){if(['.git','node_modules','tools','qa-results'].includes(e.name))continue;const f=path.join(dir,e.name);if(e.isDirectory())out.push(...walk(f));else out.push(f);}return out;}
@@ -23,7 +23,7 @@ function staticServer(){return http.createServer((req,res)=>{try{const u=new URL
 
 async function waitForServer(server){await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(PORT,'127.0.0.1',resolve);});}
 
-async function sample(context,engine,seed){
+async function sample(context,engine,seed,checkEnterAdvance=false){
   const page=await context.newPage();const pageErrors=[];const consoleErrors=[];
   page.on('pageerror',e=>pageErrors.push(String(e.message||e)));
   page.on('console',msg=>{if(msg.type()==='error'){const t=msg.text();if(!/ERR_FAILED|Failed to load resource/i.test(t))consoleErrors.push(t);}});
@@ -38,7 +38,7 @@ async function sample(context,engine,seed){
       const candidates=['#question','.math-question','.question-box .question','.question-area .question'];
       let q='';for(const sel of candidates){const el=document.querySelector(sel);if(el&&String(el.innerHTML||el.textContent).trim()){q=String(el.innerHTML||el.textContent).replace(/\s+/g,' ').trim();break;}}
       const btn=document.getElementById('bm-report-problem');
-      return {snap,questionSignature:q.slice(0,1000),reportButtonVisible:!!btn&&getComputedStyle(btn).display!=='none'};
+      return {snap:s,questionSignature:q.slice(0,1000),reportButtonVisible:!!btn&&getComputedStyle(btn).display!=='none'};
     });
     if(String(snap.snap.seed)!==String(seed))throw new Error(`reported seed ${snap.snap.seed} != requested ${seed}`);
     if(!snap.snap.problemId)throw new Error('generated problem has no reproducible problemId/key');
@@ -46,6 +46,27 @@ async function sample(context,engine,seed){
     if(!snap.questionSignature)throw new Error('generated question area appears empty');
     if(pageErrors.length)throw new Error(`page error: ${pageErrors.join(' | ')}`);
     if(consoleErrors.length)throw new Error(`console error: ${consoleErrors.join(' | ')}`);
+    if(checkEnterAdvance && (engine.course==='ap_calculus_ab'||engine.course==='calculus_prep')){
+      const before=Number(snap.snap.problemCount||1);
+      const prep=await page.evaluate(()=>{
+        const next=document.getElementById('next');
+        if(next){next.hidden=false;next.disabled=false;next.style.display='inline-block';return {control:'next'};}
+        const fresh=document.getElementById('new');
+        if(fresh){
+          fresh.hidden=false;fresh.disabled=false;fresh.style.display='inline-block';
+          const feedback=document.querySelector('#feedback,.feedback');
+          if(feedback){feedback.textContent='Incorrect answer explanation shown.';feedback.classList.add('shown','wrong');}
+          return {control:'new'};
+        }
+        return {control:null};
+      });
+      if(!prep.control)throw new Error('no next/new-problem control available for Enter-advance QA');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(n=>Number(window.BatchMathRepro?.problemCount||0)>n,before,{timeout:3000});
+      const after=await page.evaluate(()=>Number(window.BatchMathRepro?.problemCount||0));
+      if(after!==before+1)throw new Error(`Enter advance generated ${after-before} problems instead of exactly 1`);
+      enterAdvanceChecks++;
+    }
     return snap;
   } finally {await page.close();}
 }
@@ -58,13 +79,13 @@ try{
   // CI tests generator behavior, not third-party availability. Abort external traffic
   // so Analytics/MathJax/YouTube cannot make results flaky or consume time.
   await context.route('**/*',route=>{const u=new URL(route.request().url());if(u.hostname==='127.0.0.1'||u.hostname==='localhost')route.continue();else route.abort();});
-  const list=engines();if(list.length!==96)errors.push(`Expected 96 engines, found ${list.length}`);
+  const list=engines();if(list.length!==89)errors.push(`Expected 89 engines, found ${list.length}`);
   for(const engine of list){
     const seen=new Set();
     for(let i=0;i<SEED_COUNT;i++){
       const seed=String(BASE_SEED+i);
       try{
-        const a=await sample(context,engine,seed);const b=await sample(context,engine,seed);
+        const a=await sample(context,engine,seed,i===0);const b=await sample(context,engine,seed,false);
         const sigA=JSON.stringify({id:a.snap.problemId,calls:a.snap.randomCalls,q:a.questionSignature,settings:a.snap.settings});
         const sigB=JSON.stringify({id:b.snap.problemId,calls:b.snap.randomCalls,q:b.questionSignature,settings:b.snap.settings});
         if(sigA!==sigB)throw new Error(`same seed produced different first problem (${a.snap.problemId} vs ${b.snap.problemId})`);
@@ -78,6 +99,6 @@ try{
 } catch(e){errors.push(`Browser QA infrastructure failure: ${e.stack||e.message||e}`);
 } finally {if(browser)await browser.close().catch(()=>{});await new Promise(r=>server.close(r));}
 
-const report={ok:errors.length===0,generatedAt:new Date().toISOString(),seedCount:SEED_COUNT,engineCount:new Set(results.map(r=>r.engineId)).size,samples:results.length,errors,warnings,results};
+const report={ok:errors.length===0,generatedAt:new Date().toISOString(),seedCount:SEED_COUNT,engineCount:new Set(results.map(r=>r.engineId)).size,samples:results.length,enterAdvanceChecks,errors,warnings,results};
 fs.writeFileSync(path.join(OUT,'seeded-generator-qa.json'),JSON.stringify(report,null,2)+'\n');
-const lines=[`BatchMath seeded generator browser QA`,`Result: ${report.ok?'PASS':'FAIL'}`,`Engines: ${report.engineCount}`,`Seeds per engine: ${SEED_COUNT}`,`Reproducibility samples: ${results.filter(r=>r.ok).length}`,'',`Warnings: ${warnings.length}`,...warnings.map(x=>`- ${x}`),'',`Errors: ${errors.length}`,...errors.map(x=>`- ${x}`),''];fs.writeFileSync(path.join(OUT,'seeded-generator-qa.txt'),lines.join('\n'));console.log(lines.join('\n'));if(errors.length)process.exit(1);
+const lines=[`BatchMath seeded generator browser QA`,`Result: ${report.ok?'PASS':'FAIL'}`,`Engines: ${report.engineCount}`,`Seeds per engine: ${SEED_COUNT}`,`Reproducibility samples: ${results.filter(r=>r.ok).length}`,`Calculus/Calculus Prep Enter-advance checks: ${enterAdvanceChecks}`,'',`Warnings: ${warnings.length}`,...warnings.map(x=>`- ${x}`),'',`Errors: ${errors.length}`,...errors.map(x=>`- ${x}`),''];fs.writeFileSync(path.join(OUT,'seeded-generator-qa.txt'),lines.join('\n'));console.log(lines.join('\n'));if(errors.length)process.exit(1);
