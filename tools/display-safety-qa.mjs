@@ -13,6 +13,18 @@ const files=walk(ROOT).filter(f=>/\.(?:html|js)$/.test(f));
 const engineFiles=files.filter(f=>f.endsWith('.html')&&fs.readFileSync(f,'utf8').includes('problem-tracking.js'));
 stats.practiceEngines=engineFiles.length;
 
+// TeX commands inside JavaScript string/template literals must escape the backslash.
+// A source token like `x\lt 0` inside JS loses the backslash at runtime and displays
+// as `xlt 0`.  Strict inequalities previously exposed this exact failure class.
+const badStrictIneqSource=/(?<!\\)\\(?:lt|gt)\b/g;
+let strictIneqEscapingHits=0;
+for(const f of files){
+  const rel=norm(path.relative(ROOT,f));const src=fs.readFileSync(f,'utf8');
+  const chunks=f.endsWith('.js')?[src]:[...src.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(m=>!/\bsrc\s*=/.test(m[1])).map(m=>m[2]);
+  for(const chunk of chunks){for(const m of chunk.matchAll(badStrictIneqSource)){strictIneqEscapingHits++;errors.push(`${rel}: unescaped TeX strict-inequality command in JavaScript source: ${m[0]}`);}}
+}
+stats.unescapedStrictInequalityCommands=strictIneqEscapingHits;
+
 // A generated problem object should be immutable with respect to its mathematical
 // question after the answer has been computed. The only current exception is the
 // audited Limits cleanSigns pass, whose permitted rewrites are algebraically exact.

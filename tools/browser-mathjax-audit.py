@@ -13,7 +13,7 @@ for p in ROOT.rglob('index.html'):
         PAGES.append(p.relative_to(ROOT).as_posix())
 PAGES.sort()
 
-RAW_RE=re.compile(r"\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|partial|begin|end|left|right|displaystyle|to)\b")
+RAW_RE=re.compile(r"\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|lt|gt|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|partial|begin|end|left|right|displaystyle|to)\b")
 BADWORD_RE=re.compile(r"(?<![A-Za-z])(?:frac|qquad|quad)(?![A-Za-z])",re.I)
 DELIM_RE=re.compile(r"\\[()\[\]]")
 

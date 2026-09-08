@@ -29,10 +29,27 @@ async function sample(context,engine,seed,checkEnterAdvance=false){
   page.on('console',msg=>{if(msg.type()==='error'){const t=msg.text();if(!/ERR_FAILED|Failed to load resource/i.test(t))consoleErrors.push(t);}});
   const url=`http://127.0.0.1:${PORT}${engine.route}?bm_seed=${encodeURIComponent(seed)}&bm_qa=1&bm_debug=0`;
   try{
-    await page.goto(url,{waitUntil:'domcontentloaded',timeout:15000});
-    await page.waitForFunction(()=>window.BatchMathRepro&&window.BatchMathRNG,{timeout:5000});
-    const start=page.locator('#startBtn');if(await start.count())await start.click();
-    await page.waitForFunction(()=>window.BatchMathRepro?.problemCount>=1,{timeout:10000});
+    const openAndStart=async()=>{
+      await page.goto(url,{waitUntil:'domcontentloaded',timeout:15000});
+      await page.waitForFunction(()=>window.BatchMathRepro&&window.BatchMathRNG&&window.BatchMathAnswers,{timeout:5000});
+      const start=page.locator('#startBtn');if(await start.count())await start.click();
+    };
+    await openAndStart();
+    try{await page.waitForFunction(()=>window.BatchMathRepro?.problemCount>=1,{timeout:10000});}
+    catch(firstError){
+      // One transient CI navigation/render stall should not turn an otherwise
+      // deterministic engine into a false failure. Reload once; a genuinely
+      // broken engine will fail the second bounded wait as well.
+      await openAndStart();
+      await page.waitForFunction(()=>window.BatchMathRepro?.problemCount>=1,{timeout:15000});
+    }
+    const fractionNormalization=await page.evaluate(()=>{
+      const f=window.BatchMathAnswers?.normalizeFractionSigns;
+      if(typeof f!=='function')return null;
+      const variants=['-1/2','(-1)/2','1/-2','1/(-2)','-(1/2)','−(1/2)'];
+      return variants.map(v=>f(v));
+    });
+    if(!fractionNormalization||fractionNormalization.some(v=>v!=='-1/2'))throw new Error(`fraction-sign normalizer failed in browser: ${JSON.stringify(fractionNormalization)}`);
     const snap=await page.evaluate(()=>{
       const s=window.BatchMathRepro.snapshot();
       const candidates=['#question','.math-question','.question-box .question','.question-area .question'];

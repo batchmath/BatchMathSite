@@ -1,4 +1,4 @@
-/* BatchMath reproducible generator sessions — v10.6.3.N
+/* BatchMath reproducible generator sessions — v10.6.3.P
    Gives every practice-engine session a deterministic random seed so generated
    problems can be reproduced for QA and bug reports. No student identity or
    typed answers are captured. */
@@ -81,7 +81,7 @@
     const config = configSnapshot();
     return {
       schema: 1,
-      appVersion: clean(window.BatchMathPWA?.version || '10.6.3.N'),
+      appVersion: clean(window.BatchMathPWA?.version || '10.6.3.P'),
       course: config.course,
       engineId: config.engineId,
       generatorVersion: config.generatorVersion,
@@ -125,6 +125,10 @@
     if (footer) footer.parentNode.insertBefore(button, footer);
     else document.body.appendChild(button);
     document.body.appendChild(dialog);
+    // A generator may have produced its first problem before DOMContentLoaded
+    // inserted this UI. In that case show the button immediately rather than
+    // leaving it hidden for the rest of the session.
+    if (problemCount > 0) button.style.display = 'block';
 
     button.addEventListener('click', () => {
       const box = dialog.querySelector('.bm-report-code');
@@ -158,6 +162,9 @@
       try {
         if (window.BMAnalytics?.inferProblemMeta) currentProblemMeta = window.BMAnalytics.inferProblemMeta(problem) || {};
       } catch (_) {}
+      // Avoid an initialization race: some engines generate immediately in an
+      // inline script, before DOMContentLoaded has created the report UI.
+      if (!document.getElementById('bm-report-problem') && document.body) ensureReportUI();
       const button = document.getElementById('bm-report-problem');
       if (button) button.style.display = 'block';
     },

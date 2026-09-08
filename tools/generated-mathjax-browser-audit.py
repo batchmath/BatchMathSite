@@ -3,7 +3,7 @@ from pathlib import Path
 from playwright.async_api import async_playwright
 ROOT=Path('/mnt/data/bm_v1063n_full')
 MJ=Path('/usr/local/slides_js/node_modules/mathjax-full/es5/tex-chtml.js').read_text(errors='ignore')
-RAW_RE=re.compile(r"\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|partial|begin|end|left|right|displaystyle|to)\b")
+RAW_RE=re.compile(r"\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|lt|gt|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|partial|begin|end|left|right|displaystyle|to)\b")
 DELIM_RE=re.compile(r"\\[()\[\]]")
 BADWORD_RE=re.compile(r"(?<![A-Za-z])(?:frac|qquad|quad)(?![A-Za-z])",re.I)
 MATHLIKE_RE=re.compile(r"\\[A-Za-z]+|[=<>≤≥±∞π^_]|^\s*[xyft]\s*(?:=|<|>|≤|≥)|^\s*\(?[-+]?\d")
@@ -55,10 +55,10 @@ def render_field(path,s):
     return f'<div class="field" data-path="{html.escape(path)}">{content}</div>'
 
 NORMALIZE_JS=r'''() => {
- const rawTexCommandRE=/\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|partial|to)\b/;
+ const rawTexCommandRE=/\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|lt|gt|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|partial|to)\b/;
  function balanced(s,start,open,close){let d=0;for(let i=start;i<s.length;i++){if(s[i]===open)d++;else if(s[i]===close){d--;if(d===0)return i+1;}}return start;}
  function cmdEnd(s,i){const m=s.slice(i).match(/^\\([A-Za-z]+)/);if(!m)return i+1;let j=i+m[0].length,name=m[1];if(['frac','dfrac','tfrac'].includes(name)){if(s[j]==='{')j=balanced(s,j,'{','}');if(s[j]==='{')j=balanced(s,j,'{','}');return j;}if(name==='sqrt'){if(s[j]==='['){const q=s.indexOf(']',j+1);if(q>=0)j=q+1;}if(s[j]==='{')j=balanced(s,j,'{','}');return j;}if(['sin','cos','tan','sec','csc','cot','ln','log','arcsin','arccos','arctan'].includes(name)){while(j<s.length&&/\s/.test(s[j]))j++;if(s[j]==='(')j=balanced(s,j,'(',')');else while(j<s.length&&/[A-Za-z0-9_^{}+\-*/.]/.test(s[j]))j++;return j;}return j;}
- function wrapRaw(text){if(!rawTexCommandRE.test(text))return text;const slots=[];let src=text.replace(/\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/g,m=>{slots.push(m);return `@@BMMATH${slots.length-1}@@`;});let out='',i=0;while(i<src.length){const m=src.slice(i).match(/\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|partial|to)\b/);if(!m){out+=src.slice(i);break;}const st=i+m.index;out+=src.slice(i,st);const en=cmdEnd(src,st);out+=`\\(${src.slice(st,en)}\\)`;i=en;}return out.replace(/@@BMMATH(\d+)@@/g,(_,n)=>slots[+n]);}
+ function wrapRaw(text){if(!rawTexCommandRE.test(text))return text;const slots=[];let src=text.replace(/\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/g,m=>{slots.push(m);return `@@BMMATH${slots.length-1}@@`;});let out='',i=0;while(i<src.length){const m=src.slice(i).match(/\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|lt|gt|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|partial|to)\b/);if(!m){out+=src.slice(i);break;}const st=i+m.index;out+=src.slice(i,st);const en=cmdEnd(src,st);out+=`\\(${src.slice(st,en)}\\)`;i=en;}return out.replace(/@@BMMATH(\d+)@@/g,(_,n)=>slots[+n]);}
  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);for(const n of nodes){if(n.parentElement?.closest('mjx-container,script,style,textarea'))continue;const v=n.nodeValue||'',next=wrapRaw(v);if(next!==v)n.nodeValue=next;}
 }'''
 
@@ -86,7 +86,7 @@ async def main():
             merrors=await page.locator('mjx-merror').count()
             if merrors:
                 errors.append({'batch':start,'error':f'{merrors} MathJax merror nodes'})
-            bads=await page.evaluate('''() => [...document.querySelectorAll('.sample')].map(s=>({label:s.dataset.label,index:s.dataset.index,text:s.innerText||''})).filter(x=>/\\\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|partial|begin|end|left|right|displaystyle|to)\\b|\\\\[()\\[\\]]|\\bNaN\\b|(^|[^A-Za-z])(frac|qquad|quad)([^A-Za-z]|$)/im.test(x.text))''')
+            bads=await page.evaluate('''() => [...document.querySelectorAll('.sample')].map(s=>({label:s.dataset.label,index:s.dataset.index,text:s.innerText||''})).filter(x=>/\\\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|lt|gt|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|partial|begin|end|left|right|displaystyle|to)\\b|\\\\[()\\[\\]]|\\bNaN\\b|(^|[^A-Za-z])(frac|qquad|quad)([^A-Za-z]|$)/im.test(x.text))''')
             for x in bads[:50]: errors.append({'sample':x['index'],'label':x['label'],'error':'visible raw/bad math token','text':x['text'][:1000]})
             batches+=1
         await b.close()

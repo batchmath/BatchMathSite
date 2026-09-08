@@ -65,6 +65,7 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="BatchMath">
 <script src="/assets/batchmath-storage.js" defer></script>
+<script src="/assets/answer-normalization.js" defer></script>
 <script src="/assets/pwa.js" defer></script>
 
   <!-- Google tag (gtag.js) -->
@@ -606,6 +607,7 @@ document.addEventListener("DOMContentLoaded",function(){
   }
 
   function parse(raw){
+    raw=window.BatchMathAnswers?.normalizeFractionSigns(raw) ?? raw;
     let s=raw.trim().toLowerCase().replace(/\s+/g,"").replace(/−/g,"-");
     if(["dne","doesnotexist","doesn'texist","doesntexist","undefined"].includes(s))return {kind:"dne"};
     if(["∞","+∞","inf","+inf","infinity","+infinity"].includes(s))return {kind:"inf",sign:1};

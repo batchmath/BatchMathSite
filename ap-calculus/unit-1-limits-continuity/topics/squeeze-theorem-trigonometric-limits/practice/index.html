@@ -7,7 +7,8 @@
 
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:site_name" content="BatchMath"><meta property="og:type" content="website"><meta property="og:title" content="Advanced Trigonometric Limits Practice | AP Calculus AB | BatchMath"><meta property="og:description" content="Practice advanced AP Calculus trigonometric limits using identities, factoring, cancellation, and standard trig limits."><meta property="og:url" content="https://batchmath.net/ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/"><meta property="og:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Advanced Trigonometric Limits Practice | AP Calculus AB | BatchMath"><meta name="twitter:description" content="Practice advanced AP Calculus trigonometric limits using identities, factoring, cancellation, and standard trig limits."><meta name="twitter:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png">
-<link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#030303"><link rel="stylesheet" href="/assets/site.css"><script src="/assets/batchmath-storage.js" defer></script><script src="/assets/pwa.js" defer></script>
+<link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#030303"><link rel="stylesheet" href="/assets/site.css"><script src="/assets/batchmath-storage.js" defer></script><script src="/assets/answer-normalization.js" defer></script>
+<script src="/assets/pwa.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-377MTFXSF3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-377MTFXSF3');</script>
 <title>Advanced Trigonometric Limits Practice | AP Calculus AB | BatchMath</title>
 <script>
@@ -425,6 +426,7 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
     $("accuracy").textContent=attempted?`${Math.round(100*correct/attempted)}%`:"—";
   }
   function parseAnswer(raw){
+    raw=window.BatchMathAnswers?.normalizeFractionSigns(raw) ?? raw;
     let s=raw.trim().toLowerCase().replace(/−/g,"-").replace(/\s+/g,"").replace(/[×·]/g,"*");
     if(!s)return null;
     const frac=s.match(/^([+-]?(?:\d+(?:\.\d*)?|\.\d+))\/([+-]?(?:\d+(?:\.\d*)?|\.\d+))$/);

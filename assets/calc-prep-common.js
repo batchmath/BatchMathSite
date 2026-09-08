@@ -330,7 +330,7 @@ BM.mathHTML=raw=>BM.displayMathHTML(raw);
 BM.renderMath=function(el,raw){if(!el)return;el.innerHTML=BM.displayMathHTML(raw);BM.typeset([el]);};
 BM.renderHTML=function(el,html){if(!el)return;el.innerHTML=BM.displayMathHTML(html);BM.typeset([el]);};
 
-BM.normalize=s=>String(s||'').trim().toLowerCase().replace(/\s+/g,'').replace(/[−–—]/g,'-').replace(/[⁄∕]/g,'/').replace(/π/g,'pi').replace(/√/g,'sqrt').replace(/°/g,'').replace(/·/g,'*');
+BM.normalize=s=>String(window.BatchMathAnswers?.normalizeFractionSigns(s) ?? s ?? '').trim().toLowerCase().replace(/\s+/g,'').replace(/[−–—]/g,'-').replace(/[⁄∕]/g,'/').replace(/π/g,'pi').replace(/√/g,'sqrt').replace(/°/g,'').replace(/·/g,'*');
 BM.normalizeRadicals=s=>s.replace(/sqrt\((\d+(?:\.\d+)?)(?=$|[+\-*/])/g,'sqrt($1)').replace(/sqrt(\d+(?:\.\d+)?)/g,'sqrt($1)');
 BM.safeExactEval=function(raw){
  let s=BM.normalizeRadicals(BM.normalize(raw));

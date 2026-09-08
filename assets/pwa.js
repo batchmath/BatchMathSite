@@ -1,8 +1,8 @@
-/* BatchMath PWA registration/update foundation — v10.6.3.N */
+/* BatchMath PWA registration/update foundation — v10.6.3.P */
 (() => {
   'use strict';
 
-  const APP_VERSION = '10.6.3.N';
+  const APP_VERSION = '10.6.3.P';
   const state = {
     version: APP_VERSION,
     supported: 'serviceWorker' in navigator,
@@ -182,9 +182,9 @@
 })();
 
 
-// v10.6.3.N — Practice feedback MathJax safety net.
+// v10.6.3.P — Practice feedback MathJax safety net.
 (function batchMathMathJaxSafety(){
-  const commandRE=/\\\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|to|le|ge|ne|equiv|partial)\b/;
+  const commandRE=/\\\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|lt|gt|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|to|le|ge|ne|equiv|partial)\b/;
   const protectedRE=/\\\\\([\\s\\S]*?\\\\\)|\\\\\[[\\s\\S]*?\\\\\]/g;
   function balanced(s,start,open,close){let d=0;for(let i=start;i<s.length;i++){if(s[i]===open)d++;else if(s[i]===close){d--;if(d===0)return i+1;}}return start;}
   function commandEnd(s,i){
@@ -202,7 +202,7 @@
   }
   function wrapSegment(seg){
     if(!commandRE.test(seg))return seg;let out='',i=0;
-    while(i<seg.length){const m=seg.slice(i).match(/\\\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|to|le|ge|ne|equiv|partial)\b/);if(!m){out+=seg.slice(i);break;}const st=i+m.index;out+=seg.slice(i,st);const en=commandEnd(seg,st);out+=`\\(${seg.slice(st,en)}\\)`;i=en;}return out;
+    while(i<seg.length){const m=seg.slice(i).match(/\\\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|lt|gt|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|to|le|ge|ne|equiv|partial)\b/);if(!m){out+=seg.slice(i);break;}const st=i+m.index;out+=seg.slice(i,st);const en=commandEnd(seg,st);out+=`\\(${seg.slice(st,en)}\\)`;i=en;}return out;
   }
   function normalizeText(text){
     if(!commandRE.test(text)||/\\\\\(|\\\\\[/.test(text)===false)return wrapSegment(text);

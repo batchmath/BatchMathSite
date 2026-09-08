@@ -33,6 +33,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="BatchMath">
 <script src="/assets/batchmath-storage.js" defer></script>
+<script src="/assets/answer-normalization.js" defer></script>
 <script src="/assets/pwa.js" defer></script>
 
   <!-- Google tag (gtag.js) -->
@@ -44,7 +45,7 @@
   
     gtag('config', 'G-377MTFXSF3');
   </script>
-<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_integer_add_subtract",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"im1",engineId:"im1_integer_add_subtract",generatorVersion:"2"};</script><script src="/assets/problem-tracking.js"></script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><main id="main-content" class="page"><a class="back" href="../">← Topic Page</a><header class="header"><h1>Integer Addition &amp; Subtraction</h1></header>
 <section id="setupCard" class="card"><div class="settings"><div class="setting"><label>Time Limit</label><select id="timeSelect" aria-label="Time limit"><option value="1">1 minute</option><option value="2">2 minutes</option><option value="3" selected>3 minutes</option><option value="4">4 minutes</option><option value="5">5 minutes</option></select></div><div class="setting"><label>Number of Questions</label><select id="questionSelect" aria-label="Number of questions"><option value="10">10 questions</option><option value="20" selected>20 questions</option><option value="30">30 questions</option><option value="40">40 questions</option><option value="50">50 questions</option><option value="60">60 questions</option><option value="70">70 questions</option><option value="80">80 questions</option><option value="90">90 questions</option><option value="100">100 questions</option></select></div></div><button id="startBtn" class="primary">Start Practice</button></section>
 <section id="practiceCard" class="card hidden"><div class="stats"><div class="stat">Question<span id="progress"></span></div><div class="stat">Score<span id="score">0</span></div><div class="stat">Time<span id="timer"></span></div></div><div class="question-area"><div id="question" class="question"></div><input id="answer" aria-label="Answer" type="text" autocomplete="off" data-bm-keypad="integer"><button id="checkBtn" class="check">Check Answer</button><div id="feedback" class="feedback"></div><button id="nextBtn" class="next hidden">Next Question</button></div></section>
@@ -94,7 +95,7 @@ function build(){
         const problemType = op==="+"
           ? (x<0&&y<0 ? "addition_two_negative" : "addition_mixed_sign")
           : (y<0 ? "subtraction_of_negative" : (x<0 ? "negative_minus_positive" : "positive_minus_larger_positive"));
-        a.push({text:`${fmt(x)} ${op} ${fmt(y)} = ?`,answer:r,explain,problemType});
+        a.push({id:`int-${op==="+"?"add":"sub"}-${x}-${y}`,key:`int-${op==="+"?"add":"sub"}-${x}-${y}`,text:`${fmt(x)} ${op} ${fmt(y)} = ?`,answer:r,explain,problemType});
       }
     }
   }

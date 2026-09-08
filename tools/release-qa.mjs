@@ -98,9 +98,18 @@ for(const rel of versionFiles){const s=fs.readFileSync(path.join(ROOT,rel),'utf8
 if(app.release!==`v${version}`)fail(`app-version.json release ${app.release} != v${version}`);
 stats.version=version;
 
+// Future-proof answer equivalence: every practice route must load the shared
+// answer normalizer, even before/independent of analytics instrumentation.
+for(const f of htmlFiles){
+  const rel=norm(path.relative(ROOT,f));
+  if(!/(?:\/practice\/|\/assignment-practice\/)/.test('/'+rel))continue;
+  const html=fs.readFileSync(f,'utf8');
+  if(!html.includes('/assets/answer-normalization.js'))fail(`${rel}: practice route missing sitewide answer-normalization.js`);
+}
+
 // Every analytics engine must also load reproducible RNG, before tracking/config.
 const engines=[];
-for(const f of htmlFiles){const html=fs.readFileSync(f,'utf8');if(!html.includes('problem-tracking.js'))continue;const rel=norm(path.relative(ROOT,f));const m=html.match(/window\.BM_ANALYTICS_CONFIG=\{course:"([^"]+)",engineId:"([^"]+)",generatorVersion:"([^"]+)"\}/);if(!m){fail(`${rel}: analytics engine config not parsed`);continue;}const seedPos=html.indexOf('/assets/reproducible-rng.js'), trackPos=html.indexOf('/assets/problem-tracking.js');if(seedPos<0)fail(`${rel}: missing reproducible-rng.js`);else if(seedPos>trackPos)fail(`${rel}: reproducible-rng.js must load before problem tracking`);engines.push({rel,course:m[1],engineId:m[2],generatorVersion:m[3]});}
+for(const f of htmlFiles){const html=fs.readFileSync(f,'utf8');if(!html.includes('problem-tracking.js'))continue;const rel=norm(path.relative(ROOT,f));const m=html.match(/window\.BM_ANALYTICS_CONFIG=\{course:"([^"]+)",engineId:"([^"]+)",generatorVersion:"([^"]+)"\}/);if(!m){fail(`${rel}: analytics engine config not parsed`);continue;}const seedPos=html.indexOf('/assets/reproducible-rng.js'), trackPos=html.indexOf('/assets/problem-tracking.js'), answerPos=html.indexOf('/assets/answer-normalization.js');if(seedPos<0)fail(`${rel}: missing reproducible-rng.js`);else if(seedPos>trackPos)fail(`${rel}: reproducible-rng.js must load before problem tracking`);if(answerPos<0)fail(`${rel}: missing answer-normalization.js`);else if(answerPos>trackPos)fail(`${rel}: answer-normalization.js must load before problem tracking`);engines.push({rel,course:m[1],engineId:m[2],generatorVersion:m[3]});}
 const ids=engines.map(x=>x.engineId);if(new Set(ids).size!==ids.length)fail('duplicate analytics engineId detected');
 if(engines.length!==89)fail(`expected 89 instrumented engines, found ${engines.length}`);stats.practiceEngines=engines.length;
 

@@ -65,6 +65,7 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="BatchMath">
 <script src="/assets/batchmath-storage.js" defer></script>
+<script src="/assets/answer-normalization.js" defer></script>
 <script src="/assets/pwa.js" defer></script>
 
   <!-- Google tag (gtag.js) -->
@@ -76,7 +77,7 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
   
     gtag('config', 'G-377MTFXSF3');
   </script>
-<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_topic_basic_techniques_indeterminate_limits",generatorVersion:"7"};</script><script src="/assets/problem-tracking.js"></script>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_topic_basic_techniques_indeterminate_limits",generatorVersion:"8"};</script><script src="/assets/problem-tracking.js"></script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
 <img class="corner" src="../../../../../assets/batchmath-portrait.jpg" alt="">
 <a class="logo" href="../../../../../">BatchMath<span class="tm-mark">™</span></a>
@@ -606,6 +607,7 @@ document.addEventListener("DOMContentLoaded",function(){
   }
 
   function parse(raw){
+    raw=window.BatchMathAnswers?.normalizeFractionSigns(raw) ?? raw;
     let s=raw.trim().toLowerCase().replace(/\s+/g,"").replace(/−/g,"-");
     if(["dne","doesnotexist","doesn'texist","doesntexist","undefined"].includes(s))return {kind:"dne"};
     if(["∞","+∞","inf","+inf","infinity","+infinity"].includes(s))return {kind:"inf",sign:1};

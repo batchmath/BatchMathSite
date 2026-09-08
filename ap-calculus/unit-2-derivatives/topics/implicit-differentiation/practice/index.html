@@ -54,6 +54,7 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="BatchMath">
 <script src="/assets/batchmath-storage.js" defer></script>
+<script src="/assets/answer-normalization.js" defer></script>
 <script src="/assets/pwa.js" defer></script>
 
   <!-- Google tag (gtag.js) -->
@@ -362,6 +363,7 @@ const mixedWeights=["basic",...Array(2).fill("product"),...Array(2).fill("quotie
 const FUNCS=new Set(["sin","cos","tan","sec","csc","cot","sqrt","ln","log","abs","exp"]);
 const IDS=["sqrt","sin","cos","tan","sec","csc","cot","ln","log","abs","exp","pi","x","y","e"];
 function normalizeInput(raw){
+ raw=window.BatchMathAnswers?.normalizeFractionSigns(raw) ?? raw;
  let s=String(raw||"").trim().toLowerCase()
    .replace(/−|–|—/g,"-")
    .replace(/π/g,"pi")
