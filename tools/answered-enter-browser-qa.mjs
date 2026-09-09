@@ -42,3 +42,24 @@ export async function exerciseAnsweredEnter(page) {
   await page.waitForTimeout(250);
   if(await page.evaluate(()=>window.BatchMathRepro.problemCount)!==after)throw new Error('held Enter generated another problem');
 }
+
+export async function exerciseAdvancedHints(page){
+  const before=await page.evaluate(()=>window.BatchMathRepro.problemCount);
+  await page.locator('#answer').fill('7/9');
+  await page.locator('#hint').click();
+  if(!await page.locator('#hint-panel').isVisible())throw new Error('hint did not open');
+  if(await page.locator('#answer').inputValue()!=='7/9')throw new Error('hint changed the answer');
+  if(await page.evaluate(()=>window.BatchMathRepro.problemCount)!==before)throw new Error('hint generated another problem');
+  if(await page.locator('#attempted').textContent()!=='0')throw new Error('hint counted as an attempt');
+  await page.locator('#hint').click();
+  if(await page.locator('#hint-panel').isVisible())throw new Error('hint did not close');
+  await page.locator('#answer').fill('');await page.locator('#answer').press('Enter');await page.locator('#answer').press('Enter');
+  if(await page.evaluate(()=>window.BatchMathRepro.problemCount)!==before)throw new Error('invalid input Enter advanced');
+  await page.locator('#answer').fill('1234567');await page.locator('#answer').press('Enter');
+  await page.waitForTimeout(220);
+  if(await page.evaluate(()=>window.BatchMathRepro.problemCount)!==before)throw new Error('submission skipped the explanation');
+  if(await page.locator('#feedback .method-steps li').count()<2)throw new Error('numbered method missing');
+  await page.keyboard.press('Enter');await page.waitForTimeout(220);
+  if(await page.evaluate(()=>window.BatchMathRepro.problemCount)!==before+1)throw new Error('advanced trig Enter did not generate exactly once');
+  if(await page.locator('#hint-panel').isVisible())throw new Error('hint not reset');
+}

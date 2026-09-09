@@ -54,15 +54,15 @@ h1{text-align:center;font-size:clamp(1.75rem,5vw,2.8rem);margin:7px 0 8px;line-h
 .quick-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.quick{min-height:34px;padding:5px 10px;border:1px solid #383838;background:#101010;color:#ddd;border-radius:7px;font-weight:800;cursor:pointer}.quick:hover{border-color:var(--yellow);color:var(--yellow)}
 .feedback{margin-top:14px;border-radius:10px;min-height:0}.feedback.correct,.feedback.wrong{padding:13px 14px;border:1px solid #303030;background:#080808}.feedback.correct{color:var(--green);font-weight:900}.feedback.wrong{color:#eee}.correct-answer{color:var(--yellow);font-weight:900;margin-bottom:8px}.method{color:#d8d8d8;line-height:1.65}.method strong{color:#fff}.technique{margin-top:8px;color:#aaa;font-size:.83rem}
 .post-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.post-actions .btn{display:none}
-.details{margin-top:18px;border-top:1px solid #202020;padding-top:15px}
+.hint-actions{margin:0 0 12px}.hint-panel{margin:0 0 16px;padding:12px 14px;border-left:3px solid var(--yellow);background:#111;color:#eee;overflow-wrap:anywhere}.hint-panel[hidden]{display:none}.method{font-weight:400}.method-steps{margin:10px 0 0;padding-left:25px}.method-steps li{margin:0 0 20px;padding-left:4px}.method-equation{max-width:100%;overflow-x:auto;padding:4px 0}.method-equation mjx-container[display="true"]{text-align:left!important;margin:10px 0!important}.details{margin-top:18px;border-top:1px solid #202020;padding-top:15px}
 details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0 13px}summary{cursor:pointer;padding:11px 0;color:var(--yellow);font-weight:900}.identity-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 16px;padding:2px 0 13px;color:#ddd;font-size:.9rem}.identity-group{border-top:1px solid #242424;padding-top:8px}.identity-group h3{margin:0 0 5px;font-size:.83rem;color:#fff}.identity-group p{margin:5px 0;overflow-x:auto}
 .footer{text-align:center;color:#777;font-size:.75rem;margin-top:20px}.footer strong{color:#aaa}
 @media(max-width:650px){.wrap{width:min(100% - 16px,1220px);padding-top:14px}.shell{padding:11px}.question-card{padding:18px 6px;min-height:190px}.question{font-size:clamp(1.25rem,6.4vw,1.8rem);text-align:left}.answer-row>*{flex:1 1 100%}.btn{width:100%}.quick-row .quick{width:auto;flex:1 1 auto}.identity-grid{grid-template-columns:1fr}.status-row{align-items:flex-start}.stats{gap:9px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
-<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_advanced_trig_limits",generatorVersion:"2"};</script><script src="/assets/problem-tracking.js"></script></head>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_advanced_trig_limits",generatorVersion:"3"};</script><script src="/assets/problem-tracking.js"></script></head>
 <body>
-<main class="wrap">
+<main class="wrap" data-bm-advanced-trig>
   <div class="brand"><a class="brand-mark" href="/" aria-label="BatchMath home">BATCH<span class="math">MATH</span></a></div>
   <div class="kicker">AP Calculus AB · Interactive Practice</div>
   <h1>Advanced Trigonometric Limits</h1>
@@ -79,6 +79,9 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
       <div class="question-prompt">Find the limit.</div>
       <div id="question" class="question" aria-live="polite"></div>
     </div>
+
+    <div class="hint-actions"><button id="hint" class="btn secondary" type="button" aria-expanded="false" aria-controls="hint-panel">Show Hint</button></div>
+    <div id="hint-panel" class="hint-panel" hidden aria-live="polite"></div>
 
     <div class="answer-help">Exact form preferred. Fractions and decimals are accepted; use <strong>sqrt(2)</strong> or the √2 button for radicals.</div>
     <div class="answer-row">
@@ -165,6 +168,194 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
   const sumTerms=terms=>terms.filter(t=>t.c!==0).map((t,i)=>coeff(t.c,t.body,i===0)).join("");
   const formatPoint=p=>p;
 
+  // Student-facing explanations use identities and standard limits only.
+  // All coefficients come from the same generated problem as the question.
+  function lesson(family,v,answer){
+    const T=String.raw, I=s=>T`\(${s}\)`, D=s=>`<div class="method-equation">${T`\[${s}\]`}</div>`;
+    const {a,b,c,d,m,n,A,B,C,p,q,r,type,form,f,g,f1,f2,f3,minus,rev,plus,neg}=v;
+    const frac=(x,y)=>T`\frac{${x}}{${y}}`, trig=(fn,k)=>"\\"+fn+`(${arg(k)})`;
+    const S=(k,fn='sin')=>frac(trig(fn,k),'x'), co=(k)=>trig('cos',k);
+    const sq=s=>T`\left(${s}\right)^2`, cube=s=>T`\left(${s}\right)^3`;
+    const K=(x,y)=>texRat(rat(x,y));
+    const mul=(x,y,s)=>x===y?s:T`${K(x,y)}\left[${s}\right]`;
+    const signed=x=>x<0?`(${x})`:String(x);
+    const sum=(...terms)=>terms.map((x,i)=>i&&String(x).startsWith('-')?String(x):i?'+'+x:String(x)).join('');
+    let hint='',steps=[];const used=new Set();
+    const add=(text,math='')=>steps.push(text+(math?D(math):''));
+    const standard=(k,fn='sin')=>{
+      const key=fn+k;if(used.has(key))return;used.add(key);
+      add(`Use the standard ${fn==='sin'?'sine':'tangent'} limit, with the angle measured in radians.`,
+        fn==='sin'?T`${S(k)}=${k}\frac{\sin(${arg(k)})}{${arg(k)}}\longrightarrow ${k}(1)=${k}`:
+        T`${S(k,'tan')}=${k}\frac{\sin(${arg(k)})}{${arg(k)}}\frac{1}{${co(k)}}\longrightarrow ${k}(1)(1)=${k}`);
+    };
+    const cosine=k=>{
+      if(used.has('cosine'+k))return;used.add('cosine'+k);
+      add(`Multiply by the conjugate and use ${I(T`1-\cos^2u=\sin^2u`)}.`,
+        T`\frac{1-${co(k)}}{x^2}=\frac{(1-${co(k)})(1+${co(k)})}{x^2(1+${co(k)})}=\frac{${sq(S(k))}}{1+${co(k)}}`);
+      standard(k);
+      add('Now evaluate that cosine-difference factor.',T`\frac{1-${co(k)}}{x^2}\longrightarrow\frac{${k}^2}{1+1}=${K(k*k,2)}`);
+    };
+    const secant=k=>{
+      add('Rewrite secant using cosine.',T`\sec(${arg(k)})-1=\frac{1-${co(k)}}{${co(k)}}`);cosine(k);
+    };
+    const finish=math=>add('Combine the limits, including the outside coefficient.',T`${math}=${texRat(answer)}`);
+    const cosineHint=k=>`Multiply ${I(T`1-${co(k)}`)} by its conjugate ${I(T`1+${co(k)}`)}. Then use ${I(T`1-\cos^2u=\sin^2u`)}.`;
+    switch(family){
+      case 'product-ratios':{
+        const fa=form==='sin-sin'?'sin':'tan',fb=form==='tan-tan'?'tan':'sin';
+        hint='Split the denominator so each trig factor is divided by x. Then make each denominator match its angle.';
+        add('Split the product into two ratios.',mul(1,d,T`${S(a,fa)}\cdot${S(b,fb)}`));standard(a,fa);standard(b,fb);finish(frac(T`${a}\cdot${b}`,d));break;
+      }
+      case 'linear-combo':
+        hint='Divide both the numerator and denominator by x. Apply a standard trig limit to each term.';
+        add('Divide the entire numerator and denominator by x.',frac(sum(T`${A}${S(a)}`,T`-${B}${S(b,'tan')}`,C),S(v.e)));
+        standard(a);standard(b,'tan');standard(v.e);finish(frac(sum(T`${A}\cdot${a}`,T`-${B}\cdot${b}`,C),v.e));break;
+      case 'mixed-second-order':case 'engineered-second-order':{
+        const fn=family==='mixed-second-order'?'sin':'tan';hint='Split the fraction into three terms. Use a conjugate for the cosine term and cancel an x in the middle term.';
+        add('Split the numerator over the common denominator.',mul(1,d,sum(T`${A}\frac{1-${co(a)}}{x^2}`,T`${signed(B)}${S(b,fn)}`,T`${signed(C)}${sq(S(c))}`)));
+        cosine(a);standard(b,fn);standard(c);finish(frac(sum(T`${A}\cdot${K(a*a,2)}`,T`${signed(B)}\cdot${b}`,T`${signed(C)}\cdot${c}^2`),d));break;
+      }
+      case 'sec-square':
+        hint=`Use ${I(T`\sec^2u-1=\tan^2u`)} to rewrite the numerator.`;
+        add('Apply the Pythagorean identity.',T`\sec^2(${arg(a)})-1=\tan^2(${arg(a)})`);
+        add('The original expression becomes',mul(v.k,d,sq(S(a,'tan'))));standard(a,'tan');finish(frac(T`${v.k}\cdot${a}^2`,d));break;
+      case 'power-reduction':
+        hint=type===3?`Use ${I(T`\cos(2u)=\cos^2u-\sin^2u`)}.`:`Use ${I(T`1-\cos(2u)=2\sin^2u`)} with ${I(T`u=${arg(a)}`)}.`;
+        if(type===1||type===2){
+          add('Apply the double-angle identity.',T`1-\cos(${2*a}x)=2\sin^2(${arg(a)})`);
+          add('Cancel the common sine-squared factor for nonzero x sufficiently close to zero.',type===1?T`\frac{${m}\sin^2(${arg(a)})}{${2*n}\sin^2(${arg(a)})}=${K(m,2*n)}`:T`\frac{${2*m}\sin^2(${arg(a)})}{${n}\sin^2(${arg(a)})}=${K(2*m,n)}`);
+          add('The expression is constant near the target, so its limit is',texRat(answer));
+        }else{
+          add('Rewrite the difference.',T`\cos^2(${arg(a)})-\cos(${2*a}x)=\sin^2(${arg(a)})`);
+          add('The original expression becomes',mul(m,n,sq(S(a))));standard(a);finish(frac(T`${m}\cdot${a}^2`,n));
+        }break;
+      case 'tan-minus-sin':case 'double-angle-cubic':case 'double-angle-difference':{
+        const tangent=family==='tan-minus-sin',reverse=family==='double-angle-difference'?form===2:rev,sign=reverse?-1:1;
+        hint=tangent?`Write ${I(T`\tan(${arg(a)})=\sin(${arg(a)})/\cos(${arg(a)})`)} and combine the difference into one fraction.`:`Use ${I(T`\sin(${2*a}x)=2\sin(${arg(a)})\cos(${arg(a)})`)} and factor out the sine.`;
+        const diff=tangent?(reverse?T`${trig('sin',a)}-${trig('tan',a)}`:T`${trig('tan',a)}-${trig('sin',a)}`):(reverse?T`\sin(${2*a}x)-2${trig('sin',a)}`:T`2${trig('sin',a)}-\sin(${2*a}x)`);
+        add('Rewrite and factor the difference.',T`${diff}=${reverse?'-':''}${tangent?'':'2'}\frac{${trig('sin',a)}(1-${co(a)})}{${tangent?co(a):'1'}}`);
+        add('Split the powers of x among the factors.',mul(sign*m*(tangent?1:2),d,T`${S(a)}\cdot\frac{1-${co(a)}}{x^2}${tangent?T`\cdot\frac1{${co(a)}}`:''}`));
+        cosine(a);if(tangent)add('The remaining cosine factor approaches 1.',T`\frac1{${co(a)}}\longrightarrow1`);
+        finish(T`${K(sign*m*(tangent?1:2),d)}\cdot${a}\cdot${K(a*a,2)}${tangent?T`\cdot1`:''}`);break;
+      }
+      case 'quadratic-cos':
+        hint='Treat cosine as one algebraic quantity and factor the quadratic in the numerator.';
+        add('Factor the quadratic.',T`\cos^2(${arg(a)})-${r+1}${co(a)}+${r}=(${co(a)}-1)(${co(a)}-${r})`);
+        add('Reverse the first subtraction to obtain a 1 − cosine factor.',mul(-m,d,T`\frac{1-${co(a)}}{x^2}(${co(a)}-${r})`));
+        cosine(a);add('Evaluate the remaining factor.',T`${co(a)}-${r}\longrightarrow1-${r}=${1-r}`);finish(T`${K(-m,d)}\cdot${K(a*a,2)}\cdot(${1-r})`);break;
+      case 'quadratic-sec':
+        hint=`Factor the quadratic in secant. Also use ${I(T`\tan^2u=\sec^2u-1`)} and factor that difference of squares.`;
+        add('Factor numerator and denominator.',frac(T`${m}(\sec(${arg(a)})-1)(\sec(${arg(a)})-${r})`,T`${d}(\sec(${arg(a)})-1)(\sec(${arg(a)})+1)`));
+        add('Cancel the common factor near zero.',mul(m,d,frac(T`\sec(${arg(a)})-${r}`,T`\sec(${arg(a)})+1`)));
+        add('Secant approaches 1, so direct substitution now works.',T`${K(m,d)}\cdot\frac{1-${r}}{1+1}=${texRat(answer)}`);break;
+      case 'mixed-quadratic':
+        hint='Treat the tangent and sine as algebraic quantities. Factor the quadratic, then give each factor one x in its denominator.';
+        add('Factor the numerator.',T`${m}(${trig('tan',a)}-${p}${trig('sin',b)})(${trig('tan',a)}-${q}${trig('sin',b)})`);
+        add('Divide each factor by x.',mul(m,d,T`\left(${S(a,'tan')}-${p}${S(b)}\right)\left(${S(a,'tan')}-${q}${S(b)}\right)`));
+        standard(a,'tan');standard(b);finish(T`${K(m,d)}(${a}-${p}\cdot${b})(${a}-${q}\cdot${b})`);break;
+      case 'cubes':{
+        const op=minus?'-':'+',mid=minus?'+':'-';hint=`Use ${I(minus?T`U^3-V^3=(U-V)(U^2+UV+V^2)`:T`U^3+V^3=(U+V)(U^2-UV+V^2)`)}. Look for a common factor in the denominator.`;
+        add('Set the algebraic quantities for the cube identity.',T`U=${trig('tan',a)},\qquad V=${trig('sin',b)}`);
+        add('Factor and cancel the common factor.',T`\frac{(U${op}V)(U^2${mid}UV+V^2)}{${d}x^2(U${op}V)}=\frac{U^2${mid}UV+V^2}{${d}x^2}`);
+        add('Split the remaining terms over x squared.',mul(1,d,T`${sq(S(a,'tan'))}${mid}${S(a,'tan')}${S(b)}+${sq(S(b))}`));standard(a,'tan');standard(b);finish(frac(T`${a}^2${mid}${a}\cdot${b}+${b}^2`,d));break;
+      }
+      case 'perfect-square':
+        hint='The numerator is a perfect square. After factoring, rewrite secant as 1/cosine.';
+        add('Recognize the perfect square.',T`\cos^2(${arg(a)})+\sec^2(${arg(a)})-2\sec(${arg(a)})${co(a)}=(${co(a)}-\sec(${arg(a)}))^2`);
+        add('Rewrite the difference inside the square.',T`${co(a)}-\sec(${arg(a)})=\frac{\cos^2(${arg(a)})-1}{${co(a)}}=-\frac{\sin^2(${arg(a)})}{${co(a)}}`);
+        add('Square, then regroup the original expression.',mul(m,d,T`\left(${S(a)}\right)^4\frac1{\cos^2(${arg(a)})}`));standard(a);finish(T`${K(m,d)}\cdot${a}^4\cdot1`);break;
+      case 'reciprocal':case 'csc-cot-x':{
+        if(family==='reciprocal'&&type===2){
+          hint='Write secant as 1/cosine, combine the fractions, then use the Pythagorean identity.';
+          add('Rewrite the numerator difference.',T`\sec(${arg(a)})-${co(a)}=\frac{1-\cos^2(${arg(a)})}{${co(a)}}=\frac{\sin^2(${arg(a)})}{${co(a)}}`);
+          add('Regroup the original expression.',mul(m,d,T`${sq(S(a))}\frac1{${co(a)}}`));standard(a);finish(T`${K(m,d)}\cdot${a}^2\cdot1`);break;
+        }
+        const isPlus=family==='csc-cot-x'&&plus,isTan=family==='reciprocal'&&type===3;
+        hint=`Write cosecant as 1/sine and cotangent as cosine/sine, then combine the ${isPlus?'sum':'difference'}.`;
+        add('Use the reciprocal and quotient identities.',T`\csc(${arg(a)})${isPlus?'+':'-'}\cot(${arg(a)})=\frac{1${isPlus?'+':'-'}${co(a)}}{${trig('sin',a)}}`);
+        if(!isPlus)add('Multiply by the conjugate and cancel a sine factor.',T`\frac{1-${co(a)}}{${trig('sin',a)}}=\frac{1-\cos^2(${arg(a)})}{${trig('sin',a)}(1+${co(a)})}=\frac{${trig('sin',a)}}{1+${co(a)}}`);
+        add('Regroup the original expression.',mul(m,d,isPlus?T`\frac{1+${co(a)}}{${S(a)}}`:isTan?T`\frac{${S(a)}}{(1+${co(a)})${S(b,'tan')}}`:T`\frac{${S(a)}}{1+${co(a)}}`));
+        standard(a);if(isTan)standard(b,'tan');finish(T`${K(m,d)}\cdot${isPlus?frac(2,a):frac(a,isTan?2*b:2)}`);break;
+      }
+      case 'nonzero':
+        hint=`Use ${I(T`\cos(2x)=(\cos x-\sin x)(\cos x+\sin x)`)}. One factor matches the denominator.`;
+        add('Factor the double-angle expression.',T`\cos(2x)=(\cos x-\sin x)(\cos x+\sin x)`);
+        add('Cancel the matching factor for x near, but not equal to, the target.',mul(m,d,c.remain));
+        add(`Substitute ${I(T`x=${c.p}`)} into the remaining factor.`,T`${c.remain}\longrightarrow${c.base<0?'-':''}\sqrt2`);finish(T`${K(m,d)}\cdot(${c.base<0?'-':''}\sqrt2)`);break;
+      case 'cos-ratio':case 'sec-cos-ratio':
+        hint=family==='sec-cos-ratio'?'Write secant as 1/cosine, then use a conjugate for each 1 − cosine expression.':'Use a conjugate for each 1 − cosine expression, then divide both by x squared.';
+        if(family==='sec-cos-ratio')secant(a);else cosine(a);cosine(b);
+        add('Divide numerator and denominator by x squared.',mul(m,n,frac(T`\frac{1-${co(a)}}{x^2}`,T`${family==='sec-cos-ratio'?co(a):''}\frac{1-${co(b)}}{x^2}`)));
+        finish(T`${K(m,n)}\cdot\frac{${K(a*a,2)}}{${K(b*b,2)}}`);break;
+      case 'pythagorean-ratio':{
+        const fa=type===1?'sin':'tan',fb=type===1?'tan':'sin';hint=`Use ${I(type===1?T`1-\cos^2u=\sin^2u`:T`\sec^2u-1=\tan^2u`)} in the numerator.`;
+        add('Apply the identity.',type===1?T`1-\cos^2(${arg(a)})=\sin^2(${arg(a)})`:T`\sec^2(${arg(a)})-1=\tan^2(${arg(a)})`);
+        add('Divide each trig function by x.',mul(m,n,sq(frac(S(a,fa),S(b,fb)))));standard(a,fa);standard(b,fb);finish(T`${K(m,n)}\left(\frac{${a}}{${b}}\right)^2`);break;
+      }
+      case 'evenodd':
+        hint=`Use ${I(type===1?T`\tan(-u)=-\tan u`:type===2?T`\sin(-u)=-\sin u`:T`\sec(-u)=\sec u`)} to remove the negative angle.`;
+        add('Remove the negative angle.',type===1?T`\tan(-${arg(a)})=-\tan(${arg(a)})`:type===2?T`\sin^3(-${arg(a)})=-\sin^3(${arg(a)})`:T`\sec(-${arg(a)})=\sec(${arg(a)})`);
+        if(type===3){secant(a);add('Regroup the original expression.',mul(m,d,T`\frac{1-${co(a)}}{x^2}\frac1{${co(a)}}`));finish(T`${K(m,d)}\cdot${K(a*a,2)}\cdot1`);}
+        else {add('Regroup the original expression.',mul(-m,d,type===1?T`${S(a,'tan')}${S(b)}`:cube(S(a))));standard(a,type===1?'tan':'sin');if(type===1)standard(b);finish(T`${K(-m,d)}\cdot${type===1?T`${a}\cdot${b}`:T`${a}^3`}`);}break;
+      case 'cos-difference':
+        hint='Insert +1 and −1 so the numerator becomes a difference of two 1 − cosine expressions.';
+        add('Rewrite the numerator difference.',T`${co(a)}-${co(b)}=(1-${co(b)})-(1-${co(a)})`);cosine(b);cosine(a);
+        finish(T`${K(m,d)}\left(${K(b*b,2)}-${K(a*a,2)}\right)`);break;
+      case 'compound-higher':
+        hint='Rewrite tangent as sine/cosine and factor the numerator. Then look for a ratio of 1 − cosine expressions.';
+        add('Rewrite the numerator difference.',T`${trig('tan',a)}-${trig('sin',a)}=\frac{${trig('sin',a)}(1-${co(a)})}{${co(a)}}`);
+        add('Regroup the original expression.',mul(m,d,T`${S(a)}\cdot\frac{(1-${co(a)})/x^2}{(1-${co(b)})/x^2}\cdot\frac1{${co(a)}}`));cosine(a);cosine(b);
+        finish(T`${K(m,d)}\cdot${a}\cdot\frac{${K(a*a,2)}}{${K(b*b,2)}}\cdot1`);break;
+      case 'triple-product':
+        hint='Give each of the three trig factors one x from the denominator, then match each denominator to its angle.';
+        add('Split into three standard-limit ratios.',mul(1,d,T`${S(a,f1)}\cdot${S(b,f2)}\cdot${S(c,f3)}`));standard(a,f1);standard(b,f2);standard(c,f3);finish(frac(T`${a}\cdot${b}\cdot${c}`,d));break;
+      case 'ratio-first-order':
+        hint='Divide numerator and denominator by x, then use the sine or tangent standard limit.';
+        add('Divide both trig factors by x.',mul(m,n,frac(S(a,f),S(b,g))));standard(a,f);standard(b,g);finish(T`${K(m,n)}\cdot\frac{${a}}{${b}}`);break;
+      case 'cos-over-xsin':case 'cos-over-product':case 'sec-over-tan2':{
+        hint=family==='sec-over-tan2'?'Rewrite secant as 1/cosine, then use a conjugate on the numerator.':cosineHint(a);
+        if(family==='sec-over-tan2')secant(a);else cosine(a);
+        const den=family==='cos-over-xsin'?S(b,g):family==='cos-over-product'?T`${S(b,f)}\cdot${S(c,g)}`:T`${co(a)}${sq(S(b,g))}`;
+        add('Divide numerator and denominator by x squared.',mul(m,n,frac(T`\frac{1-${co(a)}}{x^2}`,den)));
+        standard(b,family==='cos-over-product'?f:g);if(family==='cos-over-product')standard(c,g);
+        finish(T`${K(m,n)}\cdot\frac{${K(a*a,2)}}{${family==='cos-over-xsin'?b:family==='cos-over-product'?T`${b}\cdot${c}`:T`1\cdot${b}^2`}}`);break;
+      }
+      case 'reciprocal-product':{
+        const fa=f==='csc'?'sin':'tan',fb=g==='csc'?'sin':'tan';hint='Rewrite cosecant as 1/sine and cotangent as 1/tangent. Pair each reciprocal with one x.';
+        add('Rewrite the original expression.',mul(m,d,T`\frac{x}{${trig(fa,a)}}\cdot\frac{x}{${trig(fb,b)}}`));standard(a,fa);standard(b,fb);
+        add('Take reciprocals of the two nonzero limits.',T`\frac{x}{${trig(fa,a)}}\longrightarrow\frac1{${a}},\qquad\frac{x}{${trig(fb,b)}}\longrightarrow\frac1{${b}}`);finish(T`${K(m,d)}\cdot\frac1{${a}}\cdot\frac1{${b}}`);break;
+      }
+      case 'cos2-mismatch':case 'cos-square-difference':{
+        const mismatch=family==='cos2-mismatch';hint=`Use ${I(T`\cos^2u=1-\sin^2u`)}${mismatch?` and ${I(T`\cos(2u)=1-2\sin^2u`)}`:''} to rewrite the numerator.`;
+        add('Rewrite the difference using sine squared.',T`\cos^2(${arg(a)})-${mismatch?T`\cos(${2*b}x)`:T`\cos^2(${arg(b)})`}=${mismatch?'2':''}\sin^2(${arg(b)})-\sin^2(${arg(a)})`);
+        add('Divide each squared sine by x squared.',mul(m,d,T`${mismatch?'2':''}${sq(S(b))}-${sq(S(a))}`));standard(b);standard(a);finish(T`${K(m,d)}\left(${mismatch?'2\\cdot':''}${b}^2-${a}^2\right)`);break;
+      }
+      case 'trig-square-difference':case 'difference-squares-cancel':case 'fourth-power-cancel':{
+        const single=family==='difference-squares-cancel';hint=family==='trig-square-difference'?'Split the difference over x squared and rewrite each term as a squared trig ratio.':`Use ${I(family==='fourth-power-cancel'?T`U^4-V^4=(U^2-V^2)(U^2+V^2)`:T`U^2-V^2=(U-V)(U+V)`)} and cancel the common factor.`;
+        if(family!=='trig-square-difference'){
+          add('Name the two trig expressions.',T`U=${trig(f,a)},\qquad V=${trig(g,b)}`);
+          add('Factor and cancel near zero.',single?T`\frac{${m}(U-V)(U+V)}{${d}x(U+V)}=${K(m,d)}\frac{U-V}{x}`:T`\frac{${m}(U^2-V^2)(U^2+V^2)}{${d}x^2(U^2+V^2)}=${K(m,d)}\frac{U^2-V^2}{x^2}`);
+        }
+        add('Split into standard-limit ratios.',mul(m,d,single?T`${S(a,f)}-${S(b,g)}`:T`${sq(S(a,f))}-${sq(S(b,g))}`));standard(a,f);standard(b,g);finish(T`${K(m,d)}\left(${single?a:T`${a}^2`}-${single?b:T`${b}^2`}\right)`);break;
+      }
+      case 'sec-cos-different':case 'sec-cos-over-tan2':
+        hint='Insert −1 and +1 to split the numerator into a secant-minus-one term and a 1 − cosine term.';
+        add('Split the difference.',T`\sec(${arg(a)})-${co(b)}=(\sec(${arg(a)})-1)+(1-${co(b)})`);secant(a);cosine(b);
+        add('Divide numerator and denominator by x squared.',mul(m,d,frac(T`\frac{1-${co(a)}}{x^2${co(a)}}+\frac{1-${co(b)}}{x^2}`,family==='sec-cos-over-tan2'?sq(S(c,'tan')):'1')));
+        if(family==='sec-cos-over-tan2')standard(c,'tan');finish(T`${K(m,d)}\cdot\frac{${K(a*a,2)}+${K(b*b,2)}}{${family==='sec-cos-over-tan2'?T`${c}^2`:'1'}}`);break;
+      case 'nonzero-square':case 'nonzero-zero':{
+        const op=neg?'+':'-',factor=T`\cos x${op}\sin x`;hint=`Expand ${I(T`(\cos x${op}\sin x)^2`)} using ${I(T`\sin^2x+\cos^2x=1`)} and the sine double-angle identity.`;
+        add('Recognize the square.',T`1${op}\sin(2x)=(\cos x${op}\sin x)^2`);
+        const cancel=family==='nonzero-square';
+        add('Cancel common factors near the target angle.',cancel?T`\frac{${m}(${factor})^2}{${d}(${factor})^2}=${K(m,d)}`:T`\frac{${m}(${factor})^2}{${d}(${factor})}=${K(m,d)}(${factor})`);
+        if(cancel)add('The remaining expression is constant, so the limit is',texRat(answer));
+        else add(`At ${I(T`x=${v.p}`)}, the remaining factor approaches zero.`,T`${K(m,d)}(${factor})\longrightarrow${K(m,d)}\cdot0=0`);break;
+      }
+      default:throw new Error('Missing advanced trig lesson: '+family);
+    }
+    return {hint,sol:`<ol class="method-steps">${steps.map(s=>`<li>${s}</li>`).join('')}</ol>`};
+  }
+
   const families=[];
   function addFamily(id,level,focus,label,make){families.push({id,level,focus,label,make});}
 
@@ -176,51 +367,51 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
     else if(form==="sin-sin"){top=`\\sin(${arg(a)})\\sin(${arg(b)})`;desc="Split the product into two sine-over-angle limits.";}
     else{top=`\\tan(${arg(a)})\\sin(${arg(b)})`;desc="Split the product into one tangent-over-angle limit and one sine-over-angle limit.";}
     const ans=rat(a*b,d);
-    return {id:`${form}-${a}-${b}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${top}}{${denX(d,2)}}\\)`,ans,tech:"Standard-limit restructuring",sol:`${desc} Insert the needed constants so each trig factor has its own angle in the denominator. Both standard-limit factors approach 1, leaving \\(${texRat(ans)}\\).`};
+    return {id:`${form}-${a}-${b}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${top}}{${denX(d,2)}}\\)`,ans,tech:"Standard-limit restructuring",...lesson("product-ratios",{a,b,d,form},ans)};
   });
 
   addFamily("linear-combo","challenging",["standard"],"Linear combination over a trig denominator",()=>{
     const A=ri(1,3),B=ri(1,3),a=ri(2,7),b=ri(2,7),e=ri(2,7),C=pick([-5,-4,-3,-2,-1,1,2,3,4,5,6]);
     const numerator=sumTerms([{c:A,body:`\\sin(${arg(a)})`},{c:-B,body:`\\tan(${arg(b)})`},{c:C,body:"x"}]);
     const ans=rat(A*a-B*b+C,e);
-    return {id:`lc-${A}-${a}-${B}-${b}-${C}-${e}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${numerator}}{\\sin(${arg(e)})}\\)`,ans,tech:"Split limits + standard trig limits",sol:`Split the numerator across the denominator. Use \\(\\sin(${arg(a)})/\\sin(${arg(e)})\\to ${a}/${e}\\), \\(\\tan(${arg(b)})/\\sin(${arg(e)})\\to ${b}/${e}\\), and \\(x/\\sin(${arg(e)})\\to1/${e}\\). Combining the coefficients gives \\(${texRat(ans)}\\).`};
+    return {id:`lc-${A}-${a}-${B}-${b}-${C}-${e}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${numerator}}{\\sin(${arg(e)})}\\)`,ans,tech:"Split limits + standard trig limits",...lesson("linear-combo",{A,B,a,b,e,C},ans)};
   });
 
   addFamily("mixed-second-order","very",["identity","standard"],"Mixed second-order identity combination",()=>{
     const A=2*ri(1,3),B=pick([-3,-2,-1,1,2,3]),C=pick([-3,-2,-1,1,2,3]),a=ri(1,6),b=ri(1,6),c=ri(1,5),d=pick([1,2,3,4,6]);
     const numerator=sumTerms([{c:A,body:`(1-\\cos(${arg(a)}))`},{c:B,body:`x\\sin(${arg(b)})`},{c:C,body:`\\sin^2(${arg(c)})`}]);
     const ans=rat(A*a*a/2+B*b+C*c*c,d);
-    return {id:`ms-${A}-${B}-${C}-${a}-${b}-${c}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${numerator}}{${denX(d,2)}}\\)`,ans,tech:"Conjugate/Pythagorean rewrite + split limits",sol:`Split the numerator into three limits. Use \\(\\frac{1-\\cos(${arg(a)})}{x^2}\\to\\frac{${a*a}}2\\), \\(\\frac{x\\sin(${arg(b)})}{x^2}=\\frac{\\sin(${arg(b)})}{x}\\to${b}\\), and \\(\\frac{\\sin^2(${arg(c)})}{x^2}\\to${c*c}\\). Apply the coefficients and divide by ${d}; the result is \\(${texRat(ans)}\\).`};
+    return {id:`ms-${A}-${B}-${C}-${a}-${b}-${c}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${numerator}}{${denX(d,2)}}\\)`,ans,tech:"Conjugate/Pythagorean rewrite + split limits",...lesson("mixed-second-order",{A,B,C,a,b,c,d},ans)};
   });
 
   addFamily("sec-square","challenging",["identity"],"Pythagorean secant rewrite",()=>{
     const k=ri(1,5),a=ri(1,5),d=pick([1,2,3,4,6]);const ans=rat(k*a*a,d);
-    return {id:`ss-${k}-${a}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${k===1?"":k}(\\sec^2(${arg(a)})-1)}{${denX(d,2)}}\\)`,ans,tech:"Pythagorean identity",sol:`Use \\(\\sec^2u-1=\\tan^2u\\). The expression becomes a constant multiple of \\(\\left(\\frac{\\tan(${arg(a)})}{x}\\right)^2\\), which approaches \\(${a*a}\\). The final value is \\(${texRat(ans)}\\).`};
+    return {id:`ss-${k}-${a}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${k===1?"":k}(\\sec^2(${arg(a)})-1)}{${denX(d,2)}}\\)`,ans,tech:"Pythagorean identity",...lesson("sec-square",{k,a,d},ans)};
   });
 
   addFamily("power-reduction","challenging",["identity"],"Double-angle / power-reduction rewrite",()=>{
     const a=ri(1,6),m=ri(1,4),n=ri(1,4),type=ri(1,3);
-    if(type===1){const ans=rat(m,2*n);return {id:`pr1-${a}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}\\sin^2(${arg(a)})}{${n===1?"":n}(1-\\cos(${2*a}x))}\\)`,ans,tech:"Power-reduction identity",sol:`Use \\(1-\\cos(2u)=2\\sin^2u\\) with \\(u=${arg(a)}\\). The trig factors cancel for \\(x\\ne0\\), leaving the constant \\(${texRat(ans)}\\).`};}
-    if(type===2){const ans=rat(2*m,n);return {id:`pr2-${a}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(1-\\cos(${2*a}x))}{${n===1?"":n}\\sin^2(${arg(a)})}\\)`,ans,tech:"Power-reduction identity",sol:`Use \\(1-\\cos(2u)=2\\sin^2u\\). The entire expression simplifies to a constant before taking the limit, giving \\(${texRat(ans)}\\).`};}
-    const ans=rat(m*a*a,n);return {id:`pr3-${a}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\cos^2(${arg(a)})-\\cos(${2*a}x))}{${denX(n,2)}}\\)`,ans,tech:"Double-angle identity",sol:`From \\(\\cos(2u)=\\cos^2u-\\sin^2u\\), the numerator difference is \\(\\sin^2u\\). Therefore the limit is \\(\\frac{${m}}{${n}}\\left(\\frac{\\sin(${arg(a)})}{x}\\right)^2\\to${texRat(ans)}\\).`};
+    if(type===1){const ans=rat(m,2*n);return {id:`pr1-${a}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}\\sin^2(${arg(a)})}{${n===1?"":n}(1-\\cos(${2*a}x))}\\)`,ans,tech:"Power-reduction identity",...lesson("power-reduction",{a,m,n,type},ans)};}
+    if(type===2){const ans=rat(2*m,n);return {id:`pr2-${a}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(1-\\cos(${2*a}x))}{${n===1?"":n}\\sin^2(${arg(a)})}\\)`,ans,tech:"Power-reduction identity",...lesson("power-reduction",{a,m,n,type},ans)};}
+    const ans=rat(m*a*a,n);return {id:`pr3-${a}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\cos^2(${arg(a)})-\\cos(${2*a}x))}{${denX(n,2)}}\\)`,ans,tech:"Double-angle identity",...lesson("power-reduction",{a,m,n,type},ans)};
   });
 
   addFamily("tan-minus-sin","both",["reciprocal","higher"],"Higher-order tan-minus-sin cancellation",()=>{
     const a=ri(1,5),m=ri(1,4),d=pick([1,2,3,4,6]),rev=BatchMathRNG.random()<.35;const sign=rev?-1:1;const ans=rat(sign*m*a*a*a,2*d);
     const diff=rev?`\\sin(${arg(a)})-\\tan(${arg(a)})`:`\\tan(${arg(a)})-\\sin(${arg(a)})`;
-    return {id:`tms-${a}-${m}-${d}-${rev}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(${diff})}{${denX(d,3)}}\\)`,ans,tech:"Quotient identity + second-order cancellation",sol:`Write \\(\\tan u=\\frac{\\sin u}{\\cos u}\\). Then \\(\\tan u-\\sin u=\\frac{\\sin u(1-\\cos u)}{\\cos u}\\). Separate the expression into \\(\\sin u/x\\), \\((1-\\cos u)/x^2\\), and \\(1/\\cos u\\). Their limits are \\(${a}\\), \\(${a*a}/2\\), and 1. Account for the coefficients${rev?" and the reversed subtraction":""} to get \\(${texRat(ans)}\\).`};
+    return {id:`tms-${a}-${m}-${d}-${rev}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(${diff})}{${denX(d,3)}}\\)`,ans,tech:"Quotient identity + second-order cancellation",...lesson("tan-minus-sin",{a,m,d,rev},ans)};
   });
 
   addFamily("quadratic-cos","both",["factoring","identity"],"Factor a quadratic in cosine",()=>{
     const a=ri(1,5),r=ri(2,5),m=ri(1,3),d=pick([1,2,3,4,6]);const ans=rat(m*a*a*(r-1),2*d);
     const top=`\\cos^2(${arg(a)})-${r+1}\\cos(${arg(a)})+${r}`;
-    return {id:`qc-${a}-${r}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(${top})}{${denX(d,2)}}\\)`,ans,tech:"Algebraic factoring + cosine cancellation",sol:`Factor the quadratic as \\((\\cos(${arg(a)})-1)(\\cos(${arg(a)})-${r})\\). The second factor approaches \\(${1-r}\\). Rewrite \\((\\cos(${arg(a)})-1)/x^2=-(1-\\cos(${arg(a)}))/x^2\\to-${a*a}/2\\). Multiplying the pieces gives \\(${texRat(ans)}\\).`};
+    return {id:`qc-${a}-${r}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(${top})}{${denX(d,2)}}\\)`,ans,tech:"Algebraic factoring + cosine cancellation",...lesson("quadratic-cos",{a,r,m,d},ans)};
   });
 
   addFamily("quadratic-sec","very",["factoring","identity"],"Factor a quadratic in secant",()=>{
     const a=ri(1,5),r=ri(2,5),m=ri(1,3),d=pick([1,2,3,4]);const ans=rat(m*(1-r),2*d);
     const top=`\\sec^2(${arg(a)})-${r+1}\\sec(${arg(a)})+${r}`;
-    return {id:`qs-${a}-${r}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(${top})}{${d===1?"":d}\\tan^2(${arg(a)})}\\)`,ans,tech:"Factoring + secant Pythagorean identity",sol:`Factor the numerator: \\((\\sec u-1)(\\sec u-${r})\\). Since \\(\\tan^2u=\\sec^2u-1=(\\sec u-1)(\\sec u+1)\\), cancel \\(\\sec u-1\\). Now substitute \\(u\\to0\\): \\(\\sec u\\to1\\), leaving \\(${texRat(ans)}\\).`};
+    return {id:`qs-${a}-${r}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(${top})}{${d===1?"":d}\\tan^2(${arg(a)})}\\)`,ans,tech:"Factoring + secant Pythagorean identity",...lesson("quadratic-sec",{a,r,m,d},ans)};
   });
 
   addFamily("mixed-quadratic","very",["factoring","standard"],"Factor a mixed tangent/sine quadratic",()=>{
@@ -228,26 +419,26 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
     const d=pick([1,2,3]),m=ri(1,2),ans=rat(m*val,d);
     const mid=m*(p+q),last=m*p*q,first=m;
     const top=sumTerms([{c:first,body:`\\tan^2(${arg(a)})`},{c:-mid,body:`\\tan(${arg(a)})\\sin(${arg(b)})`},{c:last,body:`\\sin^2(${arg(b)})`}]);
-    return {id:`mq-${a}-${b}-${p}-${q}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${top}}{${denX(d,2)}}\\)`,ans,tech:"Factor a quadratic form",sol:`Treat \\(\\tan(${arg(a)})\\) and \\(\\sin(${arg(b)})\\) like algebraic quantities. The numerator factors as \\(${m===1?"":m}(\\tan(${arg(a)})-${p}\\sin(${arg(b)}))(\\tan(${arg(a)})-${q}\\sin(${arg(b)}))\\). Divide each factor by \\(x\\) and use the standard limits. The two factors approach \\(${a-p*b}\\) and \\(${a-q*b}\\), so the result is \\(${texRat(ans)}\\).`};
+    return {id:`mq-${a}-${b}-${p}-${q}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${top}}{${denX(d,2)}}\\)`,ans,tech:"Factor a quadratic form",...lesson("mixed-quadratic",{a,b,p,q,m,d},ans)};
   });
 
   addFamily("cubes","very",["factoring","higher"],"Sum/difference of cubes",()=>{
     let a=ri(1,5),b=ri(1,5);while(a===b)b=ri(1,5);const d=pick([1,2,3,4]),minus=BatchMathRNG.random()<.5;
     const ans=rat(minus?(a*a+a*b+b*b):(a*a-a*b+b*b),d),op=minus?"-":"+";
-    return {id:`cube-${a}-${b}-${d}-${minus}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{\\tan^3(${arg(a)})${op}\\sin^3(${arg(b)})}{${d===1?"":d}x^2(\\tan(${arg(a)})${op}\\sin(${arg(b)}))}\\)`,ans,tech:"Sum/difference of cubes",sol:`Use the ${minus?"difference":"sum"}-of-cubes factorization and cancel the common \\(\\tan(${arg(a)})${op}\\sin(${arg(b)})\\) factor. Divide the remaining quadratic terms by \\(x^2\\) and use \\(\\tan(${arg(a)})/x\\to${a}\\) and \\(\\sin(${arg(b)})/x\\to${b}\\). This gives \\(${texRat(ans)}\\).`};
+    return {id:`cube-${a}-${b}-${d}-${minus}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{\\tan^3(${arg(a)})${op}\\sin^3(${arg(b)})}{${d===1?"":d}x^2(\\tan(${arg(a)})${op}\\sin(${arg(b)}))}\\)`,ans,tech:"Sum/difference of cubes",...lesson("cubes",{a,b,d,minus},ans)};
   });
 
   addFamily("perfect-square","very",["factoring","higher","reciprocal"],"Perfect square with cosine and secant",()=>{
     const a=ri(1,4),m=ri(1,3),d=pick([1,2,3,4,6,8,12]);const ans=rat(m*Math.pow(a,4),d);
     const top=`\\cos^2(${arg(a)})+\\sec^2(${arg(a)})-2\\sec(${arg(a)})\\cos(${arg(a)})`;
-    return {id:`ps-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(${top})}{${denX(d,4)}}\\)`,ans,tech:"Perfect-square factoring + Pythagorean identity",sol:`Recognize the numerator as \\((\\cos u-\\sec u)^2\\). Since \\(\\cos u-\\sec u=\\frac{\\cos^2u-1}{\\cos u}=-\\frac{\\sin^2u}{\\cos u}\\), the numerator becomes \\(\\sin^4u/\\cos^2u\\). Divide by \\(x^4\\): the sine ratio approaches \\(${a}\\) and the cosine factor approaches 1, giving \\(${texRat(ans)}\\).`};
+    return {id:`ps-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(${top})}{${denX(d,4)}}\\)`,ans,tech:"Perfect-square factoring + Pythagorean identity",...lesson("perfect-square",{a,m,d},ans)};
   });
 
   addFamily("reciprocal","challenging",["reciprocal"],"Reciprocal/quotient identity disguise",()=>{
     const type=ri(1,3),a=ri(1,6),m=ri(1,4),d=pick([1,2,3,4]);
-    if(type===1){const ans=rat(m*a,2*d);return {id:`rec1-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\csc(${arg(a)})-\\cot(${arg(a)}))}{${d===1?"":d}x}\\)`,ans,tech:"Reciprocal + quotient identities",sol:`Rewrite \\(\\csc u-\\cot u=\\frac{1-\\cos u}{\\sin u}\\). Then separate \\(\\frac{1-\\cos u}{u^2}\\), \\(\\frac{u}{\\sin u}\\), and \\(u/x\\). Their limits are \\(1/2\\), 1, and ${a}, so the result is \\(${texRat(ans)}\\).`};}
-    if(type===2){const ans=rat(m*a*a,d);return {id:`rec2-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec(${arg(a)})-\\cos(${arg(a)}))}{${denX(d,2)}}\\)`,ans,tech:"Reciprocal + Pythagorean identities",sol:`Use \\(\\sec u-\\cos u=\\frac{1-\\cos^2u}{\\cos u}=\\frac{\\sin^2u}{\\cos u}\\). Then \\(\\sin u/x\\to${a}\\) and \\(\\cos u\\to1\\), so the limit is \\(${texRat(ans)}\\).`};}
-    const b=ri(1,5),ans=rat(m*a,2*d*b);return {id:`rec3-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\csc(${arg(a)})-\\cot(${arg(a)}))}{${d===1?"":d}\\tan(${arg(b)})}\\)`,ans,tech:"Reciprocal/quotient identities + standard limits",sol:`First rewrite \\(\\csc u-\\cot u=(1-\\cos u)/\\sin u\\). This behaves like \\(u/2\\), while \\(\\tan(${arg(b)})\\) behaves like \\(${b}x\\). Building the standard-limit factors carefully gives \\(${texRat(ans)}\\).`};
+    if(type===1){const ans=rat(m*a,2*d);return {id:`rec1-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\csc(${arg(a)})-\\cot(${arg(a)}))}{${d===1?"":d}x}\\)`,ans,tech:"Reciprocal + quotient identities",...lesson("reciprocal",{type,a,m,d},ans)};}
+    if(type===2){const ans=rat(m*a*a,d);return {id:`rec2-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec(${arg(a)})-\\cos(${arg(a)}))}{${denX(d,2)}}\\)`,ans,tech:"Reciprocal + Pythagorean identities",...lesson("reciprocal",{type,a,m,d},ans)};}
+    const b=ri(1,5),ans=rat(m*a,2*d*b);return {id:`rec3-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\csc(${arg(a)})-\\cot(${arg(a)}))}{${d===1?"":d}\\tan(${arg(b)})}\\)`,ans,tech:"Reciprocal/quotient identities + standard limits",...lesson("reciprocal",{type,a,m,d,b},ans)};
   });
 
   addFamily("nonzero","both",["nonzero","identity"],"Nonzero-point double-angle cancellation",()=>{
@@ -258,142 +449,142 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
       {p:"-\\frac{3\\pi}{4}",den:"\\cos x-\\sin x",base:-1,remain:"\\cos x+\\sin x"}
     ];
     const c=pick(cases),m=ri(1,3),d=ri(1,3),ans=surd(c.base*m,d,2);
-    return {id:`nz-${c.p}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to ${formatPoint(c.p)}}\\frac{${m===1?"":m}\\cos(2x)}{${d===1?"":d}(${c.den})}\\)`,ans,tech:"Double-angle factoring at a nonzero point",sol:`Use \\(\\cos 2x=(\\cos x-\\sin x)(\\cos x+\\sin x)\\). Cancel the denominator factor that approaches 0. The remaining factor is \\(${c.remain}\\), which evaluates to \\(${c.base>0?"\\sqrt2":"-\\sqrt2"}\\) at the target angle. Including the coefficients gives \\(${texRat(ans)}\\).`};
+    return {id:`nz-${c.p}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to ${formatPoint(c.p)}}\\frac{${m===1?"":m}\\cos(2x)}{${d===1?"":d}(${c.den})}\\)`,ans,tech:"Double-angle factoring at a nonzero point",...lesson("nonzero",{c,m,d},ans)};
   });
 
   addFamily("double-angle-cubic","very",["identity","higher"],"Double-angle higher-order cancellation",()=>{
     const a=ri(1,5),m=ri(1,3),d=pick([1,2,3,4,6]),rev=BatchMathRNG.random()<.35;const ans=rat((rev?-1:1)*m*a*a*a,d);
     const diff=rev?`\\sin(${2*a}x)-2\\sin(${arg(a)})`:`2\\sin(${arg(a)})-\\sin(${2*a}x)`;
-    return {id:`dac-${a}-${m}-${d}-${rev}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(${diff})}{${denX(d,3)}}\\)`,ans,tech:"Double-angle identity + second-order cosine factor",sol:`Use \\(\\sin(2u)=2\\sin u\\cos u\\). The difference becomes ${rev?"\\(-2\\sin u(1-\\cos u)\\)":"\\(2\\sin u(1-\\cos u)\\)"}. Divide by \\(x^3\\), then use \\(\\sin u/x\\to${a}\\) and \\((1-\\cos u)/x^2\\to${a*a}/2\\). The result is \\(${texRat(ans)}\\).`};
+    return {id:`dac-${a}-${m}-${d}-${rev}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(${diff})}{${denX(d,3)}}\\)`,ans,tech:"Double-angle identity + second-order cosine factor",...lesson("double-angle-cubic",{a,m,d,rev},ans)};
   });
 
   addFamily("cos-ratio","challenging",["identity","standard"],"Ratio of cosine differences",()=>{
     let a=ri(1,6),b=ri(1,6);while(a===b)b=ri(1,6);const m=ri(1,4),n=ri(1,4),ans=rat(m*a*a,n*b*b);
-    return {id:`cr-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(1-\\cos(${arg(a)}))}{${n===1?"":n}(1-\\cos(${arg(b)}))}\\)`,ans,tech:"Conjugate/Pythagorean second-order limit",sol:`Treat each \\(1-\\cos(kx)\\) as a second-order trig factor. Using a conjugate or \\(1-\\cos^2u=\\sin^2u\\), one gets \\((1-\\cos(kx))/x^2\\to k^2/2\\). The halves cancel, leaving \\(${texRat(ans)}\\).`};
+    return {id:`cr-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(1-\\cos(${arg(a)}))}{${n===1?"":n}(1-\\cos(${arg(b)}))}\\)`,ans,tech:"Conjugate/Pythagorean second-order limit",...lesson("cos-ratio",{a,b,m,n},ans)};
   });
 
   addFamily("sec-cos-ratio","very",["reciprocal","identity"],"Secant-minus-one versus cosine difference",()=>{
     let a=ri(1,6),b=ri(1,6);while(a===b)b=ri(1,6);const m=ri(1,3),n=ri(1,3),ans=rat(m*a*a,n*b*b);
-    return {id:`scr-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec(${arg(a)})-1)}{${n===1?"":n}(1-\\cos(${arg(b)}))}\\)`,ans,tech:"Reciprocal identity + second-order cosine limits",sol:`Rewrite \\(\\sec u-1=\\frac{1-\\cos u}{\\cos u}\\). The cosine factor in the denominator approaches 1, and the ratio of the two \\(1-\\cos(kx)\\) terms contributes \\(${a*a}/${b*b}\\). Therefore the limit is \\(${texRat(ans)}\\).`};
+    return {id:`scr-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec(${arg(a)})-1)}{${n===1?"":n}(1-\\cos(${arg(b)}))}\\)`,ans,tech:"Reciprocal identity + second-order cosine limits",...lesson("sec-cos-ratio",{a,b,m,n},ans)};
   });
 
   addFamily("pythagorean-ratio","challenging",["identity"],"Pythagorean identity ratio",()=>{
     const type=ri(1,2),a=ri(1,6),b=ri(1,6),m=ri(1,3),n=ri(1,3),ans=rat(m*a*a,n*b*b);
-    if(type===1)return {id:`py1-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(1-\\cos^2(${arg(a)}))}{${n===1?"":n}\\tan^2(${arg(b)})}\\)`,ans,tech:"Pythagorean identity + standard limits",sol:`Use \\(1-\\cos^2u=\\sin^2u\\). Then compare \\(\\sin(${arg(a)})/x\\to${a}\\) with \\(\\tan(${arg(b)})/x\\to${b}\\). Squaring the ratio and applying the coefficients gives \\(${texRat(ans)}\\).`};
-    return {id:`py2-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec^2(${arg(a)})-1)}{${n===1?"":n}\\sin^2(${arg(b)})}\\)`,ans,tech:"Pythagorean identity + standard limits",sol:`Use \\(\\sec^2u-1=\\tan^2u\\). The expression becomes a ratio of squared standard trig limits, so it approaches \\(${m}/${n}\\cdot(${a}/${b})^2=${texRat(ans)}\\).`};
+    if(type===1)return {id:`py1-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(1-\\cos^2(${arg(a)}))}{${n===1?"":n}\\tan^2(${arg(b)})}\\)`,ans,tech:"Pythagorean identity + standard limits",...lesson("pythagorean-ratio",{type,a,b,m,n},ans)};
+    return {id:`py2-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec^2(${arg(a)})-1)}{${n===1?"":n}\\sin^2(${arg(b)})}\\)`,ans,tech:"Pythagorean identity + standard limits",...lesson("pythagorean-ratio",{type,a,b,m,n},ans)};
   });
 
   addFamily("evenodd","both",["evenodd","standard","reciprocal"],"Even/odd identity cleanup",()=>{
     const type=ri(1,3),a=ri(1,5),b=ri(1,5),m=ri(1,3),d=pick([1,2,3,4]);
-    if(type===1){const ans=rat(-m*a*b,d);return {id:`eo1-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}\\tan(-${arg(a)})\\sin(${arg(b)})}{${denX(d,2)}}\\)`,ans,tech:"Odd identity + standard limits",sol:`Use \\(\\tan(-u)=-\\tan u\\). The problem is then a product of a tangent-over-angle limit and a sine-over-angle limit, with one negative sign. The result is \\(${texRat(ans)}\\).`};}
-    if(type===2){const ans=rat(-m*a*a*a,d);return {id:`eo2-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}\\sin^3(-${arg(a)})}{${denX(d,3)}}\\)`,ans,tech:"Odd identity + power of a standard limit",sol:`Use \\(\\sin(-u)=-\\sin u\\). Cubing preserves the negative sign. Then \\(\\sin(${arg(a)})/x\\to${a}\\), so the cubed ratio approaches \\(${a*a*a}\\). Including the coefficient gives \\(${texRat(ans)}\\).`};}
-    const ans=rat(m*a*a,2*d);return {id:`eo3-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec(-${arg(a)})-1)}{${denX(d,2)}}\\)`,ans,tech:"Even identity + reciprocal rewrite",sol:`Use \\(\\sec(-u)=\\sec u\\). Then \\(\\sec u-1=(1-\\cos u)/\\cos u\\), with \\(\\cos u\\to1\\) and \\((1-\\cos u)/x^2\\to${a*a}/2\\). The result is \\(${texRat(ans)}\\).`};
+    if(type===1){const ans=rat(-m*a*b,d);return {id:`eo1-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}\\tan(-${arg(a)})\\sin(${arg(b)})}{${denX(d,2)}}\\)`,ans,tech:"Odd identity + standard limits",...lesson("evenodd",{type,a,b,m,d},ans)};}
+    if(type===2){const ans=rat(-m*a*a*a,d);return {id:`eo2-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}\\sin^3(-${arg(a)})}{${denX(d,3)}}\\)`,ans,tech:"Odd identity + power of a standard limit",...lesson("evenodd",{type,a,b,m,d},ans)};}
+    const ans=rat(m*a*a,2*d);return {id:`eo3-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec(-${arg(a)})-1)}{${denX(d,2)}}\\)`,ans,tech:"Even identity + reciprocal rewrite",...lesson("evenodd",{type,a,b,m,d},ans)};
   });
 
   addFamily("cos-difference","challenging",["standard","identity"],"Difference of cosines through second-order pieces",()=>{
     let a=ri(1,6),b=ri(1,6);while(a===b)b=ri(1,6);const m=ri(1,3),d=pick([1,2,3,4,6]),ans=rat(m*(b*b-a*a),2*d);
-    return {id:`cd-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\cos(${arg(a)})-\\cos(${arg(b)}))}{${denX(d,2)}}\\)`,ans,tech:"Rewrite as a difference of 1−cos terms",sol:`Write \\(\\cos(${arg(a)})-\\cos(${arg(b)})=(1-\\cos(${arg(b)}))-(1-\\cos(${arg(a)}))\\). Each second-order piece can be evaluated using the conjugate/Pythagorean argument, giving \\(${texRat(ans)}\\).`};
+    return {id:`cd-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\cos(${arg(a)})-\\cos(${arg(b)}))}{${denX(d,2)}}\\)`,ans,tech:"Rewrite as a difference of 1−cos terms",...lesson("cos-difference",{a,b,m,d},ans)};
   });
 
   addFamily("compound-higher","very",["reciprocal","higher","identity"],"Compound higher-order cancellation",()=>{
     let a=ri(1,5),b=ri(1,5);while(a===b)b=ri(1,5);const m=ri(1,3),d=pick([1,2,3,4]),ans=rat(m*a*a*a,d*b*b);
-    return {id:`ch-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\tan(${arg(a)})-\\sin(${arg(a)}))}{${d===1?"":d}x(1-\\cos(${arg(b)}))}\\)`,ans,tech:"Quotient identity + ratio of second-order cosine terms",sol:`Rewrite \\(\\tan u-\\sin u=\\frac{\\sin u(1-\\cos u)}{\\cos u}\\). Then regroup as \\(\\frac{\\sin(${arg(a)})}{x}\\cdot\\frac{1-\\cos(${arg(a)})}{1-\\cos(${arg(b)})}\\cdot\\frac1{\\cos(${arg(a)})}\\). These factors approach \\(${a}\\), \\(${a*a}/${b*b}\\), and 1, respectively. Including the coefficient gives \\(${texRat(ans)}\\).`};
+    return {id:`ch-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\tan(${arg(a)})-\\sin(${arg(a)}))}{${d===1?"":d}x(1-\\cos(${arg(b)}))}\\)`,ans,tech:"Quotient identity + ratio of second-order cosine terms",...lesson("compound-higher",{a,b,m,d},ans)};
   });
 
 
   addFamily("triple-product","both",["standard"],"Three-factor product",()=>{
     const funcs=["sin","tan"],f1=pick(funcs),f2=pick(funcs),f3=pick(funcs),a=ri(1,6),b=ri(1,6),c=ri(1,6),d=pick([1,2,3,4,6]);
     const ans=rat(a*b*c,d);
-    return {id:`tp-${f1}-${f2}-${f3}-${a}-${b}-${c}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{\\${f1}(${arg(a)})\\,\\${f2}(${arg(b)})\\,\\${f3}(${arg(c)})}{${denX(d,3)}}\\)`,ans,tech:"",sol:`Give each trigonometric factor its own angle in the denominator. Each sine-over-angle or tangent-over-angle factor approaches 1, and the scale factors contribute ${a}, ${b}, and ${c}. The result is \\(${texRat(ans)}\\).`};
+    return {id:`tp-${f1}-${f2}-${f3}-${a}-${b}-${c}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{\\${f1}(${arg(a)})\\,\\${f2}(${arg(b)})\\,\\${f3}(${arg(c)})}{${denX(d,3)}}\\)`,ans,tech:"",...lesson("triple-product",{f1,f2,f3,a,b,c,d},ans)};
   });
 
   addFamily("ratio-first-order","challenging",["standard"],"First-order ratio with varied trig functions",()=>{
     const funcs=["sin","tan"],f=pick(funcs),g=pick(funcs),a=ri(1,7),b=ri(1,7),m=ri(1,4),n=ri(1,4),ans=rat(m*a,n*b);
-    return {id:`rfo-${f}-${g}-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}\\${f}(${arg(a)})}{${n===1?"":n}\\${g}(${arg(b)})}\\)`,ans,tech:"",sol:`Insert x so the numerator and denominator become standard sine/tangent ratios. The numerator contributes ${a}, the denominator contributes ${b}, and the outside coefficients give \\(${texRat(ans)}\\).`};
+    return {id:`rfo-${f}-${g}-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}\\${f}(${arg(a)})}{${n===1?"":n}\\${g}(${arg(b)})}\\)`,ans,tech:"",...lesson("ratio-first-order",{f,g,a,b,m,n},ans)};
   });
 
   addFamily("cos-over-xsin","challenging",["identity","standard"],"Second-order cosine over x-trig",()=>{
     const a=ri(1,6),b=ri(1,6),m=ri(1,4),n=ri(1,4),g=pick(["sin","tan"]),ans=rat(m*a*a,2*n*b);
-    return {id:`cxs-${g}-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(1-\\cos(${arg(a)}))}{${n===1?"":n}x\\${g}(${arg(b)})}\\)`,ans,tech:"",sol:`The numerator is second order: \\((1-\\cos(${arg(a)}))/x^2\\to ${a*a}/2\\). Also \\(x/\\${g}(${arg(b)}))\\to1/${b}\\). Combining the factors gives \\(${texRat(ans)}\\).`};
+    return {id:`cxs-${g}-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(1-\\cos(${arg(a)}))}{${n===1?"":n}x\\${g}(${arg(b)})}\\)`,ans,tech:"",...lesson("cos-over-xsin",{a,b,m,n,g},ans)};
   });
 
   addFamily("cos-over-product","very",["identity","standard"],"Cosine difference over two trig factors",()=>{
     const a=ri(1,6),b=ri(1,6),c=ri(1,6),m=ri(1,3),n=ri(1,3),f=pick(["sin","tan"]),g=pick(["sin","tan"]),ans=rat(m*a*a,2*n*b*c);
-    return {id:`cop-${f}-${g}-${a}-${b}-${c}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(1-\\cos(${arg(a)}))}{${n===1?"":n}\\${f}(${arg(b)})\\${g}(${arg(c)})}\\)`,ans,tech:"",sol:`Rewrite the expression using x²: the cosine term contributes ${a*a}/2, while the two first-order trig factors contribute ${b} and ${c}. Therefore the limit is \\(${texRat(ans)}\\).`};
+    return {id:`cop-${f}-${g}-${a}-${b}-${c}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(1-\\cos(${arg(a)}))}{${n===1?"":n}\\${f}(${arg(b)})\\${g}(${arg(c)})}\\)`,ans,tech:"",...lesson("cos-over-product",{a,b,c,m,n,f,g},ans)};
   });
 
   addFamily("sec-over-tan2","challenging",["reciprocal","identity"],"Secant-minus-one over squared trig",()=>{
     const a=ri(1,6),b=ri(1,6),m=ri(1,4),n=ri(1,4),g=pick(["sin","tan"]),ans=rat(m*a*a,2*n*b*b);
-    return {id:`sot-${g}-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec(${arg(a)})-1)}{${n===1?"":n}\\${g}^2(${arg(b)})}\\)`,ans,tech:"",sol:`Use \\(\\sec u-1=(1-\\cos u)/\\cos u\\). The cosine denominator approaches 1. Compare the remaining second-order cosine factor with \\(\\${g}^2(${arg(b)})\\), giving \\(${texRat(ans)}\\).`};
+    return {id:`sot-${g}-${a}-${b}-${m}-${n}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec(${arg(a)})-1)}{${n===1?"":n}\\${g}^2(${arg(b)})}\\)`,ans,tech:"",...lesson("sec-over-tan2",{a,b,m,n,g},ans)};
   });
 
   addFamily("csc-cot-x","challenging",["reciprocal","identity"],"Cosecant/cotangent cancellation",()=>{
     const a=ri(1,7),m=ri(1,4),d=pick([1,2,3,4,6]),plus=BatchMathRNG.random()<.35;
-    if(!plus){const ans=rat(m*a,2*d);return {id:`ccx-m-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\csc(${arg(a)})-\\cot(${arg(a)}))}{${d===1?"":d}x}\\)`,ans,tech:"",sol:`Rewrite \\(\\csc u-\\cot u=(1-\\cos u)/\\sin u\\). Regroup as \\((1-\\cos u)/u^2\\cdot u/\\sin u\\cdot u/x\\), then apply the standard limits to obtain \\(${texRat(ans)}\\).`};}
-    const ans=rat(2*m,d*a);return {id:`ccx-p-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}x(\\csc(${arg(a)})+\\cot(${arg(a)}))}{${d}}\\)`,ans,tech:"",sol:`Use \\(\\csc u+\\cot u=(1+\\cos u)/\\sin u\\). As x→0, \\(1+\\cos u\\to2\\) and \\(x/\\sin(${arg(a)})\\to1/${a}\\). The result is \\(${texRat(ans)}\\).`};
+    if(!plus){const ans=rat(m*a,2*d);return {id:`ccx-m-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\csc(${arg(a)})-\\cot(${arg(a)}))}{${d===1?"":d}x}\\)`,ans,tech:"",...lesson("csc-cot-x",{a,m,d,plus},ans)};}
+    const ans=rat(2*m,d*a);return {id:`ccx-p-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}x(\\csc(${arg(a)})+\\cot(${arg(a)}))}{${d}}\\)`,ans,tech:"",...lesson("csc-cot-x",{a,m,d,plus},ans)};
   });
 
   addFamily("reciprocal-product","very",["reciprocal","standard"],"Product of reciprocal trig functions",()=>{
     const a=ri(1,6),b=ri(1,6),m=ri(1,4),d=pick([1,2,3,4,6]),f=pick(["csc","cot"]),g=pick(["csc","cot"]),ans=rat(m,d*a*b);
-    return {id:`rp-${f}-${g}-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}x^2\\,\\${f}(${arg(a)})\\,\\${g}(${arg(b)})}{${d}}\\)`,ans,tech:"",sol:`Rewrite each reciprocal trig factor using sine or tangent. Then \\(x\\csc(${arg(a)})\\to1/${a}\\) and \\(x\\cot(${arg(b)})\\to1/${b}\\) (with the analogous statement for either choice), producing \\(${texRat(ans)}\\).`};
+    return {id:`rp-${f}-${g}-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}x^2\\,\\${f}(${arg(a)})\\,\\${g}(${arg(b)})}{${d}}\\)`,ans,tech:"",...lesson("reciprocal-product",{a,b,m,d,f,g},ans)};
   });
 
   addFamily("cos2-mismatch","very",["identity","standard"],"Cosine-square versus double-angle mismatch",()=>{
     const a=ri(1,6),b=ri(1,6),m=ri(1,3),d=pick([1,2,3,4,6]),ans=rat(m*(2*b*b-a*a),d);
-    return {id:`c2m-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\cos^2(${arg(a)})-\\cos(${2*b}x))}{${denX(d,2)}}\\)`,ans,tech:"",sol:`Insert and subtract 1: \\(\\cos^2(${arg(a)})-1 + 1-\\cos(${2*b}x)\\). The first piece is \\(-\\sin^2(${arg(a)})\\); the second is a 1−cos term. Divide each by x² and combine to get \\(${texRat(ans)}\\).`};
+    return {id:`c2m-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\cos^2(${arg(a)})-\\cos(${2*b}x))}{${denX(d,2)}}\\)`,ans,tech:"",...lesson("cos2-mismatch",{a,b,m,d},ans)};
   });
 
   addFamily("cos-square-difference","challenging",["identity","standard"],"Difference of cosine squares",()=>{
     let a=ri(1,6),b=ri(1,6);while(a===b)b=ri(1,6);const m=ri(1,3),d=pick([1,2,3,4,6]),ans=rat(m*(b*b-a*a),d);
-    return {id:`csd-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\cos^2(${arg(a)})-\\cos^2(${arg(b)}))}{${denX(d,2)}}\\)`,ans,tech:"",sol:`Use \\(\\cos^2u=1-\\sin^2u\\). The numerator becomes \\(\\sin^2(${arg(b)})-\\sin^2(${arg(a)})\\). Divide by x² and use the squared standard sine limits to obtain \\(${texRat(ans)}\\).`};
+    return {id:`csd-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\cos^2(${arg(a)})-\\cos^2(${arg(b)}))}{${denX(d,2)}}\\)`,ans,tech:"",...lesson("cos-square-difference",{a,b,m,d},ans)};
   });
 
   addFamily("trig-square-difference","challenging",["standard","factoring"],"Difference of squared first-order trig functions",()=>{
     const f=pick(["sin","tan"]),g=pick(["sin","tan"]);let a=ri(1,6),b=ri(1,6);while(a===b)b=ri(1,6);const m=ri(1,3),d=pick([1,2,3,4,6]),ans=rat(m*(a*a-b*b),d);
-    return {id:`tsd-${f}-${g}-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\${f}^2(${arg(a)})-\\${g}^2(${arg(b)}))}{${denX(d,2)}}\\)`,ans,tech:"",sol:`Split the difference over x². Both squared sine/tangent ratios reduce to powers of standard limits, contributing ${a*a} and ${b*b}. The result is \\(${texRat(ans)}\\).`};
+    return {id:`tsd-${f}-${g}-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\${f}^2(${arg(a)})-\\${g}^2(${arg(b)}))}{${denX(d,2)}}\\)`,ans,tech:"",...lesson("trig-square-difference",{f,g,a,b,m,d},ans)};
   });
 
   addFamily("difference-squares-cancel","very",["factoring","standard"],"Difference of squares with hidden cancellation",()=>{
     const f=pick(["sin","tan"]),g=pick(["sin","tan"]);let a=ri(1,6),b=ri(1,6);while(a===b)b=ri(1,6);const m=ri(1,3),d=pick([1,2,3,4]),ans=rat(m*(a-b),d);
-    return {id:`dsc-${f}-${g}-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\${f}^2(${arg(a)})-\\${g}^2(${arg(b)}))}{${d===1?"":d}x(\\${f}(${arg(a)})+\\${g}(${arg(b)}))}\\)`,ans,tech:"",sol:`Factor the numerator as a difference of squares and cancel the common sum. What remains is \\((\\${f}(${arg(a)})-\\${g}(${arg(b)}))/x\\). Split it into two standard limits to get \\(${texRat(ans)}\\).`};
+    return {id:`dsc-${f}-${g}-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\${f}^2(${arg(a)})-\\${g}^2(${arg(b)}))}{${d===1?"":d}x(\\${f}(${arg(a)})+\\${g}(${arg(b)}))}\\)`,ans,tech:"",...lesson("difference-squares-cancel",{f,g,a,b,m,d},ans)};
   });
 
   addFamily("fourth-power-cancel","very",["factoring","standard"],"Fourth-power factorization",()=>{
     const f=pick(["sin","tan"]),g=pick(["sin","tan"]);let a=ri(1,5),b=ri(1,5);while(a===b)b=ri(1,5);const m=ri(1,2),d=pick([1,2,3]),ans=rat(m*(a*a-b*b),d);
-    return {id:`fpc-${f}-${g}-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\${f}^4(${arg(a)})-\\${g}^4(${arg(b)}))}{${d===1?"":d}x^2(\\${f}^2(${arg(a)})+\\${g}^2(${arg(b)}))}\\)`,ans,tech:"",sol:`Factor the numerator as \\((A^2-B^2)(A^2+B^2)\\), then cancel the displayed sum. The remaining numerator is a difference of squares over x², so the standard trig limits give \\(${texRat(ans)}\\).`};
+    return {id:`fpc-${f}-${g}-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\${f}^4(${arg(a)})-\\${g}^4(${arg(b)}))}{${d===1?"":d}x^2(\\${f}^2(${arg(a)})+\\${g}^2(${arg(b)}))}\\)`,ans,tech:"",...lesson("fourth-power-cancel",{f,g,a,b,m,d},ans)};
   });
 
   addFamily("engineered-second-order","very",["identity","standard"],"Engineered second-order combination",()=>{
     const a=ri(1,6),b=ri(1,6),c=ri(1,5),A=ri(1,4),B=pick([-3,-2,-1,1,2,3]),C=pick([-3,-2,-1,1,2,3]),d=pick([1,2,3,4,6]);
     const clean=sumTerms([{c:A,body:`(1-\\cos(${arg(a)}))`},{c:B,body:`x\\tan(${arg(b)})`},{c:C,body:`\\sin^2(${arg(c)})`}]);
     const ans=rat(A*a*a/2+B*b+C*c*c,d);
-    return {id:`eso-${a}-${b}-${c}-${A}-${B}-${C}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${clean}}{${denX(d,2)}}\\)`,ans,tech:"",sol:`Split the expression into second-order pieces. Use the 1−cos limit for the cosine term, \\(x\\tan(${arg(b)})/x^2=\\tan(${arg(b)})/x\\), and the squared sine standard limit. Combining the coefficients gives \\(${texRat(ans)}\\).`};
+    return {id:`eso-${a}-${b}-${c}-${A}-${B}-${C}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${clean}}{${denX(d,2)}}\\)`,ans,tech:"",...lesson("engineered-second-order",{a,b,c,A,B,C,d},ans)};
   });
 
   addFamily("sec-cos-different","very",["reciprocal","identity"],"Secant minus cosine with different angles",()=>{
     const a=ri(1,5),b=ri(1,5),m=ri(1,3),d=pick([1,2,3,4,6]),ans=rat(m*(a*a+b*b),2*d);
-    return {id:`scd-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec(${arg(a)})-\\cos(${arg(b)}))}{${denX(d,2)}}\\)`,ans,tech:"",sol:`Rewrite \\(\\sec(${arg(a)})-\\cos(${arg(b)})\\) as \\(\\sec(${arg(a)})-1)+(1-\\cos(${arg(b)}))\\). The first term has second-order coefficient ${a*a}/2 and the second ${b*b}/2. After the outside coefficients, the result is \\(${texRat(ans)}\\).`};
+    return {id:`scd-${a}-${b}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec(${arg(a)})-\\cos(${arg(b)}))}{${denX(d,2)}}\\)`,ans,tech:"",...lesson("sec-cos-different",{a,b,m,d},ans)};
   });
 
   addFamily("sec-cos-over-tan2","very",["reciprocal","identity","standard"],"Secant/cosine difference over squared tangent",()=>{
     const a=ri(1,5),b=ri(1,5),c=ri(1,5),m=ri(1,3),d=pick([1,2,3,4]),ans=rat(m*(a*a+b*b),2*d*c*c);
-    return {id:`scot-${a}-${b}-${c}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec(${arg(a)})-\\cos(${arg(b)}))}{${d===1?"":d}\\tan^2(${arg(c)})}\\)`,ans,tech:"",sol:`Split the numerator into \\(\\sec(${arg(a)})-1\\) and \\(1-\\cos(${arg(b)})\\). Each is second order. Divide numerator and denominator conceptually by x²; the two numerator pieces contribute ${a*a}/2 and ${b*b}/2, while \\(\\tan^2(${arg(c)})/x^2\\to${c*c}\\). The result is \\(${texRat(ans)}\\).`};
+    return {id:`scot-${a}-${b}-${c}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sec(${arg(a)})-\\cos(${arg(b)}))}{${d===1?"":d}\\tan^2(${arg(c)})}\\)`,ans,tech:"",...lesson("sec-cos-over-tan2",{a,b,c,m,d},ans)};
   });
 
   addFamily("double-angle-difference","very",["identity","higher"],"Double-angle engineered cubic cancellation",()=>{
     const a=ri(1,5),m=ri(1,3),d=pick([1,2,3,4,6]),form=pick([1,2]);
-    if(form===1){const ans=rat(m*a*a*a,d);return {id:`dad1-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(2\\sin(${arg(a)})-\\sin(${2*a}x))}{${denX(d,3)}}\\)`,ans,tech:"",sol:`Use \\(\\sin(2u)=2\\sin u\\cos u\\). The numerator becomes \\(2\\sin u(1-\\cos u)\\). One factor is first order and the other is second order, so the x³ denominator is exactly the right order. The limit is \\(${texRat(ans)}\\).`};}
-    const ans=rat(-m*a*a*a,d);return {id:`dad2-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sin(${2*a}x)-2\\sin(${arg(a)}))}{${denX(d,3)}}\\)`,ans,tech:"",sol:`Use \\(\\sin(2u)=2\\sin u\\cos u\\). This time the numerator is \\(-2\\sin u(1-\\cos u)\\), so the same standard factors appear with the opposite sign. The result is \\(${texRat(ans)}\\).`};
+    if(form===1){const ans=rat(m*a*a*a,d);return {id:`dad1-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(2\\sin(${arg(a)})-\\sin(${2*a}x))}{${denX(d,3)}}\\)`,ans,tech:"",...lesson("double-angle-difference",{a,m,d,form},ans)};}
+    const ans=rat(-m*a*a*a,d);return {id:`dad2-${a}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to0}\\frac{${m===1?"":m}(\\sin(${2*a}x)-2\\sin(${arg(a)}))}{${denX(d,3)}}\\)`,ans,tech:"",...lesson("double-angle-difference",{a,m,d,form},ans)};
   });
 
   addFamily("nonzero-square","very",["nonzero","identity","factoring"],"Nonzero-point squared cancellation",()=>{
     const neg=BatchMathRNG.random()<.5,p=neg?"-\\frac{\\pi}{4}":"\\frac{\\pi}{4}",m=ri(1,4),d=pick([1,2,3,4]),den=neg?"\\cos x+\\sin x":"\\cos x-\\sin x",num=neg?"1+\\sin 2x":"1-\\sin 2x",ans=rat(m,d);
-    return {id:`nzs-${p}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to ${p}}\\frac{${m===1?"":m}(${num})}{${d===1?"":d}(${den})^2}\\)`,ans,tech:"",sol:`Use \\(${neg?"1+\\sin 2x=(\\sin x+\\cos x)^2":"1-\\sin 2x=(\\sin x-\\cos x)^2"}\\). The numerator and denominator contain the same squared vanishing factor, so cancellation leaves \\(${texRat(ans)}\\).`};
+    return {id:`nzs-${p}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to ${p}}\\frac{${m===1?"":m}(${num})}{${d===1?"":d}(${den})^2}\\)`,ans,tech:"",...lesson("nonzero-square",{neg,p,m,d},ans)};
   });
 
   addFamily("nonzero-zero","challenging",["nonzero","identity"],"Nonzero-point cancellation to zero",()=>{
     const neg=BatchMathRNG.random()<.5,p=neg?"-\\frac{\\pi}{4}":"\\frac{\\pi}{4}",m=ri(1,4),d=pick([1,2,3,4]),den=neg?"\\cos x+\\sin x":"\\cos x-\\sin x",num=neg?"1+\\sin 2x":"1-\\sin 2x";
-    return {id:`nzz-${p}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to ${p}}\\frac{${m===1?"":m}(${num})}{${d===1?"":d}(${den})}\\)`,ans:rat(0),tech:"",sol:`Use \\(${neg?"1+\\sin 2x=(\\sin x+\\cos x)^2":"1-\\sin 2x=(\\sin x-\\cos x)^2"}\\). Cancel one copy of the factor that approaches 0. The remaining copy still approaches 0, so the limit is 0.`};
+    return {id:`nzz-${p}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to ${p}}\\frac{${m===1?"":m}(${num})}{${d===1?"":d}(${den})}\\)`,ans:rat(0),tech:"",...lesson("nonzero-zero",{neg,p,m,d},rat(0))};
   });
 
   let current=null,correct=0,attempted=0,seen=new Set(),methodShown=false;
@@ -401,8 +592,11 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
   function eligible(){
     return families;
   }
+  let mathQueue=Promise.resolve();
   function typeset(nodes){
-    if(window.MathJax&&MathJax.typesetPromise){try{MathJax.typesetClear(nodes);MathJax.typesetPromise(nodes);}catch(e){}}
+    mathQueue=mathQueue.then(()=>{
+      if(window.MathJax?.typesetPromise){MathJax.typesetClear(nodes);return MathJax.typesetPromise(nodes);}
+    }).catch(()=>{});
   }
   function newProblem(){
     let pool=eligible();
@@ -413,9 +607,11 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
       if(!seen.has(key)){seen.add(key);break;}
       if(seen.size>700)seen.clear();
     }
-    current=p;methodShown=false;current.problemId=current.id;current.problemType="advanced_trig_limits";current.problemVariant=current.tech||"mixed";current.generatorVersion="2";window.BMAnalytics?.ensurePracticeStarted({practice_mode:"advanced_trig"});window.BMAnalytics?.problemGenerated(current,{practice_mode:"advanced_trig"});
+    $("hint-panel").hidden=true;$("hint-panel").innerHTML="";$("hint").textContent="Show Hint";$("hint").setAttribute("aria-expanded","false");
+    current=p;methodShown=false;current.problemId=current.id;current.problemType="advanced_trig_limits";current.problemVariant=current.family.id;current.generatorVersion="3";window.BMAnalytics?.ensurePracticeStarted({practice_mode:"advanced_trig"});window.BMAnalytics?.problemGenerated(current,{practice_mode:"advanced_trig"});
     $("question").innerHTML=p.q;
     $("answer").value="";$("answer").disabled=false;$("check").disabled=false;
+    delete $("feedback").dataset.answerState;
     $("feedback").className="feedback";$("feedback").innerHTML="";
     $("method").style.display="none";$("next").style.display="none";
     typeset([$("question")]);
@@ -440,6 +636,13 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
     }
     return null;
   }
+  function showHint(){
+    if(!current)return;
+    const panel=$("hint-panel"),opening=panel.hidden;
+    panel.hidden=!opening;$("hint").setAttribute("aria-expanded",String(opening));$("hint").textContent=opening?"Hide Hint":"Show Hint";
+    if(opening){panel.innerHTML=current.hint;typeset([panel]);}
+  }
+  $("hint").addEventListener("click",showHint);
   function showMethod(){
     if(!current||methodShown)return;
     methodShown=true;
@@ -452,7 +655,8 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
   function check(){
     if(!current||$("check").disabled)return;
     const raw=$("answer").value,parsed=parseAnswer(raw);
-    if(parsed===null){$("feedback").className="feedback wrong";$("feedback").textContent="Enter a number, fraction, decimal, or radical such as sqrt(2).";return;}
+    if(parsed===null){$("feedback").dataset.answerState="invalid";$("feedback").className="feedback wrong";$("feedback").textContent="Enter a number, fraction, decimal, or radical such as sqrt(2).";return;}
+    $("feedback").dataset.answerState="answered";
     attempted++;const ok=Math.abs(parsed-numValue(current.ans))<1e-6;window.BMAnalytics?.answerChecked(current,ok,{practice_mode:"advanced_trig"});if(ok){correct++;}else window.BMAnalytics?.solutionRevealed(current,{practice_mode:"advanced_trig"});updateStats();
     $("answer").disabled=true;$("check").disabled=true;$("next").style.display="inline-block";$("method").style.display="inline-block";
     if(ok){$("feedback").className="feedback correct";$("feedback").innerHTML="✓ Correct";}
@@ -462,7 +666,7 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
   function insertText(text){const el=$("answer");if(el.disabled)return;const start=el.selectionStart??el.value.length,end=el.selectionEnd??el.value.length;el.value=el.value.slice(0,start)+text+el.value.slice(end);const pos=start+text.length;el.focus();el.setSelectionRange(pos,pos);}
 
   $("check").addEventListener("click",check);$("new").addEventListener("click",newProblem);$("next").addEventListener("click",newProblem);$("method").addEventListener("click",showMethod);
-  $("answer").addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+  $("answer").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();check();}});
   document.querySelectorAll(".quick").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.insert)insertText(b.dataset.insert);else if(b.dataset.action==="clear"){$("answer").value="";$("answer").focus();}else if(b.dataset.action==="backspace"){const el=$("answer");if(el.disabled)return;let s=el.selectionStart??el.value.length,e=el.selectionEnd??el.value.length;if(s===e&&s>0)s--;el.value=el.value.slice(0,s)+el.value.slice(e);el.focus();el.setSelectionRange(s,s);}}));
 
   updateStats();newProblem();

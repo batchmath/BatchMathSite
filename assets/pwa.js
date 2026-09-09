@@ -1,8 +1,8 @@
-/* BatchMath PWA registration/update foundation — v10.6.3.R */
+/* BatchMath PWA registration/update foundation — v10.6.3.S */
 (() => {
   'use strict';
 
-  const APP_VERSION = '10.6.3.R';
+  const APP_VERSION = '10.6.3.S';
   const state = {
     version: APP_VERSION,
     supported: 'serviceWorker' in navigator,
@@ -101,7 +101,7 @@
   // submit an answer and reveal Next. One event either submits OR advances.
   // Capture on window also prevents native button activation and competing
   // document/input handlers from processing an already-consumed advance.
-  if (/^\/(?:ap-calculus|calculus-prep)\//.test(location.pathname) && !window.__BM_CALC_ENTER_ADVANCE_BOUND__) {
+  if ((/^\/(?:ap-calculus|calculus-prep)\//.test(location.pathname) || document.querySelector('main[data-bm-advanced-trig]')) && !window.__BM_CALC_ENTER_ADVANCE_BOUND__) {
     window.__BM_CALC_ENTER_ADVANCE_BOUND__ = true;
     const visibleEnabled = button => {
       if (!button || button.disabled || button.hidden) return false;
@@ -110,7 +110,7 @@
     };
     const feedbackShown = () => {
       const feedback = document.querySelector('#feedback, .feedback');
-      if (!feedback) return false;
+      if (!feedback || feedback.dataset?.answerState === 'invalid') return false;
       const text = (feedback.textContent || '').trim();
       return !!text && (feedback.classList.contains('shown') || feedback.classList.contains('correct') || feedback.classList.contains('wrong') || feedback.classList.contains('incorrect'));
     };
@@ -184,7 +184,7 @@
 })();
 
 
-// v10.6.3.R — Practice feedback MathJax safety net.
+// v10.6.3.S — Practice feedback MathJax safety net.
 (function batchMathMathJaxSafety(){
   const commandRE=/\\\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|lt|gt|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|to|le|ge|ne|equiv|partial)\b/;
   const protectedRE=/\\\\\([\\s\\S]*?\\\\\)|\\\\\[[\\s\\S]*?\\\\\]/g;

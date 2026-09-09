@@ -44,6 +44,7 @@ for(const route of ['/ap-calculus/test/','/calculus-prep/test/']){
   h=keyboardHarness(route);h.next.hidden=true;h.fresh.hidden=false;h.press();assert.equal(h.advances,1);checks++;
   h=keyboardHarness(route);h.next.hidden=true;h.fresh.hidden=false;h.feedback.textContent='';h.press();assert.equal(h.advances,0);checks++;
   h=keyboardHarness(route);h.press();h.next.hidden=false;h.press();assert.equal(h.advances,2);checks++;
+  h=keyboardHarness(route);h.next.hidden=true;h.fresh.hidden=false;h.feedback.dataset={answerState:'invalid'};h.press();assert.equal(h.advances,0);checks++;
 }
 const im1=keyboardHarness('/im1/test/');im1.press();assert.equal(im1.advances,0);checks++;
 // Run the real RNG/reporting API and analytics API together, online and offline.

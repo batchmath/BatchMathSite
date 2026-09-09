@@ -1,0 +1,54 @@
+BatchMath v10.6.3.S - Advanced Trig Hints and Explanations
+
+BASELINE
+Complete cumulative site built from v10.6.3.R. R's generation counting and
+Enter fixes are retained. The user reported that R's GitHub run worked.
+
+CHANGES
+Advanced Trigonometric Limits now provides a Show Hint / Hide Hint button.
+Each of the 38 problem families has a targeted identity or algebra hint.
+Hints preserve the question and typed answer, do not reveal the final answer,
+and do not affect attempted/correct counts. New Question and Next reset hints.
+
+All 38 families now have numbered explanations with display equations.
+Explanations show the identity/factorization, the regrouping, standard-limit
+justification, and coefficient arithmetic. The 1-cosine limit is derived using
+conjugate/Pythagorean algebra instead of being stated as a second-order fact.
+Wrong answers reveal the method; correct answers keep Show Method available.
+A submitted Enter remains on feedback; the next Enter advances once.
+Invalid-input feedback does not accidentally enable Enter-to-New.
+
+The standalone HTML and conversation tester use a byte-identical copy of the
+production generator, hint, answer-checking, and explanation controller.
+They also use the production fraction normalizer, seeded RNG, and shared
+keyboard block. Their surrounding shell omits site navigation, analytics
+transport, and service-worker registration. MathJax requires internet access.
+A repeatable standalone bundler is included in tools/.
+Engine SHA256:
+4f4c8e2411be2fae19e11fa523162231f855bb1d831902931a88379e1aea62b7
+
+SCOPE
+Generator questions/answers and the 38-family random selection are preserved.
+Advanced Trig uses its own generator; no other engine shares these methods.
+Release and cache versions are 10.6.3.S. Advanced Trig generatorVersion is 3.
+
+COMPLETED QA
+PASS: specialized calculus QA, including 38,000 advanced trig generated samples.
+PASS: independent numeric evaluation of 5,700 trig limits across all 38 families.
+PASS: 35,771 numeric identity/limit-arithmetic checks in the displayed steps.
+PASS: production controller tests for hint toggle/reset, preserved input and
+      score, invalid input, wrong/correct answers, method display, and Next.
+PASS: 46 executable shared keyboard/accounting regressions.
+PASS: static release QA - 237 HTML pages, 88 engines, zero broken references.
+PASS: display-safety QA - 88 engines, 264 source files, zero errors.
+PASS: analytics QA - 88 engines, zero errors.
+PASS: PWA/cache QA - 82 practice pages, 700 local dependencies, zero errors.
+PASS: standalone and inline tester engine-script identity checks.
+
+BROWSER LIMITATION
+Full Chromium/rendering QA has not been run in this environment; the browser
+could not be installed earlier because its download timed out. Local VM and
+numeric tests are not claimed as a browser pass. GitHub seeded-browser QA now
+includes real Advanced Trig hint/invalid-input/answer/Enter interaction checks.
+The standalone tester permits direct visual and interactive review.
+Historical QA files refer to their own versions, not this release.

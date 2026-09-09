@@ -4,7 +4,7 @@ import path from 'node:path';
 import http from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
-import { exerciseAnsweredEnter, realEnterEngines } from './answered-enter-browser-qa.mjs';
+import { exerciseAnsweredEnter, exerciseAdvancedHints, realEnterEngines } from './answered-enter-browser-qa.mjs';
 
 const HERE=path.dirname(fileURLToPath(import.meta.url));
 const ROOT=path.resolve(HERE,'..');
@@ -67,6 +67,7 @@ async function sample(context,engine,seed,checkEnterAdvance=false){
     if(pageErrors.length)throw new Error(`page error: ${pageErrors.join(' | ')}`);
     if(consoleErrors.length)throw new Error(`console error: ${consoleErrors.join(' | ')}`);
     if(checkEnterAdvance && (engine.course==='ap_calculus_ab'||engine.course==='calculus_prep')){
+      if(engine.engineId==='ap_advanced_trig_limits'){await exerciseAdvancedHints(page);answeredEnterChecks++;}
       if(realEnterEngines.has(engine.engineId)){
         await exerciseAnsweredEnter(page);
         answeredEnterChecks++;
