@@ -1,8 +1,5 @@
 BatchMath cumulative working copy
-Current full release: 10.6.3.W
-Archive: batchmath-site-v10.6.3.W.zip
-
-Built from full V plus both saved checkpoints: V-radical-1 and V-IM1-like-terms-1.
-Includes the Distributive Property, Linear Equations, Linear Inequalities, Interval Notation and Comprehensive Review changes.
-See BatchMath-v10.6.3.W-Recheck.md.
-No deployment performed.
+Current full release: 10.6.3.X
+Archive: batchmath-site-v10.6.3.X.zip
+Includes full W and all subsequent checkpoints, including W-before-coordinate-1 and the completed coordinate graph rebuild.
+See BatchMath-v10.6.3.X-Recheck.md. No deployment performed.

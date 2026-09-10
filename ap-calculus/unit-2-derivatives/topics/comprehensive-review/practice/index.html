@@ -66,7 +66,7 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
   
     gtag('config', 'G-377MTFXSF3');
   </script>
-<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_derivatives_comprehensive",generatorVersion:"10"};</script><script src="/assets/problem-tracking.js"></script>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_derivatives_comprehensive",generatorVersion:"11"};</script><script src="/assets/problem-tracking.js"></script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
 <img class="corner" src="../../../../../assets/batchmath-portrait.jpg" alt="">
 <a class="logo" href="../../../../../">BatchMath<span class="tm-mark">™</span></a>
@@ -159,7 +159,7 @@ function basic(){
    const c1=a*pn,c2=b*qn,e1n=pn-pd,e2n=qn-qd;
    const ansExpr=`(${c1})/(${pd})*x^((${e1n})/(${pd})) + (${c2})/(${qd})*x^((${e2n})/(${qd}))`;
    const ansTex=joinSignedTex([ratPowerTex(c1,pd,e1n,pd),ratPowerTex(c2,qd,e2n,qd)]);
-   return mk("basic",`b3-${a}-${b}-${pn}-${pd}-${qn}-${qd}`,"Find the derivative.",`f(x)=${qtex}`,ansExpr,ansTex,`Apply the power rule to the fractional and negative exponents just as you would to integer exponents. The derivative is \\(f'(x)=${ansTex}\\).`);
+   return mk("basic",`b3-${a}-${b}-${pn}-${pd}-${qn}-${qd}`,"Find the derivative.",`f(x)=${qtex}`,ansExpr,ansTex,`For each term, multiply its coefficient by its exponent, then subtract 1 from the exponent: \\(\\frac{d}{dx}(cx^r)=crx^{r-1}\\). Apply this separately to both terms to obtain \\(f'(x)=${ansTex}\\).`);
  }
  const a=nz(-5,5),b=nz(-5,5),n=ri(1,4),irr=pick([
    {id:"sqrt2",tex:"\\sqrt{2}",expr:"sqrt(2)"},{id:"sqrt3",tex:"\\sqrt{3}",expr:"sqrt(3)"},{id:"pi",tex:"\\pi",expr:"pi"},{id:"e",tex:"e",expr:"e"}
@@ -167,7 +167,7 @@ function basic(){
  const poly=n===1?"x":`x^{${n}}`,qtex=`${signed(a,`x^{${irr.tex}}`,true)}${signed(b,poly,false)}`;
  const irrCoeff=a===1?irr.tex:a===-1?`-${irr.tex}`:`${a}${irr.tex}`,irrTex=`${irrCoeff}x^{${irr.tex}-1}`,polyTex=monoTex(b*n,n-1),ansTex=joinSignedTex([irrTex,polyTex]);
  const ansExpr=`(${a})*(${irr.expr})*x^((${irr.expr})-1)+(${b*n})*x^${n-1}`;
- return mk("basic",`b4-${irr.id}-${a}-${b}-${n}`,"Find the derivative. Assume x>0.",`f(x)=${qtex}`,ansExpr,ansTex,`The power rule works for real exponents (on the appropriate domain). Treat ${irr.tex} as a constant exponent: \\(\\frac{d}{dx}x^{${irr.tex}}=${irr.tex}x^{${irr.tex}-1}\\). Thus \\(f'(x)=${ansTex}\\).`);
+ return mk("basic",`b4-${irr.id}-${a}-${b}-${n}`,"Find the derivative. Assume x>0.",`f(x)=${qtex}`,ansExpr,ansTex,`For \\(x>0\\), the power rule also applies to irrational exponents. Treat \\(${irr.tex}\\) as a constant exponent: \\(\\frac{d}{dx}x^{${irr.tex}}=${irr.tex}x^{${irr.tex}-1}\\). Thus \\(f'(x)=${ansTex}\\).`);
 }
 
 function product(){

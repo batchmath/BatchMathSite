@@ -56,7 +56,8 @@ function mount(host,p,onCheck){
   if(exponentButton)exponentButton.setAttribute('aria-pressed',String(exponentMode));
  }
  function insert(text){if(input.disabled)return;const a=input.selectionStart??input.value.length,b=input.selectionEnd??a;input.value=input.value.slice(0,a)+text+input.value.slice(b);input.focus();input.setSelectionRange(a+text.length,a+text.length);refresh();}
- function key(label,action,aria){const b=document.createElement('button');b.type='button';b.textContent=label;b.setAttribute('aria-label',aria||label);b.addEventListener('pointerdown',e=>e.preventDefault());b.addEventListener('click',()=>{if(!input.disabled)action();});pad.appendChild(b);return b;}
+ function key(label,action,aria){const b=global.BatchMathKeypad.button(label,/^\d$/.test(label)?'':'utility',()=>{if(!input.disabled)action();},aria||label);pad.appendChild(b);return b;}
+
  for(const digit of ['7','8','9','4','5','6','1','2','3','0'])key(digit,()=>insert(exponentMode?supers[Number(digit)]:digit));
  for(const v of p.variables)key(v,()=>{exponentMode=false;insert(v);});
  for(const [label,text] of [['+','+'],['−','-']])key(label,()=>{exponentMode=false;insert(text);});
@@ -67,6 +68,7 @@ function mount(host,p,onCheck){
  const submit=document.createElement('button');submit.id='algebra-check';submit.type='button';submit.className='algebra-check';submit.textContent='Check Answer';submit.addEventListener('click',()=>onCheck(input.value));form.appendChild(submit);
  input.addEventListener('input',()=>{exponentMode=false;refresh();});
  input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();if(!input.disabled)onCheck(input.value);}});
+ global.BatchMathKeypad.layoutUnit2(pad);
  host.appendChild(form);
  return {disable(){input.disabled=true;submit.disabled=true;pad.querySelectorAll('button').forEach(b=>b.disabled=true);}};
 }

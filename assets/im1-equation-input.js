@@ -26,7 +26,8 @@ function mount(host,p,onCheck){
  const help=document.createElement('div');help.id='equation-help';help.className='algebra-help';help.textContent='Integers and fractions are accepted. Use the buttons below if there is no solution or infinitely many solutions.';form.appendChild(help);
  const pad=document.createElement('div');pad.className='algebra-keypad';pad.setAttribute('aria-label','Equation solution keypad');form.appendChild(pad);
  function insert(text){if(input.disabled)return;const a=input.selectionStart??input.value.length,b=input.selectionEnd??a;input.value=input.value.slice(0,a)+text+input.value.slice(b);input.focus();input.setSelectionRange(a+text.length,a+text.length);}
- function key(label,fn,aria){const b=document.createElement('button');b.type='button';b.textContent=label;b.setAttribute('aria-label',aria||label);b.addEventListener('pointerdown',e=>e.preventDefault());b.addEventListener('click',()=>{if(!input.disabled)fn();});pad.appendChild(b);}
+ function key(label,fn,aria){const b=global.BatchMathKeypad.button(label,/^\d$/.test(label)?'':'utility',()=>{if(!input.disabled)fn();},aria||label);pad.appendChild(b);}
+
  for(const n of ['7','8','9','4','5','6','1','2','3','0'])key(n,()=>insert(n));
  key('−',()=>insert('-'),'Minus');key('a/b',()=>insert('/'),'Fraction');
  for(const [label,delta] of [['←',-1],['→',1]])key(label,()=>{const i=Math.max(0,Math.min(input.value.length,(input.selectionStart??input.value.length)+delta));input.focus();input.setSelectionRange(i,i);},delta<0?'Move cursor left':'Move cursor right');
@@ -35,6 +36,7 @@ function mount(host,p,onCheck){
  for(const label of ['No Solution','Infinite Solutions'])key(label,()=>{input.value=label;input.focus();input.setSelectionRange(label.length,label.length);});
  const submit=document.createElement('button');submit.id='equation-check';submit.type='button';submit.className='algebra-check';submit.textContent='Check Answer';submit.addEventListener('click',()=>onCheck(input.value));form.appendChild(submit);
  input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();if(!input.disabled)onCheck(input.value);}});
+ global.BatchMathKeypad.layoutUnit2(pad);
  host.appendChild(form);
  return {disable(){input.disabled=true;submit.disabled=true;pad.querySelectorAll('button').forEach(b=>b.disabled=true);}};
 }

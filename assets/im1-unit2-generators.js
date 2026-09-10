@@ -69,7 +69,7 @@ function distributive(){const v=pick(['basic','negative','multiterm','combine','
 
 function ratio(n,d){if(d<0){n=-n;d=-d;}const g=gcd(n,d);n/=g;d/=g;return d===1?String(n):`${n<0?'-':''}\\frac{${Math.abs(n)}}{${d}}`;}
 function equation(){
- const roll=R(),v=roll<.11?'identity':roll<.22?'contradiction':pick(['one_step','two_step','distribution','both_sides','fraction_coefficient','fraction_expression','two_fractions']);
+ const roll=R(),v=roll<.11?'identity':roll<.22?'contradiction':pick(['one_step','two_step','distribution','both_sides','fraction_coefficient','fraction_expression','fraction_x','fraction_linear']);
  let A=coeff(),B=coeff(),C=0,D=0,left='',right='',scale=1,s=ri(-9,9),pre='',hint='';
  if(v==='identity'||v==='contradiction'){
   const k=pick([-4,-3,-2,2,3,4]),a=ri(2,5),b=coeff();A=k*a;B=k*b;C=A;D=B+(v==='identity'?0:coeff());
@@ -91,16 +91,17 @@ function equation(){
   scale=ri(2,5);A=pick([2,3,4,5,7,-2,-3,-5].filter(n=>gcd(n,scale)===1));s=scale*ri(-4,4);B=scale*coeff();D=A*s+B;
   left=poly([[1,`${ratio(A,scale)}x`],[B/scale,'']]);right=String(D/scale);
   hint=`Multiply both sides by ${scale} to clear the denominator, then solve the resulting equation.`;
- }else if(v==='fraction_expression'){
-  scale=ri(2,6);A=pick([1,2,3,4]);D=scale*ri(-8,8);B=D-A*s;if(B===0){B=scale;D+=scale;}
-  left=`\\frac{${lin(A,B)}}{${scale}}`;right=String(D/scale);
-  hint=`Multiply both sides by ${scale}. The fraction bar groups the entire numerator.`;
  }else{
-  const d=ri(2,5),e=pick([2,3,4,5].filter(n=>n!==d)),a=ri(2,5),c=pick([2,3,4,5].filter(n=>e*a!==d*n)),b=d*coeff();
-  s=d*ri(-4,4);const rhs=e*(a*s+b)/d-c*s;scale=d*e;A=e*a;B=e*b;C=d*c;D=d*rhs;
-  left=`\\frac{${lin(a,b)}}{${d}}`;right=`\\frac{${lin(c,rhs)}}{${e}}`;
-  hint=`Multiply both sides by a common denominator, such as ${scale}, before collecting like terms.`;
+  scale=ri(2,6);A=ri(2,5);
+  const rhsCoefficient=v==='fraction_expression'?0:pick([-5,-4,-3,-2,2,3,4,5].filter(c=>scale*c!==A));
+  const rhsConstant=v==='fraction_x'?0:coeff();
+  // Construct a small integer solution and a nonzero numerator constant.
+  s=pick([-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9].filter(n=>(scale*rhsCoefficient-A)*n+scale*rhsConstant!==0));
+  C=scale*rhsCoefficient;D=scale*rhsConstant;B=(C-A)*s+D;
+  left=`\\frac{${lin(A,B)}}{${scale}}`;right=lin(rhsCoefficient,rhsConstant);
+  hint=`Multiply both sides by ${scale} to clear the fraction. Then collect the variable terms and isolate x.`;
  }
+
  // Everything below solves the exact integer equation after clearing denominators.
  const steps=[];const show=(instruction,math)=>steps.push(`<li>${instruction} ${tex(math)}</li>`);
  if(scale>1)show(`Multiply both sides by ${scale} to clear the denominators:`,`${lin(A,B)}=${lin(C,D)}`);
@@ -122,10 +123,10 @@ function equation(){
 }
 
 function inequality(){const v=pick(['basic','negative_flip','distribution','both_sides','compound','creation']);const strict=R()<.5,op=strict?'<':'≤',s=ri(-8,9);
- if(v==='negative_flip'){const a=pick([2,3,4,5]),b=ri(-8,8),rhs=-a*s+b;const corr=`x ${strict?'>':'≥'} ${s}`;return algebraChoice(`u2-ineq-flip-${a}-${b}-${rhs}-${strict?1:0}`,v,`Solve ${tex(`${-a}x ${b>=0?'+':''}${b} ${op} ${rhs}`)}.`,tex(corr),[tex(`x ${op} ${s}`),tex(`x ${strict?'>':'≥'} ${-s}`),tex(`x ${strict?'<':'≤'} ${s}`)],`Dividing by a negative reverses the inequality sign.`)}
- if(v==='compound'){const a=pick([2,3,4]),l=ri(-6,-1),u=ri(1,7),b=ri(-4,4),L=a*l+b,U=a*u+b;const corr=`${l} < x ≤ ${u}`;return algebraChoice(`u2-ineq-comp-${a}-${b}-${l}-${u}`,v,`Solve ${tex(`${L} < ${a}x ${b>=0?'+':''}${b} ≤ ${U}`)}.`,tex(corr),[tex(`${l} ≤ x < ${u}`),tex(`x < ${l} or x ≥ ${u}`),tex(`${L} < x ≤ ${U}`)],`Perform the same inverse operations on all three parts of the compound inequality.`)}
- if(v==='both_sides'){let a=ri(2,7),c=ri(1,6);if(a===c)c++;const b=ri(-8,8),d=b+(a-c)*s;const diff=a-c;const sign=diff>0?(strict?'<':'≤'):(strict?'>':'≥');const corr=`x ${sign} ${s}`;return algebraChoice(`u2-ineq-both-${a}-${b}-${c}-${d}-${strict?1:0}`,v,`Solve ${tex(`${lin(a,b)} ${op} ${lin(c,d)}`)}.`,tex(corr),[tex(`x ${op} ${s}`),tex(`x ${strict?'>':'≥'} ${s}`),tex(`x ${strict?'<':'≤'} ${-s}`)],`Collect x-terms first. If the final coefficient of x is negative, reverse the inequality when dividing.`)}
- if(v==='distribution'){const k=pick([2,3,4,-2,-3,-4]),p=ri(-5,5),rhs=k*(s+p);const sign=k>0?op:(strict?'>':'≥');return algebraChoice(`u2-ineq-dist-${k}-${p}-${rhs}-${strict?1:0}`,v,`Solve ${tex(`${k}(x ${p>=0?'+':''}${p}) ${op} ${rhs}`)}.`,tex(`x ${sign} ${s}`),[tex(`x ${op} ${s}`),tex(`x ${sign} ${-s}`),tex(`x ${strict?'<':'≤'} ${s+1}`)],`Divide by ${k}; remember that a negative divisor reverses the inequality.`)}
+ if(v==='negative_flip'){const a=pick([2,3,4,5]),b=coeff(),rhs=-a*s+b;const corr=`x ${strict?'>':'≥'} ${s}`;return algebraChoice(`u2-ineq-flip-${a}-${b}-${rhs}-${strict?1:0}`,v,`Solve ${tex(`${-a}x ${b>=0?'+':''}${b} ${op} ${rhs}`)}.`,tex(corr),[tex(`x ${op} ${s}`),tex(`x ${strict?'>':'≥'} ${s+1}`),tex(`x ${strict?'>':'≥'} ${s-1}`)],`Dividing by a negative reverses the inequality sign.`)}
+ if(v==='compound'){const a=pick([2,3,4]),l=ri(-6,-1),u=ri(1,7),b=coeff(),L=a*l+b,U=a*u+b;const corr=`${l} < x ≤ ${u}`;return algebraChoice(`u2-ineq-comp-${a}-${b}-${l}-${u}`,v,`Solve ${tex(`${L} < ${a}x ${b>=0?'+':''}${b} ≤ ${U}`)}.`,tex(corr),[tex(`${l} ≤ x < ${u}`),`${tex(`x < ${l}`)} or ${tex(`x ≥ ${u}`)}`,tex(`${l-1} < x ≤ ${u+1}`)],`Perform the same inverse operations on all three parts of the compound inequality.`)}
+ if(v==='both_sides'){let a=ri(2,7),c=ri(1,6);if(a===c)c++;const b=coeff(),d=b+(a-c)*s;const diff=a-c;const sign=diff>0?(strict?'<':'≤'):(strict?'>':'≥');const corr=`x ${sign} ${s}`;return algebraChoice(`u2-ineq-both-${a}-${b}-${c}-${d}-${strict?1:0}`,v,`Solve ${tex(`${lin(a,b)} ${op} ${lin(c,d)}`)}.`,tex(corr),[tex(`x ${sign==='<'?'>':sign==='≤'?'≥':sign==='>'?'<':'≤'} ${s}`),tex(`x ${sign} ${s+1}`),tex(`x ${sign} ${s-1}`)],`Collect x-terms first. If the final coefficient of x is negative, reverse the inequality when dividing.`)}
+ if(v==='distribution'){const k=pick([2,3,4,-2,-3,-4]),p=coeff(),rhs=k*(s+p);const sign=k>0?op:(strict?'>':'≥');return algebraChoice(`u2-ineq-dist-${k}-${p}-${rhs}-${strict?1:0}`,v,`Solve ${tex(`${k}(x ${p>=0?'+':''}${p}) ${op} ${rhs}`)}.`,tex(`x ${sign} ${s}`),[tex(`x ${sign==='<'?'>':sign==='≤'?'≥':sign==='>'?'<':'≤'} ${s}`),tex(`x ${sign} ${s+1}`),tex(`x ${sign} ${s-1}`)],`Divide by ${k}; remember that a negative divisor reverses the inequality.`)}
  if(v==='creation'){
   const a=ri(2,7),b=coeff(),boundary=ri(-8,8),rhs=-a*boundary+b,relation=pick(['<','≤','>','≥']),flipped={'<':'>','≤':'≥','>':'<','≥':'≤'}[relation];
   const raw=`${lin(-a,b)} ${relation} ${rhs}`;
@@ -134,9 +135,9 @@ function inequality(){const v=pick(['basic','negative_flip','distribution','both
   return first;
  }
 
- const a=pick([2,3,4,5]),b=ri(-8,8),rhs=a*s+b;return algebraChoice(`u2-ineq-basic-${a}-${b}-${rhs}-${strict?1:0}`,v,`Solve ${tex(`${lin(a,b)} ${op} ${rhs}`)}.`,tex(`x ${op} ${s}`),[tex(`x ${strict?'>':'≥'} ${s}`),tex(`x ${op} ${-s}`),tex(`x ${strict?'<':'≤'} ${s+1}`)],`Isolate x using the same operations as an equation.`)}
+ const a=pick([2,3,4,5]),b=coeff(),rhs=a*s+b;return algebraChoice(`u2-ineq-basic-${a}-${b}-${rhs}-${strict?1:0}`,v,`Solve ${tex(`${lin(a,b)} ${op} ${rhs}`)}.`,tex(`x ${op} ${s}`),[tex(`x ${strict?'>':'≥'} ${s}`),tex(`x ${op} ${s-1}`),tex(`x ${op} ${s+1}`)],`Isolate x using the same operations as an equation.`)}
 
-function graphInterval(){const v=pick(['ineq_to_interval','interval_result','interval_to_ineq','ineq_to_graph','graph_to_interval','union','solve_then_interval']);const b=ri(-8,8),op=pick(['<','<=','>','>=']); if(v==='interval_result'){const op2=pick(['<','<=','>','>=']);return algebraChoice(`u2-ineq-int-${b}-${op2}`,v,`Which interval represents ${tex(inequalityText(b,op2))}?`,interval(b,op2),[interval(b,op2[0]==='<'?'>':'<'),interval(b,op2.includes('=')?op2[0]:op2+'='),`[${b}, ${b}]`],'Open endpoints represent strict inequalities; closed endpoints include equality.')}
+function graphIntervalRaw(){const v=pick(['ineq_to_interval','interval_result','interval_to_ineq','ineq_to_graph','graph_to_interval','union','solve_then_interval']);const b=ri(-8,8),op=pick(['<','<=','>','>=']); if(v==='interval_result'){const op2=pick(['<','<=','>','>=']);return algebraChoice(`u2-ineq-int-${b}-${op2}`,v,`Which interval represents ${tex(inequalityText(b,op2))}?`,interval(b,op2),[interval(b,op2[0]==='<'?'>':'<'),interval(b,op2.includes('=')?op2[0]:op2+'='),`[${b}, ${b}]`],'Open endpoints represent strict inequalities; closed endpoints include equality.')}
 
  if(v==='ineq_to_interval')return mc(`u2-int-i2n-${b}-${op}`,v,`Write ${tex(inequalityText(b,op))} in interval notation.`,interval(b,op),[interval(b,op[0]==='<'?'>':'<'),interval(b,op.includes('=')?op[0]:op+'='),`(${b}, ${b})`],'Use a parenthesis for a strict endpoint and a bracket when the endpoint is included.');
  if(v==='interval_to_ineq')return mc(`u2-int-n2i-${b}-${op}`,v,`Which inequality matches the interval ${tex(interval(b,op))}?`,tex(inequalityText(b,op)),[tex(inequalityText(b,op[0]==='<'?'>':'<')),tex(inequalityText(b,op.includes('=')?op[0]:op+'=')),tex(`x = ${b}`)],'The direction of the interval tells which side of the endpoint is included.');
@@ -145,18 +146,67 @@ function graphInterval(){const v=pick(['ineq_to_interval','interval_result','int
  if(v==='union'){const a=ri(-8,-1),c=ri(1,8);const leftClosed=R()<.5,rightClosed=R()<.5;const ans=`${leftClosed?'(-∞, '+a+']':'(-∞, '+a+')'} ∪ ${rightClosed?'['+c+', ∞)':'('+c+', ∞)'}`;const prompt=`x ${leftClosed?'≤':'<'} ${a} or x ${rightClosed?'≥':'>'} ${c}`;return mc(`u2-int-union-${a}-${c}-${leftClosed?1:0}-${rightClosed?1:0}`,v,`Write ${tex(prompt.split(' or ')[0])} or ${tex(prompt.split(' or ')[1])} in interval notation.`,ans,[`(${a}, ${c})`,`[${a}, ${c}]`,`(-∞, ${c}) ∪ (${a}, ∞)`],'A disconnected solution uses a union of two intervals.');}
  const a=pick([2,3,4]),s=ri(-6,6),c=ri(-7,7),rhs=a*s+c;return mc(`u2-int-solve-${a}-${c}-${rhs}-${op}`,v,`Solve ${tex(`${lin(a,c)} ${op==='<'?'<':op==='<='?'≤':op==='>'?'>':'≥'} ${rhs}`)} and give the answer in interval notation.`,interval(s,op),[interval(s,op[0]==='<'?'>':'<'),interval(s,op.includes('=')?op[0]:op+'='),`[${s}, ${s}]`],'Solve first, then translate the solution inequality into interval notation.');}
 
-function coordinateFeatures(){const v=pick(['plot_point','domain','range','increasing','decreasing','constant','x_intercepts','y_intercept','absolute_max','absolute_min']);
- if(v==='plot_point'){let x=ri(-4,4),y=ri(-4,4);if(x===0&&y===0)x=2;const g=svgGraph([], [x,y]);return mc(`u2-graph-point-${x}-${y}`,v,`${g}<p>What are the coordinates of the plotted point?</p>`,tex(`(${x}, ${y})`),[tex(`(${y}, ${x})`),tex(`(${-x}, ${y})`),tex(`(${x}, ${-y})`)],'Read x horizontally first, then y vertically.');}
- let sx=ri(-1,1),sy=ri(-1,1);if(v==='x_intercepts')sy=0;if(v==='y_intercept')sx=0;const pts=[[-4+sx,-2+sy],[-2+sx,2+sy],[0+sx,2+sy],[2+sx,-2+sy],[4+sx,0+sy]],g=svgGraph(pts);
- if(v==='domain')return mc(`u2-graph-domain-${sx}-${sy}`,v,`${g}<p>What is the domain of the graphed function?</p>`,tex(`[${-4+sx}, ${4+sx}]`),[tex(`[${-2+sy}, ${2+sy}]`),tex(`(${-4+sx}, ${4+sx})`),tex(`[${-4+sx}, ∞)`)],'The domain is the set of x-values covered by the graph.');
- if(v==='range')return mc(`u2-graph-range-${sx}-${sy}`,v,`${g}<p>What is the range of the graphed function?</p>`,tex(`[${-2+sy}, ${2+sy}]`),[tex(`[${-4+sx}, ${4+sx}]`),tex(`(${-2+sy}, ${2+sy})`),tex(`[${sy}, ${2+sy}]`)],'The range is the set of y-values attained by the graph.');
- if(v==='increasing')return mc(`u2-graph-inc-${sx}-${sy}`,v,`${g}<p>On which intervals is the function increasing?</p>`,tex(`(${-4+sx}, ${-2+sx}) and (${2+sx}, ${4+sx})`),[tex(`(${-2+sx}, ${0+sx})`),tex(`(${0+sx}, ${2+sx})`),tex(`(${-2+sx}, ${2+sx})`)],'Increasing means the graph rises as x moves from left to right.');
- if(v==='decreasing')return mc(`u2-graph-dec-${sx}-${sy}`,v,`${g}<p>On which interval is the function decreasing?</p>`,tex(`(${0+sx}, ${2+sx})`),[tex(`(${-4+sx}, ${-2+sx})`),tex(`(${-2+sx}, ${0+sx})`),tex(`(${2+sx}, ${4+sx})`)],'Decreasing means the graph falls as x moves from left to right.');
- if(v==='constant')return mc(`u2-graph-const-${sx}-${sy}`,v,`${g}<p>On which interval is the function constant?</p>`,tex(`(${-2+sx}, ${0+sx})`),[tex(`(${-4+sx}, ${-2+sx})`),tex(`(${0+sx}, ${2+sx})`),tex(`(${2+sx}, ${4+sx})`)],'A constant interval is horizontal.');
- if(v==='x_intercepts')return mc(`u2-graph-xint-${sx}`,v,`${g}<p>Which list gives all x-intercepts?</p>`,tex(`${-3+sx}, ${1+sx}, ${4+sx}`),[tex(`${-2+sx}, ${2+sx}`),tex(`${-4+sx}, ${0+sx}, ${4+sx}`),tex(`${1+sx}, ${4+sx}`)],'x-intercepts occur where the graph crosses or touches y=0.');
- if(v==='y_intercept')return mc(`u2-graph-yint-${sy}`,v,`${g}<p>What is the y-intercept?</p>`,tex(`(0, ${2+sy})`),[tex(`(${2+sy}, 0)`),tex(`(0, ${sy})`),tex(`(0, ${-2+sy})`)],'The y-intercept occurs where x=0.');
- if(v==='absolute_max')return mc(`u2-graph-max-${sx}-${sy}`,v,`${g}<p>What is the absolute maximum value?</p>`,String(2+sy),[String(-2+sy),String(4+sx),String(sy)],'The absolute maximum value is the greatest y-value on the graph.');
- return mc(`u2-graph-min-${sx}-${sy}`,v,`${g}<p>What is the absolute minimum value?</p>`,String(-2+sy),[String(2+sy),String(-4+sx),String(sy)],'The absolute minimum value is the least y-value on the graph.');}
+function graphInterval(){
+ const p=graphIntervalRaw();
+ // Interval strings use the same MathJax typesetting as the question. Keep prose outside math.
+ p.choices=p.choices.map(choice=>/^[[(]/.test(choice)?tex(choice.replace(/∞/g,'\\infty').replace(/∪/g,'\\cup')):choice);
+ p.answer=p.choices[p.correctIndex];return p;
+}
+
+function coordinateFeatures(){
+ const v=pick(['plot_point','domain','range','increasing','decreasing','constant','x_intercepts','y_intercept','absolute_max','absolute_min']);
+ const point=([x,y])=>tex(`(${x}, ${y})`),pointsText=pts=>pts.map(point).join(' and ');
+ if(v==='plot_point'){
+  const dot=[ri(-5,5),ri(-4,4)];
+  const p=algebraChoice(`u2-coord-point-${dot}`,v,`${svgGraph([],dot)}<p>What are the coordinates of the plotted point?</p>`,point(dot),[point([dot[0]+1,dot[1]]),point([dot[0],dot[1]+1]),point([dot[0]-1,dot[1]-1])],`Read the horizontal coordinate first and the vertical coordinate second: ${point(dot)}.`);
+  p.graph={dot};return p;
+ }
+ const left=ri(-5,-2),right=ri(2,5),count=ri(4,Math.min(7,right-left+1));
+ const middle=shuffle(Array.from({length:right-left-1},(_,i)=>left+i+1).filter(x=>x!==0)).slice(0,count-3);
+ const xs=[left,...middle,0,right].sort((a,b)=>a-b);
+ const shape=pick(['rising','falling','peak','valley','zigzag','plateaus']);
+ let ys=xs.map(()=>ri(-4,4));
+ if(shape==='rising'||shape==='falling')ys=shuffle([-4,-3,-2,-1,0,1,2,3,4]).slice(0,count).sort((a,b)=>shape==='rising'?a-b:b-a);
+ else if(shape==='peak'||shape==='valley'){
+  const turn=ri(1,count-2),height=ri(2,4),slope=ri(1,2);
+  ys=xs.map((_,i)=>Math.max(-4,height-Math.abs(i-turn)*slope)*(shape==='peak'?1:-1));
+ }else if(shape==='plateaus'){const j=ri(1,count-1);ys[j]=ys[j-1];}
+ if(v==='constant'){const j=ri(1,count-1);ys[j]=ys[j-1];}
+ if(v==='increasing'&&!ys.some((y,i)=>i&&y>ys[i-1])){ys[0]=-4;ys[1]=ri(-2,3);}
+ if(v==='decreasing'&&!ys.some((y,i)=>i&&y<ys[i-1])){ys[0]=4;ys[1]=ri(-3,2);}
+ if(v==='x_intercepts'){
+  // Keep intercepts on marked integer coordinates, without a flat segment on the axis.
+  for(let i=1;i<ys.length;i++){
+   if(ys[i-1]===0&&ys[i]===0)ys[i]=pick([-3,-2,-1,1,2,3]);
+   if(ys[i-1]*ys[i]<0)ys[i]=0;
+  }
+  if(!ys.includes(0))ys[ri(1,count-2)]=0;
+ }
+ const pts=xs.map((x,i)=>[x,ys[i]]),g=svgGraph(pts),lo=Math.min(...ys),hi=Math.max(...ys);
+ const runs=direction=>{
+  const out=[];for(let i=0;i<pts.length-1;i++)if(Math.sign(ys[i+1]-ys[i])===direction){
+   if(out.length&&out[out.length-1][1]===xs[i])out[out.length-1][1]=xs[i+1];else out.push([xs[i],xs[i+1]]);
+  }return out;
+ };
+ const rangeText=list=>list.map(([a,b])=>tex(`(${a}, ${b})`)).join(' and ');
+ const id=`u2-coord-${v}-${JSON.stringify(pts)}`;let p;
+ if(v==='domain')p=algebraChoice(id,v,`${g}<p>What is the domain of the graphed function?</p>`,tex(`[${left}, ${right}]`),[tex(`(${left}, ${right})`),tex(`[${left+1}, ${right}]`),tex(`[${left}, ${right-1}]`)],`The graph covers every x-value from ${tex(String(left))} to ${tex(String(right))}. Both endpoints are filled, so include them: ${tex(`[${left}, ${right}]`)}.`);
+ else if(v==='range')p=algebraChoice(id,v,`${g}<p>What is the range of the graphed function?</p>`,tex(`[${lo}, ${hi}]`),[tex(`(${lo}, ${hi})`),tex(`[${lo-1}, ${hi}]`),tex(`[${lo}, ${hi+1}]`)],`The lowest y-value is ${tex(String(lo))} and the highest is ${tex(String(hi))}. The connected graph reaches every value between them, including both: ${tex(`[${lo}, ${hi}]`)}.`);
+ else if(['increasing','decreasing','constant'].includes(v)){
+  const direction={increasing:1,decreasing:-1,constant:0}[v],intervals=runs(direction),answer=rangeText(intervals);
+  const candidates=[-1,1,2].map(shift=>rangeText(intervals.map(([a,b])=>[a+shift,b+shift])));
+  p=algebraChoice(id,v,`${g}<p>On which open interval${intervals.length===1?'':'s'} is the function ${v}?</p>`,answer,candidates,`Read from left to right. The graph ${v==='increasing'?'rises':v==='decreasing'?'falls':'stays horizontal'} on ${answer}. Use the x-coordinates where each such section starts and ends.`);
+ }else if(v==='x_intercepts'){
+  const intercepts=pts.filter(([,y])=>y===0),answer=pointsText(intercepts);
+  p=algebraChoice(id,v,`${g}<p>Which list gives all x-intercepts?</p>`,answer,[-1,1,2].map(d=>pointsText(intercepts.map(([x])=>[x+d,0]))),`An x-intercept has ${tex('y=0')}. Read every place the graph meets the horizontal axis: ${answer}.`);
+ }else if(v==='y_intercept'){
+  const y=ys[xs.indexOf(0)];p=algebraChoice(id,v,`${g}<p>What is the y-intercept?</p>`,point([0,y]),[point([0,y+1]),point([0,y-1]),point([0,y+2])],`At the vertical axis, ${tex('x=0')}. The graph passes through ${point([0,y])}, so that is the y-intercept.`);
+ }else{
+  const value=v==='absolute_max'?hi:lo,word=v==='absolute_max'?'maximum':'minimum';
+  p=algebraChoice(id,v,`${g}<p>What is the absolute ${word} value?</p>`,tex(String(value)),[tex(String(value-1)),tex(String(value+1)),tex(String(value+2))],`Find the ${word==='maximum'?'highest':'lowest'} point or horizontal section. Its y-coordinate is ${tex(String(value))}; the question asks for that value, not its x-location.`);
+ }
+ p.graph={points:pts,shape};return p;
+}
 
 const map={
  'equivalent-expressions-combining-like-terms':equivalent,

@@ -3,7 +3,7 @@
 const cfg=window.BM_UNIT2_PRACTICE||{};
 const gen=window.BatchMathIM1Unit2Generators?.get?.(cfg.slug);
 if(typeof gen!=='function'){document.addEventListener('DOMContentLoaded',()=>{const q=document.getElementById('question');if(q)q.textContent='Practice generator unavailable.'});return;}
-const $=id=>document.getElementById(id);let p=null,score=0,attempted=0,locked=false,recent=[],entry=null;
+const $=id=>document.getElementById(id);let p=null,score=0,attempted=0,locked=false,recent=[],recentGraphs=[],entry=null;
 function typeset(nodes){if(window.MathJax?.typesetPromise)window.MathJax.typesetPromise(nodes).catch(()=>{});}
 function stats(){$('score').textContent=score;$('attempted').textContent=attempted;}
 function render(){
@@ -17,7 +17,8 @@ function render(){
  stats();typeset([$('question'),$('choices')]);
 }
 function newProblem(){
- let tries=0;do{p=gen();tries++;}while(recent.includes(p.id)&&tries<12);
+ let tries=0,graphKey='';do{p=gen();tries++;const points=p.graph?.points;graphKey=points?JSON.stringify(points.map(([x,y])=>[x-points[0][0],y-points[0][1]])):'';}while((recent.includes(p.id)||(graphKey&&recentGraphs.includes(graphKey)))&&tries<12);
+ if(graphKey){recentGraphs.push(graphKey);if(recentGraphs.length>6)recentGraphs.shift();}
  recent.push(p.id);if(recent.length>6)recent.shift();
  p.problemType=cfg.slug;p.problemVariant=p.variant;p.problemId=p.id;p.generatorVersion=String(window.BM_ANALYTICS_CONFIG?.generatorVersion||'1');
  render();window.BMAnalytics?.problemGenerated(p);
@@ -48,6 +49,6 @@ function answerExpression(raw){
 function next(){if(!locked||p.part2)return;newProblem();}
 document.addEventListener('DOMContentLoaded',()=>{
  document.addEventListener('keydown',e=>{if(e.key==='Enter'&&locked&&!p.kind&&!p.part2){e.preventDefault();next();}});
- $('nextBtn').addEventListener('click',next);$('resetBtn').addEventListener('click',()=>{score=0;attempted=0;recent=[];newProblem();});newProblem();
+ $('nextBtn').addEventListener('click',next);$('resetBtn').addEventListener('click',()=>{score=0;attempted=0;recent=[];recentGraphs=[];newProblem();});newProblem();
 });
 })();

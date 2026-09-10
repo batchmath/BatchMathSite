@@ -1,7 +1,7 @@
 {
   "name": "batchmath-site-qa",
   "private": true,
-  "version": "10.6.3.W",
+  "version": "10.6.3.X",
   "scripts": {
     "qa:static": "node tools/release-qa.mjs",
     "qa:math": "node tools/ap-generator-stress-qa.mjs",
@@ -16,7 +16,7 @@
     "qa:analytics": "node tools/analytics-qa.mjs",
     "qa:pwa": "node tools/pwa-cache-qa.mjs",
     "qa:prep": "node tools/calc-prep-semantic-qa.mjs",
-    "qa:nobrowser": "npm run qa:static && npm run qa:display && npm run qa:semantic && npm run qa:prep && npm run qa:analytics && npm run qa:pwa && npm run qa:math && npm run qa:limits && npm run qa:topics && npm run qa:deep && npm run qa:newcalc && npm run qa:derivative-topics && npm run qa:unit1-ivt && npm run qa:infinity-variety && npm run qa:unit3 && npm run qa:unit4 && npm run qa:fidelity && npm run qa:im1-unit2 && npm run qa:fractions && npm run qa:browser-infra && npm run qa:advanced-trig-hints && npm run qa:unit1-explanations && npm run qa:unit1-approved && npm run qa:unit1-v && npm run qa:im1-like-terms && npm run qa:im1-equations-update",
+    "qa:nobrowser": "npm run qa:static && npm run qa:display && npm run qa:semantic && npm run qa:prep && npm run qa:analytics && npm run qa:pwa && npm run qa:math && npm run qa:limits && npm run qa:topics && npm run qa:deep && npm run qa:newcalc && npm run qa:derivative-topics && npm run qa:unit1-ivt && npm run qa:infinity-variety && npm run qa:unit3 && npm run qa:unit4 && npm run qa:fidelity && npm run qa:im1-unit2 && npm run qa:fractions && npm run qa:browser-infra && npm run qa:advanced-trig-hints && npm run qa:unit1-explanations && npm run qa:unit1-approved && npm run qa:unit1-v && npm run qa:im1-like-terms && npm run qa:im1-equations-update && npm run qa:coordinate-variety",
     "qa:derivative-topics": "node tools/derivative-topic-enhancements-qa.mjs",
     "qa:unit1-ivt": "node tools/unit1-ivt-infinity-qa.mjs",
     "qa:unit3": "node tools/unit3-rebuild-qa.mjs",
@@ -31,7 +31,8 @@
     "qa:unit1-approved": "node tools/unit1-approved-qa.mjs",
     "qa:unit1-v": "node tools/unit1-v-qa.mjs",
     "qa:im1-like-terms": "node tools/im1-like-terms-qa.mjs",
-    "qa:im1-equations-update": "node tools/im1-equations-update-qa.mjs"
+    "qa:im1-equations-update": "node tools/im1-equations-update-qa.mjs",
+    "qa:coordinate-variety": "node tools/coordinate-variety-qa.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

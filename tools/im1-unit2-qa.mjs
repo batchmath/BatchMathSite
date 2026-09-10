@@ -7,7 +7,7 @@ const src=fs.readFileSync(path.join(ROOT,'assets/im1-unit2-generators.js'),'utf8
 const expected={
 'equivalent-expressions-combining-like-terms':['combine','constants','multi','two_variables','mixed_products','three_groups','like_terms'],
 'distributive-property':['basic','negative','multiterm','combine','two_groups','three_groups','reverse','equivalent','construct'],
-'solving-linear-equations':['one_step','two_step','distribution','both_sides','identity','contradiction','fraction_coefficient','fraction_expression','two_fractions'],
+'solving-linear-equations':['one_step','two_step','distribution','both_sides','identity','contradiction','fraction_coefficient','fraction_expression','fraction_x','fraction_linear'],
 'solving-linear-inequalities':['basic','negative_flip','distribution','both_sides','compound','creation'],
 'graphing-inequalities-interval-notation':['ineq_to_interval','interval_result','interval_to_ineq','ineq_to_graph','graph_to_interval','union','solve_then_interval'],
 'coordinate-system-nine-key-features':['plot_point','domain','range','increasing','decreasing','constant','x_intercepts','y_intercept','absolute_max','absolute_min']};

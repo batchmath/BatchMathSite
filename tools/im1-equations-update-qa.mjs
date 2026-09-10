@@ -18,7 +18,7 @@ const noArtifacts=s=>{assert(!/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(s),'control ch
 let equations=0,identities=0,none=0,all=0;const families=new Set();
 for(let i=0;i<30000;i++){
  const p=gen.get('solving-linear-equations')();equations++;families.add(p.variant);assert.equal(p.kind,'equation');assert(!p.choices);assert(p.hint.length>20);assert(entry.check(p.answer,p.answer).ok);
- noArtifacts(p.q+p.explain);const [l,r]=math(p.q)[0].split('=');const {A,B,C,D,scale,solution}=p.math;
+ noArtifacts(p.q+p.explain);if(p.variant.startsWith('fraction_')){const rhs=math(p.q)[0].split('=')[1];assert(!rhs.includes('frac'));if(p.variant==='fraction_x')assert(/^[-]?[2-9]x$/.test(rhs));if(p.variant==='fraction_linear')assert(/[+-]\s*\d+$/.test(rhs));}const [l,r]=math(p.q)[0].split('=');const {A,B,C,D,scale,solution}=p.math;
  if(p.answer==='No solution')none++;else if(p.answer==='Infinitely many solutions')all++;
  for(const x of [solution??-3,(solution??0)+1,0,7]){
   const residual=evaluate(l,x)-evaluate(r,x),want=((A-C)*x+B-D)/scale;
@@ -30,13 +30,13 @@ for(let i=0;i<30000;i++){
  }
  if(solution!==null){assert((D-B)/(A-C)===solution);assert(entry.check('x='+solution,p.answer).ok);assert(entry.check(`${solution*2}/2`,p.answer).ok);assert(!entry.check(String(solution+1),p.answer).ok);}
 }
-assert.equal(families.size,9);assert(Math.abs((none+all)/equations-.22)<.012);assert(Math.abs(none/equations-.11)<.01);assert(Math.abs(all/equations-.11)<.01);
+assert.equal(families.size,10);assert(Math.abs((none+all)/equations-.22)<.012);assert(Math.abs(none/equations-.11)<.01);assert(Math.abs(all/equations-.11)<.01);
 for(const s of ['','1/0','2.5','x=','infinity','NaN','2+3','<img>'])assert(entry.parse(s).error,s);
 for(const [s,w] of [['Infinite Solutions','Infinitely many solutions'],['no solution','No solution'],['-6/2','-3'],['x=-3','-3']])assert(entry.check(s,w).ok,s);
 let three=0,twoPart=0,moved=0;
 for(let i=0;i<10000;i++){
  const d=gen.get('distributive-property')();noArtifacts(d.q+d.choices.join('')+d.explain);assert(!d.choices.some(c=>/cannot be determined|no solution|none of these/i.test(c)));if(d.variant==='three_groups'){three++;assert.equal((math(d.q)[0].match(/\(/g)||[]).length,3);}
- const p=gen.get('solving-linear-inequalities')();assert.notEqual(p.variant,'interval_result');assert(!p.choices.some(c=>/cannot be determined|no solution|none of these/i.test(c)));
+ const p=gen.get('solving-linear-inequalities')();assert.notEqual(p.variant,'interval_result');noArtifacts(p.q+p.explain);assert.equal(p.choices.length,4);assert.equal(new Set(p.choices).size,4);assert(math(p.choices.join(' ')).every(m=>!m.includes(' or ')));if(p.part2)assert.equal(p.part2.choices.length,4);assert(!p.choices.some(c=>/cannot be determined|no solution|none of these/i.test(c)));
  if(p.part2){twoPart++;assert.equal(p.variant,'creation');const raw=math(p.part2.q)[0],m=raw.match(/^(.*?)\s*([<>≤≥])\s*(.*)$/);assert(m);const answer=math(p.part2.answer)[0],sol=answer.match(/^x\s*([<>≤≥])\s*(-?\d+)$/);assert(sol);
  const cmp=(a,op,b)=>op==='<'?a<b:op==='>'?a>b:op==='≤'?a<=b:a>=b;
  for(const x of [Number(sol[2])-1,Number(sol[2]),Number(sol[2])+1])assert.equal(cmp(evaluate(m[1],x),m[2],evaluate(m[3],x)),cmp(x,sol[1],Number(sol[2])));
@@ -51,13 +51,13 @@ function UI(slug){
  function descend(e,id){if(e.id===id)return e;for(const c of e.children){const found=descend(c,id);if(found)return found;}}
  const doc={events:{},createElement:t=>new Element(t),getElementById:id=>els[id]||Object.values(els).map(e=>descend(e,id)).find(Boolean),querySelectorAll:s=>Object.values(els).flatMap(e=>e.querySelectorAll(s)),addEventListener(t,f){(this.events[t]??=[]).push(f);}};
  const log={generated:0,checked:0};let current;
- const b={window:{BM_UNIT2_PRACTICE:{slug},BatchMathIM1Unit2Generators:gen,BMAnalytics:{problemGenerated:p=>{current=p;log.generated++;},answerChecked(){log.checked++;},solutionRevealed(){}}},document:doc};vm.createContext(b);
- for(const f of ['im1-equation-input.js','im1-unit2-practice.js'])vm.runInContext(read('assets/'+f),b);doc.events.DOMContentLoaded.forEach(f=>f());
+ const b={window:{BM_UNIT2_PRACTICE:{slug},BatchMathIM1Unit2Generators:gen,BMAnalytics:{problemGenerated:p=>{current=p;log.generated++;},answerChecked(){log.checked++;},solutionRevealed(){}}},document:doc,navigator:{maxTouchPoints:0}};doc.readyState='loading';vm.createContext(b);
+ for(const f of ['im1-keypad.js','im1-equation-input.js','im1-unit2-practice.js'])vm.runInContext(read('assets/'+f),b);doc.events.DOMContentLoaded.forEach(f=>f());
  return {els,doc,log,get current(){return current;}};
 }
 const ui=UI('solving-linear-equations'),get=id=>ui.doc.getElementById(id);
 let input=get('equation-answer');input.value='5';const q=ui.els.question.innerHTML;get('equation-hint').click();assert(!get('equation-hint-panel').hidden);assert.equal(input.value,'5');assert.equal(ui.log.checked,0);assert.equal(ui.els.question.innerHTML,q);get('equation-hint').click();assert(get('equation-hint-panel').hidden);
-const press=label=>ui.els.choices.querySelectorAll('button').find(b=>b.textContent===label).click();press('Clear');input.setSelectionRange(0,0);press('−');press('3');press('a/b');press('2');assert.equal(input.value,'-3/2');press('No Solution');assert.equal(input.value,'No Solution');press('Infinite Solutions');assert.equal(input.value,'Infinite Solutions');
+const press=label=>ui.els.choices.querySelectorAll('button').find(b=>b.textContent===label).click();press('Clear');input.setSelectionRange(0,0);press('−');press('3');press('a/b');press('2');assert.equal(input.value,'-3/2');const seven=ui.els.choices.querySelectorAll('button').find(b=>b.textContent==='7');assert.equal(seven.style.gridRow,'1');assert.equal(seven.style.gridColumn,'1');const four=ui.els.choices.querySelectorAll('button').find(b=>b.textContent==='4');assert.equal(four.style.gridRow,'2');press('No Solution');assert.equal(input.value,'No Solution');press('Infinite Solutions');assert.equal(input.value,'Infinite Solutions');
 input.value='1/0';get('equation-check').click();assert.equal(ui.log.checked,0);assert(!input.disabled);
 input.value=ui.current.answer;get('equation-check').click();assert.equal(ui.log.checked,1);assert(input.disabled);assert.equal(ui.els.score.textContent,1);assert(ui.els.feedback.innerHTML.includes('<ol>'));get('equation-check').click();assert.equal(ui.log.checked,1);
 ui.els.nextBtn.click();assert.equal(ui.log.generated,2);assert(get('equation-hint-panel').hidden);assert.equal(get('equation-answer').value,'');get('equation-answer').value='123456';get('equation-check').click();assert(ui.els.feedback.innerHTML.includes('Correct answer:'));assert(ui.els.feedback.innerHTML.includes('<ol>'));

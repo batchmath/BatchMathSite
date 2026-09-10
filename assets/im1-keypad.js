@@ -322,5 +322,21 @@
   if(document.readyState === "loading") document.addEventListener("DOMContentLoaded",initAll);
   else initAll();
 
-  window.BatchMathKeypad={touchMode,initAll};
+  // Shared button construction and compact number-pad layout for dynamic Unit 2 inputs.
+  function layoutUnit2(pad){
+    pad.className="bm-keypad bm-unit2-keypad";
+    const digits={7:[1,1],8:[1,2],9:[1,3],4:[2,1],5:[2,2],6:[2,3],1:[3,1],2:[3,2],3:[3,3],0:[4,2]};
+    const utilities={"←":[1,4],"→":[2,4],"⌫":[3,4],"Clear":[4,4],"−":[4,1],"a/b":[4,3],"+":[4,3]};
+    let row=5,col=1;
+    pad.querySelectorAll('button').forEach(b=>{
+      const label=b.textContent,cell=digits[label]||utilities[label];
+      if(cell){b.style.gridRow=String(cell[0]);b.style.gridColumn=String(cell[1]);}
+      else{
+        const wide=/Solution/.test(label),span=wide?2:1;
+        if(col+span-1>4){row++;col=1;}
+        b.style.gridRow=String(row);b.style.gridColumn=`${col} / span ${span}`;col+=span;
+      }
+    });
+  }
+  window.BatchMathKeypad={touchMode,initAll,button,layoutUnit2};
 })();

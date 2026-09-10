@@ -78,8 +78,8 @@ const els=Object.fromEntries(['question','choices','feedback','score','attempted
 function descend(e,id){if(e.id===id)return e;for(const c of e.children){const found=descend(c,id);if(found)return found;}}
 const document={events:{},createElement:t=>new Element(t),getElementById:id=>els[id]||Object.values(els).map(e=>descend(e,id)).find(Boolean),querySelectorAll:s=>Object.values(els).flatMap(e=>e.querySelectorAll(s)),addEventListener(t,f){(this.events[t]??=[]).push(f);}};
 let current,checks=0,generatedUI=0;
-const UI={window:{BM_UNIT2_PRACTICE:{slug:'equivalent-expressions-combining-like-terms'},BatchMathIM1Unit2Generators:gen,BMAnalytics:{problemGenerated:p=>{current=p;generatedUI++;},answerChecked(){checks++;},solutionRevealed(){}}},document};vm.createContext(UI);
-for(const f of ['im1-algebra-input.js','im1-unit2-practice.js'])vm.runInContext(read('assets/'+f),UI);
+const UI={window:{BM_UNIT2_PRACTICE:{slug:'equivalent-expressions-combining-like-terms'},BatchMathIM1Unit2Generators:gen,BMAnalytics:{problemGenerated:p=>{current=p;generatedUI++;},answerChecked(){checks++;},solutionRevealed(){}}},document,navigator:{maxTouchPoints:0}};document.readyState='loading';vm.createContext(UI);
+for(const f of ['im1-keypad.js','im1-algebra-input.js','im1-unit2-practice.js'])vm.runInContext(read('assets/'+f),UI);
 document.events.DOMContentLoaded.forEach(f=>f());
 while(current.kind!=='polynomial')els.resetBtn.click();
 const input=document.getElementById('algebra-answer'),submit=document.getElementById('algebra-check');

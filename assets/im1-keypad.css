@@ -143,3 +143,8 @@ html.bm-practice-active .batch-back{
   html.bm-keypad-touch.bm-practice-active .bm-fraction-editor{width:min(225px,100%);min-height:37px;padding:2px 5px;font-size:.96rem;border-radius:5px}
   html.bm-keypad-touch.bm-practice-active .question-area.bm-answer-locked .bm-fraction-editor{min-height:32px;padding:1px 4px;font-size:.86rem}
 }
+
+/* Dynamic algebra/equation engines share this keypad's fixed numeric grid. */
+.bm-keypad.bm-unit2-keypad{width:min(360px,100%);grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.bm-unit2-keypad .bm-key{min-width:0;min-height:44px;white-space:normal;overflow-wrap:normal;line-height:1.2;padding:7px 4px}
+.bm-unit2-keypad .bm-key[aria-pressed="true"]{background:#f5c400;color:#030303}
