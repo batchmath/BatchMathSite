@@ -5,15 +5,25 @@ const errors=[],warnings=[],coverage={},checks={generated:0,semantic:0};
 function rng(seed){let s=seed>>>0;return()=>{s=(s+0x6D2B79F5)|0;let t=Math.imul(s^(s>>>15),1|s);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296}}
 const src=fs.readFileSync(path.join(ROOT,'assets/im1-unit2-generators.js'),'utf8');const sb={window:{BatchMathRNG:{random:rng(1)}},console};vm.createContext(sb);vm.runInContext(src,sb);
 const expected={
-'equivalent-expressions-combining-like-terms':['combine','multi','equivalent','same_value','construct','like_terms'],
-'distributive-property':['basic','negative','multiterm','combine','two_groups','reverse'],
-'solving-linear-equations':['one_step','two_step','distribution','both_sides','identity','contradiction','creation'],
-'solving-linear-inequalities':['basic','negative_flip','distribution','both_sides','compound','interval_result','creation'],
-'graphing-inequalities-interval-notation':['ineq_to_interval','interval_to_ineq','ineq_to_graph','graph_to_interval','union','solve_then_interval'],
+'equivalent-expressions-combining-like-terms':['combine','constants','multi','two_variables','mixed_products','three_groups','like_terms'],
+'distributive-property':['basic','negative','multiterm','combine','two_groups','three_groups','reverse','equivalent','construct'],
+'solving-linear-equations':['one_step','two_step','distribution','both_sides','identity','contradiction','fraction_coefficient','fraction_expression','two_fractions'],
+'solving-linear-inequalities':['basic','negative_flip','distribution','both_sides','compound','creation'],
+'graphing-inequalities-interval-notation':['ineq_to_interval','interval_result','interval_to_ineq','ineq_to_graph','graph_to_interval','union','solve_then_interval'],
 'coordinate-system-nine-key-features':['plot_point','domain','range','increasing','decreasing','constant','x_intercepts','y_intercept','absolute_max','absolute_min']};
-const ans=p=>String(p.choices[p.correctIndex]??'');const plain=s=>String(s).replace(/^\\\(|\\\)$/g,'').replace(/≤/g,'<=').replace(/≥/g,'>=').trim();
+const ans=p=>String(p.kind?p.answer:p.choices[p.correctIndex]??'');const plain=s=>String(s).replace(/^\\\(|\\\)$/g,'').replace(/≤/g,'<=').replace(/≥/g,'>=').trim();
 function expect(cond,msg){checks.semantic++;if(!cond)errors.push(msg)}
-function validate(slug,p){checks.generated++;if(!p||!p.id||!p.variant)errors.push(`${slug}: missing id/variant`);if(!Array.isArray(p.choices)||p.choices.length<2)errors.push(`${slug} ${p?.id}: missing choices`);if(!Number.isInteger(p.correctIndex)||p.correctIndex<0||p.correctIndex>=p.choices.length)errors.push(`${slug} ${p?.id}: invalid correctIndex`);if(new Set(p.choices).size!==p.choices.length)errors.push(`${slug} ${p.id}: duplicate choices`);const display=[p.q,...p.choices].join(' ');if(/\+\s*-|--|\bundefined\b|\bNaN\b/.test(display))errors.push(`${slug} ${p.id}: malformed display sequence`);let m;
+function validate(slug,p){checks.generated++;if(!p||!p.id||!p.variant)errors.push(`${slug}: missing id/variant`);if(p.kind==='polynomial'){
+ expect(Array.isArray(p.terms)&&p.terms.length>=2,`${p.id}: missing term data`);
+ expect(typeof p.answer==='string'&&p.explain.includes('<ol>'),`${p.id}: missing answer or explanation`);
+ }else if(p.kind==='equation'){expect(!!p.math&&!!p.hint&&p.explain.includes('<ol>'),`${p.id}: missing equation solution/hint`);
+ }else{
+ if(!Array.isArray(p.choices)||p.choices.length<2)errors.push(`${slug} ${p?.id}: missing choices`);
+ if(!Number.isInteger(p.correctIndex)||p.correctIndex<0||p.correctIndex>=p.choices.length)errors.push(`${slug} ${p?.id}: invalid correctIndex`);
+ if(new Set(p.choices).size!==p.choices.length)errors.push(`${slug} ${p.id}: duplicate choices`);
+ }
+ const display=[p.q,...(p.choices||[])].join(' ');if(/\+\s*-|--|\bundefined\b|\bNaN\b/.test(display))errors.push(`${slug} ${p.id}: malformed display sequence`);
+ let m;
  if((m=p.id.match(/^u2-eq-same-(-?\d+)-(-?\d+)-(-?\d+)$/)))expect(Number(plain(ans(p)))===+m[3],`${p.id}: wrong same-value answer`);
  if((m=p.id.match(/^u2-eq-yn-(-?\d+)-(-?\d+)-(0|1)$/)))expect(ans(p)===(m[3]==='1'?'Equivalent':'Not equivalent'),`${p.id}: equivalence classification wrong`);
  if((m=p.id.match(/^u2-eqn-(?:one_step|two_step)-(-?\d+)-(-?\d+)-(-?\d+)$/))){const a=+m[1],b=+m[2],rhs=+m[3],x=(rhs-b)/a;expect(plain(ans(p))===`x = ${x}`,`${p.id}: equation solution wrong`)}

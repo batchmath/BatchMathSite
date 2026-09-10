@@ -21,7 +21,7 @@ function engineId(html){return (html.match(/engineId\s*:\s*["']([^"']+)/)||[])[1
 function selectedCategory(html){const m=html.match(/<select[^>]*id=["']category["'][^>]*>([\s\S]*?)<\/select>/i);if(!m)return '';for(const tag of (m[1].match(/<option\b[^>]*>/gi)||[])){if(/\bselected(?:=(?:""|''|"selected"|'selected'))?/i.test(tag)){return (tag.match(/\bvalue=["']([^"']+)["']/i)||[])[1]||'';}}return '';}
 function topicSlug(html,folder){return (html.match(/BM_TOPIC_PRACTICE\s*=\s*\{\s*slug\s*:\s*"([^"]+)"/)||[])[1]||folder;}
 function inlineScripts(html){return [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(m=>!(/\bsrc\s*=/.test(m[1]))).map(m=>m[2]);}
-function elem(value=''){return {value,innerHTML:'',textContent:'',className:'',disabled:false,placeholder:'',style:{display:''},listeners:{},addEventListener(type,fn){this.listeners[type]=fn;},focus(){},classList:{add(){},remove(){},contains(){return false;},toggle(){}}};}
+function elem(value=''){return {dataset:{},value,innerHTML:'',textContent:'',className:'',disabled:false,placeholder:'',style:{display:''},listeners:{},addEventListener(type,fn){this.listeners[type]=fn;},focus(){},classList:{add(){},remove(){},contains(){return false;},toggle(){}}};}
 function normalizedChoice(x){return String(x??'').trim().replace(/\s+/g,' ');}
 function malformedText(p){
   const text=[p?.questionHtml,p?.q,p?.question,p?.explanation,p?.sol,p?.method,p?.answerTex,...(Array.isArray(p?.choices)?p.choices:[])].filter(Boolean).join(' ');
@@ -73,7 +73,7 @@ function sampleFiltered(html,category,seedBase){
   const fakeDocument={getElementById:id=>elements[id]||(elements[id]=elem()),addEventListener(){},querySelector(){return null;},querySelectorAll(){return[];}};
   const BMAnalytics={ensurePracticeStarted(){},problemGenerated(p){generated.push(structuredClone(p));},answerChecked(){},solutionRevealed(){}};
   const window={BMAnalytics,MathJax:null,addEventListener:(t,fn)=>{listeners[t]=fn;},BatchMathCalculusKeypad:null};
-  const sb={window,document:fakeDocument,BatchMathRNG:{random},console,Math,structuredClone,setTimeout:()=>0,clearTimeout:()=>{},location:{},navigator:{}};vm.createContext(sb);vm.runInContext(code,sb,{timeout:8000});if(listeners.load)listeners.load();
+  const sb={window,document:fakeDocument,BatchMathRNG:{random},console,Math,structuredClone,setTimeout:()=>0,clearTimeout:()=>{},location:{},navigator:{}};vm.createContext(sb);sb.window.BatchMathRNG=sb.BatchMathRNG;for(const dep of ['ap-topic-generators','unit1-course-trig'])vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/'+dep+'.js'),'utf8'),sb);vm.runInContext(code,sb,{timeout:8000});if(listeners.load)listeners.load();
   const next=elements.next.listeners.click;if(typeof next!=='function')throw new Error('Next Question handler missing');while(generated.length<PER_TOPIC)next();return generated.slice(0,PER_TOPIC);
 }
 function evalDefs(file,needle,cut,expose,seed){const html=fs.readFileSync(file,'utf8');const code=inlineScripts(html).find(x=>x.includes(needle));if(!code)throw Error(`script containing ${needle} not found`);let body=code;const i=body.indexOf(cut);if(i<0)throw Error(`cut ${cut} not found`);body=body.slice(0,i)+`\n;globalThis.QA={${expose.join(',')}};\n`;body=body.replace(/^\s*\(function\(\)\{\s*['"]use strict['"];?/,'').replace(/^\s*\(\(\) => \{\s*['"]use strict['"];?/,'');const sb={console,BatchMathRNG:{random:rng(seed)},window:{},document:{getElementById(){return null}}};vm.createContext(sb);vm.runInContext(body,sb,{filename:path.basename(file)});return sb;}

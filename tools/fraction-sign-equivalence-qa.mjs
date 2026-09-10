@@ -72,7 +72,7 @@ const directParserFiles=[
  'im1/unit-1-review/topics/reducing-fractions/practice/index.html',
  'assets/ap-topic-practice.js','assets/calc-prep-common.js','assets/calc-prep-synthetic.js'
 ];
-for(const rel of directParserFiles){const s=fs.readFileSync(path.join(ROOT,rel),'utf8');if(!s.includes('BatchMathAnswers?.normalizeFractionSigns'))fail(`${rel}: direct answer parser does not call sitewide fraction normalizer`);}
+for(const rel of directParserFiles){const s=fs.readFileSync(path.join(ROOT,rel),'utf8');if(!s.includes('BatchMathAnswers?.normalizeFractionSigns')&&!(s.includes('BMUnit1UI.parse')&&fs.readFileSync(path.join(ROOT,'assets/unit1-practice-ui.js'),'utf8').includes('BatchMathAnswers?.normalizeFractionSigns')))fail(`${rel}: direct answer parser does not call sitewide fraction normalizer`);}
 stats.directParserDefenseFiles=directParserFiles.length;
 
 // Exact-expression practice engines commonly use normalizeInput(). Require each
@@ -104,7 +104,7 @@ const parserPages=[
 let parserExecutions=0;
 for(const [rel,name] of parserPages){
   const src=fs.readFileSync(path.join(ROOT,rel),'utf8'),fn=extractFunction(src,name);if(!fn){fail(`${rel}: could not extract ${name}`);continue;}
-  const box={window:{BatchMathAnswers:{normalizeFractionSigns:normalize}},console};vm.createContext(box);
+  const box={window:{BatchMathAnswers:{normalizeFractionSigns:normalize}},console};vm.createContext(box);vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/unit1-practice-ui.js'),'utf8'),box);
   try{vm.runInContext(`${fn};this.__fn=${name};`,box,{filename:rel});}
   catch(e){fail(`${rel}: extracted ${name} did not compile: ${e.message}`);continue;}
   for(const v of ['-1/2','(-1)/2','1/-2','1/(-2)','-(1/2)','−(1/2)']){
@@ -125,7 +125,7 @@ stats.productionParserExecutions=parserExecutions;
   const parseFn=extractFunction(src,'parse'),correctFn=extractFunction(src,'isCorrect');
   if(!parseFn||!correctFn)fail(`${rel}: could not extract production parse/isCorrect for factoring regression`);
   else{
-    const box={window:{BatchMathAnswers:{normalizeFractionSigns:normalize}},console};vm.createContext(box);
+    const box={window:{BatchMathAnswers:{normalizeFractionSigns:normalize}},console};vm.createContext(box);vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/unit1-practice-ui.js'),'utf8'),box);
     try{vm.runInContext(`${parseFn};${correctFn};this.__parse=parse;this.__correct=isCorrect;`,box,{filename:rel});}
     catch(e){fail(`${rel}: production factoring parser/checker did not compile: ${e.message}`);}
     let checks=0;

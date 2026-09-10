@@ -1,14 +1,8 @@
 BatchMath cumulative working copy
-Current checkpoint: 10.6.3.S
-Archive name: batchmath-site-v10.6.3.S.zip
+Current full release: 10.6.3.W
+Archive: batchmath-site-v10.6.3.W.zip
 
-Complete cumulative website built from v10.6.3.R. Retains the R problem-counting
-and Enter corrections that the user confirmed passed GitHub QA.
-
-S adds optional targeted hints and fully rewritten numbered explanations for
-all 38 Advanced Trigonometric Limits problem families. The standalone tester
-contains the identical engine controller and generator. See
-BatchMath-v10.6.3.S-QA.txt for changes, validation, and browser limitations.
-
-Use this S checkpoint as the next working baseline. Preserve/export future
-cumulative working copies between chats, including unfinished work.
+Built from full V plus both saved checkpoints: V-radical-1 and V-IM1-like-terms-1.
+Includes the Distributive Property, Linear Equations, Linear Inequalities, Interval Notation and Comprehensive Review changes.
+See BatchMath-v10.6.3.W-Recheck.md.
+No deployment performed.

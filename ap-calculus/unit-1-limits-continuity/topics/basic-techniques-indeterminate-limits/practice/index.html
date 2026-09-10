@@ -77,8 +77,8 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
   
     gtag('config', 'G-377MTFXSF3');
   </script>
-<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_topic_basic_techniques_indeterminate_limits",generatorVersion:"8"};</script><script src="/assets/problem-tracking.js"></script>
-</head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_topic_basic_techniques_indeterminate_limits",generatorVersion:"9"};</script><script src="/assets/problem-tracking.js"></script>
+<link rel="stylesheet" href="/assets/unit1-practice.css"><script src="/assets/unit1-practice-ui.js"></script></head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
 <img class="corner" src="../../../../../assets/batchmath-portrait.jpg" alt="">
 <a class="logo" href="../../../../../">BatchMath<span class="tm-mark">™</span></a>
 <div class="profile"><img src="../../../../../assets/batchmath-portrait.jpg" alt="BatchMath">
@@ -174,20 +174,20 @@ document.addEventListener("DOMContentLoaded",function(){
     const type=ri(1,4);
     if(type===1){
       const a=ri(2,9);
-      return {cat:"factoring",id:`f-ds-${a}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{x^2-${a*a}}{x-${a}}\\)`,ans:rat(2*a),sol:`Substitution gives \\(\\frac{0}{0}\\). Factor the difference of squares: \\(x^2-${a*a}=(x-${a})(x+${a})\\). Cancel \\(x-${a}\\), then substitute to get \\(${a}+${a}=${2*a}\\).`};
+      return {cat:"factoring",id:`f-ds-${a}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{x^2-${a*a}}{x-${a}}\\)`,ans:rat(2*a),sol:`Substitution gives \\(0/0\\), so simplify first. Factor \\(x^2-${a*a}=(x-${a})(x+${a})\\). For \\(x\\ne${a}\\), cancel \\(x-${a}\\), leaving \\(x+${a}\\). Thus the limit is \\(${a}+${a}=${2*a}\\). Cancellation describes nearby values; it does not fill the original hole.`};
     }
     if(type===2){
       let r=ri(-5,5),s=ri(-6,6);while(s===r)s=ri(-6,6);
       const ans=r-s;
-      return {cat:"factoring",id:`f-q-${r}-${s}`,q:`\\(\\displaystyle \\lim_{x\\to ${r}} \\frac{${quadFromRoots(r,s)}}{${shifted("x",r)}}\\)`,ans:rat(ans),sol:`Substitution gives \\(\\frac{0}{0}\\). Factor the numerator as \\((${shifted("x",r)})(${shifted("x",s)})\\), cancel the factor that becomes zero, and substitute \\(x=${r}\\). The remaining factor has value \\(${ans}\\).`};
+      return {cat:"factoring",id:`f-q-${r}-${s}`,q:`\\(\\displaystyle \\lim_{x\\to ${r}} \\frac{${quadFromRoots(r,s)}}{${shifted("x",r)}}\\)`,ans:rat(ans),sol:`Factor the numerator as \\((${shifted("x",r)})(${shifted("x",s)})\\). For \\(x\\ne${r}\\), cancel \\(${shifted("x",r)}\\), leaving \\(${shifted("x",s)}\\). Evaluate this continuous expression at \\(x=${r}\\): \\(${r}-(${s})=${ans}\\).`};
     }
     if(type===3){
       let r=ri(-4,4),s=ri(-6,6),t=ri(-6,6);while(s===r)s=ri(-6,6);while(t===r)t=ri(-6,6);
       const a=rat(r-s,r-t);
-      return {cat:"factoring",id:`f-ratio-${r}-${s}-${t}`,q:`\\(\\displaystyle \\lim_{x\\to ${r}} \\frac{${quadFromRoots(r,s)}}{${quadFromRoots(r,t)}}\\)`,ans:a,sol:`Both polynomials contain the factor that becomes zero at \\(x=${r}\\). Factor and cancel that common factor. The remaining ratio is \\(\\frac{${r-s}}{${r-t}}=${texRat(a)}\\).`};
+      return {cat:"factoring",id:`f-ratio-${r}-${s}-${t}`,q:`\\(\\displaystyle \\lim_{x\\to ${r}} \\frac{${quadFromRoots(r,s)}}{${quadFromRoots(r,t)}}\\)`,ans:a,sol:`Factor both polynomials. For \\(x\\ne${r}\\),<br>\\(\\frac{(${shifted("x",r)})(${shifted("x",s)})}{(${shifted("x",r)})(${shifted("x",t)})}=\\frac{${shifted("x",s)}}{${shifted("x",t)}}\\).<br>The remaining denominator is nonzero at \\(x=${r}\\), so the limit is \\(\\frac{${r}-(${s})}{${r}-(${t})}=${texRat(a)}\\).`};
     }
     const a=ri(2,6),a3=a*a*a;
-    return {cat:"factoring",id:`f-cube-${a}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{x^3-${a3}}{x-${a}}\\)`,ans:rat(3*a*a),sol:`Use the difference-of-cubes factorization \\(x^3-${a3}=(x-${a})(x^2+${a}x+${a*a})\\). Cancel \\(x-${a}\\) and substitute to get \\(${a*a}+${a*a}+${a*a}=${3*a*a}\\).`};
+    return {cat:"factoring",id:`f-cube-${a}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{x^3-${a3}}{x-${a}}\\)`,ans:rat(3*a*a),sol:`Use \\(x^3-${a3}=(x-${a})(x^2+${a}x+${a*a})\\). For \\(x\\ne${a}\\), cancel the common factor. The remaining polynomial is continuous, so the limit is \\(${a*a}+${a*a}+${a*a}=${3*a*a}\\).`};
   }
 
   const fracPowerTex=(p,n)=>{
@@ -202,6 +202,7 @@ document.addEventListener("DOMContentLoaded",function(){
   const fractionalPowerDisplay=(p,n,notation)=>notation==="radical"?radicalPowerTex(p,n):fracPowerTex(p,n);
   const subProblem=(variant,id,q,ans,sol)=>({cat:"substitution",problemType:"variable_substitution",problemVariant:variant,id,q,ans,sol});
 
+  const powerSum=(n,k)=>Array.from({length:n},(_,i)=>{const e=n-1-i,c=k**i,v=e===0?'':e===1?'u':`u^{${e}}`;return `${c===1&&v?'':c}${v}`;}).join('+');
   function substitution(){
     // U-substitution is deliberately distinct from the Rationalizing category:
     // no square-root / x^(1/2) problems appear here. About 60% of problems are
@@ -228,12 +229,12 @@ document.addEventListener("DOMContentLoaded",function(){
         const ans=rat(1,factor);
         return subProblem("cube_root_over_power",`sub-cuberoot-over-power-${k}-${notation}`,
           `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${root}-${k}}{${den}}\\)`,ans,
-          `Let \\(u=x^{\\frac{1}{3}}\\), so \\(x=u^3\\) and \\(u\\to${k}\\). The limit becomes \\(\\frac{u-${k}}{u^3-${target}}\\). Factor the difference of cubes, cancel \\(u-${k}\\), and substitute \\(u=${k}\\) to get \\(${texRat(ans)}\\).`);
+          `Let \\(u=\\sqrt[3]{x}\\), so \\(x=u^3\\) and \\(u\\to${k}\\). For \\(u\\ne${k}\\),<br>\\(\\frac{u-${k}}{u^3-${target}}=\\frac1{u^2+${k}u+${k*k}}\\).<br>Substituting \\(u=${k}\\) gives \\(\\frac1{${k*k}+${k*k}+${k*k}}=${texRat(ans)}\\).`);
       }
       const ans=rat(factor);
       return subProblem("power_over_cube_root",`sub-power-over-cuberoot-${k}-${notation}`,
         `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${den}}{${root}-${k}}\\)`,ans,
-        `Let \\(u=x^{\\frac{1}{3}}\\), so \\(x=u^3\\) and \\(u\\to${k}\\). The limit becomes \\(\\frac{u^3-${target}}{u-${k}}\\). Factor the difference of cubes, cancel \\(u-${k}\\), and substitute \\(u=${k}\\) to get \\(${texRat(ans)}\\).`);
+        `Let \\(u=\\sqrt[3]{x}\\), so \\(x=u^3\\) and \\(u\\to${k}\\). Factor the difference of cubes. For \\(u\\ne${k}\\),<br>\\(\\frac{u^3-${target}}{u-${k}}=u^2+${k}u+${k*k}\\).<br>Its limit is \\(${k*k}+${k*k}+${k*k}=${texRat(ans)}\\).`);
     }
 
     if(family==="higher_cube_root_power"){
@@ -255,12 +256,12 @@ document.addEventListener("DOMContentLoaded",function(){
         const ans=rat(1,factor);
         return subProblem("higher_root_over_power",`sub-higher-root-over-power-${n}-${k}-${notation}`,
           `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${root}-${k}}{${den}}\\)`,ans,
-          `Let \\(u=x^{\\frac{1}{${n}}}\\), so \\(x=u^{${n}}\\) and \\(u\\to${k}\\). Factor \\(u^{${n}}-${target}\\), cancel \\(u-${k}\\), and evaluate the remaining difference-of-powers sum to get \\(${texRat(ans)}\\).`);
+          `Let \\(u=x^{1/${n}}\\), so \\(x=u^{${n}}\\) and \\(u\\to${k}\\). Factor \\(u^{${n}}-${target}=(u-${k})(${powerSum(n,k)})\\). Cancel for \\(u\\ne${k}\\), leaving \\(\\frac1{${powerSum(n,k)}}\\). At \\(u=${k}\\), each of the \\(${n}\\) denominator terms is \\(${k**(n-1)}\\), giving \\(\\frac1{${n}\\cdot${k**(n-1)}}=${texRat(ans)}\\).`);
       }
       const ans=rat(factor);
       return subProblem("power_over_higher_root",`sub-power-over-higher-root-${n}-${k}-${notation}`,
         `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${den}}{${root}-${k}}\\)`,ans,
-        `Let \\(u=x^{\\frac{1}{${n}}}\\), so \\(x=u^{${n}}\\) and \\(u\\to${k}\\). Factor the difference of powers, cancel \\(u-${k}\\), and substitute \\(u=${k}\\) to get \\(${texRat(ans)}\\).`);
+        `Let \\(u=x^{1/${n}}\\), so \\(x=u^{${n}}\\) and \\(u\\to${k}\\). The difference-of-powers factorization gives, for \\(u\\ne${k}\\),<br>\\(\\frac{u^{${n}}-${target}}{u-${k}}=${powerSum(n,k)}\\).<br>Each of its \\(${n}\\) terms tends to \\(${k**(n-1)}\\), so the limit is \\(${n}\\cdot${k**(n-1)}=${texRat(ans)}\\).`);
     }
 
     if(family==="higher_fractional_power"){
@@ -271,7 +272,7 @@ document.addEventListener("DOMContentLoaded",function(){
       const km=Math.pow(k,m),ans=rat(m*Math.pow(k,m-1));
       return subProblem("higher_fractional_power",`sub-higher-power-${n}-${m}-${k}-${notation}`,
         `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${high}-${km}}{${root}-${k}}\\)`,ans,
-        `Let \\(u=x^{\\frac{1}{${n}}}\\), so \\(u\\to${k}\\). Then the expression becomes \\(\\frac{u^{${m}}-${km}}{u-${k}}\\). Factor the difference of powers, cancel \\(u-${k}\\), and substitute to get \\(${texRat(ans)}\\).`);
+        `Let \\(u=x^{1/${n}}\\), so \\(u\\to${k}\\). Then \\(u^{${m}}-${km}=(u-${k})(${powerSum(m,k)})\\). Cancel the common factor for \\(u\\ne${k}\\). The remaining sum has \\(${m}\\) terms, each tending to \\(${k**(m-1)}\\), so the limit is \\(${m}\\cdot${k**(m-1)}=${texRat(ans)}\\).`);
     }
 
     if(family==="mixed_fractional_powers"){
@@ -286,7 +287,7 @@ document.addEventListener("DOMContentLoaded",function(){
       const ans=rat(p*Math.pow(k,p-1),q*Math.pow(k,q-1));
       return subProblem("mixed_fractional_powers",`sub-mixed-powers-${n}-${p}-${q}-${k}`,
         `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${fracPowerTex(p,n)}-${kp}}{${fracPowerTex(q,n)}-${kq}}\\)`,ans,
-        `Use the common substitution \\(u=x^{\\frac{1}{${n}}}\\), so \\(u\\to${k}\\). The limit becomes \\(\\frac{u^{${p}}-${kp}}{u^{${q}}-${kq}}\\). Factor both differences, cancel \\(u-${k}\\), and evaluate the remaining factors to get \\(${texRat(ans)}\\).`);
+        `Let \\(u=x^{1/${n}}\\), so \\(u\\to${k}\\). The quotient becomes \\(\\frac{u^{${p}}-${kp}}{u^{${q}}-${kq}}\\). Factor both differences and cancel \\(u-${k}\\) for \\(u\\ne${k}\\):<br>\\(\\frac{${powerSum(p,k)}}{${powerSum(q,k)}}\\longrightarrow\\frac{${p}\\cdot${k**(p-1)}}{${q}\\cdot${k**(q-1)}}=${texRat(ans)}\\).`);
     }
 
     if(family==="clean_shifted_cube_root"){
@@ -307,7 +308,7 @@ document.addEventListener("DOMContentLoaded",function(){
       const numerator=m===1?`(${xa})^2`:`${m}(${xa})^2`;
       return subProblem("cube_root_quadratic_substitution",`sub-cuberoot-quadratic-${k}-${a}-${m}`,
         `\\(\\displaystyle \\lim_{x\\to${a}} \\frac{${numerator}}{\\left(${root}\\right)^2-${middle}${root}+${constant}}\\)`,ans,
-        `Let \\(u=${root}\\), so \\(u\\to${k}\\) and \\(${xa}=u^3-${cube}=(u-${k})(u^2+${k}u+${k*k})\\). The denominator is \\((u-${k})^2\\). Cancel \\((u-${k})^2\\); at \\(u=${k}\\), the remaining value is \\(${m}(${3*k*k})^2=${texRat(ans)}\\).`);
+        `Let \\(u=${root}\\), so \\(u\\to${k}\\). We have \\(${xa}=u^3-${cube}=(u-${k})(u^2+${k}u+${k*k})\\). The numerator is \\(${m}(u-${k})^2(u^2+${k}u+${k*k})^2\\) and the denominator is \\((u-${k})^2\\). Cancel for \\(u\\ne${k}\\). The remaining expression is \\(${m}(u^2+${k}u+${k*k})^2\\), whose limit is \\(${m}(${3*k*k})^2=${texRat(ans)}\\).`);
     }
 
     const k=pick([2,2,3,3,4]),cube=k*k*k,a=pick([-2,-1,0,0,1,2,3]);
@@ -357,7 +358,7 @@ document.addEventListener("DOMContentLoaded",function(){
       const combined=a>0?`-\\frac{${xa}}{${a}x}`:`\\frac{${xa}}{${-a}x}`;
       return complexProblem("routine_reciprocal_basic",`cf-recip-basic-${a}`,
         `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${gap}}{${xa}}\\)`,ans,
-        `Combine the numerator: \\(${gap}=${combined}\\). Cancel \\(${xa}\\), then substitute \\(x=${a}\\) to get \\(${texRat(ans)}\\).`);
+        `Combine the numerator: \\(${gap}=${combined}\\). For \\(x\\ne${a}\\), cancel \\(${xa}\\) from the full quotient, leaving \\(-\\frac1{${a}x}\\). Its limit is \\(-\\frac1{${a2}}=${texRat(ans)}\\).`);
     }
 
     if(family==="reciprocal_denominator"){
@@ -377,7 +378,7 @@ document.addEventListener("DOMContentLoaded",function(){
         const ans=rat(-1,d*d);
         return complexProblem("routine_shifted_reciprocal",`cf-shifted-${a}-${c}`,
           `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${gap}}{${xa}}\\)`,ans,
-          `Combine the numerator. The difference simplifies to \\(${combined}\\). Cancel \\(${xa}\\), then substitute \\(x=${a}\\) to obtain \\(${texRat(ans)}\\).`);
+          `Combine the numerator: \\(${gap}=${combined}\\). Cancel \\(${xa}\\) for \\(x\\ne${a}\\), leaving \\(-\\frac1{${d}(${xc})}\\). Substitution gives \\(-\\frac1{${d*d}}=${texRat(ans)}\\).`);
       }
       const ans=rat(-(d*d)),after=d>0?`-${d}(${xc})`:`${-d}(${xc})`;
       return complexProblem("routine_shifted_reciprocal_denominator",`cf-shifted-den-${a}-${c}`,
@@ -389,14 +390,14 @@ document.addEventListener("DOMContentLoaded",function(){
       const c=ri(1,5),A=a2+c,ans=rat(-2*a,A*A);
       return complexProblem("intermediate_reciprocal_quadratic",`cf-recip-quad-${a}-${c}`,
         `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{\\frac1{x^2+${c}}-\\frac1{${A}}}{${xa}}\\)`,ans,
-        `Combine the fractions in the numerator: \\(\\frac{${A}-(x^2+${c})}{${A}(x^2+${c})}=\\frac{${a2}-x^2}{${A}(x^2+${c})}\\). Factor \\(${a2}-x^2=-(${xa})(x+${a})\\), cancel \\(${xa}\\), and substitute \\(x=${a}\\). The result is \\(${texRat(ans)}\\).`);
+        `Combine the numerator:<br>\\(\\frac{${A}-(x^2+${c})}{${A}(x^2+${c})}=\\frac{-(${xa})(x+${a})}{${A}(x^2+${c})}\\).<br>Cancel \\(${xa}\\) from the full quotient for \\(x\\ne${a}\\), leaving \\(-\\frac{x+${a}}{${A}(x^2+${c})}\\). Its limit is \\(-\\frac{${2*a}}{${A*A}}=${texRat(ans)}\\).`);
     }
 
     if(family==="reciprocal_square"){
       const ans=rat(-2,a*a*a);
       return complexProblem("intermediate_reciprocal_square",`cf-recip-square-${a}`,
         `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{\\frac1{x^2}-\\frac1{${a2}}}{${xa}}\\)`,ans,
-        `Combine the numerator: \\(\\frac{${a2}-x^2}{${a2}x^2}=-\\frac{(${xa})(x+${a})}{${a2}x^2}\\). Cancel \\(${xa}\\) and substitute \\(x=${a}\\), giving \\(${texRat(ans)}\\).`);
+        `Combine the numerator:<br>\\(\\frac1{x^2}-\\frac1{${a2}}=-\\frac{(${xa})(x+${a})}{${a2}x^2}\\).<br>Cancel \\(${xa}\\) from the full quotient for \\(x\\ne${a}\\). The remaining expression is \\(-\\frac{x+${a}}{${a2}x^2}\\), giving \\(-\\frac{${2*a}}{${a2*a2}}=${texRat(ans)}\\).`);
     }
 
     if(family==="rational_linear_difference"){
@@ -405,7 +406,7 @@ document.addEventListener("DOMContentLoaded",function(){
       const ans=rat(c-b,denA*denA);
       return complexProblem("intermediate_rational_difference",`cf-rational-diff-${aa}-${b}-${c}`,
         `\\(\\displaystyle \\lim_{x\\to ${aa}} \\frac{${fx}-${texRat(atA)}}{${xa2}}\\)`,ans,
-        `Combine the two rational expressions in the numerator. The difference simplifies to \\(\\frac{${c-b}(${xa2})}{${denA}(x+${c})}\\). Cancel \\(${xa2}\\), then substitute \\(x=${aa}\\) to get \\(${texRat(ans)}\\).`);
+        `Combining the numerator over a common denominator gives \\(\\frac{${c-b}(${xa2})}{${denA}(x+${c})}\\). Cancel \\(${xa2}\\) from the full quotient for \\(x\\ne${aa}\\), leaving \\(\\frac{${c-b}}{${denA}(x+${c})}\\). Its limit is \\(\\frac{${c-b}}{${denA*denA}}=${texRat(ans)}\\).`);
     }
 
     if(family==="double_reciprocal"){
@@ -416,21 +417,21 @@ document.addEventListener("DOMContentLoaded",function(){
       const ans=rat(d*d,a2);
       return complexProblem("challenging_double_reciprocal",`cf-double-recip-${a}-${c}`,
         `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${top}}{${bottom}}\\)`,ans,
-        `Combine the two differences separately. The numerator is \\(${topCombined}\\), while the denominator is \\(${bottomCombined}\\). Divide by multiplying by the reciprocal and cancel \\(${xa}\\). Substituting \\(x=${a}\\) gives \\(${texRat(ans)}\\).`);
+        `Combine each difference: the numerator is \\(${topCombined}\\) and the denominator is \\(${bottomCombined}\\). Divide by multiplying by the reciprocal. For \\(x\\ne${a}\\), the common factor cancels, leaving \\(\\frac{${d}(${xc})}{${a}x}\\). Its limit is \\(\\frac{${d*d}}{${a2}}=${texRat(ans)}\\).`);
     }
 
     if(family==="reciprocal_square_over_reciprocal"){
       const bottom=reciprocalDifference("\\frac1x",a),ans=rat(2,a);
       return complexProblem("challenging_reciprocal_square_over_reciprocal",`cf-square-over-recip-${a}`,
         `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{\\frac1{x^2}-\\frac1{${a2}}}{${bottom}}\\)`,ans,
-        `Factor after combining each difference. The numerator is \\(\\frac{(${a}-x)(${a}+x)}{${a2}x^2}\\) and the denominator is \\(\\frac{${a}-x}{${a}x}\\). Divide, cancel \\(${a}-x\\), and substitute \\(x=${a}\\) to get \\(${texRat(ans)}\\).`);
+        `Combine both differences:<br>\\(\\frac1{x^2}-\\frac1{${a2}}=\\frac{(${a}-x)(${a}+x)}{${a2}x^2},\\quad ${bottom}=\\frac{${a}-x}{${a}x}\\).<br>Divide and cancel \\(${a}-x\\) for \\(x\\ne${a}\\), leaving \\(\\frac{${a}+x}{${a}x}\\). The limit is \\(\\frac{${2*a}}{${a2}}=${texRat(ans)}\\).`);
     }
 
     const top=reciprocalDifference("\\frac1x",a),ans=rat(-1,2*a*a*a);
     const combined=a>0?`-\\frac{${xa}}{${a}x}`:`\\frac{${xa}}{${-a}x}`;
     return complexProblem("challenging_reciprocal_over_factored",`cf-recip-over-factor-${a}`,
       `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{${top}}{x^2-${a2}}\\)`,ans,
-      `Combine the numerator as \\(${combined}\\) and factor the denominator as \\((${xa})(x+${a})\\). Cancel the common \\(${xa}\\), then substitute \\(x=${a}\\) to obtain \\(${texRat(ans)}\\).`);
+      `The numerator simplifies to \\(${combined}\\), and the denominator factors as \\((${xa})(x+${a})\\). Cancel \\(${xa}\\) for \\(x\\ne${a}\\), leaving \\(-\\frac1{${a}x(x+${a})}\\). Its limit is \\(-\\frac1{${2*a*a*a}}=${texRat(ans)}\\).`);
   }
 
   function squeeze(){
@@ -448,23 +449,23 @@ document.addEventListener("DOMContentLoaded",function(){
     const type=ri(1,7),k=ri(2,7),m=ri(2,8);
     if(type===1){const a=rat(k,m);return {cat:"trig",id:`t1-${k}-${m}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{\\sin(${k}x)}{${m}x}\\)`,ans:a,sol:`Rewrite as \\(\\frac{${k}}{${m}}\\cdot\\frac{\\sin(${k}x)}{${k}x}\\). The standard trigonometric limit is \\(1\\), so the result is \\(${texRat(a)}\\).`};}
     if(type===2){const a=rat(k,m);return {cat:"trig",id:`t2-${k}-${m}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{\\sin(${k}x)}{\\sin(${m}x)}\\)`,ans:a,sol:`Multiply and divide to create two standard limits: \\(\\frac{\\sin(${k}x)}{${k}x}\\cdot\\frac{${m}x}{\\sin(${m}x)}\\cdot\\frac{${k}}{${m}}\\). The first two factors approach \\(1\\), leaving \\(${texRat(a)}\\).`};}
-    if(type===3){const a=rat(k,m);return {cat:"trig",id:`t3-${k}-${m}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{\\tan(${k}x)}{${m}x}\\)`,ans:a,sol:`Use \\(\\frac{\\tan u}{u}\\to1\\). Rewrite the expression as \\(\\frac{${k}}{${m}}\\cdot\\frac{\\tan(${k}x)}{${k}x}\\), so the limit is \\(${texRat(a)}\\).`};}
+    if(type===3){const a=rat(k,m);return {cat:"trig",id:`t3-${k}-${m}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{\\tan(${k}x)}{${m}x}\\)`,ans:a,sol:`With angles in radians, \\(\\frac{\\tan(${k}x)}{${m}x}=\\frac{${k}}{${m}}\\frac{\\sin(${k}x)}{${k}x}\\frac1{\\cos(${k}x)}\\). The last two factors tend to \\(1\\), so the limit is \\(${texRat(a)}\\).`};}
     if(type===4){const p=ri(2,4),val=Math.pow(k,p);return {cat:"trig",id:`t4-${k}-${p}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{\\tan^{${p}}(${k}x)}{x^{${p}}}\\)`,ans:rat(val),sol:`Write the expression as \\(\\left(\\frac{\\tan(${k}x)}{${k}x}\\right)^{${p}}${k}^{${p}}\\). The trigonometric factor approaches \\(1\\), leaving \\(${val}\\).`};}
     if(type===5){const p=ri(2,4),c=pick([2,3,4,5,8]),val=Math.pow(k,p);const a=rat(val,c);return {cat:"trig",id:`t5-${k}-${p}-${c}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{\\sin^{${p}}(${k}x)}{${c}x^{${p}}}\\)`,ans:a,sol:`Factor out \\(\\left(\\frac{\\sin(${k}x)}{${k}x}\\right)^{${p}}\\) and the constant \\(\\frac{${k}^{${p}}}{${c}}\\). The standard limit gives \\(${texRat(a)}\\).`};}
-    if(type===6){const c=ri(2,5);return {cat:"trig",id:`t6-${c}-${k}-${m}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{${c}-${c}\\cos^2(${k}x)}{${m}x}\\)`,ans:rat(0),sol:`Use \\(1-\\cos^2 u=\\sin^2u\\). The expression becomes a constant times \\(\\frac{\\sin^2(${k}x)}x\\), which can be written as \\(\\frac{\\sin(${k}x)}{${k}x}\\sin(${k}x)\\) times a constant. The first factor approaches \\(1\\) and the sine factor approaches \\(0\\), so the limit is \\(0\\).`};}
+    if(type===6){const c=ri(2,5);return {cat:"trig",id:`t6-${c}-${k}-${m}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{${c}-${c}\\cos^2(${k}x)}{${m}x}\\)`,ans:rat(0),sol:`Use \\(1-\\cos^2u=\\sin^2u\\):<br>\\(\\frac{${c}(1-\\cos^2(${k}x))}{${m}x}=\\frac{${c*k}}{${m}}\\frac{\\sin(${k}x)}{${k}x}\\sin(${k}x)\\).<br>The sine ratio tends to \\(1\\), while the sine factor tends to \\(0\\). The limit is \\(0\\).`};}
     const A=ri(1,4),kk=ri(1,3),mm=ri(1,3),ak=trigArg(kk),am=trigArg(mm);const a=rat(2*A-kk*kk,2*mm*mm);
-    return {cat:"trig",id:`t7-${A}-${kk}-${mm}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{${mono(A,2)}-(1-\\cos(${ak}))}{\\sin^2(${am})}\\)`,ans:a,sol:`Divide numerator and denominator by \\(x^2\\). Use \\(\\frac{1-\\cos(${ak})}{x^2}\\to\\frac{${kk*kk}}2\\) and \\(\\frac{\\sin(${am})}x\\to${mm}\\). The limit is \\(\\frac{${A}-${kk*kk}/2}{${mm*mm}}=${texRat(a)}\\).`};
+    return {cat:"trig",id:`t7-${A}-${kk}-${mm}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\frac{${mono(A,2)}-(1-\\cos(${ak}))}{\\sin^2(${am})}\\)`,ans:a,sol:`The conjugate gives<br>\\(\\frac{1-\\cos(${ak})}{x^2}=\\frac{(\\sin(${ak})/x)^2}{1+\\cos(${ak})}\\longrightarrow\\frac{${kk}^2}{2}\\), since \\(\\sin(${ak})/x\\to${kk}\\).<br>Divide the original numerator and denominator by \\(x^2\\):<br>\\(\\frac{${A}-(1-\\cos(${ak}))/x^2}{(\\sin(${am})/x)^2}\\longrightarrow\\frac{${A}-${kk*kk}/2}{${mm*mm}}=${texRat(a)}\\).`};
   }
 
   function oneSided(){
     const a=ri(-5,5),side=pick(["+","-"]),type=ri(1,4),dx=shifted("x",a);
     if(type===1){
       const ans=rat(side==="+"?1:-1);
-      return {cat:"oneSided",id:`o1-${a}-${side}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}^{${side}}} \\frac{${dx}}{|${dx}|}\\)`,ans,sol:`On the ${side==="+"?"right":"left"} side of \\(x=${a}\\), \\(${dx}\\) is ${side==="+"?"positive":"negative"}. The quotient is therefore \\(${textRat(ans)}\\).`};
+      return {cat:"oneSided",id:`o1-${a}-${side}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}^{${side}}} \\frac{${dx}}{|${dx}|}\\)`,ans,sol:`On the requested ${side==="+"?"right":"left"} side, \\(${dx}\\) is ${side==="+"?"positive":"negative"}, so \\(|${dx}|=${side==="+"?`(${dx})`:`-(${dx})`}\\). Substituting this into the quotient makes it identically \\(${textRat(ans)}\\) on that side. Thus the one-sided limit is \\(${textRat(ans)}\\).`};
     }
     if(type===2){
       const ans=rat(side==="+"?1:-1);
-      return {cat:"oneSided",id:`o2-${a}-${side}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}^{${side}}} \\frac{|${dx}|}{${dx}}\\)`,ans,sol:`Use the sign of \\(${dx}\\) on the requested side. The absolute value either leaves the expression unchanged or reverses its sign, giving \\(${textRat(ans)}\\).`};
+      return {cat:"oneSided",id:`o2-${a}-${side}`,q:`\\(\\displaystyle \\lim_{x\\to ${a}^{${side}}} \\frac{|${dx}|}{${dx}}\\)`,ans,sol:`On the requested ${side==="+"?"right":"left"} side, \\(${dx}\\) is ${side==="+"?"positive":"negative"}, so \\(|${dx}|=${side==="+"?`(${dx})`:`-(${dx})`}\\). Substituting this into the quotient makes it identically \\(${textRat(ans)}\\) on that side. Thus the one-sided limit is \\(${textRat(ans)}\\).`};
     }
     if(type===3){
       const ans=inf(side==="+"?1:-1);
@@ -482,16 +483,25 @@ document.addEventListener("DOMContentLoaded",function(){
   }
 
   function infinityLimit(){
-    const type=ri(1,22);
+    const type=BatchMathRNG.random()<.5?ri(4,14):pick([1,2,3,15,16,17,18,19,20,21,22,23,24]);
     const negDir=nextInfinityDirection(),dir=negDir?'-\\infty':'\\infty';
     const dirSign=negDir?-1:1;
+    if(type===23){
+      const n=ri(2,6),A=ri(1,9),B=nonzero(-5,5),C=ri(1,8),positive=Math.sign(B)*(negDir&&n%2?-1:1)>0;
+      return {cat:'infinity',id:`i23-log-zero-${n}-${A}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}}\\ln\\left(\\frac{${A}}{${mono(B,n)}+${C}}\\right)\\)`,ans:positive?inf(-1):{kind:'dne'},sol:`The denominator is dominated by \\(${mono(B,n)}\\), which tends to ${positive?'positive':'negative'} infinity in this direction. Thus the inner quotient tends to \\(0^{${positive?'+':'-'}}\\). ${positive?'For positive inputs approaching zero, the natural logarithm decreases without bound. The limit is \\(-\\infty\\); substituting zero into the logarithm is not valid.':'The inner quotient is negative for all sufficiently large inputs in this direction. A real logarithm requires a positive argument, so the function has no real values arbitrarily far in this direction. The requested real limit is DNE.'}`};
+    }
+    if(type===24){
+      const m=ri(1,3),gap=ri(1,3),A=nonzero(-5,5),B=ri(1,7),C=nonzero(-5,5),D=ri(1,7),positive=Math.sign(A*C)*(negDir&&gap%2?-1:1)>0;
+      return {cat:'infinity',id:`i24-log-ratio-zero-${m}-${gap}-${A}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}}\\ln\\left(\\frac{${mono(A,m)}+${B}}{${mono(C,m+gap)}+${D}}\\right)\\)`,ans:positive?inf(-1):{kind:'dne'},sol:`The denominator has ${gap} more power${gap===1?'':'s'} of x than the numerator, so the inner fraction tends to zero. Its eventual sign is the sign of \\(\\frac{${A}}{${C}x^{${gap}}}\\), which is ${positive?'positive':'negative'} in this direction. ${positive?'The argument approaches \\(0^+\\), so its natural logarithm tends to \\(-\\infty\\).':'The argument approaches \\(0^-\\). It is eventually negative, outside the real logarithm domain. Therefore the requested real limit is DNE.'}`};
+    }
+
     if(type===1){
       const n=ri(2,6),A=nonzero(-8,8),B=nonzero(-8,8),C=ri(-15,15),D=ri(-15,15),E=ri(-10,10),F=ri(-12,12),a=rat(A,B);
       return {cat:"infinity",id:`i1-${n}-${A}-${B}-${C}-${D}-${E}-${F}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${mono(A,n)}${sgnTerm(C,"x",false)}${sgnTerm(D,"",false)}}{${mono(B,n)}${sgnTerm(E,"x",false)}${sgnTerm(F,"",false)}}\\)`,ans:a,sol:`Divide numerator and denominator by \\(${xPow(n)}\\). Every lower-degree term approaches \\(0\\), leaving the ratio of leading coefficients \\(${texRat(a)}\\).`};
     }
     if(type===2){
       const n=ri(1,4),gap=ri(1,3),A=nonzero(-8,8),B=nonzero(-8,8),C=ri(-12,12),D=ri(-12,12);
-      return {cat:"infinity",id:`i2-${n}-${gap}-${A}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${mono(A,n)}${sgnTerm(C,"",false)}}{${mono(B,n+gap)}${sgnTerm(D,"",false)}}\\)`,ans:rat(0),sol:`After dividing by the highest power in the denominator, every term in the numerator approaches \\(0\\). The limit is \\(0\\).`};
+      return {cat:"infinity",id:`i2-${n}-${gap}-${A}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${mono(A,n)}${sgnTerm(C,"",false)}}{${mono(B,n+gap)}${sgnTerm(D,"",false)}}\\)`,ans:rat(0),sol:`Divide both parts by \\(x^{${n+gap}}\\):<br>\\(\\frac{${A}/x^{${gap}}+(${C})/x^{${n+gap}}}{${B}+(${D})/x^{${n+gap}}}\\).<br>The numerator tends to \\(0\\) and the denominator tends to \\(${B}\\ne0\\), so the limit is \\(0\\).`};
     }
     if(type===3){
       const n=ri(1,4),A=nonzero(-6,6),B=nonzero(-7,7),C=ri(-12,12),D=ri(-12,12);
@@ -504,23 +514,23 @@ document.addEventListener("DOMContentLoaded",function(){
     }
     if(type===5){
       const k=ri(2,9),B=nonzero(-14,14),C=ri(-18,18),m=nonzero(-8,8),n=ri(-10,10),a=rat(dirSign*m,k);
-      return {cat:"infinity",id:`i5-lin-over-radquad-${k}-${B}-${C}-${m}-${n}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${lin(m,n)}}{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}}}\\)`,ans:a,sol:`The radical behaves like \\(${k}|x|\\), while the numerator behaves like \\(${m}x\\). Therefore the leading ratio is \\(\\frac{${m}x}{${k}|x|}\\), which approaches \\(${texRat(a)}\\).`};
+      return {cat:"infinity",id:`i5-lin-over-radquad-${k}-${B}-${C}-${m}-${n}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${lin(m,n)}}{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}}}\\)`,ans:a,sol:`Factor \\(x^2\\) from the radical and use \\(\\sqrt{x^2}=|x|\\):<br>\\(\\frac{${m}x+(${n})}{|x|\\sqrt{${k*k}+(${B})/x+(${C})/x^2}}\\).<br>Since \\(x/|x|\\to${dirSign}\\) and \\(${n}/|x|\\to0\\), the limit is \\(\\frac{${m}(${dirSign})}{${k}}=${texRat(a)}\\).`};
     }
     if(type===6){
       const k=ri(2,9),m=ri(2,9),B=nonzero(-12,12),C=ri(-16,16),D=nonzero(-12,12),E=ri(-16,16),a=rat(k,m);
-      return {cat:"infinity",id:`i6-radquad-ratio-${k}-${m}-${B}-${C}-${D}-${E}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}}}{\\sqrt{${m*m}x^2${sgnTerm(D,'x',false)}${sgnTerm(E,'',false)}}}\\)`,ans:a,sol:`Factor \\(x^2\\) from both radicals. The \\(|x|\\) factors cancel, leaving \\(${texRat(a)}\\).`};
+      return {cat:"infinity",id:`i6-radquad-ratio-${k}-${m}-${B}-${C}-${D}-${E}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}}}{\\sqrt{${m*m}x^2${sgnTerm(D,'x',false)}${sgnTerm(E,'',false)}}}\\)`,ans:a,sol:`Factor \\(x^2\\) inside both radicals and cancel \\(|x|\\):<br>\\(\\frac{\\sqrt{${k*k}+(${B})/x+(${C})/x^2}}{\\sqrt{${m*m}+(${D})/x+(${E})/x^2}}\\longrightarrow\\frac{${k}}{${m}}=${texRat(a)}\\).`};
     }
     if(type===7){
       const k=ri(1,8),B=nonzero(-16,16),C=ri(-20,20),a=rat(dirSign*B,2*k),join=negDir?'+':'-';
-      return {cat:"infinity",id:`i7-conjugate-${k}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\left(\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}} ${join} ${k}x\\right)\\)`,ans:a,sol:`Multiply by the conjugate. The numerator becomes \\(${B}x${sgnTerm(C,'',false)}\\). After comparing the leading terms in the conjugate denominator, the limit is \\(${texRat(a)}\\).`};
+      return {cat:"infinity",id:`i7-conjugate-${k}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\left(\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}} ${join} ${k}x\\right)\\)`,ans:a,sol:`Multiply by the conjugate:<br>\\(\\sqrt{${k*k}x^2+(${B})x+(${C})}${join}${k}x=\\frac{${B}x+(${C})}{\\sqrt{${k*k}x^2+(${B})x+(${C})}${negDir?"-":"+"}${k}x}\\).<br>Divide both parts by \\(|x|\\). Since \\(x/|x|\\to${dirSign}\\), the numerator tends to \\(${B}(${dirSign})\\) and the denominator to \\(${k}+${k}=${2*k}\\). The limit is \\(${texRat(a)}\\).`};
     }
     if(type===8){
       const k=ri(1,8),B=nonzero(-16,16),C=ri(-20,20),a=rat(2*k,dirSign*B),join=negDir?'+':'-';
-      return {cat:"infinity",id:`i8-recip-conjugate-${k}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{1}{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}} ${join} ${k}x}\\)`,ans:a,sol:`Rationalize the denominator. The denominator approaches \\(${texRat(rat(dirSign*B,2*k))}\\), so its reciprocal approaches \\(${texRat(a)}\\).`};
+      return {cat:"infinity",id:`i8-recip-conjugate-${k}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{1}{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}} ${join} ${k}x}\\)`,ans:a,sol:`Rationalize the denominator:<br>\\(\\frac1{\\sqrt{${k*k}x^2+(${B})x+(${C})}${join}${k}x}=\\frac{\\sqrt{${k*k}x^2+(${B})x+(${C})}${negDir?"-":"+"}${k}x}{${B}x+(${C})}\\).<br>Divide both parts by \\(|x|\\). The numerator tends to \\(${2*k}\\) and the denominator to \\(${B}(${dirSign})\\ne0\\), giving \\(${texRat(a)}\\).`};
     }
     if(type===9){
       const k=ri(2,9),B=nonzero(-14,14),C=ri(-18,18),A=nonzero(-7,7),D=ri(-10,10);
-      return {cat:"infinity",id:`i9-radquad-over-quad-${k}-${B}-${C}-${A}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}}}{${mono(A,2)}${sgnTerm(D,'',false)}}\\)`,ans:rat(0),sol:`The numerator grows like \\(|x|\\), while the denominator grows like \\(x^2\\). The denominator wins, so the limit is \\(0\\).`};
+      return {cat:"infinity",id:`i9-radquad-over-quad-${k}-${B}-${C}-${A}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${k*k}x^2${sgnTerm(B,'x',false)}${sgnTerm(C,'',false)}}}{${mono(A,2)}${sgnTerm(D,'',false)}}\\)`,ans:rat(0),sol:`Divide both parts by \\(x^2\\), using \\(\\sqrt{x^2}=|x|\\):<br>\\(\\frac{\\sqrt{${k*k}+(${B})/x+(${C})/x^2}}{|x|(${A}+(${D})/x^2)}\\).<br>The radical tends to \\(${k}\\), the parenthesis to \\(${A}\\ne0\\), and \\(1/|x|\\to0\\). Hence the limit is \\(0\\).`};
     }
     if(type===10){
       const k=ri(2,9),B=nonzero(-14,14),C=ri(-18,18),A=nonzero(-7,7),D=ri(-10,10),sign=A>0?1:-1;
@@ -528,23 +538,23 @@ document.addEventListener("DOMContentLoaded",function(){
     }
     if(type===11){
       const A=ri(1,9),B=ri(-12,18),m=nonzero(-8,8),n=ri(-10,10),rad=negDir?lin(-A,B):lin(A,B);
-      return {cat:"infinity",id:`i11-radlin-over-lin-${A}-${B}-${m}-${n}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${rad}}}{${lin(m,n)}}\\)`,ans:rat(0),sol:`The radical grows on the order of \\(\\sqrt{|x|}\\), while the denominator grows on the order of \\(|x|\\). Therefore the quotient approaches \\(0\\).`};
+      return {cat:"infinity",id:`i11-radlin-over-lin-${A}-${B}-${m}-${n}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${rad}}}{${lin(m,n)}}\\)`,ans:rat(0),sol:`In this direction the radicand is \\(${A}|x|+(${B})\\). Factor the leading powers to obtain<br>\\(\\frac{\\sqrt{${A}+(${B})/|x|}}{\\sqrt{|x|}(${m}x/|x|+(${n})/|x|)}\\).<br>The numerator tends to \\(\\sqrt{${A}}\\), the last parenthesis to \\(${m*dirSign}\\ne0\\), and \\(1/\\sqrt{|x|}\\to0\\), giving limit \\(0\\).`};
     }
     if(type===12){
       const A=ri(1,9),B=ri(-12,18),m=nonzero(-8,8),n=ri(-10,10),rad=negDir?lin(-A,B):lin(A,B),sign=m*dirSign>0?1:-1;
-      return {cat:"infinity",id:`i12-lin-over-radlin-${A}-${B}-${m}-${n}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${lin(m,n)}}{\\sqrt{${rad}}}\\)`,ans:inf(sign),sol:`The numerator grows linearly, while the denominator grows like \\(\\sqrt{|x|}\\). The quotient is unbounded, and its sign in the stated direction gives \\(${sign>0?'\\infty':'-\\infty'}\\).`};
+      return {cat:"infinity",id:`i12-lin-over-radlin-${A}-${B}-${m}-${n}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${lin(m,n)}}{\\sqrt{${rad}}}\\)`,ans:inf(sign),sol:`In this direction, factor the radicand as \\(|x|(${A}+(${B})/|x|)\\). The quotient becomes<br>\\(\\sqrt{|x|}\\frac{${m}x/|x|+(${n})/|x|}{\\sqrt{${A}+(${B})/|x|}}\\).<br>The fraction tends to \\(\\frac{${m*dirSign}}{\\sqrt{${A}}}\\), a ${sign>0?"positive":"negative"} number, while \\(\\sqrt{|x|}\\to\\infty\\). Thus the limit is ${sign>0?"positive":"negative"} infinity.`};
     }
     if(type===13){
       const A=ri(1,9),B=ri(-10,16),k=ri(2,8),C=nonzero(-12,12),D=ri(-16,16),radLin=negDir?lin(-A,B):lin(A,B);
-      return {cat:"infinity",id:`i13-radlin-over-radquad-${A}-${B}-${k}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${radLin}}}{\\sqrt{${k*k}x^2${sgnTerm(C,'x',false)}${sgnTerm(D,'',false)}}}\\)`,ans:rat(0),sol:`The numerator grows like \\(\\sqrt{|x|}\\), while the denominator grows like \\(|x|\\). Hence the quotient approaches \\(0\\).`};
+      return {cat:"infinity",id:`i13-radlin-over-radquad-${A}-${B}-${k}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${radLin}}}{\\sqrt{${k*k}x^2${sgnTerm(C,'x',false)}${sgnTerm(D,'',false)}}}\\)`,ans:rat(0),sol:`Factor the leading powers from the radicals:<br>\\(\\frac1{\\sqrt{|x|}}\\frac{\\sqrt{${A}+(${B})/|x|}}{\\sqrt{${k*k}+(${C})/x+(${D})/x^2}}\\).<br>The radical ratio tends to \\(\\sqrt{${A}}/${k}\\), while \\(1/\\sqrt{|x|}\\to0\\). The limit is \\(0\\).`};
     }
     if(type===14){
       const A=ri(1,9),B=ri(-10,16),k=ri(2,8),C=nonzero(-12,12),D=ri(-16,16),radLin=negDir?lin(-A,B):lin(A,B);
-      return {cat:"infinity",id:`i14-radquad-over-radlin-${A}-${B}-${k}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${k*k}x^2${sgnTerm(C,'x',false)}${sgnTerm(D,'',false)}}}{\\sqrt{${radLin}}}\\)`,ans:inf(1),sol:`The numerator grows like \\(|x|\\), while the denominator grows like \\(\\sqrt{|x|}\\). Both are positive for sufficiently large \\(|x|\\), so the quotient approaches \\(\\infty\\).`};
+      return {cat:"infinity",id:`i14-radquad-over-radlin-${A}-${B}-${k}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{\\sqrt{${k*k}x^2${sgnTerm(C,'x',false)}${sgnTerm(D,'',false)}}}{\\sqrt{${radLin}}}\\)`,ans:inf(1),sol:`Factor the leading powers from the radicals:<br>\\(\\sqrt{|x|}\\frac{\\sqrt{${k*k}+(${C})/x+(${D})/x^2}}{\\sqrt{${A}+(${B})/|x|}}\\).<br>The radical ratio tends to the positive number \\(${k}/\\sqrt{${A}}\\), while \\(\\sqrt{|x|}\\to\\infty\\). Thus the limit is \\(\\infty\\).`};
     }
     if(type===15){
       const n=ri(1,7),base=pick([2,3,5]),coef=ri(1,5);
-      return {cat:"infinity",id:`i15-poly-exp-${n}-${base}-${coef}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${coef===1?'':coef}${xPow(n)}}{${base}^{|x|}}\\)`,ans:rat(0),sol:`Exponential growth in \\(|x|\\) dominates every polynomial power, so the quotient approaches \\(0\\).`};
+      return {cat:"infinity",id:`i15-poly-exp-${n}-${base}-${coef}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\frac{${coef===1?'':coef}${xPow(n)}}{${base}^{|x|}}\\)`,ans:rat(0),sol:`Let \\(t=|x|\\), so \\(t\\to\\infty\\). The absolute value of the quotient is \\(\\frac{${coef}t^{${n}}}{${base}^t}\\). Exponential growth with base \\(${base}>1\\) outpaces this fixed polynomial power, so that positive ratio tends to \\(0\\). The original quotient therefore also tends to \\(0\\).`};
     }
     if(type===16){
       const n=pick([2,3,4]),A=ri(1,8),B=nonzero(-12,12),C=ri(1,16),pow=2*n;
@@ -560,11 +570,11 @@ document.addEventListener("DOMContentLoaded",function(){
     }
     if(type===19){
       const lo=pick([2,4]),hi=lo+pick([2,4]),A=ri(1,6),B=ri(1,10),C=ri(1,6),D=ri(1,10);
-      return {cat:"infinity",id:`i19-logratio-${hi}-${lo}-${A}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\ln\\left(\\frac{${mono(A,hi)}+${B}}{${mono(C,lo)}+${D}}\\right)\\)`,ans:inf(1),sol:`The positive rational expression inside the logarithm grows without bound, so the logarithm approaches \\(\\infty\\).`};
+      return {cat:"infinity",id:`i19-logratio-${hi}-${lo}-${A}-${B}-${C}-${D}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} \\ln\\left(\\frac{${mono(A,hi)}+${B}}{${mono(C,lo)}+${D}}\\right)\\)`,ans:inf(1),sol:`The inner rational expression has leading behavior \\(\\frac{${A}}{${C}}x^{${hi-lo}}\\). Its coefficient is positive and its power is even, so it tends to \\(+\\infty\\) in the requested direction and is eventually positive. Its logarithm therefore tends to \\(+\\infty\\).`};
     }
     if(type===20){
       const n=ri(1,4),A=ri(1,6),B=ri(-10,10),C=ri(-10,10),sgn=pick([-1,1]),lead=sgn*A,innerSign=sgn*(negDir&&n%2===1?-1:1),ans=innerSign>0?inf(1):rat(0),lower=n===1?sgnTerm(C,'',false):sgnTerm(B,'x',false)+sgnTerm(C,'',false);
-      return {cat:"infinity",id:`i20-exp-poly-${n}-${lead}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} e^{${mono(lead,n)}${lower}}\\)`,ans,sol:`The exponent approaches \\(${innerSign>0?'\\infty':'-\\infty'}\\). Therefore the exponential approaches \\(${innerSign>0?'\\infty':'0'}\\).`};
+      return {cat:"infinity",id:`i20-exp-poly-${n}-${lead}-${B}-${C}-${negDir}`,q:`\\(\\displaystyle \\lim_{x\\to${dir}} e^{${mono(lead,n)}${lower}}\\)`,ans,sol:`The exponent has leading term \\(${mono(lead,n)}\\). In the requested direction, \\(x^{${n}}\\) is ${negDir&&n%2===1?"negative":"positive"} with unbounded magnitude. Multiplying by \\(${lead}\\) makes the exponent tend to ${innerSign>0?"positive":"negative"} infinity, so the exponential tends to ${innerSign>0?"positive infinity":"zero"}.`};
     }
     if(type===21){
       const n=ri(1,4),A=nonzero(-6,6),B=nonzero(-7,7),C=ri(-10,10),D=ri(-10,10),linearSign=(A*B>0?1:-1)*dirSign,ans=linearSign>0?inf(1):rat(0);
@@ -576,13 +586,13 @@ document.addEventListener("DOMContentLoaded",function(){
 
   function special(){
     const type=ri(1,3),k=ri(1,7);
-    if(type===1)return {cat:"special",id:`sp1-${k}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\sin\\left(\\frac{${k}}x\\right)\\)`,ans:dne(),sol:`As \\(x\\to0\\), the input \\(\\frac{${k}}{x}\\) becomes unbounded and sine continues oscillating between \\(-1\\) and \\(1\\). The function does not approach one value, so the limit does not exist.`};
-    if(type===2)return {cat:"special",id:`sp2-${k}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\cos\\left(\\frac{${k}}x\\right)\\)`,ans:dne(),sol:`The cosine term oscillates indefinitely as \\(x\\to0\\) and does not approach a single number. Therefore the limit is DNE.`};
+    if(type===1)return {cat:"special",id:`sp1-${k}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\sin\\left(\\frac{${k}}x\\right)\\)`,ans:dne(),sol:`Arbitrarily close to \\(x=0\\), the sine expression repeatedly takes both \\(-1\\) and \\(1\\). These distinct values persist, so the function cannot approach a single number. The limit is DNE.`};
+    if(type===2)return {cat:"special",id:`sp2-${k}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\cos\\left(\\frac{${k}}x\\right)\\)`,ans:dne(),sol:`Arbitrarily close to \\(x=0\\), the cosine expression repeatedly takes both \\(-1\\) and \\(1\\). These distinct values persist, so the function cannot approach a single number. The limit is DNE.`};
     return {cat:"special",id:`sp3-${k}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\left|\\sin\\left(\\frac{${k}}x\\right)\\right|\\)`,ans:dne(),sol:`Even after taking absolute value, the function repeatedly takes values near both \\(0\\) and \\(1\\) arbitrarily close to \\(x=0\\). It has no single limiting value, so the limit is DNE.`};
   }
 
   const generators={continuous,factoring,substitution,rationalizing,complex:complexFraction,squeeze,trig,oneSided,infinity:infinityLimit,special,infinitySpecial:()=>pick([infinityLimit,special])()};
-  const mixedWeights=["continuous",...Array(3).fill("factoring"),...Array(3).fill("substitution"),...Array(3).fill("rationalizing"),...Array(3).fill("complex"),...Array(3).fill("squeeze"),...Array(3).fill("trig"),...Array(3).fill("oneSided"),...Array(3).fill("infinity"),...Array(3).fill("special")];
+  const mixedWeights=["continuous",...Array(3).fill("factoring"),...Array(3).fill("substitution"),...Array(3).fill("rationalizing"),...Array(3).fill("complex")];
 
   function makeProblem(){
     const selected=$("category").value;
@@ -595,28 +605,18 @@ document.addEventListener("DOMContentLoaded",function(){
     }
     p.q=cleanSigns(p.q);
     p.sol=cleanSigns(p.sol);
-    current=p;
+    current=p;current.answered=false;
     window.BMAnalytics?.ensurePracticeStarted({practice_mode:$("category").value});
     window.BMAnalytics?.problemGenerated(current,{practice_mode:$("category").value});
     $("question").innerHTML=p.q;
     $("answer").value="";window.BatchMathCalculusKeypad?.reset?.();$("answer").disabled=false;$("submit").disabled=false;
-    $("feedback").className="feedback";$("feedback").innerHTML="";$("next").style.display="none";
+    delete $("feedback").dataset.answerState;$("feedback").className="feedback";$("feedback").innerHTML="";$("next").style.display="none";
     $("topic-name").textContent=categoryLabel[p.cat];
     typeset([$("question")]);
     if(window.BatchMathCalculusKeypad)BatchMathCalculusKeypad.focus();else $("answer").focus();
   }
 
-  function parse(raw){
-    raw=window.BatchMathAnswers?.normalizeFractionSigns(raw) ?? raw;
-    let s=raw.trim().toLowerCase().replace(/\s+/g,"").replace(/−/g,"-");
-    if(["dne","doesnotexist","doesn'texist","doesntexist","undefined"].includes(s))return {kind:"dne"};
-    if(["∞","+∞","inf","+inf","infinity","+infinity"].includes(s))return {kind:"inf",sign:1};
-    if(["-∞","-inf","-infinity"].includes(s))return {kind:"inf",sign:-1};
-    const fm=s.match(/^\(?([+-]?(?:\d+(?:\.\d*)?|\.\d+))\)?\/\(?([+-]?(?:\d+(?:\.\d*)?|\.\d+))\)?$/);
-    if(fm){const d=Number(fm[2]);if(d===0)return null;return {kind:"num",value:Number(fm[1])/d};}
-    if(/^[-+]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(s))return {kind:"num",value:Number(s)};
-    return null;
-  }
+  function parse(raw){const p=window.BMUnit1UI.parse(raw);return p.error?null:p;}
   function isCorrect(parsed,ans){
     if(!parsed)return false;
     if(ans.kind==="dne")return parsed.kind==="dne";
@@ -625,31 +625,26 @@ document.addEventListener("DOMContentLoaded",function(){
     return Math.abs(parsed.value-ans.n/ans.d)<1e-7;
   }
   function typeset(nodes){if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetClear(nodes);MathJax.typesetPromise(nodes);}}
+  function finishAnswer(ok){
+    if(current.answered)return;current.answered=true;attempts++;$("attempted").textContent=attempts;
+    window.BMAnalytics?.answerChecked(current,ok);if(ok){correctCount++;$("correct-count").textContent=correctCount;}
+    $("answer").disabled=true;$("submit").disabled=true;$("next").style.display="inline-block";
+    $("feedback").className="feedback "+(ok?"correct":"wrong");$("feedback").dataset.answerState="answered";
+    $("feedback").innerHTML=ok?'✓ Correct':`<div class="correct-answer">${current.ans?`Correct answer: \\(${texRat(current.ans)}\\)`:'Review the method below.'}</div><div class="method">${current.sol}</div>`;
+    if(ok)window.BMUnit1UI.methodButton($("feedback"),current.sol,()=>window.BMAnalytics?.solutionRevealed(current,{reveal_reason:'requested_method'}));
+    else window.BMAnalytics?.solutionRevealed(current,{reveal_reason:'incorrect_answer'});
+    typeset([$("feedback")]);
+  }
   function submit(){
-    if(!current)return;
-    const raw=$("answer").value;
-    if(!raw.trim()){ $("feedback").className="feedback wrong";$("feedback").textContent="Enter an answer.";return; }
-    attempts++;$("attempted").textContent=attempts;
-    const parsed=parse(raw);
-    const ok=isCorrect(parsed,current.ans);
-    window.BMAnalytics?.answerChecked(current,ok);
-    if(ok){
-      correctCount++;$("correct-count").textContent=correctCount;
-      $("feedback").className="feedback correct";$("feedback").textContent="✓ Correct";
-      $("answer").disabled=true;$("submit").disabled=true;
-      setTimeout(makeProblem,550);
-    }else{
-      $("feedback").className="feedback wrong";
-      window.BMAnalytics?.solutionRevealed(current,{reveal_reason:"incorrect_answer"});
-      $("feedback").innerHTML=`<div class="correct-answer">Correct answer: \\(${texRat(current.ans)}\\)</div><div class="method"><strong>Method:</strong> ${current.sol}</div>`;
-      $("answer").disabled=true;$("submit").disabled=true;$("next").style.display="inline-block";
-      typeset([$("feedback")]);
-    }
+    if(!current||current.answered)return;
+    const parsed=window.BMUnit1UI.parse($("answer").value);
+    if(parsed.error){$("feedback").className="feedback wrong";$("feedback").dataset.answerState="invalid";$("feedback").textContent=parsed.error;return;}
+    finishAnswer(isCorrect(parsed,current.ans));
   }
   $("category").addEventListener("change",makeProblem);
   $("submit").addEventListener("click",submit);
   $("next").addEventListener("click",makeProblem);
-  $("answer").addEventListener("keydown",e=>{if(e.key==="Enter"&&!$("submit").disabled)submit();});
+  $("answer").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.defaultPrevented&&!$("submit").disabled){e.preventDefault();submit();}});
   makeProblem();
 })();
 </script><script data-batchmath-menu-a11y>

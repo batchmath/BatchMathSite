@@ -42,19 +42,19 @@ G['introduction-to-limits']=()=>{
   const a=ri(-4,4),L=ri(-7,7),fa=L+pick([-4,-3,3,4]);
   const rows=[[-.1,-.04],[-.01,-.005],[0,null],[.01,.006],[.1,.05]].map(([dx,e])=>[fmt(a+dx),dx===0?String(fa):fmt(L+e)]);
   const table=`<table><tr><th>x</th>${rows.map(r=>`<td>${r[0]}</td>`).join('')}</tr><tr><th>f(x)</th>${rows.map(r=>`<td>${r[1]}</td>`).join('')}</tr></table>`;
-  return mc(`intro-${a}-${L}-${fa}`,'table_two_sided','Use the table to estimate the two-sided limit.',table,String(L),[String(fa),String(L+1),'DNE'],`From both sides, the function values approach ${L}. The value f(${a})=${fa} does not change the limit.`)
+  return mc(`intro-${a}-${L}-${fa}`,'table_two_sided',`Use the table to estimate \\(\\lim_{x\\to${a}}f(x)\\).`,table,String(L),[String(fa),String(L+1),'DNE'],`The nearby values on both sides of \\(x=${a}\\) suggest \\(${L}\\), so the estimated limit is \\(${L}\\). The separate point value \\(f(${a})=${fa}\\) does not determine the limit. A finite table supports an estimate, not a proof.`)
 };
 G['sin-one-over-x']=()=>{
   const a=ri(-3,3),k=ri(1,5),kind=pick(['raw','scaled','cosraw','absraw']);
   const shift=a===0?'x':a>0?`x-${a}`:`x+${-a}`;
-  if(kind==='scaled')return mc(`osc-scaled-${a}-${k}`,'bounded_times_zero','Find the limit.',`\\displaystyle\\lim_{x\\to${a}}(${shift})\\sin\\left(\\frac{${k}}{${shift}}\\right)`,'0',['1','-1','DNE'],`The sine factor stays between -1 and 1 while ${shift} approaches 0. The Squeeze Theorem gives 0.`);
+  if(kind==='scaled')return mc(`osc-scaled-${a}-${k}`,'bounded_times_zero','Find the limit.',`\\displaystyle\\lim_{x\\to${a}}(${shift})\\sin\\left(\\frac{${k}}{${shift}}\\right)`,'0',['1','-1','DNE'],`Because \\(|\\sin u|\\le1\\), the absolute value of the expression is at most \\(|${shift}|\\). As \\(x\\to${a}\\), this bound tends to \\(0\\), so the expression tends to \\(0\\) by the Squeeze Theorem.`);
   const f=kind==='cosraw'?'\\cos':kind==='absraw'?'|\\sin':'\\sin',close=kind==='absraw'?'|':'';
-  return mc(`osc-${kind}-${a}-${k}`,'oscillating_dne','Find the limit.',`\\displaystyle\\lim_{x\\to${a}}${f}\\left(\\frac{${k}}{${shift}}\\right)${close}`,'DNE',['0','1','-1'],`The argument becomes unbounded while the trigonometric expression keeps oscillating, so there is no single limiting value.`)
+  return mc(`osc-${kind}-${a}-${k}`,'oscillating_dne','Find the limit.',`\\displaystyle\\lim_{x\\to${a}}${f}\\left(\\frac{${k}}{${shift}}\\right)${close}`,'DNE',['0','1','-1'],`Arbitrarily close to \\(x=${a}\\), the expression repeatedly takes ${kind==="absraw"?"both 0 and 1":"both -1 and 1"}. These distinct values persist, so there is no single limiting value. The limit is DNE.`)
 };
 function ivtGuaranteedValue(){
   const a=ri(-4,0),b=a+ri(2,6),fa=ri(-8,-1),fb=ri(2,9),target=ri(fa+1,fb-1);
   const wrong1=fb+ri(1,4),wrong2=fa-ri(1,4),wrong3='No value is guaranteed';
-  const p=mc(`ivt-value-${a}-${b}-${fa}-${fb}-${target}`,'guaranteed_value','Suppose f is continuous on the interval. Which value is guaranteed to occur at some c between the endpoints?',`f(${a})=${fa},\\qquad f(${b})=${fb}`,String(target),[String(wrong1),String(wrong2),wrong3],`Because \\(${target}\\) lies between \\(${fa}\\) and \\(${fb}\\), the Intermediate Value Theorem guarantees some \\(c\\in(${a},${b})\\) such that \\(f(c)=${target}\\).`);
+  const p=mc(`ivt-value-${a}-${b}-${fa}-${fb}-${target}`,'guaranteed_value',`Suppose \\(f\\) is continuous on \\([${a},${b}]\\). Which output value is guaranteed at some \\(c\\in(${a},${b})\\)?`,`f(${a})=${fa},\\qquad f(${b})=${fb}`,String(target),[String(wrong1),String(wrong2),wrong3],`The target satisfies \\(${fa}<${target}<${fb}\\). Since \\(f\\) is continuous on \\([${a},${b}]\\), IVT guarantees at least one \\(c\\in(${a},${b})\\) with \\(f(c)=${target}\\). The theorem guarantees the output, not the exact location of \\(c\\).`);
   p.ivtMode='value';
   return p;
 }
@@ -75,7 +75,7 @@ function ivtRootVerification(){
     const h=ri(-3,3),k=ri(1,6),left=h-ri(1,4),right=h+ri(1,4),A=ri(1,4);
     const fa=A*(left-h)**2+k,fb=A*(right-h)**2+k;
     const shift=h===0?'x':h>0?`x-${h}`:`x+${-h}`;
-    p=mc(`ivt-root-poly-no-${A}-${h}-${k}-${left}-${right}`,'root_polynomial_no_sign_change','Can the Intermediate Value Theorem be used to verify that f has at least one root on the given interval?',`f(x)=${A===1?'':A}(${shift})^2+${k},\\qquad [${left},${right}]`,noSign,[yes,noDisc,badYes],`No. The polynomial is continuous, but \\(f(${left})=${fa}\\) and \\(f(${right})=${fb}\\) are both positive. The endpoint values do not straddle \\(0\\), so IVT does not verify a root on \\([${left},${right}]\\).`);
+    p=mc(`ivt-root-poly-no-${A}-${h}-${k}-${left}-${right}`,'root_polynomial_no_sign_change','Can the Intermediate Value Theorem be used to verify that f has at least one root on the given interval?',`f(x)=${A===1?'':A}(${shift})^2+${k},\\qquad [${left},${right}]`,noSign,[yes,noDisc,badYes],`No. The polynomial is continuous, but \\(f(${left})=${fa}\\) and \\(f(${right})=${fb}\\) are both positive. The endpoint values do not straddle \\(0\\), so IVT does not verify a root on \\([${left},${right}]\\). In general, endpoints of the same sign do not rule out roots between them.`);
     p.ivtQA={mode:'root',kind,continuous:true,signChange:false};
   }else if(kind==='rational_pole_outside_yes'){
     const r=ri(-2,2),left=r-ri(1,4),right=r+ri(1,4),side=pick([-1,1]),c=side<0?left-ri(1,4):right+ri(1,4),m=pick([-3,-2,-1,1,2,3]);
@@ -888,9 +888,9 @@ G['solids-of-revolution']=()=>{
 // Additional assignment-fidelity generators (v10.5.7).
 G['continuity-parameters']=()=>{
   // Continuity-parameter practice: every prompt visibly contains the parameter(s)
-  // being solved for.  About 30% are three-piece problems that require a 2x2
+  // being solved for.  About 50% are three-piece problems that require a 2x2
   // system for a and b; the remainder solve a single parameter k.
-  const kind=R()<0.30?'three_piece_system':pick(['piecewise_value','removable_fill','piecewise_parameter','quadratic_parameter']);
+  const kind=R()<0.50?'three_piece_system':pick(['piecewise_value','removable_fill','piecewise_parameter','quadratic_parameter']);
   if(kind==='three_piece_system'){
     let r=pick([-3,-2,-1,1,2]),s0=pick([-3,-2,-1,1,2,3]);
     while(s0===r||s0===0||r===0)s0=pick([-3,-2,-1,1,2,3]);
@@ -906,45 +906,45 @@ G['continuity-parameters']=()=>{
       'Find a and b so the function is continuous everywhere.',
       `f(x)=\\begin{cases}${lin(m1,n1)},&x<${left}\\\\ax^2+bx${signed(C,'')},&${left}\\le x<${right}\\\\${lin(m2,n2)},&x\\ge ${right}\\end{cases}`,
       correct,wrongs,
-      `Continuity is required at both breakpoints. At \\(x=${left}\\), the two adjacent pieces must agree, giving \\(${left*left}a${signed(left,'b')} ${C? (C>0?`+${C}`:`${C}`):''}=${leftEq}\\). At \\(x=${right}\\), continuity gives \\(${right*right}a${signed(right,'b')} ${C? (C>0?`+${C}`:`${C}`):''}=${rightEq}\\). Solving this system gives \\(a=${A}\\) and \\(b=${B}\\).`);
+      `Continuity is required at both breakpoints. At \\(x=${left}\\), the two adjacent pieces must agree, giving \\(${left*left}a${signed(left,'b')} ${C? (C>0?`+${C}`:`${C}`):''}=${leftEq}\\). At \\(x=${right}\\), continuity gives \\(${right*right}a${signed(right,'b')} ${C? (C>0?`+${C}`:`${C}`):''}=${rightEq}\\). Subtract the constant and divide each equation by its nonzero breakpoint:<br>\\(${left}a+b=${(leftEq-C)/left},\\qquad ${right}a+b=${(rightEq-C)/right}\\).<br>Subtract the first from the second: \\(${right-left}a=${A*(right-left)}\\), so \\(a=${A}\\). Then \\(b=${(leftEq-C)/left}-(${left})(${A})=${B}\\). Each piece is continuous on its interval, and these matches make both junctions continuous.`);
   }
   if(kind==='piecewise_value'){
     const a=nz(-4,4),b=ri(-6,6),c=ri(-3,3),k=a*c+b;
-    return mc(`cont-param-value-${a}-${b}-${c}`,'piecewise_value',`Find k so the function is continuous at x=${c}.`,`f(x)=\\begin{cases}${lin(a,b)},&x<${c}\\\\k,&x\\ge ${c}\\end{cases}`,String(k),numChoices(k,1),`Continuity requires the left-hand value and the right-hand value to agree at \\(x=${c}\\). The linear piece gives \\(${lin(a,b).replace(/x/g,`(${c})`)}=${k}\\), so \\(k=${k}\\).`);
+    return mc(`cont-param-value-${a}-${b}-${c}`,'piecewise_value',`Find k so the function is continuous at x=${c}.`,`f(x)=\\begin{cases}${lin(a,b)},&x<${c}\\\\k,&x\\ge ${c}\\end{cases}`,String(k),numChoices(k,1),`Continuity requires the left-hand limit, right-hand limit, and defined value to agree at \\(x=${c}\\). The linear piece gives \\(${lin(a,b).replace(/x/g,`(${c})`)}=${k}\\), so \\(k=${k}\\).`);
   }
   if(kind==='removable_fill'){
     const a=nz(-5,5),k=2*a;
-    return mc(`cont-param-hole-${a}`,'removable_fill',`Find k so the function is continuous at x=${a}.`,`f(x)=\\begin{cases}\\dfrac{x^2-${a*a}}{${xm(a)}},&x\\ne ${a}\\\\k,&x=${a}\\end{cases}`,String(k),numChoices(k,1),`For \\(x\\ne ${a}\\), factor the numerator: \\(x^2-${a*a}=(${xm(a)})(x${a>=0?`+${a}`:`-${-a}`})\\). After canceling, the limit as \\(x\\to ${a}\\) is \\(${k}\\). Therefore \\(k=${k}\\).`);
+    return mc(`cont-param-hole-${a}`,'removable_fill',`Find k so the function is continuous at x=${a}.`,`f(x)=\\begin{cases}\\dfrac{x^2-${a*a}}{${xm(a)}},&x\\ne ${a}\\\\k,&x=${a}\\end{cases}`,String(k),numChoices(k,1),`For \\(x\\ne ${a}\\), factor the numerator: \\(x^2-${a*a}=(${xm(a)})(x${a>=0?`+${a}`:`-${-a}`})\\). After canceling for \\(x\\ne${a}\\), the expression tends to \\(${a}+(${a})=${k}\\). Continuity requires the assigned point value \\(k\\) to equal this limit, so \\(k=${k}\\).`);
   }
   if(kind==='quadratic_parameter'){
     const c=pick([-3,-2,-1,1,2,3]),A=nz(-3,3),B=ri(-5,5),m=nz(-4,4),n=ri(-5,5);
     const target=m*c+n;
     const k=target-(A*c*c+B*c);
-    return mc(`cont-param-quad-${A}-${B}-${c}-${m}-${n}`,'quadratic_parameter',`Find k so the function is continuous at x=${c}.`,`f(x)=\\begin{cases}${lin(m,n)},&x<${c}\\\\${signed(A,'x^2',true)}${signed(B,'x')}${signed(1,'k')},&x\\ge ${c}\\end{cases}`,String(k),numChoices(k,2),`Set the two formulas equal at \\(x=${c}\\): \\(${target}=${A*c*c+B*c}+k\\). Solving gives \\(k=${k}\\).`);
+    return mc(`cont-param-quad-${A}-${B}-${c}-${m}-${n}`,'quadratic_parameter',`Find k so the function is continuous at x=${c}.`,`f(x)=\\begin{cases}${lin(m,n)},&x<${c}\\\\${signed(A,'x^2',true)}${signed(B,'x')}${signed(1,'k')},&x\\ge ${c}\\end{cases}`,String(k),numChoices(k,2),`Match the left-hand limit to the right-hand limit and defined value at \\(x=${c}\\): \\(${target}=${A*c*c+B*c}+k\\). Solving gives \\(k=${k}\\).`);
   }
   const m=nz(-4,4),n=ri(-5,5),p=nz(-4,4),c=ri(-3,3),k=(m-p)*c+n;
-  return mc(`cont-param-coeff-${m}-${n}-${p}-${c}`,'piecewise_parameter',`Find k so the function is continuous at x=${c}.`,`f(x)=\\begin{cases}${lin(m,n)},&x<${c}\\\\${signed(p,'x',true)}+k,&x\\ge ${c}\\end{cases}`,String(k),numChoices(k,2),`Continuity requires the two expressions to agree at \\(x=${c}\\). Thus \\(${m*c+n}=${p*c}+k\\), so \\(k=${k}\\).`);
+  return mc(`cont-param-coeff-${m}-${n}-${p}-${c}`,'piecewise_parameter',`Find k so the function is continuous at x=${c}.`,`f(x)=\\begin{cases}${lin(m,n)},&x<${c}\\\\${signed(p,'x',true)}+k,&x\\ge ${c}\\end{cases}`,String(k),numChoices(k,2),`Continuity requires the one-sided limits and defined value to agree at \\(x=${c}\\). Thus \\(${m*c+n}=${p*c}+k\\), so \\(k=${k}\\).`);
 };
 
 G['squeeze-course-practice']=()=>{
   // Course-assignment mix: about 20% Squeeze Theorem and 80% straightforward trig limits at x -> 0.
   if(R()<0.20){
-    const power=ri(1,3),innerPower=ri(1,3),k=ri(1,6),coef=ri(1,4),fn=pick(['\\sin','\\cos']);
+    const power=ri(1,5),innerPower=ri(1,3),k=ri(1,6),coef=ri(1,4),fn=pick(['\\sin','\\cos']);
     const coefText=coef===1?'':String(coef);
     const xPow=power===1?'x':`x^${power}`;
     const innerDen=innerPower===1?'x':`x^${innerPower}`;
     const isSin=fn==='\\sin',variant=isSin?'squeeze_sine':'squeeze_cosine';
     const bound=coef===1?(power===1?'|x|':`|x|^${power}`):`${coef}${power===1?'|x|':`|x|^${power}`}`;
-    return mc(`sq-bound-0-${isSin?'sin':'cos'}-${coef}-${power}-${k}-${innerPower}`,variant,'Find the limit.',`\\displaystyle\\lim_{x\\to0}${coefText}${xPow}${fn}\\left(\\frac{${k}}{${innerDen}}\\right)`,'0',['1','-1','DNE'],`The ${isSin?'sine':'cosine'} factor stays between -1 and 1, so the absolute value of the expression is at most ${bound}. Since ${bound} approaches 0, the Squeeze Theorem gives 0.`);
+    return mc(`sq-bound-0-${isSin?'sin':'cos'}-${coef}-${power}-${k}-${innerPower}`,variant,'Find the limit.',`\\displaystyle\\lim_{x\\to0}${coefText}${xPow}${fn}\\left(\\frac{${k}}{${innerDen}}\\right)`,'0',['1','-1','DNE'],`The ${isSin?"sine":"cosine"} factor has absolute value at most \\(1\\), so the absolute value of the entire expression lies between \\(0\\) and \\(${bound}\\). Both bounds tend to \\(0\\), giving limit \\(0\\) by the Squeeze Theorem.`);
   }
   const kind=pick(['sin_over_x','x_over_sin','tan_over_x','x_over_tan','one_minus_cos','cos_minus_one']);
   const k=ri(1,9);
-  if(kind==='sin_over_x')return mc(`sq-sinx-${k}`,'standard_sine_over_x','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{\\sin(${k}x)}{x}`,String(k),numChoices(k,1),`Rewrite the expression as ${k}\\,\\frac{\\sin(${k}x)}{${k}x}. The standard trig limit is 1, so the limit is ${k}.`);
-  if(kind==='x_over_sin')return mc(`sq-xsin-${k}`,'standard_x_over_sine','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{x}{\\sin(${k}x)}`,texRat(1,k),[String(k),String(-k),'0'],`Use the reciprocal standard limit: x/\\sin(${k}x)=(1/${k})\\,(${k}x/\\sin(${k}x)), so the limit is ${texRat(1,k)}.`);
-  if(kind==='tan_over_x')return mc(`sq-tanx-${k}`,'standard_tangent_over_x','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{\\tan(${k}x)}{x}`,String(k),numChoices(k,1),`Rewrite the expression as ${k}\\,\\frac{\\tan(${k}x)}{${k}x}. The standard trig limit is 1, so the limit is ${k}.`);
-  if(kind==='x_over_tan')return mc(`sq-xtan-${k}`,'standard_x_over_tangent','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{x}{\\tan(${k}x)}`,texRat(1,k),[String(k),String(-k),'0'],`Use the reciprocal standard limit: x/\\tan(${k}x)=(1/${k})\\,(${k}x/\\tan(${k}x)), so the limit is ${texRat(1,k)}.`);
-  if(kind==='one_minus_cos')return mc(`sq-1cos-${k}`,'one_minus_cosine_over_x','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{1-\\cos(${k}x)}{x}`,'0',[String(k),String(-k),'DNE'],`The numerator approaches 0 quadratically. Equivalently, multiply by the conjugate and use the sine limit; the result is 0.`);
-  return mc(`sq-cos1-${k}`,'cosine_minus_one_over_x','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{\\cos(${k}x)-1}{x}`,'0',[String(-k),String(k*k),'DNE'],`This is the negative of (1-cos(${k}x))/x, whose limit is 0, so the limit is 0.`);
+  if(kind==='sin_over_x')return mc(`sq-sinx-${k}`,'standard_sine_over_x','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{\\sin(${k}x)}{x}`,String(k),numChoices(k,1),`With angles in radians, write \\(\\frac{\\sin(${k}x)}x=${k}\\frac{\\sin(${k}x)}{${k}x}\\). The sine-over-angle ratio tends to \\(1\\), so the limit is \\(${k}\\).`);
+  if(kind==='x_over_sin')return mc(`sq-xsin-${k}`,'standard_x_over_sine','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{x}{\\sin(${k}x)}`,texRat(1,k),[String(k),String(-k),'0'],`Write \\(\\frac{x}{\\sin(${k}x)}=\\frac1{${k}}\\frac{${k}x}{\\sin(${k}x)}\\). The last factor is the reciprocal of the sine-over-angle ratio, which tends to \\(1\\) in radians. Thus the limit is \\(${texRat(1,k)}\\).`);
+  if(kind==='tan_over_x')return mc(`sq-tanx-${k}`,'standard_tangent_over_x','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{\\tan(${k}x)}{x}`,String(k),numChoices(k,1),`Use the quotient identity:<br>\\(\\frac{\\tan(${k}x)}x=${k}\\frac{\\sin(${k}x)}{${k}x}\\frac1{\\cos(${k}x)}\\).<br>With angles in radians, the last two factors tend to \\(1\\), so the limit is \\(${k}\\).`);
+  if(kind==='x_over_tan')return mc(`sq-xtan-${k}`,'standard_x_over_tangent','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{x}{\\tan(${k}x)}`,texRat(1,k),[String(k),String(-k),'0'],`Use the quotient identity:<br>\\(\\frac{x}{\\tan(${k}x)}=\\frac1{${k}}\\frac{${k}x}{\\sin(${k}x)}\\cos(${k}x)\\).<br>The reciprocal sine ratio and cosine tend to \\(1\\), so the limit is \\(${texRat(1,k)}\\).`);
+  if(kind==='one_minus_cos')return mc(`sq-1cos-${k}`,'one_minus_cosine_over_x','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{1-\\cos(${k}x)}{x}`,'0',[String(k),String(-k),'DNE'],`Multiply by the conjugate:<br>\\(\\frac{1-\\cos(${k}x)}x=\\frac{\\sin^2(${k}x)}{x(1+\\cos(${k}x))}=${k}\\frac{\\sin(${k}x)}{${k}x}\\frac{\\sin(${k}x)}{1+\\cos(${k}x)}\\).<br>The sine ratio tends to \\(1\\), while the last fraction tends to \\(0/2=0\\), giving limit \\(0\\).`);
+  return mc(`sq-cos1-${k}`,'cosine_minus_one_over_x','Find the limit.',`\\displaystyle\\lim_{x\\to0}\\frac{\\cos(${k}x)-1}{x}`,'0',[String(-k),String(k*k),'DNE'],`Factor out a minus sign and use the conjugate:<br>\\(\\frac{\\cos(${k}x)-1}x=-\\frac{\\sin^2(${k}x)}{x(1+\\cos(${k}x))}=-${k}\\frac{\\sin(${k}x)}{${k}x}\\frac{\\sin(${k}x)}{1+\\cos(${k}x)}\\).<br>The sine ratio tends to \\(1\\) and the last fraction to \\(0\\), so the limit is \\(0\\).`);
 };
 
 G['derivatives-conceptual-review']=()=>{

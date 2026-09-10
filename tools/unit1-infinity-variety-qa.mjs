@@ -47,6 +47,8 @@ function expected(p){let m,id=p.id;
   if((m=id.match(/^i20-exp-poly-(\d+)-(-?\d+)-(-?\d+)-(-?\d+)-(true|false)$/))){const n=+m[1],lead=+m[2],neg=m[5]==='true';const s=Math.sign(lead)*(neg&&n%2===1?-1:1);return s>0?inf(1):rat(0);}
   if((m=id.match(/^i21-exp-rat-\d+-(-?\d+)-(-?\d+)-.*-(true|false)$/))){const A=+m[1],B=+m[2],neg=m[3]==='true';const s=(A*B>0?1:-1)*(neg?-1:1);return s>0?inf(1):rat(0);}
   if(/^i22-/.test(id))return rat(1);
+  if((m=id.match(/^i23-log-zero-(\d+)-(\d+)-(-?\d+)-(\d+)-(true|false)$/))){const positive=Number(m[3])*(m[5]==='true'&&Number(m[1])%2?-1:1)>0;return positive?inf(-1):{kind:'dne'};}
+  if((m=id.match(/^i24-log-ratio-zero-(\d+)-(\d+)-(-?\d+)-(\d+)-(-?\d+)-(\d+)-(true|false)$/))){const positive=Number(m[3])*Number(m[5])*(m[7]==='true'&&Number(m[2])%2?-1:1)>0;return positive?inf(-1):{kind:'dne'};}
   return null;
 }
 const N=100000;
@@ -60,10 +62,10 @@ for(let i=0;i<N;i++){
   const exp=expected(p);if(!exp)errors.push(`${p.id}: no independent checker`);else if(!same(p.ans,exp))errors.push(`${p.id}: answer ${JSON.stringify(p.ans)} != ${JSON.stringify(exp)}`);
   const all=String(p.q)+' '+String(p.sol);if(/undefined|NaN|\+\s*-|--/.test(all))errors.push(`${p.id}: malformed display ${all}`);
 }
-for(let i=1;i<=22;i++)if(!counts.has(i))errors.push(`family i${i} missing`);
+for(let i=1;i<=24;i++)if(!counts.has(i))errors.push(`family i${i} missing`);
 if(dir.pos!==N/2||dir.neg!==N/2)errors.push(`direction split not exact 50/50: +inf=${dir.pos}, -inf=${dir.neg}`);
 const radicalShare=radical/N;if(radicalShare<0.47||radicalShare>0.53)errors.push(`radical share unexpected: ${(100*radicalShare).toFixed(2)}%`);
 const report={ok:!errors.length,samples:N,direction:dir,radicalShare,families:Object.fromEntries([...counts].sort((a,b)=>a[0]-b[0])),errors:errors.slice(0,200)};
 fs.writeFileSync(path.join(OUT,'unit1-infinity-variety-qa.json'),JSON.stringify(report,null,2)+'\n');
-const lines=['BatchMath Limits at Infinity Variety QA',`Result: ${report.ok?'PASS':'FAIL'}`,`Samples: ${N}`,`Directions: +infinity ${dir.pos}, -infinity ${dir.neg}`,`Radical-family share: ${(100*radicalShare).toFixed(3)}%`,`Families observed: ${counts.size}/22`,`Errors: ${errors.length}`,...errors.slice(0,50).map(x=>'- '+x),''];
+const lines=['BatchMath Limits at Infinity Variety QA',`Result: ${report.ok?'PASS':'FAIL'}`,`Samples: ${N}`,`Directions: +infinity ${dir.pos}, -infinity ${dir.neg}`,`Radical-family share: ${(100*radicalShare).toFixed(3)}%`,`Families observed: ${counts.size}/24`,`Errors: ${errors.length}`,...errors.slice(0,50).map(x=>'- '+x),''];
 fs.writeFileSync(path.join(OUT,'unit1-infinity-variety-qa.txt'),lines.join('\n'));console.log(lines.join('\n'));if(errors.length)process.exit(1);

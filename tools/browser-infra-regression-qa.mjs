@@ -54,7 +54,7 @@ stats.seededCustomEngineGuards=3;
 const unit1ReviewPath='ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/index.html';
 const unit1Review=fs.readFileSync(path.join(ROOT,unit1ReviewPath),'utf8');
 if(/Limits &amp; Continuity Assignment Review|Limits & Continuity Assignment Review/.test(unit1Review))fail('removed Limits & Continuity Assignment Review launch is still present');
-if(!/Computational Limits Practice/.test(unit1Review))fail('Computational Limits Practice launch was accidentally removed');
+if(!/class="bm-practice-label">Comprehensive Review<\/span>/.test(unit1Review))fail('Comprehensive Review launch label is missing');
 if(/L’Hôpital’s Rule/.test(unit1Review))fail('Unit 1 extra-video heading still mentions L’Hôpital’s Rule');
 if(fs.existsSync(path.join(ROOT,'ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/assignment-practice/index.html')))fail('removed Unit 1 assignment-review engine page still exists');
 stats.unit1ReviewCleanupGuards=4;

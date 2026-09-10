@@ -1,8 +1,8 @@
-/* BatchMath PWA registration/update foundation — v10.6.3.S */
+/* BatchMath PWA registration/update foundation — v10.6.3.W */
 (() => {
   'use strict';
 
-  const APP_VERSION = '10.6.3.S';
+  const APP_VERSION = '10.6.3.W';
   const state = {
     version: APP_VERSION,
     supported: 'serviceWorker' in navigator,
@@ -184,7 +184,7 @@
 })();
 
 
-// v10.6.3.S — Practice feedback MathJax safety net.
+// v10.6.3.W — Practice feedback MathJax safety net.
 (function batchMathMathJaxSafety(){
   const commandRE=/\\\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|lt|gt|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|to|le|ge|ne|equiv|partial)\b/;
   const protectedRE=/\\\\\([\\s\\S]*?\\\\\)|\\\\\[[\\s\\S]*?\\\\\]/g;

@@ -49,6 +49,9 @@ jobs:
       - name: Deterministic AP generator stress QA
         run: npm run qa:math
 
+      - name: Limits explanation QA
+        run: npm run qa:unit1-explanations
+
       - name: Targeted Limits family QA
         run: npm run qa:limits
 
@@ -72,6 +75,12 @@ jobs:
 
       - name: Advanced trig explanations and hints
         run: npm run qa:advanced-trig-hints
+
+      - name: Approved Unit 1 families and answer flows
+        run: npm run qa:unit1-approved
+
+      - name: Unit 1 V family and distribution QA
+        run: npm run qa:unit1-v
 
       - name: Seeded generator browser QA
         run: npm run qa:seeded

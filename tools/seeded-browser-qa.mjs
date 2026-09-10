@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
+import {exerciseUnit1Approved} from './unit1-approved-browser-qa.mjs';
 import path from 'node:path';
 import http from 'node:http';
 import { fileURLToPath } from 'node:url';
@@ -112,6 +113,7 @@ try{
   // CI tests generator behavior, not third-party availability. Abort external traffic
   // so Analytics/MathJax/YouTube cannot make results flaky or consume time.
   await context.route('**/*',route=>{const u=new URL(route.request().url());if(u.hostname==='127.0.0.1'||u.hostname==='localhost')route.continue();else route.abort();});
+  try{answeredEnterChecks+=await exerciseUnit1Approved(context,`http://127.0.0.1:${PORT}`);}catch(e){errors.push('Unit 1 approved workflows: '+e.message);}
   const list=engines();if(list.length!==88)errors.push(`Expected 88 engines, found ${list.length}`);
   for(const engine of list){
     const seen=new Set();

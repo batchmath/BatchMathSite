@@ -1,8 +1,8 @@
-/* BatchMath service worker — v10.6.3.S
+/* BatchMath service worker — v10.6.3.W
    Network-first while online; reliable runtime caching for offline use.
    Navigation cache keys are normalized so equivalent static-page URLs share one entry.
    MathJax is pinned to v4.1.3 and its CDN resources are cached explicitly. */
-const VERSION = '10.6.3.S';
+const VERSION = '10.6.3.W';
 const CACHE_PREFIX = 'batchmath-';
 const SHELL_CACHE = `${CACHE_PREFIX}shell-${VERSION}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${VERSION}`;
@@ -15,6 +15,11 @@ const APP_SHELL = [
   '/manifest.webmanifest',
   '/assets/site.css',
   '/assets/answer-normalization.js',
+  '/assets/im1-unit2-generators.js',
+  '/assets/im1-unit2-practice.js',
+  '/assets/im1-algebra-input.js',
+  '/assets/im1-algebra-input.css',
+  '/assets/im1-equation-input.js',
   '/assets/pwa.js',
   '/assets/batchmath-storage.js',
   '/assets/problem-tracking.js',

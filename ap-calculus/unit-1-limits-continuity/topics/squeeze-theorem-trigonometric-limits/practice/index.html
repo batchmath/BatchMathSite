@@ -60,7 +60,7 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
 @media(max-width:650px){.wrap{width:min(100% - 16px,1220px);padding-top:14px}.shell{padding:11px}.question-card{padding:18px 6px;min-height:190px}.question{font-size:clamp(1.25rem,6.4vw,1.8rem);text-align:left}.answer-row>*{flex:1 1 100%}.btn{width:100%}.quick-row .quick{width:auto;flex:1 1 auto}.identity-grid{grid-template-columns:1fr}.status-row{align-items:flex-start}.stats{gap:9px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
-<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_advanced_trig_limits",generatorVersion:"3"};</script><script src="/assets/problem-tracking.js"></script></head>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_advanced_trig_limits",generatorVersion:"4"};</script><script src="/assets/problem-tracking.js"></script><link rel="stylesheet" href="/assets/unit1-practice.css"><script src="/assets/unit1-practice-ui.js"></script></head>
 <body>
 <main class="wrap" data-bm-advanced-trig>
   <div class="brand"><a class="brand-mark" href="/" aria-label="BatchMath home">BATCH<span class="math">MATH</span></a></div>
@@ -83,24 +83,17 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
     <div class="hint-actions"><button id="hint" class="btn secondary" type="button" aria-expanded="false" aria-controls="hint-panel">Show Hint</button></div>
     <div id="hint-panel" class="hint-panel" hidden aria-live="polite"></div>
 
-    <div class="answer-help">Exact form preferred. Fractions and decimals are accepted; use <strong>sqrt(2)</strong> or the √2 button for radicals.</div>
+    <div class="answer-help">Exact form preferred. Fractions and decimals are accepted; use <strong>√</strong> to insert a square root, then enter its contents. Use → to move past the closing parenthesis. Typed <strong>sqrt(2)</strong> also works.</div>
     <div class="answer-row">
       <input id="answer" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Answer" placeholder="Answer">
       <button id="check" class="btn primary" type="button">Check Answer</button>
       <button id="new" class="btn ghost" type="button">New Question</button>
     </div>
-    <div class="quick-row" aria-label="Quick answer entry">
-      <button class="quick" type="button" data-insert="-">−</button>
-      <button class="quick" type="button" data-insert="/">a⁄b</button>
-      <button class="quick" type="button" data-insert="sqrt(2)">√2</button>
-      <button class="quick" type="button" data-insert="sqrt(3)">√3</button>
-      <button class="quick" type="button" data-action="backspace">⌫</button>
-      <button class="quick" type="button" data-action="clear">Clear</button>
-    </div>
+    <div class="quick-row u1-advanced-keypad" aria-label="On-screen answer keypad"><button class="quick" type="button" data-insert="7">7</button><button class="quick" type="button" data-insert="8">8</button><button class="quick" type="button" data-insert="9">9</button><button class="quick" type="button" data-insert="-">−</button><button class="quick" type="button" data-insert="4">4</button><button class="quick" type="button" data-insert="5">5</button><button class="quick" type="button" data-insert="6">6</button><button class="quick" type="button" data-insert="/">a⁄b</button><button class="quick" type="button" data-insert="1">1</button><button class="quick" type="button" data-insert="2">2</button><button class="quick" type="button" data-insert="3">3</button><button class="quick" type="button" data-insert=".">.</button><button class="quick" type="button" data-insert="0">0</button><button class="quick" type="button" data-action="sqrt" aria-label="Insert square root">√</button><button class="quick" type="button" data-action="right" aria-label="Move cursor right">→</button><button class="quick" type="button" data-action="backspace">⌫</button><button class="quick" type="button" data-action="clear">Clear</button></div>
 
     <div id="feedback" class="feedback" aria-live="polite"></div>
     <div class="post-actions">
-      <button id="method" class="btn secondary" type="button">Show Method</button>
+      <button id="method" class="btn secondary u1-method" type="button">Show Method</button>
       <button id="next" class="btn secondary" type="button">Next Question</button>
     </div>
 
@@ -610,7 +603,7 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
     $("hint-panel").hidden=true;$("hint-panel").innerHTML="";$("hint").textContent="Show Hint";$("hint").setAttribute("aria-expanded","false");
     current=p;methodShown=false;current.problemId=current.id;current.problemType="advanced_trig_limits";current.problemVariant=current.family.id;current.generatorVersion="3";window.BMAnalytics?.ensurePracticeStarted({practice_mode:"advanced_trig"});window.BMAnalytics?.problemGenerated(current,{practice_mode:"advanced_trig"});
     $("question").innerHTML=p.q;
-    $("answer").value="";$("answer").disabled=false;$("check").disabled=false;
+    $("answer").value="";$("answer").disabled=false;$("check").disabled=false;document.querySelectorAll(".quick").forEach(b=>b.disabled=false);
     delete $("feedback").dataset.answerState;
     $("feedback").className="feedback";$("feedback").innerHTML="";
     $("method").style.display="none";$("next").style.display="none";
@@ -622,20 +615,34 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
     $("accuracy").textContent=attempted?`${Math.round(100*correct/attempted)}%`:"—";
   }
   function parseAnswer(raw){
+    const standard=window.BMUnit1UI?.parse(raw);if(standard&&!standard.error)return standard.kind==='num'?standard.value:standard.kind==='inf'?standard.sign*Infinity:NaN;
     raw=window.BatchMathAnswers?.normalizeFractionSigns(raw) ?? raw;
-    let s=raw.trim().toLowerCase().replace(/−/g,"-").replace(/\s+/g,"").replace(/[×·]/g,"*");
-    if(!s)return null;
-    const frac=s.match(/^([+-]?(?:\d+(?:\.\d*)?|\.\d+))\/([+-]?(?:\d+(?:\.\d*)?|\.\d+))$/);
-    if(frac){const d=Number(frac[2]);if(!d)return null;return Number(frac[1])/d;}
-    if(/^[-+]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(s))return Number(s);
-    s=s.replace(/√/g,"sqrt").replace(/\*/g,"");
-    const sm=s.match(/^([+-]?)(?:(\d+(?:\.\d*)?|\.\d+))?sqrt(?:\((2|3)\)|(2|3))(?:\/([+-]?(?:\d+(?:\.\d*)?|\.\d+)))?$/);
-    if(sm){
-      const sign=sm[1]==="-"?-1:1,coef=sm[2]?Number(sm[2]):1,rad=Number(sm[3]||sm[4]),den=sm[5]?Number(sm[5]):1;
-      if(!den)return null;return sign*coef*Math.sqrt(rad)/den;
+    const s=raw.trim().toLowerCase().replace(/−/g,"-").replace(/\s+/g,"").replace(/[×·]/g,"*").replace(/√/g,"sqrt");
+    if(!s || s.length>500)return null;
+    // Parse only numeric arithmetic; never execute user-entered JavaScript.
+    // Parentheses delimit a radicand, so sqrt(2)/3 means (sqrt(2))/3.
+    let i=0;
+    function atom(){
+      if(s.startsWith("sqrt",i)){i+=4;const v=atom();if(v<0)throw Error();return Math.sqrt(v);}
+      if(s[i]==="("){i++;const v=sum();if(s[i++]!==")")throw Error();return v;}
+      const m=s.slice(i).match(/^(?:\d+(?:\.\d*)?|\.\d+)/);
+      if(!m)throw Error();i+=m[0].length;return Number(m[0]);
     }
-    return null;
+    function signed(){if(s[i]==="+"){i++;return signed();}if(s[i]==="-"){i++;return -signed();}return atom();}
+    function product(){
+      let v=signed();
+      while(i<s.length){
+        if(s[i]==="*"){i++;v*=signed();}
+        else if(s[i]==="/"){i++;const d=signed();if(d===0)throw Error();v/=d;}
+        else if(s[i]==="("||s.startsWith("sqrt",i)){v*=atom();}
+        else break;
+      }
+      return v;
+    }
+    function sum(){let v=product();while(s[i]==="+"||s[i]==="-"){const op=s[i++],w=product();v=op==="+"?v+w:v-w;}return v;}
+    try{const v=sum();return i===s.length&&Number.isFinite(v)?v:null;}catch{return null;}
   }
+
   function showHint(){
     if(!current)return;
     const panel=$("hint-panel"),opening=panel.hidden;
@@ -655,10 +662,10 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
   function check(){
     if(!current||$("check").disabled)return;
     const raw=$("answer").value,parsed=parseAnswer(raw);
-    if(parsed===null){$("feedback").dataset.answerState="invalid";$("feedback").className="feedback wrong";$("feedback").textContent="Enter a number, fraction, decimal, or radical such as sqrt(2).";return;}
+    if(parsed===null){$("feedback").dataset.answerState="invalid";$("feedback").className="feedback wrong";$("feedback").textContent=window.BMUnit1UI?.parse(raw).error||"Enter a number, fraction, decimal, or radical such as sqrt(2).";return;}
     $("feedback").dataset.answerState="answered";
     attempted++;const ok=Math.abs(parsed-numValue(current.ans))<1e-6;window.BMAnalytics?.answerChecked(current,ok,{practice_mode:"advanced_trig"});if(ok){correct++;}else window.BMAnalytics?.solutionRevealed(current,{practice_mode:"advanced_trig"});updateStats();
-    $("answer").disabled=true;$("check").disabled=true;$("next").style.display="inline-block";$("method").style.display="inline-block";
+    $("answer").disabled=true;$("check").disabled=true;document.querySelectorAll(".quick").forEach(b=>b.disabled=true);$("next").style.display="inline-block";$("method").style.display="inline-block";
     if(ok){$("feedback").className="feedback correct";$("feedback").innerHTML="✓ Correct";}
     else{$("feedback").className="feedback wrong";$("feedback").innerHTML=`<div class="correct-answer">Correct answer: \\(${texRat(current.ans)}\\)</div>`;showMethod();}
     typeset([$("feedback")]);
@@ -667,7 +674,12 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
 
   $("check").addEventListener("click",check);$("new").addEventListener("click",newProblem);$("next").addEventListener("click",newProblem);$("method").addEventListener("click",showMethod);
   $("answer").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();check();}});
-  document.querySelectorAll(".quick").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.insert)insertText(b.dataset.insert);else if(b.dataset.action==="clear"){$("answer").value="";$("answer").focus();}else if(b.dataset.action==="backspace"){const el=$("answer");if(el.disabled)return;let s=el.selectionStart??el.value.length,e=el.selectionEnd??el.value.length;if(s===e&&s>0)s--;el.value=el.value.slice(0,s)+el.value.slice(e);el.focus();el.setSelectionRange(s,s);}}));
+  document.querySelectorAll(".quick").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.insert)insertText(b.dataset.insert);else if(b.dataset.action==="sqrt"){
+    const el=$("answer");if(el.disabled)return;const start=el.selectionStart??el.value.length,end=el.selectionEnd??start,selected=el.value.slice(start,end);
+    insertText("√("+selected+")");const pos=selected?start+selected.length+3:start+2;el.setSelectionRange(pos,pos);
+  }else if(b.dataset.action==="right"){
+    const el=$("answer");if(el.disabled)return;const pos=Math.min(el.value.length,(el.selectionEnd??el.value.length)+1);el.focus();el.setSelectionRange(pos,pos);
+  }else if(b.dataset.action==="clear"){$("answer").value="";$("answer").focus();}else if(b.dataset.action==="backspace"){const el=$("answer");if(el.disabled)return;let s=el.selectionStart??el.value.length,e=el.selectionEnd??el.value.length;if(s===e&&s>0)s--;el.value=el.value.slice(0,s)+el.value.slice(e);el.focus();el.setSelectionRange(s,s);}}));
 
   updateStats();newProblem();
 })();
