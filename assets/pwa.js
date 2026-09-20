@@ -1,8 +1,8 @@
-/* BatchMath PWA registration/update foundation — v10.6.3.X */
+/* BatchMath PWA registration/update foundation — v10.7.5 */
 (() => {
   'use strict';
 
-  const APP_VERSION = '10.6.3.X';
+  const APP_VERSION = '10.7.5';
   const state = {
     version: APP_VERSION,
     supported: 'serviceWorker' in navigator,
@@ -184,7 +184,7 @@
 })();
 
 
-// v10.6.3.X — Practice feedback MathJax safety net.
+// v10.7.5 — Practice feedback MathJax safety net.
 (function batchMathMathJaxSafety(){
   const commandRE=/\\\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|lt|gt|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|to|le|ge|ne|equiv|partial)\b/;
   const protectedRE=/\\\\\([\\s\\S]*?\\\\\)|\\\\\[[\\s\\S]*?\\\\\]/g;
@@ -223,4 +223,27 @@
     const obs=new MutationObserver(ms=>{for(const m of ms){const el=m.target.nodeType===1?m.target:m.target.parentElement;const box=el?.closest?.('.practice-shell .feedback,.practice-shell .choice,.practice-shell .correct-answer,.practice-shell .method');if(box)schedule(box);for(const n of m.addedNodes){if(n.nodeType===1){const b=n.matches?.('.feedback,.choice,.correct-answer,.method')?n:n.querySelector?.('.feedback,.choice,.correct-answer,.method');if(b&&b.closest('.practice-shell'))schedule(b);}}}});
     document.querySelectorAll('.practice-shell').forEach(x=>obs.observe(x,{subtree:true,childList:true,characterData:true}));
   });
+})();
+
+// Put the caret in the current answer field when a typed-answer problem appears.
+(function batchMathPracticeAutofocus(){
+ 'use strict';
+ document.addEventListener('DOMContentLoaded',()=>{
+  const shell=document.querySelector('.practice-shell')||document.querySelector('#practiceCard')||(/\/practice\/?(?:index\.html)?$/.test(location.pathname)?document.querySelector('#main-content'):null);if(!shell)return;
+  let timer=0;
+  const focusAnswer=()=>{
+   const target=[...shell.querySelectorAll('.bm-calc-editor:not(.is-disabled),input#answer,input[name="answer"],input.answer-input,textarea#answer,[contenteditable="true"][role="textbox"]')]
+    .find(el=>!el.disabled&&!el.readOnly&&el.getClientRects().length&&getComputedStyle(el).visibility!=='hidden');
+   if(!target)return;
+   const active=document.activeElement;
+   if(active===target||active===document.body||!shell.contains(active)||active?.matches?.('#next,#nextBtn,#resetBtn,.next')){
+    try{target.focus({preventScroll:true});}catch(_){target.focus();}
+   }
+  };
+  const schedule=()=>{clearTimeout(timer);timer=setTimeout(focusAnswer,80);};
+  schedule();
+  const watch=[shell.querySelector('#question'),shell.querySelector('#choices'),shell.querySelector('.answer-row'),shell.querySelector('#practiceCard'),shell].filter(Boolean);
+  const observer=new MutationObserver(schedule);
+  for(const container of watch)observer.observe(container,{childList:true,subtree:true,attributes:true,attributeFilter:['class','style']});
+ });
 })();

@@ -1,0 +1,9 @@
+BatchMath v10.7.4 — practice typography and derivative chart variety
+
+- Practice question prompts and answer choices use the same regular sans-serif treatment as topic descriptions. Choice buttons inherit the site's font; MathJax equations are not restyled.
+- Conceptual/AP derivatives charts retain all earlier families and add f(g(kx)) (including k=4), g(f(2x)), f(x²), f(5x)/g(x), and f(3x)g(x).
+- Charts supply every lookup row needed for the chain, product, and quotient rules; answers and distractors use exact values and worked explanations.
+
+Automated checks: 12,000 seeded conceptual questions with independent chart/answer verification, AP topic generator QA (29,000 questions), release QA (237 pages, 88 engines), display-safety QA, and PWA/cache QA all passed.
+
+Recheck after upload: question and answer-choice typography on desktop and phone, MathJax within answer buttons, and a few new derivative chart examples. Browser visual checks were not available in this workspace.

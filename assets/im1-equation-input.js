@@ -20,7 +20,7 @@ function mount(host,p,onCheck){
  const form=document.createElement('div');form.className='im1-algebra-entry';
  const hint=document.createElement('button');hint.type='button';hint.id='equation-hint';hint.className='algebra-hint';hint.textContent='Show Hint';hint.setAttribute('aria-expanded','false');hint.setAttribute('aria-controls','equation-hint-panel');form.appendChild(hint);
  const panel=document.createElement('div');panel.id='equation-hint-panel';panel.className='algebra-help';panel.hidden=true;form.appendChild(panel);
- hint.addEventListener('click',()=>{panel.hidden=!panel.hidden;panel.textContent=p.hint;hint.textContent=panel.hidden?'Show Hint':'Hide Hint';hint.setAttribute('aria-expanded',String(!panel.hidden));});
+ hint.addEventListener('click',()=>{panel.hidden=!panel.hidden;panel.innerHTML=p.hint;if(!panel.hidden)global.MathJax?.typesetPromise?.([panel])?.catch?.(()=>{});hint.textContent=panel.hidden?'Show Hint':'Hide Hint';hint.setAttribute('aria-expanded',String(!panel.hidden));});
  const label=document.createElement('label');label.htmlFor='equation-answer';label.textContent='Solution (enter the value of x)';form.appendChild(label);
  const input=document.createElement('input');input.id='equation-answer';input.type='text';input.autocomplete='off';input.spellcheck=false;input.setAttribute('aria-describedby','equation-help');form.appendChild(input);
  const help=document.createElement('div');help.id='equation-help';help.className='algebra-help';help.textContent='Integers and fractions are accepted. Use the buttons below if there is no solution or infinitely many solutions.';form.appendChild(help);
@@ -37,7 +37,7 @@ function mount(host,p,onCheck){
  const submit=document.createElement('button');submit.id='equation-check';submit.type='button';submit.className='algebra-check';submit.textContent='Check Answer';submit.addEventListener('click',()=>onCheck(input.value));form.appendChild(submit);
  input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();if(!input.disabled)onCheck(input.value);}});
  global.BatchMathKeypad.layoutUnit2(pad);
- host.appendChild(form);
+ host.appendChild(form);input.focus({preventScroll:true});
  return {disable(){input.disabled=true;submit.disabled=true;pad.querySelectorAll('button').forEach(b=>b.disabled=true);}};
 }
 global.BatchMathIM1Equation={parse,check,mount};

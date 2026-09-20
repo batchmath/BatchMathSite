@@ -30,7 +30,7 @@ for(let i=0;i<30000;i++){
  }
  if(solution!==null){assert((D-B)/(A-C)===solution);assert(entry.check('x='+solution,p.answer).ok);assert(entry.check(`${solution*2}/2`,p.answer).ok);assert(!entry.check(String(solution+1),p.answer).ok);}
 }
-assert.equal(families.size,10);assert(Math.abs((none+all)/equations-.22)<.012);assert(Math.abs(none/equations-.11)<.01);assert(Math.abs(all/equations-.11)<.01);
+assert.equal(families.size,11);assert(families.has('both_distribute_unique'));assert(Math.abs((none+all)/equations-.22)<.012);assert(Math.abs(none/equations-.11)<.01);assert(Math.abs(all/equations-.11)<.01);
 for(const s of ['','1/0','2.5','x=','infinity','NaN','2+3','<img>'])assert(entry.parse(s).error,s);
 for(const [s,w] of [['Infinite Solutions','Infinitely many solutions'],['no solution','No solution'],['-6/2','-3'],['x=-3','-3']])assert(entry.check(s,w).ok,s);
 let three=0,twoPart=0,moved=0;

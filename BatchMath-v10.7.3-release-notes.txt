@@ -1,0 +1,16 @@
+BatchMath v10.7.3 — IM1 Unit 2 and AP Calculus Derivatives follow-up
+
+IM1 Unit 2
+- Equation hints render MathJax; grouping parentheses removed from combining-only equation forms.
+- Interval keypad uses shared visual styling and a compact four-column layout; solve-and-input questions target 65%.
+- Coordinate graphs start red; correct intervals, their marked points, and the correct choice highlight yellow on an incorrect answer.
+
+Derivatives
+- Power Rule and Comprehensive Review: reciprocal/root forms use reduced coefficients and single denominators.
+- Quotient Rule and Comprehensive Review: retain all function families but display nested quotient factors without stacked fractions; advanced families show derivatives of numerator and denominator in feedback.
+- Trig and Chain Rule: add higher-degree polynomial/trinomial compositions and six equally likely trig functions with unambiguous product factors. Introductory chain mode avoids later derivative rules.
+- Implicit Differentiation: include mixed x/y powers.
+- Logarithmic Derivatives: display common logarithm as log rather than log base 10.
+- Conceptual/AP chart: all choices have consistent math rendering and exact rational distractors.
+
+Recheck after upload: equation hints and combined forms; interval keypad and solve frequency; graph highlighting, endpoints and points; reciprocal/root power forms; quotient examples; all six trig types in chain; mixed powers in implicit; common logs; conceptual chart choices.

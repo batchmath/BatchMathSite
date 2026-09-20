@@ -1,5 +1,6 @@
 BatchMath cumulative working copy
-Current full release: 10.6.3.X
-Archive: batchmath-site-v10.6.3.X.zip
-Includes full W and all subsequent checkpoints, including W-before-coordinate-1 and the completed coordinate graph rebuild.
-See BatchMath-v10.6.3.X-Recheck.md. No deployment performed.
+Current full release: 10.7.3
+Archive: batchmath-site-v10.7.3.zip
+Baseline: complete v10.7.2 release.
+Changes: targeted IM1 Unit 2 and AP Calculus Derivatives corrections.
+No deployment performed.

@@ -66,7 +66,7 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
   
     gtag('config', 'G-377MTFXSF3');
   </script>
-<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_topic_derivatives_of_trigonometric_functions",generatorVersion:"6"};</script><script src="/assets/problem-tracking.js"></script>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_topic_derivatives_of_trigonometric_functions",generatorVersion:"7"};</script><script src="/assets/problem-tracking.js"></script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
 <img class="corner" src="../../../../../assets/batchmath-portrait.jpg" alt="">
 <a class="logo" href="../../../../../">BatchMath<span class="tm-mark">™</span></a>
@@ -76,7 +76,7 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
 <p class="topic-description">Practice Derivatives of Trigonometric Functions with the same generator logic used in the comprehensive review, focused on this topic.</p>
 <div class="practice-shell"><div class="controls"><div class="control" style="display:none"><label for="category">Derivative Type</label><select id="category">
 <option value="trig" selected>Trigonometric Derivatives</option>
-</select></div><div class="control"><label for="ruleMode">Practice Type</label><select id="ruleMode"><option value="without" selected>Without Chain Rule</option><option value="with">With Chain Rule</option><option value="both">Both</option></select></div></div>
+</select></div><div class="control"><label for="ruleMode">Practice Type</label><select id="ruleMode"><option value="without" selected>Without Chain Rule</option><option value="with">With Chain Rule (Later Review)</option></select></div></div>
 <div class="stats"><span id="topic-name"></span> &nbsp;•&nbsp; Correct: <span id="correct-count">0</span> &nbsp;•&nbsp; Attempted: <span id="attempted">0</span></div>
 <div id="question" class="question-box"></div>
 <div class="answer-row"><input id="answer" aria-label="Derivative answer" type="text" data-bm-calc-keypad="derivative" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Enter derivative"><button id="submit" class="practice-button" type="button">Check Answer</button><button id="next" class="practice-button next" type="button">Next Question</button></div>
@@ -94,7 +94,7 @@ const pick=a=>a[Math.floor(BatchMathRNG.random()*a.length)];
 const nz=(a,b)=>{let n=0;while(n===0)n=ri(a,b);return n};
 const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1};
 const rat=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d);return [n/g,d/g]};
-const texRat=(n,d=1)=>{const [a,b]=rat(n,d);return b===1?String(a):`\\frac{${a}}{${b}}`};
+const texRat=(n,d=1)=>{const [a,b]=rat(n,d);return b===1?String(a):`${a<0?"-":""}\\frac{${Math.abs(a)}}{${b}}`};
 const exprRat=(n,d=1)=>{const [a,b]=rat(n,d);return b===1?String(a):`(${a})/(${b})`};
 const signed=(c,term,first=false)=>{if(c===0)return"";const a=Math.abs(c),core=(a===1&&term?"":String(a))+term;if(first)return(c<0?"-":"")+core;return(c<0?" - ":" + ")+core};
 const exprSigned=(c,term,first=false)=>{if(c===0)return"";const a=Math.abs(c),core=term?((a===1?"":String(a)+"*")+term):String(a);if(first)return(c<0?"-":"")+core;return(c<0?" - ":" + ")+core};
@@ -111,7 +111,22 @@ const reciprocalTex=(c,p)=>{const den=p===1?"x":`x^{${p}}`,a=Math.abs(c),body=`\
 const sqrtDerivativeTex=c=>{const [n,d]=rat(c,2),sign=n<0?"-":"",a=Math.abs(n);if(d===1){const body=a===1?`\\frac{1}{\\sqrt{x}}`:`\\frac{${a}}{\\sqrt{x}}`;return sign+body}const num=a===1?"1":String(a),coef=d===1?"":String(d);return sign+`\\frac{${num}}{${coef}\\sqrt{x}}`};
 const wrap=x=>`(${x})`;
 const categoryLabel={basic:"Basic Derivative Rules",product:"Product Rule",quotient:"Quotient Rule",trig:"Trigonometric Derivatives",chain:"Chain Rule",exponential:"Exponential Functions",implicit:"Implicit Differentiation",log:"Derivatives of Logarithmic Functions",logdiff:"Logarithmic Differentiation",invtrig:"Inverse Trigonometric Derivatives",inverse:"Derivatives of Inverse Functions",point:"Finding Derivatives at a Point"};
-const mk=(cat,id,prompt,math,answerExpr,answerTex,solution,vars=["x"])=>({cat,id,q:`<div class="question-prompt">${prompt}</div><div>\\(${math}\\)</div>`,answerExpr,answerTex,solution,vars});
+const cleanMath=t=>t.replace(/\\frac\{(-\d+)\}/g,(_m,n)=>`-\\frac{${-Number(n)}}`).replace(/\\pi(?=[a-zA-Z])/g,"\\pi\\,").replace(/\b1(?=\\(?:sin|cos|tan|sec|csc|cot|ln|log|sqrt)\b)/g,"").replace(/([xy])\^\{1\}/g,"$1").replace(/([xy])\^1(?!\d)/g,"$1").replace(/(?<![\d])1(?=[xy](?:\^|\b))/g,"");
+const explicitQuotientSteps=(id,result)=>{
+ const [tag,...values]=id.split('-'),[a,b,c]=values.map(Number);
+ let du,dv;
+ if(tag==='qa1'){du=`${a}\\cos(${a}x)`;dv='2x'}
+ else if(tag==='qa2'){du=`${2*a}x e^{${a}x^2}`;dv=String(b)}
+ else if(tag==='qa3'){du=`\\frac{${a}}{${a}x+${b}}`;dv='2x'}
+ else if(tag==='qa4'){du=`\\frac{x}{\\sqrt{x^2+${a}}}`;dv=String(b)}
+ else if(tag==='qa5'){du=`${2*a}x`;dv=`${c}\\cos(${c}x)`}
+ else if(tag==='qa6'){du=`${a}e^{\\sin(${a}x)}\\cos(${a}x)`;dv='1'}
+ else if(tag==='qa7'){du=`${a}\\sec^2(${a}x)`;dv=`\\frac{x}{\\sqrt{x^2+${b}}}`}
+ else if(tag==='qa8'){du=`\\frac{${a}}{${a}x+${b}}`;dv=`${c}e^{${c}x}`}
+ else return null;
+ return `Let \\(u\\) be the numerator and \\(v\\) the denominator. Differentiate each: \\(u'=${du}\\) and \\(v'=${dv}\\). Substitute into \\(f'=\\frac{u'v-uv'}{v^2}\\) to obtain \\(f'(x)=${result}\\).`;
+};
+const mk=(cat,id,prompt,math,answerExpr,answerTex,solution,vars=["x"])=>({cat,id,q:`<div class="question-prompt">${prompt}</div><div>\\(${cleanMath(math)}\\)</div>`,answerExpr,answerTex:cleanMath(answerTex),solution:cleanMath(explicitQuotientSteps(id,answerTex)||solution),vars});
 
 function basic(){
  const type=ri(1,3);
@@ -141,10 +156,15 @@ function product(){
  const mode=document.getElementById("ruleMode")?.value||"mixed";
  const basic=mode==="basic"||(mode==="mixed"&&BatchMathRNG.random()<.35);
  if(basic){
-  const type=ri(1,3),a=nz(-4,4),b=ri(-6,6),c=nz(-4,4),d=ri(-6,6);
-  if(type===1){const u=linearTex(a,b),v=linearTex(c,d),ue=linearExpr(a,b),ve=linearExpr(c,d);return mk("product",`pb1-${a}-${b}-${c}-${d}`,"Find the derivative.",`f(x)=(${u})(${v})`,`(${a})*(${ve})+(${ue})*(${c})`,`${a===1?'':a===-1?'-':a}(${v})${c<0?' - ':' + '}${Math.abs(c)===1?'':Math.abs(c)}(${u})`,`Apply the product rule to the two polynomial factors.`)}
-  if(type===2){const u=poly2Tex(a,0,b),v=linearTex(c,d),ue=poly2Expr(a,0,b),ve=linearExpr(c,d),up=monoExpr(2*a,1),upT=monoTex(2*a,1);return mk("product",`pb2-${a}-${b}-${c}-${d}`,"Find the derivative.",`f(x)=(${u})(${v})`,`(${up})*(${ve})+(${ue})*(${c})`,`(${upT})(${v})${c<0?' - ':' + '}${Math.abs(c)===1?'':Math.abs(c)}(${u})`,`Apply the product rule to the two polynomial factors.`)}
-  const m=ri(2,3),n=ri(1,3),u=`${signed(a,`x^{${m}}`,true)}${signed(b,'')}`,v=`${signed(c,n===1?'x':`x^{${n}}`,true)}${signed(d,'')}`,ue=`${a}*x^${m}+(${b})`,ve=`${c}*x^${n}+(${d})`,up=`${a*m}*x^${m-1}`,vp=n===1?`${c}`:`${c*n}*x^${n-1}`,upT=monoTex(a*m,m-1),vpT=monoTex(c*n,n-1);return mk("product",`pb3-${a}-${b}-${c}-${d}-${m}-${n}`,"Find the derivative.",`f(x)=(${u})(${v})`,`(${up})*(${ve})+(${ue})*(${vp})`,`(${upT})(${v})+(${u})(${vpT})`,`Apply the product rule to the two polynomial factors.`)
+  const t=ri(1,3),a=nz(-4,4),b=ri(-6,6),c=nz(-4,4),d=ri(-6,6);
+  const m=t===1?1:t===2?2:ri(2,3),n=t===3?ri(1,3):1;
+  const u=[{p:m,c:a},{p:0,c:b}],v=[{p:n,c:c},{p:0,c:d}];
+  const render=ts=>ts.filter(t=>t.c).sort((l,r)=>r.p-l.p).map((q,i)=>signed(q.c,q.p===0?'':q.p===1?'x':`x^{${q.p}}`,i===0)).join('')||'0';
+  const raw=new Map();for(const l of u)for(const r of v)raw.set(l.p+r.p,(raw.get(l.p+r.p)||0)+l.c*r.c*(l.p+r.p));
+  const final=[...raw].map(([p,c])=>({p:p-1,c})).filter(q=>q.c),finalTex=render(final);
+  const finalExpr=final.map(q=>monoExpr(q.c,q.p)).join('+')||'0';
+  const uT=render(u),vT=render(v),duT=render([{p:m-1,c:a*m}]),dvT=render([{p:n-1,c:c*n}]);
+  return mk('product',`pb${t}-${a}-${b}-${c}-${d}-${m}-${n}`,'Find the derivative and simplify completely.',`f(x)=(${uT})(${vT})`,finalExpr,finalTex,`Let \\(u=${uT}\\) and \\(v=${vT}\\). Their derivatives are \\(u'=${duT}\\) and \\(v'=${dvT}\\). Apply \\(f'=u'v+uv'\\), then distribute and combine like terms to get \\(f'(x)=${finalTex}\\).`)
  }
  const type=ri(1,8);
  if(type===1){const k=ri(2,6),m=ri(1,4);return mk("product",`pa1-${k}-${m}`,"Find the derivative.",`f(x)=x^{${m}}\\sin(${k}x)`,`${m}*x^${m-1}*sin(${k}*x)+x^${m}*${k}*cos(${k}*x)`,`${monoTex(m,m-1)}\\sin(${k}x)+${k}x^{${m}}\\cos(${k}x)`,`Use the product rule; differentiating the sine factor also requires the chain rule.`)}
@@ -160,10 +180,14 @@ function quotient(){
  const mode=document.getElementById("ruleMode")?.value||"mixed";
  const basic=mode==="basic"||(mode==="mixed"&&BatchMathRNG.random()<.35);
  if(basic){
-  const type=ri(1,3),a=nz(-4,4),b=ri(-6,6),c=nz(-4,4),d=ri(-6,6);
-  if(type===1){const u=linearTex(a,b),v=linearTex(c,d),ue=linearExpr(a,b),ve=linearExpr(c,d);return mk("quotient",`qb1-${a}-${b}-${c}-${d}`,"Find the derivative.",`f(x)=\\frac{${u}}{${v}}`,`((${a})*(${ve})-(${ue})*(${c}))/((${ve})^2)`,`\\frac{${a===1?'':a===-1?'-':a}(${v})${c<0?' + ':' - '}${Math.abs(c)===1?'':Math.abs(c)}(${u})}{(${v})^2}`,`Apply the quotient rule to the two polynomial pieces.`)}
-  if(type===2){const u=poly2Tex(a,0,b),v=linearTex(c,d),ue=poly2Expr(a,0,b),ve=linearExpr(c,d),up=`${2*a}*x`,upT=monoTex(2*a,1);return mk("quotient",`qb2-${a}-${b}-${c}-${d}`,"Find the derivative.",`f(x)=\\frac{${u}}{${v}}`,`((${up})*(${ve})-(${ue})*(${c}))/((${ve})^2)`,`\\frac{(${upT})(${v})${c<0?' + ':' - '}${Math.abs(c)===1?'':Math.abs(c)}(${u})}{(${v})^2}`,`Apply the quotient rule to the two polynomial pieces.`)}
-  const u=linearTex(a,b),v=poly2Tex(c,0,d),ue=linearExpr(a,b),ve=poly2Expr(c,0,d),vp=`${2*c}*x`,vpT=monoTex(2*c,1);return mk("quotient",`qb3-${a}-${b}-${c}-${d}`,"Find the derivative.",`f(x)=\\frac{${u}}{${v}}`,`((${a})*(${ve})-(${ue})*(${vp}))/((${ve})^2)`,`\\frac{${a===1?'':a===-1?'-':a}(${v})-(${u})(${vpT})}{(${v})^2}`,`Apply the quotient rule to the two polynomial pieces.`)
+  const poly=()=>{const degree=ri(1,4),terms=[{p:degree,c:nz(-4,4)}];if(BatchMathRNG.random()<.68&&degree>1)terms.push({p:ri(1,degree-1),c:nz(-4,4)});if(BatchMathRNG.random()<.82)terms.push({p:0,c:nz(-6,6)});return terms};
+  const tex=ts=>ts.map((q,i)=>signed(q.c,q.p===0?'':q.p===1?'x':`x^{${q.p}}`,i===0)).join('');
+  const expr=ts=>ts.map(q=>monoExpr(q.c,q.p)).join('+');
+  const u=poly(),v=poly(),du=u.filter(q=>q.p).map(q=>({p:q.p-1,c:q.c*q.p})),dv=v.filter(q=>q.p).map(q=>({p:q.p-1,c:q.c*q.p}));
+  const ut=tex(u),vt=tex(v),dut=tex(du),dvt=tex(dv),ue=expr(u),ve=expr(v),due=expr(du),dve=expr(dv);
+  const ans=`((${due})*(${ve})-(${ue})*(${dve}))/((${ve})^2)`;
+  const answer=`\\frac{(${dut})(${vt})-(${ut})(${dvt})}{(${vt})^2}`;
+  return mk('quotient',`qb-poly-${u.map(q=>q.p+'_'+q.c).join('-')}-${v.map(q=>q.p+'_'+q.c).join('-')}`,'Find the derivative.',`f(x)=\\frac{${ut}}{${vt}}`,ans,answer,`The numerator has derivative \\(${dut}\\), and the denominator has derivative \\(${dvt}\\). Apply \\(f'=\\frac{u'v-uv'}{v^2}\\) to obtain \\(f'(x)=${answer}\\).`)
  }
  const type=ri(1,8);
  if(type===1){const k=ri(2,6),a=ri(1,5);return mk("quotient",`qa1-${k}-${a}`,"Find the derivative.",`f(x)=\\frac{\\sin(${k}x)}{x^2+${a}}`,`(${k}*cos(${k}*x)*(x^2+${a})-sin(${k}*x)*2*x)/(x^2+${a})^2`,`\\frac{${k}(x^2+${a})\\cos(${k}x)-2x\\sin(${k}x)}{(x^2+${a})^2}`,`Use the quotient rule and the chain rule in the numerator.`)}
@@ -172,7 +196,7 @@ function quotient(){
  if(type===4){const a=ri(1,5),b=ri(1,4),c=ri(1,5),inner=`x^2+${a}`,den=linearTex(b,c),de=linearExpr(b,c);return mk("quotient",`qa4-${a}-${b}-${c}`,"Find the derivative.",`f(x)=\\frac{\\sqrt{${inner}}}{${den}}`,`((x/sqrt(${inner}))*(${de})-sqrt(${inner})*${b})/((${de})^2)`,`\\frac{\\frac{x(${den})}{\\sqrt{${inner}}}-${b===1?'':b}\\sqrt{${inner}}}{(${den})^2}`,`Use the quotient rule and differentiate the radical by the chain rule.`)}
  if(type===5){const a=ri(1,4),b=ri(1,5),k=ri(2,6);const num=poly2Tex(a,0,b),ne=poly2Expr(a,0,b);return mk("quotient",`qa5-${a}-${b}-${k}`,"Find the derivative.",`f(x)=\\frac{${num}}{\\sin(${k}x)}`,`(2*${a}*x*sin(${k}*x)-(${ne})*${k}*cos(${k}*x))/(sin(${k}*x)^2)`,`\\frac{${2*a}x\\sin(${k}x)-${k}(${num})\\cos(${k}x)}{\\sin^2(${k}x)}`,`Use the quotient rule and the chain rule in the sine denominator.`)}
  if(type===6){const k=ri(2,5),a=ri(1,5);return mk("quotient",`qa6-${k}-${a}`,"Find the derivative.",`f(x)=\\frac{e^{\\sin(${k}x)}}{x+${a}}`,`(e^(sin(${k}*x))*cos(${k}*x)*${k}*(x+${a})-e^(sin(${k}*x)))/(x+${a})^2`,`\\frac{${k}(x+${a})e^{\\sin(${k}x)}\\cos(${k}x)-e^{\\sin(${k}x)}}{(x+${a})^2}`,`Use the quotient rule and multiple chain-rule layers in the exponential numerator.`)}
- if(type===7){const k=ri(2,5),a=ri(1,5),inner=`x^2+${a}`;return mk("quotient",`qa7-${k}-${a}`,"Find the derivative.",`f(x)=\\frac{\\tan(${k}x)}{\\sqrt{${inner}}}`,`(${k}*sec(${k}*x)^2*sqrt(${inner})-tan(${k}*x)*(x/sqrt(${inner})))/(${inner})`,`(${k}\\sec^2(${k}x)\\sqrt{${inner}}-\\frac{x\\tan(${k}x)}{\\sqrt{${inner}}})/(${inner})`,`Use the quotient rule and chain rule in both pieces.`)}
+ if(type===7){const k=ri(2,5),a=ri(1,5),inner=`x^2+${a}`;return mk("quotient",`qa7-${k}-${a}`,"Find the derivative.",`f(x)=\\frac{\\tan(${k}x)}{\\sqrt{${inner}}}`,`(${k}*sec(${k}*x)^2*sqrt(${inner})-tan(${k}*x)*(x/sqrt(${inner})))/(${inner})`,`\\frac{${k}(${inner})\\sec^2(${k}x)-x\\tan(${k}x)}{(${inner})^{3/2}}`,`Use the quotient rule and chain rule in both pieces.`)}
  const a=ri(2,5),b=ri(1,5),k=ri(2,5);return mk("quotient",`qa8-${a}-${b}-${k}`,"Find the derivative.",`f(x)=\\frac{\\ln(${a}x+${b})}{e^{${k}x}}`,`((${a}/(${a}*x+${b}))*e^(${k}*x)-ln(${a}*x+${b})*${k}*e^(${k}*x))/(e^(${k}*x)^2)`,`\\frac{\\frac{${a}e^{${k}x}}{${a}x+${b}}-${k}e^{${k}x}\\ln(${a}x+${b})}{e^{${2*k}x}}`,`Use the quotient rule and chain rule in both numerator and denominator.`)
 }
 const trigRules={
@@ -184,7 +208,7 @@ const trigRules={
  cot:{tex:"\\cot x",dtex:"-\\csc^2 x",expr:"cot(x)",dexpr:"-csc(x)^2"}
 };
 function trig(){
- const mode=document.getElementById("ruleMode")?.value||"both";const withChain=mode==="with"||(mode==="both"&&BatchMathRNG.random()<.5);const type=ri(1,6);
+ const mode=document.getElementById("ruleMode")?.value||"without";const withChain=mode==="with";const type=ri(1,6);
  if(!withChain){const c=nz(-6,6);
   if(type===1)return mk("trig",`tnc-sin-${c}`,"Find the derivative.",`f(x)=${signed(c,"\\sin x",true)}`,`${c}*cos(x)`,signed(c,"\\cos x",true),`Use \\((\\sin x)'=\\cos x\\).`);
   if(type===2)return mk("trig",`tnc-cos-${c}`,"Find the derivative.",`f(x)=${signed(c,"\\cos x",true)}`,`${-c}*sin(x)`,signed(-c,"\\sin x",true),`Use \\((\\cos x)'=-\\sin x\\).`);
@@ -192,6 +216,16 @@ function trig(){
   if(type===4)return mk("trig",`tnc-sec-${c}`,"Find the derivative.",`f(x)=${signed(c,"\\sec x",true)}`,`${c}*sec(x)*tan(x)`,signed(c,"\\sec x\\tan x",true),`Differentiate secant.`);
   if(type===5)return mk("trig",`tnc-csc-${c}`,"Find the derivative.",`f(x)=${signed(c,"\\csc x",true)}`,`${-c}*csc(x)*cot(x)`,signed(-c,"\\csc x\\cot x",true),`Differentiate cosecant.`);
   return mk("trig",`tnc-mix-${c}`,"Find the derivative.",`f(x)=${signed(c,"\\sin x",true)}+\\tan x`,`${c}*cos(x)+sec(x)^2`,`${signed(c,"\\cos x",true)}+\\sec^2x`,`Differentiate each trig term.`)
+ }
+ if(withChain&&BatchMathRNG.random()<.12){
+  const c=ri(2,7),t=pick(['sin','cos','tan']),u=`x^2+${c}`,d=t==='sin'?`cos((x^2+${c})^(1/3))`:t==='cos'?`-sin((x^2+${c})^(1/3))`:`sec((x^2+${c})^(1/3))^2`;
+  const dtex=t==='sin'?`\\cos(\\sqrt[3]{${u}})`:t==='cos'?`-\\sin(\\sqrt[3]{${u}})`:`\\sec^2(\\sqrt[3]{${u}})`;
+  return mk('trig',`tcj-cube-${t}-${c}`,'Find the derivative.',`f(x)=\\${t}(\\sqrt[3]{${u}})`,`(2*x/(3*(${u})^(2/3)))*(${d})`,`\\frac{2x}{3(${u})^{2/3}}(${dtex})`,`Differentiate the trigonometric outer function, then multiply by the cube-root derivative \\(\\frac{2x}{3(${u})^{2/3}}\\).`);
+ }
+ if(withChain&&BatchMathRNG.random()<.36){
+  const t=pick(['sin','cos','tan','sec','csc','cot']),n=ri(2,5),a=nz(-4,4),b=ri(2,8),u=`x^{${n}}${a<0?`-${-a}x`:`+${a}x`}+${b}`,ue=`x^${n}+(${a})*x+${b}`,up=`${n}x^{${n-1}}${a<0?`-${-a}`:`+${a}`}`,upe=`${n}*x^${n-1}+(${a})`;
+  const rules={sin:[`\\cos(${u})`,`cos(${ue})`],cos:[`-\\sin(${u})`,`-sin(${ue})`],tan:[`\\sec^2(${u})`,`sec(${ue})^2`],sec:[`\\sec(${u})\\tan(${u})`,`sec(${ue})*tan(${ue})`],csc:[`-\\csc(${u})\\cot(${u})`,`-csc(${ue})*cot(${ue})`],cot:[`-\\csc^2(${u})`,`-csc(${ue})^2`]};
+  return mk('trig',`tcj-poly-${t}-${n}-${a}-${b}`,'Find the derivative.',`f(x)=\\${t}(${u})`,`(${upe})*(${rules[t][1]})`,`(${up})(${rules[t][0]})`,`The inside is \\(u=${u}\\), so \\(u'=${up}\\). Differentiate the outer ${t} function and multiply by this inside derivative.`);
  }
  const kind=ri(1,10);
  if(kind===1){const k=ri(2,6);return mk("trig",`tcj1-${k}`,"Find the derivative.",`f(x)=\\sin(${k}x^2)`,`${2*k}*x*cos(${k}*x^2)`,`${2*k}x\\cos(${k}x^2)`,`Use the chain rule.`)}
@@ -206,6 +240,8 @@ function trig(){
  const k=ri(2,5);return mk("trig",`tcj10-${k}`,"Find the derivative.",`f(x)=\\sec(\\sin(${k}x^2))`,`${2*k}*x*cos(${k}*x^2)*sec(sin(${k}*x^2))*tan(sin(${k}*x^2))`,`${2*k}x\\cos(${k}x^2)\\sec(\\sin(${k}x^2))\\tan(\\sin(${k}x^2))`,`Differentiate through secant, sine, and quadratic layers.`)
 }
 function chainSimple(){
+ if(BatchMathRNG.random()<.2){const c=ri(2,7),k=ri(2,4),u=`${k}x^2+${c}`;return mk('chain',`csj-cube-${k}-${c}`,'Find the derivative.',`f(x)=\\sqrt[3]{${u}}`,`(2*${k}*x)/(3*(${k}*x^2+${c})^(2/3))`,`\\frac{${2*k}x}{3(${u})^{2/3}}`,`Write the cube root as \\(( ${u} )^{1/3}\\). The power rule and chain rule give \\(\\frac13(${u})^{-2/3}(${2*k}x)\\).`)}
+
  const type=ri(1,6);
  if(type===1){const a=nz(-5,5),b=nz(-8,8),n=ri(3,7),inner=linearTex(a,b),ie=linearExpr(a,b),ansExpr=`${n*a}*(${ie})^${n-1}`,ansTex=coefProductTex(n*a,`(${inner})^{${n-1}}`);return mk("chain",`csj1-${a}-${b}-${n}`,"Find the derivative.",`f(x)=(${inner})^{${n}}`,ansExpr,ansTex,`Differentiate the outer power and multiply by the derivative of the inside. \\(f'(x)=${ansTex}\\).`)}
  if(type===2){const a=nz(-4,4),b=nz(-5,5),c=ri(-6,6),inner=poly2Tex(a,b,c),ie=poly2Expr(a,b,c),ip=`${2*a}*x+(${b})`,ipT=signed(2*a,"x",true)+signed(b,"",false),ansExpr=`(${ip})*cos(${ie})`,ansTex=`(${ipT})\\cos(${inner})`;return mk("chain",`csj2-${a}-${b}-${c}`,"Find the derivative.",`f(x)=\\sin(${inner})`,ansExpr,ansTex,`Differentiate the sine and multiply by the derivative of its inside. \\(f'(x)=${ansTex}\\).`)}
@@ -227,15 +263,20 @@ function chainMultiple(){
 }
 function chain(){
  const mode=$("chain-mode")?.value||"all";
- function withOtherRules(){
-  const style=pick(['product_chain','quotient_chain','product_nested','quotient_nested','product_log','quotient_exp']);
-  if(style==='product_chain'){const a=ri(1,4),n=ri(2,5),inner=linearTex(a,1),ie=linearExpr(a,1);return mk('chain',`coj-p1-${a}-${n}`,'Find the derivative.',`f(x)=x^2\\sin((${inner})^{${n}})`,`2*x*sin((${ie})^${n})+x^2*cos((${ie})^${n})*${n}*(${ie})^${n-1}*${a}`,`2x\\sin((${inner})^{${n}})+${n*a}x^2(${inner})^{${n-1}}\\cos((${inner})^{${n}})`,`Use the product rule, with repeated chain-rule layers in the sine factor.`)}
-  if(style==='quotient_chain'){const a=ri(1,4),k=ri(2,5);return mk('chain',`coj-q1-${a}-${k}`,'Find the derivative.',`f(x)=\\frac{\\sin(${k}x^2)}{x+${a}}`,`(2*${k}*x*cos(${k}*x^2)*(x+${a})-sin(${k}*x^2))/(x+${a})^2`,`\\frac{${2*k}x(x+${a})\\cos(${k}x^2)-\\sin(${k}x^2)}{(x+${a})^2}`,`Use the quotient rule, with the chain rule in the sine numerator.`)}
-  if(style==='product_nested'){const k=ri(2,5),a=ri(1,5);return mk('chain',`coj-p2-${k}-${a}`,'Find the derivative.',`f(x)=e^{\\sin(${k}x)}\\sqrt{x^2+${a}}`,`${k}*cos(${k}*x)*e^(sin(${k}*x))*sqrt(x^2+${a})+e^(sin(${k}*x))*x/sqrt(x^2+${a})`,`${k}e^{\\sin(${k}x)}\\cos(${k}x)\\sqrt{x^2+${a}}+\\frac{x e^{\\sin(${k}x)}}{\\sqrt{x^2+${a}}}`,`Use the product rule; both factors also require chain-rule work.`)}
-  if(style==='quotient_nested'){const k=ri(2,5),a=ri(1,5);return mk('chain',`coj-q2-${k}-${a}`,'Find the derivative.',`f(x)=\\frac{\\ln(x^2+${a})}{\\cos(${k}x)}`,`((2*x/(x^2+${a}))*cos(${k}*x)-ln(x^2+${a})*(-${k}*sin(${k}*x)))/(cos(${k}*x)^2)`,`\\frac{\\frac{2x\\cos(${k}x)}{x^2+${a}}+${k}\\ln(x^2+${a})\\sin(${k}x)}{\\cos^2(${k}x)}`,`Use the quotient rule and chain rule in both composed pieces.`)}
-  if(style==='product_log'){const a=ri(2,5),b=ri(1,5),k=ri(2,5);return mk('chain',`coj-p3-${a}-${b}-${k}`,'Find the derivative.',`f(x)=\\ln(${a}x+${b})\\tan(${k}x^2)`,`${a}/(${a}*x+${b})*tan(${k}*x^2)+ln(${a}*x+${b})*sec(${k}*x^2)^2*${2*k}*x`,`\\frac{${a}\\tan(${k}x^2)}{${a}x+${b}}+${2*k}x\\ln(${a}x+${b})\\sec^2(${k}x^2)`,`Use the product rule and chain rule in both factors.`)}
-  const a=ri(1,5),k=ri(2,5);return mk('chain',`coj-q3-${a}-${k}`,'Find the derivative.',`f(x)=\\frac{e^{\\sin(${k}x)}}{x^2+${a}}`,`(${k}*cos(${k}*x)*e^(sin(${k}*x))*(x^2+${a})-e^(sin(${k}*x))*2*x)/(x^2+${a})^2`,`\\frac{${k}(x^2+${a})e^{\\sin(${k}x)}\\cos(${k}x)-2x e^{\\sin(${k}x)}}{(x^2+${a})^2}`,`Use the quotient rule and repeated chain-rule layers in the exponential numerator.`)
+ function withOtherRules(includeLater=false){
+  const t=pick(['sin','cos','tan','sec','csc','cot']),k=ri(2,5),a=ri(2,4),b=ri(2,6),high=BatchMathRNG.random()<.5;
+  const u=high?`x^3+${a}x+${b}`:`${k}x`,ue=high?`x^3+${a}*x+${b}`:`${k}*x`,up=high?`3x^2+${a}`:String(k),upe=high?`3*x^2+${a}`:String(k);
+  const T=`\\${t}(${u})`,E=`${t}(${ue})`,tr={sin:[`\\cos(${u})`,`cos(${ue})`],cos:[`-\\sin(${u})`,`-sin(${ue})`],tan:[`\\sec^2(${u})`,`sec(${ue})^2`],sec:[`\\sec(${u})\\tan(${u})`,`sec(${ue})*tan(${ue})`],csc:[`-\\csc(${u})\\cot(${u})`,`-csc(${ue})*cot(${ue})`],cot:[`-\\csc^2(${u})`,`-csc(${ue})^2`]}[t];
+  const other=pick(includeLater?['cube','poly','exp']:['cube','poly']);let V,Ve,Vp,Vpe;
+  if(other==='cube'){V=`\\sqrt[3]{x^2+${b}}`;Ve=`(x^2+${b})^(1/3)`;Vp=`\\frac{2x}{3(x^2+${b})^{2/3}}`;Vpe=`2*x/(3*(x^2+${b})^(2/3))`}
+  else if(other==='poly'){V=`x^2+${a}x+${b}`;Ve=`x^2+${a}*x+${b}`;Vp=`2x+${a}`;Vpe=`2*x+${a}`}
+  else{V=`e^{${k}x}`;Ve=`e^(${k}*x)`;Vp=`${k}e^{${k}x}`;Vpe=`${k}*e^(${k}*x)`}
+  const dT=`(${up})(${tr[0]})`,dE=`(${upe})*(${tr[1]})`,asProduct=BatchMathRNG.random()<.5;
+  if(asProduct)return mk('chain',`coj-var-prod-${t}-${k}-${a}-${b}-${high}-${other}`,'Find the derivative.',`f(x)=\\left(${T}\\right)\\left(${V}\\right)`,`${dE}*(${Ve})+(${E})*(${Vpe})`,`${dT}(${V})+(${T})(${Vp})`,`Let \\(u=${T}\\) and \\(v=${V}\\). Differentiate both factors, using the chain rule for the trigonometric factor: \\(u'=${dT}\\), \\(v'=${Vp}\\). Then \\(f'=u'v+uv'\\).`);
+  const trigTop=BatchMathRNG.random()<.5,num=trigTop?T:V,den=trigTop?V:T,numE=trigTop?E:Ve,denE=trigTop?Ve:E,dNum=trigTop?dT:Vp,dDen=trigTop?Vp:dT,dNumE=trigTop?dE:Vpe,dDenE=trigTop?Vpe:dE;
+  return mk('chain',`coj-var-quot-${t}-${k}-${a}-${b}-${high}-${other}-${trigTop}`,'Find the derivative.',`f(x)=\\frac{${num}}{${den}}`,`((${dNumE})*(${denE})-(${numE})*(${dDenE}))/((${denE})^2)`,`\\frac{(${dNum})(${den})-(${num})(${dDen})}{(${den})^2}`,`Let \\(u=${num}\\) and \\(v=${den}\\). Use the chain rule to find \\(u'=${dNum}\\) and \\(v'=${dDen}\\), then substitute into \\(f'=\\frac{u'v-uv'}{v^2}\\).`);
  }
+
  if(mode==="simple")return chainSimple();
  if(mode==="multiple")return chainMultiple();
  if(mode==="other")return withOtherRules();
@@ -246,7 +287,7 @@ function exponential(){
  if(BatchMathRNG.random()<.28){
   const style=pick(['e_sec','base_cot','e_tan']);
   if(style==='e_sec'){const k=ri(1,5),ansExpr=`e^(sec(${k}*x))*sec(${k}*x)*tan(${k}*x)*${k}`,ansTex=`${k}e^{\\sec(${k}x)}\\sec(${k}x)\\tan(${k}x)`;return mk('exponential',`eadv-sec-${k}`,'Find the derivative.',`f(x)=e^{\\sec(${k}x)}`,ansExpr,ansTex,`Use the exponential chain rule, then differentiate secant with its chain factor.`)}
-  if(style==='base_cot'){const base=pick([2,3,5]),k=ri(1,4),ansExpr=`${base}^(cot(${k}*x))*ln(${base})*(-${k})*csc(${k}*x)^2`,ansTex=`-${k}\\ln(${base})${base}^{\\cot(${k}x)}\\csc^2(${k}x)`;return mk('exponential',`eadv-cot-${base}-${k}`,'Find the derivative.',`f(x)=${base}^{\\cot(${k}x)}`,ansExpr,ansTex,`Use (a^u)'=a^u ln(a)u' and then differentiate cotangent.`)}
+  if(style==='base_cot'){const base=pick([2,3,5]),k=ri(1,4),ansExpr=`${base}^(cot(${k}*x))*ln(${base})*(-${k})*csc(${k}*x)^2`,ansTex=`-${k}\\ln(${base})${base}^{\\cot(${k}x)}\\csc^2(${k}x)`;return mk('exponential',`eadv-cot-${base}-${k}`,'Find the derivative.',`f(x)=${base}^{\\cot(${k}x)}`,ansExpr,ansTex,`Use \\((a^u)'=a^u\\ln(a)u'\\), then differentiate cotangent with the chain rule.`)}
   const k=ri(1,5),ansExpr=`e^(tan(${k}*x))*sec(${k}*x)^2*${k}`,ansTex=`${k}e^{\\tan(${k}x)}\\sec^2(${k}x)`;return mk('exponential',`eadv-tan-${k}`,'Find the derivative.',`f(x)=e^{\\tan(${k}x)}`,ansExpr,ansTex,`Differentiate the exponential and then tangent.`)
  }
 
@@ -259,8 +300,15 @@ function exponential(){
 }
 
 function implicit(){
- const type=ri(1,10);
+ const type=ri(1,15);
+ if(type===11){const n=ri(3,5),m=ri(2,5),c=ri(2,9),nt=n-1===1?'x':`x^{${n-1}}`,mt=m-1===1?'y':`y^{${m-1}}`;return mk('implicit',`imp-higher-${n}-${m}-${c}`,'Find dy/dx.',`x^{${n}}+y^{${m}}=${c}`,`-(${n}*x^${n-1})/(${m}*y^${m-1})`,`-\\frac{${n}${nt}}{${m}${mt}}`,`Differentiate each side: \\(${n}${nt}+${m}${mt}\\frac{dy}{dx}=0\\). Move the x-term and divide by \\(${m}${mt}\\).`,['x','y'])}
+ if(type===12){const k=ri(2,5);return mk('implicit',`imp-sin-y-${k}`,'Find dy/dx.',`\\sin(${k}y)+x^2=4`,`-2*x/(${k}*cos(${k}*y))`,`-\\frac{2x}{${k}\\cos(${k}y)}`,`The chain rule gives \\(${k}\\cos(${k}y)\\frac{dy}{dx}+2x=0\\). Isolate \\(dy/dx\\).`,['x','y'])}
+ if(type===13)return mk('implicit','imp-sin-xy','Find dy/dx.',`\\sin(xy)=x+y`,`(1-y*cos(x*y))/(x*cos(x*y)-1)`,`\\frac{1-y\\cos(xy)}{x\\cos(xy)-1}`,`Differentiate to get \\(\\cos(xy)(y+x\\frac{dy}{dx})=1+\\frac{dy}{dx}\\). Collect the derivative terms and divide.`,['x','y']);
+ if(type===14){const k=ri(2,4);return mk('implicit',`imp-sin-quadratic-${k}`,'Find dy/dx.',`\\sin(${k}x^2)+y^4=7`,`-2*${k}*x*cos(${k}*x^2)/(4*y^3)`,`-\\frac{${k}x\\cos(${k}x^2)}{2y^3}`,`Differentiate both sides: \\(${2*k}x\\cos(${k}x^2)+4y^3\\frac{dy}{dx}=0\\). Isolate the derivative.`,['x','y'])}
+ if(type===15)return mk('implicit','imp-sin-y-squared','Find dy/dx.',`x+\\sin(y^2)=5`,`-1/(2*y*cos(y^2))`,`-\\frac{1}{2y\\cos(y^2)}`,`The chain rule gives \\(1+2y\\cos(y^2)\\frac{dy}{dx}=0\\). Isolate the derivative.`,['x','y']);
+
  const dydx=`\\frac{dy}{dx}`;
+ if(type===1&&BatchMathRNG.random()<.55){const n=ri(2,4),m=ri(2,5),c=ri(3,12),nt=n-1===1?'x':`x^{${n-1}}`,mt=m-1===1?'y':`y^{${m-1}}`;return mk('implicit',`imp-mixed-${n}-${m}-${c}`,'Find dy/dx by implicit differentiation.',`x^{${n}}+y^{${m}}=${c}`,`-(${n}*x^${n-1})/(${m}*y^${m-1})`,`-\\frac{${n}${nt}}{${m}${mt}}`,`Differentiate: \\(${n}${nt}+${m}${mt}\\frac{dy}{dx}=0\\). Divide by \\(${m}${mt}\\) after moving the x-term.`,['x','y'])}
  if(type===1){const R=pick([4,5,6,8]);return mk("implicit",`imp-circle-${R}`,"Find dy/dx by implicit differentiation.",`x^2+y^2=${R*R}`,`-x/y`,`-\\frac{x}{y}`,`Differentiate both sides: \\(2x+2y\\frac{dy}{dx}=0\\), then solve for \\(\\frac{dy}{dx}\\).`,["x","y"])}
  if(type===2){const C=pick([4,6,8,10]);return mk("implicit",`imp-xy-${C}`,"Find dy/dx by implicit differentiation.",`xy=${C}`,`-y/x`,`-\\frac{y}{x}`,`Differentiate with the product rule: \\(x\\frac{dy}{dx}+y=0\\), then solve for \\(\\frac{dy}{dx}\\).`,["x","y"])}
  if(type===3){const a=ri(1,4),b=ri(1,4);return mk("implicit",`imp-hard1-${a}-${b}`,"Find dy/dx.",`${a===1?'':a}x^2y+${b===1?'':b}y^3=7`,`-(${2*a}*x*y)/(${a}*x^2+${3*b}*y^2)`,`-\\frac{${2*a}xy}{${a===1?'':a}x^2+${3*b}y^2}`,`Differentiate the product and power terms, collect every \\(\\frac{dy}{dx}\\) term, and solve for \\(\\frac{dy}{dx}\\).`,["x","y"])}
@@ -281,32 +329,40 @@ function logDeriv(){
  if(type===5){const c=ri(6,10);return mk("log",`lg-log-${c}`,"Find the derivative.",`f(x)=\\ln(\\ln(x+${c}))`,`1/((x+${c})*ln(x+${c}))`,`\\frac{1}{(x+${c})\\ln(x+${c})}`,`This is a logarithm of another logarithm, so apply the chain rule through both layers.`)}
  if(type===6){const k=ri(1,4),c=ri(1,6);return mk("log",`lg-exp-${k}-${c}`,"Find the derivative.",`f(x)=\\ln(e^{${k}x}+${c})`,`${k}*e^(${k}*x)/(e^(${k}*x)+${c})`,`\\frac{${k}e^{${k}x}}{e^{${k}x}+${c}}`,`Differentiate the exponential argument, then divide by the original argument.`)}
  if(type===7){const c=ri(2,10);return mk("log",`lg-root-${c}`,"Find the derivative.",`f(x)=\\ln(\\sqrt{x^2+${c}})`,`x/(x^2+${c})`,`\\frac{x}{x^2+${c}}`,`Differentiate through the logarithm and square-root layers, then simplify.`)}
- if(type===8){const base=pick([2,3,5,7,10]),a=nz(-4,4),c=a*a+ri(3,8),u=`x^2${a<0?`-${-a}x`:`+${a}x`}+${c}`,ue=`x^2+(${a})*x+${c}`,up=`2*x+(${a})`,upT=`2x${a<0?`-${-a}`:`+${a}`}`;return mk("log",`lg-base-poly-${base}-${a}-${c}`,"Find the derivative.",`f(x)=\\log_{${base}}(${u})`,`(${up})/((${ue})*ln(${base}))`,`\\frac{${upT}}{(${u})\\ln ${base}}`,`For a logarithm with base \\(${base}\\), divide the derivative of the argument by the argument times \\(\\ln ${base}\\).`)}
- if(type===9){const base=pick([2,3,5,7]),k=ri(1,5),c=ri(2,6);return mk("log",`lg-base-trig-${base}-${k}-${c}`,"Find the derivative.",`f(x)=\\log_{${base}}(${c}+\\sin(${k}x))`,`${k}*cos(${k}*x)/((${c}+sin(${k}*x))*ln(${base}))`,`\\frac{${k}\\cos(${k}x)}{(${c}+\\sin(${k}x))\\ln ${base}}`,`Differentiate the trigonometric argument and use the derivative formula for a base-${base} logarithm.`)}
- if(type===10){const base=pick([2,3,5,10]),c=ri(6,10);return mk("log",`lg-base-log-${base}-${c}`,"Find the derivative.",`f(x)=\\log_{${base}}(\\ln(x+${c}))`,`1/((x+${c})*ln(x+${c})*ln(${base}))`,`\\frac{1}{(x+${c})\\ln(x+${c})\\ln ${base}}`,`Apply the chain rule through the outer base-${base} logarithm and the inner natural logarithm.`)}
+ if(type===8){const base=pick([2,3,5,7,10]),a=nz(-4,4),c=a*a+ri(3,8),u=`x^2${a<0?`-${-a}x`:`+${a}x`}+${c}`,ue=`x^2+(${a})*x+${c}`,up=`2*x+(${a})`,upT=`2x${a<0?`-${-a}`:`+${a}`}`;return mk("log",`lg-base-poly-${base}-${a}-${c}`,"Find the derivative.",`f(x)=${base===10?"\\log":`\\log_{${base}}`}(${u})`,`(${up})/((${ue})*ln(${base}))`,`\\frac{${upT}}{(${u})\\ln ${base}}`,`For a logarithm with base \\(${base}\\), divide the derivative of the argument by the argument times \\(\\ln ${base}\\).`)}
+ if(type===9){const base=pick([2,3,5,7]),k=ri(1,5),c=ri(2,6);return mk("log",`lg-base-trig-${base}-${k}-${c}`,"Find the derivative.",`f(x)=${base===10?"\\log":`\\log_{${base}}`}(${c}+\\sin(${k}x))`,`${k}*cos(${k}*x)/((${c}+sin(${k}*x))*ln(${base}))`,`\\frac{${k}\\cos(${k}x)}{(${c}+\\sin(${k}x))\\ln ${base}}`,`Differentiate the trigonometric argument and use the derivative formula for a base-${base} logarithm.`)}
+ if(type===10){const base=pick([2,3,5,10]),c=ri(6,10);return mk("log",`lg-base-log-${base}-${c}`,"Find the derivative.",`f(x)=${base===10?"\\log":`\\log_{${base}}`}(\\ln(x+${c}))`,`1/((x+${c})*ln(x+${c})*ln(${base}))`,`\\frac{1}{(x+${c})\\ln(x+${c})\\ln ${base}}`,`Apply the chain rule through the outer base-${base} logarithm and the inner natural logarithm.`)}
  if(type===11){const c=ri(2,9),d=ri(6,10);return mk("log",`lg-rational-${c}-${d}`,"Find the derivative.",`f(x)=\\ln\\left(\\frac{x^2+${c}}{x+${d}}\\right)`,`2*x/(x^2+${c})-1/(x+${d})`,`\\frac{2x}{x^2+${c}}-\\frac{1}{x+${d}}`,`A logarithm of a quotient can be differentiated as the difference of two logarithms.`)}
  const k=ri(1,5),c=ri(2,6),d=ri(2,9);return mk("log",`lg-product-${k}-${c}-${d}`,"Find the derivative.",`f(x)=\\ln\\left[(${c}+\\sin(${k}x))(x^2+${d})\\right]`,`${k}*cos(${k}*x)/(${c}+sin(${k}*x))+2*x/(x^2+${d})`,`\\frac{${k}\\cos(${k}x)}{${c}+\\sin(${k}x)}+\\frac{2x}{x^2+${d}}`,`A logarithm of a product can be differentiated as a sum of logarithms.`)
 }
 function logDiff(){
+ if(BatchMathRNG.random()<.5){
+  const type=ri(1,3),k=ri(2,6);
+  if(type===1){const base='sin(x)',power='cos(x)',tex='(\\sin x)^{\\cos x}',ans=`(${base})^(${power})*(-sin(x)*ln(${base})+cos(x)*cos(x)/(${base}))`;
+   return mk('logdiff','ld-simple-sin-cos','Find the derivative. Assume \\(\\sin x>0\\).',`y=${tex}`,ans,`${tex}\\left[-\\sin x\\ln(\\sin x)+\\frac{\\cos^2 x}{\\sin x}\\right]`,`Take logs: \\(\\ln y=\\cos x\\ln(\\sin x)\\). Differentiate by the product and chain rules, then multiply by \\(y\\).`)}
+  if(type===2){const tex=`x^{${k}x}`;return mk('logdiff',`ld-simple-xkx-${k}`,'Find the derivative. Assume \\(x>0\\).',`y=${tex}`,`x^(${k}*x)*(${k}*ln(x)+${k})`,`${k}x^{${k}x}(\\ln x+1)`,`Take logs: \\(\\ln y=${k}x\\ln x\\). Differentiate to get \\(y'/y=${k}(\\ln x+1)\\), then multiply by \\(y\\).`)}
+  const tex=`x^{\\sin(${k}x)}`;return mk('logdiff',`ld-simple-xsine-${k}`,'Find the derivative. Assume \\(x>0\\).',`y=${tex}`,`x^(sin(${k}*x))*(${k}*cos(${k}*x)*ln(x)+sin(${k}*x)/x)`,`${tex}\\left[${k}\\cos(${k}x)\\ln x+\\frac{\\sin(${k}x)}x\\right]`,`Take logs: \\(\\ln y=\\sin(${k}x)\\ln x\\). Differentiate each factor, then multiply by \\(y\\).`)
+ }
+
  const makeBase=()=>{
   const kind=ri(1,7);
   if(kind===1){const c=ri(6,10);return {tag:`b1-${c}`,tex:`x+${c}`,expr:`x+${c}`,dtex:`1`,dexpr:`1`}}
   if(kind===2){const a=nz(-4,4),c=a*a+ri(4,10);return {tag:`b2-${a}-${c}`,tex:`x^2${a<0?`-${-a}x`:`+${a}x`}+${c}`,expr:`x^2+(${a})*x+${c}`,dtex:`2x${a<0?`-${-a}`:`+${a}`}`,dexpr:`2*x+(${a})`}}
-  if(kind===3){const k=ri(1,5),c=ri(2,6);return {tag:`b3-${k}-${c}`,tex:`${c}+\\sin(${k}x)`,expr:`${c}+sin(${k}*x)`,dtex:`${k}\\cos(${k}x)`,dexpr:`${k}*cos(${k}*x)`}}
-  if(kind===4){const k=ri(1,5),c=ri(2,6);return {tag:`b4-${k}-${c}`,tex:`${c}+\\cos(${k}x)`,expr:`${c}+cos(${k}*x)`,dtex:`-${k}\\sin(${k}x)`,dexpr:`-${k}*sin(${k}*x)`}}
-  if(kind===5){const k=ri(1,3),c=ri(1,5);return {tag:`b5-${k}-${c}`,tex:`e^{${k}x}+${c}`,expr:`e^(${k}*x)+${c}`,dtex:`${k}e^{${k}x}`,dexpr:`${k}*e^(${k}*x)`}}
+  if(kind===3){const k=ri(2,5),c=ri(2,6);return {tag:`b3-${k}-${c}`,tex:`${c}+\\sin(${k}x)`,expr:`${c}+sin(${k}*x)`,dtex:`${k}\\cos(${k}x)`,dexpr:`${k}*cos(${k}*x)`}}
+  if(kind===4){const k=ri(2,5),c=ri(2,6);return {tag:`b4-${k}-${c}`,tex:`${c}+\\cos(${k}x)`,expr:`${c}+cos(${k}*x)`,dtex:`-${k}\\sin(${k}x)`,dexpr:`-${k}*sin(${k}*x)`}}
+  if(kind===5){const k=ri(2,3),c=ri(1,5);return {tag:`b5-${k}-${c}`,tex:`e^{${k}x}+${c}`,expr:`e^(${k}*x)+${c}`,dtex:`${k}e^{${k}x}`,dexpr:`${k}*e^(${k}*x)`}}
   if(kind===6){const c=ri(2,9),d=ri(1,4);return {tag:`b6-${c}-${d}`,tex:`\\sqrt{x^2+${c}}+${d}`,expr:`sqrt(x^2+${c})+${d}`,dtex:`\\frac{x}{\\sqrt{x^2+${c}}}`,dexpr:`x/sqrt(x^2+${c})`}}
   const c=ri(6,10),d=ri(2,5);return {tag:`b7-${c}-${d}`,tex:`\\ln(x+${c})+${d}`,expr:`ln(x+${c})+${d}`,dtex:`\\frac{1}{x+${c}}`,dexpr:`1/(x+${c})`}
  };
  const makeExp=()=>{
   const kind=ri(1,7);
-  if(kind===1){const a=nz(-3,3),b=ri(-5,5);return {tag:`e1-${a}-${b}`,tex:`${a===1?'':a===-1?'-':a}x^2${b<0?`-${-b}`:`+${b}`}x+2`,expr:`(${a})*x^2+(${b})*x+2`,dtex:`${2*a===1?'':2*a===-1?'-':2*a}x${b<0?`-${-b}`:`+${b}`}`,dexpr:`${2*a}*x+(${b})`}}
-  if(kind===2){const k=ri(1,6);return {tag:`e2-${k}`,tex:`\\sin(${k}x)`,expr:`sin(${k}*x)`,dtex:`${k}\\cos(${k}x)`,dexpr:`${k}*cos(${k}*x)`}}
-  if(kind===3){const k=ri(1,6);return {tag:`e3-${k}`,tex:`\\cos(${k}x)`,expr:`cos(${k}*x)`,dtex:`-${k}\\sin(${k}x)`,dexpr:`-${k}*sin(${k}*x)`}}
-  if(kind===4){const k=ri(2,5);return {tag:`e4-${k}`,tex:`e^{x/${k}}`,expr:`e^(x/${k})`,dtex:`\\frac1${k}e^{x/${k}}`,dexpr:`e^(x/${k})/${k}`}}
-  if(kind===5){const c=ri(6,10);return {tag:`e5-${c}`,tex:`\\ln(x+${c})`,expr:`ln(x+${c})`,dtex:`\\frac1{x+${c}}`,dexpr:`1/(x+${c})`}}
+  if(kind===1){const a=nz(-3,3),b=nz(-5,5);return {tag:`e1-${a}-${b}`,tex:`${a===1?'':a===-1?'-':a}x^2${b<0?`-${-b}`:`+${b}`}x+2`,expr:`(${a})*x^2+(${b})*x+2`,dtex:`${2*a===1?'':2*a===-1?'-':2*a}x${b<0?`-${-b}`:`+${b}`}`,dexpr:`${2*a}*x+(${b})`}}
+  if(kind===2){const k=ri(2,6);return {tag:`e2-${k}`,tex:`\\sin(${k}x)`,expr:`sin(${k}*x)`,dtex:`${k}\\cos(${k}x)`,dexpr:`${k}*cos(${k}*x)`}}
+  if(kind===3){const k=ri(2,6);return {tag:`e3-${k}`,tex:`\\cos(${k}x)`,expr:`cos(${k}*x)`,dtex:`-${k}\\sin(${k}x)`,dexpr:`-${k}*sin(${k}*x)`}}
+  if(kind===4){const k=ri(2,5);return {tag:`e4-${k}`,tex:`e^{x/${k}}`,expr:`e^(x/${k})`,dtex:`\\frac{1}{${k}}e^{x/${k}}`,dexpr:`e^(x/${k})/${k}`}}
+  if(kind===5){const c=ri(6,10);return {tag:`e5-${c}`,tex:`\\ln(x+${c})`,expr:`ln(x+${c})`,dtex:`\\frac{1}{x+${c}}`,dexpr:`1/(x+${c})`}}
   if(kind===6){const c=ri(2,10);return {tag:`e6-${c}`,tex:`\\sqrt{x^2+${c}}`,expr:`sqrt(x^2+${c})`,dtex:`\\frac{x}{\\sqrt{x^2+${c}}}`,dexpr:`x/sqrt(x^2+${c})`}}
-  const c=ri(6,10);return {tag:`e7-${c}`,tex:`\\frac1{x+${c}}`,expr:`1/(x+${c})`,dtex:`-\\frac1{(x+${c})^2}`,dexpr:`-1/(x+${c})^2`}
+  const c=ri(6,10);return {tag:`e7-${c}`,tex:`\\frac{1}{x+${c}}`,expr:`1/(x+${c})`,dtex:`-\\frac{1}{(x+${c})^2}`,dexpr:`-1/(x+${c})^2`}
  };
  const B=makeBase(),E=makeExp();
  const answerExpr=`(${B.expr})^(${E.expr})*((${E.dexpr})*ln(${B.expr})+(${E.expr})*(${B.dexpr})/(${B.expr}))`;
@@ -527,10 +583,22 @@ function makeProblem(){
  for(let tries=0;tries<120;tries++){const cat=selected==="mixed"?pick(mixedWeights):selected;p=generators[cat]();if(!seen.has(p.id)){seen.add(p.id);break}if(seen.size>900)seen.clear()}
  current=p;current.answered=false;window.BMAnalytics?.ensurePracticeStarted({practice_mode:$("category").value});window.BMAnalytics?.problemGenerated(current,{practice_mode:$("category").value});$("question").innerHTML=p.q;$("answer").value="";window.BatchMathCalculusKeypad?.reset?.();$("answer").disabled=false;$("submit").disabled=false;$("next").style.display="none";$("feedback").className="feedback";$("feedback").innerHTML="";$("topic-name").textContent=categoryLabel[p.cat];typeset([$("question")]);if(window.BatchMathCalculusKeypad)BatchMathCalculusKeypad.focus();else $("answer").focus();
 }
+function expandedPolynomial(raw){
+ const t=normalizeInput(raw).replace(/\s+/g,'');
+ if(/[()]/.test(t)||/[^0-9x+*/^.-]/.test(t)||t.includes('/'))return false;
+ const terms=t.replace(/-/g,'+-').split('+').filter(Boolean),powers=new Set();
+ if(!terms.length)return false;
+ for(const term of terms){
+  if(!/^-?(?:(?:\d+(?:\.\d+)?)\*?)?x(?:\^\d+)?$|^-?\d+(?:\.\d+)?$/.test(term))return false;
+  const power=term.includes('x')?(Number(term.match(/\^(\d+)/)?.[1]||1)):0;
+  if(powers.has(power))return false;powers.add(power);
+ }
+ return true;
+}
 function check(){
  if(!current||current.answered)return;const raw=$("answer").value.trim();if(!raw){$("feedback").className="feedback wrong";$("feedback").innerHTML='<div class="status">Enter an answer first.</div>';return}
- attempts++;current.answered=true;const ok=equivalent(raw,current.answerExpr,current.vars);window.BMAnalytics?.answerChecked(current,ok);window.BMAnalytics?.solutionRevealed(current,{reveal_reason:"answer_feedback"});if(ok)correctCount++;$("correct-count").textContent=correctCount;$("attempted").textContent=attempts;$("answer").disabled=true;$("submit").disabled=true;$("next").style.display="inline-block";
- $("feedback").className="feedback "+(ok?"correct":"wrong");$("feedback").innerHTML=`<div class="status">${ok?"Correct.":"Not quite."}</div><div class="correct-answer">One correct form: \\(${current.answerTex}\\)</div><div class="method">${current.solution}</div>`;typeset([$("feedback")]);$("next").focus();
+ attempts++;current.answered=true;const isEquivalent=equivalent(raw,current.answerExpr,current.vars);const needsSimplifying=isEquivalent&&current.id.startsWith("pb")&&!expandedPolynomial(raw);const ok=isEquivalent&&!needsSimplifying;window.BMAnalytics?.answerChecked(current,ok);window.BMAnalytics?.solutionRevealed(current,{reveal_reason:"answer_feedback"});if(ok)correctCount++;$("correct-count").textContent=correctCount;$("attempted").textContent=attempts;$("answer").disabled=true;$("submit").disabled=true;$("next").style.display="inline-block";
+ $("feedback").className="feedback "+(ok?"correct":"wrong");$("feedback").innerHTML=`<div class="status">${ok?"Correct.":needsSimplifying?"Equivalent, but distribute and combine like terms to simplify completely.":"Not quite."}</div><div class="correct-answer">One correct form: \\(${current.answerTex}\\)</div><div class="method">${current.solution}</div>`;typeset([$("feedback")]);$("next").focus();
 }
 $("submit").addEventListener("click",check);$("next").addEventListener("click",makeProblem);$("category").addEventListener("change",makeProblem);if($("ruleMode"))$("ruleMode").addEventListener("change",makeProblem);$("answer").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();current&&current.answered?makeProblem():check()}});
 function boot(){makeProblem()}if(window.MathJax&&MathJax.startup&&MathJax.startup.promise)MathJax.startup.promise.then(boot);else window.addEventListener("load",boot);

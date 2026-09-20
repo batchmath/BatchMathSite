@@ -647,3 +647,21 @@ a.bm-practice-launch{min-height:72px!important;padding:9px 19px 9px 15px!importa
 /* v10.6.3.M: keep video frames aligned when titles wrap to different line counts. */
 .video-grid.multi .video-item{display:flex;flex-direction:column}
 .video-grid.multi .video-embed{margin-top:auto}
+/* Practice prose uses the same calm sans-serif treatment as topic descriptions.
+   Scope this to problem prompts and answer choices; MathJax owns math glyphs. */
+html body .practice-shell .question-prompt,
+html body .practice-shell .prompt,
+html body .practice-shell .question.word,
+html body .practice-shell .problem-text{
+  font-weight:400;
+  line-height:1.68;
+  letter-spacing:.002em;
+}
+html body .practice-shell .choice,
+html body .practice-shell .choice-btn,
+html body .practice-shell .answer-choice{
+  font-family:inherit;
+  font-weight:500;
+  line-height:1.55;
+  letter-spacing:.002em;
+}

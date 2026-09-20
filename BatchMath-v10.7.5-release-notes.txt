@@ -1,0 +1,9 @@
+BatchMath v10.7.5 — conceptual derivatives chart practice
+
+- In Derivative Conceptual & AP-Style Practice, approximately 75% of generated questions now use value/derivative charts.
+- About 20% of chart questions use introductory f(x)g(x), f(x)/g(x), scaled f/g, or f(g(x)) forms. The remaining chart questions vary the arguments and combine chain, product, quotient, and power rules.
+- New families include f(kx) +/- cx or cx^2, g(f(2x)) +/- cx or cx^2, f(kx)/g(x) +/- cx or cx^2, f(kx)g(mx), f(kx)/g(mx), and f(g(x^2)), with varying small coefficients and scales. Forms such as f(5x)-x are possible without printing a coefficient of 1.
+- Every inner-function lookup and derivative needed is present in the chart; correct and incorrect options remain exact, and solutions show the operations used.
+- Earlier practice typography changes remain in place; the rest of the site is unchanged.
+
+Automated checks: 12,000 seeded chart/problem checks with independent table lookups and distribution checks; AP topic generator, static release, display-safety, and PWA/cache checks passed. Recheck chart variety and text/math formatting in a browser after upload.

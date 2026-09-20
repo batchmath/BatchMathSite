@@ -1,0 +1,22 @@
+BatchMath v10.7.2 — IM1 Unit 2 and AP Calculus Derivatives revisions
+
+IM1 Unit 2
+- Solving equations: explicit fraction-coefficient hints; single-solution problems with distribution on both sides; varied identity/contradiction structures; some constant-first negative-variable equations.
+- Solving inequalities: balanced starting directions; worked wrong-answer feedback that calls out reversing an inequality when dividing by a negative; constant-first variants.
+- Graphing inequalities and interval notation: about 40% of problems ask for a typed interval after solving an inequality, including combining and distributing; clearer feedback about infinite ends and included endpoints.
+- Coordinate system and nine key features: closed finite bounds for increasing/decreasing/constant intervals; correct graph section turns red after a wrong answer.
+
+Derivatives
+- Power rule: distinct original exponents in negative/fractional families; negative fraction signs before the fraction; corrected pi spacing; irrational exponents excluded from higher derivative choices and mixed practice.
+- Product rule: basic answers require fully expanded, combined polynomials; model answers and explanations show the simplified result.
+- Quotient rule: basic polynomial numerator and denominator reach degree four, with at most three terms each.
+- Trig, chain, product, and quotient rules: cube roots and more denominator/factor combinations.
+- Implicit differentiation: additional trig arguments and powers through five.
+- Logarithmic differentiation: simpler function-to-function powers appear alongside the existing compound cases; notation cleanup in logarithmic and mixed review.
+- Conceptual review: differentiability, nondifferentiability and inverse functions retained; next-unit topics removed; table-based product, quotient and chain questions added.
+- Answer fields in practice engines focus automatically when a new question appears.
+
+Verification
+- Full nonbrowser QA suite passed.
+- Additional seeded checks passed for 150,000 IM1 Unit 2 problems, 220,000 AP generator stress samples, product/quotient varieties, derivative modes, and power-rule families.
+- Local Playwright browser run could not start because this workspace does not have Chromium installed. Run the GitHub browser QA after deployment and review the flagged interactions there.

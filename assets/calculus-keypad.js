@@ -2,7 +2,7 @@
   "use strict";
 
   const state={input:null,editor:null,pad:null,raw:"",cursor:0,mode:"derivative"};
-  const fnNames=["sin","cos","tan","sec","csc","cot","ln","sqrt","abs"];
+  const fnNames=["asin","acos","atan","acot","asec","acsc","sin","cos","tan","sec","csc","cot","ln","log","exp","sqrt","abs"];
   const atomicWords=["infinity","undefined","DNE","pi"];
 
   function escapeHtml(s){
@@ -171,6 +171,22 @@
     return matches[0];
   }
 
+  function allExponents(){
+    const out=[];
+    for(let start=0;start<state.raw.length-1;start++){
+      if(!state.raw.startsWith("^(",start))continue;
+      const close=findClose(state.raw,start+1);
+      if(close>=0)out.push({start,innerStart:start+2,close,end:close+1});
+    }
+    return out.sort((a,b)=>(a.end-a.start)-(b.end-b.start));
+  }
+
+  function removeSpan(start,end){
+    state.raw=state.raw.slice(0,start)+state.raw.slice(end);
+    state.cursor=start;
+    sync();state.editor.focus();
+  }
+
 
   function render(){
     if(!state.editor)return;
@@ -240,6 +256,29 @@
     state.cursor=normalizeCursor(state.cursor,-1);
     if(state.cursor<=0)return;
 
+    // Fractions are stored as ()/(). Never delete only one of those hidden
+    // structural characters: doing so exposes raw slashes and parentheses.
+    for(const f of allFractions().sort((a,b)=>(a.end-a.start)-(b.end-b.start))){
+      const emptyNum=f.numStart===f.numClose,emptyDen=f.denStart===f.denClose;
+      if(state.cursor===f.numStart&&emptyNum){
+        if(emptyDen)removeSpan(f.start,f.end);
+        else{state.cursor=f.start;render();state.editor.focus();}
+        return;
+      }
+      if(state.cursor===f.denStart){state.cursor=f.numClose;render();state.editor.focus();return;}
+      if(state.cursor===f.end){state.cursor=f.denClose;render();state.editor.focus();return;}
+    }
+
+    // The same rule applies to the hidden ^( ) shell used for exponents.
+    for(const x of allExponents()){
+      if(state.cursor===x.innerStart){
+        if(x.innerStart===x.close)removeSpan(x.start,x.end);
+        else{state.cursor=x.start;render();state.editor.focus();}
+        return;
+      }
+      if(state.cursor===x.end){state.cursor=x.close;render();state.editor.focus();return;}
+    }
+
     // Keep parser syntax intact. Backspace never peels one hidden character out
     // of sin/cos/sqrt/pi/infinity/etc. or removes a structural parenthesis.
     for(let i=Math.max(0,state.cursor-16);i<state.cursor;i++){
@@ -282,6 +321,33 @@
     if(!state.input||state.input.disabled||state.cursor>=state.raw.length)return;
     state.cursor=normalizeCursor(state.cursor,1);
     if(state.cursor>=state.raw.length)return;
+
+    for(const f of allFractions().sort((a,b)=>(a.end-a.start)-(b.end-b.start))){
+      const emptyNum=f.numStart===f.numClose,emptyDen=f.denStart===f.denClose;
+      if(state.cursor===f.start){
+        if(emptyNum&&emptyDen)removeSpan(f.start,f.end);
+        else{state.cursor=f.numStart;render();state.editor.focus();}
+        return;
+      }
+      if(state.cursor===f.numStart&&emptyNum){
+        if(emptyDen)removeSpan(f.start,f.end);
+        else{state.cursor=f.denStart;render();state.editor.focus();}
+        return;
+      }
+      if(state.cursor===f.numClose){state.cursor=f.denStart;render();state.editor.focus();return;}
+      if(state.cursor===f.denStart&&emptyDen){state.cursor=f.end;render();state.editor.focus();return;}
+      if(state.cursor===f.denClose){state.cursor=f.end;render();state.editor.focus();return;}
+    }
+
+    for(const x of allExponents()){
+      if(state.cursor===x.start){
+        if(x.innerStart===x.close)removeSpan(x.start,x.end);
+        else{state.cursor=x.innerStart;render();state.editor.focus();}
+        return;
+      }
+      if(state.cursor===x.innerStart&&x.innerStart===x.close){removeSpan(x.start,x.end);return;}
+      if(state.cursor===x.close){state.cursor=x.end;render();state.editor.focus();return;}
+    }
 
     const sh=functionShellAt(state.cursor);
     if(sh){
@@ -421,6 +487,9 @@
       const funcs=document.createElement("div");
       funcs.className="bm-calc-function-row";
       [["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"],["ln","ln"],["√","sqrt"],["|u|","abs"]].forEach(([lab,name])=>addFunction(funcs,lab,name));
+      if(mode==="derivative"&&document.querySelector('input[data-bm-inverse-trig-keypad="1"]')){
+        [["sin⁻¹","asin"],["cos⁻¹","acos"],["tan⁻¹","atan"],["cot⁻¹","acot"],["sec⁻¹","asec"],["csc⁻¹","acsc"],["log","log"]].forEach(([lab,name])=>addFunction(funcs,lab,name));
+      }
       addInsert(funcs,"e","e","function");
       addInsert(funcs,"π","pi","function");
       addFraction(funcs);
@@ -548,5 +617,5 @@
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
   else init();
 
-  window.BatchMathCalculusKeypad={init,reset,focus,setRaw:(v)=>setRaw(v,String(v||"").length),move,moveVertical,get raw(){return state.raw},get cursor(){return state.cursor},setCursor:(v)=>{state.cursor=normalizeCursor(Number(v)||0,0);render();}};
+  window.BatchMathCalculusKeypad={init,reset,focus,setRaw:(v)=>setRaw(v,String(v||"").length),move,moveVertical,backspace,del,get raw(){return state.raw},get cursor(){return state.cursor},setCursor:(v)=>{state.cursor=normalizeCursor(Number(v)||0,0);render();}};
 })();

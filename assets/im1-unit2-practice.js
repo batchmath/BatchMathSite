@@ -8,8 +8,8 @@ function typeset(nodes){if(window.MathJax?.typesetPromise)window.MathJax.typeset
 function stats(){$('score').textContent=score;$('attempted').textContent=attempted;}
 function render(){
  locked=false;entry=null;$('question').innerHTML=p.q;$('choices').innerHTML='';$('feedback').innerHTML='';$('feedback').className='feedback';$('nextBtn').hidden=true;
- if(p.kind==='polynomial'||p.kind==='equation'){
-  const module=p.kind==='equation'?window.BatchMathIM1Equation:window.BatchMathIM1Algebra;
+ if(p.kind==='polynomial'||p.kind==='equation'||p.kind==='interval'){
+  const module=p.kind==='equation'?window.BatchMathIM1Equation:p.kind==='interval'?window.BatchMathIM1Interval:window.BatchMathIM1Algebra;
   entry=module.mount($('choices'),p,answerExpression);
  }else for(let i=0;i<p.choices.length;i++){
   const b=document.createElement('button');b.type='button';b.className='choice-btn';b.innerHTML=p.choices[i];b.addEventListener('click',()=>answer(i));$('choices').appendChild(b);
@@ -17,7 +17,8 @@ function render(){
  stats();typeset([$('question'),$('choices')]);
 }
 function newProblem(){
- let tries=0,graphKey='';do{p=gen();tries++;const points=p.graph?.points;graphKey=points?JSON.stringify(points.map(([x,y])=>[x-points[0][0],y-points[0][1]])):'';}while((recent.includes(p.id)||(graphKey&&recentGraphs.includes(graphKey)))&&tries<12);
+ const options=cfg.modeElementId?{mode:$(cfg.modeElementId)?.value||'mixed'}:undefined;
+ let tries=0,graphKey='';do{p=gen(options);tries++;const points=p.graph?.points;graphKey=points?JSON.stringify({shape:points.map(([x,y])=>[x-points[0][0],y-points[0][1]]),leftEnd:p.graph.leftEnd,rightEnd:p.graph.rightEnd,leftInfinity:p.graph.leftInfinity,rightInfinity:p.graph.rightInfinity}):'';}while((recent.includes(p.id)||(graphKey&&recentGraphs.includes(graphKey)))&&tries<12);
  if(graphKey){recentGraphs.push(graphKey);if(recentGraphs.length>6)recentGraphs.shift();}
  recent.push(p.id);if(recent.length>6)recent.shift();
  p.problemType=cfg.slug;p.problemVariant=p.variant;p.problemId=p.id;p.generatorVersion=String(window.BM_ANALYTICS_CONFIG?.generatorVersion||'1');
@@ -28,7 +29,7 @@ function answer(i){
  window.BMAnalytics?.answerChecked(p,ok);
  document.querySelectorAll('.choice-btn').forEach((b,j)=>{b.disabled=true;if(j===p.correctIndex)b.classList.add('right');else if(j===i)b.classList.add('wrong');});
  if(ok){score++;$('feedback').innerHTML='✓ Correct'+(p.part2||p.variant==='creation_solve'?`<br>${p.explain}`:'');$('feedback').className='feedback correct';}
- else{$('feedback').innerHTML=`✗ Incorrect.<br><strong>Correct answer:</strong> ${p.choices[p.correctIndex]}<br>${p.explain||''}`;$('feedback').className='feedback incorrect';window.BMAnalytics?.solutionRevealed(p,{reveal_reason:'incorrect_answer'});}
+ else{if(p.graph?.correctIntervalGraph){const diagram=$('question').querySelector('.bm-mini-graph');if(diagram)diagram.outerHTML=p.graph.correctIntervalGraph;} $('feedback').innerHTML=`✗ Incorrect.<br><strong>Correct answer:</strong> ${p.choices[p.correctIndex]}<br>${p.explain||''}`;$('feedback').className='feedback incorrect';window.BMAnalytics?.solutionRevealed(p,{reveal_reason:'incorrect_answer'});}
  if(p.part2){
   const button=document.createElement('button');button.id='continuePartBtn';button.type='button';button.className='algebra-check';button.textContent='Part 2: Solve';
   button.addEventListener('click',()=>{if(!p.part2)return;const parent=p;p=parent.part2;p.problemType=parent.problemType;p.problemVariant=p.variant;p.problemId=p.id;p.generatorVersion=parent.generatorVersion;render();});
@@ -38,7 +39,7 @@ function answer(i){
 }
 function answerExpression(raw){
  if(locked)return;
- const module=p.kind==='equation'?window.BatchMathIM1Equation:window.BatchMathIM1Algebra;
+ const module=p.kind==='equation'?window.BatchMathIM1Equation:p.kind==='interval'?window.BatchMathIM1Interval:window.BatchMathIM1Algebra;
  const result=module.check(raw,p.answer);
  if(result.error){$('feedback').textContent=result.error;$('feedback').className='feedback incorrect';return;}
  locked=true;attempted++;entry.disable();window.BMAnalytics?.answerChecked(p,result.ok);
@@ -49,6 +50,7 @@ function answerExpression(raw){
 function next(){if(!locked||p.part2)return;newProblem();}
 document.addEventListener('DOMContentLoaded',()=>{
  document.addEventListener('keydown',e=>{if(e.key==='Enter'&&locked&&!p.kind&&!p.part2){e.preventDefault();next();}});
+ if(cfg.modeElementId)$(cfg.modeElementId)?.addEventListener('change',()=>{recent=[];recentGraphs=[];newProblem();});
  $('nextBtn').addEventListener('click',next);$('resetBtn').addEventListener('click',()=>{score=0;attempted=0;recent=[];recentGraphs=[];newProblem();});newProblem();
 });
 })();

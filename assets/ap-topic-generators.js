@@ -7,7 +7,7 @@ const pick=a=>a[Math.floor(R()*a.length)];
 const nz=(a,b)=>{let x=0;while(x===0)x=ri(a,b);return x};
 const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1};
 const rat=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d);return[n/g,d/g]};
-const texRat=(n,d=1)=>{const[a,b]=rat(n,d);return b===1?String(a):`\\frac{${a}}{${b}}`};
+const texRat=(n,d=1)=>{const[a,b]=rat(n,d);return b===1?String(a):`${a<0?"-":""}\\frac{${Math.abs(a)}}{${b}}`};
 const fmt=(x)=>Number.isInteger(x)?String(x):String(Number(x.toFixed(4)));
 const signed=(c,body,first=false)=>{if(c===0)return'';const a=Math.abs(c),core=(a===1&&body?'':a)+body;if(first)return(c<0?'-':'')+core;return(c<0?' - ':' + ')+core};
 const poly2=(A,B,C)=>signed(A,'x^2',true)+signed(B,'x')+signed(C,'');
@@ -1490,7 +1490,7 @@ G['derivatives-conceptual-review']=()=>{
   const textChoiceV=v=>/\b(?:and|or|yes|no|continuous|discontinuous|maximum|minimum|increasing|decreasing|concave|tangent|normal|horizontal|vertical|applies|solution|speeding|slowing|underestimate|overestimate)\b/i.test(String(v));
   const gcdV=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1};
   const ratPairV=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gcdV(n,d);return[n/g,d/g]};
-  const ratV=(n,d=1)=>{const [a,b]=ratPairV(n,d);return b===1?String(a):`\\frac{${a}}{${b}}`};
+  const ratV=(n,d=1)=>{const [a,b]=ratPairV(n,d);return b===1?String(a):`${a<0?"-":""}\\frac{${Math.abs(a)}}{${b}}`};
   const rationalizeV=v=>{for(let d=1;d<=120;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-10)return ratV(n,d)}return String(Math.round(v*1e10)/1e10)};
   const signedV=(n,body='')=>n===0?'':`${n<0?'-':'+'}${Math.abs(n)===1&&body?'':Math.abs(n)}${body}`;
   const linearV=(m,b,varName='x')=>`${m===1?'':m===-1?'-':m}${varName}${b===0?'':signedV(b)}`;
@@ -2209,34 +2209,113 @@ G['difference-quotient']=()=>{
   // Conceptual derivative review: keep it genuinely conceptual/AP-style and remove
   // low-value coefficient-one implicit equations such as 1x+1y=c.
   G['derivatives-conceptual-review']=()=>{
-    const make=(id,variant,prompt,math,correct,wrongs,explanation)=>{
-      const vals=shuffle([correct,...wrongs]);
-      return {id,variant,questionHtml:`<div><div class="question-prompt">${prompt}</div>${math?`<div>\\(${math}\\)</div>`:''}</div>`,choices:vals,correctIndex:vals.indexOf(correct),choicesAreText:true,choicesHtml:true,explanation};
-    };
-    const kind=pick(['diff_cont','derivative_meaning','second_derivative','inverse_rule','nondifferentiable','critical_point','motion_meaning','linearization_meaning']);
-    if(kind==='diff_cont')return make('dconceptL-diff-cont','differentiability_continuity','Which statement must be true?',`f\\text{ is differentiable at }x=a.`,`\\(f\\) is continuous at \\(x=a\\).`,[`\\(f'(a)=0\\).`,`\\(f\\) has a local extremum at \\(x=a\\).`,`\\(f''(a)\\) exists.`],`Differentiability at a point implies continuity at that point. None of the other statements is required.`);
-    if(kind==='derivative_meaning'){
-      const a=ri(-4,4),m=nz(-6,6);
-      return make(`dconceptL-meaning-${a}-${m}`,'derivative_interpretation','What does the derivative value tell you?',`f'(${a})=${m}`,`The tangent line to the graph of \\(f\\) at \\(x=${a}\\) has slope \\(${m}\\).`,[`\\(f(${a})=${m}\\).`,`The graph has a horizontal tangent at \\(x=${a}\\).`,`The graph is concave ${m>0?'up':'down'} at \\(x=${a}\\).`],`The derivative \\(f'(${a})\\) is the slope of the tangent line at \\(x=${a}\\).`);
+    const make=(id,variant,prompt,math,correct,wrongs,explanation)=>{const vals=shuffle([correct,...wrongs]);return{id,variant,questionHtml:`<div><div class="question-prompt">${prompt}</div>${math?`<div>\\(${math}\\)</div>`:''}</div>`,choices:vals,correctIndex:vals.indexOf(correct),choicesAreText:true,choicesHtml:true,explanation}};
+    // 75% charts; among charts, 20% introductory rule forms and 80% forms
+    // requiring a changed argument, an added term, or multiple rules.
+    const kind=R()<.25
+      ?pick(['diff_cont','inverse_rule','nondifferentiable'])
+      :R()<.20
+        ?pick(['table_product','table_quotient','table_scaled_quotient','table_comp'])
+        :pick(['table_scaled_chain','table_nested_scaled','table_reverse_nested','table_square_chain','table_scaled_quotient_chain','table_scaled_product','table_scaled_plus_monomial','table_comp_plus_monomial','table_quotient_plus_monomial','table_two_scaled_product','table_two_scaled_quotient','table_nested_square']);
+    if(kind==='diff_cont')return make('dconceptL-diff-cont','differentiability_continuity','Which statement must be true?',`f\\text{ is differentiable at }x=a.`,`\\(f\\) is continuous at \\(x=a\\).`,[`\\(f'(a)=0\\).`,`\\(f\\) has a local extremum at \\(x=a\\).`,`\\(f''(a)\\) exists.`],`Differentiability at a point implies continuity there; the other statements do not follow.`);
+    if(kind==='inverse_rule'){const m=pick([2,3,4,5,6]);return make(`dconceptL-inv-${m}`,'inverse_derivative_rule','Which value is correct?',`f(a)=b,\\qquad f'(a)=${m},\\qquad (f^{-1})'(b)=?`,`\\(\\frac{1}{${m}}\\)`,[`\\(${m}\\)`,`\\(-\\frac{1}{${m}}\\)`,`\\(-${m}\\)`],`The inverse slope is the reciprocal: \\((f^{-1})'(b)=1/f'(a)=\\frac{1}{${m}}\\).`)}
+    if(kind==='nondifferentiable')return make('dconceptL-corner','nondifferentiability','At which feature is a function not differentiable?','','A sharp corner.',['A smooth local minimum.','A horizontal tangent.','A point with positive slope.'],'At a sharp corner the one-sided slopes disagree, so the derivative does not exist.');
+    const x0=kind==='table_square_chain'?pick([2,3]):pick([1,2]);
+    const scale=kind==='table_nested_scaled'?pick([2,3,4]):['table_scaled_plus_monomial','table_quotient_plus_monomial'].includes(kind)?pick([2,3,4,5]):0;
+    const twoScaled=kind==='table_two_scaled_product'||kind==='table_two_scaled_quotient';
+    const firstScale=twoScaled?pick([2,3,4]):0;
+    const secondScale=twoScaled?pick([2,3,4,5].filter(k=>k!==firstScale)):0;
+    const hasMonomial=['table_scaled_plus_monomial','table_comp_plus_monomial','table_quotient_plus_monomial'].includes(kind);
+    const power=hasMonomial?pick([1,2]):0,monomialCoeff=hasMonomial?pick([-5,-4,-3,-2,-1,1,2,3,4,5]):0;
+    const monomial=hasMonomial?`${monomialCoeff<0?'-':'+'}${Math.abs(monomialCoeff)===1?'':Math.abs(monomialCoeff)}${power===1?'x':`x^${power}`}`:'';
+    const monomialTeX=hasMonomial?`${monomialCoeff===1?'':monomialCoeff===-1?'-':monomialCoeff}x${power===1?'':`^${power}`}`:'';
+    const derivativeMonomial=hasMonomial?monomialCoeff*power*x0**(power-1):0;
+    const innerX=twoScaled?firstScale*x0:
+      ['table_nested_scaled','table_scaled_plus_monomial','table_quotient_plus_monomial'].includes(kind)?scale*x0:
+      ['table_reverse_nested','table_comp_plus_monomial'].includes(kind)?2*x0:
+      ['table_square_chain','table_nested_square'].includes(kind)?x0*x0:
+      kind==='table_scaled_quotient_chain'?5*x0:3*x0;
+    const otherX=twoScaled?secondScale*x0:0;
+    const xs=[...new Set([1,2,3,6,x0,innerX,...(twoScaled?[otherX]:[])])].sort((u,v)=>u-v),rows={};
+    for(const x of xs)rows[x]={f:nz(-8,8),g:nz(-6,6),fp:nz(-5,5),gp:nz(-5,5)};
+    // Supply a separate row whenever an inner function becomes the input of an outer one.
+    rows[x0].g=pick([2,3]);
+    if(['table_scaled_quotient_chain','table_quotient_plus_monomial'].includes(kind))rows[x0].g=pick([2,3,-2,-3]);
+    if(kind==='table_two_scaled_quotient')rows[otherX].g=pick([2,3,-2,-3]);
+    if(['table_nested_scaled','table_nested_square'].includes(kind))rows[innerX].g=pick([1,2,3,6]);
+    if(['table_reverse_nested','table_comp_plus_monomial'].includes(kind))rows[innerX].f=pick([1,2,3,6]);
+    const a=rows[x0],b=rows[a.g],c=rows[innerX];
+    const table=`<table class="bm-value-table" style="margin:.65rem auto;border-collapse:collapse;text-align:center"><thead><tr>${['x','f(x)','g(x)',"f'(x)","g'(x)"].map(v=>`<th scope="col" style="padding:.25rem .65rem;border:1px solid currentColor">\\(${v}\\)</th>`).join('')}</tr></thead><tbody>${xs.map(x=>`<tr>${[x,rows[x].f,rows[x].g,rows[x].fp,rows[x].gp].map(v=>`<td style="padding:.25rem .65rem;border:1px solid currentColor">\\(${v}\\)</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+    let value,expression,steps,numeric,choiceNumerator,choiceDenominator=1;
+    if(kind==='table_product'){value=a.fp*a.g+a.f*a.gp;expression=`h(x)=f(x)g(x),\\quad h'(${x0})=?`;steps=`Use the product rule: \\(h'(${x0})=f'(${x0})g(${x0})+f(${x0})g'(${x0})=${a.fp}(${a.g})+${a.f}(${a.gp})=${value}\\).`}
+    if(kind==='table_quotient'||kind==='table_scaled_quotient'){
+      if(!a.g)a.g=pick([2,3,-2,-3]);const m=kind==='table_scaled_quotient'?2:1,n=kind==='table_scaled_quotient'?3:1;
+      const numer=m*(a.fp*a.g-a.f*a.gp),denom=n*a.g*a.g;value=texRat(numer,denom);numeric=numer/denom;choiceNumerator=numer;choiceDenominator=denom;expression=kind==='table_scaled_quotient'?`h(x)=\\frac{2f(x)}{3g(x)},\\quad h'(${x0})=?`:`h(x)=\\frac{f(x)}{g(x)},\\quad h'(${x0})=?`;
+      steps=`Use the quotient rule and the constant factor: \\(h'(${x0})=\\frac{${m}[f'(${x0})g(${x0})-f(${x0})g'(${x0})]}{${n}g(${x0})^2}=\\frac{${m}[(${a.fp})(${a.g})-(${a.f})(${a.gp})]}{${n}(${a.g})^2}=${value}\\).`;
     }
-    if(kind==='second_derivative'){
-      const fp=pick([-5,-3,-1,1,3,5]),fpp=pick([-4,-2,2,4]);
-      const correct=fp>0?(fpp>0?'Increasing and concave up.':'Increasing and concave down.'):(fpp>0?'Decreasing and concave up.':'Decreasing and concave down.');
-      const pool=['Increasing and concave up.','Increasing and concave down.','Decreasing and concave up.','Decreasing and concave down.'].filter(x=>x!==correct);
-      return make(`dconceptL-2nd-${fp}-${fpp}`,'first_second_derivative_signs','Describe the graph at the indicated point.',`f'(a)=${fp},\\qquad f''(a)=${fpp}`,correct,pool,`The sign of \\(f'\\) determines increasing/decreasing behavior, and the sign of \\(f''\\) determines concavity.`);
+    if(kind==='table_comp'){value=b.fp*a.gp;expression=`h(x)=f(g(x)),\\quad h'(${x0})=?`;steps=`Since \\(g(${x0})=${a.g}\\), look up \\(f'(${a.g})=${b.fp}\\) in that row. Then \\(h'(${x0})=f'(g(${x0}))g'(${x0})=${b.fp}(${a.gp})=${value}\\).`}
+    if(kind==='table_scaled_chain'){value=3*c.fp;expression=`h(x)=f(3x),\\quad h'(${x0})=?`;steps=`By the chain rule, \\(h'(${x0})=3f'(3\\cdot${x0})=3f'(${3*x0})=3(${c.fp})=${value}\\).`}
+    if(kind==='table_nested_scaled'){
+      const outer=rows[c.g];value=scale*outer.fp*c.gp;
+      expression=`h(x)=f(g(${scale}x)),\\quad h'(${x0})=?`;
+      steps=`First find \\(g(${innerX})=${c.g}\\). The chain rule gives \\(h'(${x0})=f'(g(${innerX}))g'(${innerX})(${scale})=${outer.fp}(${c.gp})(${scale})=${value}\\).`;
     }
-    if(kind==='inverse_rule'){
-      const m=pick([2,3,4,5,6]);
-      return make(`dconceptL-inv-${m}`,'inverse_derivative_rule','Which value is correct?',`f(a)=b,\\qquad f'(a)=${m},\\qquad (f^{-1})'(b)=?`,`\\(\\frac{1}{${m}}\\)`,[`\\(${m}\\)`,`\\(-\\frac{1}{${m}}\\)`,`\\(-${m}\\)`],`For inverse functions, \\((f^{-1})'(b)=\\frac{1}{f'(a)}\\), so the value is \\(\\frac{1}{${m}}\\).`);
+    if(kind==='table_reverse_nested'){
+      const outer=rows[c.f];value=2*outer.gp*c.fp;
+      expression=`h(x)=g(f(2x)),\\quad h'(${x0})=?`;
+      steps=`First find \\(f(${innerX})=${c.f}\\). The chain rule gives \\(h'(${x0})=g'(f(${innerX}))f'(${innerX})(2)=${outer.gp}(${c.fp})(2)=${value}\\).`;
     }
-    if(kind==='nondifferentiable')return make('dconceptL-corner','nondifferentiability','At which feature is a function not differentiable?','', 'A sharp corner.',['A smooth local minimum.','A horizontal tangent.','A point with positive slope.'],'At a sharp corner, the one-sided tangent slopes do not agree, so the derivative does not exist there.');
-    if(kind==='critical_point')return make('dconceptL-critical','critical_point_reasoning','Which statement is sufficient to conclude that f has a local maximum at x=a?',`f'\\text{ changes from positive to negative at }x=a.`,'The derivative changes from positive to negative at \\(x=a\\).',['The derivative is zero at \\(x=a\\), with no other information.','The second derivative is zero at \\(x=a\\).','The function is continuous at \\(x=a\\).'],`A change in \\(f'\\) from positive to negative means the function changes from increasing to decreasing, which gives a local maximum.`);
-    if(kind==='motion_meaning'){
-      const t=ri(1,8),v=nz(-12,12);
-      return make(`dconceptL-motion-${t}-${v}`,'velocity_interpretation','A particle has position s(t). What does the given derivative value mean?',`s'(${t})=${v}`,`At \\(t=${t}\\), the particle's velocity is \\(${v}\\).`,[`At \\(t=${t}\\), the particle's position is \\(${v}\\).`,`At \\(t=${t}\\), the particle's acceleration is \\(${v}\\).`,`At \\(t=${t}\\), the particle's speed must be \\(${v}\\).`],`The first derivative of position is velocity. Speed would be the absolute value of velocity.`);
+    if(kind==='table_square_chain'){
+      value=2*x0*c.fp;expression=`h(x)=f(x^2),\\quad h'(${x0})=?`;
+      steps=`Look up \\(f'(${innerX})=${c.fp}\\), then apply the chain rule: \\(h'(${x0})=f'(${x0}^2)(2\\cdot${x0})=${c.fp}(${2*x0})=${value}\\).`;
     }
-    const a=ri(-3,3),fa=ri(-8,8),fp=nz(-5,5),h=pick([0.1,0.2,-0.1,-0.2]);
-    return make(`dconceptL-lin-${a}-${fa}-${fp}-${String(h).replace('-','m')}`,'linearization_interpretation','Which expression is the tangent-line approximation for f(a+h)?',`f(a)=${fa},\\qquad f'(a)=${fp}`,`\\(f(a+h)\\approx ${fa}+${fp}h\\)`,[`\\(f(a+h)\\approx ${fa}+h^2\\)`,`\\(f(a+h)\\approx ${fp}+${fa}h\\)`,`\\(f(a+h)\\approx ${fa}-${fp}h\\)`],`Near \\(x=a\\), the tangent-line approximation is \\(f(a+h)\\approx f(a)+f'(a)h\\).`);
+    if(kind==='table_scaled_quotient_chain'){
+      const numer=5*c.fp*a.g-c.f*a.gp,denom=a.g*a.g;
+      value=texRat(numer,denom);choiceNumerator=numer;choiceDenominator=denom;
+      expression=`h(x)=\\frac{f(5x)}{g(x)},\\quad h'(${x0})=?`;
+      steps=`The numerator has derivative \\(5f'(5x)\\). Use the quotient rule: \\(h'(${x0})=\\frac{5f'(${innerX})g(${x0})-f(${innerX})g'(${x0})}{g(${x0})^2}=\\frac{5(${c.fp})(${a.g})-(${c.f})(${a.gp})}{(${a.g})^2}=${value}\\).`;
+    }
+    if(kind==='table_scaled_product'){
+      value=3*c.fp*a.g+c.f*a.gp;
+      expression=`h(x)=f(3x)g(x),\\quad h'(${x0})=?`;
+      steps=`Differentiate the first factor with the chain rule, then use the product rule: \\(h'(${x0})=3f'(${innerX})g(${x0})+f(${innerX})g'(${x0})=3(${c.fp})(${a.g})+(${c.f})(${a.gp})=${value}\\).`;
+    }
+    if(kind==='table_scaled_plus_monomial'){
+      value=scale*c.fp+derivativeMonomial;
+      expression=`h(x)=f(${scale}x)${monomial},\\quad h'(${x0})=?`;
+      steps=`Use the chain rule on \\(f(${scale}x)\\) and the power rule on \\(${monomialTeX}\\): \\(h'(${x0})=${scale}f'(${innerX})${derivativeMonomial<0?'-':'+'}${Math.abs(derivativeMonomial)}=${scale}(${c.fp})${derivativeMonomial<0?'-':'+'}${Math.abs(derivativeMonomial)}=${value}\\).`;
+    }
+    if(kind==='table_comp_plus_monomial'){
+      const outer=rows[c.f];value=2*outer.gp*c.fp+derivativeMonomial;
+      expression=`h(x)=g(f(2x))${monomial},\\quad h'(${x0})=?`;
+      steps=`Look up \\(f(${innerX})=${c.f}\\), then use the chain rule twice and differentiate the monomial: \\(h'(${x0})=2g'(${c.f})f'(${innerX})${derivativeMonomial<0?'-':'+'}${Math.abs(derivativeMonomial)}=2(${outer.gp})(${c.fp})${derivativeMonomial<0?'-':'+'}${Math.abs(derivativeMonomial)}=${value}\\).`;
+    }
+    if(kind==='table_quotient_plus_monomial'){
+      const denom=a.g*a.g,numer=scale*c.fp*a.g-c.f*a.gp+derivativeMonomial*denom;
+      value=texRat(numer,denom);choiceNumerator=numer;choiceDenominator=denom;
+      expression=`h(x)=\\frac{f(${scale}x)}{g(x)}${monomial},\\quad h'(${x0})=?`;
+      steps=`The quotient numerator has derivative \\(${scale}f'(${scale}x)\\). Apply the quotient and power rules: \\(h'(${x0})=\\frac{${scale}f'(${innerX})g(${x0})-f(${innerX})g'(${x0})}{g(${x0})^2}${derivativeMonomial<0?'-':'+'}${Math.abs(derivativeMonomial)}=\\frac{${scale}(${c.fp})(${a.g})-(${c.f})(${a.gp})}{(${a.g})^2}${derivativeMonomial<0?'-':'+'}${Math.abs(derivativeMonomial)}=${value}\\).`;
+    }
+    if(kind==='table_two_scaled_product'){
+      const d=rows[otherX];value=firstScale*c.fp*d.g+secondScale*c.f*d.gp;
+      expression=`h(x)=f(${firstScale}x)g(${secondScale}x),\\quad h'(${x0})=?`;
+      steps=`Apply the chain rule to both factors before the product rule: \\(h'(${x0})=${firstScale}f'(${innerX})g(${otherX})+${secondScale}f(${innerX})g'(${otherX})=${firstScale}(${c.fp})(${d.g})+${secondScale}(${c.f})(${d.gp})=${value}\\).`;
+    }
+    if(kind==='table_two_scaled_quotient'){
+      const d=rows[otherX],numer=firstScale*c.fp*d.g-secondScale*c.f*d.gp,denom=d.g*d.g;
+      value=texRat(numer,denom);choiceNumerator=numer;choiceDenominator=denom;
+      expression=`h(x)=\\frac{f(${firstScale}x)}{g(${secondScale}x)},\\quad h'(${x0})=?`;
+      steps=`Differentiate both scaled arguments, then use the quotient rule: \\(h'(${x0})=\\frac{${firstScale}f'(${innerX})g(${otherX})-${secondScale}f(${innerX})g'(${otherX})}{g(${otherX})^2}=\\frac{${firstScale}(${c.fp})(${d.g})-${secondScale}(${c.f})(${d.gp})}{(${d.g})^2}=${value}\\).`;
+    }
+    if(kind==='table_nested_square'){
+      const outer=rows[c.g];value=2*x0*outer.fp*c.gp;
+      expression=`h(x)=f(g(x^2)),\\quad h'(${x0})=?`;
+      steps=`First look up \\(g(${innerX})=${c.g}\\). Chain through \\(f\\), \\(g\\), and \\(x^2\\): \\(h'(${x0})=f'(${c.g})g'(${innerX})(2\\cdot${x0})=${outer.fp}(${c.gp})(${2*x0})=${value}\\).`;
+    }
+    if(numeric===undefined)numeric=value;
+    if(choiceNumerator===undefined)choiceNumerator=Number(value);
+    const choices=[choiceNumerator+choiceDenominator,choiceNumerator-choiceDenominator,choiceNumerator+2*choiceDenominator].map(n=>`\\(${texRat(n,choiceDenominator)}\\)`);
+    const item=make(`dconceptL-${kind}-${x0}-${scale}-${firstScale}-${secondScale}-${monomialCoeff}-${power}-${xs.map(x=>`${x}_${rows[x].f}_${rows[x].g}_${rows[x].fp}_${rows[x].gp}`).join('-')}`,kind,'Use the table to find the indicated derivative.',expression,`\\(${value}\\)`,choices,steps);item.questionHtml+=table;return item;
   };
 
   // Tangent/normal lines: suppress coefficient 1 everywhere in given functions

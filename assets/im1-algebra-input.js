@@ -69,7 +69,7 @@ function mount(host,p,onCheck){
  input.addEventListener('input',()=>{exponentMode=false;refresh();});
  input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();if(!input.disabled)onCheck(input.value);}});
  global.BatchMathKeypad.layoutUnit2(pad);
- host.appendChild(form);
+ host.appendChild(form);input.focus({preventScroll:true});
  return {disable(){input.disabled=true;submit.disabled=true;pad.querySelectorAll('button').forEach(b=>b.disabled=true);}};
 }
 global.BatchMathIM1Algebra={parse,check,mount};

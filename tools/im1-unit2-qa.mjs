@@ -7,7 +7,7 @@ const src=fs.readFileSync(path.join(ROOT,'assets/im1-unit2-generators.js'),'utf8
 const expected={
 'equivalent-expressions-combining-like-terms':['combine','constants','multi','two_variables','mixed_products','three_groups','like_terms'],
 'distributive-property':['basic','negative','multiterm','combine','two_groups','three_groups','reverse','equivalent','construct'],
-'solving-linear-equations':['one_step','two_step','distribution','both_sides','identity','contradiction','fraction_coefficient','fraction_expression','fraction_x','fraction_linear'],
+'solving-linear-equations':['one_step','two_step','distribution','both_sides','both_distribute_unique','identity','contradiction','fraction_coefficient','fraction_expression','fraction_x','fraction_linear'],
 'solving-linear-inequalities':['basic','negative_flip','distribution','both_sides','compound','creation'],
 'graphing-inequalities-interval-notation':['ineq_to_interval','interval_result','interval_to_ineq','ineq_to_graph','graph_to_interval','union','solve_then_interval'],
 'coordinate-system-nine-key-features':['plot_point','domain','range','increasing','decreasing','constant','x_intercepts','y_intercept','absolute_max','absolute_min']};
@@ -17,6 +17,9 @@ function validate(slug,p){checks.generated++;if(!p||!p.id||!p.variant)errors.pus
  expect(Array.isArray(p.terms)&&p.terms.length>=2,`${p.id}: missing term data`);
  expect(typeof p.answer==='string'&&p.explain.includes('<ol>'),`${p.id}: missing answer or explanation`);
  }else if(p.kind==='equation'){expect(!!p.math&&!!p.hint&&p.explain.includes('<ol>'),`${p.id}: missing equation solution/hint`);
+ if(['identity','contradiction'].includes(p.variant))expect(p.math.A===p.math.C&&(p.variant==='identity')===(p.math.B===p.math.D),`${p.id}: special equation not identity/contradiction`);
+ if(p.variant==='both_distribute_unique')expect(p.math.A!==p.math.C&&p.math.solution!==null,`${p.id}: distributing both sides must have one solution`);
+ }else if(p.kind==='interval'){expect(/^[-\[(].*[\])]$/.test(p.answer)&&p.explain.includes('<ol>'),`${p.id}: interval input invalid`);
  }else{
  if(!Array.isArray(p.choices)||p.choices.length<2)errors.push(`${slug} ${p?.id}: missing choices`);
  if(!Number.isInteger(p.correctIndex)||p.correctIndex<0||p.correctIndex>=p.choices.length)errors.push(`${slug} ${p?.id}: invalid correctIndex`);
