@@ -72,14 +72,16 @@
         return (p-i)<=(i+2-p)?i:i+2;
       }
     }
-    // Function names and the opening parenthesis are one semantic entry boundary.
-    // The caret must never disappear inside raw text such as s|q|r|t|( or s|i|n|(.
+    // Function names stay atomic, but the position immediately after the name is
+    // a real caret stop. This lets a student turn sec(x) into sec^2(x) by moving
+    // between sec and ( and inserting an exponent.
     for(let start=0;start<state.raw.length;start++){
       const sh=functionShellAt(start);
       if(sh&&p>sh.start&&p<sh.argStart){
-        if(dir>0)return sh.argStart;
+        if(p===sh.tokenEnd)return p;
+        if(dir>0)return sh.tokenEnd;
         if(dir<0)return sh.start;
-        return (p-sh.start)<=(sh.argStart-p)?sh.start:sh.argStart;
+        return (p-sh.start)<=(sh.tokenEnd-p)?sh.start:sh.tokenEnd;
       }
     }
     // Standalone words that display as a single semantic item are atomic.
@@ -377,20 +379,29 @@
     if(delta>0){
       const sh=functionShellAt(state.cursor);
       if(sh){
-        state.cursor=sh.argStart;
-      }else if(state.raw[state.cursor]===")" && state.raw.slice(state.cursor,state.cursor+3)===")/("){
-        state.cursor=Math.min(state.raw.length,state.cursor+3);
-      }else if(state.raw.slice(state.cursor,state.cursor+2)==="^("){
-        state.cursor=Math.min(state.raw.length,state.cursor+2);
+        state.cursor=sh.tokenEnd;
       }else{
-        const a=atomicAt(state.cursor);
-        if(a)state.cursor=Math.min(state.raw.length,a.end);
-        else state.cursor=Math.min(state.raw.length,state.cursor+1);
+        let shellAfterName=null;
+        for(let i=Math.max(0,state.cursor-12);i<state.cursor;i++){
+          const candidate=functionShellAt(i);
+          if(candidate&&candidate.tokenEnd===state.cursor){shellAfterName=candidate;break;}
+        }
+        if(shellAfterName){
+          state.cursor=shellAfterName.argStart;
+        }else if(state.raw[state.cursor]===")" && state.raw.slice(state.cursor,state.cursor+3)===")/("){
+          state.cursor=Math.min(state.raw.length,state.cursor+3);
+        }else if(state.raw.slice(state.cursor,state.cursor+2)==="^("){
+          state.cursor=Math.min(state.raw.length,state.cursor+2);
+        }else{
+          const a=atomicAt(state.cursor);
+          if(a)state.cursor=Math.min(state.raw.length,a.end);
+          else state.cursor=Math.min(state.raw.length,state.cursor+1);
+        }
       }
       state.cursor=normalizeCursor(state.cursor,1);
     }else if(delta<0){
-      // From the first editable position inside a function/root, one tap exits
-      // to immediately before the whole function rather than entering its raw name.
+      // The caret can stop after a function name so an exponent may be inserted
+      // before its opening parenthesis.
       const shStart=Math.max(0,state.cursor-12);
       let shell=null;
       for(let i=shStart;i<state.cursor;i++){
@@ -398,7 +409,7 @@
         if(candidate&&candidate.argStart===state.cursor){shell=candidate;break;}
       }
       if(shell){
-        state.cursor=shell.start;
+        state.cursor=shell.tokenEnd;
       }else if(state.raw.slice(Math.max(0,state.cursor-3),state.cursor)===")/("){
         state.cursor=Math.max(0,state.cursor-3);
       }else if(state.raw.slice(Math.max(0,state.cursor-2),state.cursor)==="^("){
@@ -566,7 +577,7 @@
     if(tok&&state.editor.contains(tok)){
       const a=Number(tok.dataset.bmStart),b=Number(tok.dataset.bmEnd),r=tok.getBoundingClientRect();
       const sh=functionShellAt(a);
-      state.cursor=e.clientX<r.left+r.width/2?a:(sh?sh.argStart:b);
+      state.cursor=e.clientX<r.left+r.width/2?a:(sh?sh.tokenEnd:b);
       state.cursor=normalizeCursor(state.cursor,e.clientX<r.left+r.width/2?-1:1);
       render();state.editor.focus();return;
     }

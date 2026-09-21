@@ -12,6 +12,17 @@ function noCoefficientOne(p){return !/(^|[^\d])1x(?:\^|\b)/.test((p.q||'').repla
 function answerParses(p,box){try{const tree=box.QA.parseExpression(p.answerExpr);let finite=0;for(const x of [.37,.71,1.1,1.8,2.6]){try{const v=box.QA.evalTree(tree,{x});if(Number.isFinite(v))finite++}catch{}}return finite>0}catch{return false}}
 function selectValues(rel,id){const h=fs.readFileSync(path.join(ROOT,rel),'utf8');const m=h.match(new RegExp(`<select[^>]+id=["']${id}["'][^>]*>([\\s\\S]*?)<\\/select>`,'i'));if(!m)return[];return [...m[1].matchAll(/<option[^>]+value=["']([^"']+)["'][^>]*>/gi)].map(x=>x[1])}
 
+// Both handwritten trig-power notation and the shared keypad's structural
+// notation must be accepted in every derivative engine that shares this parser.
+for(const topic of ['comprehensive-review','derivatives-of-inverse-functions','derivatives-of-logarithmic-functions','derivatives-of-trigonometric-functions','derivatives-with-the-power-rule','exponential-functions','implicit-differentiation','inverse-trigonometric-functions','logarithmic-differentiation','the-chain-rule','the-product-rule','the-quotient-rule']){
+ const rel=`ap-calculus/unit-2-derivatives/topics/${topic}/practice/index.html`;
+ const box=exposePage(rel,['equivalent'],`trig-power-${topic}`);
+ for(const fn of ['sin','cos','tan','cot','sec','csc']){
+  const expected=`(${fn}(x))^2`;
+  for(const entered of [`${fn}^2(x)`,`${fn}^(2)(x)`])if(!box.QA.equivalent(entered,expected,['x']))errors.push(`${topic}: rejected ${entered}`);
+ }
+}
+
 // Difference Quotient: only simplification in the two requested quotient forms; no raw MathJax in explanations.
 {const sb={window:{},console};vm.createContext(sb);vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/ap-topic-generators.js'),'utf8'),sb);const gen=sb.window.BatchMathAPTopicGenerators.get('difference-quotient'),seen=new Set();for(let i=0;i<20000;i++){sb.window.BatchMathRNG={random:rng(`dqj:${i}`)};const p=gen();counts.dq++;seen.add(p.variant);const bad=malformed(p);if(bad)errors.push(`${p.id}: ${bad}`);if(/Evaluate the derivative limit|\\lim\b/.test((p.q||'')+' '+(p.questionHtml||'')))errors.push(`${p.id}: derivative-limit prompt leaked into Difference Quotient`);const outside=String(p.explanation||'').replace(/\\\([\s\S]*?\\\)/g,'');if(/\\(?:frac|sqrt|ln|sin|cos|tan|qquad|to)\b/.test(outside))errors.push(`${p.id}: raw TeX outside MathJax delimiters in explanation`)}for(const v of ['linear_difference_quotient','quadratic_difference_quotient','cubic_difference_quotient','radical_difference_quotient','reciprocal_difference_quotient','point_form_simplification','point_form_cubic_simplification','point_form_radical_simplification','point_form_reciprocal_simplification'])if(!seen.has(v))errors.push(`Difference Quotient family missing: ${v}`);}
 

@@ -490,13 +490,16 @@ function parseExpression(raw){
    }
    return n;
  }
- function functionExponent(){
+function functionExponent(){
+   let wrapped=false;
+   if(peek()&&peek().type==="("){take();wrapped=true;}
    let sign=1;
    if(peek()&&(peek().type==="+"||peek().type==="-")){
      if(take().type==="-")sign=-1;
    }
    const z=take();
    if(!z||z.type!=="num")throw Error("function exponent");
+   if(wrapped&&(!peek()||take().type!==")"))throw Error("function exponent");
    return {k:"num",v:sign*z.v};
  }
  function bareFunctionArg(){

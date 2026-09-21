@@ -1,0 +1,22 @@
+BatchMath v10.7.6
+
+Derivative trig-power answer entry
+
+- Accepts standard function-power notation such as sec^2(x), csc^2(x), and
+  corresponding powers of all six trigonometric functions.
+- Accepts the shared on-screen keypad's structural form, such as sec^(2)(x),
+  as mathematically equivalent input.
+- Adds a usable cursor stop between a function name and its opening parenthesis,
+  allowing students to insert an exponent after entering sec(x), sin(x), etc.
+- Applies the parser correction across all 12 AP Calculus derivative practice
+  engines that share derivative-expression answer checking.
+
+QA
+
+- Shared calculus keypad structural regression QA: PASS (32 cases).
+- Derivative topic interaction QA: PASS, including both trig-power input forms
+  for all six trig functions in all 12 derivative engines.
+- Release, display, semantic, analytics, PWA/cache, calculus generator, limits,
+  and derivative engine regression suites: PASS.
+- One pre-existing IM1 QA threshold assertion also fails unchanged in the
+  supplied v10.7.5 source; no IM1 production code was changed in this release.

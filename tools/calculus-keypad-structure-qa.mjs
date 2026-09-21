@@ -43,6 +43,18 @@ set('acsc()',0);k.del();assert.equal(raw(),'');
 set('^()',2);k.backspace();assert.equal(raw(),'');
 set('^()',0);k.del();assert.equal(raw(),'');
 
+// A function name now has a usable caret stop before its opening parenthesis.
+// This is the keypad workflow for entering sec^2(x), csc^2(x), and similar forms.
+set('sec(x)',4);k.move(-1);assert.equal(k.cursor,3);
+const allKeys=(row.after?.children||[]).flatMap(group=>group.children||[]);
+const exponentKey=allKeys.find(button=>button['aria-label']==='Insert exponent');
+const twoKey=allKeys.find(button=>button.textContent==='2');
+assert(exponentKey&&twoKey,'required keypad keys missing');
+exponentKey.events.click[0]({preventDefault(){}});
+twoKey.events.click[0]({preventDefault(){}});
+assert.equal(raw(),'sec^(2)(x)');
+set('tan(x)',0);k.move(1);assert.equal(k.cursor,3);k.move(1);assert.equal(k.cursor,4);
+
 set('(x)/(y)',7);k.backspace();assert.equal(raw(),'(x)/(y)');assert.equal(k.cursor,6);k.backspace();assert.equal(raw(),'(x)/()');
 k.backspace();assert.equal(raw(),'(x)/()');assert.equal(k.cursor,2);
 set('(x)/(y)',2);k.del();assert.equal(raw(),'(x)/(y)');assert.equal(k.cursor,5);
@@ -50,7 +62,7 @@ set('sqrt((x)/(y))',15);for(let i=0;i<7;i++){k.backspace();assert(validStructure
 
 const buttons=(row.after?.children||[]).flatMap(x=>x.children||[]).map(x=>x.textContent);
 for(const label of ['sin⁻¹','cos⁻¹','tan⁻¹','cot⁻¹','sec⁻¹','csc⁻¹'])assert(buttons.includes(label),`inverse trig keypad missing ${label}`);
-const report={ok:true,cases:26,editors:['shared calculus keypad','advanced trig keypad'],structures:['square roots','functions','inverse trig functions','fractions','exponents','nested structures']};
+const report={ok:true,cases:32,editors:['shared calculus keypad','advanced trig keypad'],structures:['square roots','functions','function powers','inverse trig functions','fractions','exponents','nested structures']};
 fs.mkdirSync(path.join(root,'qa-results'),{recursive:true});
 fs.writeFileSync(path.join(root,'qa-results/calculus-keypad-structure-qa.json'),JSON.stringify(report,null,2)+'\n');
 console.log(report);
