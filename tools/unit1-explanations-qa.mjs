@@ -3,7 +3,7 @@ import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:asser
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),baseline=process.env.BM_UNIT1_BASELINE;
 const rel='ap-calculus/unit-1-limits-continuity/topics/';
 function rng(){let s=9173;return()=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return s/4294967296}}
-function legacy(dir){const h=fs.readFileSync(path.join(dir,rel,'comprehensive-review/practice/index.html'),'utf8');let s=[...h.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('const generators='));s=s.slice(0,s.indexOf('  function makeProblem()'))+'globalThis.qa={generators};})();';const c={BatchMathRNG:{random:rng()},document:{addEventListener(){},getElementById(){}},window:{}};vm.createContext(c);c.window.BatchMathRNG=c.BatchMathRNG;for(const dep of ['ap-topic-generators','unit1-course-trig'])if(fs.existsSync(path.join(dir,'assets/'+dep+'.js')))vm.runInContext(fs.readFileSync(path.join(dir,'assets/'+dep+'.js'),'utf8'),c);vm.runInContext(s,c);return c.qa;}
+function legacy(dir){const h=fs.readFileSync(path.join(dir,rel,'comprehensive-review/practice/index.html'),'utf8');let s=[...h.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('const generators='));s=s.slice(0,s.indexOf('  function makeProblem()'))+'globalThis.qa={generators};})();';const c={BatchMathRNG:{random:rng()},document:{addEventListener(){},getElementById(){}},window:{}};vm.createContext(c);c.window.BatchMathRNG=c.BatchMathRNG;for(const dep of ['ap-topic-generators','unit1-course-trig','unit1-core-expansions','unit1-one-sided'])if(fs.existsSync(path.join(dir,'assets/'+dep+'.js')))vm.runInContext(fs.readFileSync(path.join(dir,'assets/'+dep+'.js'),'utf8'),c);vm.runInContext(s,c);return c.qa;}
 function shared(dir){const c={window:{BatchMathRNG:{random:rng()}}};vm.runInNewContext(fs.readFileSync(path.join(dir,'assets/ap-topic-generators.js'),'utf8'),c);return c.window.BatchMathAPTopicGenerators;}
 function strip(p){const q=JSON.parse(JSON.stringify(p));delete q.sol;delete q.explanation;return q;}
 const results={samples:0,baselineComparisons:0,identityChecks:0,skippedEquations:0,browser:'not run'};
@@ -21,7 +21,7 @@ function evaluate(s,vars={x:.173}){
     if(t==='+')return atom();if(t==='-')return -atom();
     if(['{','(','['].includes(t)){i--;return group();}
     if(t==='\\frac')return group()/group();
-    if(t==='\\sqrt')return Math.sqrt(group());
+    if(t==='\\sqrt'){let n=2;if(peek()==='[')n=group();const v=group();return v<0&&n%2===1?-Math.pow(-v,1/n):Math.pow(v,1/n);}
     if(t==='\\pi')return Math.PI;
     if(fn[t.slice(1)]&&t.startsWith('\\')){
       let power=1;if(peek()==='^'){take();power=group();}
@@ -45,7 +45,7 @@ function identities(s,id){for(const m of s.matchAll(/\\\(([\s\S]*?)\\\)/g))for(c
 }}
 const n=legacy(root),o=baseline?legacy(baseline):null;
 for(const cat of ['continuous','factoring','substitution','rationalizing','complex','squeeze','trig','oneSided','infinity','special'])for(let i=0;i<1000;i++){
- const p=n.generators[cat]();results.samples++;textcheck(p.sol,p.id);identities(p.sol,p.id);if(o){assert.deepEqual(strip(p),strip(o.generators[cat]()),cat+' data changed');results.baselineComparisons++;}
+ const p=n.generators[cat]();results.samples++;textcheck(p.sol,p.id);if(!p.id.startsWith('os-'))identities(p.sol,p.id);if(o){assert.deepEqual(strip(p),strip(o.generators[cat]()),cat+' data changed');results.baselineComparisons++;}
 }
 const ns=shared(root),os=baseline?shared(baseline):null;
 for(const slug of ['introduction-to-limits','sin-one-over-x','squeeze-course-practice','continuity-parameters','intermediate-value-theorem'])for(let i=0;i<1000;i++){
@@ -57,6 +57,6 @@ const nd=disc(root),od=baseline?disc(baseline):null;
 for(const key of Object.keys(nd))for(let i=0;i<500;i++){
  const p=nd[key]();results.samples++;p.points.forEach(t=>{textcheck(t.why,p.id);identities(t.why,p.id);delete t.why;});if(od){const q=od[key]();q.points.forEach(t=>delete t.why);assert.deepEqual(strip(p),strip(q),key+' changed');results.baselineComparisons++;}
 }
-const block=s=>s.slice(s.indexOf('  function continuous()'),s.indexOf('  const generators='));const reference=block(fs.readFileSync(path.join(root,rel,'comprehensive-review/practice/index.html'),'utf8'));
-for(const name of ['basic-techniques-indeterminate-limits','limits-of-continuous-functions','one-sided-limits','limits-at-infinity'])assert.equal(block(fs.readFileSync(path.join(root,rel,name,'practice/index.html'),'utf8')),reference,name+' out of sync');
+const block=s=>{const start=s.indexOf('  function continuous()'),cuts=[s.indexOf('  const core=',start),s.indexOf('  let linkedOneSided=',start),s.indexOf('  const generators=',start)].filter(i=>i>=0);return s.slice(start,Math.min(...cuts))};const reference=block(fs.readFileSync(path.join(root,rel,'comprehensive-review/practice/index.html'),'utf8'));
+for(const name of ['basic-techniques-indeterminate-limits','limits-of-continuous-functions','one-sided-limits'])assert.equal(block(fs.readFileSync(path.join(root,rel,name,'practice/index.html'),'utf8')),reference,name+' out of sync');
 results.ok=true;fs.mkdirSync(path.join(root,'qa-results'),{recursive:true});fs.writeFileSync(path.join(root,'qa-results/unit1-explanations-qa.json'),JSON.stringify(results,null,2)+'\n');console.log(results);

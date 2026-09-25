@@ -72,7 +72,7 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
   <section class="shell" aria-label="Advanced trigonometric limits practice">
     <div class="status-row">
       <div class="stats"><span>Correct: <strong id="correct">0</strong></span><span>Attempted: <strong id="attempted">0</strong></span><span>Accuracy: <strong id="accuracy">—</strong></span></div>
-      <div class="focus-label">Fully Mixed Advanced Practice</div>
+      <label class="focus-label" for="focus">Focus <select id="focus" aria-label="Advanced trigonometric limit focus"><option value="mixed" selected>Mixed</option><option value="standard">Standard-Ratio Products and Powers</option><option value="sums">Sums and Decomposition</option><option value="identity">Trig Identities and Cancellation</option><option value="nonzero">Nonzero Approach Points</option></select></label>
     </div>
 
     <div class="question-card">
@@ -130,7 +130,7 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
   <div class="footer"><strong>BatchMath</strong> · Generated problems are designed to be solved algebraically with trig identities and standard trig-limit facts.</div>
 </main>
 
-<script>
+<script src="/assets/unit1-advanced-trig-shared.js"></script><script>
 (function(){
   "use strict";
   const $=id=>document.getElementById(id);
@@ -580,10 +580,17 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
     return {id:`nzz-${p}-${m}-${d}`,q:`\\(\\displaystyle \\lim_{x\\to ${p}}\\frac{${m===1?"":m}(${num})}{${d===1?"":d}(${den})}\\)`,ans:rat(0),tech:"",...lesson("nonzero-zero",{neg,p,m,d},rat(0))};
   });
 
+  (window.BMAdvancedTrigShared?.defs||[]).forEach(d=>addFamily(d.id,d.level,[d.group],d.label,d.make));
+
   let current=null,correct=0,attempted=0,seen=new Set(),methodShown=false;
 
   function eligible(){
-    return families;
+    const focus=$("focus").value;
+    if(focus==='mixed')return families;
+    if(focus==='sums')return families.filter(f=>['linear-combo','mixed-second-order','engineered-second-order','linear-combo-polynomial'].includes(f.id));
+    if(focus==='nonzero')return families.filter(f=>f.focus.includes('nonzero'));
+    if(focus==='standard')return families.filter(f=>f.focus.includes('standard')&&!f.focus.includes('factoring'));
+    return families.filter(f=>f.focus.some(x=>['identity','factoring','reciprocal','evenodd','higher'].includes(x)));
   }
   let mathQueue=Promise.resolve();
   function typeset(nodes){
@@ -649,6 +656,7 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
     panel.hidden=!opening;$("hint").setAttribute("aria-expanded",String(opening));$("hint").textContent=opening?"Hide Hint":"Show Hint";
     if(opening){panel.innerHTML=current.hint;typeset([panel]);}
   }
+  $("focus").addEventListener("change",()=>{seen.clear();newProblem();});
   $("hint").addEventListener("click",showHint);
   function showMethod(){
     if(!current||methodShown)return;

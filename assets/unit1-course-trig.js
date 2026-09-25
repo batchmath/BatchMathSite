@@ -1,7 +1,12 @@
 (function(){'use strict';
-const R=()=>window.BatchMathRNG.random(),ri=(a,b)=>Math.floor(R()*(b-a+1))+a,pick=a=>a[ri(0,a.length-1)],T=String.raw,M=s=>T`\(${s}\)`;
+const R=()=>window.BatchMathRNG.random(),ri=(a,b)=>Math.floor(R()*(b-a+1))+a,pick=a=>a[ri(0,a.length-1)],T=String.raw;
+// Some of the later families were assembled from String.raw fragments that
+// already contained escaped backslashes.  Normalize those fragments at the
+// one shared math boundary so MathJax receives \command, never \\command.
+const normalizeTex=s=>String(s).replace(/\\\\/g,'\\').replace(/\^\{1\}/g,'').replace(/\^1(?!\d)/g,'');
+const M=s=>T`\(${normalizeTex(s)}\)`;
 const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a)||1,rat=(n,d=1)=>{if(d<0){n=-n;d=-d;}const g=gcd(n,d);return{kind:'rat',n:n/g,d:d/g};},tex=a=>a.d===1?String(a.n):(a.n<0?'-':'')+T`\frac{${Math.abs(a.n)}}{${a.d}}`,xp=p=>p===0?'':p===1?'x':`x^{${p}}`,tr=(f,k,p=1)=>`\\${f}${p===1?'':`^{${p}}`}(${k===1?'':k}x)`,term=(n,s='')=>(n<0?'-':'+')+(Math.abs(n)===1&&s?'':Math.abs(n))+s;
-const clean=s=>s.replace(/(?<!\d)1x/g,'x').replace(/(?<!\d)1\\(sin|cos|tan)/g,'\\$1');
+const clean=s=>normalizeTex(s).replace(/(?<!\d)1x/g,'x').replace(/(?<!\d)1\\(sin|cos|tan)/g,'\\$1');
 function make(variant,q,n,d,steps,data){const ans=rat(n,d);return{id:'course-v-'+variant+'-'+JSON.stringify(data),variant,answerType:'numeric',numericAnswer:ans.n/ans.d,numericTolerance:1e-7,ans,answerTex:tex(ans),questionHtml:`<div><div class="question-prompt">Find the limit. Angles are in radians.</div><div>${M(T`\displaystyle\lim_{x\to0}${clean(q)}`)}</div></div>`,explanation:'<ol class="method-steps">'+steps.map(s=>`<li>${clean(s)}</li>`).join('')+'</ol>',courseData:{...data,variant}};}
 const sine=k=>M(T`\frac{${tr('sin',k)}}x=${k}\frac{${tr('sin',k)}}{${k}x}\to${k}`),tangent=k=>M(T`\frac{${tr('tan',k)}}x=\frac{${tr('sin',k)}}x\frac1{${tr('cos',k)}}\to${k}`),cosine=k=>M(T`\frac{1-${tr('cos',k)}}{x^2}=\frac{(${tr('sin',k)}/x)^2}{1+${tr('cos',k)}}\to\frac{${k*k}}2`);
 function hard(){const family=pick(['sine_power','tangent_power','cosine_power','sine_ratio','product','split_sum','split_cosine','expanded_cosine','pythagorean','sine_cosine_product','cosine_ratio','polynomial_product']);const a=ri(1,5),b=ri(1,5),c=ri(2,7),p=ri(2,4),q=ri(1,3),A=pick([-5,-3,-2,2,3,5]),B=ri(1,4);const data={a,b,c,p,q,A,B};let n,d,expr,steps;
@@ -18,7 +23,31 @@ function hard(){const family=pick(['sine_power','tangent_power','cosine_power','
  if(family==='polynomial_product'){expr=T`\frac{${tr('sin',a)}(x${term(A)})}{${c}x+${B}x^2}`;n=a*A;d=c;steps=[`Factor x from the denominator and separate: ${M(T`\frac{${tr('sin',a)}}x\frac{x${term(A)}}{${c}+${B}x}`)}.`,`${sine(a)}, and the second fraction tends to ${M(T`\frac{${A}}{${c}}`)}.`,`Multiply the limits to obtain ${M(tex(rat(n,d)))}.`];}
  return make(family,expr,n,d,steps,data);
 }
+function extension(){
+ const family=pick(['nonlinear_argument','expanded_cosine_fourth','mixed_trig_quadratic']);
+ const v=pick(['x','t','u','\\theta','z']),a=ri(2,5),b=ri(1,5),c=pick([2,3,4,5,6]);
+ const lim=String.raw`\\displaystyle\\lim_{${v}\\to0}`;
+ if(family==='nonlinear_argument'){
+  const power=pick([2,3]),outer=pick([2,4]),denPower=power*outer,n=a**outer,d=c,ans=rat(n,d);
+  return {id:`course-ext-nonlinear-${v}-${a}-${power}-${outer}-${c}`,variant:family,answerType:'numeric',numericAnswer:ans.n/ans.d,numericTolerance:1e-7,ans,answerTex:tex(ans),questionHtml:`<div><div class="question-prompt">Find the limit. Angles are in radians.</div><div>${M(T`${lim}\\frac{\\sin^{${outer}}(${a}${v}^{${power}})}{${c}${v}^{${denPower}}}`)}</div></div>`,explanation:`<ol class="method-steps"><li>Let ${M(T`w=${a}${v}^{${power}}`)}. Keep the outside constant and power visible:<br>${M(T`\\frac{\\sin^{${outer}}(${a}${v}^{${power}})}{${c}${v}^{${denPower}}}=\\frac{${a}^{${outer}}}{${c}}\\left(\\frac{\\sin w}{w}\\right)^{${outer}}`)}.</li><li>As ${M(T`${v}\\to0`)}, ${M('w\\to0')} and ${M('\\sin w/w\\to1')}.</li><li>The limit is ${M(T`\\frac{${a}^{${outer}}}{${c}}=${tex(ans)}`)}.</li></ol>`,courseData:{family,v,a,power,outer,c}};
+ }
+ if(family==='expanded_cosine_fourth'){
+  const ans=rat(a**8,16*c),C=`\\cos(${a===1?'':a}${v})`;
+  return {id:`course-ext-cos4-${v}-${a}-${c}`,variant:family,answerType:'numeric',numericAnswer:ans.n/ans.d,numericTolerance:1e-7,ans,answerTex:tex(ans),questionHtml:`<div><div class="question-prompt">Find the limit. Angles are in radians.</div><div>${M(T`${lim}\\frac{1-4${C}+6${C}^{2}-4${C}^{3}+${C}^{4}}{${c}${v}^{8}}`)}</div></div>`,explanation:`<ol class="method-steps"><li>Factor the expanded numerator: ${M(T`1-4C+6C^2-4C^3+C^4=(1-C)^4`)}, where ${M(T`C=${C}`)}.</li><li>Use the conjugate form ${M(T`\\frac{1-\\cos(${a}${v})}{${v}^2}=\\frac{(\\sin(${a}${v})/${v})^2}{1+\\cos(${a}${v})}\\to\\frac{${a*a}}2`)}.</li><li>Thus ${M(T`\\frac1{${c}}\\left(\\frac{1-\\cos(${a}${v})}{${v}^2}\\right)^4\\to\\frac1{${c}}\\left(\\frac{${a*a}}2\\right)^4=${tex(ans)}`)}.</li></ol>`,courseData:{family,v,a,c}};
+ }
+ const A=ri(1,4),B=ri(1,4),ans=rat(A*a*B*b,c);
+ return {id:`course-ext-mixed-${v}-${a}-${b}-${A}-${B}-${c}`,variant:family,answerType:'numeric',numericAnswer:ans.n/ans.d,numericTolerance:1e-7,ans,answerTex:tex(ans),questionHtml:`<div><div class="question-prompt">Find the limit. Angles are in radians.</div><div>${M(T`${lim}\\frac{${A*B}\\sin(${a}${v})\\tan(${b}${v})}{${c}${v}^{2}}`)}</div></div>`,explanation:`<ol class="method-steps"><li>Separate the product and keep the constant outside:<br>${M(T`\\frac{${A*B}}{${c}}\\left(\\frac{\\sin(${a}${v})}{${v}}\\right)\\left(\\frac{\\tan(${b}${v})}{${v}}\\right)`)}.</li><li>Rewrite the factors as ${M(T`\\frac{\\sin(${a}${v})}{${v}}=${a}\\frac{\\sin(${a}${v})}{${a}${v}}\\to${a}`)} and ${M(T`\\frac{\\tan(${b}${v})}{${v}}=${b}\\frac{\\tan(${b}${v})}{${b}${v}}\\to${b}`)}.</li><li>Multiplying gives ${M(tex(ans))}.</li></ol>`,courseData:{family,v,a,b,A,B,c}};
+}
+function squeezeExtension(){
+ const v=pick(['x','t','u','\\theta','z']);
+ if(R()<.55){
+  const root=R()<.5,phase=root?T`1/\\sqrt{${v}}`:T`1/${v}`,amp=root?T`\\sqrt{${v}}`:v,side=root?'^+':'',ans=rat(0);
+  return {id:`course-squeeze-root-${v}-${root}`,variant:'squeeze_vanishing',answerType:'numeric',numericAnswer:0,numericTolerance:1e-7,ans,answerTex:'0',questionHtml:`<div><div class="question-prompt">Find the limit using bounds.</div><div>${M(T`\\displaystyle\\lim_{${v}\\to0${side}} ${amp}\\sin\\left(${phase}\\right)`)}</div></div>`,explanation:`<ol class="method-steps"><li>Because ${M('|\\sin(\\cdot)|\\le1')}, ${M(T`-${amp}\\le ${amp}\\sin(${phase})\\le ${amp}`)} on the stated real domain.</li><li>Both bounds tend to ${M('0')}; therefore the squeeze theorem establishes that the limit is ${M('0')}.</li></ol>`,courseData:{v,root}};
+ }
+ const ans=rat(0),k=ri(1,4);
+ return {id:`course-squeeze-suffice-${v}-${k}`,variant:'squeeze_bounds_suffice',answerType:'numeric',numericAnswer:0,numericTolerance:1e-7,ans,answerTex:'0',questionHtml:`<div><div class="question-prompt">The stated bounds approach different values. Enter 1 if those bounds alone establish the limit, or 0 if they do not.</div><div>${M(T`-${k}\\le f(${v})\\le${k},\\qquad ${v}\\to0`)}</div></div>`,explanation:`<ol class="method-steps"><li>The lower and upper bounds approach different numbers, so the squeeze theorem does not determine a limit.</li><li>Answer ${M('0')}: the bounds do not suffice. This conclusion alone does <em>not</em> prove that ${M(T`\\lim_{${v}\\to0}f(${v})`)} is DNE; actual oscillation or two approaches with different limiting values would be needed.</li></ol>`,courseData:{v,k}};
+}
 const old=window.BatchMathAPTopicGenerators.get,legacy=old('squeeze-course-practice');
-function generate(){const roll=R();if(roll>=.4)return hard();let p;do{p=legacy();}while(p.variant.startsWith('squeeze_')!==(roll<.2));const raw=p.choices[p.correctIndex],m=raw.match(/^(-?)\\frac\{(\d+)\}\{(\d+)\}$/),ans=m?rat((m[1]?-1:1)*Number(m[2]),Number(m[3])):rat(Number(raw));delete p.choices;delete p.correctIndex;return {...p,answerType:'numeric',numericAnswer:ans.n/ans.d,numericTolerance:1e-7,ans,answerTex:tex(ans)};}
+function generate(){const roll=R();if(roll<.2){if(R()<.5)return squeezeExtension();let p;do{p=legacy();}while(!p.variant.startsWith('squeeze_'));const raw=p.choices[p.correctIndex],m=raw.match(/^(-?)\\frac\{(\d+)\}\{(\d+)\}$/),ans=m?rat((m[1]?-1:1)*Number(m[2]),Number(m[3])):rat(Number(raw));delete p.choices;delete p.correctIndex;return {...p,answerType:'numeric',numericAnswer:ans.n/ans.d,numericTolerance:1e-7,ans,answerTex:tex(ans)};}if(roll>=.4)return R()<.25?extension():hard();let p;do{p=legacy();}while(p.variant.startsWith('squeeze_'));const raw=p.choices[p.correctIndex],m=raw.match(/^(-?)\\frac\{(\d+)\}\{(\d+)\}$/),ans=m?rat((m[1]?-1:1)*Number(m[2]),Number(m[3])):rat(Number(raw));delete p.choices;delete p.correctIndex;return {...p,answerType:'numeric',numericAnswer:ans.n/ans.d,numericTolerance:1e-7,ans,answerTex:tex(ans)};}
 window.BMUnit1CourseTrig={generate,hard};window.BatchMathAPTopicGenerators.get=slug=>slug==='squeeze-course-practice'?generate:old(slug);
 })();

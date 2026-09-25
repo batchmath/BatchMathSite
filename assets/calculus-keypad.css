@@ -26,6 +26,14 @@ sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
 .bm-calc-frac-num{display:block;border-bottom:1.5px solid currentColor;padding:0 .14em .06em}
 .bm-calc-frac-den{display:block;padding:.06em .14em 0}
 
+/* Editable nth-root structure: the index and radicand are distinct hit
+   targets while the stored answer remains root(index,radicand). */
+.bm-calc-nroot{display:inline-flex;align-items:flex-start;vertical-align:middle;margin:0 .1em;line-height:1.05}
+.bm-calc-nroot-index{font-size:.58em;line-height:1;min-width:.65em;text-align:right;margin:.02em -.05em 0 0;cursor:text}
+.bm-calc-nroot-sign{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1.35em;line-height:.92}
+.bm-calc-nroot-radicand{display:inline-block;min-width:.8em;border-top:1.5px solid currentColor;padding:.05em .12em 0;cursor:text}
+.bm-calc-nroot-index .bm-calc-caret{height:.78em;vertical-align:-.08em}
+
 .bm-calc-keypad{
   max-width:760px;margin:10px auto 0;padding:9px;border:1px solid #292929;border-radius:10px;
   background:#080808;user-select:none;-webkit-user-select:none;
@@ -93,7 +101,7 @@ sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
 
 /* v10.3.3 caret hit targets */
 .bm-calc-token{display:inline-block;cursor:text}
-.bm-calc-frac-num,.bm-calc-frac-den,.bm-calc-editor sup{cursor:text}
+.bm-calc-frac-num,.bm-calc-frac-den,.bm-calc-editor sup,.bm-calc-nroot-index,.bm-calc-nroot-radicand{cursor:text}
 
 /* v10.3.3 semantic-token display */
 .bm-calc-token.infinity{font-family:"Cambria Math","STIX Two Math","DejaVu Math TeX Gyre","Times New Roman",serif;font-weight:400}

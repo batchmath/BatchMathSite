@@ -1,29 +1,36 @@
 import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';import path from 'node:path';import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');const read=p=>fs.readFileSync(path.join(root,p),'utf8');let seed=173,random=()=>((seed=(Math.imul(seed,1664525)+1013904223)>>>0)/4294967296);
 const ctx={window:{BatchMathRNG:{random}}};ctx.BatchMathRNG=ctx.window.BatchMathRNG;vm.createContext(ctx);
-for(const f of ['ap-topic-generators','unit1-course-trig','unit1-representations','unit1-discontinuities','unit1-practice-ui'])vm.runInContext(read('assets/'+f+'.js'),ctx);
+for(const f of ['ap-topic-generators','unit1-course-trig','unit1-core-expansions','unit1-one-sided','unit1-representations','unit1-discontinuities','unit1-practice-ui'])vm.runInContext(read('assets/'+f+'.js'),ctx);
 let samples=0;const coverage=new Set(),val=x=>x===Infinity?'\\infty':x===-Infinity?'-\\infty':String(x);
 for(const mode of ['table','graph','asymptote'])for(let i=0;i<10000;i++){
  const p=ctx.window.BMUnit1Representations[mode](),d=p.representationData,ans=p.choices[p.correctIndex];coverage.add(mode+':'+d.kind+':'+(d.ask||''));samples++;
  assert.equal(new Set(p.choices).size,p.choices.length);assert(!p.choices.includes('null'));assert(p.explanation.length>50);assert(!/NaN|undefinedundefined/.test(p.questionHtml));
  let expected;
  if(mode==='table'){
-  const l=d.kind==='infinite'?d.sign*(d.opposite?-1:1)*Infinity:d.L,r=d.kind==='infinite'?d.sign*Infinity:d.right;
-  expected=d.ask==='point'?(d.fa===null?'undefined':String(d.fa)):d.ask==='-'?val(l):d.ask==='+'?val(r):l===r?val(l):'DNE';
-  assert.equal(d.xs.length,7);assert.equal(d.ys[3],d.fa);
-  for(const j of [0,1,2,4,5,6]){const dx=d.xs[j]-d.a;const y=d.kind==='infinite'?d.sign*(d.opposite?Math.sign(dx):1)/Math.abs(dx):(dx<0?d.L:d.right)+dx;assert(Math.abs(y-d.ys[j])<1e-9);assert(p.questionHtml.includes(Number(y.toFixed(5)).toString()));}
-  if(d.ask!=='point')assert(p.explanation.includes('does not prove'));
+  expected=d.ask==='-'?String(d.L):d.ask==='+'?String(d.right):d.L===d.right?String(d.L):'DNE';
+  assert.equal(d.xs.length,6);assert.equal(d.ys.length,6);assert(!d.xs.includes(d.a));
+  assert(!/undefined|unbounded/i.test(p.questionHtml+p.explanation));
+  for(let j=0;j<d.xs.length;j++)assert(p.questionHtml.includes(Number(d.ys[j].toFixed(5)).toString()));
  }else if(mode==='graph'){
-  const l=d.kind==='asymptote'?d.sign*(d.even?1:-1)*Infinity:d.L,r=d.kind==='asymptote'?d.sign*Infinity:d.right;
-  expected=d.ask==='point'?(d.fa===null?'undefined':String(d.fa)):d.ask==='continuity'?(d.kind==='continuous'?'Yes':'No'):d.ask==='left'?val(l):d.ask==='right'?val(r):l===r?val(l):'DNE';
-  if(d.ask==='continuity')assert.equal(p.choices.length,2);
-  assert.equal((p.questionHtml.match(/<circle /g)||[]).length,(d.kind==='asymptote'?0:d.L===d.right?1:2)+(d.fa===null?0:1));
-  assert(p.questionHtml.includes('<svg'));if(d.kind==='jump')assert.notEqual(d.L,d.right);
+  expected=d.ask==='left'?String(d.leftLimit):d.ask==='right'?String(d.rightLimit):d.leftLimit===d.rightLimit?String(d.leftLimit):'DNE';
+  assert.equal(d.multi,true);assert(d.partCount>=3&&d.partCount<=5);assert(d.part>=1&&d.part<=d.partCount);
+  assert((p.questionHtml.match(/<circle /g)||[]).length>=5);assert(p.questionHtml.includes('<svg'));assert(p.questionHtml.includes('Domain:'));assert(p.questionHtml.includes('[-6,6]'));
+  assert(p.questionHtml.includes('\\lim_'));assert(!/undefined|unbounded|continuous at/i.test(p.questionHtml+p.explanation));if(d.kind==='jump')assert.notEqual(d.L,d.right);
   if(i<12)fs.writeFileSync(path.join(root,'qa-results',`unit1-graph-${i}.svg`),p.questionHtml.match(/<svg[\s\S]*?<\/svg>/)[0]);
  }else expected=d.kind==='crossing'?'No':d.kind==='horizontal'?`y=${d.L}`:d.kind==='vertical'?`x=${d.a}`:`y=${d.L} and y=${d.right}`;
  assert.equal(ans,expected,p.id);
 }
-assert.equal([...coverage].filter(x=>x.startsWith('graph:')).length,20);assert.equal([...coverage].filter(x=>x.startsWith('table:')).length,11);assert.equal([...coverage].filter(x=>x.startsWith('asymptote:')).length,4);
+assert([...coverage].filter(x=>x.startsWith('graph:')).length>=8);assert.equal([...coverage].filter(x=>x.startsWith('table:')).length,6);assert.equal([...coverage].filter(x=>x.startsWith('asymptote:')).length,4);
+// A graph set must keep one graph on screen for all 3–5 limit questions.
+for(let set=0;set<500;set++){
+ ctx.window.BMUnit1Representations.resetGraph();const first=ctx.window.BMUnit1Representations.graph(),total=first.representationData.partCount;
+ const svg=first.questionHtml.match(/<svg[\s\S]*?<\/svg>/)[0];assert.equal(first.representationData.part,1);assert(total>=3&&total<=5);
+ assert(first.questionHtml.includes('viewBox="0 0 900 585"'));assert(!/Find\s+f\s*\(|undefined|unbounded/i.test(first.questionHtml+first.explanation));
+ for(let part=2;part<=total;part++){const p=ctx.window.BMUnit1Representations.graph();assert.equal(p.representationData.part,part);assert.equal(p.representationData.partCount,total);assert.equal(p.questionHtml.match(/<svg[\s\S]*?<\/svg>/)[0],svg);assert(!/Find\s+f\s*\(|undefined|unbounded/i.test(p.questionHtml+p.explanation));}
+ const next=ctx.window.BMUnit1Representations.graph();assert.equal(next.representationData.part,1);
+}
+const introCss=read('assets/unit1-practice.css');assert(introCss.includes('.u1-graph-large{max-width:930px'));assert(!/u1-graph-large\{[^}]*min-width/.test(introCss));
 const parse=ctx.window.BMUnit1UI.parse;
 for(const v of ['', 'undefined','1/0','foo','(1/2','1)/2','0/0'])assert(parse(v).error,v);
 for(const v of ['-1/2','-.5','-0.50','1/-2'])assert.equal(parse(v).value,-.5,v);
@@ -37,14 +44,15 @@ class E{
  querySelectorAll(s){const all=this.children.flatMap(x=>[x,...x.querySelectorAll('*')]);return s==='*'?all:all.filter(x=>s==='button'?x.tagName==='BUTTON':s==='input'?x.tagName==='INPUT':s.startsWith('.')?x.classList.contains(s.slice(1)):false);}querySelector(s){return this.querySelectorAll(s)[0]||null;}
 }
 function harness(route,shared=false,slug='introduction-to-limits'){const html=read(route),els={},doc={body:new E(),createElement:t=>new E(t),getElementById:id=>els[id]||(els[id]=new E()),addEventListener(){},querySelectorAll:s=>Object.values(els).flatMap(e=>e.querySelectorAll(s)),createTreeWalker:()=>({nextNode:()=>false})};let generated=[],checked=[];const w={BatchMathRNG:{random},BMAnalytics:{problemGenerated:p=>generated.push(p),answerChecked:(p,ok)=>checked.push(ok),ensurePracticeStarted(){},solutionRevealed(){}},addEventListener(){}};const c={window:w,BatchMathRNG:w.BatchMathRNG,document:doc,NodeFilter:{SHOW_TEXT:4},setTimeout:()=>0,clearTimeout(){},console};vm.createContext(c);
- for(const f of ['ap-topic-generators','unit1-course-trig','unit1-representations','unit1-discontinuities','unit1-practice-ui'])vm.runInContext(read('assets/'+f+'.js'),c);
+ for(const f of ['ap-topic-generators','unit1-course-trig','unit1-core-expansions','unit1-one-sided','unit1-representations','unit1-discontinuities','unit1-practice-ui'])vm.runInContext(read('assets/'+f+'.js'),c);
  if(shared){w.BM_TOPIC_PRACTICE={unit1:true,slug,modeSelectId:'representation-mode'};doc.getElementById('representation-mode').value='tables';vm.runInContext(read('assets/ap-topic-practice.js'),c);}
- else{doc.getElementById('category').value='continuous';let code=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('const generators='));vm.runInContext(code,c);}
+ else{doc.getElementById('category').value='continuous';const marker=route.includes('limits-of-continuous-functions')?'const generateContinuous=':'const generators=';let code=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes(marker));vm.runInContext(code,c);}
  return{els,doc,w,generated,checked};}
 const rel='ap-calculus/unit-1-limits-continuity/topics/';let flows=0;
+const entryFor=a=>a.kind==='exact'?(a.text||String(a.value)):a.kind==='rat'?`${a.n}/${a.d}`:a.kind==='inf'?(a.sign<0?'-infinity':'infinity'):'DNE';
 for(const name of ['basic-techniques-indeterminate-limits','limits-of-continuous-functions','one-sided-limits','limits-at-infinity','comprehensive-review']){
  const h=harness(rel+name+'/practice/index.html'),{els,generated,checked}=h;for(const v of ['', 'undefined','1/0','nonsense']){els.answer.value=v;els.submit.click();assert.equal(checked.length,0);assert.equal(generated.length,1);assert.equal(els.answer.disabled,false);flows++;}
- const p=generated.at(-1);els.answer.value=String(p.ans.n/p.ans.d);els.submit.click();assert.deepEqual(checked,[true]);assert.equal(generated.length,1);assert.equal(els.next.style.display,'inline-block');assert(!els.feedback.innerHTML.includes(p.sol));els.feedback.querySelector('button').click();assert.equal(els.feedback.children.at(-1).innerHTML,p.sol);els.submit.click();assert.equal(checked.length,1);els.next.click();assert.equal(generated.length,2);els.answer.value='123456789';els.submit.click();assert.equal(checked.at(-1),false);assert(els.feedback.innerHTML.includes(generated.at(-1).sol));flows++;
+ const p=generated.at(-1);els.answer.value=entryFor(p.ans);els.submit.click();assert.deepEqual(checked,[true]);assert.equal(generated.length,1);assert.equal(els.next.style.display,'inline-block');assert(!els.feedback.innerHTML.includes(p.sol));els.feedback.querySelector('button').click();assert.equal(els.feedback.children.at(-1).innerHTML,p.sol);els.submit.click();assert.equal(checked.length,1);els.next.click();assert.equal(generated.length,2);els.answer.value='123456789';els.submit.click();assert.equal(checked.at(-1),false);assert(els.feedback.innerHTML.includes(generated.at(-1).sol));flows++;
  if(name==='basic-techniques-indeterminate-limits'){els.category.value='all';for(let i=0;i<1000;i++){els.category.listeners.change();assert(['continuous','factoring','substitution','rationalizing','complex'].includes(generated.at(-1).cat));}}
  if(name==='comprehensive-review')for(const cat of ['tables','graphs','parameters','ivt']){els.category.value=cat;els.category.listeners.change();const p=generated.at(-1),host=els['u1-options'];host.children[p.correctIndex].click();assert.equal(checked.at(-1),true);flows++;}
 }

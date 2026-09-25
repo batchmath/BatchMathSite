@@ -96,7 +96,9 @@ function signed(c,body,first=false){if(c===0)return'';const a=Math.abs(c),core=(
 function eqY(mn,md,bn,bd=1){let out='y=';if(mn===0)return out+texRat(bn,bd);out+=mn===md?'x':mn===-md?'-x':`${texRat(mn,md)}x`;const [n,d]=rat(bn,bd);if(n)out+=n<0?`-${texRat(-n,d)}`:`+${texRat(n,d)}`;return out}
 function expectedAP(slug,p){const id=String(p.id);let m;
   if((m=id.match(/^intro-(-?\d+)-(-?\d+)-(-?\d+)$/)))return String(+m[2]);
-  if(id.startsWith('osc-scaled-'))return '0'; if(id.startsWith('osc-'))return 'DNE';
+  if(String(p.familyId||'').includes('_vanishing_'))return '0';
+  if(/^sin_one_over_x_(?:raw_|absolute_|nonzero_)/.test(String(p.familyId||'')))return 'DNE';
+  if(id.startsWith('osc-scaled-'))return '0'; if(id.startsWith('osc-')&&!/bounds-inconclusive|contrast/.test(id))return 'DNE';
   if((m=id.match(/^ivt-(-?\d+)-(-?\d+)-(-?\d+)-(-?\d+)-(-?\d+)$/)))return String(+m[5]);
   if((m=id.match(/^dq-(-?\d+)-(-?\d+)-(-?\d+)$/))){const A=+m[1],B=+m[2];return `${signed(2*A,'x',true)}${signed(A,'h')}${signed(B,'')}`}
   if((m=id.match(/^hv-h-(\d+)-(-?\d+)-(\d+)-(-?\d+)$/))){const k=+m[1],h=+m[2];return `x=${h-k}, ${h+k}`}

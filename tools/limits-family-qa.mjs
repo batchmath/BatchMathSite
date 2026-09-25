@@ -28,13 +28,17 @@ function generate(category,count){
   const BMAnalytics={ensurePracticeStarted(){},problemGenerated(p){generated.push(structuredClone(p));},answerChecked(){},solutionRevealed(){}};
   const window={BMAnalytics,MathJax:null,addEventListener:(t,fn)=>{winListeners[t]=fn;},BatchMathCalculusKeypad:null};
   const sandbox={window,document:fakeDocument,BatchMathRNG:{random},console,Math,structuredClone,setTimeout:()=>0,clearTimeout:()=>{},location:{},navigator:{}};
-  vm.createContext(sandbox);sandbox.window.BatchMathRNG=sandbox.BatchMathRNG;for(const dep of ['ap-topic-generators','unit1-course-trig'])vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/'+dep+'.js'),'utf8'),sandbox);vm.runInContext(code,sandbox,{filename:`limits-${category}.js`,timeout:5000});winListeners.load?.();
+  vm.createContext(sandbox);sandbox.window.BatchMathRNG=sandbox.BatchMathRNG;for(const dep of ['ap-topic-generators','unit1-course-trig','unit1-core-expansions','unit1-one-sided'])vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/'+dep+'.js'),'utf8'),sandbox);vm.runInContext(code,sandbox,{filename:`limits-${category}.js`,timeout:5000});winListeners.load?.();
   const next=elements.next.listeners.click;if(typeof next!=='function')throw new Error('Next Question handler missing');
   while(generated.length<count)next();return generated;
 }
 
 function expectedSub(p){
   const id=String(p.id);let m;
+  if(p.data?.family==='substitution_eighth_root_over_power')return rat(p.data.m,8*p.data.k**7);
+  if(p.data?.family==='substitution_power_over_eighth_root')return rat(8*p.data.k**7,p.data.m);
+  if(p.data?.family==='substitution_cube_root_squared_reciprocal')return rat(1,9*p.data.k**4);
+  if(p.data?.family==='substitution_cube_root_polynomial_over_polynomial')return rat(p.data.k-p.data.r,p.data.k-p.data.s);
   if((m=id.match(/^sub-cuberoot-over-power-(\d+)-(?:fractional|radical)$/))){const k=+m[1];return rat(1,3*k*k);}
   if((m=id.match(/^sub-power-over-cuberoot-(\d+)-(?:fractional|radical)$/))){const k=+m[1];return rat(3*k*k);}
   if((m=id.match(/^sub-higher-cuberoot-(\d+)-(?:fractional|radical)$/))){const k=+m[1];return rat(2*k);}
@@ -49,6 +53,7 @@ function expectedSub(p){
 }
 function expectedComplex(p){
   const id=String(p.id);let m;
+  if(p.data?.family==='complex_two_variable_fractions')return rat(-2*p.data.A*p.data.a*(p.data.a+p.data.c)**2+p.data.B*(p.data.a*p.data.a+p.data.b)**2,(p.data.a*p.data.a+p.data.b)**2*(p.data.a+p.data.c)**2);
   if((m=id.match(/^cf-recip-basic-(-?\d+)$/))){const a=+m[1];return rat(-1,a*a);}
   if((m=id.match(/^cf-recip-den-(-?\d+)$/))){const a=+m[1];return rat(-a*a);}
   if((m=id.match(/^cf-shifted-(-?\d+)-(-?\d+)$/))){const a=+m[1],c=+m[2];return rat(-1,(a+c)*(a+c));}
@@ -62,8 +67,8 @@ function expectedComplex(p){
   return null;
 }
 
-const expectedSubVariants=new Set(['cube_root_over_power','power_over_cube_root','higher_cube_root_power','clean_shifted_cube_root','cube_root_quadratic_substitution','cube_root_polynomial_ratio','higher_root_over_power','power_over_higher_root','higher_fractional_power','mixed_fractional_powers']);
-const expectedComplexVariants=new Set(['routine_reciprocal_basic','routine_reciprocal_denominator','routine_shifted_reciprocal','routine_shifted_reciprocal_denominator','intermediate_reciprocal_quadratic','intermediate_reciprocal_square','intermediate_rational_difference','challenging_double_reciprocal','challenging_reciprocal_square_over_reciprocal','challenging_reciprocal_over_factored']);
+const expectedSubVariants=new Set(['cube_root_over_power','power_over_cube_root','higher_cube_root_power','clean_shifted_cube_root','cube_root_quadratic_substitution','cube_root_polynomial_ratio','higher_root_over_power','power_over_higher_root','higher_fractional_power','mixed_fractional_powers','substitution_eighth_root_over_power','substitution_power_over_eighth_root','substitution_cube_root_squared_reciprocal','substitution_cube_root_polynomial_over_polynomial']);
+const expectedComplexVariants=new Set(['routine_reciprocal_basic','routine_reciprocal_denominator','routine_shifted_reciprocal','routine_shifted_reciprocal_denominator','intermediate_reciprocal_quadratic','intermediate_reciprocal_square','intermediate_rational_difference','challenging_double_reciprocal','challenging_reciprocal_square_over_reciprocal','challenging_reciprocal_over_factored','complex_two_variable_fractions']);
 const summary={};
 let sawNonzeroShiftedCubeRoot=false,sawXPlus62At2=false;
 for(const category of ['substitution','complex']){
@@ -94,18 +99,18 @@ for(const category of ['substitution','complex']){
   summary[category]={generated:problems.length,counts};
 }
 const sub=summary.substitution?.counts||{};const subTotal=summary.substitution?.generated||1;
-const cubeVariants=['cube_root_over_power','power_over_cube_root','higher_cube_root_power','clean_shifted_cube_root','cube_root_quadratic_substitution','cube_root_polynomial_ratio'];
+const cubeVariants=['cube_root_over_power','power_over_cube_root','higher_cube_root_power','clean_shifted_cube_root','cube_root_quadratic_substitution','cube_root_polynomial_ratio','substitution_cube_root_squared_reciprocal','substitution_cube_root_polynomial_over_polynomial'];
 const cubeSub=cubeVariants.reduce((n,v)=>n+(sub[v]||0),0)/subTotal;
-if(cubeSub<0.55||cubeSub>0.65)errors.push(`substitution: cube-root share ${(100*cubeSub).toFixed(1)}% outside expected 55-65%`);
+if(cubeSub<0.55||cubeSub>0.68)errors.push(`substitution: cube-root share ${(100*cubeSub).toFixed(1)}% outside expected 55-68%`);
 if(!sawNonzeroShiftedCubeRoot)errors.push('substitution: shifted cube-root family never used a nonzero approach value');
 if(!sawXPlus62At2)errors.push('substitution: target style x -> 2 with cubeRoot(x+62) -> 4 did not appear');
 const cx=summary.complex?.counts||{},cxTotal=summary.complex?.generated||1;
 const routine=Object.entries(cx).filter(([k])=>k.startsWith('routine_')).reduce((n,[,v])=>n+v,0)/cxTotal;
 const intermediate=Object.entries(cx).filter(([k])=>k.startsWith('intermediate_')).reduce((n,[,v])=>n+v,0)/cxTotal;
-const challenging=Object.entries(cx).filter(([k])=>k.startsWith('challenging_')).reduce((n,[,v])=>n+v,0)/cxTotal;
-if(routine<0.39||routine>0.49)errors.push(`complex: routine share ${(100*routine).toFixed(1)}% outside expected 39-49%`);
-if(intermediate<0.26||intermediate>0.37)errors.push(`complex: intermediate share ${(100*intermediate).toFixed(1)}% outside expected 26-37%`);
-if(challenging<0.20||challenging>0.30)errors.push(`complex: challenging share ${(100*challenging).toFixed(1)}% outside expected 20-30%`);
+const challenging=Object.entries(cx).filter(([k])=>k.startsWith('challenging_')||k==='complex_two_variable_fractions').reduce((n,[,v])=>n+v,0)/cxTotal;
+if(routine<0.30||routine>0.40)errors.push(`complex: routine share ${(100*routine).toFixed(1)}% outside expected 30-40%`);
+if(intermediate<0.20||intermediate>0.30)errors.push(`complex: intermediate share ${(100*intermediate).toFixed(1)}% outside expected 20-30%`);
+if(challenging<0.35||challenging>0.45)errors.push(`complex: challenging share ${(100*challenging).toFixed(1)}% outside expected 35-45%`);
 
 const report={ok:errors.length===0,generatedAt:new Date().toISOString(),perCategory:PER_CATEGORY,totalGenerated:PER_CATEGORY*2,errors,summary,shares:{cubeRootSubstitution:cubeSub,otherFractionalSubstitution:1-cubeSub,complex:{routine,intermediate,challenging}}};
 fs.writeFileSync(path.join(OUT,'limits-family-qa.json'),JSON.stringify(report,null,2)+'\n');

@@ -2,8 +2,9 @@
   "use strict";
 
   const state={input:null,editor:null,pad:null,raw:"",cursor:0,mode:"derivative"};
-  const fnNames=["asin","acos","atan","acot","asec","acsc","sin","cos","tan","sec","csc","cot","ln","log","exp","sqrt","abs"];
+  const fnNames=["asin","acos","atan","acot","asec","acsc","sin","cos","tan","sec","csc","cot","ln","log","exp","sqrt","cbrt","root","abs"];
   const atomicWords=["infinity","undefined","DNE","pi"];
+  const nextFrame=fn=>typeof requestAnimationFrame==="function"?requestAnimationFrame(fn):fn();
 
   function escapeHtml(s){
     return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -34,6 +35,23 @@
     const denClose=findClose(s,denOpen);
     if(denClose<0||denClose>=end)return null;
     return {numStart:i+1,numClose,denStart:denOpen+1,denClose,end:denClose+1};
+  }
+
+  // nth roots are stored as root(index,radicand), the format accepted by the
+  // exact-answer parser.  Keep the two arguments as separate visible edit
+  // zones so the index is never confused with the radicand.
+  function rootAt(s,i,end){
+    if(!s.startsWith("root(",i))return null;
+    const open=i+4,close=findClose(s,open);
+    if(close<0||close>=end)return null;
+    let depth=0,comma=-1;
+    for(let j=open+1;j<close;j++){
+      if(s[j]==="(")depth++;
+      else if(s[j]===")")depth--;
+      else if(s[j]===","&&depth===0){comma=j;break;}
+    }
+    if(comma<0)return null;
+    return{start:i,open,indexStart:open+1,indexEnd:comma,radStart:comma+1,radEnd:close,close,end:close+1};
   }
 
   function renderToken(display,start,end,cls=""){
@@ -103,6 +121,17 @@
     while(i<end){
       if(state.cursor===i)out+=caret();
 
+      const root=rootAt(s,i,end);
+      if(root){
+        let index=renderPlain(root.indexStart,root.indexEnd);
+        let radicand=renderPlain(root.radStart,root.radEnd);
+        if(root.indexStart===root.indexEnd)index+=emptyBox();
+        if(root.radStart===root.radEnd)radicand+=emptyBox();
+        out+=`<span class="bm-calc-nroot" data-bm-root-start="${i}" data-bm-root-end="${root.end}"><sup class="bm-calc-nroot-index" data-bm-zone="nroot-index" data-bm-zone-start="${root.indexStart}" data-bm-zone-end="${root.indexEnd}">${index}</sup><span class="bm-calc-nroot-sign" aria-hidden="true">√</span><span class="bm-calc-nroot-radicand" data-bm-zone="nroot-radicand" data-bm-zone-start="${root.radStart}" data-bm-zone-end="${root.radEnd}">${radicand}</span></span>`;
+        i=root.end;
+        continue;
+      }
+
       const frac=fractionAt(s,i,end);
       if(frac){
         let num=renderPlain(frac.numStart,frac.numClose);
@@ -127,7 +156,7 @@
 
       let token=null,shown=null;
       for(const f of fnNames){
-        if(s.startsWith(f,i)){token=f;shown=f==="sqrt"?"√":f;break;}
+        if(s.startsWith(f,i)){token=f;shown=f==="sqrt"?"√":f==="cbrt"?"∛":f==="root"?"ⁿ√":f;break;}
       }
       if(token){
         out+=renderToken(shown,i,i+token.length,"function");
@@ -150,6 +179,12 @@
   function allFractions(start=0,end=state.raw.length,out=[]){
     let i=start;
     while(i<end){
+      const root=rootAt(state.raw,i,end);
+      if(root){
+        allFractions(root.indexStart,root.indexEnd,out);
+        allFractions(root.radStart,root.radEnd,out);
+        i=root.end;continue;
+      }
       const frac=fractionAt(state.raw,i,end);
       if(frac){
         out.push({...frac,start:i});
@@ -164,6 +199,15 @@
       i++;
     }
     return out;
+  }
+
+  function allRoots(){
+    const out=[];
+    for(let i=0;i<state.raw.length;i++){
+      const root=rootAt(state.raw,i,state.raw.length);
+      if(root)out.push(root);
+    }
+    return out.sort((a,b)=>(a.end-a.start)-(b.end-b.start));
   }
 
   function containingFraction(cursor=state.cursor){
@@ -258,6 +302,17 @@
     state.cursor=normalizeCursor(state.cursor,-1);
     if(state.cursor<=0)return;
 
+    for(const root of allRoots()){
+      const emptyIndex=root.indexStart===root.indexEnd,emptyRadicand=root.radStart===root.radEnd;
+      if(state.cursor===root.indexStart&&emptyIndex){
+        if(emptyRadicand)removeSpan(root.start,root.end);
+        else{state.cursor=root.start;render();state.editor.focus();}
+        return;
+      }
+      if(state.cursor===root.radStart){state.cursor=root.indexEnd;render();state.editor.focus();return;}
+      if(state.cursor===root.end){state.cursor=root.radEnd;render();state.editor.focus();return;}
+    }
+
     // Fractions are stored as ()/(). Never delete only one of those hidden
     // structural characters: doing so exposes raw slashes and parentheses.
     for(const f of allFractions().sort((a,b)=>(a.end-a.start)-(b.end-b.start))){
@@ -323,6 +378,17 @@
     if(!state.input||state.input.disabled||state.cursor>=state.raw.length)return;
     state.cursor=normalizeCursor(state.cursor,1);
     if(state.cursor>=state.raw.length)return;
+
+    for(const root of allRoots()){
+      const emptyIndex=root.indexStart===root.indexEnd,emptyRadicand=root.radStart===root.radEnd;
+      if(state.cursor===root.start){
+        if(emptyIndex&&emptyRadicand)removeSpan(root.start,root.end);
+        else{state.cursor=root.indexStart;render();state.editor.focus();}
+        return;
+      }
+      if(state.cursor===root.indexEnd){state.cursor=root.radStart;render();state.editor.focus();return;}
+      if(state.cursor===root.radEnd){state.cursor=root.end;render();state.editor.focus();return;}
+    }
 
     for(const f of allFractions().sort((a,b)=>(a.end-a.start)-(b.end-b.start))){
       const emptyNum=f.numStart===f.numClose,emptyDen=f.denStart===f.denClose;
@@ -490,6 +556,13 @@
       const special=document.createElement("div");
       special.className="bm-calc-special-row";
       addFraction(special);
+      addFunction(special,"√","sqrt");
+      addFunction(special,"∛","cbrt");
+      special.appendChild(key("ⁿ√","function",()=>insert("root(,)",5),"Insert nth root; enter the index, then move right to enter the radicand"));
+      addFunction(special,"ln","ln");
+      addInsert(special,"e","e","function");
+      addInsert(special,"π","pi","function");
+      special.appendChild(key("xⁿ","symbol",insertExponent,"Insert exponent"));
       addInsert(special,"DNE","DNE","function","Insert DNE");
       addInsert(special,"∞","infinity","function math-infinity-key","Insert infinity");
       addInsert(special,"−∞","-infinity","function math-infinity-key","Insert negative infinity");
@@ -513,8 +586,9 @@
       // A compact numeric layout. Every key here produces an answer format the
       // Limits engine actually accepts.
       [["7","7"],["8","8"],["9","9"],["−","-"],
-       ["4","4"],["5","5"],["6","6"],[".","."],
-       ["1","1"],["2","2"],["3","3"],["0","0"]]
+       ["4","4"],["5","5"],["6","6"],["·","*"],
+       ["1","1"],["2","2"],["3","3"],[".","."],
+       ["0","0"],["(","("],[")",")"],["+","+"]]
         .forEach(([lab,raw])=>addInsert(g,lab,raw,lab==="−"?"symbol":""));
     }else{
       // Five-column layout keeps parentheses adjacent and preserves the same
@@ -614,6 +688,14 @@
     editor.addEventListener("click",placeCursorFromClick);
     state.editor=editor;
     input.insertAdjacentElement("beforebegin",editor);
+    // Engines written before the visual editor focus the source input when a
+    // new problem appears. Redirect that established call to the visible
+    // editor so physical-keyboard entry works immediately on every engine.
+    input.addEventListener("focus",()=>nextFrame(()=>{
+      if(!input.disabled){
+        try{editor.focus({preventScroll:true});}catch(_){editor.focus();}
+      }
+    }));
 
     const row=input.closest(".answer-row");
     if(row)row.classList.add("bm-calc-answer-row");
@@ -623,6 +705,13 @@
 
     new MutationObserver(render).observe(input,{attributes:true,attributeFilter:["disabled"]});
     render();
+    if(!input.disabled){
+      nextFrame(()=>{
+        if(document.activeElement===document.body||document.activeElement===input){
+          try{editor.focus({preventScroll:true});}catch(_){editor.focus();}
+        }
+      });
+    }
   }
 
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);

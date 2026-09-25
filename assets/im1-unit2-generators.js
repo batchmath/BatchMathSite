@@ -16,19 +16,21 @@ function interval(bound,op){if(op==='<')return`(-∞, ${bound})`;if(op==='<=')re
 function inequalityText(bound,op){return `x ${op==='<='?'≤':op==='>='?'≥':op} ${bound}`}
 function graphDesc(bound,op){const closed=op.includes('=');const dir=op[0]==='<'?'left':'right';return `${closed?'closed':'open'} circle at ${bound}; shade ${dir}`}
 function svgGraph(points,dot=null,ends={},highlight=[]){
- const W=360,H=300,s=25,ox=W/2,oy=H/2,X=x=>ox+x*s,Y=y=>oy-y*s;
- let ticks='';for(let i=-5;i<=5;i++){if(i){ticks+=`<line x1="${X(i)}" y1="${oy-4}" x2="${X(i)}" y2="${oy+4}" stroke="#777"/><text x="${X(i)}" y="${oy+17}" fill="#bbb" font-size="10" text-anchor="middle">${i}</text>`;ticks+=`<line x1="${ox-4}" y1="${Y(i)}" x2="${ox+4}" y2="${Y(i)}" stroke="#777"/><text x="${ox-8}" y="${Y(i)+3}" fill="#bbb" font-size="10" text-anchor="end">${i}</text>`}}
+ const W=500,H=380,s=31,ox=W/2,oy=H/2,X=x=>ox+x*s,Y=y=>oy-y*s;
+ let ticks='';for(let i=-5;i<=5;i++){if(i){ticks+=`<line x1="${X(i)}" y1="${oy-5}" x2="${X(i)}" y2="${oy+5}" stroke="#8d8d8d"/><text x="${X(i)}" y="${oy+21}" fill="#d0d0d0" font-size="12" text-anchor="middle">${i}</text>`;ticks+=`<line x1="${ox-5}" y1="${Y(i)}" x2="${ox+5}" y2="${Y(i)}" stroke="#8d8d8d"/><text x="${ox-10}" y="${Y(i)+4}" fill="#d0d0d0" font-size="12" text-anchor="end">${i}</text>`}}
  let pl='';if(points?.length){
-  const left=points[0],right=points.at(-1),leftMode=ends.leftEnd||'closed',rightMode=ends.rightEnd||'closed';
+ const left=points[0],right=points.at(-1),leftMode=ends.leftEnd||'closed',rightMode=ends.rightEnd||'closed';
   const rays=`${leftMode==='infinite'?`<line x1="${X(left[0])}" y1="${Y(left[1])}" x2="${X(-5.3)}" y2="${Y(ends.leftInfinity>0?4.8:-4.8)}" stroke="#d71920" stroke-width="3" marker-end="url(#bm-graph-arrow)"/>`:''}${rightMode==='infinite'?`<line x1="${X(right[0])}" y1="${Y(right[1])}" x2="${X(5.3)}" y2="${Y(ends.rightInfinity>0?4.8:-4.8)}" stroke="#d71920" stroke-width="3" marker-end="url(#bm-graph-arrow)"/>`:''}`;
-  const markers=points.map(([x,y],i)=>{const color=highlight.some(([a,b])=>x>=a&&x<=b)?'#f5c400':'#d71920';const mode=i===0?leftMode:i===points.length-1?rightMode:'closed';if(mode==='infinite')return `<circle cx="${X(x)}" cy="${Y(y)}" r="3" fill="${color}"/>`;return `<circle cx="${X(x)}" cy="${Y(y)}" r="5" fill="${mode==='open'?'#111827':color}" stroke="${color}" stroke-width="3"/>`;}).join('');
   const marked=([a,b])=>highlight.some(([lo,hi])=>a>=lo&&b<=hi);
+  const highlightedEndpoint=(x,mode)=>mode==='closed'&&highlight.some(([a,b])=>x>=a&&x<=b);
+  const endpointMarker=([x,y],mode,color)=>mode==='infinite'?'':`<circle cx="${X(x)}" cy="${Y(y)}" r="6" fill="${mode==='open'?'#050505':color}" stroke="${color}" stroke-width="3"/>`;
+  const markers=endpointMarker(left,leftMode,highlightedEndpoint(left[0],leftMode)?'#f5c400':'#d71920')+(points.length>1?endpointMarker(right,rightMode,highlightedEndpoint(right[0],rightMode)?'#f5c400':'#d71920'):'');
   const redSegments=points.slice(1).map((p,i)=>marked([points[i][0],p[0]])?`<line x1="${X(points[i][0])}" y1="${Y(points[i][1])}" x2="${X(p[0])}" y2="${Y(p[1])}" stroke="#f5c400" stroke-width="5"/>`:'').join('');
   const redRays=`${leftMode==='infinite'&&marked([-Infinity,left[0]])?`<line x1="${X(left[0])}" y1="${Y(left[1])}" x2="${X(-5.3)}" y2="${Y(ends.leftInfinity>0?4.8:-4.8)}" stroke="#f5c400" stroke-width="5" marker-end="url(#bm-graph-arrow-red)"/>`:''}${rightMode==='infinite'&&marked([right[0],Infinity])?`<line x1="${X(right[0])}" y1="${Y(right[1])}" x2="${X(5.3)}" y2="${Y(ends.rightInfinity>0?4.8:-4.8)}" stroke="#f5c400" stroke-width="5" marker-end="url(#bm-graph-arrow-red)"/>`:''}`;
   pl=`${rays}<polyline points="${points.map(([x,y])=>`${X(x)},${Y(y)}`).join(' ')}" fill="none" stroke="#d71920" stroke-width="3"/>${redSegments}${redRays}${markers}`;
  }
  const d=dot?`<circle cx="${X(dot[0])}" cy="${Y(dot[1])}" r="6" fill="#d71920"/>`:'';
- return`<div class="bm-mini-graph"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Coordinate graph${highlight.length?' with the correct interval highlighted in yellow':''}"><defs><marker id="bm-graph-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#d71920"/></marker><marker id="bm-graph-arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#f5c400"/></marker></defs><line x1="${X(-5.5)}" y1="${oy}" x2="${X(5.5)}" y2="${oy}" stroke="#aaa"/><line x1="${ox}" y1="${Y(-5.5)}" x2="${ox}" y2="${Y(5.5)}" stroke="#aaa"/>${ticks}${pl}${d}</svg></div>`;
+ return`<div class="bm-mini-graph"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Coordinate graph${highlight.length?' with the correct interval highlighted in yellow':''}"><defs><marker id="bm-graph-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#d71920"/></marker><marker id="bm-graph-arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#f5c400"/></marker></defs><line x1="${X(-5.5)}" y1="${oy}" x2="${X(5.5)}" y2="${oy}" stroke="#c4c4c4" stroke-width="1.5"/><line x1="${ox}" y1="${Y(-5.5)}" x2="${ox}" y2="${Y(5.5)}" stroke="#c4c4c4" stroke-width="1.5"/>${ticks}${pl}${d}</svg></div>`;
 }
 
 // Targeted algebra choices need only genuine answers, never generic fillers.
@@ -232,13 +234,15 @@ function graphInterval(){
  p.answer=p.choices[p.correctIndex];return p;
 }
 function coordinateFeatures(options='mixed'){
- const modes=['plot_point','domain','range','increasing','decreasing','constant','x_intercepts','y_intercept','absolute_max','absolute_min'];
+ const featureModes=['domain','range','increasing','decreasing','constant','x_intercepts','y_intercept','absolute_max','absolute_min'];
+ const modes=['plot_point',...featureModes];
  const requested=typeof options==='string'?options:options?.mode;
- const v=modes.includes(requested)&&requested!=='mixed'?requested:pick(modes);
+ const v=modes.includes(requested)&&requested!=='mixed'?requested:pick(featureModes);
  const point=([x,y])=>tex(`(${x}, ${y})`),pointsText=pts=>pts.map(point).join(' and ');
  if(v==='plot_point'){
   const dot=[ri(-5,5),ri(-4,4)];
-  const p=algebraChoice(`u2-coord-point-${dot}`,v,`${svgGraph([],dot)}<p>What are the coordinates of the plotted point?</p>`,point(dot),[point([dot[0]+1,dot[1]]),point([dot[0],dot[1]+1]),point([dot[0]-1,dot[1]-1])],`Read the horizontal coordinate first and the vertical coordinate second: ${point(dot)}.`);
+  const horizontal=dot[0]===0?'stay at 0':`move ${Math.abs(dot[0])} unit${Math.abs(dot[0])===1?'':'s'} ${dot[0]<0?'left':'right'}`,vertical=dot[1]===0?'stay at 0':`move ${Math.abs(dot[1])} unit${Math.abs(dot[1])===1?'':'s'} ${dot[1]<0?'down':'up'}`;
+  const p=algebraChoice(`u2-coord-point-${dot}`,v,`${svgGraph([],dot)}<p>What are the coordinates of the plotted point?</p>`,point(dot),[point([dot[0]+1,dot[1]]),point([dot[0],dot[1]+1]),point([dot[0]-1,dot[1]-1])],`Start at the origin. For x, ${horizontal}. For y, ${vertical}. The point is ${point(dot)}.`);
   p.graph={dot};return p;
  }
  const left=ri(-5,-2),right=ri(2,5),count=ri(4,Math.min(7,right-left+1));
@@ -254,18 +258,11 @@ function coordinateFeatures(options='mixed'){
  if(v==='constant'){const j=ri(1,count-1);ys[j]=ys[j-1];}
  if(v==='increasing'&&!ys.some((y,i)=>i&&y>ys[i-1])){ys[0]=-4;ys[1]=ri(-2,3);}
  if(v==='decreasing'&&!ys.some((y,i)=>i&&y<ys[i-1])){ys[0]=4;ys[1]=ri(-3,2);}
- if(v==='x_intercepts'){
-  // Keep intercepts on marked integer coordinates, without a flat segment on the axis.
-  for(let i=1;i<ys.length;i++){
-   if(ys[i-1]===0&&ys[i]===0)ys[i]=pick([-3,-2,-1,1,2,3]);
-   if(ys[i-1]*ys[i]<0)ys[i]=0;
-  }
-  if(!ys.includes(0))ys[ri(1,count-2)]=0;
- }
  let leftEnd=pick(['closed','open','infinite']),rightEnd=pick(['closed','open','infinite']);
  let leftInfinity=leftEnd==='infinite'?pick([-1,1]):0,rightInfinity=rightEnd==='infinite'?pick([-1,1]):0;
- if(v==='x_intercepts'){
-  const zeroIndex=ri(1,count-2),side=pick([-1,1]);
+ if(v==='x_intercepts'||v==='y_intercept'){
+  const eligible=xs.map((x,i)=>({x,i})).filter(({x,i})=>x!==0&&i>0&&i<count-1);
+  const zeroIndex=pick(eligible).i,side=pick([-1,1]);
   ys=ys.map((_,i)=>i===zeroIndex?0:side*ri(1,4));
   if(leftEnd==='infinite')leftInfinity=side;if(rightEnd==='infinite')rightInfinity=side;
  }
@@ -287,32 +284,53 @@ function coordinateFeatures(options='mixed'){
   if(rightUnbounded)segments.push([right,Infinity,rightInfinity]);
   const out=[];for(const [a,b,d] of segments)if(d===direction){if(out.length&&out.at(-1)[1]===a)out.at(-1)[1]=b;else out.push([a,b]);}return out;
  };
- const rangeText=list=>list.map(([a,b])=>tex(intervalText(a,b,Number.isFinite(a),Number.isFinite(b)))).join(' and ');
+ const endpointIncluded=(x,side)=>{
+  if(!Number.isFinite(x))return false;
+  if(side==='left'&&x===left)return leftEnd==='closed';
+  if(side==='right'&&x===right)return rightEnd==='closed';
+  return true;
+ };
+ const rangeText=list=>list.map(([a,b])=>tex(intervalText(a,b,endpointIncluded(a,'left'),endpointIncluded(b,'right')))).join(' and ');
+ const allBracketText=list=>list.map(([a,b])=>tex(intervalText(a,b,Number.isFinite(a),Number.isFinite(b)))).join(' and ');
+ const endpointNote=()=>{
+  const notes=[];
+  if(leftEnd==='open')notes.push(`The open circle at \\(x=${left}\\) means that endpoint is not included, so use a parenthesis.`);
+  else if(leftEnd==='closed')notes.push(`The filled circle at \\(x=${left}\\) means that endpoint is included, so use a bracket.`);
+  else notes.push('The left arrow means the graph keeps going. Infinity always uses a parenthesis.');
+  if(rightEnd==='open')notes.push(`The open circle at \\(x=${right}\\) means that endpoint is not included, so use a parenthesis.`);
+  else if(rightEnd==='closed')notes.push(`The filled circle at \\(x=${right}\\) means that endpoint is included, so use a bracket.`);
+  else notes.push('The right arrow means the graph keeps going. Infinity always uses a parenthesis.');
+  return notes.join(' ');
+ };
  const id=`u2-coord-${v}-${JSON.stringify({pts,ends})}`;let p;
  if(v==='domain'){
   const correct=tex(domain),alts=[tex(intervalText(left,right)),tex(intervalText(left,right,true,true)),tex(intervalText(left-1,right+1))];
-  p=algebraChoice(id,v,`${g}<p>What is the domain of the graphed function?</p>`,correct,uniqueChoices(correct,alts),`Read the x-values covered by the graph. An arrow means the graph continues without bound; an open circle excludes an endpoint, and a filled circle includes it. Therefore the domain is ${correct}.`);
+  p=algebraChoice(id,v,`${g}<p>What is the domain of the graphed function?</p>`,correct,uniqueChoices(correct,alts),`Domain means all x-values on the graph, read from left to right. ${endpointNote()} The domain is ${correct}.`);
  }else if(v==='range'){
   const correct=tex(range),alts=[tex(intervalText(lo,hi)),tex(intervalText(lo,hi,true,true)),tex(intervalText(lo-1,hi+1))];
-  const unboundedDirection=lowUnbounded&&highUnbounded?'both negative and positive infinity':lowUnbounded?'negative infinity':highUnbounded?'positive infinity':'finite boundary values';
-  p=algebraChoice(id,v,`${g}<p>What is the range of the graphed function?</p>`,correct,uniqueChoices(correct,alts),`Read the y-values reached by the graph. Follow any arrows to determine whether the outputs continue toward ${unboundedDirection}, and use brackets only for finite boundary values the graph actually reaches. The range is ${correct}.`);
+  const rangeNote=lowUnbounded||highUnbounded?'An arrow shows that the graph keeps going, and infinity always uses a parenthesis.':'Use a bracket when the graph includes the top or bottom value. Use a parenthesis if that value is shown only by an open circle.';
+  p=algebraChoice(id,v,`${g}<p>What is the range of the graphed function?</p>`,correct,uniqueChoices(correct,alts),`Range means all y-values on the graph, read from bottom to top. ${rangeNote} The range is ${correct}.`);
  }
  else if(['increasing','decreasing','constant'].includes(v)){
   const direction={increasing:1,decreasing:-1,constant:0}[v],intervals=runs(direction),answer=rangeText(intervals);
-  const shifted=(x,d)=>Number.isFinite(x)?x+d:x,candidates=[...[-1,1,2].map(shift=>rangeText(intervals.map(([a,b])=>[shifted(a,shift),shifted(b,shift)]))),rangeText([[left,right]]),rangeText([[-Infinity,left]]),rangeText([[right,Infinity]])];
-  p=algebraChoice(id,v,`${g}<p>On which interval${intervals.length===1?'':'s'} is the function ${v}?</p>`,answer,uniqueChoices(answer,candidates),`Read from left to right. The graph ${v==='increasing'?'rises':v==='decreasing'?'falls':'stays horizontal'} on ${answer}. Use the x-coordinates where each such section starts and ends; the finite endpoints are shown with brackets.`);
+  const touchesOpenEndpoint=intervals.some(([a,b])=>a===left&&leftEnd==='open'||b===right&&rightEnd==='open'),shifted=(x,d)=>Number.isFinite(x)?x+d:x;
+  const candidates=[...(touchesOpenEndpoint?[allBracketText(intervals)]:[]),...[-1,1,2].map(shift=>rangeText(intervals.map(([a,b])=>[shifted(a,shift),shifted(b,shift)]))),rangeText([[left,right]]),rangeText([[-Infinity,left]]),rangeText([[right,Infinity]])];
+  const action=v==='increasing'?'goes up':v==='decreasing'?'goes down':'stays flat',openNote=touchesOpenEndpoint?' An open circle at the end means that point is not included, so use a parenthesis.':'',closedNote=intervals.some(([a,b])=>a===left&&leftEnd==='closed'||b===right&&rightEnd==='closed')?' A filled circle at the end means that point is included, so use a bracket.':'',infinityNote=intervals.some(([a,b])=>!Number.isFinite(a)||!Number.isFinite(b))?' An arrow means the graph keeps going, and infinity always uses a parenthesis.':'';
+  p=algebraChoice(id,v,`${g}<p>On which interval${intervals.length===1?'':'s'} is the function ${v}?</p>`,answer,uniqueChoices(answer,candidates),`Read the graph from left to right. It ${action} on ${answer}.${openNote}${closedNote}${infinityNote}`);
+  p.hasOpenEndpointBracketDistractor=touchesOpenEndpoint;
+  p.allBracketDistractor=touchesOpenEndpoint?allBracketText(intervals):null;
   p.correctIntervals=intervals;
  }else if(v==='x_intercepts'){
-  const intercepts=pts.filter(([,y])=>y===0),answer=pointsText(intercepts);
-  p=algebraChoice(id,v,`${g}<p>Which list gives all x-intercepts?</p>`,answer,[-1,1,2].map(d=>pointsText(intercepts.map(([x])=>[x+d,0]))),`An x-intercept has ${tex('y=0')}. Read every place the graph meets the horizontal axis: ${answer}.`);
+  const intercepts=pts.filter(([,y])=>y===0),answer=pointsText(intercepts),yPoint=point([0,ys[xs.indexOf(0)]]);
+  p=algebraChoice(id,v,`${g}<p>Which list gives all x-intercepts?</p>`,answer,[yPoint,...[-1,1].map(d=>pointsText(intercepts.map(([x])=>[x+d,0])))],`An x-intercept is where the graph touches or crosses the x-axis. Every point on the x-axis has ${tex('y=0')}. The x-intercept is ${answer}.`);
  }else if(v==='y_intercept'){
-  const y=ys[xs.indexOf(0)];p=algebraChoice(id,v,`${g}<p>What is the y-intercept?</p>`,point([0,y]),[point([0,y+1]),point([0,y-1]),point([0,y+2])],`At the vertical axis, ${tex('x=0')}. The graph passes through ${point([0,y])}, so that is the y-intercept.`);
+  const y=ys[xs.indexOf(0)],xPoints=pts.filter(([,value])=>value===0);p=algebraChoice(id,v,`${g}<p>What is the y-intercept?</p>`,point([0,y]),[pointsText(xPoints),point([0,y+1]),point([0,y-1])],`A y-intercept is where the graph touches or crosses the y-axis. Every point on the y-axis has ${tex('x=0')}. The y-intercept is ${point([0,y])}.`);
  }else{
   const isMax=v==='absolute_max',value=isMax?hi:lo,exists=isMax?!highUnbounded&&hiAttained:!lowUnbounded&&loAttained,word=isMax?'maximum':'minimum';
   const correct=exists?tex(String(value)):'Does not exist',candidates=exists?['Does not exist',tex(String(value-1)),tex(String(value+1))]:[tex(String(value)),tex(String(isMax?lo:hi)),tex(String(value+(isMax?1:-1)))];
-  p=algebraChoice(id,v,`${g}<p>What is the absolute ${word} value?</p>`,correct,uniqueChoices(correct,candidates),exists?`The graph reaches ${tex(String(value))}, and no output is ${isMax?'greater':'less'}. Therefore the absolute ${word} value is ${tex(String(value))}.`:`The graph has no absolute ${word}: ${isMax&&highUnbounded||!isMax&&lowUnbounded?'an arrow shows that the outputs are unbounded in that direction':'the only point at the boundary is open, so that value is not attained'}.`);
+  p=algebraChoice(id,v,`${g}<p>What is the absolute ${word} value?</p>`,correct,uniqueChoices(correct,candidates),exists?`Look for the ${isMax?'highest':'lowest'} y-value on the graph. The graph reaches ${tex(String(value))}, so the absolute ${word} value is ${tex(String(value))}.`:`The graph has no absolute ${word}. ${isMax&&highUnbounded||!isMax&&lowUnbounded?`The arrow shows that the graph keeps going ${isMax?'up':'down'}, so there is no ${isMax?'highest':'lowest'} y-value.`:`The ${isMax?'highest':'lowest'} point is an open circle, so the graph does not include it.`}`);
  }
- p.graph={points:pts,shape,...ends,domain,range,...(p.correctIntervals?{correctIntervalGraph:svgGraph(pts,null,ends,p.correctIntervals)}:{})};return p;
+ p.graph={points:pts,shape,...ends,domain,range,visiblePointMarkers:2-(leftEnd==='infinite'?1:0)-(rightEnd==='infinite'?1:0),...(p.correctIntervals?{correctIntervalGraph:svgGraph(pts,null,ends,p.correctIntervals)}:{})};return p;
 }
 
 const map={

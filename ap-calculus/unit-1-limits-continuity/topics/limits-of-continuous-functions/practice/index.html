@@ -77,8 +77,8 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
   
     gtag('config', 'G-377MTFXSF3');
   </script>
-<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_topic_limits_of_continuous_functions",generatorVersion:"4"};</script><script src="/assets/problem-tracking.js"></script>
-<link rel="stylesheet" href="/assets/unit1-practice.css"><script src="/assets/unit1-practice-ui.js"></script></head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_topic_limits_of_continuous_functions",generatorVersion:"6"};</script><script src="/assets/problem-tracking.js"></script>
+<link rel="stylesheet" href="/assets/unit1-practice.css"><script src="/assets/unit1-practice-ui.js"></script><script src="/assets/unit1-core-expansions.js"></script></head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
 <img class="corner" src="../../../../../assets/batchmath-portrait.jpg" alt="">
 <a class="logo" href="../../../../../">BatchMath<span class="tm-mark">™</span></a>
 <div class="profile"><img src="../../../../../assets/batchmath-portrait.jpg" alt="BatchMath">
@@ -86,9 +86,6 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
 <nav id="course-menu" class="dropdown"><a href="../../../../../im1/">Integrated Math 1</a><a href="../../../../" class="current-section" aria-current="page">AP Calculus AB</a><a href="../../../../../about/" data-bm-about-nav="1">About</a><a href="../../../../../">Home</a><a href="../../../../../calculus-prep/">Calculus Prep</a></nav>
 </div></header><main id="main-content" class="main"><a class="back" href="../">← Limits of Continuous Functions</a><h1 class="page-title">Limits of Continuous Functions Practice</h1><p class="topic-description">Practice Limits of Continuous Functions with the same generator logic used in the comprehensive review, focused on this topic.</p>
 <div class="practice-shell">
-<div class="controls" style="display:none"><div class="control"><label for="category">Limit Type</label><select id="category">
-<option value="continuous" selected>Limits of Continuous Functions</option>
-</select></div></div>
 <div class="stats"><span id="topic-name"></span> &nbsp;•&nbsp; Correct: <span id="correct-count">0</span> &nbsp;•&nbsp; Attempted: <span id="attempted">0</span></div>
 <div id="question" class="question-box"></div>
 <div class="answer-row"><input id="answer" aria-label="Answer" type="text" data-bm-calc-keypad="limits" inputmode="decimal" autocomplete="off" placeholder="Answer"><button id="submit" class="practice-button" type="button">Check Answer</button><button id="next" class="practice-button next" type="button">Next Question</button></div>
@@ -116,8 +113,8 @@ document.addEventListener("DOMContentLoaded",function(){
   const rat=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d);return {kind:"rat",n:n/g,d:d/g}};
   const dne=()=>({kind:"dne"});
   const inf=s=>({kind:"inf",sign:s<0?-1:1});
-  const texRat=a=>a.kind==="rat"?(a.d===1?String(a.n):`\\frac{${a.n}}{${a.d}}`):(a.kind==="dne"?"\\text{DNE}":(a.sign<0?"-\\infty":"\\infty"));
-  const textRat=a=>a.kind==="rat"?(a.d===1?String(a.n):`${a.n}/${a.d}`):(a.kind==="dne"?"DNE":(a.sign<0?"-infinity":"infinity"));
+  const texRat=a=>a.kind==="rat"?(a.d===1?String(a.n):`${a.n<0?"-":""}\\frac{${Math.abs(a.n)}}{${a.d}}`):(a.kind==="exact"?a.tex:(a.kind==="dne"?"\\text{DNE}":(a.sign<0?"-\\infty":"\\infty")));
+  const textRat=a=>a.kind==="rat"?(a.d===1?String(a.n):`${a.n}/${a.d}`):(a.kind==="exact"?(a.text||a.tex):(a.kind==="dne"?"DNE":(a.sign<0?"-infinity":"infinity")));
   const sgnTerm=(c,term,first=false)=>{
     if(c===0)return "";
     const abs=Math.abs(c), coeff=(abs===1&&term)?"":String(abs);
@@ -145,7 +142,7 @@ document.addEventListener("DOMContentLoaded",function(){
     out=out.replace(/\\frac1\{-([0-9]+)\}/g,'-\\frac1{$1}');
     out=out.replace(/\\frac\{([^{}]+)\}\{-([0-9]+)\}/g,'-\\frac{$1}{$2}');
     for(let i=0;i<3;i++)out=out.replace(/-\s*-/g,"+").replace(/\+\s*-/g,"-").replace(/\+\s*\+/g,"+");
-    return out;
+    return out.replace(/\^\{1\}/g,"").replace(/\^1(?!\d)/g,"");
   };
   const approach=a=>String(a);
   const categoryLabel={continuous:"Limits of Continuous Functions",factoring:"Using Factoring to Find Limits",substitution:"Using Variable Substitution",rationalizing:"Rationalizing",complex:"Complex Fraction Limits",squeeze:"Squeeze Theorem",trig:"Trigonometric Limits",oneSided:"One-Sided Limits",infinity:"Limits Involving Infinity",special:"Oscillating / DNE Limits",infinitySpecial:"Limits at Infinity and Oscillating/DNE Limits"};
@@ -482,9 +479,9 @@ document.addEventListener("DOMContentLoaded",function(){
     return infinityDirBag.shift();
   }
 
-  function infinityLimit(){
-    const type=BatchMathRNG.random()<.5?ri(4,14):pick([1,2,3,15,16,17,18,19,20,21,22,23,24]);
-    const negDir=nextInfinityDirection(),dir=negDir?'-\\infty':'\\infty';
+  function infinityLimit(forcedType,forcedNeg){
+    const type=forcedType||(BatchMathRNG.random()<.5?ri(4,14):pick([1,2,3,15,16,17,18,19,20,21,22,23,24]));
+    const negDir=forcedNeg===undefined?nextInfinityDirection():forcedNeg,dir=negDir?'-\\infty':'\\infty';
     const dirSign=negDir?-1:1;
     if(type===23){
       const n=ri(2,6),A=ri(1,9),B=nonzero(-5,5),C=ri(1,8),positive=Math.sign(B)*(negDir&&n%2?-1:1)>0;
@@ -591,23 +588,22 @@ document.addEventListener("DOMContentLoaded",function(){
     return {cat:"special",id:`sp3-${k}`,q:`\\(\\displaystyle \\lim_{x\\to0} \\left|\\sin\\left(\\frac{${k}}x\\right)\\right|\\)`,ans:dne(),sol:`Even after taking absolute value, the function repeatedly takes values near both \\(0\\) and \\(1\\) arbitrarily close to \\(x=0\\). It has no single limiting value, so the limit is DNE.`};
   }
 
-  const generators={continuous,factoring,substitution,rationalizing,complex:complexFraction,squeeze,trig,oneSided,infinity:infinityLimit,special,infinitySpecial:()=>pick([infinityLimit,special])()};
+  const core=window.BMUnit1CoreExpansions;
+  const generateContinuous=()=>core.continuous('mixed');
   const mixedWeights=["continuous",...Array(3).fill("factoring"),...Array(3).fill("substitution"),...Array(3).fill("rationalizing"),...Array(3).fill("complex"),...Array(3).fill("squeeze"),...Array(3).fill("trig"),...Array(3).fill("oneSided"),...Array(3).fill("infinity"),...Array(3).fill("special")];
 
   function makeProblem(){
-    const selected=$("category").value;
     let p=null;
     for(let tries=0;tries<100;tries++){
-      const cat=selected==="all"?pick(mixedWeights):selected;
-      p=generators[cat]();
+      p=generateContinuous();
       if(!seen.has(p.id)){seen.add(p.id);break;}
       if(seen.size>500)seen.clear();
     }
     p.q=cleanSigns(p.q);
     p.sol=cleanSigns(p.sol);
     current=p;current.answered=false;
-    window.BMAnalytics?.ensurePracticeStarted({practice_mode:$("category").value});
-    window.BMAnalytics?.problemGenerated(current,{practice_mode:$("category").value});
+    window.BMAnalytics?.ensurePracticeStarted({practice_mode:"continuous_mixed"});
+    window.BMAnalytics?.problemGenerated(current,{practice_mode:"continuous_mixed"});
     $("question").innerHTML=p.q;
     $("answer").value="";window.BatchMathCalculusKeypad?.reset?.();$("answer").disabled=false;$("submit").disabled=false;
     delete $("feedback").dataset.answerState;$("feedback").className="feedback";$("feedback").innerHTML="";$("next").style.display="none";
@@ -622,7 +618,8 @@ document.addEventListener("DOMContentLoaded",function(){
     if(ans.kind==="dne")return parsed.kind==="dne";
     if(ans.kind==="inf")return parsed.kind==="inf"&&parsed.sign===ans.sign;
     if(parsed.kind!=="num")return false;
-    return Math.abs(parsed.value-ans.n/ans.d)<1e-7;
+    const expected=ans.kind==="exact"?ans.value:ans.n/ans.d;
+    return Math.abs(parsed.value-expected)<1e-7*Math.max(1,Math.abs(expected));
   }
   function typeset(nodes){if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetClear(nodes);MathJax.typesetPromise(nodes);}}
   function finishAnswer(ok){
@@ -641,7 +638,6 @@ document.addEventListener("DOMContentLoaded",function(){
     if(parsed.error){$("feedback").className="feedback wrong";$("feedback").dataset.answerState="invalid";$("feedback").textContent=parsed.error;return;}
     finishAnswer(isCorrect(parsed,current.ans));
   }
-  $("category").addEventListener("change",makeProblem);
   $("submit").addEventListener("click",submit);
   $("next").addEventListener("click",makeProblem);
   $("answer").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.defaultPrevented&&!$("submit").disabled){e.preventDefault();submit();}});

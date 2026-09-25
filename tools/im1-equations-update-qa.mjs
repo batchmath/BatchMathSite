@@ -43,7 +43,10 @@ for(let i=0;i<10000;i++){
  }
  const interval=gen.get('graphing-inequalities-interval-notation')();if(interval.variant==='interval_result')moved++;
 }
-assert(three>500);assert(twoPart>1000);assert(moved>1000);
+assert(three>500);assert(twoPart>1000);
+// The approved engine mix assigns 65% to solve-then-write-interval problems.
+// interval_result is one of six equally weighted families in the remaining 35%.
+assert(Math.abs(moved/10000-(.35/6))<.012);
 // Actual shared controller + equation keypad in a minimal DOM.
 class Element{constructor(tag='div'){this.tagName=tag.toUpperCase();this.children=[];this.events={};this.style={};this.disabled=false;this.hidden=false;this.attributes={};this.value='';this.selectionStart=0;this.selectionEnd=0;this._html='';this.className='';this.classList={add:c=>{this.className+=' '+c;}};}set innerHTML(s){this._html=s;this.children=[];}get innerHTML(){return this._html;}appendChild(e){this.children.push(e);return e;}setAttribute(k,v){this.attributes[k]=v;}focus(){}setSelectionRange(a,b){this.selectionStart=a;this.selectionEnd=b;}addEventListener(t,f){(this.events[t]??=[]).push(f);}click(){if(!this.disabled)this.events.click?.forEach(f=>f({}));}querySelectorAll(sel){return this.children.flatMap(c=>[...(sel==='button'&&c.tagName==='BUTTON'||sel==='.choice-btn'&&c.className==='choice-btn'?[c]:[]),...c.querySelectorAll(sel)]);}}
 function UI(slug){

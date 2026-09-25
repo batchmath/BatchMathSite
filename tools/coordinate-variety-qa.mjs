@@ -15,7 +15,7 @@ const gen=box.window.BatchMathIM1Unit2Generators;
 const modes=['plot_point','domain','range','increasing','decreasing','constant','x_intercepts','y_intercept','absolute_max','absolute_min'];
 const inner=s=>{const match=String(s).match(/\\\(([\s\S]*?)\\\)/);return match?.[1]||'';};
 
-const shapes=new Set(),families=new Set(),normalized=new Set(),vertexCounts=new Set();
+const shapes=new Set(),families=new Set(),normalized=new Set(),vertexCounts=new Set();let openEndpointDistractors=0,highlightedClosedEndpoints=0;
 const endCounts={open:0,closed:0,infinite:0,bothInfinite:0,positiveInfinity:0,negativeInfinity:0};
 for(let i=0;i<30000;i++){
  const p=gen.get('coordinate-system-nine-key-features')({mode:'mixed'});
@@ -35,11 +35,18 @@ for(let i=0;i<30000;i++){
  if(p.graph.leftEnd==='infinite'&&p.graph.rightEnd==='infinite')endCounts.bothInfinite++;
  for(const side of ['leftInfinity','rightInfinity']){if(p.graph[side]>0)endCounts.positiveInfinity++;if(p.graph[side]<0)endCounts.negativeInfinity++;}
  if(p.graph.leftEnd==='infinite'||p.graph.rightEnd==='infinite')assert(p.q.includes('marker-end="url(#bm-graph-arrow)"'));
- if(p.graph.leftEnd==='open'||p.graph.rightEnd==='open')assert(p.q.includes('fill="#111827"'));
+ if(p.graph.leftEnd==='open'||p.graph.rightEnd==='open')assert(p.q.includes('fill="#050505"'));
  const answer=p.choices[p.correctIndex];
  if(p.variant==='domain')assert.equal(inner(answer),p.graph.domain);
  if(p.variant==='range')assert.equal(inner(answer),p.graph.range);
  if(p.variant==='y_intercept')assert(inner(answer).includes(`0, ${ys[xs.indexOf(0)]}`));
+ if(['increasing','decreasing','constant'].includes(p.variant)){
+  const left=xs[0],right=xs.at(-1),touches=x=>p.correctIntervals.some(([a,b])=>x>=a&&x<=b),bound=x=>Number.isFinite(x)?String(x):x<0?'-\\infty':'\\infty';
+  const touchesOpen=p.graph.leftEnd==='open'&&touches(left)||p.graph.rightEnd==='open'&&touches(right);
+  if(touchesOpen){const allBracket=p.correctIntervals.map(([a,b])=>`\\(${Number.isFinite(a)?'[':'('}${bound(a)}, ${bound(b)}${Number.isFinite(b)?']':')'}\\)`).join(' and ');assert(p.choices.includes(allBracket));assert.equal(p.allBracketDistractor,allBracket);openEndpointDistractors++;}
+  const expectedYellow=[];if(p.graph.leftEnd==='closed'&&touches(left))expectedYellow.push(0);if(p.graph.rightEnd==='closed'&&touches(right))expectedYellow.push(pts.length-1);
+  for(const j of expectedYellow){const [x,y]=pts[j],marker=`<circle cx="${250+x*31}" cy="${190-y*31}" r="6" fill="#f5c400" stroke="#f5c400" stroke-width="3"/>`;assert(p.graph.correctIntervalGraph.includes(marker));highlightedClosedEndpoints++;}
+ }
  if(p.variant==='x_intercepts'){
   const zeros=pts.filter(([,y])=>y===0);
   assert.equal((answer.match(/\\\(/g)||[]).length,zeros.length);
@@ -55,10 +62,12 @@ for(let i=0;i<30000;i++){
   const lo=Math.min(...ys),attained=ys.some((y,j)=>y===lo&&(j>0&&j<ys.length-1||j===0&&p.graph.leftEnd!=='open'||j===ys.length-1&&p.graph.rightEnd!=='open'))||ys.some((y,j)=>j&&y===lo&&ys[j-1]===y);
   assert.equal(answer==='Does not exist',unbounded||!attained);
  }
+ assert(!/unbounded|attained|finite boundary|excluded finite endpoint/i.test(String(p.explain||'')));
 }
 
-assert.equal(families.size,10);assert.equal(shapes.size,6);assert.equal(vertexCounts.size,4);assert(normalized.size>12000);
+assert.equal(families.size,9);assert(!families.has('plot_point'));assert.equal(shapes.size,6);assert.equal(vertexCounts.size,4);assert(normalized.size>12000);
 for(const key of ['open','closed','infinite','bothInfinite','positiveInfinity','negativeInfinity'])assert(endCounts[key]>500,`${key}: ${endCounts[key]}`);
+assert(openEndpointDistractors>500,`open-endpoint all-bracket distractors: ${openEndpointDistractors}`);assert(highlightedClosedEndpoints>500,`highlighted closed endpoints: ${highlightedClosedEndpoints}`);
 
 const fixedCounts={};
 for(const mode of modes){
@@ -82,7 +91,7 @@ const controller=fs.readFileSync(path.join(root,'assets/im1-unit2-practice.js'),
 assert(controller.includes("{mode:$(cfg.modeElementId)?.value||'mixed'}"));
 assert(controller.includes("addEventListener('change'"));
 
-const report={ok:true,checked:30000,families:[...families],shapes:[...shapes],vertexCounts:[...vertexCounts],distinctGraphsIgnoringTranslation:normalized.size,endCounts,fixedCounts,reviewGraphs};
+const report={ok:true,checked:30000,families:[...families],shapes:[...shapes],vertexCounts:[...vertexCounts],distinctGraphsIgnoringTranslation:normalized.size,endCounts,openEndpointDistractors,highlightedClosedEndpoints,fixedCounts,reviewGraphs};
 fs.mkdirSync(path.join(root,'qa-results'),{recursive:true});
 fs.writeFileSync(path.join(root,'qa-results/coordinate-variety-qa.json'),JSON.stringify(report,null,2)+'\n');
 console.log(report);

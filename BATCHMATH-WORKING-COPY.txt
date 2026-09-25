@@ -1,6 +1,7 @@
 BatchMath cumulative working copy
-Current full release: 10.7.3
-Archive: batchmath-site-v10.7.3.zip
-Baseline: complete v10.7.2 release.
-Changes: targeted IM1 Unit 2 and AP Calculus Derivatives corrections.
+Current full release: 10.7.15
+Archive: batchmath-site-v10.7.15.zip
+Baseline: complete v10.7.14 checkpoint.
+Changes: IM Unit 2 Nine Key Features open-endpoint misconception choices, included-endpoint solution highlighting, and simpler student-facing graph explanations. The shared Unit 2 Comprehensive Review generator is synchronized.
+Standing rebuild rules retained: prompt sections 1, 2, 16, and 17.
 No deployment performed.

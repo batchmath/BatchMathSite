@@ -39,17 +39,47 @@ const G={};
 
 // UNIT 1
 G['introduction-to-limits']=()=>{
-  const a=ri(-4,4),L=ri(-7,7),fa=L+pick([-4,-3,3,4]);
-  const rows=[[-.1,-.04],[-.01,-.005],[0,null],[.01,.006],[.1,.05]].map(([dx,e])=>[fmt(a+dx),dx===0?String(fa):fmt(L+e)]);
+  const a=ri(-4,4),L=ri(-7,7),jump=R()<.35,Rt=jump?pick(Array.from({length:15},(_,i)=>i-7).filter(x=>x!==L)):L,ask=pick(['left','right','both']);
+  const rows=[[-.1,-.04],[-.01,-.005],[-.001,-.0005],[.001,.0006],[.01,.006],[.1,.05]].map(([dx,e])=>[fmt(a+dx),fmt((dx<0?L:Rt)+e)]);
   const table=`<table><tr><th>x</th>${rows.map(r=>`<td>${r[0]}</td>`).join('')}</tr><tr><th>f(x)</th>${rows.map(r=>`<td>${r[1]}</td>`).join('')}</tr></table>`;
-  return mc(`intro-${a}-${L}-${fa}`,'table_two_sided',`Use the table to estimate \\(\\lim_{x\\to${a}}f(x)\\).`,table,String(L),[String(fa),String(L+1),'DNE'],`The nearby values on both sides of \\(x=${a}\\) suggest \\(${L}\\), so the estimated limit is \\(${L}\\). The separate point value \\(f(${a})=${fa}\\) does not determine the limit. A finite table supports an estimate, not a proof.`)
+  const side=ask==='left'?'^-':ask==='right'?'^+':'',answer=ask==='left'?String(L):ask==='right'?String(Rt):L===Rt?String(L):'DNE';
+  const explanation=ask==='left'?`The table entries with \\(x<${a}\\) approach \\(${L}\\), so the estimated left-hand limit is \\(${L}\\). A finite table supports an estimate, not a proof.`:ask==='right'?`The table entries with \\(x>${a}\\) approach \\(${Rt}\\), so the estimated right-hand limit is \\(${Rt}\\). A finite table supports an estimate, not a proof.`:L===Rt?`The values on both sides approach \\(${L}\\), so the table suggests that the two-sided limit is \\(${L}\\). A finite table supports an estimate, not a proof.`:`The left-hand values approach \\(${L}\\), while the right-hand values approach \\(${Rt}\\). Since those one-sided limits differ, the two-sided limit is DNE.`;
+  return mc(`intro-${a}-${L}-${Rt}-${ask}`,`table_${jump?'jump':'matching'}`,`Use the table to estimate \\(\\lim_{x\\to${a}${side}}f(x)\\).`,table,answer,[String(L),String(Rt),'DNE',String(L+1)],explanation)
 };
-G['sin-one-over-x']=()=>{
-  const a=ri(-3,3),k=ri(1,5),kind=pick(['raw','scaled','cosraw','absraw']);
+G['sin-one-over-x']=(opts={})=>{
+  const a=ri(-4,4),k=ri(1,8),kind=opts.family||pick(['raw_sine','raw_cosine','absolute_sine','absolute_cosine','vanishing_sine','vanishing_cosine','vanishing_absolute','nonzero_exponential','nonzero_affine','bounds_inconclusive','sinx_over_x_contrast']);
   const shift=a===0?'x':a>0?`x-${a}`:`x+${-a}`;
-  if(kind==='scaled')return mc(`osc-scaled-${a}-${k}`,'bounded_times_zero','Find the limit.',`\\displaystyle\\lim_{x\\to${a}}(${shift})\\sin\\left(\\frac{${k}}{${shift}}\\right)`,'0',['1','-1','DNE'],`Because \\(|\\sin u|\\le1\\), the absolute value of the expression is at most \\(|${shift}|\\). As \\(x\\to${a}\\), this bound tends to \\(0\\), so the expression tends to \\(0\\) by the Squeeze Theorem.`);
-  const f=kind==='cosraw'?'\\cos':kind==='absraw'?'|\\sin':'\\sin',close=kind==='absraw'?'|':'';
-  return mc(`osc-${kind}-${a}-${k}`,'oscillating_dne','Find the limit.',`\\displaystyle\\lim_{x\\to${a}}${f}\\left(\\frac{${k}}{${shift}}\\right)${close}`,'DNE',['0','1','-1'],`Arbitrarily close to \\(x=${a}\\), the expression repeatedly takes ${kind==="absraw"?"both 0 and 1":"both -1 and 1"}. These distinct values persist, so there is no single limiting value. The limit is DNE.`)
+  const grouped=a===0?'x':`\\left(${shift}\\right)`;
+  const phase=`\\frac{${k}}{${shift}}`;
+  const linear=(m,b)=>`${m===1?'':m===-1?'-':m}x${b===0?'':b>0?`+${b}`:b}`;
+  let p;
+  if(kind.startsWith('vanishing_')){
+    const power=ri(1,4),bound=power===1?`|${shift}|`:`|${shift}|^{${power}}`,amp=power===1?grouped:`${grouped}^{${power}}`,fn=kind==='vanishing_cosine'?'\\cos':'\\sin',bars=kind==='vanishing_absolute';
+    p=mc(`osc-vanish-${kind}-${a}-${k}-${power}`,'oscillation_vanishing_bounds','Find the limit.',`\\displaystyle\\lim_{x\\to${a}}(${shift})^{${power}}${bars?'\\left|':''}${fn}\\left(\\frac{${k}}{${shift}}\\right)${bars?'\\right|':''}`,'0',['1','-1','DNE'],`The trigonometric factor has absolute value at most \\(1\\), so the entire expression has absolute value at most \\(${amp}\\). Because \\(${amp}\\to0\\), both bounds approach \\(0\\). The Squeeze Theorem establishes the limit \\(0\\).`);
+    p.questionHtml=`<div><div class="question-prompt">Find the limit.</div><div>\\(\\displaystyle\\lim_{x\\to${a}}${amp}${bars?'\\left|':''}${fn}\\!\\left(${phase}\\right)${bars?'\\right|':''}\\)</div></div>`;
+    p.explanation=`The trigonometric factor has absolute value at most \\(1\\), so the absolute value of the product is at most \\(${bound}\\). Because \\(${bound}\\to0\\), the lower and upper bounds both approach \\(0\\). The Squeeze Theorem therefore establishes the limit \\(0\\).`;
+  }else if(kind==='nonzero_exponential'||kind==='nonzero_affine'){
+    const fn=pick(['\\sin','\\cos']),isSin=fn==='\\sin';
+    let amp,A;
+    if(kind==='nonzero_exponential'){amp=a===0?'e^x':`e^{${shift}}`;A=1;}
+    else{A=pick([-4,-3,-2,2,3,4]);const m=pick([-3,-2,-1,1,2,3]),b=A-m*a;amp=linear(m,b);}
+    const shownAmp=/^[+-]?\d*x$/.test(amp)||/^e\^/.test(amp)?amp:`\\left(${amp}\\right)`;
+    p=mc(`osc-nonzero-${kind}-${isSin?'sin':'cos'}-${a}-${k}`,'oscillation_nonzero_amplitude_dne','Find the limit.',`\\displaystyle\\lim_{x\\to${a}}(${amp})${fn}\\left(\\frac{${k}}{${shift}}\\right)`,'DNE',['0','1','2'],`The amplitude approaches \\(${A}\\), not \\(0\\). There are approaches to \\(x=${a}\\) for which the ${isSin?'sine':'cosine'} factor tends to \\(1\\), and others for which it tends to \\(-1\\). The products approach two different values, so the limit is DNE.`);
+    p.questionHtml=`<div><div class="question-prompt">Find the limit.</div><div>\\(\\displaystyle\\lim_{x\\to${a}}${shownAmp}${fn}\\!\\left(${phase}\\right)\\)</div></div>`;
+    p.explanation=`The amplitude approaches \\(${A}\\), which is not zero. Along approaches where the ${isSin?'sine':'cosine'} factor tends to \\(1\\), the product tends to \\(${A}\\); along approaches where it tends to \\(-1\\), the product tends to \\(${-A}\\). These different limiting values prove that the limit is DNE.`;
+  }else if(kind==='bounds_inconclusive'){
+    const amp=a===0?'e^x':`e^{${shift}}`,correct='The bounds do not establish a limit; a separate oscillation argument establishes DNE.';
+    p=mc(`osc-bounds-inconclusive-${a}-${k}`,'squeeze_bounds_inconclusive','What is the correct conclusion from the bounds shown?',`-${amp}\\le ${amp}\\sin\\!\\left(${phase}\\right)\\le ${amp}`,correct,['The Squeeze Theorem gives a limit of 0.','Different limits of the bounds automatically prove DNE.','The Squeeze Theorem gives a limit of 1.'],`The lower and upper bounds approach different numbers, so the Squeeze Theorem supplies no conclusion about the middle function. That fact alone does not prove DNE. Separately, the sine factor approaches \\(1\\) along some approaches and \\(-1\\) along others, while the amplitude approaches \\(1\\). Thus the actual expression has different limiting values and its limit is DNE.`);
+    p.choicesAreText=true;
+  }else if(kind==='sinx_over_x_contrast'){
+    const correct='The first limit is 1; the second is DNE because its phase is unbounded.';
+    p=mc(`osc-contrast-${k}`,'sinx_over_x_contrast','Which statement correctly distinguishes these limits?',`\\displaystyle\\lim_{x\\to0}\\frac{\\sin x}{x}\\qquad\\text{and}\\qquad\\lim_{x\\to0}\\sin\\!\\left(\\frac{${k}}x\\right)`,correct,['Both limits equal 1.','Both limits are DNE.','The first limit is 0; the second equals 1.'],`In radians, \\(\\sin x/x\\to1\\) because its angle approaches \\(0\\). In \\(\\sin(${k}/x)\\), the phase becomes unbounded and the sine values keep oscillating between values near \\(-1\\) and \\(1\\), so that limit is DNE.`);
+    p.choicesAreText=true;
+  }else{
+    const isCos=kind==='raw_cosine'||kind==='absolute_cosine',absolute=kind.startsWith('absolute_'),fn=isCos?'\\cos':'\\sin';
+    p=mc(`osc-${kind}-${a}-${k}`,'oscillation_persistent_dne','Find the limit.',`\\displaystyle\\lim_{x\\to${a}}${absolute?'\\left|':''}${fn}\\!\\left(${phase}\\right)${absolute?'\\right|':''}`,'DNE',['0','1','-1'],absolute?`Along approaches to \\(x=${a}\\), the absolute-value expression can approach \\(0\\), while along other approaches it can approach \\(1\\). These different limiting values prove that the limit is DNE.`:`Along some approaches to \\(x=${a}\\), the expression approaches \\(1\\); along others, it approaches \\(-1\\). These different limiting values prove that the limit is DNE.`);
+  }
+  p.familyId=`sin_one_over_x_${kind}`;p.data={family:p.familyId,a,k};return p;
 };
 function ivtGuaranteedValue(){
   const a=ri(-4,0),b=a+ri(2,6),fa=ri(-8,-1),fb=ri(2,9),target=ri(fa+1,fb-1);
