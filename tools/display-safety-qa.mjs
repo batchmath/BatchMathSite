@@ -29,7 +29,6 @@ stats.unescapedStrictInequalityCommands=strictIneqEscapingHits;
 // question after the answer has been computed. The only current exception is the
 // audited Limits cleanSigns pass, whose permitted rewrites are algebraically exact.
 const approvedMutators=new Set([
-  'ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/practice/index.html',
   'ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/practice/index.html',
   'ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html',
   'ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html',
@@ -59,7 +58,7 @@ const unsafePatterns=[
 const unsafeLiteral=String.raw`out=out.replace(/\\frac\{([^{}]+)\}\{-([^{}]+)\}/g`;
 for(const f of files){const rel=norm(path.relative(ROOT,f));const src=fs.readFileSync(f,'utf8');if(src.includes(unsafeLiteral))errors.push(`${rel}: unsafe multi-term negative-denominator cleanup detected`);}
 
-// Verify the five audited cleanSigns copies all use the safe constant-only rule.
+// Verify the audited cleanSigns copies all use the safe constant-only rule.
 let cleanCopies=0;let referenceBody=null;
 for(const rel of approvedMutators){
   const src=fs.readFileSync(path.join(ROOT,rel),'utf8');

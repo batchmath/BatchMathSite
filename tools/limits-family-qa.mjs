@@ -21,16 +21,9 @@ function elem(value=''){return {dataset:{},value,innerHTML:'',textContent:'',cla
 function scriptsFromHtml(html){return [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(m=>!(/\bsrc\s*=/.test(m[1]))).map(m=>m[2]);}
 function generatorScript(html){const found=scriptsFromHtml(html).filter(s=>s.includes('function makeProblem')&&s.includes('const generators='));if(found.length!==1)throw new Error(`Expected one generator script, found ${found.length}`);return found[0];}
 function generate(category,count){
-  const html=fs.readFileSync(FILE,'utf8'),code=generatorScript(html),generated=[];
-  const elements={category:elem(category),question:elem(),answer:elem(),submit:elem(),next:elem(),feedback:elem(),'topic-name':elem(),'correct-count':elem('0'),attempted:elem('0')};
-  const winListeners={},random=rng(`Limits:${category}:${VERSION}:targeted`);
-  const fakeDocument={getElementById:id=>elements[id]||(elements[id]=elem()),addEventListener(){},querySelector(){return null;},querySelectorAll(){return[];}};
-  const BMAnalytics={ensurePracticeStarted(){},problemGenerated(p){generated.push(structuredClone(p));},answerChecked(){},solutionRevealed(){}};
-  const window={BMAnalytics,MathJax:null,addEventListener:(t,fn)=>{winListeners[t]=fn;},BatchMathCalculusKeypad:null};
-  const sandbox={window,document:fakeDocument,BatchMathRNG:{random},console,Math,structuredClone,setTimeout:()=>0,clearTimeout:()=>{},location:{},navigator:{}};
-  vm.createContext(sandbox);sandbox.window.BatchMathRNG=sandbox.BatchMathRNG;for(const dep of ['ap-topic-generators','unit1-course-trig','unit1-core-expansions','unit1-one-sided'])vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/'+dep+'.js'),'utf8'),sandbox);vm.runInContext(code,sandbox,{filename:`limits-${category}.js`,timeout:5000});winListeners.load?.();
-  const next=elements.next.listeners.click;if(typeof next!=='function')throw new Error('Next Question handler missing');
-  while(generated.length<count)next();return generated;
+  const generated=[],random=rng(`Limits:${category}:${VERSION}:targeted`),window={BatchMathRNG:{random}},sandbox={window,BatchMathRNG:window.BatchMathRNG,console,Math};
+  vm.createContext(sandbox);for(const dep of ['unit1-core-expansions','unit1-basic-techniques'])vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/'+dep+'.js'),'utf8'),sandbox);
+  while(generated.length<count)generated.push(structuredClone(window.BMUnit1BasicTechniques.generate(category)));return generated;
 }
 
 function expectedSub(p){

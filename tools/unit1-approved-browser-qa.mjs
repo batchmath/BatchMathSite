@@ -18,7 +18,22 @@ export async function exerciseUnit1Approved(context,base){
   await open('introduction-to-limits');
   for(const mode of ['tables','graphs']){await page.selectOption('#representation-mode',mode);const idx=await page.evaluate(()=>window.__unit1QA.correctIndex);await page.locator('#choices > .choice').nth(idx).click();if(!await page.locator('.u1-method').isVisible())throw Error('Correct representation answer missing Show Method');await page.locator('.u1-method').click();if(!(await page.locator('#feedback .method').last().textContent()).trim())throw Error('Method empty');await enterOnce();}
   await open('comprehensive-review');
-  for(const category of ['tables','graphs','parameters','ivt']){await page.selectOption('#category',category);if(await page.locator('.bm-calc-editor').isVisible())throw Error('Numeric editor visible in '+category);const idx=await page.evaluate(()=>window.__unit1QA.correctIndex);await page.locator('#u1-options > .choice').nth(idx).click();await page.locator('#feedback .u1-method').waitFor({state:'visible'});await enterOnce();}
+  for(const category of ['tables','graphs','parameters','ivt']){
+   await page.selectOption('#category',category);
+   if(await page.locator('.bm-calc-editor').isVisible())throw Error('Numeric editor visible in '+category);
+   if(category==='parameters'){
+    const values=await page.evaluate(()=>window.__unit1QA.fields.map(f=>String(f.numericAnswer)));
+    const inputs=page.locator('#u1-options .parameter-field input');
+    if(await inputs.count()!==values.length)throw Error('Continuity Parameters field count mismatch');
+    for(let i=0;i<values.length;i++)await inputs.nth(i).fill(values[i]);
+    await page.getByRole('button',{name:'Check All Parameters',exact:true}).click();
+   }else{
+    const idx=await page.evaluate(()=>window.__unit1QA.correctIndex);
+    if(!Number.isInteger(idx))throw Error(category+' did not provide a multiple-choice correctIndex');
+    await page.locator('#u1-options > .choice').nth(idx).click();
+   }
+   await page.locator('#feedback .u1-method').waitFor({state:'visible'});await enterOnce();
+  }
   await page.selectOption('#category','continuous');
   for(const raw of ['undefined','1/0']){const before=await page.locator('#attempted').textContent();await page.locator('.bm-calc-editor').click();await page.keyboard.type(raw);await page.locator('#submit').click();if(await page.locator('#attempted').textContent()!==before)throw Error('Invalid input counted');await page.selectOption('#category','continuous');checks++;}
   await page.selectOption('#category','discontinuities');const points=await page.evaluate(()=>window.__unit1QA.points);

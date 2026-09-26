@@ -7,7 +7,7 @@
 
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:site_name" content="BatchMath"><meta property="og:type" content="website"><meta property="og:title" content="Advanced Trigonometric Limits Practice | AP Calculus AB | BatchMath"><meta property="og:description" content="Practice advanced AP Calculus trigonometric limits using identities, factoring, cancellation, and standard trig limits."><meta property="og:url" content="https://batchmath.net/ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/"><meta property="og:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Advanced Trigonometric Limits Practice | AP Calculus AB | BatchMath"><meta name="twitter:description" content="Practice advanced AP Calculus trigonometric limits using identities, factoring, cancellation, and standard trig limits."><meta name="twitter:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png">
-<link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#030303"><link rel="stylesheet" href="/assets/site.css"><script src="/assets/batchmath-storage.js" defer></script><script src="/assets/answer-normalization.js" defer></script>
+<link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#030303"><link rel="stylesheet" href="/assets/site.css"><link rel="stylesheet" href="/assets/ap-topic-practice.css"><script src="/assets/batchmath-storage.js" defer></script><script src="/assets/answer-normalization.js" defer></script>
 <script src="/assets/pwa.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-377MTFXSF3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-377MTFXSF3');</script>
 <title>Advanced Trigonometric Limits Practice | AP Calculus AB | BatchMath</title>
@@ -37,7 +37,6 @@ h1{text-align:center;font-size:clamp(1.75rem,5vw,2.8rem);margin:7px 0 8px;line-h
 .shell{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:18px}
 .status-row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 0 13px;color:var(--muted);font-size:.86rem;border-bottom:1px solid #202020}
 .stats{display:flex;gap:14px;flex-wrap:wrap}.stats strong{color:var(--white)}
-.focus-label{color:var(--yellow);font-weight:850}
 .question-card{margin:18px 0 14px;border:1px solid #303030;border-radius:13px;background:#030303;padding:28px 20px 24px;min-height:230px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:13px}
 .question-prompt{color:#bfbfbf;font-size:.82rem;font-weight:850;text-transform:uppercase;letter-spacing:.05em}
 .question{width:100%;text-align:center;font-size:clamp(1.5rem,3.3vw,2.45rem);overflow-x:auto;overflow-y:hidden;padding:14px 4px 18px;scrollbar-width:thin}
@@ -56,23 +55,20 @@ h1{text-align:center;font-size:clamp(1.75rem,5vw,2.8rem);margin:7px 0 8px;line-h
 .post-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.post-actions .btn{display:none}
 .hint-actions{margin:0 0 12px}.hint-panel{margin:0 0 16px;padding:12px 14px;border-left:3px solid var(--yellow);background:#111;color:#eee;overflow-wrap:anywhere}.hint-panel[hidden]{display:none}.method{font-weight:400}.method-steps{margin:10px 0 0;padding-left:25px}.method-steps li{margin:0 0 20px;padding-left:4px}.method-equation{max-width:100%;overflow-x:auto;padding:4px 0}.method-equation mjx-container[display="true"]{text-align:left!important;margin:10px 0!important}.details{margin-top:18px;border-top:1px solid #202020;padding-top:15px}
 details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0 13px}summary{cursor:pointer;padding:11px 0;color:var(--yellow);font-weight:900}.identity-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 16px;padding:2px 0 13px;color:#ddd;font-size:.9rem}.identity-group{border-top:1px solid #242424;padding-top:8px}.identity-group h3{margin:0 0 5px;font-size:.83rem;color:#fff}.identity-group p{margin:5px 0;overflow-x:auto}
-.footer{text-align:center;color:#777;font-size:.75rem;margin-top:20px}.footer strong{color:#aaa}
 @media(max-width:650px){.wrap{width:min(100% - 16px,1220px);padding-top:14px}.shell{padding:11px}.question-card{padding:18px 6px;min-height:190px}.question{font-size:clamp(1.25rem,6.4vw,1.8rem);text-align:left}.answer-row>*{flex:1 1 100%}.btn{width:100%}.quick-row .quick{width:auto;flex:1 1 auto}.identity-grid{grid-template-columns:1fr}.status-row{align-items:flex-start}.stats{gap:9px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
-<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_advanced_trig_limits",generatorVersion:"4"};</script><script src="/assets/problem-tracking.js"></script><link rel="stylesheet" href="/assets/unit1-practice.css"><script src="/assets/unit1-practice-ui.js"></script></head>
-<body>
-<main class="wrap" data-bm-advanced-trig>
-  <div class="brand"><a class="brand-mark" href="/" aria-label="BatchMath home">BATCH<span class="math">MATH</span></a></div>
-  <div class="kicker">AP Calculus AB · Interactive Practice</div>
-  <h1>Advanced Trigonometric Limits</h1>
-  <p class="subtitle">A fully mixed stream of randomized, multi-step trig limits. Problems may require identity rewrites, algebraic factoring, cancellation, standard trigonometric limits, or several of those ideas in combination. No derivatives or L'Hôpital's Rule are needed.</p>
-  <div class="prototype-note"><a href="../" style="color:inherit">← Squeeze Theorem and Trigonometric Limits</a></div>
+<script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"ap_calculus_ab",engineId:"ap_advanced_trig_limits",generatorVersion:"5"};</script><script src="/assets/problem-tracking.js"></script><link rel="stylesheet" href="/assets/unit1-practice.css"><script src="/assets/unit1-practice-ui.js"></script></head>
+<body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar"><img class="corner" src="/assets/batchmath-portrait.jpg" alt=""><a class="logo" href="/">BatchMath<span class="tm-mark">™</span></a><div class="profile"><img src="/assets/batchmath-portrait.jpg" alt="BatchMath"><button class="menu-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="course-menu" aria-label="Open course menu">COURSES ▼</button><nav id="course-menu" class="dropdown"><a href="/im1/">Integrated Math 1</a><a href="/ap-calculus/" class="current-section" aria-current="page">AP Calculus AB</a><a href="/calculus-prep/">Calculus Prep</a><a href="/about/">About</a><a href="/">Home</a></nav></div></header>
+<main id="main-content" class="wrap" data-bm-advanced-trig>
+  <a class="back" href="../">← Squeeze Theorem and Trigonometric Limits</a>
+  <h1 class="page-title">Advanced Trigonometric Limits Practice</h1>
+  <p class="subtitle topic-description">A fully mixed stream of randomized, multi-step trig limits. Problems may require identity rewrites, algebraic factoring, cancellation, standard trigonometric limits, or several of those ideas in combination. No derivatives or L'Hôpital's Rule are needed.</p>
 
   <section class="shell" aria-label="Advanced trigonometric limits practice">
+    <div class="controls"><div class="control"><label for="focus" class="bm-practice-select-label">Practice Type</label><select id="focus" aria-label="Advanced trigonometric limit focus" class="bm-practice-select"><option value="mixed" selected>Mixed</option><option value="standard">Standard-Ratio Products and Powers</option><option value="sums">Sums and Decomposition</option><option value="identity">Trig Identities and Cancellation</option><option value="nonzero">Nonzero Approach Points</option></select></div></div>
     <div class="status-row">
       <div class="stats"><span>Correct: <strong id="correct">0</strong></span><span>Attempted: <strong id="attempted">0</strong></span><span>Accuracy: <strong id="accuracy">—</strong></span></div>
-      <label class="focus-label" for="focus">Focus <select id="focus" aria-label="Advanced trigonometric limit focus"><option value="mixed" selected>Mixed</option><option value="standard">Standard-Ratio Products and Powers</option><option value="sums">Sums and Decomposition</option><option value="identity">Trig Identities and Cancellation</option><option value="nonzero">Nonzero Approach Points</option></select></label>
     </div>
 
     <div class="question-card">
@@ -127,8 +123,10 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
     </div>
   </section>
 
-  <div class="footer"><strong>BatchMath</strong> · Generated problems are designed to be solved algebraically with trig identities and standard trig-limit facts.</div>
 </main>
+
+<footer class="footer"><div>© 2026 BatchMath. All rights reserved. BatchMath™.</div><div class="bm-footer-links"><a href="/about/">About BatchMath</a></div><div class="bm-legal-note">AP® is a trademark registered by the College Board, which is not affiliated with, and does not endorse, this website.</div></footer>
+<script>document.addEventListener('DOMContentLoaded',function(){const b=document.querySelector('.menu-toggle'),m=document.querySelector('.dropdown');if(b&&m){b.addEventListener('click',e=>{e.stopPropagation();m.classList.toggle('open');b.setAttribute('aria-expanded',m.classList.contains('open')?'true':'false')});document.addEventListener('click',()=>{m.classList.remove('open');b.setAttribute('aria-expanded','false')});m.addEventListener('click',e=>e.stopPropagation())}});</script>
 
 <script src="/assets/unit1-advanced-trig-shared.js"></script><script>
 (function(){
@@ -608,7 +606,7 @@ details{border:1px solid #292929;border-radius:10px;background:#060606;padding:0
       if(seen.size>700)seen.clear();
     }
     $("hint-panel").hidden=true;$("hint-panel").innerHTML="";$("hint").textContent="Show Hint";$("hint").setAttribute("aria-expanded","false");
-    current=p;methodShown=false;current.problemId=current.id;current.problemType="advanced_trig_limits";current.problemVariant=current.family.id;current.generatorVersion="3";window.BMAnalytics?.ensurePracticeStarted({practice_mode:"advanced_trig"});window.BMAnalytics?.problemGenerated(current,{practice_mode:"advanced_trig"});
+    current=p;methodShown=false;current.problemId=current.id;current.problemType="advanced_trig_limits";current.problemVariant=current.family.id;current.generatorVersion="4";window.BMAnalytics?.ensurePracticeStarted({practice_mode:"advanced_trig"});window.BMAnalytics?.problemGenerated(current,{practice_mode:"advanced_trig"});
     $("question").innerHTML=p.q;
     $("answer").value="";$("answer").disabled=false;$("check").disabled=false;document.querySelectorAll(".quick").forEach(b=>b.disabled=false);
     delete $("feedback").dataset.answerState;

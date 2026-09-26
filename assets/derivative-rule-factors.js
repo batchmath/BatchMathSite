@@ -19,7 +19,7 @@
     }
     if(kind==='reciprocal'){const n=integer(1,3),power=n===1?'x':`x^{${n}}`;return{id:`r${a}_${n}`,tex:`\\frac{${a}}{${power}}`,expr:`(${a})/x^${n}`,dtex:`\\frac{${-a*n}}{x^{${n+1}}}`,dexpr:`(${-a*n})/x^${n+1}`}}
     if(kind==='radical'){const u=positiveInner();return{id:`s${u.id}`,tex:`\\sqrt{${u.tex}}`,expr:`sqrt(${u.expr})`,dtex:`\\frac{${u.dtex}}{2\\sqrt{${u.tex}}}`,dexpr:`(${u.dexpr})/(2*sqrt(${u.expr}))`};}
-    if(kind==='cuberoot'){const u=positiveInner();return{id:`cube${u.id}`,tex:`\\sqrt[3]{${u.tex}}`,expr:`(${u.expr})^(1/3)`,dtex:`\\frac{${u.dtex}}{3(${u.tex})^{2/3}}`,dexpr:`(${u.dexpr})/(3*(${u.expr})^(2/3))`};}
+    if(kind==='cuberoot'){const u=positiveInner();return{id:`cube${u.id}`,tex:`\\sqrt[3]{${u.tex}}`,expr:`(${u.expr})^(1/3)`,dtex:`\\frac{${u.dtex}}{3(${u.tex})^{\\frac{2}{3}}}`,dexpr:`(${u.dexpr})/(3*(${u.expr})^(2/3))`};}
     if(kind==='fractional'){const [n,d]=choose([[3,2],[2,3],[5,2],[-1,2]]);return{id:`f${n}_${d}`,tex:`x^{\\frac{${n}}{${d}}}`,expr:`x^(${n}/${d})`,dtex:`\\frac{${n}}{${d}}x^{\\frac{${n-d}}{${d}}}`,dexpr:`(${n}/${d})*x^((${n-d})/${d})`}}
     if(kind==='sin')return{id:`sin${k}`,tex:`\\sin(${k}x)`,expr:`sin(${k}*x)`,dtex:`${k}\\cos(${k}x)`,dexpr:`${k}*cos(${k}*x)`};
     if(kind==='cos')return{id:`cos${k}`,tex:`\\cos(${k}x)`,expr:`cos(${k}*x)`,dtex:`-${k}\\sin(${k}x)`,dexpr:`-${k}*sin(${k}*x)`};

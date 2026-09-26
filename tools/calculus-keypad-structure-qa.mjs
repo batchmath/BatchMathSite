@@ -56,7 +56,9 @@ twoKey.events.click[0]({preventDefault(){}});
 assert.equal(raw(),'sec^(2)(x)');
 set('tan(x)',0);k.move(1);assert.equal(k.cursor,3);k.move(1);assert.equal(k.cursor,4);
 
-set('(x)/(y)',7);k.backspace();assert.equal(raw(),'(x)/(y)');assert.equal(k.cursor,6);k.backspace();assert.equal(raw(),'(x)/()');
+set('(x)/(y)',7);k.backspace();assert.equal(raw(),'','Backspace immediately after a fraction should remove the whole fraction');
+set('(x)/(y)',0);k.del();assert.equal(raw(),'','Delete immediately before a fraction should remove the whole fraction');
+set('(x)/(y)',6);k.backspace();assert.equal(raw(),'(x)/()','Backspace inside the denominator should edit only the denominator');
 k.backspace();assert.equal(raw(),'(x)/()');assert.equal(k.cursor,2);
 set('(x)/(y)',2);k.del();assert.equal(raw(),'(x)/(y)');assert.equal(k.cursor,5);
 set('sqrt((x)/(y))',15);for(let i=0;i<7;i++){k.backspace();assert(validStructure(raw()),raw());}
@@ -65,7 +67,16 @@ const editor=row.children.find(x=>x.className==='bm-calc-editor');
 const press=key=>editor.events.keydown[0]({key,preventDefault(){}});
 assert.equal(document.activeElement,editor,'visible editor should receive focus as soon as the shared keypad initializes');
 set('',0);input.focus();assert.equal(document.activeElement,editor,'legacy source-input focus should redirect to the visible editor');press('7');assert.equal(raw(),'7','first physical keystroke should enter immediately');
-set('root(,)',5);assert(editor.innerHTML.includes('bm-calc-nroot-index'));assert(editor.innerHTML.includes('bm-calc-nroot-radicand'));
+const fractionKey=allKeys.find(button=>button['aria-label']==='Insert stacked fraction');
+const leftParenKey=allKeys.find(button=>button.textContent==='('),rightParenKey=allKeys.find(button=>button.textContent===')');
+assert(fractionKey&&leftParenKey&&rightParenKey,'fraction and parenthesis keys missing');
+set('',0);fractionKey.events.click[0]({preventDefault(){}});leftParenKey.events.click[0]({preventDefault(){}});
+assert.equal(raw(),'(()/()','an unmatched numerator parenthesis must remain inside the fraction');assert(editor.innerHTML.includes('bm-calc-frac'),'fraction should stay visibly stacked while the parenthesis is unmatched');
+rightParenKey.events.click[0]({preventDefault(){}});assert.equal(raw(),'(())/()');assert(editor.innerHTML.includes('bm-calc-frac'));
+set('',0);fractionKey.events.click[0]({preventDefault(){}});press('x');press('ArrowRight');leftParenKey.events.click[0]({preventDefault(){}});
+assert.equal(raw(),'(x)/(()','an unmatched denominator parenthesis must remain inside the fraction');assert(editor.innerHTML.includes('bm-calc-frac'));
+rightParenKey.events.click[0]({preventDefault(){}});assert.equal(raw(),'(x)/(())');assert(editor.innerHTML.includes('bm-calc-frac'));
+set('root(,)',5);assert(editor.innerHTML.includes('bm-calc-nroot-index'));assert(editor.innerHTML.includes('bm-calc-nroot-radicand'));assert(editor.innerHTML.includes('<svg viewBox="0 0 30 38"'),'nth-root radical must use the connected SVG shape');
 press('5');press('ArrowRight');press('3');assert.equal(raw(),'root(5,3)');
 set('root(5,3)',9);k.backspace();assert.equal(k.cursor,8);k.backspace();assert.equal(raw(),'root(5,)');
 set('root(,)',5);k.backspace();assert.equal(raw(),'');

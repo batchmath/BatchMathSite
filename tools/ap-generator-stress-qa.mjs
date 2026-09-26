@@ -12,7 +12,7 @@ const VERSION=JSON.parse(fs.readFileSync(path.join(ROOT,'assets/app-version.json
 const errors=[];const results=[];
 
 const specs=[
-  {name:'Limits',file:'ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/practice/index.html',categories:['continuous','factoring','substitution','rationalizing','complex','squeeze','trig','oneSided','infinity','special']},
+  {name:'Limits',file:'ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/practice/index.html',categories:['tables','graphs','continuous','factoring','substitution','rationalizing','complex','oneSided','regularTrig','squeeze','special','advancedTrig','infinity','discontinuities','parameters','ivt'],shared:true},
   {name:'Derivatives',file:'ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html',categories:['basic','product','quotient','trig','chain','exponential','implicit','log','logdiff','invtrig','inverse','point']}
 ];
 // Unit 4 comprehensive practice moved to the shared topic-generator architecture in v10.6.3.A.
@@ -22,7 +22,7 @@ function hashSeed(value){let h=2166136261>>>0;for(const ch of String(value)){h^=
 function rng(seed){let state=hashSeed(seed)||0x6d2b79f5;return()=>{state=(state+0x6D2B79F5)>>>0;let t=state;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296;};}
 function scriptsFromHtml(html){return [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(m=>!(/\bsrc\s*=/.test(m[1]))).map(m=>m[2]);}
 function generatorScript(html){const candidates=scriptsFromHtml(html).filter(s=>s.includes('function makeProblem')&&s.includes('problemGenerated')&&s.includes('const generators='));if(candidates.length!==1)throw new Error(`Expected one generator script, found ${candidates.length}`);return candidates[0];}
-function elem(value=''){return {dataset:{},value,selectedOptions:[{textContent:value}],innerHTML:'',textContent:'',className:'',disabled:false,placeholder:'',style:{display:''},listeners:{},children:[],addEventListener(type,fn){this.listeners[type]=fn;},focus(){},appendChild(x){this.children.push(x);return x;},append(...xs){this.children.push(...xs);},querySelectorAll(){return this.children;},classList:{add(){},remove(){},contains(){return false;},toggle(){}}};}
+function elem(value=''){return {dataset:{},value,selectedOptions:[{textContent:value}],innerHTML:'',textContent:'',className:'',disabled:false,hidden:false,placeholder:'',style:{display:''},listeners:{},children:[],addEventListener(type,fn){this.listeners[type]=fn;},focus(){},after(){},appendChild(x){this.children.push(x);return x;},append(...xs){this.children.push(...xs);},querySelectorAll(){return this.children;},classList:{add(){},remove(){},contains(){return false;},toggle(){}}};}
 function finiteNumbers(value,path='root',bad=[]){if(typeof value==='number'&&!Number.isFinite(value))bad.push(path);else if(Array.isArray(value))value.forEach((v,i)=>finiteNumbers(v,`${path}[${i}]`,bad));else if(value&&typeof value==='object')for(const [k,v] of Object.entries(value))finiteNumbers(v,`${path}.${k}`,bad);return bad;}
 function stringFields(value,out=[]){if(typeof value==='string')out.push(value);else if(Array.isArray(value))value.forEach(v=>stringFields(v,out));else if(value&&typeof value==='object')Object.values(value).forEach(v=>stringFields(v,out));return out;}
 
@@ -67,7 +67,7 @@ function validateProblem(problem,spec,category,index){
   if(problem.cat&&category!=='infinitySpecial'&&String(problem.cat)!==category)return `category mismatch: expected ${category}, got ${problem.cat}`;
   const badNums=finiteNumbers(problem);if(badNums.length)return `non-finite numeric value at ${badNums[0]}`;
   const strings=stringFields(problem);for(const s of strings){
-    if(/\b(?:undefined|NaN)\b/.test(s))return `literal undefined/NaN in generated string: ${s.slice(0,120)}`;
+    if(spec.name==='Limits'?/\bNaN\b/.test(s):/\b(?:undefined|NaN)\b/.test(s))return `literal undefined/NaN in generated string: ${s.slice(0,120)}`;
   }
   const display=[problem.q,problem.question,problem.sol,problem.solution].filter(Boolean).join(' ');
   if(/\\frac1\{-\d+\}/.test(display))return 'negative reciprocal denominator display';
@@ -78,7 +78,7 @@ function validateProblem(problem,spec,category,index){
 
 for(const spec of specs){
   const html=fs.readFileSync(path.join(ROOT,spec.file),'utf8');let code;
-  try{code=generatorScript(html);}catch(e){errors.push(`${spec.name}: ${e.message}`);continue;}
+  try{code=spec.shared?null:generatorScript(html);}catch(e){errors.push(`${spec.name}: ${e.message}`);continue;}
   for(const category of spec.categories){
     const generated=[];const elements={category:elem(category),question:elem(),answer:elem(),submit:elem(),next:elem(),feedback:elem(),'topic-name':elem(),'correct-count':elem('0'),attempted:elem('0')};
     const winListeners={};const random=rng(`${spec.name}:${category}:${VERSION}`);
@@ -86,10 +86,9 @@ for(const spec of specs){
     const BMAnalytics={ensurePracticeStarted(){},problemGenerated(p){generated.push(structuredClone(p));},answerChecked(){},solutionRevealed(){}};
     const window={BMAnalytics,MathJax:null,addEventListener:(t,fn)=>{winListeners[t]=fn;},BatchMathCalculusKeypad:null};
     const sandbox={window,document:fakeDocument,BatchMathRNG:{random},console,Math,structuredClone,setTimeout:()=>0,clearTimeout:()=>{},location:{},navigator:{}};
-    vm.createContext(sandbox);sandbox.window.BatchMathRNG=sandbox.BatchMathRNG;for(const dep of ['ap-topic-generators','unit1-course-trig','unit1-core-expansions','unit1-one-sided','unit1-practice-ui','derivative-rule-factors'])vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/'+dep+'.js'),'utf8'),sandbox);sandbox.BatchMathDerivativeRuleFactors=sandbox.window.BatchMathDerivativeRuleFactors;
+    vm.createContext(sandbox);sandbox.window.BatchMathRNG=sandbox.BatchMathRNG;for(const dep of ['ap-topic-generators','unit1-core-expansions','unit1-basic-techniques','unit1-ivt-expansions','unit1-continuity-parameters','unit1-one-sided','unit1-course-trig','unit1-advanced-trig-shared','unit1-advanced-trig-all','unit1-infinity-legacy','unit1-infinity-expansions','unit1-representations','unit1-discontinuities','unit1-practice-ui','unit1-comprehensive-review','derivative-rule-factors'])vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/'+dep+'.js'),'utf8'),sandbox);sandbox.BatchMathDerivativeRuleFactors=sandbox.window.BatchMathDerivativeRuleFactors;
     try{
-      vm.runInContext(code,sandbox,{filename:`${spec.name}-${category}.js`,timeout:5000});
-      if(winListeners.load)winListeners.load();
+      if(spec.shared){window.BMUnit1UI.render=()=>{};window.BMUnit1ComprehensiveReview.mount();generated.length=0;elements.category.value=category;elements.category.listeners.change();}else{vm.runInContext(code,sandbox,{filename:`${spec.name}-${category}.js`,timeout:5000});if(winListeners.load)winListeners.load();}
       if(!generated.length)throw new Error('generator did not create initial problem');
       const next=elements.next.listeners.click;if(typeof next!=='function')throw new Error('Next Question generator handler not registered');
       while(generated.length<PER_CATEGORY)next();

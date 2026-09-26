@@ -72,7 +72,7 @@ const directParserFiles=[
  'im1/unit-1-review/topics/reducing-fractions/practice/index.html',
  'assets/ap-topic-practice.js','assets/calc-prep-common.js','assets/calc-prep-synthetic.js'
 ];
-for(const rel of directParserFiles){const s=fs.readFileSync(path.join(ROOT,rel),'utf8');if(!s.includes('BatchMathAnswers?.normalizeFractionSigns')&&!(s.includes('BMUnit1UI.parse')&&fs.readFileSync(path.join(ROOT,'assets/unit1-practice-ui.js'),'utf8').includes('BatchMathAnswers?.normalizeFractionSigns')))fail(`${rel}: direct answer parser does not call sitewide fraction normalizer`);}
+for(const rel of directParserFiles){const s=fs.readFileSync(path.join(ROOT,rel),'utf8'),controller=rel.includes('comprehensive-review')?fs.readFileSync(path.join(ROOT,'assets/unit1-comprehensive-review.js'),'utf8'):s;if(!s.includes('BatchMathAnswers?.normalizeFractionSigns')&&!(controller.includes('BMUnit1UI.parse')&&fs.readFileSync(path.join(ROOT,'assets/unit1-practice-ui.js'),'utf8').includes('BatchMathAnswers?.normalizeFractionSigns')))fail(`${rel}: direct answer parser does not call sitewide fraction normalizer`);}
 stats.directParserDefenseFiles=directParserFiles.length;
 
 // Exact-expression practice engines commonly use normalizeInput(). Require each
@@ -95,7 +95,7 @@ function extractFunction(source,name){
 }
 const parserPages=[
  ['ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html','parse'],
- ['ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/practice/index.html','parse'],
+ ['assets/unit1-practice-ui.js','parse'],
  ['ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/practice/index.html','parse'],
  ['ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/practice/index.html','parse'],
  ['ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html','parse'],
@@ -105,7 +105,8 @@ let parserExecutions=0;
 for(const [rel,name] of parserPages){
   const src=fs.readFileSync(path.join(ROOT,rel),'utf8'),fn=extractFunction(src,name);if(!fn){fail(`${rel}: could not extract ${name}`);continue;}
   const box={window:{BatchMathAnswers:{normalizeFractionSigns:normalize}},console};vm.createContext(box);vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/unit1-practice-ui.js'),'utf8'),box);
-  try{vm.runInContext(`${fn};this.__fn=${name};`,box,{filename:rel});}
+  if(rel==='assets/unit1-practice-ui.js')box.__fn=box.window.BMUnit1UI.parse;
+  else try{vm.runInContext(`${fn};this.__fn=${name};`,box,{filename:rel});}
   catch(e){fail(`${rel}: extracted ${name} did not compile: ${e.message}`);continue;}
   for(const v of ['-1/2','(-1)/2','1/-2','1/(-2)','-(1/2)','−(1/2)']){
     let got;try{got=box.__fn(v);}catch(e){fail(`${rel}: ${name} threw on ${v}: ${e.message}`);continue;}

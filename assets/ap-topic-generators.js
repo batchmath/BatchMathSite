@@ -187,7 +187,7 @@ G['horizontal-and-vertical-tangent-lines']=()=>{
     const f=`${A===1?'':A}${u}^3${signed(-3*A*k*k,u)}${signed(c,'')}`;
     return mc(`hv-h-${k}-${h}-${A}-${c}`,'horizontal_polynomial','Find all x-values where the graph has a horizontal tangent.',`f(x)=${f}`,correct,[`x=${h}`,`x=${x1}`,`x=${x2}`],`f'(x)=${3*A}[${u}^2-${k*k}], so f'(x)=0 when x=${x1} or x=${x2}.`)
   }
-  return mc(`hv-v-${h}-${A}-${c}`,'vertical_cube_root','At which x-value does the graph have a vertical tangent?',`f(x)=${A===1?'':A}\\sqrt[3]{${u}}${signed(c,'')}`,`x=${h}`,[`x=${-h}`,`x=${h+1}`,'There is no vertical tangent'],`The derivative contains ${u}^{-2/3}, whose magnitude becomes unbounded at x=${h}.`)
+  return mc(`hv-v-${h}-${A}-${c}`,'vertical_cube_root','At which x-value does the graph have a vertical tangent?',`f(x)=${A===1?'':A}\\sqrt[3]{${u}}${signed(c,'')}`,`x=${h}`,[`x=${-h}`,`x=${h+1}`,'There is no vertical tangent'],`The derivative contains ${u}^{-\\frac{2}{3}}, whose magnitude becomes unbounded at x=${h}.`)
 };
 G['horizontal-and-vertical-tangent-lines-implicitly']=()=>{
   const A=ri(1,4),B=ri(1,4),a=ri(1,6),b=ri(1,6),K=A*a*a+B*b*b,kind=pick(['slope','horizontal','vertical']);
@@ -357,7 +357,7 @@ G['separable-differential-equations']=()=>{
 };
 G['exponential-growth-and-decay-interest-newton-s-law-of-cooling']=()=>{
   const P0=pick([25,50,75,100,150,200,300,500]),k=pick([1,2,3,4,5,6]),kind=pick(['model','value']);
-  if(kind==='model')return mc(`growth-m-${P0}-${k}`,'growth_model',`A quantity satisfies P'=${k}P and P(0)=${P0}. Which model is correct?`,'',`P=${P0}e^{${k}t}`,[`P=${P0}+${k}t`,`P=${P0}e^{t/${k}}`,`P=${k}e^{${P0}t}`],`The solution to P'=kP is P=P₀e^{kt}.`);
+  if(kind==='model')return mc(`growth-m-${P0}-${k}`,'growth_model',`A quantity satisfies P'=${k}P and P(0)=${P0}. Which model is correct?`,'',`P=${P0}e^{${k}t}`,[`P=${P0}+${k}t`,`P=${P0}e^{\\frac{t}{${k}}}`,`P=${k}e^{${P0}t}`],`The solution to P'=kP is P=P₀e^{kt}.`);
   return mc(`growth-v-${P0}-${k}`,'growth_value',`For P(t)=${P0}e^{${k}t}, find P(1).`,'',`${P0}e^{${k}}`,[`${P0+k}e`,`${P0*k}e`,`e^{${P0*k}}`],`Substitute t=1 to obtain ${P0}e^${k}.`)
 };
 G['rate-problems']=()=>{
@@ -1169,7 +1169,7 @@ G['derivatives-conceptual-review']=()=>{
    const fam=pick(['poly','negative_power','fractional_power','mixed','definite']);
    if(fam==='poly'){const a=nz(-6,6),b=nz(-7,7);return safeMc(`basic-int-poly-${a}-${b}`,'polynomial','Find an antiderivative.',`${signed(a,'x^3',true)}${signed(b,'x')}`,`${texRat(a,4)}x^4${signed(b/2,'x^2')}+C`,[`${a}x^4+${b}x^2+C`,`${texRat(a,3)}x^3${signed(b,'x')}+C`,` ${texRat(a,4)}x^4+C`],`\\(\\int f(x)\\,dx=${texRat(a,4)}x^4+${texRat(b,2)}x^2+C\\).`)}
    if(fam==='negative_power')return safeMc('basic-int-neg','negative_power','Find an antiderivative.',`x^{-3}`,`-\\frac{1}{2x^2}+C`,[`\\frac{1}{2x^2}+C`,`-\\frac1{x^2}+C`,`\\ln|x|+C`],`Increase the exponent by 1 and divide by the new exponent.`);
-   if(fam==='fractional_power')return safeMc('basic-int-frac','fractional_power','Find an antiderivative.',`x^{3/2}`,`\\frac25x^{5/2}+C`,[`\\frac32x^{1/2}+C`,`\\frac52x^{5/2}+C`,`\\frac25x^{3/2}+C`],`Apply the power rule for antiderivatives.`);
+   if(fam==='fractional_power')return safeMc('basic-int-frac','fractional_power','Find an antiderivative.',`x^{\\frac{3}{2}}`,`\\frac25x^{\\frac{5}{2}}+C`,[`\\frac32x^{\\frac{1}{2}}+C`,`\\frac52x^{\\frac{5}{2}}+C`,`\\frac25x^{\\frac{3}{2}}+C`],`Apply the power rule for antiderivatives.`);
    if(fam==='mixed')return safeMc('basic-int-mix','mixed_powers','Find an antiderivative.',`3x^2-4x^{-2}+2`,`x^3+4x^{-1}+2x+C`,[`x^3-4x^{-1}+2x+C`,`6x+8x^{-3}+C`,`x^3+2x^{-1}+2x+C`],`Integrate each term separately.`);
    return safeMc('basic-int-def','definite_polynomial','Evaluate the definite integral.',`\\int_0^2(3x^2+1)\\,dx`,'10',['9','8','11'],`An antiderivative is \\(x^3+x\\); evaluate at 2 and 0.`);
  };
@@ -1179,10 +1179,10 @@ G['derivatives-conceptual-review']=()=>{
    if(fam==='power_linear'){const a=pick([2,3,4]),n=pick([2,3,4]);return safeMc(`usub-p-${a}-${n}`,'linear_inner_power','Find an antiderivative.',`(${a}x+1)^{${n}}`,`\\frac{(${a}x+1)^{${n+1}}}{${a*(n+1)}}+C`,[`\\frac{(${a}x+1)^{${n+1}}}{${n+1}}+C`,`(${a}x+1)^{${n+1}}+C`,`\\frac{(${a}x+1)^${n}}{${a}}+C`],`Let \\(u=${a}x+1\\).`)}
    if(fam==='trig_linear'){const a=pick([2,3,4,5]);return safeMc(`usub-sin-${a}`,'trig_linear','Find an antiderivative.',`\\sin(${a}x)`,`-\\frac1{${a}}\\cos(${a}x)+C`,[`-\\cos(${a}x)+C`,`\\frac1{${a}}\\cos(${a}x)+C`,`\\frac1{${a}}\\sin(${a}x)+C`],`Use \\(u=${a}x\\).`)}
    if(fam==='exp_quad')return safeMc('usub-expq','exponential_quadratic','Find an antiderivative.',`2xe^{x^2}`,`e^{x^2}+C`,[`2e^{x^2}+C`,`xe^{x^2}+C`,`e^{2x}+C`],`Let \\(u=x^2\\).`);
-   if(fam==='radical')return safeMc('usub-rad','radical_linear','Find an antiderivative.',`\\sqrt{3x+1}`,`\\frac{2}{9}(3x+1)^{3/2}+C`,[`\\frac23(3x+1)^{3/2}+C`,`\\frac29\\sqrt{3x+1}+C`,`2(3x+1)^{3/2}+C`],`Use \\(u=3x+1\\).`);
-   if(fam==='x5root')return safeMc('usub-x5root','power_times_root','Find an antiderivative.',`x^5\\sqrt{x^3+1}`,`\\frac{2}{15}(x^3+1)^{5/2}-\\frac{2}{9}(x^3+1)^{3/2}+C`,[`\\frac27(x^3+1)^{7/2}+C`,`\\frac23(x^3+1)^{3/2}+C`,`\\frac{2}{15}(x^3+1)^{5/2}+C`],`Let \\(u=x^3+1\\), then write \\(x^3=u-1\\).`);
-   if(fam==='xrootshift')return safeMc('usub-xroot','x_times_shifted_root','Find an antiderivative.',`x\\sqrt{x-1}`,`\\frac25(x-1)^{5/2}+\\frac23(x-1)^{3/2}+C`,[`\\frac25(x-1)^{5/2}+C`,`\\frac23(x-1)^{3/2}+C`,`\\frac25x^{5/2}+C`],`Let \\(u=x-1\\), so \\(x=u+1\\).`);
-   return safeMc('usub-fourth','fourth_root','Find an antiderivative.',`\\frac{x}{\\sqrt[4]{x^2+1}}`,`\\frac23(x^2+1)^{3/4}+C`,[`\\frac12(x^2+1)^{3/4}+C`,`\\frac43(x^2+1)^{3/4}+C`,`(x^2+1)^{7/8}+C`],`Use \\(u=x^2+1\\) and rewrite the fourth root as a fractional power.`);
+   if(fam==='radical')return safeMc('usub-rad','radical_linear','Find an antiderivative.',`\\sqrt{3x+1}`,`\\frac{2}{9}(3x+1)^{\\frac{3}{2}}+C`,[`\\frac23(3x+1)^{\\frac{3}{2}}+C`,`\\frac29\\sqrt{3x+1}+C`,`2(3x+1)^{\\frac{3}{2}}+C`],`Use \\(u=3x+1\\).`);
+   if(fam==='x5root')return safeMc('usub-x5root','power_times_root','Find an antiderivative.',`x^5\\sqrt{x^3+1}`,`\\frac{2}{15}(x^3+1)^{\\frac{5}{2}}-\\frac{2}{9}(x^3+1)^{\\frac{3}{2}}+C`,[`\\frac27(x^3+1)^{\\frac{7}{2}}+C`,`\\frac23(x^3+1)^{\\frac{3}{2}}+C`,`\\frac{2}{15}(x^3+1)^{\\frac{5}{2}}+C`],`Let \\(u=x^3+1\\), then write \\(x^3=u-1\\).`);
+   if(fam==='xrootshift')return safeMc('usub-xroot','x_times_shifted_root','Find an antiderivative.',`x\\sqrt{x-1}`,`\\frac25(x-1)^{\\frac{5}{2}}+\\frac23(x-1)^{\\frac{3}{2}}+C`,[`\\frac25(x-1)^{\\frac{5}{2}}+C`,`\\frac23(x-1)^{\\frac{3}{2}}+C`,`\\frac25x^{\\frac{5}{2}}+C`],`Let \\(u=x-1\\), so \\(x=u+1\\).`);
+   return safeMc('usub-fourth','fourth_root','Find an antiderivative.',`\\frac{x}{\\sqrt[4]{x^2+1}}`,`\\frac23(x^2+1)^{\\frac{3}{4}}+C`,[`\\frac12(x^2+1)^{\\frac{3}{4}}+C`,`\\frac43(x^2+1)^{\\frac{3}{4}}+C`,`(x^2+1)^{\\frac{7}{8}}+C`],`Use \\(u=x^2+1\\) and rewrite the fourth root as a fractional power.`);
  };
 
  G['mean-value-theorem-for-integrals']=()=>{
@@ -1192,7 +1192,7 @@ G['derivatives-conceptual-review']=()=>{
    if(fam==='odd_rational')return safeMc('av-odd','average_odd',prompt,`f(x)=\\frac{x}{x^2+1},\\quad [-2,2]`,'0',['1','2','-1'],`The function is odd on a symmetric interval, so its integral and average value are 0.`);
    if(fam==='radical')return safeMc('av-root','average_radical',prompt,`f(x)=\\sqrt{x},\\quad [0,4]`,`\\frac43`,[`\\frac83`,`2`,`4`],`Compute \\(\\frac14\\int_0^4\\sqrt{x}dx\\).`);
    if(fam==='linear_power')return safeMc('av-linpow','average_linear_power',prompt,`f(x)=(2x+1)^2,\\quad [0,2]`,`\\frac{31}{3}`,[`\\frac{62}{3}`,'31','10'],`Average value is one over the interval length times the definite integral.`);
-   if(fam==='tangent')return safeMc('av-tan','average_tangent',prompt,`f(x)=\\tan x,\\quad [0,\\pi/4]`,`\\frac{2\\ln 2}{\\pi}`,[`\\frac{4\\ln 2}{\\pi}`,`\\ln2`,'1'],`\\(\\int_0^{\\pi/4}\\tan x\\,dx=\\frac12\\ln2\\). Divide by the interval length \\(\\pi/4\\).`);
+   if(fam==='tangent')return safeMc('av-tan','average_tangent',prompt,`f(x)=\\tan x,\\quad [0,\\pi/4]`,`\\frac{2\\ln 2}{\\pi}`,[`\\frac{4\\ln 2}{\\pi}`,`\\ln2`,'1'],`\\(\\int_0^{\\frac{\\pi}{4}}\\tan x\\,dx=\\frac12\\ln2\\). Divide by the interval length \\(\\pi/4\\).`);
    if(fam==='exponential')return safeMc('av-exp','average_exponential',prompt,`f(x)=e^x,\\quad [0,1]`,'e-1',['e','1','e+1'],`The interval length is 1, so the average is \\(e-1\\).`);
    return safeMc('av-shift','average_shifted_power',prompt,`f(x)=(x-1)^4,\\quad [0,2]`,`\\frac15`,[`\\frac25`,`1`,`\\frac14`],`Use symmetry or integrate directly, then divide by the interval length 2.`);
  };
@@ -1218,17 +1218,17 @@ G['derivatives-conceptual-review']=()=>{
 
  G['separable-differential-equations']=()=>{
    const fam=pick(['general','initial_value','interval','context_heating','context_cooling']);
-   if(fam==='general')return safeMc('sep-gen','general_solution','Solve the separable differential equation.',`\\frac{dy}{dx}=xy`,`y=Ce^{x^2/2}`,[`y=Ce^x`,`y=Cx^2`,`y=e^{xy}`],`Separate \\(dy/y=x\\,dx\\), integrate, then exponentiate.`);
+   if(fam==='general')return safeMc('sep-gen','general_solution','Solve the separable differential equation.',`\\frac{dy}{dx}=xy`,`y=Ce^{\\frac{x^2}{2}}`,[`y=Ce^x`,`y=Cx^2`,`y=e^{xy}`],`Separate \\(dy/y=x\\,dx\\), integrate, then exponentiate.`);
    if(fam==='initial_value')return safeMc('sep-iv','initial_value_solution','Solve the separable differential equation with the given initial condition.',`\\frac{dy}{dx}=2xy,\\quad y(0)=3`,`y=3e^{x^2}`,[`y=3e^{2x}`,`y=e^{x^2}+2`,`y=3x^2`],`Separate variables and use the initial condition to determine the constant.`);
    if(fam==='interval')return safeMc('sep-int','validity_interval','Solve and give the interval containing x=0 on which the solution is valid.',`\\frac{dy}{dx}=\\frac{y}{x+2},\\quad y(0)=1`,`y=\\frac{x+2}{2},\\quad x>-2`,[`y=2(x+2),\\quad x>-2`,`y=\\frac{x+2}{2},\\quad x\\ne-2`,`y=e^{x+2},\\quad x>-2`],`Separate \\(dy/y=dx/(x+2)\\). The initial point lies on the interval \\((-2,\\infty)\\).`);
-   if(fam==='context_heating')return safeMc('sep-heat','contextual_separable','A liquid temperature H satisfies the differential equation. Which general solution form is correct?',`\\frac{dH}{dt}=\\frac15(H-50)`,`H=50+Ce^{t/5}`,[`H=50+Ce^{-t/5}`,`H=Ce^{t/5}`,`H=50+Ct/5`],`Separate \\(dH/(H-50)=dt/5\\), integrate, and exponentiate.`);
-   return safeMc('sep-cool','contextual_separable_cooling','A temperature H satisfies the differential equation. Which general solution form is correct?',`\\frac{dH}{dt}=-\\frac14(H-70)`,`H=70+Ce^{-t/4}`,[`H=70+Ce^{t/4}`,`H=Ce^{-t/4}`,`H=70-Ct/4`],`Separate variables; the negative coefficient produces exponential decay toward 70.`);
+   if(fam==='context_heating')return safeMc('sep-heat','contextual_separable','A liquid temperature H satisfies the differential equation. Which general solution form is correct?',`\\frac{dH}{dt}=\\frac15(H-50)`,`H=50+Ce^{\\frac{t}{5}}`,[`H=50+Ce^{-\\frac{t}{5}}`,`H=Ce^{\\frac{t}{5}}`,`H=50+Ct/5`],`Separate \\(dH/(H-50)=dt/5\\), integrate, and exponentiate.`);
+   return safeMc('sep-cool','contextual_separable_cooling','A temperature H satisfies the differential equation. Which general solution form is correct?',`\\frac{dH}{dt}=-\\frac14(H-70)`,`H=70+Ce^{-\\frac{t}{4}}`,[`H=70+Ce^{\\frac{t}{4}}`,`H=Ce^{-\\frac{t}{4}}`,`H=70-Ct/4`],`Separate variables; the negative coefficient produces exponential decay toward 70.`);
  };
 
  G['rate-problems']=()=>{
    const fam=pick(['traffic','tank','ballots','delayed_flow','attendance']);
    if(fam==='traffic'){const P0=pick([80,100,120,150]),A=pick([10,15,20]),B=pick([5,10,15,20]),T=pick([3,4,5]),value=P0+A*T+B*(T/2-Math.sin(2*T)/4);return calcNumeric(`rate-traffic-${P0}-${A}-${B}-${T}`,'calculator_traffic',`Calculator Active: ${P0} cars are initially in a parking area. Cars enter at rate R(t). How many cars are present at t=${T}? Round to three decimals.`,`R(t)=${A}+${B}\\sin^2t`,value,`Use initial amount plus \\(\\int_0^${T}R(t)\\,dt\\).`)}
-   if(fam==='tank'){const P0=pick([300,400,500,600]),inn=pick([15,20,25]),c=pick([4,5,6,8]),q=pick([4,5,6]),T=pick([4,5,6]),value=P0+inn*T-c*q*(Math.exp(T/q)-1);return calcNumeric(`rate-tank-${P0}-${inn}-${c}-${q}-${T}`,'calculator_tank',`Calculator Active: A tank initially contains ${P0} gallons. Water enters at ${inn} gal/min and leaves at rate L(t). How much water is present after ${T} minutes? Round to three decimals.`,`L(t)=${c}e^{t/${q}}`,value,`Use \\(${P0}+\\int_0^${T}(${inn}-L(t))\\,dt\\).`)}
+   if(fam==='tank'){const P0=pick([300,400,500,600]),inn=pick([15,20,25]),c=pick([4,5,6,8]),q=pick([4,5,6]),T=pick([4,5,6]),value=P0+inn*T-c*q*(Math.exp(T/q)-1);return calcNumeric(`rate-tank-${P0}-${inn}-${c}-${q}-${T}`,'calculator_tank',`Calculator Active: A tank initially contains ${P0} gallons. Water enters at ${inn} gal/min and leaves at rate L(t). How much water is present after ${T} minutes? Round to three decimals.`,`L(t)=${c}e^{\\frac{t}{${q}}}`,value,`Use \\(${P0}+\\int_0^${T}(${inn}-L(t))\\,dt\\).`)}
    if(fam==='ballots'){const P0=pick([200,250,300]),A=pick([30,40,50]),T=pick([4,5,6]),value=P0+A*(T-Math.sin(T));return calcNumeric(`rate-ballots-${P0}-${A}-${T}`,'calculator_ballots',`Calculator Active: At t=0, ${P0} ballots have been counted. Ballots are counted at rate R(t). How many have been counted by t=${T}? Round to three decimals.`,`R(t)=${A}(1-\\cos t)`,value,`Compute \\(${P0}+\\int_0^${T}R(t)\\,dt\\).`)}
    if(fam==='delayed_flow'){const P0=pick([250,300,400]),inn=pick([20,30,40]),c=pick([4,6,8]),T=pick([3,4,5]),value=P0+inn*T-c*T**3/3;return calcNumeric(`rate-delay-${P0}-${inn}-${c}-${T}`,'calculator_delayed_outflow',`Calculator Active: A reservoir contains ${P0} units at t=0. Inflow is ${inn} units/hour while outflow is R(t). How much remains at t=${T}? Round to three decimals.`,`R(t)=${c}t^2`,value,`Use \\(${P0}+\\int_0^${T}(${inn}-${c}t^2)\\,dt\\).`)}
    const P0=pick([400,500,600]),A=pick([50,60,70]),T=pick([2,3,4]),value=P0+A*(T+Math.cos(T)-1);return calcNumeric(`rate-attend-${P0}-${A}-${T}`,'calculator_attendance',`Calculator Active: A festival has ${P0} attendees at t=0. Net attendance changes at rate N(t). How many attendees are present at t=${T}? Round to three decimals.`,`N(t)=${A}(1-\\sin t)`,value,`Use \\(${P0}+\\int_0^${T}N(t)\\,dt\\).`);
@@ -1336,8 +1336,8 @@ G['derivatives-conceptual-review']=()=>{
    if(fam==='quartic_horizontal'){const a=pick([1,2,3]);return mcA(`hvA-q4-${a}`,'horizontal_quartic','Find all x-values where the graph has a horizontal tangent.',`f(x)=x^4-${2*a*a}x^2`,`-${a}, 0, ${a}`,[`-${a}, ${a}`,`0, ${a}`,`-${a}, 0`],`Factor \\(f'(x)=4x(x^2-${a*a})\\).`);}
    if(fam==='sine_horizontal')return mcA('hvA-sin','horizontal_trig','On \\([0,2\\pi]\\), where does the graph have horizontal tangents?',`f(x)=\\sin x`,`\\frac{\\pi}{2}, \\frac{3\\pi}{2}`,[`0, \\pi, 2\\pi`,`\\pi`,`0, 2\\pi`],`Horizontal tangents occur where \\(f'(x)=\\cos x=0\\).`);
    if(fam==='cosine_horizontal')return mcA('hvA-cos','horizontal_trig','On \\([0,2\\pi]\\), where does the graph have horizontal tangents?',`f(x)=\\cos x`,`0, \\pi, 2\\pi`,[`\\frac{\\pi}{2}, \\frac{3\\pi}{2}`,`\\pi`,`0,2\\pi`],`Horizontal tangents occur where \\(f'(x)=-\\sin x=0\\).`);
-   if(fam==='cube_root_vertical'){const h=pick([-3,-2,-1,1,2,3]),sh=h<0?`x+${-h}`:`x-${h}`;return mcA(`hvA-cuberoot-${h}`,'vertical_cube_root','At what x-value does the graph have a vertical tangent?',`f(x)=\\sqrt[3]{${sh}}`,String(h),[String(-h),'0',String(h+1)],`The derivative contains \\(( ${sh})^{-2/3}\\), which becomes unbounded at \\(x=${h}\\).`);}
-   const h=pick([-3,-2,-1,1,2,3]),sh=h<0?`x+${-h}`:`x-${h}`;return mcA(`hvA-fifth-${h}`,'vertical_fifth_root','At what x-value does the graph have a vertical tangent?',`f(x)=\\sqrt[5]{${sh}}`,String(h),[String(-h),'0',String(h-1)],`The derivative is proportional to \\(( ${sh})^{-4/5}\\), so the tangent is vertical at \\(x=${h}\\).`);
+   if(fam==='cube_root_vertical'){const h=pick([-3,-2,-1,1,2,3]),sh=h<0?`x+${-h}`:`x-${h}`;return mcA(`hvA-cuberoot-${h}`,'vertical_cube_root','At what x-value does the graph have a vertical tangent?',`f(x)=\\sqrt[3]{${sh}}`,String(h),[String(-h),'0',String(h+1)],`The derivative contains \\(( ${sh})^{-\\frac{2}{3}}\\), which becomes unbounded at \\(x=${h}\\).`);}
+   const h=pick([-3,-2,-1,1,2,3]),sh=h<0?`x+${-h}`:`x-${h}`;return mcA(`hvA-fifth-${h}`,'vertical_fifth_root','At what x-value does the graph have a vertical tangent?',`f(x)=\\sqrt[5]{${sh}}`,String(h),[String(-h),'0',String(h-1)],`The derivative is proportional to \\(( ${sh})^{-\\frac{4}{5}}\\), so the tangent is vertical at \\(x=${h}\\).`);
  };
 
  G['absolute-and-local-extrema-and-the-extreme-value-theorem']=()=>{
@@ -1375,7 +1375,7 @@ G['derivatives-conceptual-review']=()=>{
    const fam=pick(['sqrt','cube_root','fourth_root','reciprocal','sine']);
    if(fam==='sqrt'){const a=pick([25,36,49,64]),r=Math.sqrt(a),delta=pick([-1,1,2]),x=a+delta,ans=ratTexValue(r+delta/(2*r));return mcA(`linA-sqrt-${a}-${delta}`,'sqrt_linearization',`Use linearization at x=${a} to approximate the value.`,`\\sqrt{${x}}`,ans,[String(r),ratTexValue(r+delta/r),ratTexValue(r-delta/(2*r))],`For \\(f(x)=\\sqrt{x}\\), \\(L(x)=${r}+\\frac{1}{${2*r}}(x-${a})\\).`);}
    if(fam==='cube_root'){const a=pick([27,64,125]),r=Math.round(Math.cbrt(a)),delta=pick([-5,-2,2,4]),x=a+delta,ans=ratTexValue(r+delta/(3*r*r));return mcA(`linA-cube-${a}-${delta}`,'cube_root_linearization',`Use linearization at x=${a} to approximate the value.`,`\\sqrt[3]{${x}}`,ans,[String(r),ratTexValue(r+delta/(r*r)),ratTexValue(r-delta/(3*r*r))],`For \\(f(x)=\\sqrt[3]{x}\\), \\(f'(${a})=\\frac{1}{${3*r*r}}\\).`);}
-   if(fam==='fourth_root'){const a=pick([16,81,256]),r=Math.round(a**0.25),delta=pick([-1,1,2]),x=a+delta,den=4*r**3,ans=ratTexValue(r+delta/den);return mcA(`linA-fourth-${a}-${delta}`,'fourth_root_linearization',`Use linearization at x=${a} to approximate the value.`,`\\sqrt[4]{${x}}`,ans,[String(r),ratTexValue(r+delta/(4*r*r)),ratTexValue(r-delta/den)],`Use \\(f'(x)=\\frac{1}{4x^{3/4}}\\).`);}
+   if(fam==='fourth_root'){const a=pick([16,81,256]),r=Math.round(a**0.25),delta=pick([-1,1,2]),x=a+delta,den=4*r**3,ans=ratTexValue(r+delta/den);return mcA(`linA-fourth-${a}-${delta}`,'fourth_root_linearization',`Use linearization at x=${a} to approximate the value.`,`\\sqrt[4]{${x}}`,ans,[String(r),ratTexValue(r+delta/(4*r*r)),ratTexValue(r-delta/den)],`Use \\(f'(x)=\\frac{1}{4x^{\\frac{3}{4}}}\\).`);}
    if(fam==='reciprocal'){const a=pick([2,4,5]),d=pick([1,-1]),den=10,xTex=`${a}${d>0?'+':'-'}\\frac1{10}`,val=1/a-d/(10*a*a),ans=ratTexValue(val);return mcA(`linA-rec-${a}-${d}`,'reciprocal_linearization',`Use linearization at x=${a} to approximate the value.`,`\\frac{1}{${xTex}}`,ans,[texRat(1,a),ratTexValue(1/a+d/(10*a*a)),ratTexValue(1/a-d/(10*a))],`For \\(f(x)=1/x\\), \\(f'(${a})=-1/${a*a}\\).`);}
    return mcA('linA-sine','sine_linearization','Use the linearization of sin x at x=0 to approximate the value.',`\\sin\\left(\\frac1{20}\\right)`,`\\frac1{20}`,[`\\frac1{400}`,'0','1'],`At 0, \\(f(0)=0\\) and \\(f'(0)=1\\), so \\(L(x)=x\\).`);
  };
@@ -1464,7 +1464,7 @@ G['derivatives-conceptual-review']=()=>{
    const fam=pick(['poly','negative_power','fractional_power','divide_terms','sin2','cos2','sec2','definite']);
    if(fam==='poly')return mcA('basicA-poly','polynomial','Find an antiderivative.',`3x^4-2x^2+5`,`\\frac35x^5-\\frac23x^3+5x+C`,[`15x^3-4x+5+C`,`\\frac34x^5-\\frac22x^3+5x+C`,`\\frac35x^5-\\frac23x^3+C`],`Integrate each term using the power rule.`);
    if(fam==='negative_power')return mcA('basicA-neg','negative_power','Find an antiderivative.',`4x^{-3}-3x^{-2}`,`-2x^{-2}+3x^{-1}+C`,[`2x^{-2}-3x^{-1}+C`,`-12x^{-4}+6x^{-3}+C`,`-2x^{-2}-3x^{-1}+C`],`Increase each exponent by 1 and divide by the new exponent.`);
-   if(fam==='fractional_power')return mcA('basicA-frac','fractional_power','Find an antiderivative.',`2x^{3/2}-3x^{1/2}`,`\\frac45x^{5/2}-2x^{3/2}+C`,[`\\frac43x^{5/2}-\\frac32x^{3/2}+C`,`\\frac45x^{3/2}-2x^{1/2}+C`,`\\frac45x^{5/2}+2x^{3/2}+C`],`Use the power rule with fractional exponents.`);
+   if(fam==='fractional_power')return mcA('basicA-frac','fractional_power','Find an antiderivative.',`2x^{\\frac{3}{2}}-3x^{\\frac{1}{2}}`,`\\frac45x^{\\frac{5}{2}}-2x^{\\frac{3}{2}}+C`,[`\\frac43x^{\\frac{5}{2}}-\\frac32x^{\\frac{3}{2}}+C`,`\\frac45x^{\\frac{3}{2}}-2x^{\\frac{1}{2}}+C`,`\\frac45x^{\\frac{5}{2}}+2x^{\\frac{3}{2}}+C`],`Use the power rule with fractional exponents.`);
    if(fam==='divide_terms')return mcA('basicA-div','divide_each_term','Rewrite by dividing each term, then integrate.',`\\int\\frac{3x^4-2x^2+5}{x^3}\\,dx`,`\\frac32x^2-2\\ln|x|-\\frac{5}{2x^2}+C`,[`3x^2-2\\ln|x|+5x^{-2}+C`,`\\frac32x^2-2x^{-1}-\\frac{5}{2x^2}+C`,`\\frac32x^2+2\\ln|x|-\\frac{5}{2x^2}+C`],`First rewrite as \\(3x-2/x+5x^{-3}\\), then integrate term-by-term.`);
    if(fam==='sin2')return mcA('basicA-sin2','trig_identity','Find an antiderivative.',`\\sin^2x`,`\\frac{x}{2}-\\frac{\\sin2x}{4}+C`,[`-\\frac{\\cos^3x}{3}+C`,`\\frac{x}{2}+\\frac{\\sin2x}{4}+C`,`2\\sin x\\cos x+C`],`Use \\(\\sin^2x=(1-\\cos2x)/2\\).`);
    if(fam==='cos2')return mcA('basicA-cos2','trig_identity','Find an antiderivative.',`\\cos^2x`,`\\frac{x}{2}+\\frac{\\sin2x}{4}+C`,[`\\frac{x}{2}-\\frac{\\sin2x}{4}+C`,`\\sin x+C`,`2\\sin x\\cos x+C`],`Use \\(\\cos^2x=(1+\\cos2x)/2\\).`);
@@ -1480,10 +1480,10 @@ G['derivatives-conceptual-review']=()=>{
    if(fam==='csc_cot')return mcA('usubA-csccot','cosecant_cotangent','Find an antiderivative.',`-3\\csc(3x)\\cot(3x)`,`\\csc(3x)+C`,[`-\\csc(3x)+C`,`\\cot(3x)+C`,`3\\csc(3x)+C`],`Recognize the derivative of \\(\\csc(3x)\\).`);
    if(fam==='exp_trig')return mcA('usubA-exptrig','exponential_of_trig','Find an antiderivative.',`\\cos x\\,e^{\\sin x}`,`e^{\\sin x}+C`,[`e^{\\cos x}+C`,`\\sin x\\,e^{\\sin x}+C`,`\\cos x\\,e^{\\sin x}+C`],`Let \\(u=\\sin x\\).`);
    if(fam==='linear_denominator')return mcA('usubA-den','linear_denominator','Find an antiderivative.',`\\frac{6}{3x+2}`,`2\\ln|3x+2|+C`,[`6\\ln|3x+2|+C`,`\\frac{2}{3x+2}+C`,`\\ln|3x+2|+C`],`Let \\(u=3x+2\\).`);
-   if(fam==='radical')return mcA('usubA-rad','radical_linear','Find an antiderivative.',`\\sqrt{3x+1}`,`\\frac29(3x+1)^{3/2}+C`,[`\\frac23(3x+1)^{3/2}+C`,`\\frac29\\sqrt{3x+1}+C`,`2(3x+1)^{3/2}+C`],`Use \\(u=3x+1\\).`);
+   if(fam==='radical')return mcA('usubA-rad','radical_linear','Find an antiderivative.',`\\sqrt{3x+1}`,`\\frac29(3x+1)^{\\frac{3}{2}}+C`,[`\\frac23(3x+1)^{\\frac{3}{2}}+C`,`\\frac29\\sqrt{3x+1}+C`,`2(3x+1)^{\\frac{3}{2}}+C`],`Use \\(u=3x+1\\).`);
    if(fam==='power_composition')return mcA('usubA-comp','power_composition','Find an antiderivative.',`6x(3x^2+1)^4`,`\\frac15(3x^2+1)^5+C`,[`(3x^2+1)^5+C`,`\\frac1{30}(3x^2+1)^5+C`,`\\frac15(3x^2+1)^4+C`],`Let \\(u=3x^2+1\\), so \\(du=6x\\,dx\\).`);
-   if(fam==='x5root')return mcA('usubA-x5','power_times_root','Find an antiderivative.',`x^5\\sqrt{x^3+1}`,`\\frac{2}{15}(x^3+1)^{5/2}-\\frac{2}{9}(x^3+1)^{3/2}+C`,[`\\frac27(x^3+1)^{7/2}+C`,`\\frac23(x^3+1)^{3/2}+C`,`\\frac{2}{15}(x^3+1)^{5/2}+C`],`Let \\(u=x^3+1\\), then write \\(x^3=u-1\\).`);
-   return mcA('usubA-fourth','fourth_root','Find an antiderivative.',`\\frac{x}{\\sqrt[4]{x^2+1}}`,`\\frac23(x^2+1)^{3/4}+C`,[`\\frac12(x^2+1)^{3/4}+C`,`\\frac43(x^2+1)^{3/4}+C`,`(x^2+1)^{7/8}+C`],`Use \\(u=x^2+1\\) and rewrite the fourth root as a fractional power.`);
+   if(fam==='x5root')return mcA('usubA-x5','power_times_root','Find an antiderivative.',`x^5\\sqrt{x^3+1}`,`\\frac{2}{15}(x^3+1)^{\\frac{5}{2}}-\\frac{2}{9}(x^3+1)^{\\frac{3}{2}}+C`,[`\\frac27(x^3+1)^{\\frac{7}{2}}+C`,`\\frac23(x^3+1)^{\\frac{3}{2}}+C`,`\\frac{2}{15}(x^3+1)^{\\frac{5}{2}}+C`],`Let \\(u=x^3+1\\), then write \\(x^3=u-1\\).`);
+   return mcA('usubA-fourth','fourth_root','Find an antiderivative.',`\\frac{x}{\\sqrt[4]{x^2+1}}`,`\\frac23(x^2+1)^{\\frac{3}{4}}+C`,[`\\frac12(x^2+1)^{\\frac{3}{4}}+C`,`\\frac43(x^2+1)^{\\frac{3}{4}}+C`,`(x^2+1)^{\\frac{7}{8}}+C`],`Use \\(u=x^2+1\\) and rewrite the fourth root as a fractional power.`);
  };
 
  // Shared log/inverse-trig pool for comprehensive review. Individual Topic 10 remains titled Natural Log.
@@ -1648,7 +1648,7 @@ G['derivatives-conceptual-review']=()=>{
     const fam=pick(['poly','negative_power','fractional_power','divide_terms','sin2','cos2','sec2','definite']);
     if(fam==='poly'){const p=ri(3,6),q=ri(1,p-1),a=nz(-6,6),b=nz(-6,6),c=ri(-6,6),correct=`${ratV(a,p+1)}x^{${p+1}}${signedV(b/(q+1)===Math.trunc(b/(q+1))?b/(q+1):0)}`;const t1=`${ratV(a,p+1)}x^{${p+1}}`,t2=`${ratV(b,q+1)}x^{${q+1}}`,t3=c===0?'':`${c>0?'+':'-'}${Math.abs(c)}x`,ans=`${t1}${b>0?'+':''}${t2}${t3}+C`;return mcV(`basicV-poly-${p}-${q}-${a}-${b}-${c}`,'polynomial','Find an antiderivative.',`${powerTermV(a,p)}${b?signedV(b,q===1?'x':`x^{${q}}`):''}${c?signedV(c):''}`,ans,[`${a*p}x^{${p-1}}+C`,`${t1}${b>0?'+':''}${t2}+C`,`${ratV(a,p)}x^{${p+1}}${t3}+C`],`Integrate each term with the power rule.`);}
     if(fam==='negative_power'){const a=pick([2,4,6,8]),b=pick([2,3,4,5]),ans=`-${ratV(a,2)}x^{-2}${b>0?'-':''}${ratV(b,1)}x^{-1}+C`;return mcV(`basicV-neg-${a}-${b}`,'negative_power','Find an antiderivative.',`${a}x^{-3}+${b}x^{-2}`,ans,[`${ratV(a,2)}x^{-2}+${b}x^{-1}+C`,`-${a*3}x^{-4}-${b*2}x^{-3}+C`,`-${ratV(a,2)}x^{-2}+${b}x^{-1}+C`],`Increase each exponent by 1 and divide by the new exponent.`);}
-    if(fam==='fractional_power'){const a=pick([1,2,3,4]),b=pick([1,2,3,4]),ans=`${ratV(2*a,3)}x^{3/2}+${ratV(2*b,5)}x^{5/2}+C`;return mcV(`basicV-frac-${a}-${b}`,'fractional_power','Find an antiderivative.',`${a===1?'':a}x^{1/2}+${b===1?'':b}x^{3/2}`,ans,[`${ratV(a,2)}x^{3/2}+${ratV(b,2)}x^{5/2}+C`,`${ratV(2*a,3)}x^{1/2}+${ratV(2*b,5)}x^{3/2}+C`,`${ratV(3*a,2)}x^{3/2}+${ratV(5*b,2)}x^{5/2}+C`],`Apply the power rule to the fractional exponents.`);}
+    if(fam==='fractional_power'){const a=pick([1,2,3,4]),b=pick([1,2,3,4]),ans=`${ratV(2*a,3)}x^{\\frac{3}{2}}+${ratV(2*b,5)}x^{\\frac{5}{2}}+C`;return mcV(`basicV-frac-${a}-${b}`,'fractional_power','Find an antiderivative.',`${a===1?'':a}x^{\\frac{1}{2}}+${b===1?'':b}x^{\\frac{3}{2}}`,ans,[`${ratV(a,2)}x^{\\frac{3}{2}}+${ratV(b,2)}x^{\\frac{5}{2}}+C`,`${ratV(2*a,3)}x^{\\frac{1}{2}}+${ratV(2*b,5)}x^{\\frac{3}{2}}+C`,`${ratV(3*a,2)}x^{\\frac{3}{2}}+${ratV(5*b,2)}x^{\\frac{5}{2}}+C`],`Apply the power rule to the fractional exponents.`);}
     if(fam==='divide_terms'){const A=pick([2,4,6]),B=nz(-5,5),C=pick([2,4,6]),ans=`${ratV(A,2)}x^2${B>0?'+':''}${B}\\ln|x|-${ratV(C,2)}x^{-2}+C`;return mcV(`basicV-div-${A}-${B}-${C}`,'divide_each_term','Rewrite by dividing each term, then integrate.',`\\int\\frac{${A}x^4${B>0?'+':''}${B}x^2+${C}}{x^3}\\,dx`,ans,[`${A}x^2${B>0?'+':''}${B}\\ln|x|+${C}x^{-2}+C`,`${ratV(A,2)}x^2${B>0?'+':''}${B}x^{-1}-${ratV(C,2)}x^{-2}+C`,`${ratV(A,2)}x^2${B>0?'-':'+'}${Math.abs(B)}\\ln|x|-${ratV(C,2)}x^{-2}+C`],`Rewrite the integrand as \\(${A}x${B>0?'+':''}${B}/x+${C}x^{-3}\\), then integrate term by term.`);}
     if(fam==='sin2'||fam==='cos2'){const a=pick([1,2,3,4]),sign=fam==='sin2'?'-':'+',correct=`${ratV(a,2)}x${sign}${ratV(a,4)}\\sin(2x)+C`,wrongSign=sign==='-'?'+':'-';return mcV(`basicV-${fam}-${a}`,'trig_identity','Find an antiderivative.',`${a===1?'':a}\\${fam==='sin2'?'sin':'cos'}^2x`,correct,[`${ratV(a,2)}x${wrongSign}${ratV(a,4)}\\sin(2x)+C`,`${a}\\sin x\\cos x+C`,`${ratV(a,2)}x+C`],`Use the power-reduction identity before integrating.`);}
     if(fam==='sec2'){const a=pick([1,2,3,4]),b=pick([1,2,3]),correct=`${a===1?'':a}\\tan x+${b===1?'':b}\\csc x+C`;return mcV(`basicV-sec-${a}-${b}`,'basic_trig','Find an antiderivative.',`${a===1?'':a}\\sec^2x-${b===1?'':b}\\csc x\\cot x`,correct,[`${a===1?'':a}\\sec x+${b===1?'':b}\\csc x+C`,`${a===1?'':a}\\tan x-${b===1?'':b}\\csc x+C`,`${a===1?'':a}\\tan x+${b===1?'':b}\\cot x+C`],`Use the standard antiderivatives of \\(\\sec^2x\\) and \\(\\csc x\\cot x\\).`);}
@@ -1663,10 +1663,10 @@ G['derivatives-conceptual-review']=()=>{
     if(fam==='csc_cot'){const k=pick([2,3,4,5]);return mcV(`usubV-csccot-${k}`,'cosecant_cotangent','Find an antiderivative.',`-${k}\\csc(${k}x)\\cot(${k}x)`,`\\csc(${k}x)+C`,[`-\\csc(${k}x)+C`,`\\cot(${k}x)+C`,`${k}\\csc(${k}x)+C`],`Recognize the derivative of \\(\\csc(${k}x)\\).`);}
     if(fam==='exp_trig'){const k=pick([1,2,3,4]),arg=k===1?'x':`${k}x`,coef=k===1?'':k;return mcV(`usubV-exptrig-${k}`,'exponential_of_trig','Find an antiderivative.',`${coef}\\cos(${arg})e^{\\sin(${arg})}`,`e^{\\sin(${arg})}+C`,[`e^{\\cos(${arg})}+C`,`\\sin(${arg})e^{\\sin(${arg})}+C`,`${coef}e^{\\sin(${arg})}+C`],`Let \\(u=\\sin(${arg})\\).`);}
     if(fam==='linear_denominator'){const a=pick([2,3,4,5]),b=ri(-4,4),m=pick([1,2,3]),u=linearV(a,b),num=m*a;return mcV(`usubV-den-${a}-${b}-${m}`,'linear_denominator','Find an antiderivative.',`\\frac{${num}}{${u}}`,`${m}\\ln|${u}|+C`,[`${num}\\ln|${u}|+C`,`\\frac{${m}}{${u}}+C`,`\\ln|${u}|+C`],`Let \\(u=${u}\\), so \\(du=${a}dx\\).`);}
-    if(fam==='radical'){const a=pick([2,3,4]),b=ri(1,5),u=linearV(a,b),coef=ratV(2,3*a);return mcV(`usubV-rad-${a}-${b}`,'radical_linear','Find an antiderivative.',`\\sqrt{${u}}`,`${coef}(${u})^{3/2}+C`,[`${ratV(2,3)}(${u})^{3/2}+C`,`${coef}\\sqrt{${u}}+C`,`2(${u})^{3/2}+C`],`Use \\(u=${u}\\).`);}
+    if(fam==='radical'){const a=pick([2,3,4]),b=ri(1,5),u=linearV(a,b),coef=ratV(2,3*a);return mcV(`usubV-rad-${a}-${b}`,'radical_linear','Find an antiderivative.',`\\sqrt{${u}}`,`${coef}(${u})^{\\frac{3}{2}}+C`,[`${ratV(2,3)}(${u})^{\\frac{3}{2}}+C`,`${coef}\\sqrt{${u}}+C`,`2(${u})^{\\frac{3}{2}}+C`],`Use \\(u=${u}\\).`);}
     if(fam==='power_composition'){const a=pick([2,3,4]),b=ri(1,5),p=ri(2,5),u=`${a}x^2+${b}`,der=2*a;return mcV(`usubV-comp-${a}-${b}-${p}`,'power_composition','Find an antiderivative.',`${der}x(${u})^{${p}}`,`${ratV(1,p+1)}(${u})^{${p+1}}+C`,[`(${u})^{${p+1}}+C`,`${ratV(1,der*(p+1))}(${u})^{${p+1}}+C`,`${ratV(1,p+1)}(${u})^{${p}}+C`],`Let \\(u=${u}\\), so \\(du=${der}x\\,dx\\).`);}
-    if(fam==='x5root'){const c=pick([1,2,3,4]),u=`x^3+${c}`;return mcV(`usubV-x5-${c}`,'power_times_root','Find an antiderivative.',`x^5\\sqrt{${u}}`,`\\frac{2}{15}(${u})^{5/2}-\\frac{${2*c}}9(${u})^{3/2}+C`,[`\\frac27(${u})^{7/2}+C`,`\\frac23(${u})^{3/2}+C`,`\\frac{2}{15}(${u})^{5/2}+C`],`Let \\(u=${u}\\). Then \\(x^3=u-${c}\\), which produces two power terms in u.`);}
-    const b=ri(1,6),u=`x^2+${b}`;return mcV(`usubV-fourth-${b}`,'fourth_root','Find an antiderivative.',`\\frac{x}{\\sqrt[4]{${u}}}`,`\\frac23(${u})^{3/4}+C`,[`\\frac12(${u})^{3/4}+C`,`\\frac43(${u})^{3/4}+C`,`(${u})^{7/8}+C`],`Use \\(u=${u}\\) and rewrite the fourth root as a fractional power.`);
+    if(fam==='x5root'){const c=pick([1,2,3,4]),u=`x^3+${c}`;return mcV(`usubV-x5-${c}`,'power_times_root','Find an antiderivative.',`x^5\\sqrt{${u}}`,`\\frac{2}{15}(${u})^{\\frac{5}{2}}-\\frac{${2*c}}9(${u})^{\\frac{3}{2}}+C`,[`\\frac27(${u})^{\\frac{7}{2}}+C`,`\\frac23(${u})^{\\frac{3}{2}}+C`,`\\frac{2}{15}(${u})^{\\frac{5}{2}}+C`],`Let \\(u=${u}\\). Then \\(x^3=u-${c}\\), which produces two power terms in u.`);}
+    const b=ri(1,6),u=`x^2+${b}`;return mcV(`usubV-fourth-${b}`,'fourth_root','Find an antiderivative.',`\\frac{x}{\\sqrt[4]{${u}}}`,`\\frac23(${u})^{\\frac{3}{4}}+C`,[`\\frac12(${u})^{\\frac{3}{4}}+C`,`\\frac43(${u})^{\\frac{3}{4}}+C`,`(${u})^{\\frac{7}{8}}+C`],`Use \\(u=${u}\\) and rewrite the fourth root as a fractional power.`);
   };
 
   G['integrals-resulting-in-natural-log-and-inverse-trigonometric-functions']=()=>{
@@ -1894,7 +1894,7 @@ G['derivatives-conceptual-review']=()=>{
     }
     if(fam==='speed_trig_accel'){
       const A=nz(-6,6),v0=ri(-6,6),v=v0+A,ans=Math.abs(v);
-      return mc(`mot5-sta-${A}-${v0}`,'speed_from_acceleration','Find the speed at the indicated time.',`a(t)=${vterm(A,'\\cos t')},\\quad v(0)=${v0},\\quad t=\\frac{\\pi}{2}`,String(ans),[String(v),String(Math.abs(v0)),String(ans+1)],`v(π/2)=v(0)+\\int_0^{π/2}${A}cos t\\,dt=${v}. Speed is |v|=${ans}.`);
+      return mc(`mot5-sta-${A}-${v0}`,'speed_from_acceleration','Find the speed at the indicated time.',`a(t)=${vterm(A,'\\cos t')},\\quad v(0)=${v0},\\quad t=\\frac{\\pi}{2}`,String(ans),[String(v),String(Math.abs(v0)),String(ans+1)],`v(π/2)=v(0)+\\int_0^{\\frac{\\pi}{2}}${A}cos t\\,dt=${v}. Speed is |v|=${ans}.`);
     }
     if(fam==='position_from_velocity'){
       const K=nz(-3,3),B=ri(-5,5),s0=ri(-8,8),T=ri(1,3),ans=s0+K*T**3+B*T;
@@ -1949,12 +1949,12 @@ G['derivatives-conceptual-review']=()=>{
       return mc(`sep5-int-${h}-${y0}`,'validity_interval','Solve and give the interval containing the initial x-value on which the solution is valid.',`\\frac{dy}{dx}=\\frac{y}{${sh}},\\quad y(${x0})=${y0}`,ans,[`y=${y0}(${sh}),\\quad x\\ne${h}`,`y=${y0}e^{${sh}},\\quad x>${h}`,`y=${y0}(${wrongSh}),\\quad x>${h}`],`Separate dy/y=dx/(${sh}). The initial point x=${x0} lies to the right of the singularity x=${h}.`);
     }
     if(fam==='context_cooling'||fam==='context_warming'){
-      const dep=pick(['T','P','Q','M','N']),ambient=pick([20,50,60,70,80]),tau=pick([3,4,5,6]),delta=pick([10,15,20,30]),y0=fam==='context_cooling'?ambient+delta:ambient-delta,sign=fam==='context_cooling'?'-':'-',ans=`${dep}=${ambient}${y0-ambient>0?'+':''}${y0-ambient}e^{-t/${tau}}`;
-      return mc(`sep5-${fam}-${dep}-${ambient}-${tau}-${delta}`,fam==='context_cooling'?'contextual_separable_cooling':'contextual_separable',`Solve the initial-value problem for ${dep}(t).`,`\\frac{d${dep}}{dt}=-\\frac1{${tau}}(${dep}-${ambient}),\\quad ${dep}(0)=${y0}`,ans,[`${dep}=${ambient}${y0-ambient>0?'+':''}${y0-ambient}e^{t/${tau}}`,`${dep}=${y0}e^{-t/${tau}}`,`${dep}=${ambient}${plus(y0-ambient)}t/${tau}`],`Separate d${dep}/(${dep}-${ambient})=-dt/${tau}, integrate, and use ${dep}(0)=${y0}.`);
+      const dep=pick(['T','P','Q','M','N']),ambient=pick([20,50,60,70,80]),tau=pick([3,4,5,6]),delta=pick([10,15,20,30]),y0=fam==='context_cooling'?ambient+delta:ambient-delta,sign=fam==='context_cooling'?'-':'-',ans=`${dep}=${ambient}${y0-ambient>0?'+':''}${y0-ambient}e^{-\\frac{t}{${tau}}}`;
+      return mc(`sep5-${fam}-${dep}-${ambient}-${tau}-${delta}`,fam==='context_cooling'?'contextual_separable_cooling':'contextual_separable',`Solve the initial-value problem for ${dep}(t).`,`\\frac{d${dep}}{dt}=-\\frac1{${tau}}(${dep}-${ambient}),\\quad ${dep}(0)=${y0}`,ans,[`${dep}=${ambient}${y0-ambient>0?'+':''}${y0-ambient}e^{\\frac{t}{${tau}}}`,`${dep}=${y0}e^{-\\frac{t}{${tau}}}`,`${dep}=${ambient}${plus(y0-ambient)}t/${tau}`],`Separate d${dep}/(${dep}-${ambient})=-dt/${tau}, integrate, and use ${dep}(0)=${y0}.`);
     }
     if(fam==='context_growth'){
-      const dep=pick(['P','Q','N','M','A']),tau=pick([2,3,4,5]),p0=pick([20,40,50,75,100]),ans=`${dep}=${p0}e^{t/${tau}}`;
-      return mc(`sep5-growth-${dep}-${tau}-${p0}`,'contextual_separable_growth',`Solve the initial-value problem for ${dep}(t).`,`\\frac{d${dep}}{dt}=\\frac1{${tau}}${dep},\\quad ${dep}(0)=${p0}`,ans,[`${dep}=Ce^{t/${tau}}`,`${dep}=${p0}e^{-t/${tau}}`,`${dep}=${p0}+t/${tau}`],`Separate d${dep}/${dep}=dt/${tau} and use the initial condition at t=0.`);
+      const dep=pick(['P','Q','N','M','A']),tau=pick([2,3,4,5]),p0=pick([20,40,50,75,100]),ans=`${dep}=${p0}e^{\\frac{t}{${tau}}}`;
+      return mc(`sep5-growth-${dep}-${tau}-${p0}`,'contextual_separable_growth',`Solve the initial-value problem for ${dep}(t).`,`\\frac{d${dep}}{dt}=\\frac1{${tau}}${dep},\\quad ${dep}(0)=${p0}`,ans,[`${dep}=Ce^{\\frac{t}{${tau}}}`,`${dep}=${p0}e^{-\\frac{t}{${tau}}}`,`${dep}=${p0}+t/${tau}`],`Separate d${dep}/${dep}=dt/${tau} and use the initial condition at t=0.`);
     }
     const k=pick([2,4,6]),y0=pick([1,2,3]),ans=`y=\\sqrt[3]{${3*k/2}x^2+${y0**3}}`;
     return mc(`sep5-power-${k}-${y0}`,'power_separable_initial_value','Solve the initial-value problem.',`\\frac{dy}{dx}=\\frac{${k}x}{y^2},\\quad y(0)=${y0}`,ans,[`y=\\sqrt{${k}x^2+${y0*y0}}`,`y=\\sqrt[3]{${k}x^2+${y0**3}}`,`y=${3*k/2}x^2+${y0}`],`Separate y^2 dy=${k}x dx, integrate both sides, and apply y(0)=${y0}.`);
@@ -1968,7 +1968,7 @@ G['derivatives-conceptual-review']=()=>{
     }
     if(fam==='tank'){
       const P0=pick([300,400,500,600]),inn=pick([15,20,25,30]),c=pick([4,5,6,8]),q=pick([3,4,5,6]),T=pick([4,5,6]),value=P0+inn*T-c*q*(Math.exp(T/q)-1);
-      return numeric(`rate-tank-${P0}-${inn}-${c}-${q}-${T}`,'calculator_tank',`Calculator Active: A tank initially contains ${P0} gallons. Water enters at ${inn} gal/min and leaves at rate L(t). How much water is present after ${T} minutes? Round to three decimals.`,`L(t)=${c}e^{t/${q}}`,value,`Use ${P0}+\\int_0^${T}(${inn}-L(t))dt.`);
+      return numeric(`rate-tank-${P0}-${inn}-${c}-${q}-${T}`,'calculator_tank',`Calculator Active: A tank initially contains ${P0} gallons. Water enters at ${inn} gal/min and leaves at rate L(t). How much water is present after ${T} minutes? Round to three decimals.`,`L(t)=${c}e^{\\frac{t}{${q}}}`,value,`Use ${P0}+\\int_0^${T}(${inn}-L(t))dt.`);
     }
     if(fam==='ballots'){
       const P0=pick([200,250,300,350]),A=pick([30,40,50,60]),T=pick([4,5,6]),value=P0+A*(T-Math.sin(T));
@@ -1987,7 +1987,7 @@ G['derivatives-conceptual-review']=()=>{
       return numeric(`rate5-res-${P0}-${A}-${B}-${T}`,'calculator_reservoir_trig',`Calculator Active: A reservoir starts with ${P0} liters. Its net rate of change is R(t). How much is present at t=${T}? Round to three decimals.`,`R(t)=${A}+${B}\\sin t`,value,`Use initial amount plus the definite integral of the net rate.`);
     }
     const P0=pick([100,150,200]),A=pick([20,30,40]),B=pick([5,10,15]),T=pick([1.5,2,2.5]),f=t=>A*Math.exp(-t*t/4)+B*Math.cos(t*t),value=P0+simpson(f,0,T,1200);
-    return numeric(`rate5-nonel-${P0}-${A}-${B}-${String(T).replace('.','_')}`,'calculator_non_elementary_rate',`Calculator Active: A population is ${P0} at t=0 and changes at rate R(t). Find the population at t=${T}. Round to three decimals.`,`R(t)=${A}e^{-t^2/4}+${B}\\cos(t^2)`,value,`Use ${P0}+\\int_0^${T}R(t)dt and evaluate the integral numerically.`);
+    return numeric(`rate5-nonel-${P0}-${A}-${B}-${String(T).replace('.','_')}`,'calculator_non_elementary_rate',`Calculator Active: A population is ${P0} at t=0 and changes at rate R(t). Find the population at t=${T}. Round to three decimals.`,`R(t)=${A}e^{-\\frac{t^2}{4}}+${B}\\cos(t^2)`,value,`Use ${P0}+\\int_0^${T}R(t)dt and evaluate the integral numerically.`);
   };
 })();
 
@@ -2021,7 +2021,7 @@ G['derivatives-conceptual-review']=()=>{
       }
       if(fam==='exp_log'){
         const q=pick([2,3,4]),r=pick([3,4,5]),T=pick([1.5,2]),top=x=>Math.exp(x/q)+Math.log(x+2),bot=x=>x*x/r+0.5*Math.cos(x),value=simpson6(x=>top(x)-bot(x),0,T);
-        return numeric6(`u6-area-c2-${q}-${r}-${T}`,'calculator_between_exp_log',`Calculator Active: Find the area between the curves on [0,${T}]. Round to three decimals.`,`y=e^{x/${q}}+\\ln(x+2),\\qquad y=\\frac{x^2}{${r}}+\\frac12\\cos x`,value,`The first curve is above the second on the interval. Numerically integrate top minus bottom.`);
+        return numeric6(`u6-area-c2-${q}-${r}-${T}`,'calculator_between_exp_log',`Calculator Active: Find the area between the curves on [0,${T}]. Round to three decimals.`,`y=e^{\\frac{x}{${q}}}+\\ln(x+2),\\qquad y=\\frac{x^2}{${r}}+\\frac12\\cos x`,value,`The first curve is above the second on the interval. Numerically integrate top minus bottom.`);
       }
       if(fam==='sqrt_trig'){
         const T=pick([1.5,2,2.5]),k=pick([1,2]),top=x=>2+Math.sqrt(x+3)+Math.sin(k*x*x/2),bot=x=>1+Math.log(x+1),value=simpson6(x=>top(x)-bot(x),0,T);
@@ -2029,10 +2029,10 @@ G['derivatives-conceptual-review']=()=>{
       }
       if(fam==='oscillatory_gap'){
         const A=pick([3,4,5]),T=pick([2,2.5,3]),top=x=>A+Math.cos(x*x),bot=x=>Math.exp(-x/2)+x/3,value=simpson6(x=>top(x)-bot(x),0,T);
-        return numeric6(`u6-area-c4-${A}-${T}`,'calculator_between_oscillatory_decay',`Calculator Active: Find the area between the curves on [0,${T}]. Round to three decimals.`,`y=${A}+\\cos(x^2),\\qquad y=e^{-x/2}+\\frac{x}{3}`,value,`The displayed upper curve stays above the lower curve. Evaluate the area integral numerically.`);
+        return numeric6(`u6-area-c4-${A}-${T}`,'calculator_between_oscillatory_decay',`Calculator Active: Find the area between the curves on [0,${T}]. Round to three decimals.`,`y=${A}+\\cos(x^2),\\qquad y=e^{-\\frac{x}{2}}+\\frac{x}{3}`,value,`The displayed upper curve stays above the lower curve. Evaluate the area integral numerically.`);
       }
       const A=pick([2,3,4]),T=pick([1.5,2,2.5]),top=x=>A+Math.exp(-x*x/3)+0.4*Math.sin(x*x),bot=x=>Math.sqrt(x+1)/2,value=simpson6(x=>top(x)-bot(x),0,T);
-      return numeric6(`u6-area-c5-${A}-${T}`,'calculator_between_mixed_functions',`Calculator Active: Find the area between the curves on [0,${T}]. Round to three decimals.`,`y=${A}+e^{-x^2/3}+\\frac25\\sin(x^2),\\qquad y=\\frac12\\sqrt{x+1}`,value,`Integrate upper minus lower numerically.`);
+      return numeric6(`u6-area-c5-${A}-${T}`,'calculator_between_mixed_functions',`Calculator Active: Find the area between the curves on [0,${T}]. Round to three decimals.`,`y=${A}+e^{-\\frac{x^2}{3}}+\\frac25\\sin(x^2),\\qquad y=\\frac12\\sqrt{x+1}`,value,`Integrate upper minus lower numerically.`);
     }
     const fam=pick(['shifted_parabola','line_parabola','two_shifted_parabolas','cubic_sign','cos_between','sin_between','absolute_triangle','semicircle_radical']);
     if(fam==='shifted_parabola'){
@@ -2138,7 +2138,7 @@ G['derivatives-conceptual-review']=()=>{
         const A=pick([2,3]),T=pick([1.5,2]),r=x=>A+Math.sin(x*x),value=Math.PI*simpson6(x=>r(x)**2,0,T);return numeric6(`u6-solid-cd1-${A}-${T}`,'calculator_disk_fresnel','Calculator Active: Find the volume obtained by revolving the region under the curve about the x-axis. Round to three decimals.',`y=${A}+\\sin(x^2),\\qquad 0\\le x\\le${T}`,value,`The cross-sectional radius is the function value; integrate pi times radius squared.`);
       }
       if(fam==='exp_trig_washer'){
-        const q=pick([2,3,4]),T=pick([1.5,2]),R=x=>2+Math.exp(x/q),r=x=>1+0.5*Math.cos(x*x),value=Math.PI*simpson6(x=>R(x)**2-r(x)**2,0,T);return numeric6(`u6-solid-cd2-${q}-${T}`,'calculator_two_curve_revolution','Calculator Active: Find the volume obtained by revolving the region between the curves about the x-axis. Round to three decimals.',`y=2+e^{x/${q}},\\qquad y=1+\\frac12\\cos(x^2),\\qquad 0\\le x\\le${T}`,value,`Use the larger distance from the x-axis as the outer radius and subtract the inner-radius square.`);
+        const q=pick([2,3,4]),T=pick([1.5,2]),R=x=>2+Math.exp(x/q),r=x=>1+0.5*Math.cos(x*x),value=Math.PI*simpson6(x=>R(x)**2-r(x)**2,0,T);return numeric6(`u6-solid-cd2-${q}-${T}`,'calculator_two_curve_revolution','Calculator Active: Find the volume obtained by revolving the region between the curves about the x-axis. Round to three decimals.',`y=2+e^{\\frac{x}{${q}}},\\qquad y=1+\\frac12\\cos(x^2),\\qquad 0\\le x\\le${T}`,value,`Use the larger distance from the x-axis as the outer radius and subtract the inner-radius square.`);
       }
       if(fam==='shifted_axis_radical'){
         const T=pick([1.5,2]),f=x=>1+Math.sqrt(x+1)+0.5*Math.sin(x*x),value=Math.PI*simpson6(x=>(f(x)+1)**2-1,0,T);return numeric6(`u6-solid-cd3-${T}`,'calculator_shifted_horizontal_axis','Calculator Active: The region between the curve and y=0 is revolved about y=-1. Find the volume. Round to three decimals.',`y=1+\\sqrt{x+1}+\\frac12\\sin(x^2),\\qquad 0\\le x\\le${T}`,value,`Measure both radii from y=-1, then integrate the difference of their squares.`);
@@ -2420,14 +2420,14 @@ G['difference-quotient']=()=>{
     }
     if(fam==='cube_root_vertical'){
       const h=ri(-6,6),A=ri(1,5),c=ri(-4,4),u=xm(h);
-      return mc(`hvL-cuberoot-${h}-${A}-${c}`,'vertical_cube_root','At what x-value does the graph have a vertical tangent?',`f(x)=${A===1?'':A}\\sqrt[3]{${u}}${signed(c,'')}`,`x=${h}`,[`x=${-h}`,`x=${h+1}`,`x=${h-1}`],`The derivative contains a factor of \\(( ${u})^{-2/3}\\), whose magnitude becomes unbounded as \\(x\\to${h}\\).`);
+      return mc(`hvL-cuberoot-${h}-${A}-${c}`,'vertical_cube_root','At what x-value does the graph have a vertical tangent?',`f(x)=${A===1?'':A}\\sqrt[3]{${u}}${signed(c,'')}`,`x=${h}`,[`x=${-h}`,`x=${h+1}`,`x=${h-1}`],`The derivative contains a factor of \\(( ${u})^{-\\frac{2}{3}}\\), whose magnitude becomes unbounded as \\(x\\to${h}\\).`);
     }
     if(fam==='fifth_root_vertical'){
       const h=ri(-6,6),A=ri(1,5),c=ri(-4,4),u=xm(h);
-      return mc(`hvL-fifth-${h}-${A}-${c}`,'vertical_fifth_root','At what x-value does the graph have a vertical tangent?',`f(x)=${A===1?'':A}\\sqrt[5]{${u}}${signed(c,'')}`,`x=${h}`,[`x=${-h}`,`x=${h+1}`,`x=${h-1}`],`The derivative contains \\(( ${u})^{-4/5}\\), so its magnitude becomes unbounded at \\(x=${h}\\).`);
+      return mc(`hvL-fifth-${h}-${A}-${c}`,'vertical_fifth_root','At what x-value does the graph have a vertical tangent?',`f(x)=${A===1?'':A}\\sqrt[5]{${u}}${signed(c,'')}`,`x=${h}`,[`x=${-h}`,`x=${h+1}`,`x=${h-1}`],`The derivative contains \\(( ${u})^{-\\frac{4}{5}}\\), so its magnitude becomes unbounded at \\(x=${h}\\).`);
     }
     const h=ri(-5,5),m=nz(-3,3),c=ri(-4,4),u=xm(h);
-    return mc(`hvL-rootlin-${h}-${m}-${c}`,'vertical_root_plus_linear','At what x-value does the graph have a vertical tangent?',`f(x)=\\sqrt[3]{${u}}${signed(m,`(${u})`)}${signed(c,'')}`,`x=${h}`,[`x=${-h}`,`x=${h+1}`,`x=${h-1}`],`The linear term has a finite derivative, while the cube-root derivative contains \\(( ${u})^{-2/3}\\). The unbounded term gives a vertical tangent at \\(x=${h}\\).`);
+    return mc(`hvL-rootlin-${h}-${m}-${c}`,'vertical_root_plus_linear','At what x-value does the graph have a vertical tangent?',`f(x)=\\sqrt[3]{${u}}${signed(m,`(${u})`)}${signed(c,'')}`,`x=${h}`,[`x=${-h}`,`x=${h+1}`,`x=${h-1}`],`The linear term has a finite derivative, while the cube-root derivative contains \\(( ${u})^{-\\frac{2}{3}}\\). The unbounded term gives a vertical tangent at \\(x=${h}\\).`);
   };
 
   // Implicit horizontal/vertical tangents: broad curve families, mathematical

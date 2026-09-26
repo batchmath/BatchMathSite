@@ -253,12 +253,12 @@ document.addEventListener("DOMContentLoaded",function(){
         const ans=rat(1,factor);
         return subProblem("higher_root_over_power",`sub-higher-root-over-power-${n}-${k}-${notation}`,
           `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${root}-${k}}{${den}}\\)`,ans,
-          `Let \\(u=x^{1/${n}}\\), so \\(x=u^{${n}}\\) and \\(u\\to${k}\\). Factor \\(u^{${n}}-${target}=(u-${k})(${powerSum(n,k)})\\). Cancel for \\(u\\ne${k}\\), leaving \\(\\frac1{${powerSum(n,k)}}\\). At \\(u=${k}\\), each of the \\(${n}\\) denominator terms is \\(${k**(n-1)}\\), giving \\(\\frac1{${n}\\cdot${k**(n-1)}}=${texRat(ans)}\\).`);
+          `Let \\(u=x^{\\frac{1}{${n}}}\\), so \\(x=u^{${n}}\\) and \\(u\\to${k}\\). Factor \\(u^{${n}}-${target}=(u-${k})(${powerSum(n,k)})\\). Cancel for \\(u\\ne${k}\\), leaving \\(\\frac1{${powerSum(n,k)}}\\). At \\(u=${k}\\), each of the \\(${n}\\) denominator terms is \\(${k**(n-1)}\\), giving \\(\\frac1{${n}\\cdot${k**(n-1)}}=${texRat(ans)}\\).`);
       }
       const ans=rat(factor);
       return subProblem("power_over_higher_root",`sub-power-over-higher-root-${n}-${k}-${notation}`,
         `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${den}}{${root}-${k}}\\)`,ans,
-        `Let \\(u=x^{1/${n}}\\), so \\(x=u^{${n}}\\) and \\(u\\to${k}\\). The difference-of-powers factorization gives, for \\(u\\ne${k}\\),<br>\\(\\frac{u^{${n}}-${target}}{u-${k}}=${powerSum(n,k)}\\).<br>Each of its \\(${n}\\) terms tends to \\(${k**(n-1)}\\), so the limit is \\(${n}\\cdot${k**(n-1)}=${texRat(ans)}\\).`);
+        `Let \\(u=x^{\\frac{1}{${n}}}\\), so \\(x=u^{${n}}\\) and \\(u\\to${k}\\). The difference-of-powers factorization gives, for \\(u\\ne${k}\\),<br>\\(\\frac{u^{${n}}-${target}}{u-${k}}=${powerSum(n,k)}\\).<br>Each of its \\(${n}\\) terms tends to \\(${k**(n-1)}\\), so the limit is \\(${n}\\cdot${k**(n-1)}=${texRat(ans)}\\).`);
     }
 
     if(family==="higher_fractional_power"){
@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded",function(){
       const km=Math.pow(k,m),ans=rat(m*Math.pow(k,m-1));
       return subProblem("higher_fractional_power",`sub-higher-power-${n}-${m}-${k}-${notation}`,
         `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${high}-${km}}{${root}-${k}}\\)`,ans,
-        `Let \\(u=x^{1/${n}}\\), so \\(u\\to${k}\\). Then \\(u^{${m}}-${km}=(u-${k})(${powerSum(m,k)})\\). Cancel the common factor for \\(u\\ne${k}\\). The remaining sum has \\(${m}\\) terms, each tending to \\(${k**(m-1)}\\), so the limit is \\(${m}\\cdot${k**(m-1)}=${texRat(ans)}\\).`);
+        `Let \\(u=x^{\\frac{1}{${n}}}\\), so \\(u\\to${k}\\). Then \\(u^{${m}}-${km}=(u-${k})(${powerSum(m,k)})\\). Cancel the common factor for \\(u\\ne${k}\\). The remaining sum has \\(${m}\\) terms, each tending to \\(${k**(m-1)}\\), so the limit is \\(${m}\\cdot${k**(m-1)}=${texRat(ans)}\\).`);
     }
 
     if(family==="mixed_fractional_powers"){
@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded",function(){
       const ans=rat(p*Math.pow(k,p-1),q*Math.pow(k,q-1));
       return subProblem("mixed_fractional_powers",`sub-mixed-powers-${n}-${p}-${q}-${k}`,
         `\\(\\displaystyle \\lim_{x\\to ${target}} \\frac{${fracPowerTex(p,n)}-${kp}}{${fracPowerTex(q,n)}-${kq}}\\)`,ans,
-        `Let \\(u=x^{1/${n}}\\), so \\(u\\to${k}\\). The quotient becomes \\(\\frac{u^{${p}}-${kp}}{u^{${q}}-${kq}}\\). Factor both differences and cancel \\(u-${k}\\) for \\(u\\ne${k}\\):<br>\\(\\frac{${powerSum(p,k)}}{${powerSum(q,k)}}\\longrightarrow\\frac{${p}\\cdot${k**(p-1)}}{${q}\\cdot${k**(q-1)}}=${texRat(ans)}\\).`);
+        `Let \\(u=x^{\\frac{1}{${n}}}\\), so \\(u\\to${k}\\). The quotient becomes \\(\\frac{u^{${p}}-${kp}}{u^{${q}}-${kq}}\\). Factor both differences and cancel \\(u-${k}\\) for \\(u\\ne${k}\\):<br>\\(\\frac{${powerSum(p,k)}}{${powerSum(q,k)}}\\longrightarrow\\frac{${p}\\cdot${k**(p-1)}}{${q}\\cdot${k**(q-1)}}=${texRat(ans)}\\).`);
     }
 
     if(family==="clean_shifted_cube_root"){

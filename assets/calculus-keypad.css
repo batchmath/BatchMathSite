@@ -28,10 +28,13 @@ sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
 
 /* Editable nth-root structure: the index and radicand are distinct hit
    targets while the stored answer remains root(index,radicand). */
-.bm-calc-nroot{display:inline-flex;align-items:flex-start;vertical-align:middle;margin:0 .1em;line-height:1.05}
-.bm-calc-nroot-index{font-size:.58em;line-height:1;min-width:.65em;text-align:right;margin:.02em -.05em 0 0;cursor:text}
-.bm-calc-nroot-sign{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1.35em;line-height:.92}
-.bm-calc-nroot-radicand{display:inline-block;min-width:.8em;border-top:1.5px solid currentColor;padding:.05em .12em 0;cursor:text}
+.bm-calc-nroot{position:relative;display:inline-flex;align-items:flex-start;vertical-align:-.22em;margin:0 .12em 0 .08em;padding-left:.48em;line-height:1.05}
+.bm-calc-nroot-index{position:absolute;left:0;top:-.04em;z-index:1;font-size:.56em;line-height:1;min-width:.7em;text-align:right;margin:0;cursor:text}
+.bm-calc-editor .bm-calc-nroot-index{font-size:.56em;line-height:1;vertical-align:baseline;margin-left:0}
+.bm-calc-nroot-sign{display:block;flex:0 0 .76em;width:.76em;height:1.36em;color:currentColor;line-height:1;overflow:visible}
+.bm-calc-nroot-sign svg{display:block;width:100%;height:100%;overflow:visible}
+.bm-calc-nroot-sign path{fill:none;stroke:currentColor;stroke-width:2.25;stroke-linecap:square;stroke-linejoin:miter;vector-effect:non-scaling-stroke}
+.bm-calc-nroot-radicand{display:block;min-width:.8em;min-height:1.36em;border-top:2.25px solid currentColor;margin-left:-1px;padding:.08em .12em 0;cursor:text}
 .bm-calc-nroot-index .bm-calc-caret{height:.78em;vertical-align:-.08em}
 
 .bm-calc-keypad{

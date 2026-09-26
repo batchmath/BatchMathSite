@@ -10,12 +10,14 @@ for(const mode of ['table','graph','asymptote'])for(let i=0;i<10000;i++){
  if(mode==='table'){
   expected=d.ask==='-'?String(d.L):d.ask==='+'?String(d.right):d.L===d.right?String(d.L):'DNE';
   assert.equal(d.xs.length,6);assert.equal(d.ys.length,6);assert(!d.xs.includes(d.a));
+  assert(p.questionHtml.includes('class="u1-limit-expression"'));assert(p.questionHtml.includes('\\[\\displaystyle \\lim_'));
   assert(!/undefined|unbounded/i.test(p.questionHtml+p.explanation));
   for(let j=0;j<d.xs.length;j++)assert(p.questionHtml.includes(Number(d.ys[j].toFixed(5)).toString()));
  }else if(mode==='graph'){
   expected=d.ask==='left'?String(d.leftLimit):d.ask==='right'?String(d.rightLimit):d.leftLimit===d.rightLimit?String(d.leftLimit):'DNE';
   assert.equal(d.multi,true);assert(d.partCount>=3&&d.partCount<=5);assert(d.part>=1&&d.part<=d.partCount);
   assert((p.questionHtml.match(/<circle /g)||[]).length>=5);assert(p.questionHtml.includes('<svg'));assert(p.questionHtml.includes('Domain:'));assert(p.questionHtml.includes('[-6,6]'));
+  assert(p.questionHtml.includes('class="u1-limit-expression"'));assert(p.questionHtml.includes('\\[\\displaystyle \\lim_'));
   assert(p.questionHtml.includes('\\lim_'));assert(!/undefined|unbounded|continuous at/i.test(p.questionHtml+p.explanation));if(d.kind==='jump')assert.notEqual(d.L,d.right);
   if(i<12)fs.writeFileSync(path.join(root,'qa-results',`unit1-graph-${i}.svg`),p.questionHtml.match(/<svg[\s\S]*?<\/svg>/)[0]);
  }else expected=d.kind==='crossing'?'No':d.kind==='horizontal'?`y=${d.L}`:d.kind==='vertical'?`x=${d.a}`:`y=${d.L} and y=${d.right}`;
@@ -44,9 +46,9 @@ class E{
  querySelectorAll(s){const all=this.children.flatMap(x=>[x,...x.querySelectorAll('*')]);return s==='*'?all:all.filter(x=>s==='button'?x.tagName==='BUTTON':s==='input'?x.tagName==='INPUT':s.startsWith('.')?x.classList.contains(s.slice(1)):false);}querySelector(s){return this.querySelectorAll(s)[0]||null;}
 }
 function harness(route,shared=false,slug='introduction-to-limits'){const html=read(route),els={},doc={body:new E(),createElement:t=>new E(t),getElementById:id=>els[id]||(els[id]=new E()),addEventListener(){},querySelectorAll:s=>Object.values(els).flatMap(e=>e.querySelectorAll(s)),createTreeWalker:()=>({nextNode:()=>false})};let generated=[],checked=[];const w={BatchMathRNG:{random},BMAnalytics:{problemGenerated:p=>generated.push(p),answerChecked:(p,ok)=>checked.push(ok),ensurePracticeStarted(){},solutionRevealed(){}},addEventListener(){}};const c={window:w,BatchMathRNG:w.BatchMathRNG,document:doc,NodeFilter:{SHOW_TEXT:4},setTimeout:()=>0,clearTimeout(){},console};vm.createContext(c);
- for(const f of ['ap-topic-generators','unit1-course-trig','unit1-core-expansions','unit1-one-sided','unit1-representations','unit1-discontinuities','unit1-practice-ui'])vm.runInContext(read('assets/'+f+'.js'),c);
+ for(const f of ['ap-topic-generators','unit1-core-expansions','unit1-basic-techniques','unit1-ivt-expansions','unit1-continuity-parameters','unit1-one-sided','unit1-course-trig','unit1-advanced-trig-shared','unit1-advanced-trig-all','unit1-infinity-legacy','unit1-infinity-expansions','unit1-representations','unit1-discontinuities','unit1-practice-ui','unit1-comprehensive-review'])vm.runInContext(read('assets/'+f+'.js'),c);
  if(shared){w.BM_TOPIC_PRACTICE={unit1:true,slug,modeSelectId:'representation-mode'};doc.getElementById('representation-mode').value='tables';vm.runInContext(read('assets/ap-topic-practice.js'),c);}
- else{doc.getElementById('category').value='continuous';const marker=route.includes('limits-of-continuous-functions')?'const generateContinuous=':'const generators=';let code=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes(marker));vm.runInContext(code,c);}
+ else{doc.getElementById('category').value='continuous';if(route.includes('comprehensive-review')){w.BMUnit1ComprehensiveReview.mount();generated.length=0;doc.getElementById('category').value='continuous';doc.getElementById('category').listeners.change();}else{const marker=route.includes('limits-of-continuous-functions')?'const generateContinuous=':'const generators=';let code=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes(marker));vm.runInContext(code,c);}}
  return{els,doc,w,generated,checked};}
 const rel='ap-calculus/unit-1-limits-continuity/topics/';let flows=0;
 const entryFor=a=>a.kind==='exact'?(a.text||String(a.value)):a.kind==='rat'?`${a.n}/${a.d}`:a.kind==='inf'?(a.sign<0?'-infinity':'infinity'):'DNE';
@@ -54,7 +56,15 @@ for(const name of ['basic-techniques-indeterminate-limits','limits-of-continuous
  const h=harness(rel+name+'/practice/index.html'),{els,generated,checked}=h;for(const v of ['', 'undefined','1/0','nonsense']){els.answer.value=v;els.submit.click();assert.equal(checked.length,0);assert.equal(generated.length,1);assert.equal(els.answer.disabled,false);flows++;}
  const p=generated.at(-1);els.answer.value=entryFor(p.ans);els.submit.click();assert.deepEqual(checked,[true]);assert.equal(generated.length,1);assert.equal(els.next.style.display,'inline-block');assert(!els.feedback.innerHTML.includes(p.sol));els.feedback.querySelector('button').click();assert.equal(els.feedback.children.at(-1).innerHTML,p.sol);els.submit.click();assert.equal(checked.length,1);els.next.click();assert.equal(generated.length,2);els.answer.value='123456789';els.submit.click();assert.equal(checked.at(-1),false);assert(els.feedback.innerHTML.includes(generated.at(-1).sol));flows++;
  if(name==='basic-techniques-indeterminate-limits'){els.category.value='all';for(let i=0;i<1000;i++){els.category.listeners.change();assert(['continuous','factoring','substitution','rationalizing','complex'].includes(generated.at(-1).cat));}}
- if(name==='comprehensive-review')for(const cat of ['tables','graphs','parameters','ivt']){els.category.value=cat;els.category.listeners.change();const p=generated.at(-1),host=els['u1-options'];host.children[p.correctIndex].click();assert.equal(checked.at(-1),true);flows++;}
+ if(name==='comprehensive-review')for(const cat of ['tables','graphs','parameters','ivt']){
+  els.category.value=cat;els.category.listeners.change();const p=generated.at(-1),host=els['u1-options'];
+  if(cat==='parameters'){
+   const inputs=host.querySelectorAll('input');assert.equal(inputs.length,p.fields.length);
+   inputs.forEach((input,i)=>input.value=String(p.fields[i].numericAnswer));
+   host.querySelectorAll('button').find(b=>b.textContent==='Check All Parameters').click();
+  }else host.children[p.correctIndex].click();
+  assert.equal(checked.at(-1),true);flows++;
+ }
 }
 {
  const h=harness(rel+'introduction-to-limits/practice/index.html',true),{els,generated,checked}=h;els.choices.children[generated[0].correctIndex].click();assert.deepEqual(checked,[true]);assert.equal(generated.length,1);assert.equal(els.next.hidden,false);assert(els.feedback.querySelector('button'));els.next.click();els['representation-mode'].value='graphs';els['representation-mode'].listeners.change();assert(generated.at(-1).variant.startsWith('graph_'));flows++;

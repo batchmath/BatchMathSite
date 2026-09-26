@@ -271,6 +271,46 @@ select,input,textarea,button{font:inherit}
 .about-card p{margin:0;color:#c5c5c5;font-size:.9rem}
 .about-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px}
 
+/* Shared practice-generator selects — matches the Jump to Topic treatment. */
+label.bm-practice-select-label{
+  color:var(--bm-yellow,var(--yellow,#f5c400))!important;
+  font-weight:800!important;
+}
+select.bm-practice-select{
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  min-height:42px!important;
+  padding:9px 11px!important;
+  border:1px solid var(--bm-red,var(--red,#d71920))!important;
+  border-radius:7px!important;
+  background:#070707!important;
+  color:var(--bm-yellow,var(--yellow,#f5c400))!important;
+  font:inherit!important;
+  font-weight:700!important;
+  line-height:1.25!important;
+  color-scheme:dark;
+  cursor:pointer;
+}
+select.bm-practice-select:hover:not(:disabled){
+  border-color:var(--bm-yellow,var(--yellow,#f5c400))!important;
+  background:#0b0b0b!important;
+}
+select.bm-practice-select:focus,
+select.bm-practice-select:focus-visible{
+  border-color:var(--bm-yellow,var(--yellow,#f5c400))!important;
+  background:#0b0b0b!important;
+}
+select.bm-practice-select:disabled{opacity:.58;cursor:not-allowed}
+select.bm-practice-select option{
+  background:#070707;
+  color:var(--bm-yellow,var(--yellow,#f5c400));
+}
+@media(max-width:600px){
+  select.bm-practice-select{font-size:16px!important}
+}
+
 /* Accessibility */
 a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{
   outline:3px solid rgba(245,196,0,.72)!important;

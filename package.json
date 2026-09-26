@@ -1,7 +1,7 @@
 {
   "name": "batchmath-site-qa",
   "private": true,
-  "version": "10.7.15",
+  "version": "10.8",
   "scripts": {
     "qa:static": "node tools/release-qa.mjs",
     "qa:math": "node tools/ap-generator-stress-qa.mjs",
@@ -16,7 +16,7 @@
     "qa:analytics": "node tools/analytics-qa.mjs",
     "qa:pwa": "node tools/pwa-cache-qa.mjs",
     "qa:prep": "node tools/calc-prep-semantic-qa.mjs",
-    "qa:nobrowser": "npm run qa:static && npm run qa:display && npm run qa:semantic && npm run qa:prep && npm run qa:analytics && npm run qa:pwa && npm run qa:math && npm run qa:limits && npm run qa:topics && npm run qa:deep && npm run qa:newcalc && npm run qa:derivative-topics && npm run qa:product-quotient-variety && npm run qa:power-rule && npm run qa:unit1-ivt && npm run qa:infinity-variety && npm run qa:unit1-infinity-update && npm run qa:unit3 && npm run qa:unit4 && npm run qa:fidelity && npm run qa:im1-unit2 && npm run qa:fractions && npm run qa:browser-infra && npm run qa:advanced-trig-hints && npm run qa:keypad-structure && npm run qa:unit1-explanations && npm run qa:unit1-approved && npm run qa:unit1-v && npm run qa:unit1-oscillation-one-sided && npm run qa:im1-like-terms && npm run qa:im1-equations-update && npm run qa:coordinate-variety && npm run qa:derivative-charts && npm run qa:unit1-sections-8-10 && npm run qa:unit1-sections-11-12",
+    "qa:nobrowser": "npm run qa:static && npm run qa:display && npm run qa:semantic && npm run qa:prep && npm run qa:analytics && npm run qa:pwa && npm run qa:math && npm run qa:limits && npm run qa:topics && npm run qa:deep && npm run qa:newcalc && npm run qa:derivative-topics && npm run qa:product-quotient-variety && npm run qa:power-rule && npm run qa:unit1-ivt && npm run qa:infinity-variety && npm run qa:unit1-infinity-update && npm run qa:unit1-comprehensive-review && npm run qa:unit3 && npm run qa:unit4 && npm run qa:fidelity && npm run qa:im1-unit2 && npm run qa:fractions && npm run qa:browser-infra && npm run qa:advanced-trig-hints && npm run qa:keypad-structure && npm run qa:unit1-explanations && npm run qa:unit1-approved && npm run qa:unit1-v && npm run qa:unit1-oscillation-one-sided && npm run qa:im1-like-terms && npm run qa:im1-equations-update && npm run qa:coordinate-variety && npm run qa:derivative-charts && npm run qa:unit1-sections-8-10 && npm run qa:unit1-sections-11-12 && npm run qa:fractional-exponent-display && npm run qa:practice-selects && npm run qa:unit1-v108-five-fixes",
     "qa:derivative-topics": "node tools/derivative-topic-enhancements-qa.mjs",
     "qa:product-quotient-variety": "node tools/product-quotient-variety-qa.mjs",
     "qa:power-rule": "node tools/power-rule-family-qa.mjs",
@@ -41,6 +41,10 @@
     "qa:derivative-charts": "node tools/derivative-chart-qa.mjs"
     ,"qa:unit1-sections-8-10": "node tools/unit1-sections-8-10-qa.mjs"
     ,"qa:unit1-sections-11-12": "node tools/unit1-sections-11-12-qa.mjs"
+    ,"qa:fractional-exponent-display": "node tools/sitewide-fractional-exponent-qa.mjs"
+    ,"qa:practice-selects": "node tools/sitewide-practice-select-qa.mjs"
+    ,"qa:unit1-v108-five-fixes": "node tools/unit1-v108-five-fixes-qa.mjs"
+    ,"qa:unit1-comprehensive-review": "node tools/unit1-comprehensive-review-sync-qa.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

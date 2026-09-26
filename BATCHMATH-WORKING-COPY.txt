@@ -1,7 +1,6 @@
 BatchMath cumulative working copy
-Current full release: 10.7.15
-Archive: batchmath-site-v10.7.15.zip
-Baseline: complete v10.7.14 checkpoint.
-Changes: IM Unit 2 Nine Key Features open-endpoint misconception choices, included-endpoint solution highlighting, and simpler student-facing graph explanations. The shared Unit 2 Comprehensive Review generator is synchronized.
-Standing rebuild rules retained: prompt sections 1, 2, 16, and 17.
+Current full release: 10.8
+Archive: batchmath-site-v10.8.zip
+Baseline: complete v10.7.21 release.
+Changes: completed the five remaining Limits & Continuity Comprehensive Review fixes: coefficient-of-1 cleanup in Limits at Infinity, shared Complex Fractions sign normalization, responsive Regular Trig math containment, stacked/full-width Classifying Discontinuities presentation, and fixed one-column IVT choices.
 No deployment performed.

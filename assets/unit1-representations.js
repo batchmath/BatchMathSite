@@ -1,6 +1,7 @@
 (function(){'use strict';
 const R=()=>window.BatchMathRNG.random(),ri=(a,b)=>Math.floor(R()*(b-a+1))+a,pick=a=>a[ri(0,a.length-1)],M=s=>`\\(${s}\\)`,T=String.raw;
-const fmt=x=>Number(x.toFixed(5)).toString(),limit=(a,side='')=>T`\\lim_{x\\to${a}${side?`^{${side}}`:''}}f(x)`;
+const fmt=x=>Number(x.toFixed(5)).toString(),limit=(a,side='')=>T`\lim_{x\to${a}${side?`^{${side}}`:''}}f(x)`;
+const limitBlock=(a,side='')=>`<div class="u1-limit-expression">\\[\\displaystyle ${limit(a,side)}\\]</div>`;
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=ri(0,i);[a[i],a[j]]=[a[j],a[i]];}return a;}
 function mc(id,variant,question,answer,wrong,explanation,data){
  let choices=[...new Set([answer,...wrong].map(String))].slice(0,4);
@@ -19,13 +20,13 @@ function table(){
  const slopes=[-.8,-.4,.4,.8],ml=pick(slopes),mr=pick(slopes);
  const ys=offsets.map(d=>(d<0?left+ml*d:right+mr*d));
  const answer=ask==='-'?String(left):ask==='+'?String(right):left===right?String(left):'DNE';
- const prompt=`Use the table to estimate ${M(limit(a,ask==='both'?'':ask))}.`;
+ const prompt='<div class="question-prompt">Use the table to estimate the limit.</div>'+limitBlock(a,ask==='both'?'':ask);
  const reason=ask==='-'?`The entries with \\(x<${a}\\) move toward \\(${left}\\), so the estimated left-hand limit is \\(${left}\\). A finite table supports an estimate rather than a proof.`
   :ask==='+'?`The entries with \\(x>${a}\\) move toward \\(${right}\\), so the estimated right-hand limit is \\(${right}\\). A finite table supports an estimate rather than a proof.`
   :left===right?`The values on both sides move toward \\(${left}\\). Because the two one-sided estimates agree, the table suggests that the two-sided limit is \\(${left}\\). A finite table supports an estimate rather than a proof.`
   :`From the left, the values move toward \\(${left}\\); from the right, they move toward \\(${right}\\). Since those one-sided values differ, the two-sided limit is DNE.`;
  const grid=`<div class="u1-table"><table><tr><th scope="row">x</th>${xs.map(x=>`<td>${fmt(x)}</td>`).join('')}</tr><tr><th scope="row">f(x)</th>${ys.map(y=>`<td>${fmt(y)}</td>`).join('')}</tr></table></div>`;
- return mc(`table-limit-${kind}-${a}-${left}-${right}-${ml}-${mr}-${ask}`,'table_'+kind,`<p>${prompt}</p>${grid}`,answer,[String(left),String(right),'DNE',String(left+1)],reason,{kind,a,L:left,right,ask,xs,ys});
+ return mc(`table-limit-${kind}-${a}-${left}-${right}-${ml}-${mr}-${ask}`,'table_'+kind,`<div class="u1-representation-question">${prompt}${grid}</div>`,answer,[String(left),String(right),'DNE',String(left+1)],reason,{kind,a,L:left,right,ask,xs,ys});
 }
 
 let graphState=null,activeMode=null;
@@ -77,28 +78,28 @@ function multiGraph(){
  const s=graphState,task=s.tasks[s.index],part=s.index+1,total=s.tasks.length;s.index++;
  let answer,prompt,reason,wrong,data={multi:true,part,partCount:total,domain:[s.xMin,s.xMax]};
  if(task.type==='endpoint-left'){
-  answer=String(task.value);prompt=`Find ${M(limit(task.x,'+'))}.`;
+  answer=String(task.value);prompt=limitBlock(task.x,'+');
   reason=`The domain begins at \\(x=${task.x}\\). Following the graph from within the domain, the y-values approach \\(${task.value}\\), so the right-hand limit is \\(${task.value}\\).`;
   wrong=['DNE',String(task.value+1),String(-task.value)];data={...data,kind:'endpoint',a:task.x,ask:'right',leftLimit:null,rightLimit:task.value};
  }else if(task.type==='endpoint-right'){
-  answer=String(task.value);prompt=`Find ${M(limit(task.x,'-'))}.`;
+  answer=String(task.value);prompt=limitBlock(task.x,'-');
   reason=`The domain ends at \\(x=${task.x}\\). Following the graph from within the domain, the y-values approach \\(${task.value}\\), so the left-hand limit is \\(${task.value}\\).`;
   wrong=['DNE',String(task.value+1),String(-task.value)];data={...data,kind:'endpoint',a:task.x,ask:'left',leftLimit:task.value,rightLimit:null};
  }else{
   const p=task.point,l=p.left,r=p.right;data={...data,kind:p.kind,a:p.x,L:l,right:r,ask:task.type,leftLimit:l,rightLimit:r};
   if(task.type==='left'){
-   answer=String(l);prompt=`Find ${M(limit(p.x,'-'))}.`;
+   answer=String(l);prompt=limitBlock(p.x,'-');
    reason=`Trace the branch with \\(x<${p.x}\\) toward \\(x=${p.x}\\). Its y-values approach \\(${l}\\), so the left-hand limit is \\(${l}\\).`;
   }else if(task.type==='right'){
-   answer=String(r);prompt=`Find ${M(limit(p.x,'+'))}.`;
+   answer=String(r);prompt=limitBlock(p.x,'+');
    reason=`Trace the branch with \\(x>${p.x}\\) toward \\(x=${p.x}\\). Its y-values approach \\(${r}\\), so the right-hand limit is \\(${r}\\).`;
   }else{
-   answer=l===r?String(l):'DNE';prompt=`Find ${M(limit(p.x))}.`;
+   answer=l===r?String(l):'DNE';prompt=limitBlock(p.x);
    reason=l===r?`The left-hand and right-hand limits both equal \\(${l}\\). Because they agree, the two-sided limit is \\(${l}\\).`:`The left-hand limit is \\(${l}\\), while the right-hand limit is \\(${r}\\). Because they differ, the two-sided limit is DNE.`;
   }
   wrong=[String(l),String(r),'DNE',String(l+1)];
  }
- const q=`<div class="u1-graph-part"><strong>Graph set: Part ${part} of ${total}</strong></div><p>${prompt}</p><div class="u1-graph-domain">Domain: ${M(`[${s.xMin},${s.xMax}]`)}</div>${s.svg}`;
+ const q=`<div class="u1-representation-question"><div class="u1-graph-part"><strong>Graph set: Part ${part} of ${total}</strong></div><div class="question-prompt">Find the limit.</div>${prompt}<div class="u1-graph-domain">Domain: ${M(`[${s.xMin},${s.xMax}]`)}</div>${s.svg}</div>`;
  return mc(`graph-set-${s.points.map(p=>`${p.kind}:${p.left}:${p.right}`).join('|')}-${part}-${task.type}-${data.a}`,'graph_multi_'+data.kind,q,answer,wrong,reason,data);
 }
 function graphPractice(){return multiGraph();}

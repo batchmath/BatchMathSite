@@ -2,6 +2,10 @@
   "use strict";
 
   const state={input:null,editor:null,pad:null,raw:"",cursor:0,mode:"derivative"};
+  // Private-use markers keep the visual numerator and denominator intact while
+  // a student is still typing unmatched parentheses. They are converted to the
+  // parser-friendly (numerator)/(denominator) form before reaching the engine.
+  const FRAC_OPEN="\uE000",FRAC_MID="\uE001",FRAC_END="\uE002";
   const fnNames=["asin","acos","atan","acot","asec","acsc","sin","cos","tan","sec","csc","cot","ln","log","exp","sqrt","cbrt","root","abs"];
   const atomicWords=["infinity","undefined","DNE","pi"];
   const nextFrame=fn=>typeof requestAnimationFrame==="function"?requestAnimationFrame(fn):fn();
@@ -27,6 +31,17 @@
   // which the existing answer parsers understand. The editor renders that same
   // raw text as a normal stacked handwritten fraction.
   function fractionAt(s,i,end){
+    if(s[i]===FRAC_OPEN){
+      let depth=0,mid=-1;
+      for(let j=i+1;j<end;j++){
+        if(s[j]===FRAC_OPEN)depth++;
+        else if(s[j]===FRAC_END){
+          if(depth===0&&mid>=0)return {internal:true,numStart:i+1,numClose:mid,denStart:mid+1,denClose:j,end:j+1};
+          if(depth>0)depth--;
+        }else if(s[j]===FRAC_MID&&depth===0&&mid<0)mid=j;
+      }
+      return null;
+    }
     if(s[i]!=="(")return null;
     const numClose=findClose(s,i);
     if(numClose<0||numClose+2>=end)return null;
@@ -35,6 +50,19 @@
     const denClose=findClose(s,denOpen);
     if(denClose<0||denClose>=end)return null;
     return {numStart:i+1,numClose,denStart:denOpen+1,denClose,end:denClose+1};
+  }
+
+  function serializeRange(start=0,end=state.raw.length){
+    let out="",i=start;
+    while(i<end){
+      const f=fractionAt(state.raw,i,end);
+      if(f&&f.internal){
+        out+=`(${serializeRange(f.numStart,f.numClose)})/(${serializeRange(f.denStart,f.denClose)})`;
+        i=f.end;continue;
+      }
+      out+=state.raw[i++];
+    }
+    return out;
   }
 
   // nth roots are stored as root(index,radicand), the format accepted by the
@@ -127,7 +155,7 @@
         let radicand=renderPlain(root.radStart,root.radEnd);
         if(root.indexStart===root.indexEnd)index+=emptyBox();
         if(root.radStart===root.radEnd)radicand+=emptyBox();
-        out+=`<span class="bm-calc-nroot" data-bm-root-start="${i}" data-bm-root-end="${root.end}"><sup class="bm-calc-nroot-index" data-bm-zone="nroot-index" data-bm-zone-start="${root.indexStart}" data-bm-zone-end="${root.indexEnd}">${index}</sup><span class="bm-calc-nroot-sign" aria-hidden="true">√</span><span class="bm-calc-nroot-radicand" data-bm-zone="nroot-radicand" data-bm-zone-start="${root.radStart}" data-bm-zone-end="${root.radEnd}">${radicand}</span></span>`;
+        out+=`<span class="bm-calc-nroot" data-bm-root-start="${i}" data-bm-root-end="${root.end}"><sup class="bm-calc-nroot-index" data-bm-zone="nroot-index" data-bm-zone-start="${root.indexStart}" data-bm-zone-end="${root.indexEnd}">${index}</sup><span class="bm-calc-nroot-sign" aria-hidden="true"><svg viewBox="0 0 30 38" preserveAspectRatio="none" focusable="false"><path d="M1 21 H7 L12 36 L18 1 H30"/></svg></span><span class="bm-calc-nroot-radicand" data-bm-zone="nroot-radicand" data-bm-zone-start="${root.radStart}" data-bm-zone-end="${root.radEnd}">${radicand}</span></span>`;
         i=root.end;
         continue;
       }
@@ -247,7 +275,7 @@
 
   function sync(){
     if(!state.input)return;
-    state.input.value=state.raw;
+    state.input.value=serializeRange();
     state.input.dispatchEvent(new Event("input",{bubbles:true}));
     render();
   }
@@ -270,7 +298,7 @@
 
   // Insert a true editable stacked fraction. Underneath, the value remains
   // parser-friendly as (numerator)/(denominator).
-  function insertFraction(){insert("()/()",1);}
+  function insertFraction(){insert(FRAC_OPEN+FRAC_MID+FRAC_END,1);}
 
   // Keyboard / and the keypad's division-position key create a stacked fraction.
   // If a numerator is already immediately to the left, promote that current
@@ -291,8 +319,8 @@
     }
     const numerator=left.slice(start);
     if(!numerator){insertFraction();return;}
-    state.raw=left.slice(0,start)+`(${numerator})/()`+right;
-    state.cursor=left.slice(0,start).length+numerator.length+4;
+    state.raw=left.slice(0,start)+FRAC_OPEN+numerator+FRAC_MID+FRAC_END+right;
+    state.cursor=left.slice(0,start).length+numerator.length+2;
     sync();
     state.editor.focus();
   }
@@ -317,13 +345,13 @@
     // structural characters: doing so exposes raw slashes and parentheses.
     for(const f of allFractions().sort((a,b)=>(a.end-a.start)-(b.end-b.start))){
       const emptyNum=f.numStart===f.numClose,emptyDen=f.denStart===f.denClose;
-      if(state.cursor===f.numStart&&emptyNum){
-        if(emptyDen)removeSpan(f.start,f.end);
+      if(state.cursor===f.numStart){
+        if(emptyNum&&emptyDen)removeSpan(f.start,f.end);
         else{state.cursor=f.start;render();state.editor.focus();}
         return;
       }
       if(state.cursor===f.denStart){state.cursor=f.numClose;render();state.editor.focus();return;}
-      if(state.cursor===f.end){state.cursor=f.denClose;render();state.editor.focus();return;}
+      if(state.cursor===f.end){removeSpan(f.start,f.end);return;}
     }
 
     // The same rule applies to the hidden ^( ) shell used for exponents.
@@ -393,8 +421,7 @@
     for(const f of allFractions().sort((a,b)=>(a.end-a.start)-(b.end-b.start))){
       const emptyNum=f.numStart===f.numClose,emptyDen=f.denStart===f.denClose;
       if(state.cursor===f.start){
-        if(emptyNum&&emptyDen)removeSpan(f.start,f.end);
-        else{state.cursor=f.numStart;render();state.editor.focus();}
+        removeSpan(f.start,f.end);
         return;
       }
       if(state.cursor===f.numStart&&emptyNum){
@@ -454,6 +481,8 @@
         }
         if(shellAfterName){
           state.cursor=shellAfterName.argStart;
+        }else if(state.raw[state.cursor]===FRAC_MID){
+          state.cursor=Math.min(state.raw.length,state.cursor+1);
         }else if(state.raw[state.cursor]===")" && state.raw.slice(state.cursor,state.cursor+3)===")/("){
           state.cursor=Math.min(state.raw.length,state.cursor+3);
         }else if(state.raw.slice(state.cursor,state.cursor+2)==="^("){
@@ -476,6 +505,8 @@
       }
       if(shell){
         state.cursor=shell.tokenEnd;
+      }else if(state.raw[state.cursor-1]===FRAC_MID){
+        state.cursor=Math.max(0,state.cursor-1);
       }else if(state.raw.slice(Math.max(0,state.cursor-3),state.cursor)===")/("){
         state.cursor=Math.max(0,state.cursor-3);
       }else if(state.raw.slice(Math.max(0,state.cursor-2),state.cursor)==="^("){
@@ -717,5 +748,5 @@
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
   else init();
 
-  window.BatchMathCalculusKeypad={init,reset,focus,setRaw:(v)=>setRaw(v,String(v||"").length),move,moveVertical,backspace,del,get raw(){return state.raw},get cursor(){return state.cursor},setCursor:(v)=>{state.cursor=normalizeCursor(Number(v)||0,0);render();}};
+  window.BatchMathCalculusKeypad={init,reset,focus,setRaw:(v)=>setRaw(v,String(v||"").length),move,moveVertical,backspace,del,get raw(){return serializeRange()},get cursor(){return state.cursor},setCursor:(v)=>{state.cursor=normalizeCursor(Number(v)||0,0);render();}};
 })();

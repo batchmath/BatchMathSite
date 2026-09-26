@@ -125,7 +125,11 @@ function complex(){
  let a,b,c,A,B;for(let tries=0;tries<200;tries++){a=pick([-4,-3,-2,2,3,4]);b=ri(1,7);c=pick([-5,-4,-2,2,4,5].filter(v=>a+v!==0));A=ri(1,6);const candidate=A*(a+c)/(a*a+b);if(Number.isInteger(candidate)&&candidate!==0&&A%Math.abs(candidate)===0){B=candidate;break;}}
  if(!B){a=3;b=1;c=2;A=2;B=1;}
  const r2=A/B-a,ans=rat(-B*(a-r2),(a*a+b)*(a+c)),xa=shift('x',a),xc=shift('x',-c);
- return problem('complex','complex_two_variable_fractions',`cf-extra-two-variable-${A}-${B}-${a}-${b}-${c}`,`\\(\\displaystyle\\lim_{x\\to${a}}\\frac{\\frac{${A}}{x^2+${b}}-\\frac{${B}}{${xc}}}{${xa}}\\)`,ans,`Use the common denominator \\((x^2+${b})(${xc})\\). The numerator becomes \\(${A}(${xc})-${B}(x^2+${b})=-${B}(${xa})(${shift('x',r2)})\\). Cancel \\(${xa}\\) from the full quotient. Substituting \\(x=${a}\\) into \\(-\\frac{${B}(${shift('x',r2)})}{(x^2+${b})(${xc})}\\) gives \\(${tr(ans)}\\).`,{A,B,a,b,c,r2});
+ const displayedDifference=B<0?`\\frac{${A}}{x^2+${b}}+\\frac{${-B}}{${xc}}`:`\\frac{${A}}{x^2+${b}}-\\frac{${B}}{${xc}}`;
+ const combinedNumerator=`${A}(${xc})${term(-B,`(x^2+${b})`)}`;
+ const factoredNumerator=term(-B,`(${xa})(${shift('x',r2)})`,true);
+ const simplified=B<0?`\\frac{${-B}(${shift('x',r2)})}{(x^2+${b})(${xc})}`:`-\\frac{${B}(${shift('x',r2)})}{(x^2+${b})(${xc})}`;
+ return problem('complex','complex_two_variable_fractions',`cf-extra-two-variable-${A}-${B}-${a}-${b}-${c}`,`\\(\\displaystyle\\lim_{x\\to${a}}\\frac{${displayedDifference}}{${xa}}\\)`,ans,`Use the common denominator \\((x^2+${b})(${xc})\\). The numerator becomes \\(${combinedNumerator}=${factoredNumerator}\\). Cancel \\(${xa}\\) from the full quotient. Substituting \\(x=${a}\\) into \\(${simplified}\\) gives \\(${tr(ans)}\\).`,{A,B,a,b,c,r2});
 }
 
 window.BMUnit1CoreExpansions={continuous,factoring,substitution,rationalizing,complex,rat,exact,texAnswer:tr};
