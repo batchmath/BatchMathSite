@@ -6,11 +6,13 @@ const rat=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gcd(n,d);return[n/g,d/g]},raw=(n,d
 const signed=(c,t="",first=false)=>{if(!c)return"";const core=`${Math.abs(c)===1&&t?"":Math.abs(c)}${t}`;return first?(c<0?"-":"")+core:(c<0?" - ":" + ")+core};
 const coef=(c,t)=>c===1?t:c===-1?`-${t}`:`${c}${t}`,pow=(v,n)=>n===1?v:`${v}^{${n}}`,lin=(a,b=0)=>signed(a,"x",true)+signed(b),quad=(a,b,c=0)=>signed(a,"x^2",true)+signed(b,"x")+signed(c);
 const trigTex=(name,argument)=>`\\${name}\\left(${argument}\\right)`,bareFunctionTex=(name,argument)=>`\\${name} ${argument}`,factorTex=value=>`\\left(${value}\\right)`,typeset=n=>window.MathJax?.typesetPromise?.(n).catch(()=>{}),seen=new Set();let current=null,correct=0,attempted=0;
-const make=(group,family,id,math,answerExpr,answerTex,steps,meta={})=>({group,family,id,math,answerExpr,answerTex,steps,...meta});
+const fallbackCleanTex=value=>String(value??"").replace(/\\frac\{\s*-\s*(\d+(?:\.\d+)?)\s*\}/g,"-\\frac{$1}");
+const cleanTex=value=>window.BatchMathAnswers?.normalizeTexFractionSigns?.(value)??fallbackCleanTex(value);
+const make=(group,family,id,math,answerExpr,answerTex,steps,meta={})=>({group,family,id,math:cleanTex(math),answerExpr,answerTex:cleanTex(answerTex),steps:steps.map(cleanTex),...meta});
 const steps=(rule,sub,result)=>[rule,sub,`Simplify to obtain \\(${result}\\).`];
 const point=(r,t=r,id=String(r).replace(/[^a-z0-9]+/gi,"_"))=>({raw:r,tex:t,id});
 
-function exactTrig(kind){
+function exactTrig(kind,nonzeroPoint=false){
  const table={
   sin:[[point("0"),"0","0","1","1"],[point("pi/2","\\frac{\\pi}{2}","pi2"),"1","1","0","0"],[point("pi","\\pi","pi"),"0","0","-1","-1"]],
   cos:[[point("0"),"1","1","0","0"],[point("pi/2","\\frac{\\pi}{2}","pi2"),"0","0","-1","-1"],[point("pi","\\pi","pi"),"-1","-1","0","0"]],
@@ -19,7 +21,17 @@ function exactTrig(kind){
   csc:[[point("pi/2","\\frac{\\pi}{2}","pi2"),"1","1","0","0"],[point("pi/6","\\frac{\\pi}{6}","pi6"),"2","2","-2*sqrt(3)","-2\\sqrt3"]],
   cot:[[point("pi/4","\\frac{\\pi}{4}","pi4"),"1","1","-2","-2"],[point("3*pi/4","\\frac{3\\pi}{4}","3pi4"),"-1","-1","-2","-2"]]
  };
- const[p,valueRaw,valueTex,derivativeRaw,derivativeTex]=pick(table[kind]);return{point:p,valueRaw,valueTex,derivativeRaw,derivativeTex};
+ const choices=nonzeroPoint?table[kind].filter(([p])=>p.raw!=="0"):table[kind],[p,valueRaw,valueTex,derivativeRaw,derivativeTex]=pick(choices);return{point:p,valueRaw,valueTex,derivativeRaw,derivativeTex};
+}
+
+function dividedFamiliarPoint(p,m){
+ const match=p.raw.match(/^(-)?(?:(\d+)\*)?pi(?:\/(\d+))?$/);if(!match)throw Error(`Unsupported familiar angle: ${p.raw}`);
+ const g=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b)[a,b]=[b,a%b];return a||1},sign=match[1]?-1:1,n0=sign*Number(match[2]||1),d0=Number(match[3]||1)*m,common=g(n0,d0),n=n0/common,d=d0/common,abs=Math.abs(n),rawNumerator=abs===1?"pi":`${abs}*pi`,texNumerator=abs===1?"\\pi":`${abs}\\pi`,prefix=n<0?"-":"";
+ return point(d===1?`${prefix}${rawNumerator}`:`${prefix}${rawNumerator}/${d}`,d===1?`${prefix}${texNumerator}`:`${prefix}\\frac{${texNumerator}}{${d}}`,`scaled_${p.id}_${m}`);
+}
+function scaledTrigDerivative(m,d){
+ if(d.derivativeRaw.includes("sqrt(3)")){const base=Number(d.derivativeRaw.split("*")[0]),c=m*base;return{raw:`${c}*sqrt(3)`,tex:coef(c,"\\sqrt3")}}
+ const value=m*Number(d.derivativeRaw);return{raw:String(value),tex:String(value)};
 }
 
 function basic(){
@@ -89,8 +101,8 @@ function trig(){
   return make("trig",k,`${k}-square`, `y=${trigTex(k,"x^2")},\\quad x=${pt}`,d[2],d[3],steps(`Let \\(u=x^2\\), so \\(u'=2x\\).`,`At \\(x=${pt}\\), the angle is \\(${d[1]}\\).`,d[3]),{usesChain:true,trigKind:k,pointStyle:"quadratic-exact",evaluationPoint:p});
  }
  if(style<1){
-  const x=pick([-2,-1,1,2]),m=ri(2,5),phase={sin:["0","0","1","1"],cos:["pi/2","\\frac{\\pi}{2}","-1","-1"],tan:["pi/4","\\frac{\\pi}{4}","2","2"],sec:["pi/3","\\frac{\\pi}{3}","2*sqrt(3)","2\\sqrt3"],csc:["pi/6","\\frac{\\pi}{6}","-2*sqrt(3)","-2\\sqrt3"],cot:["pi/4","\\frac{\\pi}{4}","-2","-2"]}[k],shift=x>0?`x-${x}`:`x+${-x}`,inside=`${m}(${shift})${phase[0]==="0"?"":`+${phase[1]}`}`,ans=`${m}*(${phase[2]})`,out=`${m}(${phase[3]})`;
-  return make("trig",k,`${k}-shift-${m}-${x}`,`y=${trigTex(k,inside)},\\quad x=${x}`,ans,out,steps(`Let \\(u=${inside}\\), so \\(u'=${m}\\).`,`At \\(x=${x}\\), the angle is \\(${phase[1]}\\).`,out),{usesChain:true,trigKind:k,pointStyle:"shifted-numeric",evaluationPoint:String(x)});
+  const m=ri(2,5),d=exactTrig(k,true),p=dividedFamiliarPoint(d.point,m),answer=scaledTrigDerivative(m,d),inside=coef(m,"x");
+  return make("trig",k,`${k}-scaled-${m}-${d.point.id}`,`y=${trigTex(k,inside)},\\quad x=${p.tex}`,answer.raw,answer.tex,steps(`Let \\(u=${inside}\\), so \\(u'=${m}\\).`,`At \\(x=${p.tex}\\), the angle is \\(${d.point.tex}\\).`,answer.tex),{usesChain:true,trigKind:k,pointStyle:"scaled-familiar",evaluationPoint:p.raw});
  }
  const d=exactTrig(k),p=d.point;return make("trig",k,`${k}-direct-${p.id}`,`y=${trigTex(k,"x")},\\quad x=${p.tex}`,d.derivativeRaw,d.derivativeTex,steps(`Use the standard ${k} derivative rule.`,`Evaluate it at the familiar angle \\(x=${p.tex}\\).`,d.derivativeTex),{usesChain:false,trigKind:k,pointStyle:"direct-familiar",evaluationPoint:p.raw});
 }

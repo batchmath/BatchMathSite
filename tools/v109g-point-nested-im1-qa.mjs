@@ -144,14 +144,14 @@ const topicFiles=fs.readdirSync(path.join(ROOT,"ap-calculus/unit-2-derivatives/t
 let dyIcons=0,secondIcons=0,thirdIcons=0,oldIcons=0;
 for(const file of topicFiles){const html=fs.readFileSync(file,"utf8");dyIcons+=(html.match(/<span class="bm-deriv-num">dy<\/span><span class="bm-deriv-den">dx<\/span>/g)||[]).length;secondIcons+=(html.match(/<span class="bm-deriv-num">d²y<\/span><span class="bm-deriv-den">dx²<\/span>/g)||[]).length;thirdIcons+=(html.match(/<span class="bm-deriv-num">d³y<\/span><span class="bm-deriv-den">dx³<\/span>/g)||[]).length;oldIcons+=(html.match(/<span class="bm-deriv-num">(?:d|f′|d²)<\/span>/g)||[]).length;}
 assert(dyIcons===13,`derivative topic buttons: found ${dyIcons} dy/dx first-engine icons, expected 13`);
-assert(secondIcons===2,`derivative topic buttons: found ${secondIcons} d²y/dx² second-engine icons, expected 2`);
-assert(thirdIcons===1,`derivative topic buttons: found ${thirdIcons} d³y/dx³ third-engine icons, expected 1`);
+assert(secondIcons===10,`derivative topic buttons: found ${secondIcons} d²y/dx² second-engine icons, expected 10`);
+assert(thirdIcons===2,`derivative topic buttons: found ${thirdIcons} d³y/dx³ third-engine icons, expected 2`);
 assert(oldIcons===0,`derivative topic buttons: ${oldIcons} incomplete or old derivative icons remain`);
 const comprehensiveHtml=fs.readFileSync(path.join(ROOT,"ap-calculus/unit-2-derivatives/topics/comprehensive-review/index.html"),"utf8");
 const comprehensiveOrder=["dy</span><span class=\"bm-deriv-den\">dx","d²y</span><span class=\"bm-deriv-den\">dx²","d³y</span><span class=\"bm-deriv-den\">dx³"].map(token=>comprehensiveHtml.indexOf(token));
 assert(comprehensiveOrder.every(index=>index>=0)&&comprehensiveOrder[0]<comprehensiveOrder[1]&&comprehensiveOrder[1]<comprehensiveOrder[2],"Comprehensive Review buttons are not ordered dy/dx, d²y/dx², d³y/dx³");
 
-console.log("BatchMath v10.9.I targeted derivative/IM1 QA");
+console.log("BatchMath v10.9.L targeted derivative/IM1 QA");
 console.log(`Result: ${errors.length?"FAIL":"PASS"}`);
 console.log(`Checks: ${checks}`);
 console.log(`Polynomial quotient share: ${(100*polynomialShare).toFixed(2)}%`);

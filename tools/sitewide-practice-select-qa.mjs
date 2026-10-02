@@ -54,10 +54,10 @@ for (const absolute of htmlFiles(root)) {
 manifest.sort((a, b) => `${a.file}#${a.id}`.localeCompare(`${b.file}#${b.id}`));
 const optionHash = crypto.createHash('sha256').update(JSON.stringify(manifest)).digest('hex');
 if(process.env.BM_PRINT_SELECT_HASH==='1') console.log(`SELECT_MANIFEST ${manifest.reduce((sum, select) => sum + select.options.length, 0)} ${optionHash}`);
-assert.equal(pages.size, 57, 'active generator-page count changed');
-assert.equal(manifest.length, 93, 'practice select count changed');
-assert.equal(manifest.reduce((sum, select) => sum + select.options.length, 0), 441, 'static option count changed');
-assert.equal(optionHash, '63873e698dbdaefc32397b12e09e52648ca028c25cafc979d4aa8a10b7a9b5e3', 'select options, order, values, or defaults changed from the approved v10.9.C manifest');
+assert.equal(pages.size, 66, 'active generator-page count changed');
+assert.equal(manifest.length, 102, 'practice select count changed');
+assert.equal(manifest.reduce((sum, select) => sum + select.options.length, 0), 450, 'static option count changed');
+assert.equal(optionHash, '3e980dc08c6fa0e563bddbb18c3e99498e8e54043fc0ae41ad3bfc2f5ea8d5bc', 'select options, order, values, or defaults changed from the approved v10.9.J manifest');
 
 const expectedPracticeType = [
   'ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html#category',
@@ -67,8 +67,17 @@ const expectedPracticeType = [
   'ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/index.html#focus',
   'ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html#category',
   'ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html#practice-type',
+  'ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html#practice-type',
+  'ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html#practice-type',
+  'ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html#practice-type',
+  'ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html#practice-type',
+  'ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html#practice-type',
+  'ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html#practice-type',
+  'ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html#practice-type',
   'ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html#practice-type',
   'ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html#chain-mode',
+  'ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html#practice-type',
+  'ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html#practice-type',
   'calculus-prep/domains/index.html#mode',
   'calculus-prep/function-graphs/index.html#family',
   'calculus-prep/rational-functions/index.html#displayMode',

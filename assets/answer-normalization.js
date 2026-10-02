@@ -1,4 +1,4 @@
-/* BatchMath answer normalization — v10.6.3.V
+/* BatchMath answer normalization — v10.9.L
    Canonicalizes mathematically equivalent negative-fraction sign placement
    before practice engines inspect a typed response. This is intentionally
    sitewide so numerator, denominator, and leading-minus forms are treated
@@ -137,6 +137,60 @@
     return `${numerator}/${wrapFactor(db)}`;
   }
 
+  function oppositeAfterLeadingMinus(value) {
+    const text=String(value ?? '').trim();
+    if (!text.startsWith('-')) return null;
+    const body=text.slice(1).trim();
+    if (!body) return null;
+    let out='',braces=0,parens=0,brackets=0;
+    for (let i=0;i<body.length;i++) {
+      const ch=body[i];
+      if (ch==='{') braces++;
+      else if (ch==='}') braces=Math.max(0,braces-1);
+      else if (ch==='(') parens++;
+      else if (ch===')') parens=Math.max(0,parens-1);
+      else if (ch==='[') brackets++;
+      else if (ch===']') brackets=Math.max(0,brackets-1);
+      if (!braces&&!parens&&!brackets&&(ch==='+'||ch==='-')) out+=ch==='+'?'-':'+';
+      else out+=ch;
+    }
+    return out;
+  }
+
+  function matchingBrace(text,openIndex) {
+    let depth=0;
+    for (let i=openIndex;i<text.length;i++) {
+      if (text[i]==='{') depth++;
+      else if (text[i]==='}'&&--depth===0) return i;
+    }
+    return -1;
+  }
+
+  // Display-side companion for generated TeX. A negative sign belongs in
+  // front of a fraction, including when that fraction is used as an exponent.
+  // When the numerator has several terms, factoring out the leading minus
+  // also reverses its other top-level signs, preserving the expression.
+  function normalizeTexFractionSigns(value) {
+    let text=String(value ?? ''),from=0;
+    while (from<text.length) {
+      const fraction=text.indexOf('\\frac{',from);
+      if (fraction<0) break;
+      const open=fraction+5,close=matchingBrace(text,open);
+      if (close<0) break;
+      const opposite=oppositeAfterLeadingMinus(text.slice(open+1,close));
+      if (opposite===null) {from=fraction+1;continue;}
+      let prefix=text.slice(0,fraction),outside='-';
+      const adjacent=prefix.match(/([+-])\s*$/);
+      if (adjacent) {
+        prefix=prefix.slice(0,adjacent.index);
+        outside=adjacent[1]==='+'?'-':'+';
+      }
+      text=`${prefix}${outside}\\frac{${opposite}}${text.slice(close+1)}`;
+      from=fraction+1;
+    }
+    return text;
+  }
+
   function candidateInputs(root=document) {
     const sel='input[type="text"],input[type="number"],input:not([type]),textarea';
     return [...root.querySelectorAll(sel)].filter(el => {
@@ -161,7 +215,7 @@
     return count;
   }
 
-  const api=Object.freeze({normalizeFractionSigns,normalizeElement,normalizeAnswerInputs});
+  const api=Object.freeze({normalizeFractionSigns,normalizeTexFractionSigns,normalizeElement,normalizeAnswerInputs});
   window.BatchMathAnswers=api;
 
   // Normalize immediately before the engine's own checking handler runs.
