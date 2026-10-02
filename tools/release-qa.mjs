@@ -26,7 +26,7 @@ const htmlFiles=siteFiles.filter(f=>f.endsWith('.html'));
 const jsFiles=siteFiles.filter(f=>f.endsWith('.js'));
 stats.htmlPages=htmlFiles.length; stats.standaloneJs=jsFiles.length;
 
-function attr(tag,name){const m=tag.match(new RegExp(`\\b${name}\\s*=\\s*["']([^"']*)["']`,'i'));return m?m[1]:'';}
+function attr(tag,name){const m=tag.match(new RegExp(`\\b${name}\\s*=\\s*(["'])([\\s\\S]*?)\\1`,'i'));return m?m[2]:'';}
 function meta(html,name){for(const m of html.matchAll(/<meta\b[^>]*>/gi)){const t=m[0];if(attr(t,'name').toLowerCase()===name.toLowerCase()||attr(t,'property').toLowerCase()===name.toLowerCase())return attr(t,'content');}return '';}
 function linkRel(html,rel){for(const m of html.matchAll(/<link\b[^>]*>/gi)){const t=m[0];if(attr(t,'rel').toLowerCase().split(/\s+/).includes(rel.toLowerCase()))return attr(t,'href');}return '';}
 function title(html){return (html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'').replace(/\s+/g,' ').trim();}
@@ -111,7 +111,7 @@ for(const f of htmlFiles){
 const engines=[];
 for(const f of htmlFiles){const html=fs.readFileSync(f,'utf8');if(!html.includes('problem-tracking.js'))continue;const rel=norm(path.relative(ROOT,f));const m=html.match(/window\.BM_ANALYTICS_CONFIG=\{course:"([^"]+)",engineId:"([^"]+)",generatorVersion:"([^"]+)"\}/);if(!m){fail(`${rel}: analytics engine config not parsed`);continue;}const seedPos=html.indexOf('/assets/reproducible-rng.js'), trackPos=html.indexOf('/assets/problem-tracking.js'), answerPos=html.indexOf('/assets/answer-normalization.js');if(seedPos<0)fail(`${rel}: missing reproducible-rng.js`);else if(seedPos>trackPos)fail(`${rel}: reproducible-rng.js must load before problem tracking`);if(answerPos<0)fail(`${rel}: missing answer-normalization.js`);else if(answerPos>trackPos)fail(`${rel}: answer-normalization.js must load before problem tracking`);engines.push({rel,course:m[1],engineId:m[2],generatorVersion:m[3]});}
 const ids=engines.map(x=>x.engineId);if(new Set(ids).size!==ids.length)fail('duplicate analytics engineId detected');
-if(engines.length!==88)fail(`expected 88 instrumented engines, found ${engines.length}`);stats.practiceEngines=engines.length;
+if(engines.length!==113)fail(`expected 113 instrumented engines, found ${engines.length}`);stats.practiceEngines=engines.length;
 
 
 // Generator randomness must use the dedicated seeded RNG, never raw Math.random.

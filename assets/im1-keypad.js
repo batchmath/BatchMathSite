@@ -220,7 +220,8 @@
 
   function initPracticeObserver(){
     const practice=document.getElementById("practiceCard");
-    if(!practice) return;
+    if(!practice || practice.dataset.bmPracticeObserverReady === "true") return;
+    practice.dataset.bmPracticeObserverReady="true";
     syncPracticeMode();
     new MutationObserver(syncPracticeMode).observe(practice,{attributes:true,attributeFilter:["class"]});
   }
@@ -236,10 +237,10 @@
     input.setAttribute("autocomplete","off");
     input.setAttribute("spellcheck","false");
 
-    if(touchMode){
+    if(touchMode) document.documentElement.classList.add("bm-keypad-touch");
+    if(touchMode && !window.BM_UNIT3_PRACTICE){
       input.readOnly=true;
       input.setAttribute("inputmode","none");
-      document.documentElement.classList.add("bm-keypad-touch");
       // Tapping the source input should never summon the OS keyboard.
       input.addEventListener("pointerdown", function(e){ e.preventDefault(); input.blur(); });
     }else{

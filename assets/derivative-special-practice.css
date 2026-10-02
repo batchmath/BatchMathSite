@@ -1,0 +1,57 @@
+:root{--black:#030303;--red:#d71920;--yellow:#f5c400;--white:#f4f4f4}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--black);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit}
+.topbar{min-height:82px;border-bottom:1px solid #181818;display:flex;align-items:center;justify-content:center;padding:14px 170px;position:relative}
+.logo{color:var(--red);text-decoration:none;font-weight:900;font-size:clamp(2rem,5vw,4rem);letter-spacing:-.05em}
+.tm-mark{font-size:.38em;vertical-align:super;margin-left:.08em;line-height:0}
+.corner{position:absolute;width:118px;height:145px;object-fit:cover;object-position:50% 20%;border-radius:10px;top:10px;left:18px}
+.profile{position:absolute;right:18px;top:8px;width:126px;z-index:20;text-align:center}
+.profile img{width:118px;height:145px;object-fit:cover;object-position:50% 20%;border-radius:10px;display:block;margin-left:auto}
+.menu-toggle{margin-top:5px;width:118px;min-height:32px;border:1px solid var(--yellow);background:#050505;color:var(--yellow);border-radius:7px;font-weight:900;cursor:pointer}
+.dropdown{display:none;position:absolute;top:184px;right:0;width:220px;padding:8px;background:#050505;border:1px solid var(--yellow);border-radius:10px;text-align:left}
+.dropdown.open{display:block}
+.dropdown a{display:block;text-decoration:none;color:var(--yellow);padding:10px 11px;border-radius:7px;font-weight:800}
+.dropdown a:hover{background:#191300}
+.main{width:min(940px,calc(100% - 36px));margin:0 auto;padding:42px 0 34px}
+.page-title{color:var(--yellow);text-align:center;font-size:clamp(1.9rem,5vw,3rem);margin:0 0 22px}
+.back{display:inline-block;margin-bottom:18px;color:var(--yellow);text-decoration:none;font-weight:800;font-size:.88rem}
+.topic-description{max-width:790px;margin:0 auto 18px;color:#d6d6d6;line-height:1.55;text-align:left}
+.footer{width:min(850px,calc(100% - 36px));margin:48px auto 0;padding:16px 0 22px;border-top:1px solid #9e1116;text-align:center;color:var(--yellow);font-size:.78rem}
+.bm-footer-links{margin-top:5px}
+.bm-footer-links a{color:#d8b400}
+.bm-legal-note{color:#8e8e8e;margin-top:7px}
+.practice-shell{max-width:840px;margin:0 auto;border:1px solid #292929;border-radius:12px;background:#080808;padding:18px}
+.controls{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin-bottom:18px}
+.control{flex:1 1 300px}
+.stats{font-size:.86rem;color:#bbb;margin:4px 0 14px}
+.question-box{min-height:150px;border:1px solid #292929;border-radius:10px;padding:24px 18px;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;text-align:center;font-size:clamp(1.12rem,3.5vw,1.75rem);background:#030303;margin-bottom:16px;overflow-x:auto}
+.question-prompt{font-size:.72em;color:#ddd;font-weight:700}
+.answer-row{display:flex;gap:10px;flex-wrap:wrap}
+.answer-row input{flex:1 1 240px;min-width:0;background:#050505;color:#fff;border:1px solid var(--yellow);border-radius:7px;padding:11px 12px;font-size:1rem}
+.practice-button{border:1px solid var(--red);border-radius:7px;background:#151515;color:#fff;font-weight:800;padding:10px 14px;cursor:pointer}
+.practice-button:hover{background:#221010}
+.practice-button.next{border-color:var(--yellow);color:var(--yellow);display:none}
+.feedback{margin-top:16px;line-height:1.55}
+.feedback.correct{color:#8dde8d}
+.feedback.wrong{color:#fff}
+.feedback .status{font-weight:900;margin-bottom:7px}
+.feedback .correct-answer{color:var(--yellow);font-weight:800;margin-bottom:9px;overflow-x:auto}
+.feedback .method{color:#ddd;margin-top:11px;padding:13px 15px;border:1px solid #2c2c2c;border-radius:9px;background:#050505}
+.feedback .method[hidden]{display:none}
+.solution-title{color:var(--yellow);font-weight:900;margin-bottom:8px}
+.solution-steps{margin:0;padding-left:1.45rem}
+.solution-steps li{margin:.58rem 0}
+.show-explanation{margin-top:7px;border-color:#777;color:#f0f0f0}
+.show-explanation[hidden]{display:none}
+@media(max-width:760px){
+  .topbar{padding:13px 100px;min-height:74px}
+  .corner{width:72px;height:88px;left:8px}
+  .profile{width:78px;right:8px}
+  .profile img{width:72px;height:88px}
+  .menu-toggle{width:72px;font-size:.65rem}
+  .dropdown{top:122px;width:190px}
+  .practice-shell{padding:14px}
+  .answer-row>*{width:100%;flex-basis:100%}
+  .question-box{padding:20px 10px;font-size:clamp(1rem,4.8vw,1.35rem)}
+}

@@ -1,6 +1,6 @@
 BatchMath cumulative working copy
-Current full release: 10.8
-Archive: batchmath-site-v10.8.zip
+Current full release: 10.9
+Archive: batchmath-site-v10.9.zip
 Baseline: complete v10.7.21 release.
 Changes: completed the five remaining Limits & Continuity Comprehensive Review fixes: coefficient-of-1 cleanup in Limits at Infinity, shared Complex Fractions sign normalization, responsive Regular Trig math containment, stacked/full-width Classifying Discontinuities presentation, and fixed one-column IVT choices.
 No deployment performed.

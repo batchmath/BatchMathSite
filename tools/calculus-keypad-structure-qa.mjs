@@ -64,9 +64,11 @@ set('(x)/(y)',2);k.del();assert.equal(raw(),'(x)/(y)');assert.equal(k.cursor,5);
 set('sqrt((x)/(y))',15);for(let i=0;i<7;i++){k.backspace();assert(validStructure(raw()),raw());}
 
 const editor=row.children.find(x=>x.className==='bm-calc-editor');
-const press=key=>editor.events.keydown[0]({key,preventDefault(){}});
+const press=(key,extra={})=>editor.events.keydown[0]({key,...extra,preventDefault(){}});
 assert.equal(document.activeElement,editor,'visible editor should receive focus as soon as the shared keypad initializes');
 set('',0);input.focus();assert.equal(document.activeElement,editor,'legacy source-input focus should redirect to the visible editor');press('7');assert.equal(raw(),'7','first physical keystroke should enter immediately');
+set('',0);press('Dead',{code:'Digit6',shiftKey:true});assert.equal(raw(),'^()','ChromeOS Shift+6 dead-key events should insert an exponent');
+set('',0);press('^',{code:'Digit6',shiftKey:true});assert.equal(raw(),'^()','ordinary Shift+6 caret events should insert an exponent');
 const fractionKey=allKeys.find(button=>button['aria-label']==='Insert stacked fraction');
 const leftParenKey=allKeys.find(button=>button.textContent==='('),rightParenKey=allKeys.find(button=>button.textContent===')');
 assert(fractionKey&&leftParenKey&&rightParenKey,'fraction and parenthesis keys missing');
@@ -83,7 +85,7 @@ set('root(,)',5);k.backspace();assert.equal(raw(),'');
 
 const buttons=(row.after?.children||[]).flatMap(x=>x.children||[]).map(x=>x.textContent);
 for(const label of ['sin⁻¹','cos⁻¹','tan⁻¹','cot⁻¹','sec⁻¹','csc⁻¹'])assert(buttons.includes(label),`inverse trig keypad missing ${label}`);
-const report={ok:true,cases:43,editors:['shared calculus keypad','advanced trig keypad'],focus:['initial visible-editor focus','legacy source-focus redirect','first physical keystroke'],structures:['square roots','editable nth roots','functions','function powers','inverse trig functions','fractions','exponents','nested structures']};
+const report={ok:true,cases:45,editors:['shared calculus keypad','advanced trig keypad'],focus:['initial visible-editor focus','legacy source-focus redirect','first physical keystroke'],keyboard:['ordinary Shift+6 exponent','ChromeOS dead-key Shift+6 exponent'],structures:['square roots','editable nth roots','functions','function powers','inverse trig functions','fractions','exponents','nested structures']};
 fs.mkdirSync(path.join(root,'qa-results'),{recursive:true});
 fs.writeFileSync(path.join(root,'qa-results/calculus-keypad-structure-qa.json'),JSON.stringify(report,null,2)+'\n');
 console.log(report);

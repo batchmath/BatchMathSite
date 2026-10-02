@@ -32,6 +32,7 @@
   <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/topics/comprehensive-review/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/topics/comprehensive-review/conceptual-practice/</loc></url>
+  <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/</loc></url>
@@ -52,6 +53,7 @@
   <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/topics/the-chain-rule/</loc></url>
+  <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/topics/the-product-rule/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-2-derivatives/topics/the-product-rule/practice/</loc></url>
@@ -189,4 +191,55 @@
   <url><loc>https://batchmath.net/im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/</loc></url>
   <url><loc>https://batchmath.net/im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-inequalities/</loc></url>
   <url><loc>https://batchmath.net/im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-inequalities/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/collinearity-and-slope/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/collinearity-and-slope/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/section-b-review/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/section-b-review/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/section-c-review/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/section-c-review/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/comprehensive-review/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/comprehensive-review/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/practice/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/</loc></url>
+  <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/</loc></url>
 </urlset>

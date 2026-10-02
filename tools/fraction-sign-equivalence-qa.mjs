@@ -57,7 +57,7 @@ for(const f of htmlFiles){
   staticAnswerInputs += [...html.matchAll(/<(?:input|textarea)\b[^>]*(?:id|aria-label|class|data-bm-(?:calc-)?keypad)=["'][^"']*(?:answer|response|location|quotient|remainder|practice-answer|keypad|factor)[^"']*["'][^>]*>/gi)].length;
 }
 stats.instrumentedEngines=engines;stats.staticAnswerInputs=staticAnswerInputs;
-if(engines!==88)fail(`expected 88 instrumented engines, found ${engines}`);
+if(engines!==113)fail(`expected 113 instrumented engines, found ${engines}`);
 
 // Defense-in-depth assertions on the known direct parsers that historically
 // handled rational answers themselves instead of using expression equivalence.

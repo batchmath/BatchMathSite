@@ -53,10 +53,11 @@ for (const absolute of htmlFiles(root)) {
 
 manifest.sort((a, b) => `${a.file}#${a.id}`.localeCompare(`${b.file}#${b.id}`));
 const optionHash = crypto.createHash('sha256').update(JSON.stringify(manifest)).digest('hex');
-assert.equal(pages.size, 50, 'active generator-page count changed');
-assert.equal(manifest.length, 86, 'practice select count changed');
-assert.equal(manifest.reduce((sum, select) => sum + select.options.length, 0), 401, 'static option count changed');
-assert.equal(optionHash, '97f84f08049d61f80bb2b91735ce823279190240b4978c99ca11446bfce854cf', 'select options, order, values, or defaults changed from the approved v10.7.21 manifest');
+if(process.env.BM_PRINT_SELECT_HASH==='1') console.log(`SELECT_MANIFEST ${manifest.reduce((sum, select) => sum + select.options.length, 0)} ${optionHash}`);
+assert.equal(pages.size, 57, 'active generator-page count changed');
+assert.equal(manifest.length, 93, 'practice select count changed');
+assert.equal(manifest.reduce((sum, select) => sum + select.options.length, 0), 441, 'static option count changed');
+assert.equal(optionHash, '63873e698dbdaefc32397b12e09e52648ca028c25cafc979d4aa8a10b7a9b5e3', 'select options, order, values, or defaults changed from the approved v10.9.C manifest');
 
 const expectedPracticeType = [
   'ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html#category',
@@ -65,6 +66,8 @@ const expectedPracticeType = [
   'ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html#category',
   'ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/index.html#focus',
   'ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html#category',
+  'ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html#practice-type',
+  'ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html#practice-type',
   'ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html#chain-mode',
   'calculus-prep/domains/index.html#mode',
   'calculus-prep/function-graphs/index.html#family',
@@ -74,6 +77,11 @@ const expectedPracticeType = [
   'calculus-prep/trig-identities/index.html#set',
   'calculus-prep/unit-circle-values/index.html#mode',
   'im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/practice/index.html#featureMode',
+  'im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/practice/index.html#practiceMode',
+  'im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/section-b-review/practice/index.html#practiceMode',
+  'im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/section-c-review/practice/index.html#practiceMode',
+  'im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/index.html#practiceMode',
+  'im1/unit-3-linear-equation/topics/comprehensive-review/practice/index.html#practiceMode',
 ];
 for (const key of expectedPracticeType) assert.equal(labelByControl.get(key), 'Practice Type', `${key}: main selector label is not standardized`);
 

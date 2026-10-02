@@ -6,7 +6,7 @@
   // a student is still typing unmatched parentheses. They are converted to the
   // parser-friendly (numerator)/(denominator) form before reaching the engine.
   const FRAC_OPEN="\uE000",FRAC_MID="\uE001",FRAC_END="\uE002";
-  const fnNames=["asin","acos","atan","acot","asec","acsc","sin","cos","tan","sec","csc","cot","ln","log","exp","sqrt","cbrt","root","abs"];
+  const fnNames=["asin","acos","atan","acot","asec","acsc","sqrt","cbrt","root","sin","cos","tan","sec","csc","cot","ln","log","exp","abs","fp","gp","f","g"];
   const atomicWords=["infinity","undefined","DNE","pi"];
   const nextFrame=fn=>typeof requestAnimationFrame==="function"?requestAnimationFrame(fn):fn();
 
@@ -184,7 +184,7 @@
 
       let token=null,shown=null;
       for(const f of fnNames){
-        if(s.startsWith(f,i)){token=f;shown=f==="sqrt"?"√":f==="cbrt"?"∛":f==="root"?"ⁿ√":f;break;}
+        if(s.startsWith(f,i)){token=f;shown=f==="sqrt"?"√":f==="cbrt"?"∛":f==="root"?"ⁿ√":f==="fp"?"f′":f==="gp"?"g′":f;break;}
       }
       if(token){
         out+=renderToken(shown,i,i+token.length,"function");
@@ -605,6 +605,9 @@
       if(mode==="derivative"&&document.querySelector('input[data-bm-inverse-trig-keypad="1"]')){
         [["sin⁻¹","asin"],["cos⁻¹","acos"],["tan⁻¹","atan"],["cot⁻¹","acot"],["sec⁻¹","asec"],["csc⁻¹","acsc"],["log","log"]].forEach(([lab,name])=>addFunction(funcs,lab,name));
       }
+      if(mode==="derivative"&&document.querySelector('input[data-bm-symbolic-functions="1"]')){
+        [["f","f"],["g","g"],["f′","fp"],["g′","gp"]].forEach(([lab,name])=>addFunction(funcs,lab,name));
+      }
       addInsert(funcs,"e","e","function");
       addInsert(funcs,"π","pi","function");
       addFraction(funcs);
@@ -664,8 +667,15 @@
     if(e.key==="Backspace"){e.preventDefault();backspace();return;}
     if(e.key==="Delete"){e.preventDefault();del();return;}
     if(e.key==="Enter"){e.preventDefault();check();return;}
-    if(e.key==="^"){e.preventDefault();insertExponent();return;}
+    // ChromeOS can report Shift+6 as a dead/accent key instead of "^".
+    // The physical Digit6 fallback keeps exponent entry working there while
+    // preserving the normal key-value path on other keyboards.
+    if(e.key==="^"||(e.shiftKey&&e.code==="Digit6")){e.preventDefault();insertExponent();return;}
     if(e.key==="/"){e.preventDefault();fractionFromLeft();return;}
+    if(e.key==="'"&&state.mode==="derivative"&&state.input?.dataset.bmSymbolicFunctions==="1"){
+      const prior=state.raw[state.cursor-1];
+      if(prior==="f"||prior==="g"){e.preventDefault();insert("p");return;}
+    }
     if(e.key.length===1&&/[0-9a-zA-Z+\-*().,]/.test(e.key)){e.preventDefault();insert(e.key);return;}
   }
 
