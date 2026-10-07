@@ -1,0 +1,9 @@
+BatchMath derivative/topic interaction QA
+Result: PASS
+Difference Quotient sampled: 20000
+Product: 8000 basic / 8000 all-function-types
+Quotient: 8000 basic / 8000 all-function-types
+Trig: 4000 without-chain / 12000 with-chain
+Chain: 5000 simple / 7000 multiple / 7000 other-rules / 15000 combined
+Warnings: 0
+Errors: 0

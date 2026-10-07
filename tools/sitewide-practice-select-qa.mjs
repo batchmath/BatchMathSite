@@ -54,10 +54,10 @@ for (const absolute of htmlFiles(root)) {
 manifest.sort((a, b) => `${a.file}#${a.id}`.localeCompare(`${b.file}#${b.id}`));
 const optionHash = crypto.createHash('sha256').update(JSON.stringify(manifest)).digest('hex');
 if(process.env.BM_PRINT_SELECT_HASH==='1') console.log(`SELECT_MANIFEST ${manifest.reduce((sum, select) => sum + select.options.length, 0)} ${optionHash}`);
-assert.equal(pages.size, 66, 'active generator-page count changed');
-assert.equal(manifest.length, 102, 'practice select count changed');
-assert.equal(manifest.reduce((sum, select) => sum + select.options.length, 0), 450, 'static option count changed');
-assert.equal(optionHash, '3e980dc08c6fa0e563bddbb18c3e99498e8e54043fc0ae41ad3bfc2f5ea8d5bc', 'select options, order, values, or defaults changed from the approved v10.9.J manifest');
+assert.equal(pages.size, 68, 'active generator-page count changed');
+assert.equal(manifest.length, 104, 'practice select count changed');
+assert.equal(manifest.reduce((sum, select) => sum + select.options.length, 0), 460, 'static option count changed');
+assert.equal(optionHash, '1b8c8d856c8d2c46cc0eb1fcf0cc20a505423200821954f28b669e80d44548b7', 'select options, order, values, or defaults changed from the approved v11.6 manifest');
 
 const expectedPracticeType = [
   'ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html#category',
@@ -78,6 +78,8 @@ const expectedPracticeType = [
   'ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html#chain-mode',
   'ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html#practice-type',
   'ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html#practice-type',
+  'ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html#analysisFocus',
+  'ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html#analysisFocus',
   'calculus-prep/domains/index.html#mode',
   'calculus-prep/function-graphs/index.html#family',
   'calculus-prep/rational-functions/index.html#displayMode',

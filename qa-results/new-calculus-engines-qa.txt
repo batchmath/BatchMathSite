@@ -1,0 +1,8 @@
+BatchMath specialized calculus engines QA
+Result: PASS
+Limit Proof Practice: intentionally retired
+Discontinuity problems: 50000
+Advanced trig problems: 38000
+Discontinuity classifications: infinite, jump, removable
+Warnings: 0
+Errors: 0

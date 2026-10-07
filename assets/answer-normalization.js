@@ -1,4 +1,4 @@
-/* BatchMath answer normalization — v10.9.L
+/* BatchMath answer normalization — v11
    Canonicalizes mathematically equivalent negative-fraction sign placement
    before practice engines inspect a typed response. This is intentionally
    sitewide so numerator, denominator, and leading-minus forms are treated
@@ -173,9 +173,9 @@
   function normalizeTexFractionSigns(value) {
     let text=String(value ?? ''),from=0;
     while (from<text.length) {
-      const fraction=text.indexOf('\\frac{',from);
-      if (fraction<0) break;
-      const open=fraction+5,close=matchingBrace(text,open);
+      const match=/\\(?:dfrac|tfrac|frac)\{/.exec(text.slice(from));
+      if (!match) break;
+      const fraction=from+match.index,open=fraction+match[0].length-1,close=matchingBrace(text,open);
       if (close<0) break;
       const opposite=oppositeAfterLeadingMinus(text.slice(open+1,close));
       if (opposite===null) {from=fraction+1;continue;}
@@ -185,7 +185,7 @@
         prefix=prefix.slice(0,adjacent.index);
         outside=adjacent[1]==='+'?'-':'+';
       }
-      text=`${prefix}${outside}\\frac{${opposite}}${text.slice(close+1)}`;
+      text=`${prefix}${outside}${text.slice(fraction,open+1)}${opposite}}${text.slice(close+1)}`;
       from=fraction+1;
     }
     return text;

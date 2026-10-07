@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T02:45:43.379Z",
+  "counts": {
+    "first:mixed": 2500,
+    "first:polynomial": 2500,
+    "first:negative": 2500,
+    "first:fractional": 2500,
+    "first:irrational": 2500,
+    "higher:mixed": 2500,
+    "higher:polynomial": 2500,
+    "higher:negative": 2500,
+    "higher:fractional": 2500
+  },
+  "errors": []
+}

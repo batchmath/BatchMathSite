@@ -1,0 +1,181 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T05:36:13.506Z",
+  "versions": {
+    "serviceWorker": "11.13",
+    "package": "11.13",
+    "appVersion": "11.13",
+    "pwa": "11.13",
+    "analytics": "11.13",
+    "rngFallback": "11.13"
+  },
+  "appShellEntries": 40,
+  "appShellLocalBytes": 870692,
+  "appShellLocalMiB": 0.83,
+  "practicePagesAudited": 109,
+  "localPracticeDependenciesAudited": 1168,
+  "shellFiles": [
+    {
+      "url": "/",
+      "size": 15715
+    },
+    {
+      "url": "/offline.html",
+      "size": 2118
+    },
+    {
+      "url": "/manifest.webmanifest",
+      "size": 1834
+    },
+    {
+      "url": "/assets/site.css",
+      "size": 27351
+    },
+    {
+      "url": "/assets/answer-normalization.js",
+      "size": 8776
+    },
+    {
+      "url": "/assets/im1-unit2-generators.js",
+      "size": 36798
+    },
+    {
+      "url": "/assets/im1-unit2-practice.js",
+      "size": 5048
+    },
+    {
+      "url": "/assets/im1-unit3-generators.js",
+      "size": 23812
+    },
+    {
+      "url": "/assets/im1-unit3-practice.js",
+      "size": 13730
+    },
+    {
+      "url": "/assets/im1-unit3-nav.js",
+      "size": 818
+    },
+    {
+      "url": "/assets/im1-unit3.css",
+      "size": 10108
+    },
+    {
+      "url": "/assets/im1-keypad.js",
+      "size": 14836
+    },
+    {
+      "url": "/assets/im1-keypad.css",
+      "size": 8683
+    },
+    {
+      "url": "/assets/im1-algebra-input.js",
+      "size": 6297
+    },
+    {
+      "url": "/assets/im1-algebra-input.css",
+      "size": 1111
+    },
+    {
+      "url": "/assets/im1-equation-input.js",
+      "size": 4508
+    },
+    {
+      "url": "/assets/im1-interval-input.js",
+      "size": 3791
+    },
+    {
+      "url": "/assets/pwa.js",
+      "size": 12278
+    },
+    {
+      "url": "/assets/batchmath-storage.js",
+      "size": 3626
+    },
+    {
+      "url": "/assets/problem-tracking.js",
+      "size": 18453
+    },
+    {
+      "url": "/assets/reproducible-rng.js",
+      "size": 8567
+    },
+    {
+      "url": "/assets/derivative-rule-factors.js",
+      "size": 7701
+    },
+    {
+      "url": "/assets/derivative-focused-review.js",
+      "size": 3989
+    },
+    {
+      "url": "/assets/ap-topic-practice.css",
+      "size": 11213
+    },
+    {
+      "url": "/assets/ap-topic-generators.js",
+      "size": 389942
+    },
+    {
+      "url": "/assets/unit1-one-sided.js",
+      "size": 17766
+    },
+    {
+      "url": "/assets/ap-topic-practice.js",
+      "size": 46701
+    },
+    {
+      "url": "/favicon.svg",
+      "size": 2048
+    },
+    {
+      "url": "/favicon.ico",
+      "size": 10904
+    },
+    {
+      "url": "/favicon-32.png",
+      "size": 1504
+    },
+    {
+      "url": "/apple-touch-icon.png",
+      "size": 10408
+    },
+    {
+      "url": "/assets/icons/app-icon-192.png",
+      "size": 11169
+    },
+    {
+      "url": "/assets/icons/app-icon-512.png",
+      "size": 31061
+    },
+    {
+      "url": "/assets/icons/maskable-icon-192.png",
+      "size": 10973
+    },
+    {
+      "url": "/assets/icons/maskable-icon-512.png",
+      "size": 33981
+    },
+    {
+      "url": "/im1/",
+      "size": 11468
+    },
+    {
+      "url": "/calculus-prep/",
+      "size": 8560
+    },
+    {
+      "url": "/ap-calculus/",
+      "size": 13208
+    },
+    {
+      "url": "/about/",
+      "size": 11892
+    },
+    {
+      "url": "/diagnostics/",
+      "size": 7946
+    }
+  ],
+  "warnings": [],
+  "errors": []
+}

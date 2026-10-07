@@ -12,6 +12,7 @@ class FakeElement{
  addEventListener(type,fn){(this.events[type]??=[]).push(fn);}
  dispatchEvent(event){for(const fn of this.events[event.type]||[])fn(event);return true;}
  setAttribute(name,value){this[name]=String(value);}
+ getAttribute(name){return this[name]??null;}
  appendChild(child){this.children.push(child);child.parentElement=this;return child;}
  insertAdjacentElement(where,child){if(where==='afterend'){this.after=child;return child}return this.parentElement?.appendChild(child)||child;}
  closest(selector){if(selector==='.answer-row')return row;return null;}
@@ -83,9 +84,48 @@ press('5');press('ArrowRight');press('3');assert.equal(raw(),'root(5,3)');
 set('root(5,3)',9);k.backspace();assert.equal(k.cursor,8);k.backspace();assert.equal(raw(),'root(5,)');
 set('root(,)',5);k.backspace();assert.equal(raw(),'');
 
+// Standard clipboard shortcuts must preserve the structured expression rather
+// than copying only the visual MathJax-like surface.
+function clipboard(initial={}){
+ const data=new Map(Object.entries(initial));
+ return{setData(type,value){data.set(type,String(value))},getData(type){return data.get(type)||''},data};
+}
+const structured='(x+1)/(sqrt(2))';
+set(structured,structured.length);press('a',{ctrlKey:true});
+assert.deepEqual({...k.selection},{start:0,end:structured.length},'Ctrl+A must select the complete structured answer');
+const copied=clipboard();editor.events.copy[0]({clipboardData:copied,preventDefault(){}});
+assert(copied.getData('application/x-batchmath-expression'),'copy must include the BatchMath structured clipboard format');
+editor.events.cut[0]({clipboardData:copied,preventDefault(){}});
+assert.equal(raw(),'','Ctrl+X must remove the safely expanded structured selection');
+editor.events.paste[0]({clipboardData:copied,preventDefault(){}});
+assert.equal(raw(),structured,'Ctrl+V must restore the exact structured expression');
+assert(editor.innerHTML.includes('bm-calc-frac')&&editor.innerHTML.includes('bm-calc-token function')&&editor.innerHTML.includes('√'),'pasted fraction and radical must remain structured');
+press('a',{metaKey:true});
+const external=clipboard({'text/plain':'\\frac{\\pi}{2}'});
+editor.events.paste[0]({clipboardData:external,preventDefault(){}});
+assert.equal(raw(),'(pi)/(2)','plain LaTeX paste must normalize through the same structured parser');
+assert(editor.innerHTML.includes('bm-calc-frac'),'normalized external paste must render as a stacked fraction');
+
+// Unit 3's dynamic typed-answer fields use the same structured editor. Verify
+// that a fraction inserted there stays stacked and survives partial deletion.
+const dynamicHost=new FakeElement('div'),dynamicA=new FakeElement('input'),dynamicB=new FakeElement('input');
+dynamicA['aria-label']='First coordinate';dynamicB['aria-label']='Second coordinate';
+for(const field of [dynamicA,dynamicB]){field.parentElement=dynamicHost;dynamicHost.children.push(field);}
+const mounted=k.mountInputs([dynamicA,dynamicB],dynamicHost,{mode:'unit3'});
+assert.equal(mounted.bindings.length,2,'both dynamic fields should receive structured editors');
+const dynamicEditor=mounted.bindings[0].editor,dynamicKeys=mounted.pad.children.flatMap(group=>group.children||[]);
+const dynamicFraction=dynamicKeys.find(button=>button['aria-label']==='Insert stacked fraction');
+const dynamicTwo=dynamicKeys.find(button=>button.textContent==='2');
+assert(dynamicFraction&&dynamicTwo,'Unit 3 structured fraction keys missing');
+dynamicFraction.events.click[0]({preventDefault(){}});dynamicTwo.events.click[0]({preventDefault(){}});
+assert.equal(dynamicA.value,'(2)/()');assert(dynamicEditor.innerHTML.includes('bm-calc-frac'),'Unit 3 fraction must render stacked');
+dynamicEditor.events.keydown[0]({key:'ArrowRight',preventDefault(){}});dynamicTwo.events.click[0]({preventDefault(){}});
+assert.equal(dynamicA.value,'(2)/(2)');
+dynamicEditor.events.keydown[0]({key:'Backspace',preventDefault(){}});assert.equal(dynamicA.value,'(2)/()');assert(dynamicEditor.innerHTML.includes('bm-calc-frac'),'deleting denominator content must not break the fraction shell');
+
 const buttons=(row.after?.children||[]).flatMap(x=>x.children||[]).map(x=>x.textContent);
 for(const label of ['sin⁻¹','cos⁻¹','tan⁻¹','cot⁻¹','sec⁻¹','csc⁻¹'])assert(buttons.includes(label),`inverse trig keypad missing ${label}`);
-const report={ok:true,cases:45,editors:['shared calculus keypad','advanced trig keypad'],focus:['initial visible-editor focus','legacy source-focus redirect','first physical keystroke'],keyboard:['ordinary Shift+6 exponent','ChromeOS dead-key Shift+6 exponent'],structures:['square roots','editable nth roots','functions','function powers','inverse trig functions','fractions','exponents','nested structures']};
+const report={ok:true,cases:59,editors:['shared calculus keypad','advanced trig keypad','Unit 3 dynamic multi-field keypad'],focus:['initial visible-editor focus','legacy source-focus redirect','first physical keystroke'],keyboard:['ordinary Shift+6 exponent','ChromeOS dead-key Shift+6 exponent','Ctrl/Cmd+A','Ctrl/Cmd+C','Ctrl/Cmd+X','Ctrl/Cmd+V'],clipboard:['custom structured MIME','safe whole-structure cut','structured paste','external LaTeX normalization'],structures:['square roots','editable nth roots','functions','function powers','inverse trig functions','fractions','exponents','nested structures','dynamic field switching']};
 fs.mkdirSync(path.join(root,'qa-results'),{recursive:true});
 fs.writeFileSync(path.join(root,'qa-results/calculus-keypad-structure-qa.json'),JSON.stringify(report,null,2)+'\n');
 console.log(report);

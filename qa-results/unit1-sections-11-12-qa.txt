@@ -1,0 +1,7 @@
+BatchMath Unit 1 Sections 11–12 QA
+Result: PASS
+Discontinuity samples: 65000
+Factored presentation share: 4.86%
+Parameter samples: 60000
+Three-piece share: 49.89%
+Fractional field answers: 24949

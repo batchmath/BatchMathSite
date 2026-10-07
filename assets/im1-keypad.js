@@ -48,7 +48,7 @@
     editor.setAttribute("aria-label","Answer");
     input.insertAdjacentElement("beforebegin",editor);
 
-    let activePart="whole";
+    let activePart="whole",selectAll=false;
 
     function split(){
       const raw=input.value||"";
@@ -68,10 +68,10 @@
       editor.classList.toggle("is-disabled",disabled);
       if(!p.hasFraction){
         activePart="whole";
-        editor.innerHTML=p.whole ? `<span class="bm-fraction-whole">${shown(p.whole)}</span>` : '<span class="bm-fraction-placeholder">Enter answer</span>';
+        editor.innerHTML=p.whole ? `<span class="bm-fraction-whole${selectAll?' bm-fraction-selected':''}">${shown(p.whole)}</span>` : '<span class="bm-fraction-placeholder">Enter answer</span>';
       }else{
         if(activePart==="whole")activePart=p.num?"den":"num";
-        editor.innerHTML=`<span class="bm-im1-frac">
+        editor.innerHTML=`<span class="bm-im1-frac${selectAll?' bm-fraction-selected':''}">
           <span class="bm-im1-frac-num${activePart==="num"?" active":""}" data-fraction-part="num">${shown(p.num)}</span>
           <span class="bm-im1-frac-den${activePart==="den"?" active":""}" data-fraction-part="den">${shown(p.den)}</span>
         </span>`;
@@ -96,6 +96,7 @@
 
     function append(text){
       if(input.disabled)return;
+      if(selectAll){setValue(input,text);selectAll=false;activePart="whole";editor.focus();return;}
       const p=split();
       if(!p.hasFraction){
         setValue(input,p.whole+text);
@@ -110,6 +111,7 @@
 
     function erase(){
       if(input.disabled)return;
+      if(selectAll){selectAll=false;activePart="whole";setValue(input,"");editor.focus();return;}
       const p=split();
       if(!p.hasFraction){
         setValue(input,p.whole.slice(0,-1));
@@ -143,6 +145,7 @@
 
     function clear(){
       if(input.disabled)return;
+      selectAll=false;
       activePart="whole";
       setValue(input,"");
       editor.focus();
@@ -156,6 +159,11 @@
     }
 
     editor.addEventListener("keydown",e=>{
+      if((e.ctrlKey||e.metaKey)&&!e.altKey){
+        const key=e.key.toLowerCase();
+        if(key==="a"){e.preventDefault();selectAll=true;render();return;}
+        if(key==="c"||key==="x"||key==="v")return;
+      }
       if(input.disabled){
         if(e.key==="Enter"){e.preventDefault();checkOrNext();}
         return;
@@ -180,8 +188,29 @@
 
     editor.addEventListener("click",e=>{
       const target=e.target.closest("[data-fraction-part]");
-      if(target){activePart=target.dataset.fractionPart;render();}
+      selectAll=false;if(target){activePart=target.dataset.fractionPart;render();}
       editor.focus();
+    });
+
+    editor.addEventListener("copy",e=>{
+      const p=split(),value=selectAll||!p.hasFraction?input.value:(activePart==="num"?p.num:p.den);
+      if(!value||!e.clipboardData)return;e.preventDefault();e.clipboardData.setData("text/plain",value);
+      try{e.clipboardData.setData("application/x-batchmath-im1-fraction",JSON.stringify({version:1,value:input.value,part:selectAll?"all":activePart}));}catch(_){}
+    });
+    editor.addEventListener("cut",e=>{
+      if(input.disabled||!e.clipboardData)return;const p=split(),value=selectAll||!p.hasFraction?input.value:(activePart==="num"?p.num:p.den);if(!value)return;
+      e.preventDefault();e.clipboardData.setData("text/plain",value);
+      if(selectAll||!p.hasFraction){selectAll=false;activePart="whole";setValue(input,"");}
+      else if(activePart==="num")write("",p.den);else write(p.num,"");
+      editor.focus();
+    });
+    editor.addEventListener("paste",e=>{
+      if(input.disabled||!e.clipboardData)return;e.preventDefault();let value="";
+      try{const custom=e.clipboardData.getData("application/x-batchmath-im1-fraction");if(custom)value=JSON.parse(custom).value||"";}catch(_){}
+      if(!value)value=e.clipboardData.getData("text/plain");value=String(value||"").trim().replace(/[−–—]/g,"-").replace(/\s+/g,"");if(!value)return;
+      const p=split();if(selectAll||value.includes("/")||!p.hasFraction){setValue(input,value);activePart=value.includes("/")?"den":"whole";}
+      else if(activePart==="num")write(value,p.den);else write(p.num,value);
+      selectAll=false;editor.focus();
     });
 
     // Existing page code calls answer.focus() when a new question starts. Route

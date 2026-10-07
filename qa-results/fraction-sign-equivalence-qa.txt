@@ -1,0 +1,17 @@
+BatchMath fraction-sign equivalence QA
+Result: PASS
+
+displayCases: 6
+explicitCases: 17
+numericStressCases: 237606
+generatedDisplaySourcesChecked: 313
+instrumentedEngines: 132
+staticAnswerInputs: 52
+directParserDefenseFiles: 11
+expressionParserDefenseFiles: 16
+productionParserExecutions: 36
+targetFactoringAcceptanceChecks: 58806
+
+Warnings: 0
+
+Errors: 0

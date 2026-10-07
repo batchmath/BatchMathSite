@@ -56,9 +56,6 @@ for(const [slug,opts,required] of cases){const seen=new Set();for(let i=1;i<=300
 // Retired engines: lesson/resource pages remain, practice generators and practice directories must not.
 const retired=[
  ['limit-proof','ap-calculus/unit-1-limits-continuity/topics/delta-epsilon-proofs/practice'],
- ['optimization','ap-calculus/unit-3-applications-derivative/topics/optimization/practice'],
- ['related-rates','ap-calculus/unit-3-applications-derivative/topics/related-rates/practice'],
- ['graphing-functions','ap-calculus/unit-3-applications-derivative/topics/graphing-functions/practice'],
  ['converting-a-rectangular-approximation-into-exact-area','ap-calculus/unit-4-integrals/topics/converting-a-rectangular-approximation-into-exact-area/practice'],
  ['slope-fields','ap-calculus/unit-5-differential-equations/topics/slope-fields/practice'],
  ['exponential-growth-and-decay-interest-newton-s-law-of-cooling','ap-calculus/unit-5-differential-equations/topics/exponential-growth-and-decay-interest-newton-s-law-of-cooling/practice']

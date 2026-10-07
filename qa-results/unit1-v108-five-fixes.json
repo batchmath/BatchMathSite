@@ -1,0 +1,19 @@
+{
+  "infinitySamples": 100000,
+  "individualComplexSamples": 100000,
+  "reviewComplexSamples": 100000,
+  "longTrigVariants": [
+    "expanded_cosine",
+    "expanded_cosine_fourth",
+    "mixed_trig_quadratic",
+    "nonlinear_argument"
+  ],
+  "responsiveFitChecks": 8,
+  "discontinuityKinds": {
+    "simple": true,
+    "rational": true,
+    "piecewise": true
+  },
+  "ivtSamples": 10000,
+  "errors": []
+}

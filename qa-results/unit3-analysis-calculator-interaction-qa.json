@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T05:36:53.955Z",
+  "checks": [
+    "incdec: selector, typed answer, feedback, worked solution, and one-step Enter advance",
+    "concavity: selector, typed answer, feedback, worked solution, and one-step Enter advance",
+    "poi: selector, typed answer, feedback, worked solution, and one-step Enter advance",
+    "extrema: selector, typed answer, feedback, worked solution, and one-step Enter advance",
+    "leading-decimal and leading-zero forms accepted; two- and four-decimal forms rejected"
+  ],
+  "errors": []
+}

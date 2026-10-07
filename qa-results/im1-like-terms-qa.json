@@ -1,0 +1,46 @@
+{
+  "ok": true,
+  "generated": 24000,
+  "identities": 30918,
+  "combiningFamilies": [
+    "constants",
+    "two_variables",
+    "three_groups",
+    "combine",
+    "like_terms",
+    "mixed_products",
+    "multi"
+  ],
+  "distributingFamilies": [
+    "construct",
+    "multiterm",
+    "three_groups",
+    "negative",
+    "two_groups",
+    "equivalent",
+    "combine",
+    "basic",
+    "reverse"
+  ],
+  "variables": [
+    "x",
+    "y",
+    "p",
+    "u",
+    "r",
+    "q",
+    "m",
+    "s",
+    "a",
+    "v",
+    "n",
+    "b"
+  ],
+  "powers": [
+    4,
+    3,
+    2
+  ],
+  "controller": "PASS",
+  "browser": "not run"
+}

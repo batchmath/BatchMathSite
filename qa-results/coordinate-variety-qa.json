@@ -1,0 +1,53 @@
+{
+  "ok": true,
+  "checked": 30000,
+  "families": [
+    "constant",
+    "y_intercept",
+    "x_intercepts",
+    "domain",
+    "increasing",
+    "absolute_max",
+    "absolute_min",
+    "range",
+    "decreasing"
+  ],
+  "shapes": [
+    "rising",
+    "plateaus",
+    "valley",
+    "zigzag",
+    "peak",
+    "falling"
+  ],
+  "vertexCounts": [
+    7,
+    6,
+    4,
+    5
+  ],
+  "distinctGraphsIgnoringTranslation": 28893,
+  "endCounts": {
+    "open": 19969,
+    "closed": 20078,
+    "infinite": 19953,
+    "bothInfinite": 3298,
+    "positiveInfinity": 10041,
+    "negativeInfinity": 9912
+  },
+  "openEndpointDistractors": 2912,
+  "highlightedClosedEndpoints": 3257,
+  "fixedCounts": {
+    "plot_point": 800,
+    "domain": 800,
+    "range": 800,
+    "increasing": 800,
+    "decreasing": 800,
+    "constant": 800,
+    "x_intercepts": 800,
+    "y_intercept": 800,
+    "absolute_max": 800,
+    "absolute_min": 800
+  },
+  "reviewGraphs": 832
+}

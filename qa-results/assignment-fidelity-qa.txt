@@ -1,0 +1,8 @@
+BatchMath v10.6.3.C working assignment-fidelity QA
+Result: PASS
+Generator/mode contracts: 31
+Problems generated: 228074
+Independent numeric/exact checks: 12000
+Structural checks: 75287
+Warnings: 0
+Errors: 0

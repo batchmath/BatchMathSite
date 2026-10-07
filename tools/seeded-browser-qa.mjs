@@ -114,7 +114,7 @@ try{
   // so Analytics/MathJax/YouTube cannot make results flaky or consume time.
   await context.route('**/*',route=>{const u=new URL(route.request().url());if(u.hostname==='127.0.0.1'||u.hostname==='localhost')route.continue();else route.abort();});
   try{answeredEnterChecks+=await exerciseUnit1Approved(context,`http://127.0.0.1:${PORT}`);}catch(e){errors.push('Unit 1 approved workflows: '+e.message);}
-  const list=engines();if(list.length!==122)errors.push(`Expected 122 engines, found ${list.length}`);
+  const list=engines();if(list.length!==132)errors.push(`Expected 132 engines, found ${list.length}`);
   for(const engine of list){
     const seen=new Set();
     for(let i=0;i<SEED_COUNT;i++){

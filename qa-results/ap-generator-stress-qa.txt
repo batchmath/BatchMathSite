@@ -1,0 +1,7 @@
+BatchMath deterministic AP generator stress QA
+Result: PASS
+Problems generated: 280000
+Problems per category: 10000
+Categories: 28
+
+Errors: 0

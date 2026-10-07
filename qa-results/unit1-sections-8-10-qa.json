@@ -1,0 +1,45 @@
+{
+  "ok": true,
+  "regularSamples": 50000,
+  "squeezeShare": 0.20456,
+  "regularFamilies": {
+    "mixed_trig_quadratic": 2478,
+    "squeeze_vanishing": 5107,
+    "standard_tangent_over_x": 1641,
+    "standard_x_over_tangent": 1661,
+    "squeeze_cosine": 2480,
+    "expanded_cosine_fourth": 2448,
+    "cosine_ratio": 1849,
+    "cosine_minus_one_over_x": 1710,
+    "standard_sine_over_x": 1654,
+    "sine_cosine_product": 1879,
+    "expanded_cosine": 1797,
+    "split_cosine": 1878,
+    "tangent_power": 1892,
+    "cosine_power": 1833,
+    "nonlinear_argument": 2450,
+    "pythagorean": 1974,
+    "sine_power": 1845,
+    "product": 1942,
+    "standard_x_over_sine": 1677,
+    "sine_ratio": 1875,
+    "polynomial_product": 1805,
+    "one_minus_cosine_over_x": 1632,
+    "squeeze_sine": 2641,
+    "split_sum": 1852
+  },
+  "advancedAdditions": [
+    "tan-minus-sin-square",
+    "quadratic-cos-linear",
+    "quadratic-cos-square",
+    "nonzero-exact-substitution",
+    "linear-combo-polynomial"
+  ],
+  "infinitySamples": {
+    "rational": 5000,
+    "radicals": 5000,
+    "explog": 5000,
+    "growth": 5000
+  },
+  "reviewAdapters": true
+}

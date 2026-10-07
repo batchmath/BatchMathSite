@@ -266,8 +266,8 @@ G['tangent-and-secant-line-approximations']=()=>{
 G['rolle-s-theorem-and-the-mean-value-theorem']=()=>{
   const family=pick(['mvt_quadratic','mvt_reciprocal','mvt_radical','mvt_cubic','rolle_quadratic','rolle_sine','rolle_cosine']);
   if(family==='mvt_quadratic'){const a=ri(-4,0),b=a+ri(2,6),A=nz(1,4),B=nz(-5,5),c=texRat(a+b,2);return mc(`mvt-q-${A}-${B}-${a}-${b}`,'mvt_quadratic','Find all c-values guaranteed by the Mean Value Theorem.',`f(x)=${A}x^2${signed(B,'x')}\\quad\\text{on }[${a},${b}]`,c,[String(a),String(b),texRat(a+b+2,2)],`Solve f'(c)=[f(b)-f(a)]/(b-a), giving c=${c}.`)}
-  if(family==='mvt_reciprocal'){const a=pick([1,2,3]),r=pick([2,3]),b=a*r*r,c=`${r===1?'':r}\\sqrt{${a*a===1?'':a*a}}`;const actual=Math.sqrt(a*b),ans=Number.isInteger(actual)?String(actual):`\\sqrt{${a*b}}`;return mc(`mvt-rec-${a}-${b}`,'mvt_reciprocal','Find the c-value guaranteed by the Mean Value Theorem.',`f(x)=\\frac1x\\quad\\text{on }[${a},${b}]`,ans,[String(a),String(b),texRat(a+b,2)],`The secant slope is -1/(ab). Setting -1/c²=-1/(ab) gives c=√(ab)=${ans}.`)}
-  if(family==='mvt_radical'){const p=ri(1,4),q=p+ri(1,4),a=p*p,b=q*q,c=texRat((p+q)**2,4);return mc(`mvt-root-${p}-${q}`,'mvt_square_root','Find the c-value guaranteed by the Mean Value Theorem.',`f(x)=\\sqrt{x}\\quad\\text{on }[${a},${b}]`,c,[String(a),String(b),texRat(a+b,2)],`The secant slope is 1/(${p+q}). Set 1/(2√c)=1/(${p+q}), giving c=${c}.`)}
+  if(family==='mvt_reciprocal'){const a=pick([1,2,3]),r=pick([2,3]),b=a*r*r,c=`${r===1?'':r}\\sqrt{${a*a===1?'':a*a}}`;const actual=Math.sqrt(a*b),ans=Number.isInteger(actual)?String(actual):`\\sqrt{${a*b}}`;return mc(`mvt-rec-${a}-${b}`,'mvt_reciprocal','Find the c-value guaranteed by the Mean Value Theorem.',`f(x)=\\frac1x\\quad\\text{on }[${a},${b}]`,ans,[String(a),String(b),texRat(a+b,2)],`The secant slope is \\(-\\frac1{ab}\\). Setting \\(-\\frac1{c^2}=-\\frac1{ab}\\) gives \\(c=\\sqrt{ab}=${ans}\\).`)}
+  if(family==='mvt_radical'){const p=ri(1,4),q=p+ri(1,4),a=p*p,b=q*q,c=texRat((p+q)**2,4);return mc(`mvt-root-${p}-${q}`,'mvt_square_root','Find the c-value guaranteed by the Mean Value Theorem.',`f(x)=\\sqrt{x}\\quad\\text{on }[${a},${b}]`,c,[String(a),String(b),texRat(a+b,2)],`The secant slope is \\(\\frac1{${p+q}}\\). Set \\(\\frac1{2\\sqrt c}=\\frac1{${p+q}}\\), giving \\(c=${c}\\).`)}
   if(family==='mvt_cubic'){const a=ri(1,5);const ans=`c=\\pm\\frac{${a}}{\\sqrt3}`;return mc(`mvt-cubic-${a}`,'mvt_cubic','Find all c-values that satisfy the Mean Value Theorem conclusion.',`f(x)=x^3\\quad\\text{on }[-${a},${a}]`,ans,[`c=0`,`c=\\pm${a}`,`c=\\frac{${a}}2`],`The secant slope is ${a*a}. Solve 3c²=${a*a}, giving ${ans}.`)}
   if(family==='rolle_sine')return mc('rolle-sin','rolle_trigonometric_sine',`Rolle's Theorem applies. Find c.`,`f(x)=\\sin x\\quad\\text{on }[0,\\pi]`,`c=\\frac{\\pi}{2}`,[`c=0`,`c=\\pi`,`c=\\frac{\\pi}{4}`],`f'(x)=cos x, which is 0 at π/2.`);
   if(family==='rolle_cosine')return mc('rolle-cos','rolle_trigonometric_cosine',`Rolle's Theorem applies. Find c.`,`f(x)=\\cos x\\quad\\text{on }[-\\frac{\\pi}{2},\\frac{\\pi}{2}]`,`c=0`,[`c=\\frac{\\pi}{2}`,`c=-\\frac{\\pi}{2}`,`c=\\pi`],`The endpoint values agree and f'(x)=-sin x=0 at c=0.`);
@@ -2683,42 +2683,42 @@ G['difference-quotient']=()=>{
     const trivial=R()<0.20;
     const fam=trivial?pick(['simple_exp','simple_radical']):pick(['exp_remainder','sin_remainder','cos_ratio','log_cos_sin','log_growth','exp_growth','exp_cos_ratio','cos_exp_ratio','radical_derivative','inverse_sine','shifted_exp_sin']);
     if(fam==='simple_exp'){
-      const k=ri(2,7);return numericMC(`lhM-se-${k}`,'simple_exponential','Evaluate the limit.',`\\lim_{x\\to0}\\frac{e^{${k}x}-1}{x}`,k,`Direct substitution gives \\(0/0\\). One application of L'Hopital's Rule gives \\(k e^{kx}\to${k}\\).`,1);
+      const k=ri(2,7);return numericMC(`lhM-se-${k}`,'simple_exponential','Evaluate the limit.',`\\lim_{x\\to0}\\frac{e^{${k}x}-1}{x}`,k,`Direct substitution gives \\(\\frac00\\). One application of L'Hopital's Rule gives \\(k e^{kx}\to${k}\\).`,1);
     }
     if(fam==='simple_radical'){
-      const r=ri(2,7),a=r*r;return mc(`lhM-sr-${r}`,'simple_radical','Evaluate the limit.',`\\lim_{x\\to${a}}\\frac{\\sqrt{x}-${r}}{x-${a}}`,texRat(1,2*r),[texRat(1,r),texRat(-1,2*r),texRat(1,2*r+2)],`The form is \\(0/0\\). Differentiate numerator and denominator once to obtain \\(1/(2\\sqrt{x})\\), then substitute \\(x=${a}\\).`);
+      const r=ri(2,7),a=r*r;return mc(`lhM-sr-${r}`,'simple_radical','Evaluate the limit.',`\\lim_{x\\to${a}}\\frac{\\sqrt{x}-${r}}{x-${a}}`,texRat(1,2*r),[texRat(1,r),texRat(-1,2*r),texRat(1,2*r+2)],`The form is \\(\\frac00\\). Differentiate numerator and denominator once to obtain \\(\\frac1{2\\sqrt{x}}\\), then substitute \\(x=${a}\\).`);
     }
     if(fam==='exp_remainder'){
-      const k=ri(1,6);return mc(`lhM-er-${k}`,'two_application_exponential','Evaluate the limit.',`\\lim_{x\\to0}\\frac{e^{${k}x}-1-${k}x}{x^2}`,texRat(k*k,2),[String(k*k),texRat(-(k*k),2),texRat(k*k,4)],`The first differentiated quotient is still \\(0/0\\). Apply L'Hopital's Rule a second time to get \\(${k*k}e^{${k}x}/2\to${texRat(k*k,2)}\\).`);
+      const k=ri(1,6);return mc(`lhM-er-${k}`,'two_application_exponential','Evaluate the limit.',`\\lim_{x\\to0}\\frac{e^{${k}x}-1-${k}x}{x^2}`,texRat(k*k,2),[String(k*k),texRat(-(k*k),2),texRat(k*k,4)],`The first differentiated quotient is still \\(\\frac00\\). Apply L'Hopital's Rule a second time to get \\(\\frac{${k*k}e^{${k}x}}2\to${texRat(k*k,2)}\\).`);
     }
     if(fam==='sin_remainder'){
-      const k=ri(1,5);return mc(`lhM-sr3-${k}`,'three_application_trig','Evaluate the limit.',`\\lim_{x\\to0}\\frac{\\sin(${k}x)-${k}x}{x^3}`,texRat(-(k**3),6),[texRat(k**3,6),texRat(-(k**3),3),'0'],`The quotient remains indeterminate after the first two differentiations. After three applications, substitute \\(x=0\\) to obtain \\(-${k**3}/6\\).`);
+      const k=ri(1,5);return mc(`lhM-sr3-${k}`,'three_application_trig','Evaluate the limit.',`\\lim_{x\\to0}\\frac{\\sin(${k}x)-${k}x}{x^3}`,texRat(-(k**3),6),[texRat(k**3,6),texRat(-(k**3),3),'0'],`The quotient remains indeterminate after the first two differentiations. After three applications, substitute \\(x=0\\) to obtain \\(-\\frac{${k**3}}6\\).`);
     }
     if(fam==='cos_ratio'){
-      let a=ri(1,6),b=ri(2,7);if(a===b)b+=1;return mc(`lhM-cr-${a}-${b}`,'cosine_ratio','Evaluate the limit.',`\\lim_{x\\to0}\\frac{1-\\cos(${a}x)}{1-\\cos(${b}x)}`,texRat(a*a,b*b),[texRat(a,b),texRat(b*b,a*a),'1'],`Two applications of L'Hopital's Rule reduce the limit to \\(${a*a}\\cos(${a}x)/(${b*b}\\cos(${b}x))\\), giving \\(${texRat(a*a,b*b)}\\).`);
+      let a=ri(1,6),b=ri(2,7);if(a===b)b+=1;return mc(`lhM-cr-${a}-${b}`,'cosine_ratio','Evaluate the limit.',`\\lim_{x\\to0}\\frac{1-\\cos(${a}x)}{1-\\cos(${b}x)}`,texRat(a*a,b*b),[texRat(a,b),texRat(b*b,a*a),'1'],`Two applications of L'Hopital's Rule reduce the limit to \\(\\frac{${a*a}\\cos(${a}x)}{${b*b}\\cos(${b}x)}\\), giving \\(${texRat(a*a,b*b)}\\).`);
     }
     if(fam==='log_cos_sin'){
-      const k=ri(1,5);return mc(`lhM-lcs-${k}`,'nested_log_trig','Evaluate the limit.',`\\lim_{x\\to0}\\frac{\\ln(\\cos(\\sin(${k}x)))}{x^2}`,texRat(-k*k,2),[texRat(k*k,2),String(-k*k),'0'],`This is a nested \\(0/0\\) limit. Repeated differentiation and substitution at \\(0\\) gives \\(-${k*k}/2\\).`);
+      const k=ri(1,5);return mc(`lhM-lcs-${k}`,'nested_log_trig','Evaluate the limit.',`\\lim_{x\\to0}\\frac{\\ln(\\cos(\\sin(${k}x)))}{x^2}`,texRat(-k*k,2),[texRat(k*k,2),String(-k*k),'0'],`This is a nested \\(\\frac00\\) limit. Repeated differentiation and substitution at \\(0\\) gives \\(-\\frac{${k*k}}2\\).`);
     }
     if(fam==='log_growth'){
-      const p=ri(2,4);return mc(`lhM-lg-${p}`,'logarithm_over_power','Evaluate the limit.',`\\lim_{x\\to\\infty}\\frac{(\\ln x)^{${p}}}{x}`,'0',['1','\\infty',String(p)],`This is \\(\\infty/\\infty\\). Repeated applications of L'Hopital's Rule lower the power of \\(\\ln x\\); eventually the quotient tends to \\(0\\).`);
+      const p=ri(2,4);return mc(`lhM-lg-${p}`,'logarithm_over_power','Evaluate the limit.',`\\lim_{x\\to\\infty}\\frac{(\\ln x)^{${p}}}{x}`,'0',['1','\\infty',String(p)],`This is \\(\\frac{\\infty}{\\infty}\\). Repeated applications of L'Hopital's Rule lower the power of \\(\\ln x\\); eventually the quotient tends to \\(0\\).`);
     }
     if(fam==='exp_growth'){
       const p=ri(2,5),k=ri(1,5);return mc(`lhM-eg-${p}-${k}`,'power_over_exponential','Evaluate the limit.',`\\lim_{x\\to\\infty}\\frac{x^{${p}}}{e^{${k}x}}`,'0',['1','\\infty',texRat(p,k)],`Repeated applications of L'Hopital's Rule eventually remove the polynomial numerator while the exponential remains, so the limit is \\(0\\).`);
     }
     if(fam==='exp_cos_ratio'){
-      const a=ri(1,5),b=ri(1,6);return mc(`lhM-ecr-${a}-${b}`,'exponential_cosine_remainders','Evaluate the limit.',`\\lim_{x\\to0}\\frac{e^{${a}x}-1-${a}x}{1-\\cos(${b}x)}`,texRat(a*a,b*b),[texRat(a,b),texRat(-a*a,b*b),'1'],`Both numerator and denominator vanish to second order. Two applications of L'Hopital's Rule give the ratio \\(${a*a}/${b*b}\\).`);
+      const a=ri(1,5),b=ri(1,6);return mc(`lhM-ecr-${a}-${b}`,'exponential_cosine_remainders','Evaluate the limit.',`\\lim_{x\\to0}\\frac{e^{${a}x}-1-${a}x}{1-\\cos(${b}x)}`,texRat(a*a,b*b),[texRat(a,b),texRat(-a*a,b*b),'1'],`Both numerator and denominator vanish to second order. Two applications of L'Hopital's Rule give the ratio \\(\\frac{${a*a}}{${b*b}}\\).`);
     }
     if(fam==='cos_exp_ratio'){
       const a=ri(1,5),b=ri(1,6);return mc(`lhM-cer-${a}-${b}`,'cosine_exponential_remainders','Evaluate the limit.',`\\lim_{x\\to0}\\frac{\\cos(${a}x)-1}{e^{${b}x}-1-${b}x}`,texRat(-a*a,b*b),[texRat(a*a,b*b),texRat(-a,b),'0'],`After two applications of L'Hopital's Rule, the numerator approaches \\(-${a*a}\\) and the denominator approaches \\(${b*b}\\).`);
     }
     if(fam==='radical_derivative'){
-      const r=ri(2,8),t=ri(1,8),c=r*r-t;return mc(`lhM-rd-${r}-${t}`,'radical_difference_quotient','Evaluate the limit.',`\\lim_{x\\to${t}}\\frac{\\sqrt{x${c>=0?`+${c}`:`-${-c}`}}-${r}}{x-${t}}`,texRat(1,2*r),[texRat(1,r),texRat(-1,2*r),texRat(1,2*r+2)],`The form is \\(0/0\\). Differentiate the radical once and evaluate at \\(x=${t}\\), where the square root equals \\(${r}\\).`);
+      const r=ri(2,8),t=ri(1,8),c=r*r-t;return mc(`lhM-rd-${r}-${t}`,'radical_difference_quotient','Evaluate the limit.',`\\lim_{x\\to${t}}\\frac{\\sqrt{x${c>=0?`+${c}`:`-${-c}`}}-${r}}{x-${t}}`,texRat(1,2*r),[texRat(1,r),texRat(-1,2*r),texRat(1,2*r+2)],`The form is \\(\\frac00\\). Differentiate the radical once and evaluate at \\(x=${t}\\), where the square root equals \\(${r}\\).`);
     }
     if(fam==='inverse_sine'){
-      const k=ri(1,6);return numericMC(`lhM-asin-${k}`,'inverse_trig_limit','Evaluate the limit.',`\\lim_{x\\to0}\\frac{\\sin^{-1}(${k}x)}{x}`,k,`Differentiate numerator and denominator. The derivative of \\(\\sin^{-1}(${k}x)\\) is \\(${k}/\\sqrt{1-${k*k}x^2}\\), which approaches \\(${k}\\).`,1);
+      const k=ri(1,6);return numericMC(`lhM-asin-${k}`,'inverse_trig_limit','Evaluate the limit.',`\\lim_{x\\to0}\\frac{\\sin^{-1}(${k}x)}{x}`,k,`Differentiate numerator and denominator. The derivative of \\(\\sin^{-1}(${k}x)\\) is \\(\\frac{${k}}{\\sqrt{1-${k*k}x^2}}\\), which approaches \\(${k}\\).`,1);
     }
-    const k=ri(1,5);return mc(`lhM-shift-${k}`,'shifted_exponential_trig','Evaluate the limit.',`\\lim_{x\\to0}\\frac{e^{2+${k}x}-\\sin x-e^2}{x}`,`${k}e^2-1`,[`${k}e^2+1`,`e^2-${k}`,`${k}e^2`],`The form is \\(0/0\\). One application of L'Hopital's Rule gives \\(${k}e^{2+${k}x}-\\cos x\\), which approaches \\(${k}e^2-1\\).`);
+    const k=ri(1,5);return mc(`lhM-shift-${k}`,'shifted_exponential_trig','Evaluate the limit.',`\\lim_{x\\to0}\\frac{e^{2+${k}x}-\\sin x-e^2}{x}`,`${k}e^2-1`,[`${k}e^2+1`,`e^2-${k}`,`${k}e^2`],`The form is \\(\\frac00\\). One application of L'Hopital's Rule gives \\(${k}e^{2+${k}x}-\\cos x\\), which approaches \\(${k}e^2-1\\).`);
   };
 
   // Rolle/MVT: broader function variety and four concrete alternatives (no generic fallback choices).
@@ -2735,12 +2735,12 @@ G['difference-quotient']=()=>{
       const r=pick([3,6,9]),c=`\\pm\\frac{${r}}{\\sqrt3}`;return mc(`mvtM-cub-${r}`,'mvt_cubic_symmetric','Find every value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=x^3,\\quad [-${r},${r}]`,c,[`c=0`,`c=\\pm${r}`,`c=\\pm\\frac{${r}}3`],`The secant slope is \\(${r*r}\\). Solve \\(3c^2=${r*r}\\) and keep both solutions in the open interval.`);
     }
     if(fam==='mvt_recip'){
-      const p=ri(1,4),q=p+ri(1,3),a=p*p,b=q*q,c=p*q;return mc(`mvtM-rec-${p}-${q}`,'mvt_reciprocal','Find the value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=\\frac1x,\\quad [${a},${b}]`,String(c),[String(a),String(b),texRat(a+b,2)],`Set \\(-1/c^2\\) equal to the secant slope \\(-1/(${a*b})\\). The solution in the interval is \\(c=${c}\\).`);
+      const p=ri(1,4),q=p+ri(1,3),a=p*p,b=q*q,c=p*q;return mc(`mvtM-rec-${p}-${q}`,'mvt_reciprocal','Find the value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=\\frac1x,\\quad [${a},${b}]`,String(c),[String(a),String(b),texRat(a+b,2)],`Set \\(-\\frac1{c^2}\\) equal to the secant slope \\(-\\frac1{${a*b}}\\). The solution in the interval is \\(c=${c}\\).`);
     }
     if(fam==='mvt_sqrt'){
-      const p=pick([2,4,6]),q=p+pick([2,4]),a=p*p,b=q*q,c=((p+q)/2)**2;return numericMC(`mvtM-root-${p}-${q}`,'mvt_square_root','Find the value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=\\sqrt{x},\\quad [${a},${b}]`,c,`The secant slope is \\(1/(${p+q})\\). Set \\(1/(2\\sqrt c)=1/(${p+q})\\) and solve.`,1);
+      const p=pick([2,4,6]),q=p+pick([2,4]),a=p*p,b=q*q,c=((p+q)/2)**2;return numericMC(`mvtM-root-${p}-${q}`,'mvt_square_root','Find the value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=\\sqrt{x},\\quad [${a},${b}]`,c,`The secant slope is \\(\\frac1{${p+q}}\\). Set \\(\\frac1{2\\sqrt c}=\\frac1{${p+q}}\\) and solve.`,1);
     }
-    if(fam==='mvt_log')return mc('mvtM-log','mvt_logarithm','Find the value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=\\ln x,\\quad [1,e]`,'e-1',['1','e','\\ln(e-1)'],`The average rate of change is \\(1/(e-1)\\). Since \\(f'(c)=1/c\\), solve \\(1/c=1/(e-1)\\).`);
+    if(fam==='mvt_log')return mc('mvtM-log','mvt_logarithm','Find the value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=\\ln x,\\quad [1,e]`,'e-1',['1','e','\\ln(e-1)'],`The average rate of change is \\(\\frac1{e-1}\\). Since \\(f'(c)=\\frac1c\\), solve \\(\\frac1c=\\frac1{e-1}\\).`);
     if(fam==='mvt_exp')return mc('mvtM-exp','mvt_exponential','Find the value of \\(c\\) guaranteed by the Mean Value Theorem.',`f(x)=e^x,\\quad [0,1]`,'\\ln(e-1)',['e-1','1','\\ln e'],`The average rate of change is \\(e-1\\). Solve \\(e^c=e-1\\).`);
     if(fam==='rolle_quad'){
       const h=ri(-5,5),r=ri(1,5);return numericMC(`rolleM-q-${idn(h)}-${r}`,'rolle_quadratic','Rolle\'s Theorem applies. Find the value of \\(c\\).',`f(x)=(${shift(h)})^2,\\quad [${h-r},${h+r}]`,h,`The endpoint values agree. Solve \\(f'(c)=2(${h===0?'c':h>0?`c-${h}`:`c+${-h}`})=0\\).`,1);
@@ -2777,7 +2777,7 @@ G['difference-quotient']=()=>{
       if(fam==='reciprocal'){
         const a=ri(2,6),h=pick([0.2,0.5,-0.2]),t=a+h,approx=1/a-h/(a*a);return approxProblem(`tsaM-trec-${a}-${h}`,'tangent_reciprocal','tangent',`Use the tangent line at \\(x=${a}\\) to approximate \\(f(${texN(t)})\\), then classify the approximation.`,`f(x)=\\frac1x`,approx,'under','up',`The tangent-line approximation is \\(${texN(approx)}\\).`);
       }
-      const a=Math.PI/6,h=pick([0.05,0.1,-0.05]),t=a+h,approx=Math.sin(a)+Math.cos(a)*h;return approxProblem(`tsaM-ttrig-${h}`,'tangent_sine','tangent',`Use the tangent line at \\(x=\\pi/6\\) to approximate \\(f(\\pi/6${h>=0?'+':'-'}${Math.abs(h)})\\), then classify the approximation.`,`f(x)=\\sin x`,approx,'over','down',`The tangent-line approximation is \\(${texN(approx)}\\).`);
+      const a=Math.PI/6,h=pick([0.05,0.1,-0.05]),t=a+h,approx=Math.sin(a)+Math.cos(a)*h;return approxProblem(`tsaM-ttrig-${h}`,'tangent_sine','tangent',`Use the tangent line at \\(x=\\frac{\\pi}{6}\\) to approximate \\(f(\\frac{\\pi}{6}${h>=0?'+':'-'}${Math.abs(h)})\\), then classify the approximation.`,`f(x)=\\sin x`,approx,'over','down',`The tangent-line approximation is \\(${texN(approx)}\\).`);
     }
     // Secant problems use a midpoint target so the interpolation is transparent.
     if(fam==='quadratic_up'||fam==='quadratic_down'){

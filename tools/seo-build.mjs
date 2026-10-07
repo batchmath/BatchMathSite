@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "https://batchmath.net";
-const VERSION = "10.9.F";
+const VERSION = "11";
 const SOCIAL_IMAGE = ORIGIN + "/assets/batchmath-social-card-v1.png";
 const SOCIAL_ALT = "BatchMath — math resources for Integrated Math 1, Calculus Prep, and AP Calculus AB";
 
@@ -141,7 +141,10 @@ function cleanInternalHrefs(html) {
     "href=" + quote + cleanTrackingHref(href) + quote);
 }
 function removeSeoMetadata(html) {
-  html = html.replace(/\s*<!-- BatchMath technical SEO metadata — v10\.9\.F -->[\s\S]*?<script\b[^>]*data-batchmath-structured-data="10\.9\.F"[^>]*>[\s\S]*?<\/script>\s*/gi, "\n");
+  // Remove the marker independently of the generated tags.  Earlier builds
+  // only recognized one historical version, so each subsequent SEO pass left
+  // another comment behind even though the tags themselves were replaced.
+  html = html.replace(/\s*<!-- BatchMath technical SEO metadata — v[^>]*-->\s*/gi, "\n");
   const names = new Set(["description", "twitter:card", "twitter:title", "twitter:description", "twitter:image", "twitter:image:alt"]);
   const properties = new Set(["og:site_name", "og:type", "og:title", "og:description", "og:url", "og:image", "og:image:width", "og:image:height", "og:image:type", "og:image:alt"]);
   html = html.replace(/<meta\b[^>]*>/gi, tag => {
@@ -151,7 +154,9 @@ function removeSeoMetadata(html) {
   });
   html = html.replace(/<link\b[^>]*>/gi, tag =>
     attr(tag, "rel").toLowerCase().split(/\s+/).includes("canonical") ? "" : tag);
-  return html.replace(/<script\b[^>]*type\s*=\s*(["'])application\/ld\+json\1[^>]*>[\s\S]*?<\/script>\s*/gi, "");
+  html = html.replace(/<script\b[^>]*type\s*=\s*(["'])application\/ld\+json\1[^>]*>[\s\S]*?<\/script>\s*/gi, "");
+  // Keep the build idempotent after removing a line-oriented metadata block.
+  return html.replace(/\n[ \t]*\n(?:[ \t]*\n)+/g, "\n\n");
 }
 function organizationNode() {
   return {
@@ -196,7 +201,7 @@ function metadataBlock(title, description, canonical, graph) {
   const d = escapeHtml(description);
   const json = JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c");
   return [
-    "<!-- BatchMath technical SEO metadata — v10.9.F -->",
+    `<!-- BatchMath technical SEO metadata — v${VERSION} -->`,
     '<meta name="description" content="' + d + '">',
     '<link rel="canonical" href="' + canonical + '">',
     '<meta property="og:site_name" content="BatchMath">',
@@ -336,4 +341,7 @@ for (const file of publicFiles) {
     changed++;
   }
 }
+const sitemapUrls = publicFiles.map(canonicalFor).sort();
+const sitemapXml = ['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',...sitemapUrls.map(url => '  <url><loc>' + escapeHtml(url) + '</loc></url>'),'</urlset>',''].join('\n');
+fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemapXml);
 console.log("SEO build " + VERSION + ": " + publicFiles.length + " public pages; " + changed + " files updated; " + breadcrumbs + " breadcrumb trails; " + contexts + " practice contexts; " + cleanedLinks + " tracking-only links cleaned.");

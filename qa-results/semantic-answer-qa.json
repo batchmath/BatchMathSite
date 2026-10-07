@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T02:44:27.744Z",
+  "version": "11.11",
+  "stats": {
+    "im1Problems": 12368,
+    "apTopicProblems": 38000,
+    "apTopicValidated": 823,
+    "im1Engines": 9,
+    "apTopicGenerators": 38
+  },
+  "warnings": [
+    "Only 823 shared AP samples had independent semantic validators."
+  ],
+  "errors": []
+}

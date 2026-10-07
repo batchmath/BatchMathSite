@@ -1,0 +1,9 @@
+BatchMath 11.11 Calculus Prep semantic QA
+Result: PASS
+Calculus Prep engines audited: 11
+Generated problems checked: 5500
+Samples per audited mode: 500
+
+Warnings: 0
+
+Errors: 0

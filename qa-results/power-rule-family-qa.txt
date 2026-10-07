@@ -1,0 +1,5 @@
+BatchMath Power Rule family QA
+Result: PASS
+Individual-engine samples: 22500
+Comprehensive Review samples: 12000
+Errors: 0

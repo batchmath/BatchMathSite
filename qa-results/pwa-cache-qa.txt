@@ -1,0 +1,9 @@
+BatchMath PWA / cache architecture QA
+Result: PASS
+Version: 11.13
+APP_SHELL entries: 40
+APP_SHELL local payload: 850.3 KiB
+Practice pages audited: 109
+Local practice dependencies audited: 1168
+Warnings: 0
+Errors: 0

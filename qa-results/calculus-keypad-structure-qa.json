@@ -1,0 +1,39 @@
+{
+  "ok": true,
+  "cases": 59,
+  "editors": [
+    "shared calculus keypad",
+    "advanced trig keypad",
+    "Unit 3 dynamic multi-field keypad"
+  ],
+  "focus": [
+    "initial visible-editor focus",
+    "legacy source-focus redirect",
+    "first physical keystroke"
+  ],
+  "keyboard": [
+    "ordinary Shift+6 exponent",
+    "ChromeOS dead-key Shift+6 exponent",
+    "Ctrl/Cmd+A",
+    "Ctrl/Cmd+C",
+    "Ctrl/Cmd+X",
+    "Ctrl/Cmd+V"
+  ],
+  "clipboard": [
+    "custom structured MIME",
+    "safe whole-structure cut",
+    "structured paste",
+    "external LaTeX normalization"
+  ],
+  "structures": [
+    "square roots",
+    "editable nth roots",
+    "functions",
+    "function powers",
+    "inverse trig functions",
+    "fractions",
+    "exponents",
+    "nested structures",
+    "dynamic field switching"
+  ]
+}

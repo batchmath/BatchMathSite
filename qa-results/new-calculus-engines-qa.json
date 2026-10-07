@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T02:45:37.848Z",
+  "limitProofPractice": "retired",
+  "discontinuityProblems": 50000,
+  "advancedTrigProblems": 38000,
+  "discontinuityVariants": [
+    "piecewise_infinite_jump",
+    "piecewise_two_jumps",
+    "rational_hole_asymptote",
+    "single_removable",
+    "trig_removable_infinite"
+  ],
+  "classifications": [
+    "infinite",
+    "jump",
+    "removable"
+  ],
+  "warnings": [],
+  "errors": []
+}

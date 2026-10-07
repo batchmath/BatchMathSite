@@ -4,16 +4,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 
-
 <title>Rational Function Analysis | BatchMath</title><link rel="stylesheet" href="../../assets/calc-prep.css"><link rel="stylesheet" href="../../assets/site.css" data-batchmath-shared-style="v10.0">
-
-
-
-
-
-
-
-
 
 <!-- BatchMath installable-app foundation — v10.0 -->
 <link rel="manifest" href="/manifest.webmanifest">
@@ -24,7 +15,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="BatchMath">
 <script src="/assets/batchmath-storage.js" defer></script>
-<script src="/assets/answer-normalization.js" defer></script>
+<script src="/assets/answer-normalization.js"></script>
 <script src="/assets/pwa.js" defer></script>
 
   <!-- Google tag (gtag.js) -->
@@ -37,7 +28,8 @@
     gtag('config', 'G-377MTFXSF3');
   </script>
 <script src="/assets/reproducible-rng.js"></script><script>window.BM_ANALYTICS_CONFIG={course:"calculus_prep",engineId:"calc_prep_rational_functions",generatorVersion:"1"};</script><script src="/assets/problem-tracking.js"></script>
-<!-- BatchMath technical SEO metadata — v10.9.F -->
+
+<!-- BatchMath technical SEO metadata — v11 -->
 <meta name="description" content="Analyze rational functions for removable discontinuities (holes), vertical asymptotes, horizontal or slant asymptotes, and x-intercepts.">
 <link rel="canonical" href="https://batchmath.net/calculus-prep/rational-functions/">
 <meta property="og:site_name" content="BatchMath">
@@ -55,14 +47,14 @@
 <meta name="twitter:description" content="Analyze rational functions for removable discontinuities (holes), vertical asymptotes, horizontal or slant asymptotes, and x-intercepts.">
 <meta name="twitter:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png">
 <meta name="twitter:image:alt" content="BatchMath — math resources for Integrated Math 1, Calculus Prep, and AP Calculus AB">
-<script type="application/ld+json" data-batchmath-structured-data="10.9.F">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://batchmath.net/calculus-prep/rational-functions/#page","name":"Rational Function Analysis | BatchMath","url":"https://batchmath.net/calculus-prep/rational-functions/","description":"Analyze rational functions for removable discontinuities (holes), vertical asymptotes, horizontal or slant asymptotes, and x-intercepts.","isPartOf":{"@id":"https://batchmath.net/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://batchmath.net/"},{"@type":"ListItem","position":2,"name":"Calculus Prep","item":"https://batchmath.net/calculus-prep/"},{"@type":"ListItem","position":3,"name":"Rational Function Analysis","item":"https://batchmath.net/calculus-prep/rational-functions/"}]}]}</script>
+<script type="application/ld+json" data-batchmath-structured-data="11">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://batchmath.net/calculus-prep/rational-functions/#page","name":"Rational Function Analysis | BatchMath","url":"https://batchmath.net/calculus-prep/rational-functions/","description":"Analyze rational functions for removable discontinuities (holes), vertical asymptotes, horizontal or slant asymptotes, and x-intercepts.","isPartOf":{"@id":"https://batchmath.net/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://batchmath.net/"},{"@type":"ListItem","position":2,"name":"Calculus Prep","item":"https://batchmath.net/calculus-prep/"},{"@type":"ListItem","position":3,"name":"Rational Function Analysis","item":"https://batchmath.net/calculus-prep/rational-functions/"}]}]}</script>
 </head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
 <img class="corner" src="../../assets/batchmath-portrait.jpg" alt="">
 <a class="logo" href="../../">BatchMath<span class="tm-mark">™</span></a>
 <div class="profile"><img src="../../assets/batchmath-portrait.jpg" alt="BatchMath">
 <button class="menu-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="course-menu" aria-label="Open course menu">COURSES ▼</button>
 <nav id="course-menu" class="dropdown"><a href="../../im1/">Integrated Math 1</a><a href="../../calculus-prep/" class="current-section" aria-current="page">Calculus Prep</a><a href="../../ap-calculus/">AP Calculus AB</a><a href="../../about/" data-bm-about-nav="1">About</a><a href="../../">Home</a></nav>
-</div></header><main id="main-content" class="main"><nav class="bm-breadcrumbs" aria-label="Breadcrumb" data-batchmath-breadcrumbs="10.9.F"><ol><li><a href="/">Home</a></li><li><a href="/calculus-prep/">Calculus Prep</a></li><li aria-current="page"><span>Rational Function Analysis</span></li></ol></nav><a class="back" href="../">← Calculus Prep</a><h1 class="page-title">Rational Function Analysis</h1><p class="intro">Analyze rational functions for removable discontinuities (holes), vertical asymptotes, horizontal or slant asymptotes, and x-intercepts. Problems can appear in factored or expanded form.</p><section class="practice-shell"><div class="controls one"><div class="control"><label for="displayMode" class="bm-practice-select-label">Practice Type</label><select id="displayMode" class="bm-practice-select"><option value="mixed">Mixed</option><option value="factored">Factored</option><option value="expanded">Expanded</option></select></div></div><div class="stats"><span>Correct: <strong id="correct">0</strong></span><span>Attempted: <strong id="attempted">0</strong></span><span>Accuracy: <strong id="accuracy">—</strong></span></div><div class="question-box"><div id="prompt" class="prompt"></div><div id="question" class="math-question"></div></div><div class="feature-grid"><div class="feature-box"><label for="holes" class="bm-practice-select-label">Hole(s)</label><select id="holes" class="bm-practice-select"></select></div><div class="feature-box"><label for="vertical" class="bm-practice-select-label">Vertical Asymptote(s)</label><select id="vertical" class="bm-practice-select"></select></div><div class="feature-box"><label for="endAsymptote" class="bm-practice-select-label">Horizontal / Slant Asymptote</label><select id="endAsymptote" class="bm-practice-select"></select></div><div class="feature-box"><label for="xints" class="bm-practice-select-label">x-Intercept(s)</label><select id="xints" class="bm-practice-select"></select></div></div><div id="feedback" class="feedback"></div><div class="action-row"><button id="submit" class="btn primary" type="button">Check Answer</button><button id="next" class="btn next" type="button">Next Question</button></div></section></main><footer class="footer"><div class="bm-footer-main">© 2026 BatchMath. All rights reserved. BatchMath™.</div><div class="bm-footer-links"><a href="../../about/">About BatchMath</a></div><div class="bm-legal-note">AP® is a trademark registered by the College Board, which is not affiliated with, and does not endorse, this website.</div></footer>
+</div></header><main id="main-content" class="main"><nav class="bm-breadcrumbs" aria-label="Breadcrumb" data-batchmath-breadcrumbs="11"><ol><li><a href="/">Home</a></li><li><a href="/calculus-prep/">Calculus Prep</a></li><li aria-current="page"><span>Rational Function Analysis</span></li></ol></nav><a class="back" href="../">← Calculus Prep</a><h1 class="page-title">Rational Function Analysis</h1><p class="intro">Analyze rational functions for removable discontinuities (holes), vertical asymptotes, horizontal or slant asymptotes, and x-intercepts. Problems can appear in factored or expanded form.</p><section class="practice-shell"><div class="controls one"><div class="control"><label for="displayMode" class="bm-practice-select-label">Practice Type</label><select id="displayMode" class="bm-practice-select"><option value="mixed">Mixed</option><option value="factored">Factored</option><option value="expanded">Expanded</option></select></div></div><div class="stats"><span>Correct: <strong id="correct">0</strong></span><span>Attempted: <strong id="attempted">0</strong></span><span>Accuracy: <strong id="accuracy">—</strong></span></div><div class="question-box"><div id="prompt" class="prompt"></div><div id="question" class="math-question"></div></div><div class="feature-grid"><div class="feature-box"><label for="holes" class="bm-practice-select-label">Hole(s)</label><select id="holes" class="bm-practice-select"></select></div><div class="feature-box"><label for="vertical" class="bm-practice-select-label">Vertical Asymptote(s)</label><select id="vertical" class="bm-practice-select"></select></div><div class="feature-box"><label for="endAsymptote" class="bm-practice-select-label">Horizontal / Slant Asymptote</label><select id="endAsymptote" class="bm-practice-select"></select></div><div class="feature-box"><label for="xints" class="bm-practice-select-label">x-Intercept(s)</label><select id="xints" class="bm-practice-select"></select></div></div><div id="feedback" class="feedback"></div><div class="action-row"><button id="submit" class="btn primary" type="button">Check Answer</button><button id="next" class="btn next" type="button">Next Question</button></div></section></main><footer class="footer"><div class="bm-footer-main">© 2026 BatchMath. All rights reserved. BatchMath™.</div><div class="bm-footer-links"><a href="../../about/">About BatchMath</a></div><div class="bm-legal-note">AP® is a trademark registered by the College Board, which is not affiliated with, and does not endorse, this website.</div></footer>
 <script src="../../assets/calc-prep-common.js"></script><script src="../../assets/calc-prep-rational.js"></script><script data-batchmath-menu-a11y="v9.5">
 document.addEventListener("DOMContentLoaded",function(){
   const b=document.querySelector(".menu-toggle"),m=document.querySelector("#course-menu");

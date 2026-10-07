@@ -1,0 +1,7 @@
+BatchMath Unit 3 calculator derivative-analysis targeted QA
+Result: PASS
+Generated and independently checked: 9600
+Per focus: {"incdec":2390,"concavity":2385,"poi":2361,"extrema":2464}
+Mixed distribution: {"incdec":790,"extrema":864,"concavity":785,"poi":761}
+Distinct validated families: {"incdec":19,"concavity":19,"poi":10,"extrema":10}
+Errors: 0

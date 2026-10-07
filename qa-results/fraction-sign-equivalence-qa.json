@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T02:46:26.774Z",
+  "stats": {
+    "displayCases": 6,
+    "explicitCases": 17,
+    "numericStressCases": 237606,
+    "generatedDisplaySourcesChecked": 313,
+    "instrumentedEngines": 132,
+    "staticAnswerInputs": 52,
+    "directParserDefenseFiles": 11,
+    "expressionParserDefenseFiles": 16,
+    "productionParserExecutions": 36,
+    "targetFactoringAcceptanceChecks": 58806
+  },
+  "warnings": [],
+  "errors": []
+}

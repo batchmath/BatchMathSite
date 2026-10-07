@@ -1,4 +1,4 @@
-/* BatchMath reproducible generator sessions — v10.9.L
+/* BatchMath reproducible generator sessions — v11.13
    Gives every practice-engine session a deterministic random seed so generated
    problems can be reproduced for QA and bug reports. No student identity or
    typed answers are captured. */
@@ -81,7 +81,7 @@
     const config = configSnapshot();
     return {
       schema: 1,
-      appVersion: clean(window.BatchMathPWA?.version || '10.9.L'),
+      appVersion: clean(window.BatchMathPWA?.version || '11.13'),
       course: config.course,
       engineId: config.engineId,
       generatorVersion: config.generatorVersion,

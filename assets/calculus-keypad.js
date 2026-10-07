@@ -1,7 +1,7 @@
 (function(){
   "use strict";
 
-  const state={input:null,editor:null,pad:null,raw:"",cursor:0,mode:"derivative"};
+  const state={input:null,editor:null,pad:null,raw:"",cursor:0,selectionAnchor:0,selectionFocus:0,dragging:false,mode:"derivative",binding:null,onCheck:null};
   // Private-use markers keep the visual numerator and denominator intact while
   // a student is still typing unmatched parentheses. They are converted to the
   // parser-friendly (numerator)/(denominator) form before reaching the engine.
@@ -12,6 +12,20 @@
 
   function escapeHtml(s){
     return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  }
+  function selectionRange(){
+    const a=Number(state.selectionAnchor)||0,b=Number(state.selectionFocus)||0;
+    return{start:Math.min(a,b),end:Math.max(a,b)};
+  }
+  function hasSelection(){const r=selectionRange();return r.end>r.start;}
+  function collapseSelection(pos=state.cursor){
+    state.cursor=normalizeCursor(pos,0);state.selectionAnchor=state.cursor;state.selectionFocus=state.cursor;
+  }
+  function selectionClass(start,end){
+    const r=selectionRange();return r.end>r.start&&end>r.start&&start<r.end?" bm-calc-selected":"";
+  }
+  function structureSelectionClass(start,end){
+    const r=selectionRange();return r.end>r.start&&r.start<=start&&r.end>=end?" bm-calc-selected":"";
   }
   function caret(){return '<span class="bm-calc-caret" aria-hidden="true"></span>';}
   function emptyBox(){return '<span class="bm-calc-empty-slot">□</span>';}
@@ -83,7 +97,7 @@
   }
 
   function renderToken(display,start,end,cls=""){
-    return `<span class="bm-calc-token${cls?" "+cls:""}" data-bm-start="${start}" data-bm-end="${end}">${escapeHtml(display)}</span>`;
+    return `<span class="bm-calc-token${cls?" "+cls:""}${selectionClass(start,end)}" data-bm-start="${start}" data-bm-end="${end}">${escapeHtml(display)}</span>`;
   }
 
   function functionShellAt(start){
@@ -147,7 +161,7 @@
     const s=state.raw;
     let out="",i=start;
     while(i<end){
-      if(state.cursor===i)out+=caret();
+      if(!hasSelection()&&state.cursor===i)out+=caret();
 
       const root=rootAt(s,i,end);
       if(root){
@@ -155,7 +169,7 @@
         let radicand=renderPlain(root.radStart,root.radEnd);
         if(root.indexStart===root.indexEnd)index+=emptyBox();
         if(root.radStart===root.radEnd)radicand+=emptyBox();
-        out+=`<span class="bm-calc-nroot" data-bm-root-start="${i}" data-bm-root-end="${root.end}"><sup class="bm-calc-nroot-index" data-bm-zone="nroot-index" data-bm-zone-start="${root.indexStart}" data-bm-zone-end="${root.indexEnd}">${index}</sup><span class="bm-calc-nroot-sign" aria-hidden="true"><svg viewBox="0 0 30 38" preserveAspectRatio="none" focusable="false"><path d="M1 21 H7 L12 36 L18 1 H30"/></svg></span><span class="bm-calc-nroot-radicand" data-bm-zone="nroot-radicand" data-bm-zone-start="${root.radStart}" data-bm-zone-end="${root.radEnd}">${radicand}</span></span>`;
+        out+=`<span class="bm-calc-nroot${structureSelectionClass(i,root.end)}" data-bm-root-start="${i}" data-bm-root-end="${root.end}"><sup class="bm-calc-nroot-index" data-bm-zone="nroot-index" data-bm-zone-start="${root.indexStart}" data-bm-zone-end="${root.indexEnd}">${index}</sup><span class="bm-calc-nroot-sign" aria-hidden="true"><svg viewBox="0 0 30 38" preserveAspectRatio="none" focusable="false"><path d="M1 21 H7 L12 36 L18 1 H30"/></svg></span><span class="bm-calc-nroot-radicand" data-bm-zone="nroot-radicand" data-bm-zone-start="${root.radStart}" data-bm-zone-end="${root.radEnd}">${radicand}</span></span>`;
         i=root.end;
         continue;
       }
@@ -166,7 +180,7 @@
         let den=renderPlain(frac.denStart,frac.denClose);
         if(frac.numStart===frac.numClose)num+=emptyBox();
         if(frac.denStart===frac.denClose)den+=emptyBox();
-        out+=`<span class="bm-calc-frac" data-bm-frac-start="${i}" data-bm-frac-end="${frac.end}"><span class="bm-calc-frac-num" data-bm-zone="num" data-bm-zone-start="${frac.numStart}" data-bm-zone-end="${frac.numClose}">${num}</span><span class="bm-calc-frac-den" data-bm-zone="den" data-bm-zone-start="${frac.denStart}" data-bm-zone-end="${frac.denClose}">${den}</span></span>`;
+        out+=`<span class="bm-calc-frac${structureSelectionClass(i,frac.end)}" data-bm-frac-start="${i}" data-bm-frac-end="${frac.end}"><span class="bm-calc-frac-num" data-bm-zone="num" data-bm-zone-start="${frac.numStart}" data-bm-zone-end="${frac.numClose}">${num}</span><span class="bm-calc-frac-den" data-bm-zone="den" data-bm-zone-start="${frac.denStart}" data-bm-zone-end="${frac.denClose}">${den}</span></span>`;
         i=frac.end;
         continue;
       }
@@ -176,7 +190,7 @@
         if(close>=0&&close<end){
           let inner=renderPlain(i+2,close);
           if(i+2===close)inner+=emptyBox();
-          out+=`<sup data-bm-zone="exp" data-bm-zone-start="${i+2}" data-bm-zone-end="${close}">${inner}</sup>`;
+          out+=`<sup class="${structureSelectionClass(i,close+1).trim()}" data-bm-zone="exp" data-bm-zone-start="${i+2}" data-bm-zone-end="${close}">${inner}</sup>`;
           i=close+1;
           continue;
         }
@@ -200,7 +214,7 @@
       out+=renderToken(ch==="*"?"·":ch==="/"?"÷":ch==="-"?"−":ch,i,i+1);
       i++;
     }
-    if(state.cursor===end)out+=caret();
+    if(!hasSelection()&&state.cursor===end)out+=caret();
     return out;
   }
 
@@ -255,9 +269,83 @@
     return out.sort((a,b)=>(a.end-a.start)-(b.end-b.start));
   }
 
+  function overlaps(r,start,end){return r.end>start&&r.start<end;}
+  function inside(r,start,end){return r.start>=start&&r.end<=end;}
+  // A cut must never strand one of the editor's hidden structure markers.
+  // Selections wholly inside a numerator, denominator, exponent, radical, or
+  // function argument stay local. A selection crossing a structure boundary
+  // expands to the complete structure before it is copied/cut.
+  function safeSelectionRange(range=selectionRange()){
+    let r={start:Math.max(0,range.start),end:Math.min(state.raw.length,range.end)},changed=true;
+    while(changed&&r.end>r.start){
+      changed=false;
+      for(const f of allFractions()){
+        if(!overlaps(r,f.start,f.end))continue;
+        if(inside(r,f.numStart,f.numClose)||inside(r,f.denStart,f.denClose)||inside(r,f.start,f.end)&&r.start===f.start&&r.end===f.end)continue;
+        const start=Math.min(r.start,f.start),end=Math.max(r.end,f.end);if(start!==r.start||end!==r.end){r={start,end};changed=true;}
+      }
+      for(const root of allRoots()){
+        if(!overlaps(r,root.start,root.end))continue;
+        if(inside(r,root.indexStart,root.indexEnd)||inside(r,root.radStart,root.radEnd)||r.start===root.start&&r.end===root.end)continue;
+        const start=Math.min(r.start,root.start),end=Math.max(r.end,root.end);if(start!==r.start||end!==r.end){r={start,end};changed=true;}
+      }
+      for(const x of allExponents()){
+        if(!overlaps(r,x.start,x.end))continue;
+        if(inside(r,x.innerStart,x.close)||r.start===x.start&&r.end===x.end)continue;
+        const start=Math.min(r.start,x.start),end=Math.max(r.end,x.end);if(start!==r.start||end!==r.end){r={start,end};changed=true;}
+      }
+      for(let start=0;start<state.raw.length;start++){
+        const sh=functionShellAt(start);if(!sh?.end||!overlaps(r,sh.start,sh.end))continue;
+        if(inside(r,sh.argStart,sh.close)||inside(r,sh.start,sh.tokenEnd)||r.start===sh.start&&r.end===sh.end)continue;
+        const next={start:Math.min(r.start,sh.start),end:Math.max(r.end,sh.end)};if(next.start!==r.start||next.end!==r.end){r=next;changed=true;}
+      }
+      for(let start=0;start<state.raw.length;start++){
+        const a=atomicAt(start);if(!a||!overlaps(r,a.start,a.end)||inside(r,a.start,a.end))continue;
+        const next={start:Math.min(r.start,a.start),end:Math.max(r.end,a.end)};if(next.start!==r.start||next.end!==r.end){r=next;changed=true;}
+      }
+    }
+    return r;
+  }
+
+  function normalizePastedText(value){
+    let text=String(value??'').trim().replace(/[−–—]/g,'-').replace(/π/g,'pi').replace(/∞/g,'infinity').replace(/[×·]/g,'*');
+    text=text.replace(/^\$+|\$+$/g,'').replace(/\\left|\\right/g,'').replace(/\\,/g,'').replace(/\\;/g,'');
+    let prior='';
+    while(prior!==text){
+      prior=text;
+      text=text.replace(/\\(?:dfrac|tfrac|frac)\{([^{}]*)\}\{([^{}]*)\}/g,'($1)/($2)');
+      text=text.replace(/\\sqrt\[([^\]]+)\]\{([^{}]*)\}/g,'root($1,$2)');
+      text=text.replace(/\\sqrt\{([^{}]*)\}/g,'sqrt($1)');
+    }
+    return text.replace(/\\pi/g,'pi').replace(/\\infty/g,'infinity').replace(/\\(?:cdot|times)/g,'*').replace(/\^\{([^{}]+)\}/g,'^($1)').replace(/[{}]/g,'').replace(/\s+/g,'');
+  }
+
+  function removeSelection(){
+    if(!hasSelection())return false;
+    const r=safeSelectionRange();state.raw=state.raw.slice(0,r.start)+state.raw.slice(r.end);collapseSelection(r.start);sync();return true;
+  }
+  function replaceSelection(text){
+    const r=hasSelection()?safeSelectionRange():{start:state.cursor,end:state.cursor};
+    state.raw=state.raw.slice(0,r.start)+text+state.raw.slice(r.end);collapseSelection(r.start+text.length);sync();state.editor?.focus();
+  }
+  function copySelection(event,cut=false){
+    if(!hasSelection()||!event.clipboardData)return;
+    const r=safeSelectionRange(),plain=serializeRange(r.start,r.end),raw=state.raw.slice(r.start,r.end);
+    event.preventDefault();event.clipboardData.setData('text/plain',plain);
+    try{event.clipboardData.setData('application/x-batchmath-expression',JSON.stringify({version:1,raw}));}catch(_){}
+    if(cut&&!state.input?.disabled){state.selectionAnchor=r.start;state.selectionFocus=r.end;state.cursor=r.end;removeSelection();}
+  }
+  function pasteSelection(event){
+    if(state.input?.disabled||!event.clipboardData)return;
+    event.preventDefault();let value='';
+    try{const custom=event.clipboardData.getData('application/x-batchmath-expression');if(custom)value=JSON.parse(custom).raw||'';}catch(_){}
+    if(!value)value=normalizePastedText(event.clipboardData.getData('text/plain'));
+    replaceSelection(String(value));
+  }
+
   function removeSpan(start,end){
     state.raw=state.raw.slice(0,start)+state.raw.slice(end);
-    state.cursor=start;
+    collapseSelection(start);
     sync();state.editor.focus();
   }
 
@@ -265,31 +353,36 @@
   function render(){
     if(!state.editor)return;
     state.cursor=normalizeCursor(state.cursor,0);
+    if(!hasSelection()){state.selectionAnchor=state.cursor;state.selectionFocus=state.cursor;}
+    state.selectionAnchor=normalizeCursor(state.selectionAnchor,0);
+    state.selectionFocus=normalizeCursor(state.selectionFocus,0);
     const disabled=!!state.input?.disabled;
     state.editor.classList.toggle("is-disabled",disabled);
     state.pad?.classList.toggle("is-disabled",disabled);
     if(!state.raw)state.editor.innerHTML=caret()+'<span class="bm-calc-empty">Enter answer</span>';
     else state.editor.innerHTML=renderPlain(0,state.raw.length);
     state.editor.setAttribute("aria-valuetext",state.raw||"blank");
+    if(state.binding){state.binding.raw=state.raw;state.binding.cursor=state.cursor;state.binding.selectionAnchor=state.selectionAnchor;state.binding.selectionFocus=state.selectionFocus;}
   }
 
   function sync(){
     if(!state.input)return;
     state.input.value=serializeRange();
+    if(state.binding){state.binding.raw=state.raw;state.binding.cursor=state.cursor;state.binding.selectionAnchor=state.selectionAnchor;state.binding.selectionFocus=state.selectionFocus;}
     state.input.dispatchEvent(new Event("input",{bubbles:true}));
     render();
   }
   function setRaw(raw,cursor){
     state.raw=String(raw||"");
-    state.cursor=normalizeCursor(cursor==null?state.raw.length:cursor,0);
+    collapseSelection(cursor==null?state.raw.length:cursor);
     sync();
   }
   function insert(text,insideOffset){
     if(!state.input||state.input.disabled)return;
     state.cursor=normalizeCursor(state.cursor,0);
-    const a=state.raw.slice(0,state.cursor),b=state.raw.slice(state.cursor);
-    state.raw=a+text+b;
-    state.cursor=normalizeCursor(a.length+(insideOffset==null?text.length:insideOffset),1);
+    const range=hasSelection()?safeSelectionRange():{start:state.cursor,end:state.cursor};
+    state.raw=state.raw.slice(0,range.start)+text+state.raw.slice(range.end);
+    collapseSelection(normalizeCursor(range.start+(insideOffset==null?text.length:insideOffset),1));
     sync();
     state.editor.focus();
   }
@@ -326,7 +419,9 @@
   }
 
   function backspace(){
-    if(!state.input||state.input.disabled||state.cursor<=0)return;
+    if(!state.input||state.input.disabled)return;
+    if(removeSelection())return;
+    if(state.cursor<=0)return;
     state.cursor=normalizeCursor(state.cursor,-1);
     if(state.cursor<=0)return;
 
@@ -403,7 +498,9 @@
     sync();
   }
   function del(){
-    if(!state.input||state.input.disabled||state.cursor>=state.raw.length)return;
+    if(!state.input||state.input.disabled)return;
+    if(removeSelection())return;
+    if(state.cursor>=state.raw.length)return;
     state.cursor=normalizeCursor(state.cursor,1);
     if(state.cursor>=state.raw.length)return;
 
@@ -466,8 +563,10 @@
     state.cursor=normalizeCursor(state.cursor,1);
     sync();
   }
-  function move(delta){
+  function move(delta,extend=false){
     if(!state.input||state.input.disabled)return;
+    if(hasSelection()&&!extend){const r=selectionRange();collapseSelection(delta<0?r.start:r.end);render();state.editor.focus();return;}
+    const anchor=extend?(hasSelection()?state.selectionAnchor:state.cursor):null;
     state.cursor=normalizeCursor(state.cursor,delta);
     if(delta>0){
       const sh=functionShellAt(state.cursor);
@@ -522,11 +621,13 @@
       }
       state.cursor=normalizeCursor(state.cursor,-1);
     }
+    if(extend){state.selectionAnchor=anchor;state.selectionFocus=state.cursor;}else collapseSelection(state.cursor);
     render();
     state.editor.focus();
   }
-  function moveVertical(delta){
+  function moveVertical(delta,extend=false){
     if(!state.input||state.input.disabled)return;
+    const anchor=extend?(hasSelection()?state.selectionAnchor:state.cursor):null;
     state.cursor=normalizeCursor(state.cursor,delta);
     const f=containingFraction();
     if(!f)return;
@@ -538,6 +639,7 @@
       state.cursor=f.denStart+Math.min(off,f.denClose-f.denStart);
     }else return;
     state.cursor=normalizeCursor(state.cursor,delta);
+    if(extend){state.selectionAnchor=anchor;state.selectionFocus=state.cursor;}else collapseSelection(state.cursor);
     render();
     state.editor.focus();
   }
@@ -548,6 +650,7 @@
     state.editor.focus();
   }
   function check(){
+    if(typeof state.onCheck==="function"){state.onCheck();return;}
     const btn=document.getElementById("submit");
     if(btn&&!btn.disabled)btn.click();
   }
@@ -583,7 +686,23 @@
     pad.setAttribute("role","group");
     pad.setAttribute("aria-label","BatchMath calculus answer keypad");
 
-    if(mode==="limits"){
+    if(mode==="unit3"){
+      const structures=document.createElement("div");
+      structures.className="bm-calc-special-row";
+      addFraction(structures);
+      addFunction(structures,"√","sqrt");
+      addFunction(structures,"ln","ln");
+      structures.appendChild(key("xⁿ","symbol",insertExponent,"Insert exponent"));
+      pad.appendChild(structures);
+
+      const constants=document.createElement("div");
+      constants.className="bm-calc-special-row";
+      addInsert(constants,"e","e","function");
+      addInsert(constants,"π","pi","function");
+      addInsert(constants,"∞","infinity","function math-infinity-key","Insert infinity");
+      addInsert(constants,"−∞","-infinity","function math-infinity-key","Insert negative infinity");
+      pad.appendChild(constants);
+    }else if(mode==="limits"){
       const special=document.createElement("div");
       special.className="bm-calc-special-row";
       addFraction(special);
@@ -616,7 +735,13 @@
 
     const g=document.createElement("div");
     g.className="bm-calc-main-grid";
-    if(mode==="limits"){
+    if(mode==="unit3"){
+      [["7","7"],["8","8"],["9","9"],["(","("],[")",")"],
+       ["4","4"],["5","5"],["6","6"],["+","+"],["−","-"],
+       ["1","1"],["2","2"],["3","3"],["·","*"],["=","="],
+       ["0","0"],[".","."],["x","x"],["y","y"],["c","c"]]
+        .forEach(([lab,raw])=>addInsert(g,lab,raw,/[+−·()=]/.test(lab)?"symbol":""));
+    }else if(mode==="limits"){
       // A compact numeric layout. Every key here produces an answer format the
       // Limits engine actually accepts.
       [["7","7"],["8","8"],["9","9"],["−","-"],
@@ -640,6 +765,18 @@
     }
     pad.appendChild(g);
 
+    if(mode==="unit3"){
+      const extras=document.createElement("div");
+      extras.className="bm-calc-function-row bm-calc-unit3-extra-row";
+      addInsert(extras,",",",","symbol","Comma between multiple values");
+      addInsert(extras,"[","[","symbol","Insert left bracket");
+      addInsert(extras,"]","]","symbol","Insert right bracket");
+      addInsert(extras,"∪","U","symbol","Insert union");
+      addInsert(extras,"Under","underestimate","function","Insert underestimate");
+      addInsert(extras,"Over","overestimate","function","Insert overestimate");
+      pad.appendChild(extras);
+    }
+
     const u=document.createElement("div");
     u.className="bm-calc-utility-row";
     if(mode==="integral")addInsert(u,",",",","symbol","Comma between multiple values");
@@ -660,10 +797,15 @@
       if(e.key==="Enter"){e.preventDefault();next();}
       return;
     }
-    if(e.key==="ArrowLeft"){e.preventDefault();move(-1);return;}
-    if(e.key==="ArrowRight"){e.preventDefault();move(1);return;}
-    if(e.key==="ArrowUp"){e.preventDefault();moveVertical(-1);return;}
-    if(e.key==="ArrowDown"){e.preventDefault();moveVertical(1);return;}
+    if((e.ctrlKey||e.metaKey)&&!e.altKey){
+      const key=e.key.toLowerCase();
+      if(key==='a'){e.preventDefault();state.selectionAnchor=0;state.selectionFocus=state.raw.length;state.cursor=state.raw.length;render();return;}
+      if(key==='c'||key==='x'||key==='v')return;
+    }
+    if(e.key==="ArrowLeft"){e.preventDefault();move(-1,e.shiftKey);return;}
+    if(e.key==="ArrowRight"){e.preventDefault();move(1,e.shiftKey);return;}
+    if(e.key==="ArrowUp"){e.preventDefault();moveVertical(-1,e.shiftKey);return;}
+    if(e.key==="ArrowDown"){e.preventDefault();moveVertical(1,e.shiftKey);return;}
     if(e.key==="Backspace"){e.preventDefault();backspace();return;}
     if(e.key==="Delete"){e.preventDefault();del();return;}
     if(e.key==="Enter"){e.preventDefault();check();return;}
@@ -676,44 +818,134 @@
       const prior=state.raw[state.cursor-1];
       if(prior==="f"||prior==="g"){e.preventDefault();insert("p");return;}
     }
-    if(e.key.length===1&&/[0-9a-zA-Z+\-*().,]/.test(e.key)){e.preventDefault();insert(e.key);return;}
+    if(e.key.length===1&&/[0-9a-zA-Z+\-*().,=\[\]]/.test(e.key)){e.preventDefault();insert(e.key);return;}
   }
 
   function reset(){
     if(!state.input)return;
     state.raw=state.input.value||"";
-    state.cursor=state.raw.length;
+    collapseSelection(state.raw.length);
     render();
   }
   function focus(){state.editor?.focus();}
-  function placeCursorFromClick(e){
-    if(!state.editor||state.input?.disabled)return;
-    const tok=e.target.closest?.('[data-bm-start]');
+  function pointerPosition(e,target=e.target){
+    const tok=target?.closest?.('[data-bm-start]');
     if(tok&&state.editor.contains(tok)){
       const a=Number(tok.dataset.bmStart),b=Number(tok.dataset.bmEnd),r=tok.getBoundingClientRect();
       const sh=functionShellAt(a);
-      state.cursor=e.clientX<r.left+r.width/2?a:(sh?sh.tokenEnd:b);
-      state.cursor=normalizeCursor(state.cursor,e.clientX<r.left+r.width/2?-1:1);
-      render();state.editor.focus();return;
+      const pos=e.clientX<r.left+r.width/2?a:(sh?sh.tokenEnd:b);
+      return normalizeCursor(pos,e.clientX<r.left+r.width/2?-1:1);
     }
-    const zone=e.target.closest?.('[data-bm-zone]');
+    const zone=target?.closest?.('[data-bm-zone]');
     if(zone&&state.editor.contains(zone)){
       const a=Number(zone.dataset.bmZoneStart),b=Number(zone.dataset.bmZoneEnd);
-      state.cursor=Number.isFinite(b)?b:(Number.isFinite(a)?a:state.raw.length);
-      state.cursor=normalizeCursor(state.cursor,0);
-      render();state.editor.focus();return;
+      return normalizeCursor(Number.isFinite(b)?b:(Number.isFinite(a)?a:state.raw.length),0);
     }
-    state.cursor=state.raw.length;render();state.editor.focus();
+    return state.raw.length;
+  }
+  function placeCursorFromClick(e){
+    if(!state.editor||state.input?.disabled)return;
+    collapseSelection(pointerPosition(e));render();state.editor.focus();
+  }
+  function beginPointerSelection(e){
+    if(e.button!==0||!state.editor||state.input?.disabled)return;
+    const pos=pointerPosition(e);if(e.shiftKey){if(!hasSelection())state.selectionAnchor=state.cursor;}else state.selectionAnchor=pos;
+    state.selectionFocus=pos;state.cursor=pos;state.dragging=true;render();state.editor.focus();
+    try{state.editor.setPointerCapture(e.pointerId);}catch(_){}
+    e.preventDefault();
+  }
+  function extendPointerSelection(e){
+    if(!state.dragging||!state.editor)return;
+    const target=document.elementFromPoint?.(e.clientX,e.clientY)||e.target,pos=pointerPosition(e,target);
+    state.selectionFocus=pos;state.cursor=pos;render();e.preventDefault();
+  }
+  function endPointerSelection(e){
+    if(!state.dragging)return;state.dragging=false;
+    try{state.editor.releasePointerCapture(e.pointerId);}catch(_){}
+  }
+
+  function activateBinding(binding,focusEditor=false){
+    if(!binding)return;
+    if(state.binding&&state.binding!==binding){
+      state.binding.raw=state.raw;
+      state.binding.cursor=state.cursor;
+      state.binding.selectionAnchor=state.selectionAnchor;
+      state.binding.selectionFocus=state.selectionFocus;
+    }
+    state.binding=binding;
+    state.input=binding.input;
+    state.editor=binding.editor;
+    state.pad=binding.pad;
+    state.mode=binding.mode;
+    state.onCheck=binding.onCheck;
+    state.raw=binding.raw;
+    state.cursor=normalizeCursor(binding.cursor,0);
+    state.selectionAnchor=normalizeCursor(binding.selectionAnchor??state.cursor,0);
+    state.selectionFocus=normalizeCursor(binding.selectionFocus??state.cursor,0);
+    render();
+    if(focusEditor)nextFrame(()=>{
+      try{binding.editor.focus({preventScroll:true});}catch(_){binding.editor.focus();}
+    });
+  }
+
+  // Dynamic practice engines can mount the same proven structured editor on
+  // one or several answer fields. Every field keeps its own raw expression,
+  // while one shared keypad edits whichever field the student most recently
+  // selected. Fractions therefore remain intact objects in every Unit 3 input.
+  function mountInputs(inputs,host,{mode="unit3",onCheck=null}={}){
+    const list=(Array.isArray(inputs)?inputs:[inputs]).filter(Boolean);
+    if(!list.length||!host)return null;
+    const pad=buildPad(mode);
+    const bindings=[];
+    for(const input of list){
+      if(input.dataset.bmCalcDynamicReady==="true")continue;
+      input.dataset.bmCalcDynamicReady="true";
+      input.classList.add("bm-calc-source");
+      input.tabIndex=-1;
+      input.setAttribute("aria-hidden","true");
+      input.setAttribute("inputmode","none");
+
+      const editor=document.createElement("div");
+      editor.className="bm-calc-editor bm-calc-dynamic-editor";
+      editor.tabIndex=0;
+      editor.setAttribute("role","textbox");
+      editor.setAttribute("aria-label",input.getAttribute("aria-label")||"Answer");
+      input.insertAdjacentElement("beforebegin",editor);
+
+      const end=(input.value||"").length,binding={input,editor,pad,mode,onCheck,raw:input.value||"",cursor:end,selectionAnchor:end,selectionFocus:end};
+      bindings.push(binding);
+      editor.addEventListener("keydown",e=>{activateBinding(binding);onEditorKey(e);});
+      editor.addEventListener("pointerdown",e=>{activateBinding(binding);beginPointerSelection(e);});
+      editor.addEventListener("pointermove",e=>{activateBinding(binding);extendPointerSelection(e);});
+      editor.addEventListener("pointerup",e=>{activateBinding(binding);endPointerSelection(e);});
+      editor.addEventListener("pointercancel",e=>{activateBinding(binding);endPointerSelection(e);});
+      editor.addEventListener("copy",e=>{activateBinding(binding);copySelection(e,false);});
+      editor.addEventListener("cut",e=>{activateBinding(binding);copySelection(e,true);});
+      editor.addEventListener("paste",e=>{activateBinding(binding);pasteSelection(e);});
+      input.addEventListener("focus",()=>activateBinding(binding,true));
+      new MutationObserver(()=>{
+        editor.classList.toggle("is-disabled",!!input.disabled);
+        if(state.binding===binding)render();
+      }).observe(input,{attributes:true,attributeFilter:["disabled"]});
+    }
+    host.appendChild(pad);
+    for(const binding of bindings)activateBinding(binding);
+    if(bindings.length)activateBinding(bindings[0]);
+    return{bindings,pad,focus:()=>activateBinding(bindings[0],true)};
   }
 
   function init(){
     const input=document.querySelector('input[data-bm-calc-keypad]');
     if(!input||input.dataset.bmCalcReady==="true")return;
     input.dataset.bmCalcReady="true";
+    state.binding=null;
+    state.onCheck=null;
     state.input=input;
     state.mode=input.dataset.bmCalcKeypad||"derivative";
     state.raw=input.value||"";
     state.cursor=state.raw.length;
+    state.selectionAnchor=state.cursor;
+    state.selectionFocus=state.cursor;
 
     input.classList.add("bm-calc-source");
     input.tabIndex=-1;
@@ -726,7 +958,13 @@
     editor.setAttribute("role","textbox");
     editor.setAttribute("aria-label","Answer");
     editor.addEventListener("keydown",onEditorKey);
-    editor.addEventListener("click",placeCursorFromClick);
+    editor.addEventListener("pointerdown",beginPointerSelection);
+    editor.addEventListener("pointermove",extendPointerSelection);
+    editor.addEventListener("pointerup",endPointerSelection);
+    editor.addEventListener("pointercancel",endPointerSelection);
+    editor.addEventListener("copy",e=>copySelection(e,false));
+    editor.addEventListener("cut",e=>copySelection(e,true));
+    editor.addEventListener("paste",pasteSelection);
     state.editor=editor;
     input.insertAdjacentElement("beforebegin",editor);
     // Engines written before the visual editor focus the source input when a
@@ -758,5 +996,5 @@
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
   else init();
 
-  window.BatchMathCalculusKeypad={init,reset,focus,setRaw:(v)=>setRaw(v,String(v||"").length),move,moveVertical,backspace,del,get raw(){return serializeRange()},get cursor(){return state.cursor},setCursor:(v)=>{state.cursor=normalizeCursor(Number(v)||0,0);render();}};
+  window.BatchMathCalculusKeypad={init,mountInputs,reset,focus,setRaw:(v)=>setRaw(v,String(v||"").length),move,moveVertical,backspace,del,get raw(){return serializeRange()},get cursor(){return state.cursor},get selection(){return selectionRange();},setCursor:(v)=>{collapseSelection(Number(v)||0);render();}};
 })();

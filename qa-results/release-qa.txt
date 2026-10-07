@@ -1,0 +1,27 @@
+BatchMath 11.11 automated release QA
+Result: PASS
+
+htmlPages: 264
+standaloneJs: 55
+gaTagged: 263
+inlineJs: 1053
+images: 596
+internalReferences: 7465
+brokenInternalReferences: 0
+indexablePages: 261
+sitemapUrls: 261
+noindexPages: 3
+version: 11.11
+practiceEngines: 132
+mathjaxRefs: 120
+frqRows: 228
+frqExamSets: 38
+frqVideos: 216
+pdfFiles: 290
+docxFiles: 0
+identifyingStringHits: 0
+seededRngUnitTest: pass
+
+Warnings: 0
+
+Errors: 0

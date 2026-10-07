@@ -1,0 +1,92 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T02:46:15.176Z",
+  "stats": {
+    "rectangular-approximations": [
+      "left_function",
+      "left_quadratic",
+      "left_table",
+      "midpoint_function",
+      "midpoint_table",
+      "right_function",
+      "right_table"
+    ],
+    "trapezoidal-approximations": [
+      "equal_table",
+      "function_evaluation",
+      "unequal_table"
+    ],
+    "introduction-to-sigma-notation": [
+      "sigma_polynomial"
+    ],
+    "integrals-using-geometry": [
+      "absolute_value_geometry",
+      "complementary_semicircle",
+      "cross_axis_linear",
+      "lower_semicircle_signed_area",
+      "quarter_circle_area",
+      "rectangle_plus_semicircle",
+      "shifted_semicircle",
+      "signed_triangle",
+      "triangle_area",
+      "upper_semicircle"
+    ],
+    "basic-integrals": [
+      "basic_trig",
+      "definite_polynomial",
+      "divide_each_term",
+      "fractional_power",
+      "negative_power",
+      "polynomial",
+      "trig_identity"
+    ],
+    "u-substitution-integrals": [
+      "cosecant_cotangent",
+      "exponential_of_trig",
+      "fourth_root",
+      "linear_denominator",
+      "linear_inner_power",
+      "power_composition",
+      "power_times_root",
+      "radical_linear",
+      "secant_tangent",
+      "trig_linear"
+    ],
+    "integrals-resulting-in-natural-log-and-inverse-trigonometric-functions": [
+      "inverse_sine_antiderivative",
+      "inverse_tangent_antiderivative",
+      "natural_log",
+      "polynomial_division_log"
+    ],
+    "mean-value-theorem-for-integrals": [
+      "average_exponential",
+      "average_polynomial",
+      "average_radical",
+      "average_trig",
+      "find_c"
+    ],
+    "riemann": [
+      "integral_to_sum"
+    ],
+    "ftc_ftc": [
+      "ftc_exponential_upper",
+      "ftc_linear_upper",
+      "ftc_quadratic_upper",
+      "ftc_trig_lower",
+      "ftc_trig_upper",
+      "ftc_two_nonlinear_bounds",
+      "ftc_two_variable_bounds",
+      "ftc_variable_lower"
+    ],
+    "ftc_rules": [
+      "combine_functions",
+      "constant_multiple",
+      "reverse_bounds",
+      "solve_missing_interval",
+      "split_interval",
+      "sum_difference"
+    ]
+  },
+  "warnings": [],
+  "errors": []
+}

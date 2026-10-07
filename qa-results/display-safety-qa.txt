@@ -1,0 +1,10 @@
+BatchMath sitewide display-safety QA
+Result: PASS
+practiceEngines: 132
+unescapedStrictInequalityCommands: 0
+postGenerationMathMutations: 4
+auditedCleanSignsCopies: 4
+engineFilesAudited: 132
+sourceFilesAudited: 319
+Warnings: 0
+Errors: 0

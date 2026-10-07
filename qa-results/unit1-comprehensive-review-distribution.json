@@ -1,0 +1,94 @@
+{
+  "sets": 200000,
+  "major": {
+    "algebra": {
+      "count": 49975,
+      "percent": 24.988
+    },
+    "regularTrig": {
+      "count": 24084,
+      "percent": 12.042
+    },
+    "advancedTrig": {
+      "count": 16091,
+      "percent": 8.046
+    },
+    "squeezeOscillation": {
+      "count": 16139,
+      "percent": 8.069
+    },
+    "oneSided": {
+      "count": 20157,
+      "percent": 10.079
+    },
+    "infinity": {
+      "count": 23946,
+      "percent": 11.973
+    },
+    "graphs": {
+      "count": 15970,
+      "percent": 7.985
+    },
+    "tables": {
+      "count": 3961,
+      "percent": 1.98
+    },
+    "discontinuities": {
+      "count": 9771,
+      "percent": 4.886
+    },
+    "parameters": {
+      "count": 10011,
+      "percent": 5.005
+    },
+    "ivt": {
+      "count": 9895,
+      "percent": 4.947
+    }
+  },
+  "algebraWithinBlock": {
+    "continuous": {
+      "count": 3851,
+      "percent": 7.706
+    },
+    "factoring": {
+      "count": 11512,
+      "percent": 23.036
+    },
+    "substitution": {
+      "count": 11682,
+      "percent": 23.376
+    },
+    "rationalizing": {
+      "count": 11675,
+      "percent": 23.362
+    },
+    "complex": {
+      "count": 11255,
+      "percent": 22.521
+    }
+  },
+  "coverage": {
+    "tables": 2,
+    "graphs": 4,
+    "continuous": 11,
+    "factoring": 401,
+    "substitution": 14,
+    "rationalizing": 99,
+    "complex": 11,
+    "oneSided": 48,
+    "regularTrig": 21,
+    "squeeze": 3,
+    "special": 5,
+    "advancedTrig": 43,
+    "infinity": 1827,
+    "discontinuities": 13,
+    "parameters": 11,
+    "ivt": 22
+  },
+  "continuityParameters": {
+    "threePiece": 14921,
+    "twoPiece": 15079,
+    "threePiecePercent": 49.737
+  }
+}

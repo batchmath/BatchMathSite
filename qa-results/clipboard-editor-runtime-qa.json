@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "editors": [
+    "Calculus Prep exact editor",
+    "Integrated Math stacked-fraction editor"
+  ],
+  "shortcuts": [
+    "Ctrl/Cmd+A",
+    "Ctrl/Cmd+C",
+    "Ctrl/Cmd+X",
+    "Ctrl/Cmd+V"
+  ],
+  "structuredPaste": true
+}

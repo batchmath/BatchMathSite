@@ -1,0 +1,7 @@
+{
+  "ok": true,
+  "samples": 30000,
+  "familiesAndPrompts": 21,
+  "controllerFlows": 92,
+  "browser": "not run: Chromium unavailable; download timed out"
+}

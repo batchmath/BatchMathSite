@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "equations": 30000,
+  "identities": 478440,
+  "families": [
+    "distribution",
+    "fraction_linear",
+    "fraction_expression",
+    "contradiction",
+    "one_step",
+    "two_step",
+    "fraction_coefficient",
+    "fraction_x",
+    "both_distribute_unique",
+    "identity",
+    "both_sides"
+  ],
+  "noSolution": 3260,
+  "infiniteSolutions": 3400,
+  "combinedSpecialShare": 0.222,
+  "threeParentheses": 1106,
+  "twoPart": 1592,
+  "movedIntervals": 620,
+  "controller": "PASS",
+  "browser": "not run"
+}

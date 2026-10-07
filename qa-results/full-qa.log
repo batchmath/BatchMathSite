@@ -1,0 +1,644 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:nobrowser
+> npm run qa:static && npm run qa:display && npm run qa:semantic && npm run qa:prep && npm run qa:analytics && npm run qa:pwa && npm run qa:math && npm run qa:limits && npm run qa:topics && npm run qa:deep && npm run qa:newcalc && npm run qa:derivative-topics && npm run qa:product-quotient-variety && npm run qa:power-rule && npm run qa:unit1-ivt && npm run qa:infinity-variety && npm run qa:unit1-infinity-update && npm run qa:unit1-comprehensive-review && npm run qa:unit3 && npm run qa:unit4 && npm run qa:fidelity && npm run qa:im1-unit2 && npm run qa:fractions && npm run qa:browser-infra && npm run qa:advanced-trig-hints && npm run qa:keypad-structure && npm run qa:unit1-explanations && npm run qa:unit1-approved && npm run qa:unit1-v && npm run qa:unit1-oscillation-one-sided && npm run qa:im1-like-terms && npm run qa:im1-equations-update && npm run qa:coordinate-variety && npm run qa:derivative-charts && npm run qa:unit1-sections-8-10 && npm run qa:unit1-sections-11-12 && npm run qa:fractional-exponent-display && npm run qa:practice-selects
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:static
+> node tools/release-qa.mjs
+
+BatchMath 10.7.21 automated release QA
+Result: PASS
+
+htmlPages: 237
+standaloneJs: 46
+gaTagged: 200
+inlineJs: 908
+images: 470
+internalReferences: 4936
+brokenInternalReferences: 0
+indexablePages: 189
+sitemapUrls: 189
+noindexPages: 48
+version: 10.7.21
+practiceEngines: 88
+mathjaxRefs: 76
+frqRows: 228
+frqExamSets: 38
+frqVideos: 216
+pdfFiles: 235
+docxFiles: 1
+identifyingStringHits: 0
+seededRngUnitTest: pass
+
+Warnings: 0
+
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:display
+> node tools/display-safety-qa.mjs
+
+BatchMath sitewide display-safety QA
+Result: PASS
+practiceEngines: 88
+unescapedStrictInequalityCommands: 0
+postGenerationMathMutations: 4
+auditedCleanSignsCopies: 4
+engineFilesAudited: 88
+sourceFilesAudited: 283
+Warnings: 0
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:semantic
+> node tools/semantic-answer-qa.mjs
+
+BatchMath 10.7.21 semantic answer QA
+Result: PASS
+IM1 engines independently checked: 9
+IM1 generated/displayed problems checked: 12368
+Shared AP topic generators sampled: 38
+Shared AP topic problems generated: 38000
+Shared AP topic answers independently recomputed: 809
+
+Warnings: 1
+- Only 809 shared AP samples had independent semantic validators.
+
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:prep
+> node tools/calc-prep-semantic-qa.mjs
+
+BatchMath 10.7.21 Calculus Prep semantic QA
+Result: PASS
+Calculus Prep engines audited: 11
+Generated problems checked: 5500
+Samples per audited mode: 500
+
+Warnings: 0
+
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:analytics
+> node tools/analytics-qa.mjs
+
+BatchMath analytics instrumentation QA
+Result: PASS
+Instrumented engines: 88
+Unique engine IDs: 88
+answerChecked call sites audited: 47
+Warnings: 0
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:pwa
+> node tools/pwa-cache-qa.mjs
+
+BatchMath PWA / cache architecture QA
+Result: PASS
+Version: 10.7.21
+APP_SHELL entries: 36
+APP_SHELL local payload: 764.3 KiB
+Practice pages audited: 82
+Local practice dependencies audited: 772
+Warnings: 0
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:math
+> node tools/ap-generator-stress-qa.mjs
+
+BatchMath deterministic AP generator stress QA
+Result: PASS
+Problems generated: 280000
+Problems per category: 10000
+Categories: 28
+
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:limits
+> node tools/limits-family-qa.mjs
+
+BatchMath targeted Limits family QA
+Result: PASS
+Problems generated: 40000
+Variable Substitution cube-root share: 56.7% / other fractional-power share: 43.3%
+Complex mix: 34.4% routine / 25.6% intermediate / 40.0% challenging
+
+Variable Substitution variants:
+- clean_shifted_cube_root: 2003
+- cube_root_over_power: 2065
+- cube_root_polynomial_ratio: 723
+- cube_root_quadratic_substitution: 710
+- higher_cube_root_power: 1416
+- higher_fractional_power: 1434
+- higher_root_over_power: 1419
+- mixed_fractional_powers: 1363
+- power_over_cube_root: 1425
+- power_over_higher_root: 1414
+- substitution_cube_root_polynomial_over_polynomial: 1525
+- substitution_cube_root_squared_reciprocal: 1465
+- substitution_eighth_root_over_power: 1521
+- substitution_power_over_eighth_root: 1517
+
+Complex Fraction variants:
+- challenging_double_reciprocal: 1993
+- challenging_reciprocal_over_factored: 987
+- challenging_reciprocal_square_over_reciprocal: 1028
+- complex_two_variable_fractions: 3987
+- intermediate_rational_difference: 2081
+- intermediate_reciprocal_quadratic: 1987
+- intermediate_reciprocal_square: 1055
+- routine_reciprocal_basic: 1970
+- routine_reciprocal_denominator: 1983
+- routine_shifted_reciprocal: 1937
+- routine_shifted_reciprocal_denominator: 992
+
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:topics
+> node tools/ap-topic-generator-qa.mjs
+
+BatchMath AP topic generator QA
+Result: PASS
+Generic topic generators: 29
+Generated problems: 29000
+Warnings: 0
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:deep
+> node tools/ap-topic-deep-audit.mjs
+
+BatchMath AP individual-topic deep audit
+Result: PASS
+Topics: 50 (29 shared topic, 1 shared module, 17 filtered comprehensive, 3 specialized)
+Raw generated samples: 100000
+Samples per topic: 2000
+
+Warnings: 0
+
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:newcalc
+> node tools/new-calculus-engines-qa.mjs
+
+BatchMath specialized calculus engines QA
+Result: PASS
+Limit Proof Practice: intentionally retired
+Discontinuity problems: 50000
+Advanced trig problems: 38000
+Discontinuity classifications: infinite, jump, removable
+Warnings: 0
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:derivative-topics
+> node tools/derivative-topic-enhancements-qa.mjs
+
+BatchMath derivative/topic interaction QA
+Result: PASS
+Difference Quotient sampled: 20000
+Product: 8000 basic / 8000 all-function-types
+Quotient: 8000 basic / 8000 all-function-types
+Trig: 4000 without-chain / 12000 with-chain
+Chain: 5000 simple / 7000 multiple / 7000 other-rules / 15000 combined
+Warnings: 0
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:product-quotient-variety
+> node tools/product-quotient-variety-qa.mjs
+
+Product/Quotient variety QA: PASS; 42000 generated; 251805 independent derivative checks; 0 errors
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:power-rule
+> node tools/power-rule-family-qa.mjs
+
+BatchMath Power Rule family QA
+Result: PASS
+Individual-engine samples: 22500
+Comprehensive Review samples: 12000
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:unit1-ivt
+> node tools/unit1-ivt-infinity-qa.mjs
+
+BatchMath Unit 1 IVT / Limits at Infinity QA
+Result: PASS
+IVT generated problems: 54000
+Mixed split: value 9970, root 10030
+Nonzero-target root share: 20.85%
+Unique root problem IDs: 485
+Root families: {"root_logarithmic_excluded_endpoint":1496,"target_nonzero_interior_hole":1490,"root_sine_familiar_angles":1490,"root_radical_continuous_interval":1467,"root_unfactored_cubic_yes":1498,"root_exponential_composition":1511,"root_unfactored_quadratic_yes":1465,"root_logarithmic_continuous_interval":1473,"target_nonzero_polynomial":1462,"root_rational_continuous_interval":1540,"root_trig_quotient_positive_interval":1444,"target_nonzero_trigonometric":1449,"root_rational_interior_pole":1512,"root_rational_times_root_intervals":1418,"root_cosine_familiar_angles":1507,"root_unfactored_polynomial_no_sign_change":1452,"root_radical_outside_domain":1436,"root_rational_interior_hole":1453,"target_nonzero_outside_endpoint_range":1437}
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:infinity-variety
+> node tools/unit1-infinity-variety-qa.mjs
+
+BatchMath Limits at Infinity Variety QA
+Result: PASS
+Samples: 100000
+Directions: +infinity 50000, -infinity 50000
+Radical-family share: 50.296%
+Families observed: 24/24
+Errors: 0
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:unit1-infinity-update
+> node tools/unit1-infinity-update-qa.mjs
+
+{
+  ok: true,
+  samples: 100000,
+  groupShares: {
+    oscillation: 0.05035,
+    rational: 0.05051,
+    radicals: 0.25114,
+    explog: 0.39921,
+    growth: 0.24879
+  },
+  mixedBreakdown: {
+    quadraticLinearRadicals: 0.20078,
+    otherRadicals: 0.05036,
+    logarithmic: 0.19949,
+    exponential: 0.19972
+  },
+  directions: {
+    oscillation: { positive: 2518, negative: 2517 },
+    rational: { positive: 2524, negative: 2527 },
+    radicals: { positive: 12557, negative: 12557 },
+    explog: { positive: 19962, negative: 19959 },
+    growth: { positive: 12439, negative: 12440 }
+  },
+  logReciprocalShare: 0.5555666950724347,
+  growthFamilies: [
+    'polynomial-vs-root',
+    'polynomial-vs-logarithm',
+    'root-vs-logarithm',
+    'logarithm-vs-root',
+    'exponential-vs-polynomial',
+    'polynomial-vs-exponential'
+  ]
+}
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:unit1-comprehensive-review
+> node tools/unit1-comprehensive-review-sync-qa.mjs
+
+Unit 1 comprehensive-review synchronization QA passed.
+{
+  "sets": 200000,
+  "major": {
+    "algebra": {
+      "count": 49975,
+      "percent": 24.988
+    },
+    "regularTrig": {
+      "count": 24084,
+      "percent": 12.042
+    },
+    "advancedTrig": {
+      "count": 16091,
+      "percent": 8.046
+    },
+    "squeezeOscillation": {
+      "count": 16139,
+      "percent": 8.069
+    },
+    "oneSided": {
+      "count": 20157,
+      "percent": 10.079
+    },
+    "infinity": {
+      "count": 23946,
+      "percent": 11.973
+    },
+    "graphs": {
+      "count": 15970,
+      "percent": 7.985
+    },
+    "tables": {
+      "count": 3961,
+      "percent": 1.98
+    },
+    "discontinuities": {
+      "count": 9771,
+      "percent": 4.886
+    },
+    "parameters": {
+      "count": 10011,
+      "percent": 5.005
+    },
+    "ivt": {
+      "count": 9895,
+      "percent": 4.947
+    }
+  },
+  "algebraWithinBlock": {
+    "continuous": {
+      "count": 3851,
+      "percent": 7.706
+    },
+    "factoring": {
+      "count": 11512,
+      "percent": 23.036
+    },
+    "substitution": {
+      "count": 11682,
+      "percent": 23.376
+    },
+    "rationalizing": {
+      "count": 11675,
+      "percent": 23.362
+    },
+    "complex": {
+      "count": 11255,
+      "percent": 22.521
+    }
+  },
+  "coverage": {
+    "tables": 2,
+    "graphs": 4,
+    "continuous": 11,
+    "factoring": 401,
+    "substitution": 14,
+    "rationalizing": 99,
+    "complex": 11,
+    "oneSided": 48,
+    "regularTrig": 21,
+    "squeeze": 3,
+    "special": 5,
+    "advancedTrig": 43,
+    "infinity": 1827,
+    "discontinuities": 13,
+    "parameters": 11,
+    "ivt": 22
+  },
+  "continuityParameters": {
+    "threePiece": 14921,
+    "twoPiece": 15079,
+    "threePiecePercent": 49.737
+  }
+}
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:unit3
+> node tools/unit3-rebuild-qa.mjs
+
+BatchMath Unit 3 rebuild QA
+Result: PASS
+Warnings: 0
+Errors: 0
+
+{
+  "equations-of-tangent-and-normal-lines": [
+    "cosine_normal",
+    "cubic_normal",
+    "exponential_tangent",
+    "log_tangent",
+    "quadratic_tangent",
+    "radical_tangent",
+    "reciprocal_normal",
+    "sine_tangent"
+  ],
+  "absolute-and-local-extrema-and-the-extreme-value-theorem": [
+    "absolute_cubic",
+    "absolute_exponential_product",
+    "absolute_quartic",
+    "absolute_radical",
+    "absolute_rational",
+    "absolute_trig_combination",
+    "local_cubic",
+    "local_exponential_product",
+    "local_logarithm",
+    "local_quartic_max",
+    "local_quartic_min",
+    "local_rational",
+    "local_trig"
+  ],
+  "increasing-decreasing-intervals-concavity-and-extrema": [
+    "f_given_concavity_hard",
+    "f_given_decreasing",
+    "f_given_exponential_increasing",
+    "f_given_increasing",
+    "f_given_log_increasing",
+    "f_given_rational_concavity",
+    "f_given_rational_increasing",
+    "f_given_trig_increasing",
+    "factored_first_derivative",
+    "first_derivative_given_concavity",
+    "first_derivative_given_increasing",
+    "first_derivative_given_local_extrema",
+    "second_derivative_given_concavity"
+  ],
+  "linearization-and-differentials": [
+    "differential_equilateral_triangle",
+    "differential_implicit",
+    "differential_polynomial",
+    "differential_sphere",
+    "differential_trig_composition",
+    "differential_trig_degrees",
+    "linearization_cube_root",
+    "linearization_logarithm",
+    "linearization_sine",
+    "linearization_square_root",
+    "linearization_tangent"
+  ],
+  "l-hopital-s-rule": [
+    "cosine_exponential_remainders",
+    "cosine_ratio",
+    "exponential_cosine_remainders",
+    "inverse_trig_limit",
+    "logarithm_over_power",
+    "nested_log_trig",
+    "power_over_exponential",
+    "radical_difference_quotient",
+    "shifted_exponential_trig",
+    "simple_exponential",
+    "simple_radical",
+    "three_application_trig",
+    "two_application_exponential"
+  ],
+  "motion": [
+    "exponential_position_acceleration",
+    "exponential_position_speed",
+    "exponential_position_velocity",
+    "exponential_velocity_acceleration",
+    "exponential_velocity_speed",
+    "position_acceleration",
+    "position_speed",
+    "position_velocity",
+    "projectile_maximum_altitude",
+    "rest_time_numeric",
+    "trig_position_acceleration",
+    "trig_position_speed",
+    "trig_position_velocity",
+    "trig_velocity_acceleration",
+    "trig_velocity_speed",
+    "velocity_acceleration",
+    "velocity_at_position",
+    "velocity_speed"
+  ],
+  "extremaMix": {
+    "absolute": 12013,
+    "local": 11987
+  },
+  "factoredDerivativeShare": 0.07404,
+  "lHopitalTrivialShare": 0.19984,
+  "rolleMvt_theorem": [
+    "mvt_hypothesis_corner",
+    "mvt_hypothesis_rational",
+    "rolle_cosine",
+    "rolle_quadratic",
+    "rolle_sine"
+  ],
+  "rolleMvt_find-c": [
+    "mvt_cubic_symmetric",
+    "mvt_exponential",
+    "mvt_logarithm",
+    "mvt_quadratic",
+    "mvt_reciprocal",
+    "mvt_square_root"
+  ],
+  "rolleMvt_both": [
+    "mvt_cubic_symmetric",
+    "mvt_exponential",
+    "mvt_hypothesis_corner",
+    "mvt_hypothesis_rational",
+    "mvt_logarithm",
+    "mvt_quadratic",
+    "mvt_reciprocal",
+    "mvt_square_root",
+    "rolle_cosine",
+    "rolle_quadratic",
+    "rolle_sine"
+  ],
+  "approx": {
+    "under": 15078,
+    "over": 14922,
+    "tangent": 15056,
+    "secant": 14944
+  }
+}
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> batchmath-site-qa@10.7.21 qa:unit4
+> node tools/unit4-rebuild-qa.mjs
+
+BatchMath Unit 4 rebuild QA
+Result: PASS
+Warnings: 0
+Errors: 0
+
+{
+  "rectangular-approximations": [
+    "left_function",
+    "left_quadratic",
+    "left_table",
+    "midpoint_function",
+    "midpoint_table",
+    "right_function",
+    "right_table"
+  ],
+  "trapezoidal-approximations": [
+    "equal_table",
+    "function_evaluation",
+    "unequal_table"
+  ],
+  "introduction-to-sigma-notation": [
+    "sigma_polynomial"
+  ],
+  "integrals-using-geometry": [
+    "absolute_value_geometry",
+    "complementary_semicircle",
+    "cross_axis_linear",
+    "lower_semicircle_signed_area",
+    "quarter_circle_area",
+    "rectangle_plus_semicircle",
+    "shifted_semicircle",
+    "signed_triangle",
+    "triangle_area",
+    "upper_semicircle"
+  ],
+  "basic-integrals": [
+    "basic_trig",
+    "definite_polynomial",
+    "divide_each_term",
+    "fractional_power",
+    "negative_power",
+    "polynomial",
+    "trig_identity"
+  ],
+  "u-substitution-integrals": [
+    "cosecant_cotangent",
+    "exponential_of_trig",
+    "fourth_root",
+    "linear_denominator",
+    "linear_inner_power",
+    "power_composition",
+    "power_times_root",
+    "radical_linear",
+    "secant_tangent",
+    "trig_linear"
+  ],
+  "integrals-resulting-in-natural-log-and-inverse-trigonometric-functions": [
+    "inverse_sine_antiderivative",
+    "inverse_tangent_antiderivative",
+    "natural_log",
+    "polynomial_division_log"
+  ],
+  "mean-value-theorem-for-integrals": [
+    "average_exponential",
+    "average_polynomial",
+    "average_radical",
+    "average_trig",
+    "find_c"
+  ],
+  "riemann": [
+    "integral_to_sum"
+  ],
+  "ftc_ftc": [
+    "ftc_exponential_upper",
+    "ftc_linear_upper",
+    "ftc_quadratic_upper",
+    "ftc_trig_lower",
+    "ftc_trig_upper",
+    "ftc_two_nonlinear_bounds",
+    "ftc_two_variable_bounds",
+    "ftc_variable_lower"
+  ],
+  "ftc_rules": [
+    "combine_functions",
+    "constant_multiple",
+    "reverse_bounds",
+    "solve_missing_interval",
+    "split_interval",
+    "sum_difference"
+  ]
+}

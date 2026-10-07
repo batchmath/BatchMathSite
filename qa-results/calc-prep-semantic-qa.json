@@ -1,0 +1,78 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T02:44:28.068Z",
+  "version": "11.11",
+  "perMode": 500,
+  "totalGenerated": 5500,
+  "engines": 11,
+  "records": [
+    {
+      "engine": "unit_circle",
+      "mode": "all",
+      "samples": 500,
+      "uniqueIds": 176
+    },
+    {
+      "engine": "angle_skills",
+      "mode": "mixed",
+      "samples": 500,
+      "uniqueIds": 274
+    },
+    {
+      "engine": "trig_equations",
+      "mode": "mixed",
+      "samples": 500,
+      "uniqueIds": 106
+    },
+    {
+      "engine": "algebra",
+      "mode": "mixed",
+      "samples": 500,
+      "uniqueIds": 87
+    },
+    {
+      "engine": "domains",
+      "mode": "mixed",
+      "samples": 500,
+      "uniqueIds": 246
+    },
+    {
+      "engine": "logs",
+      "mode": "mixed",
+      "samples": 500,
+      "uniqueIds": 424
+    },
+    {
+      "engine": "identities",
+      "mode": "mixed",
+      "samples": 500,
+      "uniqueIds": 65
+    },
+    {
+      "engine": "factoring",
+      "mode": "mixed",
+      "samples": 500,
+      "uniqueIds": 149
+    },
+    {
+      "engine": "synthetic",
+      "mode": "mixed",
+      "samples": 500,
+      "uniqueIds": 499
+    },
+    {
+      "engine": "function_graphs",
+      "mode": "mixed",
+      "samples": 500,
+      "uniqueIds": 474
+    },
+    {
+      "engine": "rational_functions",
+      "mode": "mixed",
+      "samples": 500,
+      "uniqueIds": 490
+    }
+  ],
+  "warnings": [],
+  "errors": []
+}

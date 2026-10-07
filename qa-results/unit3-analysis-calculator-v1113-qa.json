@@ -1,0 +1,464 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T05:36:53.819Z",
+  "generatedProblems": 9600,
+  "perFocus": {
+    "incdec": 2390,
+    "concavity": 2385,
+    "poi": 2361,
+    "extrema": 2464
+  },
+  "mixedDistribution": {
+    "incdec": 790,
+    "extrema": 864,
+    "concavity": 785,
+    "poi": 761
+  },
+  "distinctFamilies": {
+    "incdec": 19,
+    "concavity": 19,
+    "poi": 10,
+    "extrema": 10
+  },
+  "samples": {
+    "incdec": [
+      {
+        "id": "u3-analysis-validated-incdec-exponential-linear-sine-0.4-2.1-0.35-2-0.7-decreasing-n",
+        "family": "exponential-linear-sine",
+        "roots": [
+          "-0.094"
+        ],
+        "signs": [
+          -1,
+          1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), where is \\(f\\) decreasing on \\([-1.5,2.5]\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f′(x)=e^{0.4x}+2.1x+0.35\\sin(2x)-0.7\\)  ",
+        "answer": "[-1.500,-0.094]"
+      },
+      {
+        "id": "u3-analysis-validated-incdec-rational-linear-sine-2.2-0.8-3.1-0.45-2--5.2-increasing-r",
+        "family": "rational-linear-sine",
+        "roots": [
+          "-2.466"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), where is \\(f\\) increasing on \\([-3,3]\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f′(x)=-2.2x-\\frac{0.8x}{x^2+3.1}-0.45\\sin(2x)-5.2\\)  ",
+        "answer": "[-3.000,-2.466]"
+      },
+      {
+        "id": "u3-analysis-validated-incdec-exponential-linear-sine-0.6-1.6-0.65-1-3.4-increasing-r",
+        "family": "exponential-linear-sine",
+        "roots": [
+          "0.812"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), where is \\(f\\) increasing on \\([-1.5,2.5]\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f′(x)=-e^{0.6x}-1.6x-0.65\\sin(x)+3.4\\)  ",
+        "answer": "[-1.500,0.812]"
+      },
+      {
+        "id": "u3-analysis-validated-incdec-logarithmic-cosine-mix-2.7-0.7-2-0.8-increasing-r",
+        "family": "logarithmic-cosine-mix",
+        "roots": [
+          "-0.706",
+          "1.273",
+          "1.692"
+        ],
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), where is \\(f\\) increasing on \\([-2.2,4.5]\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f′(x)=-\\ln(x+2.7)-0.7\\cos(2x)+0.8\\)  ",
+        "answer": "[-2.200,-0.706]\\cup[1.273,1.692]"
+      },
+      {
+        "id": "u3-analysis-validated-incdec-quotient-cosine-mix-2.6-0.65-1.8-1--0.7-increasing-r",
+        "family": "quotient-cosine-mix",
+        "roots": [
+          "-1.972"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), where is \\(f\\) increasing on \\([-3,3]\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f′(x)=-\\frac{x^3-2.6x}{x^2+1.8}-0.65\\cos(x)-0.7\\)  ",
+        "answer": "[-3.000,-1.972]"
+      },
+      {
+        "id": "u3-analysis-validated-incdec-logarithmic-cosine-mix-2.2-1-1.1-0.8-decreasing-r",
+        "family": "logarithmic-cosine-mix",
+        "roots": [
+          "-0.907",
+          "2.074",
+          "3.268"
+        ],
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), where is \\(f\\) decreasing on \\([-1.7,4.5]\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f′(x)=-\\ln(x+2.2)-\\cos(1.1x)+0.8\\)  ",
+        "answer": "[-0.907,2.074]\\cup[3.268,4.500]"
+      },
+      {
+        "id": "u3-analysis-validated-incdec-quotient-cosine-mix-1.7-0.4-1.8-2--0.7-increasing-r",
+        "family": "quotient-cosine-mix",
+        "roots": [
+          "-1.586"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), where is \\(f\\) increasing on \\([-3,3]\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f′(x)=-\\frac{x^3-1.7x}{x^2+1.8}-0.4\\cos(2x)-0.7\\)  ",
+        "answer": "[-3.000,-1.586]"
+      },
+      {
+        "id": "u3-analysis-validated-incdec-quintic-cosine-2.1-0.85-1.8-2.6-decreasing-r",
+        "family": "quintic-cosine",
+        "roots": [
+          "0.939"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), where is \\(f\\) decreasing on \\([-2.2,2.2]\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f′(x)=-x^5-2.1x-0.85\\cos(1.8x)+2.6\\)  ",
+        "answer": "[0.939,2.200]"
+      }
+    ],
+    "concavity": [
+      {
+        "id": "u3-analysis-validated-concavity-rational-linear-sine-2.6-0.8-3.1-0.45-2-3.1-down-n",
+        "family": "rational-linear-sine",
+        "roots": [
+          "0.956"
+        ],
+        "signs": [
+          -1,
+          1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), where is \\(f\\) concave down on \\((-3,3)\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f″(x)=2.6x+\\frac{0.8x}{x^2+3.1}+0.45\\sin(2x)-3.1\\)  ",
+        "answer": "(-3.000,0.956)"
+      },
+      {
+        "id": "u3-analysis-validated-concavity-polynomial-exponential-2.4-1.2-0.6-9.3-down-n",
+        "family": "polynomial-exponential",
+        "roots": [
+          "1.688"
+        ],
+        "signs": [
+          -1,
+          1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), where is \\(f\\) concave down on \\((0,3)\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f″(x)=x^3+2.4x+1.2e^{-0.6x}-9.3\\)  ",
+        "answer": "(0.000,1.688)"
+      },
+      {
+        "id": "u3-analysis-validated-concavity-quartic-sine-mix-3.2-0.8-1--3.1-up-n",
+        "family": "quartic-sine-mix",
+        "roots": [
+          "-2.031",
+          "1.954"
+        ],
+        "signs": [
+          1,
+          -1,
+          1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), where is \\(f\\) concave up on \\((-3,3)\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f″(x)=x^4-3.2x^2+0.8\\sin(x)-3.1\\)  ",
+        "answer": "(-3.000,-2.031)\\cup(1.954,3.000)"
+      },
+      {
+        "id": "u3-analysis-validated-concavity-logarithmic-cosine-mix-3.3-0.7-1.6-1.25-down-n",
+        "family": "logarithmic-cosine-mix",
+        "roots": [
+          "-0.708",
+          "1.218",
+          "2.449"
+        ],
+        "signs": [
+          -1,
+          1,
+          -1,
+          1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), where is \\(f\\) concave down on \\((-2.8,4.5)\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f″(x)=\\ln(x+3.3)+0.7\\cos(1.6x)-1.25\\)  ",
+        "answer": "(-2.800,-0.708)\\cup(1.218,2.449)"
+      },
+      {
+        "id": "u3-analysis-validated-concavity-logarithmic-quadratic-0.8-0.55-1.8-4.9-up-n",
+        "family": "logarithmic-quadratic",
+        "roots": [
+          "1.691"
+        ],
+        "signs": [
+          -1,
+          1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), where is \\(f\\) concave up on \\((0,4)\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f″(x)=x^2+0.8x+0.55\\ln(x+1.8)-4.9\\)  ",
+        "answer": "(1.691,4.000)"
+      },
+      {
+        "id": "u3-analysis-validated-concavity-exponential-rational-linear-0.7-1.9-0.45-2.1-6.7-down-r",
+        "family": "exponential-rational-linear",
+        "roots": [
+          "1.707"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), where is \\(f\\) concave down on \\((-1.5,3)\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f″(x)=-e^{0.7x}-1.9x-\\frac{0.45x}{x^2+2.1}+6.7\\)  ",
+        "answer": "(1.707,3.000)"
+      },
+      {
+        "id": "u3-analysis-validated-concavity-inverse-trig-cosine-1.6-0.8-0.45-1.5--2.1-down-r",
+        "family": "inverse-trig-cosine",
+        "roots": [
+          "-0.964"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), where is \\(f\\) concave down on \\((-3,3)\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f″(x)=-1.6x-0.8\\tan^{-1}x-0.45\\cos(1.5x)-2.1\\)  ",
+        "answer": "(-0.964,3.000)"
+      },
+      {
+        "id": "u3-analysis-validated-concavity-quintic-cosine-2.1-0.85-1.8-7.4-down-r",
+        "family": "quintic-cosine",
+        "roots": [
+          "1.389"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), where is \\(f\\) concave down on \\((-2.2,2.2)\\)? Enter the answer in interval notation and round every finite endpoint to exactly three decimal places.  \\(f″(x)=-x^5-2.1x-0.85\\cos(1.8x)+7.4\\)  ",
+        "answer": "(1.389,2.200)"
+      }
+    ],
+    "poi": [
+      {
+        "id": "u3-analysis-validated-poi-logarithmic-quadratic-1.7-1.1-3.2-10.6-n",
+        "family": "logarithmic-quadratic",
+        "roots": [
+          "2.226"
+        ],
+        "signs": [
+          -1,
+          1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), find the x-coordinate of the point of inflection on \\((0,4)\\). Round to exactly three decimal places.  \\(f″(x)=x^2+1.7x+1.1\\ln(x+3.2)-10.6\\)  ",
+        "answer": "2.226"
+      },
+      {
+        "id": "u3-analysis-validated-poi-quintic-cosine-2.1-0.65-1.8-7.4-r",
+        "family": "quintic-cosine",
+        "roots": [
+          "1.381"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), find the x-coordinate of the point of inflection on \\((-2.2,2.2)\\). Round to exactly three decimal places.  \\(f″(x)=-x^5-2.1x-0.65\\cos(1.8x)+7.4\\)  ",
+        "answer": "1.381"
+      },
+      {
+        "id": "u3-analysis-validated-poi-inverse-trig-cosine-1.6-0.55-0.45-2-3.7-n",
+        "family": "inverse-trig-cosine",
+        "roots": [
+          "2.076"
+        ],
+        "signs": [
+          -1,
+          1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), find the x-coordinate of the point of inflection on \\((-3,3)\\). Round to exactly three decimal places.  \\(f″(x)=1.6x+0.55\\tan^{-1}x+0.45\\cos(2x)-3.7\\)  ",
+        "answer": "2.076"
+      },
+      {
+        "id": "u3-analysis-validated-poi-rational-linear-sine-1.8-0.6-4.3-0.6-1-0.9-r",
+        "family": "rational-linear-sine",
+        "roots": [
+          "0.357"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), find the x-coordinate of the point of inflection on \\((-3,3)\\). Round to exactly three decimal places.  \\(f″(x)=-1.8x-\\frac{0.6x}{x^2+4.3}-0.6\\sin(x)+0.9\\)  ",
+        "answer": "0.357"
+      },
+      {
+        "id": "u3-analysis-validated-poi-logarithmic-linear-cosine-2.6-2.3-0.35-1.8--1.6-r",
+        "family": "logarithmic-linear-cosine",
+        "roots": [
+          "-0.912"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), find the x-coordinate of the point of inflection on \\((-2.1,4)\\). Round to exactly three decimal places.  \\(f″(x)=-\\ln(x+2.6)-2.3x-0.35\\cos(1.8x)-1.6\\)  ",
+        "answer": "-0.912"
+      },
+      {
+        "id": "u3-analysis-validated-poi-polynomial-exponential-2.4-0.9-0.4-9.3-r",
+        "family": "polynomial-exponential",
+        "roots": [
+          "1.686"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), find the x-coordinate of the point of inflection on \\((0,3)\\). Round to exactly three decimal places.  \\(f″(x)=-x^3-2.4x-0.9e^{-0.4x}+9.3\\)  ",
+        "answer": "1.686"
+      },
+      {
+        "id": "u3-analysis-validated-poi-polynomial-exponential-1.3-0.6-0.6-6.8-r",
+        "family": "polynomial-exponential",
+        "roots": [
+          "1.644"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), find the x-coordinate of the point of inflection on \\((0,3)\\). Round to exactly three decimal places.  \\(f″(x)=-x^3-1.3x-0.6e^{-0.6x}+6.8\\)  ",
+        "answer": "1.644"
+      },
+      {
+        "id": "u3-analysis-validated-poi-exponential-linear-sine-0.8-2.1-0.35-1--1.8-n",
+        "family": "exponential-linear-sine",
+        "roots": [
+          "-0.946"
+        ],
+        "signs": [
+          -1,
+          1
+        ],
+        "question": "  Calculator Active: Given \\(f″\\), find the x-coordinate of the point of inflection on \\((-1.5,2.5)\\). Round to exactly three decimal places.  \\(f″(x)=e^{0.8x}+2.1x+0.35\\sin(x)+1.8\\)  ",
+        "answer": "-0.946"
+      }
+    ],
+    "extrema": [
+      {
+        "id": "u3-analysis-validated-extrema-exponential-linear-sine-0.8-2.1-0.5-1.5-3.4-minimum",
+        "family": "exponential-linear-sine",
+        "roots": [
+          "0.634"
+        ],
+        "signs": [
+          -1,
+          1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), find the x-coordinate of the local minimum on \\((-1.5,2.5)\\). Round to exactly three decimal places.  \\(f′(x)=e^{0.8x}+2.1x+0.5\\sin(1.5x)-3.4\\)  ",
+        "answer": "0.634"
+      },
+      {
+        "id": "u3-analysis-validated-extrema-cubic-sine-3.5-0.4-2-9.1-maximum",
+        "family": "cubic-sine",
+        "roots": [
+          "1.543"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), find the x-coordinate of the local maximum on \\((-3,3)\\). Round to exactly three decimal places.  \\(f′(x)=-x^3-3.5x-0.4\\sin(2x)+9.1\\)  ",
+        "answer": "1.543"
+      },
+      {
+        "id": "u3-analysis-validated-extrema-polynomial-exponential-1.8-0.9-0.4-6.8-maximum",
+        "family": "polynomial-exponential",
+        "roots": [
+          "1.527"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), find the x-coordinate of the local maximum on \\((0,3)\\). Round to exactly three decimal places.  \\(f′(x)=-x^3-1.8x-0.9e^{-0.4x}+6.8\\)  ",
+        "answer": "1.527"
+      },
+      {
+        "id": "u3-analysis-validated-extrema-quintic-cosine-2.1-0.65-1.4-2.6-maximum",
+        "family": "quintic-cosine",
+        "roots": [
+          "0.882"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), find the x-coordinate of the local maximum on \\((-2.2,2.2)\\). Round to exactly three decimal places.  \\(f′(x)=-x^5-2.1x-0.65\\cos(1.4x)+2.6\\)  ",
+        "answer": "0.882"
+      },
+      {
+        "id": "u3-analysis-validated-extrema-quintic-cosine-3.4-0.65-1.8-7.4-maximum",
+        "family": "quintic-cosine",
+        "roots": [
+          "1.283"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), find the x-coordinate of the local maximum on \\((-2.2,2.2)\\). Round to exactly three decimal places.  \\(f′(x)=-x^5-3.4x-0.65\\cos(1.8x)+7.4\\)  ",
+        "answer": "1.283"
+      },
+      {
+        "id": "u3-analysis-validated-extrema-logarithmic-linear-cosine-3.1-2.3-0.5-1--1.6-minimum",
+        "family": "logarithmic-linear-cosine",
+        "roots": [
+          "-1.097"
+        ],
+        "signs": [
+          -1,
+          1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), find the x-coordinate of the local minimum on \\((-2.6,4)\\). Round to exactly three decimal places.  \\(f′(x)=\\ln(x+3.1)+2.3x+0.5\\cos(x)+1.6\\)  ",
+        "answer": "-1.097"
+      },
+      {
+        "id": "u3-analysis-validated-extrema-exponential-rational-linear-0.7-1.9-0.7-2.1--1.4-minimum",
+        "family": "exponential-rational-linear",
+        "roots": [
+          "-0.903"
+        ],
+        "signs": [
+          -1,
+          1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), find the x-coordinate of the local minimum on \\((-1.5,3)\\). Round to exactly three decimal places.  \\(f′(x)=e^{0.7x}+1.9x+\\frac{0.7x}{x^2+2.1}+1.4\\)  ",
+        "answer": "-0.903"
+      },
+      {
+        "id": "u3-analysis-validated-extrema-composed-sine-linear-3.7-0.5-7.1-maximum",
+        "family": "composed-sine-linear",
+        "roots": [
+          "2.032"
+        ],
+        "signs": [
+          1,
+          -1
+        ],
+        "question": "  Calculator Active: Given \\(f′\\), find the x-coordinate of the local maximum on \\((0,2.5)\\). Round to exactly three decimal places.  \\(f′(x)=-3.7x-0.5\\sin(x^2)+7.1\\)  ",
+        "answer": "2.032"
+      }
+    ]
+  },
+  "errors": []
+}

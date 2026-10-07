@@ -1,0 +1,205 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T02:45:26.379Z",
+  "perCategory": 10000,
+  "totalGenerated": 280000,
+  "errors": [],
+  "results": [
+    {
+      "engine": "Limits",
+      "category": "tables",
+      "generated": 10000,
+      "uniqueIds": 8042,
+      "seed": "Limits:tables:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "graphs",
+      "generated": 10000,
+      "uniqueIds": 9932,
+      "seed": "Limits:graphs:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "continuous",
+      "generated": 10000,
+      "uniqueIds": 7147,
+      "seed": "Limits:continuous:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "factoring",
+      "generated": 10000,
+      "uniqueIds": 3622,
+      "seed": "Limits:factoring:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "substitution",
+      "generated": 10000,
+      "uniqueIds": 610,
+      "seed": "Limits:substitution:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "rationalizing",
+      "generated": 10000,
+      "uniqueIds": 158,
+      "seed": "Limits:rationalizing:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "complex",
+      "generated": 10000,
+      "uniqueIds": 470,
+      "seed": "Limits:complex:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "oneSided",
+      "generated": 10000,
+      "uniqueIds": 6810,
+      "seed": "Limits:oneSided:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "regularTrig",
+      "generated": 10000,
+      "uniqueIds": 8122,
+      "seed": "Limits:regularTrig:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "squeeze",
+      "generated": 10000,
+      "uniqueIds": 730,
+      "seed": "Limits:squeeze:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "special",
+      "generated": 10000,
+      "uniqueIds": 1514,
+      "seed": "Limits:special:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "advancedTrig",
+      "generated": 10000,
+      "uniqueIds": 7250,
+      "seed": "Limits:advancedTrig:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "infinity",
+      "generated": 10000,
+      "uniqueIds": 8639,
+      "seed": "Limits:infinity:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "discontinuities",
+      "generated": 10000,
+      "uniqueIds": 6762,
+      "seed": "Limits:discontinuities:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "parameters",
+      "generated": 10000,
+      "uniqueIds": 7608,
+      "seed": "Limits:parameters:11.11"
+    },
+    {
+      "engine": "Limits",
+      "category": "ivt",
+      "generated": 10000,
+      "uniqueIds": 5972,
+      "seed": "Limits:ivt:11.11"
+    },
+    {
+      "engine": "Derivatives",
+      "category": "basic",
+      "generated": 10000,
+      "uniqueIds": 9192,
+      "seed": "Derivatives:basic:11.11"
+    },
+    {
+      "engine": "Derivatives",
+      "category": "product",
+      "generated": 10000,
+      "uniqueIds": 7251,
+      "seed": "Derivatives:product:11.11"
+    },
+    {
+      "engine": "Derivatives",
+      "category": "quotient",
+      "generated": 10000,
+      "uniqueIds": 7269,
+      "seed": "Derivatives:quotient:11.11"
+    },
+    {
+      "engine": "Derivatives",
+      "category": "trig",
+      "generated": 10000,
+      "uniqueIds": 1499,
+      "seed": "Derivatives:trig:11.11"
+    },
+    {
+      "engine": "Derivatives",
+      "category": "chain",
+      "generated": 10000,
+      "uniqueIds": 4963,
+      "seed": "Derivatives:chain:11.11"
+    },
+    {
+      "engine": "Derivatives",
+      "category": "exponential",
+      "generated": 10000,
+      "uniqueIds": 2094,
+      "seed": "Derivatives:exponential:11.11"
+    },
+    {
+      "engine": "Derivatives",
+      "category": "implicit",
+      "generated": 10000,
+      "uniqueIds": 291,
+      "seed": "Derivatives:implicit:11.11"
+    },
+    {
+      "engine": "Derivatives",
+      "category": "log",
+      "generated": 10000,
+      "uniqueIds": 816,
+      "seed": "Derivatives:log:11.11"
+    },
+    {
+      "engine": "Derivatives",
+      "category": "logdiff",
+      "generated": 10000,
+      "uniqueIds": 5285,
+      "seed": "Derivatives:logdiff:11.11"
+    },
+    {
+      "engine": "Derivatives",
+      "category": "invtrig",
+      "generated": 10000,
+      "uniqueIds": 74,
+      "seed": "Derivatives:invtrig:11.11"
+    },
+    {
+      "engine": "Derivatives",
+      "category": "inverse",
+      "generated": 10000,
+      "uniqueIds": 438,
+      "seed": "Derivatives:inverse:11.11"
+    },
+    {
+      "engine": "Derivatives",
+      "category": "point",
+      "generated": 10000,
+      "uniqueIds": 5362,
+      "seed": "Derivatives:point:11.11"
+    }
+  ]
+}

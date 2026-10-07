@@ -1,0 +1,8 @@
+{
+  "samples": 17500,
+  "baselineComparisons": 0,
+  "identityChecks": 11191,
+  "skippedEquations": 3998,
+  "browser": "not run",
+  "ok": true
+}

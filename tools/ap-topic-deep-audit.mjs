@@ -40,7 +40,8 @@ function inspectProblem(p,topicLabel,index){
   if(!p||typeof p!=='object'){errors.push(`${topicLabel} #${index}: non-object problem`);return;}
   const id=String(p.id||p.key||'').trim();if(!id)errors.push(`${topicLabel} #${index}: missing id/key`);
   if(Array.isArray(p.choices)){
-    if(p.choices.length!==4)errors.push(`${topicLabel} #${index} ${id}: expected 4 choices, got ${p.choices.length}`);
+    const evtYesNo=p.retainChoices===true&&/^evt_/.test(String(p.variant||''))&&p.choices.length===2&&new Set(p.choices.map(x=>normalizedChoice(x).toLowerCase())).size===2&&p.choices.every(x=>/^(?:yes|no)$/i.test(normalizedChoice(x)));
+    if(p.choices.length!==4&&!evtYesNo)errors.push(`${topicLabel} #${index} ${id}: expected 4 choices (or the retained EVT Yes/No exception), got ${p.choices.length}`);
     const n=p.choices.map(normalizedChoice);if(new Set(n).size!==n.length)errors.push(`${topicLabel} #${index} ${id}: visually duplicate choices ${JSON.stringify(p.choices)}`);
     if(Number.isInteger(p.correctIndex)&&(p.correctIndex<0||p.correctIndex>=p.choices.length))errors.push(`${topicLabel} #${index} ${id}: invalid correctIndex`);
   }
@@ -59,10 +60,11 @@ function summarize(record,problems){
 }
 
 const topicFiles=walk(path.join(ROOT,'ap-calculus')).filter(f=>/[/\\]topics[/\\][^/\\]+[/\\]practice[/\\]index\.html$/.test(f)&&!/[/\\](?:comprehensive-review|semester-1-review)[/\\]practice[/\\]index\.html$/.test(f)).sort();
-if(topicFiles.length!==50)errors.push(`Expected exactly 50 individual AP topic practice pages, found ${topicFiles.length}`);
+if(topicFiles.length!==54)errors.push(`Expected exactly 54 individual AP topic practice pages, found ${topicFiles.length}`);
 
 const sharedSource=fs.readFileSync(path.join(ROOT,'assets/ap-topic-generators.js'),'utf8');
 const sharedBox={window:{},console};vm.createContext(sharedBox);vm.runInContext(sharedSource,sharedBox,{filename:'ap-topic-generators.js'});
+vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/unit3-applications-generators.js'),'utf8'),sharedBox,{filename:'unit3-applications-generators.js'});
 
 function sampleShared(slug,seedBase){const gen=sharedBox.window.BatchMathAPTopicGenerators?.get(slug);if(typeof gen!=='function')throw new Error(`shared generator ${slug} missing`);const out=[];for(let i=0;i<PER_TOPIC;i++){sharedBox.window.BatchMathRNG={random:rng(`${seedBase}:${i}`)};out.push(structuredClone(gen()));}return out;}
 function sampleContinuousMerged(seedBase){

@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T02:44:25.603Z",
+  "stats": {
+    "htmlPages": 264,
+    "indexablePages": 261,
+    "noindexUtilityPages": 3,
+    "sitemapUrls": 261,
+    "structuredDataPages": 261,
+    "visibleBreadcrumbPages": 260,
+    "practiceContextPages": 122,
+    "uniqueTitles": 261,
+    "uniqueDescriptions": 261,
+    "internalTargetsChecked": 7698,
+    "brokenInternalTargets": 0,
+    "orphanPages": 0,
+    "trackingQueryLinks": 0,
+    "httpInternalLinks": 0
+  },
+  "warnings": [],
+  "errors": []
+}

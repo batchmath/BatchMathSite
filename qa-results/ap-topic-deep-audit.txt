@@ -1,0 +1,9 @@
+BatchMath AP individual-topic deep audit
+Result: PASS
+Topics: 54 (33 shared topic, 1 shared module, 17 filtered comprehensive, 3 specialized)
+Raw generated samples: 108000
+Samples per topic: 2000
+
+Warnings: 0
+
+Errors: 0

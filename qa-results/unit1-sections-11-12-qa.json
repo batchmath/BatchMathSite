@@ -1,0 +1,37 @@
+{
+  "ok": true,
+  "discontinuitySamples": 65000,
+  "discontinuityFamilies": {
+    "piecewise_two_jumps": 5056,
+    "sine_power_cancellation": 5101,
+    "trig_removable_infinite": 5005,
+    "rational_hole_asymptote": 5057,
+    "piecewise_one_continuous_one_jump": 4990,
+    "radical_rational_domain": 5084,
+    "cosine_power_cancellation": 4952,
+    "repeated_polynomial_factors": 4827,
+    "piecewise_singleton_removable": 5011,
+    "single_removable": 5015,
+    "piecewise_mixed_types": 4877,
+    "piecewise_infinite_jump": 5080,
+    "sine_polynomial_denominator": 4945
+  },
+  "factoredShare": 0.04859200720252088,
+  "parameterSamples": 60000,
+  "threePieceShare": 0.49885,
+  "integerFieldAnswers": 64982,
+  "fractionalFieldAnswers": 24949,
+  "parameterFamilies": {
+    "three_piece_log_singleton": 7437,
+    "quadratic_parameter": 2290,
+    "two_piece_removable_rational": 6999,
+    "three_piece_middle_system": 7441,
+    "piecewise_parameter": 2240,
+    "three_piece_split_parameters": 7563,
+    "two_piece_branch_matching": 7014,
+    "removable_fill": 2320,
+    "two_piece_removable_trig": 6918,
+    "piecewise_value": 2288,
+    "three_piece_system": 7490
+  }
+}

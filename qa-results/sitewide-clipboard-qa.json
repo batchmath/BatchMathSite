@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T02:46:28.114Z",
+  "customEditors": [
+    "assets/calc-prep-exact-editor.js",
+    "assets/calculus-keypad.js",
+    "assets/im1-keypad.js"
+  ],
+  "pageCounts": {
+    "calculus": 53,
+    "calcPrep": 3,
+    "im1": 36,
+    "native": 50
+  },
+  "guarantees": [
+    "Ctrl/Cmd+C, X, and V are handled in every custom math textbox",
+    "structured clipboard MIME preserves fractions, radicals, exponents, and functions",
+    "plain pasted LaTeX is normalized before insertion",
+    "ordinary input and textarea fields retain native browser clipboard behavior"
+  ],
+  "errors": []
+}

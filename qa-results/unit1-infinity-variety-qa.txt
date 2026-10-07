@@ -1,0 +1,7 @@
+BatchMath Limits at Infinity Variety QA
+Result: PASS
+Samples: 100000
+Directions: +infinity 50000, -infinity 50000
+Radical-family share: 50.296%
+Families observed: 24/24
+Errors: 0

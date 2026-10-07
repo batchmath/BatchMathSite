@@ -6,13 +6,17 @@ function mount(opts){
  const input=typeof opts.input==='string'?document.querySelector(opts.input):opts.input;
  const editor=typeof opts.editor==='string'?document.querySelector(opts.editor):opts.editor;
  const keypad=typeof opts.keypad==='string'?document.querySelector(opts.keypad):opts.keypad;
- let raw='',cursor=0,locked=false;
+ let raw='',cursor=0,selectionAnchor=0,selectionFocus=0,dragging=false,locked=false;
  const atomicWords=['undefined','sqrt','pi'];
  function clamp(n,a,b){return Math.max(a,Math.min(b,n))}
  function sync(){input.value=raw;input.dispatchEvent(new Event('input',{bubbles:true}))}
+ function selectionRange(){return{start:Math.min(selectionAnchor,selectionFocus),end:Math.max(selectionAnchor,selectionFocus)}}
+ function hasSelection(){const r=selectionRange();return r.end>r.start}
+ function collapseSelection(pos=cursor){cursor=normalizeCursor(pos,0);selectionAnchor=selectionFocus=cursor}
+ function selectedClass(start,end){const r=selectionRange();return r.end>r.start&&end>r.start&&start<r.end?' selected':''}
  function caret(){return '<span class="bm-exact-caret" aria-hidden="true"></span>'}
  function token(text,start,end,cls=''){
-  return `<span class="bm-exact-token${cls?' '+cls:''}" data-start="${start}" data-end="${end}">${esc(text)}</span>`;
+  return `<span class="bm-exact-token${cls?' '+cls:''}${selectedClass(start,end)}" data-start="${start}" data-end="${end}">${esc(text)}</span>`;
  }
  function findClose(open,end){let d=0;for(let i=open;i<end;i++){if(raw[i]==='(')d++;else if(raw[i]===')'){d--;if(d===0)return i}}return -1}
  function sqrtShellAt(start){
@@ -55,12 +59,12 @@ function mount(opts){
  function renderRange(start,end){
   let out='',i=start;
   while(i<end){
-   if(cursor===i)out+=caret();
+   if(!hasSelection()&&cursor===i)out+=caret();
    if(raw.startsWith('sqrt(',i)&&i+5<=end){
     const close=findClose(i+4,end);
     if(close>=0){
      let body=renderRange(i+5,close);if(i+5===close)body+='<span class="placeholder">□</span>';
-     out+=`<span class="math-root bm-exact-token bm-exact-root" data-start="${i}" data-end="${close+1}"><span class="root-symbol">√</span><span class="root-body">${body}</span></span>`;
+     out+=`<span class="math-root bm-exact-token bm-exact-root${selectedClass(i,close+1)}" data-start="${i}" data-end="${close+1}"><span class="root-symbol">√</span><span class="root-body">${body}</span></span>`;
      i=close+1;continue;
     }
    }
@@ -71,7 +75,7 @@ function mount(opts){
    out+=token(ch==='-'?'−':ch,i,i+1,ch==='°'?'math':'');
    i++;
   }
-  if(cursor===end)out+=caret();
+  if(!hasSelection()&&cursor===end)out+=caret();
   return out;
  }
  function pieceBounds(pos){
@@ -87,6 +91,27 @@ function mount(opts){
   const slash=b.start+slashRel;
   return {pieceStart:b.start,pieceEnd:b.end,slash,numStart:b.start,numEnd:slash,denStart:slash+1,denEnd:b.end};
  }
+ function safeSelectionRange(range=selectionRange()){
+  let r={start:clamp(range.start,0,raw.length),end:clamp(range.end,0,raw.length)};
+  for(let i=0;i<raw.length;i++){
+   const sh=sqrtShellAt(i);if(!sh?.end||r.end<=sh.start||r.start>=sh.end)continue;
+   const withinBody=r.start>=sh.prefixEnd&&r.end<=sh.close,whole=r.start===sh.start&&r.end===sh.end;
+   if(!withinBody&&!whole)r={start:Math.min(r.start,sh.start),end:Math.max(r.end,sh.end)};
+  }
+  const first=pieceBounds(r.start),last=pieceBounds(Math.max(r.start,r.end-1));
+  if(first.start===last.start){const fi=fractionInfo(r.start);if(fi&&r.start<=fi.slash&&r.end>fi.slash&&!(r.start===fi.pieceStart&&r.end===fi.pieceEnd))r={start:fi.pieceStart,end:fi.pieceEnd};}
+  for(let i=0;i<raw.length;i++){const a=atomicAt(i);if(!a||r.end<=a.start||r.start>=a.end)continue;if(!(r.start>=a.start&&r.end<=a.end))r={start:Math.min(r.start,a.start),end:Math.max(r.end,a.end)};}
+  return r;
+ }
+ function normalizePaste(value){
+  let text=String(value??'').trim().replace(/[−–—]/g,'-').replace(/π/g,'pi').replace(/∞/g,'undefined').replace(/[×·]/g,'*').replace(/^\$+|\$+$/g,'');
+  let old='';while(old!==text){old=text;text=text.replace(/\\(?:dfrac|tfrac|frac)\{([^{}]*)\}\{([^{}]*)\}/g,'$1/$2').replace(/\\sqrt\{([^{}]*)\}/g,'sqrt($1)');}
+  return text.replace(/\\pi/g,'pi').replace(/\\(?:cdot|times)/g,'*').replace(/[{}]/g,'').replace(/\s+/g,'');
+ }
+ function removeSelection(){if(!hasSelection())return false;const r=safeSelectionRange();raw=raw.slice(0,r.start)+raw.slice(r.end);collapseSelection(r.start);render();editor.focus();return true}
+ function replaceSelection(text){const r=hasSelection()?safeSelectionRange():{start:cursor,end:cursor};raw=raw.slice(0,r.start)+text+raw.slice(r.end);collapseSelection(r.start+text.length);render();editor.focus()}
+ function copySelection(e,cut=false){if(!hasSelection()||!e.clipboardData)return;const r=safeSelectionRange(),value=raw.slice(r.start,r.end);e.preventDefault();e.clipboardData.setData('text/plain',value);try{e.clipboardData.setData('application/x-batchmath-exact',JSON.stringify({version:1,raw:value}))}catch(_){}if(cut&&!locked){selectionAnchor=r.start;selectionFocus=r.end;cursor=r.end;removeSelection()}}
+ function pasteSelection(e){if(locked||!e.clipboardData)return;e.preventDefault();let value='';try{const custom=e.clipboardData.getData('application/x-batchmath-exact');if(custom)value=JSON.parse(custom).raw||''}catch(_){}if(!value)value=normalizePaste(e.clipboardData.getData('text/plain'));replaceSelection(value)}
  function renderPiece(start,end){
   const piece=raw.slice(start,end),slashRel=piece.indexOf('/');
   if(slashRel<0||piece.indexOf('/',slashRel+1)!==-1)return renderRange(start,end);
@@ -99,6 +124,8 @@ function mount(opts){
  }
  function render(){
   cursor=normalizeCursor(cursor,0);
+  if(!hasSelection())selectionAnchor=selectionFocus=cursor;
+  selectionAnchor=normalizeCursor(selectionAnchor,0);selectionFocus=normalizeCursor(selectionFocus,0);
   editor.classList.toggle('empty',!raw);
   if(!raw){editor.innerHTML=caret();}
   else{
@@ -107,9 +134,9 @@ function mount(opts){
     if(i===raw.length||raw[i]===','){
      out+=renderPiece(start,i);
      if(i<raw.length){
-      if(cursor===i)out+=caret();
+      if(!hasSelection()&&cursor===i)out+=caret();
       out+=token(',',i,i+1);
-      if(cursor===i+1)out+=caret();
+      if(!hasSelection()&&cursor===i+1)out+=caret();
      }
      start=i+1;
     }
@@ -119,15 +146,13 @@ function mount(opts){
   editor.setAttribute('aria-valuetext',raw||'blank');
   sync();
  }
- function setRaw(v,pos){raw=String(v||'');cursor=normalizeCursor(pos==null?raw.length:pos,0);render()}
+ function setRaw(v,pos){raw=String(v||'');collapseSelection(pos==null?raw.length:pos);render()}
  function add(k){
   if(locked)return;
-  cursor=normalizeCursor(cursor,0);
-  raw=raw.slice(0,cursor)+k+raw.slice(cursor);
-  cursor=normalizeCursor(cursor+k.length,1);render();editor.focus();
+  replaceSelection(k);
  }
  function backspace(){
-  if(locked||cursor<=0)return;cursor=normalizeCursor(cursor,-1);if(cursor<=0)return;
+  if(locked)return;if(removeSelection())return;if(cursor<=0)return;cursor=normalizeCursor(cursor,-1);if(cursor<=0)return;
   // Never delete one hidden character from a semantic token or structural root.
   for(let start=Math.max(0,cursor-12);start<cursor;start++){
    const sh=sqrtShellAt(start);
@@ -147,7 +172,7 @@ function mount(opts){
   raw=raw.slice(0,cursor-1)+raw.slice(cursor);cursor=normalizeCursor(cursor-1,-1);render();editor.focus();
  }
  function del(){
-  if(locked||cursor>=raw.length)return;cursor=normalizeCursor(cursor,1);if(cursor>=raw.length)return;
+  if(locked)return;if(removeSelection())return;if(cursor>=raw.length)return;cursor=normalizeCursor(cursor,1);if(cursor>=raw.length)return;
   const sh=sqrtShellAt(cursor);
   if(sh){
    if(sh.close===sh.prefixEnd){raw=raw.slice(0,sh.start)+raw.slice(sh.end);cursor=sh.start;}
@@ -162,7 +187,7 @@ function mount(opts){
   if(a&&!(a.word==='sqrt'&&raw[a.end]==='(')){raw=raw.slice(0,a.start)+raw.slice(a.end);cursor=a.start;render();editor.focus();return;}
   raw=raw.slice(0,cursor)+raw.slice(cursor+1);cursor=normalizeCursor(cursor,1);render();editor.focus();
  }
- function clear(){if(locked)return;raw='';cursor=0;render();editor.focus()}
+ function clear(){if(locked)return;raw='';collapseSelection(0);render();editor.focus()}
  function logicalLeft(){
   cursor=normalizeCursor(cursor,-1);
   if(cursor<=0)return 0;
@@ -185,12 +210,16 @@ function mount(opts){
   if(a&&!(a.word==='sqrt'&&raw[a.end]==='('))return a.end;
   return normalizeCursor(cursor+1,1);
  }
- function move(dir){
+ function move(dir,extend=false){
   if(locked)return;
+  if(hasSelection()&&!extend){const r=selectionRange();collapseSelection(dir<0?r.start:r.end);render();editor.focus();return}
+  const anchor=extend?(hasSelection()?selectionAnchor:cursor):null;
   cursor=dir<0?logicalLeft():logicalRight();render();editor.focus();
+  if(extend){selectionAnchor=anchor;selectionFocus=cursor;render()}else collapseSelection(cursor);
  }
- function moveVertical(dir){
+ function moveVertical(dir,extend=false){
   if(locked)return;
+  const anchor=extend?(hasSelection()?selectionAnchor:cursor):null;
   cursor=normalizeCursor(cursor,dir);
   const fi=fractionInfo(cursor);if(!fi)return;
   if(dir<0 && cursor>=fi.denStart&&cursor<=fi.denEnd){
@@ -198,7 +227,7 @@ function mount(opts){
   }else if(dir>0 && cursor>=fi.numStart&&cursor<=fi.numEnd){
    const off=cursor-fi.numStart;cursor=fi.denStart+Math.min(off,fi.denEnd-fi.denStart);
   }else return;
-  cursor=normalizeCursor(cursor,dir);render();editor.focus();
+  cursor=normalizeCursor(cursor,dir);if(extend){selectionAnchor=anchor;selectionFocus=cursor}else collapseSelection(cursor);render();editor.focus();
  }
  function startFraction(){
   if(locked)return;
@@ -211,25 +240,28 @@ function mount(opts){
   cursor=numerator?b.start+numerator.length+1:b.start;
   cursor=normalizeCursor(cursor,1);render();editor.focus();
  }
- function clickPlace(e){
-  if(locked)return;
-  const tok=e.target.closest?.('.bm-exact-token');
+ function pointerPosition(e,target=e.target){
+  const tok=target?.closest?.('.bm-exact-token');
   if(tok&&editor.contains(tok)){
    const a=Number(tok.dataset.start),b=Number(tok.dataset.end),r=tok.getBoundingClientRect();
    if(tok.classList?.contains('bm-exact-root')){
     const inside=a+5;
-    cursor=(e.clientX<r.left+r.width*.32)?a:(e.clientX>r.left+r.width*.84?b:inside);
-   }else cursor=(e.clientX<r.left+r.width/2)?a:b;
-   cursor=normalizeCursor(cursor,e.clientX<r.left+r.width/2?-1:1);render();editor.focus();return;
+    return normalizeCursor((e.clientX<r.left+r.width*.32)?a:(e.clientX>r.left+r.width*.84?b:inside),e.clientX<r.left+r.width/2?-1:1);
+   }
+   return normalizeCursor((e.clientX<r.left+r.width/2)?a:b,e.clientX<r.left+r.width/2?-1:1);
   }
-  const frac=e.target.closest?.('.answer-frac');
+  const frac=target?.closest?.('.answer-frac');
   if(frac&&editor.contains(frac)){
    const slash=Number(frac.dataset.fracSlash),end=Number(frac.dataset.fracEnd);
-   const zone=e.target.closest?.('[data-zone]')?.dataset.zone;
-   cursor=zone==='num'?slash:(zone==='den'?end:slash+1);cursor=normalizeCursor(cursor,0);render();editor.focus();return;
+   const zone=target?.closest?.('[data-zone]')?.dataset.zone;
+   return normalizeCursor(zone==='num'?slash:(zone==='den'?end:slash+1),0);
   }
-  cursor=raw.length;render();editor.focus();
+  return raw.length;
  }
+ function pointerDown(e){if(locked||e.button!==0)return;const pos=pointerPosition(e);if(e.shiftKey){if(!hasSelection())selectionAnchor=cursor}else selectionAnchor=pos;selectionFocus=cursor=pos;dragging=true;render();editor.focus();try{editor.setPointerCapture(e.pointerId)}catch(_){}e.preventDefault()}
+ function pointerMove(e){if(!dragging)return;const target=document.elementFromPoint?.(e.clientX,e.clientY)||e.target;selectionFocus=cursor=pointerPosition(e,target);render();e.preventDefault()}
+ function pointerUp(e){if(!dragging)return;dragging=false;try{editor.releasePointerCapture(e.pointerId)}catch(_){}}
+ function clickPlace(e){if(locked)return;collapseSelection(pointerPosition(e));render();editor.focus();}
  function build(){
   keypad.innerHTML='';
   const defs=[
@@ -247,12 +279,13 @@ function mount(opts){
   });
  }
  function onKey(e){
-  if(e.ctrlKey||e.metaKey||e.altKey)return;
+  if((e.ctrlKey||e.metaKey)&&!e.altKey){const key=e.key.toLowerCase();if(key==='a'){e.preventDefault();selectionAnchor=0;selectionFocus=cursor=raw.length;render();return}if(key==='c'||key==='x'||key==='v')return}
+  if(e.altKey)return;
   if(e.key==='Enter'){e.preventDefault();opts.onCheck?.();return}if(locked)return;
-  if(e.key==='ArrowLeft'){e.preventDefault();move(-1);return}
-  if(e.key==='ArrowRight'){e.preventDefault();move(1);return}
-  if(e.key==='ArrowUp'){e.preventDefault();moveVertical(-1);return}
-  if(e.key==='ArrowDown'){e.preventDefault();moveVertical(1);return}
+  if(e.key==='ArrowLeft'){e.preventDefault();move(-1,e.shiftKey);return}
+  if(e.key==='ArrowRight'){e.preventDefault();move(1,e.shiftKey);return}
+  if(e.key==='ArrowUp'){e.preventDefault();moveVertical(-1,e.shiftKey);return}
+  if(e.key==='ArrowDown'){e.preventDefault();moveVertical(1,e.shiftKey);return}
   if(e.key==='Tab'){const fi=fractionInfo(cursor);if(fi){e.preventDefault();moveVertical(cursor<=fi.numEnd?1:-1)}return}
   if(e.key==='/'){e.preventDefault();startFraction();return}
   if(e.key==='Backspace'){e.preventDefault();backspace();return}
@@ -264,8 +297,8 @@ function mount(opts){
   if(e.key==='√'){e.preventDefault();add('sqrt');return}
  }
  build();editor.tabIndex=0;editor.setAttribute('role','textbox');editor.setAttribute('aria-label',editor.getAttribute('aria-label')||'Exact answer');
- editor.addEventListener('click',clickPlace);editor.addEventListener('keydown',onKey);render();
- return {get raw(){return raw},get cursor(){return cursor},set(v){setRaw(v)},clear,lock(v=true){locked=v;keypad.style.opacity=v?'.55':'1'},focus(){editor.focus()},move,moveVertical,setCursor(v){cursor=normalizeCursor(Number(v)||0,0);render()}};
+ editor.addEventListener('pointerdown',pointerDown);editor.addEventListener('pointermove',pointerMove);editor.addEventListener('pointerup',pointerUp);editor.addEventListener('pointercancel',pointerUp);editor.addEventListener('keydown',onKey);editor.addEventListener('copy',e=>copySelection(e,false));editor.addEventListener('cut',e=>copySelection(e,true));editor.addEventListener('paste',pasteSelection);render();
+ return {get raw(){return raw},get cursor(){return cursor},get selection(){return selectionRange()},set(v){setRaw(v)},clear,lock(v=true){locked=v;keypad.style.opacity=v?'.55':'1'},focus(){editor.focus()},move,moveVertical,setCursor(v){collapseSelection(Number(v)||0);render()}};
 }
 E.mount=mount;window.BMExactEditor=E;
 })();

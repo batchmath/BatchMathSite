@@ -1,0 +1,6 @@
+BatchMath Unit 1 Sections 8–10 QA
+Result: PASS
+Regular samples: 50000
+Squeeze share: 20.46%
+Advanced additions: 5
+Infinity expansion samples: 20000

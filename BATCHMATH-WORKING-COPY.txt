@@ -1,6 +1,6 @@
 BatchMath cumulative working copy
-Current full release: 10.9
-Archive: batchmath-site-v10.9.zip
-Baseline: complete v10.7.21 release.
-Changes: completed the five remaining Limits & Continuity Comprehensive Review fixes: coefficient-of-1 cleanup in Limits at Infinity, shared Complex Fractions sign normalization, responsive Regular Trig math containment, stacked/full-width Classifying Discontinuities presentation, and fixed one-column IVT choices.
+Current full release: 11.13
+Archive: batchmath-site-v11.13.zip
+Baseline: complete v11.11 release.
+Changes: repaired only the calculator-active Increasing/Decreasing Intervals, Concavity, and Extrema engine. Its Practice Type selector is now pinned to calculator mode; every candidate derivative is numerically validated for stable, separated, non-nice sign-changing roots; mixed-function variety and problem-specific worked sign analysis were expanded.
 No deployment performed.

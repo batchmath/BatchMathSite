@@ -1,0 +1,36 @@
+BatchMath targeted Limits family QA
+Result: PASS
+Problems generated: 40000
+Variable Substitution cube-root share: 57.2% / other fractional-power share: 42.8%
+Complex mix: 35.4% routine / 25.4% intermediate / 39.2% challenging
+
+Variable Substitution variants:
+- clean_shifted_cube_root: 2117
+- cube_root_over_power: 2075
+- cube_root_polynomial_ratio: 687
+- cube_root_quadratic_substitution: 712
+- higher_cube_root_power: 1417
+- higher_fractional_power: 1411
+- higher_root_over_power: 1396
+- mixed_fractional_powers: 1396
+- power_over_cube_root: 1418
+- power_over_higher_root: 1369
+- substitution_cube_root_polynomial_over_polynomial: 1514
+- substitution_cube_root_squared_reciprocal: 1499
+- substitution_eighth_root_over_power: 1519
+- substitution_power_over_eighth_root: 1470
+
+Complex Fraction variants:
+- challenging_double_reciprocal: 1975
+- challenging_reciprocal_over_factored: 972
+- challenging_reciprocal_square_over_reciprocal: 1003
+- complex_two_variable_fractions: 3896
+- intermediate_rational_difference: 2073
+- intermediate_reciprocal_quadratic: 1970
+- intermediate_reciprocal_square: 1033
+- routine_reciprocal_basic: 2008
+- routine_reciprocal_denominator: 2041
+- routine_shifted_reciprocal: 2038
+- routine_shifted_reciprocal_denominator: 991
+
+Errors: 0

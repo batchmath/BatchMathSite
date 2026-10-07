@@ -1,0 +1,308 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T02:46:21.619Z",
+  "contracts": 31,
+  "coverage": {
+    "equations-of-tangent-and-normal-lines:{}": [
+      "cosine_normal",
+      "cubic_normal",
+      "exponential_tangent",
+      "log_tangent",
+      "quadratic_tangent",
+      "radical_tangent",
+      "reciprocal_normal",
+      "sine_tangent"
+    ],
+    "motion:{}": [
+      "exponential_position_acceleration",
+      "exponential_position_speed",
+      "exponential_position_velocity",
+      "exponential_velocity_acceleration",
+      "exponential_velocity_speed",
+      "position_acceleration",
+      "position_speed",
+      "position_velocity",
+      "projectile_maximum_altitude",
+      "rest_time_numeric",
+      "trig_position_acceleration",
+      "trig_position_speed",
+      "trig_position_velocity",
+      "trig_velocity_acceleration",
+      "trig_velocity_speed",
+      "velocity_acceleration",
+      "velocity_at_position",
+      "velocity_speed"
+    ],
+    "absolute-and-local-extrema-and-the-extreme-value-theorem:{}": [
+      "absolute_cubic",
+      "absolute_exponential_product",
+      "absolute_quartic",
+      "absolute_radical",
+      "absolute_rational",
+      "absolute_trig_combination",
+      "local_cubic",
+      "local_exponential_product",
+      "local_logarithm",
+      "local_quartic_max",
+      "local_quartic_min",
+      "local_rational",
+      "local_trig"
+    ],
+    "increasing-decreasing-intervals-concavity-and-extrema:{}": [
+      "f_given_concavity_hard",
+      "f_given_decreasing",
+      "f_given_exponential_increasing",
+      "f_given_increasing",
+      "f_given_log_increasing",
+      "f_given_rational_concavity",
+      "f_given_rational_increasing",
+      "f_given_trig_increasing",
+      "factored_first_derivative",
+      "first_derivative_given_concavity",
+      "first_derivative_given_increasing",
+      "first_derivative_given_local_extrema",
+      "second_derivative_given_concavity"
+    ],
+    "linearization-and-differentials:{}": [
+      "differential_equilateral_triangle",
+      "differential_implicit",
+      "differential_polynomial",
+      "differential_sphere",
+      "differential_trig_composition",
+      "differential_trig_degrees",
+      "linearization_cube_root",
+      "linearization_logarithm",
+      "linearization_sine",
+      "linearization_square_root",
+      "linearization_tangent"
+    ],
+    "rolle-s-theorem-and-the-mean-value-theorem:{\"mvtMode\":\"theorem\"}": [
+      "mvt_hypothesis_corner",
+      "mvt_hypothesis_rational",
+      "rolle_cosine",
+      "rolle_quadratic",
+      "rolle_sine"
+    ],
+    "rolle-s-theorem-and-the-mean-value-theorem:{\"mvtMode\":\"find-c\"}": [
+      "mvt_cubic_symmetric",
+      "mvt_exponential",
+      "mvt_logarithm",
+      "mvt_quadratic",
+      "mvt_reciprocal",
+      "mvt_square_root"
+    ],
+    "l-hopital-s-rule:{}": [
+      "cosine_exponential_remainders",
+      "cosine_ratio",
+      "exponential_cosine_remainders",
+      "inverse_trig_limit",
+      "logarithm_over_power",
+      "nested_log_trig",
+      "power_over_exponential",
+      "radical_difference_quotient",
+      "shifted_exponential_trig",
+      "simple_exponential",
+      "simple_radical",
+      "three_application_trig",
+      "two_application_exponential"
+    ],
+    "rectangular-approximations:{}": [
+      "left_function",
+      "left_quadratic",
+      "left_table",
+      "midpoint_function",
+      "midpoint_table",
+      "right_function",
+      "right_table"
+    ],
+    "trapezoidal-approximations:{}": [
+      "equal_table",
+      "function_evaluation",
+      "unequal_table"
+    ],
+    "introduction-to-sigma-notation:{}": [
+      "sigma_polynomial"
+    ],
+    "evaluating-definite-integrals-with-a-limit-and-summation:{}": [
+      "integral_to_sum"
+    ],
+    "integrals-using-geometry:{}": [
+      "absolute_value_geometry",
+      "complementary_semicircle",
+      "cross_axis_linear",
+      "lower_semicircle_signed_area",
+      "quarter_circle_area",
+      "rectangle_plus_semicircle",
+      "shifted_semicircle",
+      "signed_triangle",
+      "triangle_area",
+      "upper_semicircle"
+    ],
+    "fundamental-theorem-of-calculus-and-integral-rules:{\"ftcMode\":\"ftc\"}": [
+      "ftc_exponential_upper",
+      "ftc_linear_upper",
+      "ftc_quadratic_upper",
+      "ftc_trig_lower",
+      "ftc_trig_upper",
+      "ftc_two_nonlinear_bounds",
+      "ftc_two_variable_bounds",
+      "ftc_variable_lower"
+    ],
+    "fundamental-theorem-of-calculus-and-integral-rules:{\"ftcMode\":\"rules\"}": [
+      "combine_functions",
+      "constant_multiple",
+      "reverse_bounds",
+      "solve_missing_interval",
+      "split_interval",
+      "sum_difference"
+    ],
+    "basic-integrals:{}": [
+      "basic_trig",
+      "definite_polynomial",
+      "divide_each_term",
+      "fractional_power",
+      "negative_power",
+      "polynomial",
+      "trig_identity"
+    ],
+    "u-substitution-integrals:{}": [
+      "cosecant_cotangent",
+      "exponential_of_trig",
+      "fourth_root",
+      "linear_denominator",
+      "linear_inner_power",
+      "power_composition",
+      "power_times_root",
+      "radical_linear",
+      "secant_tangent",
+      "trig_linear"
+    ],
+    "mean-value-theorem-for-integrals:{}": [
+      "average_exponential",
+      "average_polynomial",
+      "average_radical",
+      "average_trig",
+      "find_c"
+    ],
+    "basic-first-order-differential-equations:{}": [
+      "calculator_initial_value",
+      "general_antiderivative",
+      "initial_value_accumulation",
+      "initial_value_composition",
+      "initial_value_exponential",
+      "initial_value_log",
+      "initial_value_polynomial",
+      "initial_value_secant",
+      "initial_value_trig",
+      "slope_at_point"
+    ],
+    "motion-problems:{}": [
+      "acceleration_from_exponential_velocity",
+      "direction_from_velocity",
+      "displacement",
+      "position_from_velocity",
+      "rest_times",
+      "speed_decreasing",
+      "speed_from_acceleration",
+      "speed_increasing",
+      "total_distance",
+      "total_distance_trig",
+      "trig_displacement",
+      "velocity_from_acceleration"
+    ],
+    "separable-differential-equations:{}": [
+      "contextual_separable",
+      "contextual_separable_cooling",
+      "contextual_separable_growth",
+      "general_solution",
+      "initial_value_power",
+      "initial_value_solution",
+      "power_separable_initial_value",
+      "validity_interval"
+    ],
+    "rate-problems:{}": [
+      "calculator_attendance",
+      "calculator_ballots",
+      "calculator_delayed_outflow",
+      "calculator_non_elementary_rate",
+      "calculator_reservoir_trig",
+      "calculator_tank",
+      "calculator_traffic"
+    ],
+    "area-below-and-between-curves:{\"areaMode\":\"noncalc\"}": [
+      "absolute_value_cap",
+      "parameterized_line_parabola",
+      "radical_semicircle_area",
+      "shifted_scaled_parabola_axis",
+      "shifted_two_parabolas",
+      "translated_cubic_total_area",
+      "trig_between_horizontal",
+      "trig_between_horizontal_sine"
+    ],
+    "area-below-and-between-curves:{\"areaMode\":\"calc\"}": [
+      "calculator_between_exp_log",
+      "calculator_between_mixed_functions",
+      "calculator_between_oscillatory_decay",
+      "calculator_between_radical_trig",
+      "calculator_non_elementary_axis"
+    ],
+    "finding-area-in-terms-of-y:{}": [
+      "horizontal_cubic_width",
+      "horizontal_line_parabola",
+      "horizontal_scaled_parabola",
+      "horizontal_triangle",
+      "horizontal_two_sideways",
+      "translated_horizontal_parabola"
+    ],
+    "integrals-on-piecewise-defined-functions:{}": [
+      "piecewise_constant_quadratic",
+      "piecewise_four_formula",
+      "piecewise_log_linear",
+      "piecewise_three_polynomial",
+      "piecewise_trig_stable",
+      "piecewise_two_linear"
+    ],
+    "volume-by-cross-sections:{}": [
+      "equilateral_parabola_sections",
+      "horizontal_square_sections",
+      "isosceles_right_leg_sections",
+      "quarter_circle_radius_sections",
+      "rectangles_scaled_height",
+      "semicircles_polynomial_arch",
+      "squares_parameterized_parabola"
+    ],
+    "solids-of-revolution:{\"solidMethod\":\"disk\",\"solidCalcMode\":\"noncalc\"}": [
+      "disk_power_family",
+      "disk_radical_family",
+      "washer_constant_and_power",
+      "washer_radical_power",
+      "washer_shifted_axis_parameterized"
+    ],
+    "solids-of-revolution:{\"solidMethod\":\"shell\",\"solidCalcMode\":\"noncalc\"}": [
+      "horizontal_shell_shifted_axis",
+      "horizontal_shell_sideways",
+      "shell_line_parabola",
+      "shell_power_y_axis",
+      "shell_shifted_vertical_axis"
+    ],
+    "solids-of-revolution:{\"solidMethod\":\"disk\",\"solidCalcMode\":\"calc\"}": [
+      "calculator_disk_fresnel",
+      "calculator_log_disk",
+      "calculator_shifted_horizontal_axis",
+      "calculator_two_curve_revolution"
+    ],
+    "solids-of-revolution:{\"solidMethod\":\"shell\",\"solidCalcMode\":\"calc\"}": [
+      "calculator_horizontal_shell_non_elementary",
+      "calculator_shell_gaussian",
+      "calculator_shell_logarithmic",
+      "calculator_shell_shifted_axis"
+    ]
+  },
+  "checks": {
+    "generated": 228074,
+    "numeric": 12000,
+    "structural": 75287
+  },
+  "warnings": [],
+  "errors": []
+}

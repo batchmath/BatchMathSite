@@ -1,0 +1,48 @@
+{
+  "ok": true,
+  "samples": 100000,
+  "groupShares": {
+    "oscillation": 0.05035,
+    "rational": 0.05051,
+    "radicals": 0.25114,
+    "explog": 0.39921,
+    "growth": 0.24879
+  },
+  "mixedBreakdown": {
+    "quadraticLinearRadicals": 0.20078,
+    "otherRadicals": 0.05036,
+    "logarithmic": 0.19949,
+    "exponential": 0.19972
+  },
+  "directions": {
+    "oscillation": {
+      "positive": 2518,
+      "negative": 2517
+    },
+    "rational": {
+      "positive": 2524,
+      "negative": 2527
+    },
+    "radicals": {
+      "positive": 12557,
+      "negative": 12557
+    },
+    "explog": {
+      "positive": 19962,
+      "negative": 19959
+    },
+    "growth": {
+      "positive": 12439,
+      "negative": 12440
+    }
+  },
+  "logReciprocalShare": 0.5555666950724347,
+  "growthFamilies": [
+    "polynomial-vs-root",
+    "polynomial-vs-logarithm",
+    "root-vs-logarithm",
+    "logarithm-vs-root",
+    "exponential-vs-polynomial",
+    "polynomial-vs-exponential"
+  ]
+}

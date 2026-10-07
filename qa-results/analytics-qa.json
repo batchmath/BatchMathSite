@@ -1,0 +1,803 @@
+{
+  "ok": true,
+  "generatedAt": "2026-10-07T02:44:28.316Z",
+  "instrumentedEngines": 132,
+  "uniqueEngineIds": 132,
+  "answerCheckedCallSites": 51,
+  "warnings": [],
+  "errors": [],
+  "engines": [
+    {
+      "rel": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_basic_techniques_indeterminate_limits",
+      "gv": "10"
+    },
+    {
+      "rel": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_limits_comprehensive",
+      "gv": "19"
+    },
+    {
+      "rel": "ap-calculus/unit-1-limits-continuity/topics/intermediate-value-theorem/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_intermediate_value_theorem",
+      "gv": "8"
+    },
+    {
+      "rel": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/continuity-parameters/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_continuity_parameters",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_classifying_discontinuities",
+      "gv": "10"
+    },
+    {
+      "rel": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-limits/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_introduction_to_limits",
+      "gv": "7"
+    },
+    {
+      "rel": "ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_limits_at_infinity",
+      "gv": "11"
+    },
+    {
+      "rel": "ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_limits_of_continuous_functions",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_one_sided_limits",
+      "gv": "8"
+    },
+    {
+      "rel": "ap-calculus/unit-1-limits-continuity/topics/sin-one-over-x/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_sin_one_over_x",
+      "gv": "5"
+    },
+    {
+      "rel": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/course-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_squeeze_course_practice",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_advanced_trig_limits",
+      "gv": "5"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/conceptual-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_derivatives_conceptual_review",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_derivatives_at_point",
+      "gv": "4"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_derivatives_comprehensive",
+      "gv": "15"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_derivatives_of_inverse_functions",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_logarithmic_at_point",
+      "gv": "1"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_derivatives_of_logarithmic_functions",
+      "gv": "7"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_trig_derivatives_at_point",
+      "gv": "1"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_derivatives_of_trigonometric_functions",
+      "gv": "7"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_power_rule_at_point",
+      "gv": "1"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_derivatives_with_the_power_rule",
+      "gv": "7"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/difference-quotient/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_difference_quotient",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_exponential_at_point",
+      "gv": "1"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_exponential_functions",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_implicit_at_point",
+      "gv": "1"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_implicit_differentiation",
+      "gv": "8"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_inverse_trig_at_point",
+      "gv": "1"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_inverse_trigonometric_functions",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_logarithmic_differentiation",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_chain_rule_at_point",
+      "gv": "1"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_nested_chain_rule",
+      "gv": "2"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_the_chain_rule",
+      "gv": "8"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_product_rule_at_point",
+      "gv": "1"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/the-product-rule/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_the_product_rule",
+      "gv": "7"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_quotient_rule_at_point",
+      "gv": "1"
+    },
+    {
+      "rel": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_the_quotient_rule",
+      "gv": "7"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_absolute-and-local-extrema-and-the-extreme-value-theorem_noncalculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_review_noncalculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_review_calculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_equations-of-tangent-and-normal-lines_noncalculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_horizontal-and-vertical-tangent-lines_noncalculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/calculator-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_horizontal-and-vertical-tangent-lines-implicitly_calculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_horizontal-and-vertical-tangent-lines-implicitly_noncalculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_increasing-decreasing-intervals-concavity-and-extrema_calculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_increasing-decreasing-intervals-concavity-and-extrema_noncalculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_l-hopital-s-rule_noncalculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_linearization-and-differentials_noncalculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/motion/calculator-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_motion_calculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/motion/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_motion_noncalculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_newton-s-method-for-approximating-roots-of-a-function_calculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/optimization/calculator-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_optimization_calculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_optimization_noncalculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/related-rates/calculator-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_related-rates_calculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/related-rates/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_related-rates_noncalculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_rolle-s-theorem-and-the-mean-value-theorem_noncalculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_tangent-and-secant-line-approximations_noncalculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit3_using-your-graphing-calculator_calculator",
+      "gv": "11.11"
+    },
+    {
+      "rel": "ap-calculus/unit-4-integrals/topics/basic-integrals/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_basic_integrals",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit4_assignment_review",
+      "gv": "2"
+    },
+    {
+      "rel": "ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_integrals_comprehensive",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_evaluating_definite_integrals_with_a_limit_and_summation",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_fundamental_theorem_of_calculus_and_integral_rules",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-4-integrals/topics/integrals-resulting-in-natural-log-and-inverse-trigonometric-functions/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_integrals_resulting_in_natural_log_and_inverse_trigonometric_functions",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-4-integrals/topics/integrals-using-geometry/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_integrals_using_geometry",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-4-integrals/topics/introduction-to-sigma-notation/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_introduction_to_sigma_notation",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-4-integrals/topics/mean-value-theorem-for-integrals/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_mean_value_theorem_for_integrals",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-4-integrals/topics/rectangular-approximations/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_rectangular_approximations",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-4-integrals/topics/trapezoidal-approximations/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_trapezoidal_approximations",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-4-integrals/topics/u-substitution-integrals/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_u_substitution_integrals",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_basic_first_order_differential_equations",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/assignment-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit5_assignment_review",
+      "gv": "7"
+    },
+    {
+      "rel": "ap-calculus/unit-5-differential-equations/topics/motion-problems/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_motion_problems",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-5-differential-equations/topics/rate-problems/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_rate_problems",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-5-differential-equations/topics/separable-differential-equations/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_separable_differential_equations",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_area_below_and_between_curves",
+      "gv": "7"
+    },
+    {
+      "rel": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/assignment-practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_unit6_assignment_review",
+      "gv": "2"
+    },
+    {
+      "rel": "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_finding_area_in_terms_of_y",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_integrals_on_piecewise_defined_functions",
+      "gv": "6"
+    },
+    {
+      "rel": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_solids_of_revolution",
+      "gv": "7"
+    },
+    {
+      "rel": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/practice/index.html",
+      "course": "ap_calculus_ab",
+      "id": "ap_topic_volume_by_cross_sections",
+      "gv": "6"
+    },
+    {
+      "rel": "calculus-prep/calculus-algebra/index.html",
+      "course": "calculus_prep",
+      "id": "calc_prep_algebra",
+      "gv": "1"
+    },
+    {
+      "rel": "calculus-prep/domains/index.html",
+      "course": "calculus_prep",
+      "id": "calc_prep_domains",
+      "gv": "1"
+    },
+    {
+      "rel": "calculus-prep/function-graphs/index.html",
+      "course": "calculus_prep",
+      "id": "calc_prep_function_graphs",
+      "gv": "1"
+    },
+    {
+      "rel": "calculus-prep/log-rules/index.html",
+      "course": "calculus_prep",
+      "id": "calc_prep_log_rules",
+      "gv": "1"
+    },
+    {
+      "rel": "calculus-prep/rational-functions/index.html",
+      "course": "calculus_prep",
+      "id": "calc_prep_rational_functions",
+      "gv": "1"
+    },
+    {
+      "rel": "calculus-prep/special-factoring/index.html",
+      "course": "calculus_prep",
+      "id": "calc_prep_special_factoring",
+      "gv": "1"
+    },
+    {
+      "rel": "calculus-prep/synthetic-division/index.html",
+      "course": "calculus_prep",
+      "id": "calc_prep_synthetic_division_rrt",
+      "gv": "1"
+    },
+    {
+      "rel": "calculus-prep/trig-angle-skills/index.html",
+      "course": "calculus_prep",
+      "id": "calc_prep_angle_skills",
+      "gv": "1"
+    },
+    {
+      "rel": "calculus-prep/trig-equations/index.html",
+      "course": "calculus_prep",
+      "id": "calc_prep_trig_equations",
+      "gv": "1"
+    },
+    {
+      "rel": "calculus-prep/trig-identities/index.html",
+      "course": "calculus_prep",
+      "id": "calc_prep_trig_identities",
+      "gv": "1"
+    },
+    {
+      "rel": "calculus-prep/unit-circle-values/index.html",
+      "course": "calculus_prep",
+      "id": "calc_prep_unit_circle_values",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/practice/index.html",
+      "course": "im1",
+      "id": "im1_integer_add_subtract",
+      "gv": "2"
+    },
+    {
+      "rel": "im1/unit-1-review/topics/classifying-numbers/practice/index.html",
+      "course": "im1",
+      "id": "im1_classifying_numbers",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-1-review/topics/decimals/practice/index.html",
+      "course": "im1",
+      "id": "im1_decimals",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-1-review/topics/fractions/practice/index.html",
+      "course": "im1",
+      "id": "im1_fractions",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-1-review/topics/multiplication/practice/index.html",
+      "course": "im1",
+      "id": "im1_multiplication",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-1-review/topics/multiplying-and-dividing-negative-numbers/practice/index.html",
+      "course": "im1",
+      "id": "im1_integer_multiply_divide",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-1-review/topics/order-of-operations/practice/index.html",
+      "course": "im1",
+      "id": "im1_order_of_operations",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-1-review/topics/percents/practice/index.html",
+      "course": "im1",
+      "id": "im1_percents",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-1-review/topics/reducing-fractions/practice/index.html",
+      "course": "im1",
+      "id": "im1_reducing_fractions",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-1-review/topics/square-roots-and-exponents/practice/index.html",
+      "course": "im1",
+      "id": "im1_exponents_radicals",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit2_comprehensive_review",
+      "gv": "8"
+    },
+    {
+      "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit2_coordinate_system_nine_key_features",
+      "gv": "6"
+    },
+    {
+      "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/distributive-property/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit2_distributive_property",
+      "gv": "4"
+    },
+    {
+      "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/equivalent-expressions-combining-like-terms/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit2_equivalent_expressions_combining_like_terms",
+      "gv": "4"
+    },
+    {
+      "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit2_graphing_inequalities_interval_notation",
+      "gv": "4"
+    },
+    {
+      "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit2_solving_linear_equations",
+      "gv": "4"
+    },
+    {
+      "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-inequalities/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit2_solving_linear_inequalities",
+      "gv": "4"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_arithmetic_sequence_word_problems",
+      "gv": "3"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_common_difference_next_terms",
+      "gv": "3"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_explicit_formulas_arithmetic_sequences",
+      "gv": "3"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_finding_a_specific_term",
+      "gv": "3"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_finding_the_term_number",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_identifying_arithmetic_sequences",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_section_a_review",
+      "gv": "3"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/collinearity-and-slope/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_collinearity_and_slope",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_evaluating_functions",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/section-b-review/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_section_b_review",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_slope_from_graphs",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_slope_from_two_points",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_solving_function_equations",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_converting_point_slope_to_slope_intercept",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_linear_function_word_problems",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/section-c-review/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_section_c_review",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_slope_intercept_form",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_writing_equations_of_lines",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/comprehensive-review/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_unit_3_comprehensive_review",
+      "gv": "3"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_common_difference_recursive_formulas",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_recursive_formulas_from_sequences",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_recursive_to_explicit_formulas",
+      "gv": "1"
+    },
+    {
+      "rel": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/index.html",
+      "course": "im1",
+      "id": "im1_unit3_section_d_review",
+      "gv": "1"
+    }
+  ]
+}

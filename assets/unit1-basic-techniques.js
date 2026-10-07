@@ -285,7 +285,7 @@
       const c=ri(1,5),A=a2+c,ans=rat(-2*a,A*A);
       return complexProblem("intermediate_reciprocal_quadratic",`cf-recip-quad-${a}-${c}`,
         `\\(\\displaystyle \\lim_{x\\to ${a}} \\frac{\\frac1{x^2+${c}}-\\frac1{${A}}}{${xa}}\\)`,ans,
-        `Combine the numerator:<br>\\(\\frac{${A}-(x^2+${c})}{${A}(x^2+${c})}=\\frac{-(${xa})(x+${a})}{${A}(x^2+${c})}\\).<br>Cancel \\(${xa}\\) from the full quotient for \\(x\\ne${a}\\), leaving \\(-\\frac{x+${a}}{${A}(x^2+${c})}\\). Its limit is \\(-\\frac{${2*a}}{${A*A}}=${texRat(ans)}\\).`);
+        `Combine the numerator:<br>\\(\\frac{${A}-(x^2+${c})}{${A}(x^2+${c})}=-\\frac{(${xa})(x+${a})}{${A}(x^2+${c})}\\).<br>Cancel \\(${xa}\\) from the full quotient for \\(x\\ne${a}\\), leaving \\(-\\frac{x+${a}}{${A}(x^2+${c})}\\). Its limit is \\(-\\frac{${2*a}}{${A*A}}=${texRat(ans)}\\).`);
     }
 
     if(family==="reciprocal_square"){

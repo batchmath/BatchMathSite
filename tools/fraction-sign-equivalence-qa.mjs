@@ -21,6 +21,19 @@ vm.createContext(sandbox);
 vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/answer-normalization.js'),'utf8'),sandbox,{filename:'answer-normalization.js'});
 const normalize=sandbox.window.BatchMathAnswers?.normalizeFractionSigns;
 if(typeof normalize!=='function')fail('production normalizeFractionSigns function did not load');
+const normalizeTex=sandbox.window.BatchMathAnswers?.normalizeTexFractionSigns;
+if(typeof normalizeTex!=='function')fail('production normalizeTexFractionSigns function did not load');
+
+const displayCases=new Map([
+  ['\\frac{-3}{5}','-\\frac{3}{5}'],
+  ['\\dfrac{-x}{7}','-\\dfrac{x}{7}'],
+  ['\\tfrac{-a+b}{c}','-\\tfrac{a-b}{c}'],
+  ['x^{\\frac{-2}{3}}','x^{-\\frac{2}{3}}'],
+  ['A+\\frac{-B}{C}','A-\\frac{B}{C}'],
+  ['A-\\frac{-B}{C}','A+\\frac{B}{C}']
+]);
+for(const [input,expected] of displayCases){const got=normalizeTex(input);if(got!==expected)fail(`display case ${input} -> ${got}, expected ${expected}`);}
+stats.displayCases=displayCases.size;
 
 const exactCases=new Map([
   ['-1/2','-1/2'],['(-1)/2','-1/2'],['1/-2','-1/2'],['1/(-2)','-1/2'],['-(1/2)','-1/2'],['−(1/2)','-1/2'],
@@ -48,16 +61,21 @@ stats.numericStressCases=stress;
 // Every instrumented practice engine must load the sitewide normalizer. This is
 // deliberately a release-gate rule so new engines cannot silently omit it.
 function walk(dir){const out=[];for(const e of fs.readdirSync(dir,{withFileTypes:true})){if(['.git','node_modules','qa-results'].includes(e.name))continue;const f=path.join(dir,e.name);if(e.isDirectory())out.push(...walk(f));else out.push(f);}return out;}
+const generatedSourceFiles=['assets','ap-calculus','calculus-prep','im1'].flatMap(dir=>walk(path.join(ROOT,dir))).filter(f=>/\.(?:js|html)$/.test(f));
+let generatedSourcesChecked=0;
+for(const f of generatedSourceFiles){const source=fs.readFileSync(f,'utf8');generatedSourcesChecked++;if(/\\(?:dfrac|tfrac|frac)\{\s*-/.test(source))fail(`${path.relative(ROOT,f)}: generated TeX keeps a negative sign inside a fraction numerator`);}
+stats.generatedDisplaySourcesChecked=generatedSourcesChecked;
 const htmlFiles=walk(ROOT).filter(f=>f.endsWith('index.html'));
 let engines=0,staticAnswerInputs=0;
 for(const f of htmlFiles){
   const html=fs.readFileSync(f,'utf8');if(!html.includes('problem-tracking.js'))continue;engines++;
   if(!html.includes('/assets/answer-normalization.js'))fail(`${path.relative(ROOT,f)}: instrumented engine missing answer-normalization.js`);
+  if(/answer-normalization\.js["']\s+defer/.test(html))fail(`${path.relative(ROOT,f)}: answer normalizer must be available before the first generated problem`);
   const track=html.indexOf('problem-tracking.js'),norm=html.indexOf('answer-normalization.js');if(norm>track)fail(`${path.relative(ROOT,f)}: answer normalizer must load before problem tracking`);
   staticAnswerInputs += [...html.matchAll(/<(?:input|textarea)\b[^>]*(?:id|aria-label|class|data-bm-(?:calc-)?keypad)=["'][^"']*(?:answer|response|location|quotient|remainder|practice-answer|keypad|factor)[^"']*["'][^>]*>/gi)].length;
 }
 stats.instrumentedEngines=engines;stats.staticAnswerInputs=staticAnswerInputs;
-if(engines!==122)fail(`expected 122 instrumented engines, found ${engines}`);
+if(engines!==132)fail(`expected 132 instrumented engines, found ${engines}`);
 
 // Defense-in-depth assertions on the known direct parsers that historically
 // handled rational answers themselves instead of using expression equivalence.
@@ -85,6 +103,9 @@ for(const f of expressionParserFiles){
 }
 stats.expressionParserDefenseFiles=expressionParserFiles.length;
 if(expressionParserFiles.length!==16)fail(`expected 16 normalizeInput parser files, found ${expressionParserFiles.length}`);
+
+const sharedPracticeRenderer=fs.readFileSync(path.join(ROOT,'assets/ap-topic-practice.js'),'utf8');
+if(!sharedPracticeRenderer.includes('normalizeTexFractionSigns'))fail('shared AP practice renderer does not normalize generated fraction-sign placement');
 
 // Execute the actual production numeric parser bodies from the limits pages.
 function extractFunction(source,name){

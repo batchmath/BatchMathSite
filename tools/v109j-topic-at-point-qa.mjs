@@ -107,10 +107,21 @@ const chainOrder=[chainTopic.indexOf('href="practice/"'),chainTopic.indexOf('hre
 assert(chainOrder.every(index=>index>=0)&&chainOrder[0]<chainOrder[1]&&chainOrder[1]<chainOrder[2],"Chain Rule engines are not ordered regular, at-a-point, nested");
 assert(chainTopic.includes('<span class="bm-deriv-num">d³y</span><span class="bm-deriv-den">dx³</span></span><span class="bm-practice-label">Nested Chain Rule Practice</span>'),"Nested Chain Rule was not moved to the d³y/dx³ third-engine label");
 
-const hash=rel=>crypto.createHash("sha256").update(fs.readFileSync(path.join(ROOT,rel))).digest("hex");
-assert(hash("ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html")==="737e34224ee3a859903951b18a4910ad8c6882fe00ea24474fd9d1b1d5635026","Comprehensive Review derivative-at-point page was changed");
+// The release-wide SEO pass intentionally refreshes versioned metadata,
+// breadcrumbs, and the short search context.  Strip only those generated
+// blocks before checking that the approved Comprehensive Review engine itself
+// remains byte-for-byte equivalent to the prior release.
+function stablePageHash(rel){
+ let html=fs.readFileSync(path.join(ROOT,rel),"utf8");
+ html=html.replace(/\s*<!-- BatchMath technical SEO metadata[^>]*-->[\s\S]*?<script\b[^>]*type=(["'])application\/ld\+json\1[^>]*>[\s\S]*?<\/script>\s*/gi,"\n");
+ html=html.replace(/<nav\b[^>]*data-batchmath-breadcrumbs[^>]*>[\s\S]*?<\/nav>\s*/gi,"");
+ html=html.replace(/<p\b[^>]*class=(["'])[^"']*\bbm-seo-context\b[^"']*\1[^>]*>[\s\S]*?<\/p>\s*/gi,"");
+ html=html.replace(/\s+/g," ").trim();
+ return crypto.createHash("sha256").update(html).digest("hex");
+}
+assert(stablePageHash("ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html")==="4d48cf8cc1e6e5f42f87c673195a38feaba7e64f970fc0ba6a2aee1fd5172304","Comprehensive Review derivative-at-point engine content was changed");
 
-console.log("BatchMath v10.9.L curriculum-aware derivative-at-point QA");
+console.log("BatchMath v11 curriculum-aware derivative-at-point QA");
 console.log(`Result: ${errors.length?"FAIL":"PASS"}`);console.log(`Checks: ${checks}`);
 for(const stage of Object.keys(qa.stages))console.log(`${stage}: ${ids[stage].size} distinct IDs; families ${[...families[stage]].sort().join(", ")}`);
 console.log(`Direct trig coverage: ${[...trigKinds].sort().join(", ")}`);console.log(`Inverse-trig coverage: ${[...inverseKinds].sort().join(", ")}`);
