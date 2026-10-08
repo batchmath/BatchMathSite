@@ -31,7 +31,7 @@ for(const slug of slugs){
   if(p?.kind==='mc'&&(!Array.isArray(p.choices)||p.correctIndex<0||p.correctIndex>=p.choices.length))fail(`${slug}: invalid choices`);
   if(p?.kind==='input'&&!/^-?(?:\d+(?:\.\d*)?|\.\d+)(?:\/-?(?:\d+(?:\.\d*)?|\.\d+))?$/.test(p.answer))fail(`${slug}: invalid numeric answer ${p.answer}`);
   if(p?.kind==='formula'&&(!Number.isFinite(p.formula?.a)||!Number.isFinite(p.formula?.d)))fail(`${slug}: invalid formula target`);
-  if(p?.kind==='multi'&&(!Array.isArray(p.fields)||!p.fields.length||p.fields.some(field=>!['number','formula'].includes(field.check))))fail(`${slug}: invalid structured fields`);
+  if(p?.kind==='multi'&&(!Array.isArray(p.fields)||!p.fields.length||p.fields.some(field=>!['number','formula','line','recursive','recursive-rule','initial-term'].includes(field.check))))fail(`${slug}: invalid structured fields`);
  }
 }
 for(const slug of ['common-difference-next-terms','explicit-formulas-arithmetic-sequences','arithmetic-sequence-word-problems']){

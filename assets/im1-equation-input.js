@@ -5,16 +5,16 @@ function parse(raw){
  s=global.BatchMathAnswers?.normalizeFractionSigns(s)??s;s=s.replace(/\s+/g,'');
  if(['nosolution','nosolutions','none','∅'].includes(s))return {kind:'none'};
  if(['infinitesolutions','infinitelymanysolutions','allrealnumbers','allreals'].includes(s))return {kind:'all'};
- const m=s.match(/^([+-]?\d+)(?:\/([+-]?\d+))?$/);
- if(!m)return {error:'Enter an integer or fraction, or use No Solution / Infinite Solutions.'};
+ const number='[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)',m=s.match(new RegExp(`^(${number})(?:\/(${number}))?$`));
+ if(!m)return {error:'Enter an integer, decimal, or fraction, or use No Solution / Infinite Solutions.'};
  const n=Number(m[1]),d=Number(m[2]||1);
- if(!Number.isSafeInteger(n)||!Number.isSafeInteger(d)||d===0)return {error:'Enter a valid integer or fraction with a nonzero denominator.'};
- return {kind:'number',n,d};
+ if(!Number.isFinite(n)||!Number.isFinite(d)||d===0)return {error:'Enter a valid number with a nonzero denominator.'};
+ return {kind:'number',n,d,value:n/d};
 }
 function check(raw,expected){
  const p=parse(raw);if(p.error)return p;const q=parse(expected);
  if(q.error)throw Error('Invalid generated equation answer');
- return {ok:p.kind===q.kind&&(p.kind!=='number'||BigInt(p.n)*BigInt(q.d)===BigInt(q.n)*BigInt(p.d))};
+ return {ok:p.kind===q.kind&&(p.kind!=='number'||Math.abs(p.value-q.value)<1e-9)};
 }
 function mount(host,p,onCheck){
  const form=document.createElement('div');form.className='im1-algebra-entry';
@@ -23,13 +23,13 @@ function mount(host,p,onCheck){
  hint.addEventListener('click',()=>{panel.hidden=!panel.hidden;panel.innerHTML=p.hint;if(!panel.hidden)global.MathJax?.typesetPromise?.([panel])?.catch?.(()=>{});hint.textContent=panel.hidden?'Show Hint':'Hide Hint';hint.setAttribute('aria-expanded',String(!panel.hidden));});
  const label=document.createElement('label');label.htmlFor='equation-answer';label.textContent='Solution (enter the value of x)';form.appendChild(label);
  const input=document.createElement('input');input.id='equation-answer';input.type='text';input.autocomplete='off';input.spellcheck=false;input.setAttribute('aria-describedby','equation-help');form.appendChild(input);
- const help=document.createElement('div');help.id='equation-help';help.className='algebra-help';help.textContent='Integers and fractions are accepted. Use the buttons below if there is no solution or infinitely many solutions.';form.appendChild(help);
+ const help=document.createElement('div');help.id='equation-help';help.className='algebra-help';help.textContent='Integers, decimals, and fractions are accepted. Use the buttons below if there is no solution or infinitely many solutions.';form.appendChild(help);
  const pad=document.createElement('div');pad.className='algebra-keypad';pad.setAttribute('aria-label','Equation solution keypad');form.appendChild(pad);
  function insert(text){if(input.disabled)return;const a=input.selectionStart??input.value.length,b=input.selectionEnd??a;input.value=input.value.slice(0,a)+text+input.value.slice(b);input.focus();input.setSelectionRange(a+text.length,a+text.length);}
  function key(label,fn,aria){const b=global.BatchMathKeypad.button(label,/^\d$/.test(label)?'':'utility',()=>{if(!input.disabled)fn();},aria||label);pad.appendChild(b);}
 
  for(const n of ['7','8','9','4','5','6','1','2','3','0'])key(n,()=>insert(n));
- key('−',()=>insert('-'),'Minus');key('a/b',()=>insert('/'),'Fraction');
+ key('−',()=>insert('-'),'Minus');key('a/b',()=>insert('/'),'Fraction');key('.',()=>insert('.'),'Decimal point');
  for(const [label,delta] of [['←',-1],['→',1]])key(label,()=>{const i=Math.max(0,Math.min(input.value.length,(input.selectionStart??input.value.length)+delta));input.focus();input.setSelectionRange(i,i);},delta<0?'Move cursor left':'Move cursor right');
  key('⌫',()=>{let a=input.selectionStart??input.value.length,b=input.selectionEnd??a;if(a===b)a=Math.max(0,a-1);input.setSelectionRange(a,b);insert('');},'Backspace');
  key('Clear',()=>{input.value='';input.focus();});

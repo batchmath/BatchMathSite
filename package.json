@@ -1,7 +1,7 @@
 {
   "name": "batchmath-site-qa",
   "private": true,
-  "version": "11.13",
+  "version": "12",
   "scripts": {
     "seo:build": "node tools/seo-build.mjs",
     "qa:seo": "node tools/seo-qa.mjs",

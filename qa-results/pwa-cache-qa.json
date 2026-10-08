@@ -1,19 +1,19 @@
 {
   "ok": true,
-  "generatedAt": "2026-10-07T05:36:13.506Z",
+  "generatedAt": "2026-10-08T15:41:47.186Z",
   "versions": {
-    "serviceWorker": "11.13",
-    "package": "11.13",
-    "appVersion": "11.13",
-    "pwa": "11.13",
-    "analytics": "11.13",
-    "rngFallback": "11.13"
+    "serviceWorker": "12",
+    "package": "12",
+    "appVersion": "12",
+    "pwa": "12",
+    "analytics": "12",
+    "rngFallback": "12"
   },
   "appShellEntries": 40,
-  "appShellLocalBytes": 870692,
-  "appShellLocalMiB": 0.83,
+  "appShellLocalBytes": 895774,
+  "appShellLocalMiB": 0.854,
   "practicePagesAudited": 109,
-  "localPracticeDependenciesAudited": 1168,
+  "localPracticeDependenciesAudited": 1214,
   "shellFiles": [
     {
       "url": "/",
@@ -45,11 +45,11 @@
     },
     {
       "url": "/assets/im1-unit3-generators.js",
-      "size": 23812
+      "size": 31216
     },
     {
       "url": "/assets/im1-unit3-practice.js",
-      "size": 13730
+      "size": 27673
     },
     {
       "url": "/assets/im1-unit3-nav.js",
@@ -57,15 +57,15 @@
     },
     {
       "url": "/assets/im1-unit3.css",
-      "size": 10108
+      "size": 12506
     },
     {
       "url": "/assets/im1-keypad.js",
-      "size": 14836
+      "size": 15989
     },
     {
       "url": "/assets/im1-keypad.css",
-      "size": 8683
+      "size": 8798
     },
     {
       "url": "/assets/im1-algebra-input.js",
@@ -77,7 +77,7 @@
     },
     {
       "url": "/assets/im1-equation-input.js",
-      "size": 4508
+      "size": 4595
     },
     {
       "url": "/assets/im1-interval-input.js",
@@ -85,7 +85,7 @@
     },
     {
       "url": "/assets/pwa.js",
-      "size": 12278
+      "size": 12272
     },
     {
       "url": "/assets/batchmath-storage.js",
@@ -93,11 +93,11 @@
     },
     {
       "url": "/assets/problem-tracking.js",
-      "size": 18453
+      "size": 18447
     },
     {
       "url": "/assets/reproducible-rng.js",
-      "size": 8567
+      "size": 8561
     },
     {
       "url": "/assets/derivative-rule-factors.js",

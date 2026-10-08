@@ -1,0 +1,32 @@
+{
+  "ok": true,
+  "checks": 440456,
+  "generatedSamples": {
+    "slopeGraphs": 5000,
+    "collinearity": 5000,
+    "sectionC": 10000,
+    "sectionD": 7500,
+    "writingForms": 10000,
+    "conversions": 10000,
+    "wordProblems": 10000,
+    "comprehensive": 9000
+  },
+  "observedSectionCVariants": [
+    "converting-point-slope-to-slope-intercept:convert",
+    "linear-function-word-problems:model",
+    "slope-intercept-form:identify",
+    "slope-intercept-form:write",
+    "writing-equations-of-lines:point_slope_given",
+    "writing-equations-of-lines:point_slope_points",
+    "writing-equations-of-lines:slope_intercept_points"
+  ],
+  "observedSectionDVariants": [
+    "common-difference-recursive-formulas:missing_difference",
+    "recursive-formulas-from-sequences:difference",
+    "recursive-formulas-from-sequences:terms",
+    "recursive-formulas-from-sequences:write",
+    "recursive-to-explicit-formulas:convert"
+  ],
+  "workflowSha256": "d8823214cd05a010f6d2dedd12c1de1d290ab73736ac13f631e6539a44293f36",
+  "errors": []
+}

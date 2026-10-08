@@ -1,13 +1,13 @@
 (function(){
   "use strict";
 
-  const state={input:null,editor:null,pad:null,raw:"",cursor:0,selectionAnchor:0,selectionFocus:0,dragging:false,mode:"derivative",binding:null,onCheck:null};
+  const state={input:null,editor:null,pad:null,raw:"",cursor:0,selectionAnchor:0,selectionFocus:0,dragging:false,mode:"derivative",binding:null,onCheck:null,history:[],redoHistory:[],historyLimit:120,restoring:false};
   // Private-use markers keep the visual numerator and denominator intact while
   // a student is still typing unmatched parentheses. They are converted to the
   // parser-friendly (numerator)/(denominator) form before reaching the engine.
   const FRAC_OPEN="\uE000",FRAC_MID="\uE001",FRAC_END="\uE002";
   const fnNames=["asin","acos","atan","acot","asec","acsc","sqrt","cbrt","root","sin","cos","tan","sec","csc","cot","ln","log","exp","abs","fp","gp","f","g"];
-  const atomicWords=["infinity","undefined","DNE","pi"];
+  const atomicWords=["aₙ₋₁","aₙ","a₁","infinity","undefined","DNE","pi"];
   const nextFrame=fn=>typeof requestAnimationFrame==="function"?requestAnimationFrame(fn):fn();
 
   function escapeHtml(s){
@@ -20,6 +20,51 @@
   function hasSelection(){const r=selectionRange();return r.end>r.start;}
   function collapseSelection(pos=state.cursor){
     state.cursor=normalizeCursor(pos,0);state.selectionAnchor=state.cursor;state.selectionFocus=state.cursor;
+  }
+  function editSnapshot(){return{raw:state.raw,cursor:state.cursor,selectionAnchor:state.selectionAnchor,selectionFocus:state.selectionFocus};}
+  function sameSnapshot(a,b){return Boolean(a&&b&&a.raw===b.raw&&a.cursor===b.cursor&&a.selectionAnchor===b.selectionAnchor&&a.selectionFocus===b.selectionFocus);}
+  function historyStacks(){
+    if(state.binding){
+      if(!Array.isArray(state.binding.history))state.binding.history=[];
+      if(!Array.isArray(state.binding.redoHistory))state.binding.redoHistory=[];
+      return{undo:state.binding.history,redo:state.binding.redoHistory};
+    }
+    if(!Array.isArray(state.history))state.history=[];
+    if(!Array.isArray(state.redoHistory))state.redoHistory=[];
+    return{undo:state.history,redo:state.redoHistory};
+  }
+  function trimHistory(stack){if(stack.length>state.historyLimit)stack.splice(0,stack.length-state.historyLimit);}
+  function pushSnapshot(stack,snapshot){if(!sameSnapshot(stack.at(-1),snapshot))stack.push(snapshot);trimHistory(stack);}
+  function restoreSnapshot(snapshot){
+    state.restoring=true;
+    try{
+      state.raw=snapshot.raw;
+      state.cursor=snapshot.cursor;
+      state.selectionAnchor=snapshot.selectionAnchor;
+      state.selectionFocus=snapshot.selectionFocus;
+      sync();
+    }finally{state.restoring=false;}
+    state.editor?.focus();
+  }
+  function recordUndo(){
+    if(state.restoring)return;
+    const stacks=historyStacks();
+    pushSnapshot(stacks.undo,editSnapshot());
+    stacks.redo.length=0;
+  }
+  function undo(){
+    if(!state.input||state.input.disabled)return false;
+    const stacks=historyStacks(),snapshot=stacks.undo.pop();if(!snapshot)return false;
+    pushSnapshot(stacks.redo,editSnapshot());
+    restoreSnapshot(snapshot);
+    return true;
+  }
+  function redo(){
+    if(!state.input||state.input.disabled)return false;
+    const stacks=historyStacks(),snapshot=stacks.redo.pop();if(!snapshot)return false;
+    pushSnapshot(stacks.undo,editSnapshot());
+    restoreSnapshot(snapshot);
+    return true;
   }
   function selectionClass(start,end){
     const r=selectionRange();return r.end>r.start&&end>r.start&&start<r.end?" bm-calc-selected":"";
@@ -322,9 +367,10 @@
 
   function removeSelection(){
     if(!hasSelection())return false;
-    const r=safeSelectionRange();state.raw=state.raw.slice(0,r.start)+state.raw.slice(r.end);collapseSelection(r.start);sync();return true;
+    recordUndo();const r=safeSelectionRange();state.raw=state.raw.slice(0,r.start)+state.raw.slice(r.end);collapseSelection(r.start);sync();return true;
   }
   function replaceSelection(text){
+    recordUndo();
     const r=hasSelection()?safeSelectionRange():{start:state.cursor,end:state.cursor};
     state.raw=state.raw.slice(0,r.start)+text+state.raw.slice(r.end);collapseSelection(r.start+text.length);sync();state.editor?.focus();
   }
@@ -344,11 +390,23 @@
   }
 
   function removeSpan(start,end){
+    recordUndo();
     state.raw=state.raw.slice(0,start)+state.raw.slice(end);
     collapseSelection(start);
     sync();state.editor.focus();
   }
 
+
+  function keepCursorVisible(){
+    const editor=state.editor;if(!editor)return;
+    nextFrame(()=>{
+      if(editor!==state.editor)return;
+      const marker=editor.querySelector?.('.bm-calc-caret');if(!marker)return;
+      const editorRect=editor.getBoundingClientRect(),markerRect=marker.getBoundingClientRect(),padding=14;
+      if(markerRect.right>editorRect.right-padding)editor.scrollLeft+=markerRect.right-(editorRect.right-padding);
+      else if(markerRect.left<editorRect.left+padding)editor.scrollLeft-=editorRect.left+padding-markerRect.left;
+    });
+  }
 
   function render(){
     if(!state.editor)return;
@@ -363,6 +421,7 @@
     else state.editor.innerHTML=renderPlain(0,state.raw.length);
     state.editor.setAttribute("aria-valuetext",state.raw||"blank");
     if(state.binding){state.binding.raw=state.raw;state.binding.cursor=state.cursor;state.binding.selectionAnchor=state.selectionAnchor;state.binding.selectionFocus=state.selectionFocus;}
+    keepCursorVisible();
   }
 
   function sync(){
@@ -372,7 +431,8 @@
     state.input.dispatchEvent(new Event("input",{bubbles:true}));
     render();
   }
-  function setRaw(raw,cursor){
+  function setRaw(raw,cursor,{record=true}={}){
+    if(record)recordUndo();
     state.raw=String(raw||"");
     collapseSelection(cursor==null?state.raw.length:cursor);
     sync();
@@ -380,6 +440,7 @@
   function insert(text,insideOffset){
     if(!state.input||state.input.disabled)return;
     state.cursor=normalizeCursor(state.cursor,0);
+    recordUndo();
     const range=hasSelection()?safeSelectionRange():{start:state.cursor,end:state.cursor};
     state.raw=state.raw.slice(0,range.start)+text+state.raw.slice(range.end);
     collapseSelection(normalizeCursor(range.start+(insideOffset==null?text.length:insideOffset),1));
@@ -412,6 +473,7 @@
     }
     const numerator=left.slice(start);
     if(!numerator){insertFraction();return;}
+    recordUndo();
     state.raw=left.slice(0,start)+FRAC_OPEN+numerator+FRAC_MID+FRAC_END+right;
     state.cursor=left.slice(0,start).length+numerator.length+2;
     sync();
@@ -465,6 +527,7 @@
       const sh=functionShellAt(i);
       if(sh&&sh.end===state.cursor){
         if(sh.close===sh.argStart){
+          recordUndo();
           state.raw=state.raw.slice(0,sh.start)+state.raw.slice(sh.end);
           state.cursor=sh.start;
         }else state.cursor=sh.close;
@@ -472,6 +535,7 @@
       }
       if(sh&&sh.argStart===state.cursor){
         if(sh.close===sh.argStart){
+          recordUndo();
           state.raw=state.raw.slice(0,sh.start)+state.raw.slice(sh.end);
           state.cursor=sh.start;
         }else state.cursor=sh.start;
@@ -479,6 +543,7 @@
       }
       const a=atomicAt(i);
       if(a&&a.end===state.cursor&&!(fnNames.includes(a.word)&&state.raw[a.end]==="(")){
+        recordUndo();
         state.raw=state.raw.slice(0,a.start)+state.raw.slice(a.end);
         state.cursor=a.start;
         sync();state.editor.focus();return;
@@ -487,11 +552,13 @@
 
     // Remove an untouched exponent shell as one unit.
     if(state.raw.slice(Math.max(0,state.cursor-2),state.cursor)==="^("&&state.raw[state.cursor]===")"){
+      recordUndo();
       state.raw=state.raw.slice(0,state.cursor-2)+state.raw.slice(state.cursor+1);
       state.cursor-=2;
       sync();
       return;
     }
+    recordUndo();
     const a=state.raw.slice(0,state.cursor-1),b=state.raw.slice(state.cursor);
     state.raw=a+b;
     state.cursor=normalizeCursor(state.cursor-1,-1);
@@ -544,6 +611,7 @@
     const sh=functionShellAt(state.cursor);
     if(sh){
       if(sh.close===sh.argStart){
+        recordUndo();
         state.raw=state.raw.slice(0,sh.start)+state.raw.slice(sh.end);
         state.cursor=sh.start;
       }else state.cursor=sh.argStart;
@@ -555,10 +623,12 @@
     }
     const a=atomicAt(state.cursor);
     if(a&&!(fnNames.includes(a.word)&&state.raw[a.end]==="(")){
+      recordUndo();
       state.raw=state.raw.slice(0,a.start)+state.raw.slice(a.end);
       state.cursor=a.start;
       sync();state.editor.focus();return;
     }
+    recordUndo();
     state.raw=state.raw.slice(0,state.cursor)+state.raw.slice(state.cursor+1);
     state.cursor=normalizeCursor(state.cursor,1);
     sync();
@@ -768,6 +838,10 @@
     if(mode==="unit3"){
       const extras=document.createElement("div");
       extras.className="bm-calc-function-row bm-calc-unit3-extra-row";
+      addInsert(extras,"a₁","a₁","function","Insert a sub one");
+      addInsert(extras,"aₙ","aₙ","function","Insert a sub n");
+      addInsert(extras,"aₙ₋₁","aₙ₋₁","function","Insert a sub n minus one");
+      addInsert(extras,"n","n","function","Insert n");
       addInsert(extras,",",",","symbol","Comma between multiple values");
       addInsert(extras,"[","[","symbol","Insert left bracket");
       addInsert(extras,"]","]","symbol","Insert right bracket");
@@ -799,6 +873,8 @@
     }
     if((e.ctrlKey||e.metaKey)&&!e.altKey){
       const key=e.key.toLowerCase();
+      if(key==='z'){e.preventDefault();if(e.shiftKey)redo();else undo();return;}
+      if(key==='y'){e.preventDefault();redo();return;}
       if(key==='a'){e.preventDefault();state.selectionAnchor=0;state.selectionFocus=state.raw.length;state.cursor=state.raw.length;render();return;}
       if(key==='c'||key==='x'||key==='v')return;
     }
@@ -825,6 +901,7 @@
     if(!state.input)return;
     state.raw=state.input.value||"";
     collapseSelection(state.raw.length);
+    const stacks=historyStacks();stacks.undo.length=0;stacks.redo.length=0;
     render();
   }
   function focus(){state.editor?.focus();}
@@ -912,8 +989,9 @@
       editor.setAttribute("aria-label",input.getAttribute("aria-label")||"Answer");
       input.insertAdjacentElement("beforebegin",editor);
 
-      const end=(input.value||"").length,binding={input,editor,pad,mode,onCheck,raw:input.value||"",cursor:end,selectionAnchor:end,selectionFocus:end};
+      const end=(input.value||"").length,binding={input,editor,pad,mode,onCheck,raw:input.value||"",cursor:end,selectionAnchor:end,selectionFocus:end,history:[],redoHistory:[]};
       bindings.push(binding);
+      editor.addEventListener("focus",()=>activateBinding(binding));
       editor.addEventListener("keydown",e=>{activateBinding(binding);onEditorKey(e);});
       editor.addEventListener("pointerdown",e=>{activateBinding(binding);beginPointerSelection(e);});
       editor.addEventListener("pointermove",e=>{activateBinding(binding);extendPointerSelection(e);});
@@ -930,7 +1008,7 @@
     }
     host.appendChild(pad);
     for(const binding of bindings)activateBinding(binding);
-    if(bindings.length)activateBinding(bindings[0]);
+    if(bindings.length)activateBinding(bindings[0],true);
     return{bindings,pad,focus:()=>activateBinding(bindings[0],true)};
   }
 
@@ -943,6 +1021,8 @@
     state.input=input;
     state.mode=input.dataset.bmCalcKeypad||"derivative";
     state.raw=input.value||"";
+    state.history=[];
+    state.redoHistory=[];
     state.cursor=state.raw.length;
     state.selectionAnchor=state.cursor;
     state.selectionFocus=state.cursor;
@@ -996,5 +1076,5 @@
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
   else init();
 
-  window.BatchMathCalculusKeypad={init,mountInputs,reset,focus,setRaw:(v)=>setRaw(v,String(v||"").length),move,moveVertical,backspace,del,get raw(){return serializeRange()},get cursor(){return state.cursor},get selection(){return selectionRange();},setCursor:(v)=>{collapseSelection(Number(v)||0);render();}};
+  window.BatchMathCalculusKeypad={init,mountInputs,reset,focus,setRaw:(v)=>{const stacks=historyStacks();stacks.undo.length=0;stacks.redo.length=0;setRaw(v,String(v||"").length,{record:false});},move,moveVertical,backspace,del,undo,redo,get raw(){return serializeRange()},get cursor(){return state.cursor},get selection(){return selectionRange();},setCursor:(v)=>{collapseSelection(Number(v)||0);render();}};
 })();

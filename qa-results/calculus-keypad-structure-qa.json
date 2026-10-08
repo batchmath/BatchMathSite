@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "cases": 59,
+  "cases": 91,
   "editors": [
     "shared calculus keypad",
     "advanced trig keypad",
@@ -9,7 +9,10 @@
   "focus": [
     "initial visible-editor focus",
     "legacy source-focus redirect",
-    "first physical keystroke"
+    "first physical keystroke",
+    "single active dynamic cursor",
+    "cursor hidden for inactive and disabled fields",
+    "automatic horizontal caret visibility"
   ],
   "keyboard": [
     "ordinary Shift+6 exponent",
@@ -17,7 +20,9 @@
     "Ctrl/Cmd+A",
     "Ctrl/Cmd+C",
     "Ctrl/Cmd+X",
-    "Ctrl/Cmd+V"
+    "Ctrl/Cmd+V",
+    "Ctrl/Cmd+Z",
+    "Ctrl/Cmd+Y"
   ],
   "clipboard": [
     "custom structured MIME",
@@ -25,7 +30,16 @@
     "structured paste",
     "external LaTeX normalization"
   ],
+  "undo": [
+    "one-character physical typing",
+    "one-action keypad structures",
+    "field-switched atomic a₁",
+    "structural deletion",
+    "selected-chunk deletion",
+    "Clear/delete-all"
+  ],
   "structures": [
+    "a₁ subscript token",
     "square roots",
     "editable nth roots",
     "functions",
@@ -33,7 +47,9 @@
     "inverse trig functions",
     "fractions",
     "exponents",
+    "parentheses",
     "nested structures",
-    "dynamic field switching"
+    "dynamic field switching",
+    "nonshrinking horizontal overflow"
   ]
 }

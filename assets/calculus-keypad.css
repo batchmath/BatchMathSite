@@ -4,31 +4,35 @@
   overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;
 }
 .bm-calc-editor{
-  flex:1 1 300px;min-width:220px;min-height:48px;display:flex;align-items:center;justify-content:flex-start;
+  flex:1 1 300px;min-width:220px;min-height:56px;display:flex;flex-wrap:nowrap;align-items:center;justify-content:flex-start;
   padding:8px 12px;border:1px solid var(--yellow,#f5c400);border-radius:8px;background:#050505;color:#fff;
-  font-size:1.35rem;line-height:1.35;cursor:text;overflow-x:auto;white-space:nowrap;
+  font-size:1.35rem;line-height:1.35;cursor:text;overflow-x:auto;overflow-y:hidden;white-space:nowrap;
 }
+.bm-calc-editor>*{flex:0 0 auto}
 .bm-calc-editor:focus{outline:2px solid rgba(245,196,0,.35);outline-offset:1px}
 .bm-calc-editor.is-disabled{opacity:.62;cursor:default}
 .bm-calc-editor .bm-calc-empty{color:#777;font-size:.86rem;font-weight:600}
 .bm-calc-editor .bm-calc-empty-slot{color:#777;font-size:.72em;font-weight:600}
 .bm-calc-editor sup{font-size:.68em;line-height:1;vertical-align:super;margin-left:1px}
 .bm-calc-caret{display:inline-block;width:2px;height:1.15em;margin:0 1px;background:#f5c400;vertical-align:-.16em;animation:bm-caret 1s steps(1) infinite}
+.bm-calc-dynamic-editor .bm-calc-caret{display:none}
+.bm-calc-dynamic-editor:focus:not(.is-disabled) .bm-calc-caret{display:inline-block}
+.bm-calc-dynamic-editor.is-disabled .bm-calc-caret{display:none!important}
 sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
 @keyframes bm-caret{0%,48%{opacity:1}49%,100%{opacity:0}}
 
 /* Fractions inserted with the fraction key remain parser-friendly underneath,
    but are displayed the way a student would normally write them. */
 .bm-calc-frac{
-  display:inline-grid;grid-template-rows:auto auto;vertical-align:middle;text-align:center;
-  line-height:1.02;margin:0 .12em;min-width:.75em;
+  display:inline-grid;grid-template-rows:auto auto;grid-auto-columns:max-content;vertical-align:middle;text-align:center;
+  flex:0 0 auto;line-height:1.02;margin:0 .18em;min-width:max-content;
 }
-.bm-calc-frac-num{display:block;border-bottom:1.5px solid currentColor;padding:0 .14em .06em}
-.bm-calc-frac-den{display:block;padding:.06em .14em 0}
+.bm-calc-frac-num{display:block;min-width:max-content;white-space:nowrap;border-bottom:1.5px solid currentColor;padding:0 .18em .06em}
+.bm-calc-frac-den{display:block;min-width:max-content;white-space:nowrap;padding:.06em .18em 0}
 
 /* Editable nth-root structure: the index and radicand are distinct hit
    targets while the stored answer remains root(index,radicand). */
-.bm-calc-nroot{position:relative;display:inline-flex;align-items:flex-start;vertical-align:-.22em;margin:0 .12em 0 .08em;padding-left:.48em;line-height:1.05}
+.bm-calc-nroot{position:relative;display:inline-flex;flex:0 0 auto;align-items:flex-start;vertical-align:-.22em;margin:0 .12em 0 .08em;padding-left:.48em;line-height:1.05}
 .bm-calc-nroot-index{position:absolute;left:0;top:-.04em;z-index:1;font-size:.56em;line-height:1;min-width:.7em;text-align:right;margin:0;cursor:text}
 .bm-calc-editor .bm-calc-nroot-index{font-size:.56em;line-height:1;vertical-align:baseline;margin-left:0}
 .bm-calc-nroot-sign{display:block;flex:0 0 .76em;width:.76em;height:1.36em;color:currentColor;line-height:1;overflow:visible}
@@ -70,7 +74,7 @@ sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
 .rounded-line-field .bm-calc-dynamic-editor{width:100%;max-width:none;min-width:0;margin:0}
 
 @media(max-width:760px){
-  .bm-calc-editor{min-width:0;flex-basis:100%;font-size:1.17rem;min-height:45px;padding:7px 9px}
+  .bm-calc-editor{min-width:0;flex-basis:100%;font-size:1.17rem;min-height:50px;padding:7px 9px}
   .bm-calc-keypad{width:100%;max-width:none;margin-top:7px;padding:6px}
   .bm-calc-function-row,.bm-calc-special-row,.bm-calc-main-grid,.bm-calc-utility-row{gap:4px}
   .bm-calc-key{min-height:35px;font-size:.84rem;padding:4px 2px}

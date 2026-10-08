@@ -1,13 +1,13 @@
 {
   "ok": true,
-  "generatedAt": "2026-10-07T02:46:28.114Z",
+  "generatedAt": "2026-10-08T02:29:33.117Z",
   "customEditors": [
     "assets/calc-prep-exact-editor.js",
     "assets/calculus-keypad.js",
     "assets/im1-keypad.js"
   ],
   "pageCounts": {
-    "calculus": 53,
+    "calculus": 76,
     "calcPrep": 3,
     "im1": 36,
     "native": 50

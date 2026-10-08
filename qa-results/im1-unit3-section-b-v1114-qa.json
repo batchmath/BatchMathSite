@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "checks": 102537,
+  "graphSamples": 5500,
+  "collinearitySamples": 5500,
+  "enterEngines": [
+    "solving-function-equations",
+    "slope-from-two-points",
+    "slope-from-graphs"
+  ],
+  "errors": []
+}

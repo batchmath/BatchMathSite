@@ -28,7 +28,7 @@
 .bm-key.fraction-key{font-size:.88rem}
 .bm-key.check-key{
   grid-column:5;
-  grid-row:2 / span 2;
+  grid-row:3;
   background:#d71920;
   border-color:#d71920;
   color:#fff;
@@ -132,6 +132,8 @@ html.bm-practice-active .batch-back{
   display:inline-grid;grid-template-rows:auto auto;vertical-align:middle;text-align:center;
   line-height:1.02;min-width:2.2em;
 }
+.bm-im1-signed-frac{display:inline-flex;align-items:center;gap:.12em}
+.bm-im1-frac-sign{display:inline-block;flex:0 0 auto}
 .bm-im1-frac-num{display:block;border-bottom:1.6px solid currentColor;padding:1px .35em 3px}
 .bm-im1-frac-den{display:block;padding:3px .35em 1px}
 .bm-im1-frac-num.active,.bm-im1-frac-den.active{background:#19150a;border-radius:4px}

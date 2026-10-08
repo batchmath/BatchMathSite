@@ -1,6 +1,6 @@
 BatchMath cumulative working copy
-Current full release: 11.13
-Archive: batchmath-site-v11.13.zip
-Baseline: complete v11.11 release.
-Changes: repaired only the calculator-active Increasing/Decreasing Intervals, Concavity, and Extrema engine. Its Practice Type selector is now pinned to calculator mode; every candidate derivative is numerically validated for stable, separated, non-nice sign-changing roots; mixed-function variety and problem-specific worked sign analysis were expanded.
+Current full release: 12
+Archive: batchmath-site-v12.zip
+Baseline: complete v11.18 release.
+Changes: targeted IM1 recursive-sequence active-cursor behavior and shared structured-math keypad undo/redo consistency. The BatchMath QA GitHub Actions workflow remains preserved.
 No deployment performed.
