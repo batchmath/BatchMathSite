@@ -13,7 +13,8 @@
     visibleCount: PAGE_SIZE,
     loadedAt: null,
     loading: false,
-    renderToken: 0
+    renderToken: 0,
+    modalReturnFocus: null
   };
 
   const FIELD_ALIASES = {
@@ -203,6 +204,34 @@
     }
   }
 
+  function youtubeVideo(raw) {
+    const safe = safeUrl(raw);
+    if (!safe) return null;
+    try {
+      const url = new URL(safe);
+      const host = url.hostname.toLowerCase().replace(/^www\./, '').replace(/^m\./, '');
+      let id = '';
+      let vertical = false;
+      if (host === 'youtu.be') {
+        id = url.pathname.split('/').filter(Boolean)[0] || '';
+      } else if (host === 'youtube.com' || host === 'youtube-nocookie.com') {
+        const parts = url.pathname.split('/').filter(Boolean);
+        if (url.pathname === '/watch') id = url.searchParams.get('v') || '';
+        else if (parts[0] === 'shorts') {
+          id = parts[1] || '';
+          vertical = true;
+        } else if (parts[0] === 'embed' || parts[0] === 'live') {
+          id = parts[1] || '';
+        }
+      }
+      id = id.trim();
+      if (!/^[A-Za-z0-9_-]{6,15}$/.test(id)) return null;
+      return { id, vertical };
+    } catch (_) {
+      return null;
+    }
+  }
+
   function displayMath(raw) {
     const value = String(raw || '').trim();
     if (!value) return '';
@@ -245,6 +274,55 @@
     return scroller;
   }
 
+  function videoButton(label, url) {
+    const video = youtubeVideo(url);
+    if (!video) return null;
+    const button = element('button', 'video-link', label);
+    button.type = 'button';
+    button.dataset.youtubeId = video.id;
+    button.dataset.youtubeVertical = String(video.vertical);
+    button.addEventListener('click', () => openVideoModal(button, label));
+    return button;
+  }
+
+  function openVideoModal(button, label) {
+    const id = String(button?.dataset.youtubeId || '');
+    if (!/^[A-Za-z0-9_-]{6,15}$/.test(id)) return;
+    const modal = byId('archive-video-modal');
+    const frameWrap = byId('archive-video-frame');
+    if (!modal || !frameWrap) return;
+    const dialog = modal.querySelector('.archive-video-dialog');
+    state.modalReturnFocus = button;
+    byId('archive-video-title').textContent = label;
+    const isVertical = button.dataset.youtubeVertical === 'true';
+    frameWrap.classList.toggle('is-vertical', isVertical);
+    if (dialog) dialog.classList.toggle('is-vertical', isVertical);
+    const iframe = document.createElement('iframe');
+    iframe.title = label;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.allowFullscreen = true;
+    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
+    frameWrap.replaceChildren(iframe);
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('archive-modal-open');
+    byId('archive-video-close').focus();
+  }
+
+  function closeVideoModal() {
+    const modal = byId('archive-video-modal');
+    if (!modal || modal.hidden) return;
+    const frameWrap = byId('archive-video-frame');
+    if (frameWrap) frameWrap.replaceChildren();
+    modal.hidden = true;
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('archive-modal-open');
+    const returnFocus = state.modalReturnFocus;
+    state.modalReturnFocus = null;
+    if (returnFocus && document.contains(returnFocus)) returnFocus.focus();
+  }
+
   function problemCard(entry) {
     const id = `problem-${String(entry.number).padStart(3, '0')}`;
     const article = element('article', 'archive-card problem-card');
@@ -260,13 +338,8 @@
       solutionLink.href = solutionPermalink(entry);
       actions.appendChild(solutionLink);
     }
-    if (entry.video) {
-      const video = element('a', 'video-link', 'Watch Original Short');
-      video.href = entry.video;
-      video.target = '_blank';
-      video.rel = 'noopener noreferrer';
-      actions.appendChild(video);
-    }
+    const originalVideo = videoButton('Watch Original Short', entry.video);
+    if (originalVideo) actions.appendChild(originalVideo);
     if (actions.childElementCount) body.appendChild(actions);
     article.appendChild(body);
     return article;
@@ -313,20 +386,8 @@
     const original = element('a', 'problem-jump-link', 'View Original Problem');
     original.href = problemPermalink(entry);
     actions.appendChild(original);
-    if (entry.video) {
-      const video = element('a', 'video-link', 'Watch Original Short');
-      video.href = entry.video;
-      video.target = '_blank';
-      video.rel = 'noopener noreferrer';
-      actions.appendChild(video);
-    }
-    if (entry.solution && entry.solutionVideo) {
-      const solutionVideo = element('a', 'video-link', 'Watch Video Solution');
-      solutionVideo.href = entry.solutionVideo;
-      solutionVideo.target = '_blank';
-      solutionVideo.rel = 'noopener noreferrer';
-      actions.appendChild(solutionVideo);
-    }
+    const solutionVideo = videoButton('Watch Video Solution', entry.solutionVideo);
+    if (solutionVideo) actions.appendChild(solutionVideo);
     body.appendChild(actions);
     article.appendChild(body);
     return article;
@@ -574,6 +635,16 @@
     });
     byId('refresh-archive').addEventListener('click', () => loadArchive({ keepCount: true }));
     byId('retry-archive').addEventListener('click', () => loadArchive());
+    byId('archive-video-close').addEventListener('click', closeVideoModal);
+    byId('archive-video-modal').addEventListener('click', event => {
+      if (event.target === byId('archive-video-modal')) closeVideoModal();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !byId('archive-video-modal').hidden) {
+        event.preventDefault();
+        closeVideoModal();
+      }
+    });
     window.addEventListener('popstate', () => {
       state.view = initialView();
       state.visibleCount = PAGE_SIZE;
@@ -597,6 +668,7 @@
     parseCsv,
     normalizeRows,
     safeUrl,
+    youtubeVideo,
     formatDate,
     getEntries: () => state.entries.map(entry => ({ ...entry, alternatives: entry.alternatives.map(alternative => ({ ...alternative })) }))
   });

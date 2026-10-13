@@ -1,18 +1,18 @@
 {
   "ok": true,
-  "generatedAt": "2026-10-13T04:54:30.161Z",
+  "generatedAt": "2026-10-13T21:00:21.323Z",
   "stats": {
     "htmlPages": 265,
-    "standaloneJs": 56,
+    "standaloneJs": 57,
     "gaTagged": 264,
     "inlineJs": 1055,
     "images": 598,
-    "internalReferences": 7536,
+    "internalReferences": 7542,
     "brokenInternalReferences": 0,
     "indexablePages": 262,
     "sitemapUrls": 262,
     "noindexPages": 3,
-    "version": "12.6",
+    "version": "12.7",
     "practiceEngines": 132,
     "mathjaxRefs": 121,
     "frqRows": 228,
@@ -258,13 +258,13 @@
       "rel": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
       "course": "ap_calculus_ab",
       "engineId": "ap_unit3_review_noncalculator",
-      "generatorVersion": "11.11"
+      "generatorVersion": "12.7"
     },
     {
       "rel": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
       "course": "ap_calculus_ab",
       "engineId": "ap_unit3_review_calculator",
-      "generatorVersion": "11.11"
+      "generatorVersion": "12.7"
     },
     {
       "rel": "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html",
@@ -336,25 +336,25 @@
       "rel": "ap-calculus/unit-3-applications-derivative/topics/optimization/calculator-practice/index.html",
       "course": "ap_calculus_ab",
       "engineId": "ap_unit3_optimization_calculator",
-      "generatorVersion": "11.11"
+      "generatorVersion": "12.7"
     },
     {
       "rel": "ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html",
       "course": "ap_calculus_ab",
       "engineId": "ap_unit3_optimization_noncalculator",
-      "generatorVersion": "11.11"
+      "generatorVersion": "12.7"
     },
     {
       "rel": "ap-calculus/unit-3-applications-derivative/topics/related-rates/calculator-practice/index.html",
       "course": "ap_calculus_ab",
       "engineId": "ap_unit3_related-rates_calculator",
-      "generatorVersion": "11.11"
+      "generatorVersion": "12.7"
     },
     {
       "rel": "ap-calculus/unit-3-applications-derivative/topics/related-rates/practice/index.html",
       "course": "ap_calculus_ab",
       "engineId": "ap_unit3_related-rates_noncalculator",
-      "generatorVersion": "11.11"
+      "generatorVersion": "12.7"
     },
     {
       "rel": "ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/practice/index.html",

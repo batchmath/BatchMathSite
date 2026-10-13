@@ -1,6 +1,6 @@
 BatchMath cumulative working copy
-Current full release: 12.6
-Archive: batchmath-site-v12.6.zip
+Current full release: 12.7
+Archive: batchmath-site-v12.7.zip
 Baseline: complete v12 release.
-Changes: targeted Calculus Problem of the Day Archive refinements plus a Tangent/Secant Practice Type filter. The BatchMath QA GitHub Actions workflow remains preserved.
+Changes: on-page Problem of the Day video playback plus expanded shared Optimization and Related Rates generators for focused practice and Unit 3 Comprehensive Review. The BatchMath QA GitHub Actions workflow remains preserved.
 No deployment performed.

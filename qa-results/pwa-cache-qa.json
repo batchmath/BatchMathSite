@@ -1,19 +1,19 @@
 {
   "ok": true,
-  "generatedAt": "2026-10-13T04:54:29.705Z",
+  "generatedAt": "2026-10-13T20:58:06.188Z",
   "versions": {
-    "serviceWorker": "12.6",
-    "package": "12.6",
-    "appVersion": "12.6",
-    "pwa": "12.6",
-    "analytics": "12.6",
-    "rngFallback": "12.6"
+    "serviceWorker": "12.7",
+    "package": "12.7",
+    "appVersion": "12.7",
+    "pwa": "12.7",
+    "analytics": "12.7",
+    "rngFallback": "12.7"
   },
   "appShellEntries": 40,
   "appShellLocalBytes": 911458,
   "appShellLocalMiB": 0.869,
   "practicePagesAudited": 109,
-  "localPracticeDependenciesAudited": 1214,
+  "localPracticeDependenciesAudited": 1216,
   "shellFiles": [
     {
       "url": "/",
