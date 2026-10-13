@@ -1,8 +1,8 @@
-/* BatchMath service worker — v12
+/* BatchMath service worker — v12.6
    Network-first while online; reliable runtime caching for offline use.
    Navigation cache keys are normalized so equivalent static-page URLs share one entry.
    MathJax is pinned to v4.1.3 and its CDN resources are cached explicitly. */
-const VERSION = '12';
+const VERSION = '12.6';
 const CACHE_PREFIX = 'batchmath-';
 const SHELL_CACHE = `${CACHE_PREFIX}shell-${VERSION}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${VERSION}`;
@@ -100,6 +100,11 @@ function isMathJaxRequest(url) {
   return /\/npm\/(?:mathjax@|@mathjax\/)/i.test(url.pathname);
 }
 
+function isArchiveDataRequest(url) {
+  return (url.hostname === 'docs.google.com' || url.hostname.endsWith('.googleusercontent.com')) &&
+    /\/spreadsheets\//i.test(url.pathname);
+}
+
 function normalizedNavigationKey(request) {
   const url = new URL(request.url);
   url.hash = '';
@@ -178,6 +183,9 @@ self.addEventListener('fetch', event => {
   // MathJax is the one third-party dependency that is useful to preserve for
   // offline practice. Analytics, YouTube, College Board, etc. remain network-native.
   if (url.origin !== self.location.origin) {
+    // The archive is deliberately live-only. Never put its Google Sheet CSV in
+    // Cache Storage or substitute an old copy after a refresh failure.
+    if (isArchiveDataRequest(url)) return;
     if (isMathJaxRequest(url)) event.respondWith(mathJaxNetworkFirst(request));
     return;
   }

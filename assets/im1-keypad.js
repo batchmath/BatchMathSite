@@ -244,6 +244,44 @@
     return b;
   }
 
+  function isDoubleWidthLabel(label){
+    return /^(?:No Solution|Infinite Solutions|Underestimate|Overestimate|Undefined)$/i.test(String(label||"").trim());
+  }
+
+  function applyStandardLayout(pad){
+    const previous=pad.querySelector(":scope > .bm-keypad-continuation");
+    if(previous){[...previous.children].forEach(item=>pad.insertBefore(item,previous));previous.remove();}
+    const digits={
+      "7":[1,1],"8":[1,2],"9":[1,3],
+      "4":[2,1],"5":[2,2],"6":[2,3],
+      "1":[3,1],"2":[3,2],"3":[3,3],
+      "0":[4,3]
+    };
+    const openCells=[[1,4],[2,4],[3,4],[4,1],[4,2],[4,4]];
+    const buttons=[...pad.querySelectorAll(":scope > button")];
+    const ordinary=[],wide=[];
+    buttons.forEach(item=>{
+      item.style.gridRow="";item.style.gridColumn="";
+      item.classList.remove("bm-key-double");
+      const label=String(item.textContent||"").trim(),cell=digits[label];
+      if(cell){item.style.gridRow=String(cell[0]);item.style.gridColumn=String(cell[1]);}
+      else if(isDoubleWidthLabel(label)){item.classList.add("bm-key-double");wide.push(item);}
+      else ordinary.push(item);
+    });
+    openCells.forEach((cell,index)=>{
+      const item=ordinary[index];if(!item)return;
+      item.style.gridRow=String(cell[0]);item.style.gridColumn=String(cell[1]);
+    });
+    const overflow=[...wide,...ordinary.slice(openCells.length)];
+    if(overflow.length){
+      const continuation=document.createElement("div");
+      continuation.className="bm-keypad-continuation";
+      overflow.forEach(item=>{item.style.gridRow="";item.style.gridColumn="";continuation.appendChild(item);});
+      pad.appendChild(continuation);
+    }
+    pad.classList.add("bm-keypad-standardized");
+  }
+
   function syncPracticeMode(){
     const practice=document.getElementById("practiceCard");
     const active=Boolean(practice && !practice.classList.contains("hidden"));
@@ -341,6 +379,8 @@
     },"Check Answer");
     pad.appendChild(check);
 
+    applyStandardLayout(pad);
+
     const area=input.closest(".question-area") || input.parentElement;
     if(area) area.classList.add("bm-has-keypad");
     input.insertAdjacentElement("afterend",pad);
@@ -366,20 +406,8 @@
 
   // Shared button construction and compact number-pad layout for dynamic Unit 2 inputs.
   function layoutUnit2(pad){
-    pad.className="bm-keypad bm-unit2-keypad";
-    const digits={7:[1,1],8:[1,2],9:[1,3],4:[2,1],5:[2,2],6:[2,3],1:[3,1],2:[3,2],3:[3,3],0:[4,2]};
-    const utilities={"←":[1,4],"→":[2,4],"⌫":[3,4],"Clear":[4,4],"−":[4,1],"a/b":[4,3],"+":[4,3],".":[5,1]};
-    const hasDecimal=[...pad.querySelectorAll('button')].some(button=>button.textContent==='.');
-    let row=5,col=hasDecimal?2:1;
-    pad.querySelectorAll('button').forEach(b=>{
-      const label=b.textContent,cell=digits[label]||utilities[label];
-      if(cell){b.style.gridRow=String(cell[0]);b.style.gridColumn=String(cell[1]);}
-      else{
-        const wide=/Solution/.test(label),span=wide?2:1;
-        if(col+span-1>4){row++;col=1;}
-        b.style.gridRow=String(row);b.style.gridColumn=`${col} / span ${span}`;col+=span;
-      }
-    });
+    pad.classList.add("bm-keypad","bm-unit2-keypad");
+    applyStandardLayout(pad);
   }
   window.BatchMathKeypad={touchMode,initAll,button,layoutUnit2};
 })();

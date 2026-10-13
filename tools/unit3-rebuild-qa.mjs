@@ -35,7 +35,7 @@ const topics={
 };
 function scan(p,slug,mode){
  if(!p||typeof p!=='object'){errors.push(`${slug}/${mode}: no problem object`);return;}
- const all=[p.questionHtml,p.explanation,p.answerTex,p.lineAnswer?.equation,p.lineAnswer?.answerTex,...(p.choices||[])].filter(Boolean).join(' ');
+ const all=[p.questionHtml,p.explanation,p.answerTex,p.lineAnswer?.equation,p.lineAnswer?.answerTex,...(p.choices||[]),p.stage1?.prompt,p.stage1?.explanation,p.stage1?.answerTex,...(p.stage1?.choices||[]),p.stage2?.prompt,p.stage2?.explanation,p.stage2?.answerTex,...(p.stage2?.choices||[])].filter(Boolean).join(' ');
  if(p.calculatorActive!==(mode==='calculator'))errors.push(`${slug}/${mode}: calculatorActive mismatch ${p.id}`);
  if(!['assignment','test'].includes(p.sourceKind))errors.push(`${slug}/${mode}: missing sourceKind ${p.id}`);
  if(/\^\{1\}|\^1(?!\d)/.test(all))errors.push(`${slug}/${mode}: displayed power of 1 ${p.id}`);
@@ -73,6 +73,13 @@ function scan(p,slug,mode){
    if(mode==='calculator'&&p.intervalAnswer?.requiredDecimals!==3)errors.push(`${slug}/${mode}: interval response does not require exactly three decimals ${p.id}`);
    if(mode==='calculator'&&!/three decimal/i.test(p.questionHtml||''))errors.push(`${slug}/${mode}: interval rounding direction missing ${p.id}`);
    if(Array.isArray(p.choices))errors.push(`${slug}/${mode}: interval problem still has choices ${p.id}`);
+ }else if(p.answerType==='staged-calculus'){
+   if(!p.stage1||!['choice','exact','exact-list'].includes(p.stage1.type))errors.push(`${slug}/${mode}: invalid first stage ${p.id}`);
+   if(p.stage1?.type==='choice'&&(!Array.isArray(p.stage1.choices)||!Number.isInteger(p.stage1.correctIndex)||p.stage1.correctIndex<0||p.stage1.correctIndex>=p.stage1.choices.length))errors.push(`${slug}/${mode}: invalid first-stage choices ${p.id}`);
+   if(p.stage1?.type==='exact'&&!Number.isFinite(Number(p.stage1.numericAnswer)))errors.push(`${slug}/${mode}: invalid first-stage exact answer ${p.id}`);
+   if(p.stage2?.type==='choice'&&(!Array.isArray(p.stage2.choices)||!Number.isInteger(p.stage2.correctIndex)||p.stage2.correctIndex<0||p.stage2.correctIndex>=p.stage2.choices.length))errors.push(`${slug}/${mode}: invalid second-stage choices ${p.id}`);
+   if(p.stage2?.type==='exact'&&!Number.isFinite(Number(p.stage2.numericAnswer)))errors.push(`${slug}/${mode}: invalid second-stage exact answer ${p.id}`);
+   if(p.stage2?.type==='exact-list'&&(!Array.isArray(p.stage2.expectedValues)||!p.stage2.expectedValues.length||p.stage2.expectedValues.some(value=>!Number.isFinite(Number(value)))))errors.push(`${slug}/${mode}: invalid second-stage c-values ${p.id}`);
  }else if(p.answerType==='approximation-fields'){
    if(!Number.isFinite(Number(p.approximationAnswer?.value))||!['under','over'].includes(p.approximationAnswer?.classification))errors.push(`${slug}/${mode}: bad typed approximation object ${p.id}`);
  }else if(p.answerType==='value-list'){

@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "generatedAt": "2026-10-07T02:44:28.316Z",
+  "generatedAt": "2026-10-13T04:11:07.398Z",
   "instrumentedEngines": 132,
   "uniqueEngineIds": 132,
   "answerCheckedCallSites": 51,
@@ -275,7 +275,7 @@
       "rel": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
       "course": "ap_calculus_ab",
       "id": "ap_unit3_increasing-decreasing-intervals-concavity-and-extrema_calculator",
-      "gv": "11.11"
+      "gv": "11.13"
     },
     {
       "rel": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html",

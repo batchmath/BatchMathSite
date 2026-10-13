@@ -1,0 +1,46 @@
+{
+  "ok": true,
+  "errors": [],
+  "stats": {
+    "approximation": {
+      "samples": 10000,
+      "logEquivalenceCases": 4
+    },
+    "theoremVariety": {
+      "both": {
+        "samples": 6000,
+        "applicabilityShare": 0.7531666666666667,
+        "families": 13,
+        "templates": 46
+      },
+      "mvt": {
+        "samples": 6000,
+        "applicabilityShare": 0.7656666666666667,
+        "families": 10,
+        "templates": 23
+      },
+      "rolle": {
+        "samples": 6000,
+        "applicabilityShare": 0.7586666666666667,
+        "families": 13,
+        "templates": 23
+      }
+    },
+    "lhopital": {
+      "samples": 100000,
+      "applicable": 80137,
+      "variants": 42,
+      "repeatedExamples": 8
+    },
+    "stagedFlow": {
+      "staticGuards": 6
+    },
+    "keypadLayout": {
+      "balancedRows": 7
+    },
+    "review": {
+      "sharedFamilies": 3,
+      "workflowPreserved": true
+    }
+  }
+}

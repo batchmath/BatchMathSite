@@ -27,8 +27,6 @@
   const submit=document.createElement('button');submit.type='button';submit.className='algebra-check';submit.textContent='Check Answer';submit.addEventListener('click',()=>onCheck(input.value));form.appendChild(submit);
   input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();if(!input.disabled)onCheck(input.value);}});
   global.BatchMathKeypad.layoutUnit2(pad);
-  const positions={7:[1,1],8:[1,2],9:[1,3],'(':[1,4],4:[2,1],5:[2,2],6:[2,3],')':[2,4],1:[3,1],2:[3,2],3:[3,3],'[':[3,4],'−':[4,1],0:[4,2],',':[4,3],']':[4,4],'∞':[5,1],'←':[5,2],'→':[5,3],'⌫':[5,4],'Clear':[6,1]};
-  pad.querySelectorAll('button').forEach(b=>{const cell=positions[b.textContent];if(cell){b.style.gridRow=String(cell[0]);b.style.gridColumn=b.textContent==='Clear'?'1 / span 4':String(cell[1]);}});
   host.appendChild(form);input.focus({preventScroll:true});
   return {disable(){input.disabled=true;submit.disabled=true;pad.querySelectorAll('button').forEach(b=>b.disabled=true);}};
  }

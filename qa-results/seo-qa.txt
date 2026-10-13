@@ -1,16 +1,16 @@
 BatchMath technical SEO QA
 Result: PASS
 
-htmlPages: 264
-indexablePages: 261
+htmlPages: 265
+indexablePages: 262
 noindexUtilityPages: 3
-sitemapUrls: 261
-structuredDataPages: 261
-visibleBreadcrumbPages: 260
+sitemapUrls: 262
+structuredDataPages: 262
+visibleBreadcrumbPages: 261
 practiceContextPages: 122
-uniqueTitles: 261
-uniqueDescriptions: 261
-internalTargetsChecked: 7698
+uniqueTitles: 262
+uniqueDescriptions: 262
+internalTargetsChecked: 7770
 brokenInternalTargets: 0
 orphanPages: 0
 trackingQueryLinks: 0

@@ -1,8 +1,8 @@
-/* BatchMath PWA registration/update foundation — v12 */
+/* BatchMath PWA registration/update foundation — v12.6 */
 (() => {
   'use strict';
 
-  const APP_VERSION = '12';
+  const APP_VERSION = '12.6';
   const state = {
     version: APP_VERSION,
     supported: 'serviceWorker' in navigator,
@@ -33,6 +33,30 @@
   };
 
   window.BatchMathPWA = state;
+
+  // Keep the live Problem of the Day archive reachable from the established
+  // navigation on every page without duplicating hundreds of page templates.
+  function ensureArchiveNavigation() {
+    document.querySelectorAll('#course-menu.dropdown').forEach(menu => {
+      if (menu.querySelector('[data-bm-archive-nav]')) return;
+      const link = document.createElement('a');
+      link.href = '/archive/';
+      link.textContent = 'Problem of the Day';
+      link.dataset.bmArchiveNav = '1';
+      const about = menu.querySelector('[data-bm-about-nav]');
+      menu.insertBefore(link, about || null);
+    });
+    document.querySelectorAll('.bm-footer-links').forEach(links => {
+      if (links.querySelector('a[href="/archive/"], a[href="/archive"]')) return;
+      const link = document.createElement('a');
+      link.href = '/archive/';
+      link.textContent = 'Problem of the Day Archive';
+      links.insertBefore(link, links.firstChild);
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ensureArchiveNavigation, { once: true });
+  else ensureArchiveNavigation();
 
   function ensureActionUI() {
     if (document.querySelector('.bm-pwa-actions')) return;

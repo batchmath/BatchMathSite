@@ -1,4 +1,4 @@
-/* AP Calculus AB Unit 3 practice refinements — Version 11.11. */
+/* AP Calculus AB Unit 3 practice refinements — Version 12.4. */
 .u3-mode-banner{max-width:780px;margin:0 auto 14px;padding:8px 12px;border:1px solid #4a4a4a;border-radius:9px;background:#070707;text-align:center;color:#ddd;font-weight:800}
 .u3-mode-banner.calculator{border-color:#f5c400;color:#f5c400}
 .u3-mode-banner .u3-banner-calculator{display:inline-block;width:15px;height:19px;margin-right:7px;border:1px solid currentColor;border-radius:2px;vertical-align:-4px;position:relative}
@@ -10,4 +10,17 @@
 .worked-method h4{margin:0 0 .55rem;color:#f5c400;font-size:1rem}
 .worked-method .worked-steps p,.calculator-directions p{display:block;margin:.5rem 0;line-height:1.55}
 .calculator-method{border-color:#705e00}
+.staged-calculus-answer{display:block!important;width:100%;max-width:780px;margin:0 auto}
+.staged-part{width:100%;padding:14px 0;text-align:center}
+.staged-part+.staged-part{margin-top:12px;padding-top:20px;border-top:1px solid #3a3a3a}
+.staged-part-prompt{margin:0 auto 12px;font-weight:800}
+.staged-choice-grid{display:grid;grid-template-columns:1fr;gap:9px;width:min(100%,680px);margin:0 auto}
+.staged-choice-grid .choice{width:100%;min-height:48px;text-align:left}
+.staged-exact-input{display:block;width:min(100%,520px);margin:0 auto 10px;text-align:center}
+.staged-check,.staged-continue{display:block;width:min(100%,360px);margin:10px auto}
+.staged-input-message{min-height:1.35em;margin:4px auto;color:#ff8b8b;font-weight:700}
+.staged-feedback{width:min(100%,720px);margin:12px auto;text-align:left}
+.u3-limit-display{display:flex;align-items:center;justify-content:center;width:100%;min-height:84px;margin:10px auto;overflow-x:auto;overflow-y:hidden;text-align:center}
+.u3-limit-display mjx-container{margin:0 auto!important;font-size:1.14em}
 @media(max-width:600px){.u3-mode-banner{font-size:.88rem}.practice-shell .question-box{font-size:1rem}.u3-mini-graph{width:100%}}
+@media(max-width:600px){.staged-part{padding:10px 0}.staged-choice-grid .choice{font-size:.94rem}.u3-limit-display{min-height:70px}.u3-limit-display mjx-container{font-size:1em}}

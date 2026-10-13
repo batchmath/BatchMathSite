@@ -1,6 +1,6 @@
 BatchMath cumulative working copy
-Current full release: 12
-Archive: batchmath-site-v12.zip
-Baseline: complete v11.18 release.
-Changes: targeted IM1 recursive-sequence active-cursor behavior and shared structured-math keypad undo/redo consistency. The BatchMath QA GitHub Actions workflow remains preserved.
+Current full release: 12.6
+Archive: batchmath-site-v12.6.zip
+Baseline: complete v12 release.
+Changes: targeted Calculus Problem of the Day Archive refinements plus a Tangent/Secant Practice Type filter. The BatchMath QA GitHub Actions workflow remains preserved.
 No deployment performed.

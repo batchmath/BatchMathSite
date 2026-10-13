@@ -1,19 +1,19 @@
-BatchMath 11.11 automated release QA
+BatchMath 12.6 automated release QA
 Result: PASS
 
-htmlPages: 264
-standaloneJs: 55
-gaTagged: 263
-inlineJs: 1053
-images: 596
-internalReferences: 7465
+htmlPages: 265
+standaloneJs: 56
+gaTagged: 264
+inlineJs: 1055
+images: 598
+internalReferences: 7536
 brokenInternalReferences: 0
-indexablePages: 261
-sitemapUrls: 261
+indexablePages: 262
+sitemapUrls: 262
 noindexPages: 3
-version: 11.11
+version: 12.6
 practiceEngines: 132
-mathjaxRefs: 120
+mathjaxRefs: 121
 frqRows: 228
 frqExamSets: 38
 frqVideos: 216

@@ -1,0 +1,38 @@
+{
+  "ok": true,
+  "errors": [],
+  "stats": {
+    "approximation": {
+      "methods": {
+        "tangent": 14947,
+        "secant": 15053
+      },
+      "midpointShare": 0.14568524546602007,
+      "tangentFamilies": 18,
+      "secantFamilies": 15
+    },
+    "theorems": {
+      "mvt": {
+        "appliesShare": 0.75028,
+        "midpointShare": 0,
+        "families": 23
+      },
+      "rolle": {
+        "appliesShare": 0.75388,
+        "midpointShare": 0,
+        "families": 23
+      }
+    },
+    "lhopital": {
+      "counts": {
+        "none": 7928,
+        "zero": 25618,
+        "infinity": 3140,
+        "product": 3314
+      },
+      "noShare": 0.1982,
+      "zeroShare": 0.7987652781242205,
+      "families": 42
+    }
+  }
+}

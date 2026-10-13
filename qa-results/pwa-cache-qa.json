@@ -1,23 +1,23 @@
 {
   "ok": true,
-  "generatedAt": "2026-10-08T15:41:47.186Z",
+  "generatedAt": "2026-10-13T04:54:29.705Z",
   "versions": {
-    "serviceWorker": "12",
-    "package": "12",
-    "appVersion": "12",
-    "pwa": "12",
-    "analytics": "12",
-    "rngFallback": "12"
+    "serviceWorker": "12.6",
+    "package": "12.6",
+    "appVersion": "12.6",
+    "pwa": "12.6",
+    "analytics": "12.6",
+    "rngFallback": "12.6"
   },
   "appShellEntries": 40,
-  "appShellLocalBytes": 895774,
-  "appShellLocalMiB": 0.854,
+  "appShellLocalBytes": 911458,
+  "appShellLocalMiB": 0.869,
   "practicePagesAudited": 109,
   "localPracticeDependenciesAudited": 1214,
   "shellFiles": [
     {
       "url": "/",
-      "size": 15715
+      "size": 17926
     },
     {
       "url": "/offline.html",
@@ -49,7 +49,7 @@
     },
     {
       "url": "/assets/im1-unit3-practice.js",
-      "size": 27673
+      "size": 27871
     },
     {
       "url": "/assets/im1-unit3-nav.js",
@@ -57,15 +57,15 @@
     },
     {
       "url": "/assets/im1-unit3.css",
-      "size": 12506
+      "size": 12470
     },
     {
       "url": "/assets/im1-keypad.js",
-      "size": 15989
+      "size": 16995
     },
     {
       "url": "/assets/im1-keypad.css",
-      "size": 8798
+      "size": 8949
     },
     {
       "url": "/assets/im1-algebra-input.js",
@@ -81,11 +81,11 @@
     },
     {
       "url": "/assets/im1-interval-input.js",
-      "size": 3791
+      "size": 3367
     },
     {
       "url": "/assets/pwa.js",
-      "size": 12272
+      "size": 13400
     },
     {
       "url": "/assets/batchmath-storage.js",
@@ -93,11 +93,11 @@
     },
     {
       "url": "/assets/problem-tracking.js",
-      "size": 18447
+      "size": 18451
     },
     {
       "url": "/assets/reproducible-rng.js",
-      "size": 8561
+      "size": 8565
     },
     {
       "url": "/assets/derivative-rule-factors.js",
@@ -109,7 +109,7 @@
     },
     {
       "url": "/assets/ap-topic-practice.css",
-      "size": 11213
+      "size": 11555
     },
     {
       "url": "/assets/ap-topic-generators.js",
@@ -121,7 +121,7 @@
     },
     {
       "url": "/assets/ap-topic-practice.js",
-      "size": 46701
+      "size": 57801
     },
     {
       "url": "/favicon.svg",

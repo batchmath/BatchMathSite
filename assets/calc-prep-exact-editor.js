@@ -272,11 +272,18 @@ function mount(opts){
    ['←',null,'action','left'],['→',null,'action','right'],['Del',null,'action','del'],['Check',null,'check','check']
   ];
   defs.forEach(([label,key,cls,action])=>{
-   const b=document.createElement('button');b.type='button';b.className='key'+(cls?' '+cls:'');b.textContent=label;
+   const b=document.createElement('button');b.type='button';b.className='key'+(cls?' '+cls:'')+(label==='Undefined'?' double':'');b.textContent=label;
    b.addEventListener('pointerdown',e=>e.preventDefault());
    b.addEventListener('click',()=>{if(key!=null)add(key);else if(action==='back')backspace();else if(action==='del')del();else if(action==='clear')clear();else if(action==='frac')startFraction();else if(action==='left')move(-1);else if(action==='right')move(1);else if(action==='up')moveVertical(-1);else if(action==='down')moveVertical(1);else if(action==='check')opts.onCheck?.()});
    keypad.appendChild(b);
   });
+  const digits={7:[1,1],8:[1,2],9:[1,3],4:[2,1],5:[2,2],6:[2,3],1:[3,1],2:[3,2],3:[3,3],0:[4,3]};
+  const open=[[1,4],[1,5],[2,4],[2,5],[3,4],[3,5],[4,1],[4,2],[4,4],[4,5]],ordinary=[],wide=[];
+  [...keypad.children].forEach(button=>{const cell=digits[button.textContent];if(cell){button.style.gridRow=String(cell[0]);button.style.gridColumn=String(cell[1]);}else if(button.classList.contains('double'))wide.push(button);else ordinary.push(button);});
+  open.forEach((cell,index)=>{const button=ordinary[index];if(button){button.style.gridRow=String(cell[0]);button.style.gridColumn=String(cell[1]);}});
+  const overflow=[...wide,...ordinary.slice(open.length)];
+  if(overflow.length){const continuation=document.createElement('div');continuation.className='keypad-continuation';overflow.forEach(button=>{button.style.gridRow='';button.style.gridColumn='';continuation.appendChild(button);});keypad.appendChild(continuation);}
+  keypad.classList.add('keypad-standardized');
  }
  function onKey(e){
   if((e.ctrlKey||e.metaKey)&&!e.altKey){const key=e.key.toLowerCase();if(key==='a'){e.preventDefault();selectionAnchor=0;selectionFocus=cursor=raw.length;render();return}if(key==='c'||key==='x'||key==='v')return}

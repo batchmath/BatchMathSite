@@ -750,31 +750,99 @@
   const fractionKeyHTML='<span class="bm-calc-key-frac" aria-hidden="true"><span>a</span><span>b</span></span>';
   function addFraction(grid,smart=false){grid.appendChild(key(fractionKeyHTML,"symbol fraction",smart?fractionFromLeft:insertFraction,"Insert stacked fraction",true));}
 
+  /*
+   * Layout only: every calculator keypad uses one five-column unit grid.  The
+   * number block is anchored so 7/8/9, 4/5/6, and 1/2/3 remain intact and 0
+   * sits directly below 3. Every other existing key is moved (not recreated)
+   * into the same dense grid, so a short row can occur only at the bottom of
+   * the keypad. A genuinely long label consumes exactly two grid
+   * units; there are no intermediate button widths.
+   */
+  function isDoubleWidthKey(button){
+    const label=String(button.textContent||"").trim().replace(/\s+/g," ");
+    return /^(?:Undefined|No Solution|Infinite Solutions|Underestimate|Overestimate)$/i.test(label);
+  }
+  function normalizePadLayout(pad){
+    const main=pad.querySelector(".bm-calc-main-grid");
+    if(!main)return;
+
+    const digits={
+      "7":[1,1],"8":[1,2],"9":[1,3],
+      "4":[2,1],"5":[2,2],"6":[2,3],
+      "1":[3,1],"2":[3,2],"3":[3,3],
+      "0":[4,3]
+    };
+    /* Keep the number/operator block first, then move every existing auxiliary
+     * key into the same dense grid. This prevents a short numeric row from
+     * appearing above a fuller function/utility row. Moving the live nodes
+     * preserves every listener and insertion behavior. */
+    const mainButtons=[...main.querySelectorAll(":scope > .bm-calc-key")];
+    const auxiliary=[];
+    [...pad.children].forEach(section=>{
+      if(section===main)return;
+      auxiliary.push(...section.querySelectorAll(":scope > .bm-calc-key"));
+    });
+    for(const section of [...pad.children])if(section!==main)section.remove();
+    mainButtons.forEach(button=>main.appendChild(button));
+    auxiliary.forEach(button=>main.appendChild(button));
+
+    [...main.querySelectorAll(":scope > .bm-calc-key")].forEach(button=>{
+      const label=String(button.textContent||"").trim();
+      const fixed=digits[label];
+      button.style.gridRow="";button.style.gridColumn="";
+      button.classList.remove("wide");
+      button.classList.toggle("bm-calc-key-double",isDoubleWidthKey(button));
+      if(fixed){
+        button.style.gridRow=String(fixed[0]);
+        button.style.gridColumn=String(fixed[1]);
+      }
+    });
+    pad.append(main);
+    pad.classList.add("bm-calc-keypad-standardized");
+  }
+
   function buildPad(mode){
     const pad=document.createElement("div");
     pad.className=`bm-calc-keypad bm-calc-mode-${mode}`;
     pad.setAttribute("role","group");
     pad.setAttribute("aria-label","BatchMath calculus answer keypad");
+    const contextualUnit3={
+      "unit3-number":{fraction:true},
+      "unit3-formula":{fraction:true,exponent:true,sequence:true},
+      "unit3-equation":{fraction:true,equation:true},
+      "unit3-recursive":{fraction:true,recursive:true},
+      "unit3-approximation":{fraction:true,radical:true,exponent:true,constants:true},
+      "unit3-theorem":{fraction:true,radical:true,logarithm:true,exponent:true,constants:true,list:true},
+      "unit3-limit":{fraction:true,radical:true,logarithm:true,exponent:true,constants:true}
+    }[mode]||null;
 
-    if(mode==="unit3"){
+    if(contextualUnit3){
       const structures=document.createElement("div");
-      structures.className="bm-calc-special-row";
+      structures.className="bm-calc-special-row bm-calc-balanced-row";
+      if(contextualUnit3.fraction)addFraction(structures);
+      if(contextualUnit3.radical)addFunction(structures,"√","sqrt");
+      if(contextualUnit3.logarithm)addFunction(structures,"ln","ln");
+      if(contextualUnit3.exponent)structures.appendChild(key("xⁿ","symbol",insertExponent,"Insert exponent"));
+      if(contextualUnit3.constants){
+        addInsert(structures,"e","e","function");
+        addInsert(structures,"π","pi","function");
+      }
+      pad.appendChild(structures);
+    }else if(mode==="unit3"){
+      const structures=document.createElement("div");
+      structures.className="bm-calc-special-row bm-calc-balanced-row";
       addFraction(structures);
       addFunction(structures,"√","sqrt");
       addFunction(structures,"ln","ln");
       structures.appendChild(key("xⁿ","symbol",insertExponent,"Insert exponent"));
+      addInsert(structures,"e","e","function");
+      addInsert(structures,"π","pi","function");
+      addInsert(structures,"∞","infinity","function math-infinity-key","Insert infinity");
+      addInsert(structures,"−∞","-infinity","function math-infinity-key","Insert negative infinity");
       pad.appendChild(structures);
-
-      const constants=document.createElement("div");
-      constants.className="bm-calc-special-row";
-      addInsert(constants,"e","e","function");
-      addInsert(constants,"π","pi","function");
-      addInsert(constants,"∞","infinity","function math-infinity-key","Insert infinity");
-      addInsert(constants,"−∞","-infinity","function math-infinity-key","Insert negative infinity");
-      pad.appendChild(constants);
     }else if(mode==="limits"){
       const special=document.createElement("div");
-      special.className="bm-calc-special-row";
+      special.className="bm-calc-special-row bm-calc-balanced-row";
       addFraction(special);
       addFunction(special,"√","sqrt");
       addFunction(special,"∛","cbrt");
@@ -789,7 +857,7 @@
       pad.appendChild(special);
     }else{
       const funcs=document.createElement("div");
-      funcs.className="bm-calc-function-row";
+      funcs.className="bm-calc-function-row bm-calc-balanced-row";
       [["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"],["ln","ln"],["√","sqrt"],["|u|","abs"]].forEach(([lab,name])=>addFunction(funcs,lab,name));
       if(mode==="derivative"&&document.querySelector('input[data-bm-inverse-trig-keypad="1"]')){
         [["sin⁻¹","asin"],["cos⁻¹","acos"],["tan⁻¹","atan"],["cot⁻¹","acot"],["sec⁻¹","asec"],["csc⁻¹","acsc"],["log","log"]].forEach(([lab,name])=>addFunction(funcs,lab,name));
@@ -805,7 +873,18 @@
 
     const g=document.createElement("div");
     g.className="bm-calc-main-grid";
-    if(mode==="unit3"){
+    if(contextualUnit3){
+      const rows=[
+        ["7","7"],["8","8"],["9","9"],["(","("],[")",")"],
+        ["4","4"],["5","5"],["6","6"],["+","+"],["−","-"],
+        ["1","1"],["2","2"],["3","3"],["·","*"],["=","="],
+        ["0","0"],[".","."]
+      ];
+      if(contextualUnit3.equation)rows.push(["x","x"],["y","y"]);
+      else if(contextualUnit3.sequence||contextualUnit3.recursive)rows.push(["n","n"]);
+      else if(contextualUnit3.list)rows.push(["c","c"],[",",","]);
+      rows.forEach(([lab,raw])=>addInsert(g,lab,raw,/[+−·()=,]/.test(lab)?"symbol":""));
+    }else if(mode==="unit3"){
       [["7","7"],["8","8"],["9","9"],["(","("],[")",")"],
        ["4","4"],["5","5"],["6","6"],["+","+"],["−","-"],
        ["1","1"],["2","2"],["3","3"],["·","*"],["=","="],
@@ -835,9 +914,21 @@
     }
     pad.appendChild(g);
 
-    if(mode==="unit3"){
+    if(contextualUnit3&&(contextualUnit3.sequence||contextualUnit3.recursive||contextualUnit3.equation)){
       const extras=document.createElement("div");
-      extras.className="bm-calc-function-row bm-calc-unit3-extra-row";
+      extras.className="bm-calc-function-row bm-calc-unit3-extra-row bm-calc-balanced-row";
+      if(contextualUnit3.equation){
+        addInsert(extras,"f(x)","f(x)","function","Insert f of x");
+      }else{
+        addInsert(extras,"a₁","a₁","function","Insert a sub one");
+        addInsert(extras,"aₙ","aₙ","function","Insert a sub n");
+        if(contextualUnit3.recursive)addInsert(extras,"aₙ₋₁","aₙ₋₁","function","Insert a sub n minus one");
+        if(contextualUnit3.recursive)addInsert(extras,",",",","symbol","Comma between recursive conditions");
+      }
+      pad.appendChild(extras);
+    }else if(mode==="unit3"){
+      const extras=document.createElement("div");
+      extras.className="bm-calc-function-row bm-calc-unit3-extra-row bm-calc-balanced-row";
       addInsert(extras,"a₁","a₁","function","Insert a sub one");
       addInsert(extras,"aₙ","aₙ","function","Insert a sub n");
       addInsert(extras,"aₙ₋₁","aₙ₋₁","function","Insert a sub n minus one");
@@ -852,7 +943,7 @@
     }
 
     const u=document.createElement("div");
-    u.className="bm-calc-utility-row";
+    u.className="bm-calc-utility-row bm-calc-balanced-row";
     if(mode==="integral")addInsert(u,",",",","symbol","Comma between multiple values");
     u.appendChild(key("←","utility navigation",()=>move(-1),"Move cursor left"));
     u.appendChild(key("→","utility navigation",()=>move(1),"Move cursor right"));
@@ -863,6 +954,7 @@
     u.appendChild(key("Clear","utility",clear,"Clear answer"));
     u.appendChild(key("Check","check",check,"Check answer"));
     pad.appendChild(u);
+    normalizePadLayout(pad);
     return pad;
   }
 

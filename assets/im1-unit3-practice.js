@@ -270,6 +270,7 @@ function createSharedKeypad(inputs,keypadMode){
   const handler=action==='back'?()=>set(active.value.slice(0,-1)):action==='clear'?()=>set(''):action==='check'?checkStructured:action==='minus'?()=>append('-'):action==='times'?()=>append('*'):action==='label'?()=>append('aₙ='):action==='insert'?()=>append(insertValue):()=>append(label);
   const button=makeButton(label,className,handler,action==='back'?'Backspace':undefined);if(action==='check')button.id='checkBtn';pad.appendChild(button);
  }
+ window.BatchMathKeypad?.layoutUnit2?.(pad);
  byId('answerArea').appendChild(pad);activate(active);requestAnimationFrame(()=>active.focus({preventScroll:true}));
 }
 function renderStructured(){
@@ -289,7 +290,8 @@ function renderStructured(){
  const keypadMode=fields.some(field=>field.check==='line')?'equation':fields.some(field=>field.check==='recursive'||field.check==='recursive-rule')?'recursive':fields.some(field=>field.check==='formula')?'formula':'number';
  byId('answerArea').appendChild(grid);
  if(fields.some(field=>['line','initial-term','formula','recursive','recursive-rule'].includes(field.check))&&window.BatchMathCalculusKeypad?.mountInputs){
-  window.BatchMathCalculusKeypad.mountInputs(inputs,byId('answerArea'),{mode:'unit3',onCheck:checkStructured});
+  const sharedMode={equation:'unit3-equation',formula:'unit3-formula',recursive:'unit3-recursive',number:'unit3-number'}[keypadMode]||'unit3-number';
+  window.BatchMathCalculusKeypad.mountInputs(inputs,byId('answerArea'),{mode:sharedMode,onCheck:checkStructured});
  }else createSharedKeypad(inputs,keypadMode);
 }
 function render(){

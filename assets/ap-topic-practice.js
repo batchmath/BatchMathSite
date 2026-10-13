@@ -16,6 +16,11 @@ function cleanDisplayMath(value){if(typeof value!=='string')return value;const p
 function cleanProblemDisplay(p){
  for(const key of ['questionHtml','explanation','answerTex','hint','stage1Prompt','stage2Prompt'])if(key in p)p[key]=cleanDisplayMath(p[key]);
  for(const key of ['choices','stage1Choices'])if(Array.isArray(p[key]))p[key]=p[key].map(cleanDisplayMath);
+ for(const stageKey of ['stage1','stage2']){
+  const stage=p[stageKey];if(!stage||typeof stage!=='object')continue;
+  for(const key of ['prompt','explanation','answerTex','correctFeedback'])if(key in stage)stage[key]=cleanDisplayMath(stage[key]);
+  if(Array.isArray(stage.choices))stage.choices=stage.choices.map(cleanDisplayMath);
+ }
  return p;
 }
 function make(){
@@ -24,22 +29,31 @@ function make(){
  let candidate=null;for(let tries=0;tries<12;tries++){candidate=gen(generatorOptions());if(!candidate||!recentIds.includes(candidate.id))break;}if(!candidate){$('question').textContent='Practice generator unavailable.';return;}cleanProblemDisplay(candidate);
  current=candidate;current.answered=false;recentIds.push(current.id);while(recentIds.length>6)recentIds.shift();current.problemType=activeSlug;current.problemVariant=current.variant;current.generatorVersion=cfg.generatorVersion||'1';current.problemId=current.id;window.BMAnalytics?.ensurePracticeStarted({practice_mode:analyticsMode()});window.BMAnalytics?.problemGenerated(current,{practice_mode:analyticsMode()});
  $('question').innerHTML=current.questionHtml;const box=$('choices');box.innerHTML='';box.className='choice-grid';if(current.fullWidthChoices||current.calculatorActive)box.classList.add('single-column');$('feedback').className='feedback';$('feedback').innerHTML='';if(cfg.unit1)delete $('feedback').dataset.answerState;$('next').hidden=true;
- if(current.answerType==='numeric'){renderNumeric(box);}else if(current.answerType==='exact-expression'){renderExactExpression(box);}else if(current.answerType==='text-answer'){renderTextAnswer(box);}else if(current.answerType==='interval-answer'){renderIntervalAnswer(box);}else if(current.answerType==='line-equation'){renderLineEquation(box);}else if(current.answerType==='value-list'){renderValueList(box);}else if(current.answerType==='rounded-line-fields'){renderRoundedLineFields(box);}else if(current.answerType==='ordered-pair'){renderOrderedPair(box);}else if(current.answerType==='extremum-fields'){renderExtremumFields(box);}else if(current.answerType==='coordinate-fields'){renderCoordinateFields(box);}else if(current.answerType==='parameter-fields'){renderParameterFields(box);}else if(current.answerType==='two-stage'){renderTwoStage(box);}else if(current.answerType==='approximation-fields'){renderApproximationFields(box);}else if(current.answerType==='approx-classification'){renderComposite(box);}else renderChoices(box);
+ if(current.answerType==='numeric'){renderNumeric(box);}else if(current.answerType==='exact-expression'){renderExactExpression(box);}else if(current.answerType==='text-answer'){renderTextAnswer(box);}else if(current.answerType==='interval-answer'){renderIntervalAnswer(box);}else if(current.answerType==='line-equation'){renderLineEquation(box);}else if(current.answerType==='value-list'){renderValueList(box);}else if(current.answerType==='rounded-line-fields'){renderRoundedLineFields(box);}else if(current.answerType==='ordered-pair'){renderOrderedPair(box);}else if(current.answerType==='extremum-fields'){renderExtremumFields(box);}else if(current.answerType==='coordinate-fields'){renderCoordinateFields(box);}else if(current.answerType==='parameter-fields'){renderParameterFields(box);}else if(current.answerType==='staged-calculus'){renderStagedCalculus(box);}else if(current.answerType==='two-stage'){renderTwoStage(box);}else if(current.answerType==='approximation-fields'){renderApproximationFields(box);}else if(current.answerType==='approx-classification'){renderComposite(box);}else renderChoices(box);
+ box.querySelectorAll('.u1-keypad:not(.u1-keypad-standardized)').forEach(pad=>window.BMUnit1UI?.layoutKeypad?.(pad));
  typeset([$('question'),box]);
 }
 function renderChoices(box){for(let i=0;i<(current.choices||[]).length;i++){const c=current.choices[i],s=String(c),b=document.createElement('button');b.type='button';b.className='choice';b.dataset.index=String(i);const delimited=/\\\(|\\\[/.test(s);const mathLike=/\\[A-Za-z]+|[=<>≤≥±∞π^_]|^\s*[xyft]\s*(?:=|<|>|≤|≥)|^\s*\(?[-+]?\d/.test(s);if(current.choicesHtml||delimited)b.innerHTML=s;else if(current.choicesAreText&&!mathLike)b.textContent=s;else b.innerHTML=`\\(${s}\\)`;b.addEventListener('click',()=>choose(i,b));box.appendChild(b);}}
 function insertAtCursor(input,token){if(!input||input.disabled)return;let a=input.selectionStart??input.value.length,z=input.selectionEnd??a;if(token==='clear'){input.value='';a=0;}else if(token==='backspace'){if(a===z)a=Math.max(0,a-1);input.value=input.value.slice(0,a)+input.value.slice(z);}else{input.value=input.value.slice(0,a)+token+input.value.slice(z);a+=token.length;}input.focus();input.setSelectionRange(a,a);input.dispatchEvent(new Event('input',{bubbles:true}));}
-function mountUnit3Keypad(inputs,box){
+function standardizeU3Keypad(pad){
+ const digits={7:[1,1],8:[1,2],9:[1,3],4:[2,1],5:[2,2],6:[2,3],1:[3,1],2:[3,2],3:[3,3],0:[4,3]};
+ const open=[[1,4],[1,5],[2,4],[2,5],[3,4],[3,5],[4,1],[4,2],[4,4],[4,5]],ordinary=[],wide=[];
+ [...pad.children].forEach(button=>{const label=String(button.textContent||'').trim(),cell=digits[label];if(cell){button.style.gridRow=String(cell[0]);button.style.gridColumn=String(cell[1]);}else if(/^(?:Undefined|No Solution|Infinite Solutions|Underestimate|Overestimate)$/i.test(label)){button.classList.add('u3-key-double');wide.push(button);}else ordinary.push(button);});
+ open.forEach((cell,index)=>{const button=ordinary[index];if(button){button.style.gridRow=String(cell[0]);button.style.gridColumn=String(cell[1]);}});
+ const overflow=[...wide,...ordinary.slice(open.length)];if(overflow.length){const continuation=document.createElement('div');continuation.className='u3-keypad-continuation';overflow.forEach(button=>{button.style.gridRow='';button.style.gridColumn='';continuation.appendChild(button);});pad.appendChild(continuation);}
+ pad.classList.add('u3-keypad-standardized');
+}
+function mountUnit3Keypad(inputs,box,mode='unit3',onCheck=null){
  if(!cfg.unit3)return;const list=(Array.isArray(inputs)?inputs:[inputs]).filter(Boolean);if(!list.length)return;
  const checkButton=[...box.querySelectorAll('button')].find(b=>/^Check\b/i.test(b.textContent||''));
  if(window.BatchMathCalculusKeypad?.mountInputs){
-   window.BatchMathCalculusKeypad.mountInputs(list,box,{mode:'unit3',onCheck:()=>{if(checkButton&&!checkButton.disabled)checkButton.click();}});
+   window.BatchMathCalculusKeypad.mountInputs(list,box,{mode,onCheck:onCheck||(()=>{if(checkButton&&!checkButton.disabled)checkButton.click();})});
    return;
  }
  let active=list[0];for(const input of list)input.addEventListener('focus',()=>active=input);
  const pad=document.createElement('div');pad.className='u3-keypad';pad.setAttribute('aria-label','Math answer keypad');
  const keys=[['7','7'],['8','8'],['9','9'],['−','-'],['x','x'],['y','y'],['4','4'],['5','5'],['6','6'],['+','+'],['π','pi'],['e','e'],['1','1'],['2','2'],['3','3'],['×','*'],['ln','ln('],['√','sqrt('],['0','0'],['.','.'],['a/b','/'],['(','('],[')',')'],['x =','x='],['y =','y='],['c =','c='],[',',','],['[','['],[']',']'],['∞','infinity'],['−∞','-infinity'],['∪','U'],['Under','underestimate'],['Over','overestimate'],['^','^'],['⌫','backspace'],['Clear','clear']];
- for(const [label,token] of keys){const b=document.createElement('button');b.type='button';b.className='u3-key';b.textContent=label;b.addEventListener('click',()=>insertAtCursor(active,token));pad.appendChild(b);}box.appendChild(pad);
+ for(const [label,token] of keys){const b=document.createElement('button');b.type='button';b.className='u3-key';b.textContent=label;b.addEventListener('click',()=>insertAtCursor(active,token));pad.appendChild(b);}standardizeU3Keypad(pad);box.appendChild(pad);
 }
 function renderNumeric(box){box.classList.add('composite-answer');const input=document.createElement('input');input.type='text';input.id='numeric-answer';input.className='practice-answer-input';input.placeholder=current.numericPlaceholder||'Enter answer';input.autocomplete='off';input.setAttribute('aria-label',current.numericPlaceholder||'Answer');const button=document.createElement('button');button.type='button';button.className='choice';button.textContent='Check Answer';button.addEventListener('click',()=>chooseNumeric(input));input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();chooseNumeric(input);}});box.append(input,button);if(cfg.unit1)window.BMUnit1UI.keypad(input,box);mountUnit3Keypad(input,box);setTimeout(()=>input.focus(),0);}
 function numericValue(raw){raw=window.BatchMathAnswers?.normalizeFractionSigns(raw) ?? raw;const s=String(raw||'').trim().replace(/,/g,'').replace(/≈/g,'').replace(/π/g,'pi');if(/^[-+]?\d+\s*\/\s*[-+]?\d+$/.test(s)){const [a,b]=s.split('/').map(Number);return b? a/b:NaN;}const direct=Number(s);if(Number.isFinite(direct))return direct;try{const parser=window.BatchMathDerivativeExpressions;return parser.evaluate(parser.parse(s),{});}catch(_){return NaN;}}
@@ -109,6 +123,94 @@ function renderCoordinateFields(box){
  button.addEventListener('click',check);Object.values(inputs).forEach(input=>input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();check();}}));mountUnit3Keypad(Object.values(inputs),box);typeset([box]);setTimeout(()=>inputs.x.focus(),0);
 }
 function renderParameterFields(box){box.classList.add('composite-answer','parameter-fields');const inputs=[];for(const f of current.fields||[]){const label=document.createElement('label');label.className='parameter-field';label.innerHTML=`<span>\\(${f.label}=\\)</span>`;const input=document.createElement('input');input.type='text';input.className='practice-answer-input';input.autocomplete='off';input.placeholder=`Enter ${f.label}`;input.setAttribute('aria-label',`Value of ${f.label}`);label.appendChild(input);box.appendChild(label);inputs.push(input);}let active=inputs[0];inputs.forEach(input=>{input.addEventListener('focus',()=>active=input);input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();check();}});});const hint=document.createElement('button');hint.type='button';hint.className='choice';hint.textContent='Show Hint';hint.addEventListener('click',()=>{hint.disabled=true;const d=document.createElement('div');d.className='feedback shown';d.innerHTML=current.hint||'Match the adjacent branch values at each boundary.';box.appendChild(d);typeset([d]);});const checkButton=document.createElement('button');checkButton.type='button';checkButton.className='choice';checkButton.textContent='Check All Parameters';checkButton.addEventListener('click',check);box.append(hint,checkButton);const pad=document.createElement('div');pad.className='u1-keypad';for(const [label,token] of [['7','7'],['8','8'],['9','9'],['−','-'],['4','4'],['5','5'],['6','6'],['a/b','/'],['1','1'],['2','2'],['3','3'],['.','.'],['0','0'],['⌫','backspace'],['Clear','clear']]){const b=document.createElement('button');b.type='button';b.className='u1-key';b.textContent=label;b.addEventListener('click',()=>{if(!active||active.disabled)return;let a=active.selectionStart??active.value.length,z=active.selectionEnd??a;if(token==='clear'){active.value='';a=0;}else if(token==='backspace'){if(a===z)a=Math.max(0,a-1);active.value=active.value.slice(0,a)+active.value.slice(z);}else{active.value=active.value.slice(0,a)+token+active.value.slice(z);a+=token.length;}active.focus();active.setSelectionRange(a,a);});pad.appendChild(b);}box.appendChild(pad);function check(){if(!current||current.answered)return;const parsed=inputs.map(input=>window.BMUnit1UI.parse(input.value));const bad=parsed.findIndex(p=>p.error||p.kind!=='num');if(bad>=0){inputs[bad].classList.add('wrong');$('feedback').className='feedback shown';$('feedback').dataset.answerState='invalid';$('feedback').innerHTML='<div class="result bad">Enter a valid number or fraction in every parameter field. No attempt counted.</div>';inputs[bad].focus();return;}current.answered=true;const oks=parsed.map((p,i)=>Math.abs(p.value-Number(current.fields[i].numericAnswer))<=Number(current.fields[i].numericTolerance||1e-8)),ok=oks.every(Boolean);finishAnalytics(ok);inputs.forEach((input,i)=>{input.disabled=true;input.classList.add(oks[i]?'correct':'wrong');});box.querySelectorAll('button').forEach(b=>b.disabled=true);$('feedback').dataset.answerState='answered';$('feedback').className='feedback shown';const answer=current.fields.map(f=>`\\(${f.label}=${f.answerTex}\\)`).join(', ');$('feedback').innerHTML=`<div class="result ${ok?'good':'bad'}">${ok?'All parameters are correct.':'At least one parameter needs correction.'}</div>${ok?'':`<div class="correct-answer">Correct values: ${answer}</div><div class="method">${current.explanation||''}</div>`}`;$('next').hidden=false;if(ok)window.BMUnit1UI.methodButton($('feedback'),current.explanation||'',()=>window.BMAnalytics?.solutionRevealed(current,{reveal_reason:'requested_method'}));typeset([$('feedback')]);setTimeout(()=>$('next').focus(),0);}setTimeout(()=>active?.focus(),0);}
+/*
+ * Unit 3 theorem/approximation engines use a shared, genuinely staged answer
+ * flow. Part 1 is checked before Part 2 is exposed. A correct stage can be
+ * advanced with Enter; a wrong stage requires the visible Continue/Next
+ * control so one physical keypress never skips the worked feedback.
+ */
+function renderStagedCalculus(box){
+ const stage1=current.stage1||{},stage2=current.stage2||null;
+ box.classList.add('composite-answer','staged-calculus-answer');
+ current.blockEnterAdvance=true;current.enterAdvanceAllowed=false;current.pendingStageAdvance=null;
+ current.requirePhysicalNextClick=false;current.nextPointerArmed=false;
+ current.stage1Answered=false;current.stage1Correct=false;current.stage2Answered=false;current.stage2Visible=false;
+
+ const panel=document.createElement('section');panel.className='staged-part staged-part-one';panel.setAttribute('aria-label','Part 1');box.appendChild(panel);
+ renderPrompt(panel,stage1.prompt||'Part 1');
+ renderStageControl(stage1,panel,(ok)=>finishStage1(ok));
+
+ function renderPrompt(host,text){const prompt=document.createElement('div');prompt.className='question-prompt staged-part-prompt';prompt.innerHTML=text;host.appendChild(prompt);}
+ function stageAnswerText(stage){return stage.answerTex||stage.choices?.[stage.correctIndex]||'';}
+ function stageFeedback(host,stage,ok,{showExplanation=true,label='Part 1'}={}){
+  const note=document.createElement('div');note.className='feedback shown staged-feedback';note.tabIndex=-1;
+  const correctAnswer=!ok&&stageAnswerText(stage)?`<div class="correct-answer">Correct answer: ${stage.answerIsText?stageAnswerText(stage):`\\(${stageAnswerText(stage)}\\)`}</div>`:'';
+  const explanation=showExplanation&&stage.explanation?`<div class="method">${stage.explanation}</div>`:'';
+  note.innerHTML=`<div class="result ${ok?'good':'bad'}">${ok?(stage.correctFeedback||`${label} is correct.`):(stage.incorrectFeedback||`${label} is not correct.`)}</div>${correctAnswer}${explanation}`;
+  host.appendChild(note);typeset([note]);return note;
+ }
+ function normalizeStageRaw(raw){return String(raw||'').trim().replace(/[−–—]/g,'-').replace(/^\s*(?:c|x|y|L\([^)]*\)|S\([^)]*\))\s*=\s*/i,'');}
+ function decimalLiteralUsed(raw){return /(?:^|[^A-Za-z])(?:\d*\.\d+)/.test(String(raw||''));}
+ function exactResult(raw,stage){
+  const cleaned=normalizeStageRaw(raw);
+  if(!cleaned)return{valid:false,message:stage.requireExact?'Enter an exact answer before checking.':'Enter an answer before checking.'};
+  if(stage.requireExact&&decimalLiteralUsed(cleaned))return{valid:true,ok:false,format:true};
+  if(stage.type==='exact-list'){
+   const parsed=parseValueList(cleaned);if(!parsed.valid)return{valid:false,message:'Enter every exact value, separated by commas.'};
+   const expected=[...(stage.expectedValues||[])].map(Number).sort((a,b)=>a-b),received=[...parsed.values].sort((a,b)=>a-b),tol=Number(stage.tolerance||1e-7);
+   return{valid:true,ok:expected.length===received.length&&expected.every((value,index)=>Math.abs(value-received[index])<=tol)};
+  }
+  if(Array.isArray(stage.acceptedExpressions)&&stage.acceptedExpressions.length){
+   const parser=window.BatchMathDerivativeExpressions;
+   if(parser?.parse&&parser?.evaluate&&parser?.equivalent){
+    try{parser.evaluate(parser.parse(cleaned),{});}catch(_){return{valid:false,message:stage.requireExact?'Enter a valid exact numerical expression.':'Enter a valid numerical expression.'};}
+    const tolerance=Number(stage.tolerance||1e-7);
+    return{valid:true,ok:stage.acceptedExpressions.some(expected=>parser.equivalent(cleaned,String(expected),[{}],tolerance))};
+   }
+  }
+  const value=exactScalarValue(cleaned);if(!Number.isFinite(value))return{valid:false,message:stage.requireExact?'Enter a valid exact numerical expression.':'Enter a valid numerical expression.'};
+  return{valid:true,ok:Math.abs(value-Number(stage.numericAnswer))<=Number(stage.tolerance||1e-7)};
+ }
+ function renderStageControl(stage,host,done){
+  if(stage.type==='choice'){
+   const grid=document.createElement('div');grid.className='choice-grid staged-choice-grid';host.appendChild(grid);
+   (stage.choices||[]).forEach((choice,index)=>{const button=document.createElement('button');button.type='button';button.className='choice staged-choice';button.innerHTML=choice;button.addEventListener('click',()=>{if(stage._answered)return;stage._answered=true;const ok=index===stage.correctIndex;grid.querySelectorAll('.choice').forEach((item,itemIndex)=>{item.disabled=true;if(itemIndex===stage.correctIndex)item.classList.add('correct');else if(itemIndex===index)item.classList.add('wrong');});done(ok);});grid.appendChild(button);});
+   return;
+  }
+  const input=document.createElement('input');input.type='text';input.className='practice-answer-input staged-exact-input';input.placeholder=stage.placeholder||'Enter an exact answer';input.autocomplete='off';input.autocapitalize='off';input.spellcheck=false;input.setAttribute('aria-label',stage.ariaLabel||stage.placeholder||'Exact answer');
+  const button=document.createElement('button');button.type='button';button.className='choice staged-check';button.textContent=stage.checkLabel||'Check Part 1';
+  const invalid=document.createElement('div');invalid.className='staged-input-message';invalid.setAttribute('aria-live','polite');
+  const check=()=>{if(stage._answered)return;const result=exactResult(input.value,stage);if(!result.valid){input.classList.add('wrong');invalid.textContent=result.message;input.focus();return;}stage._answered=true;invalid.textContent='';input.disabled=true;button.disabled=true;input.classList.add(result.ok?'correct':'wrong');done(result.ok);};
+  button.addEventListener('click',check);input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();event.stopPropagation();check();}});
+  host.append(input,button,invalid);mountUnit3Keypad(input,host,stage.keypadMode||'unit3-exact',check);setTimeout(()=>input.focus(),0);
+ }
+ function finishStage1(ok){
+  current.stage1Answered=true;current.stage1Correct=ok;
+  const showExplanation=!ok||stage1.explainOnCorrect!==false;
+  const note=stageFeedback(panel,stage1,ok,{showExplanation,label:'Part 1'});
+  if(!stage2){finishProblem(ok,note,ok);return;}
+  if(ok&&stage1.autoAdvanceOnCorrect){
+   current.stage2Visible=true;current.pendingStageAdvance=null;current.enterAdvanceAllowed=false;
+   renderPart2();return;
+  }
+  const continueButton=document.createElement('button');continueButton.type='button';continueButton.className='choice staged-continue';continueButton.textContent='Continue to Part 2';
+  const advance=()=>{if(current.stage2Visible)return;current.stage2Visible=true;current.pendingStageAdvance=null;current.enterAdvanceAllowed=false;continueButton.disabled=true;continueButton.hidden=true;renderPart2();};
+  continueButton.addEventListener('click',advance);
+  continueButton.addEventListener('keydown',event=>{if(event.key==='Enter'&&!current.stage1Correct){event.preventDefault();event.stopPropagation();}});
+  panel.appendChild(continueButton);current.pendingStageAdvance=advance;current.enterAdvanceAllowed=ok;
+  if(ok)setTimeout(()=>continueButton.focus(),0);else setTimeout(()=>note.focus(),0);
+ }
+ function renderPart2(){
+  const part=document.createElement('section');part.className='staged-part staged-part-two';part.setAttribute('aria-label','Part 2');box.appendChild(part);renderPrompt(part,stage2.prompt||'Part 2');
+  renderStageControl(stage2,part,(ok)=>{current.stage2Answered=true;const note=stageFeedback(part,stage2,ok,{showExplanation:true,label:'Part 2'});finishProblem(current.stage1Correct&&ok,note,ok);});
+  typeset([part]);
+ }
+ function finishProblem(overallOk,note,lastStageOk=overallOk){
+  current.answered=true;current.pendingStageAdvance=null;current.enterAdvanceAllowed=Boolean(lastStageOk);current.requirePhysicalNextClick=!lastStageOk;current.nextPointerArmed=false;finishAnalytics(overallOk);$('next').hidden=false;
+  if(lastStageOk)setTimeout(()=>{try{$('next').focus({preventScroll:true});}catch(_){$('next').focus();}},0);else setTimeout(()=>note?.focus(),0);
+ }
+}
+
 function renderApproximationFields(box){
  box.classList.add('composite-answer','approximation-fields');const value=document.createElement('input'),kind=document.createElement('input');value.type=kind.type='text';value.className=kind.className='practice-answer-input';value.placeholder='Enter the approximation';kind.placeholder='Enter underestimate or overestimate';value.autocomplete=kind.autocomplete='off';value.setAttribute('aria-label','Approximation');kind.setAttribute('aria-label','Underestimate or overestimate');const button=document.createElement('button');button.type='button';button.className='choice line-check';button.textContent='Check Both Answers';box.append(value,kind,button);mountUnit3Keypad([value,kind],box);const check=()=>{if(!current||current.answered)return;const numeric=numericValue(value.value),word=normalizeWords(kind.value).replace(/\s+/g,''),expected=current.approximationAnswer||{},numericOk=Number.isFinite(numeric)&&Math.abs(numeric-Number(expected.value))<=Number(current.numericTolerance||.001),classOk=expected.classification==='under'?['under','underestimate'].includes(word):['over','overestimate'].includes(word);if(!Number.isFinite(numeric)||!word){invalidTyped(!Number.isFinite(numeric)?value:kind,'Enter both the approximation and its classification.');return;}current.answered=true;const ok=numericOk&&classOk;finishAnalytics(ok);value.disabled=kind.disabled=button.disabled=true;value.classList.add(numericOk?'correct':'wrong');kind.classList.add(classOk?'correct':'wrong');$('feedback').className='feedback shown';const message=ok?'Both entries are correct.':numericOk?'The approximation is correct, but the classification is not.':classOk?'The classification is correct, but the approximation is not.':'Both entries need correction.';$('feedback').innerHTML=`<div class="result ${ok?'good':'bad'}">${message}</div>${ok?'':`<div class="correct-answer">Correct answer: \\(${current.answerTex||current.numericAnswer}\\), ${expected.classification==='under'?'underestimate':'overestimate'}</div>`}<div class="method">${current.explanation||''}</div>`;$('next').hidden=false;typeset([$('feedback')]);setTimeout(()=>$('next').focus(),0);};button.addEventListener('click',check);for(const input of [value,kind])input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();check();}});setTimeout(()=>value.focus(),0);
 }
@@ -122,7 +224,26 @@ function renderTwoStage(box){
 function chooseStage1(i,row){if(current.stage1Answered)return;current.stage1Answered=true;current.stage1Correct=i===current.stage1CorrectIndex;row.querySelectorAll('.choice').forEach((b,j)=>{b.disabled=true;if(j===current.stage1CorrectIndex)b.classList.add('correct');else if(j===i)b.classList.add('wrong')});const note=document.createElement('div');note.className='feedback shown';note.innerHTML=current.stage1Correct?'<div class="result good">Part 1 correct.</div>':`<div class="result bad">Part 1 is not correct.</div><div class="correct-answer">Correct representation: \\(${current.stage1Choices[current.stage1CorrectIndex]}\\)</div>`;$('choices').appendChild(note);const p=document.createElement('div');p.className='question-prompt';p.textContent=current.stage2Prompt||'Part 2: Evaluate the definite integral.';$('choices').appendChild(p);const input=document.createElement('input');input.type='text';input.id='stage2-answer';input.className='practice-answer-input';input.placeholder='Enter final value';input.autocomplete='off';const button=document.createElement('button');button.type='button';button.className='choice';button.textContent='Check Part 2';button.addEventListener('click',()=>chooseStage2(input));input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();chooseStage2(input);}});$('choices').append(input,button);typeset([$('choices')]);setTimeout(()=>input.focus(),0);}
 function chooseStage2(input){if(!current||current.answered)return;const val=numericValue(input.value);if(!Number.isFinite(val)){input.classList.add('wrong');return;}current.answered=true;const tol=Number(current.numericTolerance||1e-8),part2=Math.abs(val-Number(current.numericAnswer))<=tol,ok=current.stage1Correct&&part2;finishAnalytics(ok);input.disabled=true;input.classList.add(part2?'correct':'wrong');$('feedback').className='feedback shown';$('feedback').innerHTML=`<div class="result ${ok?'good':'bad'}">${ok?'Both parts correct.':part2?'Part 2 is correct; review Part 1.':'Check the evaluation in Part 2.'}</div>${part2?'':`<div class="correct-answer">Correct value: \\(${current.answerTex||current.numericAnswer}\\)</div>`}<div class="method">${ok&&cfg.unit1?'':current.explanation||''}</div>`;$('next').hidden=false;if(cfg.unit1&&ok)window.BMUnit1UI.methodButton($('feedback'),current.explanation||'',()=>window.BMAnalytics?.solutionRevealed(current,{reveal_reason:'requested_method'}));typeset([$('feedback')]);setTimeout(()=>{try{$('next').focus({preventScroll:true});}catch(_){$('next').focus();}},0);}
 function choose(i,b){if(!current||current.answered)return;current.answered=true;const ok=i===current.correctIndex;finishAnalytics(ok);document.querySelectorAll('#choices > .choice, #choices .choice-grid > .choice').forEach((x,j)=>{x.disabled=true;if(j===current.correctIndex)x.classList.add('correct');else if(j===i)x.classList.add('wrong')});$('feedback').className='feedback shown';$('feedback').innerHTML=`<div class="result ${ok?'good':'bad'}">${ok?'Correct.':'Not quite.'}</div><div class="method">${ok&&cfg.unit1?'':current.explanation||''}</div>`;$('next').hidden=false;if(cfg.unit1&&ok)window.BMUnit1UI.methodButton($('feedback'),current.explanation||'',()=>window.BMAnalytics?.solutionRevealed(current,{reveal_reason:'requested_method'}));typeset([$('feedback')]);setTimeout(()=>{try{$('next').focus({preventScroll:true});}catch(_){$('next').focus();}},0);}
-$('next').addEventListener('click',make);const ids=Array.isArray(cfg.modeSelectIds)?cfg.modeSelectIds:(cfg.modeSelectId?[cfg.modeSelectId]:[]);for(const id of ids){if($(id))$(id).addEventListener('change',make);}document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.defaultPrevented&&current?.answered&&!$('next').hidden){e.preventDefault();make();}});make();setTimeout(()=>typeset(),500);
+const nextButton=$('next');
+nextButton.addEventListener('pointerdown',()=>{if(current)current.nextPointerArmed=true;});
+nextButton.addEventListener('pointercancel',()=>{if(current)current.nextPointerArmed=false;});
+nextButton.addEventListener('click',event=>{if(current?.requirePhysicalNextClick&&!current.nextPointerArmed){event.preventDefault();event.stopPropagation();return;}if(current)current.nextPointerArmed=false;make();});
+nextButton.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&current?.requirePhysicalNextClick){event.preventDefault();event.stopPropagation();return;}if(event.key==='Enter'&&current?.blockEnterAdvance&&!current.enterAdvanceAllowed){event.preventDefault();event.stopPropagation();}});
+const ids=Array.isArray(cfg.modeSelectIds)?cfg.modeSelectIds:(cfg.modeSelectId?[cfg.modeSelectId]:[]);for(const id of ids){if($(id))$(id).addEventListener('change',make);}
+document.addEventListener('keydown',event=>{if(event.key==='Enter'&&current?.requirePhysicalNextClick){event.preventDefault();event.stopImmediatePropagation();}},true);
+document.addEventListener('keydown',event=>{
+ if(event.key!=='Enter'||event.defaultPrevented||event.repeat)return;
+ if(current?.pendingStageAdvance){
+  if(!current.enterAdvanceAllowed){event.preventDefault();return;}
+  if(document.activeElement?.tagName==='BUTTON')return;
+  event.preventDefault();current.pendingStageAdvance();return;
+ }
+ if(!current?.answered||$('next').hidden)return;
+ if(current.blockEnterAdvance&&!current.enterAdvanceAllowed){event.preventDefault();return;}
+ if(document.activeElement?.tagName==='BUTTON')return;
+ event.preventDefault();make();
+});
+make();setTimeout(()=>typeset(),500);
 function splitOrderedPair(raw){
  const text=String(raw||'').trim().replace(/[−–—]/g,'-');if(text[0]!=='('||text.at(-1)!==')')return null;const body=text.slice(1,-1);let depth=0,comma=-1;
  for(let i=0;i<body.length;i++){if(body[i]==='(')depth++;else if(body[i]===')')depth--;else if(body[i]===','&&depth===0){if(comma>=0)return null;comma=i;}}

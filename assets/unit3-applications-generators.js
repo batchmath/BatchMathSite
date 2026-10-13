@@ -3,7 +3,7 @@
 
 /*
  * BatchMath AP Calculus AB — Unit 3 Applications of the Derivative
- * Version 11.13 curriculum layer.
+ * Version 12.4 curriculum layer.
  *
  * This file intentionally sits on top of ap-topic-generators.js.  It keeps the
  * common renderer, answer parser, analytics hooks, and seeded RNG while giving
@@ -122,6 +122,9 @@ function normalizeMathInequalities(value){
 function stamp(p,slug,mode,source,family){
   if(!p)return p;
   const clean=s=>typeof s!=='string'?s:normalizeTexSigns(normalizeMathInequalities(s))
+    .replace(/\\frac\s*0\s*0/g,'\\frac{0}{0}')
+    .replace(/\\\(0\/0\\\)/g,'\\(\\frac{0}{0}\\)')
+    .replace(/\\\(\\infty\/\\infty\\\)/g,'\\(\\frac{\\infty}{\\infty}\\)')
     .replace(/\+\s*-/g,'- ')
     .replace(/-\s*-/g,'+ ')
     .replace(/\^\{1\}/g,'')
@@ -131,6 +134,14 @@ function stamp(p,slug,mode,source,family){
     .replace(/(?<![.\d])\b1(?=\\(?:sin|cos|tan|sec|csc|cot|ln|log|sqrt))/g,'')
     .replace(/-1(?=\\(?:sin|cos|tan|sec|csc|cot|ln|log|sqrt))/g,'-');
   for(const key of ['questionHtml','explanation','answerTex','hint'])if(key in p)p[key]=clean(p[key]);
+  for(const stageKey of ['stage1','stage2']){
+    const stage=p[stageKey];
+    if(!stage)continue;
+    for(const key of ['prompt','explanation','answerTex','correctFeedback','incorrectFeedback']){
+      if(key in stage)stage[key]=clean(stage[key]);
+    }
+    if(Array.isArray(stage.choices))stage.choices=stage.choices.map(clean);
+  }
   if(Array.isArray(p.choices)){
     const correct=clean(p.choices[p.correctIndex]),seen=new Set(),choices=[];
     for(const value of p.choices.map(clean)){if(!seen.has(value)){seen.add(value);choices.push(value);}}
@@ -1036,6 +1047,1324 @@ function lhopitalTest(){
   return mc('u3-lh-test','test_lhopital_repeated',`Evaluate the limit.`,`\\displaystyle\\lim_{x\\to0}\\frac{e^x-1-x}{x^2}`,'\\frac12',['0','1','2'],`Direct substitution gives \\(\\frac00\\). Differentiate numerator and denominator twice: \\(\\frac{e^x}{2}\\to\\frac12\\).`);
 }
 U3['l-hopital-s-rule']=(opts={})=>weighted('l-hopital-s-rule','noncalculator',[()=>old('l-hopital-s-rule')],[lhopitalTest,()=>old('l-hopital-s-rule')]);
+
+/* Version 12.2 staged practice shared by Topics 12–14 and Unit 3 Review. */
+const u3QValue=q=>q.n/q.d;
+const u3Factorial=n=>{let value=1;for(let k=2;k<=n;k++)value*=k;return value;};
+function u3WorkedSteps(items){
+  return '<div class="worked-method"><div class="worked-steps">'+items.map(function(step,index){
+    return '<p><strong>Step '+(index+1)+':</strong> '+step+'</p>';
+  }).join('')+'</div></div>';
+}
+function u3WorkedNote(text){
+  return text?'<div class="worked-note"><strong>Note:</strong> '+text+'</div>':'';
+}
+
+/* 12. Tangent and Secant Line Approximations — exact Part 1, concavity Part 2. */
+const U3_APPROX_CHOICES=[
+  'Overestimate because the function is concave up on the interval',
+  'Overestimate because the function is concave down on the interval',
+  'Underestimate because the function is concave up on the interval',
+  'Underestimate because the function is concave down on the interval'
+];
+function u3ApproximationProblem(spec){
+  const classification=spec.method==='tangent'
+    ?(spec.concavity==='up'?'under':'over')
+    :(spec.concavity==='up'?'over':'under');
+  const correctChoice=(classification==='over'?'Overestimate':'Underestimate')+
+    ' because the function is concave '+spec.concavity+' on the interval';
+  const geometricReason=spec.method==='tangent'
+    ?'For a concave '+spec.concavity+' function, the tangent line lies '+
+      (spec.concavity==='up'?'below':'above')+' the graph. Therefore the tangent-line approximation is an '+classification+'estimate.'
+    :'For a concave '+spec.concavity+' function, the secant line lies '+
+      (spec.concavity==='up'?'above':'below')+' the graph. Therefore the secant-line approximation is an '+classification+'estimate.';
+  return {
+    id:spec.id,
+    variant:spec.variant,
+    answerType:'staged-calculus',
+    stagedFamily:'tangent-secant',
+    approximationMethod:spec.method,
+    concavity:spec.concavity,
+    functionFamily:spec.functionFamily||spec.variant,
+    secantTargetFraction:spec.secantTargetFraction||null,
+    secantTargetIsMidpoint:Boolean(spec.secantTargetIsMidpoint),
+    questionHtml:'<div class="u3-staged-question"><div class="question-prompt">'+spec.prompt+'</div><div>\\('+spec.functionTex+'\\)</div></div>',
+    stage1:{
+      type:'exact',
+      prompt:'Part 1: Find the approximation.',
+      numericAnswer:spec.answerValue,
+      acceptedExpressions:spec.acceptedExpressions||null,
+      answerTex:spec.answerTex,
+      requireExact:true,
+      tolerance:1e-7,
+      placeholder:'Enter the exact approximation',
+      checkLabel:'Check Part 1',
+      keypadMode:'unit3-approximation',
+      explainOnCorrect:false,
+      correctFeedback:'The exact approximation is correct.',
+      incorrectFeedback:'The approximation is not correct.',
+      explanation:u3WorkedSteps(spec.approximationSteps)+u3WorkedNote(spec.approximationNote)
+    },
+    stage2:{
+      type:'choice',
+      prompt:'Part 2: On the actual interval \\('+spec.intervalTex+'\\), is this an overestimate or underestimate, and why?',
+      choices:U3_APPROX_CHOICES,
+      correctIndex:U3_APPROX_CHOICES.indexOf(correctChoice),
+      answerTex:correctChoice,
+      answerIsText:true,
+      correctFeedback:'The classification and concavity reason are correct.',
+      incorrectFeedback:'That classification or concavity reason is not correct.',
+      explanation:u3WorkedSteps([
+        'Differentiate again: \\('+spec.secondDerivative+'\\). On \\('+spec.intervalTex+'\\), this is '+(spec.concavity==='up'?'positive':'negative')+', so \\(f\\) is concave '+spec.concavity+'.',
+        geometricReason
+      ])
+    },
+    answerTex:spec.answerTex,
+    fullWidthChoices:true
+  };
+}
+function u3QInterval(a,b){
+  return a.n/a.d<=b.n/b.d?'['+qTex(a)+','+qTex(b)+']':'['+qTex(b)+','+qTex(a)+']';
+}
+function u3TangentApproximation(){
+  const family=pick(['quadratic','cubic','reciprocal','reciprocal-square','radical','logarithm','exponential','sine','cosine']);
+  if(family==='quadratic'){
+    const A=pick([-3,-2,-1,1,2,3]),B=ri(-5,5),C=ri(-6,6),a=ri(-3,3);
+    const h=pick([Q(1,2),Q(-1,2),Q(1,3),Q(-1,3)]),target=qAdd(Q(a),h);
+    const fa=A*a*a+B*a+C,slope=2*A*a+B,answer=qAdd(Q(fa),qMul(Q(slope),h));
+    return u3ApproximationProblem({
+      id:'u3-ts-tq-'+A+'-'+B+'-'+C+'-'+a+'-'+h.n+'-'+h.d,
+      variant:'tangent_quadratic',
+      method:'tangent',
+      concavity:A>0?'up':'down',
+      functionTex:'f(x)='+quad(A,B,C),
+      prompt:'Use the tangent line to \\(f\\) at \\(x='+a+'\\) to approximate \\(f('+qTex(target)+'\\).',
+      intervalTex:u3QInterval(Q(a),target),
+      answerValue:u3QValue(answer),
+      answerTex:qTex(answer),
+      secondDerivative:"f''(x)="+(2*A),
+      approximationSteps:[
+        'Evaluate the function at the point of tangency: \\(f('+a+')='+fa+'\\).',
+        "Differentiate: \\(f'(x)="+lin(2*A,B)+"\\), so \\(f'("+a+')='+slope+'\\).',
+        'Write the actual tangent line: \\(L(x)='+u3PointLineTex(Q(fa),Q(slope),Q(a))+'\\).',
+        'Evaluate it: \\(L('+qTex(target)+')='+u3PointLineTex(Q(fa),Q(slope),Q(a)).replace(/x/g,qTex(target))+'='+qTex(answer)+'\\).'
+      ]
+    });
+  }
+  if(family==='cubic'){
+    const A=pick([-2,-1,1,2]),B=ri(-4,4),a=ri(2,4),h=pick([Q(1,2),Q(-1,2)]);
+    const target=qAdd(Q(a),h),fa=A*a*a*a+B*a,slope=3*A*a*a+B,answer=qAdd(Q(fa),qMul(Q(slope),h));
+    return u3ApproximationProblem({
+      id:'u3-ts-tc-'+A+'-'+B+'-'+a+'-'+h.n,
+      variant:'tangent_cubic',
+      method:'tangent',
+      concavity:A>0?'up':'down',
+      functionTex:'f(x)='+cubic(A,0,B,0),
+      prompt:'Use the tangent line to \\(f\\) at \\(x='+a+'\\) to approximate \\(f('+qTex(target)+'\\).',
+      intervalTex:u3QInterval(Q(a),target),
+      answerValue:u3QValue(answer),
+      answerTex:qTex(answer),
+      secondDerivative:"f''(x)="+(6*A)+'x',
+      approximationSteps:[
+        '\\(f('+a+')='+fa+'\\).',
+        "\\(f'(x)="+quad(3*A,0,B)+"\\), so \\(f'("+a+')='+slope+'\\).',
+        'Write the actual tangent line: \\(L(x)='+u3PointLineTex(Q(fa),Q(slope),Q(a))+'\\).',
+        'Evaluate it: \\(L('+qTex(target)+')='+u3PointLineTex(Q(fa),Q(slope),Q(a)).replace(/x/g,qTex(target))+'='+qTex(answer)+'\\).'
+      ]
+    });
+  }
+  if(family==='reciprocal'||family==='reciprocal-square'){
+    const power=family==='reciprocal'?1:2,a=ri(2,5),h=pick([Q(1,2),Q(-1,2)]);
+    const target=qAdd(Q(a),h),fa=Q(1,a**power),slope=Q(-power,a**(power+1)),answer=qAdd(fa,qMul(slope,h));
+    return u3ApproximationProblem({
+      id:'u3-ts-tr-'+power+'-'+a+'-'+h.n,
+      variant:'tangent_reciprocal_power_'+power,
+      method:'tangent',
+      concavity:'up',
+      functionTex:'f(x)=\\frac{1}{x'+(power===1?'':'^'+power)+'}',
+      prompt:'Use the tangent line to \\(f\\) at \\(x='+a+'\\) to approximate \\(f('+qTex(target)+'\\).',
+      intervalTex:u3QInterval(Q(a),target),
+      answerValue:u3QValue(answer),
+      answerTex:qTex(answer),
+      secondDerivative:power===1?"f''(x)=\\frac{2}{x^3}":"f''(x)=\\frac{6}{x^4}",
+      approximationSteps:[
+        '\\(f('+a+')='+qTex(fa)+'\\).',
+        "\\(f'(x)=-\\frac{"+power+'}{x^{'+(power+1)+"}}\\), so \\(f'("+a+')='+qTex(slope)+'\\).',
+        'Write the actual tangent line: \\(L(x)='+u3PointLineTex(fa,slope,Q(a))+'\\).',
+        'Evaluate it: \\(L('+qTex(target)+')='+u3PointLineTex(fa,slope,Q(a)).replace(/x/g,qTex(target))+'='+qTex(answer)+'\\).'
+      ]
+    });
+  }
+  if(family==='radical'){
+    const r=ri(2,7),a=r*r,h=pick([Q(1),Q(-1)]),target=qAdd(Q(a),h),answer=qAdd(Q(r),Q(h.n,2*r));
+    return u3ApproximationProblem({
+      id:'u3-ts-root-'+r+'-'+h.n,
+      variant:'tangent_square_root',
+      method:'tangent',
+      concavity:'down',
+      functionTex:'f(x)=\\sqrt{x}',
+      prompt:'Use the tangent line to \\(f\\) at \\(x='+a+'\\) to approximate \\(f('+qTex(target)+'\\).',
+      intervalTex:u3QInterval(Q(a),target),
+      answerValue:u3QValue(answer),
+      answerTex:qTex(answer),
+      secondDerivative:"f''(x)=-\\frac{1}{4x^{3/2}}",
+      approximationSteps:[
+        '\\(f('+a+')='+r+'\\).',
+        "\\(f'(x)=\\frac{1}{2\\sqrt{x}}\\), so \\(f'("+a+')=\\frac{1}{'+(2*r)+'}\\).',
+        'Write the actual tangent line: \\(L(x)='+u3PointLineTex(Q(r),Q(1,2*r),Q(a))+'\\).',
+        'Evaluate it: \\(L('+qTex(target)+')='+u3PointLineTex(Q(r),Q(1,2*r),Q(a)).replace(/x/g,qTex(target))+'='+qTex(answer)+'\\).'
+      ]
+    });
+  }
+  if(family==='logarithm'){
+    const h=pick([Q(1,2),Q(-1,2),Q(1,3),Q(-1,3)]),target=qAdd(Q(1),h);
+    return u3ApproximationProblem({
+      id:'u3-ts-log-'+h.n+'-'+h.d,
+      variant:'tangent_logarithm',
+      method:'tangent',
+      concavity:'down',
+      functionTex:'f(x)=\\ln x',
+      prompt:'Use the tangent line to \\(f\\) at \\(x=1\\) to approximate \\(f('+qTex(target)+'\\).',
+      intervalTex:u3QInterval(Q(1),target),
+      answerValue:u3QValue(h),
+      answerTex:qTex(h),
+      secondDerivative:"f''(x)=-\\frac{1}{x^2}",
+      approximationSteps:[
+        '\\(f(1)=\\ln 1=0\\).',
+        "\\(f'(x)=\\frac1x\\), so \\(f'(1)=1\\).",
+        'Write the actual tangent line: \\(L(x)=x-1\\).',
+        '\\(L('+qTex(target)+')='+qTex(target)+'-1='+qTex(h)+'\\).'
+      ]
+    });
+  }
+  if(family==='exponential'){
+    const h=pick([Q(1,2),Q(-1,2),Q(1,3),Q(-1,3)]),answer=qAdd(Q(1),h);
+    return u3ApproximationProblem({
+      id:'u3-ts-exp-'+h.n+'-'+h.d,
+      variant:'tangent_exponential',
+      method:'tangent',
+      concavity:'up',
+      functionTex:'f(x)=e^x',
+      prompt:'Use the tangent line to \\(f\\) at \\(x=0\\) to approximate \\(f('+qTex(h)+'\\).',
+      intervalTex:u3QInterval(Q(0),h),
+      answerValue:u3QValue(answer),
+      answerTex:qTex(answer),
+      secondDerivative:"f''(x)=e^x",
+      approximationSteps:[
+        '\\(f(0)=1\\).',
+        "\\(f'(x)=e^x\\), so \\(f'(0)=1\\).",
+        'Write the actual tangent line: \\(L(x)=1+x\\).',
+        '\\(L('+qTex(h)+')=1+'+qTex(h)+'='+qTex(answer)+'\\).'
+      ]
+    });
+  }
+  if(family==='sine'){
+    const atThird=R()<.5,hSign=R()<.5?-1:1;
+    const aTex=atThird?'\\frac{\\pi}{3}':'\\frac{\\pi}{6}',h=hSign*Math.PI/12;
+    const fa=atThird?Math.sqrt(3)/2:.5,slope=atThird?.5:Math.sqrt(3)/2,answer=fa+slope*h;
+    const targetTex=atThird?'\\frac{'+(hSign>0?5:3)+'\\pi}{12}':'\\frac{'+(hSign>0?3:1)+'\\pi}{12}';
+    const answerTex=atThird?'\\frac{\\sqrt3}{2}'+(hSign>0?'+':'-')+'\\frac{\\pi}{24}':'\\frac12'+(hSign>0?'+':'-')+'\\frac{\\pi\\sqrt3}{24}';
+    return u3ApproximationProblem({
+      id:'u3-ts-sin-'+(atThird?3:6)+'-'+hSign,
+      variant:'tangent_sine',
+      method:'tangent',
+      concavity:'down',
+      functionTex:'f(x)=\\sin x',
+      prompt:'Use the tangent line to \\(f\\) at \\(x='+aTex+'\\) to approximate \\(f('+targetTex+'\\).',
+      intervalTex:hSign>0?'['+aTex+','+targetTex+']':'['+targetTex+','+aTex+']',
+      answerValue:answer,
+      answerTex,
+      secondDerivative:"f''(x)=-\\sin x",
+      approximationSteps:[
+        '\\(f('+aTex+')='+(atThird?'\\frac{\\sqrt3}{2}':'\\frac12')+'\\).',
+        "\\(f'(x)=\\cos x\\), so \\(f'("+aTex+')='+(atThird?'\\frac12':'\\frac{\\sqrt3}{2}')+'\\).',
+        'The change in \\(x\\) is \\('+(hSign>0?'':'-')+'\\frac{\\pi}{12}\\), so the tangent-line value is \\('+answerTex+'\\).'
+      ]
+    });
+  }
+  const hSign=R()<.5?-1:1,h=hSign*Math.PI/12,answer=.5-Math.sqrt(3)*h/2;
+  const targetTex='\\frac{'+(hSign>0?5:3)+'\\pi}{12}',answerTex='\\frac12'+(hSign>0?'-':'+')+'\\frac{\\pi\\sqrt3}{24}';
+  return u3ApproximationProblem({
+    id:'u3-ts-cos-'+hSign,
+    variant:'tangent_cosine',
+    method:'tangent',
+    concavity:'down',
+    functionTex:'f(x)=\\cos x',
+    prompt:'Use the tangent line to \\(f\\) at \\(x=\\frac{\\pi}{3}\\) to approximate \\(f('+targetTex+'\\).',
+    intervalTex:hSign>0?'[\\frac{\\pi}{3},'+targetTex+']':'['+targetTex+',\\frac{\\pi}{3}]',
+    answerValue:answer,
+    answerTex,
+    secondDerivative:"f''(x)=-\\cos x",
+    approximationSteps:[
+      '\\(f(\\frac{\\pi}{3})=\\frac12\\).',
+      "\\(f'(x)=-\\sin x\\), so \\(f'(\\frac{\\pi}{3})=-\\frac{\\sqrt3}{2}\\).",
+      'The change in \\(x\\) is \\('+(hSign>0?'':'-')+'\\frac{\\pi}{12}\\), so the tangent-line value is \\('+answerTex+'\\).'
+    ]
+  });
+}
+function u3SecantApproximation(){
+  const family=pick(['quadratic','cubic','radical','negative-radical','reciprocal','logarithm','exponential','sine']);
+  if(family==='quadratic'||family==='cubic'){
+    const A=pick([-3,-2,-1,1,2,3]),B=ri(-4,4),C=ri(-5,5),left=family==='cubic'?ri(1,2):ri(-3,1),right=left+pick([2,4]);
+    const target=Q(left+right,2),value=family==='cubic'?x=>A*x**3+B*x+C:x=>A*x*x+B*x+C;
+    const fl=value(left),fr=value(right),answer=Q(fl+fr,2);
+    return u3ApproximationProblem({
+      id:'u3-ts-s'+family+'-'+A+'-'+B+'-'+C+'-'+left+'-'+right,
+      variant:'secant_'+family,
+      method:'secant',
+      concavity:A>0?'up':'down',
+      functionTex:'f(x)='+(family==='cubic'?cubic(A,0,B,C):quad(A,B,C)),
+      prompt:'Use the secant line through \\(x='+left+'\\) and \\(x='+right+'\\) to approximate \\(f('+qTex(target)+'\\).',
+      intervalTex:'['+left+','+right+']',
+      answerValue:u3QValue(answer),
+      answerTex:qTex(answer),
+      secondDerivative:family==='cubic'?"f''(x)="+(6*A)+'x':"f''(x)="+(2*A),
+      approximationSteps:[
+        'Evaluate the endpoints: \\(f('+left+')='+fl+'\\) and \\(f('+right+')='+fr+'\\).',
+        'The target is the midpoint, so its secant-line value is the average of the endpoint values.',
+        '\\(S('+qTex(target)+')=\\frac{'+fl+(fr<0?'':'+')+fr+'}{2}='+qTex(answer)+'\\).'
+      ]
+    });
+  }
+  if(family==='radical'||family==='negative-radical'){
+    const p=ri(1,4),q=p+pick([1,2,3]),left=p*p,right=q*q,target=Q(left+right,2),sign=family==='radical'?1:-1,answer=Q(sign*(p+q),2);
+    return u3ApproximationProblem({
+      id:'u3-ts-sroot-'+sign+'-'+p+'-'+q,
+      variant:sign>0?'secant_square_root':'secant_negative_square_root',
+      method:'secant',
+      concavity:sign>0?'down':'up',
+      functionTex:'f(x)='+(sign<0?'-':'')+'\\sqrt{x}',
+      prompt:'Use the secant line through \\(x='+left+'\\) and \\(x='+right+'\\) to approximate \\(f('+qTex(target)+'\\).',
+      intervalTex:'['+left+','+right+']',
+      answerValue:u3QValue(answer),
+      answerTex:qTex(answer),
+      secondDerivative:"f''(x)="+(sign>0?'-':'')+'\\frac{1}{4x^{3/2}}',
+      approximationSteps:[
+        'The endpoint values are \\(f('+left+')='+(sign*p)+'\\) and \\(f('+right+')='+(sign*q)+'\\).',
+        'The target is the midpoint, so average the two endpoint values.',
+        '\\(S('+qTex(target)+')=\\frac{'+(sign*p)+(sign*q<0?'':'+')+(sign*q)+'}{2}='+qTex(answer)+'\\).'
+      ]
+    });
+  }
+  if(family==='reciprocal'){
+    const left=ri(1,3),right=left+pick([1,2]),target=Q(left+right,2),answer=Q(left+right,2*left*right);
+    return u3ApproximationProblem({
+      id:'u3-ts-srec-'+left+'-'+right,
+      variant:'secant_reciprocal',
+      method:'secant',
+      concavity:'up',
+      functionTex:'f(x)=\\frac1x',
+      prompt:'Use the secant line through \\(x='+left+'\\) and \\(x='+right+'\\) to approximate \\(f('+qTex(target)+'\\).',
+      intervalTex:'['+left+','+right+']',
+      answerValue:u3QValue(answer),
+      answerTex:qTex(answer),
+      secondDerivative:"f''(x)=\\frac{2}{x^3}",
+      approximationSteps:[
+        '\\(f('+left+')=\\frac1{'+left+'}\\) and \\(f('+right+')=\\frac1{'+right+'}\\).',
+        'The target is the midpoint, so average the endpoint values.',
+        '\\(S('+qTex(target)+')=\\frac12\\left(\\frac1{'+left+'}+\\frac1{'+right+'}\\right)='+qTex(answer)+'\\).'
+      ]
+    });
+  }
+  if(family==='logarithm')return u3ApproximationProblem({
+    id:'u3-ts-slog',variant:'secant_logarithm',method:'secant',concavity:'down',
+    functionTex:'f(x)=\\ln x',
+    prompt:'Use the secant line through \\(x=1\\) and \\(x=e^2\\) to approximate \\(f\\left(\\frac{1+e^2}{2}\\right)\\).',
+    intervalTex:'[1,e^2]',answerValue:1,answerTex:'1',secondDerivative:"f''(x)=-\\frac1{x^2}",
+    approximationSteps:['\\(f(1)=0\\) and \\(f(e^2)=2\\).','The target is the midpoint of the interval.','\\(S\\left(\\frac{1+e^2}{2}\\right)=\\frac{0+2}{2}=1\\).']
+  });
+  if(family==='exponential')return u3ApproximationProblem({
+    id:'u3-ts-sexp',variant:'secant_exponential',method:'secant',concavity:'up',
+    functionTex:'f(x)=e^x',
+    prompt:'Use the secant line through \\(x=0\\) and \\(x=\\ln 4\\) to approximate \\(f(\\ln 2)\\).',
+    intervalTex:'[0,\\ln 4]',answerValue:2.5,answerTex:'\\frac52',secondDerivative:"f''(x)=e^x",
+    approximationSteps:['\\(f(0)=1\\) and \\(f(\\ln 4)=4\\).','Because \\(\\ln 2\\) is the midpoint, average the endpoint values.','\\(S(\\ln 2)=\\frac{1+4}{2}=\\frac52\\).']
+  });
+  return u3ApproximationProblem({
+    id:'u3-ts-ssin',variant:'secant_sine',method:'secant',concavity:'down',
+    functionTex:'f(x)=\\sin x',
+    prompt:'Use the secant line through \\(x=0\\) and \\(x=\\frac{\\pi}{2}\\) to approximate \\(f\\left(\\frac{\\pi}{4}\\right)\\).',
+    intervalTex:'[0,\\frac{\\pi}{2}]',answerValue:.5,answerTex:'\\frac12',secondDerivative:"f''(x)=-\\sin x",
+    approximationSteps:['\\(f(0)=0\\) and \\(f(\\frac{\\pi}{2})=1\\).','The target \\(\\frac{\\pi}{4}\\) is the midpoint.','\\(S\\left(\\frac{\\pi}{4}\\right)=\\frac{0+1}{2}=\\frac12\\).']
+  });
+}
+U3['tangent-and-secant-line-approximations']=function(){
+  const source=R()<.15?'test':'assignment';
+  const problem=(R()<.5?u3TangentApproximation:u3SecantApproximation)();
+  return stamp(problem,'tangent-and-secant-line-approximations','noncalculator',source,problem.variant);
+};
+
+/* Version 12.2: reduced arguments, varied secant targets, and full line work. */
+function u3PiTex(q){
+  q=Q(q.n,q.d);if(!q.n)return'0';
+  const sign=q.n<0?'-':'',n=Math.abs(q.n),numerator=n===1?'\\pi':n+'\\pi';
+  return sign+(q.d===1?numerator:'\\frac{'+numerator+'}{'+q.d+'}');
+}
+function u3SignedAtom(coefficient,atom){
+  coefficient=Q(coefficient.n,coefficient.d);if(!coefficient.n)return'';
+  const sign=coefficient.n<0?'-':'+';const magnitude=Q(Math.abs(coefficient.n),coefficient.d);
+  return sign+(magnitude.n===magnitude.d?'':qTex(magnitude))+atom;
+}
+function u3XShiftTex(a){
+  a=Q(a.n,a.d);if(!a.n)return'x';
+  return a.n>0?'x-'+qTex(a):'x+'+qTex(Q(-a.n,a.d));
+}
+function u3PointLineTex(y,m,a){
+  y=Q(y.n,y.d);m=Q(m.n,m.d);const body='\\left('+u3XShiftTex(a)+'\\right)';
+  let out=y.n?qTex(y):'';
+  if(m.n){
+    const sign=m.n<0?'-':'+';const magnitude=Q(Math.abs(m.n),m.d);const term=(magnitude.n===magnitude.d?'':qTex(magnitude))+body;
+    out+=out?(sign+term):(sign==='-'?'-'+term:term);
+  }
+  return out||'0';
+}
+function u3SecantTargetFraction(){return pick([Q(1,4),Q(1,3),Q(2,5),Q(1,2),Q(3,5),Q(2,3),Q(3,4)]);}
+function u3MidpointNote(t){return t&&t.n*2===t.d?'Because the requested x-value is the midpoint of the interval, the secant-line value is also the average of the two endpoint function values.':'';}
+function u3SecantQProblem(spec){
+  const t=spec.t||u3SecantTargetFraction(),dx=qSub(spec.b,spec.a),dy=qSub(spec.fb,spec.fa),slope=qDiv(dy,dx);
+  const target=qAdd(spec.a,qMul(t,dx)),delta=qSub(target,spec.a),answer=qAdd(spec.fa,qMul(slope,delta));
+  const aTex=qTex(spec.a),bTex=qTex(spec.b),targetTex=qTex(target),lineTex=u3PointLineTex(spec.fa,slope,spec.a);
+  const steps=[
+    'Evaluate the endpoint values: \\(f('+aTex+')='+qTex(spec.fa)+'\\) and \\(f('+bTex+')='+qTex(spec.fb)+'\\).',
+    'Find the secant slope: \\(m_{\\text{sec}}=\\frac{f('+bTex+')-f('+aTex+')}{'+bTex+'-'+aTex+'}=\\frac{'+qTex(dy)+'}{'+qTex(dx)+'}='+qTex(slope)+'\\).',
+    'Use the left endpoint to write the actual secant line: \\(S(x)='+lineTex+'\\).',
+    'Evaluate the line at the requested input: \\(S('+targetTex+')='+lineTex.replace(/x/g,targetTex)+'='+qTex(answer)+'\\).'
+  ];
+  const note=u3MidpointNote(t);
+  return u3ApproximationProblem({
+    id:spec.id+'-'+t.n+'-'+t.d,variant:spec.variant,functionFamily:spec.functionFamily||spec.variant,method:'secant',concavity:spec.concavity,
+    functionTex:spec.functionTex,
+    prompt:'Use the secant line through \\(x='+aTex+'\\) and \\(x='+bTex+'\\) to approximate \\(f\\left('+targetTex+'\\right)\\).',
+    intervalTex:'['+aTex+','+bTex+']',answerValue:u3QValue(answer),answerTex:qTex(answer),secondDerivative:spec.secondDerivative,
+    approximationSteps:steps,approximationNote:note,secantTargetFraction:t,secantTargetIsMidpoint:t.n*2===t.d
+  });
+}
+function u3SecantSymbolicProblem(spec){
+  const steps=[
+    'Evaluate the endpoint values: \\(f('+spec.aTex+')='+spec.faTex+'\\) and \\(f('+spec.bTex+')='+spec.fbTex+'\\).',
+    'Find the secant slope: \\(m_{\\text{sec}}=\\frac{f('+spec.bTex+')-f('+spec.aTex+')}{'+spec.bTex+'-'+spec.aTex+'}='+spec.slopeWorkTex+'='+spec.slopeTex+'\\).',
+    'Use the left endpoint to write the actual secant line: \\(S(x)='+spec.lineTex+'\\).',
+    'Evaluate the line at the requested input: \\(S('+spec.targetTex+')='+spec.evaluationTex+'='+spec.answerTex+'\\).'
+  ];
+  const midpoint=spec.secantTargetIsMidpoint===undefined?Boolean(spec.t&&spec.t.n*2===spec.t.d):Boolean(spec.secantTargetIsMidpoint);
+  const note=midpoint?'Because the requested x-value is the midpoint of the interval, the secant-line value is also the average of the two endpoint function values.':'';
+  const targetId=spec.targetId||(spec.t?spec.t.n+'-'+spec.t.d:'clean-target');
+  return u3ApproximationProblem({
+    id:spec.id+'-'+targetId,variant:spec.variant,functionFamily:spec.functionFamily||spec.variant,method:'secant',concavity:spec.concavity,
+    functionTex:spec.functionTex,prompt:'Use the secant line through \\(x='+spec.aTex+'\\) and \\(x='+spec.bTex+'\\) to approximate \\(f\\left('+spec.targetTex+'\\right)\\).',
+    intervalTex:'['+spec.aTex+','+spec.bTex+']',answerValue:spec.answerValue,answerTex:spec.answerTex,secondDerivative:spec.secondDerivative,
+    acceptedExpressions:spec.acceptedExpressions||null,approximationSteps:steps,approximationNote:note,secantTargetFraction:spec.t||null,secantTargetIsMidpoint:midpoint
+  });
+}
+function u3RepairOldTangent(problem){
+  const text=String(problem.questionHtml||''),start=text.indexOf('approximate '),close=text.indexOf('\\).',start);
+  problem.questionHtml=start>=0&&close>=0&&text[close-1]!==')'?text.slice(0,close)+')'+text.slice(close):text;
+  problem.functionFamily=problem.variant;return problem;
+}
+function u3TangentCompositionV122(){
+  const family=pick(['log-composition','sine-composition','cosine-composition','arctangent','arcsine-composition','rational-linear','scaled-reciprocal-composition','product-exponential','product-logarithm','exponential-composition','radical-composition']);
+  const sign=R()<.5?-1:1,h=Q(sign,4),target=qAdd(Q(1),h);
+  if(family==='log-composition'){
+    const delta=Q(3*sign,8),answerTex='\\ln2'+u3SignedAtom(delta,'');
+    return u3ApproximationProblem({id:'u3-ts-t-logcomp-'+sign,variant:'tangent_log_composition',functionFamily:'logarithmic composition',method:'tangent',concavity:'down',functionTex:'f(x)=\\ln(x^2+x)',
+      prompt:'Use the tangent line to \\(f\\) at \\(x=1\\) to approximate \\(f\\left('+qTex(target)+'\\right)\\).',intervalTex:u3QInterval(Q(1),target),answerValue:Math.log(2)+u3QValue(delta),answerTex,secondDerivative:"f''(x)=-\\frac{2x^2+2x+1}{(x^2+x)^2}",
+      approximationSteps:['Evaluate \\(f(1)=\\ln2\\).',"Differentiate: \\(f'(x)=\\frac{2x+1}{x^2+x}\\), so \\(f'(1)=\\frac32\\).",'Write the actual tangent line: \\(L(x)=\\ln2+\\frac32(x-1)\\).','Evaluate it: \\(L('+qTex(target)+')=\\ln2+\\frac32\\left('+qTex(h)+'\\right)='+answerTex+'\\).']});
+  }
+  if(family==='sine-composition'){
+    const hPi=Q(sign,24),aPi=Q(1,6),targetPi=qAdd(aPi,hPi),answerTex='\\frac{\\sqrt3}{2}'+(sign>0?'+':'-')+'\\frac{\\pi}{24}';
+    return u3ApproximationProblem({id:'u3-ts-t-sin2-'+sign,variant:'tangent_sine_composition',functionFamily:'trigonometric composition',method:'tangent',concavity:'down',functionTex:'f(x)=\\sin(2x)',
+      prompt:'Use the tangent line to \\(f\\) at \\(x='+u3PiTex(aPi)+'\\) to approximate \\(f\\left('+u3PiTex(targetPi)+'\\right)\\).',intervalTex:'['+(sign>0?u3PiTex(aPi)+','+u3PiTex(targetPi):u3PiTex(targetPi)+','+u3PiTex(aPi))+']',answerValue:Math.sqrt(3)/2+sign*Math.PI/24,answerTex,secondDerivative:"f''(x)=-4\\sin(2x)",
+      approximationSteps:['Evaluate \\(f(\\frac{\\pi}{6})=\\sin(\\frac{\\pi}{3})=\\frac{\\sqrt3}{2}\\).',"Differentiate: \\(f'(x)=2\\cos(2x)\\), so \\(f'(\\frac{\\pi}{6})=1\\).",'Write \\(L(x)=\\frac{\\sqrt3}{2}+\\left(x-\\frac{\\pi}{6}\\right)\\).','Evaluate: \\(L('+u3PiTex(targetPi)+')='+answerTex+'\\).']});
+  }
+  if(family==='cosine-composition'){
+    const hPi=Q(sign,36),aPi=Q(1,9),targetPi=qAdd(aPi,hPi),answerTex='\\frac12'+(sign>0?'-':'+')+'\\frac{\\pi\\sqrt3}{24}';
+    return u3ApproximationProblem({id:'u3-ts-t-cos3-'+sign,variant:'tangent_cosine_composition',functionFamily:'trigonometric composition',method:'tangent',concavity:'down',functionTex:'f(x)=\\cos(3x)',
+      prompt:'Use the tangent line to \\(f\\) at \\(x='+u3PiTex(aPi)+'\\) to approximate \\(f\\left('+u3PiTex(targetPi)+'\\right)\\).',intervalTex:'['+(sign>0?u3PiTex(aPi)+','+u3PiTex(targetPi):u3PiTex(targetPi)+','+u3PiTex(aPi))+']',answerValue:.5-sign*Math.PI*Math.sqrt(3)/24,answerTex,secondDerivative:"f''(x)=-9\\cos(3x)",
+      approximationSteps:['Evaluate \\(f(\\frac{\\pi}{9})=\\cos(\\frac{\\pi}{3})=\\frac12\\).',"Differentiate: \\(f'(x)=-3\\sin(3x)\\), so \\(f'(\\frac{\\pi}{9})=-\\frac{3\\sqrt3}{2}\\).",'Write \\(L(x)=\\frac12-\\frac{3\\sqrt3}{2}\\left(x-\\frac{\\pi}{9}\\right)\\).','Evaluate: \\(L('+u3PiTex(targetPi)+')='+answerTex+'\\).']});
+  }
+  if(family==='arctangent'){
+    const answerTex='\\frac{\\pi}{4}'+(sign>0?'+':'-')+'\\frac18';
+    return u3ApproximationProblem({id:'u3-ts-t-atan-'+sign,variant:'tangent_inverse_tangent',functionFamily:'inverse trigonometric',method:'tangent',concavity:'down',functionTex:'f(x)=\\tan^{-1}x',prompt:'Use the tangent line to \\(f\\) at \\(x=1\\) to approximate \\(f\\left('+qTex(target)+'\\right)\\).',intervalTex:u3QInterval(Q(1),target),answerValue:Math.PI/4+sign/8,answerTex,secondDerivative:"f''(x)=-\\frac{2x}{(1+x^2)^2}",
+      approximationSteps:['Evaluate \\(f(1)=\\tan^{-1}(1)=\\frac{\\pi}{4}\\).',"Differentiate: \\(f'(x)=\\frac1{1+x^2}\\), so \\(f'(1)=\\frac12\\).",'Write \\(L(x)=\\frac{\\pi}{4}+\\frac12(x-1)\\).','Evaluate: \\(L('+qTex(target)+')='+answerTex+'\\).']});
+  }
+  if(family==='arcsine-composition'){
+    const answerTex='\\frac{\\pi}{6}'+(sign>0?'+':'-')+'\\frac{\\sqrt3}{12}';
+    return u3ApproximationProblem({id:'u3-ts-t-asin-'+sign,variant:'tangent_inverse_sine_composition',functionFamily:'inverse trigonometric composition',method:'tangent',concavity:'up',functionTex:'f(x)=\\sin^{-1}(x/2)',prompt:'Use the tangent line to \\(f\\) at \\(x=1\\) to approximate \\(f\\left('+qTex(target)+'\\right)\\).',intervalTex:u3QInterval(Q(1),target),answerValue:Math.PI/6+sign*Math.sqrt(3)/12,answerTex,secondDerivative:"f''(x)=\\frac{x}{8(1-x^2/4)^{3/2}}",
+      approximationSteps:['Evaluate \\(f(1)=\\sin^{-1}(\\frac12)=\\frac{\\pi}{6}\\).',"Differentiate: \\(f'(x)=\\frac1{2\\sqrt{1-x^2/4}}\\), so \\(f'(1)=\\frac{\\sqrt3}{3}\\).",'Write \\(L(x)=\\frac{\\pi}{6}+\\frac{\\sqrt3}{3}(x-1)\\).','Evaluate: \\(L('+qTex(target)+')='+answerTex+'\\).']});
+  }
+  if(family==='rational-linear'){
+    const localH=Q(sign,4),localTarget=localH,answer=Q(8+sign,16);
+    return u3ApproximationProblem({id:'u3-ts-t-ratlin-'+sign,variant:'tangent_rational_linear',functionFamily:'rational',method:'tangent',concavity:'down',functionTex:'f(x)=\\frac{x+1}{x+2}',prompt:'Use the tangent line to \\(f\\) at \\(x=0\\) to approximate \\(f\\left('+qTex(localTarget)+'\\right)\\).',intervalTex:u3QInterval(Q(0),localTarget),answerValue:u3QValue(answer),answerTex:qTex(answer),secondDerivative:"f''(x)=-\\frac{2}{(x+2)^3}",
+      approximationSteps:['Evaluate \\(f(0)=\\frac12\\).',"Differentiate: \\(f'(x)=\\frac1{(x+2)^2}\\), so \\(f'(0)=\\frac14\\).",'Write \\(L(x)=\\frac12+\\frac14x\\).','Evaluate: \\(L('+qTex(localTarget)+')='+qTex(answer)+'\\).']});
+  }
+  if(family==='scaled-reciprocal-composition'){
+    const answer=Q(12-3*sign,8),answerTex=qTex(answer);
+    return u3ApproximationProblem({id:'u3-ts-t-scaledrec-'+sign,variant:'tangent_scaled_reciprocal_composition',functionFamily:'constant over a function',method:'tangent',concavity:'up',functionTex:'f(x)=\\frac3{x^2+1}',prompt:'Use the tangent line to \\(f\\) at \\(x=1\\) to approximate \\(f\\left('+qTex(target)+'\\right)\\).',intervalTex:u3QInterval(Q(1),target),answerValue:u3QValue(answer),answerTex,secondDerivative:"f''(x)=\\frac{3(6x^2-2)}{(x^2+1)^3}",
+      approximationSteps:['Evaluate \\(f(1)=\\frac32\\).',"Differentiate: \\(f'(x)=-\\frac{6x}{(x^2+1)^2}\\), so \\(f'(1)=-\\frac32\\).",'Write \\(L(x)=\\frac32-\\frac32(x-1)\\).','Evaluate: \\(L('+qTex(target)+')='+answerTex+'\\).']});
+  }
+  if(family==='product-exponential'){
+    const localH=Q(sign,3);
+    return u3ApproximationProblem({id:'u3-ts-t-xexp-'+sign,variant:'tangent_product_exponential',functionFamily:'product with exponential',method:'tangent',concavity:'up',functionTex:'f(x)=xe^x',prompt:'Use the tangent line to \\(f\\) at \\(x=0\\) to approximate \\(f\\left('+qTex(localH)+'\\right)\\).',intervalTex:u3QInterval(Q(0),localH),answerValue:u3QValue(localH),answerTex:qTex(localH),secondDerivative:"f''(x)=e^x(x+2)",
+      approximationSteps:['Evaluate \\(f(0)=0\\).',"Use the product rule: \\(f'(x)=e^x(x+1)\\), so \\(f'(0)=1\\).",'Write the tangent line \\(L(x)=x\\).','Evaluate: \\(L('+qTex(localH)+')='+qTex(localH)+'\\).']});
+  }
+  if(family==='product-logarithm'){
+    return u3ApproximationProblem({id:'u3-ts-t-xlog-'+sign,variant:'tangent_product_logarithm',functionFamily:'product with logarithm',method:'tangent',concavity:'up',functionTex:'f(x)=x\\ln x',prompt:'Use the tangent line to \\(f\\) at \\(x=1\\) to approximate \\(f\\left('+qTex(target)+'\\right)\\).',intervalTex:u3QInterval(Q(1),target),answerValue:u3QValue(h),answerTex:qTex(h),secondDerivative:"f''(x)=\\frac1x",
+      approximationSteps:['Evaluate \\(f(1)=0\\).',"Use the product rule: \\(f'(x)=\\ln x+1\\), so \\(f'(1)=1\\).",'Write \\(L(x)=x-1\\).','Evaluate: \\(L('+qTex(target)+')='+qTex(h)+'\\).']});
+  }
+  if(family==='exponential-composition'){
+    const multiplier=Q(2+sign,2),answerTex=(multiplier.n===multiplier.d?'':qTex(multiplier))+'e';
+    return u3ApproximationProblem({id:'u3-ts-t-expx2-'+sign,variant:'tangent_exponential_composition',functionFamily:'exponential composition',method:'tangent',concavity:'up',functionTex:'f(x)=e^{x^2}',prompt:'Use the tangent line to \\(f\\) at \\(x=1\\) to approximate \\(f\\left('+qTex(target)+'\\right)\\).',intervalTex:u3QInterval(Q(1),target),answerValue:u3QValue(multiplier)*Math.E,answerTex,secondDerivative:"f''(x)=2e^{x^2}(1+2x^2)",
+      approximationSteps:['Evaluate \\(f(1)=e\\).',"Differentiate with the chain rule: \\(f'(x)=2xe^{x^2}\\), so \\(f'(1)=2e\\).",'Write \\(L(x)=e+2e(x-1)\\).','Evaluate: \\(L('+qTex(target)+')='+answerTex+'\\).']});
+  }
+  const answer=Q(16+sign,8);
+  return u3ApproximationProblem({id:'u3-ts-t-rootcomp-'+sign,variant:'tangent_radical_composition',functionFamily:'radical composition',method:'tangent',concavity:'up',functionTex:'f(x)=\\sqrt{x^2+3}',prompt:'Use the tangent line to \\(f\\) at \\(x=1\\) to approximate \\(f\\left('+qTex(target)+'\\right)\\).',intervalTex:u3QInterval(Q(1),target),answerValue:u3QValue(answer),answerTex:qTex(answer),secondDerivative:"f''(x)=\\frac3{(x^2+3)^{3/2}}",
+    approximationSteps:['Evaluate \\(f(1)=2\\).',"Differentiate: \\(f'(x)=\\frac{x}{\\sqrt{x^2+3}}\\), so \\(f'(1)=\\frac12\\).",'Write \\(L(x)=2+\\frac12(x-1)\\).','Evaluate: \\(L('+qTex(target)+')='+qTex(answer)+'\\).']});
+}
+function u3TangentApproximationV122(){
+  if(R()<.62)return u3TangentCompositionV122();
+  let problem;do{problem=u3TangentApproximation();}while(['tangent_sine','tangent_cosine'].includes(problem.variant));
+  return u3RepairOldTangent(problem);
+}
+function u3SecantApproximationV122(){
+  const family=pick(['quadratic','cubic','square-root','negative-square-root','reciprocal','shifted-radical','rational-linear','scaled-reciprocal-composition','log-composition','sine-composition','arctangent','arcsine-composition','exponential-composition','product-exponential','product-logarithm']);
+  const t=u3SecantTargetFraction();
+  if(family==='quadratic'||family==='cubic'){
+    const A=pick([-3,-2,-1,1,2,3]),B=ri(-4,4),C=ri(-5,5),a=Q(family==='cubic'?ri(1,2):ri(-3,1)),b=qAdd(a,Q(pick([2,3,4]))),value=family==='cubic'?x=>A*x**3+B*x+C:x=>A*x*x+B*x+C;
+    return u3SecantQProblem({id:'u3-ts-v122-s'+family+'-'+A+'-'+B+'-'+C+'-'+a.n+'-'+b.n,variant:'secant_'+family,functionFamily:family,concavity:A>0?'up':'down',functionTex:'f(x)='+(family==='cubic'?cubic(A,0,B,C):quad(A,B,C)),a,b,fa:Q(value(u3QValue(a))),fb:Q(value(u3QValue(b))),secondDerivative:family==='cubic'?"f''(x)="+(6*A)+'x':"f''(x)="+(2*A),t});
+  }
+  if(family==='square-root'||family==='negative-square-root'){
+    const p=ri(1,4),q=p+pick([1,2,3]),sign=family==='square-root'?1:-1;
+    return u3SecantQProblem({id:'u3-ts-v122-root-'+sign+'-'+p+'-'+q,variant:sign>0?'secant_square_root':'secant_negative_square_root',functionFamily:'radical',concavity:sign>0?'down':'up',functionTex:'f(x)='+(sign<0?'-':'')+'\\sqrt{x}',a:Q(p*p),b:Q(q*q),fa:Q(sign*p),fb:Q(sign*q),secondDerivative:"f''(x)="+(sign>0?'-':'')+'\\frac1{4x^{3/2}}',t});
+  }
+  if(family==='reciprocal'){
+    const a=ri(1,3),b=a+pick([1,2]);
+    return u3SecantQProblem({id:'u3-ts-v122-recip-'+a+'-'+b,variant:'secant_reciprocal',functionFamily:'reciprocal',concavity:'up',functionTex:'f(x)=\\frac1x',a:Q(a),b:Q(b),fa:Q(1,a),fb:Q(1,b),secondDerivative:"f''(x)=\\frac2{x^3}",t});
+  }
+  if(family==='shifted-radical')return u3SecantQProblem({id:'u3-ts-v122-shift-root',variant:'secant_shifted_radical',functionFamily:'radical composition',concavity:'down',functionTex:'f(x)=\\sqrt{x+1}',a:Q(0),b:Q(3),fa:Q(1),fb:Q(2),secondDerivative:"f''(x)=-\\frac1{4(x+1)^{3/2}}",t});
+  if(family==='rational-linear')return u3SecantQProblem({id:'u3-ts-v122-ratlin',variant:'secant_rational_linear',functionFamily:'rational',concavity:'down',functionTex:'f(x)=\\frac{x+1}{x+2}',a:Q(0),b:Q(2),fa:Q(1,2),fb:Q(3,4),secondDerivative:"f''(x)=-\\frac2{(x+2)^3}",t});
+  if(family==='scaled-reciprocal-composition')return u3SecantQProblem({id:'u3-ts-v122-scaled-rec',variant:'secant_scaled_reciprocal_composition',functionFamily:'constant over a function',concavity:'up',functionTex:'f(x)=\\frac3{x^2+1}',a:Q(1),b:Q(2),fa:Q(3,2),fb:Q(3,5),secondDerivative:"f''(x)=\\frac{3(6x^2-2)}{(x^2+1)^3}",t});
+  if(family==='log-composition'){
+    const target=qAdd(Q(1),t),answerTex='\\ln2'+u3SignedAtom(t,'\\ln3');
+    return u3SecantSymbolicProblem({id:'u3-ts-v122-logcomp',variant:'secant_log_composition',functionFamily:'logarithmic composition',concavity:'down',functionTex:'f(x)=\\ln(x^2+x)',aTex:'1',bTex:'2',faTex:'\\ln2',fbTex:'\\ln6',targetTex:qTex(target),slopeWorkTex:'\\frac{\\ln6-\\ln2}{1}',slopeTex:'\\ln3',lineTex:'\\ln2+\\ln3(x-1)',evaluationTex:'\\ln2+\\ln3\\left('+qTex(t)+'\\right)',answerValue:Math.log(2)+u3QValue(t)*Math.log(3),answerTex,acceptedExpressions:['ln(2)+('+qPlain(t)+')*ln(3)'],secondDerivative:"f''(x)=-\\frac{2x^2+2x+1}{(x^2+x)^2}",t});
+  }
+  if(family==='sine-composition'){
+    const targetPi=Q(t.n,4*t.d);
+    return u3SecantSymbolicProblem({id:'u3-ts-v122-sin2',variant:'secant_sine_composition',functionFamily:'trigonometric composition',concavity:'down',functionTex:'f(x)=\\sin(2x)',aTex:'0',bTex:'\\frac{\\pi}{4}',faTex:'0',fbTex:'1',targetTex:u3PiTex(targetPi),slopeWorkTex:'\\frac{1-0}{\\frac{\\pi}{4}}',slopeTex:'\\frac4\\pi',lineTex:'\\frac4\\pi x',evaluationTex:'\\frac4\\pi\\left('+u3PiTex(targetPi)+'\\right)',answerValue:u3QValue(t),answerTex:qTex(t),secondDerivative:"f''(x)=-4\\sin(2x)",t});
+  }
+  if(family==='arctangent'){
+    const answerPi=Q(t.n,4*t.d);
+    return u3SecantSymbolicProblem({id:'u3-ts-v122-atan',variant:'secant_inverse_tangent',functionFamily:'inverse trigonometric',concavity:'down',functionTex:'f(x)=\\tan^{-1}x',aTex:'0',bTex:'1',faTex:'0',fbTex:'\\frac{\\pi}{4}',targetTex:qTex(t),slopeWorkTex:'\\frac{\\frac{\\pi}{4}-0}{1}',slopeTex:'\\frac{\\pi}{4}',lineTex:'\\frac{\\pi}{4}x',evaluationTex:'\\frac{\\pi}{4}\\left('+qTex(t)+'\\right)',answerValue:u3QValue(answerPi)*Math.PI,answerTex:u3PiTex(answerPi),secondDerivative:"f''(x)=-\\frac{2x}{(1+x^2)^2}",t});
+  }
+  if(family==='arcsine-composition'){
+    const target=Q(t.n,2*t.d),answerPi=Q(t.n,6*t.d);
+    return u3SecantSymbolicProblem({id:'u3-ts-v122-asin',variant:'secant_inverse_sine',functionFamily:'inverse trigonometric',concavity:'up',functionTex:'f(x)=\\sin^{-1}x',aTex:'0',bTex:'\\frac12',faTex:'0',fbTex:'\\frac{\\pi}{6}',targetTex:qTex(target),slopeWorkTex:'\\frac{\\frac{\\pi}{6}}{\\frac12}',slopeTex:'\\frac{\\pi}{3}',lineTex:'\\frac{\\pi}{3}x',evaluationTex:'\\frac{\\pi}{3}\\left('+qTex(target)+'\\right)',answerValue:u3QValue(answerPi)*Math.PI,answerTex:u3PiTex(answerPi),secondDerivative:"f''(x)=\\frac{x}{(1-x^2)^{3/2}}",t});
+  }
+  if(family==='exponential-composition'){
+    const targetTex=u3SignedAtom(Q(t.n,2*t.d),'\\ln2').replace(/^\+/,'');const answer=qAdd(Q(1),t);
+    return u3SecantSymbolicProblem({id:'u3-ts-v122-exp2',variant:'secant_exponential_composition',functionFamily:'exponential composition',concavity:'up',functionTex:'f(x)=e^{2x}',aTex:'0',bTex:'\\frac{\\ln2}{2}',faTex:'1',fbTex:'2',targetTex,slopeWorkTex:'\\frac{2-1}{\\frac{\\ln2}{2}}',slopeTex:'\\frac2{\\ln2}',lineTex:'1+\\frac2{\\ln2}x',evaluationTex:'1+\\frac2{\\ln2}\\left('+targetTex+'\\right)',answerValue:u3QValue(answer),answerTex:qTex(answer),secondDerivative:"f''(x)=4e^{2x}",t});
+  }
+  if(family==='product-exponential'){
+    const targetTex=u3SignedAtom(t,'\\ln2').replace(/^\+/,'');const coefficient=qMul(Q(2),t),answerTex=u3SignedAtom(coefficient,'\\ln2').replace(/^\+/,'');
+    return u3SecantSymbolicProblem({id:'u3-ts-v122-xexp',variant:'secant_product_exponential',functionFamily:'product with exponential',concavity:'up',functionTex:'f(x)=xe^x',aTex:'0',bTex:'\\ln2',faTex:'0',fbTex:'2\\ln2',targetTex,slopeWorkTex:'\\frac{2\\ln2}{\\ln2}',slopeTex:'2',lineTex:'2x',evaluationTex:'2\\left('+targetTex+'\\right)',answerValue:2*u3QValue(t)*Math.log(2),answerTex,secondDerivative:"f''(x)=e^x(x+2)",t});
+  }
+  return u3SecantSymbolicProblem({id:'u3-ts-v124-xlog',targetId:'x-2',variant:'secant_product_logarithm',functionFamily:'product with logarithm',concavity:'up',functionTex:'f(x)=x\\ln x',aTex:'1',bTex:'e',faTex:'0',fbTex:'e',targetTex:'2',slopeWorkTex:'\\frac{e-0}{e-1}',slopeTex:'\\frac{e}{e-1}',lineTex:'\\frac{e}{e-1}(x-1)',evaluationTex:'\\frac{e}{e-1}(2-1)',answerValue:Math.E/(Math.E-1),answerTex:'\\frac{e}{e-1}',acceptedExpressions:['e/(e-1)'],secondDerivative:"f''(x)=\\frac1x",secantTargetIsMidpoint:false});
+}
+U3['tangent-and-secant-line-approximations']=function(opts={}){
+  const focus=opts.approximationType;
+  const source=R()<.15?'test':'assignment';
+  const makeProblem=focus==='secant'?u3SecantApproximationV122:focus==='tangent'?u3TangentApproximationV122:(R()<.5?u3TangentApproximationV122:u3SecantApproximationV122);
+  const problem=makeProblem();
+  return stamp(problem,'tangent-and-secant-line-approximations','noncalculator',source,problem.variant);
+};
+
+/* 13. Mean Value Theorem and Rolle's Theorem — decision first, c-values second. */
+const U3_MVT_CHOICES=[
+  'Yes, because the function is continuous on the closed interval and differentiable on the open interval',
+  'No, because it is not continuous on the closed interval',
+  'No, because it is not differentiable on the open interval',
+  'No, because it is neither continuous on the closed interval nor differentiable on the open interval'
+];
+const U3_ROLLE_CHOICES=[
+  'Yes, because the function is continuous on the closed interval, differentiable on the open interval, and \\(f(a)=f(b)\\)',
+  ...U3_MVT_CHOICES.slice(1),
+  'No, because \\(f(a)\\ne f(b)\\)'
+];
+function u3TheoremProblem(spec){
+  const choices=spec.theorem==='rolle'?U3_ROLLE_CHOICES:U3_MVT_CHOICES;
+  const theoremName=spec.theorem==='rolle'?"Rolle's Theorem":'the Mean Value Theorem';
+  return {
+    id:spec.id,
+    variant:spec.variant,
+    answerType:'staged-calculus',
+    stagedFamily:'mvt-rolle',
+    theoremKind:spec.theorem,
+    theoremApplies:spec.applies,
+    questionHtml:'<div class="u3-staged-question"><div class="question-prompt">'+
+      (spec.theorem==='rolle'?"Rolle's Theorem":'Mean Value Theorem')+
+      ' on the stated interval</div><div>\\('+spec.functionTex+',\\qquad '+spec.intervalTex+'\\)</div></div>',
+    stage1:{
+      type:'choice',
+      prompt:'Part 1: Does '+theoremName+' apply?',
+      choices,
+      correctIndex:spec.reasonIndex,
+      answerTex:choices[spec.reasonIndex],
+      answerIsText:true,
+      correctFeedback:'The theorem decision and reason are correct.',
+      incorrectFeedback:'That theorem decision or reason is not correct.',
+      explanation:u3WorkedSteps(spec.hypothesisSteps),
+      explainOnCorrect:false,
+      autoAdvanceOnCorrect:true
+    },
+    stage2:spec.applies?{
+      type:'exact-list',
+      prompt:'Part 2: Find every value of \\(c\\) in \\('+spec.openIntervalTex+'\\) guaranteed by '+theoremName+'.',
+      expectedValues:spec.cValues,
+      answerTex:spec.cAnswerTex,
+      requireExact:true,
+      tolerance:1e-7,
+      placeholder:'Enter all exact c-values',
+      checkLabel:'Check Part 2',
+      keypadMode:'unit3-theorem',
+      correctFeedback:'Every required value of c is correct.',
+      incorrectFeedback:'The value or list of c-values is not correct.',
+      explanation:u3WorkedSteps(spec.cSteps)
+    }:null,
+    answerTex:spec.applies?spec.cAnswerTex:choices[spec.reasonIndex],
+    intervalMidpointValue:spec.intervalMidpointValue,
+    cIsRoutineMidpoint:Boolean(spec.cIsRoutineMidpoint),
+    fullWidthChoices:true
+  };
+}
+function u3MvtApplies(){
+  const family=pick(['quadratic','cubic','rational','radical','logarithm','exponential-combination','trigonometric']);
+  if(family==='quadratic'){
+    const A=ri(1,4),B=ri(-5,5),C=ri(-5,5),a=ri(-4,0),b=a+pick([2,4,6]);
+    const c=Q(a+b,2),fa=A*a*a+B*a+C,fb=A*b*b+B*b+C,slope=A*(a+b)+B;
+    return u3TheoremProblem({
+      id:'u3-mvt-q-'+A+'-'+B+'-'+C+'-'+a+'-'+b,
+      variant:'mvt_quadratic_applies',theorem:'mvt',applies:true,reasonIndex:0,
+      functionTex:'f(x)='+quad(A,B,C),intervalTex:'['+a+','+b+']',openIntervalTex:'('+a+','+b+')',
+      hypothesisSteps:[
+        'A polynomial is continuous on \\(['+a+','+b+']\\) and differentiable on \\(('+a+','+b+')\\).',
+        'Both hypotheses of the Mean Value Theorem are satisfied.'
+      ],
+      cValues:[u3QValue(c)],cAnswerTex:'c='+qTex(c),
+      cSteps:[
+        'Compute the average rate of change: \\(\\frac{f('+b+')-f('+a+')}{'+(b-a)+'}=\\frac{'+fb+'-'+fa+'}{'+(b-a)+'}='+slope+'\\).',
+        "Differentiate: \\(f'(x)="+lin(2*A,B)+'\\). Set \\(f\'(c)='+slope+'\\).',
+        'Solving gives \\(c='+qTex(c)+'\\), which lies in the open interval.'
+      ]
+    });
+  }
+  if(family==='cubic'){
+    const r=pick([3,6,9]),c=r/Math.sqrt(3),cTex='\\frac{'+r+'}{\\sqrt3}';
+    return u3TheoremProblem({
+      id:'u3-mvt-cubic-'+r,variant:'mvt_cubic_applies',theorem:'mvt',applies:true,reasonIndex:0,
+      functionTex:'f(x)=x^3',intervalTex:'[-'+r+','+r+']',openIntervalTex:'(-'+r+','+r+')',
+      hypothesisSteps:[
+        'The polynomial \\(x^3\\) is continuous on the closed interval and differentiable on the open interval.',
+        'Therefore the Mean Value Theorem applies.'
+      ],
+      cValues:[-c,c],cAnswerTex:'c=-'+cTex+',\\ '+cTex,
+      cSteps:[
+        'The average rate of change is \\(\\frac{'+r+'^3-(-'+r+')^3}{'+(2*r)+'}='+r*r+'\\).',
+        "Since \\(f'(x)=3x^2\\), solve \\(3c^2="+r*r+'\\).',
+        'Thus \\(c=-'+cTex+'\\) or \\(c='+cTex+'\\); both are in the open interval.'
+      ]
+    });
+  }
+  if(family==='rational'){
+    const p=ri(1,3),q=p+ri(1,3),a=p*p,b=q*q,c=p*q;
+    return u3TheoremProblem({
+      id:'u3-mvt-rec-'+p+'-'+q,variant:'mvt_rational_applies',theorem:'mvt',applies:true,reasonIndex:0,
+      functionTex:'f(x)=\\frac1x',intervalTex:'['+a+','+b+']',openIntervalTex:'('+a+','+b+')',
+      hypothesisSteps:[
+        'Every \\(x\\) in the interval is positive, so the denominator never equals zero. The rational function is continuous on the closed interval.',
+        'Its derivative exists throughout the open interval, so the Mean Value Theorem applies.'
+      ],
+      cValues:[c],cAnswerTex:'c='+c,
+      cSteps:[
+        'The average rate of change is \\(\\frac{1/'+b+'-1/'+a+'}{'+(b-a)+'}=-\\frac1{'+(a*b)+'}\\).',
+        "Because \\(f'(x)=-\\frac1{x^2}\\), solve \\(-\\frac1{c^2}=-\\frac1{"+(a*b)+'}\\).',
+        'The solution in the open interval is \\(c=\\sqrt{'+(a*b)+'}='+c+'\\).'
+      ]
+    });
+  }
+  if(family==='radical'){
+    const p=ri(1,4),q=p+pick([2,4]),a=p*p,b=q*q,c=(p+q)*(p+q)/4,cTex=frac((p+q)*(p+q),4);
+    return u3TheoremProblem({
+      id:'u3-mvt-root-'+p+'-'+q,variant:'mvt_radical_applies',theorem:'mvt',applies:true,reasonIndex:0,
+      functionTex:'f(x)=\\sqrt{x}',intervalTex:'['+a+','+b+']',openIntervalTex:'('+a+','+b+')',
+      hypothesisSteps:[
+        'The interval lies in the real domain \\(x\\ge0\\), so \\(\\sqrt{x}\\) is continuous on the closed interval.',
+        "Every point of the open interval is positive, so \\(f'(x)=\\frac1{2\\sqrt{x}}\\) exists there."
+      ],
+      cValues:[c],cAnswerTex:'c='+cTex,
+      cSteps:[
+        'The average rate of change is \\(\\frac{'+q+'-'+p+'}{'+b+'-'+a+'}=\\frac1{'+(p+q)+'}\\).',
+        "Set \\(f'(c)=\\frac1{2\\sqrt c}=\\frac1{"+(p+q)+'}\\).',
+        'Then \\(2\\sqrt c='+(p+q)+'\\), so \\(c='+cTex+'\\).'
+      ]
+    });
+  }
+  if(family==='logarithm'){
+    const k=pick([1,2]),bTex=k===1?'e':'e^2',b=Math.exp(k),c=(b-1)/k,cTex=k===1?'e-1':'\\frac{e^2-1}{2}';
+    return u3TheoremProblem({
+      id:'u3-mvt-log-'+k,variant:'mvt_logarithm_applies',theorem:'mvt',applies:true,reasonIndex:0,
+      functionTex:'f(x)=\\ln x',intervalTex:'[1,'+bTex+']',openIntervalTex:'(1,'+bTex+')',
+      hypothesisSteps:[
+        'The interval is entirely in the domain \\(x>0\\), so \\(\\ln x\\) is continuous on the closed interval.',
+        'Its derivative \\(1/x\\) exists throughout the open interval.'
+      ],
+      cValues:[c],cAnswerTex:'c='+cTex,
+      cSteps:[
+        'The average rate of change is \\(\\frac{\\ln('+bTex+')-\\ln1}{'+bTex+'-1}=\\frac{'+k+'}{'+bTex+'-1}\\).',
+        "Set \\(f'(c)=\\frac1c=\\frac{"+k+'}{'+bTex+'-1}\\).',
+        'Solving gives \\(c='+cTex+'\\), which lies between the endpoints.'
+      ]
+    });
+  }
+  if(family==='exponential-combination'){
+    return u3TheoremProblem({
+      id:'u3-mvt-exp-combo',variant:'mvt_exponential_combination_applies',theorem:'mvt',applies:true,reasonIndex:0,
+      functionTex:'f(x)=e^x+e^{-x}',intervalTex:'[-1,1]',openIntervalTex:'(-1,1)',
+      hypothesisSteps:[
+        'Both exponential terms are continuous on \\([-1,1]\\), so their sum is continuous there.',
+        'The derivative exists for every real \\(x\\), so the Mean Value Theorem applies.'
+      ],
+      cValues:[0],cAnswerTex:'c=0',
+      cSteps:[
+        'The endpoint values agree: \\(f(-1)=e^{-1}+e=f(1)\\), so the average rate of change is \\(0\\).',
+        "Differentiate: \\(f'(x)=e^x-e^{-x}\\). Set \\(f'(c)=0\\).",
+        'Then \\(e^c=e^{-c}\\), so \\(e^{2c}=1\\) and \\(c=0\\).'
+      ]
+    });
+  }
+  return u3TheoremProblem({
+    id:'u3-mvt-sine',variant:'mvt_trigonometric_applies',theorem:'mvt',applies:true,reasonIndex:0,
+    functionTex:'f(x)=\\sin x',intervalTex:'[0,\\pi]',openIntervalTex:'(0,\\pi)',
+    hypothesisSteps:[
+      'The sine function is continuous on \\([0,\\pi]\\).',
+      'It is differentiable on \\((0,\\pi)\\), so the Mean Value Theorem applies.'
+    ],
+    cValues:[Math.PI/2],cAnswerTex:'c=\\frac{\\pi}{2}',
+    cSteps:[
+      'The endpoint values are both \\(0\\), so the average rate of change is \\(0\\).',
+      "Since \\(f'(x)=\\cos x\\), solve \\(\\cos c=0\\).",
+      'The value in \\((0,\\pi)\\) is \\(c=\\frac{\\pi}{2}\\).'
+    ]
+  });
+}
+function u3MvtFails(){
+  const family=pick(['rational-pole','absolute-value','radical-domain','log-endpoint','rational-hole','exponential-rational']);
+  if(family==='rational-pole'){
+    const h=ri(-2,2);
+    return u3TheoremProblem({
+      id:'u3-mvt-fail-pole-'+h,variant:'mvt_rational_fails',theorem:'mvt',applies:false,reasonIndex:3,
+      functionTex:'f(x)=\\frac{x+1}{'+shift('x',h)+'}',intervalTex:'['+(h-2)+','+(h+2)+']',
+      hypothesisSteps:[
+        'The denominator is zero at \\(x='+h+'\\), which is inside the interval, so the function is not continuous on the closed interval.',
+        'The derivative also does not exist at that interior point. Neither hypothesis holds.'
+      ]
+    });
+  }
+  if(family==='absolute-value')return u3TheoremProblem({
+    id:'u3-mvt-fail-abs',variant:'mvt_absolute_value_fails',theorem:'mvt',applies:false,reasonIndex:2,
+    functionTex:'f(x)=|x-1|',intervalTex:'[-1,3]',
+    hypothesisSteps:[
+      'The absolute-value function is continuous on \\([-1,3]\\).',
+      "At \\(x=1\\), inside the open interval, the graph has a corner and \\(f'(1)\\) does not exist."
+    ]
+  });
+  if(family==='radical-domain')return u3TheoremProblem({
+    id:'u3-mvt-fail-root',variant:'mvt_radical_fails',theorem:'mvt',applies:false,reasonIndex:3,
+    functionTex:'f(x)=\\sqrt{x+1}',intervalTex:'[-2,3]',
+    hypothesisSteps:[
+      'For \\(x<-1\\), \\(\\sqrt{x+1}\\) is not real, so the function is not defined on the full closed interval.',
+      'It is therefore neither continuous on the closed interval nor differentiable throughout the open interval.'
+    ]
+  });
+  if(family==='log-endpoint')return u3TheoremProblem({
+    id:'u3-mvt-fail-log',variant:'mvt_logarithm_fails',theorem:'mvt',applies:false,reasonIndex:1,
+    functionTex:'f(x)=\\ln x',intervalTex:'[0,e]',
+    hypothesisSteps:[
+      '\\(\\ln0\\) is not defined, so \\(f\\) is not continuous at the left endpoint.',
+      "Although \\(f'(x)=1/x\\) exists on \\((0,e)\\), continuity on the entire closed interval is required."
+    ]
+  });
+  if(family==='rational-hole')return u3TheoremProblem({
+    id:'u3-mvt-fail-hole',variant:'mvt_removable_rational_fails',theorem:'mvt',applies:false,reasonIndex:3,
+    functionTex:'f(x)=\\frac{x^2-1}{x-1}',intervalTex:'[0,2]',
+    hypothesisSteps:[
+      'The original rational function is undefined at \\(x=1\\), even though its expression cancels elsewhere.',
+      'That hole makes the function neither continuous nor differentiable throughout the required intervals.'
+    ]
+  });
+  return u3TheoremProblem({
+    id:'u3-mvt-fail-exp-rational',variant:'mvt_exponential_rational_fails',theorem:'mvt',applies:false,reasonIndex:3,
+    functionTex:'f(x)=\\frac{e^x}{x-1}',intervalTex:'[0,2]',
+    hypothesisSteps:[
+      'The denominator is zero at \\(x=1\\), inside the interval.',
+      'The vertical asymptote breaks both continuity and differentiability at an interior point.'
+    ]
+  });
+}
+function u3RolleApplies(){
+  const family=pick(['quadratic','quartic','sine','cosine','rational','radical','logarithmic','exponential']);
+  if(family==='quadratic'||family==='quartic'){
+    const h=ri(-3,3),r=ri(1,4),power=family==='quadratic'?2:4,k=ri(-4,4);
+    const body=h===0?'x':h>0?'x-'+h:'x+'+(-h);
+    return u3TheoremProblem({
+      id:'u3-rolle-'+power+'-'+h+'-'+r+'-'+k,variant:'rolle_'+family+'_applies',theorem:'rolle',applies:true,reasonIndex:0,
+      functionTex:'f(x)=('+body+')^'+power+(k?sgn(k,''):''),intervalTex:'['+(h-r)+','+(h+r)+']',openIntervalTex:'('+(h-r)+','+(h+r)+')',
+      hypothesisSteps:[
+        'This polynomial is continuous on the closed interval and differentiable on the open interval.',
+        'The endpoints are equally far from \\(x='+h+'\\), so \\(f('+(h-r)+')=f('+(h+r)+')\\).'
+      ],
+      cValues:[h],cAnswerTex:'c='+h,
+      cSteps:[
+        "Differentiate: \\(f'(x)="+power+'('+body+')^{'+(power-1)+'}\\).',
+        "Set \\(f'(c)=0\\), so \\(c="+h+'\\).',
+        'This value lies in the open interval.'
+      ]
+    });
+  }
+  if(family==='sine')return u3TheoremProblem({
+    id:'u3-rolle-sine',variant:'rolle_trigonometric_sine_applies',theorem:'rolle',applies:true,reasonIndex:0,
+    functionTex:'f(x)=\\sin x',intervalTex:'[0,\\pi]',openIntervalTex:'(0,\\pi)',
+    hypothesisSteps:['Sine is continuous on the closed interval and differentiable on the open interval.','Also, \\(f(0)=0=f(\\pi)\\), so all three conditions hold.'],
+    cValues:[Math.PI/2],cAnswerTex:'c=\\frac{\\pi}{2}',
+    cSteps:["\\(f'(x)=\\cos x\\).",'Solve \\(\\cos c=0\\) for \\(0<c<\\pi\\).','The required value is \\(c=\\frac{\\pi}{2}\\).']
+  });
+  if(family==='cosine')return u3TheoremProblem({
+    id:'u3-rolle-cosine',variant:'rolle_trigonometric_cosine_applies',theorem:'rolle',applies:true,reasonIndex:0,
+    functionTex:'f(x)=\\cos x',intervalTex:'[0,2\\pi]',openIntervalTex:'(0,2\\pi)',
+    hypothesisSteps:['Cosine is continuous on the closed interval and differentiable on the open interval.','\\(f(0)=1=f(2\\pi)\\), so the endpoint condition also holds.'],
+    cValues:[Math.PI],cAnswerTex:'c=\\pi',
+    cSteps:["\\(f'(x)=-\\sin x\\).",'Solve \\(-\\sin c=0\\) in \\((0,2\\pi)\\).','The only interior solution is \\(c=\\pi\\).']
+  });
+  if(family==='rational')return u3TheoremProblem({
+    id:'u3-rolle-rational',variant:'rolle_rational_applies',theorem:'rolle',applies:true,reasonIndex:0,
+    functionTex:'f(x)=x+\\frac1x',intervalTex:'[\\frac12,2]',openIntervalTex:'(\\frac12,2)',
+    hypothesisSteps:[
+      'The interval contains only positive values, so the denominator never vanishes. The function is continuous and differentiable where required.',
+      '\\(f(\\frac12)=\\frac52=f(2)\\), so the endpoint values agree.'
+    ],
+    cValues:[1],cAnswerTex:'c=1',
+    cSteps:["Differentiate: \\(f'(x)=1-\\frac1{x^2}\\).",'Solve \\(1-\\frac1{c^2}=0\\), giving \\(c^2=1\\).','Only \\(c=1\\) lies in the open interval.']
+  });
+  if(family==='radical'){
+    const r=ri(2,5);
+    return u3TheoremProblem({
+      id:'u3-rolle-radical-'+r,variant:'rolle_radical_applies',theorem:'rolle',applies:true,reasonIndex:0,
+      functionTex:'f(x)=\\sqrt{'+(r*r)+'-x^2}',intervalTex:'[-'+r+','+r+']',openIntervalTex:'(-'+r+','+r+')',
+      hypothesisSteps:[
+        'The upper semicircle is continuous on the closed interval. Its vertical endpoint tangents do not matter because differentiability is required only inside.',
+        '\\(f(-'+r+')=0=f('+r+')\\), and the derivative exists for every interior point.'
+      ],
+      cValues:[0],cAnswerTex:'c=0',
+      cSteps:[
+        "\\(f'(x)=-\\frac{x}{\\sqrt{"+(r*r)+'-x^2}}\\).',
+        'Inside the interval the denominator is nonzero, so the derivative is zero when the numerator is zero.',
+        'Thus \\(c=0\\).'
+      ]
+    });
+  }
+  if(family==='logarithmic')return u3TheoremProblem({
+    id:'u3-rolle-log',variant:'rolle_logarithmic_applies',theorem:'rolle',applies:true,reasonIndex:0,
+    functionTex:'f(x)=(\\ln x)^2',intervalTex:'[e^{-1},e]',openIntervalTex:'(e^{-1},e)',
+    hypothesisSteps:['The interval is positive, so \\((\\ln x)^2\\) is continuous and differentiable where required.','\\(f(e^{-1})=(-1)^2=1=f(e)\\).'],
+    cValues:[1],cAnswerTex:'c=1',
+    cSteps:["Differentiate: \\(f'(x)=\\frac{2\\ln x}{x}\\).",'The derivative is zero when \\(\\ln c=0\\).','Therefore \\(c=1\\).']
+  });
+  return u3TheoremProblem({
+    id:'u3-rolle-exp',variant:'rolle_exponential_combination_applies',theorem:'rolle',applies:true,reasonIndex:0,
+    functionTex:'f(x)=e^x+e^{-x}',intervalTex:'[-1,1]',openIntervalTex:'(-1,1)',
+    hypothesisSteps:['The function is continuous and differentiable for every real number.','\\(f(-1)=e^{-1}+e=f(1)\\), so the endpoint condition holds.'],
+    cValues:[0],cAnswerTex:'c=0',
+    cSteps:["\\(f'(x)=e^x-e^{-x}\\).",'Set \\(e^c-e^{-c}=0\\), or \\(e^{2c}=1\\).','Thus \\(c=0\\).']
+  });
+}
+function u3RolleFails(){
+  const family=pick(['unequal-polynomial','absolute-value','rational-pole','radical-domain','removable-hole']);
+  if(family==='unequal-polynomial')return u3TheoremProblem({
+    id:'u3-rolle-fail-endpoints',variant:'rolle_polynomial_fails_endpoints',theorem:'rolle',applies:false,reasonIndex:4,
+    functionTex:'f(x)=x^2+x',intervalTex:'[0,2]',
+    hypothesisSteps:['The polynomial is continuous on \\([0,2]\\) and differentiable on \\((0,2)\\).','However, \\(f(0)=0\\) while \\(f(2)=6\\). Since the endpoint values are unequal, Rolle\'s Theorem does not apply.']
+  });
+  if(family==='absolute-value')return u3TheoremProblem({
+    id:'u3-rolle-fail-abs',variant:'rolle_absolute_value_fails',theorem:'rolle',applies:false,reasonIndex:2,
+    functionTex:'f(x)=|x|',intervalTex:'[-2,2]',
+    hypothesisSteps:['The function is continuous, and \\(f(-2)=2=f(2)\\).',"At \\(x=0\\), the graph has a corner and \\(f'(0)\\) does not exist."]
+  });
+  if(family==='rational-pole')return u3TheoremProblem({
+    id:'u3-rolle-fail-pole',variant:'rolle_rational_fails',theorem:'rolle',applies:false,reasonIndex:3,
+    functionTex:'f(x)=\\frac1{x^2}',intervalTex:'[-1,1]',
+    hypothesisSteps:['The endpoint values agree: \\(f(-1)=1=f(1)\\).','But \\(f\\) is undefined at \\(x=0\\), so it is neither continuous on the closed interval nor differentiable throughout the open interval.']
+  });
+  if(family==='radical-domain')return u3TheoremProblem({
+    id:'u3-rolle-fail-root',variant:'rolle_radical_fails',theorem:'rolle',applies:false,reasonIndex:3,
+    functionTex:'f(x)=\\sqrt{x+1}',intervalTex:'[-2,2]',
+    hypothesisSteps:['The function has no real values for \\(x<-1\\), so it is not defined on the full closed interval.','It consequently fails both the continuity and differentiability conditions.']
+  });
+  return u3TheoremProblem({
+    id:'u3-rolle-fail-hole',variant:'rolle_removable_rational_fails',theorem:'rolle',applies:false,reasonIndex:3,
+    functionTex:'f(x)=\\frac{x^2-1}{x-1}',intervalTex:'[0,2]',
+    hypothesisSteps:['The original function is undefined at \\(x=1\\), so it has a hole inside the interval.','The hole makes the function neither continuous on the closed interval nor differentiable throughout the open interval.']
+  });
+}
+
+/* Version 12.2 adds asymmetric, course-appropriate theorem examples so the
+ * guaranteed c-value is not predictably the midpoint of the interval. */
+function u3MvtAppliesV122(){
+  const family=pick(['cubic-plus-linear','rational','radical-composition','logarithm','exponential','trigonometric','inverse-trigonometric','product-logarithm','logarithmic-composition','exponential-composition','shifted-reciprocal','trigonometric-composition']);
+  if(family==='cubic-plus-linear'){
+    const r=pick([2,3,4]),c=r/Math.sqrt(3),cTex='\\frac{'+r+'}{\\sqrt3}';
+    return u3TheoremProblem({id:'u3-v122-mvt-cubic-'+r,variant:'mvt_cubic_plus_linear_applies',theorem:'mvt',applies:true,reasonIndex:0,functionTex:'f(x)=x^3+x',intervalTex:'[0,'+r+']',openIntervalTex:'(0,'+r+')',intervalMidpointValue:r/2,
+      hypothesisSteps:['The polynomial is continuous on \\([0,'+r+']\\) and differentiable on \\((0,'+r+')\\), so the Mean Value Theorem applies.'],
+      cValues:[c],cAnswerTex:'c='+cTex,cSteps:['Compute the secant slope: \\(\\frac{f('+r+')-f(0)}{'+r+'-0}=\\frac{'+(r**3+r)+'}{'+r+'}='+(r*r+1)+'\\).',"Differentiate: \\(f'(x)=3x^2+1\\). Set \\(f'(c)="+(r*r+1)+'\\).','Then \\(3c^2='+r*r+'\\), so the value in \\((0,'+r+')\\) is \\(c='+cTex+'\\).']});
+  }
+  if(family==='rational')return u3TheoremProblem({id:'u3-v122-mvt-rational',variant:'mvt_rational_product_applies',theorem:'mvt',applies:true,reasonIndex:0,functionTex:'f(x)=x+\\frac1x',intervalTex:'[\\frac12,2]',openIntervalTex:'(\\frac12,2)',intervalMidpointValue:1.25,
+    hypothesisSteps:['Every number in the interval is positive, so the denominator is never zero. The function is continuous on the closed interval and differentiable on the open interval.'],cValues:[1],cAnswerTex:'c=1',
+    cSteps:['The endpoint values are \\(f(\\frac12)=\\frac52\\) and \\(f(2)=\\frac52\\), so the secant slope is \\(0\\).',"Differentiate: \\(f'(x)=1-\\frac1{x^2}\\). Solve \\(f'(c)=0\\).",'The only solution in \\((\\frac12,2)\\) is \\(c=1\\).']});
+  if(family==='radical-composition')return u3TheoremProblem({id:'u3-v122-mvt-radical',variant:'mvt_radical_composition_applies',theorem:'mvt',applies:true,reasonIndex:0,functionTex:'f(x)=(x+1)^{3/2}',intervalTex:'[0,3]',openIntervalTex:'(0,3)',intervalMidpointValue:1.5,
+    hypothesisSteps:['Because \\(x+1>0\\) throughout the interval, the function is continuous on \\([0,3]\\) and differentiable on \\((0,3)\\).'],cValues:[115/81],cAnswerTex:'c=\\frac{115}{81}',
+    cSteps:['Compute the secant slope: \\(\\frac{f(3)-f(0)}{3-0}=\\frac{8-1}{3}=\\frac73\\).',"Differentiate: \\(f'(x)=\\frac32\\sqrt{x+1}\\). Set \\(\\frac32\\sqrt{c+1}=\\frac73\\).",'Then \\(\\sqrt{c+1}=\\frac{14}{9}\\), so \\(c=\\frac{196}{81}-1=\\frac{115}{81}\\).']});
+  if(family==='logarithm')return u3TheoremProblem({id:'u3-v122-mvt-log',variant:'mvt_logarithm_applies',theorem:'mvt',applies:true,reasonIndex:0,functionTex:'f(x)=\\ln x',intervalTex:'[1,e^2]',openIntervalTex:'(1,e^2)',intervalMidpointValue:(1+Math.E**2)/2,
+    hypothesisSteps:['The interval lies entirely in \\(x>0\\), so \\(\\ln x\\) is continuous on the closed interval and differentiable on the open interval.'],cValues:[(Math.E**2-1)/2],cAnswerTex:'c=\\frac{e^2-1}{2}',
+    cSteps:['The secant slope is \\(\\frac{\\ln(e^2)-\\ln1}{e^2-1}=\\frac2{e^2-1}\\).',"Since \\(f'(x)=\\frac1x\\), solve \\(\\frac1c=\\frac2{e^2-1}\\).",'Thus \\(c=\\frac{e^2-1}{2}\\), which lies in \\((1,e^2)\\).']});
+  if(family==='exponential')return u3TheoremProblem({id:'u3-v122-mvt-exp',variant:'mvt_exponential_applies',theorem:'mvt',applies:true,reasonIndex:0,functionTex:'f(x)=e^x',intervalTex:'[0,\\ln4]',openIntervalTex:'(0,\\ln4)',intervalMidpointValue:Math.log(4)/2,
+    hypothesisSteps:['The exponential function is continuous and differentiable for every real number, so both hypotheses hold on this interval.'],cValues:[Math.log(3/Math.log(4))],cAnswerTex:'c=\\ln\\left(\\frac3{\\ln4}\\right)',
+    cSteps:['The secant slope is \\(\\frac{e^{\\ln4}-e^0}{\\ln4-0}=\\frac3{\\ln4}\\).',"Because \\(f'(x)=e^x\\), solve \\(e^c=\\frac3{\\ln4}\\).",'Taking the natural logarithm gives \\(c=\\ln\\left(\\frac3{\\ln4}\\right)\\), which lies in the open interval.']});
+  if(family==='trigonometric')return u3TheoremProblem({id:'u3-v122-mvt-sine',variant:'mvt_trigonometric_applies',theorem:'mvt',applies:true,reasonIndex:0,functionTex:'f(x)=\\sin x',intervalTex:'[0,2\\pi]',openIntervalTex:'(0,2\\pi)',intervalMidpointValue:Math.PI,
+    hypothesisSteps:['Sine is continuous on \\([0,2\\pi]\\) and differentiable on \\((0,2\\pi)\\), so the Mean Value Theorem applies.'],cValues:[Math.PI/2,3*Math.PI/2],cAnswerTex:'c=\\frac{\\pi}{2},\\ \\frac{3\\pi}{2}',
+    cSteps:['The endpoint values are both \\(0\\), so the secant slope is \\(0\\).',"Differentiate: \\(f'(x)=\\cos x\\). Solve \\(\\cos c=0\\) for \\(0<c<2\\pi\\).",'The required values are \\(c=\\frac{\\pi}{2}\\) and \\(c=\\frac{3\\pi}{2}\\).']});
+  if(family==='inverse-trigonometric')return u3TheoremProblem({id:'u3-v122-mvt-atan',variant:'mvt_inverse_trigonometric_applies',theorem:'mvt',applies:true,reasonIndex:0,functionTex:'f(x)=\\tan^{-1}x',intervalTex:'[0,1]',openIntervalTex:'(0,1)',intervalMidpointValue:.5,
+    hypothesisSteps:['The inverse tangent function is continuous on \\([0,1]\\) and differentiable on \\((0,1)\\).'],cValues:[Math.sqrt(4/Math.PI-1)],cAnswerTex:'c=\\sqrt{\\frac4\\pi-1}',
+    cSteps:['The secant slope is \\(\\frac{\\tan^{-1}(1)-\\tan^{-1}(0)}{1-0}=\\frac{\\pi}{4}\\).',"Since \\(f'(x)=\\frac1{1+x^2}\\), solve \\(\\frac1{1+c^2}=\\frac{\\pi}{4}\\).",'Thus \\(c^2=\\frac4\\pi-1\\), and the value in \\((0,1)\\) is \\(c=\\sqrt{\\frac4\\pi-1}\\).']});
+  if(family==='logarithmic-composition')return u3TheoremProblem({id:'u3-v124-mvt-log-composition',variant:'mvt_logarithmic_composition_applies',theorem:'mvt',applies:true,reasonIndex:0,functionTex:'f(x)=\\ln(x+1)',intervalTex:'[0,e-1]',openIntervalTex:'(0,e-1)',intervalMidpointValue:(Math.E-1)/2,
+    hypothesisSteps:['Every \\(x\\) in the interval satisfies \\(x+1>0\\), so the logarithmic composition is continuous on the closed interval and differentiable on the open interval.'],cValues:[Math.E-2],cAnswerTex:'c=e-2',
+    cSteps:['The secant slope is \\(\\frac{\\ln e-\\ln1}{e-1}=\\frac1{e-1}\\).',"Differentiate: \\(f'(x)=\\frac1{x+1}\\). Set \\(\\frac1{c+1}=\\frac1{e-1}\\).",'Therefore \\(c=e-2\\), which lies in \\((0,e-1)\\).']});
+  if(family==='exponential-composition')return u3TheoremProblem({id:'u3-v124-mvt-exp-composition',variant:'mvt_exponential_composition_applies',theorem:'mvt',applies:true,reasonIndex:0,functionTex:'f(x)=e^{2x}',intervalTex:'[0,\\ln2]',openIntervalTex:'(0,\\ln2)',intervalMidpointValue:Math.log(2)/2,
+    hypothesisSteps:['The exponential composition is continuous and differentiable for every real number, so the Mean Value Theorem applies on this interval.'],cValues:[.5*Math.log(3/(2*Math.log(2)))],cAnswerTex:'c=\\frac12\\ln\\left(\\frac3{2\\ln2}\\right)',
+    cSteps:['The secant slope is \\(\\frac{e^{2\\ln2}-e^0}{\\ln2}=\\frac3{\\ln2}\\).',"Differentiate: \\(f'(x)=2e^{2x}\\). Set \\(2e^{2c}=\\frac3{\\ln2}\\).",'Solving gives \\(c=\\frac12\\ln\\left(\\frac3{2\\ln2}\\right)\\), which lies in the open interval.']});
+  if(family==='shifted-reciprocal')return u3TheoremProblem({id:'u3-v124-mvt-shifted-reciprocal',variant:'mvt_shifted_reciprocal_applies',theorem:'mvt',applies:true,reasonIndex:0,functionTex:'f(x)=\\frac1{x+1}',intervalTex:'[0,3]',openIntervalTex:'(0,3)',intervalMidpointValue:1.5,
+    hypothesisSteps:['The denominator is positive throughout the interval, so the function is continuous on \\([0,3]\\) and differentiable on \\((0,3)\\).'],cValues:[1],cAnswerTex:'c=1',
+    cSteps:['The secant slope is \\(\\frac{\\frac14-1}{3}=-\\frac14\\).',"Differentiate: \\(f'(x)=-\\frac1{(x+1)^2}\\). Set \\(-\\frac1{(c+1)^2}=-\\frac14\\).",'Because \\(c\\) is in \\((0,3)\\), solving gives \\(c=1\\).']});
+  if(family==='trigonometric-composition')return u3TheoremProblem({id:'u3-v124-mvt-trig-composition',variant:'mvt_trigonometric_composition_applies',theorem:'mvt',applies:true,reasonIndex:0,functionTex:'f(x)=\\sin(2x)',intervalTex:'[0,\\frac{\\pi}{2}]',openIntervalTex:'(0,\\frac{\\pi}{2})',intervalMidpointValue:Math.PI/4,
+    hypothesisSteps:['The sine composition is continuous on the closed interval and differentiable on the open interval.'],cValues:[Math.PI/4],cAnswerTex:'c=\\frac{\\pi}{4}',
+    cSteps:['The endpoint values are both \\(0\\), so the secant slope is \\(0\\).',"Differentiate: \\(f'(x)=2\\cos(2x)\\). Solve \\(2\\cos(2c)=0\\).",'The value in \\((0,\\frac{\\pi}{2})\\) is \\(c=\\frac{\\pi}{4}\\).']});
+  return u3TheoremProblem({id:'u3-v122-mvt-xlnx',variant:'mvt_product_logarithm_applies',theorem:'mvt',applies:true,reasonIndex:0,functionTex:'f(x)=x\\ln x',intervalTex:'[1,e]',openIntervalTex:'(1,e)',intervalMidpointValue:(1+Math.E)/2,
+    hypothesisSteps:['Both factors are continuous on \\([1,e]\\), and the product is differentiable on \\((1,e)\\).'],cValues:[Math.exp(1/(Math.E-1))],cAnswerTex:'c=e^{\\frac1{e-1}}',
+    cSteps:['The secant slope is \\(\\frac{e\\ln e-1\\ln1}{e-1}=\\frac{e}{e-1}\\).',"By the product rule, \\(f'(x)=\\ln x+1\\). Set \\(\\ln c+1=\\frac{e}{e-1}\\).",'Then \\(\\ln c=\\frac1{e-1}\\), so \\(c=e^{\\frac1{e-1}}\\).']});
+}
+function u3RolleAppliesV122(){
+  const family=pick(['cubic','radical-product','log-product','exponential-product','trigonometric','inverse-trigonometric','rational','logarithmic','cosine-composition','logarithmic-composition','mixed-exponential-product','rational-product-quotient']);
+  if(family==='cubic')return u3TheoremProblem({id:'u3-v122-rolle-cubic',variant:'rolle_cubic_applies',theorem:'rolle',applies:true,reasonIndex:0,functionTex:'f(x)=x^3-7x^2+12x',intervalTex:'[0,4]',openIntervalTex:'(0,4)',intervalMidpointValue:2,
+    hypothesisSteps:['The polynomial is continuous on \\([0,4]\\) and differentiable on \\((0,4)\\). Also, \\(f(0)=0=f(4)\\), so all three conditions hold.'],cValues:[(7-Math.sqrt(13))/3,(7+Math.sqrt(13))/3],cAnswerTex:'c=\\frac{7-\\sqrt{13}}3,\\ \\frac{7+\\sqrt{13}}3',
+    cSteps:["Differentiate: \\(f'(x)=3x^2-14x+12\\).",'Set \\(3c^2-14c+12=0\\) and use the quadratic formula.','Both \\(c=\\frac{7-\\sqrt{13}}3\\) and \\(c=\\frac{7+\\sqrt{13}}3\\) lie in \\((0,4)\\).']});
+  if(family==='radical-product'){
+    const a=pick([3,6,9,12]),c=Q(a,3);
+    return u3TheoremProblem({id:'u3-v122-rolle-root-'+a,variant:'rolle_radical_product_applies',theorem:'rolle',applies:true,reasonIndex:0,functionTex:'f(x)=\\sqrt{x}('+a+'-x)',intervalTex:'[0,'+a+']',openIntervalTex:'(0,'+a+')',intervalMidpointValue:a/2,
+      hypothesisSteps:['The function is continuous on \\([0,'+a+']\\) and differentiable for every \\(x\\) in \\((0,'+a+')\\). Its endpoint values are both \\(0\\).'],cValues:[u3QValue(c)],cAnswerTex:'c='+qTex(c),
+      cSteps:["Use the product rule: \\(f'(x)=\\frac{"+a+'-x}{2\\sqrt{x}}-\\sqrt{x}=\\frac{'+a+'-3x}{2\\sqrt{x}}\\).','The denominator is nonzero inside the interval, so set \\('+a+'-3c=0\\).','Therefore \\(c='+qTex(c)+'\\).']});
+  }
+  if(family==='log-product')return u3TheoremProblem({id:'u3-v122-rolle-log-product',variant:'rolle_logarithmic_product_applies',theorem:'rolle',applies:true,reasonIndex:0,functionTex:'f(x)=\\ln x\\,\\ln\\left(\\frac9x\\right)',intervalTex:'[1,9]',openIntervalTex:'(1,9)',intervalMidpointValue:5,
+    hypothesisSteps:['The interval lies in the logarithms’ real domain, so the function is continuous and differentiable where required. At both endpoints, one logarithmic factor is \\(0\\), so \\(f(1)=f(9)=0\\).'],cValues:[3],cAnswerTex:'c=3',
+    cSteps:["Differentiate and combine terms: \\(f'(x)=\\frac{\\ln(9/x)-\\ln x}{x}=\\frac{\\ln9-2\\ln x}{x}\\).",'Set the numerator equal to zero: \\(2\\ln c=\\ln9\\).','Thus \\(\\ln c=\\ln3\\), so \\(c=3\\).']});
+  if(family==='exponential-product')return u3TheoremProblem({id:'u3-v122-rolle-exp-product',variant:'rolle_exponential_product_applies',theorem:'rolle',applies:true,reasonIndex:0,functionTex:'f(x)=(e^x-1)(e^x-4)',intervalTex:'[0,\\ln4]',openIntervalTex:'(0,\\ln4)',intervalMidpointValue:Math.log(4)/2,
+    hypothesisSteps:['The product of exponential functions is continuous and differentiable everywhere. The first factor is zero at \\(x=0\\), and the second is zero at \\(x=\\ln4\\), so the endpoint values agree.'],cValues:[Math.log(2.5)],cAnswerTex:'c=\\ln\\left(\\frac52\\right)',
+    cSteps:["Differentiate: \\(f'(x)=e^x(2e^x-5)\\).",'Since \\(e^c\\ne0\\), solve \\(2e^c-5=0\\).','Thus \\(e^c=\\frac52\\), so \\(c=\\ln\\left(\\frac52\\right)\\).']});
+  if(family==='trigonometric')return u3TheoremProblem({id:'u3-v122-rolle-sin2',variant:'rolle_trigonometric_composition_applies',theorem:'rolle',applies:true,reasonIndex:0,functionTex:'f(x)=\\sin(2x)',intervalTex:'[0,\\pi]',openIntervalTex:'(0,\\pi)',intervalMidpointValue:Math.PI/2,
+    hypothesisSteps:['The sine composition is continuous and differentiable everywhere, and \\(f(0)=0=f(\\pi)\\).'],cValues:[Math.PI/4,3*Math.PI/4],cAnswerTex:'c=\\frac{\\pi}{4},\\ \\frac{3\\pi}{4}',
+    cSteps:["Differentiate: \\(f'(x)=2\\cos(2x)\\).",'Solve \\(\\cos(2c)=0\\) for \\(0<c<\\pi\\).','The two values are \\(c=\\frac{\\pi}{4}\\) and \\(c=\\frac{3\\pi}{4}\\).']});
+  if(family==='inverse-trigonometric')return u3TheoremProblem({id:'u3-v122-rolle-atan',variant:'rolle_inverse_trigonometric_applies',theorem:'rolle',applies:true,reasonIndex:0,functionTex:'f(x)=(\\tan^{-1}x)(\\tan^{-1}x-\\frac{\\pi}{4})',intervalTex:'[0,1]',openIntervalTex:'(0,1)',intervalMidpointValue:.5,
+    hypothesisSteps:['Inverse tangent is continuous and differentiable throughout the interval. One factor is zero at each endpoint, so \\(f(0)=0=f(1)\\).'],cValues:[Math.SQRT2-1],cAnswerTex:'c=\\sqrt2-1',
+    cSteps:["Differentiate: \\(f'(x)=\\frac{2\\tan^{-1}x-\\pi/4}{1+x^2}\\).",'The denominator is positive, so solve \\(2\\tan^{-1}c-\\frac{\\pi}{4}=0\\).','Then \\(\\tan^{-1}c=\\frac{\\pi}{8}\\), so \\(c=\\tan(\\frac{\\pi}{8})=\\sqrt2-1\\).']});
+  if(family==='rational')return u3TheoremProblem({id:'u3-v122-rolle-rational',variant:'rolle_rational_applies',theorem:'rolle',applies:true,reasonIndex:0,functionTex:'f(x)=\\frac{x}{x^2+1}',intervalTex:'[\\frac12,2]',openIntervalTex:'(\\frac12,2)',intervalMidpointValue:1.25,
+    hypothesisSteps:['The denominator is positive throughout the interval, so the rational function is continuous and differentiable where required. Also, \\(f(\\frac12)=\\frac25=f(2)\\).'],cValues:[1],cAnswerTex:'c=1',
+    cSteps:["Use the quotient rule: \\(f'(x)=\\frac{1-x^2}{(x^2+1)^2}\\).",'The denominator is positive, so solve \\(1-c^2=0\\).','Only \\(c=1\\) lies in \\((\\frac12,2)\\).']});
+  if(family==='cosine-composition')return u3TheoremProblem({id:'u3-v124-rolle-cos-composition',variant:'rolle_cosine_composition_applies',theorem:'rolle',applies:true,reasonIndex:0,functionTex:'f(x)=\\cos(2x)',intervalTex:'[0,\\pi]',openIntervalTex:'(0,\\pi)',intervalMidpointValue:Math.PI/2,
+    hypothesisSteps:['The cosine composition is continuous and differentiable everywhere, and \\(f(0)=1=f(\\pi)\\).'],cValues:[Math.PI/2],cAnswerTex:'c=\\frac{\\pi}{2}',
+    cSteps:["Differentiate: \\(f'(x)=-2\\sin(2x)\\).",'Solve \\(\\sin(2c)=0\\) for \\(0<c<\\pi\\).','The only interior solution is \\(c=\\frac{\\pi}{2}\\).']});
+  if(family==='logarithmic-composition')return u3TheoremProblem({id:'u3-v124-rolle-log-composition',variant:'rolle_logarithmic_composition_applies',theorem:'rolle',applies:true,reasonIndex:0,functionTex:'f(x)=(\\ln(x+1)-1)^2',intervalTex:'[0,e^2-1]',openIntervalTex:'(0,e^2-1)',intervalMidpointValue:(Math.E**2-1)/2,
+    hypothesisSteps:['The logarithm has positive input throughout the interval, so the function is continuous and differentiable where required. Also, \\(f(0)=1=f(e^2-1)\\).'],cValues:[Math.E-1],cAnswerTex:'c=e-1',
+    cSteps:["Differentiate: \\(f'(x)=\\frac{2(\\ln(x+1)-1)}{x+1}\\).",'The denominator is positive, so set \\(\\ln(c+1)-1=0\\).','Thus \\(c+1=e\\), so \\(c=e-1\\).']});
+  if(family==='mixed-exponential-product')return u3TheoremProblem({id:'u3-v124-rolle-mixed-exp-product',variant:'rolle_mixed_exponential_product_applies',theorem:'rolle',applies:true,reasonIndex:0,functionTex:'f(x)=x(2-x)e^x',intervalTex:'[0,2]',openIntervalTex:'(0,2)',intervalMidpointValue:1,
+    hypothesisSteps:['This product is continuous and differentiable everywhere, and the polynomial factor makes \\(f(0)=0=f(2)\\).'],cValues:[Math.SQRT2],cAnswerTex:'c=\\sqrt2',
+    cSteps:["Use the product rule and simplify: \\(f'(x)=e^x(2-x^2)\\).",'Since \\(e^c>0\\), solve \\(2-c^2=0\\).','The solution in \\((0,2)\\) is \\(c=\\sqrt2\\).']});
+  if(family==='rational-product-quotient')return u3TheoremProblem({id:'u3-v124-rolle-rational-product',variant:'rolle_rational_product_quotient_applies',theorem:'rolle',applies:true,reasonIndex:0,functionTex:'f(x)=\\frac{(x-1)(3-x)}{x+1}',intervalTex:'[1,3]',openIntervalTex:'(1,3)',intervalMidpointValue:2,
+    hypothesisSteps:['The denominator is nonzero throughout the interval, so the function is continuous and differentiable where required. Its numerator is zero at both endpoints.'],cValues:[-1+2*Math.SQRT2],cAnswerTex:'c=-1+2\\sqrt2',
+    cSteps:["Use the quotient rule and simplify: \\(f'(x)=\\frac{-x^2-2x+7}{(x+1)^2}\\).",'The denominator is positive, so solve \\(-c^2-2c+7=0\\).','Only \\(c=-1+2\\sqrt2\\) lies in \\((1,3)\\).']});
+  return u3TheoremProblem({id:'u3-v122-rolle-logsq',variant:'rolle_logarithmic_applies',theorem:'rolle',applies:true,reasonIndex:0,functionTex:'f(x)=(\\ln x)^2',intervalTex:'[e^{-2},e^2]',openIntervalTex:'(e^{-2},e^2)',intervalMidpointValue:(Math.exp(-2)+Math.exp(2))/2,
+    hypothesisSteps:['The entire interval is positive, so the function is continuous and differentiable where required. Also, \\(f(e^{-2})=4=f(e^2)\\).'],cValues:[1],cAnswerTex:'c=1',cSteps:["Differentiate: \\(f'(x)=\\frac{2\\ln x}{x}\\).",'Since the denominator is positive, set \\(\\ln c=0\\).','Therefore \\(c=1\\).']});
+}
+function u3MvtFailsV122(){
+  const family=pick(['trigonometric','inverse-trigonometric','cube-root','rational','logarithmic','absolute-value','secant-pole','logarithmic-hole','radical-quotient']);
+  if(family==='trigonometric')return u3TheoremProblem({id:'u3-v122-mvt-fail-tan',variant:'mvt_trigonometric_fails',theorem:'mvt',applies:false,reasonIndex:3,functionTex:'f(x)=\\tan x',intervalTex:'[0,\\pi]',hypothesisSteps:['The function is undefined at \\(x=\\frac{\\pi}{2}\\), an interior point. Therefore it is not continuous on the closed interval and not differentiable throughout the open interval.']});
+  if(family==='inverse-trigonometric')return u3TheoremProblem({id:'u3-v122-mvt-fail-asin',variant:'mvt_inverse_trigonometric_fails',theorem:'mvt',applies:false,reasonIndex:3,functionTex:'f(x)=\\sin^{-1}x',intervalTex:'[-2,1]',hypothesisSteps:['Inverse sine has real domain \\([-1,1]\\). The function is not defined on the part of the stated interval from \\(-2\\) to \\(-1\\), so neither required hypothesis holds on the full interval.']});
+  if(family==='cube-root')return u3TheoremProblem({id:'u3-v122-mvt-fail-cuberoot',variant:'mvt_radical_fails_differentiability',theorem:'mvt',applies:false,reasonIndex:2,functionTex:'f(x)=\\sqrt[3]{x}',intervalTex:'[-1,1]',hypothesisSteps:['The cube-root function is continuous on \\([-1,1]\\). However, \\(f\'(x)=\\frac1{3x^{2/3}}\\) is undefined at the interior point \\(x=0\\), so the differentiability condition fails.']});
+  if(family==='rational')return u3MvtFails();
+  if(family==='logarithmic')return u3TheoremProblem({id:'u3-v122-mvt-fail-log',variant:'mvt_logarithmic_fails',theorem:'mvt',applies:false,reasonIndex:1,functionTex:'f(x)=\\ln(x+1)',intervalTex:'[-1,2]',hypothesisSteps:['At the left endpoint, \\(f(-1)=\\ln0\\) is undefined. The function is differentiable on \\((-1,2)\\), but it is not continuous on the full closed interval.']});
+  if(family==='secant-pole')return u3TheoremProblem({id:'u3-v124-mvt-fail-secant',variant:'mvt_secant_pole_fails',theorem:'mvt',applies:false,reasonIndex:3,functionTex:'f(x)=\\sec x',intervalTex:'[0,\\pi]',hypothesisSteps:['The function is undefined at \\(x=\\frac{\\pi}{2}\\), an interior point. It is therefore not continuous on the closed interval or differentiable throughout the open interval.']});
+  if(family==='logarithmic-hole')return u3TheoremProblem({id:'u3-v124-mvt-fail-log-hole',variant:'mvt_logarithmic_composition_hole_fails',theorem:'mvt',applies:false,reasonIndex:3,functionTex:'f(x)=\\ln((x-1)^2)',intervalTex:'[0,2]',hypothesisSteps:['At the interior point \\(x=1\\), the logarithm has input \\(0\\), so the function is undefined. The required continuity and differentiability conditions both fail there.']});
+  if(family==='radical-quotient')return u3TheoremProblem({id:'u3-v124-mvt-fail-radical-quotient',variant:'mvt_radical_quotient_pole_fails',theorem:'mvt',applies:false,reasonIndex:3,functionTex:'f(x)=\\frac{\\sqrt{x+1}}{x-1}',intervalTex:'[-1,2]',hypothesisSteps:['Although the square root is real on the interval, the denominator is zero at the interior point \\(x=1\\). The resulting vertical asymptote breaks continuity and differentiability.']});
+  return u3TheoremProblem({id:'u3-v122-mvt-fail-abs',variant:'mvt_absolute_value_fails',theorem:'mvt',applies:false,reasonIndex:2,functionTex:'f(x)=|2x-1|',intervalTex:'[-1,2]',hypothesisSteps:['The absolute-value function is continuous on the closed interval. Its graph has a corner at \\(x=\\frac12\\), so it is not differentiable throughout the open interval.']});
+}
+function u3RolleFailsV122(){
+  const family=pick(['trigonometric','exponential','rational','radical','logarithmic','inverse-trigonometric','cusp','secant-pole','logarithmic-endpoint']);
+  if(family==='trigonometric')return u3TheoremProblem({id:'u3-v122-rolle-fail-sin',variant:'rolle_trigonometric_fails_endpoints',theorem:'rolle',applies:false,reasonIndex:4,functionTex:'f(x)=\\sin x',intervalTex:'[0,\\frac{\\pi}{2}]',hypothesisSteps:['Sine is continuous and differentiable where required, but \\(f(0)=0\\) and \\(f(\\frac{\\pi}{2})=1\\). The endpoint values are not equal.']});
+  if(family==='exponential')return u3TheoremProblem({id:'u3-v122-rolle-fail-exp',variant:'rolle_exponential_fails_endpoints',theorem:'rolle',applies:false,reasonIndex:4,functionTex:'f(x)=e^x',intervalTex:'[0,1]',hypothesisSteps:['The exponential function is continuous and differentiable, but \\(f(0)=1\\) while \\(f(1)=e\\). The endpoint values are not equal.']});
+  if(family==='inverse-trigonometric')return u3TheoremProblem({id:'u3-v122-rolle-fail-asin',variant:'rolle_inverse_trigonometric_fails',theorem:'rolle',applies:false,reasonIndex:3,functionTex:'f(x)=\\sin^{-1}x',intervalTex:'[-2,2]',hypothesisSteps:['Inverse sine is not real outside \\([-1,1]\\), so it is not defined on the full closed interval and fails the continuity and differentiability requirements.']});
+  if(family==='logarithmic')return u3TheoremProblem({id:'u3-v122-rolle-fail-log',variant:'rolle_logarithmic_fails',theorem:'rolle',applies:false,reasonIndex:1,functionTex:'f(x)=\\ln x',intervalTex:'[0,1]',hypothesisSteps:['The function is undefined at the left endpoint \\(x=0\\), so it is not continuous on the closed interval.']});
+  if(family==='cusp')return u3TheoremProblem({id:'u3-v124-rolle-fail-cusp',variant:'rolle_cusp_fails_differentiability',theorem:'rolle',applies:false,reasonIndex:2,functionTex:'f(x)=x^{2/3}',intervalTex:'[-1,1]',hypothesisSteps:['The function is continuous and its endpoint values agree: \\(f(-1)=1=f(1)\\). However, the graph has a cusp at \\(x=0\\), so the function is not differentiable throughout the open interval.']});
+  if(family==='secant-pole')return u3TheoremProblem({id:'u3-v124-rolle-fail-secant',variant:'rolle_secant_pole_fails',theorem:'rolle',applies:false,reasonIndex:3,functionTex:'f(x)=\\sec x',intervalTex:'[-\\pi,\\pi]',hypothesisSteps:['The endpoint values agree: \\(f(-\\pi)=-1=f(\\pi)\\). But the function is undefined at \\(x=-\\frac{\\pi}{2}\\) and \\(x=\\frac{\\pi}{2}\\), so continuity and differentiability fail inside the interval.']});
+  if(family==='logarithmic-endpoint')return u3TheoremProblem({id:'u3-v124-rolle-fail-log-composition',variant:'rolle_logarithmic_composition_endpoint_fails',theorem:'rolle',applies:false,reasonIndex:1,functionTex:'f(x)=\\ln(x+1)',intervalTex:'[-1,1]',hypothesisSteps:['At the left endpoint, the logarithm has input \\(0\\), so \\(f(-1)\\) is undefined. The function is not continuous on the full closed interval, and Rolle’s Theorem cannot apply.']});
+  return u3RolleFails();
+}
+
+/* Keep recognizable theorem families and templates from repeating in a short
+ * practice run. Applicability is selected first, so this only varies the
+ * presentation within the already-approved theorem/applicability bucket. */
+const U3_THEOREM_RECENT={families:[],outers:[],patterns:[],templates:[]};
+function u3TheoremVarietyKeys(problem){
+  const variant=String(problem?.variant||'unknown');
+  const tex=String(problem?.functionTex||'');
+  let family='polynomial';
+  if(/inverse_trigonometric/.test(variant)||/\\(?:sin|cos|tan)\^{-1}/.test(tex))family='inverse trigonometric';
+  else if(/logarithm|logarithmic/.test(variant)||/\\ln/.test(tex))family='logarithmic';
+  else if(/exponential/.test(variant)||/e\^/.test(tex))family='exponential';
+  else if(/trigonometric|sine|cosine|secant/.test(variant)||/\\(?:sin|cos|tan|sec)/.test(tex))family='trigonometric';
+  else if(/radical|root|cuberoot/.test(variant)||/\\sqrt/.test(tex))family='radical';
+  else if(/rational|reciprocal|quotient|removable/.test(variant)||/\\frac/.test(tex))family='rational';
+  else if(/absolute/.test(variant))family='absolute value';
+  let pattern='direct';
+  if(/hole|pole|domain|endpoint/.test(variant))pattern='domain restriction';
+  else if(/cusp|absolute|cuberoot/.test(variant))pattern='nondifferentiable point';
+  else if(/composition/.test(variant))pattern='composition';
+  else if(/product/.test(variant))pattern='product';
+  else if(/quotient|rational|reciprocal/.test(variant))pattern='quotient';
+  else if(/combination/.test(variant))pattern='sum';
+  let outer=family;
+  if(pattern==='product')outer='product';
+  else if(pattern==='quotient')outer='quotient';
+  else if(family==='trigonometric'){
+    if(/secant/.test(variant)||/\\sec/.test(tex))outer='secant';
+    else if(/tangent|_tan/.test(variant)||/\\tan/.test(tex))outer='tangent';
+    else if(/cosine|_cos/.test(variant)||/\\cos/.test(tex))outer='cosine';
+    else outer='sine';
+  }
+  return{family,outer,pattern,template:variant};
+}
+function u3TheoremCandidate(theorem,applies){
+  return theorem==='rolle'
+    ?(applies?(R()<.8?u3RolleAppliesV122():u3RolleApplies()):(R()<.8?u3RolleFailsV122():u3RolleFails()))
+    :(applies?(R()<.8?u3MvtAppliesV122():u3MvtApplies()):(R()<.8?u3MvtFailsV122():u3MvtFails()));
+}
+function u3VariedTheoremProblem(theorem,applies){
+  let selected=null,selectedKeys=null,bestScore=Infinity;
+  for(let attempt=0;attempt<384;attempt++){
+    const candidate=u3TheoremCandidate(theorem,applies),keys=u3TheoremVarietyKeys(candidate);
+    const familyConflict=U3_THEOREM_RECENT.families.includes(keys.family);
+    const outerConflict=U3_THEOREM_RECENT.outers.includes(keys.outer);
+    const patternConflict=U3_THEOREM_RECENT.patterns.includes(keys.pattern);
+    const templateConflict=U3_THEOREM_RECENT.templates.includes(keys.template);
+    /* Family and exact template are the strongest visual signals of a repeat.
+     * Give them lexicographic-style weight, then use outer function and
+     * composition pattern to break ties among otherwise fresh candidates. */
+    const score=(familyConflict?100:0)+(templateConflict?50:0)+(outerConflict?25:0)+(patternConflict?10:0);
+    if(score<bestScore){selected=candidate;selectedKeys=keys;bestScore=score;}
+    if(score===0)break;
+  }
+  /* Applicability is deliberately never changed to avoid a repeat. The
+   * recent-history pass only chooses a less familiar presentation within the
+   * already-selected theorem/applicability bucket. */
+  selected.theoremFunctionFamily=selectedKeys.family;
+  selected.theoremOuterFunction=selectedKeys.outer;
+  selected.theoremCompositionPattern=selectedKeys.pattern;
+  selected.theoremTemplateSignature=selectedKeys.template;
+  U3_THEOREM_RECENT.families.push(selectedKeys.family);
+  U3_THEOREM_RECENT.outers.push(selectedKeys.outer);
+  U3_THEOREM_RECENT.patterns.push(selectedKeys.pattern);
+  U3_THEOREM_RECENT.templates.push(selectedKeys.template);
+  while(U3_THEOREM_RECENT.families.length>5)U3_THEOREM_RECENT.families.shift();
+  while(U3_THEOREM_RECENT.outers.length>3)U3_THEOREM_RECENT.outers.shift();
+  while(U3_THEOREM_RECENT.patterns.length>4)U3_THEOREM_RECENT.patterns.shift();
+  while(U3_THEOREM_RECENT.templates.length>9)U3_THEOREM_RECENT.templates.shift();
+  return selected;
+}
+U3['rolle-s-theorem-and-the-mean-value-theorem']=function(opts){
+  opts=opts||{};
+  const focus=opts.mvtMode||opts.mode||'both';
+  const theorem=focus==='rolle'?'rolle':(focus==='mvt'||focus==='theorem'?'mvt':(R()<.5?'mvt':'rolle'));
+  const applies=R()<.75;
+  const problem=u3VariedTheoremProblem(theorem,applies);
+  const source=R()<.15?'test':'assignment';
+  return stamp(problem,'rolle-s-theorem-and-the-mean-value-theorem','noncalculator',source,problem.variant);
+};
+
+/* 14. L'Hopital's Rule — identify the form first, then evaluate when valid. */
+const U3_LHOPITAL_CHOICES=[
+  'Yes, because direct substitution gives \\(\\frac{0}{0}\\)',
+  'Yes, because direct substitution gives \\(\\frac{\\infty}{\\infty}\\)',
+  'Yes, after rewriting the indeterminate product \\(0\\cdot\\infty\\) as a quotient',
+  "No, because direct substitution does not give an indeterminate form handled by L'Hopital's Rule"
+];
+function u3LimitDisplay(approach,expression){
+  return '<div class="u3-limit-display">\\[\\displaystyle\\lim\\limits_{'+approach+'} '+expression+'\\]</div>';
+}
+function u3LhopitalClearStep(step){
+  return String(step)
+    .replace(/^Differentiate the numerator and denominator to obtain /,'Separately differentiate the numerator and denominator to get ')
+    .replace(/^Differentiate the numerator and denominator to get /,'Separately differentiate the numerator and denominator to get ')
+    .replace(/^Differentiate the numerator and denominator: /,'Separately differentiate the numerator and denominator to get ')
+    .replace(/^Differentiate numerator and denominator to get /,'Separately differentiate the numerator and denominator to get ')
+    .replace(/^Differentiate numerator and denominator: /,'Separately differentiate the numerator and denominator to get ')
+    .replace(/^Differentiate to obtain /,'Separately differentiate the numerator and denominator to get ')
+    .replace(/^Differentiate to get /,'Separately differentiate the numerator and denominator to get ')
+    .replace(/^Differentiate once: /,'Separately differentiate the numerator and denominator to get ')
+    .replace(/^Differentiate a second time: /,'Separately differentiate the numerator and denominator again to get ')
+    .replace(/^Differentiate again: /,'Separately differentiate the numerator and denominator again to get ')
+    .replace(/^Differentiate: /,'Separately differentiate the numerator and denominator to get ')
+    .replace(/^Use the chain rule on the numerator: /,'Separately differentiate the numerator and denominator, using the chain rule in the numerator, to get ')
+    .replace(/^Apply L'Hopital's Rule: /,'Separately differentiate the numerator and denominator to get ')
+    .replace('Differentiate with respect to \\(u\\): ','Separately differentiate the numerator and denominator with respect to \\(u\\) to get ');
+}
+function u3RepeatedPolynomialExpSteps(n){
+  const steps=[];
+  for(let round=1;round<=n;round++){
+    const coefficient=u3Factorial(n)/u3Factorial(n-round),power=n-round;
+    const numerator=power===0?String(coefficient):(coefficient===1?'':String(coefficient))+(power===1?'x':'x^{'+power+'}');
+    const quotient='\\frac{'+numerator+'}{e^x}';
+    if(round<n)steps.push('Separately differentiate the numerator and denominator to get \\('+quotient+'\\). As \\(x\\to\\infty\\), this is still the indeterminate form \\(\\frac{\\infty}{\\infty}\\), so apply L\'Hopital\'s Rule again.');
+    else steps.push('Separately differentiate the numerator and denominator to get \\('+quotient+'\\). The numerator is constant while \\(e^x\\to\\infty\\), so the limit is \\(0\\).');
+  }
+  return steps;
+}
+function u3LhopitalProblem(spec){
+  const reasonIndex=spec.form==='zero'?0:spec.form==='infinity'?1:spec.form==='product'?2:3;
+  const applies=reasonIndex<3;
+  return {
+    id:spec.id,
+    variant:spec.variant,
+    answerType:'staged-calculus',
+    stagedFamily:'lhopital',
+    lhopitalForm:spec.form,
+    lhopitalApplies:applies,
+    questionHtml:'<div class="u3-staged-question"><div class="question-prompt">Consider the limit.</div>'+u3LimitDisplay(spec.approach,spec.expression)+'</div>',
+    stage1:{
+      type:'choice',
+      prompt:"Part 1: Does L'Hopital's Rule apply to the expression as written, or after the indicated product is rewritten?",
+      choices:U3_LHOPITAL_CHOICES,
+      correctIndex:reasonIndex,
+      answerTex:U3_LHOPITAL_CHOICES[reasonIndex],
+      answerIsText:true,
+      correctFeedback:"The decision about L'Hopital's Rule and the indeterminate form is correct.",
+      incorrectFeedback:"That decision about L'Hopital's Rule is not correct.",
+      explanation:u3WorkedSteps(spec.formSteps),
+      explainOnCorrect:false,
+      autoAdvanceOnCorrect:true
+    },
+    stage2:applies?{
+      type:'exact',
+      prompt:'Part 2: Evaluate the limit.',
+      numericAnswer:spec.answerValue,
+      answerTex:spec.answerTex,
+      requireExact:false,
+      tolerance:1e-7,
+      placeholder:'Enter the limit',
+      checkLabel:'Check Part 2',
+      keypadMode:'unit3-limit',
+      correctFeedback:'The limit is correct.',
+      incorrectFeedback:'That exact limit is not correct.',
+      explanation:u3WorkedSteps((spec.limitSteps||[]).map(u3LhopitalClearStep))
+    }:null,
+    answerTex:applies?spec.answerTex:U3_LHOPITAL_CHOICES[reasonIndex],
+    fullWidthChoices:true
+  };
+}
+function u3LhopitalZero(){
+  const family=pick(['sine','exponential','logarithm','cosine','radical','polynomial','tan-sine','second-order-exponential']);
+  if(family==='sine'){
+    const k=ri(1,6);
+    return u3LhopitalProblem({id:'u3-lh-zero-sin-'+k,variant:'lhopital_zero_sine',form:'zero',approach:'x\\to0',expression:'\\frac{\\sin('+k+'x)}{x}',answerValue:k,answerTex:String(k),
+      formSteps:['Direct substitution gives \\(\\frac{\\sin0}{0}=\\frac00\\), so the quotient has the indeterminate form \\(0/0\\).'],
+      limitSteps:['Separately differentiate the numerator and denominator to get \\(\\frac{'+k+'\\cos('+k+'x)}{1}='+k+'\\cos('+k+'x)\\).','Now substitute \\(x=0\\): \\('+k+'\\cos0='+k+'\\).']});
+  }
+  if(family==='exponential'){
+    const k=ri(1,5);
+    return u3LhopitalProblem({id:'u3-lh-zero-exp-'+k,variant:'lhopital_zero_exponential',form:'zero',approach:'x\\to0',expression:'\\frac{e^{'+k+'x}-1}{x}',answerValue:k,answerTex:String(k),
+      formSteps:['Direct substitution gives \\(\\frac{e^0-1}{0}=\\frac00\\).'],
+      limitSteps:['Differentiate the numerator and denominator to obtain \\(\\frac{'+k+'e^{'+k+'x}}{1}\\).','Substituting \\(x=0\\) gives \\('+k+'e^0='+k+'\\).']});
+  }
+  if(family==='logarithm'){
+    const k=ri(1,6);
+    return u3LhopitalProblem({id:'u3-lh-zero-log-'+k,variant:'lhopital_zero_logarithm',form:'zero',approach:'x\\to0',expression:'\\frac{\\ln(1+'+k+'x)}{x}',answerValue:k,answerTex:String(k),
+      formSteps:['Direct substitution gives \\(\\frac{\\ln1}{0}=\\frac00\\).'],
+      limitSteps:['Separately differentiate the numerator and denominator to get \\(\\frac{\\frac{'+k+'}{1+'+k+'x}}{1}=\\frac{'+k+'}{1+'+k+'x}\\).','At \\(x=0\\), the new quotient equals \\('+k+'\\).']});
+  }
+  if(family==='cosine'){
+    const k=ri(1,5),answer=Q(k*k,2);
+    return u3LhopitalProblem({id:'u3-lh-zero-cos-'+k,variant:'lhopital_zero_cosine',form:'zero',approach:'x\\to0',expression:'\\frac{1-\\cos('+k+'x)}{x^2}',answerValue:u3QValue(answer),answerTex:qTex(answer),
+      formSteps:['Direct substitution gives \\(\\frac{1-\\cos0}{0^2}=\\frac00\\).'],
+      limitSteps:['Separately differentiate the numerator and denominator to get \\(\\frac{'+k+'\\sin('+k+'x)}{2x}\\). Substitution still gives \\(\\frac00\\), so apply the rule again.','Separately differentiate the numerator and denominator again to get \\(\\frac{'+(k*k)+'\\cos('+k+'x)}{2}\\). Substituting \\(x=0\\) gives \\('+qTex(answer)+'\\).']});
+  }
+  if(family==='radical'){
+    const r=ri(2,6),c=r*r,answer=Q(1,2*r);
+    return u3LhopitalProblem({id:'u3-lh-zero-root-'+r,variant:'lhopital_zero_radical',form:'zero',approach:'x\\to0',expression:'\\frac{\\sqrt{x+'+c+'}-'+r+'}{x}',answerValue:u3QValue(answer),answerTex:qTex(answer),
+      formSteps:['Direct substitution gives \\(\\frac{\\sqrt{'+c+'}-'+r+'}{0}=\\frac00\\).'],
+      limitSteps:['Separately differentiate the numerator and denominator to get \\(\\frac{\\frac{1}{2\\sqrt{x+'+c+'}}}{1}=\\frac{1}{2\\sqrt{x+'+c+'}}\\).','At \\(x=0\\), the limit is \\(\\frac{1}{2\\sqrt{'+c+'}}='+qTex(answer)+'\\).']});
+  }
+  if(family==='polynomial'){
+    const n=ri(2,5),a=ri(1,3),answer=n*a**(n-1);
+    return u3LhopitalProblem({id:'u3-lh-zero-power-'+n+'-'+a,variant:'lhopital_zero_polynomial',form:'zero',approach:'x\\to'+a,expression:'\\frac{x^'+n+'-'+(a**n)+'}{x-'+a+'}',answerValue:answer,answerTex:String(answer),
+      formSteps:['At \\(x='+a+'\\), both the numerator and denominator equal zero, so the form is \\(0/0\\).'],
+      limitSteps:['Differentiate to get \\(\\frac{'+n+'x^{'+(n-1)+'}}{1}\\).','Substitute \\(x='+a+'\\): \\('+n+'('+a+')^{'+(n-1)+'}='+answer+'\\).']});
+  }
+  if(family==='tan-sine'){
+    const k=ri(1,5),m=ri(1,5),answer=Q(k,m);
+    return u3LhopitalProblem({id:'u3-lh-zero-tan-sin-'+k+'-'+m,variant:'lhopital_zero_trig_quotient',form:'zero',approach:'x\\to0',expression:'\\frac{\\tan('+k+'x)}{\\sin('+m+'x)}',answerValue:u3QValue(answer),answerTex:qTex(answer),
+      formSteps:['Direct substitution gives \\(\\frac{\\tan0}{\\sin0}=\\frac00\\).'],
+      limitSteps:['Differentiate the numerator and denominator: \\(\\frac{'+k+'\\sec^2('+k+'x)}{'+m+'\\cos('+m+'x)}\\).','Substitution at \\(x=0\\) gives \\('+qTex(answer)+'\\).']});
+  }
+  return u3LhopitalProblem({id:'u3-lh-zero-exp-second',variant:'lhopital_zero_repeated_exponential',form:'zero',approach:'x\\to0',expression:'\\frac{e^x-1-x}{x^2}',answerValue:.5,answerTex:'\\frac12',
+    formSteps:['Direct substitution gives \\(\\frac{1-1-0}{0}=\\frac00\\).'],
+    limitSteps:['Separately differentiate the numerator and denominator to get \\(\\frac{e^x-1}{2x}\\). At \\(x=0\\), this is still \\(\\frac00\\).','Separately differentiate the numerator and denominator again to get \\(\\frac{e^x}{2}\\). Substituting \\(x=0\\) gives \\(\\frac12\\).']});
+}
+function u3LhopitalInfinity(){
+  const family=pick(['polynomial','polynomial-exponential','log-power','exponential-ratio','log-ratio','radical-ratio']);
+  if(family==='polynomial'){
+    const n=ri(2,5),a=ri(1,6),b=ri(1,6),p=ri(-8,8),q=ri(-8,8),answer=Q(a,b);
+    return u3LhopitalProblem({id:'u3-lh-inf-poly-'+n+'-'+a+'-'+b+'-'+p+'-'+q,variant:'lhopital_infinity_polynomial',form:'infinity',approach:'x\\to\\infty',expression:'\\frac{'+(sgn(a,'x^'+n,true)+sgn(p,'x'))+'}{'+(sgn(b,'x^'+n,true)+sgn(q,''))+'}',answerValue:u3QValue(answer),answerTex:qTex(answer),
+      formSteps:['The numerator and denominator both grow without bound as \\(x\\to\\infty\\), so the form is \\(\\infty/\\infty\\).'],
+      limitSteps:['Differentiate numerator and denominator: \\(\\frac{'+(a*n)+'x^{'+(n-1)+'}'+(p<0?'':'+')+p+'}{'+(b*n)+'x^{'+(n-1)+'}}\\).','The highest-power terms determine the new quotient, so the limit is \\(\\frac{'+(a*n)+'}{'+(b*n)+'}='+qTex(answer)+'\\).']});
+  }
+  if(family==='polynomial-exponential'){
+    const n=ri(2,5);
+    return u3LhopitalProblem({id:'u3-lh-inf-poly-exp-'+n,variant:'lhopital_infinity_polynomial_exponential',form:'infinity',approach:'x\\to\\infty',expression:'\\frac{x^'+n+'}{e^x}',answerValue:0,answerTex:'0',
+      formSteps:['Both \\(x^'+n+'\\) and \\(e^x\\) approach infinity, so the quotient has the form \\(\\infty/\\infty\\).'],
+      limitSteps:u3RepeatedPolynomialExpSteps(n)});
+  }
+  if(family==='log-power'){
+    const n=ri(1,4);
+    return u3LhopitalProblem({id:'u3-lh-inf-log-power-'+n,variant:'lhopital_infinity_log_power',form:'infinity',approach:'x\\to\\infty',expression:'\\frac{\\ln x}{x^'+n+'}',answerValue:0,answerTex:'0',
+      formSteps:['Both \\(\\ln x\\) and \\(x^'+n+'\\) approach infinity, so the form is \\(\\infty/\\infty\\).'],
+      limitSteps:['Differentiate once: \\(\\frac{1/x}{'+n+'x^{'+(n-1)+'}}=\\frac{1}{'+n+'x^'+n+'}\\).','That expression approaches \\(0\\) as \\(x\\to\\infty\\).']});
+  }
+  if(family==='exponential-ratio'){
+    const a=ri(1,6),b=ri(1,6),k=ri(1,4),answer=Q(a,b);
+    return u3LhopitalProblem({id:'u3-lh-inf-exp-ratio-'+a+'-'+b+'-'+k,variant:'lhopital_infinity_exponential_ratio',form:'infinity',approach:'x\\to\\infty',expression:'\\frac{'+a+'e^{'+k+'x}+1}{'+b+'e^{'+k+'x}+2}',answerValue:u3QValue(answer),answerTex:qTex(answer),
+      formSteps:['The exponential terms make both numerator and denominator approach infinity, so the form is \\(\\infty/\\infty\\).'],
+      limitSteps:['Differentiate: \\(\\frac{'+(a*k)+'e^{'+k+'x}}{'+(b*k)+'e^{'+k+'x}}\\).','Cancel the common exponential factor to get \\('+qTex(answer)+'\\).']});
+  }
+  if(family==='log-ratio'){
+    const m=ri(2,5),n=ri(2,5),answer=Q(m,n);
+    return u3LhopitalProblem({id:'u3-lh-inf-log-ratio-'+m+'-'+n,variant:'lhopital_infinity_log_ratio',form:'infinity',approach:'x\\to\\infty',expression:'\\frac{\\ln(x^'+m+'+1)}{\\ln(x^'+n+'+1)}',answerValue:u3QValue(answer),answerTex:qTex(answer),
+      formSteps:['Each logarithm approaches infinity, so the quotient has the form \\(\\infty/\\infty\\).'],
+      limitSteps:['Differentiate to obtain \\(\\frac{'+m+'x^{'+(m-1)+'}/(x^'+m+'+1)}{'+n+'x^{'+(n-1)+'}/(x^'+n+'+1)}\\).','After simplifying the dominant powers as \\(x\\to\\infty\\), the limit is \\('+qTex(answer)+'\\).']});
+  }
+  const a=ri(2,8),b=ri(2,8),answer=Math.sqrt(a/b);
+  return u3LhopitalProblem({id:'u3-lh-inf-root-ratio-'+a+'-'+b,variant:'lhopital_infinity_radical_ratio',form:'infinity',approach:'x\\to\\infty',expression:'\\frac{\\sqrt{'+a+'x^2+1}}{\\sqrt{'+b+'x^2+1}}',answerValue:answer,answerTex:'\\sqrt{\\frac{'+a+'}{'+b+'}}',
+    formSteps:['Both radicals approach infinity, so the quotient has the form \\(\\infty/\\infty\\).'],
+    limitSteps:['Differentiate to get \\(\\frac{'+a+'x/\\sqrt{'+a+'x^2+1}}{'+b+'x/\\sqrt{'+b+'x^2+1}}\\).','Cancel \\(x\\) and evaluate the remaining radical ratio as \\(x\\to\\infty\\), giving \\(\\sqrt{\\frac{'+a+'}{'+b+'}}\\).']});
+}
+function u3LhopitalProduct(){
+  const family=pick(['power-log','exponential-decay','tangent-endpoint','shifted-log','log-reciprocal']);
+  if(family==='power-log'){
+    const n=ri(1,4);
+    return u3LhopitalProblem({id:'u3-lh-product-power-log-'+n,variant:'lhopital_product_power_log',form:'product',approach:'x\\to0^+',expression:'x^'+n+'\\ln x',answerValue:0,answerTex:'0',
+      formSteps:['As \\(x\\to0^+\\), \\(x^'+n+'\\to0\\) and \\(\\ln x\\to-\\infty\\), so the product has the indeterminate form \\(0\\cdot\\infty\\).','Rewrite it as \\(\\frac{\\ln x}{1/x^'+n+'}\\), which has an infinite-over-infinite form.'],
+      limitSteps:['Apply L\'Hopital\'s Rule: \\(\\frac{1/x}{-'+n+'/x^{'+(n+1)+'}}=-\\frac{x^'+n+'}{'+n+'}\\).','As \\(x\\to0^+\\), this approaches \\(0\\).']});
+  }
+  if(family==='exponential-decay'){
+    const n=ri(1,4);
+    return u3LhopitalProblem({id:'u3-lh-product-exp-decay-'+n,variant:'lhopital_product_exponential_decay',form:'product',approach:'x\\to\\infty',expression:'x^'+n+'e^{-x}',answerValue:0,answerTex:'0',
+      formSteps:['As \\(x\\to\\infty\\), \\(x^'+n+'\\to\\infty\\) and \\(e^{-x}\\to0\\), so the product is an indeterminate \\(0\\cdot\\infty\\) form.','Rewrite it as \\(\\frac{x^'+n+'}{e^x}\\), which has the form \\(\\infty/\\infty\\).'],
+      limitSteps:u3RepeatedPolynomialExpSteps(n)});
+  }
+  if(family==='tangent-endpoint')return u3LhopitalProblem({id:'u3-lh-product-tan-endpoint',variant:'lhopital_product_trigonometric',form:'product',approach:'x\\to(\\pi/2)^-',expression:'(\\frac{\\pi}{2}-x)\\tan x',answerValue:1,answerTex:'1',
+    formSteps:['The first factor approaches \\(0\\), while \\(\\tan x\\to\\infty\\), so this is an indeterminate \\(0\\cdot\\infty\\) product.','Let \\(u=\\frac{\\pi}{2}-x\\). Rewrite the expression as \\(u\\cot u=\\frac{u}{\\tan u}\\), a \\(0/0\\) quotient.'],
+    limitSteps:['Separately differentiate the numerator and denominator in \\(\\frac{u}{\\tan u}\\) to get \\(\\frac{1}{\\sec^2u}\\).','As \\(u\\to0^+\\), this approaches \\(1\\).']});
+  if(family==='shifted-log')return u3LhopitalProblem({id:'u3-lh-product-shifted-log',variant:'lhopital_product_shifted_log',form:'product',approach:'x\\to1^-',expression:'(1-x)\\ln(1-x)',answerValue:0,answerTex:'0',
+    formSteps:['As \\(x\\to1^-\\), \\(1-x\\to0^+\\) and \\(\\ln(1-x)\\to-\\infty\\), so the product is an indeterminate \\(0\\cdot\\infty\\) form.','Rewrite it as \\(\\frac{\\ln(1-x)}{1/(1-x)}\\).'],
+    limitSteps:['Differentiate numerator and denominator: \\(\\frac{-1/(1-x)}{1/(1-x)^2}=-(1-x)\\).','As \\(x\\to1^-\\), this approaches \\(0\\).']});
+  return u3LhopitalProblem({id:'u3-lh-product-log-reciprocal',variant:'lhopital_product_log_reciprocal',form:'product',approach:'x\\to\\infty',expression:'\\frac1x\\ln x',answerValue:0,answerTex:'0',
+    formSteps:['Here \\(1/x\\to0\\) and \\(\\ln x\\to\\infty\\), so the product has the indeterminate form \\(0\\cdot\\infty\\).','Rewrite it as the quotient \\(\\frac{\\ln x}{x}\\), which has the form \\(\\infty/\\infty\\).'],
+    limitSteps:['Differentiate numerator and denominator: \\(\\frac{1/x}{1}=\\frac1x\\).','As \\(x\\to\\infty\\), this approaches \\(0\\).']});
+}
+function u3LhopitalNo(){
+  const family=pick(['finite','zero-over-nonzero','nonzero-over-zero','trig-away','vanishing-reciprocal']);
+  if(family==='finite')return u3LhopitalProblem({id:'u3-lh-no-finite',variant:'lhopital_not_indeterminate_finite',form:'none',approach:'x\\to0',expression:'\\frac{x^2+1}{x+2}',formSteps:['Direct substitution gives \\(\\frac{1}{2}\\), not \\(0/0\\) or \\(\\infty/\\infty\\).','Evaluate by direct substitution; L\'Hopital\'s Rule does not apply.']});
+  if(family==='zero-over-nonzero')return u3LhopitalProblem({id:'u3-lh-no-zero',variant:'lhopital_not_indeterminate_zero',form:'none',approach:'x\\to0',expression:'\\frac{\\sin x}{x+1}',formSteps:['Direct substitution gives \\(\\frac01=0\\), which is already determined.','Because the form is not indeterminate, L\'Hopital\'s Rule does not apply.']});
+  if(family==='nonzero-over-zero')return u3LhopitalProblem({id:'u3-lh-no-infinite',variant:'lhopital_not_indeterminate_nonzero_over_zero',form:'none',approach:'x\\to1^+',expression:'\\frac{x+1}{x-1}',formSteps:['The numerator approaches \\(2\\) while the denominator approaches \\(0^+\\). This is not \\(0/0\\).','The quotient is unbounded from the right, but L\'Hopital\'s Rule does not apply to the nonzero-over-zero form.']});
+  if(family==='trig-away')return u3LhopitalProblem({id:'u3-lh-no-trig-away',variant:'lhopital_not_indeterminate_trigonometric',form:'none',approach:'x\\to\\pi',expression:'\\frac{\\sin x}{x}',formSteps:['Direct substitution gives \\(\\frac{0}{\\pi}=0\\).','The denominator is nonzero, so this is not an indeterminate quotient and L\'Hopital\'s Rule does not apply.']});
+  return u3LhopitalProblem({id:'u3-lh-no-reciprocal',variant:'lhopital_not_indeterminate_reciprocal',form:'none',approach:'x\\to\\infty',expression:'\\frac{1}{x^2+1}',formSteps:['The numerator approaches \\(1\\) and the denominator approaches infinity, so the quotient approaches \\(0\\).','This is not \\(0/0\\) or \\(\\infty/\\infty\\), so L\'Hopital\'s Rule does not apply.']});
+}
+function u3LhopitalZeroV122(){
+  const family=pick(['inverse-tangent','exp-sine','log-cosine','sine-remainder','radical-linear','log-minus-sine','tan-minus-sine','shifted-log']);
+  if(family==='inverse-tangent'){
+    const k=ri(2,6);
+    return u3LhopitalProblem({id:'u3-v122-lh-atan-'+k,variant:'lhopital_zero_inverse_tangent',form:'zero',approach:'x\\to0',expression:'\\frac{\\tan^{-1}('+k+'x)}{x}',answerValue:k,answerTex:String(k),formSteps:['Direct substitution gives \\(\\frac{\\tan^{-1}(0)}0=\\frac00\\), so L\'Hopital\'s Rule applies.'],limitSteps:['Differentiate the numerator and denominator: \\(\\frac{\\frac{'+k+'}{1+'+(k*k)+'x^2}}1\\).','Substitute \\(x=0\\): \\(\\frac{'+k+'}{1}='+k+'\\).']});
+  }
+  if(family==='exp-sine'){
+    const k=ri(1,5);
+    return u3LhopitalProblem({id:'u3-v122-lh-exp-sin-'+k,variant:'lhopital_zero_exponential_trig_composition',form:'zero',approach:'x\\to0',expression:'\\frac{e^{\\sin('+k+'x)}-1}{x}',answerValue:k,answerTex:String(k),formSteps:['At \\(x=0\\), the numerator is \\(e^0-1=0\\) and the denominator is \\(0\\), giving \\(\\frac00\\).'],limitSteps:['Use the chain rule on the numerator: \\(\\frac{'+k+'e^{\\sin('+k+'x)}\\cos('+k+'x)}1\\).','At \\(x=0\\), this becomes \\('+k+'e^0\\cos0='+k+'\\).']});
+  }
+  if(family==='log-cosine'){
+    const k=ri(1,4),answer=Q(-(k*k),2);
+    return u3LhopitalProblem({id:'u3-v122-lh-log-cos-'+k,variant:'lhopital_zero_log_trig_composition',form:'zero',approach:'x\\to0',expression:'\\frac{\\ln(\\cos('+k+'x))}{x^2}',answerValue:u3QValue(answer),answerTex:qTex(answer),formSteps:['Direct substitution gives \\(\\frac{\\ln1}{0}=\\frac00\\).'],limitSteps:['Separately differentiate the numerator and denominator to get \\(\\frac{-'+k+'\\tan('+k+'x)}{2x}\\). Substitution still gives \\(\\frac00\\), so apply the rule again.','Separately differentiate the numerator and denominator again to get \\(\\frac{-'+(k*k)+'\\sec^2('+k+'x)}2\\). Substituting \\(x=0\\) gives \\('+qTex(answer)+'\\).']});
+  }
+  if(family==='sine-remainder'){
+    const k=ri(1,4),answer=Q(-(k**3),6);
+    return u3LhopitalProblem({id:'u3-v122-lh-sine-rem-'+k,variant:'lhopital_zero_trig_remainder',form:'zero',approach:'x\\to0',expression:'\\frac{\\sin('+k+'x)-'+k+'x}{x^3}',answerValue:u3QValue(answer),answerTex:qTex(answer),formSteps:['Both numerator and denominator approach \\(0\\), so the quotient has form \\(\\frac00\\).'],limitSteps:['Separately differentiate the numerator and denominator to get \\(\\frac{'+k+'\\cos('+k+'x)-'+k+'}{3x^2}\\). Substitution still gives \\(\\frac00\\).','Separately differentiate the numerator and denominator again to get \\(\\frac{-'+(k*k)+'\\sin('+k+'x)}{6x}\\). Substitution still gives \\(\\frac00\\).','Separately differentiate the numerator and denominator a third time to get \\(\\frac{-'+(k**3)+'\\cos('+k+'x)}6\\). Substituting \\(x=0\\) gives \\('+qTex(answer)+'\\).']});
+  }
+  if(family==='radical-linear'){
+    const k=pick([2,3,4,5,6]),answer=Q(k,2);
+    return u3LhopitalProblem({id:'u3-v122-lh-root-linear-'+k,variant:'lhopital_zero_radical_composition',form:'zero',approach:'x\\to0',expression:'\\frac{\\sqrt{1+'+k+'x}-1}{x}',answerValue:u3QValue(answer),answerTex:qTex(answer),formSteps:['Substitution gives \\(\\frac{\\sqrt1-1}{0}=\\frac00\\).'],limitSteps:['Differentiate numerator and denominator to get \\(\\frac{'+k+'}{2\\sqrt{1+'+k+'x}}\\).','At \\(x=0\\), the limit is \\('+qTex(answer)+'\\).']});
+  }
+  if(family==='log-minus-sine'){
+    const k=ri(1,4),answer=Q(-(k*k),2);
+    return u3LhopitalProblem({id:'u3-v122-lh-log-sin-'+k,variant:'lhopital_zero_logarithmic_trig_difference',form:'zero',approach:'x\\to0',expression:'\\frac{\\ln(1+'+k+'x)-\\sin('+k+'x)}{x^2}',answerValue:u3QValue(answer),answerTex:qTex(answer),formSteps:['The numerator and denominator both approach \\(0\\), giving \\(\\frac00\\).'],limitSteps:['Separately differentiate the numerator and denominator to get \\(\\frac{\\frac{'+k+'}{1+'+k+'x}-'+k+'\\cos('+k+'x)}{2x}\\). Substitution still gives \\(\\frac00\\).','Separately differentiate the numerator and denominator again to get \\(\\frac{-\\frac{'+(k*k)+'}{(1+'+k+'x)^2}+'+(k*k)+'\\sin('+k+'x)}2\\). Substituting \\(x=0\\) gives \\('+qTex(answer)+'\\).']});
+  }
+  if(family==='tan-minus-sine'){
+    const k=ri(1,3),answer=Q(k**3,2);
+    return u3LhopitalProblem({id:'u3-v122-lh-tan-sin-diff-'+k,variant:'lhopital_zero_trig_difference',form:'zero',approach:'x\\to0',expression:'\\frac{\\tan('+k+'x)-\\sin('+k+'x)}{x^3}',answerValue:u3QValue(answer),answerTex:qTex(answer),formSteps:['Direct substitution gives \\(\\frac{0-0}{0}=\\frac00\\).'],limitSteps:['Separately differentiate the numerator and denominator to get \\(\\frac{'+k+'\\sec^2('+k+'x)-'+k+'\\cos('+k+'x)}{3x^2}\\). Substitution still gives \\(\\frac00\\).','Separately differentiate the numerator and denominator again to get \\(\\frac{'+2*k*k+'\\sec^2('+k+'x)\\tan('+k+'x)+'+(k*k)+'\\sin('+k+'x)}{6x}\\). Substitution still gives \\(\\frac00\\).','Separately differentiate the numerator and denominator a third time to get \\(\\frac{'+4*k**3+'\\sec^2('+k+'x)\\tan^2('+k+'x)+'+2*k**3+'\\sec^4('+k+'x)+'+(k**3)+'\\cos('+k+'x)}6\\). Substituting \\(x=0\\) gives \\(\\frac{'+(3*k**3)+'}{6}='+qTex(answer)+'\\).']});
+  }
+  return u3LhopitalProblem({id:'u3-v122-lh-shifted-log',variant:'lhopital_zero_shifted_logarithm',form:'zero',approach:'x\\to1',expression:'\\frac{\\ln x}{x-1}',answerValue:1,answerTex:'1',formSteps:['At \\(x=1\\), the quotient has form \\(\\frac{\\ln1}{0}=\\frac00\\).'],limitSteps:['Differentiate numerator and denominator: \\(\\frac{\\frac1x}{1}=\\frac1x\\).','Substitute \\(x=1\\) to obtain \\(1\\).']});
+}
+function u3LhopitalInfinityV122(){
+  const family=pick(['log-polynomial','exp-polynomial','radical-linear','log-perturbation','linear-trig','mixed-exponentials','inverse-hyperbolic-log']);
+  if(family==='log-polynomial')return u3LhopitalProblem({id:'u3-v122-lh-inf-log-poly',variant:'lhopital_infinity_logarithmic_polynomial',form:'infinity',approach:'x\\to\\infty',expression:'\\frac{\\ln(x^2+x)}{\\ln x}',answerValue:2,answerTex:'2',formSteps:['Both logarithms approach infinity, so the quotient has form \\(\\frac{\\infty}{\\infty}\\).'],limitSteps:['Differentiate numerator and denominator: \\(\\frac{\\frac{2x+1}{x^2+x}}{\\frac1x}=\\frac{x(2x+1)}{x^2+x}\\).','Divide numerator and denominator by \\(x^2\\); the limit is \\(2\\).']});
+  if(family==='exp-polynomial')return u3LhopitalProblem({id:'u3-v122-lh-inf-exp-poly',variant:'lhopital_infinity_exponential_polynomial_mix',form:'infinity',approach:'x\\to\\infty',expression:'\\frac{e^{3x}+x^2}{e^{3x}+x}',answerValue:1,answerTex:'1',formSteps:['Both numerator and denominator approach infinity, so the form is \\(\\frac{\\infty}{\\infty}\\).'],limitSteps:['Differentiate once: \\(\\frac{3e^{3x}+2x}{3e^{3x}+1}\\).','Divide the new numerator and denominator by \\(e^{3x}\\). The polynomial-over-exponential terms approach \\(0\\), leaving the limit \\(1\\).']});
+  if(family==='radical-linear')return u3LhopitalProblem({id:'u3-v122-lh-inf-root-linear',variant:'lhopital_infinity_radical_linear',form:'infinity',approach:'x\\to\\infty',expression:'\\frac{\\sqrt{x^2+x}}{x+1}',answerValue:1,answerTex:'1',formSteps:['The radical and the linear denominator both approach infinity, giving \\(\\frac{\\infty}{\\infty}\\).'],limitSteps:['Differentiate: \\(\\frac{\\frac{2x+1}{2\\sqrt{x^2+x}}}{1}=\\frac{2x+1}{2\\sqrt{x^2+x}}\\).','Divide numerator and the expression under the radical by \\(x\\); as \\(x\\to\\infty\\), the limit is \\(1\\).']});
+  if(family==='log-perturbation')return u3LhopitalProblem({id:'u3-v122-lh-inf-log-perturb',variant:'lhopital_infinity_linear_logarithmic_mix',form:'infinity',approach:'x\\to\\infty',expression:'\\frac{x+\\ln x}{x-\\ln x}',answerValue:1,answerTex:'1',formSteps:['Both numerator and denominator approach infinity, so the quotient has form \\(\\frac{\\infty}{\\infty}\\).'],limitSteps:['Differentiate numerator and denominator: \\(\\frac{1+\\frac1x}{1-\\frac1x}\\).','As \\(x\\to\\infty\\), \\(\\frac1x\\to0\\), so the limit is \\(1\\).']});
+  if(family==='linear-trig'){
+    const a=ri(1,5),b=ri(1,5),answer=Q(a,b);
+    return u3LhopitalProblem({id:'u3-v122-lh-inf-linear-trig-'+a+'-'+b,variant:'lhopital_infinity_linear_trigonometric_mix',form:'infinity',approach:'x\\to\\infty',expression:'\\frac{'+a+'x+\\sin(\\ln x)}{'+b+'x+\\cos(\\ln x)}',answerValue:u3QValue(answer),answerTex:qTex(answer),formSteps:['The linear terms make both numerator and denominator approach infinity, so the form is \\(\\frac{\\infty}{\\infty}\\).'],limitSteps:['Differentiate: \\(\\frac{'+a+'+\\frac{\\cos(\\ln x)}x}{'+b+'-\\frac{\\sin(\\ln x)}x}\\).','The trigonometric factors are bounded, so each trigonometric-over-\\(x\\) term approaches \\(0\\). The limit is \\('+qTex(answer)+'\\).']});
+  }
+  if(family==='mixed-exponentials'){
+    const a=pick([2,3,4]),answer=Q(1,a);
+    return u3LhopitalProblem({id:'u3-v122-lh-inf-exp-mix-'+a,variant:'lhopital_infinity_exponential_composition',form:'infinity',approach:'x\\to\\infty',expression:'\\frac{e^{2x}+x^3}{'+a+'e^{2x}+x^2}',answerValue:u3QValue(answer),answerTex:qTex(answer),formSteps:['Both numerator and denominator approach infinity, giving \\(\\frac{\\infty}{\\infty}\\).'],limitSteps:['Differentiate once: \\(\\frac{2e^{2x}+3x^2}{'+(2*a)+'e^{2x}+2x}\\).','Divide by \\(e^{2x}\\). The polynomial-over-exponential terms approach \\(0\\), leaving \\(\\frac2{'+(2*a)+'}='+qTex(answer)+'\\).']});
+  }
+  return u3LhopitalProblem({id:'u3-v122-lh-inf-asinh',variant:'lhopital_infinity_logarithmic_radical_composition',form:'infinity',approach:'x\\to\\infty',expression:'\\frac{\\ln(x+\\sqrt{x^2+1})}{\\ln x}',answerValue:1,answerTex:'1',formSteps:['Both numerator and denominator approach infinity, so the quotient has form \\(\\frac{\\infty}{\\infty}\\).'],limitSteps:['Separately differentiate the numerator and denominator. The numerator derivative simplifies to \\(\\frac1{\\sqrt{x^2+1}}\\), so the new quotient is \\(\\frac{x}{\\sqrt{x^2+1}}\\).','Divide numerator and denominator by \\(x\\). The limit is \\(1\\).']});
+}
+function u3LhopitalProductV122(){
+  const family=pick(['x-log-sine','square-cotangent','endpoint-log-cosine','root-exponential']);
+  if(family==='x-log-sine')return u3LhopitalProblem({id:'u3-v122-lh-product-log-sine',variant:'lhopital_product_logarithmic_trig',form:'product',approach:'x\\to0^+',expression:'x\\ln(\\sin x)',answerValue:0,answerTex:'0',formSteps:['As \\(x\\to0^+\\), \\(x\\to0\\) and \\(\\ln(\\sin x)\\to-\\infty\\), giving the indeterminate product \\(0\\cdot\\infty\\).','Rewrite it as \\(\\frac{\\ln(\\sin x)}{\\frac1x}\\), which has form \\(\\frac{\\infty}{\\infty}\\).'],limitSteps:['Apply L\'Hopital\'s Rule: \\(\\frac{\\cot x}{-\\frac1{x^2}}=-x^2\\cot x\\).','Write \\(-x^2\\cot x=-x\\frac{x\\cos x}{\\sin x}\\). The ratio approaches \\(1\\) while \\(x\\to0\\), so the limit is \\(0\\).']});
+  if(family==='square-cotangent')return u3LhopitalProblem({id:'u3-v122-lh-product-square-cot',variant:'lhopital_product_trigonometric',form:'product',approach:'x\\to0^+',expression:'x^2\\cot x',answerValue:0,answerTex:'0',formSteps:['Here \\(x^2\\to0\\) and \\(\\cot x\\to\\infty\\), so the product is indeterminate. Rewrite it as \\(\\frac{x^2}{\\tan x}\\), a \\(\\frac00\\) quotient.'],limitSteps:['Differentiate numerator and denominator: \\(\\frac{2x}{\\sec^2x}=2x\\cos^2x\\).','As \\(x\\to0^+\\), this approaches \\(0\\).']});
+  if(family==='endpoint-log-cosine')return u3LhopitalProblem({id:'u3-v122-lh-product-end-log',variant:'lhopital_product_endpoint_logarithm',form:'product',approach:'x\\to(\\pi/2)^-',expression:'(\\frac{\\pi}{2}-x)\\ln(\\cos x)',answerValue:0,answerTex:'0',formSteps:['The first factor approaches \\(0\\) while \\(\\ln(\\cos x)\\to-\\infty\\), so the product is indeterminate. Let \\(u=\\frac{\\pi}{2}-x\\); then the expression becomes \\(u\\ln(\\sin u)\\).','Rewrite it as \\(\\frac{\\ln(\\sin u)}{\\frac1u}\\), which has form \\(\\frac{\\infty}{\\infty}\\).'],limitSteps:['Differentiate with respect to \\(u\\): \\(\\frac{\\cot u}{-\\frac1{u^2}}=-u^2\\cot u\\).','As \\(u\\to0^+\\), this approaches \\(0\\).']});
+  return u3LhopitalProblem({id:'u3-v122-lh-product-root-exp',variant:'lhopital_product_radical_exponential',form:'product',approach:'x\\to\\infty',expression:'xe^{-\\sqrt{x}}',answerValue:0,answerTex:'0',formSteps:['As \\(x\\to\\infty\\), \\(x\\to\\infty\\) and \\(e^{-\\sqrt{x}}\\to0\\), giving an indeterminate product. Rewrite it as \\(\\frac{x}{e^{\\sqrt{x}}}\\), an \\(\\frac{\\infty}{\\infty}\\) quotient.'],limitSteps:['Separately differentiate the numerator and denominator to get \\(\\frac{1}{\\frac{e^{\\sqrt{x}}}{2\\sqrt{x}}}=\\frac{2\\sqrt{x}}{e^{\\sqrt{x}}}\\). This is still \\(\\frac{\\infty}{\\infty}\\).','Separately differentiate the numerator and denominator again to get \\(\\frac{\\frac1{\\sqrt{x}}}{\\frac{e^{\\sqrt{x}}}{2\\sqrt{x}}}=\\frac2{e^{\\sqrt{x}}}\\). As \\(x\\to\\infty\\), this approaches \\(0\\).']});
+}
+U3['l-hopital-s-rule']=function(){
+  const source=R()<.15?'test':'assignment';
+  let problem;
+  if(R()<.20)problem=u3LhopitalNo();
+  else{
+    const formRoll=R();
+    problem=formRoll<.80?(R()<.65?u3LhopitalZeroV122():u3LhopitalZero()):(formRoll<.90?(R()<.75?u3LhopitalInfinityV122():u3LhopitalInfinity()):(R()<.75?u3LhopitalProductV122():u3LhopitalProduct()));
+  }
+  return stamp(problem,'l-hopital-s-rule','noncalculator',source,problem.variant);
+};
 
 /* 15. Optimization — 75% course contexts, 25% comparable extensions. */
 function optBox(){

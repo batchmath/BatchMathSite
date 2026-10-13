@@ -8,12 +8,25 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 let document;
 class FakeElement{
- constructor(tag='div'){this.tagName=tag.toUpperCase();this.dataset={};this.value='';this.disabled=false;this.tabIndex=0;this.innerHTML='';this.children=[];this.events={};this.classList={add(){},remove(){},toggle(){},contains(){return false}};}
+ constructor(tag='div'){
+  this.tagName=tag.toUpperCase();this.dataset={};this.value='';this.disabled=false;this.tabIndex=0;this.innerHTML='';this.children=[];this.events={};this._classes=new Set();this.style={};
+  Object.defineProperty(this,'className',{get:()=>[...this._classes].join(' '),set:value=>{this._classes=new Set(String(value||'').split(/\s+/).filter(Boolean));}});
+  Object.defineProperty(this,'childElementCount',{get:()=>this.children.length});
+  this.classList={add:(...names)=>names.forEach(name=>this._classes.add(name)),remove:(...names)=>names.forEach(name=>this._classes.delete(name)),toggle:(name,force)=>{const add=force===undefined?!this._classes.has(name):Boolean(force);if(add)this._classes.add(name);else this._classes.delete(name);return add;},contains:name=>this._classes.has(name)};
+ }
  addEventListener(type,fn){(this.events[type]??=[]).push(fn);}
  dispatchEvent(event){for(const fn of this.events[event.type]||[])fn(event);return true;}
  setAttribute(name,value){this[name]=String(value);}
  getAttribute(name){return this[name]??null;}
- appendChild(child){this.children.push(child);child.parentElement=this;return child;}
+ appendChild(child){if(child.parentElement){const index=child.parentElement.children.indexOf(child);if(index>=0)child.parentElement.children.splice(index,1);}this.children.push(child);child.parentElement=this;return child;}
+ append(...children){children.forEach(child=>this.appendChild(child));}
+ remove(){if(!this.parentElement)return;const index=this.parentElement.children.indexOf(this);if(index>=0)this.parentElement.children.splice(index,1);this.parentElement=null;}
+ querySelector(selector){return this.querySelectorAll(selector)[0]||null;}
+ querySelectorAll(selector){
+  const direct=selector.startsWith(':scope > '),needle=selector.replace(/^:scope\s*>\s*/,''),match=element=>needle.startsWith('.')?element.classList.contains(needle.slice(1)):false;
+  if(direct)return this.children.filter(match);
+  const found=[];const visit=element=>{for(const child of element.children){if(match(child))found.push(child);visit(child);}};visit(this);return found;
+ }
  insertAdjacentElement(where,child){if(where==='afterend'){this.after=child;return child}return this.parentElement?.appendChild(child)||child;}
  closest(selector){if(selector==='.answer-row')return row;return null;}
  focus(){if(document)document.activeElement=this;this.dispatchEvent({type:'focus'});}

@@ -45,16 +45,12 @@ sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
   max-width:760px;margin:10px auto 0;padding:9px;border:1px solid #292929;border-radius:10px;
   background:#080808;user-select:none;-webkit-user-select:none;
 }
-.bm-calc-function-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin-bottom:6px}
-.bm-calc-special-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-bottom:6px}
-.bm-calc-main-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
-.bm-calc-mode-limits .bm-calc-main-grid{grid-template-columns:repeat(4,minmax(0,1fr));max-width:520px;margin:0 auto}
-.bm-calc-mode-unit3 .bm-calc-special-row{max-width:520px;margin-left:auto;margin-right:auto}
-.bm-calc-mode-unit3 .bm-calc-main-grid{max-width:620px;margin:0 auto}
-.bm-calc-mode-unit3 .bm-calc-unit3-extra-row{max-width:620px;margin:6px auto 0}
-.bm-calc-utility-row{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;margin-top:6px}
-.bm-calc-mode-integral .bm-calc-utility-row{grid-template-columns:repeat(9,minmax(0,1fr))}
-.bm-calc-spacer{visibility:hidden}
+.bm-calc-main-grid,.bm-calc-continuation-grid{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-auto-flow:row dense;gap:5px;width:100%;margin:0
+}
+.bm-calc-continuation-grid{margin-top:5px}
+.bm-calc-function-row,.bm-calc-special-row,.bm-calc-utility-row{display:contents}
+.bm-calc-spacer{display:none}
 .bm-calc-key{
   min-height:37px;padding:5px 4px;border:1px solid #3b3b3b;border-radius:7px;background:#141414;color:#fff;
   font:800 .92rem/1.05 Arial,Helvetica,sans-serif;cursor:pointer
@@ -66,7 +62,7 @@ sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
 .bm-calc-key.utility{color:#cfcfcf;font-size:.82rem}
 .bm-calc-key.check{background:#d71920;border-color:#d71920;color:#fff}
 .bm-calc-key.check:hover,.bm-calc-key.check:focus-visible{background:#ef222b;border-color:#ff4b50}
-.bm-calc-key.wide{grid-column:span 2}
+.bm-calc-key.bm-calc-key-double{grid-column:span 2}
 .bm-calc-keypad.is-disabled .bm-calc-key:not(.navigation){opacity:.45;cursor:default}
 .answer-row.bm-calc-answer-row{align-items:center}
 .answer-row.bm-calc-answer-row .practice-button{flex:0 0 auto}
@@ -76,24 +72,17 @@ sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
 @media(max-width:760px){
   .bm-calc-editor{min-width:0;flex-basis:100%;font-size:1.17rem;min-height:50px;padding:7px 9px}
   .bm-calc-keypad{width:100%;max-width:none;margin-top:7px;padding:6px}
-  .bm-calc-function-row,.bm-calc-special-row,.bm-calc-main-grid,.bm-calc-utility-row{gap:4px}
+  .bm-calc-main-grid,.bm-calc-continuation-grid{gap:4px}
+  .bm-calc-continuation-grid{margin-top:4px}
   .bm-calc-key{min-height:35px;font-size:.84rem;padding:4px 2px}
   .bm-calc-key.utility{font-size:.72rem}
   .bm-calc-key.fraction{font-size:.78rem}
-  /* Keep the mobile controls in intentional rows instead of allowing a
-     six-column desktop layout to wrap at arbitrary places. */
-  .bm-calc-function-row{grid-template-columns:repeat(6,minmax(0,1fr))}
-  .bm-calc-special-row{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .bm-calc-main-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
-  .bm-calc-mode-limits .bm-calc-main-grid{grid-template-columns:repeat(4,minmax(0,1fr));max-width:none}
-  .bm-calc-mode-unit3 .bm-calc-unit3-extra-row{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .bm-calc-utility-row{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .bm-calc-mode-integral .bm-calc-utility-row{grid-template-columns:repeat(5,minmax(0,1fr))}
 }
 
 @media(max-width:430px){
   .bm-calc-keypad{padding:5px}
-  .bm-calc-function-row,.bm-calc-special-row,.bm-calc-main-grid,.bm-calc-utility-row{gap:3px}
+  .bm-calc-main-grid,.bm-calc-continuation-grid{gap:3px}
+  .bm-calc-continuation-grid{margin-top:3px}
   .bm-calc-key{min-height:34px;font-size:.78rem;padding:3px 1px}
   .bm-calc-key.utility{font-size:.68rem}
   .bm-calc-key.fraction{font-size:.74rem}
