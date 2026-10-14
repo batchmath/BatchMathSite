@@ -27,6 +27,7 @@
     explanation: ['explanation', 'workedexplanation', 'primaryexplanation'],
     video: ['videourl', 'videolink', 'socialmediavideo', 'sociallink'],
     solutionVideo: ['solutionvideourl', 'solutionvideo', 'videosolutionurl', 'workedsolutionvideourl'],
+    solutionVideoOrientation: ['solutionvideoorientation'],
     primaryMethod: ['primarymethod', 'primarysolutionmethod', 'workedsolutionmethod'],
     alt1Method: ['alternativemethod1', 'alternative1method', 'alt1method'],
     alt1Solution: ['alternativesolution1', 'alternative1solution', 'alt1solution'],
@@ -157,6 +158,7 @@
         explanation,
         video: safeUrl(cell(row, lookup, 'video')),
         solutionVideo: safeUrl(cell(row, lookup, 'solutionVideo')),
+        solutionVideoOrientation: cell(row, lookup, 'solutionVideoOrientation'),
         primaryMethod: cleanPrimaryMethod(cell(row, lookup, 'primaryMethod'), explanation, topic),
         alternatives: [
           { index: 1, method: cell(row, lookup, 'alt1Method'), solution: cell(row, lookup, 'alt1Solution'), explanation: '' },
@@ -274,13 +276,13 @@
     return scroller;
   }
 
-  function videoButton(label, url) {
+  function videoButton(label, url, orientation = '') {
     const video = youtubeVideo(url);
     if (!video) return null;
     const button = element('button', 'video-link', label);
     button.type = 'button';
     button.dataset.youtubeId = video.id;
-    button.dataset.youtubeVertical = String(video.vertical);
+    button.dataset.youtubeVertical = String(video.vertical || /^portrait$/i.test(String(orientation).trim()));
     button.addEventListener('click', () => openVideoModal(button, label));
     return button;
   }
@@ -386,7 +388,7 @@
     const original = element('a', 'problem-jump-link', 'View Original Problem');
     original.href = problemPermalink(entry);
     actions.appendChild(original);
-    const solutionVideo = videoButton('Watch Video Solution', entry.solutionVideo);
+    const solutionVideo = videoButton('Watch Video Solution', entry.solutionVideo, entry.solutionVideoOrientation);
     if (solutionVideo) actions.appendChild(solutionVideo);
     body.appendChild(actions);
     article.appendChild(body);
