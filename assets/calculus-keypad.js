@@ -469,7 +469,7 @@
         depth--;
         if(depth<0){start=i+1;break;}
       }
-      else if(depth===0&&(ch==="+"||ch==="-"||ch===",")){start=i+1;break;}
+      else if(depth===0&&(ch==="+"||ch==="-"||ch===","||ch==="=")){start=i+1;break;}
     }
     const numerator=left.slice(start);
     if(!numerator){insertFraction();return;}

@@ -211,6 +211,11 @@ const trigRules={
  csc:{tex:"\\csc x",dtex:"-\\csc x\\cot x",expr:"csc(x)",dexpr:"-csc(x)*cot(x)"},
  cot:{tex:"\\cot x",dtex:"-\\csc^2 x",expr:"cot(x)",dexpr:"-csc(x)^2"}
 };
+function cubeTrigProblem(t,c){
+ const u=`x^2+${c}`,d=t==='sin'?`cos((x^2+${c})^(1/3))`:t==='cos'?`-sin((x^2+${c})^(1/3))`:`sec((x^2+${c})^(1/3))^2`;
+ const dtex=t==='sin'?`\\cos(\\sqrt[3]{${u}})`:t==='cos'?`-\\sin(\\sqrt[3]{${u}})`:`\\sec^2(\\sqrt[3]{${u}})`;
+ return mk('trig',`tcj-cube-${t}-${c}`,'Find the derivative.',`f(x)=\\${t}(\\sqrt[3]{${u}})`,`(2*x/(3*(${u})^(2/3)))*(${d})`,`\\frac{2x}{3(${u})^{\\frac{2}{3}}}(${dtex})`,`Differentiate the trigonometric outer function, then multiply by the cube-root derivative \\(\\frac{2x}{3(${u})^{\\frac{2}{3}}}\\).`);
+}
 function trig(){
  const mode=document.getElementById("ruleMode")?.value||"without";const withChain=mode==="with";const type=ri(1,6);
  if(!withChain){const c=nz(-6,6);
@@ -222,9 +227,8 @@ function trig(){
   return mk("trig",`tnc-mix-${c}`,"Find the derivative.",`f(x)=${signed(c,"\\sin x",true)}+\\tan x`,`${c}*cos(x)+sec(x)^2`,`${signed(c,"\\cos x",true)}+\\sec^2x`,`Differentiate each trig term.`)
  }
  if(withChain&&BatchMathRNG.random()<.12){
-  const c=ri(2,7),t=pick(['sin','cos','tan']),u=`x^2+${c}`,d=t==='sin'?`cos((x^2+${c})^(1/3))`:t==='cos'?`-sin((x^2+${c})^(1/3))`:`sec((x^2+${c})^(1/3))^2`;
-  const dtex=t==='sin'?`\\cos(\\sqrt[3]{${u}})`:t==='cos'?`-\\sin(\\sqrt[3]{${u}})`:`\\sec^2(\\sqrt[3]{${u}})`;
-  return mk('trig',`tcj-cube-${t}-${c}`,'Find the derivative.',`f(x)=\\${t}(\\sqrt[3]{${u}})`,`(2*x/(3*(${u})^(2/3)))*(${d})`,`\\frac{2x}{3(${u})^{\\frac{2}{3}}}(${dtex})`,`Differentiate the trigonometric outer function, then multiply by the cube-root derivative \\(\\frac{2x}{3(${u})^{\\frac{2}{3}}}\\).`);
+  const c=ri(2,7),t=pick(['sin','cos','tan']);
+  return cubeTrigProblem(t,c);
  }
  if(withChain&&BatchMathRNG.random()<.36){
   const t=pick(['sin','cos','tan','sec','csc','cot']),n=ri(2,5),a=nz(-4,4),b=ri(2,8),u=`x^{${n}}${a<0?`-${-a}x`:`+${a}x`}+${b}`,ue=`x^${n}+(${a})*x+${b}`,up=`${n}x^{${n-1}}${a<0?`-${-a}`:`+${a}`}`,upe=`${n}*x^${n-1}+(${a})`;
@@ -420,14 +424,15 @@ const generators={basic,product,quotient,trig,chain,exponential,implicit,log:log
 const mixedWeights=["basic",...Array(2).fill("product"),...Array(2).fill("quotient"),...Array(2).fill("trig"),...Array(3).fill("chain"),...Array(2).fill("exponential"),...Array(3).fill("implicit"),...Array(2).fill("log"),...Array(2).fill("logdiff"),...Array(2).fill("invtrig"),...Array(2).fill("inverse"),...Array(2).fill("point")];
 
 // Safe expression parser/evaluator used only for mathematical equivalence checking.
-const FUNCS=new Set(["sin","cos","tan","sec","csc","cot","sqrt","ln","log","abs","exp"]);
-const IDS=["sqrt","sin","cos","tan","sec","csc","cot","ln","log","abs","exp","pi","x","y","e"];
+const FUNCS=new Set(["sin","cos","tan","sec","csc","cot","sqrt","cbrt","root","ln","log","abs","exp"]);
+const IDS=["sqrt","cbrt","root","sin","cos","tan","sec","csc","cot","ln","log","abs","exp","pi","x","y","e"];
 function normalizeInput(raw){
  raw=window.BatchMathAnswers?.normalizeFractionSigns(raw) ?? raw;
  let s=String(raw||"").trim().toLowerCase()
    .replace(/−|–|—/g,"-")
    .replace(/π/g,"pi")
    .replace(/√/g,"sqrt")
+   .replace(/∛/g,"cbrt")
    .replace(/[×·⋅∙]/g,"*")
    .replace(/÷/g,"/")
    .replace(/\*\*/g,"^")
@@ -445,7 +450,7 @@ function tokenize(raw){
  const s=normalizeInput(raw),t=[];let i=0;
  while(i<s.length){const ch=s[i];
    if(/[0-9.]/.test(ch)){let j=i+1;while(j<s.length&&/[0-9.]/.test(s[j]))j++;const z=s.slice(i,j);if((z.match(/\./g)||[]).length>1||z===".")throw Error("number");t.push({type:"num",v:Number(z)});i=j;continue}
-   if("+-*/^()".includes(ch)){t.push({type:ch,v:ch});i++;continue}
+   if("+-*/^(),".includes(ch)){t.push({type:ch,v:ch});i++;continue}
    if(/[a-z]/.test(ch)){let id=null;for(const name of IDS){if(s.startsWith(name,i)){id=name;break}}if(!id)throw Error("identifier");t.push({type:FUNCS.has(id)?"func":"id",v:id});i+=id.length;continue}
    throw Error("character");
  }
@@ -531,6 +536,14 @@ function functionExponent(){
    if(z.type==="num")return{k:"num",v:z.v};
    if(z.type==="id")return{k:"id",v:z.v};
    if(z.type==="func"){
+     if(z.v==="root"){
+       if(!peek()||take().type!=="(")throw Error("root parenthesis");
+       const index=add();
+       if(!peek()||take().type!==",")throw Error("root comma");
+       const radicand=add();
+       if(!peek()||take().type!==")")throw Error("root parenthesis");
+       return{k:"op",op:"^",a:radicand,b:{k:"op",op:"/",a:{k:"num",v:1},b:index}};
+     }
      let fexp=null;
      // Accept sec^2x, sec²x, sec^2(x), etc.
      if(peek()&&peek().type==="^"){
@@ -568,7 +581,7 @@ function evalTree(n,scope){
  if(n.k==="num")return n.v;if(n.k==="id"){if(n.v==="pi")return Math.PI;if(n.v==="e")return Math.E;if(n.v in scope)return scope[n.v];throw Error("variable")}
  if(n.k==="un"){const a=evalTree(n.a,scope);return n.op==="-"?-a:a}
  if(n.k==="op"){const a=evalTree(n.a,scope),b=evalTree(n.b,scope);if(n.op==="+")return a+b;if(n.op==="-")return a-b;if(n.op==="*")return a*b;if(n.op==="/")return a/b;if(n.op==="^")return Math.pow(a,b)}
- const a=evalTree(n.a,scope);if(n.f==="sin")return Math.sin(a);if(n.f==="cos")return Math.cos(a);if(n.f==="tan")return Math.tan(a);if(n.f==="sec")return 1/Math.cos(a);if(n.f==="csc")return 1/Math.sin(a);if(n.f==="cot")return 1/Math.tan(a);if(n.f==="sqrt")return Math.sqrt(a);if(n.f==="ln")return Math.log(a);if(n.f==="log")return Math.log10(a);if(n.f==="abs")return Math.abs(a);if(n.f==="exp")return Math.exp(a);throw Error("function")
+ const a=evalTree(n.a,scope);if(n.f==="sin")return Math.sin(a);if(n.f==="cos")return Math.cos(a);if(n.f==="tan")return Math.tan(a);if(n.f==="sec")return 1/Math.cos(a);if(n.f==="csc")return 1/Math.sin(a);if(n.f==="cot")return 1/Math.tan(a);if(n.f==="sqrt")return Math.sqrt(a);if(n.f==="cbrt")return Math.cbrt(a);if(n.f==="ln")return Math.log(a);if(n.f==="log")return Math.log10(a);if(n.f==="abs")return Math.abs(a);if(n.f==="exp")return Math.exp(a);throw Error("function")
 }
 function closeEnough(a,b){return Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=1e-7*Math.max(1,Math.abs(a),Math.abs(b))}
 function equivalent(student,expected,vars){
@@ -608,6 +621,7 @@ function check(){
  $("feedback").className="feedback "+(ok?"correct":"wrong");$("feedback").innerHTML=`<div class="status">${ok?"Correct.":needsSimplifying?"Equivalent, but distribute and combine like terms to simplify completely.":"Not quite."}</div><div class="correct-answer">One correct form: \\(${current.answerTex}\\)</div><div class="method">${current.solution}</div>`;typeset([$("feedback")]);$("next").focus();
 }
 $("submit").addEventListener("click",check);$("next").addEventListener("click",makeProblem);$("category").addEventListener("change",makeProblem);if($("ruleMode"))$("ruleMode").addEventListener("change",makeProblem);$("answer").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();current&&current.answered?makeProblem():check()}});
+window.BatchMathTrigDerivativeQA=Object.freeze({normalizeInput,parseExpression,evalTree,equivalent,cubeTrigProblem,get current(){return current;}});
 function boot(){makeProblem()}if(window.MathJax&&MathJax.startup&&MathJax.startup.promise)MathJax.startup.promise.then(boot);else window.addEventListener("load",boot);
 })();
 </script><script data-batchmath-menu-a11y>

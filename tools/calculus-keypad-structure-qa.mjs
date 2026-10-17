@@ -83,9 +83,15 @@ assert.equal(document.activeElement,editor,'visible editor should receive focus 
 set('',0);input.focus();assert.equal(document.activeElement,editor,'legacy source-input focus should redirect to the visible editor');press('7');assert.equal(raw(),'7','first physical keystroke should enter immediately');
 set('',0);press('Dead',{code:'Digit6',shiftKey:true});assert.equal(raw(),'^()','ChromeOS Shift+6 dead-key events should insert an exponent');
 set('',0);press('^',{code:'Digit6',shiftKey:true});assert.equal(raw(),'^()','ordinary Shift+6 caret events should insert an exponent');
-const fractionKey=allKeys.find(button=>button['aria-label']==='Insert stacked fraction');
+set('y=1',3);press('/');assert.equal(raw(),'y=(1)/()','a top-level equals sign must keep the left side of an equation outside the new fraction');
+press('z',{ctrlKey:true,altKey:false});assert.equal(raw(),'y=1','fraction creation after an equals sign must remain one undoable action');
+press('y',{ctrlKey:true,altKey:false});assert.equal(raw(),'y=(1)/()','redo must restore the equation-safe fraction');
+set('3x',2);press('/');assert.equal(raw(),'(3x)/()','ordinary smart-fraction behavior away from an equals sign must remain unchanged');
+const fractionKeys=allKeys.filter(button=>button['aria-label']==='Insert stacked fraction');
+const smartFractionKey=fractionKeys[0],fractionKey=fractionKeys.at(-1);
 const leftParenKey=allKeys.find(button=>button.textContent==='('),rightParenKey=allKeys.find(button=>button.textContent===')');
-assert(fractionKey&&leftParenKey&&rightParenKey,'fraction and parenthesis keys missing');
+assert(fractionKey&&smartFractionKey&&leftParenKey&&rightParenKey,'fraction and parenthesis keys missing');
+set('y=5',3);smartFractionKey.events.click[0]({preventDefault(){}});assert.equal(raw(),'y=(5)/()','the smart keypad fraction key must honor the same equals-sign boundary as keyboard slash');
 set('',0);fractionKey.events.click[0]({preventDefault(){}});leftParenKey.events.click[0]({preventDefault(){}});
 assert.equal(raw(),'(()/()','an unmatched numerator parenthesis must remain inside the fraction');assert(editor.innerHTML.includes('bm-calc-frac'),'fraction should stay visibly stacked while the parenthesis is unmatched');
 rightParenKey.events.click[0]({preventDefault(){}});assert.equal(raw(),'(())/()');assert(editor.innerHTML.includes('bm-calc-frac'));

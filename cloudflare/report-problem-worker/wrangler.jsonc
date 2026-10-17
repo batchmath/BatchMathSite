@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "batchmath-report-problem",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-17",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "batchmath.net/api/report-problem*",
+      "zone_name": "batchmath.net"
+    },
+    {
+      "pattern": "www.batchmath.net/api/report-problem*",
+      "zone_name": "batchmath.net"
+    }
+  ],
+  "vars": {
+    "ALLOWED_ORIGINS": "https://batchmath.net,https://www.batchmath.net"
+  },
+  "ratelimits": [
+    {
+      "name": "REPORT_RATE_LIMITER",
+      "namespace_id": "12701",
+      "simple": {
+        "limit": 6,
+        "period": 60
+      }
+    }
+  ]
+}

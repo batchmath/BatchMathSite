@@ -1,0 +1,28 @@
+{
+  "ok": true,
+  "checks": 22,
+  "results": [
+    "Legacy manual copy/email workflow is removed",
+    "Report modal uses the same-origin Cloudflare endpoint",
+    "Diagnostic ticket includes the entered-answer capture",
+    "Report UI has honest success and failure states",
+    "Worker configuration contains no receiving address",
+    "Exact Cloudflare setup guide is packaged",
+    "Existing GitHub Actions workflow is preserved",
+    "Worker accepts a valid same-origin report",
+    "Worker sends to the secret destination from the BatchMath domain sender",
+    "Worker email includes the description, diagnostic ticket, and entered answer",
+    "Worker honeypot suppresses automated mail",
+    "Worker rejects disallowed origins",
+    "Worker throttles excess reports",
+    "Trig engine test harness located the live generator source",
+    "Exact reported trig family reconstructs tcj-cube-tan-5 with its original constants",
+    "Trig validator accepts fractional powers, negative powers, cbrt, nth-root, reordered factors, and denominator equivalents",
+    "Trig validator rejects nearby incorrect derivatives",
+    "Exact derivative-at-a-point report reconstructs problem 11",
+    "Reported at-point original function is mathematically and typographically intact",
+    "Reported at-point answer retains division and a proper TeX fraction",
+    "Reported at-point walkthrough retains the final stacked-fraction form",
+    "Current at-point page sends the valid fraction TeX through the established MathJax renderer"
+  ]
+}
