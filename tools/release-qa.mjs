@@ -21,7 +21,7 @@ function walk(dir){
   return out;
 }
 const all=walk(ROOT);
-const siteFiles=all.filter(f=>!norm(path.relative(ROOT,f)).startsWith('.github/')&&!norm(path.relative(ROOT,f)).startsWith('tools/'));
+const siteFiles=all.filter(f=>!norm(path.relative(ROOT,f)).startsWith('.github/')&&!norm(path.relative(ROOT,f)).startsWith('tools/')&&!norm(path.relative(ROOT,f)).startsWith('cloudflare/'));
 const htmlFiles=siteFiles.filter(f=>f.endsWith('.html'));
 const jsFiles=siteFiles.filter(f=>f.endsWith('.js'));
 stats.htmlPages=htmlFiles.length; stats.standaloneJs=jsFiles.length;
