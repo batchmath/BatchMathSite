@@ -142,74 +142,454 @@ function numericProblem(spec){
 function formulaHint(formulas){
   return '<div class="geometry-formula-hint">'+formulas.map(function(formula){return '\\['+formula+'\\]';}).join('')+'</div>';
 }
-function diagramEscape(value){return String(value==null?'':value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function diagramGivens(prompt){
-  var text=String(prompt||'').replace(/\s+/g,' ').trim();
-  var cut=text.search(/\b(?:Find|Determine|What is|How fast)\b/i);if(cut>0)text=text.slice(0,cut).trim();
-  text=text.replace(/\\\([^)]*\\frac\{d[^)]*\\\)/g,'').replace(/\s{2,}/g,' ').replace(/[,:;]\s*$/,'').trim();
-  return diagramEscape(text);
+function diagramEscape(value){
+  return String(value==null?'':value)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
-function svgDiagram(title,body,prompt){
-  return '<div class="geometry-diagram-hint"><div class="diagram-title">'+diagramEscape(title)+'</div><svg class="geometry-diagram" viewBox="0 0 420 240" role="img" aria-label="'+diagramEscape(title)+'" preserveAspectRatio="xMidYMid meet">'+body+'</svg><div class="diagram-givens"><strong>Given:</strong> '+diagramGivens(prompt)+'</div></div>';
+function diagramNumber(value,places){
+  if(typeof value==='string')return value;
+  return trim(Number(value),places==null?2:places);
 }
-function svgText(x,y,text,anchor){return '<text class="diagram-label" x="'+x+'" y="'+y+'" text-anchor="'+(anchor||'middle')+'">'+diagramEscape(text)+'</text>';}
-function inlineMathValues(prompt){var values=[],match,re=/\\\(([^)]+)\\\)/g;while((match=re.exec(String(prompt||'')))&&values.length<4){if(!/\\frac\{d|d[xyArVChs]\/dt/i.test(match[1]))values.push(match[1]);}return values;}
+function diagramMeasure(value,unit,places){
+  return diagramNumber(value,places)+(unit?' '+unit:'');
+}
+function diagramText(x,y,text,kind,anchor,extra){
+  var className='diagram-label diagram-label-'+(kind||'object');
+  return '<text class="'+className+'" x="'+x+'" y="'+y+'" text-anchor="'+(anchor||'middle')+'"'+(extra?' '+extra:'')+'>'+diagramEscape(text)+'</text>';
+}
+function diagramLine(x1,y1,x2,y2,className,extra){
+  return '<line class="'+(className||'diagram-object')+'" x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'"'+(extra?' '+extra:'')+'/>';
+}
+function diagramDimension(x1,y1,x2,y2,label,kind,labelX,labelY,anchor){
+  var className='diagram-dimension diagram-dimension-'+(kind||'fixed');
+  return diagramLine(x1,y1,x2,y2,className,'marker-start="url(#diagram-arrow-start)" marker-end="url(#diagram-arrow-end)"')
+    +diagramText(labelX==null?(x1+x2)/2:labelX,labelY==null?(y1+y2)/2-8:labelY,label,kind,anchor||'middle');
+}
+function diagramNotes(values){
+  if(!values||!values.length)return'';
+  return '<div class="diagram-fixed-notes" aria-label="Fixed information">'
+    +values.map(function(value){return '<span>'+diagramEscape(value)+'</span>';}).join('')
+    +'</div>';
+}
+function svgDiagram(data,body){
+  var title=data.title||'Problem diagram';
+  var description=data.description||'Diagram showing the geometry and labels used in this problem.';
+  return '<div class="geometry-diagram-hint" data-diagram-kind="'+diagramEscape(data.kind||'')+'">'
+    +'<div class="diagram-title">'+diagramEscape(title)+'</div>'
+    +'<svg class="geometry-diagram" viewBox="0 0 600 340" role="img" aria-label="'+diagramEscape(description)+'" preserveAspectRatio="xMidYMid meet">'
+    +'<defs>'
+    +'<marker id="diagram-arrow-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M10 0L0 5L10 10Z"/></marker>'
+    +'<marker id="diagram-arrow-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker>'
+    +'<marker id="diagram-motion-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker>'
+    +'</defs>'+body+'</svg>'+diagramNotes(data.fixedNotes)+'</div>';
+}
+function clampDiagram(value,min,max){return Math.max(min,Math.min(max,value));}
+function curveProjection(data){
+  var left=Number(data.domain&&data.domain[0]),right=Number(data.domain&&data.domain[1]);
+  if(!Number.isFinite(left)||!Number.isFinite(right)||right<=left)return null;
+  var points=[],minY=Infinity,maxY=-Infinity;
+  for(var index=0;index<=120;index+=1){
+    var x=left+(right-left)*index/120,y=data.fn(x);
+    if(Number.isFinite(y)){points.push({x:x,y:y});minY=Math.min(minY,y);maxY=Math.max(maxY,y);}
+    else points.push(null);
+  }
+  (data.includePoints||[]).forEach(function(point){
+    if(point&&Number.isFinite(point[1])){minY=Math.min(minY,point[1]);maxY=Math.max(maxY,point[1]);}
+  });
+  if(data.includeZero!==false){minY=Math.min(minY,0);maxY=Math.max(maxY,0);}
+  if(!Number.isFinite(minY)||!Number.isFinite(maxY))return null;
+  if(Math.abs(maxY-minY)<1e-8){minY-=1;maxY+=1;}
+  var pad=.1*(maxY-minY);minY-=pad;maxY+=pad;
+  var mapX=function(value){return 72+(value-left)/(right-left)*468;};
+  var mapY=function(value){return 286-(value-minY)/(maxY-minY)*238;};
+  var path='',open=false;
+  points.forEach(function(point){
+    if(!point){open=false;return;}
+    path+=(open?' L ':'M ')+mapX(point.x).toFixed(2)+' '+mapY(point.y).toFixed(2);open=true;
+  });
+  return{path:path,mapX:mapX,mapY:mapY,left:left,right:right,minY:minY,maxY:maxY};
+}
+function coordinateAxes(projection){
+  var xAxis=projection.minY<=0&&projection.maxY>=0?projection.mapY(0):286;
+  var yAxis=projection.left<=0&&projection.right>=0?projection.mapX(0):72;
+  return diagramLine(54,xAxis,558,xAxis,'diagram-axis','marker-end="url(#diagram-motion-arrow)"')
+    +diagramLine(yAxis,304,yAxis,30,'diagram-axis','marker-end="url(#diagram-motion-arrow)"')
+    +diagramText(562,xAxis+5,'x','muted','start')
+    +diagramText(yAxis+8,27,'y','muted','start');
+}
+function renderSheetNet(data){
+  var ratio=clampDiagram(Number(data.length)/Number(data.width),1,2.5),height=180,width=height*ratio;
+  if(width>410){width=410;height=width/ratio;}
+  var x0=(600-width)/2,y0=62+(180-height)/2,cut=Math.min(42,height*.22);
+  var body='<rect class="diagram-object-fill" x="'+x0+'" y="'+y0+'" width="'+width+'" height="'+height+'"/>'
+    +'<path class="diagram-fold" d="M'+(x0+cut)+' '+y0+'V'+(y0+height)+' M'+(x0+width-cut)+' '+y0+'V'+(y0+height)
+    +' M'+x0+' '+(y0+cut)+'H'+(x0+width)+' M'+x0+' '+(y0+height-cut)+'H'+(x0+width)+'"/>'
+    +'<path class="diagram-cut" d="M'+x0+' '+y0+'h'+cut+'v'+cut+'h-'+cut+'z M'+(x0+width-cut)+' '+y0+'h'+cut+'v'+cut+'h-'+cut+'z M'+x0+' '+(y0+height-cut)+'h'+cut+'v'+cut+'h-'+cut+'z M'+(x0+width-cut)+' '+(y0+height-cut)+'h'+cut+'v'+cut+'h-'+cut+'z"/>'
+    +diagramDimension(x0,y0+height+34,x0+width,y0+height+34,diagramMeasure(data.length,data.unit),'fixed',null,y0+height+57)
+    +diagramDimension(x0-34,y0,x0-34,y0+height,diagramMeasure(data.width,data.unit),'fixed',x0-45,y0+height/2,'end')
+    +diagramDimension(x0,y0-22,x0+cut,y0-22,data.cutLabel||'x','variable',null,y0-31)
+    +diagramDimension(x0+cut+14,y0,x0+cut+14,y0+cut,data.cutLabel||'x','variable',x0+cut+26,y0+cut/2+5,'start');
+  return svgDiagram(data,body);
+}
+function renderBox(data){
+  var body='<path class="diagram-object-fill" d="M130 105L350 64L476 126L255 170Z M130 105V250L255 307V170 M255 307L476 257V126"/>'
+    +'<path class="diagram-hidden" d="M350 64V212L476 257 M350 212L130 250"/>'
+    +diagramDimension(143,82,350,45,data.baseX||'x','variable',245,47)
+    +diagramDimension(370,53,488,111,data.baseY||data.baseX||'x','variable',444,68)
+    +diagramDimension(505,126,505,257,data.heightLabel||'h','variable',522,197,'start');
+  return svgDiagram(data,body);
+}
+function renderCylinder(data){
+  var body='<ellipse class="diagram-object-fill" cx="300" cy="72" rx="118" ry="32"/>'
+    +diagramLine(182,72,182,258,'diagram-object')
+    +diagramLine(418,72,418,258,'diagram-object')
+    +'<ellipse class="diagram-object-fill" cx="300" cy="258" rx="118" ry="32"/>'
+    +(data.openTop?'<path class="diagram-hidden" d="M182 72A118 32 0 0 0 418 72"/>':'')
+    +diagramDimension(300,72,418,72,data.radiusLabel||'r','variable',360,61)
+    +diagramDimension(449,72,449,258,data.heightLabel||'h','variable',468,170,'start');
+  if(data.surfaceLabels){
+    body+=diagramText(300,111,data.surfaceLabels.top,'fixed')+diagramText(427,170,data.surfaceLabels.side,'fixed','start');
+  }
+  return svgDiagram(data,body);
+}
+function renderCapsule(data){
+  var body='<path class="diagram-object-fill" d="M170 76A82 82 0 0 0 170 264H430A82 82 0 0 0 430 76Z"/>'
+    +'<ellipse class="diagram-hidden" cx="170" cy="170" rx="28" ry="94"/><ellipse class="diagram-hidden" cx="430" cy="170" rx="28" ry="94"/>'
+    +diagramDimension(170,296,430,296,data.lengthLabel||'L','variable',300,320)
+    +diagramDimension(463,170,463,76,data.radiusLabel||'r','variable',481,126,'start');
+  return svgDiagram(data,body);
+}
+function renderPyramid(data){
+  var body='<path class="diagram-object-fill" d="M120 246L360 287L500 218L260 178Z M308 42L120 246 M308 42L360 287 M308 42L500 218 M308 42L260 178"/>'
+    +diagramLine(308,42,308,234,'diagram-hidden')
+    +diagramDimension(132,271,360,311,data.sideLabel||'s','variable',243,327)
+    +diagramDimension(329,43,329,234,data.heightLabel||'h','variable',346,142,'start');
+  return svgDiagram(data,body);
+}
+function renderFence(data){
+  var x0=132,y0=78,width=336,height=176,body='';
+  if(data.barn){
+    body+=diagramLine(x0,y0,x0+width,y0,'diagram-fixed-object')+diagramText(x0+width/2,y0-18,'barn','fixed');
+    body+=diagramLine(x0,y0,x0,y0+height,'diagram-accent')+diagramLine(x0,y0+height,x0+width,y0+height,'diagram-accent')+diagramLine(x0+width,y0,x0+width,y0+height,'diagram-accent');
+  }else{
+    body+='<rect class="diagram-accent-fill" x="'+x0+'" y="'+y0+'" width="'+width+'" height="'+height+'"/>';
+  }
+  body+=diagramDimension(x0,y0+height+34,x0+width,y0+height+34,data.yLabel||'y','variable',null,y0+height+58)
+    +diagramDimension(x0-34,y0,x0-34,y0+height,data.xLabel||'x','variable',x0-47,y0+height/2,'end');
+  if(data.costX)body+=diagramText(x0-10,y0+height/2,data.costX,'fixed','end')+diagramText(x0+width+10,y0+height/2,data.costX,'fixed','start');
+  if(data.costY)body+=diagramText(x0+width/2,y0+height-12,data.costY,'fixed');
+  return svgDiagram(data,body);
+}
+function renderWindow(data){
+  var body='<rect class="diagram-object-fill" x="177" y="143" width="246" height="142"/>'
+    +'<path class="diagram-object-fill" d="M177 143L300 46L423 143Z"/>'
+    +diagramDimension(177,312,423,312,data.widthLabel||'w','variable',300,334)
+    +diagramDimension(449,143,449,285,data.heightLabel||'h','variable',468,220,'start')
+    +diagramText(300,105,data.widthLabel||'w','variable');
+  return svgDiagram(data,body);
+}
+function renderInscribed(data){
+  var cx=300,cy=data.semicircle?258:170,r=data.semicircle?174:132;
+  var body=data.semicircle
+    ?'<path class="diagram-object" d="M126 258A174 174 0 0 1 474 258"/>'+diagramLine(126,258,474,258,'diagram-fixed-object')
+    :'<circle class="diagram-object" cx="'+cx+'" cy="'+cy+'" r="'+r+'"/>';
+  var half=88,top=data.semicircle?132:84,bottom=data.semicircle?258:256;
+  body+='<rect class="diagram-accent-fill" x="'+(cx-half)+'" y="'+top+'" width="'+(2*half)+'" height="'+(bottom-top)+'"/>'
+    +diagramLine(cx,bottom,cx+half,top,'diagram-hidden')
+    +diagramDimension(cx,bottom+28,cx+half,bottom+28,data.halfWidthLabel||'x','variable',cx+half/2,bottom+51)
+    +diagramDimension(cx-half,bottom+62,cx+half,bottom+62,data.fullWidthLabel||'2x','variable',cx,bottom+83)
+    +diagramDimension(cx+half+28,top,cx+half+28,bottom,data.heightLabel||'y','variable',cx+half+44,(top+bottom)/2,'start')
+    +diagramText(cx+half/2+10,(top+bottom)/2-12,diagramMeasure(data.radius,data.unit),'fixed');
+  return svgDiagram(data,body);
+}
+function renderPage(data){
+  var body='<rect class="diagram-object-fill" x="174" y="44" width="252" height="252"/>'
+    +'<rect class="diagram-accent-fill" x="202" y="67" width="196" height="206"/>'
+    +diagramDimension(174,320,426,320,data.widthLabel||'w','variable',300,338)
+    +diagramDimension(450,44,450,296,data.heightLabel||'h','variable',468,174,'start')
+    +diagramText(300,57,'top + bottom: '+diagramMeasure(data.verticalMargins,data.unit),'fixed')
+    +diagramText(300,291,'left + right: '+diagramMeasure(data.horizontalMargins,data.unit),'fixed');
+  return svgDiagram(data,body);
+}
+function renderCurve(data){
+  var projection=curveProjection(data);
+  if(!projection)return'';
+  var body=coordinateAxes(projection)+'<path class="diagram-curve" d="'+projection.path+'"/>';
+  if(data.kind==='curve-rectangle'){
+    var preview=Number(data.previewX);
+    if(!Number.isFinite(preview))preview=projection.left+.68*(projection.right-projection.left);
+    var px=Math.abs(preview),y=data.fn(px),leftX=projection.mapX(-px),rightX=projection.mapX(px),baseY=projection.mapY(0),topY=projection.mapY(y);
+    body+='<rect class="diagram-accent-fill" x="'+leftX+'" y="'+topY+'" width="'+(rightX-leftX)+'" height="'+(baseY-topY)+'"/>'
+      +diagramLine(projection.mapX(0),baseY,rightX,baseY,'diagram-dimension-variable')
+      +diagramText((projection.mapX(0)+rightX)/2,baseY-10,'x','variable')
+      +diagramText((leftX+rightX)/2,baseY+24,'2x','variable')
+      +diagramText(rightX+12,(topY+baseY)/2,'y','variable','start');
+  }else{
+    var vx=Number(data.previewX);
+    if(!Number.isFinite(vx))vx=projection.left+.55*(projection.right-projection.left);
+    var vy=data.fn(vx),fixed=data.fixedPoint,pX=projection.mapX(vx),pY=projection.mapY(vy),fX=projection.mapX(fixed[0]),fY=projection.mapY(fixed[1]);
+    body+=diagramLine(fX,fY,pX,pY,'diagram-distance')
+      +'<circle class="diagram-point-fixed" cx="'+fX+'" cy="'+fY+'" r="6"/>'
+      +'<circle class="diagram-point-variable" cx="'+pX+'" cy="'+pY+'" r="6"/>'
+      +diagramText(fX+10,fY-12,data.fixedPointLabel,'fixed','start')
+      +diagramText(pX+10,pY-12,data.variablePointLabel||'P=(x,f(x))','variable','start')
+      +diagramText((fX+pX)/2,(fY+pY)/2-10,'d','variable');
+  }
+  body+=diagramText(530,48,data.curveLabel||'curve','fixed','end');
+  return svgDiagram(data,body);
+}
+function renderPoles(data){
+  var maxHeight=Math.max(Number(data.leftHeight),Number(data.rightHeight),1),leftTop=246-150*Number(data.leftHeight)/maxHeight,rightTop=246-150*Number(data.rightHeight)/maxHeight;
+  var body=diagramLine(55,246,545,246,'diagram-ground')
+    +diagramLine(130,246,130,leftTop,'diagram-fixed-object')
+    +diagramLine(470,246,470,rightTop,'diagram-fixed-object')
+    +'<circle class="diagram-point-variable" cx="292" cy="246" r="6"/>'
+    +diagramLine(130,leftTop,292,246,'diagram-accent')
+    +diagramLine(470,rightTop,292,246,'diagram-accent')
+    +diagramDimension(95,246,95,leftTop,diagramMeasure(data.leftHeight,data.unit),'fixed',80,(246+leftTop)/2,'end')
+    +diagramDimension(505,246,505,rightTop,diagramMeasure(data.rightHeight,data.unit),'fixed',520,(246+rightTop)/2,'start')
+    +diagramDimension(130,290,470,290,diagramMeasure(data.distance,data.unit),'fixed',300,315)
+    +diagramText(211,266,data.leftDistanceLabel||'x','variable')
+    +diagramText(381,266,data.rightDistanceLabel||'d-x','variable');
+  return svgDiagram(data,body);
+}
+function renderLadderFence(data){
+  var body=diagramLine(54,267,548,267,'diagram-ground')
+    +diagramLine(488,38,488,267,'diagram-fixed-object')
+    +diagramLine(360,267,360,151,'diagram-fixed-object')
+    +diagramLine(114,267,488,61,'diagram-accent')
+    +diagramDimension(326,267,326,151,diagramMeasure(data.fenceHeight,data.unit),'fixed',311,211,'end')
+    +diagramDimension(360,299,488,299,diagramMeasure(data.gap,data.unit),'fixed',424,323)
+    +diagramDimension(114,285,360,285,data.variableLabel||'x','variable',237,309)
+    +diagramText(500,50,'building','fixed','start')+diagramText(360,139,'fence','fixed');
+  return svgDiagram(data,body);
+}
+function renderCone(data){
+  var body='<ellipse class="diagram-object" cx="300" cy="79" rx="128" ry="35"/>'
+    +'<path class="diagram-object-fill" d="M172 79L300 297L428 79"/>'
+    +diagramLine(300,79,300,297,'diagram-hidden')
+    +diagramDimension(300,79,428,79,data.radiusLabel||'r','variable',364,66)
+    +diagramDimension(321,79,321,297,data.heightLabel||'h','variable',339,191,'start');
+  if(data.slantLabel)body+=diagramText(385,192,data.slantLabel,'fixed');
+  return svgDiagram(data,body);
+}
+function renderMotion(data){
+  var body=diagramLine(76,270,544,270,'diagram-axis','marker-end="url(#diagram-motion-arrow)"')
+    +diagramLine(108,302,108,40,'diagram-axis','marker-end="url(#diagram-motion-arrow)"')
+    +'<circle class="diagram-point-variable" cx="430" cy="270" r="7"/><circle class="diagram-point-variable" cx="108" cy="88" r="7"/>'
+    +diagramLine(108,88,430,270,'diagram-distance')
+    +diagramText(273,290,data.xLabel||'x','variable')
+    +diagramText(91,181,data.yLabel||'y','variable','end')
+    +diagramText(270,168,data.distanceLabel||'d','variable');
+  if(data.initialSeparation)body+=diagramText(122,116,'initial: '+diagramMeasure(data.initialSeparation,data.unit),'fixed','start');
+  if(data.horizontalSpeed)body+=diagramText(430,296,diagramMeasure(data.horizontalSpeed,data.speedUnit),'fixed');
+  if(data.verticalSpeed)body+=diagramText(83,87,diagramMeasure(data.verticalSpeed,data.speedUnit),'fixed','end');
+  return svgDiagram(data,body);
+}
+function renderPigPen(data){
+  var body=diagramLine(104,58,496,58,'diagram-fixed-object')+diagramText(300,38,'barn','fixed')
+    +'<path class="diagram-accent-fill" d="M166 58L166 224L300 294L434 224L434 58Z"/>'
+    +diagramText(150,145,diagramMeasure(data.side,data.unit),'fixed','end')
+    +diagramText(450,145,diagramMeasure(data.side,data.unit),'fixed','start')
+    +diagramText(229,269,diagramMeasure(data.side,data.unit),'fixed')
+    +diagramText(371,269,diagramMeasure(data.side,data.unit),'fixed')
+    +diagramDimension(166,82,434,82,data.baseLabel||'b','variable',300,102);
+  return svgDiagram(data,body);
+}
+function renderWire(data){
+  var body=diagramLine(76,58,524,58,'diagram-accent')
+    +diagramLine(300,42,300,74,'diagram-cut-line')
+    +diagramText(188,42,data.firstLabel||'x','variable')
+    +diagramText(412,42,data.secondLabel||'L-x','variable')
+    +'<circle class="diagram-object" cx="178" cy="205" r="70"/>'
+    +'<rect class="diagram-object-fill" x="363" y="135" width="140" height="140"/>'
+    +diagramText(178,301,'circle','fixed')+diagramText(433,301,'square','fixed');
+  return svgDiagram(data,body);
+}
+function renderAxisTriangle(data){
+  var body=diagramLine(64,278,546,278,'diagram-axis','marker-end="url(#diagram-motion-arrow)"')
+    +diagramLine(100,307,100,42,'diagram-axis','marker-end="url(#diagram-motion-arrow)"')
+    +'<path class="diagram-accent-fill" d="M100 83L480 278L100 278Z"/>'
+    +'<circle class="diagram-point-fixed" cx="255" cy="162" r="6"/>'
+    +diagramText(266,147,'('+diagramNumber(data.point[0])+','+diagramNumber(data.point[1])+')','fixed','start')
+    +diagramText(480,302,data.xInterceptLabel||'X','variable')
+    +diagramText(82,84,data.yInterceptLabel||'Y','variable','end');
+  return svgDiagram(data,body);
+}
+function renderSphere(data){
+  var body='<circle class="diagram-object-fill" cx="300" cy="172" r="118"/>'
+    +'<ellipse class="diagram-hidden" cx="300" cy="172" rx="118" ry="34"/>'
+    +diagramDimension(300,172,418,172,data.radiusLabel||'r','variable',359,158);
+  return svgDiagram(data,body);
+}
+function renderCircle(data){
+  var body='<circle class="diagram-object-fill" cx="300" cy="172" r="118"/>'
+    +diagramDimension(300,172,418,172,data.radiusLabel||'r','variable',359,158);
+  return svgDiagram(data,body);
+}
+function renderLadder(data){
+  var body=diagramLine(65,274,535,274,'diagram-ground')
+    +diagramLine(478,34,478,274,'diagram-fixed-object')
+    +diagramLine(135,274,478,68,'diagram-accent')
+    +diagramDimension(135,300,478,300,data.xLabel||'x','variable',307,326)
+    +diagramDimension(510,274,510,68,data.yLabel||'y','variable',530,176,'start')
+    +diagramText(300,154,diagramMeasure(data.length,data.unit),'fixed')
+    +(data.angle==='ground'?'<path class="diagram-angle" d="M174 274A40 40 0 0 0 168 253"/>'+diagramText(186,253,'θ','variable'):'')
+    +(data.angle==='wall'?'<path class="diagram-angle" d="M478 108A40 40 0 0 1 454 95"/>'+diagramText(448,120,'φ','variable'):'');
+  return svgDiagram(data,body);
+}
+function renderShadow(data){
+  var body=diagramLine(42,272,558,272,'diagram-ground')
+    +diagramLine(98,272,98,55,'diagram-fixed-object')
+    +diagramLine(344,272,344,164,'diagram-fixed-object')
+    +diagramLine(98,55,524,272,'diagram-accent')
+    +diagramLine(344,164,524,272,'diagram-hidden')
+    +diagramDimension(72,272,72,55,diagramMeasure(data.poleHeight,data.unit),'fixed',58,168,'end')
+    +diagramDimension(320,272,320,164,diagramMeasure(data.personHeight,data.unit),'fixed',306,223,'end')
+    +diagramDimension(98,300,344,300,data.personDistanceLabel||'x','variable',221,326)
+    +diagramDimension(344,300,524,300,data.shadowLabel||'s','variable',434,326)
+    +diagramText(309,250,data.totalLabel||'x+s','variable');
+  return svgDiagram(data,body);
+}
+function renderConicalTank(data){
+  var body='<ellipse class="diagram-object" cx="300" cy="55" rx="142" ry="34"/>'
+    +'<path class="diagram-object" d="M158 55L300 307L442 55"/>'
+    +'<path class="diagram-changing-fill" d="M225 188L300 307L375 188Z"/>'
+    +'<ellipse class="diagram-water-line" cx="300" cy="188" rx="75" ry="18"/>'
+    +diagramLine(300,55,300,307,'diagram-hidden')
+    +diagramDimension(300,55,442,55,diagramMeasure(data.tankRadius,data.unit),'fixed',371,42)
+    +diagramDimension(468,55,468,307,diagramMeasure(data.tankHeight,data.unit),'fixed',486,183,'start')
+    +diagramDimension(323,188,323,307,data.depthLabel||'h','variable',340,250,'start')
+    +diagramDimension(300,188,375,188,data.waterRadiusLabel||'r','variable',337,175);
+  return svgDiagram(data,body);
+}
+function renderConePile(data){
+  var body='<ellipse class="diagram-ground-ellipse" cx="300" cy="266" rx="166" ry="40"/>'
+    +'<path class="diagram-changing-fill" d="M134 266L300 56L466 266Z"/>'
+    +diagramLine(300,56,300,266,'diagram-hidden')
+    +diagramDimension(300,266,466,266,data.radiusLabel||'r','variable',383,252)
+    +diagramDimension(323,56,323,266,data.heightLabel||'h','variable',342,166,'start');
+  return svgDiagram(data,body);
+}
+function renderTrough(data){
+  var triangle=data.kind==='triangular-trough';
+  var body=triangle
+    ?'<path class="diagram-object" d="M112 62L236 278H364L488 62"/>'
+    :'<path class="diagram-object" d="M112 62L188 278H412L488 62"/>';
+  var waterLeft=triangle?178:157,waterRight=triangle?422:443,waterY=174;
+  body+='<path class="diagram-changing-fill" d="M'+waterLeft+' '+waterY+'L236 278H364L'+waterRight+' '+waterY+'Z"/>'
+    +diagramLine(waterLeft,waterY,waterRight,waterY,'diagram-water-line')
+    +diagramDimension(300,waterY,300,278,data.depthLabel||'h','variable',317,229,'start')
+    +diagramDimension(waterLeft,waterY-18,waterRight,waterY-18,data.waterWidthLabel||'w','variable',300,waterY-30)
+    +diagramDimension(112,36,488,36,diagramMeasure(data.topWidth,data.unit),'fixed',300,24)
+    +diagramDimension(triangle?236:188,306,triangle?364:412,306,diagramMeasure(data.bottomWidth,data.unit),'fixed',300,329);
+  return svgDiagram(data,body);
+}
+function renderCylinderTank(data){
+  var body='<ellipse class="diagram-object" cx="300" cy="61" rx="122" ry="30"/>'
+    +diagramLine(178,61,178,282,'diagram-object')+diagramLine(422,61,422,282,'diagram-object')
+    +'<ellipse class="diagram-object" cx="300" cy="282" rx="122" ry="30"/>'
+    +'<path class="diagram-changing-fill" d="M178 166V282A122 30 0 0 0 422 282V166A122 30 0 0 1 178 166Z"/>'
+    +'<ellipse class="diagram-water-line" cx="300" cy="166" rx="122" ry="30"/>'
+    +diagramDimension(300,61,422,61,diagramMeasure(data.radius,data.unit),'fixed',361,48)
+    +diagramDimension(447,166,447,282,data.heightLabel||'h','variable',464,230,'start');
+  return svgDiagram(data,body);
+}
+function renderChangingShape(data){
+  var body='';
+  if(data.shape==='circle'||data.shape==='semicircle'){
+    body=data.shape==='circle'
+      ?'<circle class="diagram-changing-fill" cx="300" cy="172" r="118"/>'
+      :'<path class="diagram-changing-fill" d="M182 236A118 118 0 0 1 418 236H182Z"/>';
+    body+=diagramDimension(300,data.shape==='circle'?172:236,418,data.shape==='circle'?172:236,data.radiusLabel||'r','variable',359,data.shape==='circle'?158:222);
+  }else if(data.shape==='square'){
+    body='<rect class="diagram-changing-fill" x="184" y="56" width="232" height="232"/>'
+      +diagramDimension(184,314,416,314,data.sideLabel||'s','variable',300,336);
+  }else if(data.shape==='equilateral'){
+    body='<path class="diagram-changing-fill" d="M300 46L126 290H474Z"/>'
+      +diagramDimension(126,316,474,316,data.sideLabel||'s','variable',300,338);
+  }else if(data.shape==='rectangle'){
+    body='<rect class="diagram-changing-fill" x="134" y="89" width="332" height="188"/>'
+      +diagramDimension(134,308,466,308,data.widthLabel||'ℓ','variable',300,332)
+      +diagramDimension(105,89,105,277,data.heightLabel||'w','variable',90,187,'end');
+  }else{
+    body='<path class="diagram-changing-fill" d="M138 282H466L276 72Z"/>'
+      +diagramDimension(138,311,466,311,data.baseLabel||'b','variable',302,335)
+      +diagramDimension(293,72,293,282,data.heightLabel||'h','variable',311,180,'start');
+  }
+  return svgDiagram(data,body);
+}
+function renderDiamond(data){
+  var body='<path class="diagram-fixed-shape" d="M300 38L514 170L300 302L86 170Z"/>'
+    +'<circle class="diagram-point-fixed" cx="300" cy="302" r="5"/><circle class="diagram-point-fixed" cx="86" cy="170" r="5"/>'
+    +'<circle class="diagram-point-variable" cx="172" cy="170" r="7"/>'
+    +diagramLine(300,302,172,170,'diagram-distance')
+    +diagramText(300,327,'home','fixed')+diagramText(69,170,'third','fixed','end')
+    +diagramDimension(86,142,300,38,diagramMeasure(data.side,data.unit),'fixed',184,74)
+    +diagramDimension(86,194,172,194,data.runnerDistanceLabel||'x','variable',129,219)
+    +diagramText(230,231,data.distanceLabel||'d','variable');
+  return svgDiagram(data,body);
+}
+function renderSpotlight(data){
+  var body=diagramLine(68,272,534,272,'diagram-fixed-object')
+    +'<circle class="diagram-point-fixed" cx="164" cy="86" r="8"/>'
+    +diagramLine(164,86,164,272,'diagram-fixed-object')
+    +diagramLine(164,86,456,272,'diagram-accent')
+    +diagramDimension(138,86,138,272,diagramMeasure(data.offset,data.unit),'fixed',121,183,'end')
+    +diagramDimension(164,303,456,303,data.distanceLabel||'x','variable',310,329)
+    +'<path class="diagram-angle" d="M415 272A42 42 0 0 0 421 249"/>'
+    +diagramText(401,249,data.angleLabel||'θ','variable')
+    +diagramText(164,69,'buoy','fixed');
+  return svgDiagram(data,body);
+}
+function renderLineOfSight(data){
+  var body=diagramLine(74,275,528,275,'diagram-ground')
+    +diagramLine(454,275,454,67,'diagram-changing')
+    +diagramLine(118,275,454,67,'diagram-distance')
+    +diagramDimension(118,305,454,305,diagramMeasure(data.horizontal,data.unit),'fixed',286,331)
+    +diagramDimension(480,275,480,67,data.heightLabel||'y','variable',498,178,'start')
+    +'<path class="diagram-angle" d="M164 275A46 46 0 0 0 157 251"/>'
+    +diagramText(178,250,data.angleLabel||'θ','variable');
+  return svgDiagram(data,body);
+}
+function renderIce(data){
+  var body='<path class="diagram-object" d="M115 274A185 185 0 0 1 485 274"/>'
+    +diagramLine(115,274,485,274,'diagram-fixed-object')
+    +'<path class="diagram-changing-stroke" d="M96 274A204 204 0 0 1 504 274"/>'
+    +diagramDimension(300,274,485,274,diagramMeasure(data.innerRadius,data.unit),'fixed',390,260)
+    +diagramDimension(300,274,504,274,data.outerRadiusLabel||'R','variable',402,297)
+    +diagramText(300,57,'changing ice layer','variable');
+  return svgDiagram(data,body);
+}
+function renderSemicirclePoint(data){
+  var body=diagramLine(72,279,538,279,'diagram-axis','marker-end="url(#diagram-motion-arrow)"')
+    +diagramLine(300,307,300,38,'diagram-axis','marker-end="url(#diagram-motion-arrow)"')
+    +'<path class="diagram-object" d="M118 279A182 182 0 0 1 482 279"/>'
+    +'<path class="diagram-changing-fill" d="M300 279L405 112L405 279Z"/>'
+    +'<circle class="diagram-point-variable" cx="405" cy="112" r="7"/>'
+    +diagramDimension(300,303,405,303,data.xLabel||'x','variable',352,328)
+    +diagramDimension(432,112,432,279,data.yLabel||'y','variable',450,201,'start')
+    +diagramText(355,191,diagramMeasure(data.radius,data.unit),'fixed');
+  return svgDiagram(data,body);
+}
 function diagramFor(family,spec){
-  var excluded=/^(?:hotel_room_revenue|wholesale_order_revenue|linear_price_demand_revenue|orchard_yield|discrete_hotel_revenue|discrete_orchard_yield|two_number_product|implicit_equation_rates)$/;
-  if(excluded.test(family))return null;
-  var prompt=spec&&spec.prompt||'',values=inlineMathValues(prompt),body='',title='Problem diagram';
-  var ground='<line class="diagram-base" x1="28" y1="202" x2="392" y2="202"/>';
-  if(family==='two_poles_minimum_cable'){
-    var pole=prompt.match(/are \\\(([^)]+)\\\) feet apart[\s\S]*heights \\\(([^)]+)\\\) and \\\(([^)]+)\\\)/i),distance=pole&&pole[1]||values[0]||'d',left=pole&&pole[2]||values[1]||'h_1',right=pole&&pole[3]||values[2]||'h_2';
-    var leftNumber=parseFloat(left),rightNumber=parseFloat(right),maxHeight=Math.max(leftNumber||1,rightNumber||1),leftTop=190-120*(leftNumber||1)/maxHeight,rightTop=190-120*(rightNumber||1)/maxHeight;
-    title='Two poles and a ground stake';body=ground+'<line class="diagram-strong" x1="90" y1="202" x2="90" y2="'+leftTop+'"/><line class="diagram-strong" x1="330" y1="202" x2="330" y2="'+rightTop+'"/><circle class="diagram-point" cx="222" cy="202" r="5"/><line class="diagram-accent" x1="90" y1="'+leftTop+'" x2="222" y2="202"/><line class="diagram-accent" x1="330" y1="'+rightTop+'" x2="222" y2="202"/>'+svgText(70,(leftTop+202)/2,left+' ft','end')+svgText(350,(rightTop+202)/2,right+' ft','start')+svgText(210,226,distance+' ft')+svgText(222,190,'stake');
-  }else if(family==='shortest_ladder_over_fence'){
-    var fence=prompt.match(/A \\\(([^)]+)\\\)-foot fence[\s\S]*\\\(([^)]+)\\\) feet from/i),height=fence&&fence[1]||values[0]||'h',gap=fence&&fence[2]||values[1]||'d';
-    title='Ladder over a fence';body=ground+'<line class="diagram-strong" x1="345" y1="40" x2="345" y2="202"/><line class="diagram-strong" x1="260" y1="202" x2="260" y2="124"/><line class="diagram-accent" x1="70" y1="202" x2="345" y2="50"/>'+svgText(250,158,height+' ft','end')+svgText(302,220,gap+' ft')+svgText(112,180,'ladder');
-  }else if(/^ladder_|^multi_part_ladder$/.test(family)){
-    var ladder=prompt.match(/A \\\(([^)]+)\\\)-foot ladder/i),length=ladder&&ladder[1]||values[0]||'L',foot=prompt.match(/foot is \\\(([^)]+)\\\) feet/i),top=prompt.match(/top is \\\(([^)]+)\\\) feet/i);
-    title='Sliding ladder';body=ground+'<line class="diagram-strong" x1="335" y1="34" x2="335" y2="202"/><line class="diagram-accent" x1="94" y1="202" x2="335" y2="58"/><path class="diagram-dashed" d="M94 202 L335 202 L335 58"/>'+svgText(205,119,length+' ft')+(foot?svgText(214,222,foot[1]+' ft'):'')+(top?svgText(355,132,top[1]+' ft','start'):'')+svgText(344,48,'wall');
-  }else if(/^lamppost_shadow_|^multi_part_shadow$/.test(family)){
-    var shadow=prompt.match(/A \\\(([^)]+)\\\)-foot person[\s\S]*\\\(([^)]+)\\\)-foot lamppost/i),person=shadow&&shadow[1]||values[0]||'p',lamp=shadow&&shadow[2]||values[1]||'H';
-    title='Lamppost and shadow';body=ground+'<line class="diagram-strong" x1="82" y1="202" x2="82" y2="45"/><line class="diagram-strong" x1="244" y1="202" x2="244" y2="132"/><line class="diagram-accent" x1="82" y1="45" x2="368" y2="202"/><line class="diagram-dashed" x1="244" y1="132" x2="368" y2="202"/>'+svgText(64,122,lamp+' ft','end')+svgText(226,170,person+' ft','end')+svgText(306,222,'shadow');
-  }else if(/(?:open_top_.*cardboard|open_box_dimensions_and_volume)/.test(family)){
-    title='Cardboard cut-and-fold model';body='<rect class="diagram-strong" x="70" y="45" width="280" height="150"/><path class="diagram-dashed" d="M110 45V195 M310 45V195 M70 85H350 M70 155H350"/><rect class="diagram-cut" x="70" y="45" width="40" height="40"/><rect class="diagram-cut" x="310" y="45" width="40" height="40"/><rect class="diagram-cut" x="70" y="155" width="40" height="40"/><rect class="diagram-cut" x="310" y="155" width="40" height="40"/>'+svgText(90,72,'x')+svgText(210,220,'fold along dashed lines');
-  }else if(family==='square_base_box_fixed_material'){
-    title='Open box with a square base';body='<path class="diagram-strong" d="M95 95 L245 62 L330 105 L180 139 Z M95 95 V184 L180 226 V139 M180 226 L330 191 V105"/><path class="diagram-dashed" d="M245 62 V150 L330 191 M245 150 L95 184"/><line class="diagram-measure" x1="107" y1="82" x2="245" y2="52"/><line class="diagram-measure" x1="346" y1="105" x2="346" y2="191"/>'+svgText(176,55,'s')+svgText(359,151,'h','start');
-  }else if(/capsule/.test(family)){
-    title='Cylinder with hemispherical ends';body='<path class="diagram-strong" d="M120 72 A55 55 0 0 0 120 182 L300 182 A55 55 0 0 0 300 72 Z"/><ellipse class="diagram-dashed" cx="120" cy="127" rx="20" ry="55"/><ellipse class="diagram-dashed" cx="300" cy="127" rx="20" ry="55"/><line class="diagram-measure" x1="120" y1="207" x2="300" y2="207"/><line class="diagram-measure" x1="319" y1="127" x2="319" y2="72"/>'+svgText(210,226,'L')+svgText(331,102,'r','start');
-  }else if(/(?:cylinder|cylindrical_tank)/.test(family)){
-    title='Cylindrical model';body='<ellipse class="diagram-strong" cx="210" cy="55" rx="88" ry="25"/><path class="diagram-strong" d="M122 55V184 M298 55V184"/><ellipse class="diagram-strong" cx="210" cy="184" rx="88" ry="25"/><line class="diagram-measure" x1="210" y1="55" x2="298" y2="55"/><line class="diagram-measure" x1="316" y1="55" x2="316" y2="184"/>'+svgText(254,47,'r')+svgText(329,123,'h','start');
-  }else if(/(?:conical|cone_|maximum_cone|multi_part_conical)/.test(family)){
-    title='Conical model';body='<ellipse class="diagram-strong" cx="210" cy="62" rx="96" ry="27"/><path class="diagram-strong" d="M114 62 L210 207 L306 62"/><line class="diagram-dashed" x1="210" y1="62" x2="210" y2="207"/><line class="diagram-measure" x1="210" y1="62" x2="306" y2="62"/>'+svgText(258,52,'r')+svgText(224,137,'h','start');
-  }else if(/square_pyramid/.test(family)){
-    title='Square pyramid';body='<path class="diagram-strong" d="M94 168 L244 195 L334 150 L184 126 Z M214 40 L94 168 M214 40 L244 195 M214 40 L334 150 M214 40 L184 126"/><line class="diagram-dashed" x1="214" y1="40" x2="214" y2="169"/>'+svgText(226,106,'h','start')+svgText(168,192,'s');
-  }else if(/(?:rectangle_in_semicircle|rectangle_under_semicircle|semicircle_moving_point)/.test(family)){
-    title='Rectangle or point in a semicircle';body=ground+'<path class="diagram-strong" d="M70 202 A140 140 0 0 1 350 202"/><rect class="diagram-accent-fill" x="138" y="96" width="144" height="106"/><line class="diagram-dashed" x1="210" y1="202" x2="282" y2="96"/>'+svgText(210,224,'diameter')+svgText(292,147,'r','start');
-  }else if(/rectangle_in_circle/.test(family)){
-    title='Rectangle inscribed in a circle';body='<circle class="diagram-strong" cx="210" cy="124" r="92"/><rect class="diagram-accent-fill" x="142" y="63" width="136" height="122"/><line class="diagram-dashed" x1="210" y1="124" x2="278" y2="63"/>'+svgText(251,87,'r');
-  }else if(/(?:closest_point_|rectangle_under_)/.test(family)){
-    title=/closest_point_/.test(family)?'Point and curve':'Rectangle under a curve';body='<line class="diagram-axis" x1="42" y1="196" x2="390" y2="196"/><line class="diagram-axis" x1="70" y1="220" x2="70" y2="26"/><path class="diagram-curve" d="M78 184 C125 166 155 88 205 82 C250 76 282 128 370 48"/>'+( /closest_point_/.test(family)?'<circle class="diagram-point" cx="330" cy="164" r="6"/><circle class="diagram-point-alt" cx="240" cy="87" r="6"/><line class="diagram-dashed" x1="330" y1="164" x2="240" y2="87"/>': '<rect class="diagram-accent-fill" x="145" y="105" width="120" height="91"/>')+svgText(365,32,'curve');
-  }else if(/(?:fencing|field|page_printed_area|rigid_four_piece_barn_pen)/.test(family)){
-    title='Rectangular layout';body='<rect class="diagram-strong" x="82" y="58" width="256" height="132"/><line class="diagram-measure" x1="82" y1="211" x2="338" y2="211"/><line class="diagram-measure" x1="360" y1="58" x2="360" y2="190"/>'+svgText(210,229,'length')+svgText(372,128,'width','start');
-  }else if(/equilateral_triangle_window/.test(family)){
-    title='Window with triangular top';body='<rect class="diagram-strong" x="126" y="102" width="168" height="104"/><path class="diagram-strong" d="M126 102 L210 31 L294 102"/><line class="diagram-measure" x1="126" y1="221" x2="294" y2="221"/>'+svgText(210,238,'w')+svgText(306,158,'h','start');
-  }else if(/wire_split_circle_square/.test(family)){
-    title='Wire split between two shapes';body='<path class="diagram-accent" d="M42 52 H378"/><path class="diagram-dashed" d="M210 38 V67"/><circle class="diagram-strong" cx="120" cy="150" r="50"/><rect class="diagram-strong" x="265" y="100" width="100" height="100"/>'+svgText(210,28,'fixed wire length')+svgText(120,218,'circle')+svgText(315,218,'square');
-  }else if(/minimum_axis_intercept_triangle/.test(family)){
-    title='Triangle formed by coordinate intercepts';body='<line class="diagram-axis" x1="45" y1="202" x2="390" y2="202"/><line class="diagram-axis" x1="70" y1="224" x2="70" y2="28"/><path class="diagram-accent" d="M70 58 L342 202"/><circle class="diagram-point" cx="188" cy="120" r="5"/>'+svgText(348,221,'x-intercept')+svgText(66,48,'y-intercept','end');
-  }else if(/(?:sphere_|hemispherical_ice)/.test(family)){
-    title=/hemispherical/.test(family)?'Hemispherical layer':'Sphere';body=(/hemispherical/.test(family)?'<path class="diagram-strong" d="M76 186 A134 134 0 0 1 344 186"/><line class="diagram-strong" x1="76" y1="186" x2="344" y2="186"/><path class="diagram-accent" d="M64 186 A146 146 0 0 1 356 186"/>':'<circle class="diagram-strong" cx="210" cy="124" r="92"/><ellipse class="diagram-dashed" cx="210" cy="124" rx="92" ry="27"/>')+'<line class="diagram-measure" x1="210" y1="124" x2="302" y2="124"/>'+svgText(256,116,'r');
-  }else if(/(?:circular_|circle_area|semicircle_area|equilateral_area|square_area|rectangle_area|right_triangle_area|isosceles_triangle_area)/.test(family)){
-    title='Changing geometric shape';body='<circle class="diagram-strong" cx="125" cy="128" r="68"/><rect class="diagram-accent-fill" x="245" y="71" width="118" height="114"/><line class="diagram-measure" x1="125" y1="128" x2="193" y2="128"/>'+svgText(159,119,'r')+svgText(304,213,'use the shape in the problem');
-  }else if(/(?:minimum_distance_moving|balloon_bicycle|softball_diamond|rope_spool|delayed_start_perpendicular)/.test(family)){
-    title='Perpendicular distances';body='<line class="diagram-axis" x1="52" y1="198" x2="383" y2="198"/><line class="diagram-axis" x1="82" y1="220" x2="82" y2="35"/><circle class="diagram-point" cx="296" cy="198" r="6"/><circle class="diagram-point-alt" cx="82" cy="72" r="6"/><line class="diagram-accent" x1="296" y1="198" x2="82" y2="72"/><path class="diagram-dashed" d="M82 72 V198 H296"/>'+svgText(184,216,'x')+svgText(66,137,'y','end')+svgText(199,125,'d');
-  }else if(/(?:rotating_spotlight|angle_of_elevation)/.test(family)){
-    title='Angle and line of sight';body=ground+'<line class="diagram-strong" x1="84" y1="202" x2="84" y2="74"/><line class="diagram-accent" x1="84" y1="74" x2="350" y2="202"/><path class="diagram-dashed" d="M118 202 A34 34 0 0 0 105 177"/>'+svgText(130,185,'θ')+svgText(216,220,'horizontal distance');
-  }else if(/trough/.test(family)){
-    title='Trough cross section';body='<path class="diagram-strong" d="M72 68 L132 192 H288 L348 68"/><line class="diagram-accent" x1="102" y1="130" x2="318" y2="130"/><line class="diagram-dashed" x1="210" y1="130" x2="210" y2="192"/>'+svgText(327,120,'water level','start')+svgText(222,164,'h','start');
-  }else return null;
-  return svgDiagram(title,body,prompt);
+  var data=spec&&spec.diagram;
+  if(!data||!data.kind)return null;
+  var renderers={
+    'sheet-net':renderSheetNet,'box':renderBox,'cylinder':renderCylinder,'capsule':renderCapsule,'pyramid':renderPyramid,
+    'fence':renderFence,'window':renderWindow,'inscribed-circle':renderInscribed,'inscribed-semicircle':renderInscribed,
+    'page':renderPage,'curve-rectangle':renderCurve,'closest-curve':renderCurve,'poles':renderPoles,
+    'ladder-fence':renderLadderFence,'cone':renderCone,'moving-paths':renderMotion,'pig-pen':renderPigPen,
+    'wire-split':renderWire,'axis-triangle':renderAxisTriangle,'sphere':renderSphere,'circle':renderCircle,
+    'ladder':renderLadder,'shadow':renderShadow,'conical-tank':renderConicalTank,'cone-pile':renderConePile,
+    'triangular-trough':renderTrough,'trapezoidal-trough':renderTrough,'cylinder-tank':renderCylinderTank,
+    'changing-shape':renderChangingShape,'perpendicular-motion':renderMotion,'softball-diamond':renderDiamond,
+    'spotlight':renderSpotlight,'line-of-sight':renderLineOfSight,'rope-balloon':renderLineOfSight,
+    'ice-hemisphere':renderIce,'semicircle-point':renderSemicirclePoint
+  };
+  var renderer=renderers[data.kind];
+  return renderer?renderer(data):null;
 }
 var geometryFormulaHints={
   open_top_square_cardboard:['V=\\ell wh'],
