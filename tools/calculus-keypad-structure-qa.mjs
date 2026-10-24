@@ -181,12 +181,34 @@ initialEditor.events.keydown[0]({key:'y',ctrlKey:true,altKey:false,preventDefaul
 
 const buttons=(row.after?.children||[]).flatMap(x=>x.children||[]).map(x=>x.textContent);
 for(const label of ['sin⁻¹','cos⁻¹','tan⁻¹','cot⁻¹','sec⁻¹','csc⁻¹'])assert(buttons.includes(label),`inverse trig keypad missing ${label}`);
+function profileLabels(mode){
+ const host=new FakeElement('div'),field=new FakeElement('input');field.parentElement=host;host.children.push(field);
+ const profile=k.mountInputs(field,host,{mode});return profile.pad.children.flatMap(group=>group.children||[]).map(button=>String(button.textContent||'').trim());
+}
+const roundedLabels=profileLabels('unit3-rounded');
+for(const label of ['.','−','Check'])assert(roundedLabels.includes(label),`rounded keypad missing ${label}`);
+for(const label of ['√','ln','e','π','∞','DNE','∪','Under','Over','x','y'])assert(!roundedLabels.includes(label),`rounded keypad should omit ${label}`);
+const geometryLabels=profileLabels('unit3-geometry-exact');
+for(const label of ['√','π','xⁿ'])assert(geometryLabels.includes(label),`geometry exact keypad missing ${label}`);
+for(const label of ['ln','e','∞','DNE','∪','Under','Over','sin'])assert(!geometryLabels.includes(label),`geometry exact keypad should omit ${label}`);
+const intervalLabels=profileLabels('unit3-interval');
+for(const label of ['[',']','∪','∞','−∞','(',')'])assert(intervalLabels.includes(label),`interval keypad missing ${label}`);
+for(const label of ['Under','Over','DNE','ln','e'])assert(!intervalLabels.includes(label),`interval keypad should omit ${label}`);
+const recursiveProfileLabels=profileLabels('unit3-recursive');
+for(const label of ['a₁','aₙ','aₙ₋₁','n','=',','])assert(recursiveProfileLabels.includes(label),`recursive keypad missing ${label}`);
+for(const label of ['sin','ln','∞','DNE','∪','Under','Over'])assert(!recursiveProfileLabels.includes(label),`recursive keypad should omit ${label}`);
+const powerLabels=profileLabels('derivative-power');
+for(const label of ['x','xⁿ'])assert(powerLabels.includes(label),`power-rule keypad missing ${label}`);
+for(const label of ['sin','ln','e','π','y','∞','DNE'])assert(!powerLabels.includes(label),`power-rule keypad should omit ${label}`);
+const finiteLimitLabels=profileLabels('limits-finite');
+for(const label of ['√','∛','ⁿ√','ln','π'])assert(finiteLimitLabels.includes(label),`finite-limit keypad missing ${label}`);
+for(const label of ['DNE','∞','−∞'])assert(!finiteLimitLabels.includes(label),`finite-limit keypad should omit ${label}`);
 const editorCss=fs.readFileSync(path.join(root,'assets/calculus-keypad.css'),'utf8');
 for(const rule of ['overflow-x:auto','overflow-y:hidden','flex-wrap:nowrap','.bm-calc-editor>*{flex:0 0 auto}','grid-auto-columns:max-content','min-width:max-content'])assert(editorCss.includes(rule),`long-answer scroll/no-compression rule missing: ${rule}`);
 for(const rule of ['.bm-calc-dynamic-editor .bm-calc-caret{display:none}', '.bm-calc-dynamic-editor:focus:not(.is-disabled) .bm-calc-caret{display:inline-block}', '.bm-calc-dynamic-editor.is-disabled .bm-calc-caret{display:none!important}'])assert(editorCss.includes(rule),`dynamic cursor visibility rule missing: ${rule}`);
 const unit3Runtime=fs.readFileSync(path.join(root,'assets/im1-unit3-practice.js'),'utf8');
 for(const check of ['line','initial-term','formula','recursive','recursive-rule'])assert(unit3Runtime.includes(`'${check}'`),`Unit 3 structured editor wiring missing ${check}`);
-const report={ok:true,cases:91,editors:['shared calculus keypad','advanced trig keypad','Unit 3 dynamic multi-field keypad'],focus:['initial visible-editor focus','legacy source-focus redirect','first physical keystroke','single active dynamic cursor','cursor hidden for inactive and disabled fields','automatic horizontal caret visibility'],keyboard:['ordinary Shift+6 exponent','ChromeOS dead-key Shift+6 exponent','Ctrl/Cmd+A','Ctrl/Cmd+C','Ctrl/Cmd+X','Ctrl/Cmd+V','Ctrl/Cmd+Z','Ctrl/Cmd+Y'],clipboard:['custom structured MIME','safe whole-structure cut','structured paste','external LaTeX normalization'],undo:['one-character physical typing','one-action keypad structures','field-switched atomic a₁','structural deletion','selected-chunk deletion','Clear/delete-all'],structures:['a₁ subscript token','square roots','editable nth roots','functions','function powers','inverse trig functions','fractions','exponents','parentheses','nested structures','dynamic field switching','nonshrinking horizontal overflow']};
+const report={ok:true,cases:139,editors:['shared calculus keypad','advanced trig keypad','Unit 3 dynamic multi-field keypad'],focus:['initial visible-editor focus','legacy source-focus redirect','first physical keystroke','single active dynamic cursor','cursor hidden for inactive and disabled fields','automatic horizontal caret visibility'],keyboard:['ordinary Shift+6 exponent','ChromeOS dead-key Shift+6 exponent','Ctrl/Cmd+A','Ctrl/Cmd+C','Ctrl/Cmd+X','Ctrl/Cmd+V','Ctrl/Cmd+Z','Ctrl/Cmd+Y'],clipboard:['custom structured MIME','safe whole-structure cut','structured paste','external LaTeX normalization'],undo:['one-character physical typing','one-action keypad structures','field-switched atomic a₁','structural deletion','selected-chunk deletion','Clear/delete-all'],structures:['a₁ subscript token','square roots','editable nth roots','functions','function powers','inverse trig functions','fractions','exponents','parentheses','nested structures','dynamic field switching','nonshrinking horizontal overflow'],profiles:['rounded numeric','geometric exact','interval notation','recursive sequence','power rule','finite limits']};
 fs.mkdirSync(path.join(root,'qa-results'),{recursive:true});
 fs.writeFileSync(path.join(root,'qa-results/calculus-keypad-structure-qa.json'),JSON.stringify(report,null,2)+'\n');
 console.log(report);

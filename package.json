@@ -1,7 +1,7 @@
 {
   "name": "batchmath-site-qa",
   "private": true,
-  "version": "12.7",
+  "version": "12.8.B",
   "scripts": {
     "seo:build": "node tools/seo-build.mjs",
     "qa:seo": "node tools/seo-qa.mjs",
@@ -55,7 +55,7 @@
     ,"qa:unit1-comprehensive-review": "node tools/unit1-comprehensive-review-sync-qa.mjs"
     ,"qa:unit3-analysis-calculator": "node tools/unit3-analysis-calculator-v1112-qa.mjs && node tools/unit3-analysis-calculator-interaction-qa.mjs"
     ,"qa:problem-of-day-archive": "node tools/problem-of-day-archive-qa.mjs"
-    ,"qa:unit3-optimization-related-rates-v127": "node tools/unit3-optimization-related-rates-v127-qa.mjs"
+    ,"qa:unit3-optimization-related-rates-v128": "node tools/unit3-optimization-related-rates-v128-qa.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

@@ -1,6 +1,6 @@
 BatchMath cumulative working copy
-Current full release: 12.7
-Archive: batchmath-site-12.7.zip
-Baseline: complete 12.7.B release.
-Changes: Cloudflare-backed Report a Problem submission, shared equals-sign fraction boundary, and targeted trig-derivative equivalent-answer support. Optimization and Related Rates remain unchanged. The BatchMath QA GitHub Actions workflow remains preserved.
+Current full release: 12.8.B
+Archive: batchmath-site-v12.8.B.zip
+Baseline: complete 12.7 release.
+Changes: targeted Optimization and Related Rates overhaul, including exact non-calculator work, calculator-appropriate numerical optimization, broader course-aligned families, balanced sampling, multi-output and multi-part practice, and focused randomized QA. The BatchMath QA GitHub Actions workflow remains preserved.
 No deployment performed.

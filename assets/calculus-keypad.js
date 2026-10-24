@@ -806,14 +806,38 @@
     pad.className=`bm-calc-keypad bm-calc-mode-${mode}`;
     pad.setAttribute("role","group");
     pad.setAttribute("aria-label","BatchMath calculus answer keypad");
+    /*
+     * Context profiles deliberately describe only symbols that can form a
+     * valid answer in that engine.  The editor itself is shared; profiles
+     * only control which existing buttons are mounted around it.
+     */
     const contextualUnit3={
-      "unit3-number":{fraction:true},
-      "unit3-formula":{fraction:true,exponent:true,sequence:true},
-      "unit3-equation":{fraction:true,equation:true},
-      "unit3-recursive":{fraction:true,recursive:true},
-      "unit3-approximation":{fraction:true,radical:true,exponent:true,constants:true},
-      "unit3-theorem":{fraction:true,radical:true,logarithm:true,exponent:true,constants:true,list:true},
-      "unit3-limit":{fraction:true,radical:true,logarithm:true,exponent:true,constants:true}
+      "unit3-rounded":{decimal:true},
+      "unit3-number":{fraction:true,decimal:true,arithmetic:true,parentheses:true},
+      "unit3-exact":{fraction:true,radical:true,exponent:true,constants:["pi","e"],logarithm:true,arithmetic:true,parentheses:true},
+      "unit3-geometry-exact":{fraction:true,radical:true,exponent:true,constants:["pi"],arithmetic:true,parentheses:true},
+      "unit3-formula":{fraction:true,exponent:true,sequence:true,variables:["n"],arithmetic:true,parentheses:true,equality:true},
+      "unit3-equation":{fraction:true,exponent:true,equation:true,variables:["x","y"],arithmetic:true,parentheses:true,equality:true},
+      "unit3-recursive":{fraction:true,recursive:true,variables:["n"],arithmetic:true,parentheses:true,equality:true},
+      "unit3-approximation":{fraction:true,radical:true,exponent:true,constants:["pi","e"],arithmetic:true,parentheses:true,classification:true},
+      "unit3-theorem":{fraction:true,radical:true,logarithm:true,exponent:true,constants:["pi","e"],arithmetic:true,parentheses:true,list:true},
+      "unit3-limit":{fraction:true,radical:true,logarithm:true,exponent:true,constants:["pi","e"],arithmetic:true,parentheses:true,dne:true,infinity:true},
+      "unit3-list":{fraction:true,radical:true,constants:["pi"],arithmetic:true,parentheses:true,list:true},
+      "unit3-interval":{fraction:true,radical:true,constants:["pi"],arithmetic:true,parentheses:true,interval:true,infinity:true},
+      "unit3-pair":{fraction:true,radical:true,constants:["pi"],arithmetic:true,parentheses:true,pair:true},
+      "unit3-coordinate":{fraction:true,radical:true,constants:["pi"],arithmetic:true,parentheses:true},
+      "unit3-rounded-line":{decimal:true,equality:true,variables:["x","y"]},
+      "limits-finite":{fraction:true,radical:true,cubeRoot:true,nthRoot:true,logarithm:true,exponent:true,constants:["pi","e"],arithmetic:true,parentheses:true},
+      "limits-no-infinity":{fraction:true,radical:true,cubeRoot:true,nthRoot:true,logarithm:true,exponent:true,constants:["pi","e"],arithmetic:true,parentheses:true,dne:true},
+      "derivative-power":{fraction:true,exponent:true,variables:["x"],arithmetic:true,parentheses:true},
+      "derivative-algebra":{fraction:true,exponent:true,radical:true,variables:["x"],arithmetic:true,parentheses:true},
+      "derivative-at-point-basic":{fraction:true,radical:true,constants:["pi"],arithmetic:true,parentheses:true},
+      "derivative-trig":{fraction:true,exponent:true,variables:["x"],constants:["pi"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "derivative-chain":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x"],constants:["pi","e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "derivative-exponential":{fraction:true,logarithm:true,exponent:true,variables:["x"],constants:["e"],arithmetic:true,parentheses:true},
+      "derivative-implicit":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x","y"],constants:["pi","e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"]],arithmetic:true,parentheses:true},
+      "derivative-log":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x","y"],constants:["pi","e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"]],arithmetic:true,parentheses:true},
+      "derivative-inverse-trig":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x"],constants:["pi","e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"],["sin⁻¹","asin"],["cos⁻¹","acos"],["tan⁻¹","atan"],["cot⁻¹","acot"],["sec⁻¹","asec"],["csc⁻¹","acsc"]],arithmetic:true,parentheses:true}
     }[mode]||null;
 
     if(contextualUnit3){
@@ -821,11 +845,19 @@
       structures.className="bm-calc-special-row bm-calc-balanced-row";
       if(contextualUnit3.fraction)addFraction(structures);
       if(contextualUnit3.radical)addFunction(structures,"√","sqrt");
+      if(contextualUnit3.cubeRoot)addFunction(structures,"∛","cbrt");
+      if(contextualUnit3.nthRoot)structures.appendChild(key("ⁿ√","function",()=>insert("root(,)",5),"Insert nth root; enter the index, then move right to enter the radicand"));
       if(contextualUnit3.logarithm)addFunction(structures,"ln","ln");
+      (contextualUnit3.functions||[]).forEach(([label,name])=>addFunction(structures,label,name));
       if(contextualUnit3.exponent)structures.appendChild(key("xⁿ","symbol",insertExponent,"Insert exponent"));
-      if(contextualUnit3.constants){
-        addInsert(structures,"e","e","function");
-        addInsert(structures,"π","pi","function");
+      (contextualUnit3.constants||[]).forEach(name=>addInsert(structures,name==="pi"?"π":name,name,"function"));
+      if(contextualUnit3.dne)addInsert(structures,"DNE","DNE","function","Insert DNE");
+      if(contextualUnit3.infinity){
+        addInsert(structures,"∞","infinity","function math-infinity-key","Insert infinity");
+        addInsert(structures,"−∞","-infinity","function math-infinity-key","Insert negative infinity");
+      }
+      if(/^derivative-/.test(mode)&&document.querySelector('input[data-bm-symbolic-functions="1"]')){
+        [["f","f"],["g","g"],["f′","fp"],["g′","gp"]].forEach(([label,name])=>addFunction(structures,label,name));
       }
       pad.appendChild(structures);
     }else if(mode==="unit3"){
@@ -874,15 +906,13 @@
     const g=document.createElement("div");
     g.className="bm-calc-main-grid";
     if(contextualUnit3){
-      const rows=[
-        ["7","7"],["8","8"],["9","9"],["(","("],[")",")"],
-        ["4","4"],["5","5"],["6","6"],["+","+"],["−","-"],
-        ["1","1"],["2","2"],["3","3"],["·","*"],["=","="],
-        ["0","0"],[".","."]
-      ];
-      if(contextualUnit3.equation)rows.push(["x","x"],["y","y"]);
-      else if(contextualUnit3.sequence||contextualUnit3.recursive)rows.push(["n","n"]);
-      else if(contextualUnit3.list)rows.push(["c","c"],[",",","]);
+      const rows=[["7","7"],["8","8"],["9","9"],["4","4"],["5","5"],["6","6"],["1","1"],["2","2"],["3","3"],["0","0"],["−","-"]];
+      if(contextualUnit3.decimal)rows.push([".","."]);
+      if(contextualUnit3.parentheses)rows.push(["(","("],[")",")"]);
+      if(contextualUnit3.arithmetic)rows.push(["+","+"],["·","*"]);
+      if(contextualUnit3.equality)rows.push(["=","="]);
+      (contextualUnit3.variables||[]).forEach(name=>rows.push([name,name]));
+      if(contextualUnit3.list||contextualUnit3.pair)rows.push([",",","]);
       rows.forEach(([lab,raw])=>addInsert(g,lab,raw,/[+−·()=,]/.test(lab)?"symbol":""));
     }else if(mode==="unit3"){
       [["7","7"],["8","8"],["9","9"],["(","("],[")",")"],
@@ -914,16 +944,25 @@
     }
     pad.appendChild(g);
 
-    if(contextualUnit3&&(contextualUnit3.sequence||contextualUnit3.recursive||contextualUnit3.equation)){
+    if(contextualUnit3&&(contextualUnit3.sequence||contextualUnit3.recursive||contextualUnit3.equation||contextualUnit3.interval||contextualUnit3.classification)){
       const extras=document.createElement("div");
       extras.className="bm-calc-function-row bm-calc-unit3-extra-row bm-calc-balanced-row";
       if(contextualUnit3.equation){
         addInsert(extras,"f(x)","f(x)","function","Insert f of x");
-      }else{
+      }else if(contextualUnit3.sequence||contextualUnit3.recursive){
         addInsert(extras,"a₁","a₁","function","Insert a sub one");
         addInsert(extras,"aₙ","aₙ","function","Insert a sub n");
         if(contextualUnit3.recursive)addInsert(extras,"aₙ₋₁","aₙ₋₁","function","Insert a sub n minus one");
         if(contextualUnit3.recursive)addInsert(extras,",",",","symbol","Comma between recursive conditions");
+      }
+      if(contextualUnit3.interval){
+        addInsert(extras,"[","[","symbol","Insert left bracket");
+        addInsert(extras,"]","]","symbol","Insert right bracket");
+        addInsert(extras,"∪","U","symbol","Insert union");
+      }
+      if(contextualUnit3.classification){
+        addInsert(extras,"Under","underestimate","function","Insert underestimate");
+        addInsert(extras,"Over","overestimate","function","Insert overestimate");
       }
       pad.appendChild(extras);
     }else if(mode==="unit3"){
@@ -947,8 +986,10 @@
     if(mode==="integral")addInsert(u,",",",","symbol","Comma between multiple values");
     u.appendChild(key("←","utility navigation",()=>move(-1),"Move cursor left"));
     u.appendChild(key("→","utility navigation",()=>move(1),"Move cursor right"));
-    u.appendChild(key("↑","utility navigation",()=>moveVertical(-1),"Move from denominator to numerator"));
-    u.appendChild(key("↓","utility navigation",()=>moveVertical(1),"Move from numerator to denominator"));
+    if(!contextualUnit3||contextualUnit3.fraction){
+      u.appendChild(key("↑","utility navigation",()=>moveVertical(-1),"Move from denominator to numerator"));
+      u.appendChild(key("↓","utility navigation",()=>moveVertical(1),"Move from numerator to denominator"));
+    }
     u.appendChild(key("⌫","utility",backspace,"Backspace"));
     u.appendChild(key("Del","utility",del,"Delete"));
     u.appendChild(key("Clear","utility",clear,"Clear answer"));
@@ -1104,6 +1145,30 @@
     return{bindings,pad,focus:()=>activateBinding(bindings[0],true)};
   }
 
+  function contextualMode(input,requested){
+    const mode=requested||"derivative";
+    const pathname=String(window.location&&window.location.pathname||"").toLowerCase();
+    if(mode==="limits"){
+      if(/(?:limits-of-continuous-functions|basic-techniques-indeterminate-limits|squeeze-theorem-trigonometric-limits|advanced-trigonometric-limits)/.test(pathname))return"limits-finite";
+      if(/(?:introduction-to-limits|understanding-sin-1-x)/.test(pathname))return"limits-no-infinity";
+      return mode;
+    }
+    if(mode!=="derivative")return mode;
+    /* Comprehensive derivative pages intentionally keep the broad pad. */
+    if(/comprehensive-review/.test(pathname))return mode;
+    const atPoint=/derivative-at-a-point-practice/.test(pathname);
+    if(atPoint&&/(?:derivatives-with-the-power-rule|the-product-rule|the-quotient-rule)/.test(pathname))return"derivative-at-point-basic";
+    if(/derivatives-with-the-power-rule/.test(pathname))return"derivative-power";
+    if(/(?:the-product-rule|the-quotient-rule)/.test(pathname))return"derivative-algebra";
+    if(/derivatives-of-trigonometric-functions/.test(pathname))return atPoint?"unit3-exact":"derivative-trig";
+    if(/the-chain-rule/.test(pathname))return atPoint?"unit3-exact":"derivative-chain";
+    if(/exponential-functions/.test(pathname))return atPoint?"unit3-exact":"derivative-exponential";
+    if(/implicit-differentiation/.test(pathname))return atPoint?"unit3-exact":"derivative-implicit";
+    if(/(?:derivatives-of-logarithmic-functions|logarithmic-differentiation)/.test(pathname))return atPoint?"unit3-exact":"derivative-log";
+    if(/inverse-trigonometric-functions/.test(pathname))return atPoint?"unit3-exact":"derivative-inverse-trig";
+    return mode;
+  }
+
   function init(){
     const input=document.querySelector('input[data-bm-calc-keypad]');
     if(!input||input.dataset.bmCalcReady==="true")return;
@@ -1111,7 +1176,7 @@
     state.binding=null;
     state.onCheck=null;
     state.input=input;
-    state.mode=input.dataset.bmCalcKeypad||"derivative";
+    state.mode=contextualMode(input,input.dataset.bmCalcKeypad||"derivative");
     state.raw=input.value||"";
     state.history=[];
     state.redoHistory=[];
