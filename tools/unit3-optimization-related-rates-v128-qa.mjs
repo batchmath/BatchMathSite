@@ -66,6 +66,13 @@ const containsNumber = (text, value) => {
 };
 const elementAttributes = tag => Object.fromEntries([...String(tag).matchAll(/([\w-]+)="([^"]*)"/g)].map(match => [match[1], match[2]]));
 const elementsWithClass = (html, tag, className) => [...String(html).matchAll(new RegExp(`<${tag}[^>]*class="[^"]*\\b${className}\\b[^"]*"[^>]*>`, 'g'))].map(match => elementAttributes(match[0]));
+const labelSpans = html => [...String(html).matchAll(/<text[^>]*>[^<]*<\/text>/g)].map(match => {
+  const attributes = elementAttributes(match[0]), text = match[0].replace(/<[^>]*>/g, '');
+  const width = Array.from(text).reduce((sum, character) => sum + (/\s/.test(character) ? 4 : /[.,()]/.test(character) ? 5 : 9), 4);
+  const x = Number(attributes.x), y = Number(attributes.y), anchor = attributes['text-anchor'];
+  return { x: anchor === 'start' ? x : anchor === 'end' ? x - width : x - width / 2,
+    y: y - (attributes['dominant-baseline'] === 'middle' ? 8 : 15), width, height: 18 };
+});
 const targetedDiagramChecks = {
   spotlight: { noncalculator: 0, calculator: 0 },
   cone: { noncalculator: 0, calculator: 0 },
@@ -340,8 +347,14 @@ for (const slug of ['optimization', 'related-rates']) {
         assert.match(problem.diagramHint,/diagram-label-variable/,problem.familyId+' diagram needs a clearly styled changing quantity');
         for(const match of problem.diagramHint.matchAll(/\b(?:x|x1|x2|cx)="(-?\d+(?:\.\d+)?)"/g))assert.ok(Number(match[1])>=0&&Number(match[1])<=600,problem.familyId+' has a clipped horizontal coordinate');
         for(const match of problem.diagramHint.matchAll(/\b(?:y|y1|y2|cy)="(-?\d+(?:\.\d+)?)"/g))assert.ok(Number(match[1])>=0&&Number(match[1])<=340,problem.familyId+' has a clipped vertical coordinate');
-        const labelPositions=[...problem.diagramHint.matchAll(/<text[^>]*x="([\d.]+)" y="([\d.]+)"[^>]*>[^<]*<\/text>/g)].map(match=>[Number(match[1]),Number(match[2])]);
-        for(let first=0;first<labelPositions.length;first+=1)for(let second=first+1;second<labelPositions.length;second+=1)assert.ok(Math.hypot(labelPositions[first][0]-labelPositions[second][0],labelPositions[first][1]-labelPositions[second][1])>22,problem.familyId+' has colliding diagram labels');
+        // Text-anchor origins can be close even when the labels extend in
+        // opposite directions. Compare spans, not distances between origins.
+        // The companion rendered QA checks exact desktop/mobile glyph bounds.
+        const spans=labelSpans(problem.diagramHint);
+        for(let first=0;first<spans.length;first+=1)for(let second=first+1;second<spans.length;second+=1){
+          const a=spans[first],b=spans[second];
+          assert.ok(a.x+a.width<=b.x||b.x+b.width<=a.x||a.y+a.height<=b.y||b.y+b.height<=a.y,problem.familyId+' has colliding diagram labels');
+        }
         if(problem.diagramHint.includes('diagram-curve'))curveDiagramLabels.add(visible.replace(/^.*?y = /,'y = '));
         verifyRefinedDiagram(problem, mode);
 
@@ -567,10 +580,10 @@ for (const page of pages) {
   const overlayIndex = html.indexOf('/assets/unit3-optimization-related-rates.js');
   const keypadIndex = html.indexOf('/assets/calculus-keypad.js');
   assert.ok(baseIndex >= 0 && overlayIndex > baseIndex && keypadIndex > overlayIndex, page + ' has incorrect shared-generator load order');
-  assert.match(html, /"generatorVersion":"12\.8\.F"/, page + ' has stale generator analytics metadata');
+  assert.match(html, /"generatorVersion":"12\.8\.G"/, page + ' has stale generator analytics metadata');
   if(page.includes('/comprehensive-review/'))assert.match(html,/"slugs":\[[^\]]*"optimization","related-rates"\]/,page+' must inherit both shared diagram-enabled generators');
 }
 
-assert.equal(JSON.parse(read('assets/app-version.json')).version, '12.8.F');
+assert.equal(JSON.parse(read('assets/app-version.json')).version, '12.8.G');
 assert.ok(fs.existsSync(path.join(root, '.github/workflows/batchmath-qa.yml')));
-console.log('Unit 3 Optimization/Related Rates v12.8.F randomized QA passed.');
+console.log('Unit 3 Optimization/Related Rates v12.8.G randomized QA passed.');
