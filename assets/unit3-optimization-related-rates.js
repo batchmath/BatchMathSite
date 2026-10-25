@@ -298,7 +298,7 @@ function renderInscribed(data){
   body+='<rect class="diagram-accent-fill" x="'+(cx-half)+'" y="'+top+'" width="'+(2*half)+'" height="'+(bottom-top)+'"/>'
     +diagramLine(cx,bottom,cx+half,top,'diagram-hidden')
     +diagramDimension(cx,bottom+28,cx+half,bottom+28,data.halfWidthLabel||'x','variable',cx+half/2,bottom+51)
-    +diagramDimension(cx-half,bottom+62,cx+half,bottom+62,data.fullWidthLabel||'2x','variable',cx,bottom+83)
+    +diagramDimension(cx-half,bottom+62,cx+half,bottom+62,data.fullWidthLabel||'2x','variable',cx,bottom+78)
     +diagramDimension(cx+half+28,top,cx+half+28,bottom,data.heightLabel||'y','variable',cx+half+44,(top+bottom)/2,'start')
     +diagramText(cx+half/2+10,(top+bottom)/2-12,diagramMeasure(data.radius,data.unit),'fixed');
   return svgDiagram(data,body);
@@ -475,15 +475,17 @@ function renderConePile(data){
 function renderTrough(data){
   var triangle=data.kind==='triangular-trough';
   var body=triangle
-    ?'<path class="diagram-object" d="M112 62L236 278H364L488 62"/>'
+    ?'<path class="diagram-object" d="M112 62L300 278L488 62"/>'
     :'<path class="diagram-object" d="M112 62L188 278H412L488 62"/>';
   var waterLeft=triangle?178:157,waterRight=triangle?422:443,waterY=174;
-  body+='<path class="diagram-changing-fill" d="M'+waterLeft+' '+waterY+'L236 278H364L'+waterRight+' '+waterY+'Z"/>'
-    +diagramLine(waterLeft,waterY,waterRight,waterY,'diagram-water-line')
+  body+=triangle
+    ?'<path class="diagram-changing-fill" d="M'+waterLeft+' '+waterY+'L300 278L'+waterRight+' '+waterY+'Z"/>'
+    :'<path class="diagram-changing-fill" d="M'+waterLeft+' '+waterY+'L188 278H412L'+waterRight+' '+waterY+'Z"/>';
+  body+=diagramLine(waterLeft,waterY,waterRight,waterY,'diagram-water-line')
     +diagramDimension(300,waterY,300,278,data.depthLabel||'h','variable',317,229,'start')
     +diagramDimension(waterLeft,waterY-18,waterRight,waterY-18,data.waterWidthLabel||'w','variable',300,waterY-30)
-    +diagramDimension(112,36,488,36,diagramMeasure(data.topWidth,data.unit),'fixed',300,24)
-    +diagramDimension(triangle?236:188,306,triangle?364:412,306,diagramMeasure(data.bottomWidth,data.unit),'fixed',300,329);
+    +diagramDimension(112,36,488,36,diagramMeasure(data.topWidth,data.unit),'fixed',300,24);
+  if(!triangle)body+=diagramDimension(188,306,412,306,diagramMeasure(data.bottomWidth,data.unit),'fixed',300,329);
   return svgDiagram(data,body);
 }
 function renderCylinderTank(data){
@@ -549,8 +551,8 @@ function renderLineOfSight(data){
     +diagramLine(118,275,454,67,'diagram-distance')
     +diagramDimension(118,305,454,305,diagramMeasure(data.horizontal,data.unit),'fixed',286,331)
     +diagramDimension(480,275,480,67,data.heightLabel||'y','variable',498,178,'start')
-    +'<path class="diagram-angle" d="M164 275A46 46 0 0 0 157 251"/>'
-    +diagramText(178,250,data.angleLabel||'θ','variable');
+    +(data.distanceLabel?diagramText(285,158,data.distanceLabel,'variable'):'')
+    +(data.showAngle===false?'':'<path class="diagram-angle" d="M164 275A46 46 0 0 0 157 251"/>'+diagramText(178,250,data.angleLabel||'θ','variable'));
   return svgDiagram(data,body);
 }
 function renderIce(data){
@@ -1756,6 +1758,7 @@ function rrSphereFromVolume(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'sphere_volume_to_radius',id:'u3-v127-rr-sphere-dr-'+mode+'-'+trim(radius,2)+'-'+trim(volumeRate,1),
     variant:'related_rates_sphere_volume_to_radius',
+    diagram:{kind:'sphere',title:'Changing spherical balloon',description:'A spherical balloon whose changing radius is labeled r.',radiusLabel:'r'},
     prompt:'Air is pumped into a spherical balloon at \\('+trim(volumeRate,1)+'\\) cubic feet per minute. Find \\(\\frac{dr}{dt}\\) when the radius is \\('+trim(radius,2)+'\\) feet.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1780,6 +1783,7 @@ function rrSphereFromDiameter(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'sphere_diameter_to_volume',id:'u3-v127-rr-sphere-diameter-'+mode+'-'+trim(radius,2)+'-'+trim(diameterRate,2),
     variant:'related_rates_sphere_diameter_to_volume',
+    diagram:{kind:'sphere',title:'Changing spherical balloon',description:'A spherical balloon whose changing radius is labeled r.',radiusLabel:'r'},
     prompt:'The diameter of a spherical balloon increases at \\('+trim(diameterRate,2)+'\\) centimeters per second. Find \\(\\frac{dV}{dt}\\) when the radius is \\('+trim(radius,2)+'\\) centimeters.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1803,6 +1807,7 @@ function rrSphereSurfaceToVolume(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'sphere_surface_area_to_volume',id:'u3-v127-rr-sphere-surface-'+mode+'-'+trim(radius,2),
     variant:'related_rates_sphere_surface_to_volume',
+    diagram:{kind:'sphere',title:'Changing spherical balloon',description:'A spherical balloon whose changing radius is labeled r.',radiusLabel:'r'},
     prompt:'A spherical balloon’s surface area increases at \\('+trim(surfaceRate,1)+'\\) square centimeters per second. Find \\(\\frac{dV}{dt}\\) when \\(r='+trim(radius,2)+'\\) centimeters.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1827,6 +1832,7 @@ function rrCircleArea(mode,source,inverse){
     return scalarProblem({
       slug:'related-rates',mode:mode,source:source,family:'circular_area_from_radius',id:'u3-v127-rr-circle-area-'+mode+'-'+trim(radius,2)+'-'+trim(radial,2),
       variant:'related_rates_circular_pool_area',
+      diagram:{kind:'circle',title:'Changing circular region',description:'A changing circle whose radius remains labeled r.',radiusLabel:'r'},
       prompt:'A circular pool’s radius increases at \\('+trim(radial,2)+'\\) meters per minute. Find \\(\\frac{dA}{dt}\\) when \\(r='+trim(radius,2)+'\\) meters.',
       answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
       steps:[
@@ -1851,6 +1857,7 @@ function rrCircleArea(mode,source,inverse){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'circular_radius_from_area',id:'u3-v127-rr-circle-radius-'+mode+'-'+trim(radius,2),
     variant:'related_rates_circular_spill_radius',
+    diagram:{kind:'circle',title:'Changing circular region',description:'A changing circle whose radius remains labeled r.',radiusLabel:'r'},
     prompt:'A circular spill’s area increases at \\('+(mode==='calculator'?trim(given,2):trim(given/Math.PI)+'\\pi')+'\\) square meters per minute. Find \\(\\frac{dr}{dt}\\) when \\(r='+trim(radius,2)+'\\) meters.',
     answer:answerInverse.answer,answerTex:answerInverse.answerTex,value:answerInverse.value,
     steps:[
@@ -1873,6 +1880,7 @@ function rrCircularWave(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'circular_wave_circumference',id:'u3-v127-rr-wave-'+mode+'-'+trim(radial,2),
     variant:'related_rates_circular_wave_circumference',
+    diagram:{kind:'circle',title:'Expanding circular wave',description:'An expanding circular wave whose changing radius remains labeled r.',radiusLabel:'r'},
     prompt:'A circular wave’s radius increases at \\('+trim(radial,2)+'\\) '+(radial===1?'meter':'meters')+' per second. Find the rate at which its circumference changes.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1938,7 +1946,7 @@ function rrLadder(mode,source,request){
   else if(request==='wallAngle')steps.push('Because \\(\\sin\\phi=\\frac{x}{L}\\), differentiation gives \\(\\frac{d\\phi}{dt}=\\frac{dx/dt}{y}='+trim(value,8)+'\\) radians per second.');
   steps.push('The '+(value<0?'negative':'positive')+' sign means the requested quantity is '+(value<0?'decreasing':'increasing')+'.');
   steps.push(rateConclusion(name,value,units,mode));
-  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:'ladder_'+request,id:'u3-v128-rr-ladder-'+request+'-'+mode+'-'+trim(L,2)+'-'+trim(x,2),variant:variant,prompt:'A \\('+trim(L,2)+'\\)-foot ladder leans against a wall. '+motionText+requestText,answer:answer.answer,answerTex:answer.answerTex,value:answer.value,steps:steps});
+  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:'ladder_'+request,id:'u3-v128-rr-ladder-'+request+'-'+mode+'-'+trim(L,2)+'-'+trim(x,2),variant:variant,diagram:{kind:'ladder',title:'Sliding ladder',description:'A fixed-length ladder against a wall with changing horizontal distance x and vertical height y.',length:L,unit:'ft',xLabel:'x',yLabel:'y',angle:request==='angle'?'ground':request==='wallAngle'?'wall':null},prompt:'A \\('+trim(L,2)+'\\)-foot ladder leans against a wall. '+motionText+requestText,answer:answer.answer,answerTex:answer.answerTex,value:answer.value,steps:steps});
 }
 
 function rrShadow(mode,source,tip){
@@ -1953,6 +1961,7 @@ function rrShadow(mode,source,tip){
     slug:'related-rates',mode:mode,source:source,family:tip?'lamppost_shadow_tip':'lamppost_shadow_length',
     id:'u3-v127-rr-shadow-'+(tip?'tip':'length')+'-'+mode+'-'+trim(pole,1)+'-'+trim(person,1),
     variant:tip?'related_rates_lamppost_shadow_tip':'related_rates_lamppost_shadow_length',
+    diagram:{kind:'shadow',title:'Person and lamppost shadow',description:'A generated lamppost and person with fixed heights and changing distances x and s.',poleHeight:pole,personHeight:person,unit:'ft',personDistanceLabel:'x',shadowLabel:'s',totalLabel:'x + s'},
     prompt:'A \\('+trim(person,1)+'\\)-foot person walks away from a \\('+trim(pole,1)+'\\)-foot lamppost at \\('+trim(walking,2)+'\\) feet per second. Find how fast '+(tip?'the tip of the shadow moves away from the pole':'the shadow length increases')+'.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1986,6 +1995,7 @@ function rrConePile(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'conical_pile',id:'u3-v127-rr-cone-pile-'+mode+'-'+trim(ratio,3)+'-'+trim(height,1),
     variant:'related_rates_conical_pile',
+    diagram:{kind:'cone-pile',title:'Changing conical pile',description:'A conical pile with changing radius r and height h.',radiusLabel:'r',heightLabel:'h',fixedNotes:['Shape ratio: r = '+(mode==='calculator'?trim(ratio,3):(ratioData.denominator===1?String(ratioData.numerator):ratioData.numerator+'/'+ratioData.denominator))+' h']},
     prompt:'A conical pile keeps the constant shape ratio \\(r='+ratioText+'h\\). When \\(h='+trim(height,1)+'\\) feet, the height increases at \\('+trim(dh,2)+'\\) feet per minute. Find \\(\\frac{dV}{dt}\\).',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2018,6 +2028,7 @@ function rrConicalTank(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'inverted_conical_tank',id:'u3-v127-rr-cone-tank-'+mode+'-'+trim(tankHeight,1)+'-'+trim(depth,1),
     variant:'related_rates_inverted_conical_tank',
+    diagram:{kind:'conical-tank',title:'Water in an inverted conical tank',description:'The generated fixed tank with changing water depth h and surface radius r.',tankHeight:tankHeight,tankRadius:tankRadius,unit:'ft',depthLabel:'h',waterRadiusLabel:'r'},
     prompt:'An inverted conical tank has height \\('+trim(tankHeight,1)+'\\) feet and top radius \\('+trim(tankRadius,1)+'\\) feet. Water enters at \\('+(mode==='calculator'?trim(volumeRate,3):trim(volumeRate/Math.PI)+'\\pi')+'\\) cubic feet per minute. Find \\(\\frac{dh}{dt}\\) when the water depth is \\('+trim(depth,1)+'\\) feet.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2044,6 +2055,7 @@ function rrTriangularTrough(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'triangular_trough',id:'u3-v127-rr-tri-trough-'+mode+'-'+trim(length,1)+'-'+trim(depth,2),
     variant:'related_rates_triangular_trough',
+    diagram:{kind:'triangular-trough',title:'Triangular trough cross-section',description:'A triangular trough with generated fixed dimensions and changing water depth h and surface width w.',topWidth:fullWidth,unit:'ft',depthLabel:'h',waterWidthLabel:'w',fixedNotes:['Full height: '+trim(fullHeight,1)+' ft','Trough length: '+trim(length,1)+' ft']},
     prompt:'A \\('+trim(length,1)+'\\)-foot trough has triangular ends of full width \\('+trim(fullWidth,1)+'\\) feet and height \\('+trim(fullHeight,1)+'\\) feet. Water enters at \\('+trim(volumeRate,1)+'\\) cubic feet per minute. Find \\(\\frac{dh}{dt}\\) when the water depth is \\('+trim(depth,2)+'\\) '+(depth===1?'foot':'feet')+'.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2074,6 +2086,7 @@ function rrTrapezoidTrough(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'trapezoidal_trough',id:'u3-v127-rr-trap-trough-'+mode+'-'+trim(length,1)+'-'+trim(depth,2),
     variant:'related_rates_trapezoidal_trough',
+    diagram:{kind:'trapezoidal-trough',title:'Trapezoidal trough cross-section',description:'A trapezoidal trough with generated fixed dimensions and changing water depth h and surface width w.',topWidth:top,bottomWidth:bottom,unit:'ft',depthLabel:'h',waterWidthLabel:'w',fixedNotes:['Full height: '+trim(fullHeight,1)+' ft','Trough length: '+trim(length,1)+' ft']},
     prompt:'A \\('+trim(length,1)+'\\)-foot trough has trapezoidal ends with bottom width \\('+trim(bottom,1)+'\\), top width \\('+trim(top,1)+'\\), and height \\('+trim(fullHeight,1)+'\\) feet. When the water depth is \\('+trim(depth,2)+'\\) '+(depth===1?'foot':'feet')+', it rises at \\('+dhText+'\\) feet per minute. Find \\(\\frac{dV}{dt}\\).',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2101,6 +2114,7 @@ function rrCylinderTank(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'cylindrical_tank',id:'u3-v127-rr-cylinder-tank-'+mode+'-'+trim(radius,2),
     variant:'related_rates_cylindrical_tank',
+    diagram:{kind:'cylinder-tank',title:'Water in a cylindrical tank',description:'A cylindrical tank with generated fixed radius and changing water depth h.',radius:radius,unit:'ft',heightLabel:'h'},
     prompt:'A vertical cylindrical tank has fixed radius \\('+trim(radius,2)+'\\) feet. Its water volume changes at \\('+(mode==='calculator'?trim(volumeRate,2):trim(volumeRate/Math.PI)+'\\pi')+'\\) cubic feet per second. Find \\(\\frac{dh}{dt}\\).',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2131,6 +2145,7 @@ function rrPolygonAreaLegacy(mode,source,shape){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:shape+'_area',id:'u3-v127-rr-'+shape+'-'+mode+'-'+trim(side,1)+'-'+trim(sideRate,2),
     variant:shape==='square'?'related_rates_square_area':'related_rates_equilateral_triangle_area',
+    diagram:{kind:'changing-shape',title:shape==='square'?'Changing square':'Changing equilateral triangle',description:'A changing '+(shape==='square'?'square':'equilateral triangle')+' whose side remains labeled s.',shape:shape,sideLabel:'s'},
     prompt:'The side length of '+(shape==='square'?'a square':'an equilateral triangle')+' changes at \\('+trim(sideRate,2)+'\\) centimeters per minute. Find \\(\\frac{dA}{dt}\\) when the side length is \\('+trim(side,1)+'\\) centimeters.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2174,7 +2189,8 @@ function rrPolygonArea(mode,source,shape){
   else if(shape==='equilateral'){var coefficient=rational(s*ds,2);answer={answer:'('+coefficient.input+')*sqrt(3)',answerTex:(coefficient.tex==='1'?'':coefficient.tex==='-1'?'-':coefficient.tex)+'\\sqrt3',value:null};}
   else{var exact=rational(rate,1);answer={answer:exact.input,answerTex:exact.tex,value:null};}
   var rateSymbol='\\frac{d'+symbol+'}{dt}';
-  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:family,id:'u3-v128a-rr-'+shape+'-'+mode+'-'+trim(s,1)+'-'+trim(ds,2),variant:'related_rates_'+shape+'_area',prompt:'The '+known+' of '+description+' is \\('+trim(s,1)+'\\) '+unitPhrase(s,'centimeter','centimeters')+' and changes at \\('+trim(ds,2)+'\\) '+unitPhrase(Math.abs(ds),'centimeter','centimeters')+' per minute.'+extra+' Find how fast the area is changing.',answer:answer.answer,answerTex:answer.answerTex,value:answer.value,steps:[
+  var diagram={kind:'changing-shape',title:'Changing '+description.replace(/^an? /,''),description:'The actual generated changing shape with its changing dimensions labeled by variables.',shape:shape,radiusLabel:'r',sideLabel:'s',widthLabel:'ℓ',heightLabel:shape==='rectangle'?'w':'h',baseLabel:'b'};
+  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:family,id:'u3-v128a-rr-'+shape+'-'+mode+'-'+trim(s,1)+'-'+trim(ds,2),variant:'related_rates_'+shape+'_area',diagram:diagram,prompt:'The '+known+' of '+description+' is \\('+trim(s,1)+'\\) '+unitPhrase(s,'centimeter','centimeters')+' and changes at \\('+trim(ds,2)+'\\) '+unitPhrase(Math.abs(ds),'centimeter','centimeters')+' per minute.'+extra+' Find how fast the area is changing.',answer:answer.answer,answerTex:answer.answerTex,value:answer.value,steps:[
     'Let \\('+symbol+'\\) represent the '+known+'. The known rate is \\('+rateSymbol+'='+trim(ds,2)+'\\) centimeters per minute.',
     relationshipStep,
     'Use the area formula \\('+formula+'\\).',
@@ -2198,6 +2214,7 @@ function rrBalloonBike(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'balloon_bicycle_distance',id:'u3-v127-rr-balloon-bike-'+mode+'-'+trim(t,1),
     variant:'related_rates_balloon_bicycle_distance',
+    diagram:{kind:'perpendicular-motion',title:'Balloon and bicyclist separation',description:'Perpendicular changing distances x and y with their changing separation d.',xLabel:'x',yLabel:'y',distanceLabel:'d',fixedNotes:['Initial balloon height: '+trim(initialHeight,1)+' ft','Bicyclist speed: '+trim(horizontalRate,1)+' ft/s','Balloon rise speed: '+trim(verticalRate,1)+' ft/s']},
     prompt:'A balloon is \\('+trim(initialHeight,1)+'\\) feet above a road and rises at \\('+trim(verticalRate,1)+'\\) foot per second as a bicyclist passes beneath it at \\('+trim(horizontalRate,1)+'\\) feet per second. How fast is the distance between them changing \\('+trim(t,1)+'\\) seconds later?',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2222,6 +2239,7 @@ function rrSoftball(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'softball_diamond',id:'u3-v127-rr-softball-'+mode+'-'+trim(side,1)+'-'+trim(fromThird,1),
     variant:'related_rates_softball_diamond',
+    diagram:{kind:'softball-diamond',title:'Runner on a softball diamond',description:'A generated square diamond with fixed side length, changing runner distance x from third, and changing distance d from home.',side:side,unit:'ft',runnerDistanceLabel:'x',distanceLabel:'d'},
     prompt:'A square softball diamond has side length \\('+trim(side,1)+'\\) feet. A runner travels from second toward third at \\('+trim(speed,1)+'\\) feet per second. How fast is her distance from home changing when she is \\('+trim(fromThird,1)+'\\) feet from third?',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2258,6 +2276,7 @@ function rrSpotlight(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'rotating_spotlight',id:'u3-v127-rr-spotlight-'+mode+'-'+distance+'-'+trim(theta,4),
     variant:'related_rates_rotating_spotlight',
+    diagram:{kind:'spotlight',title:'Rotating spotlight and shoreline',description:'A buoy at the generated fixed perpendicular distance from shore with changing shoreline distance x and beam angle theta.',offset:distance,unit:'ft',distanceLabel:'x',angleLabel:'θ'},
     prompt:'A rotating spotlight is on a buoy \\('+distance+'\\) feet perpendicular from a straight shoreline. The beam makes angle \\('+(mode==='calculator'?trim(theta,6):angleData.label)+'\\) with the shoreline and turns at \\('+trim(omega,2)+'\\) radians per minute. Find the speed of the light spot along the shoreline.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2282,6 +2301,7 @@ function rrAngleElevation(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'angle_of_elevation',id:'u3-v127-rr-angle-'+mode+'-'+trim(distance,1)+'-'+trim(height,1),
     variant:'related_rates_angle_of_elevation',
+    diagram:{kind:'line-of-sight',title:'Angle of elevation to a balloon',description:'A fixed horizontal separation with changing balloon height y and angle theta.',horizontal:distance,unit:'ft',heightLabel:'y',angleLabel:'θ'},
     prompt:'An observer stands \\('+trim(distance,1)+'\\) feet from a balloon’s vertical path. When the balloon is \\('+trim(height,1)+'\\) feet high, its vertical velocity is \\('+trim(vertical,1)+'\\) feet per second. Find the rate of change of the angle of elevation.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2308,6 +2328,7 @@ function rrRopeBalloonLegacy(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'rope_spool_balloon',id:'u3-v127-rr-rope-balloon-'+mode+'-'+trim(horizontal,1),
     variant:'related_rates_rope_spool_balloon',
+    diagram:{kind:'rope-balloon',title:'Balloon and fixed rope spool',description:'A fixed horizontal distance with changing balloon height y and rope length s.',horizontal:horizontal,unit:'ft',heightLabel:'y',distanceLabel:'s',showAngle:false},
     prompt:'A balloon rises vertically from a point \\('+trim(horizontal,1)+'\\) feet from a fixed rope spool. The rope is paid out at \\('+trim(ropeRate,1)+'\\) feet per second. Find the balloon’s vertical speed \\('+trim(elapsed,1)+'\\) seconds after lift-off.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2331,7 +2352,7 @@ function rrRopeBalloon(mode,source){
   var rope=Math.hypot(horizontal,height),rate=height*rise/rope,answer;
   if(mode==='calculator')answer=calcOrExact(mode,rate,'','');
   else{var exact=rational(height*rise,rope);answer={answer:exact.input,answerTex:exact.tex,value:null};}
-  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:'rope_spool_balloon',id:'u3-v128a-rr-rope-balloon-'+mode+'-'+trim(horizontal,1)+'-'+trim(height,1),variant:'related_rates_rope_spool_balloon',prompt:'A balloon is directly above a point \\('+trim(horizontal,1)+'\\) feet from a person holding a taut rope. At the moment the balloon is \\('+trim(height,1)+'\\) feet high, it is rising at \\('+trim(rise,1)+'\\) feet per second. How fast is the rope length increasing?',answer:answer.answer,answerTex:answer.answerTex,value:answer.value,steps:[
+  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:'rope_spool_balloon',id:'u3-v128a-rr-rope-balloon-'+mode+'-'+trim(horizontal,1)+'-'+trim(height,1),variant:'related_rates_rope_spool_balloon',diagram:{kind:'rope-balloon',title:'Balloon and fixed rope holder',description:'A fixed horizontal distance with changing balloon height y and rope length s.',horizontal:horizontal,unit:'ft',heightLabel:'y',distanceLabel:'s',showAngle:false},prompt:'A balloon is directly above a point \\('+trim(horizontal,1)+'\\) feet from a person holding a taut rope. At the moment the balloon is \\('+trim(height,1)+'\\) feet high, it is rising at \\('+trim(rise,1)+'\\) feet per second. How fast is the rope length increasing?',answer:answer.answer,answerTex:answer.answerTex,value:answer.value,steps:[
     'Let \\(y\\) be the balloon’s height and \\(s\\) the rope length. The horizontal distance is fixed at \\('+trim(horizontal,1)+'\\) feet, and \\(\\frac{dy}{dt}='+trim(rise,1)+'\\).',
     'Use the right-triangle relationship \\(s^2='+trim(horizontal*horizontal,3)+'+y^2\\).',
     'At the moment described, \\(s=\\sqrt{'+trim(horizontal*horizontal,3)+'+'+trim(height*height,3)+'}='+trim(rope,8)+'\\) feet.',
@@ -2381,6 +2402,7 @@ function rrDelayedBikes(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'delayed_start_perpendicular_motion',id:'u3-v127-rr-delayed-bikes-'+mode+'-'+trim(delay,1)+'-'+trim(after,1),
     variant:'related_rates_delayed_start_bicycles',
+    diagram:{kind:'perpendicular-motion',title:'Cyclists on perpendicular paths',description:'Two changing perpendicular distances x and y with changing separation d.',xLabel:'x',yLabel:'y',distanceLabel:'d',fixedNotes:['North cyclist: '+trim(northRate,1)+' m/s','East cyclist: '+trim(eastRate,1)+' m/s','Start delay: '+trim(delay,1)+' s']},
     prompt:'One cyclist rides north at \\('+trim(northRate,1)+'\\) meters per second. After \\('+trim(delay,1)+'\\) seconds, a second cyclist starts east from the same point at \\('+trim(eastRate,1)+'\\) meters per second. How fast is their separation changing \\('+trim(after,1)+'\\) seconds after the second cyclist starts?',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2431,7 +2453,7 @@ function rrConeReverse(mode,source,request){
   else if(request==='radius_from_volume')steps.push('First find \\(\\frac{dh}{dt}='+trim(heightRate,8)+'\\). Since \\(r='+trim(ratio,6)+'h\\), \\(\\frac{dr}{dt}='+trim(ratio,6)+'\\frac{dh}{dt}='+trim(radiusRate,8)+'\\) feet per minute.');
   else steps.push('Substitution gives \\(\\frac{dV}{dt}='+trim(volumeRate,8)+'\\) cubic feet per minute.');
   steps.push('The '+(value<0?'negative':'positive')+' sign means the requested quantity is '+(value<0?'decreasing':'increasing')+'.');
-  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:'conical_tank_'+request,id:'u3-v128-rr-cone-reverse-'+request+'-'+mode+'-'+trim(depth,1),variant:'related_rates_conical_tank_'+request,prompt:prompt,answer:answer.answer,answerTex:answer.answerTex,value:mode==='calculator'?value:null,steps:steps});
+  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:'conical_tank_'+request,id:'u3-v128-rr-cone-reverse-'+request+'-'+mode+'-'+trim(depth,1),variant:'related_rates_conical_tank_'+request,diagram:{kind:'conical-tank',title:'Water in an inverted conical tank',description:'The generated fixed tank with changing water depth h and surface radius r.',tankHeight:tankHeight,tankRadius:tankRadius,unit:'ft',depthLabel:'h',waterRadiusLabel:'r'},prompt:prompt,answer:answer.answer,answerTex:answer.answerTex,value:mode==='calculator'?value:null,steps:steps});
 }
 
 function rrGallonTank(mode,source){
@@ -2442,7 +2464,7 @@ function rrGallonTank(mode,source){
   if(mode==='calculator')answer=calcOrExact(mode,heightRate,'','');
   else{var converted=rational(gallons*2,15),exact=overPi(converted.value,radius*radius);answer={answer:exact.input,answerTex:exact.tex,value:null};}
   var conversionText=mode==='calculator'?'7.48052':'\\frac{15}{2}';
-  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:'cylindrical_tank_gallon_conversion',id:'u3-v128-rr-gallon-tank-'+mode+'-'+radius+'-'+gallons,variant:'related_rates_cylindrical_tank_gallons',prompt:'A vertical cylindrical tank has radius \\('+trim(radius,1)+'\\) feet. Water changes at \\('+trim(gallons,1)+'\\) gallons per minute. Use \\(1\\text{ cubic foot}='+conversionText+'\\text{ gallons}\\). Find \\(\\frac{dh}{dt}\\).',answer:answer.answer,answerTex:answer.answerTex,value:answer.value,steps:[
+  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:'cylindrical_tank_gallon_conversion',id:'u3-v128-rr-gallon-tank-'+mode+'-'+radius+'-'+gallons,variant:'related_rates_cylindrical_tank_gallons',diagram:{kind:'cylinder-tank',title:'Water in a cylindrical tank',description:'A cylindrical tank with generated fixed radius and changing water depth h.',radius:radius,unit:'ft',heightLabel:'h'},prompt:'A vertical cylindrical tank has radius \\('+trim(radius,1)+'\\) feet. Water changes at \\('+trim(gallons,1)+'\\) gallons per minute. Use \\(1\\text{ cubic foot}='+conversionText+'\\text{ gallons}\\). Find \\(\\frac{dh}{dt}\\).',answer:answer.answer,answerTex:answer.answerTex,value:answer.value,steps:[
     'First convert the volume rate: \\(\\frac{dV}{dt}=\\frac{'+trim(gallons,1)+'}{'+conversionText+'}='+trim(volumeRate,8)+'\\) cubic feet per minute.',
     'For a cylinder, \\(V=\\pi r^2h\\), and the radius is constant.',
     'Differentiate with respect to time: \\(\\frac{dV}{dt}=\\pi r^2\\frac{dh}{dt}\\).',
@@ -2459,7 +2481,7 @@ function rrSemicirclePoint(mode,source){
   var dy=-x*dx/y,areaRate=(x*dy+y*dx)/2,answer;
   if(mode==='calculator')answer=calcOrExact(mode,areaRate,'','');
   else{var exact=rational(dx*(y*y-x*x),2*y);answer={answer:exact.input,answerTex:exact.tex,value:null};}
-  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:'semicircle_moving_point_area',id:'u3-v128-rr-semicircle-area-'+mode+'-'+trim(radius,1)+'-'+trim(x,1),variant:'related_rates_semicircle_moving_point_triangle_area',prompt:'A point \\((x,y)\\) moves on the upper semicircle \\(x^2+y^2='+trim(radius*radius,3)+'\\). At the moment \\(x='+trim(x,1)+'\\), the point moves horizontally with \\(\\frac{dx}{dt}='+trim(dx,1)+'\\). Find the rate of change of the area of the right triangle formed by the point and the coordinate axes.',answer:answer.answer,answerTex:answer.answerTex,value:answer.value,steps:[
+  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:'semicircle_moving_point_area',id:'u3-v128-rr-semicircle-area-'+mode+'-'+trim(radius,1)+'-'+trim(x,1),variant:'related_rates_semicircle_moving_point_triangle_area',diagram:{kind:'semicircle-point',title:'Moving point on a semicircle',description:'A point with changing coordinates x and y on a semicircle with generated fixed radius.',radius:radius,unit:'',xLabel:'x',yLabel:'y'},prompt:'A point \\((x,y)\\) moves on the upper semicircle \\(x^2+y^2='+trim(radius*radius,3)+'\\). At the moment \\(x='+trim(x,1)+'\\), the point moves horizontally with \\(\\frac{dx}{dt}='+trim(dx,1)+'\\). Find the rate of change of the area of the right triangle formed by the point and the coordinate axes.',answer:answer.answer,answerTex:answer.answerTex,value:answer.value,steps:[
     'At the moment described, \\(y=\\sqrt{'+trim(radius*radius,3)+'-'+trim(x*x,3)+'}='+trim(y,8)+'\\).',
     'Differentiate \\(x^2+y^2='+trim(radius*radius,3)+'\\): \\(2x\\frac{dx}{dt}+2y\\frac{dy}{dt}=0\\).',
     'Solve for the vertical rate: \\(\\frac{dy}{dt}=-\\frac{x(dx/dt)}y='+trim(dy,8)+'\\).',
@@ -2478,7 +2500,7 @@ function rrMultiPart(mode,source){
     var fields=mode==='calculator'
       ?[{label:'',labelText:'Rate of change of the ladder top’s height:',numericAnswer:dy,answerTex:dy.toFixed(3),placeholder:'Part 1: top height rate'},{label:'',labelText:'Rate of change of the triangular area:',numericAnswer:area,answerTex:area.toFixed(3),placeholder:'Part 2: area rate'},{label:'',labelText:'Rate of change of the angle with the ground:',numericAnswer:angle,answerTex:angle.toFixed(3),placeholder:'Part 3: angle rate'}]
       :[{label:'',labelText:'Rate of change of the ladder top’s height:',answer:rational(-x*dx,y).input,answerTex:rational(-x*dx,y).tex,placeholder:'Part 1: top height rate'},{label:'',labelText:'Rate of change of the triangular area:',answer:rational(dx*(y*y-x*x),2*y).input,answerTex:rational(dx*(y*y-x*x),2*y).tex,placeholder:'Part 2: area rate'},{label:'',labelText:'Rate of change of the angle with the ground:',answer:rational(-dx,y).input,answerTex:rational(-dx,y).tex,placeholder:'Part 3: angle rate'}];
-    return multiFieldProblem({slug:'related-rates',mode:mode,source:source,family:'multi_part_ladder',id:'u3-v128-rr-multi-ladder-'+mode+'-'+L+'-'+x,variant:'related_rates_multi_part_ladder',prompt:'A \\('+trim(L,2)+'\\)-foot ladder has its foot \\('+trim(x,2)+'\\) feet from a wall and moving away at \\('+trim(dx,2)+'\\) feet per second. At this moment, find (1) how fast the top’s height is changing, (2) how fast the triangular area is changing, and (3) how fast the angle between the ladder and the ground is changing.',fields:fields,steps:[
+    return multiFieldProblem({slug:'related-rates',mode:mode,source:source,family:'multi_part_ladder',id:'u3-v128-rr-multi-ladder-'+mode+'-'+L+'-'+x,variant:'related_rates_multi_part_ladder',diagram:{kind:'ladder',title:'Sliding ladder',description:'A fixed-length ladder against a wall with changing horizontal distance x, vertical height y, and ground angle theta.',length:L,unit:'ft',xLabel:'x',yLabel:'y',angle:'ground'},prompt:'A \\('+trim(L,2)+'\\)-foot ladder has its foot \\('+trim(x,2)+'\\) feet from a wall and moving away at \\('+trim(dx,2)+'\\) feet per second. At this moment, find (1) how fast the top’s height is changing, (2) how fast the triangular area is changing, and (3) how fast the angle between the ladder and the ground is changing.',fields:fields,steps:[
       'The fixed-length equation is \\(x^2+y^2='+trim(L*L,4)+'\\), so \\(y='+trim(y,8)+'\\) at this instant.',
       'Differentiate: \\(2x\\frac{dx}{dt}+2y\\frac{dy}{dt}=0\\). This gives \\(\\frac{dy}{dt}='+trim(dy,8)+'\\).',
       'For \\(A=\\frac12xy\\), \\(\\frac{dA}{dt}=\\frac12\\left(x\\frac{dy}{dt}+y\\frac{dx}{dt}\\right)='+trim(area,8)+'\\).',
@@ -2489,7 +2511,7 @@ function rrMultiPart(mode,source){
   if(kind==='shadow'){
     var pole=mode==='calculator'?17.3:15,person=mode==='calculator'?5.7:6,walk=mode==='calculator'?3.4:3,shadow=person*walk/(pole-person),tip=walk+shadow;
     var shadowFields=mode==='calculator'?[{label:'',labelText:'Rate of change of the shadow length:',numericAnswer:shadow,answerTex:shadow.toFixed(3),placeholder:'Part 1: shadow-length rate'},{label:'',labelText:'Rate of change of the distance from the pole to the shadow tip:',numericAnswer:tip,answerTex:tip.toFixed(3),placeholder:'Part 2: shadow-tip rate'}]:[{label:'',labelText:'Rate of change of the shadow length:',answer:rational(person*walk,pole-person).input,answerTex:rational(person*walk,pole-person).tex,placeholder:'Part 1: shadow-length rate'},{label:'',labelText:'Rate of change of the distance from the pole to the shadow tip:',answer:rational(pole*walk,pole-person).input,answerTex:rational(pole*walk,pole-person).tex,placeholder:'Part 2: shadow-tip rate'}];
-    return multiFieldProblem({slug:'related-rates',mode:mode,source:source,family:'multi_part_shadow',id:'u3-v128-rr-multi-shadow-'+mode+'-'+pole,variant:'related_rates_multi_part_shadow',prompt:'A \\('+trim(person,1)+'\\)-foot person walks away from a \\('+trim(pole,1)+'\\)-foot lamppost at \\('+trim(walk,1)+'\\) feet per second. Using this one situation, find (1) the shadow-length rate and (2) the shadow-tip rate.',fields:shadowFields,steps:[
+    return multiFieldProblem({slug:'related-rates',mode:mode,source:source,family:'multi_part_shadow',id:'u3-v128-rr-multi-shadow-'+mode+'-'+pole,variant:'related_rates_multi_part_shadow',diagram:{kind:'shadow',title:'Person and lamppost shadow',description:'A generated lamppost and person with fixed heights and changing distances x and s.',poleHeight:pole,personHeight:person,unit:'ft',personDistanceLabel:'x',shadowLabel:'s',totalLabel:'x + s'},prompt:'A \\('+trim(person,1)+'\\)-foot person walks away from a \\('+trim(pole,1)+'\\)-foot lamppost at \\('+trim(walk,1)+'\\) feet per second. Using this one situation, find (1) the shadow-length rate and (2) the shadow-tip rate.',fields:shadowFields,steps:[
       'Let \\(x\\) be the person’s distance from the pole and \\(s\\) the shadow length. Similar triangles give \\(\\frac{'+trim(pole,1)+'}{x+s}=\\frac{'+trim(person,1)+'}{s}\\).',
       'Simplify and differentiate: \\('+trim(pole-person,1)+'\\frac{ds}{dt}='+trim(person,1)+'\\frac{dx}{dt}\\).',
       'Substitute \\(\\frac{dx}{dt}='+trim(walk,1)+'\\) to get \\(\\frac{ds}{dt}='+trim(shadow,8)+'\\).',
@@ -2498,7 +2520,7 @@ function rrMultiPart(mode,source){
   }
   var tankHeight=mode==='calculator'?14.6:12,tankRadius=mode==='calculator'?6.3:6,depth=mode==='calculator'?4.7:4,volumeRate=mode==='calculator'?-3.35:-3*Math.PI,ratio=tankRadius/tankHeight,dh=volumeRate/(Math.PI*ratio*ratio*depth*depth),dr=ratio*dh;
   var coneFields=mode==='calculator'?[{label:'',labelText:'Rate of change of the water height:',numericAnswer:dh,answerTex:dh.toFixed(3),placeholder:'Part 1: water-height rate'},{label:'',labelText:'Rate of change of the water-surface radius:',numericAnswer:dr,answerTex:dr.toFixed(3),placeholder:'Part 2: surface-radius rate'}]:[{label:'',labelText:'Rate of change of the water height:',answer:rational(-3*tankHeight*tankHeight,tankRadius*tankRadius*depth*depth).input,answerTex:rational(-3*tankHeight*tankHeight,tankRadius*tankRadius*depth*depth).tex,placeholder:'Part 1: water-height rate'},{label:'',labelText:'Rate of change of the water-surface radius:',answer:rational(-3*tankHeight,tankRadius*depth*depth).input,answerTex:rational(-3*tankHeight,tankRadius*depth*depth).tex,placeholder:'Part 2: surface-radius rate'}];
-  return multiFieldProblem({slug:'related-rates',mode:mode,source:source,family:'multi_part_conical_tank',id:'u3-v128-rr-multi-cone-'+mode+'-'+depth,variant:'related_rates_multi_part_conical_tank',prompt:'An inverted conical tank is \\('+trim(tankHeight,1)+'\\) feet high with top radius \\('+trim(tankRadius,1)+'\\) feet. At the same moment, the water depth is \\('+trim(depth,1)+'\\) feet and water leaves at \\('+(mode==='calculator'?trim(Math.abs(volumeRate),2):'3\\pi')+'\\) cubic feet per minute. Find (1) how fast the water height is changing and (2) how fast the water-surface radius is changing.',fields:coneFields,steps:[
+  return multiFieldProblem({slug:'related-rates',mode:mode,source:source,family:'multi_part_conical_tank',id:'u3-v128-rr-multi-cone-'+mode+'-'+depth,variant:'related_rates_multi_part_conical_tank',diagram:{kind:'conical-tank',title:'Water in an inverted conical tank',description:'The generated fixed tank with changing water depth h and surface radius r.',tankHeight:tankHeight,tankRadius:tankRadius,unit:'ft',depthLabel:'h',waterRadiusLabel:'r'},prompt:'An inverted conical tank is \\('+trim(tankHeight,1)+'\\) feet high with top radius \\('+trim(tankRadius,1)+'\\) feet. At the same moment, the water depth is \\('+trim(depth,1)+'\\) feet and water leaves at \\('+(mode==='calculator'?trim(Math.abs(volumeRate),2):'3\\pi')+'\\) cubic feet per minute. Find (1) how fast the water height is changing and (2) how fast the water-surface radius is changing.',fields:coneFields,steps:[
     'Similar cones give \\(r='+trim(ratio,8)+'h\\). Substituting into \\(V=\\frac13\\pi r^2h\\) gives a volume equation in terms of \\(h\\).',
     'Differentiate: \\(\\frac{dV}{dt}=\\pi('+trim(ratio,8)+')^2h^2\\frac{dh}{dt}\\).',
     'Use the signed outflow rate and \\(h='+trim(depth,1)+'\\) to obtain \\(\\frac{dh}{dt}='+trim(dh,8)+'\\).',
@@ -2524,6 +2546,7 @@ function rrIceHemisphere(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'hemispherical_ice_layer',id:'u3-v128-rr-ice-'+mode+'-'+trim(inner,1),
     variant:'related_rates_hemispherical_ice_layer',
+    diagram:{kind:'ice-hemisphere',title:'Ice coating on a hemispherical roof',description:'A hemispherical roof with generated fixed inner radius and changing outer radius R.',innerRadius:inner,unit:'ft',outerRadiusLabel:'R'},
     prompt:'A hemispherical roof of radius \\('+trim(inner,1)+'\\) feet is coated uniformly with ice. When the ice is \\('+trim(thicknessInches,2)+'\\) '+unitPhrase(thicknessInches,'inch','inches')+' thick, its thickness changes at \\('+rateInchesTex+'\\) '+unitPhrase(Math.abs(rateInches),'inch','inches')+' per hour. Find the rate of change of the ice volume in cubic feet per hour.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
