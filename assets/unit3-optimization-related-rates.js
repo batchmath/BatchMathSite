@@ -3,7 +3,7 @@
 
 /*
  * BatchMath AP Calculus AB Unit 3
- * Shared Optimization / Related Rates curriculum expansion (v12.8.C).
+ * Shared Optimization / Related Rates curriculum expansion (v12.8.D).
  *
  * Loaded after unit3-applications-generators.js on the two focused topics and
  * both Unit 3 comprehensive-review pages.  This deliberately reuses the
@@ -291,16 +291,30 @@ function renderWindow(data){
 }
 function renderInscribed(data){
   var cx=300,cy=data.semicircle?258:170,r=data.semicircle?174:132;
-  var body=data.semicircle
-    ?'<path class="diagram-object" d="M126 258A174 174 0 0 1 474 258"/>'+diagramLine(126,258,474,258,'diagram-fixed-object')
-    :'<circle class="diagram-object" cx="'+cx+'" cy="'+cy+'" r="'+r+'"/>';
-  var half=88,top=data.semicircle?132:84,bottom=data.semicircle?258:256;
-  body+='<rect class="diagram-accent-fill" x="'+(cx-half)+'" y="'+top+'" width="'+(2*half)+'" height="'+(bottom-top)+'"/>'
-    +diagramLine(cx,bottom,cx+half,top,'diagram-hidden')
-    +diagramDimension(cx,bottom+28,cx+half,bottom+28,data.halfWidthLabel||'x','variable',cx+half/2,bottom+51)
-    +diagramDimension(cx-half,bottom+62,cx+half,bottom+62,data.fullWidthLabel||'2x','variable',cx,bottom+78)
-    +diagramDimension(cx+half+28,top,cx+half+28,bottom,data.heightLabel||'y','variable',cx+half+44,(top+bottom)/2,'start')
-    +diagramText(cx+half/2+10,(top+bottom)/2-12,diagramMeasure(data.radius,data.unit),'fixed');
+  var body;
+  if(data.semicircle){
+    body='<path class="diagram-object" d="M126 258A174 174 0 0 1 474 258"/>'+diagramLine(126,258,474,258,'diagram-fixed-object');
+    var half=88,top=132,bottom=258;
+    body+='<rect class="diagram-accent-fill" x="'+(cx-half)+'" y="'+top+'" width="'+(2*half)+'" height="'+(bottom-top)+'"/>'
+      +diagramLine(cx,bottom,cx+half,top,'diagram-hidden')
+      +diagramDimension(cx,bottom+28,cx+half,bottom+28,data.halfWidthLabel||'x','variable',cx+half/2,bottom+51)
+      +diagramDimension(cx-half,bottom+62,cx+half,bottom+62,data.fullWidthLabel||'2x','variable',cx,bottom+78)
+      +diagramDimension(cx+half+28,top,cx+half+28,bottom,data.heightLabel||'y','variable',cx+half+44,(top+bottom)/2,'start')
+      +diagramText(cx+half/2+10,(top+bottom)/2-12,diagramMeasure(data.radius,data.unit),'fixed');
+  }else{
+    /* Use a deliberately non-square rectangle whose four corners lie on the
+       circle. The radius begins at the shared center, so the picture gives
+       the constraint without revealing the maximizing square. */
+    var circleHalfWidth=108,circleHalfHeight=Math.sqrt(r*r-circleHalfWidth*circleHalfWidth);
+    var left=cx-circleHalfWidth,right=cx+circleHalfWidth,circleTop=cy-circleHalfHeight,circleBottom=cy+circleHalfHeight;
+    body='<circle class="diagram-object" cx="'+cx+'" cy="'+cy+'" r="'+r+'"/>'
+      +'<rect class="diagram-accent-fill" x="'+left+'" y="'+circleTop.toFixed(2)+'" width="'+(2*circleHalfWidth)+'" height="'+(2*circleHalfHeight).toFixed(2)+'"/>'
+      +'<circle class="diagram-point-fixed" cx="'+cx+'" cy="'+cy+'" r="4"/>'
+      +diagramLine(cx,cy,right,circleTop.toFixed(2),'diagram-distance')
+      +diagramDimension(left,circleBottom+28,right,circleBottom+28,data.fullWidthLabel||'x','variable',cx,circleBottom+52)
+      +diagramDimension(right+30,circleTop,right+30,circleBottom,data.heightLabel||'y','variable',right+47,cy+5,'start')
+      +diagramText(cx+67,cy-48,diagramMeasure(data.radius,data.unit),'fixed');
+  }
   return svgDiagram(data,body);
 }
 function renderPage(data){
@@ -442,20 +456,23 @@ function renderLadder(data){
     +diagramDimension(510,274,510,68,data.yLabel||'y','variable',530,176,'start')
     +diagramText(300,154,diagramMeasure(data.length,data.unit),'fixed')
     +(data.angle==='ground'?'<path class="diagram-angle" d="M174 274A40 40 0 0 0 168 253"/>'+diagramText(186,253,'θ','variable'):'')
-    +(data.angle==='wall'?'<path class="diagram-angle" d="M478 108A40 40 0 0 1 454 95"/>'+diagramText(448,120,'φ','variable'):'');
+    +(data.angle==='wall'?'<path class="diagram-angle" d="M478 108A40 40 0 0 1 454 95"/>'+diagramText(448,120,'θ','variable'):'');
   return svgDiagram(data,body);
 }
 function renderShadow(data){
-  var body=diagramLine(42,272,558,272,'diagram-ground')
-    +diagramLine(98,272,98,55,'diagram-fixed-object')
-    +diagramLine(344,272,344,164,'diagram-fixed-object')
-    +diagramLine(98,55,524,272,'diagram-accent')
-    +diagramLine(344,164,524,272,'diagram-hidden')
-    +diagramDimension(72,272,72,55,diagramMeasure(data.poleHeight,data.unit),'fixed',58,168,'end')
-    +diagramDimension(320,272,320,164,diagramMeasure(data.personHeight,data.unit),'fixed',306,223,'end')
-    +diagramDimension(98,300,344,300,data.personDistanceLabel||'x','variable',221,326)
-    +diagramDimension(344,300,524,300,data.shadowLabel||'s','variable',434,326)
-    +diagramText(309,250,data.totalLabel||'x+s','variable');
+  var groundY=266,poleX=98,poleTopY=52,tipX=524;
+  var heightRatio=clampDiagram(Number(data.personHeight)/Number(data.poleHeight),.18,.72);
+  var personX=tipX-heightRatio*(tipX-poleX),personTopY=groundY-heightRatio*(groundY-poleTopY);
+  /* The one light ray determines the person's visual location and height, so
+     pole top, head, and shadow tip are exactly collinear. */
+  var body=diagramLine(42,groundY,558,groundY,'diagram-ground')
+    +diagramLine(poleX,groundY,poleX,poleTopY,'diagram-fixed-object')
+    +diagramLine(personX,groundY,personX,personTopY,'diagram-fixed-object')
+    +diagramLine(poleX,poleTopY,tipX,groundY,'diagram-accent')
+    +diagramDimension(72,groundY,72,poleTopY,diagramMeasure(data.poleHeight,data.unit),'fixed',58,(groundY+poleTopY)/2,'end')
+    +diagramDimension(personX-24,groundY,personX-24,personTopY,diagramMeasure(data.personHeight,data.unit),'fixed',personX-38,(groundY+personTopY)/2,'end')
+    +diagramDimension(poleX,296,personX,296,data.personDistanceLabel||'x','variable',(poleX+personX)/2,324)
+    +diagramDimension(personX,296,tipX,296,data.shadowLabel||'s','variable',(personX+tipX)/2,324);
   return svgDiagram(data,body);
 }
 function renderConicalTank(data){
@@ -467,7 +484,8 @@ function renderConicalTank(data){
     +diagramDimension(300,55,442,55,diagramMeasure(data.tankRadius,data.unit),'fixed',371,42)
     +diagramDimension(468,55,468,307,diagramMeasure(data.tankHeight,data.unit),'fixed',486,183,'start')
     +diagramDimension(323,188,323,307,data.depthLabel||'h','variable',340,250,'start')
-    +diagramDimension(300,188,375,188,data.waterRadiusLabel||'r','variable',337,175);
+    +'<circle class="diagram-point-fixed" cx="300" cy="188" r="4"/>'
+    +diagramDimension(300,188,375,188,data.waterRadiusLabel||'r','variable',337,174);
   return svgDiagram(data,body);
 }
 function renderConePile(data){
@@ -529,26 +547,45 @@ function renderChangingShape(data){
   return svgDiagram(data,body);
 }
 function renderDiamond(data){
-  var body='<path class="diagram-fixed-shape" d="M300 38L514 170L300 302L86 170Z"/>'
-    +'<circle class="diagram-point-fixed" cx="300" cy="302" r="5"/><circle class="diagram-point-fixed" cx="86" cy="170" r="5"/>'
-    +'<circle class="diagram-point-variable" cx="172" cy="170" r="7"/>'
-    +diagramLine(300,302,172,170,'diagram-distance')
-    +diagramText(300,327,'home','fixed')+diagramText(69,170,'third','fixed','end')
-    +diagramDimension(86,142,300,38,diagramMeasure(data.side,data.unit),'fixed',184,74)
-    +diagramDimension(86,194,172,194,data.runnerDistanceLabel||'x','variable',129,219)
-    +diagramText(230,231,data.distanceLabel||'d','variable');
+  var center={x:300,y:170},halfDiagonal=130;
+  var second={x:center.x,y:center.y-halfDiagonal},first={x:center.x+halfDiagonal,y:center.y};
+  var home={x:center.x,y:center.y+halfDiagonal},third={x:center.x-halfDiagonal,y:center.y};
+  var runnerFraction=clampDiagram(Number(data.runnerFromThird)/Number(data.side),.08,.92);
+  var runner={x:third.x+(second.x-third.x)*runnerFraction,y:third.y+(second.y-third.y)*runnerFraction};
+  var rootTwo=Math.sqrt(2),outward={x:-1/rootTwo,y:-1/rootTwo};
+  var xOffset=18,x1={x:third.x+outward.x*xOffset,y:third.y+outward.y*xOffset},x2={x:runner.x+outward.x*xOffset,y:runner.y+outward.y*xOffset};
+  var sideOut={x:-1/rootTwo,y:1/rootTwo},sideOffset=18;
+  var side1={x:third.x+sideOut.x*sideOffset,y:third.y+sideOut.y*sideOffset},side2={x:home.x+sideOut.x*sideOffset,y:home.y+sideOut.y*sideOffset};
+  var markerSize=15,homeUnit={x:1/rootTwo,y:1/rootTwo},secondUnit={x:1/rootTwo,y:-1/rootTwo};
+  var markerA={x:third.x+homeUnit.x*markerSize,y:third.y+homeUnit.y*markerSize};
+  var markerB={x:markerA.x+secondUnit.x*markerSize,y:markerA.y+secondUnit.y*markerSize};
+  var markerC={x:third.x+secondUnit.x*markerSize,y:third.y+secondUnit.y*markerSize};
+  var body='<path class="diagram-fixed-shape" d="M'+second.x+' '+second.y+'L'+first.x+' '+first.y+'L'+home.x+' '+home.y+'L'+third.x+' '+third.y+'Z"/>'
+    +'<path class="diagram-fixed-object" d="M'+markerA.x.toFixed(2)+' '+markerA.y.toFixed(2)+'L'+markerB.x.toFixed(2)+' '+markerB.y.toFixed(2)+'L'+markerC.x.toFixed(2)+' '+markerC.y.toFixed(2)+'"/>'
+    +'<circle class="diagram-point-fixed" cx="'+home.x+'" cy="'+home.y+'" r="5"/><circle class="diagram-point-fixed" cx="'+third.x+'" cy="'+third.y+'" r="5"/>'
+    +'<circle class="diagram-point-variable" cx="'+runner.x.toFixed(2)+'" cy="'+runner.y.toFixed(2)+'" r="7"/>'
+    +diagramLine(home.x,home.y,runner.x.toFixed(2),runner.y.toFixed(2),'diagram-distance')
+    +diagramText(home.x,326,'home','fixed')+diagramText(third.x-16,third.y+5,'third','fixed','end')+diagramText(second.x,25,'second','fixed')
+    +diagramDimension(side1.x.toFixed(2),side1.y.toFixed(2),side2.x.toFixed(2),side2.y.toFixed(2),diagramMeasure(data.side,data.unit),'fixed',210,263)
+    +diagramDimension(x1.x.toFixed(2),x1.y.toFixed(2),x2.x.toFixed(2),x2.y.toFixed(2),data.runnerDistanceLabel||'x','variable',(x1.x+x2.x)/2-10,(x1.y+x2.y)/2-10)
+    +diagramText((home.x+runner.x)/2+16,(home.y+runner.y)/2,data.distanceLabel||'d','variable');
   return svgDiagram(data,body);
 }
 function renderSpotlight(data){
-  var body=diagramLine(68,272,534,272,'diagram-fixed-object')
-    +'<circle class="diagram-point-fixed" cx="164" cy="86" r="8"/>'
-    +diagramLine(164,86,164,272,'diagram-fixed-object')
-    +diagramLine(164,86,456,272,'diagram-accent')
-    +diagramDimension(138,86,138,272,diagramMeasure(data.offset,data.unit),'fixed',121,183,'end')
-    +diagramDimension(164,303,456,303,data.distanceLabel||'x','variable',310,329)
-    +'<path class="diagram-angle" d="M415 272A42 42 0 0 0 421 249"/>'
-    +diagramText(401,249,data.angleLabel||'θ','variable')
-    +diagramText(164,69,'buoy','fixed');
+  var buoyX=160,buoyY=66,shoreY=270,visualOffset=shoreY-buoyY;
+  var theta=clampDiagram(Number(data.angleValue),.18,1.08),spotX=buoyX+visualOffset*Math.tan(theta);
+  var arcRadius=42,arcX=buoyX+arcRadius*Math.sin(theta),arcY=buoyY+arcRadius*Math.cos(theta);
+  var labelRadius=63,labelX=buoyX+labelRadius*Math.sin(theta/2),labelY=buoyY+labelRadius*Math.cos(theta/2);
+  var body=diagramLine(68,shoreY,548,shoreY,'diagram-fixed-object')
+    +'<circle class="diagram-point-fixed" cx="'+buoyX+'" cy="'+buoyY+'" r="8"/>'
+    +diagramLine(buoyX,buoyY,buoyX,shoreY,'diagram-fixed-object')
+    +diagramLine(buoyX,buoyY,spotX.toFixed(2),shoreY,'diagram-accent')
+    +'<path class="diagram-fixed-object" d="M'+buoyX+' '+(shoreY-17)+'H'+(buoyX+17)+'V'+shoreY+'"/>'
+    +diagramDimension(134,buoyY,134,shoreY,diagramMeasure(data.offset,data.unit),'fixed',117,(buoyY+shoreY)/2,'end')
+    +diagramDimension(buoyX,301,spotX.toFixed(2),301,data.distanceLabel||'x','variable',(buoyX+spotX)/2,328)
+    +'<path class="diagram-angle" d="M'+buoyX+' '+(buoyY+arcRadius)+'A'+arcRadius+' '+arcRadius+' 0 0 0 '+arcX.toFixed(2)+' '+arcY.toFixed(2)+'"/>'
+    +diagramText(labelX.toFixed(2),labelY.toFixed(2),data.angleLabel||'θ','variable')
+    +diagramText(buoyX,47,'spotlight','fixed');
   return svgDiagram(data,body);
 }
 function renderLineOfSight(data){
@@ -571,14 +608,18 @@ function renderIce(data){
   return svgDiagram(data,body);
 }
 function renderSemicirclePoint(data){
-  var body=diagramLine(72,279,538,279,'diagram-axis','marker-end="url(#diagram-motion-arrow)"')
-    +diagramLine(300,307,300,38,'diagram-axis','marker-end="url(#diagram-motion-arrow)"')
-    +'<path class="diagram-object" d="M118 279A182 182 0 0 1 482 279"/>'
-    +'<path class="diagram-changing-fill" d="M300 279L405 112L405 279Z"/>'
-    +'<circle class="diagram-point-variable" cx="405" cy="112" r="7"/>'
-    +diagramDimension(300,303,405,303,data.xLabel||'x','variable',352,328)
-    +diagramDimension(432,112,432,279,data.yLabel||'y','variable',450,201,'start')
-    +diagramText(355,191,diagramMeasure(data.radius,data.unit),'fixed');
+  var cx=300,cy=282,visualRadius=190,radius=Number(data.radius);
+  var normalizedX=Number(data.pointX)/radius,normalizedY=Number(data.pointY)/radius;
+  var pointX=cx+visualRadius*normalizedX,pointY=cy-visualRadius*normalizedY;
+  var body=diagramLine(72,cy,538,cy,'diagram-axis','marker-end="url(#diagram-motion-arrow)"')
+    +diagramLine(cx,309,cx,36,'diagram-axis','marker-end="url(#diagram-motion-arrow)"')
+    +'<path class="diagram-object" d="M'+(cx-visualRadius)+' '+cy+'A'+visualRadius+' '+visualRadius+' 0 0 1 '+(cx+visualRadius)+' '+cy+'"/>'
+    +'<path class="diagram-changing-fill" d="M'+cx+' '+cy+'L'+pointX.toFixed(2)+' '+pointY.toFixed(2)+'L'+pointX.toFixed(2)+' '+cy+'Z"/>'
+    +diagramLine(cx,cy,pointX.toFixed(2),pointY.toFixed(2),'diagram-distance')
+    +'<circle class="diagram-point-variable" cx="'+pointX.toFixed(2)+'" cy="'+pointY.toFixed(2)+'" r="7"/>'
+    +diagramDimension(cx,305,pointX.toFixed(2),305,data.xLabel||'x','variable',(cx+pointX)/2,332)
+    +diagramDimension(pointX+27,pointY,pointX+27,cy,data.yLabel||'y','variable',pointX+45,(pointY+cy)/2,'start')
+    +diagramText((cx+pointX)/2-13,(cy+pointY)/2-12,diagramMeasure(data.radius,data.unit),'fixed');
   return svgDiagram(data,body);
 }
 function diagramFor(family,spec){
@@ -1920,7 +1961,7 @@ function rrLadder(mode,source,request){
   if(request==='top'){value=dy;units='feet per second';name='\\frac{dy}{dt}';variant='related_rates_sliding_ladder_top';}
   else if(request==='bottom'){value=dx;units='feet per second';name='\\frac{dx}{dt}';variant='related_rates_sliding_ladder_bottom';}
   else if(request==='area'){value=(x*dy+y*dx)/2;units='square feet per second';name='\\frac{dA}{dt}';variant='related_rates_sliding_ladder_area';}
-  else if(request==='wallAngle'){value=dx/y;units='radians per second';name='\\frac{d\\phi}{dt}';variant='related_rates_sliding_ladder_wall_angle';}
+  else if(request==='wallAngle'){value=dx/y;units='radians per second';name='\\frac{d\\theta}{dt}';variant='related_rates_sliding_ladder_wall_angle';}
   else{value=-dx/y;units='radians per second';name='\\frac{d\\theta}{dt}';variant='related_rates_sliding_ladder_ground_angle';}
   var exact;
   if(mode==='noncalculator'){
@@ -1934,7 +1975,7 @@ function rrLadder(mode,source,request){
   var requestText=request==='top'?'Find how fast the height of the top of the ladder is changing.'
     :request==='bottom'?'Find how fast the foot of the ladder is moving away from the wall.'
     :request==='area'?'Find the rate of change of the triangular area between the ladder, wall, and ground.'
-    :request==='wallAngle'?'Let \\(\\phi\\) be the angle between the ladder and the wall. Find how fast this angle is changing.'
+    :request==='wallAngle'?'Let \\(\\theta\\) be the angle between the ladder and the wall. Find how fast this angle is changing.'
     :'Let \\(\\theta\\) be the angle between the ladder and the ground. Find how fast this angle is changing.';
   var motionText=request==='bottom'
     ?'Its top is \\('+trim(y,2)+'\\) feet above the ground and slides down at \\('+trim(Math.abs(givenDy),2)+'\\) feet per second. '
@@ -1949,7 +1990,7 @@ function rrLadder(mode,source,request){
   ];
   if(request==='area')steps.push('Use \\(A=\\frac12xy\\). Then \\(\\frac{dA}{dt}=\\frac12\\left(x\\frac{dy}{dt}+y\\frac{dx}{dt}\\right)='+trim(value,8)+'\\) square feet per second.');
   else if(request==='angle')steps.push('Because \\(\\cos\\theta=\\frac{x}{L}\\), differentiation gives \\(\\frac{d\\theta}{dt}=-\\frac{dx/dt}{y}='+trim(value,8)+'\\) radians per second.');
-  else if(request==='wallAngle')steps.push('Because \\(\\sin\\phi=\\frac{x}{L}\\), differentiation gives \\(\\frac{d\\phi}{dt}=\\frac{dx/dt}{y}='+trim(value,8)+'\\) radians per second.');
+  else if(request==='wallAngle')steps.push('Because \\(\\sin\\theta=\\frac{x}{L}\\), differentiation gives \\(\\frac{d\\theta}{dt}=\\frac{dx/dt}{y}='+trim(value,8)+'\\) radians per second.');
   steps.push('The '+(value<0?'negative':'positive')+' sign means the requested quantity is '+(value<0?'decreasing':'increasing')+'.');
   steps.push(rateConclusion(name,value,units,mode));
   return scalarProblem({slug:'related-rates',mode:mode,source:source,family:'ladder_'+request,id:'u3-v128-rr-ladder-'+request+'-'+mode+'-'+trim(L,2)+'-'+trim(x,2),variant:variant,diagram:{kind:'ladder',title:'Sliding ladder',description:'A fixed-length ladder against a wall with changing horizontal distance x and vertical height y.',length:L,unit:'ft',xLabel:'x',yLabel:'y',angle:request==='angle'?'ground':request==='wallAngle'?'wall':null},prompt:'A \\('+trim(L,2)+'\\)-foot ladder leans against a wall. '+motionText+requestText,answer:answer.answer,answerTex:answer.answerTex,value:answer.value,steps:steps});
@@ -2245,7 +2286,7 @@ function rrSoftball(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'softball_diamond',id:'u3-v127-rr-softball-'+mode+'-'+trim(side,1)+'-'+trim(fromThird,1),
     variant:'related_rates_softball_diamond',
-    diagram:{kind:'softball-diamond',title:'Runner on a softball diamond',description:'A generated square diamond with fixed side length, changing runner distance x from third, and changing distance d from home.',side:side,unit:'ft',runnerDistanceLabel:'x',distanceLabel:'d'},
+    diagram:{kind:'softball-diamond',title:'Runner on a softball diamond',description:'A generated square diamond with fixed side length, changing runner distance x from third, and changing distance d from home.',side:side,runnerFromThird:fromThird,unit:'ft',runnerDistanceLabel:'x',distanceLabel:'d'},
     prompt:'A square softball diamond has side length \\('+trim(side,1)+'\\) feet. A runner travels from second toward third at \\('+trim(speed,1)+'\\) feet per second. How fast is her distance from home changing when she is \\('+trim(fromThird,1)+'\\) feet from third?',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2264,35 +2305,35 @@ function rrSoftball(mode,source){
 function rrSpotlight(mode,source){
   var distance=mode==='calculator'?pick([175,230,315]):pick([100,200,300]);
   var angleData=mode==='calculator'
-    ?{theta:pick([2*Math.PI/7,2*Math.PI/9,0.73]),label:null,cscNumerator:null,cscDenominator:null}
+    ?{theta:pick([2*Math.PI/7,2*Math.PI/9,0.73]),label:null,secNumerator:null,secDenominator:null}
     :pick([
-      {theta:Math.PI/6,label:'\\pi/6',cscNumerator:4,cscDenominator:1},
-      {theta:Math.PI/4,label:'\\pi/4',cscNumerator:2,cscDenominator:1},
-      {theta:Math.PI/3,label:'\\pi/3',cscNumerator:4,cscDenominator:3}
+      {theta:Math.PI/6,label:'\\pi/6',secNumerator:4,secDenominator:3},
+      {theta:Math.PI/4,label:'\\pi/4',secNumerator:2,secDenominator:1},
+      {theta:Math.PI/3,label:'\\pi/3',secNumerator:4,secDenominator:1}
     ]);
   var theta=angleData.theta;
   var omega=mode==='calculator'?pick([2.1,2.8,3.5]):pick([0.5,1,2]);
-  var signed=-distance*omega/(Math.sin(theta)*Math.sin(theta)),speed=Math.abs(signed);
+  var signed=distance*omega/(Math.cos(theta)*Math.cos(theta)),speed=Math.abs(signed);
   var answer;
   if(mode==='calculator')answer=calcOrExact(mode,speed,'','');
   else{
-    var exact=rational(distance*omega*angleData.cscNumerator,angleData.cscDenominator);
+    var exact=rational(distance*omega*angleData.secNumerator,angleData.secDenominator);
     answer={answer:exact.input,answerTex:exact.tex,value:null};
   }
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'rotating_spotlight',id:'u3-v127-rr-spotlight-'+mode+'-'+distance+'-'+trim(theta,4),
     variant:'related_rates_rotating_spotlight',
-    diagram:{kind:'spotlight',title:'Rotating spotlight and shoreline',description:'A buoy at the generated fixed perpendicular distance from shore with changing shoreline distance x and beam angle theta.',offset:distance,unit:'ft',distanceLabel:'x',angleLabel:'θ'},
-    prompt:'A rotating spotlight is on a buoy \\('+distance+'\\) feet perpendicular from a straight shoreline. The beam makes angle \\('+(mode==='calculator'?trim(theta,6):angleData.label)+'\\) with the shoreline and turns at \\('+trim(omega,2)+'\\) radians per minute. Find the speed of the light spot along the shoreline.',
+    diagram:{kind:'spotlight',title:'Rotating spotlight and shoreline',description:'A spotlight on a buoy at the generated fixed perpendicular distance from shore, with changing shoreline distance x and angle theta at the spotlight.',offset:distance,angleValue:theta,unit:'ft',distanceLabel:'x',angleLabel:'θ'},
+    prompt:'A spotlight on a buoy is \\('+distance+'\\) feet from a straight shoreline, measured along the perpendicular to the shore. Let \\(\\theta\\) be the angle at the spotlight between that perpendicular and the beam. When \\(\\theta='+(mode==='calculator'?trim(theta,6):angleData.label)+'\\), the beam rotates away from the perpendicular at \\('+trim(omega,2)+'\\) radians per minute. Find the speed of the light spot along the shoreline.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
-      'Let \\(x\\) be the signed shoreline distance from the nearest point to the buoy. The given angular rate is \\(\\frac{d\\theta}{dt}='+trim(omega,2)+'\\).',
-      'Because \\(\\theta\\) is measured from the shoreline, \\(\\tan\\theta=\\frac{'+distance+'}{x}\\), so \\(x='+distance+'\\cot\\theta\\).',
-      'Differentiate with respect to time: \\(\\frac{dx}{dt}=-'+distance+'\\csc^2\\theta\\frac{d\\theta}{dt}\\).',
+      'Let \\(x\\) be the shoreline distance from the point nearest the buoy to the light spot. The given angular rate is \\(\\frac{d\\theta}{dt}='+trim(omega,2)+'\\).',
+      'Because \\(\\theta\\) is measured at the spotlight from the perpendicular, \\(\\tan\\theta=\\frac{x}{'+distance+'}\\), so \\(x='+distance+'\\tan\\theta\\).',
+      'Differentiate with respect to time: \\(\\frac{dx}{dt}='+distance+'\\sec^2\\theta\\frac{d\\theta}{dt}\\).',
       'Substitute the stated angle and angular rate.',
       'The signed velocity is \\(\\frac{dx}{dt}='+trim(signed,8)+'\\) feet per minute.',
       'Speed is the magnitude, so \\(|\\frac{dx}{dt}|='+trim(speed,8)+'\\).',
-      'The sign only indicates which direction the spot moves along the shoreline.',
+      'The positive sign means the spot is moving away from the point on shore nearest the buoy.',
       rateConclusion('\\text{speed}',speed,'feet per minute',mode)
     ]
   });
@@ -2487,7 +2528,7 @@ function rrSemicirclePoint(mode,source){
   var dy=-x*dx/y,areaRate=(x*dy+y*dx)/2,answer;
   if(mode==='calculator')answer=calcOrExact(mode,areaRate,'','');
   else{var exact=rational(dx*(y*y-x*x),2*y);answer={answer:exact.input,answerTex:exact.tex,value:null};}
-  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:'semicircle_moving_point_area',id:'u3-v128-rr-semicircle-area-'+mode+'-'+trim(radius,1)+'-'+trim(x,1),variant:'related_rates_semicircle_moving_point_triangle_area',diagram:{kind:'semicircle-point',title:'Moving point on a semicircle',description:'A point with changing coordinates x and y on a semicircle with generated fixed radius.',radius:radius,unit:'',xLabel:'x',yLabel:'y'},prompt:'A point \\((x,y)\\) moves on the upper semicircle \\(x^2+y^2='+trim(radius*radius,3)+'\\). At the moment \\(x='+trim(x,1)+'\\), the point moves horizontally with \\(\\frac{dx}{dt}='+trim(dx,1)+'\\). Find the rate of change of the area of the right triangle formed by the point and the coordinate axes.',answer:answer.answer,answerTex:answer.answerTex,value:answer.value,steps:[
+  return scalarProblem({slug:'related-rates',mode:mode,source:source,family:'semicircle_moving_point_area',id:'u3-v128-rr-semicircle-area-'+mode+'-'+trim(radius,1)+'-'+trim(x,1),variant:'related_rates_semicircle_moving_point_triangle_area',diagram:{kind:'semicircle-point',title:'Moving point on a semicircle',description:'A point with changing coordinates x and y on a semicircle with generated fixed radius.',radius:radius,pointX:x,pointY:y,unit:'',xLabel:'x',yLabel:'y'},prompt:'A point \\((x,y)\\) moves on the upper semicircle \\(x^2+y^2='+trim(radius*radius,3)+'\\). At the moment \\(x='+trim(x,1)+'\\), the point moves horizontally with \\(\\frac{dx}{dt}='+trim(dx,1)+'\\). Find the rate of change of the area of the right triangle formed by the point and the coordinate axes.',answer:answer.answer,answerTex:answer.answerTex,value:answer.value,steps:[
     'At the moment described, \\(y=\\sqrt{'+trim(radius*radius,3)+'-'+trim(x*x,3)+'}='+trim(y,8)+'\\).',
     'Differentiate \\(x^2+y^2='+trim(radius*radius,3)+'\\): \\(2x\\frac{dx}{dt}+2y\\frac{dy}{dt}=0\\).',
     'Solve for the vertical rate: \\(\\frac{dy}{dt}=-\\frac{x(dx/dt)}y='+trim(dy,8)+'\\).',
