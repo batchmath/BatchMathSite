@@ -158,6 +158,8 @@ for (const slug of ['optimization', 'related-rates']) {
         assert.match(problem.diagramHint,/diagram-label-variable/,problem.familyId+' diagram needs a clearly styled changing quantity');
         for(const match of problem.diagramHint.matchAll(/\b(?:x|x1|x2|cx)="(-?\d+(?:\.\d+)?)"/g))assert.ok(Number(match[1])>=0&&Number(match[1])<=600,problem.familyId+' has a clipped horizontal coordinate');
         for(const match of problem.diagramHint.matchAll(/\b(?:y|y1|y2|cy)="(-?\d+(?:\.\d+)?)"/g))assert.ok(Number(match[1])>=0&&Number(match[1])<=340,problem.familyId+' has a clipped vertical coordinate');
+        const labelPositions=[...problem.diagramHint.matchAll(/<text[^>]*x="([\d.]+)" y="([\d.]+)"[^>]*>[^<]*<\/text>/g)].map(match=>[Number(match[1]),Number(match[2])]);
+        for(let first=0;first<labelPositions.length;first+=1)for(let second=first+1;second<labelPositions.length;second+=1)assert.ok(Math.hypot(labelPositions[first][0]-labelPositions[second][0],labelPositions[first][1]-labelPositions[second][1])>22,problem.familyId+' has colliding diagram labels');
         if(problem.diagramHint.includes('diagram-curve'))curveDiagramLabels.add(visible.replace(/^.*?y = /,'y = '));
 
         if(/^ladder_|^multi_part_ladder$/.test(problem.familyId)){
@@ -356,6 +358,7 @@ assert.match(practiceSource, /current\?\.diagramHint\)hints\.push\(\{html:curren
 assert.match(practiceSource, /aria-expanded/);
 const topicCss=read('assets/ap-topic-practice.css');
 for(const token of ['.geometry-diagram','viewBox','max-height:min(50vh,380px)','.diagram-fixed-notes','.diagram-label-variable'])assert.ok(read('assets/unit3-optimization-related-rates.js').includes(token)||topicCss.includes(token),'diagram implementation missing '+token);
+assert.match(topicCss,/@media\(max-width:520px\)[\s\S]*\.geometry-diagram\{width:100%;max-height:min\(44vh,285px\)/,'diagram CSS needs the narrow-screen responsive rule');
 
 const pages = [
   'ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html',
@@ -371,10 +374,10 @@ for (const page of pages) {
   const overlayIndex = html.indexOf('/assets/unit3-optimization-related-rates.js');
   const keypadIndex = html.indexOf('/assets/calculus-keypad.js');
   assert.ok(baseIndex >= 0 && overlayIndex > baseIndex && keypadIndex > overlayIndex, page + ' has incorrect shared-generator load order');
-  assert.match(html, /"generatorVersion":"12\.8\.B"/, page + ' has stale generator analytics metadata');
+  assert.match(html, /"generatorVersion":"12\.8\.C"/, page + ' has stale generator analytics metadata');
   if(page.includes('/comprehensive-review/'))assert.match(html,/"slugs":\[[^\]]*"optimization","related-rates"\]/,page+' must inherit both shared diagram-enabled generators');
 }
 
-assert.equal(JSON.parse(read('assets/app-version.json')).version, '12.8.B');
+assert.equal(JSON.parse(read('assets/app-version.json')).version, '12.8.C');
 assert.ok(fs.existsSync(path.join(root, '.github/workflows/batchmath-qa.yml')));
-console.log('Unit 3 Optimization/Related Rates v12.8.B randomized QA passed.');
+console.log('Unit 3 Optimization/Related Rates v12.8.C randomized QA passed.');

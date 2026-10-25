@@ -3,7 +3,7 @@
 
 /*
  * BatchMath AP Calculus AB Unit 3
- * Shared Optimization / Related Rates curriculum expansion (v12.8.B).
+ * Shared Optimization / Related Rates curriculum expansion (v12.8.C).
  *
  * Loaded after unit3-applications-generators.js on the two focused topics and
  * both Unit 3 comprehensive-review pages.  This deliberately reuses the
@@ -329,12 +329,18 @@ function renderCurve(data){
     var vx=Number(data.previewX);
     if(!Number.isFinite(vx))vx=projection.left+.55*(projection.right-projection.left);
     var vy=data.fn(vx),fixed=data.fixedPoint,pX=projection.mapX(vx),pY=projection.mapY(vy),fX=projection.mapX(fixed[0]),fY=projection.mapY(fixed[1]);
+    var segmentX=pX-fX,segmentY=pY-fY,segmentLength=Math.max(1,Math.hypot(segmentX,segmentY));
+    var unitX=segmentX/segmentLength,unitY=segmentY/segmentLength,normalX=-unitY,normalY=unitX;
+    var normalSide=((fY+pY)/2+26*normalY<42||(fY+pY)/2+26*normalY>300)?-1:1;
+    var fixedLabelX=clampDiagram(fX-18*unitX-18*normalSide*normalX,82,518),fixedLabelY=clampDiagram(fY-18*unitY-18*normalSide*normalY,38,304);
+    var variableLabelX=clampDiagram(pX+18*unitX-18*normalSide*normalX,82,518),variableLabelY=clampDiagram(pY+18*unitY-18*normalSide*normalY,38,304);
+    var distanceLabelX=clampDiagram((fX+pX)/2+27*normalSide*normalX,82,518),distanceLabelY=clampDiagram((fY+pY)/2+27*normalSide*normalY,38,304);
     body+=diagramLine(fX,fY,pX,pY,'diagram-distance')
       +'<circle class="diagram-point-fixed" cx="'+fX+'" cy="'+fY+'" r="6"/>'
       +'<circle class="diagram-point-variable" cx="'+pX+'" cy="'+pY+'" r="6"/>'
-      +diagramText(fX+10,fY-12,data.fixedPointLabel,'fixed','start')
-      +diagramText(pX+10,pY-12,data.variablePointLabel||'P=(x,f(x))','variable','start')
-      +diagramText((fX+pX)/2,(fY+pY)/2-10,'d','variable');
+      +diagramText(fixedLabelX,fixedLabelY,data.fixedPointLabel,'fixed')
+      +diagramText(variableLabelX,variableLabelY,data.variablePointLabel||'P=(x,f(x))','variable')
+      +diagramText(distanceLabelX,distanceLabelY,'d','variable');
   }
   body+=diagramText(530,48,data.curveLabel||'curve','fixed','end');
   return svgDiagram(data,body);
