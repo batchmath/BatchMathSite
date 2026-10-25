@@ -830,6 +830,7 @@ function optSquareCorner(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'open_top_square_cardboard',id:'u3-v127-opt-square-'+mode+'-'+Ls,
     variant:'optimization_open_top_square_cardboard',
+    diagram:{kind:'sheet-net',title:'Square sheet with corner cuts',description:'A square sheet labeled with its generated side length and variable corner cuts x.',length:L,width:L,unit:'in',cutLabel:'x'},
     prompt:'Squares of side \\(x\\) are cut from the corners of a square piece of cardboard with side length \\('+Ls+'\\) inches. Find the cut size that produces the maximum-volume open box.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -856,6 +857,7 @@ function optRectangularCardboard(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'open_top_rectangular_cardboard',id:'u3-v127-opt-rect-sheet-'+mode+'-'+L+'-'+W,
     variant:'optimization_open_top_rectangular_cardboard',
+    diagram:{kind:'sheet-net',title:'Rectangular sheet with corner cuts',description:'A rectangular sheet labeled with the generated length and width and variable corner cuts x.',length:length,width:width,unit:'in',cutLabel:'x'},
     prompt:'An open box is made by cutting congruent squares from a \\('+L+'\\)-inch by \\('+W+'\\)-inch piece of cardboard. Find the cut size that maximizes volume.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -880,6 +882,7 @@ function optSquareBaseMaterial(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'square_base_box_fixed_material',id:'u3-v127-opt-square-base-'+mode+'-'+S,
     variant:'optimization_square_base_open_box_fixed_material',
+    diagram:{kind:'box',title:'Open box with square base',description:'An open box with variable square base side x and variable height h.',baseX:'x',baseY:'x',heightLabel:'h',fixedNotes:['Available material: '+S+' square inches']},
     prompt:'A box with a square base and no top is constructed from \\('+S+'\\) square inches of material. Find the base side length that maximizes its volume.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -910,6 +913,7 @@ function optCylinder(mode,source,openTop){
     slug:'optimization',mode:mode,source:source,family:openTop?'open_cylinder_fixed_volume':'closed_cylinder_fixed_volume',
     id:'u3-v127-opt-cylinder-'+(openTop?'open':'closed')+'-'+mode+'-'+Ctext,
     variant:openTop?'optimization_open_cylinder_fixed_volume':'optimization_closed_cylinder_fixed_volume',
+    diagram:{kind:'cylinder',title:(openTop?'Open':'Closed')+' cylindrical container',description:'A cylindrical container with variable radius r and variable height h.',radiusLabel:'r',heightLabel:'h',openTop:openTop,fixedNotes:['Required volume: '+Ctext+'π cubic units']},
     prompt:'A '+(openTop?'cylindrical container with no top':'closed cylindrical container')+' must hold \\('+Ctext+'\\pi\\) cubic units. Find the radius that uses the least material.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -935,6 +939,7 @@ function optCylinderCost(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'cylinder_different_material_costs',id:'u3-v127-opt-cylinder-cost-'+mode+'-'+cb+'-'+cs+'-'+Ct,
     variant:'optimization_cylinder_different_material_costs',
+    diagram:{kind:'cylinder',title:'Cylinder with two material costs',description:'A closed cylinder with variable radius r and height h and the generated material costs.',radiusLabel:'r',heightLabel:'h',surfaceLabels:{top:'bases: '+cb+'¢/in²',side:'side: '+cs+'¢/in²'},fixedNotes:['Required volume: '+Ct+'π cubic inches']},
     prompt:'A closed cylinder has volume \\('+Ct+'\\pi\\) cubic inches. The two circular bases cost '+cb+' cents per square inch and the lateral material costs '+cs+' cents per square inch. Find the radius that minimizes cost.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -960,6 +965,7 @@ function optRectangleFence(mode,source,barn){
     slug:'optimization',mode:mode,source:source,family:barn?'three_side_barn_fencing':'rectangular_fixed_perimeter_fencing',
     id:'u3-v127-opt-fence-'+(barn?'barn':'four')+'-'+mode+'-'+F,
     variant:barn?'optimization_barn_three_sides':'optimization_rectangle_fixed_fencing',
+    diagram:{kind:'fence',title:barn?'Enclosure beside a barn':'Four-sided rectangular field',description:'A rectangular enclosure with variable depth x and other dimension y.',barn:barn,xLabel:'x',yLabel:'y',fixedNotes:['Available fencing: '+F+' ft']},
     prompt:(barn?'A rectangular enclosure uses a barn as one side. ':'A rectangular field is enclosed on all four sides. ')+'There are \\('+F+'\\) feet of fencing. Find the depth that maximizes area.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1038,6 +1044,7 @@ function optTriangleWindow(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'equilateral_triangle_window',id:'u3-v127-opt-window-'+mode+'-'+trim(perimeter,1),
     variant:'optimization_rectangle_equilateral_triangle_window',
+    diagram:{kind:'window',title:'Rectangle with equilateral-triangle top',description:'A window with variable rectangle width w and height h.',widthLabel:'w',heightLabel:'h',fixedNotes:['Outside perimeter: '+trim(perimeter,1)+' ft']},
     prompt:'A window is a rectangle topped by an equilateral triangle. Its outside perimeter is \\('+trim(perimeter,1)+'\\) feet. Find the rectangle’s width that maximizes the total window area.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1061,6 +1068,7 @@ function optSemicircleRectangle(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'rectangle_in_semicircle',id:'u3-v127-opt-semicircle-'+mode+'-'+trim(radius,1),
     variant:'optimization_rectangle_inscribed_semicircle',
+    diagram:{kind:'inscribed-semicircle',title:'Rectangle inscribed in a semicircle',description:'A symmetric rectangle in a semicircle with fixed generated radius, half-width x, full width 2x, and height y.',semicircle:true,radius:radius,unit:'',halfWidthLabel:'x',fullWidthLabel:'2x',heightLabel:'y'},
     prompt:'A rectangle is inscribed in a semicircle of radius \\('+trim(radius,1)+'\\), with its base on the diameter. Find the rectangle’s full width when its area is largest.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1085,6 +1093,7 @@ function optPageMargins(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'page_printed_area',id:'u3-v127-opt-page-'+mode+'-'+trim(area,1),
     variant:'optimization_page_printed_area',
+    diagram:{kind:'page',title:'Page and printed region',description:'A page with variable width w and height h and the generated total horizontal and vertical margins.',widthLabel:'w',heightLabel:'h',horizontalMargins:horizontal,verticalMargins:vertical,unit:'in',fixedNotes:['Total page area: '+trim(area,1)+' square inches']},
     prompt:'A page has total area \\('+trim(area,1)+'\\) square inches. The combined left-and-right margins use \\('+trim(horizontal,1)+'\\) inches of width, and the combined top-and-bottom margins use \\('+trim(vertical,1)+'\\) inches of height. Find the page width that maximizes printed area.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1108,6 +1117,7 @@ function optClosestSquareRoot(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'closest_point_square_root',id:'u3-v127-opt-close-root-'+mode+'-'+trim(point,2),
     variant:'optimization_closest_point_square_root',
+    diagram:{kind:'closest-curve',title:'Distance from a point to the curve',description:'The actual square-root curve, the generated fixed point, a variable point on the curve, and their distance.',domain:[0,Math.max(10,point+2)],fn:function(value){return Math.sqrt(Math.max(0,value));},curveLabel:'y = √x',fixedPoint:[point,0],fixedPointLabel:'('+trim(point,2)+', 0)',variablePointLabel:'P=(x, √x)',includePoints:[[point,0]]},
     prompt:'Find the \\(x\\)-coordinate of the point on \\(y=\\sqrt{x}\\) that is closest to \\(('+trim(point,2)+',0)\\).',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1134,6 +1144,7 @@ function optPoleCable(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'two_poles_minimum_cable',id:'u3-v127-opt-poles-'+mode+'-'+trim(left,1)+'-'+trim(right,1)+'-'+trim(distance,1),
     variant:'optimization_two_poles_minimum_cable',
+    diagram:{kind:'poles',title:'Two poles and a shared ground stake',description:'Two poles with the generated fixed heights and separation, a variable stake position, and two cable segments.',leftHeight:left,rightHeight:right,distance:distance,unit:'ft',leftDistanceLabel:'x',rightDistanceLabel:trim(distance,1)+'-x'},
     prompt:'Two vertical poles are \\('+trim(distance,1)+'\\) feet apart and have heights \\('+trim(left,1)+'\\) and \\('+trim(right,1)+'\\) feet. A cable runs from the top of each pole to one common ground stake between them. Find the stake’s distance from the shorter/left pole that minimizes total cable.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1165,6 +1176,7 @@ function optLadderFence(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'shortest_ladder_over_fence',id:'u3-v127-opt-ladder-fence-'+mode+'-'+trim(height,1)+'-'+trim(gap,1),
     variant:'optimization_shortest_ladder_over_fence',
+    diagram:{kind:'ladder-fence',title:'Ladder reaching over a fence',description:'A building, a fence with the generated fixed height and gap, and a variable foot-to-fence distance x.',fenceHeight:height,gap:gap,unit:'ft',variableLabel:'x'},
     prompt:'A \\('+trim(height,1)+'\\)-foot fence is parallel to a building and \\('+trim(gap,1)+'\\) feet from it. Find the length of the shortest ladder that reaches from the ground over the fence to the building.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1189,6 +1201,7 @@ function optConeFromTriangle(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'maximum_cone_from_right_triangle',id:'u3-v127-opt-cone-triangle-'+mode+'-'+trim(hypotenuse,3),
     variant:'optimization_cone_from_right_triangle',
+    diagram:{kind:'cone',title:'Cone formed from a right triangle',description:'A cone with variable radius r and height h and the generated fixed hypotenuse as its slant length.',radiusLabel:'r',heightLabel:'h',slantLabel:(mode==='calculator'?trim(hypotenuse,3):(scale===1?'√3':scale+'√3'))},
     prompt:'A right triangle with fixed hypotenuse \\('+hypotenuseText+'\\) is revolved about one leg to form a cone. Find the cone height that maximizes volume.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1214,6 +1227,7 @@ function optMovingShips(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'minimum_distance_moving_ships',id:'u3-v127-opt-ships-'+mode+'-'+trim(separation,1),
     variant:'optimization_minimum_distance_moving_objects',
+    diagram:{kind:'moving-paths',title:'Perpendicular ship paths',description:'Perpendicular ship paths with the generated initial separation and speeds; the changing separations are labeled with variables.',xLabel:'x(t)',yLabel:'y(t)',distanceLabel:'d(t)',initialSeparation:separation,unit:'mi',horizontalSpeed:west,verticalSpeed:north,speedUnit:'mph',fixedNotes:['Ship A: north at '+trim(north,1)+' mph','Ship B: west at '+trim(west,1)+' mph']},
     prompt:'At noon, ship A is \\('+trim(separation,1)+'\\) miles south of ship B and sails north at \\('+trim(north,1)+'\\) mph while ship B sails west at \\('+trim(west,1)+'\\) mph. How many hours after noon are the ships closest?',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1234,7 +1248,7 @@ function optParabolaRectangle(mode,source){
   var kind=diverseVariant('optimization:noncalculator:symmetric-rectangle',['quadratic','quartic','mixed','semicircle'],3);
   if(kind==='semicircle'){
     var radius=integer(2,9),half=radius/Math.sqrt(2),width=radius*Math.sqrt(2),height=half;
-    return scalarProblem({slug:'optimization',mode:mode,source:source,family:'rectangle_under_semicircle_arch',id:'u3-v128a-opt-semicircle-rectangle-'+radius,variant:'optimization_symmetric_rectangle_semicircle',prompt:'A rectangle is symmetric about the \\(y\\)-axis, has its base on the \\(x\\)-axis, and its upper corners lie on the semicircle \\(y=\\sqrt{'+radius*radius+'-x^2}\\). Find the full width that maximizes area.',answer:radius+'*sqrt(2)',answerTex:radius+'\\sqrt2',steps:[
+    return scalarProblem({slug:'optimization',mode:mode,source:source,family:'rectangle_under_semicircle_arch',id:'u3-v128a-opt-semicircle-rectangle-'+radius,variant:'optimization_symmetric_rectangle_semicircle',diagram:{kind:'curve-rectangle',title:'Rectangle under the generated semicircle',description:'A variable rectangle symmetric about the y-axis with upper corners on the generated semicircle.',fn:function(value){return Math.sqrt(Math.max(0,radius*radius-value*value));},domain:[-radius,radius],previewX:radius*.45,curveLabel:'y = √('+(radius*radius)+' − x²)'},prompt:'A rectangle is symmetric about the \\(y\\)-axis, has its base on the \\(x\\)-axis, and its upper corners lie on the semicircle \\(y=\\sqrt{'+radius*radius+'-x^2}\\). Find the full width that maximizes area.',answer:radius+'*sqrt(2)',answerTex:radius+'\\sqrt2',steps:[
       'Let \\(x>0\\) be the upper-right corner’s \\(x\\)-coordinate. Because the rectangle is symmetric about the \\(y\\)-axis, its full width is \\(2x\\). The height is \\(\\sqrt{'+radius*radius+'-x^2}\\).',
       'The area is \\(A(x)=2x\\sqrt{'+radius*radius+'-x^2}\\), with \\(0<x<'+radius+'\\).',
       'Differentiate: \\(A^{\\prime}(x)=\\frac{2('+radius*radius+'-2x^2)}{\\sqrt{'+radius*radius+'-x^2}}\\).',
@@ -1249,7 +1263,9 @@ function optParabolaRectangle(mode,source){
   var equation=trim(curveHeight)+(quadratic?' - '+(quadratic===1?'':quadratic)+'x^2':'')+(quartic?' - '+(quartic===1?'':quartic)+'x^4':'');
   var area='2x('+equation+')',derivative=trim(2*curveHeight)+(quadratic?' - '+trim(6*quadratic)+'x^2':'')+(quartic?' - '+trim(10*quartic)+'x^4':''),second=kind==='quadratic'?'-'+trim(12*quadratic)+'x':kind==='quartic'?'-'+trim(40*quartic)+'x^3':'-'+trim(12*quadratic)+'x-'+trim(40*quartic)+'x^3';
   var rectHeight=curveHeight-quadratic*a*a-quartic*Math.pow(a,4),family=kind==='quadratic'?'rectangle_under_parabola':kind==='quartic'?'rectangle_under_quartic_arch':'rectangle_under_even_polynomial';
-  return scalarProblem({slug:'optimization',mode:mode,source:source,family:family,id:'u3-v128a-opt-even-rectangle-'+kind+'-'+a+'-'+quadratic+'-'+quartic,variant:'optimization_symmetric_rectangle_'+kind,prompt:'A rectangle is symmetric about the \\(y\\)-axis, has its base on the \\(x\\)-axis, and its upper corners lie on \\(y='+equation+'\\). Find the full width that maximizes area.',answer:String(2*a),answerTex:String(2*a),steps:[
+  var curveFn=function(value){return curveHeight-quadratic*value*value-quartic*Math.pow(value,4);};
+  var archLimit=kind==='quadratic'?Math.sqrt(curveHeight/quadratic):kind==='quartic'?Math.pow(curveHeight/quartic,.25):bisectRoot(curveFn,a,Math.max(10,4*a));
+  return scalarProblem({slug:'optimization',mode:mode,source:source,family:family,id:'u3-v128a-opt-even-rectangle-'+kind+'-'+a+'-'+quadratic+'-'+quartic,variant:'optimization_symmetric_rectangle_'+kind,diagram:{kind:'curve-rectangle',title:'Rectangle under the generated curve',description:'A variable rectangle symmetric about the y-axis with upper corners on the actual generated curve.',fn:curveFn,domain:[-archLimit,archLimit],previewX:archLimit*.45,curveLabel:'y = '+equation.replace(/x\^2/g,'x²').replace(/x\^4/g,'x⁴').replace(/ - /g,' − ')},prompt:'A rectangle is symmetric about the \\(y\\)-axis, has its base on the \\(x\\)-axis, and its upper corners lie on \\(y='+equation+'\\). Find the full width that maximizes area.',answer:String(2*a),answerTex:String(2*a),steps:[
     'Let \\(x>0\\) be the upper-right corner’s \\(x\\)-coordinate. Because the rectangle is symmetric about the \\(y\\)-axis, its full width is \\(2x\\). The curve gives the height \\('+equation+'\\).',
     'The area is \\(A(x)='+area+'\\), using only values of \\(x\\) for which the height is positive.',
     'Differentiate: \\(A^{\\prime}(x)='+derivative+'\\).',
@@ -1274,6 +1290,7 @@ function optPigPen(mode,source){
   return scalarProblem({
     slug:'optimization',mode:'calculator',source:source,family:'rigid_four_piece_barn_pen',id:'u3-v127-opt-pig-pen-'+trim(side,1),
     variant:'optimization_rigid_four_piece_barn_pen',
+    diagram:{kind:'pig-pen',title:'Four-piece pen beside a barn',description:'A barn-side pen made from four rigid pieces with the generated fixed length and variable opening b.',side:side,unit:'m',baseLabel:'b'},
     prompt:'A pen is made from four rigid fence pieces, each \\('+trim(side,1)+'\\) meters long. Two pieces extend perpendicularly from a barn; the other two connect their outer ends and meet at a point. Find the maximum enclosed area.',
     answer:answer.answer,answerTex:answer.answerTex,value:area,
     steps:[
@@ -1324,6 +1341,7 @@ function optWireSplit(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'wire_split_circle_square',id:'u3-v127-opt-wire-'+mode+'-'+trim(length,1),
     variant:'optimization_wire_split_two_shapes',
+    diagram:{kind:'wire-split',title:'One wire split between a circle and a square',description:'A wire with the generated fixed total length split into variable pieces x and L minus x.',firstLabel:'x',secondLabel:trim(length,1)+'-x',fixedNotes:['Total wire length: '+trim(length,1)+' cm']},
     prompt:'A wire of length \\('+trim(length,1)+'\\) centimeters is cut into two pieces. One forms a circle and the other a square. How much wire should be used for the circle to minimize the total enclosed area?',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1347,6 +1365,7 @@ function optAxisTriangle(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'minimum_axis_intercept_triangle',id:'u3-v127-opt-axis-triangle-'+mode+'-'+trim(a,1)+'-'+trim(b,1),
     variant:'optimization_line_minimum_axis_triangle',
+    diagram:{kind:'axis-triangle',title:'Line through a fixed point',description:'A line through the generated fixed point with variable positive x- and y-intercepts.',point:[a,b],xInterceptLabel:'X',yInterceptLabel:'Y'},
     prompt:'A line through \\(('+trim(a,1)+','+trim(b,1)+')\\) meets the positive coordinate axes and forms a triangle with them. Find the \\(x\\)-intercept that minimizes the triangle’s area.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1368,6 +1387,7 @@ function optCircleRectangle(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'rectangle_in_circle',id:'u3-v127-opt-circle-rectangle-'+mode+'-'+trim(radius,1),
     variant:'optimization_rectangle_inscribed_circle',
+    diagram:{kind:'inscribed-circle',title:'Rectangle inscribed in a circle',description:'A variable rectangle inscribed in a circle with the generated fixed radius.',semicircle:false,radius:radius,unit:'',halfWidthLabel:'x/2',fullWidthLabel:'x',heightLabel:'y'},
     prompt:'A rectangle is inscribed in a circle of radius \\('+trim(radius,1)+'\\). Find the side length when the rectangle has maximum area.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1392,6 +1412,7 @@ function optWeightedFence(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'different_cost_rectangle_fencing',id:'u3-v127-opt-weighted-fence-'+mode+'-'+trim(budget,1),
     variant:'optimization_rectangle_different_fence_costs',
+    diagram:{kind:'fence',title:'Rectangle with two fencing costs',description:'A rectangle with variable side lengths x and y and the generated cost on each pair of sides.',barn:false,xLabel:'x',yLabel:'y',costX:money(costX)+'/ft',costY:money(costY)+'/ft',fixedNotes:['Budget: '+money(budget)]},
     prompt:'A rectangular field has one pair of sides costing '+money(costX)+' per foot and the other pair costing '+money(costY)+' per foot. With a '+money(budget)+' budget, find the length of a side in the first pair that maximizes area.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1416,6 +1437,7 @@ function optCapsuleCost(mode,source){
   if(mode==='calculator')radius=Math.cbrt(sideCost*volumeConstant/coefficient);
   var cylinderLength=(volumeConstant-4*radius*radius*radius/3)/(radius*radius);
   var rText=trim(radius,6),lengthText=trim(cylinderLength,6),volumeText=trim(volumeConstant,4);
+  var diagram={kind:'capsule',title:'Cylinder with two hemispherical ends',description:'A capsule-shaped container with variable radius r and cylindrical length L and the generated fixed volume and material costs.',radiusLabel:'r',lengthLabel:'L',fixedNotes:['Volume: '+volumeText+'π cubic units','Cylinder: '+trim(sideCost,2)+'¢ per square unit','Ends: '+trim(endCost,2)+'¢ per square unit']};
   var steps=[
     'Let \\(r\\) be the radius and \\(L\\) the length of the cylindrical part. The fixed-volume equation is \\(\\pi r^2L+\\frac43\\pi r^3='+volumeText+'\\pi\\).',
     'Solve the constraint for the cylinder length: \\(L=\\frac{'+volumeText+'}{r^2}-\\frac43r\\).',
@@ -1426,8 +1448,8 @@ function optCapsuleCost(mode,source){
     'The derivative changes from negative to positive there, so this radius gives the minimum cost.',
     'Using the volume constraint gives \\(L='+lengthText+'\\).'
   ];
-  if(mode==='calculator')return scalarProblem({slug:'optimization',mode:mode,source:source,family:'capsule_unequal_material_costs',id:'u3-v128-opt-capsule-calc-'+volumeText,variant:'optimization_capsule_unequal_material_costs',prompt:'A container consists of a cylinder with a hemisphere on each end. It holds \\('+volumeText+'\\pi\\) cubic units. Cylindrical material costs '+trim(sideCost,2)+' cents per square unit and the hemispherical material costs '+trim(endCost,2)+' cents per square unit. Find the radius that minimizes material cost.',value:radius,steps:steps});
-  return multiFieldProblem({slug:'optimization',mode:mode,source:source,family:'capsule_unequal_material_costs',id:'u3-v128-opt-capsule-exact-'+volumeText,variant:'optimization_capsule_unequal_material_costs_dimensions',prompt:'A container consists of a cylinder with a hemisphere on each end. It holds \\('+volumeText+'\\pi\\) cubic units. Cylindrical material costs 3 cents per square unit and the hemispherical material costs 4 cents per square unit. Find the radius and the length of the cylindrical part that minimize material cost.',fields:[{label:'r=',answer:String(radius),answerTex:String(radius),placeholder:'Radius'},{label:'L=',answer:String(cylinderLength),answerTex:String(cylinderLength),placeholder:'Cylinder length'}],steps:steps});
+  if(mode==='calculator')return scalarProblem({slug:'optimization',mode:mode,source:source,family:'capsule_unequal_material_costs',id:'u3-v128-opt-capsule-calc-'+volumeText,variant:'optimization_capsule_unequal_material_costs',diagram:diagram,prompt:'A container consists of a cylinder with a hemisphere on each end. It holds \\('+volumeText+'\\pi\\) cubic units. Cylindrical material costs '+trim(sideCost,2)+' cents per square unit and the hemispherical material costs '+trim(endCost,2)+' cents per square unit. Find the radius that minimizes material cost.',value:radius,steps:steps});
+  return multiFieldProblem({slug:'optimization',mode:mode,source:source,family:'capsule_unequal_material_costs',id:'u3-v128-opt-capsule-exact-'+volumeText,variant:'optimization_capsule_unequal_material_costs_dimensions',diagram:diagram,prompt:'A container consists of a cylinder with a hemisphere on each end. It holds \\('+volumeText+'\\pi\\) cubic units. Cylindrical material costs 3 cents per square unit and the hemispherical material costs 4 cents per square unit. Find the radius and the length of the cylindrical part that minimize material cost.',fields:[{label:'r=',answer:String(radius),answerTex:String(radius),placeholder:'Radius'},{label:'L=',answer:String(cylinderLength),answerTex:String(cylinderLength),placeholder:'Cylinder length'}],steps:steps});
 }
 
 function optSquarePyramid(mode,source){
@@ -1436,6 +1458,7 @@ function optSquarePyramid(mode,source){
   return multiFieldProblem({
     slug:'optimization',mode:mode,source:source,family:'square_pyramid_fixed_volume',id:'u3-v128-opt-square-pyramid-'+side,
     variant:'optimization_square_pyramid_fixed_volume_dimensions',
+    diagram:{kind:'pyramid',title:'Closed square pyramid',description:'A square pyramid with variable base side s and height h.',sideLabel:'s',heightLabel:'h',fixedNotes:['Required volume: '+volumeTex+' cubic units']},
     prompt:'A closed square pyramid must have volume \\('+volumeTex+'\\) cubic units. Find the base side length and height that minimize its total surface area.',
     fields:[{label:'s=',answer:String(side),answerTex:String(side),placeholder:'Base side length'},{label:'h=',answer:side+'*sqrt(2)',answerTex:heightTex,placeholder:'Height'}],
     steps:[
@@ -1453,20 +1476,24 @@ function optClosestPolynomial(mode,source){
   if(mode==='calculator')return optClosestPower(mode,source);
   var kind=diverseVariant('optimization:noncalculator:closest-point',['parabola','radical','power'],2);
   var request=diverseVariant('optimization:noncalculator:closest-request',['x','point','distance'],2);
-  var x,curveTex,targetTex,yTex,distanceInput,distanceTex,derivativeTex,criticalText,family;
+  var x,curveTex,targetTex,yTex,distanceInput,distanceTex,derivativeTex,criticalText,family,curveFn,curveDomain,fixedPoint,fixedPointLabel,curveLabel;
   if(kind==='parabola'){
     x=integer(2,5);var vertical=x*x+1/2,verticalTex=fractionTex(2*x*x+1,2);
     curveTex='x^2';targetTex='(0,'+verticalTex+')';yTex=String(x*x);distanceInput='sqrt('+(4*x*x+1)+')/2';distanceTex='\\frac{\\sqrt{'+(4*x*x+1)+'}}2';
     derivativeTex='2x\\left[1+2\\left(x^2-'+verticalTex+'\\right)\\right]';criticalText='The nonzero critical values satisfy \\(x^2='+x*x+'\\), so the positive one is \\(x='+x+'\\).';family='closest_point_polynomial';
+    curveFn=function(value){return value*value;};curveDomain=[0,x+2];fixedPoint=[0,vertical];fixedPointLabel='(0, '+trim(vertical,2)+')';curveLabel='y = x²';
   }else if(kind==='radical'){
     var q=pick([2,3,4]);x=q*q;var targetX=x-1,targetY=3*q;
     curveTex='\\sqrt{x}';targetTex='('+targetX+','+targetY+')';yTex=String(q);distanceInput='sqrt('+(1+4*q*q)+')';distanceTex='\\sqrt{'+(1+4*q*q)+'}';
     derivativeTex='2(x-'+targetX+')+1-\\frac{'+targetY+'}{\\sqrt{x}}';criticalText='The derivative is zero at \\(x='+x+'\\), and it changes from negative to positive there.';family='closest_point_radical_curve';
+    curveFn=function(value){return Math.sqrt(Math.max(0,value));};curveDomain=[0,x+4];fixedPoint=[targetX,targetY];fixedPointLabel='('+targetX+', '+targetY+')';curveLabel='y = √x';
   }else{
     var root=pick([2,3]);x=root*root;var targetPowerX=x-1,targetPowerY=fractionTex(3*Math.pow(root,4)+2,3*root);
     curveTex='x^{3/2}';targetTex='('+targetPowerX+','+targetPowerY+')';yTex=String(root*root*root);distanceInput='sqrt('+(9*root*root+4)+')/('+3*root+')';distanceTex='\\frac{\\sqrt{'+(9*root*root+4)+'}}{'+(3*root)+'}';
     derivativeTex='2(x-'+targetPowerX+')+3\\sqrt{x}\\left(x^{3/2}-'+targetPowerY+'\\right)';criticalText='The derivative is zero at \\(x='+x+'\\), and it changes from negative to positive there.';family='closest_point_power_curve';
+    var targetPowerValue=(3*Math.pow(root,4)+2)/(3*root);curveFn=function(value){return Math.pow(Math.max(0,value),1.5);};curveDomain=[0,x+3];fixedPoint=[targetPowerX,targetPowerValue];fixedPointLabel='('+targetPowerX+', '+trim(targetPowerValue,3)+')';curveLabel='y = x³ᐟ²';
   }
+  var diagram={kind:'closest-curve',title:'Closest point on the generated curve',description:'The actual generated curve, fixed point, variable point on the curve, and distance segment.',fn:curveFn,domain:curveDomain,includePoints:[fixedPoint],previewX:x*.78,fixedPoint:fixedPoint,fixedPointLabel:fixedPointLabel,variablePointLabel:'P = (x, f(x))',curveLabel:curveLabel};
   var prompt=request==='x'?'Find the positive \\(x\\)-coordinate of the point on \\(y='+curveTex+'\\) closest to \\('+targetTex+'\\).'
     :request==='point'?'Find the point on \\(y='+curveTex+'\\), for \\(x>0\\), that is closest to \\('+targetTex+'\\).'
     :'Find the minimum distance from \\(y='+curveTex+'\\), for \\(x>0\\), to \\('+targetTex+'\\).';
@@ -1478,8 +1505,8 @@ function optClosestPolynomial(mode,source){
     'Because the derivative changes from negative to positive, the closest point is \\('+x+','+yTex+'\\).'
   ];
   if(request==='distance')steps.push('The distance formula gives a minimum distance of \\('+distanceTex+'\\).');
-  if(request==='point')return multiFieldProblem({slug:'optimization',mode:mode,source:source,family:family,id:'u3-v128a-opt-closest-'+kind+'-point-'+x,variant:'optimization_closest_point_'+kind,prompt:prompt,fields:[{label:'x=',answer:String(x),answerTex:String(x),placeholder:'x-coordinate'},{label:'y=',answer:yTex,answerTex:yTex,placeholder:'y-coordinate'}],steps:steps});
-  return scalarProblem({slug:'optimization',mode:mode,source:source,family:family,id:'u3-v128a-opt-closest-'+kind+'-'+request+'-'+x,variant:'optimization_closest_point_'+kind,prompt:prompt,answer:request==='x'?String(x):distanceInput,answerTex:request==='x'?String(x):distanceTex,steps:steps});
+  if(request==='point')return multiFieldProblem({slug:'optimization',mode:mode,source:source,family:family,id:'u3-v128a-opt-closest-'+kind+'-point-'+x,variant:'optimization_closest_point_'+kind,diagram:diagram,prompt:prompt,fields:[{label:'x=',answer:String(x),answerTex:String(x),placeholder:'x-coordinate'},{label:'y=',answer:yTex,answerTex:yTex,placeholder:'y-coordinate'}],steps:steps});
+  return scalarProblem({slug:'optimization',mode:mode,source:source,family:family,id:'u3-v128a-opt-closest-'+kind+'-'+request+'-'+x,variant:'optimization_closest_point_'+kind,diagram:diagram,prompt:prompt,answer:request==='x'?String(x):distanceInput,answerTex:request==='x'?String(x):distanceTex,steps:steps});
 }
 
 function optClosestPowerLegacy(mode,source){
@@ -1491,6 +1518,7 @@ function optClosestPowerLegacy(mode,source){
   var distance=Math.sqrt(Math.pow(root-pointX,2)+Math.pow(Math.pow(root,1.5)-4-pointY,2));
   return scalarProblem({
     slug:'optimization',mode:'calculator',source:source,family:'closest_point_power_curve',id:'u3-v128-opt-closest-power-'+trim(pointX,1)+'-'+trim(pointY,1),variant:'optimization_closest_point_x_three_halves',
+    diagram:{kind:'closest-curve',title:'Closest point on a power curve',description:'The actual power curve, generated fixed point, variable point on the curve, and distance segment.',fn:function(value){return Math.pow(Math.max(0,value),1.5)-4;},domain:[0,9],includePoints:[[pointX,pointY]],previewX:clampDiagram(root*.75,.3,8),fixedPoint:[pointX,pointY],fixedPointLabel:'('+trim(pointX,1)+', '+trim(pointY,1)+')',variablePointLabel:'P = (x, x³ᐟ² − 4)',curveLabel:'y = x³ᐟ² − 4'},
     prompt:'Find the \\(x\\)-coordinate of the point on \\(y=x^{3/2}-4\\) that is closest to \\(('+trim(pointX,1)+','+trim(pointY,1)+')\\).',value:root,
     steps:[
       'For a point \\((x,x^{3/2}-4)\\), minimize \\(D(x)=(x-'+trim(pointX,1)+')^2+(x^{3/2}-'+trim(4+pointY,1)+')^2\\) on \\(x\\ge0\\).',
@@ -1522,6 +1550,8 @@ function optClosestPower(mode,source){
   if(!candidate)return optClosestPowerLegacy(mode,source);
   var x=candidate.root,y=candidate.curveValue(x),distance=Math.hypot(x-candidate.pointX,y-candidate.pointY),request=diverseVariant('optimization:calculator:closest-request',['x','point','distance'],2);
   var target='('+trim(candidate.pointX,1)+','+trim(candidate.pointY,1)+')',interval=trim(candidate.left,2)+'\\le x\\le '+trim(candidate.right,2);
+  var curveLabels={power:'y = x³ᐟ² − 4',parabola:'y = 0.4x² − 1.3',radical:'y = √(x + 2) − 1.5',rational:'y = 6/(x + 2) + 0.4x',cubic:'y = 0.12x³ − 0.8x'};
+  var diagram={kind:'closest-curve',title:'Closest point on the generated curve',description:'The actual generated curve, generated fixed point, variable point on the curve, and distance segment.',fn:candidate.curveValue,domain:[candidate.left,candidate.right],includePoints:[[candidate.pointX,candidate.pointY]],previewX:candidate.left+.58*(candidate.right-candidate.left),fixedPoint:[candidate.pointX,candidate.pointY],fixedPointLabel:'('+trim(candidate.pointX,1)+', '+trim(candidate.pointY,1)+')',variablePointLabel:'P = (x, f(x))',curveLabel:curveLabels[candidate.kind]};
   var prompt=request==='x'?'Find the \\(x\\)-coordinate of the point on \\(y='+candidate.curveTex+'\\), for \\('+interval+'\\), that is closest to \\('+target+'\\).'
     :request==='point'?'Find the point on \\(y='+candidate.curveTex+'\\), for \\('+interval+'\\), that is closest to \\('+target+'\\).'
     :'Find the minimum distance from \\(y='+candidate.curveTex+'\\), for \\('+interval+'\\), to \\('+target+'\\).';
@@ -1534,13 +1564,13 @@ function optClosestPower(mode,source){
     'Checking the endpoints and critical values gives the closest point \\('+x.toFixed(6)+','+y.toFixed(6)+'\\).'
   ];
   if(request==='distance')steps.push('The distance from that point to the given point is \\('+distance.toFixed(6)+'\\).');
-  if(request==='point')return multiFieldProblem({slug:'optimization',mode:'calculator',source:source,family:candidate.family,id:'u3-v128a-opt-closest-'+candidate.kind+'-point-'+trim(candidate.pointX,1),variant:'optimization_closest_point_'+candidate.kind,prompt:prompt,fields:[{label:'x=',numericAnswer:x,answerTex:x.toFixed(3),placeholder:'x-coordinate'},{label:'y=',numericAnswer:y,answerTex:y.toFixed(3),placeholder:'y-coordinate'}],steps:steps});
-  return scalarProblem({slug:'optimization',mode:'calculator',source:source,family:candidate.family,id:'u3-v128a-opt-closest-'+candidate.kind+'-'+request+'-'+trim(candidate.pointX,1),variant:'optimization_closest_point_'+candidate.kind,prompt:prompt,value:request==='x'?x:distance,steps:steps});
+  if(request==='point')return multiFieldProblem({slug:'optimization',mode:'calculator',source:source,family:candidate.family,id:'u3-v128a-opt-closest-'+candidate.kind+'-point-'+trim(candidate.pointX,1),variant:'optimization_closest_point_'+candidate.kind,diagram:diagram,prompt:prompt,fields:[{label:'x=',numericAnswer:x,answerTex:x.toFixed(3),placeholder:'x-coordinate'},{label:'y=',numericAnswer:y,answerTex:y.toFixed(3),placeholder:'y-coordinate'}],steps:steps});
+  return scalarProblem({slug:'optimization',mode:'calculator',source:source,family:candidate.family,id:'u3-v128a-opt-closest-'+candidate.kind+'-'+request+'-'+trim(candidate.pointX,1),variant:'optimization_closest_point_'+candidate.kind,diagram:diagram,prompt:prompt,value:request==='x'?x:distance,steps:steps});
 }
 
 function optTrigArch(mode,source){
   var kind=diverseVariant('optimization:calculator:symmetric-rectangle',['trig','quartic','mixed','semicircle','ellipse'],4);
-  var equationTex,areaTex,derivativeTex,upper,upperTex,heightFunction,derivative,family,idPart;
+  var equationTex,areaTex,derivativeTex,upper,upperTex,heightFunction,derivative,family,idPart,curveDiagramLabel;
   if(kind==='trig'){
     var scale=pick([1.2,1.5,1.8]),frequency=pick([1,2]);
     upper=Math.PI/frequency;upperTex=frequency===1?'\\pi':'\\frac{\\pi}{2}';
@@ -1549,6 +1579,7 @@ function optTrigArch(mode,source){
     equationTex=trim(scale,1)+'(1+\\cos('+frequency+'x))';areaTex='2x['+equationTex+']';
     derivativeTex='2('+trim(scale,1)+')(1+\\cos('+frequency+'x))-2('+trim(scale,1)+')('+frequency+')x\\sin('+frequency+'x)';
     family='rectangle_under_trig_arch';idPart='trig-'+trim(scale,1)+'-'+frequency;
+    curveDiagramLabel='y = '+trim(scale,1)+'(1 + cos('+(frequency===1?'x':frequency+'x')+'))';
   }else if(kind==='quartic'){
     var quarticHeight=pick([17.6,24.3,31.8]),quarticCoefficient=pick([0.6,1.1,1.7]);
     upper=Math.pow(quarticHeight/quarticCoefficient,.25);upperTex=trim(upper,6);
@@ -1557,6 +1588,7 @@ function optTrigArch(mode,source){
     equationTex=trim(quarticHeight,1)+'-'+trim(quarticCoefficient,1)+'x^4';areaTex='2x('+equationTex+')';
     derivativeTex=trim(2*quarticHeight,2)+'-'+trim(10*quarticCoefficient,2)+'x^4';
     family='rectangle_under_quartic_arch';idPart='quartic-'+trim(quarticHeight,1)+'-'+trim(quarticCoefficient,1);
+    curveDiagramLabel='y = '+trim(quarticHeight,1)+' − '+trim(quarticCoefficient,1)+'x⁴';
   }else if(kind==='mixed'){
     var mixedHeight=pick([18.7,26.4,34.1]),quadratic=pick([0.7,1.2,1.6]),quartic=pick([0.08,0.14,0.21]);
     heightFunction=function(x){return mixedHeight-quadratic*x*x-quartic*Math.pow(x,4);};
@@ -1565,6 +1597,7 @@ function optTrigArch(mode,source){
     equationTex=trim(mixedHeight,1)+'-'+trim(quadratic,1)+'x^2-'+trim(quartic,2)+'x^4';areaTex='2x('+equationTex+')';
     derivativeTex=trim(2*mixedHeight,2)+'-'+trim(6*quadratic,2)+'x^2-'+trim(10*quartic,2)+'x^4';
     family='rectangle_under_mixed_even_arch';idPart='mixed-'+trim(mixedHeight,1)+'-'+trim(quadratic,1)+'-'+trim(quartic,2);
+    curveDiagramLabel='y = '+trim(mixedHeight,1)+' − '+trim(quadratic,1)+'x² − '+trim(quartic,2)+'x⁴';
   }else if(kind==='semicircle'){
     var radius=pick([6.7,9.4,12.3]);upper=radius;upperTex=trim(radius,1);
     heightFunction=function(x){return Math.sqrt(radius*radius-x*x);};
@@ -1572,6 +1605,7 @@ function optTrigArch(mode,source){
     equationTex='\\sqrt{'+trim(radius*radius,2)+'-x^2}';areaTex='2x\\sqrt{'+trim(radius*radius,2)+'-x^2}';
     derivativeTex='\\frac{2('+trim(radius*radius,2)+'-2x^2)}{\\sqrt{'+trim(radius*radius,2)+'-x^2}}';
     family='rectangle_under_semicircle_arch';idPart='semicircle-'+trim(radius,1);
+    curveDiagramLabel='y = √('+trim(radius*radius,2)+' − x²)';
   }else{
     var horizontal=pick([7.3,10.6,13.8]),vertical=pick([4.4,6.7,8.9]);upper=horizontal;upperTex=trim(horizontal,1);
     heightFunction=function(x){return vertical*Math.sqrt(1-x*x/(horizontal*horizontal));};
@@ -1579,9 +1613,11 @@ function optTrigArch(mode,source){
     equationTex=trim(vertical,1)+'\\sqrt{1-\\frac{x^2}{'+trim(horizontal*horizontal,2)+'}}';areaTex='2x['+equationTex+']';
     derivativeTex='\\frac{2('+trim(vertical,1)+')\\left(1-\\frac{2x^2}{'+trim(horizontal*horizontal,2)+'}\\right)}{\\sqrt{1-\\frac{x^2}{'+trim(horizontal*horizontal,2)+'}}}';
     family='rectangle_under_ellipse_arch';idPart='ellipse-'+trim(horizontal,1)+'-'+trim(vertical,1);
+    curveDiagramLabel='y = '+trim(vertical,1)+'√(1 − x²/'+trim(horizontal*horizontal,2)+')';
   }
   var root=bisectRoot(derivative,.0001,upper-.0001),height=heightFunction(root),width=2*root,area=width*height;
   var request=pick(['width','dimensions','area']);
+  var diagram={kind:'curve-rectangle',title:'Rectangle under the generated curve',description:'A variable rectangle symmetric about the y-axis with upper corners on the actual generated curve.',fn:heightFunction,domain:[-upper,upper],previewX:upper*.45,curveLabel:curveDiagramLabel};
   var commonSteps=[
     'Let \\(x>0\\) be the upper-right corner’s \\(x\\)-coordinate. Because the rectangle is symmetric about the \\(y\\)-axis, its full width is \\(2x\\). The curve gives the height \\(y='+equationTex+'\\).',
     'The area is \\(A(x)='+areaTex+'\\), with \\(0<x<'+upperTex+'\\).',
@@ -1592,13 +1628,13 @@ function optTrigArch(mode,source){
     'Using the full calculator value, the width is \\('+width.toFixed(6)+'\\), the height is \\('+height.toFixed(6)+'\\), and the maximum area is \\('+area.toFixed(6)+'\\).'
   ];
   var prompt='A rectangle is symmetric about the \\(y\\)-axis, has its base on the \\(x\\)-axis, and its upper corners lie on \\(y='+equationTex+'\\). Find the '+(request==='dimensions'?'width and height of the maximum-area rectangle':request==='area'?'maximum area':'width of the maximum-area rectangle')+'.';
-  if(request==='dimensions')return multiFieldProblem({slug:'optimization',mode:'calculator',source:source,family:family,id:'u3-v128a-opt-symmetric-'+idPart+'-dimensions',variant:'optimization_symmetric_rectangle_'+kind+'_dimensions',prompt:prompt,fields:[{label:'w=',numericAnswer:width,answerTex:width.toFixed(3),placeholder:'Width'},{label:'h=',numericAnswer:height,answerTex:height.toFixed(3),placeholder:'Height'}],steps:commonSteps});
-  return scalarProblem({slug:'optimization',mode:'calculator',source:source,family:family,id:'u3-v128a-opt-symmetric-'+idPart+'-'+request,variant:'optimization_symmetric_rectangle_'+kind+'_'+request,prompt:prompt,value:request==='area'?area:width,steps:commonSteps});
+  if(request==='dimensions')return multiFieldProblem({slug:'optimization',mode:'calculator',source:source,family:family,id:'u3-v128a-opt-symmetric-'+idPart+'-dimensions',variant:'optimization_symmetric_rectangle_'+kind+'_dimensions',diagram:diagram,prompt:prompt,fields:[{label:'w=',numericAnswer:width,answerTex:width.toFixed(3),placeholder:'Width'},{label:'h=',numericAnswer:height,answerTex:height.toFixed(3),placeholder:'Height'}],steps:commonSteps});
+  return scalarProblem({slug:'optimization',mode:'calculator',source:source,family:family,id:'u3-v128a-opt-symmetric-'+idPart+'-'+request,variant:'optimization_symmetric_rectangle_'+kind+'_'+request,diagram:diagram,prompt:prompt,value:request==='area'?area:width,steps:commonSteps});
 }
 
 function optBoxDimensions(mode,source){
   var cut=integer(2,7),sheet=6*cut,base=4*cut,volume=cut*base*base;
-  return multiFieldProblem({slug:'optimization',mode:'noncalculator',source:source,family:'open_box_dimensions_and_volume',id:'u3-v128-opt-box-fields-'+sheet,variant:'optimization_open_box_dimensions_and_maximum_volume',prompt:'Squares are cut from the corners of a square piece of cardboard with side length \\('+sheet+'\\) inches. Find the cut size, the base side length, and the maximum box volume.',fields:[{label:'x=',answer:String(cut),answerTex:String(cut),placeholder:'Cut size'},{label:'b=',answer:String(base),answerTex:String(base),placeholder:'Base side length'},{label:'V=',answer:String(volume),answerTex:String(volume),placeholder:'Maximum volume'}],steps:[
+  return multiFieldProblem({slug:'optimization',mode:'noncalculator',source:source,family:'open_box_dimensions_and_volume',id:'u3-v128-opt-box-fields-'+sheet,variant:'optimization_open_box_dimensions_and_maximum_volume',diagram:{kind:'sheet-net',title:'Square sheet with corner cuts',description:'The generated square sheet with four variable corner cuts labeled x.',length:sheet,width:sheet,unit:'in',cutLabel:'x'},prompt:'Squares are cut from the corners of a square piece of cardboard with side length \\('+sheet+'\\) inches. Find the cut size, the base side length, and the maximum box volume.',fields:[{label:'x=',answer:String(cut),answerTex:String(cut),placeholder:'Cut size'},{label:'b=',answer:String(base),answerTex:String(base),placeholder:'Base side length'},{label:'V=',answer:String(volume),answerTex:String(volume),placeholder:'Maximum volume'}],steps:[
     'Let \\(x\\) be the cut size. Then \\(V(x)=x('+sheet+'-2x)^2\\), with \\(0<x<'+sheet/2+'\\).',
     'Differentiate: \\(V^{\\prime}(x)=('+sheet+'-2x)('+sheet+'-6x)\\).',
     'The critical value in the physical domain is \\(x='+cut+'\\). The derivative changes from positive to negative there, so it gives the maximum.',
