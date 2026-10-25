@@ -59,6 +59,11 @@ const scanRoot = (fn, left, right) => {
   }
   return NaN;
 };
+const visibleDiagramText = html => String(html || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+const containsNumber = (text, value) => {
+  const token = String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(^|[^\\d.])${token}(?![\\d.])`).test(text);
+};
 
 const expectedFamilies = {
   optimization: { noncalculator: 28, calculator: 9 },
@@ -100,7 +105,10 @@ for (const slug of ['optimization', 'related-rates']) {
     let calculatorQuality = 0;
     let independentChecks = 0;
     let diagrams = 0;
-    let specializedDiagramChecks = 0;
+    let fixedValueDiagramChecks = 0;
+    let variableLabelDiagramChecks = 0;
+    const diagramKinds = new Set();
+    const curveDiagramLabels = new Set();
     const symmetricStructures = new Set();
     const closestStructures = new Set();
     const changingShapes = new Set();
@@ -139,13 +147,47 @@ for (const slug of ['optimization', 'related-rates']) {
       if(problem.diagramHint){
         diagrams+=1;
         assert.equal(problem.diagramHintButtonLabel,'Diagram Hint');
-        assert.match(problem.diagramHint,/<svg[^>]+viewBox="0 0 420 240"/);
-        assert.match(problem.diagramHint,/<strong>Given:<\/strong>/);
+        assert.match(problem.diagramHint,/<div class="geometry-diagram-hint" data-diagram-kind="[^"]+">/);
+        assert.match(problem.diagramHint,/<div class="diagram-title">[^<]+<\/div>/);
+        assert.match(problem.diagramHint,/<svg[^>]+viewBox="0 0 600 340"[^>]+preserveAspectRatio="xMidYMid meet"/);
+        assert.doesNotMatch(problem.diagramHint,/NaN|undefined|null/);
         assert.doesNotMatch(problem.diagramHint,/\\frac\{d|critical value|correct answer|V\^\{?\\prime|A\^\{?\\prime/i,problem.familyId+' diagram leaks solution work');
-        if(['two_poles_minimum_cable','shortest_ladder_over_fence','ladder_top','ladder_bottom','ladder_area','ladder_angle','ladder_wallAngle','multi_part_ladder','lamppost_shadow_length','lamppost_shadow_tip','multi_part_shadow'].includes(problem.familyId)){
-          const shown=[...problem.questionHtml.matchAll(/\\\(([-\d.]+)\\\)/g)].slice(0,3).map(match=>match[1]);
-          assert.ok(shown.some(value=>problem.diagramHint.includes(value)),problem.familyId+' diagram should use current values');
-          specializedDiagramChecks+=1;
+        const kindMatch=problem.diagramHint.match(/data-diagram-kind="([^"]+)"/);
+        diagramKinds.add(kindMatch[1]);
+        const visible=visibleDiagramText(problem.diagramHint);
+        assert.match(problem.diagramHint,/diagram-label-variable/,problem.familyId+' diagram needs a clearly styled changing quantity');
+        for(const match of problem.diagramHint.matchAll(/\b(?:x|x1|x2|cx)="(-?\d+(?:\.\d+)?)"/g))assert.ok(Number(match[1])>=0&&Number(match[1])<=600,problem.familyId+' has a clipped horizontal coordinate');
+        for(const match of problem.diagramHint.matchAll(/\b(?:y|y1|y2|cy)="(-?\d+(?:\.\d+)?)"/g))assert.ok(Number(match[1])>=0&&Number(match[1])<=340,problem.familyId+' has a clipped vertical coordinate');
+        if(problem.diagramHint.includes('diagram-curve'))curveDiagramLabels.add(visible.replace(/^.*?y = /,'y = '));
+
+        if(/^ladder_|^multi_part_ladder$/.test(problem.familyId)){
+          const match=problem.questionHtml.match(/A \\\(([-\d.]+)\\\)-foot ladder/);
+          assert.ok(match&&visible.includes(match[1]+' ft'),problem.familyId+' must show the generated fixed ladder length');
+          assert.match(visible,/\bx\b/);assert.match(visible,/\by\b/);fixedValueDiagramChecks+=1;variableLabelDiagramChecks+=1;
+        }else if(/shadow/.test(problem.familyId)){
+          const match=problem.questionHtml.match(/A \\\(([-\d.]+)\\\)-foot person[\s\S]*\\\(([-\d.]+)\\\)-foot lamppost/);
+          assert.ok(match&&visible.includes(match[1]+' ft')&&visible.includes(match[2]+' ft'),problem.familyId+' must show both generated fixed heights');
+          assert.match(visible,/\bx\b/);assert.match(visible,/\bs\b/);fixedValueDiagramChecks+=1;variableLabelDiagramChecks+=1;
+        }else if(/^sphere_/.test(problem.familyId)||/^circular_/.test(problem.familyId)){
+          assert.match(visible,/\br\b/);variableLabelDiagramChecks+=1;
+          const instant=problem.questionHtml.match(/(?:radius is|when \\\(r=)([-\d.]+)/);
+          if(instant)assert.equal(containsNumber(visible,instant[1]),false,problem.familyId+' must keep the changing radius labeled r');
+        }else if(/conical_tank|inverted_conical_tank/.test(problem.familyId)){
+          assert.match(visible,/\bh\b/);assert.match(visible,/\br\b/);variableLabelDiagramChecks+=1;
+          const depthMatch=problem.questionHtml.match(/(?:water depth is|water is )\\?\(?([-\d.]+)\\?\)? feet (?:deep|and)/);
+          if(depthMatch)assert.equal(containsNumber(visible,depthMatch[1]),false,problem.familyId+' must not replace changing water depth h with its instant value');
+          fixedValueDiagramChecks+=1;
+        }else if(/trough/.test(problem.familyId)){
+          assert.match(visible,/\bh\b/);assert.match(visible,/\bw\b/);variableLabelDiagramChecks+=1;fixedValueDiagramChecks+=1;
+        }else if(/cylindrical_tank/.test(problem.familyId)){
+          assert.match(visible,/\bh\b/);variableLabelDiagramChecks+=1;fixedValueDiagramChecks+=1;
+        }else if(/_area$/.test(problem.familyId)&&slug==='related-rates'){
+          assert.match(problem.diagramHint,/diagram-label-variable/);variableLabelDiagramChecks+=1;
+        }else if(['softball_diamond','rotating_spotlight','angle_of_elevation','rope_spool_balloon','semicircle_moving_point_area','hemispherical_ice_layer'].includes(problem.familyId)){
+          assert.match(problem.diagramHint,/diagram-dimension-fixed|diagram-fixed-notes/);fixedValueDiagramChecks+=1;variableLabelDiagramChecks+=1;
+        }else if(slug==='optimization'){
+          if(/sheet-net|poles|ladder-fence|inscribed|page|pig-pen|axis-triangle|fence|cylinder|capsule|pyramid|cone/.test(kindMatch[1]))fixedValueDiagramChecks+=1;
+          variableLabelDiagramChecks+=1;
         }
       }
       assert.equal(problem.keypadMode,mode==='calculator'?'unit3-rounded':'unit3-geometry-exact',problem.familyId+' has the wrong keypad profile');
@@ -295,7 +337,11 @@ for (const slug of ['optimization', 'related-rates']) {
       for (const family of requiredNewFamilies[slug]) assert.ok(families.has(family), slug + ' did not expose ' + family);
     }
     assert.ok(diagrams>sampleCount*0.70,slug+'/'+mode+' needs diagram coverage for geometric families');
-    assert.ok(specializedDiagramChecks>200,slug+'/'+mode+' needs exact-value diagram checks');
+    assert.ok(variableLabelDiagramChecks>200,slug+'/'+mode+' needs changing-variable diagram checks');
+    if(slug==='optimization'||slug==='related-rates')assert.ok(fixedValueDiagramChecks>200,slug+'/'+mode+' needs generated fixed-value diagram checks');
+    const minimumDiagramKinds=slug==='optimization'?(mode==='calculator'?9:15):15;
+    assert.ok(diagramKinds.size>=minimumDiagramKinds,slug+'/'+mode+' needs broad problem-specific diagram coverage');
+    if(slug==='optimization')assert.ok(curveDiagramLabels.size>=3,mode+' optimization diagrams need actual generated curve variety');
   }
 }
 
@@ -305,9 +351,11 @@ assert.match(practiceSource, /function renderCalculusFields/);
 assert.match(practiceSource, /current\.requireExact/);
 assert.match(practiceSource, /field\.requiredDecimals/);
 assert.match(practiceSource, /current\?\.diagramHint/);
+assert.match(practiceSource, /current\?\.hint\)hints\.push\(\{html:current\.hint,label:current\.hintButtonLabel\|\|'Show Hint',kind:'formula'\}\)/);
+assert.match(practiceSource, /current\?\.diagramHint\)hints\.push\(\{html:current\.diagramHint,label:current\.diagramHintButtonLabel\|\|'Diagram Hint',kind:'diagram'\}\)/);
 assert.match(practiceSource, /aria-expanded/);
 const topicCss=read('assets/ap-topic-practice.css');
-for(const token of ['.geometry-diagram','viewBox','max-height:min(46vh,320px)','.diagram-givens'])assert.ok(read('assets/unit3-optimization-related-rates.js').includes(token)||topicCss.includes(token),'diagram implementation missing '+token);
+for(const token of ['.geometry-diagram','viewBox','max-height:min(50vh,380px)','.diagram-fixed-notes','.diagram-label-variable'])assert.ok(read('assets/unit3-optimization-related-rates.js').includes(token)||topicCss.includes(token),'diagram implementation missing '+token);
 
 const pages = [
   'ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html',
@@ -324,6 +372,7 @@ for (const page of pages) {
   const keypadIndex = html.indexOf('/assets/calculus-keypad.js');
   assert.ok(baseIndex >= 0 && overlayIndex > baseIndex && keypadIndex > overlayIndex, page + ' has incorrect shared-generator load order');
   assert.match(html, /"generatorVersion":"12\.8\.B"/, page + ' has stale generator analytics metadata');
+  if(page.includes('/comprehensive-review/'))assert.match(html,/"slugs":\[[^\]]*"optimization","related-rates"\]/,page+' must inherit both shared diagram-enabled generators');
 }
 
 assert.equal(JSON.parse(read('assets/app-version.json')).version, '12.8.B');
