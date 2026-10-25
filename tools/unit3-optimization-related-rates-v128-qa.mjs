@@ -64,6 +64,115 @@ const containsNumber = (text, value) => {
   const token = String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return new RegExp(`(^|[^\\d.])${token}(?![\\d.])`).test(text);
 };
+const elementAttributes = tag => Object.fromEntries([...String(tag).matchAll(/([\w-]+)="([^"]*)"/g)].map(match => [match[1], match[2]]));
+const elementsWithClass = (html, tag, className) => [...String(html).matchAll(new RegExp(`<${tag}[^>]*class="[^"]*\\b${className}\\b[^"]*"[^>]*>`, 'g'))].map(match => elementAttributes(match[0]));
+const targetedDiagramChecks = {
+  spotlight: { noncalculator: 0, calculator: 0 },
+  cone: { noncalculator: 0, calculator: 0 },
+  shadow: { noncalculator: 0, calculator: 0 },
+  semicircle: { noncalculator: 0, calculator: 0 },
+  softball: { noncalculator: 0, calculator: 0 },
+  inscribedCircle: { noncalculator: 0, calculator: 0 }
+};
+
+function verifyRefinedDiagram(problem, mode) {
+  const html = String(problem.diagramHint || '');
+  const visible = visibleDiagramText(html);
+  if (!html) return;
+
+  if (problem.familyId === 'rotating_spotlight') {
+    targetedDiagramChecks.spotlight[mode] += 1;
+    const distanceMatch = problem.questionHtml.match(/is \\\(([\d.]+)\\\) feet from/);
+    const thetaMatch = problem.questionHtml.match(/When \\\(\\theta=([^)]*?)\\\),/);
+    const omegaMatch = problem.questionHtml.match(/at \\\(([\d.]+)\\\) radians per minute/);
+    assert.ok(distanceMatch && thetaMatch && omegaMatch, 'spotlight prompt must identify the fixed distance, theta, and angular rate');
+    assert.match(problem.questionHtml, /angle at the spotlight between that perpendicular and the beam/);
+    assert.match(problem.questionHtml, /rotates away from the perpendicular/);
+    assert.match(problem.explanation, /\\tan\\theta=\\frac\{x\}\{[\d.]+\}/);
+    assert.match(problem.explanation, /\\sec\^2\\theta/);
+    assert.doesNotMatch(problem.explanation, /\\cot\\theta|\\csc\^2\\theta/);
+    assert.match(html, /<path class="diagram-fixed-object" d="M160 253H177V270"\/>/);
+    assert.match(html, /<path class="diagram-angle" d="M160 108A42 42 0 0 0 /);
+    const beam = elementsWithClass(html, 'line', 'diagram-accent')[0];
+    assert.ok(beam && Number(beam.x1) === 160 && Number(beam.y1) === 66 && Number(beam.y2) === 270, 'spotlight beam must begin at the spotlight');
+    const theta = texNumber(thetaMatch[1]), displayedTheta = Math.atan2(Number(beam.x2) - 160, 270 - 66);
+    assert.ok(close(theta, displayedTheta, 8e-5), 'spotlight beam geometry must match the generated theta');
+    const expected = Number(distanceMatch[1]) * Number(omegaMatch[1]) / Math.pow(Math.cos(theta), 2);
+    assert.ok(close(valuesOf(problem)[0], expected), `spotlight answer must match the perpendicular-angle definition: actual ${valuesOf(problem)[0]}, expected ${expected}, theta ${theta}`);
+    assert.ok(visible.includes(distanceMatch[1] + ' ft') && /\bx\b/.test(visible) && /θ/.test(visible));
+  }
+
+  if (/conical_tank|inverted_conical_tank/.test(problem.familyId)) {
+    targetedDiagramChecks.cone[mode] += 1;
+    assert.match(html, /<circle class="diagram-point-fixed" cx="300" cy="188" r="4"\/>/);
+    assert.match(html, /class="diagram-dimension diagram-dimension-variable" x1="300" y1="188" x2="375" y2="188"/,
+      'water-surface r must run from the center axis to one edge');
+    assert.match(html, /class="diagram-dimension diagram-dimension-fixed" x1="300" y1="55" x2="442" y2="55"/,
+      'fixed tank radius must run from the center axis to the rim');
+  }
+
+  if (/shadow/.test(problem.familyId)) {
+    targetedDiagramChecks.shadow[mode] += 1;
+    assert.doesNotMatch(visible, /x\s*\+\s*s/, 'x+s must not be placed beside the person');
+    const rays = elementsWithClass(html, 'line', 'diagram-accent');
+    assert.equal(rays.length, 1, 'shadow diagram must contain one light ray');
+    const fixedLines = elementsWithClass(html, 'line', 'diagram-fixed-object');
+    const person = fixedLines.find(line => Number(line.x1) !== 98 && Number(line.x1) === Number(line.x2));
+    assert.ok(person, 'shadow diagram must contain the person segment');
+    const ray = rays[0], rayDx = Number(ray.x2) - Number(ray.x1), rayDy = Number(ray.y2) - Number(ray.y1);
+    const headCross = (Number(person.x1) - Number(ray.x1)) * rayDy - (Number(person.y2) - Number(ray.y1)) * rayDx;
+    assert.ok(Math.abs(headCross) < 1e-7, 'lamppost top, person head, and shadow tip must be collinear');
+  }
+
+  if (problem.familyId === 'semicircle_moving_point_area') {
+    targetedDiagramChecks.semicircle[mode] += 1;
+    const point = elementsWithClass(html, 'circle', 'diagram-point-variable')[0];
+    assert.ok(point, 'semicircle diagram must show the moving point');
+    const px = Number(point.cx), py = Number(point.cy);
+    assert.ok(Math.abs(Math.pow(px - 300, 2) + Math.pow(py - 282, 2) - 190 * 190) < 3,
+      'moving point must lie on the displayed semicircle');
+    const radiusLine = elementsWithClass(html, 'line', 'diagram-distance')[0];
+    assert.ok(radiusLine && Number(radiusLine.x1) === 300 && Number(radiusLine.y1) === 282 && Number(radiusLine.x2) === px && Number(radiusLine.y2) === py,
+      'radius and moving point must share the same endpoint');
+    const triangle = html.match(/<path class="diagram-changing-fill" d="([^"]+)"\/>/);
+    assert.ok(triangle && triangle[1].includes(`L${point.cx} ${point.cy}L${point.cx} 282`), 'triangle legs must meet the moving point');
+  }
+
+  if (problem.familyId === 'softball_diamond') {
+    targetedDiagramChecks.softball[mode] += 1;
+    assert.match(html, /<path class="diagram-fixed-shape" d="M300 40L430 170L300 300L170 170Z"\/>/,
+      'softball diamond must be square');
+    const point = elementsWithClass(html, 'circle', 'diagram-point-variable')[0];
+    const px = Number(point.cx), py = Number(point.cy);
+    assert.ok(Math.abs(px + py - 340) < 1e-8, 'runner must lie on the second-to-third baseline');
+    const dataMatch = problem.questionHtml.match(/side length \\\(([\d.]+)\\\)[\s\S]*when she is \\\(([\d.]+)\\\) feet from third/);
+    assert.ok(dataMatch, 'softball prompt must provide side length and runner distance');
+    const displayedFraction = Math.hypot(px - 170, py - 170) / Math.hypot(130, -130);
+    assert.ok(close(displayedFraction, Number(dataMatch[2]) / Number(dataMatch[1]), 8e-5), 'runner position must match the generated distance from third');
+    const distanceLine = elementsWithClass(html, 'line', 'diagram-distance')[0];
+    assert.ok(distanceLine && Number(distanceLine.x1) === 300 && Number(distanceLine.y1) === 300 && Number(distanceLine.x2) === px && Number(distanceLine.y2) === py,
+      'distance d must connect home to the runner');
+    const variableDimension = elementsWithClass(html, 'line', 'diagram-dimension-variable')[0];
+    assert.ok(variableDimension && Math.abs((Number(variableDimension.x2) - Number(variableDimension.x1)) + (Number(variableDimension.y2) - Number(variableDimension.y1))) < 0.03,
+      'runner distance x must follow the second-to-third baseline');
+  }
+
+  if (problem.familyId === 'rectangle_in_circle') {
+    targetedDiagramChecks.inscribedCircle[mode] += 1;
+    const circle = elementsWithClass(html, 'circle', 'diagram-object')[0];
+    const rectangle = elementsWithClass(html, 'rect', 'diagram-accent-fill')[0];
+    assert.ok(circle && rectangle, 'inscribed-circle diagram needs its circle and rectangle');
+    const cx = Number(circle.cx), cy = Number(circle.cy), r = Number(circle.r);
+    const left = Number(rectangle.x), top = Number(rectangle.y), width = Number(rectangle.width), height = Number(rectangle.height);
+    for (const [x, y] of [[left, top], [left + width, top], [left, top + height], [left + width, top + height]]) {
+      assert.ok(Math.abs(Math.pow(x - cx, 2) + Math.pow(y - cy, 2) - r * r) < 3, 'every rectangle corner must lie on the circle');
+    }
+    assert.ok(Math.max(width, height) / Math.min(width, height) > 1.3, 'diagram must show a visibly non-square rectangle');
+    const radiusLine = elementsWithClass(html, 'line', 'diagram-distance')[0];
+    assert.ok(radiusLine && Number(radiusLine.x1) === cx && Number(radiusLine.y1) === cy && close(Number(radiusLine.x2), left + width) && close(Number(radiusLine.y2), top),
+      'radius must run from the common center to a rectangle corner');
+  }
+}
 
 const expectedFamilies = {
   optimization: { noncalculator: 28, calculator: 9 },
@@ -130,6 +239,8 @@ for (const slug of ['optimization', 'related-rates']) {
       assert.doesNotMatch(combined, /At this event|relevant interior critical value|admissible critical value/i);
       assert.doesNotMatch(combined, /The requested rate is the rate found above|The sign follows the geometry|No length values were substituted/i);
       assert.doesNotMatch(combined, /one-variable objective|physical (?:domain|interval)|endpoint rectangles|units per unit(?: of)? time/i);
+      assert.doesNotMatch(combined + '\n' + String(problem.diagramHint || ''), /φ|α|\\phi|\\alpha|\\varphi/,
+        problem.familyId + ' must use theta when it has a single angle variable');
       assert.doesNotMatch(problem.questionHtml, /(^|[^\\])\$/m, problem.familyId + ' contains an unsafe currency delimiter');
       assert.ok((problem.explanation.match(/<strong>Step/g) || []).length >= 4, problem.familyId + ' needs complete vertical work');
       assert.match(problem.explanation, /Differentiat|derivative/i);
@@ -161,6 +272,7 @@ for (const slug of ['optimization', 'related-rates']) {
         const labelPositions=[...problem.diagramHint.matchAll(/<text[^>]*x="([\d.]+)" y="([\d.]+)"[^>]*>[^<]*<\/text>/g)].map(match=>[Number(match[1]),Number(match[2])]);
         for(let first=0;first<labelPositions.length;first+=1)for(let second=first+1;second<labelPositions.length;second+=1)assert.ok(Math.hypot(labelPositions[first][0]-labelPositions[second][0],labelPositions[first][1]-labelPositions[second][1])>22,problem.familyId+' has colliding diagram labels');
         if(problem.diagramHint.includes('diagram-curve'))curveDiagramLabels.add(visible.replace(/^.*?y = /,'y = '));
+        verifyRefinedDiagram(problem, mode);
 
         if(/^ladder_|^multi_part_ladder$/.test(problem.familyId)){
           const match=problem.questionHtml.match(/A \\\(([-\d.]+)\\\)-foot ladder/);
@@ -347,6 +459,16 @@ for (const slug of ['optimization', 'related-rates']) {
   }
 }
 
+for (const [family, byMode] of Object.entries(targetedDiagramChecks)) {
+  for (const mode of ['noncalculator', 'calculator']) {
+    if (family === 'inscribedCircle' && mode === 'calculator') {
+      assert.equal(byMode[mode], 0, 'rectangle-in-circle is intentionally non-calculator only');
+      continue;
+    }
+    assert.ok(byMode[mode] >= 25, `${family}/${mode} needs repeated targeted randomized diagram checks`);
+  }
+}
+
 const practiceSource = read('assets/ap-topic-practice.js');
 assert.match(practiceSource, /answerType==='calculus-fields'/);
 assert.match(practiceSource, /function renderCalculusFields/);
@@ -374,10 +496,10 @@ for (const page of pages) {
   const overlayIndex = html.indexOf('/assets/unit3-optimization-related-rates.js');
   const keypadIndex = html.indexOf('/assets/calculus-keypad.js');
   assert.ok(baseIndex >= 0 && overlayIndex > baseIndex && keypadIndex > overlayIndex, page + ' has incorrect shared-generator load order');
-  assert.match(html, /"generatorVersion":"12\.8\.C"/, page + ' has stale generator analytics metadata');
+  assert.match(html, /"generatorVersion":"12\.8\.D"/, page + ' has stale generator analytics metadata');
   if(page.includes('/comprehensive-review/'))assert.match(html,/"slugs":\[[^\]]*"optimization","related-rates"\]/,page+' must inherit both shared diagram-enabled generators');
 }
 
-assert.equal(JSON.parse(read('assets/app-version.json')).version, '12.8.C');
+assert.equal(JSON.parse(read('assets/app-version.json')).version, '12.8.D');
 assert.ok(fs.existsSync(path.join(root, '.github/workflows/batchmath-qa.yml')));
-console.log('Unit 3 Optimization/Related Rates v12.8.C randomized QA passed.');
+console.log('Unit 3 Optimization/Related Rates v12.8.D randomized QA passed.');

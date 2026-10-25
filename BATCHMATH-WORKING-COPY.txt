@@ -1,6 +1,6 @@
 BatchMath cumulative working copy
-Current full release: 12.8.C
-Archive: batchmath-site-v12.8.C.zip
+Current full release: 12.8.D
+Archive: batchmath-site-v12.8.D.zip
 Baseline: complete 12.7 release.
-Changes: targeted Optimization and Related Rates overhaul, including exact non-calculator work, calculator-appropriate numerical optimization, broader course-aligned families, balanced sampling, multi-output and multi-part practice, and focused randomized QA. The BatchMath QA GitHub Actions workflow remains preserved.
+Changes: targeted Optimization and Related Rates overhaul plus v12.8.D diagram-geometry and single-angle notation refinements, with focused randomized QA. The BatchMath QA GitHub Actions workflow remains preserved.
 No deployment performed.

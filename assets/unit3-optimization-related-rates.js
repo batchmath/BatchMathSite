@@ -2324,7 +2324,7 @@ function rrSpotlight(mode,source){
     slug:'related-rates',mode:mode,source:source,family:'rotating_spotlight',id:'u3-v127-rr-spotlight-'+mode+'-'+distance+'-'+trim(theta,4),
     variant:'related_rates_rotating_spotlight',
     diagram:{kind:'spotlight',title:'Rotating spotlight and shoreline',description:'A spotlight on a buoy at the generated fixed perpendicular distance from shore, with changing shoreline distance x and angle theta at the spotlight.',offset:distance,angleValue:theta,unit:'ft',distanceLabel:'x',angleLabel:'θ'},
-    prompt:'A spotlight on a buoy is \\('+distance+'\\) feet from a straight shoreline, measured along the perpendicular to the shore. Let \\(\\theta\\) be the angle at the spotlight between that perpendicular and the beam. When \\(\\theta='+(mode==='calculator'?trim(theta,6):angleData.label)+'\\), the beam rotates away from the perpendicular at \\('+trim(omega,2)+'\\) radians per minute. Find the speed of the light spot along the shoreline.',
+    prompt:'A spotlight on a buoy is \\('+distance+'\\) feet from a straight shoreline, measured along the perpendicular to the shore. Let \\(\\theta\\) be the angle at the spotlight between that perpendicular and the beam. When \\(\\theta='+(mode==='calculator'?trim(theta,9):angleData.label)+'\\), the beam rotates away from the perpendicular at \\('+trim(omega,2)+'\\) radians per minute. Find the speed of the light spot along the shoreline.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
       'Let \\(x\\) be the shoreline distance from the point nearest the buoy to the light spot. The given angular rate is \\(\\frac{d\\theta}{dt}='+trim(omega,2)+'\\).',
