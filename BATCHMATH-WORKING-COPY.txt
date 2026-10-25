@@ -1,6 +1,6 @@
 BatchMath cumulative working copy
-Current full release: 12.8.E
-Archive: batchmath-site-v12.8.E.zip
+Current full release: 12.8.F
+Archive: batchmath-site-v12.8.F.zip
 Baseline: complete 12.7 release.
-Changes: targeted Optimization and Related Rates overhaul plus v12.8.E shared-anchor refinements for the five specified diagrams, with focused randomized QA. The BatchMath QA GitHub Actions workflow remains preserved.
+Changes: targeted Optimization and Related Rates overhaul plus the v12.8.F conical-pile height-label refinement, with focused diagram QA. The BatchMath QA GitHub Actions workflow remains preserved.
 No deployment performed.

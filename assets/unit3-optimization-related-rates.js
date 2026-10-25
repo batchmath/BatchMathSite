@@ -3,7 +3,7 @@
 
 /*
  * BatchMath AP Calculus AB Unit 3
- * Shared Optimization / Related Rates curriculum expansion (v12.8.E).
+ * Shared Optimization / Related Rates curriculum expansion (v12.8.F).
  *
  * Loaded after unit3-applications-generators.js on the two focused topics and
  * both Unit 3 comprehensive-review pages.  This deliberately reuses the
@@ -495,9 +495,8 @@ function renderConicalTank(data){
 function renderConePile(data){
   var body='<ellipse class="diagram-ground-ellipse" cx="300" cy="266" rx="166" ry="40"/>'
     +'<path class="diagram-changing-fill" d="M134 266L300 56L466 266Z"/>'
-    +diagramLine(300,56,300,266,'diagram-hidden')
     +diagramDimension(300,266,466,266,data.radiusLabel||'r','variable',383,252)
-    +diagramDimension(323,56,323,266,data.heightLabel||'h','variable',342,166,'start');
+    +diagramDimension(300,56,300,266,data.heightLabel||'h','variable',310,166,'start');
   return svgDiagram(data,body);
 }
 function renderTrough(data){
