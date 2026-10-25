@@ -143,8 +143,11 @@ function verifyRefinedDiagram(problem, mode) {
     const variableDimensions = elementsWithClass(html, 'line', 'diagram-dimension-variable');
     const height = variableDimensions.find(line => Number(line.x1) === 300 && Number(line.x2) === 300
       && Number(line.y1) === waterY && Number(line.y2) === bottomY);
-    const width = variableDimensions.find(line => close(Number(line.x1), waterLeft, 8e-5)
-      && close(Number(line.x2), waterRight, 8e-5) && Number(line.y1) === 154 && Number(line.y2) === 154);
+    const width = elementsWithClass(html, 'text', 'diagram-label-variable').find(label => {
+      const segment = String(label['data-segment'] || '').split(',').map(Number);
+      return segment.length === 4 && close(segment[0], waterLeft, 8e-5) && close(segment[2], waterRight, 8e-5)
+        && segment[1] === waterY && segment[3] === waterY;
+    });
     assert.ok(height, `${problem.familyId} h must span the exact bottom and water levels`);
     assert.ok(width, `${problem.familyId} w must use the exact water-surface endpoints`);
   }
@@ -219,8 +222,9 @@ function verifyRefinedDiagram(problem, mode) {
     const distanceLine = elementsWithClass(html, 'line', 'diagram-distance')[0];
     assert.ok(distanceLine && Number(distanceLine.x1) === 300 && Number(distanceLine.y1) === 300 && Number(distanceLine.x2) === px && Number(distanceLine.y2) === py,
       'distance d must connect home to the runner');
-    const variableDimension = elementsWithClass(html, 'line', 'diagram-dimension-variable')[0];
-    assert.ok(variableDimension && Math.abs((Number(variableDimension.x2) - Number(variableDimension.x1)) + (Number(variableDimension.y2) - Number(variableDimension.y1))) < 0.03,
+    const variableDimension = elementsWithClass(html, 'text', 'diagram-label-variable').find(label => label['data-label-style'] === 'edge');
+    const variableSegment = String(variableDimension?.['data-segment'] || '').split(',').map(Number);
+    assert.ok(variableDimension && variableSegment.length === 4 && Math.abs((variableSegment[2] - variableSegment[0]) + (variableSegment[3] - variableSegment[1])) < 0.03,
       'runner distance x must follow the second-to-third baseline');
   }
 
@@ -365,7 +369,7 @@ for (const slug of ['optimization', 'related-rates']) {
         }else if(/_area$/.test(problem.familyId)&&slug==='related-rates'){
           assert.match(problem.diagramHint,/diagram-label-variable/);variableLabelDiagramChecks+=1;
         }else if(['softball_diamond','rotating_spotlight','angle_of_elevation','rope_spool_balloon','semicircle_moving_point_area','hemispherical_ice_layer'].includes(problem.familyId)){
-          assert.match(problem.diagramHint,/diagram-dimension-fixed|diagram-fixed-notes/);fixedValueDiagramChecks+=1;variableLabelDiagramChecks+=1;
+          assert.match(problem.diagramHint,/diagram-label-fixed|diagram-fixed-notes/);fixedValueDiagramChecks+=1;variableLabelDiagramChecks+=1;
         }else if(slug==='optimization'){
           if(/sheet-net|poles|ladder-fence|inscribed|page|pig-pen|axis-triangle|fence|cylinder|capsule|pyramid|cone/.test(kindMatch[1]))fixedValueDiagramChecks+=1;
           variableLabelDiagramChecks+=1;

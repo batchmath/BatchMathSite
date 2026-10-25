@@ -161,10 +161,26 @@ function diagramText(x,y,text,kind,anchor,extra){
 function diagramLine(x1,y1,x2,y2,className,extra){
   return '<line class="'+(className||'diagram-object')+'" x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'"'+(extra?' '+extra:'')+'/>';
 }
-function diagramDimension(x1,y1,x2,y2,label,kind,labelX,labelY,anchor){
-  var className='diagram-dimension diagram-dimension-'+(kind||'fixed');
-  return diagramLine(x1,y1,x2,y2,className,'marker-start="url(#diagram-arrow-start)" marker-end="url(#diagram-arrow-end)"')
-    +diagramText(labelX==null?(x1+x2)/2:labelX,labelY==null?(y1+y2)/2-8:labelY,label,kind,anchor||'middle');
+/* Length labels attach to a real edge, a plain constructed segment, or an
+   intentionally external guide. Arrowheads are reserved for axes/motion. */
+function diagramEdgeLabel(x1,y1,x2,y2,label,kind,offset,fraction,style){
+  var dx=x2-x1,dy=y2-y1,length=Math.max(1,Math.hypot(dx,dy));
+  var distance=offset==null?16:offset,t=fraction==null?.5:fraction;
+  var nx=-dy/length,ny=dx/length,x=x1+t*dx+distance*nx,y=y1+t*dy+distance*ny;
+  var side=distance*nx,anchor=side>7?'start':side<-7?'end':'middle';
+  return diagramText(x,y,label,kind,anchor,'dominant-baseline="middle" data-label-style="'+(style||'edge')+'" data-segment="'+[x1,y1,x2,y2].join(',')+'"');
+}
+function diagramSegment(x1,y1,x2,y2,label,kind,offset){
+  return diagramLine(x1,y1,x2,y2,'diagram-dimension diagram-dimension-'+(kind||'fixed'),'data-measurement="interior"')
+    +diagramEdgeLabel(x1,y1,x2,y2,label,kind,offset,null,'segment');
+}
+function diagramGuide(x1,y1,x2,y2,label,kind,offset){
+  return diagramLine(x1,y1,x2,y2,'diagram-dimension diagram-dimension-'+(kind||'fixed'),'data-measurement="external"')
+    +diagramEdgeLabel(x1,y1,x2,y2,label,kind,offset,null,'guide');
+}
+function diagramEqualTick(x1,y1,x2,y2){
+  var dx=x2-x1,dy=y2-y1,length=Math.max(1,Math.hypot(dx,dy)),mx=(x1+x2)/2,my=(y1+y2)/2;
+  return diagramLine(mx-6*dy/length,my+6*dx/length,mx+6*dy/length,my-6*dx/length,'diagram-fixed-object');
 }
 function diagramNotes(values){
   if(!values||!values.length)return'';
@@ -226,18 +242,17 @@ function renderSheetNet(data){
     +'<path class="diagram-fold" d="M'+(x0+cut)+' '+y0+'V'+(y0+height)+' M'+(x0+width-cut)+' '+y0+'V'+(y0+height)
     +' M'+x0+' '+(y0+cut)+'H'+(x0+width)+' M'+x0+' '+(y0+height-cut)+'H'+(x0+width)+'"/>'
     +'<path class="diagram-cut" d="M'+x0+' '+y0+'h'+cut+'v'+cut+'h-'+cut+'z M'+(x0+width-cut)+' '+y0+'h'+cut+'v'+cut+'h-'+cut+'z M'+x0+' '+(y0+height-cut)+'h'+cut+'v'+cut+'h-'+cut+'z M'+(x0+width-cut)+' '+(y0+height-cut)+'h'+cut+'v'+cut+'h-'+cut+'z"/>'
-    +diagramDimension(x0,y0+height+34,x0+width,y0+height+34,diagramMeasure(data.length,data.unit),'fixed',null,y0+height+57)
-    +diagramDimension(x0-34,y0,x0-34,y0+height,diagramMeasure(data.width,data.unit),'fixed',x0-45,y0+height/2,'end')
-    +diagramDimension(x0,y0-22,x0+cut,y0-22,data.cutLabel||'x','variable',null,y0-31)
-    +diagramDimension(x0+cut+14,y0,x0+cut+14,y0+cut,data.cutLabel||'x','variable',x0+cut+26,y0+cut/2+5,'start');
+    +diagramEdgeLabel(x0,y0+height,x0+width,y0+height,diagramMeasure(data.length,data.unit),'fixed',19)
+    +diagramEdgeLabel(x0,y0,x0,y0+height,diagramMeasure(data.width,data.unit),'fixed',16)
+    +diagramEdgeLabel(x0,y0,x0+cut,y0,data.cutLabel||'x','variable',-16);
   return svgDiagram(data,body);
 }
 function renderBox(data){
   var body='<path class="diagram-object-fill" d="M130 105L350 64L476 126L255 170Z M130 105V250L255 307V170 M255 307L476 257V126"/>'
     +'<path class="diagram-hidden" d="M350 64V212L476 257 M350 212L130 250"/>'
-    +diagramDimension(143,82,350,45,data.baseX||'x','variable',245,47)
-    +diagramDimension(370,53,488,111,data.baseY||data.baseX||'x','variable',444,68)
-    +diagramDimension(505,126,505,257,data.heightLabel||'h','variable',522,197,'start');
+    +diagramEdgeLabel(255,307,476,257,data.baseX||'x','variable',17)
+    +diagramEdgeLabel(130,250,255,307,data.baseY||data.baseX||'x','variable',17)
+    +diagramEdgeLabel(476,126,476,257,data.heightLabel||'h','variable',-16);
   return svgDiagram(data,body);
 }
 function renderCylinder(data){
@@ -246,8 +261,8 @@ function renderCylinder(data){
     +diagramLine(418,72,418,258,'diagram-object')
     +'<ellipse class="diagram-object-fill" cx="300" cy="258" rx="118" ry="32"/>'
     +(data.openTop?'<path class="diagram-hidden" d="M182 72A118 32 0 0 0 418 72"/>':'')
-    +diagramDimension(300,72,418,72,data.radiusLabel||'r','variable',360,61)
-    +diagramDimension(449,72,449,258,data.heightLabel||'h','variable',468,170,'start');
+    +diagramSegment(300,72,418,72,data.radiusLabel||'r','variable',-13)
+    +diagramEdgeLabel(182,72,182,258,data.heightLabel||'h','variable',16);
   if(data.surfaceLabels){
     body+=diagramText(300,111,data.surfaceLabels.top,'fixed')+diagramText(427,170,data.surfaceLabels.side,'fixed','start');
   }
@@ -256,15 +271,15 @@ function renderCylinder(data){
 function renderCapsule(data){
   var body='<path class="diagram-object-fill" d="M170 76A82 82 0 0 0 170 264H430A82 82 0 0 0 430 76Z"/>'
     +'<ellipse class="diagram-hidden" cx="170" cy="170" rx="28" ry="94"/><ellipse class="diagram-hidden" cx="430" cy="170" rx="28" ry="94"/>'
-    +diagramDimension(170,296,430,296,data.lengthLabel||'L','variable',300,320)
-    +diagramDimension(463,170,463,76,data.radiusLabel||'r','variable',481,126,'start');
+    +diagramEdgeLabel(170,264,430,264,data.lengthLabel||'L','variable',18)
+    +diagramSegment(430,170,430,76,data.radiusLabel||'r','variable',16);
   return svgDiagram(data,body);
 }
 function renderPyramid(data){
   var body='<path class="diagram-object-fill" d="M120 246L360 287L500 218L260 178Z M308 42L120 246 M308 42L360 287 M308 42L500 218 M308 42L260 178"/>'
     +diagramLine(308,42,308,234,'diagram-hidden')
-    +diagramDimension(132,271,360,311,data.sideLabel||'s','variable',243,327)
-    +diagramDimension(329,43,329,234,data.heightLabel||'h','variable',346,142,'start');
+    +diagramEdgeLabel(120,246,360,287,data.sideLabel||'s','variable',17)
+    +diagramEdgeLabel(308,42,308,234,data.heightLabel||'h','variable',-14);
   return svgDiagram(data,body);
 }
 function renderFence(data){
@@ -275,18 +290,19 @@ function renderFence(data){
   }else{
     body+='<rect class="diagram-accent-fill" x="'+x0+'" y="'+y0+'" width="'+width+'" height="'+height+'"/>';
   }
-  body+=diagramDimension(x0,y0+height+34,x0+width,y0+height+34,data.yLabel||'y','variable',null,y0+height+58)
-    +diagramDimension(x0-34,y0,x0-34,y0+height,data.xLabel||'x','variable',x0-47,y0+height/2,'end');
-  if(data.costX)body+=diagramText(x0-10,y0+height/2,data.costX,'fixed','end')+diagramText(x0+width+10,y0+height/2,data.costX,'fixed','start');
-  if(data.costY)body+=diagramText(x0+width/2,y0+height-12,data.costY,'fixed');
+  body+=diagramEdgeLabel(x0,y0+height,x0+width,y0+height,data.yLabel||'y','variable',18)
+    +diagramEdgeLabel(x0,y0,x0,y0+height,data.xLabel||'x','variable',16);
+  if(data.costX)body+=diagramEdgeLabel(x0+width,y0,x0+width,y0+height,data.costX,'fixed',-16);
+  if(data.costY)body+=diagramEdgeLabel(x0,y0,x0+width,y0,data.costY,'fixed',-18);
   return svgDiagram(data,body);
 }
 function renderWindow(data){
-  var body='<rect class="diagram-object-fill" x="177" y="143" width="246" height="142"/>'
-    +'<path class="diagram-object-fill" d="M177 143L300 46L423 143Z"/>'
-    +diagramDimension(177,312,423,312,data.widthLabel||'w','variable',300,334)
-    +diagramDimension(449,143,449,285,data.heightLabel||'h','variable',468,220,'start')
-    +diagramText(300,105,data.widthLabel||'w','variable');
+  var left=202,right=398,apexX=(left+right)/2,apexY=28,top=apexY+Math.sqrt(3)*(right-left)/2,bottom=294;
+  var body='<rect class="diagram-object-fill" x="'+left+'" y="'+top+'" width="'+(right-left)+'" height="'+(bottom-top)+'"/>'
+    +'<path class="diagram-object-fill" d="M'+left+' '+top+'L'+apexX+' '+apexY+'L'+right+' '+top+'Z"/>'
+    +diagramEqualTick(left,top,apexX,apexY)+diagramEqualTick(apexX,apexY,right,top)+diagramEqualTick(left,top,right,top)
+    +diagramEdgeLabel(left,bottom,right,bottom,data.widthLabel||'w','variable',18)
+    +diagramEdgeLabel(right,top,right,bottom,data.heightLabel||'h','variable',-16);
   return svgDiagram(data,body);
 }
 function renderInscribed(data){
@@ -294,13 +310,13 @@ function renderInscribed(data){
   var body;
   if(data.semicircle){
     body='<path class="diagram-object" d="M126 258A174 174 0 0 1 474 258"/>'+diagramLine(126,258,474,258,'diagram-fixed-object');
-    var half=88,top=132,bottom=258;
+    var half=88,bottom=258,top=bottom-Math.sqrt(r*r-half*half);
     body+='<rect class="diagram-accent-fill" x="'+(cx-half)+'" y="'+top+'" width="'+(2*half)+'" height="'+(bottom-top)+'"/>'
       +diagramLine(cx,bottom,cx+half,top,'diagram-hidden')
-      +diagramDimension(cx,bottom+28,cx+half,bottom+28,data.halfWidthLabel||'x','variable',cx+half/2,bottom+51)
-      +diagramDimension(cx-half,bottom+62,cx+half,bottom+62,data.fullWidthLabel||'2x','variable',cx,bottom+78)
-      +diagramDimension(cx+half+28,top,cx+half+28,bottom,data.heightLabel||'y','variable',cx+half+44,(top+bottom)/2,'start')
-      +diagramText(cx+half/2+10,(top+bottom)/2-12,diagramMeasure(data.radius,data.unit),'fixed');
+      +diagramEdgeLabel(cx,bottom,cx+half,bottom,data.halfWidthLabel||'x','variable',-14)
+      +diagramEdgeLabel(cx-half,bottom,cx+half,bottom,data.fullWidthLabel||'2x','variable',18)
+      +diagramEdgeLabel(cx+half,top,cx+half,bottom,data.heightLabel||'y','variable',-15)
+      +diagramEdgeLabel(cx,bottom,cx+half,top,diagramMeasure(data.radius,data.unit),'fixed',-17);
   }else{
     /* Use a deliberately non-square rectangle whose four corners lie on the
        circle. The radius begins at the shared center, so the picture gives
@@ -311,17 +327,17 @@ function renderInscribed(data){
       +'<rect class="diagram-accent-fill" x="'+left+'" y="'+circleTop.toFixed(2)+'" width="'+(2*circleHalfWidth)+'" height="'+(2*circleHalfHeight).toFixed(2)+'"/>'
       +'<circle class="diagram-point-fixed" cx="'+cx+'" cy="'+cy+'" r="4"/>'
       +diagramLine(cx,cy,right,circleTop.toFixed(2),'diagram-distance')
-      +diagramDimension(left,circleBottom+28,right,circleBottom+28,data.fullWidthLabel||'x','variable',cx,circleBottom+52)
-      +diagramDimension(right+30,circleTop,right+30,circleBottom,data.heightLabel||'y','variable',right+47,cy+5,'start')
-      +diagramText(cx+67,cy-48,diagramMeasure(data.radius,data.unit),'fixed');
+      +diagramEdgeLabel(left,circleBottom,right,circleBottom,data.fullWidthLabel||'x','variable',18)
+      +diagramEdgeLabel(right,circleTop,right,circleBottom,data.heightLabel||'y','variable',-16)
+      +diagramEdgeLabel(cx,cy,right,circleTop,diagramMeasure(data.radius,data.unit),'fixed',-17);
   }
   return svgDiagram(data,body);
 }
 function renderPage(data){
   var body='<rect class="diagram-object-fill" x="174" y="44" width="252" height="252"/>'
     +'<rect class="diagram-accent-fill" x="202" y="67" width="196" height="206"/>'
-    +diagramDimension(174,320,426,320,data.widthLabel||'w','variable',300,338)
-    +diagramDimension(450,44,450,296,data.heightLabel||'h','variable',468,174,'start')
+    +diagramEdgeLabel(174,296,426,296,data.widthLabel||'w','variable',19)
+    +diagramEdgeLabel(426,44,426,296,data.heightLabel||'h','variable',-16)
     +diagramText(300,57,'top + bottom: '+diagramMeasure(data.verticalMargins,data.unit),'fixed')
     +diagramText(300,291,'left + right: '+diagramMeasure(data.horizontalMargins,data.unit),'fixed');
   return svgDiagram(data,body);
@@ -335,10 +351,9 @@ function renderCurve(data){
     if(!Number.isFinite(preview))preview=projection.left+.68*(projection.right-projection.left);
     var px=Math.abs(preview),y=data.fn(px),leftX=projection.mapX(-px),rightX=projection.mapX(px),baseY=projection.mapY(0),topY=projection.mapY(y);
     body+='<rect class="diagram-accent-fill" x="'+leftX+'" y="'+topY+'" width="'+(rightX-leftX)+'" height="'+(baseY-topY)+'"/>'
-      +diagramLine(projection.mapX(0),baseY,rightX,baseY,'diagram-dimension-variable')
-      +diagramText((projection.mapX(0)+rightX)/2,baseY-10,'x','variable')
-      +diagramText((leftX+rightX)/2,baseY+24,'2x','variable')
-      +diagramText(rightX+12,(topY+baseY)/2,'y','variable','start');
+      +diagramEdgeLabel(projection.mapX(0),baseY,rightX,baseY,'x','variable',-14)
+      +diagramEdgeLabel(leftX,baseY,rightX,baseY,'2x','variable',18)
+      +diagramEdgeLabel(rightX,topY,rightX,baseY,'y','variable',-15);
   }else{
     var vx=Number(data.previewX);
     if(!Number.isFinite(vx))vx=projection.left+.55*(projection.right-projection.left);
@@ -367,11 +382,11 @@ function renderPoles(data){
     +'<circle class="diagram-point-variable" cx="292" cy="246" r="6"/>'
     +diagramLine(130,leftTop,292,246,'diagram-accent')
     +diagramLine(470,rightTop,292,246,'diagram-accent')
-    +diagramDimension(95,246,95,leftTop,diagramMeasure(data.leftHeight,data.unit),'fixed',80,(246+leftTop)/2,'end')
-    +diagramDimension(505,246,505,rightTop,diagramMeasure(data.rightHeight,data.unit),'fixed',520,(246+rightTop)/2,'start')
-    +diagramDimension(130,290,470,290,diagramMeasure(data.distance,data.unit),'fixed',300,315)
-    +diagramText(211,266,data.leftDistanceLabel||'x','variable')
-    +diagramText(381,266,data.rightDistanceLabel||'d-x','variable');
+    +diagramEdgeLabel(130,leftTop,130,246,diagramMeasure(data.leftHeight,data.unit),'fixed',16)
+    +diagramEdgeLabel(470,rightTop,470,246,diagramMeasure(data.rightHeight,data.unit),'fixed',-16)
+    +diagramGuide(130,300,470,300,diagramMeasure(data.distance,data.unit),'fixed',17)
+    +diagramEdgeLabel(130,246,292,246,data.leftDistanceLabel||'x','variable',17)
+    +diagramEdgeLabel(292,246,470,246,data.rightDistanceLabel||'d-x','variable',17);
   return svgDiagram(data,body);
 }
 function renderLadderFence(data){
@@ -379,9 +394,9 @@ function renderLadderFence(data){
     +diagramLine(488,38,488,267,'diagram-fixed-object')
     +diagramLine(360,267,360,151,'diagram-fixed-object')
     +diagramLine(114,267,488,61,'diagram-accent')
-    +diagramDimension(326,267,326,151,diagramMeasure(data.fenceHeight,data.unit),'fixed',311,211,'end')
-    +diagramDimension(360,299,488,299,diagramMeasure(data.gap,data.unit),'fixed',424,323)
-    +diagramDimension(114,285,360,285,data.variableLabel||'x','variable',237,309)
+    +diagramEdgeLabel(360,151,360,267,diagramMeasure(data.fenceHeight,data.unit),'fixed',16)
+    +diagramEdgeLabel(360,267,488,267,diagramMeasure(data.gap,data.unit),'fixed',18)
+    +diagramEdgeLabel(114,267,360,267,data.variableLabel||'x','variable',18)
     +diagramText(500,50,'building','fixed','start')+diagramText(360,139,'fence','fixed');
   return svgDiagram(data,body);
 }
@@ -389,9 +404,9 @@ function renderCone(data){
   var body='<ellipse class="diagram-object" cx="300" cy="79" rx="128" ry="35"/>'
     +'<path class="diagram-object-fill" d="M172 79L300 297L428 79"/>'
     +diagramLine(300,79,300,297,'diagram-hidden')
-    +diagramDimension(300,79,428,79,data.radiusLabel||'r','variable',364,66)
-    +diagramDimension(321,79,321,297,data.heightLabel||'h','variable',339,191,'start');
-  if(data.slantLabel)body+=diagramText(385,192,data.slantLabel,'fixed');
+    +diagramSegment(300,79,428,79,data.radiusLabel||'r','variable',-13)
+    +diagramEdgeLabel(300,79,300,297,data.heightLabel||'h','variable',-14);
+  if(data.slantLabel)body+=diagramEdgeLabel(428,79,300,297,data.slantLabel,'fixed',-17);
   return svgDiagram(data,body);
 }
 function renderMotion(data){
@@ -410,11 +425,11 @@ function renderMotion(data){
 function renderPigPen(data){
   var body=diagramLine(104,58,496,58,'diagram-fixed-object')+diagramText(300,38,'barn','fixed')
     +'<path class="diagram-accent-fill" d="M166 58L166 224L300 294L434 224L434 58Z"/>'
-    +diagramText(150,145,diagramMeasure(data.side,data.unit),'fixed','end')
-    +diagramText(450,145,diagramMeasure(data.side,data.unit),'fixed','start')
-    +diagramText(229,269,diagramMeasure(data.side,data.unit),'fixed')
-    +diagramText(371,269,diagramMeasure(data.side,data.unit),'fixed')
-    +diagramDimension(166,82,434,82,data.baseLabel||'b','variable',300,102);
+    +diagramEdgeLabel(166,58,166,224,diagramMeasure(data.side,data.unit),'fixed',16)
+    +diagramEdgeLabel(434,58,434,224,diagramMeasure(data.side,data.unit),'fixed',-16)
+    +diagramEdgeLabel(166,224,300,294,diagramMeasure(data.side,data.unit),'fixed',17)
+    +diagramEdgeLabel(300,294,434,224,diagramMeasure(data.side,data.unit),'fixed',17)
+    +diagramEdgeLabel(166,58,434,58,data.baseLabel||'b','variable',18);
   return svgDiagram(data,body);
 }
 function renderWire(data){
@@ -440,21 +455,22 @@ function renderAxisTriangle(data){
 function renderSphere(data){
   var body='<circle class="diagram-object-fill" cx="300" cy="172" r="118"/>'
     +'<ellipse class="diagram-hidden" cx="300" cy="172" rx="118" ry="34"/>'
-    +diagramDimension(300,172,418,172,data.radiusLabel||'r','variable',359,158);
+    +diagramSegment(300,172,418,172,data.radiusLabel||'r','variable',-14);
   return svgDiagram(data,body);
 }
 function renderCircle(data){
   var body='<circle class="diagram-object-fill" cx="300" cy="172" r="118"/>'
-    +diagramDimension(300,172,418,172,data.radiusLabel||'r','variable',359,158);
+    +diagramSegment(300,172,418,172,data.radiusLabel||'r','variable',-14);
   return svgDiagram(data,body);
 }
 function renderLadder(data){
   var body=diagramLine(65,274,535,274,'diagram-ground')
     +diagramLine(478,34,478,274,'diagram-fixed-object')
     +diagramLine(135,274,478,68,'diagram-accent')
-    +diagramDimension(135,300,478,300,data.xLabel||'x','variable',307,326)
-    +diagramDimension(510,274,510,68,data.yLabel||'y','variable',530,176,'start')
-    +diagramText(300,154,diagramMeasure(data.length,data.unit),'fixed')
+    +'<path class="diagram-fixed-object" d="M461 274V257H478"/>'
+    +diagramEdgeLabel(135,274,478,274,data.xLabel||'x','variable',18)
+    +diagramEdgeLabel(478,68,478,274,data.yLabel||'y','variable',-16)
+    +diagramEdgeLabel(135,274,478,68,diagramMeasure(data.length,data.unit),'fixed',-18)
     +(data.angle==='ground'?'<path class="diagram-angle" d="M174 274A40 40 0 0 0 168 253"/>'+diagramText(186,253,'θ','variable'):'')
     +(data.angle==='wall'?'<path class="diagram-angle" d="M478 108A40 40 0 0 1 454 95"/>'+diagramText(448,120,'θ','variable'):'');
   return svgDiagram(data,body);
@@ -469,10 +485,10 @@ function renderShadow(data){
     +diagramLine(poleX,groundY,poleX,poleTopY,'diagram-fixed-object')
     +diagramLine(personX,groundY,personX,personTopY,'diagram-fixed-object')
     +diagramLine(poleX,poleTopY,tipX,groundY,'diagram-accent')
-    +diagramDimension(72,groundY,72,poleTopY,diagramMeasure(data.poleHeight,data.unit),'fixed',58,(groundY+poleTopY)/2,'end')
-    +diagramDimension(personX-24,groundY,personX-24,personTopY,diagramMeasure(data.personHeight,data.unit),'fixed',personX-38,(groundY+personTopY)/2,'end')
-    +diagramDimension(poleX,296,personX,296,data.personDistanceLabel||'x','variable',(poleX+personX)/2,324)
-    +diagramDimension(personX,296,tipX,296,data.shadowLabel||'s','variable',(personX+tipX)/2,324);
+    +diagramEdgeLabel(poleX,poleTopY,poleX,groundY,diagramMeasure(data.poleHeight,data.unit),'fixed',16)
+    +diagramEdgeLabel(personX,personTopY,personX,groundY,diagramMeasure(data.personHeight,data.unit),'fixed',16)
+    +diagramEdgeLabel(poleX,groundY,personX,groundY,data.personDistanceLabel||'x','variable',18)
+    +diagramEdgeLabel(personX,groundY,tipX,groundY,data.shadowLabel||'s','variable',18);
   return svgDiagram(data,body);
 }
 function renderConicalTank(data){
@@ -485,18 +501,18 @@ function renderConicalTank(data){
     +'<path class="diagram-changing-fill" d="M'+waterLeft.toFixed(2)+' '+waterY+'L'+axisX+' '+vertexY+'L'+waterRight.toFixed(2)+' '+waterY+'Z"/>'
     +'<ellipse class="diagram-water-line" cx="'+axisX+'" cy="'+waterY+'" rx="'+waterHalfWidth.toFixed(2)+'" ry="'+waterEllipseRy.toFixed(2)+'"/>'
     +diagramLine(axisX,topY,axisX,vertexY,'diagram-hidden')
-    +diagramDimension(axisX,topY,axisX+topHalfWidth,topY,diagramMeasure(data.tankRadius,data.unit),'fixed',axisX+topHalfWidth/2,42)
-    +diagramDimension(468,topY,468,vertexY,diagramMeasure(data.tankHeight,data.unit),'fixed',486,(topY+vertexY)/2,'start')
-    +diagramDimension(axisX,waterY,axisX,vertexY,data.depthLabel||'h','variable',318,(waterY+vertexY)/2+5,'start')
+    +diagramSegment(axisX,topY,axisX+topHalfWidth,topY,diagramMeasure(data.tankRadius,data.unit),'fixed',-14)
+    +diagramGuide(468,topY,468,vertexY,diagramMeasure(data.tankHeight,data.unit),'fixed',-16)
+    +diagramSegment(axisX,waterY,axisX,vertexY,data.depthLabel||'h','variable',-14)
     +'<circle class="diagram-point-fixed" cx="'+axisX+'" cy="'+waterY+'" r="4"/>'
-    +diagramDimension(axisX,waterY,waterRight.toFixed(2),waterY,data.waterRadiusLabel||'r','variable',axisX+waterHalfWidth/2,waterY-14);
+    +diagramSegment(axisX,waterY,Number(waterRight.toFixed(2)),waterY,data.waterRadiusLabel||'r','variable',-14);
   return svgDiagram(data,body);
 }
 function renderConePile(data){
   var body='<ellipse class="diagram-ground-ellipse" cx="300" cy="266" rx="166" ry="40"/>'
     +'<path class="diagram-changing-fill" d="M134 266L300 56L466 266Z"/>'
-    +diagramDimension(300,266,466,266,data.radiusLabel||'r','variable',383,252)
-    +diagramDimension(300,56,300,266,data.heightLabel||'h','variable',310,166,'start');
+    +diagramSegment(300,266,466,266,data.radiusLabel||'r','variable',-14)
+    +diagramSegment(300,56,300,266,data.heightLabel||'h','variable',-14);
   return svgDiagram(data,body);
 }
 function renderTrough(data){
@@ -506,7 +522,6 @@ function renderTrough(data){
   var waterFraction=(waterY-topY)/(bottomY-topY);
   var waterLeft=leftTop+(leftBottom-leftTop)*waterFraction;
   var waterRight=rightTop+(rightBottom-rightTop)*waterFraction;
-  var widthDimensionY=waterY-20;
   var body=triangle
     ?'<path class="diagram-object" d="M'+leftTop+' '+topY+'L'+leftBottom+' '+bottomY+'L'+rightTop+' '+topY+'"/>'
     :'<path class="diagram-object" d="M'+leftTop+' '+topY+'L'+leftBottom+' '+bottomY+'H'+rightBottom+'L'+rightTop+' '+topY+'"/>';
@@ -514,12 +529,10 @@ function renderTrough(data){
     ?'<path class="diagram-changing-fill" d="M'+waterLeft.toFixed(2)+' '+waterY+'L'+leftBottom+' '+bottomY+'L'+waterRight.toFixed(2)+' '+waterY+'Z"/>'
     :'<path class="diagram-changing-fill" d="M'+waterLeft.toFixed(2)+' '+waterY+'L'+leftBottom+' '+bottomY+'H'+rightBottom+'L'+waterRight.toFixed(2)+' '+waterY+'Z"/>';
   body+=diagramLine(waterLeft.toFixed(2),waterY,waterRight.toFixed(2),waterY,'diagram-water-line')
-    +diagramDimension(300,waterY,300,bottomY,data.depthLabel||'h','variable',317,(waterY+bottomY)/2+3,'start')
-    +diagramLine(waterLeft.toFixed(2),waterY,waterLeft.toFixed(2),widthDimensionY,'diagram-dimension diagram-dimension-variable')
-    +diagramLine(waterRight.toFixed(2),waterY,waterRight.toFixed(2),widthDimensionY,'diagram-dimension diagram-dimension-variable')
-    +diagramDimension(waterLeft.toFixed(2),widthDimensionY,waterRight.toFixed(2),widthDimensionY,data.waterWidthLabel||'w','variable',300,widthDimensionY-10)
-    +diagramDimension(leftTop,36,rightTop,36,diagramMeasure(data.topWidth,data.unit),'fixed',300,24);
-  if(!triangle)body+=diagramDimension(leftBottom,306,rightBottom,306,diagramMeasure(data.bottomWidth,data.unit),'fixed',300,329);
+    +diagramSegment(300,waterY,300,bottomY,data.depthLabel||'h','variable',-14)
+    +diagramEdgeLabel(waterLeft,waterY,waterRight,waterY,data.waterWidthLabel||'w','variable',-16)
+    +diagramGuide(leftTop,36,rightTop,36,diagramMeasure(data.topWidth,data.unit),'fixed',-15);
+  if(!triangle)body+=diagramEdgeLabel(leftBottom,bottomY,rightBottom,bottomY,diagramMeasure(data.bottomWidth,data.unit),'fixed',19);
   return svgDiagram(data,body);
 }
 function renderCylinderTank(data){
@@ -528,8 +541,8 @@ function renderCylinderTank(data){
     +'<ellipse class="diagram-object" cx="300" cy="282" rx="122" ry="30"/>'
     +'<path class="diagram-changing-fill" d="M178 166V282A122 30 0 0 0 422 282V166A122 30 0 0 1 178 166Z"/>'
     +'<ellipse class="diagram-water-line" cx="300" cy="166" rx="122" ry="30"/>'
-    +diagramDimension(300,61,422,61,diagramMeasure(data.radius,data.unit),'fixed',361,48)
-    +diagramDimension(447,166,447,282,data.heightLabel||'h','variable',464,230,'start');
+    +diagramSegment(300,61,422,61,diagramMeasure(data.radius,data.unit),'fixed',-14)
+    +diagramEdgeLabel(422,166,422,282,data.heightLabel||'h','variable',-16);
   return svgDiagram(data,body);
 }
 function renderChangingShape(data){
@@ -538,17 +551,18 @@ function renderChangingShape(data){
     body=data.shape==='circle'
       ?'<circle class="diagram-changing-fill" cx="300" cy="172" r="118"/>'
       :'<path class="diagram-changing-fill" d="M182 236A118 118 0 0 1 418 236H182Z"/>';
-    body+=diagramDimension(300,data.shape==='circle'?172:236,418,data.shape==='circle'?172:236,data.radiusLabel||'r','variable',359,data.shape==='circle'?158:222);
+    body+=diagramSegment(300,data.shape==='circle'?172:236,418,data.shape==='circle'?172:236,data.radiusLabel||'r','variable',-14);
   }else if(data.shape==='square'){
     body='<rect class="diagram-changing-fill" x="184" y="56" width="232" height="232"/>'
-      +diagramDimension(184,314,416,314,data.sideLabel||'s','variable',300,336);
+      +diagramEdgeLabel(184,288,416,288,data.sideLabel||'s','variable',18);
   }else if(data.shape==='equilateral'){
-    body='<path class="diagram-changing-fill" d="M300 46L126 290H474Z"/>'
-      +diagramDimension(126,316,474,316,data.sideLabel||'s','variable',300,338);
+    var equalLeft=158,equalRight=442,equalBottom=290,equalTop=equalBottom-Math.sqrt(3)*(equalRight-equalLeft)/2;
+    body='<path class="diagram-changing-fill" d="M300 '+equalTop+'L'+equalLeft+' '+equalBottom+'H'+equalRight+'Z"/>'
+      +diagramEdgeLabel(equalLeft,equalBottom,equalRight,equalBottom,data.sideLabel||'s','variable',18);
   }else if(data.shape==='rectangle'){
     body='<rect class="diagram-changing-fill" x="134" y="89" width="332" height="188"/>'
-      +diagramDimension(134,308,466,308,data.widthLabel||'ℓ','variable',300,332)
-      +diagramDimension(105,89,105,277,data.heightLabel||'w','variable',90,187,'end');
+      +diagramEdgeLabel(134,277,466,277,data.widthLabel||'ℓ','variable',18)
+      +diagramEdgeLabel(134,89,134,277,data.heightLabel||'w','variable',16);
   }else if(data.shape==='isosceles_triangle'){
     var leftX=175,rightX=425,baseY=292,midX=(leftX+rightX)/2,apexY=42;
     var sideMidY=(apexY+baseY)/2,tickDx=6.3,tickDy=3.15;
@@ -556,12 +570,14 @@ function renderChangingShape(data){
       +diagramLine(midX,apexY,midX,baseY,'diagram-hidden')
       +diagramLine((leftX+midX)/2-tickDx,sideMidY-tickDy,(leftX+midX)/2+tickDx,sideMidY+tickDy,'diagram-fixed-object')
       +diagramLine((rightX+midX)/2-tickDx,sideMidY+tickDy,(rightX+midX)/2+tickDx,sideMidY-tickDy,'diagram-fixed-object')
-      +diagramDimension(leftX,318,rightX,318,data.baseLabel||'b','variable',midX,339)
-      +diagramDimension(midX,apexY,midX,baseY,data.heightLabel||'h','variable',midX+17,(apexY+baseY)/2+5,'start');
-  }else{
-    body='<path class="diagram-changing-fill" d="M138 282H466L276 72Z"/>'
-      +diagramDimension(138,311,466,311,data.baseLabel||'b','variable',302,335)
-      +diagramDimension(293,72,293,282,data.heightLabel||'h','variable',311,180,'start');
+      +diagramEdgeLabel(leftX,baseY,rightX,baseY,data.baseLabel||'b','variable',18)
+      +diagramEdgeLabel(midX,apexY,midX,baseY,data.heightLabel||'h','variable',-14);
+  }else if(data.shape==='right_triangle'){
+    var cornerX=180,cornerY=282,baseRight=440,topY=62,marker=17;
+    body='<path class="diagram-changing-fill" d="M'+cornerX+' '+topY+'V'+cornerY+'H'+baseRight+'Z"/>'
+      +'<path class="diagram-fixed-object" d="M'+cornerX+' '+(cornerY-marker)+'H'+(cornerX+marker)+'V'+cornerY+'"/>'
+      +diagramEdgeLabel(cornerX,cornerY,baseRight,cornerY,data.baseLabel||'b','variable',18)
+      +diagramEdgeLabel(cornerX,topY,cornerX,cornerY,data.heightLabel||'h','variable',16);
   }
   return svgDiagram(data,body);
 }
@@ -571,10 +587,7 @@ function renderDiamond(data){
   var home={x:center.x,y:center.y+halfDiagonal},third={x:center.x-halfDiagonal,y:center.y};
   var runnerFraction=clampDiagram(Number(data.runnerFromThird)/Number(data.side),.08,.92);
   var runner={x:third.x+(second.x-third.x)*runnerFraction,y:third.y+(second.y-third.y)*runnerFraction};
-  var rootTwo=Math.sqrt(2),outward={x:-1/rootTwo,y:-1/rootTwo};
-  var xOffset=18,x1={x:third.x+outward.x*xOffset,y:third.y+outward.y*xOffset},x2={x:runner.x+outward.x*xOffset,y:runner.y+outward.y*xOffset};
-  var sideOut={x:-1/rootTwo,y:1/rootTwo},sideOffset=18;
-  var side1={x:third.x+sideOut.x*sideOffset,y:third.y+sideOut.y*sideOffset},side2={x:home.x+sideOut.x*sideOffset,y:home.y+sideOut.y*sideOffset};
+  var rootTwo=Math.sqrt(2);
   var markerSize=15,homeUnit={x:1/rootTwo,y:1/rootTwo},secondUnit={x:1/rootTwo,y:-1/rootTwo};
   var markerA={x:third.x+homeUnit.x*markerSize,y:third.y+homeUnit.y*markerSize};
   var markerB={x:markerA.x+secondUnit.x*markerSize,y:markerA.y+secondUnit.y*markerSize};
@@ -585,9 +598,9 @@ function renderDiamond(data){
     +'<circle class="diagram-point-variable" cx="'+runner.x.toFixed(2)+'" cy="'+runner.y.toFixed(2)+'" r="7"/>'
     +diagramLine(home.x,home.y,runner.x.toFixed(2),runner.y.toFixed(2),'diagram-distance')
     +diagramText(home.x,326,'home','fixed')+diagramText(third.x-16,third.y+5,'third','fixed','end')+diagramText(second.x,25,'second','fixed')
-    +diagramDimension(side1.x.toFixed(2),side1.y.toFixed(2),side2.x.toFixed(2),side2.y.toFixed(2),diagramMeasure(data.side,data.unit),'fixed',210,263)
-    +diagramDimension(x1.x.toFixed(2),x1.y.toFixed(2),x2.x.toFixed(2),x2.y.toFixed(2),data.runnerDistanceLabel||'x','variable',(x1.x+x2.x)/2-10,(x1.y+x2.y)/2-10)
-    +diagramText((home.x+runner.x)/2+16,(home.y+runner.y)/2,data.distanceLabel||'d','variable');
+    +diagramEdgeLabel(third.x,third.y,home.x,home.y,diagramMeasure(data.side,data.unit),'fixed',18)
+    +diagramEdgeLabel(third.x,third.y,runner.x,runner.y,data.runnerDistanceLabel||'x','variable',-18)
+    +diagramEdgeLabel(home.x,home.y,runner.x,runner.y,data.distanceLabel||'d','variable',16);
   return svgDiagram(data,body);
 }
 function renderSpotlight(data){
@@ -600,8 +613,8 @@ function renderSpotlight(data){
     +diagramLine(buoyX,buoyY,buoyX,shoreY,'diagram-fixed-object')
     +diagramLine(buoyX,buoyY,spotX.toFixed(2),shoreY,'diagram-accent')
     +'<path class="diagram-fixed-object" d="M'+buoyX+' '+(shoreY-17)+'H'+(buoyX+17)+'V'+shoreY+'"/>'
-    +diagramDimension(134,buoyY,134,shoreY,diagramMeasure(data.offset,data.unit),'fixed',117,(buoyY+shoreY)/2,'end')
-    +diagramDimension(buoyX,301,spotX.toFixed(2),301,data.distanceLabel||'x','variable',(buoyX+spotX)/2,328)
+    +diagramEdgeLabel(buoyX,buoyY,buoyX,shoreY,diagramMeasure(data.offset,data.unit),'fixed',16)
+    +diagramEdgeLabel(buoyX,shoreY,spotX,shoreY,data.distanceLabel||'x','variable',18)
     +'<path class="diagram-angle" d="M'+buoyX+' '+(buoyY+arcRadius)+'A'+arcRadius+' '+arcRadius+' 0 0 0 '+arcX.toFixed(2)+' '+arcY.toFixed(2)+'"/>'
     +diagramText(labelX.toFixed(2),labelY.toFixed(2),data.angleLabel||'θ','variable')
     +diagramText(buoyX,47,'spotlight','fixed');
@@ -611,9 +624,9 @@ function renderLineOfSight(data){
   var body=diagramLine(74,275,528,275,'diagram-ground')
     +diagramLine(454,275,454,67,'diagram-changing')
     +diagramLine(118,275,454,67,'diagram-distance')
-    +diagramDimension(118,305,454,305,diagramMeasure(data.horizontal,data.unit),'fixed',286,331)
-    +diagramDimension(480,275,480,67,data.heightLabel||'y','variable',498,178,'start')
-    +(data.distanceLabel?diagramText(285,158,data.distanceLabel,'variable'):'')
+    +diagramEdgeLabel(118,275,454,275,diagramMeasure(data.horizontal,data.unit),'fixed',18)
+    +diagramEdgeLabel(454,67,454,275,data.heightLabel||'y','variable',-16)
+    +(data.distanceLabel?diagramEdgeLabel(118,275,454,67,data.distanceLabel,'variable',-16):'')
     +(data.showAngle===false?'':'<path class="diagram-angle" d="M164 275A46 46 0 0 0 157 251"/>'+diagramText(178,250,data.angleLabel||'θ','variable'));
   return svgDiagram(data,body);
 }
@@ -628,8 +641,8 @@ function renderIce(data){
     +diagramLine(cx-innerVisualRadius,cy,cx+innerVisualRadius,cy,'diagram-fixed-object')
     +'<path class="diagram-changing-stroke" d="M'+(cx-outerVisualRadius)+' '+cy+'A'+outerVisualRadius+' '+outerVisualRadius+' 0 0 1 '+(cx+outerVisualRadius)+' '+cy+'"/>'
     +'<circle class="diagram-point-fixed" cx="'+cx+'" cy="'+cy+'" r="4"/>'
-    +diagramDimension(cx,cy,innerEndX.toFixed(2),innerEndY.toFixed(2),fixedRadiusLabel,'fixed',368,191)
-    +diagramDimension(cx,cy,outerEndX.toFixed(2),outerEndY.toFixed(2),outerRadiusLabel,'variable',414,208)
+    +diagramSegment(cx,cy,Number(innerEndX.toFixed(2)),Number(innerEndY.toFixed(2)),fixedRadiusLabel,'fixed',-16)
+    +diagramSegment(cx,cy,Number(outerEndX.toFixed(2)),Number(outerEndY.toFixed(2)),outerRadiusLabel,'variable',18)
     +diagramText(300,57,'changing ice layer','variable');
   return svgDiagram(data,body);
 }
@@ -643,9 +656,9 @@ function renderSemicirclePoint(data){
     +'<path class="diagram-changing-fill" d="M'+cx+' '+cy+'L'+pointX.toFixed(2)+' '+pointY.toFixed(2)+'L'+pointX.toFixed(2)+' '+cy+'Z"/>'
     +diagramLine(cx,cy,pointX.toFixed(2),pointY.toFixed(2),'diagram-distance')
     +'<circle class="diagram-point-variable" cx="'+pointX.toFixed(2)+'" cy="'+pointY.toFixed(2)+'" r="7"/>'
-    +diagramDimension(cx,305,pointX.toFixed(2),305,data.xLabel||'x','variable',(cx+pointX)/2,332)
-    +diagramDimension(pointX+27,pointY,pointX+27,cy,data.yLabel||'y','variable',pointX+45,(pointY+cy)/2,'start')
-    +diagramText((cx+pointX)/2-13,(cy+pointY)/2-12,diagramMeasure(data.radius,data.unit),'fixed');
+    +diagramEdgeLabel(cx,cy,pointX,cy,data.xLabel||'x','variable',18)
+    +diagramEdgeLabel(pointX,pointY,pointX,cy,data.yLabel||'y','variable',-16)
+    +diagramEdgeLabel(cx,cy,pointX,pointY,diagramMeasure(data.radius,data.unit),'fixed',-18);
   return svgDiagram(data,body);
 }
 function diagramFor(family,spec){
