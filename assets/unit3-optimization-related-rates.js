@@ -1414,7 +1414,7 @@ function optWeightedFence(mode,source){
   return scalarProblem({
     slug:'optimization',mode:mode,source:source,family:'different_cost_rectangle_fencing',id:'u3-v127-opt-weighted-fence-'+mode+'-'+trim(budget,1),
     variant:'optimization_rectangle_different_fence_costs',
-    diagram:{kind:'fence',title:'Rectangle with two fencing costs',description:'A rectangle with variable side lengths x and y and the generated cost on each pair of sides.',barn:false,xLabel:'x',yLabel:'y',costX:money(costX)+'/ft',costY:money(costY)+'/ft',fixedNotes:['Budget: '+money(budget)]},
+    diagram:{kind:'fence',title:'Rectangle with two fencing costs',description:'A rectangle with variable side lengths x and y and the generated cost on each pair of sides.',barn:false,xLabel:'x',yLabel:'y',costX:'$'+trim(costX,2)+'/ft',costY:'$'+trim(costY,2)+'/ft',fixedNotes:['Budget: $'+trim(budget,2)]},
     prompt:'A rectangular field has one pair of sides costing '+money(costX)+' per foot and the other pair costing '+money(costY)+' per foot. With a '+money(budget)+' budget, find the length of a side in the first pair that maximizes area.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -1460,7 +1460,7 @@ function optSquarePyramid(mode,source){
   return multiFieldProblem({
     slug:'optimization',mode:mode,source:source,family:'square_pyramid_fixed_volume',id:'u3-v128-opt-square-pyramid-'+side,
     variant:'optimization_square_pyramid_fixed_volume_dimensions',
-    diagram:{kind:'pyramid',title:'Closed square pyramid',description:'A square pyramid with variable base side s and height h.',sideLabel:'s',heightLabel:'h',fixedNotes:['Required volume: '+volumeTex+' cubic units']},
+    diagram:{kind:'pyramid',title:'Closed square pyramid',description:'A square pyramid with variable base side s and height h.',sideLabel:'s',heightLabel:'h',fixedNotes:['Required volume: '+trim(volumeNumerator/3)+'√2 cubic units']},
     prompt:'A closed square pyramid must have volume \\('+volumeTex+'\\) cubic units. Find the base side length and height that minimize its total surface area.',
     fields:[{label:'s=',answer:String(side),answerTex:String(side),placeholder:'Base side length'},{label:'h=',answer:side+'*sqrt(2)',answerTex:heightTex,placeholder:'Height'}],
     steps:[
@@ -1493,7 +1493,7 @@ function optClosestPolynomial(mode,source){
     var root=pick([2,3]);x=root*root;var targetPowerX=x-1,targetPowerY=fractionTex(3*Math.pow(root,4)+2,3*root);
     curveTex='x^{3/2}';targetTex='('+targetPowerX+','+targetPowerY+')';yTex=String(root*root*root);distanceInput='sqrt('+(9*root*root+4)+')/('+3*root+')';distanceTex='\\frac{\\sqrt{'+(9*root*root+4)+'}}{'+(3*root)+'}';
     derivativeTex='2(x-'+targetPowerX+')+3\\sqrt{x}\\left(x^{3/2}-'+targetPowerY+'\\right)';criticalText='The derivative is zero at \\(x='+x+'\\), and it changes from negative to positive there.';family='closest_point_power_curve';
-    var targetPowerValue=(3*Math.pow(root,4)+2)/(3*root);curveFn=function(value){return Math.pow(Math.max(0,value),1.5);};curveDomain=[0,x+3];fixedPoint=[targetPowerX,targetPowerValue];fixedPointLabel='('+targetPowerX+', '+trim(targetPowerValue,3)+')';curveLabel='y = x³ᐟ²';
+    var targetPowerExact=rational(3*Math.pow(root,4)+2,3*root),targetPowerValue=targetPowerExact.value;curveFn=function(value){return Math.pow(Math.max(0,value),1.5);};curveDomain=[0,x+3];fixedPoint=[targetPowerX,targetPowerValue];fixedPointLabel='('+targetPowerX+', '+targetPowerExact.input.replace(/[()]/g,'')+')';curveLabel='y = x³ᐟ²';
   }
   var diagram={kind:'closest-curve',title:'Closest point on the generated curve',description:'The actual generated curve, fixed point, variable point on the curve, and distance segment.',fn:curveFn,domain:curveDomain,includePoints:[fixedPoint],previewX:x*.78,fixedPoint:fixedPoint,fixedPointLabel:fixedPointLabel,variablePointLabel:'P = (x, f(x))',curveLabel:curveLabel};
   var prompt=request==='x'?'Find the positive \\(x\\)-coordinate of the point on \\(y='+curveTex+'\\) closest to \\('+targetTex+'\\).'
