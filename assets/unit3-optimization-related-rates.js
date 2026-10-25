@@ -3,7 +3,7 @@
 
 /*
  * BatchMath AP Calculus AB Unit 3
- * Shared Optimization / Related Rates curriculum expansion (v12.8.D).
+ * Shared Optimization / Related Rates curriculum expansion (v12.8.E).
  *
  * Loaded after unit3-applications-generators.js on the two focused topics and
  * both Unit 3 comprehensive-review pages.  This deliberately reuses the
@@ -476,16 +476,20 @@ function renderShadow(data){
   return svgDiagram(data,body);
 }
 function renderConicalTank(data){
-  var body='<ellipse class="diagram-object" cx="300" cy="55" rx="142" ry="34"/>'
-    +'<path class="diagram-object" d="M158 55L300 307L442 55"/>'
-    +'<path class="diagram-changing-fill" d="M225 188L300 307L375 188Z"/>'
-    +'<ellipse class="diagram-water-line" cx="300" cy="188" rx="75" ry="18"/>'
-    +diagramLine(300,55,300,307,'diagram-hidden')
-    +diagramDimension(300,55,442,55,diagramMeasure(data.tankRadius,data.unit),'fixed',371,42)
-    +diagramDimension(468,55,468,307,diagramMeasure(data.tankHeight,data.unit),'fixed',486,183,'start')
-    +diagramDimension(323,188,323,307,data.depthLabel||'h','variable',340,250,'start')
-    +'<circle class="diagram-point-fixed" cx="300" cy="188" r="4"/>'
-    +diagramDimension(300,188,375,188,data.waterRadiusLabel||'r','variable',337,174);
+  var axisX=300,topY=55,vertexY=307,topHalfWidth=142,topEllipseRy=34,waterY=188;
+  var waterScale=(vertexY-waterY)/(vertexY-topY);
+  var waterHalfWidth=topHalfWidth*waterScale,waterEllipseRy=topEllipseRy*waterScale;
+  var waterLeft=axisX-waterHalfWidth,waterRight=axisX+waterHalfWidth;
+  var body='<ellipse class="diagram-object" cx="'+axisX+'" cy="'+topY+'" rx="'+topHalfWidth+'" ry="'+topEllipseRy+'"/>'
+    +'<path class="diagram-object" d="M'+(axisX-topHalfWidth)+' '+topY+'L'+axisX+' '+vertexY+'L'+(axisX+topHalfWidth)+' '+topY+'"/>'
+    +'<path class="diagram-changing-fill" d="M'+waterLeft.toFixed(2)+' '+waterY+'L'+axisX+' '+vertexY+'L'+waterRight.toFixed(2)+' '+waterY+'Z"/>'
+    +'<ellipse class="diagram-water-line" cx="'+axisX+'" cy="'+waterY+'" rx="'+waterHalfWidth.toFixed(2)+'" ry="'+waterEllipseRy.toFixed(2)+'"/>'
+    +diagramLine(axisX,topY,axisX,vertexY,'diagram-hidden')
+    +diagramDimension(axisX,topY,axisX+topHalfWidth,topY,diagramMeasure(data.tankRadius,data.unit),'fixed',axisX+topHalfWidth/2,42)
+    +diagramDimension(468,topY,468,vertexY,diagramMeasure(data.tankHeight,data.unit),'fixed',486,(topY+vertexY)/2,'start')
+    +diagramDimension(axisX,waterY,axisX,vertexY,data.depthLabel||'h','variable',318,(waterY+vertexY)/2+5,'start')
+    +'<circle class="diagram-point-fixed" cx="'+axisX+'" cy="'+waterY+'" r="4"/>'
+    +diagramDimension(axisX,waterY,waterRight.toFixed(2),waterY,data.waterRadiusLabel||'r','variable',axisX+waterHalfWidth/2,waterY-14);
   return svgDiagram(data,body);
 }
 function renderConePile(data){
@@ -498,18 +502,25 @@ function renderConePile(data){
 }
 function renderTrough(data){
   var triangle=data.kind==='triangular-trough';
+  var topY=62,bottomY=278,leftTop=112,rightTop=488;
+  var leftBottom=triangle?300:188,rightBottom=triangle?300:412,waterY=174;
+  var waterFraction=(waterY-topY)/(bottomY-topY);
+  var waterLeft=leftTop+(leftBottom-leftTop)*waterFraction;
+  var waterRight=rightTop+(rightBottom-rightTop)*waterFraction;
+  var widthDimensionY=waterY-20;
   var body=triangle
-    ?'<path class="diagram-object" d="M112 62L300 278L488 62"/>'
-    :'<path class="diagram-object" d="M112 62L188 278H412L488 62"/>';
-  var waterLeft=triangle?178:157,waterRight=triangle?422:443,waterY=174;
+    ?'<path class="diagram-object" d="M'+leftTop+' '+topY+'L'+leftBottom+' '+bottomY+'L'+rightTop+' '+topY+'"/>'
+    :'<path class="diagram-object" d="M'+leftTop+' '+topY+'L'+leftBottom+' '+bottomY+'H'+rightBottom+'L'+rightTop+' '+topY+'"/>';
   body+=triangle
-    ?'<path class="diagram-changing-fill" d="M'+waterLeft+' '+waterY+'L300 278L'+waterRight+' '+waterY+'Z"/>'
-    :'<path class="diagram-changing-fill" d="M'+waterLeft+' '+waterY+'L188 278H412L'+waterRight+' '+waterY+'Z"/>';
-  body+=diagramLine(waterLeft,waterY,waterRight,waterY,'diagram-water-line')
-    +diagramDimension(300,waterY,300,278,data.depthLabel||'h','variable',317,229,'start')
-    +diagramDimension(waterLeft,waterY-18,waterRight,waterY-18,data.waterWidthLabel||'w','variable',300,waterY-30)
-    +diagramDimension(112,36,488,36,diagramMeasure(data.topWidth,data.unit),'fixed',300,24);
-  if(!triangle)body+=diagramDimension(188,306,412,306,diagramMeasure(data.bottomWidth,data.unit),'fixed',300,329);
+    ?'<path class="diagram-changing-fill" d="M'+waterLeft.toFixed(2)+' '+waterY+'L'+leftBottom+' '+bottomY+'L'+waterRight.toFixed(2)+' '+waterY+'Z"/>'
+    :'<path class="diagram-changing-fill" d="M'+waterLeft.toFixed(2)+' '+waterY+'L'+leftBottom+' '+bottomY+'H'+rightBottom+'L'+waterRight.toFixed(2)+' '+waterY+'Z"/>';
+  body+=diagramLine(waterLeft.toFixed(2),waterY,waterRight.toFixed(2),waterY,'diagram-water-line')
+    +diagramDimension(300,waterY,300,bottomY,data.depthLabel||'h','variable',317,(waterY+bottomY)/2+3,'start')
+    +diagramLine(waterLeft.toFixed(2),waterY,waterLeft.toFixed(2),widthDimensionY,'diagram-dimension diagram-dimension-variable')
+    +diagramLine(waterRight.toFixed(2),waterY,waterRight.toFixed(2),widthDimensionY,'diagram-dimension diagram-dimension-variable')
+    +diagramDimension(waterLeft.toFixed(2),widthDimensionY,waterRight.toFixed(2),widthDimensionY,data.waterWidthLabel||'w','variable',300,widthDimensionY-10)
+    +diagramDimension(leftTop,36,rightTop,36,diagramMeasure(data.topWidth,data.unit),'fixed',300,24);
+  if(!triangle)body+=diagramDimension(leftBottom,306,rightBottom,306,diagramMeasure(data.bottomWidth,data.unit),'fixed',300,329);
   return svgDiagram(data,body);
 }
 function renderCylinderTank(data){
@@ -539,6 +550,15 @@ function renderChangingShape(data){
     body='<rect class="diagram-changing-fill" x="134" y="89" width="332" height="188"/>'
       +diagramDimension(134,308,466,308,data.widthLabel||'ℓ','variable',300,332)
       +diagramDimension(105,89,105,277,data.heightLabel||'w','variable',90,187,'end');
+  }else if(data.shape==='isosceles_triangle'){
+    var leftX=175,rightX=425,baseY=292,midX=(leftX+rightX)/2,apexY=42;
+    var sideMidY=(apexY+baseY)/2,tickDx=6.3,tickDy=3.15;
+    body='<path class="diagram-changing-fill" d="M'+leftX+' '+baseY+'H'+rightX+'L'+midX+' '+apexY+'Z"/>'
+      +diagramLine(midX,apexY,midX,baseY,'diagram-hidden')
+      +diagramLine((leftX+midX)/2-tickDx,sideMidY-tickDy,(leftX+midX)/2+tickDx,sideMidY+tickDy,'diagram-fixed-object')
+      +diagramLine((rightX+midX)/2-tickDx,sideMidY+tickDy,(rightX+midX)/2+tickDx,sideMidY-tickDy,'diagram-fixed-object')
+      +diagramDimension(leftX,318,rightX,318,data.baseLabel||'b','variable',midX,339)
+      +diagramDimension(midX,apexY,midX,baseY,data.heightLabel||'h','variable',midX+17,(apexY+baseY)/2+5,'start');
   }else{
     body='<path class="diagram-changing-fill" d="M138 282H466L276 72Z"/>'
       +diagramDimension(138,311,466,311,data.baseLabel||'b','variable',302,335)
@@ -599,11 +619,18 @@ function renderLineOfSight(data){
   return svgDiagram(data,body);
 }
 function renderIce(data){
-  var body='<path class="diagram-object" d="M115 274A185 185 0 0 1 485 274"/>'
-    +diagramLine(115,274,485,274,'diagram-fixed-object')
-    +'<path class="diagram-changing-stroke" d="M96 274A204 204 0 0 1 504 274"/>'
-    +diagramDimension(300,274,485,274,diagramMeasure(data.innerRadius,data.unit),'fixed',390,260)
-    +diagramDimension(300,274,504,274,data.outerRadiusLabel||'R','variable',402,297)
+  var cx=300,cy=274,innerVisualRadius=185,outerVisualRadius=204;
+  var innerAngle=Math.PI/4,outerAngle=Math.PI/7;
+  var innerEndX=cx+innerVisualRadius*Math.cos(innerAngle),innerEndY=cy-innerVisualRadius*Math.sin(innerAngle);
+  var outerEndX=cx+outerVisualRadius*Math.cos(outerAngle),outerEndY=cy-outerVisualRadius*Math.sin(outerAngle);
+  var fixedRadiusLabel=diagramMeasure(data.innerRadius,data.unit);
+  var outerRadiusLabel=data.outerRadiusLabel||diagramNumber(data.innerRadius)+' + '+(data.thicknessLabel||'x');
+  var body='<path class="diagram-object" d="M'+(cx-innerVisualRadius)+' '+cy+'A'+innerVisualRadius+' '+innerVisualRadius+' 0 0 1 '+(cx+innerVisualRadius)+' '+cy+'"/>'
+    +diagramLine(cx-innerVisualRadius,cy,cx+innerVisualRadius,cy,'diagram-fixed-object')
+    +'<path class="diagram-changing-stroke" d="M'+(cx-outerVisualRadius)+' '+cy+'A'+outerVisualRadius+' '+outerVisualRadius+' 0 0 1 '+(cx+outerVisualRadius)+' '+cy+'"/>'
+    +'<circle class="diagram-point-fixed" cx="'+cx+'" cy="'+cy+'" r="4"/>'
+    +diagramDimension(cx,cy,innerEndX.toFixed(2),innerEndY.toFixed(2),fixedRadiusLabel,'fixed',368,191)
+    +diagramDimension(cx,cy,outerEndX.toFixed(2),outerEndY.toFixed(2),outerRadiusLabel,'variable',414,208)
     +diagramText(300,57,'changing ice layer','variable');
   return svgDiagram(data,body);
 }
@@ -2593,7 +2620,7 @@ function rrIceHemisphere(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'hemispherical_ice_layer',id:'u3-v128-rr-ice-'+mode+'-'+trim(inner,1),
     variant:'related_rates_hemispherical_ice_layer',
-    diagram:{kind:'ice-hemisphere',title:'Ice coating on a hemispherical roof',description:'A hemispherical roof with generated fixed inner radius and changing outer radius R.',innerRadius:inner,unit:'ft',outerRadiusLabel:'R'},
+    diagram:{kind:'ice-hemisphere',title:'Ice coating on a hemispherical roof',description:'A hemispherical roof with generated fixed inner radius and changing ice thickness x.',innerRadius:inner,unit:'ft',thicknessLabel:'x',outerRadiusLabel:trim(inner,1)+' + x'},
     prompt:'A hemispherical roof of radius \\('+trim(inner,1)+'\\) feet is coated uniformly with ice. When the ice is \\('+trim(thicknessInches,2)+'\\) '+unitPhrase(thicknessInches,'inch','inches')+' thick, its thickness changes at \\('+rateInchesTex+'\\) '+unitPhrase(Math.abs(rateInches),'inch','inches')+' per hour. Find the rate of change of the ice volume in cubic feet per hour.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[

@@ -69,6 +69,10 @@ const elementsWithClass = (html, tag, className) => [...String(html).matchAll(ne
 const targetedDiagramChecks = {
   spotlight: { noncalculator: 0, calculator: 0 },
   cone: { noncalculator: 0, calculator: 0 },
+  triangularTrough: { noncalculator: 0, calculator: 0 },
+  trapezoidalTrough: { noncalculator: 0, calculator: 0 },
+  isosceles: { noncalculator: 0, calculator: 0 },
+  ice: { noncalculator: 0, calculator: 0 },
   shadow: { noncalculator: 0, calculator: 0 },
   semicircle: { noncalculator: 0, calculator: 0 },
   softball: { noncalculator: 0, calculator: 0 },
@@ -105,10 +109,73 @@ function verifyRefinedDiagram(problem, mode) {
   if (/conical_tank|inverted_conical_tank/.test(problem.familyId)) {
     targetedDiagramChecks.cone[mode] += 1;
     assert.match(html, /<circle class="diagram-point-fixed" cx="300" cy="188" r="4"\/>/);
-    assert.match(html, /class="diagram-dimension diagram-dimension-variable" x1="300" y1="188" x2="375" y2="188"/,
-      'water-surface r must run from the center axis to one edge');
+    const variableDimensions = elementsWithClass(html, 'line', 'diagram-dimension-variable');
+    const waterRadius = variableDimensions.find(line => Number(line.y1) === 188 && Number(line.y2) === 188 && Number(line.x1) === 300);
+    const waterHeight = variableDimensions.find(line => Number(line.x1) === 300 && Number(line.x2) === 300 && Number(line.y1) === 188 && Number(line.y2) === 307);
+    const expectedWaterRight = 300 + 142 * (307 - 188) / (307 - 55);
+    assert.ok(waterRadius && close(Number(waterRadius.x2), expectedWaterRight, 8e-5),
+      'water-surface r must run from the center axis to the exact cone-wall intersection');
+    assert.ok(waterHeight, 'water height h must use the cone vertex and exact water-surface level');
+    assert.match(html, new RegExp('<path class="diagram-changing-fill" d="M'+(600-expectedWaterRight).toFixed(2)+' 188L300 307L'+expectedWaterRight.toFixed(2)+' 188Z"\\/>'),
+      'water triangle must share the full cone vertex and wall lines');
+    assert.match(html, new RegExp('<ellipse class="diagram-water-line" cx="300" cy="188" rx="'+(expectedWaterRight-300).toFixed(2)+'"'));
     assert.match(html, /class="diagram-dimension diagram-dimension-fixed" x1="300" y1="55" x2="442" y2="55"/,
       'fixed tank radius must run from the center axis to the rim');
+  }
+
+  if (problem.familyId === 'triangular_trough' || problem.familyId === 'trapezoidal_trough') {
+    const triangle = problem.familyId === 'triangular_trough';
+    targetedDiagramChecks[triangle ? 'triangularTrough' : 'trapezoidalTrough'][mode] += 1;
+    const leftTop = 112, rightTop = 488, topY = 62, bottomY = 278, waterY = 174;
+    const leftBottom = triangle ? 300 : 188, rightBottom = triangle ? 300 : 412;
+    const fraction = (waterY - topY) / (bottomY - topY);
+    const waterLeft = leftTop + (leftBottom - leftTop) * fraction;
+    const waterRight = rightTop + (rightBottom - rightTop) * fraction;
+    const waterLine = elementsWithClass(html, 'line', 'diagram-water-line')[0];
+    assert.ok(waterLine && close(Number(waterLine.x1), waterLeft, 8e-5) && close(Number(waterLine.x2), waterRight, 8e-5)
+      && Number(waterLine.y1) === waterY && Number(waterLine.y2) === waterY,
+    `${problem.familyId} water surface must end at the exact wall intersections`);
+    const changingPath = html.match(/<path class="diagram-changing-fill" d="([^"]+)"\/>/);
+    const expectedPath = triangle
+      ? `M${waterLeft.toFixed(2)} ${waterY}L300 ${bottomY}L${waterRight.toFixed(2)} ${waterY}Z`
+      : `M${waterLeft.toFixed(2)} ${waterY}L188 ${bottomY}H412L${waterRight.toFixed(2)} ${waterY}Z`;
+    assert.equal(changingPath?.[1], expectedPath, `${problem.familyId} water region must be built from the trough walls`);
+    const variableDimensions = elementsWithClass(html, 'line', 'diagram-dimension-variable');
+    const height = variableDimensions.find(line => Number(line.x1) === 300 && Number(line.x2) === 300
+      && Number(line.y1) === waterY && Number(line.y2) === bottomY);
+    const width = variableDimensions.find(line => close(Number(line.x1), waterLeft, 8e-5)
+      && close(Number(line.x2), waterRight, 8e-5) && Number(line.y1) === 154 && Number(line.y2) === 154);
+    assert.ok(height, `${problem.familyId} h must span the exact bottom and water levels`);
+    assert.ok(width, `${problem.familyId} w must use the exact water-surface endpoints`);
+  }
+
+  if (problem.familyId === 'isosceles_triangle_area') {
+    targetedDiagramChecks.isosceles[mode] += 1;
+    assert.match(html, /<path class="diagram-changing-fill" d="M175 292H425L300 42Z"\/>/,
+      'isosceles triangle must be symmetric about the exact base midpoint');
+    const altitude = elementsWithClass(html, 'line', 'diagram-hidden')[0];
+    assert.ok(altitude && Number(altitude.x1) === 300 && Number(altitude.x2) === 300
+      && Number(altitude.y1) === 42 && Number(altitude.y2) === 292,
+    'isosceles altitude must connect the apex to the exact base midpoint');
+    const leftLength = Math.hypot(300 - 175, 42 - 292), rightLength = Math.hypot(425 - 300, 292 - 42);
+    assert.ok(close(leftLength, rightLength), 'isosceles sides must have exactly equal geometry');
+    assert.ok(292 - 42 > Math.sqrt(3) * (425 - 175) / 2,
+      'isosceles diagram must be visibly taller than an equilateral triangle on the same base');
+  }
+
+  if (problem.familyId === 'hemispherical_ice_layer') {
+    targetedDiagramChecks.ice[mode] += 1;
+    const innerMatch = problem.questionHtml.match(/radius \\\(([\d.]+)\\\) feet/);
+    assert.ok(innerMatch, 'ice prompt must expose the generated fixed roof radius');
+    const fixedRadius = elementsWithClass(html, 'line', 'diagram-dimension-fixed').find(line => Number(line.x1) === 300 && Number(line.y1) === 274);
+    const outerRadius = elementsWithClass(html, 'line', 'diagram-dimension-variable').find(line => Number(line.x1) === 300 && Number(line.y1) === 274);
+    assert.ok(fixedRadius && close(Math.hypot(Number(fixedRadius.x2)-300, Number(fixedRadius.y2)-274), 185, 8e-5),
+      'fixed roof radius must run from the common center to the inner roof arc');
+    assert.ok(outerRadius && close(Math.hypot(Number(outerRadius.x2)-300, Number(outerRadius.y2)-274), 204, 8e-5),
+      'outer radius must run from the same center to the outer ice arc');
+    assert.ok(visible.includes(innerMatch[1]+' ft'), 'ice diagram must show the generated fixed roof radius');
+    assert.ok(visible.includes(innerMatch[1]+' + x'), 'ice diagram must label the full outer radius as fixed radius plus x');
+    assert.doesNotMatch(visible, /\bR\b/, 'ice diagram must not replace the outer-radius relationship with R');
   }
 
   if (/shadow/.test(problem.familyId)) {
@@ -496,10 +563,10 @@ for (const page of pages) {
   const overlayIndex = html.indexOf('/assets/unit3-optimization-related-rates.js');
   const keypadIndex = html.indexOf('/assets/calculus-keypad.js');
   assert.ok(baseIndex >= 0 && overlayIndex > baseIndex && keypadIndex > overlayIndex, page + ' has incorrect shared-generator load order');
-  assert.match(html, /"generatorVersion":"12\.8\.D"/, page + ' has stale generator analytics metadata');
+  assert.match(html, /"generatorVersion":"12\.8\.E"/, page + ' has stale generator analytics metadata');
   if(page.includes('/comprehensive-review/'))assert.match(html,/"slugs":\[[^\]]*"optimization","related-rates"\]/,page+' must inherit both shared diagram-enabled generators');
 }
 
-assert.equal(JSON.parse(read('assets/app-version.json')).version, '12.8.D');
+assert.equal(JSON.parse(read('assets/app-version.json')).version, '12.8.E');
 assert.ok(fs.existsSync(path.join(root, '.github/workflows/batchmath-qa.yml')));
-console.log('Unit 3 Optimization/Related Rates v12.8.D randomized QA passed.');
+console.log('Unit 3 Optimization/Related Rates v12.8.E randomized QA passed.');
