@@ -1,6 +1,6 @@
 BatchMath cumulative working copy
-Current full release: 12.8.G
-Archive: batchmath-site-v12.8.G.zip
+Current full release: 12.8.H
+Archive: batchmath-site-v12.8.H.zip
 Baseline: complete 12.7 release.
-Changes: v12.8.G systematic Optimization/Related Rates diagram labeling, plain length segments, responsive spacing, and right-triangle geometry, with focused randomized and rendered diagram QA. The BatchMath QA GitHub Actions workflow remains preserved.
+Changes: v12.8.H targeted Optimization/Related Rates diagram refinements for full sheet dimensions, connected page-margin labels, closest-point graph scaling, ladder/fence contact, and full trough heights. Approved problem content and the BatchMath QA GitHub Actions workflow remain preserved.
 No deployment performed.
