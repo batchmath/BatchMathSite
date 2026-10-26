@@ -178,6 +178,22 @@ function diagramGuide(x1,y1,x2,y2,label,kind,offset){
   return diagramLine(x1,y1,x2,y2,'diagram-dimension diagram-dimension-'+(kind||'fixed'),'data-measurement="external"')
     +diagramEdgeLabel(x1,y1,x2,y2,label,kind,offset,null,'guide');
 }
+function diagramCappedSpan(x1,y1,x2,y2,label,kind,offset){
+  var dx=x2-x1,dy=y2-y1,length=Math.max(1,Math.hypot(dx,dy)),nx=-dy/length,ny=dx/length;
+  var className='diagram-dimension diagram-dimension-'+(kind||'fixed');
+  return (label==null?diagramLine(x1,y1,x2,y2,className,'data-measurement="external"'):diagramGuide(x1,y1,x2,y2,label,kind,offset))
+    +diagramLine(x1-4*nx,y1-4*ny,x1+4*nx,y1+4*ny,className)
+    +diagramLine(x2-4*nx,y2-4*ny,x2+4*nx,y2+4*ny,className);
+}
+function diagramOutsideExtent(x1,y1,x2,y2,label,kind,distance){
+  var dx=x2-x1,dy=y2-y1,length=Math.max(1,Math.hypot(dx,dy)),nx=-dy/length,ny=dx/length;
+  var ax=x1+distance*nx,ay=y1+distance*ny,bx=x2+distance*nx,by=y2+distance*ny;
+  var className='diagram-dimension diagram-dimension-'+(kind||'fixed');
+  return '<g data-original-extent="'+[x1,y1,x2,y2].join(',')+'">'
+    +diagramLine(x1,y1,ax+5*nx,ay+5*ny,className)
+    +diagramLine(x2,y2,bx+5*nx,by+5*ny,className)
+    +diagramGuide(ax,ay,bx,by,label,kind,16)+'</g>';
+}
 function diagramEqualTick(x1,y1,x2,y2){
   var dx=x2-x1,dy=y2-y1,length=Math.max(1,Math.hypot(dx,dy)),mx=(x1+x2)/2,my=(y1+y2)/2;
   return diagramLine(mx-6*dy/length,my+6*dx/length,mx+6*dy/length,my-6*dx/length,'diagram-fixed-object');
@@ -248,6 +264,29 @@ function curveProjection(data){
   if(!Number.isFinite(minY)||!Number.isFinite(maxY))return null;
   if(Math.abs(maxY-minY)<1e-8){minY-=1;maxY+=1;}
   var pad=.1*(maxY-minY);minY-=pad;maxY+=pad;
+  var previewX=Number(data.previewX),zoomed=false;
+  if(!Number.isFinite(previewX))previewX=left+.55*(right-left);
+  var fixedY=Number(data.fixedPoint&&data.fixedPoint[1]);
+  if(data.kind==='closest-curve'&&Number.isFinite(fixedY)&&Math.abs(fixedY)>1e-8&&Math.abs(fixedY)*196/(maxY-minY)<28){
+    /* Use one affine scale for the curve, both points, and the x-axis. A
+       nearby nonzero ordinate must not disappear into the axis stroke. */
+    var magnitude=Math.abs(fixedY),candidates=[];
+    minY=-3*magnitude;maxY=3*magnitude;
+    var visibleCandidates=function(){var margin=.1*(maxY-minY);return points.filter(function(point){return point&&point.y>minY+margin&&point.y<maxY-margin;});};
+    candidates=visibleCandidates();
+    if(!candidates.length){
+      var nearest=points.filter(Boolean).slice().sort(function(a,b){return Math.abs(a.y-fixedY)-Math.abs(b.y-fixedY);})[0];
+      minY=Math.min(-magnitude,nearest.y<0?nearest.y*1.3:0);
+      maxY=Math.max(magnitude,nearest.y>0?nearest.y*1.3:0);
+      candidates=visibleCandidates();
+    }
+    var currentY=data.fn(previewX),margin=.1*(maxY-minY);
+    if(candidates.length&&(!Number.isFinite(currentY)||currentY<=minY+margin||currentY>=maxY-margin)){
+      candidates.sort(function(a,b){return Math.abs(a.x-previewX)-Math.abs(b.x-previewX);});
+      previewX=candidates[0].x;
+    }
+    zoomed=true;
+  }
   var mapX=function(value){return 72+(value-left)/(right-left)*468;};
   /* Reserve a caption band above every graph so longer generated curves and
      mobile labels never compete with a point label or the top of an axis. */
@@ -257,7 +296,7 @@ function curveProjection(data){
     if(!point){open=false;return;}
     path+=(open?' L ':'M ')+mapX(point.x).toFixed(2)+' '+mapY(point.y).toFixed(2);open=true;
   });
-  return{path:path,mapX:mapX,mapY:mapY,left:left,right:right,minY:minY,maxY:maxY};
+  return{path:path,mapX:mapX,mapY:mapY,left:left,right:right,minY:minY,maxY:maxY,previewX:previewX,zoomed:zoomed};
 }
 function coordinateAxes(projection,positiveHeightOnly){
   var xAxis=projection.minY<=0&&projection.maxY>=0?projection.mapY(0):286;
@@ -270,14 +309,17 @@ function coordinateAxes(projection,positiveHeightOnly){
 function renderSheetNet(data){
   var ratio=clampDiagram(Number(data.length)/Number(data.width),1,2.5),height=180,width=height*ratio;
   if(width>410){width=410;height=width/ratio;}
-  var x0=(600-width)/2,y0=62+(180-height)/2,cut=Math.min(42,height*.22);
+  var labelClearance=58+diagramLabelBounds(0,0,diagramMeasure(data.width,data.unit)).width;
+  if(width>570-labelClearance){width=570-labelClearance;height=width/ratio;}
+  var x0=Math.max((600-width)/2,labelClearance),y0=62+(180-height)/2,cut=Math.min(42,height*.22);
   var body='<rect class="diagram-object-fill" x="'+x0+'" y="'+y0+'" width="'+width+'" height="'+height+'"/>'
     +'<path class="diagram-fold" d="M'+(x0+cut)+' '+y0+'V'+(y0+height)+' M'+(x0+width-cut)+' '+y0+'V'+(y0+height)
     +' M'+x0+' '+(y0+cut)+'H'+(x0+width)+' M'+x0+' '+(y0+height-cut)+'H'+(x0+width)+'"/>'
     +'<path class="diagram-cut" d="M'+x0+' '+y0+'h'+cut+'v'+cut+'h-'+cut+'z M'+(x0+width-cut)+' '+y0+'h'+cut+'v'+cut+'h-'+cut+'z M'+x0+' '+(y0+height-cut)+'h'+cut+'v'+cut+'h-'+cut+'z M'+(x0+width-cut)+' '+(y0+height-cut)+'h'+cut+'v'+cut+'h-'+cut+'z"/>'
-    +diagramEdgeLabel(x0,y0+height,x0+width,y0+height,diagramMeasure(data.length,data.unit),'fixed',19)
-    +diagramEdgeLabel(x0,y0,x0,y0+height,diagramMeasure(data.width,data.unit),'fixed',16)
-    +diagramEdgeLabel(x0,y0,x0+cut,y0,data.cutLabel||'x','variable',-16);
+    +diagramOutsideExtent(x0,y0+height,x0+width,y0+height,diagramMeasure(data.length,data.unit),'fixed',30)
+    +diagramOutsideExtent(x0,y0,x0,y0+height,diagramMeasure(data.width,data.unit),'fixed',30)
+    +diagramEdgeLabel(x0,y0,x0+cut,y0,data.cutLabel||'x','variable',-16)
+    +diagramEdgeLabel(x0+cut,y0,x0+cut,y0+cut,data.cutLabel||'x','variable',-12);
   return svgDiagram(data,body);
 }
 function renderBox(data){
@@ -367,18 +409,36 @@ function renderInscribed(data){
   return svgDiagram(data,body);
 }
 function renderPage(data){
-  var body='<rect class="diagram-object-fill" x="174" y="44" width="252" height="252"/>'
-    +'<rect class="diagram-accent-fill" x="202" y="67" width="196" height="206"/>'
-    +diagramEdgeLabel(174,296,426,296,data.widthLabel||'w','variable',19)
-    +diagramEdgeLabel(426,44,426,296,data.heightLabel||'h','variable',-16)
-    +diagramText(300,57,'top + bottom: '+diagramMeasure(data.verticalMargins,data.unit),'fixed')
-    +diagramText(300,291,'left + right: '+diagramMeasure(data.horizontalMargins,data.unit),'fixed');
+  var left=230,right=482,top=60,bottom=300,printLeft=258,printRight=454,printTop=83,printBottom=277;
+  var guideX=212,joinX=192,topMiddle=(top+printTop)/2,bottomMiddle=(printBottom+bottom)/2;
+  var fixedClass='diagram-dimension diagram-dimension-fixed';
+  var body='<rect class="diagram-object-fill" x="'+left+'" y="'+top+'" width="'+(right-left)+'" height="'+(bottom-top)+'"/>'
+    +'<rect class="diagram-accent-fill" x="'+printLeft+'" y="'+printTop+'" width="'+(printRight-printLeft)+'" height="'+(printBottom-printTop)+'"/>'
+    +diagramEdgeLabel(left,bottom,right,bottom,data.widthLabel||'w','variable',18)
+    +diagramEdgeLabel(right,top,right,bottom,data.heightLabel||'h','variable',-16)
+    +'<g data-margin-pair="vertical">'
+    +diagramCappedSpan(guideX,top,guideX,printTop,null,'fixed')
+    +diagramCappedSpan(guideX,printBottom,guideX,bottom,null,'fixed')
+    +diagramLine(guideX,top,left,top,fixedClass)+diagramLine(guideX,printTop,printLeft,printTop,fixedClass)
+    +diagramLine(guideX,printBottom,printLeft,printBottom,fixedClass)+diagramLine(guideX,bottom,left,bottom,fixedClass)
+    +'<path class="'+fixedClass+'" d="M'+guideX+' '+topMiddle+'H'+joinX+'V'+bottomMiddle+'H'+guideX+' M185 175H'+joinX+'"/>'
+    +diagramText(178,163,'Top + bottom','fixed','end')
+    +diagramText(178,189,diagramMeasure(data.verticalMargins,data.unit),'fixed','end')+'</g>'
+    +'<g data-margin-pair="horizontal">'
+    +diagramCappedSpan(left,52,printLeft,52,null,'fixed')
+    +diagramCappedSpan(printRight,52,right,52,null,'fixed')
+    +diagramLine(left,52,left,top,fixedClass)+diagramLine(printLeft,52,printLeft,printTop,fixedClass)
+    +diagramLine(printRight,52,printRight,printTop,fixedClass)+diagramLine(right,52,right,top,fixedClass)
+    +'<path class="'+fixedClass+'" d="M300 37L'+((left+printLeft)/2)+' 52 M412 37L'+((printRight+right)/2)+' 52"/>'
+    +diagramText((left+right)/2,26,'Left + right: '+diagramMeasure(data.horizontalMargins,data.unit),'fixed')+'</g>';
   return svgDiagram(data,body);
 }
 function renderCurve(data){
   var projection=curveProjection(data);
   if(!projection)return'';
-  var body=coordinateAxes(projection,data.kind==='curve-rectangle')+'<path class="diagram-curve" d="'+projection.path+'"/>';
+  var body=coordinateAxes(projection,data.kind==='curve-rectangle');
+  if(projection.zoomed)body+='<defs><clipPath id="diagram-curve-window"><rect x="72" y="90" width="468" height="196"/></clipPath></defs>';
+  body+='<path class="diagram-curve"'+(projection.zoomed?' clip-path="url(#diagram-curve-window)"':'')+' d="'+projection.path+'"/>';
   if(data.kind==='curve-rectangle'){
     var preview=Number(data.previewX);
     if(!Number.isFinite(preview))preview=projection.left+.68*(projection.right-projection.left);
@@ -388,8 +448,7 @@ function renderCurve(data){
       +diagramEdgeLabel(leftX,baseY,rightX,baseY,'2x','variable',18)
       +diagramEdgeLabel(rightX,topY,rightX,baseY,'y','variable',-15);
   }else{
-    var vx=Number(data.previewX);
-    if(!Number.isFinite(vx))vx=projection.left+.55*(projection.right-projection.left);
+    var vx=projection.previewX;
     var vy=data.fn(vx),fixed=data.fixedPoint,pX=projection.mapX(vx),pY=projection.mapY(vy),fX=projection.mapX(fixed[0]),fY=projection.mapY(fixed[1]);
     var segmentX=pX-fX,segmentY=pY-fY,segmentLength=Math.max(1,Math.hypot(segmentX,segmentY));
     var unitX=segmentX/segmentLength,unitY=segmentY/segmentLength,normalX=-unitY,normalY=unitX;
@@ -403,8 +462,8 @@ function renderCurve(data){
       diagramLabelBounds(variableLabelX,variableLabelY,data.variablePointLabel||'P=(x,f(x))',variableAnchor)
     ],normalSide);
     body+=diagramLine(fX,fY,pX,pY,'diagram-distance')
-      +'<circle class="diagram-point-fixed" cx="'+fX+'" cy="'+fY+'" r="6"/>'
-      +'<circle class="diagram-point-variable" cx="'+pX+'" cy="'+pY+'" r="6"/>'
+      +'<circle class="diagram-point-fixed" cx="'+fX+'" cy="'+fY+'" r="6" data-world-point="'+fixed.join(',')+'" data-axis-y="'+projection.mapY(0)+'"/>'
+      +'<circle class="diagram-point-variable" cx="'+pX+'" cy="'+pY+'" r="6" data-world-point="'+[vx,vy].join(',')+'"/>'
       +diagramText(fixedLabelX,fixedLabelY,data.fixedPointLabel,'fixed',fixedAnchor)
       +diagramText(variableLabelX,variableLabelY,data.variablePointLabel||'P=(x,f(x))','variable',variableAnchor)
       +diagramText(distanceLabel.x,distanceLabel.y,'d','variable');
@@ -428,10 +487,12 @@ function renderPoles(data){
   return svgDiagram(data,body);
 }
 function renderLadderFence(data){
-  var body=diagramLine(54,267,548,267,'diagram-ground')
-    +diagramLine(488,38,488,267,'diagram-fixed-object')
-    +diagramLine(360,267,360,151,'diagram-fixed-object')
-    +diagramLine(114,267,488,61,'diagram-accent')
+  var footX=114,groundY=267,fenceX=360,fenceTop=151,wallX=488;
+  var wallContactY=groundY+(fenceTop-groundY)*(wallX-footX)/(fenceX-footX);
+  var body=diagramLine(54,groundY,548,groundY,'diagram-ground')
+    +diagramLine(wallX,38,wallX,groundY,'diagram-fixed-object')
+    +diagramLine(fenceX,groundY,fenceX,fenceTop,'diagram-fixed-object')
+    +diagramLine(footX,groundY,wallX,wallContactY,'diagram-accent')
     +diagramEdgeLabel(360,151,360,267,diagramMeasure(data.fenceHeight,data.unit),'fixed',16)
     +diagramEdgeLabel(360,267,488,267,diagramMeasure(data.gap,data.unit),'fixed',18)
     +diagramEdgeLabel(114,267,360,267,data.variableLabel||'x','variable',18)
@@ -570,6 +631,8 @@ function renderTrough(data){
     +diagramSegment(300,waterY,300,bottomY,data.depthLabel||'h','variable',-14)
     +diagramEdgeLabel(waterLeft,waterY,waterRight,waterY,data.waterWidthLabel||'w','variable',-16)
     +diagramGuide(leftTop,36,rightTop,36,diagramMeasure(data.topWidth,data.unit),'fixed',-15);
+  body+='<g data-trough-full-height="'+diagramEscape(data.fullHeight)+'">'
+    +diagramCappedSpan(76,topY,76,bottomY,diagramMeasure(data.fullHeight,data.unit),'fixed',16)+'</g>';
   if(!triangle)body+=diagramEdgeLabel(leftBottom,bottomY,rightBottom,bottomY,diagramMeasure(data.bottomWidth,data.unit),'fixed',19);
   return svgDiagram(data,body);
 }
@@ -2179,7 +2242,7 @@ function rrTriangularTrough(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'triangular_trough',id:'u3-v127-rr-tri-trough-'+mode+'-'+trim(length,1)+'-'+trim(depth,2),
     variant:'related_rates_triangular_trough',
-    diagram:{kind:'triangular-trough',title:'Triangular trough cross-section',description:'A triangular trough with generated fixed dimensions and changing water depth h and surface width w.',topWidth:fullWidth,unit:'ft',depthLabel:'h',waterWidthLabel:'w',fixedNotes:['Full height: '+trim(fullHeight,1)+' ft','Trough length: '+trim(length,1)+' ft']},
+    diagram:{kind:'triangular-trough',title:'Triangular trough cross-section',description:'A triangular trough with generated fixed dimensions and changing water depth h and surface width w.',topWidth:fullWidth,fullHeight:fullHeight,unit:'ft',depthLabel:'h',waterWidthLabel:'w',fixedNotes:['Full height: '+trim(fullHeight,1)+' ft','Trough length: '+trim(length,1)+' ft']},
     prompt:'A \\('+trim(length,1)+'\\)-foot trough has triangular ends of full width \\('+trim(fullWidth,1)+'\\) feet and height \\('+trim(fullHeight,1)+'\\) feet. Water enters at \\('+trim(volumeRate,1)+'\\) cubic feet per minute. Find \\(\\frac{dh}{dt}\\) when the water depth is \\('+trim(depth,2)+'\\) '+(depth===1?'foot':'feet')+'.',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[
@@ -2210,7 +2273,7 @@ function rrTrapezoidTrough(mode,source){
   return scalarProblem({
     slug:'related-rates',mode:mode,source:source,family:'trapezoidal_trough',id:'u3-v127-rr-trap-trough-'+mode+'-'+trim(length,1)+'-'+trim(depth,2),
     variant:'related_rates_trapezoidal_trough',
-    diagram:{kind:'trapezoidal-trough',title:'Trapezoidal trough cross-section',description:'A trapezoidal trough with generated fixed dimensions and changing water depth h and surface width w.',topWidth:top,bottomWidth:bottom,unit:'ft',depthLabel:'h',waterWidthLabel:'w',fixedNotes:['Full height: '+trim(fullHeight,1)+' ft','Trough length: '+trim(length,1)+' ft']},
+    diagram:{kind:'trapezoidal-trough',title:'Trapezoidal trough cross-section',description:'A trapezoidal trough with generated fixed dimensions and changing water depth h and surface width w.',topWidth:top,bottomWidth:bottom,fullHeight:fullHeight,unit:'ft',depthLabel:'h',waterWidthLabel:'w',fixedNotes:['Full height: '+trim(fullHeight,1)+' ft','Trough length: '+trim(length,1)+' ft']},
     prompt:'A \\('+trim(length,1)+'\\)-foot trough has trapezoidal ends with bottom width \\('+trim(bottom,1)+'\\), top width \\('+trim(top,1)+'\\), and height \\('+trim(fullHeight,1)+'\\) feet. When the water depth is \\('+trim(depth,2)+'\\) '+(depth===1?'foot':'feet')+', it rises at \\('+dhText+'\\) feet per minute. Find \\(\\frac{dV}{dt}\\).',
     answer:answer.answer,answerTex:answer.answerTex,value:answer.value,
     steps:[

@@ -9,7 +9,8 @@ import { fileURLToPath } from 'node:url';
 // bounds detect clipping/collisions; the PNGs support the visual review.
 const exec = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const out = path.join(root, 'qa-results', 'diagram-labels-v128g');
+const sourceDirectory = process.argv.find(value => value.startsWith('--source-dir='))?.slice(13);
+const out = sourceDirectory ? path.resolve(root, sourceDirectory) : path.join(root, 'qa-results', 'diagram-labels-v128g');
 const samples = JSON.parse(fs.readFileSync(path.join(out, 'samples.json'), 'utf8'));
 const css = fs.readFileSync(path.join(root, 'assets/ap-topic-practice.css'), 'utf8');
 const diagramCss = css.split('\n').find(line => line.startsWith('.practice-diagram-hint'))
