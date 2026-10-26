@@ -1,0 +1,58 @@
+name: Package BatchMath v12.8.H
+
+# One requested test-build release, from this working branch only. Ordinary
+# site edits do not trigger this job, and existing QA/deployment is unchanged.
+on:
+  push:
+    branches:
+      - work/optimization-related-rates-diagram-hints
+    paths:
+      - .github/workflows/package-v12-8-h.yml
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    if: github.repository == 'batchmath/BatchMathSite' && github.ref == 'refs/heads/work/optimization-related-rates-diagram-hints'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Create and verify the exact committed full-site ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          node -e 'if (require("./package.json").version !== "12.8.H" || require("./assets/app-version.json").version !== "12.8.H") throw new Error("Unexpected site version")'
+          git archive --format=zip -9 --prefix=batchmath-site-v12.8.H/ --output=batchmath-site-v12.8.H.zip "$GITHUB_SHA"
+          unzip -tq batchmath-site-v12.8.H.zip
+          python3 - <<'PY'
+          import zipfile
+          with zipfile.ZipFile('batchmath-site-v12.8.H.zip') as archive:
+              names = archive.namelist()
+              assert {name.split('/')[0] for name in names} == {'batchmath-site-v12.8.H'}
+              assert 'batchmath-site-v12.8.H/.github/workflows/batchmath-qa.yml' in names
+              assert 'batchmath-site-v12.8.H/index.html' in names
+          PY
+          checksum="$(sha256sum batchmath-site-v12.8.H.zip | cut -d ' ' -f 1)"
+          printf 'Complete website package from working-branch commit `%s`.\n\nSHA-256: `%s`\n' "$GITHUB_SHA" "$checksum" > release-notes.md
+
+      - name: Publish the requested prerelease asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release create v12.8.H batchmath-site-v12.8.H.zip \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title 'BatchMath v12.8.H' \
+            --notes-file release-notes.md \
+            --prerelease --latest=false
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.H" \
+            --jq '.assets[] | select(.name == "batchmath-site-v12.8.H.zip") | [.state, .size, .browser_download_url] | @tsv'
