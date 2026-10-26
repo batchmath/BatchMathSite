@@ -580,10 +580,10 @@ for (const page of pages) {
   const overlayIndex = html.indexOf('/assets/unit3-optimization-related-rates.js');
   const keypadIndex = html.indexOf('/assets/calculus-keypad.js');
   assert.ok(baseIndex >= 0 && overlayIndex > baseIndex && keypadIndex > overlayIndex, page + ' has incorrect shared-generator load order');
-  assert.match(html, /"generatorVersion":"12\.8\.H"/, page + ' has stale generator analytics metadata');
+  assert.match(html, /"generatorVersion":"12\.8\.I"/, page + ' has stale generator analytics metadata');
   if(page.includes('/comprehensive-review/'))assert.match(html,/"slugs":\[[^\]]*"optimization","related-rates"\]/,page+' must inherit both shared diagram-enabled generators');
 }
 
-assert.equal(JSON.parse(read('assets/app-version.json')).version, '12.8.H');
+assert.equal(JSON.parse(read('assets/app-version.json')).version, '12.8.I');
 assert.ok(fs.existsSync(path.join(root, '.github/workflows/batchmath-qa.yml')));
-console.log('Unit 3 Optimization/Related Rates v12.8.H randomized QA passed.');
+console.log('Unit 3 Optimization/Related Rates v12.8.I randomized QA passed.');

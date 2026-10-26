@@ -3,7 +3,7 @@
 
 /*
  * BatchMath AP Calculus AB Unit 3
- * Shared Optimization / Related Rates curriculum expansion (v12.8.H).
+ * Shared Optimization / Related Rates curriculum expansion (v12.8.I).
  *
  * Loaded after unit3-applications-generators.js on the two focused topics and
  * both Unit 3 comprehensive-review pages.  This deliberately reuses the
@@ -409,28 +409,20 @@ function renderInscribed(data){
   return svgDiagram(data,body);
 }
 function renderPage(data){
-  var left=230,right=482,top=60,bottom=300,printLeft=258,printRight=454,printTop=83,printBottom=277;
-  var guideX=212,joinX=192,topMiddle=(top+printTop)/2,bottomMiddle=(printBottom+bottom)/2;
-  var fixedClass='diagram-dimension diagram-dimension-fixed';
+  var left=120,right=480,top=42,bottom=292,printLeft=210,printRight=390,printTop=102,printBottom=232;
+  var middleX=(left+right)/2,middleY=(top+bottom)/2;
+  function margin(x1,y1,x2,y2,combined,offset,name){
+    return diagramLine(x1,y1,x2,y2,'diagram-dimension diagram-dimension-fixed','data-page-margin="'+name+'" data-measurement="margin" stroke-dasharray="1 5" stroke-linecap="round"')
+      +diagramEdgeLabel(x1,y1,x2,y2,diagramMeasure(Number(combined)/2,data.unit,3),'fixed',offset,null,'margin');
+  }
   var body='<rect class="diagram-object-fill" x="'+left+'" y="'+top+'" width="'+(right-left)+'" height="'+(bottom-top)+'"/>'
     +'<rect class="diagram-accent-fill" x="'+printLeft+'" y="'+printTop+'" width="'+(printRight-printLeft)+'" height="'+(printBottom-printTop)+'"/>'
     +diagramEdgeLabel(left,bottom,right,bottom,data.widthLabel||'w','variable',18)
-    +diagramEdgeLabel(right,top,right,bottom,data.heightLabel||'h','variable',-16)
-    +'<g data-margin-pair="vertical">'
-    +diagramCappedSpan(guideX,top,guideX,printTop,null,'fixed')
-    +diagramCappedSpan(guideX,printBottom,guideX,bottom,null,'fixed')
-    +diagramLine(guideX,top,left,top,fixedClass)+diagramLine(guideX,printTop,printLeft,printTop,fixedClass)
-    +diagramLine(guideX,printBottom,printLeft,printBottom,fixedClass)+diagramLine(guideX,bottom,left,bottom,fixedClass)
-    +'<path class="'+fixedClass+'" d="M'+guideX+' '+topMiddle+'H'+joinX+'V'+bottomMiddle+'H'+guideX+' M185 175H'+joinX+'"/>'
-    +diagramText(178,163,'Top + bottom','fixed','end')
-    +diagramText(178,189,diagramMeasure(data.verticalMargins,data.unit),'fixed','end')+'</g>'
-    +'<g data-margin-pair="horizontal">'
-    +diagramCappedSpan(left,52,printLeft,52,null,'fixed')
-    +diagramCappedSpan(printRight,52,right,52,null,'fixed')
-    +diagramLine(left,52,left,top,fixedClass)+diagramLine(printLeft,52,printLeft,printTop,fixedClass)
-    +diagramLine(printRight,52,printRight,printTop,fixedClass)+diagramLine(right,52,right,top,fixedClass)
-    +'<path class="'+fixedClass+'" d="M300 37L'+((left+printLeft)/2)+' 52 M412 37L'+((printRight+right)/2)+' 52"/>'
-    +diagramText((left+right)/2,26,'Left + right: '+diagramMeasure(data.horizontalMargins,data.unit),'fixed')+'</g>';
+    +diagramEdgeLabel(right,top,right,bottom,data.heightLabel||'h','variable',-18)
+    +margin(middleX,top,middleX,printTop,data.verticalMargins,-14,'top')
+    +margin(middleX,printBottom,middleX,bottom,data.verticalMargins,-14,'bottom')
+    +margin(left,middleY,printLeft,middleY,data.horizontalMargins,-18,'left')
+    +margin(printRight,middleY,right,middleY,data.horizontalMargins,-18,'right');
   return svgDiagram(data,body);
 }
 function renderCurve(data){
