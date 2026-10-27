@@ -21,7 +21,7 @@ try{
   });
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));
   for(const slug of pages){
-   await page.goto(`${origin}/ap-calculus/unit-4-integrals/topics/${slug}/practice/?bm_seed=unit4-J-${width}`,{waitUntil:'networkidle'});
+   await page.goto(`${origin}/ap-calculus/unit-4-integrals/topics/${slug}/practice/?bm_seed=unit4-J-${width}`,{waitUntil:'domcontentloaded',timeout:60000});
    await page.waitForFunction(()=>window.MathJax?.typesetPromise&&window.__u4Current?.unit4Meta,{timeout:60000});
    await page.evaluate(()=>MathJax.startup.promise);
    const samples=await page.evaluate(slug=>{
@@ -50,7 +50,8 @@ try{
    }
   }
   // Review uses the unchanged Practice Type selector and the same renderer.
-  await page.goto(`${origin}/ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/?bm_seed=unit4-J-review-${width}`,{waitUntil:'networkidle'});
+  await page.goto(`${origin}/ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/?bm_seed=unit4-J-review-${width}`,{waitUntil:'domcontentloaded',timeout:60000});
+  await page.waitForFunction(()=>window.MathJax?.typesetPromise&&window.__u4Current,{timeout:60000});await page.evaluate(()=>MathJax.startup.promise);
   for(const mode of ['rect','trap','sigma']){await page.selectOption('#unit4Mode',mode);await page.evaluate(()=>MathJax.typesetPromise());const p=await page.evaluate(()=>window.__u4Current);assert.ok(p.unit4Meta);assert.equal(p.unit4Meta.kind,{rect:'rectangular',trap:'trapezoidal',sigma:'sigma'}[mode]);}
   assert.deepEqual(errors,[],'Page errors');await context.close();
  }

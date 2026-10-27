@@ -1,6 +1,6 @@
 BatchMath cumulative working copy
-Current full release: 12.8.I
-Archive: batchmath-site-v12.8.I.zip
+Current full release: 12.8.J
+Archive: batchmath-site-v12.8.J.zip
 Baseline: complete 12.7 release.
-Changes: v12.8.I simplifies only the shared page/printed-region diagram to four individual dotted margin measurements and direct outer-edge width/height labels. Approved problem content, all other diagrams, and the BatchMath QA GitHub Actions workflow remain preserved.
+Changes: v12.8.J updates the shared Rectangular Approximation, Trapezoidal Approximation, and Introduction to Sigma Notation generators and their Unit 4 Comprehensive Review inheritance. Other course content and the existing BatchMath QA workflow remain preserved.
 No deployment performed.

@@ -2803,7 +2803,7 @@ G['difference-quotient']=()=>{
   delete G['graphing-functions'];
 })();
 
-// Unit 4 course-aligned approximation/sigma work. Keep these overrides inside
+// v12.8.J — Unit 4 course-aligned approximation/sigma work. Keep these overrides inside
 // the shared G registry: Comprehensive Review resolves these same functions.
 (function unit4ApproximationSigma(){
   const problemKey=(prefix,data)=>{let h=2166136261,g=0x9e3779b9;for(const ch of JSON.stringify(data)){h=Math.imul(h^ch.charCodeAt(0),16777619);g=Math.imul(g^ch.charCodeAt(0),2246822519);}return `${prefix}-${(h>>>0).toString(16).padStart(8,'0')}${(g>>>0).toString(16).padStart(8,'0')}`;};
@@ -2910,7 +2910,7 @@ G['difference-quotient']=()=>{
   }
   function partitionWork(d){
     const info=`On ${inline(`[${coordinate(d.a,d.f)},${coordinate(d.b,d.f)}]`)}, use ${inline(`n=${d.n}`)}.`;
-    return d.uniform?`${info}${equation(`\\Delta x=\\frac{${difference(d.b,d.a,d.f)}}{${d.n}}=${coordinate(d.widths[0],d.f)}`)}`:`${info} The widths are${equation(`\\begin{gathered}${d.widths.map((w,i)=>`\\Delta x_{${i+1}}=${difference(d.ends[i+1],d.ends[i])}=${tq(w)}`).join('\\\\')}\\end{gathered}`)}`;
+    return d.uniform?`${info}${equation(`\\Delta x=\\frac{${difference(d.b,d.a,d.f)}}{${d.n}}=${coordinate(d.widths[0],d.f)}`)}`:`${info} The widths are${equation(`\\begin{gathered}${d.widths.map((w,i)=>{const subtraction=difference(d.ends[i+1],d.ends[i]);return `\\Delta x_{${i+1}}=${subtraction}${subtraction===tq(w)?'':`=${tq(w)}`}`;}).join('\\\\')}\\end{gathered}`)}`;
   }
   function sumWork(label,terms,answer){
     const lines=terms.map((s,i)=>`${i===0?`${label}&=`:'&\\quad'}${i&&!/^[-+]/.test(s)?'+':''}${s}`);lines.push(...answerLines('',answer));
