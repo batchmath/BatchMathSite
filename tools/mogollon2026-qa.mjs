@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import vm from 'node:vm';
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),require=createRequire(import.meta.url),data=require(path.join(root,'mogollon2026/mogollon2026.js'));
@@ -33,4 +34,8 @@ const html=read('mogollon2026/index.html'),js=read('mogollon2026/mogollon2026.js
 assert.match(html,/rel="canonical" href="https:\/\/batchmath.net\/mogollon2026\/"/);assert.match(html,/Watch the Full Mogollon Monster 100 Video/);assert.match(html,/IAn8hB0_lOM/);assert.match(read('sitemap.xml'),/<loc>https:\/\/batchmath.net\/mogollon2026\/<\/loc>/);
 assert.match(js,/const SHEET_CSV_URL = ''/);assert.match(js,/cache:'no-store'/);assert.match(js,/credentials:'omit'/);assert.match(js,/_bm_refresh/);assert.match(sw,/url.pathname === '\/mogollon2026\/starter.csv'/);assert.doesNotMatch(js,/innerHTML|eval\(/);
 assert.match(read('index.html'),/href="archive\/"/);assert.match(read('index.html'),/href="\/mogollon2026"/);
+// Execute the actual SW fetch handler. Merely having a data-URL helper does
+// not prove the same-origin starter CSV bypasses the runtime cache.
+const handlers={},worker={location:{origin:'https://batchmath.net'},addEventListener:(type,fn)=>handlers[type]=fn};vm.runInNewContext(sw,{self:worker,URL});
+for(const url of ['https://batchmath.net/mogollon2026/starter.csv?_bm_refresh=1','https://docs.google.com/spreadsheets/d/e/published/pub?output=csv']){let cached=false;handlers.fetch({request:{method:'GET',url,mode:'cors'},respondWith:()=>{cached=true;}});assert.equal(cached,false,'CSV must bypass the service worker: '+url);}
 console.log('PASS Mogollon schema, six verified published miles, gaps, CSV quotations, publication rules, optional fields, URLs, growth, safe text, and live-only data policy');

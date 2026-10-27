@@ -2,6 +2,7 @@ name: Unit 4 and Mogollon v12.8.K targeted QA
 on:
   push:
     branches: [work/v12.8k-unit4-mogollon2026]
+    paths-ignore: [.github/workflows/package-v12-8-k.yml]
   workflow_dispatch:
 permissions:
   contents: read

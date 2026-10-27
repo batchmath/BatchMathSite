@@ -40,6 +40,8 @@ try{
     // Exercise physical typing and the established structured paste path (a
     // slash typed interactively enters a denominator until the user leaves it).
     await page.locator('.bm-calc-editor').click();await page.keyboard.type('12');assert.equal(await page.locator('.staged-exact-input').inputValue(),'12');await page.keyboard.press('Control+z');assert.equal(await page.locator('.staged-exact-input').inputValue(),'1');await page.locator('.bm-calc-keypad button').filter({hasText:/^Clear$/}).click();
+    if(index===0){await page.getByRole('button',{name:'Insert stacked fraction',exact:true}).click();assert.equal(await page.locator('.bm-calc-editor .bm-calc-frac').count(),1);await page.keyboard.press('Control+z');assert.equal(await page.locator('.bm-calc-editor .bm-calc-frac').count(),0);await page.keyboard.press('Control+y');assert.equal(await page.locator('.bm-calc-editor .bm-calc-frac').count(),1);await page.locator('.bm-calc-keypad button').filter({hasText:/^Clear$/}).click();}
+    if(p.stage1.keypadMode==='unit4-sigma'&&index===0){await page.locator('.bm-calc-keypad button').filter({hasText:/^n$/}).click();assert.equal(await page.locator('.staged-exact-input').inputValue(),'n');await page.locator('.bm-calc-keypad button').filter({hasText:/^Clear$/}).click();}
     await page.evaluate(answer=>{const data=new DataTransfer();data.setData('text/plain',answer);document.querySelector('.bm-calc-editor').dispatchEvent(new ClipboardEvent('paste',{clipboardData:data,bubbles:true,cancelable:true}));},answer);await page.keyboard.press('Enter');await page.waitForTimeout(30);
     assert.equal(await page.locator('.staged-part-one .result').count(),1);assert.equal((await page.locator('.staged-part-one .result').textContent()).includes('not correct'),!correct);
     if(p.stage2){
@@ -71,6 +73,7 @@ try{
   const context=await browser.newContext({viewport:{width,height:768},serviceWorkers:'block'});await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));
   await page.goto(origin+'/mogollon2026',{waitUntil:'domcontentloaded'});await page.waitForSelector('.mile-card');await page.evaluate(()=>MathJax.startup.promise);await rendered(page);
+  await page.keyboard.press('Tab');assert.equal(await page.locator('.skip-link').evaluate(e=>e===document.activeElement),true);await page.keyboard.press('Tab');assert.equal(await page.locator('.skip-link').evaluate(e=>getComputedStyle(e).clipPath),'inset(50%)');
   assert.deepEqual(await page.locator('.mile-card').evaluateAll(es=>es.map(e=>+e.dataset.mile)),[1,2,3,4,6,7]);assert.match(await page.locator('#mile-status').textContent(),/not connected/);
   assert.equal(await page.locator('.mile-solution[open]').count(),0);await page.locator('#mile-001 summary').click();await rendered(page);assert.ok(await page.locator('#mile-001 .mile-solution mjx-container').count()>0);await assertLayout(page,`${width}-archive-starter`);await screenshot(page,`${width}-mogollon-starter`);
   await page.locator('#mile-004 .mile-next').click();assert.equal(new URL(page.url()).hash,'#mile-006');await page.waitForTimeout(60);await page.locator('#mile-006 .mile-card-actions button').click();

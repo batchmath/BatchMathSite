@@ -180,6 +180,9 @@ self.addEventListener('fetch', event => {
   if (request.method !== 'GET') return;
 
   const url = new URL(request.url);
+  // Both published Sheets and the explicitly identified starter CSV are live
+  // data, never runtime-cache entries or offline fallbacks.
+  if (isArchiveDataRequest(url)) return;
 
   // MathJax is the one third-party dependency that is useful to preserve for
   // offline practice. Analytics, YouTube, College Board, etc. remain network-native.
