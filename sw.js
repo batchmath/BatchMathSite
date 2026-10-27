@@ -101,6 +101,7 @@ function isMathJaxRequest(url) {
 }
 
 function isArchiveDataRequest(url) {
+  if (url.origin === self.location.origin && url.pathname === '/mogollon2026/starter.csv') return true;
   return (url.hostname === 'docs.google.com' || url.hostname.endsWith('.googleusercontent.com')) &&
     /\/spreadsheets\//i.test(url.pathname);
 }

@@ -3045,38 +3045,9 @@ G['difference-quotient']=()=>{
   const plainOption=s=>({key:String(s),tex:String(s),value:String(s)});
   const numericOption=n=>({key:String(n),tex:String(n),value:n});
   const valueOf=(coeff,k)=>val(pv(coeff,q(k)));
-  function sigmaRead(){
-    const subtype=pick(['expand','expand','expand','first','last','index','lower','upper','count']),lower=ri(1,3),upper=lower+ri(2,4),symbolic=R()<.45&&['expand','index','upper'].includes(subtype);
-    if(symbolic){
-      const math=sumSymbol('a_k'),expanded='a_1+a_2+\\cdots+a_n';
-      if(subtype==='index')return sigmaQuestion('read',subtype,'Identify the index of summation.',math,['k','n','a_k','1'].map(plainOption),[`The terms are ${inline(expanded)}. The index ${inline('k')} runs from ${inline('1')} to ${inline('n')}.`],{symbolic:true,task:'index',answer:'k'});
-      if(subtype==='upper')return sigmaQuestion('read',subtype,'Identify the upper bound of the summation.',math,['n','1','k','a_n'].map(plainOption),[`The sum starts with ${inline('a_1')} and ends with ${inline('a_n')}, so the upper bound is ${inline('n')}.`],{symbolic:true,task:'upper',answer:'n'});
-      return sigmaQuestion('read','expand_general','Which expression writes out the terms of the sum?',math,[expanded,'a_0+a_1+\\cdots+a_n','a_1+a_2+\\cdots+a_{n-1}','a_2+a_3+\\cdots+a_n'].map(plainOption),[equation(`${math}=${expanded}`)],{symbolic:true,task:'expand_general',answer:expanded});
-    }
-    const coeff=R()<.45?[q(ri(-3,4)),q(nz(-3,3))]:[q(ri(-3,4)),q(ri(-2,2)),q(pick([-1,1,2]))],math=sumSymbol(sigmaSummand(coeff),lower,upper),xs=Array.from({length:upper-lower+1},(_,i)=>valueOf(coeff,lower+i));
-    const expansion=equalityWork(math,termsBlock(xs)),base={coeff,lower,upper,symbolic:false,task:subtype};
-    if(subtype==='expand'){
-      const sequences=[xs,[valueOf(coeff,lower-1),...xs],xs.slice(0,-1),xs.slice(1),Array.from({length:xs.length},(_,i)=>valueOf(coeff,lower+i+1))],options=sequences.map(terms=>({key:JSON.stringify(terms),tex:termsBlock(terms),value:terms}));
-      return sigmaQuestion('read',subtype,'Which expression writes out the terms in index order, before adding?',math,options,[expansion],base);
-    }
-    if(subtype==='index')return sigmaQuestion('read',subtype,'Identify the index of summation.',math,['k',String(lower),String(upper),'x'].map(plainOption),[expansion,`The index is ${inline('k')}; it takes the integer values ${inline(`${lower},${lower+1},\\ldots,${upper}`)}.`],{...base,answer:'k'});
-    if(subtype==='first'||subtype==='last'){
-      const k=subtype==='first'?lower:upper,answer=valueOf(coeff,k),options=[answer,valueOf(coeff,subtype==='first'?lower+1:upper-1),valueOf(coeff,subtype==='first'?upper:lower),valueOf(coeff,k+1),valueOf(coeff,k-1),upper-lower+1].map(numericOption);
-      return sigmaQuestion('read',subtype,`Find the ${subtype} term of the sum.`,math,options,[`Use ${inline(`k=${k}`)}.${equation(`${substituted(coeff,k)}=${answer}`)}`,expansion],{...base,answer});
-    }
-    const answer=subtype==='lower'?lower:subtype==='upper'?upper:upper-lower+1,options=[answer,subtype==='lower'?upper:lower,upper-lower,upper+1,upper,lower-1,upper-lower+2].map(numericOption),prompt=subtype==='count'?'How many terms are in the sum?':`Identify the ${subtype} bound of the summation.`;
-    const reason=subtype==='count'?equation(`${upper}-${lower}+1=${answer}`):`The index starts at ${inline(String(lower))} and ends at ${inline(String(upper))}, so the ${subtype} bound is ${inline(String(answer))}.`;
-    return sigmaQuestion('read',subtype,prompt,math,options,[expansion,reason],{...base,answer});
-  }
   function sigmaNumerical(){
     const subtype=pick(['constant','linear','quadratic','combination']),N=ri(3,7),lower=1,coeff=subtype==='constant'?[q(nz(-6,6))]:subtype==='linear'?[q(ri(-4,4)),q(nz(-3,3))]:subtype==='quadratic'?[q(ri(-4,4)),q(0),q(pick([-2,-1,1,2]))]:[q(ri(-4,4)),q(nz(-3,3)),q(pick([-1,1,2]))],xs=Array.from({length:N},(_,i)=>valueOf(coeff,i+1)),answer=xs.reduce((a,b)=>a+b,0),math=sumSymbol(sigmaSummand(coeff),1,N),options=[answer,answer-xs.at(-1),answer+valueOf(coeff,0),answer+valueOf(coeff,N+1),valueOf(coeff,N),N*valueOf(coeff,1),answer-xs[0]].map(numericOption);
     return sigmaQuestion('numerical',subtype,'Evaluate the finite sum.',math,options,[equalityWork(math,termsBlock(xs))+equation(`=${answer}`)],{coeff,lower,upper:N,answer});
-  }
-  function sigmaWrite(){
-    const subtype=pick(['constant','linear','quadratic','quadratic']),N=ri(3,5),coeff=subtype==='constant'?[q(nz(-6,6))]:subtype==='linear'?[q(ri(-4,4)),q(nz(-3,3))]:[q(ri(-3,4)),q(ri(-2,2)),q(pick([-1,1,2]))],terms=Array.from({length:N},(_,i)=>valueOf(coeff,i+1)),shifted=[pv(coeff,q(1)),add(coeff[1]||q(0),mul(q(2),coeff[2]||q(0))),coeff[2]||q(0)],changed=[add(coeff[0],q(1)),...coeff.slice(1)],descriptors=[{coeff,lower:1,upper:N},{coeff,lower:1,upper:N-1},{coeff,lower:1,upper:N+1},{coeff:shifted,lower:1,upper:N},{coeff:changed,lower:1,upper:N}],options=descriptors.map(d=>({key:JSON.stringify(Array.from({length:d.upper-d.lower+1},(_,i)=>valueOf(d.coeff,d.lower+i))),tex:sumSymbol(sigmaSummand(d.coeff),d.lower,d.upper),value:d}));
-    const termWork=k=>{const expr=substituted(coeff,k),answer=valueOf(coeff,k);return equation(`a_{${k}}=${expr}${expr===String(answer)?'':`=${answer}`}`);};
-    const math=termsBlock(terms),formula=sigmaBody(coeff),steps=[`The term with index ${inline('k')} is ${inline(formula)}.${termWork(1)}${termWork(N)}`,`There are ${inline(String(N))} terms, starting at ${inline('k=1')}.${equation(sumSymbol(sigmaSummand(coeff),1,N))}`];
-    return sigmaQuestion('write',subtype,'Which sigma expression generates these terms in the displayed order, starting at k = 1?',math,options,steps,{coeff,lower:1,upper:N,terms});
   }
   function identitiesPolynomial(coeff,left=false){
     const C=coeff[0]||q(0),B=coeff[1]||q(0),A=coeff[2]||q(0),s=left?-1:1;

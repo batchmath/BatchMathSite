@@ -58,6 +58,21 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ensureArchiveNavigation, { once: true });
   else ensureArchiveNavigation();
 
+  // The race archive is separate from the existing Problem of the Day archive.
+  function ensureMogollonNavigation() {
+    document.querySelectorAll('#course-menu.dropdown').forEach(menu => {
+      if (menu.querySelector('[data-bm-mogollon-nav]')) return;
+      const link = document.createElement('a');
+      link.href = '/mogollon2026';
+      link.textContent = '100 Miles of Calculus';
+      link.dataset.bmMogollonNav = '1';
+      const archive = menu.querySelector('[data-bm-archive-nav]');
+      menu.insertBefore(link, archive ? archive.nextSibling : null);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ensureMogollonNavigation, { once: true });
+  else ensureMogollonNavigation();
+
   function ensureActionUI() {
     if (document.querySelector('.bm-pwa-actions')) return;
     const wrap = document.createElement('div');

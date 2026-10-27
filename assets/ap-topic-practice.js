@@ -244,8 +244,9 @@ function renderStagedCalculus(box){
   typeset([part]);
  }
  function finishProblem(overallOk,note,lastStageOk=overallOk){
-  current.answered=true;current.pendingStageAdvance=null;current.enterAdvanceAllowed=Boolean(lastStageOk);current.requirePhysicalNextClick=!lastStageOk;current.nextPointerArmed=false;finishAnalytics(overallOk);$('next').hidden=false;
-  if(lastStageOk)setTimeout(()=>{try{$('next').focus({preventScroll:true});}catch(_){$('next').focus();}},0);else setTimeout(()=>note?.focus(),0);
+  const allowNext=Boolean(lastStageOk||current.unit4Meta);
+  current.answered=true;current.pendingStageAdvance=null;current.enterAdvanceAllowed=allowNext;current.requirePhysicalNextClick=!allowNext;current.nextPointerArmed=false;finishAnalytics(overallOk);$('next').hidden=false;
+  if(allowNext)setTimeout(()=>{try{$('next').focus({preventScroll:true});}catch(_){$('next').focus();}},0);else setTimeout(()=>note?.focus(),0);
  }
 }
 
