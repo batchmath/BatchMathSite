@@ -2816,7 +2816,7 @@ G['difference-quotient']=()=>{
     if(!entries.length)return '0';
     return entries.map(([atom,c],i)=>{const [n,d]=c,A=Math.abs(n),body=atomTex(atom),num=(A===1&&body?'':A)+body,term=d===1?num:`\\frac{${num}}{${d}}`;return `${n<0?'-':i?'+':''}${term}`;}).join('');
   }
-  const par=s=>/^[-]|[+]/.test(s)?`\\left(${s}\\right)`:s, emath=e=>par(exact(e));
+  const par=s=>/[-+]/.test(s)?`\\left(${s}\\right)`:s, emath=e=>par(exact(e));
   const signedTerms=terms=>terms.filter(t=>t.c[0]).map(({c,body},i)=>`${c[0]<0?'-':i?'+':''}${Math.abs(c[0])===c[1]&&body?'':tq(q(Math.abs(c[0]),c[1]))}${body}`).join('')||'0';
   const poly=(coeff,v='x')=>signedTerms(coeff.map((c,i)=>({c,body:i===0?'':i===1?v:`${v}^{${i}}`})).reverse());
   const pv=(coeff,x)=>coeff.reduceRight((a,c)=>add(mul(a,x),c),q(0));
@@ -2857,10 +2857,10 @@ G['difference-quotient']=()=>{
       f.tex=`${f.A[0]===-1?'-':f.A[0]===1?'':f.A[0]}\\ln${f.offset[0]?'(ex)':' x'}`;f.monotone=Math.sign(f.A[0]);f.concavity=-f.monotone;
     }else{
       // These partitions use only 0, pi/6, pi/4, pi/3, pi/2 and reflections.
-      const span=n===3?q(1,2):q(1);a=q(0);b=span;step=div(span,q(n));
-      f={family:'trigonometric',trig:pick(['sin','cos']),A:q(pick([-2,-1,1,2])),offset:q(ri(0,2))};
+      const span=n===3?q(1,2):q(1),trig=pick(['sin','cos']);a=trig==='cos'?q(-1,2):q(0);b=add(a,span);step=div(span,q(n));
+      f={family:'trigonometric',trig,A:q(pick([-2,-1,1,2])),offset:q(ri(0,2))};
       f.tex=`${f.A[0]===-1?'-':f.A[0]===1?'':f.A[0]}\\${f.trig} x${f.offset[0]?`+${f.offset[0]}`:''}`;
-      f.concavity=f.trig==='sin'?-Math.sign(f.A[0]):n===3?-Math.sign(f.A[0]):0;f.monotone=f.trig==='cos'?-Math.sign(f.A[0]):n===3?Math.sign(f.A[0]):0;
+      f.concavity=-Math.sign(f.A[0]);f.monotone=n===3?Math.sign(f.A[0]):0;
     }
     return {f,a,b,step};
   }
@@ -2917,7 +2917,7 @@ G['difference-quotient']=()=>{
     if(!s)return null;
     const over=mid?s<0:trap?s>0:method==='left'?s<0:s>0,behavior=mid||trap?(s>0?'concave up':'concave down'):(s>0?'increasing':'decreasing');
     let reason=`The function is ${behavior} throughout ${inline(`[${coordinate(d.a,d.f)},${coordinate(d.b,d.f)}]`)}.`;
-    if(d.f.coeff)reason+=` ${inline(`${mid||trap?"f''":"f'"}(x)=${mid||trap?d.f.ddTex:d.f.dTex}`)} has the required sign there.`;
+    if(d.f.coeff)reason+=` ${inline(`${mid||trap?"f''":"f'"}(x)=${mid||trap?d.f.ddTex:d.f.dTex}`)} is ${s>0?'nonnegative':'nonpositive'} throughout the interval.`;
     reason+=` ${mid?'Midpoint rectangles':trap?'The trapezoidal approximation':`The ${method}-endpoint approximation`} therefore ${over?'overestimates':'underestimates'} the integral.`;
     return {over,behavior,reason};
   }
@@ -2956,6 +2956,38 @@ G['difference-quotient']=()=>{
       if(p)return p;
     }
     throw Error('Unable to construct distinct rectangular approximation choices');
+  };
+  function trapezoidWork(d){
+    const heights=[...d.heights.left,d.heights.right.at(-1)];
+    const evaluations=`<div class="u4-heights">${d.ends.map((x,i)=>equation(`f(${coordinate(x,d.f)})=${exact(heights[i])}`)).join('')}</div>`;
+    if(!d.uniform)return [evaluations,sumWork(`T_{${d.n}}`,d.widths.map((w,i)=>`${par(coordinate(div(w,q(2)),d.f))}\\left[${emath(heights[i])}+${emath(heights[i+1])}\\right]`),d.answers.trapezoid)];
+    const terms=heights.map((y,i)=>`${i&&i<d.n?'2\\!\\cdot ':''}${emath(y)}`),lines=[];
+    for(let i=0;i<terms.length;i+=2){const end=i+2>=terms.length;lines.push(`${i===0?`T_{${d.n}}&=${coordinate(div(d.widths[0],q(2)),d.f)}\\Bigl[`:'&\\quad+'}${terms.slice(i,i+2).join('+')}${end?'\\Bigr]':''}`);}
+    lines.push(`&=${exact(d.answers.trapezoid)}`);
+    return [evaluations,equation(`\\begin{aligned}${lines.join('\\\\')}\\end{aligned}`)];
+  }
+  G['trapezoidal-approximations']=()=>{
+    const representation=R()<.5?'table':'function',n=pick([2,3,4,6]),roll=R(),family=roll<.35?'quadratic':roll<.55?'cubic':roll<.75?'trigonometric':roll<.95?'rational':'linear',relation=R()<.1;
+    for(let attempt=0;attempt<100;attempt++){
+      const d=makeData('trapezoidal',representation,family,n,false);let p;
+      // T=(L+R)/2 is requested only for one shared equal partition.
+      if(relation&&!d.uniform)continue;
+      if(relation){
+        const extraHtml=`<p>${inline(`L_{${n}}=${exact(d.answers.left)}`)}, ${inline(`R_{${n}}=${exact(d.answers.right)}`)}</p>`;
+        const steps=[partitionWork(d),`These left and right sums use the same equal partition.${equation(`T_{${n}}=\\frac{L_{${n}}+R_{${n}}}{2}`)}`,equation(`T_{${n}}=\\frac{${emath(d.answers.left)}+${emath(d.answers.right)}}{2}=${exact(d.answers.trapezoid)}`)];
+        p=question(d,`${representation}_relationship`,'The left and right rectangular sums below use the same equal partition. Use them to approximate the integral with the trapezoidal rule.',numericOptions(d,'trapezoid'),steps,{mode:'trapezoid',relation:true,extraHtml});
+      }else{
+        const error=representation==='function'&&R()<.6?classification(d,'trapezoid'):null;let options=numericOptions(d,'trapezoid'),steps=[partitionWork(d),...trapezoidWork(d)],prompt=`Use ${n}${d.uniform?' equal-width':''} trapezoids to approximate the integral.`;
+        if(error){
+          const values=options.filter((o,i,a)=>a.findIndex(x=>x.key===o.key)===i),rightWord=error.over?'overestimate':'underestimate',wrongWord=error.over?'underestimate':'overestimate';
+          options=[{...values[0],key:`${values[0].key}:${rightWord}`,tex:`${inline(values[0].tex)}; ${rightWord}`},{...values[0],key:`${values[0].key}:${wrongWord}`,tex:`${inline(values[0].tex)}; ${wrongWord}`},{...values[1],key:`${values[1].key}:${rightWord}`,tex:`${inline(values[1].tex)}; ${rightWord}`},{...values[1],key:`${values[1].key}:${wrongWord}`,tex:`${inline(values[1].tex)}; ${wrongWord}`}];
+          steps.push(error.reason);prompt+=' Is it an overestimate or an underestimate?';
+        }
+        p=question(d,`${representation}_${d.uniform?'equal':'unequal'}`,prompt,options,steps,{mode:'trapezoid',error,relation:false});
+      }
+      if(p)return p;
+    }
+    throw Error('Unable to construct distinct trapezoidal approximation choices');
   };
 })();
 

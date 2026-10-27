@@ -6,7 +6,7 @@ const src=fs.readFileSync(path.join(ROOT,'assets/ap-topic-generators.js'),'utf8'
 function scan(p,slug){if(!p||!p.id)errors.push(`${slug}: missing problem/id`);const text=[p?.questionHtml,p?.explanation,...(p?.choices||[]),...(p?.stage1Choices||[])].filter(Boolean).join(' ');if(/Cannot be determined/i.test(text))errors.push(`${slug}: forbidden Cannot be determined choice`);if(/\+\s*-|x--/.test(text))errors.push(`${slug}: malformed sign ${p?.id}`);if(p?.answerType!=='numeric'&&p?.answerType!=='two-stage'&&p?.answerType!=='approx-classification'&&(!Array.isArray(p?.choices)||p.choices.length<4||p.correctIndex<0))errors.push(`${slug}: invalid MC choices ${p?.id}`);}
 const req={
  'rectangular-approximations':['function_left','function_right','function_midpoint','table_left','table_right','table_midpoint','function_matched','table_matched'],
- 'trapezoidal-approximations':['equal_table','unequal_table','function_evaluation'],
+ 'trapezoidal-approximations':['table_equal','table_unequal','function_equal','table_relationship','function_relationship'],
  'introduction-to-sigma-notation':['sigma_polynomial'],
  'integrals-using-geometry':['triangle_area','signed_triangle','upper_semicircle','lower_semicircle_signed_area','quarter_circle_area','shifted_semicircle','complementary_semicircle','absolute_value_geometry','rectangle_plus_semicircle','cross_axis_linear'],
  'basic-integrals':['polynomial','negative_power','fractional_power','divide_each_term','trig_identity','basic_trig','definite_polynomial'],
