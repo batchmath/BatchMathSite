@@ -186,7 +186,7 @@ a{color:inherit}
 .archive-spotlight-integral{font-size:3.1rem;font-weight:400}
 .archive-spotlight-copy{min-width:0;text-align:center}
 .archive-spotlight-copy strong{display:block;color:var(--yellow);font-size:clamp(1rem,2.2vw,1.2rem);line-height:1.3}
-.mogollon-spotlight .archive-spotlight-copy small{display:block;margin-top:5px;color:#bcbcbc;font-size:.77rem;line-height:1.4;font-weight:650}.mogollon-spotlight .archive-spotlight-symbol{font-size:1.65rem;font-weight:900}.mogollon-spotlight{margin-top:15px}
+.mogollon-spotlight{display:block;width:min(58%,420px);margin:16px auto 0;border-radius:7px;overflow:hidden;outline-offset:4px}.mogollon-spotlight img{display:block;width:100%;height:auto;aspect-ratio:2.7;object-fit:cover;object-position:50% 53%;transition:filter .15s ease}.mogollon-spotlight:hover img{filter:brightness(1.1)}.mogollon-spotlight:focus-visible{outline:2px solid var(--yellow)}
 .course-card h2,.course-card h3{
   margin:0;
   color:var(--yellow);
@@ -308,6 +308,7 @@ a{color:inherit}
   .archive-spotlight-symbol{width:42px;height:48px}
   .archive-spotlight-derivative{font-size:.86rem}
   .archive-spotlight-integral{font-size:2.55rem}
+  .mogollon-spotlight{width:min(76%,270px);margin-top:14px}
   .unit-grid{grid-template-columns:1fr}
   .bottom-portrait{display:none}
 }
@@ -408,10 +409,8 @@ a{color:inherit}
     <span class="archive-spotlight-copy"><strong>Calculus Problem of the Day Archive</strong></span>
     <span class="archive-spotlight-symbol archive-spotlight-integral" aria-hidden="true">∫</span>
   </a>
-  <a class="archive-spotlight mogollon-spotlight" href="/mogollon2026">
-    <span class="archive-spotlight-symbol" aria-hidden="true">100</span>
-    <span class="archive-spotlight-copy"><strong>100 Miles of Calculus 1</strong><small>Mogollon Monster 100 — 2026 · Problems, solutions &amp; race videos</small></span>
-    <span class="archive-spotlight-symbol archive-spotlight-integral" aria-hidden="true">∫</span>
+  <a class="mogollon-spotlight" href="/mogollon2026">
+    <img src="assets/mogollon2026-home.webp" width="1920" height="1080" alt="100 Miles of Calculus 1 — Mogollon Monster 100: problems, worked solutions, and race videos, with the race finisher’s belt buckle" loading="lazy" decoding="async">
   </a>
 </main>
 

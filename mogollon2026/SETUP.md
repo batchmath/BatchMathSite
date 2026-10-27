@@ -1,19 +1,18 @@
-# Mogollon 2026 archive — one-time spreadsheet connection
+# Mogollon 2026 archive — live spreadsheet
 
-The page is fully implemented at `/mogollon2026` (GitHub Pages may normalize it to `/mogollon2026/`). It currently displays the six verified starter entries from `starter.csv`, with an explicit notice that the live spreadsheet is not connected. No Google account was connected during implementation; a spreadsheet has **not** been created or published on your behalf.
+The page at `/mogollon2026` (GitHub Pages may normalize it to `/mogollon2026/`) now reads your published Google Sheet. `starter.csv` remains the verified development/reference fixture, not the production data source. No Google Sheet cells are modified by the website.
 
-## One setup path
+## Current connection
 
-1. Create a **new Google Sheet**, named `100 Miles of Calculus 1 — Mogollon 2026`. Do not use the Problem of the Day spreadsheet.
-2. In Google Sheets, choose **File → Import → Upload** and import this folder's `starter.csv` into the new sheet. It contains the six verified entries, in the production schema, with complete written solutions. Keep the headers exactly as follows:
+The published source configured in `mogollon2026.js` is:
 
-   `Mile,Published,Topic,ProblemLaTeX,SolutionLaTeX,Explanation,VideoURL,VideoLabel,PublishedDate`
+https://docs.google.com/spreadsheets/d/e/2PACX-1vSk4KcSiCIWnvCibqoiMlieK0ivKTttMMpnoqLKWAIC1wv1hx4LE_TwF63_W3InPnfRJ5sylvvN4fN3/pub?gid=1190649406&single=true&output=csv
 
-3. Choose **File → Share → Publish to web**, select this one sheet, and select **Comma-separated values (.csv)**. Publish it and leave **Automatically republish when changes are made** enabled. Use the resulting public CSV URL, not the ordinary editor/share URL.
-4. Open `mogollon2026/mogollon2026.js`. Replace the empty string in the one setting `const SHEET_CSV_URL = '';` with that published CSV URL. Deploy this one-time connection change through your usual process.
-5. Open `https://batchmath.net/mogollon2026` in a browser. Confirm the starter-data warning is replaced by an update time, all six entries appear, and Refresh retrieves the live CSV without a cross-origin error. Make a harmless text edit in the sheet, wait for Google's publication delay, and click Refresh to verify it appears **without another site deployment**.
+Keep **Automatically republish when changes are made** enabled in Google Sheets' Publish to web settings. Preserve the headers:
 
-The actual new Google CSV URL/browser CORS and an edit to that new sheet could not be tested before this connection exists. The page does not silently fall back to starter data if a configured live source fails. It shows an error/retry state instead.
+`Mile,Published,Topic,ProblemLaTeX,SolutionLaTeX,Explanation,VideoURL,VideoLabel,PublishedDate`
+
+Sheet edits do not require another deployment. Open the archive and use Refresh after Google's publication delay. A failed live fetch shows an error/retry state; it never silently substitutes starter data. Browser QA checks the actual published CSV connection without editing the sheet.
 
 ## Daily routine
 

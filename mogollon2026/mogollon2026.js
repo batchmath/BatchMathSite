@@ -1,8 +1,7 @@
 (() => {
   'use strict';
-  // ONE-TIME CONNECTION: replace only this empty string with the published
-  // Google Sheet CSV URL. No daily code changes or deployments are needed.
-  const SHEET_CSV_URL = '';
+  // Published read-only source. Sheet edits need no daily site deployment.
+  const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSk4KcSiCIWnvCibqoiMlieK0ivKTttMMpnoqLKWAIC1wv1hx4LE_TwF63_W3InPnfRJ5sylvvN4fN3/pub?gid=1190649406&single=true&output=csv';
   const STARTER_CSV_URL = '/mogollon2026/starter.csv';
   const PAGE_SIZE = 12, REFRESH_MS = 5 * 60 * 1000;
   const state={entries:[],query:'',topic:'',visible:PAGE_SIZE,loadedAt:0,loading:false,renderSerial:0,returnFocus:null};
