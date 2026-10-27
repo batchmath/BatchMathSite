@@ -35,6 +35,10 @@ async function checkReview(page,mode,width){
  }
 }
 async function checkHomework(page,width){
+ // Third-party playback is outside this interaction test. Real YouTube frames
+ // in CI display a bot-sign-in wall and can steal focus/scroll during clicks.
+ // Keep the actual iframe URLs/titles, but isolate the site's own controls.
+ await page.route('https://www.youtube.com/embed/**',route=>route.fulfill({status:200,contentType:'text/html',body:'<!doctype html><title>External player not played during automated control QA</title>'}));
  await page.goto(origin+'/ap-calculus/unit-2-derivatives/topics/the-quotient-rule/',{waitUntil:'domcontentloaded'});
  const resource=page.locator('[data-v11-resource="05a-tables"]'),buttons=resource.locator('.hw-video-button');
  assert.deepEqual(await resource.locator('a').evaluateAll(es=>es.map(e=>e.getAttribute('href'))),['../../resources/assignments/05a-product-and-quotient-rule-derivatives-from-tables.pdf','../../resources/answer-keys/05a-product-and-quotient-rule-derivatives-from-tables-answer-key.pdf']);
@@ -62,7 +66,7 @@ async function checkSharedTheoremFlow(page){
    await page.evaluate(p=>{window.__forcedU4=p;document.querySelector('#next').hidden=false;},p);await page.locator('#next').click();await page.evaluate(()=>window.__forcedU4=null);const before=await page.evaluate(()=>BatchMathRepro.problemCount);
    await page.locator('.staged-part-one .staged-choice').nth(firstCorrect?p.stage1.correctIndex:(p.stage1.correctIndex+1)%p.stage1.choices.length).click();
    if(await page.locator('.staged-continue').count())await page.locator('.staged-continue').click();await page.waitForSelector('.staged-part-two .bm-calc-editor');
-   const input=page.locator('.staged-part-two .bm-calc-editor');await input.click();await page.evaluate(answer=>{const data=new DataTransfer();data.setData('text/plain',answer);document.querySelector('.staged-part-two .bm-calc-editor').dispatchEvent(new ClipboardEvent('paste',{clipboardData:data,bubbles:true,cancelable:true}));},Number(p.stage2.numericAnswer)===0?'1':'0');await page.keyboard.press('Enter');await page.waitForSelector('.staged-part-two .result.bad');
+   const input=page.locator('.staged-part-two .bm-calc-editor');await input.click();await page.evaluate(answer=>{const data=new DataTransfer();data.setData('text/plain',answer);document.querySelector('.staged-part-two .bm-calc-editor').dispatchEvent(new ClipboardEvent('paste',{clipboardData:data,bubbles:true,cancelable:true}));},'987654321');await page.keyboard.press('Enter');await page.waitForSelector('.staged-part-two .result.bad');
    await page.evaluate(()=>document.activeElement?.blur());await page.keyboard.press('Enter');assert.equal(await page.evaluate(()=>BatchMathRepro.problemCount),before,'Wrong theorem Part 2 must still block Enter-to-next');await page.locator('#next').click();assert.equal(await page.evaluate(()=>BatchMathRepro.problemCount),before+1);
   }
  }
