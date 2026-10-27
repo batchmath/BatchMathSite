@@ -17,7 +17,7 @@ try{
   const context=await browser.newContext({viewport:{width,height:900},serviceWorkers:'block'});
   await context.route(/googletagmanager\.com|google-analytics\.com/,route=>route.abort());
   await context.addInitScript(()=>{
-   let api;Object.defineProperty(window,'BatchMathAPTopicGenerators',{configurable:true,get:()=>api,set:original=>{api={...original,get:slug=>{const generator=original.get(slug);if(!generator)return generator;return opts=>{const p=window.__u4Forced||generator(opts);window.__u4Forced=null;window.__u4Current=p;return p;};}};}});
+   let api;Object.defineProperty(window,'BatchMathAPTopicGenerators',{configurable:true,get:()=>api,set:original=>{api={...original,get:slug=>{const generator=original.get(slug);if(!generator)return generator;return opts=>{const p=window.__u4Forced||generator(opts);window.__u4Current=p;return p;};}};}});
   });
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));
   for(const slug of pages){
@@ -31,7 +31,7 @@ try{
    for(let i=0;i<samples.length;i++){
     const {p,signature}=samples[i];
     if(await page.locator('#next').isHidden()){await page.locator('#choices > button').first().click();await page.waitForSelector('#feedback.shown');}
-    await page.evaluate(p=>window.__u4Forced=p,p);await page.locator('#next').click();
+    await page.evaluate(p=>window.__u4Forced=p,p);await page.locator('#next').click();await page.evaluate(()=>window.__u4Forced=null);
     await page.evaluate(()=>MathJax.typesetPromise([document.querySelector('#question'),document.querySelector('#choices')]));
     const initial=await page.evaluate(()=>({id:window.__u4Current.id,attempted:Number(document.querySelector('#attempted-count').textContent),correct:Number(document.querySelector('#correct-count').textContent),count:window.BatchMathRepro?.problemCount}));
     assert.equal(initial.id,p.id);

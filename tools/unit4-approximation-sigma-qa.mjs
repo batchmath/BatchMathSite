@@ -11,7 +11,34 @@ const source=fs.readFileSync(path.join(root,'assets/ap-topic-generators.js'),'ut
 let state=0x128abcdef;
 function random(){state=(state+0x6D2B79F5)|0;let t=Math.imul(state^(state>>>15),1|state);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296;}
 const box={window:{BatchMathRNG:{random}},console};vm.createContext(box);vm.runInContext(source,box);
+vm.runInContext(fs.readFileSync(path.join(root,'assets/derivative-expression-checker.js'),'utf8'),box);
 const get=slug=>box.window.BatchMathAPTopicGenerators.get(slug);
+// Read the emitted TeX independently as arithmetic. This catches display-only
+// errors (for example 2k -> 22 instead of 2(2)) that metadata-only tests miss.
+function texArithmetic(tex){
+ let s=String(tex),i=0;
+ const spaces=()=>{while(/\s/.test(s[i]||'')&&i<s.length)i++;};
+ function atom(){spaces();if(s[i]==='{'){i++;return '('+parse('}')+')';}if(s[i]==='('){i++;return '('+parse(')')+')';}const m=s.slice(i).match(/^[0-9]+/);if(m){i+=m[0].length;return m[0];}if(s[i]==='n'){i++;return 'x';}if(s[i]==='k'){i++;return 'y';}if(/[xy]/.test(s[i]||''))return s[i++];if(s[i]==='e'){i++;return '(e)';}throw Error('Unsupported TeX atom '+s.slice(i));}
+ function parse(stop=''){
+  let out='';while(i<s.length){const ch=s[i];if(stop&&ch===stop){i++;break;}if(/\s/.test(ch)||ch==='&'){i++;continue;}
+   if(ch==='\\'){i++;if(s[i]==='\\'){i++;continue;}const m=s.slice(i).match(/^[A-Za-z]+/);if(!m){i++;continue;}const command=m[0];i+=command.length;
+    if(['frac','dfrac','tfrac'].includes(command)){const a=atom(),b=atom();out+=`(${a}/${b})`;}
+    else if(command==='sqrt')out+=`sqrt(${atom()})`;
+    else if(command==='pi')out+='(pi)';
+    else if(['ln','sin','cos'].includes(command))out+=`${command}(${atom()})`;
+    else if(command==='cdot'||command==='times')out+='*';
+    else if(command==='begin'||command==='end'){spaces();if(s[i]==='{'){i++;while(i<s.length&&s[i]!=='}')i++;i++;}}
+    else if(!['displaystyle','left','right','quad','qquad','Bigl','Bigr','bigl','bigr'].includes(command))throw Error('Unsupported TeX command '+command);
+    continue;
+   }
+   if(ch==='{'){i++;out+='('+parse('}')+')';continue;}if(ch==='('){i++;out+='('+parse(')')+')';continue;}
+   if(ch==='n'){i++;out+='x';continue;}if(ch==='k'){i++;out+='y';continue;}if(ch==='e'){i++;out+='(e)';continue;}
+   out+=ch;i++;
+  }return out;
+ }
+ return parse();
+}
+function displayedNumber(tex,n,k){const parser=box.window.BatchMathDerivativeExpressions,expr=texArithmetic(tex);try{return parser.evaluate(parser.parse(expr),{x:n,y:k});}catch(e){throw Error(`Displayed TeX parse failed: ${tex} -> ${expr}: ${e}`);}}
 const gcd=(a,b)=>b?gcd(b,a%b):a<0n?-a:a;
 function Q(a,b=1n){a=BigInt(a);b=BigInt(b);if(b<0n){a=-a;b=-b;}const d=gcd(a,b);return[a/d,b/d];}
 const add=(a,b)=>Q(a[0]*b[1]+b[0]*a[1],a[1]*b[1]),mul=(a,b)=>Q(a[0]*b[0],a[1]*b[1]),sub=(a,b)=>add(a,[-b[0],b[1]]),div=(a,b)=>Q(a[0]*b[1],a[1]*b[0]);
@@ -51,8 +78,13 @@ function sigma(p){
   }
   trials.forEach(n=>{assert.deepEqual(nValue(d.expected,n),actual(n),'Independent symbolic sum at n='+n);assert.deepEqual(nValue(selected.npoly,n),actual(n),'Correct symbolic choice');});
   choices.forEach((c,i)=>{assert.ok(c.npoly);const equivalent=trials.every(n=>{const a=nValue(c.npoly,n),b=actual(n);return a[0]===b[0]&&a[1]===b[1];});assert.equal(equivalent,i===p.correctIndex,'Equivalent symbolic distractor');});
+  choices.forEach((c,i)=>trials.forEach(n=>near(displayedNumber(p.choices[i],n),number(nValue(c.npoly,n)),'Displayed symbolic choice')));
   if(d.original){for(const n of [2,5,9])for(let k=1;k<=n;k++){const original=mul(poly(d.original.polynomial,add(Q(d.original.a),Q(d.original.width*k,n))),Q(d.original.width,n)),expanded=sum(d.coeff.map((c,p)=>div(mul(from(c),Q(BigInt(k)**BigInt(p))),Q(BigInt(n)**BigInt(p+1)))));assert.deepEqual(original,expanded,'Substituted sample-point expansion');}}
  }
+ if(d.family==='numerical'||(d.family==='read'&&['first','last'].includes(d.task))){
+  for(const m of p.explanation.matchAll(/\\\((?:\\displaystyle\s*)?([^]*?)\\\)/g)){const eq=m[1].match(/^([^=]+)=(-?\d+)$/);if(eq&&!/[A-Za-z\\]/.test(eq[1]))near(displayedNumber(eq[1]),Number(eq[2]),'Displayed numeric substitution');}
+ }
+ if(d.family==='write')for(const m of p.explanation.matchAll(/a_(?:\{\d+\}|\d+)=([^=]+)=(-?\d+)/g))near(displayedNumber(m[1]),Number(m[2]),'Displayed term formula');
  const s=stats.sigma||(stats.sigma={total:0,family:{},subtype:{}});s.total++;inc(s.family,d.family);inc(s.subtype,`${d.family}/${d.subtype}`);
 }
 function approximation(p){
@@ -69,6 +101,7 @@ function approximation(p){
  const data=new Map(d.rows.map(r=>[from(r.x).join('/'),r.y]));
  const at=x=>{const e=data.get(x.join('/'));assert.ok(e,'Missing required sample '+x.join('/'));if(d.f)near(exactNumber(e),evaluate(d.f,x),'Independent function evaluation');return exactNumber(e);};
  const needed=[...ends,...((d.mode==='midpoint'||d.mode==='matched')?mids:[])];needed.forEach(at);
+ if(d.f)needed.forEach(x=>near(displayedNumber(d.f.tex,number(x)*(d.f.family==='trigonometric'?Math.PI:1)),evaluate(d.f,x),'Displayed function'));
  if(d.extraData)assert.ok(d.rows.length>new Set(needed.map(x=>x.join('/'))).size,'Flagged extra data is not extra');
  const unit=d.f?.family==='trigonometric'?Math.PI:1;
  const left=widths.reduce((s,w,i)=>s+unit*number(w)*at(ends[i]),0),right=widths.reduce((s,w,i)=>s+unit*number(w)*at(ends[i+1]),0),trap=widths.reduce((s,w,i)=>s+unit*number(w)*(at(ends[i])+at(ends[i+1]))/2,0);
@@ -94,6 +127,7 @@ function approximation(p){
  }
  const expected=d.mode==='matched'?['left','right','midpoint'].map(m=>exactNumber(d.answers[m])):[exactNumber(d.answers[d.mode])],selected=d.choiceValues[p.correctIndex];
  (Array.isArray(selected)?selected:[selected]).forEach((v,i)=>near(exactNumber(v),expected[i],'Correct answer choice'));
+ d.choiceValues.forEach((value,i)=>{const raw=p.choices[i];if(Array.isArray(value)){const labels=[...raw.matchAll(/[LRM]_\{\d+\}&=/g)];assert.equal(labels.length,3);labels.forEach((m,j)=>near(displayedNumber(raw.slice(m.index+m[0].length,labels[j+1]?.index)),exactNumber(value[j]),'Displayed matched choice'));}else{const tex=(raw.match(/\\\(([^]*?)\\\)/)||[])[1]||raw;near(displayedNumber(tex),exactNumber(value),'Displayed exact choice');}});
  assert.ok(/<ol class="u4-work">/.test(p.explanation),'Missing vertical worked solution');
  const s=stats[d.kind]||(stats[d.kind]={total:0,representation:{},family:{},mode:{},n:{},tableSpacing:{},extra:0,errors:0,cross:{}});s.total++;inc(s.representation,d.representation);inc(s.family,d.family);inc(s.mode,d.mode);inc(s.n,d.n);if(d.representation==='table'){inc(s.tableSpacing,d.uniform?'equal':'unequal');if(d.extraData)s.extra++;}if(d.error)s.errors++;inc(s.cross,`${d.family}/${d.mode}/${d.n}`);
 }
