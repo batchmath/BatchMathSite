@@ -85,7 +85,7 @@ function sigma(p){
   for(const m of p.explanation.matchAll(/\\\((?:\\displaystyle\s*)?([^]*?)\\\)/g)){const eq=m[1].match(/^([^=]+)=(-?\d+)$/);if(eq&&!/[A-Za-z\\]/.test(eq[1]))near(displayedNumber(eq[1]),Number(eq[2]),'Displayed numeric substitution');}
  }
  if(d.family==='write')for(const m of p.explanation.matchAll(/a_(?:\{\d+\}|\d+)=([^=]+)=(-?\d+)/g))near(displayedNumber(m[1]),Number(m[2]),'Displayed term formula');
- const s=stats.sigma||(stats.sigma={total:0,family:{},subtype:{}});s.total++;inc(s.family,d.family);inc(s.subtype,`${d.family}/${d.subtype}`);
+ const s=stats.sigma||(stats.sigma={total:0,family:{},subtype:{},features:{}});s.total++;inc(s.family,d.family);inc(s.subtype,`${d.family}/${d.subtype}`);if(d.coeff)inc(s.features,`degree_${d.coeff.length-1}`);if(d.expected)inc(s.features,'symbolic_n_answer');if(d.subtype==='constant'&&d.family==='riemann')inc(s.features,'constant_with_respect_to_k');
 }
 function approximation(p){
  const d=p.unit4Meta;assert.ok(d,'Missing shared Unit 4 metadata');
@@ -129,7 +129,7 @@ function approximation(p){
  (Array.isArray(selected)?selected:[selected]).forEach((v,i)=>near(exactNumber(v),expected[i],'Correct answer choice'));
  d.choiceValues.forEach((value,i)=>{const raw=p.choices[i];if(Array.isArray(value)){const labels=[...raw.matchAll(/[LRM]_\{\d+\}&=/g)];assert.equal(labels.length,3);labels.forEach((m,j)=>near(displayedNumber(raw.slice(m.index+m[0].length,labels[j+1]?.index)),exactNumber(value[j]),'Displayed matched choice'));}else{const tex=(raw.match(/\\\(([^]*?)\\\)/)||[])[1]||raw;near(displayedNumber(tex),exactNumber(value),'Displayed exact choice');}});
  assert.ok(/<ol class="u4-work">/.test(p.explanation),'Missing vertical worked solution');
- const s=stats[d.kind]||(stats[d.kind]={total:0,representation:{},family:{},mode:{},n:{},tableSpacing:{},extra:0,errors:0,cross:{}});s.total++;inc(s.representation,d.representation);inc(s.family,d.family);inc(s.mode,d.mode);inc(s.n,d.n);if(d.representation==='table'){inc(s.tableSpacing,d.uniform?'equal':'unequal');if(d.extraData)s.extra++;}if(d.error)s.errors++;inc(s.cross,`${d.family}/${d.mode}/${d.n}`);
+ const s=stats[d.kind]||(stats[d.kind]={total:0,representation:{},family:{},mode:{},n:{},tableSpacing:{},extra:0,errors:0,features:{},cross:{}});s.total++;inc(s.representation,d.representation);inc(s.family,d.family);inc(s.mode,d.mode);inc(s.n,d.n);if(d.representation==='table'){inc(s.tableSpacing,d.uniform?'equal':'unequal');if(d.extraData)s.extra++;}if(d.error){s.errors++;inc(s.features,`${d.mode}_${d.error.over?'overestimate':'underestimate'}`);}if(d.relation)inc(s.features,'left_right_relationship');if(d.f?.family==='quadratic')inc(s.features,`${d.f.coeff[2][0]>0?'upward':'downward'}_quadratic`);if(d.f?.coeff?.some(c=>c[1]!==1))inc(s.features,'fractional_coefficients');if(d.f?.trig)inc(s.features,d.f.trig);inc(s.cross,`${d.family}/${d.mode}/${d.n}`);
 }
 const sample=Number(process.env.BM_U4_QA_SAMPLES||12000),requested=process.argv.slice(2),slugs=requested.length?requested:['rectangular-approximations','trapezoidal-approximations','introduction-to-sigma-notation'];
 for(const slug of slugs){for(let i=0;i<sample;i++){const p=get(slug)();if(p.unit4Meta?.kind==='sigma')sigma(p);else approximation(p);}console.log('PASS',slug,sample);}

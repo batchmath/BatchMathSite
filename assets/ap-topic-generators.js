@@ -2822,6 +2822,7 @@ G['difference-quotient']=()=>{
     if(terms.length<=2)return [terms.join('')||'0'];const chunks=[];for(let i=0;i<terms.length;i+=2)chunks.push(terms.slice(i,i+2).join(''));return chunks;
   }
   const exactBlock=e=>{const chunks=exactChunks(e);return chunks.length===1?chunks[0]:`\\begin{gathered}${chunks.join('\\\\')}\\end{gathered}`;};
+  const halfTex=e=>exact(e).startsWith('-')?`-\\frac{${exact(scale(e,q(-1)))}}{2}`:`\\frac{${exact(e)}}{2}`;
   const answerLines=(label,e)=>exactChunks(e).map((s,i)=>i?`&\\quad${s}`:`${label}&=${s}`);
   const par=s=>/[-+]/.test(s)?`\\left(${s}\\right)`:s, emath=e=>par(exact(e));
   const signedTerms=terms=>terms.filter(t=>t.c[0]).map(({c,body},i)=>`${c[0]<0?'-':i?'+':''}${Math.abs(c[0])===c[1]&&body?'':tq(q(Math.abs(c[0]),c[1]))}${body}`).join('')||'0';
@@ -2938,6 +2939,7 @@ G['difference-quotient']=()=>{
     return {id:problemKey(`u4J-${d.kind}-${variant}`,{f:d.f,ends:d.ends,rows:d.rows,...meta}),variant,questionHtml:display(d,prompt,meta.extraHtml||''),choices:choices.map(x=>/\\\(/.test(x.tex)?x.tex:`\\displaystyle ${x.tex}`),correctIndex:choices.findIndex(x=>x.key===correct),fullWidthChoices:true,explanation:work(steps),unit4Meta:{...d,...meta,choiceValues:choices.map(x=>x.value??null),correctKey:correct}};
   }
   const option=e=>({key:key(e),tex:exactBlock(e),value:e});
+  const classifiedOption=(value,word)=>({...value,key:`${value.key}:${word}`,tex:`${inline(`\\displaystyle ${value.tex}`)}; ${word}`});
   function numericOptions(d,method){
     const correct=d.answers[method],ys=d.heights[method]||d.heights.left,omit=total(ys.slice(0,-1).map((y,i)=>widthValue(y,d.widths[i],d.f)));
     return [correct,d.answers.left,d.answers.right,d.answers.midpoint,d.answers.trapezoid,total(ys),omit,scale(correct,q(2)),scale(correct,q(1,2)),scale(correct,q(-1))].filter(Boolean).map(option);
@@ -2958,7 +2960,7 @@ G['difference-quotient']=()=>{
         let options=numericOptions(d,mode),steps=[partitionWork(d),...rectangleWork(d,mode)],prompt=`Use ${n}${d.uniform?' equal-width':''} ${mode==='midpoint'?'midpoint':`${mode}-endpoint`} rectangles to approximate the integral.`;
         if(error){
           const values=options.filter((o,i,a)=>a.findIndex(x=>x.key===o.key)===i),rightWord=error.over?'overestimate':'underestimate',wrongWord=error.over?'underestimate':'overestimate';
-          options=[{...values[0],key:`${values[0].key}:${rightWord}`,tex:`${inline(values[0].tex)}; ${rightWord}`},{...values[0],key:`${values[0].key}:${wrongWord}`,tex:`${inline(values[0].tex)}; ${wrongWord}`},{...values[1],key:`${values[1].key}:${rightWord}`,tex:`${inline(values[1].tex)}; ${rightWord}`},{...values[1],key:`${values[1].key}:${wrongWord}`,tex:`${inline(values[1].tex)}; ${wrongWord}`}];
+          options=[classifiedOption(values[0],rightWord),classifiedOption(values[0],wrongWord),classifiedOption(values[1],rightWord),classifiedOption(values[1],wrongWord)];
           prompt+=' Is it an overestimate or an underestimate?';steps.push(error.reason);
         }
         p=question(d,`${representation}_${mode}`,prompt,options,steps,{mode,error});
@@ -2985,14 +2987,14 @@ G['difference-quotient']=()=>{
       if(relation&&!d.uniform)continue;
       if(relation){
         const extraHtml=`${equation(`L_{${n}}=${exact(d.answers.left)}`)}${equation(`R_{${n}}=${exact(d.answers.right)}`)}`,twice=plus(d.answers.left,d.answers.right);
-        const steps=[partitionWork(d),`These left and right sums use the same equal partition.${equation(`T_{${n}}=\\frac{L_{${n}}+R_{${n}}}{2}`)}`,sumWork(`2T_{${n}}`,[emath(d.answers.left),emath(d.answers.right)],twice)+equalityWork(`T_{${n}}=\\frac{${exact(twice)}}{2}`,exact(d.answers.trapezoid))];
+        const steps=[partitionWork(d),`These left and right sums use the same equal partition.${equation(`T_{${n}}=\\frac{L_{${n}}+R_{${n}}}{2}`)}`,sumWork(`2T_{${n}}`,[emath(d.answers.left),emath(d.answers.right)],twice)+(key(twice)===key({})?equation(`T_{${n}}=0`):equalityWork(`T_{${n}}=${halfTex(twice)}`,exact(d.answers.trapezoid)))];
         if(d.family==='linear')steps[steps.length-1]+=' Because the graph is a straight line, the trapezoidal value is exact.';
         p=question(d,`${representation}_relationship`,'The left and right rectangular sums below use the same equal partition. Use them to approximate the integral with the trapezoidal rule.',numericOptions(d,'trapezoid'),steps,{mode:'trapezoid',relation:true,extraHtml});
       }else{
         const error=representation==='function'&&R()<.6?classification(d,'trapezoid'):null;let options=numericOptions(d,'trapezoid'),steps=[partitionWork(d),...trapezoidWork(d)],prompt=`Use ${n}${d.uniform?' equal-width':''} trapezoids to approximate the integral.`;
         if(error){
           const values=options.filter((o,i,a)=>a.findIndex(x=>x.key===o.key)===i),rightWord=error.over?'overestimate':'underestimate',wrongWord=error.over?'underestimate':'overestimate';
-          options=[{...values[0],key:`${values[0].key}:${rightWord}`,tex:`${inline(values[0].tex)}; ${rightWord}`},{...values[0],key:`${values[0].key}:${wrongWord}`,tex:`${inline(values[0].tex)}; ${wrongWord}`},{...values[1],key:`${values[1].key}:${rightWord}`,tex:`${inline(values[1].tex)}; ${rightWord}`},{...values[1],key:`${values[1].key}:${wrongWord}`,tex:`${inline(values[1].tex)}; ${wrongWord}`}];
+          options=[classifiedOption(values[0],rightWord),classifiedOption(values[0],wrongWord),classifiedOption(values[1],rightWord),classifiedOption(values[1],wrongWord)];
           steps.push(error.reason);prompt+=' Is it an overestimate or an underestimate?';
         }
         if(d.family==='linear')steps[steps.length-1]+=' Because the graph is a straight line, the trapezoidal value is exact.';
@@ -3011,6 +3013,7 @@ G['difference-quotient']=()=>{
   const npOption=p=>({key:npKey(p),tex:npTex(p),value:{npoly:p}});
   const sumSymbol=(body,lower=1,upper='n')=>`\\sum_{k=${lower}}^{${upper}}${body}`;
   const sigmaBody=coeff=>poly(coeff,'k');
+  const sigmaSummand=coeff=>coeff.filter(c=>c[0]).length>1?`\\left(${sigmaBody(coeff)}\\right)`:sigmaBody(coeff);
   const substituted=(coeff,k)=>poly(coeff,`(${k})`);
   const termsTex=xs=>xs.map((x,i)=>`${x<0?'-':i?'+':''}${Math.abs(x)}`).join('');
   const termsBlock=xs=>{if(xs.length<=4)return termsTex(xs);const parts=[];for(let i=0;i<xs.length;i+=3){const t=termsTex(xs.slice(i,i+3));parts.push(i&&!t.startsWith('-')?'+'+t:t);}return `\\begin{gathered}${parts.join('\\\\')}\\end{gathered}`;};
@@ -3030,7 +3033,7 @@ G['difference-quotient']=()=>{
       if(subtype==='upper')return sigmaQuestion('read',subtype,'Identify the upper bound of the summation.',math,['n','1','k','a_n'].map(plainOption),[`The sum starts with ${inline('a_1')} and ends with ${inline('a_n')}, so the upper bound is ${inline('n')}.`],{symbolic:true,task:'upper',answer:'n'});
       return sigmaQuestion('read','expand_general','Which expression writes out the terms of the sum?',math,[expanded,'a_0+a_1+\\cdots+a_n','a_1+a_2+\\cdots+a_{n-1}','a_2+a_3+\\cdots+a_n'].map(plainOption),[equation(`${math}=${expanded}`)],{symbolic:true,task:'expand_general',answer:expanded});
     }
-    const coeff=R()<.45?[q(ri(-3,4)),q(nz(-3,3))]:[q(ri(-3,4)),q(ri(-2,2)),q(pick([-1,1,2]))],math=sumSymbol(`\\left(${sigmaBody(coeff)}\\right)`,lower,upper),xs=Array.from({length:upper-lower+1},(_,i)=>valueOf(coeff,lower+i));
+    const coeff=R()<.45?[q(ri(-3,4)),q(nz(-3,3))]:[q(ri(-3,4)),q(ri(-2,2)),q(pick([-1,1,2]))],math=sumSymbol(sigmaSummand(coeff),lower,upper),xs=Array.from({length:upper-lower+1},(_,i)=>valueOf(coeff,lower+i));
     const expansion=equalityWork(math,termsBlock(xs)),base={coeff,lower,upper,symbolic:false,task:subtype};
     if(subtype==='expand'){
       const sequences=[xs,[valueOf(coeff,lower-1),...xs],xs.slice(0,-1),xs.slice(1),Array.from({length:xs.length},(_,i)=>valueOf(coeff,lower+i+1))],options=sequences.map(terms=>({key:JSON.stringify(terms),tex:termsBlock(terms),value:terms}));
@@ -3046,12 +3049,13 @@ G['difference-quotient']=()=>{
     return sigmaQuestion('read',subtype,prompt,math,options,[expansion,reason],{...base,answer});
   }
   function sigmaNumerical(){
-    const subtype=pick(['constant','linear','quadratic','combination']),N=ri(3,7),lower=1,coeff=subtype==='constant'?[q(nz(-6,6))]:subtype==='linear'?[q(ri(-4,4)),q(nz(-3,3))]:subtype==='quadratic'?[q(ri(-4,4)),q(0),q(pick([-2,-1,1,2]))]:[q(ri(-4,4)),q(nz(-3,3)),q(pick([-1,1,2]))],xs=Array.from({length:N},(_,i)=>valueOf(coeff,i+1)),answer=xs.reduce((a,b)=>a+b,0),math=sumSymbol(`\\left(${sigmaBody(coeff)}\\right)`,1,N),options=[answer,answer-xs.at(-1),answer+valueOf(coeff,0),answer+valueOf(coeff,N+1),valueOf(coeff,N),N*valueOf(coeff,1),answer-xs[0]].map(numericOption);
+    const subtype=pick(['constant','linear','quadratic','combination']),N=ri(3,7),lower=1,coeff=subtype==='constant'?[q(nz(-6,6))]:subtype==='linear'?[q(ri(-4,4)),q(nz(-3,3))]:subtype==='quadratic'?[q(ri(-4,4)),q(0),q(pick([-2,-1,1,2]))]:[q(ri(-4,4)),q(nz(-3,3)),q(pick([-1,1,2]))],xs=Array.from({length:N},(_,i)=>valueOf(coeff,i+1)),answer=xs.reduce((a,b)=>a+b,0),math=sumSymbol(sigmaSummand(coeff),1,N),options=[answer,answer-xs.at(-1),answer+valueOf(coeff,0),answer+valueOf(coeff,N+1),valueOf(coeff,N),N*valueOf(coeff,1),answer-xs[0]].map(numericOption);
     return sigmaQuestion('numerical',subtype,'Evaluate the finite sum.',math,options,[equalityWork(math,termsBlock(xs))+equation(`=${answer}`)],{coeff,lower,upper:N,answer});
   }
   function sigmaWrite(){
-    const subtype=pick(['constant','linear','quadratic','quadratic']),N=ri(3,5),coeff=subtype==='constant'?[q(nz(-6,6))]:subtype==='linear'?[q(ri(-4,4)),q(nz(-3,3))]:[q(ri(-3,4)),q(ri(-2,2)),q(pick([-1,1,2]))],terms=Array.from({length:N},(_,i)=>valueOf(coeff,i+1)),shifted=[pv(coeff,q(1)),add(coeff[1]||q(0),mul(q(2),coeff[2]||q(0))),coeff[2]||q(0)],changed=[add(coeff[0],q(1)),...coeff.slice(1)],descriptors=[{coeff,lower:1,upper:N},{coeff,lower:1,upper:N-1},{coeff,lower:1,upper:N+1},{coeff:shifted,lower:1,upper:N},{coeff:changed,lower:1,upper:N}],options=descriptors.map(d=>({key:JSON.stringify(Array.from({length:d.upper-d.lower+1},(_,i)=>valueOf(d.coeff,d.lower+i))),tex:sumSymbol(`\\left(${sigmaBody(d.coeff)}\\right)`,d.lower,d.upper),value:d}));
-    const math=termsBlock(terms),formula=sigmaBody(coeff),steps=[`The term with index ${inline('k')} is ${inline(formula)}.${equation(`a_1=${substituted(coeff,1)}=${terms[0]}`)}${equation(`a_{${N}}=${substituted(coeff,N)}=${terms.at(-1)}`)}`,`There are ${inline(String(N))} terms, starting at ${inline('k=1')}.${equation(sumSymbol(`\\left(${formula}\\right)`,1,N))}`];
+    const subtype=pick(['constant','linear','quadratic','quadratic']),N=ri(3,5),coeff=subtype==='constant'?[q(nz(-6,6))]:subtype==='linear'?[q(ri(-4,4)),q(nz(-3,3))]:[q(ri(-3,4)),q(ri(-2,2)),q(pick([-1,1,2]))],terms=Array.from({length:N},(_,i)=>valueOf(coeff,i+1)),shifted=[pv(coeff,q(1)),add(coeff[1]||q(0),mul(q(2),coeff[2]||q(0))),coeff[2]||q(0)],changed=[add(coeff[0],q(1)),...coeff.slice(1)],descriptors=[{coeff,lower:1,upper:N},{coeff,lower:1,upper:N-1},{coeff,lower:1,upper:N+1},{coeff:shifted,lower:1,upper:N},{coeff:changed,lower:1,upper:N}],options=descriptors.map(d=>({key:JSON.stringify(Array.from({length:d.upper-d.lower+1},(_,i)=>valueOf(d.coeff,d.lower+i))),tex:sumSymbol(sigmaSummand(d.coeff),d.lower,d.upper),value:d}));
+    const termWork=k=>{const expr=substituted(coeff,k),answer=valueOf(coeff,k);return equation(`a_{${k}}=${expr}${expr===String(answer)?'':`=${answer}`}`);};
+    const math=termsBlock(terms),formula=sigmaBody(coeff),steps=[`The term with index ${inline('k')} is ${inline(formula)}.${termWork(1)}${termWork(N)}`,`There are ${inline(String(N))} terms, starting at ${inline('k=1')}.${equation(sumSymbol(sigmaSummand(coeff),1,N))}`];
     return sigmaQuestion('write',subtype,'Which sigma expression generates these terms in the displayed order, starting at k = 1?',math,options,steps,{coeff,lower:1,upper:N,terms});
   }
   function identitiesPolynomial(coeff,left=false){
@@ -3061,15 +3065,16 @@ G['difference-quotient']=()=>{
   const factorsTex=(c,body,den='')=>{const [n,d]=c,num=`${Math.abs(n)===1&&body?'':Math.abs(n)}${body}`,bottom=`${d===1?'':d}${den}`;return `${n<0?'-':''}${bottom?`\\frac{${num}}{${bottom}}`:num}`;};
   const productTex=(a,b)=>a==='1'?b:a==='-1'?`-${b}`:`${a}\\!\\cdot ${b}`;
   const sigmaChain=terms=>equation(`\\begin{aligned}S&=${terms.map((s,i)=>i?`\\\\&\\quad${s.startsWith('-')?'-'+s.slice(1):'+'+s}`:s).join('')}\\end{aligned}`);
+  const identityTerm=(c,i,nPower=0)=>factorsTex(div(c,q(i===2?6:i===1?2:1)),i===0?'n':i===1?'n(n+1)':'n(n+1)(2n+1)',nPower===0?'':nPower===1?'n':`n^{${nPower}}`);
   function actualIdentitySteps(coeff){
-    const names=['1','k','k^2'],identities=['n','\\frac{n(n+1)}{2}','\\frac{n(n+1)(2n+1)}{6}'],nonzero=coeff.map((c,i)=>({c,i})).filter(({c})=>c[0]);
-    const separated=nonzero.map(({c,i})=>productTex(factorsTex(c,''),sumSymbol(names[i]))),substituted=nonzero.map(({c,i})=>productTex(factorsTex(c,''),identities[i]));
+    const names=['1','k','k^2'],nonzero=coeff.map((c,i)=>({c,i})).filter(({c})=>c[0]);
+    const separated=nonzero.map(({c,i})=>productTex(factorsTex(c,''),sumSymbol(names[i]))),substituted=nonzero.map(({c,i})=>identityTerm(c,i));
     return [sigmaChain(separated),sigmaChain(substituted)];
   }
   function sigmaIdentities(){
     const subtype=pick(['constant','linear','square','combination','combination']),coeff=subtype==='constant'?[q(nz(-8,8))]:subtype==='linear'?[q(R()<.4?0:nz(-5,5)),q(pick([1,1,2,3,-2]))]:subtype==='square'?[q(0),q(0),q(pick([1,1,2,3,-1]))]:[q(nz(-5,6)),q(nz(-4,4)),q(pick([-2,-1,1,2,3]))],expected=identitiesPolynomial(coeff),C=coeff[0]||q(0),B=coeff[1]||q(0),A=coeff[2]||q(0),wrongHighest=np({3:A,2:B,1:C}),lastTerm=np({2:A,1:B,0:C}),firstRepeated=np({1:add(add(A,B),C)}),constantNotSummed=np({3:div(A,q(3)),2:div(add(A,B),q(2)),1:add(div(A,q(6)),div(B,q(2))),0:C});
     const options=[expected,identitiesPolynomial(coeff,true),wrongHighest,lastTerm,firstRepeated,constantNotSummed,np({2:C}),np({1:C,0:neg(C)})].map(npOption),steps=[...actualIdentitySteps(coeff),equation(`S=${npTex(expected)}`)];
-    return sigmaQuestion('identities',subtype,'Use the finite-sum identities and simplify as an expression in n.',sumSymbol(`\\left(${sigmaBody(coeff)}\\right)`),options,steps,{coeff,expected});
+    return sigmaQuestion('identities',subtype,'Use the finite-sum identities and simplify as an expression in n.',sumSymbol(sigmaSummand(coeff)),options,steps,{coeff,expected});
   }
   function riemannTerm(c,power){return factorsTex(c,power===0?'':power===1?'k':`k^{${power}}`,power+1===1?'n':`n^{${power+1}}`);}
   const riemannBody=coeff=>coeff.map((c,i)=>({c,i})).filter(({c})=>c[0]).map(({c,i},j)=>`${c[0]<0?'-':j?'+':''}${riemannTerm(q(Math.abs(c[0]),c[1]),i)}`).join('');
@@ -3089,10 +3094,10 @@ G['difference-quotient']=()=>{
       steps.push(`Substitute ${inline(`x=${inner}`)} and expand.${equalityWork(`f\\!\\left(${inner}\\right)`,sampleExpanded)}`);
       steps.push(`Multiply by ${inline(dx)}.${equalityWork(`f\\!\\left(${inner}\\right)${dx}`,riemannBody(coeff))}`);
     }else math=sumSymbol(`\\left[${riemannBody(coeff)}\\right]`);
-    const expected=riemannResult(coeff),[A,B,C]=coeff,active=coeff.map((c,i)=>({c,i})).filter(({c})=>c[0]),identities=['n','\\frac{n(n+1)}{2}','\\frac{n(n+1)(2n+1)}{6}'];
+    const expected=riemannResult(coeff),[A,B,C]=coeff,active=coeff.map((c,i)=>({c,i})).filter(({c})=>c[0]);
     const factor=c=>factorsTex(c.c,'',c.i+1===1?'n':`n^{${c.i+1}}`);
     steps.push(`For this sum, ${inline('n')} is fixed while ${inline('k')} changes.${sigmaChain(active.map(t=>productTex(factor(t),sumSymbol(t.i===0?'1':t.i===1?'k':'k^2'))))}`);
-    steps.push(sigmaChain(active.map(t=>productTex(factor(t),identities[t.i]))));
+    steps.push(sigmaChain(active.map(t=>identityTerm(t.c,t.i,t.i+1))));
     steps.push(equation(`S=${npTex(expected)}`));
     const left=np({0:add(add(A,div(B,q(2))),div(C,q(3))),'-1':neg(div(add(B,C),q(2))),'-2':div(C,q(6))}),first=np({0:A,'-1':B,'-2':C}),premature=np({0:expected[0]||q(0)}),missingDx=Object.fromEntries(Object.entries(expected).map(([p,c])=>[Number(p)+1,c])),options=[expected,left,first,premature,missingDx,np({0:add(add(A,B),C)})].map(npOption);
     return sigmaQuestion('riemann',subtype,'Simplify the finite sum as an expression in n. Do not take a limit.',math,options,steps,{coeff,original,expected});
