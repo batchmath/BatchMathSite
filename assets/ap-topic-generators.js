@@ -2811,11 +2811,11 @@ G['difference-quotient']=()=>{
   const scalar=n=>({'':Array.isArray(n)?n:q(n)}), scale=(e,c)=>Object.fromEntries(Object.entries(e).map(([k,v])=>[k,mul(v,c)]).filter(([,v])=>v[0]));
   const plus=(a,b)=>{const out={...a};for(const [k,v] of Object.entries(b)){out[k]=add(out[k]||q(0),v);if(!out[k][0])delete out[k];}return out;};
   const total=es=>es.reduce(plus,{}), key=e=>JSON.stringify(Object.entries(e).filter(([,v])=>v[0]).sort(([a],[b])=>a.localeCompare(b))), equal=(a,b)=>key(a)===key(b);
-  const atomTex=k=>k.split('*').map(s=>s==='pi'?'\\pi':s.startsWith('sqrt')?`\\sqrt{${s.slice(4)}}`:s.startsWith('ln')?`\\ln ${s.slice(2)}`:s).join('');
+  const atomTex=k=>k.split('*').map(s=>{if(s.startsWith('exp:')){const [,base,n,d]=s.split(':');return `${base}^{${tq(q(+n,+d))}}`;}return s==='pi'?'\\pi':s.startsWith('sqrt')?`\\sqrt{${s.slice(4)}}`:s.startsWith('ln')?`\\ln ${s.slice(2)}`:s;}).join('');
   function exact(e){
     const entries=Object.entries(e).filter(([,c])=>c[0]).sort(([a],[b])=>a.localeCompare(b));
     if(!entries.length)return '0';
-    return entries.map(([atom,c],i)=>{const [n,d]=c,A=Math.abs(n),body=atomTex(atom),num=(A===1&&body?'':A)+body,term=d===1?num:`\\frac{${num}}{${d}}`;return `${n<0?'-':i?'+':''}${term}`;}).join('');
+    return entries.map(([atom,c],i)=>{const [n,d]=c,A=Math.abs(n),body=atomTex(atom),coefficient=A===1&&body?'':String(A),num=coefficient+(coefficient&&/^\d/.test(body)?'\\cdot ':'')+body,term=d===1?num:`\\frac{${num}}{${d}}`;return `${n<0?'-':i?'+':''}${term}`;}).join('');
   }
   function exactChunks(e){
     const terms=Object.entries(e).filter(([,c])=>c[0]).sort(([a],[b])=>a.localeCompare(b)).map(([k,c],i)=>{const t=exact({[k]:c});return i&&!t.startsWith('-')?'+'+t:t;});
@@ -2841,20 +2841,36 @@ G['difference-quotient']=()=>{
       const u=add(x,q(f.shift)),den=f.power===1?u:mul(u,u);
       return scalar(add(f.offset,div(f.A,den)));
     }
-    // Exact unit-circle values, with x expressed as a rational multiple of pi.
+    if(f.family==='exponential'){
+      const power=mul(q(f.rate),x),term=power[0]===0?scalar(1):f.base!=='e'&&power[1]===1?scalar(power[0]>0?q(f.base**power[0]):q(1,f.base**-power[0])):{[`exp:${f.base}:${power[0]}:${power[1]}`]:q(1)};
+      return plus(scalar(f.offset),scale(term,f.A));
+    }
+    if(f.family==='radical'){
+      const u=add(x,q(f.shift));let inside=u[0]*u[1],outside=1;
+      for(let p=2;p*p<=inside;p++)while(inside%(p*p)===0){inside/=p*p;outside*=p;}
+      const term=inside===1?scalar(q(outside,u[1])):{[`sqrt${inside}`]:q(outside,u[1])};
+      return plus(scalar(f.offset),scale(term,f.A));
+    }
+    // Exact unit-circle values; the stored coordinates are multiples of pi.
     const sin={0:scalar(0),'1/6':scalar(q(1,2)),'1/4':{'sqrt2':q(1,2)},'1/3':{'sqrt3':q(1,2)},'1/2':scalar(1),'2/3':{'sqrt3':q(1,2)},'3/4':{'sqrt2':q(1,2)},'5/6':scalar(q(1,2)),1:scalar(0)};
-    const t=f.trig==='cos'?sub(q(1,2),x):x,sgn=val(t)<0?-1:1,u=q(Math.abs(t[0]),t[1]),name=u[1]===1?String(u[0]):u.join('/');
+    let t=add(mul(q(f.rate||1),x),q(f.phase||0));if(f.trig==='cos')t=add(t,q(1,2));
+    t=q(((t[0]%(2*t[1]))+2*t[1])%(2*t[1]),t[1]);const sgn=val(t)>1?-1:1,u=val(t)>1?sub(t,q(1)):t,name=u[1]===1?String(u[0]):u.join('/');
     if(!sin[name])throw Error('Unsupported unit-circle sample');
     return plus(scalar(f.offset),scale(sin[name],mul(f.A,q(sgn))));
   }
   function makeFunction(family,n){
     let a,b,f,step;
-    if(['linear','quadratic','cubic'].includes(family)){
+    if(['linear','quadratic','cubic','higher-degree'].includes(family)){
       a=q(ri(-3,1));step=pick([q(1),q(1,2)]);b=add(a,mul(q(n),step));
       if(family==='linear')f={family,coeff:[q(ri(-6,8)),q(nz(-3,3))]};
       if(family==='quadratic')f={family,coeff:[q(ri(-5,8)),q(ri(-3,3)),R()<.22?pick([q(1,2),q(-1,2),q(1,4),q(-1,4)]):q(pick([-2,-1,1,2]))]};
       if(family==='cubic')f={family,coeff:[q(ri(-4,8)),q(ri(-2,2)),q(ri(-2,2)),q(pick([-1,1]))]};
+      if(family==='higher-degree'){
+        a=q(0);step=q(1,2);b=mul(q(n),step);const sign=pick([-1,1]),degree=pick([4,5]);
+        f={family,coeff:Array.from({length:degree+1},(_,i)=>q(i===0?ri(-3,4):i===1?sign*ri(0,2):i===degree?sign:0))};
+      }
       const d=derivative(f.coeff),dd=derivative(d);f.monotone=signOn(d,a,b);f.concavity=signOn(dd,a,b);f.dTex=poly(d);f.ddTex=poly(dd);f.tex=poly(f.coeff);
+      if(family==='higher-degree')f.monotone=f.concavity=Math.sign(f.coeff.at(-1)[0]);
     }else if(family==='rational'){
       const shift=ri(-1,2),start=ri(1,2);a=q(start-shift);step=q(pick([1,2]));b=add(a,mul(q(n),step));
       f={family,shift,power:n<=4&&R()<.25?2:1,A:q(pick([-2,-1,1,2,3])),offset:q(ri(0,2))};
@@ -2863,12 +2879,19 @@ G['difference-quotient']=()=>{
     }else if(family==='logarithmic'){
       a=q(ri(1,2));step=q(1);b=add(a,q(n));f={family,A:q(pick([-1,1,1,2])),offset:q(pick([0,1]))};
       f.tex=`${f.A[0]===-1?'-':f.A[0]===1?'':f.A[0]}\\ln${f.offset[0]?'(ex)':' x'}`;f.monotone=Math.sign(f.A[0]);f.concavity=-f.monotone;
+    }else if(family==='exponential'){
+      a=q(pick([-1,0]));step=q(1);b=add(a,q(n));f={family,base:pick(['e',2,3]),rate:pick([-1,1]),A:q(pick([-2,-1,1,2])),offset:q(ri(0,2))};
+      f.tex=`${f.A[0]===-1?'-':f.A[0]===1?'':`${f.A[0]}${f.base==='e'?'':'\\cdot '}`}${f.base}^{${f.rate===-1?'-':''}x}${f.offset[0]?`+${tq(f.offset)}`:''}`;
+      f.monotone=Math.sign(f.A[0])*f.rate;f.concavity=Math.sign(f.A[0]);
+    }else if(family==='radical'){
+      const shift=ri(0,3);a=q(1-shift);step=q(1);b=add(a,q(n));f={family,shift,A:q(pick([-2,-1,1,2])),offset:q(ri(0,2))};
+      f.tex=`${f.A[0]===-1?'-':f.A[0]===1?'':f.A[0]}\\sqrt{${lin(1,shift)}}${f.offset[0]?`+${tq(f.offset)}`:''}`;f.monotone=Math.sign(f.A[0]);f.concavity=-f.monotone;
     }else{
-      // These partitions use only 0, pi/6, pi/4, pi/3, pi/2 and reflections.
-      const span=n===3?q(1,2):q(1),trig=pick(['sin','cos']);a=trig==='cos'?q(-1,2):q(0);b=add(a,span);step=div(span,q(n));
-      f={family:'trigonometric',trig,A:q(pick([-2,-1,1,2])),offset:q(ri(0,2))};
-      f.tex=`${f.A[0]===-1?'-':f.A[0]===1?'':f.A[0]}\\${f.trig} x${f.offset[0]?`+${f.offset[0]}`:''}`;
-      f.concavity=-Math.sign(f.A[0]);f.monotone=n===3?Math.sign(f.A[0]):0;
+      const rate=pick([1,2]),trig=pick(['sin','cos']);a=R()<.5?q(-1,2*rate):q(0);b=add(a,q(1,rate));step=div(sub(b,a),q(n));
+      f={family:'trigonometric',trig,rate,A:q(pick([-2,-1,1,2])),offset:q(ri(0,2))};
+      f.tex=`${f.A[0]===-1?'-':f.A[0]===1?'':f.A[0]}\\${f.trig}${rate===1?' x':`(${rate}x)`}${f.offset[0]?`+${f.offset[0]}`:''}`;
+      f.concavity=(trig==='sin'&&a[0]===0)||(trig==='cos'&&a[0]<0)?-Math.sign(f.A[0]):0;
+      f.monotone=trig==='sin'&&a[0]<0?Math.sign(f.A[0]):trig==='cos'&&a[0]===0?-Math.sign(f.A[0]):0;
     }
     return {f,a,b,step};
   }
@@ -2887,7 +2910,10 @@ G['difference-quotient']=()=>{
     }
     const mids=ends.slice(0,-1).map((x,i)=>midpoint(x,ends[i+1])),points=[...ends,...(needMidpoints?mids:[])];
     let extraData=false;
-    if(representation==='table'&&R()<.35){extraData=true;const i=ri(0,n-1);points.push(midpoint(ends[i],mids[i]));if(n>2)points.push(midpoint(mids[(i+1)%n],ends[(i+1)%n+1]));}
+    // Extra samples do not make an unequal partition ambiguous: only equal
+    // partitions receive unused samples, while unequal midpoint tables mark
+    // their actual partition endpoints in the table itself.
+    if(representation==='table'&&uniform&&R()<.4){extraData=true;const i=ri(0,n-1);points.push(midpoint(ends[i],mids[i]));if(n>2)points.push(midpoint(mids[(i+1)%n],ends[(i+1)%n+1]));}
     const unique=[...new Map(points.map(x=>[x.join('/'),x])).values()].sort((x,y)=>val(x)-val(y)),rows=unique.map(x=>({x,y:f?functionValue(f,x):scalar(ri(-4,14))})),lookup=x=>rows.find(r=>val(r.x)===val(x)).y;
     const widths=ends.slice(0,-1).map((x,i)=>sub(ends[i+1],x)),L=ends.slice(0,-1).map(lookup),Rt=ends.slice(1).map(lookup),M=needMidpoints?mids.map(lookup):null;
     const integrate=ys=>total(ys.map((y,i)=>widthValue(y,widths[i],f)));
@@ -2900,13 +2926,12 @@ G['difference-quotient']=()=>{
   const work=steps=>`<ol class="u4-work">${steps.map(s=>`<li><div class="u4-step-content">${s}</div></li>`).join('')}</ol>`;
   const coordList=(xs,d)=>xs.map(x=>inline(coordinate(x,d.f))).join(', ');
   function table(d){
-    const chunks=d.rows.length>7?[d.rows.slice(0,Math.ceil(d.rows.length/2)),d.rows.slice(Math.ceil(d.rows.length/2))]:[d.rows];
-    return `<div class="u4-data-tables">${chunks.map(rows=>`<table aria-label="Function values"><thead><tr><th>${inline('x')}</th><th>${inline('f(x)')}</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${inline(tq(r.x))}</td><td>${inline(exact(r.y))}</td></tr>`).join('')}</tbody></table>`).join('')}</div>`;
+    const marked=!d.uniform&&d.mode==='midpoint',endpoint=x=>d.ends.some(e=>val(e)===val(x));
+    return `<div class="u4-data-tables" role="region" aria-label="Function values; scroll horizontally if needed" tabindex="0"><table aria-label="Function values"><tbody><tr><th scope="row">${inline('x')}</th>${d.rows.map(r=>`<td${marked&&endpoint(r.x)?' class="u4-partition-endpoint"':''}>${inline(tq(r.x))}</td>`).join('')}</tr><tr><th scope="row">${inline('f(x)')}</th>${d.rows.map(r=>`<td>${inline(exact(r.y))}</td>`).join('')}</tr></tbody></table></div>${marked?'<p class="u4-table-key">Outlined x-values are subinterval endpoints.</p>':''}`;
   }
   function display(d,prompt,extra=''){
     const integral=`\\int_{${coordinate(d.a,d.f)}}^{${coordinate(d.b,d.f)}}${d.representation==='table'?'f(x)':d.f.tex}\\,dx`;
-    const partition=d.representation==='table'?`<p class="u4-partition">${d.uniform?`Use ${d.n} equal subintervals.`:`Use the partition ${coordList(d.ends,d)}.`}</p>`:'';
-    return `<div class="u4-unit4-question"><div class="question-prompt">${prompt}</div><div class="u4-formula">${inline(`\\displaystyle ${integral}`)}</div>${partition}${d.representation==='table'?table(d):''}${extra}</div>`;
+    return `<div class="u4-unit4-question"><div class="question-prompt">${prompt}</div><div class="u4-formula">${inline(`\\displaystyle ${integral}`)}</div>${d.representation==='table'?table(d):''}${extra}</div>`;
   }
   function partitionWork(d){
     const info=`On ${inline(`[${coordinate(d.a,d.f)},${coordinate(d.b,d.f)}]`)}, use ${inline(`n=${d.n}`)}.`;
@@ -2933,10 +2958,13 @@ G['difference-quotient']=()=>{
     return {over,behavior,reason};
   }
   function question(d,variant,prompt,options,steps,meta={}){
-    const unique=[];for(const o of options)if(!unique.some(x=>x.key===o.key))unique.push(o);
-    if(unique.length<4)return null;
-    const correct=unique[0].key,choices=shuffle(unique.slice(0,4));
-    return {id:problemKey(`u4J-${d.kind}-${variant}`,{f:d.f,ends:d.ends,rows:d.rows,...meta}),variant,normalizedMathDisplay:true,questionHtml:display(d,prompt,meta.extraHtml||''),choices:choices.map(x=>/\\\(/.test(x.tex)?x.tex:`\\displaystyle ${x.tex}`),correctIndex:choices.findIndex(x=>x.key===correct),fullWidthChoices:true,explanation:work(steps),unit4Meta:{...d,...meta,choiceValues:choices.map(x=>x.value??null),correctKey:correct}};
+    const answer=d.answers[meta.mode],solution=work(steps),stage1={type:'unit4-exact',prompt:meta.error?'Part 1: Find the approximation.':'Enter the approximation.',answerTex:exactBlock(answer),unit4Answer:{kind:'scalar',value:answer},keypadMode:'unit4-exact',explanation:solution,autoAdvanceOnCorrect:true};
+    let stage2=null;
+    if(meta.error){
+      const choices=shuffle(['underestimate','overestimate'].flatMap(estimate=>['increasing','decreasing','concave up','concave down'].map(behavior=>({estimate,behavior,text:`${estimate==='underestimate'?'Underestimate':'Overestimate'} because the function is ${behavior}`}))));
+      stage2={type:'choice',prompt:'Part 2: Choose the estimate and the property that justifies it for this method.',choices:choices.map(c=>c.text),correctIndex:choices.findIndex(c=>c.estimate===(meta.error.over?'overestimate':'underestimate')&&c.behavior===meta.error.behavior),answerIsText:true,explanation:meta.error.reason};
+    }
+    return {id:problemKey(`u4K-${d.kind}-${variant}`,{f:d.f,ends:d.ends,rows:d.rows,...meta}),variant,normalizedMathDisplay:true,answerType:'staged-calculus',questionHtml:display(d,prompt,meta.extraHtml||''),stage1,stage2,answerTex:stage1.answerTex,fullWidthChoices:true,explanation:solution,unit4Meta:{...d,...meta,expected:answer}};
   }
   const option=e=>({key:key(e),tex:exactBlock(e),value:e});
   const classifiedOption=(value,word)=>({...value,key:`${value.key}:${word}`,tex:`${inline(`\\displaystyle ${value.tex}`)}; ${word}`});
@@ -2944,30 +2972,25 @@ G['difference-quotient']=()=>{
     const correct=d.answers[method],ys=d.heights[method]||d.heights.left,omit=total(ys.slice(0,-1).map((y,i)=>widthValue(y,d.widths[i],d.f)));
     return [correct,d.answers.left,d.answers.right,d.answers.midpoint,d.answers.trapezoid,total(ys),omit,scale(correct,q(2)),scale(correct,q(1,2)),scale(correct,q(-1))].filter(Boolean).map(option);
   }
-  G['rectangular-approximations']=()=>{
-    const representation=R()<.5?'table':'function',mode=R()<.15?'matched':pick(['left','right','midpoint']),n=pick([2,3,4,6]),family=pick(['quadratic','quadratic','cubic','rational','linear','logarithmic']);
+  const approximationFamily=()=>pick(['linear','quadratic','quadratic','cubic','higher-degree','rational','rational','trigonometric','trigonometric','trigonometric','exponential','exponential','logarithmic','radical']);
+  const sampleCount=(family,representation)=>representation==='function'&&['trigonometric','exponential','radical','higher-degree','rational'].includes(family)?pick([2,3]):pick([2,3,4,6]);
+  G['rectangular-approximations']=(opts={})=>{
+    const representation=R()<.5?'table':'function',requested=opts.rectangularMethod||opts.mode,mode=['left','right','midpoint'].includes(requested)?requested:pick(['left','right','midpoint']),family=approximationFamily(),n=sampleCount(family,representation);
     for(let attempt=0;attempt<100;attempt++){
-      const d=makeData('rectangular',representation,family,n,mode==='midpoint'||mode==='matched');
+      const d=makeData('rectangular',representation,family,n,mode==='midpoint');d.mode=mode;
       const sensible=Object.values(d.answers).every(e=>Object.values(e).every(c=>Math.abs(c[0])<=2000000&&c[1]<=1000000));if(!sensible)continue;
       let p;
-      if(mode==='matched'){
-        const values=[d.answers.left,d.answers.right,d.answers.midpoint],triple=es=>({key:es.map(key).join('|'),value:es,tex:`\\begin{aligned}${['L','R','M'].flatMap((label,i)=>answerLines(`${label}_{${n}}`,es[i])).join('\\\\')}\\end{aligned}`});
-        const options=[values,[values[1],values[0],values[2]],[values[2],values[1],values[0]],[values[0],values[2],values[1]],[values[0],values[1],d.answers.trapezoid],[values[0],values[1],scale(values[2],q(2))]].map(triple);
-        const steps=[partitionWork(d),...['left','right','midpoint'].map(m=>{const [s,t]=rectangleWork(d,m);return s+t;})];
-        p=question(d,`${representation}_matched`,`Use ${n}${d.uniform?' equal':''} subintervals to approximate the integral with left, right, and midpoint rectangles.`,options,steps,{mode});
-      }else{
+      {
         const error=representation==='function'&&R()<(mode==='midpoint'?.28:.55)?classification(d,mode):null;
         let options=numericOptions(d,mode),steps=[partitionWork(d),...rectangleWork(d,mode)],prompt=`Use ${n}${d.uniform?' equal-width':''} ${mode==='midpoint'?'midpoint':`${mode}-endpoint`} rectangles to approximate the integral.`;
         if(error){
-          const values=options.filter((o,i,a)=>a.findIndex(x=>x.key===o.key)===i),rightWord=error.over?'overestimate':'underestimate',wrongWord=error.over?'underestimate':'overestimate';
-          options=[classifiedOption(values[0],rightWord),classifiedOption(values[0],wrongWord),classifiedOption(values[1],rightWord),classifiedOption(values[1],wrongWord)];
-          prompt+=' Is it an overestimate or an underestimate?';steps.push(error.reason);
+          prompt+=' Then classify the estimate.';
         }
         p=question(d,`${representation}_${mode}`,prompt,options,steps,{mode,error});
       }
       if(p)return p;
     }
-    throw Error('Unable to construct distinct rectangular approximation choices');
+    throw Error('Unable to construct a manageable exact rectangular approximation');
   };
   function trapezoidWork(d){
     const heights=[...d.heights.left,d.heights.right.at(-1)];
@@ -2980,7 +3003,7 @@ G['difference-quotient']=()=>{
     return [evaluations,equation(`\\begin{aligned}${lines.join('\\\\')}\\end{aligned}`)];
   }
   G['trapezoidal-approximations']=()=>{
-    const representation=R()<.5?'table':'function',n=pick([2,3,4,6]),roll=R(),family=roll<.35?'quadratic':roll<.55?'cubic':roll<.75?'trigonometric':roll<.95?'rational':'linear',relation=R()<.1;
+    const representation=R()<.5?'table':'function',family=approximationFamily(),n=sampleCount(family,representation),relation=R()<.1;
     for(let attempt=0;attempt<100;attempt++){
       const d=makeData('trapezoidal',representation,family,n,false);let p;
       // T=(L+R)/2 is requested only for one shared equal partition.
@@ -2993,9 +3016,7 @@ G['difference-quotient']=()=>{
       }else{
         const error=representation==='function'&&R()<.6?classification(d,'trapezoid'):null;let options=numericOptions(d,'trapezoid'),steps=[partitionWork(d),...trapezoidWork(d)],prompt=`Use ${n}${d.uniform?' equal-width':''} trapezoids to approximate the integral.`;
         if(error){
-          const values=options.filter((o,i,a)=>a.findIndex(x=>x.key===o.key)===i),rightWord=error.over?'overestimate':'underestimate',wrongWord=error.over?'underestimate':'overestimate';
-          options=[classifiedOption(values[0],rightWord),classifiedOption(values[0],wrongWord),classifiedOption(values[1],rightWord),classifiedOption(values[1],wrongWord)];
-          steps.push(error.reason);prompt+=' Is it an overestimate or an underestimate?';
+          prompt+=' Then classify the estimate.';
         }
         if(d.family==='linear')steps[steps.length-1]+=' Because the graph is a straight line, the trapezoidal value is exact.';
         p=question(d,`${representation}_${d.uniform?'equal':'unequal'}`,prompt,options,steps,{mode:'trapezoid',error,relation:false});
@@ -3018,9 +3039,8 @@ G['difference-quotient']=()=>{
   const termsTex=xs=>xs.map((x,i)=>`${x<0?'-':i?'+':''}${Math.abs(x)}`).join('');
   const termsBlock=xs=>{if(xs.length<=4)return termsTex(xs);const parts=[];for(let i=0;i<xs.length;i+=3){const t=termsTex(xs.slice(i,i+3));parts.push(i&&!t.startsWith('-')?'+'+t:t);}return `\\begin{gathered}${parts.join('\\\\')}\\end{gathered}`;};
   function sigmaQuestion(family,subtype,prompt,math,options,steps,meta){
-    const unique=[];for(const o of options)if(!unique.some(x=>x.key===o.key))unique.push(o);if(unique.length<4)return null;
-    const correct=unique[0].key,choices=shuffle(unique.slice(0,4));
-    return {id:problemKey(`u4J-sigma-${family}-${subtype}`,meta),variant:`sigma_${family}`,normalizedMathDisplay:true,questionHtml:`<div class="u4-unit4-question"><div class="question-prompt">${prompt}</div><div class="u4-formula">${inline(`\\displaystyle ${math}`)}</div></div>`,choices:choices.map(o=>`\\displaystyle ${o.tex}`),correctIndex:choices.findIndex(o=>o.key===correct),fullWidthChoices:true,explanation:work(steps),unit4Meta:{kind:'sigma',family,subtype,...meta,choiceValues:choices.map(o=>o.value??null)}};
+    const answer=family==='numerical'?{kind:'scalar',value:scalar(meta.answer)}:{kind:'n-expression',value:meta.expected},solution=work(steps);
+    return {id:problemKey(`u4K-sigma-${family}-${subtype}`,meta),variant:`sigma_${family}`,normalizedMathDisplay:true,answerType:'staged-calculus',questionHtml:`<div class="u4-unit4-question"><div class="question-prompt">${prompt}</div><div class="u4-formula">${inline(`\\displaystyle ${math}`)}</div></div>`,stage1:{type:'unit4-exact',prompt:family==='numerical'?'Enter the value of the sum.':'Enter the simplified expression in n.',answerTex:options[0].tex,unit4Answer:answer,keypadMode:family==='numerical'?'unit4-exact':'unit4-sigma',explanation:solution},answerTex:options[0].tex,explanation:solution,unit4Meta:{kind:'sigma',family,subtype,...meta}};
   }
   const plainOption=s=>({key:String(s),tex:String(s),value:String(s)});
   const numericOption=n=>({key:String(n),tex:String(n),value:n});
@@ -3103,9 +3123,9 @@ G['difference-quotient']=()=>{
     return sigmaQuestion('riemann',subtype,'Simplify the finite sum as an expression in n. Do not take a limit.',math,options,steps,{coeff,original,expected});
   }
   G['introduction-to-sigma-notation']=()=>{
-    const roll=R(),family=roll<.2?sigmaRead:roll<.3?sigmaNumerical:roll<.45?sigmaWrite:roll<.7?sigmaIdentities:sigmaRiemann;
+    const roll=R(),family=roll<.15?sigmaNumerical:roll<.55?sigmaIdentities:sigmaRiemann;
     for(let i=0;i<100;i++){const p=family();if(p)return p;}
-    throw Error('Unable to construct distinct sigma notation choices');
+    throw Error('Unable to construct a sigma notation problem');
   };
 })();
 

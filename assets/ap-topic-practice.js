@@ -47,7 +47,7 @@ function standardizeU3Keypad(pad){
  pad.classList.add('u3-keypad-standardized');
 }
 function mountUnit3Keypad(inputs,box,mode='unit3',onCheck=null){
- if(!cfg.unit3)return;if(mode==='unit3')mode=keypadModeFor(current?.answerType,'unit3-exact');const list=(Array.isArray(inputs)?inputs:[inputs]).filter(Boolean);if(!list.length)return;
+ if(!cfg.unit3&&!current?.unit4Meta)return;if(mode==='unit3')mode=keypadModeFor(current?.answerType,'unit3-exact');const list=(Array.isArray(inputs)?inputs:[inputs]).filter(Boolean);if(!list.length)return;
  const checkButton=[...box.querySelectorAll('button')].find(b=>/^Check\b/i.test(b.textContent||''));
  if(window.BatchMathCalculusKeypad?.mountInputs){
    window.BatchMathCalculusKeypad.mountInputs(list,box,{mode,onCheck:onCheck||(()=>{if(checkButton&&!checkButton.disabled)checkButton.click();})});
@@ -168,6 +168,7 @@ function renderParameterFields(box){box.classList.add('composite-answer','parame
 function renderStagedCalculus(box){
  const stage1=current.stage1||{},stage2=current.stage2||null;
  box.classList.add('composite-answer','staged-calculus-answer');
+ if(current.unit4Meta)box.classList.add('unit4-typed-answer');
  current.blockEnterAdvance=true;current.enterAdvanceAllowed=false;current.pendingStageAdvance=null;
  current.requirePhysicalNextClick=false;current.nextPointerArmed=false;
  current.stage1Answered=false;current.stage1Correct=false;current.stage2Answered=false;current.stage2Visible=false;
@@ -188,6 +189,7 @@ function renderStagedCalculus(box){
  function normalizeStageRaw(raw){return String(raw||'').trim().replace(/[−–—]/g,'-').replace(/^\s*(?:c|x|y|L\([^)]*\)|S\([^)]*\))\s*=\s*/i,'');}
  function decimalLiteralUsed(raw){return /(?:^|[^A-Za-z])(?:\d*\.\d+)/.test(String(raw||''));}
  function exactResult(raw,stage){
+  if(stage.unit4Answer)return window.BatchMathUnit4Answers.check(raw,stage.unit4Answer);
   const cleaned=normalizeStageRaw(raw);
   if(!cleaned)return{valid:false,message:stage.requireExact?'Enter an exact answer before checking.':'Enter an answer before checking.'};
   if(stage.requireExact&&decimalLiteralUsed(cleaned))return{valid:true,ok:false,format:true};
@@ -265,7 +267,7 @@ nextButton.addEventListener('pointerdown',()=>{if(current)current.nextPointerArm
 nextButton.addEventListener('pointercancel',()=>{if(current)current.nextPointerArmed=false;});
 nextButton.addEventListener('click',event=>{if(current?.requirePhysicalNextClick&&!current.nextPointerArmed){event.preventDefault();event.stopPropagation();return;}if(current)current.nextPointerArmed=false;make();});
 nextButton.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&current?.requirePhysicalNextClick){event.preventDefault();event.stopPropagation();return;}if(event.key==='Enter'&&current?.blockEnterAdvance&&!current.enterAdvanceAllowed){event.preventDefault();event.stopPropagation();}});
-const ids=Array.isArray(cfg.modeSelectIds)?cfg.modeSelectIds:(cfg.modeSelectId?[cfg.modeSelectId]:[]);for(const id of ids){if($(id))$(id).addEventListener('change',make);}
+const ids=Array.isArray(cfg.modeSelectIds)?cfg.modeSelectIds:(cfg.modeSelectId?[cfg.modeSelectId]:[]);for(const id of ids){if($(id)&&!cfg.deferModeChange)$(id).addEventListener('change',make);}
 document.addEventListener('keydown',event=>{if(event.key==='Enter'&&current?.requirePhysicalNextClick){event.preventDefault();event.stopImmediatePropagation();}},true);
 document.addEventListener('keydown',event=>{
  if(event.key!=='Enter'||event.defaultPrevented||event.repeat)return;

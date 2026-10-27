@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Focused independent mathematical QA for the three v12.8.J Unit 4 engines.
+// Focused independent mathematical QA for the three shared Unit 4 engines.
 // No generated report is checked into the website; stdout is the current run.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,6 +12,7 @@ let state=0x128abcdef;
 function random(){state=(state+0x6D2B79F5)|0;let t=Math.imul(state^(state>>>15),1|state);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296;}
 const box={window:{BatchMathRNG:{random}},console};vm.createContext(box);vm.runInContext(source,box);
 vm.runInContext(fs.readFileSync(path.join(root,'assets/derivative-expression-checker.js'),'utf8'),box);
+vm.runInContext(fs.readFileSync(path.join(root,'assets/unit4-exact-answers.js'),'utf8'),box);
 const get=slug=>box.window.BatchMathAPTopicGenerators.get(slug);
 // Read the emitted TeX independently as arithmetic. This catches display-only
 // errors (for example 2k -> 22 instead of 2(2)) that metadata-only tests miss.
@@ -44,15 +45,15 @@ function Q(a,b=1n){a=BigInt(a);b=BigInt(b);if(b<0n){a=-a;b=-b;}const d=gcd(a,b);
 const add=(a,b)=>Q(a[0]*b[1]+b[0]*a[1],a[1]*b[1]),mul=(a,b)=>Q(a[0]*b[0],a[1]*b[1]),sub=(a,b)=>add(a,[-b[0],b[1]]),div=(a,b)=>Q(a[0]*b[1],a[1]*b[0]);
 const from=a=>Q(a[0],a[1]),number=a=>Number(a[0])/Number(a[1]),zero=()=>Q(0),sum=xs=>xs.reduce(add,zero());
 const near=(a,b,context)=>assert.ok(Math.abs(a-b)<1e-8*Math.max(1,Math.abs(a),Math.abs(b)),`${context}: ${a} != ${b}`);
-function exactNumber(e){let out=0;for(const[k,c]of Object.entries(e)){let atom=1;for(const part of k.split('*').filter(Boolean)){if(part==='pi')atom*=Math.PI;else if(part.startsWith('sqrt'))atom*=Math.sqrt(Number(part.slice(4)));else if(part.startsWith('ln'))atom*=Math.log(Number(part.slice(2)));else throw Error('Unknown exact atom '+part);}out+=c[0]/c[1]*atom;}return out;}
+function exactNumber(e){let out=0;for(const[k,c]of Object.entries(e)){let atom=1;for(const part of k.split('*').filter(Boolean)){if(part==='pi')atom*=Math.PI;else if(part.startsWith('sqrt'))atom*=Math.sqrt(Number(part.slice(4)));else if(part.startsWith('ln'))atom*=Math.log(Number(part.slice(2)));else if(part.startsWith('exp:')){const[,b,n,d]=part.split(':');atom*=(b==='e'?Math.E:Number(b))**(Number(n)/Number(d));}else throw Error('Unknown exact atom '+part);}out+=c[0]/c[1]*atom;}return out;}
 const poly=(coeff,x)=>coeff.reduceRight((a,c)=>add(mul(a,x),from(c)),zero());
-function evaluate(f,x){if(f.coeff)return number(poly(f.coeff,x));const t=number(x);if(f.family==='logarithmic')return number(from(f.A))*(number(from(f.offset))+Math.log(t));if(f.family==='rational')return number(from(f.offset))+number(from(f.A))/(t+f.shift)**f.power;if(f.family==='trigonometric')return number(from(f.offset))+number(from(f.A))*Math[f.trig](Math.PI*t);throw Error('Unknown function');}
+function evaluate(f,x){if(f.coeff)return number(poly(f.coeff,x));const t=number(x),A=f.A[0]/f.A[1],offset=f.offset[0]/f.offset[1];if(f.family==='logarithmic')return A*(offset+Math.log(t));if(f.family==='rational')return offset+A/(t+f.shift)**f.power;if(f.family==='exponential')return offset+A*(f.base==='e'?Math.E:f.base)**(f.rate*t);if(f.family==='radical')return offset+A*Math.sqrt(t+f.shift);if(f.family==='trigonometric')return offset+A*Math[f.trig](Math.PI*(f.rate*t+(f.phase||0)));throw Error('Unknown function');}
 const inc=(map,key)=>map[key]=(map[key]||0)+1;
 const stats={};
 function nValue(p,n){const N=Q(n);return sum(Object.entries(p).map(([power,c])=>{const k=Number(power),term=Q(BigInt(n)**BigInt(Math.abs(k)));return k<0?div(from(c),term):mul(from(c),term);}));}
 function sigma(p){
- const d=p.unit4Meta,choices=d.choiceValues;assert.equal(d.kind,'sigma');assert.equal(p.choices.length,4);assert.equal(new Set(p.choices).size,4);
- const selected=choices[p.correctIndex],text=[p.questionHtml,p.explanation,...p.choices].join(' ');
+ const d=p.unit4Meta,choices=[],selected=d.family==='numerical'?d.answer:{npoly:d.expected};assert.equal(d.kind,'sigma');assert.equal(p.answerType,'staged-calculus');assert.equal(p.stage1.type,'unit4-exact');assert.ok(['numerical','identities','riemann'].includes(d.family));assert.ok(!p.choices);
+ const text=[p.questionHtml,p.explanation,p.answerTex].join(' ');
  assert.ok(!/(?:^|[^\d])1k|[kn]\^\{1\}|[kn]\^1(?!\d)|\\frac\{[^{}]+\}\{1\}/.test(text),'Bad sigma simplification');assert.ok(/<ol class="u4-work">/.test(p.explanation));
  const finite=(coeff,a,b)=>{const out=[];for(let k=a;k<=b;k++)out.push(poly(coeff,Q(k)));return out;};
  if(d.family==='read'){
@@ -77,6 +78,10 @@ function sigma(p){
    return sum(Array.from({length:n},(_,i)=>sum(d.coeff.map((c,p)=>div(mul(from(c),Q(BigInt(i+1)**BigInt(p))),Q(BigInt(n)**BigInt(p+1)))))));
   }
   trials.forEach(n=>{assert.deepEqual(nValue(d.expected,n),actual(n),'Independent symbolic sum at n='+n);assert.deepEqual(nValue(selected.npoly,n),actual(n),'Correct symbolic choice');});
+  trials.forEach(n=>near(displayedNumber(p.answerTex,n),number(actual(n)),'Displayed symbolic answer'));
+  const canonical=Object.entries(d.expected).map(([k,c])=>`(${c[0]}/${c[1]})*n^(${k})`).join('+')||'0';
+  assert.equal(box.window.BatchMathUnit4Answers.check(canonical,p.stage1.unit4Answer).ok,true,'Canonical n answer');
+  assert.equal(box.window.BatchMathUnit4Answers.check(`(${canonical})+1`,p.stage1.unit4Answer).ok,false,'Incorrect n answer');
   choices.forEach((c,i)=>{assert.ok(c.npoly);const equivalent=trials.every(n=>{const a=nValue(c.npoly,n),b=actual(n);return a[0]===b[0]&&a[1]===b[1];});assert.equal(equivalent,i===p.correctIndex,'Equivalent symbolic distractor');});
   choices.forEach((c,i)=>trials.forEach(n=>near(displayedNumber(p.choices[i],n),number(nValue(c.npoly,n)),'Displayed symbolic choice')));
   for(const m of p.explanation.matchAll(/\\begin\{aligned\}S&=([^]*?)\\end\{aligned\}/g))if(!m[1].includes('\\sum'))for(const n of [1,3,7])near(displayedNumber(m[1],n),number(actual(n)),'Worked identity substitution');
@@ -98,9 +103,9 @@ function sigma(p){
 }
 function approximation(p){
  const d=p.unit4Meta;assert.ok(d,'Missing shared Unit 4 metadata');
- assert.ok(p.choices.length===4&&p.correctIndex>=0&&p.correctIndex<4);
- assert.equal(new Set(p.choices).size,4,'Repeated choice text');
- const text=[p.questionHtml,p.explanation,...p.choices].join(' ');
+ assert.equal(p.answerType,'staged-calculus');assert.equal(p.stage1.type,'unit4-exact');assert.ok(!p.choices);assert.ok(['left','right','midpoint','trapezoid'].includes(d.mode));
+ const text=[p.questionHtml,p.explanation,p.answerTex].join(' ');
+ if(d.representation==='table'){assert.equal((p.questionHtml.match(/<tr>/g)||[]).length,2,'Table must have two horizontal rows');assert.ok(!/Use the partition/.test(p.questionHtml));}
  assert.ok(!/midpoint-endpoint|\\int_-|(?:^|[^\d])1k|[xkn]\^\{1\}|[xkn]\^1(?!\d)/.test(text),'Unwanted notation '+p.id);
  assert.ok(!/\.\d{5}/.test(text),'Unexpected decimal approximation');
  const ends=d.ends.map(from),mids=ends.slice(0,-1).map((x,i)=>div(add(x,ends[i+1]),Q(2))),widths=ends.slice(0,-1).map((x,i)=>sub(ends[i+1],x));
@@ -110,7 +115,7 @@ function approximation(p){
  const data=new Map(d.rows.map(r=>[from(r.x).join('/'),r.y]));
  const at=x=>{const e=data.get(x.join('/'));assert.ok(e,'Missing required sample '+x.join('/'));if(d.f)near(exactNumber(e),evaluate(d.f,x),'Independent function evaluation');return exactNumber(e);};
  const needed=[...ends,...((d.mode==='midpoint'||d.mode==='matched')?mids:[])];needed.forEach(at);
- if(d.f)needed.forEach(x=>near(displayedNumber(d.f.tex,number(x)*(d.f.family==='trigonometric'?Math.PI:1)),evaluate(d.f,x),'Displayed function'));
+ if(d.f)needed.forEach(x=>near(displayedNumber(d.f.tex,number(x)*(d.f.family==='trigonometric'?Math.PI:1)),evaluate(d.f,x),`Displayed function ${d.f.tex} at ${x}: ${JSON.stringify(d.f)}`));
  if(d.extraData)assert.ok(d.rows.length>new Set(needed.map(x=>x.join('/'))).size,'Flagged extra data is not extra');
  const unit=d.f?.family==='trigonometric'?Math.PI:1;
  const left=widths.reduce((s,w,i)=>s+unit*number(w)*at(ends[i]),0),right=widths.reduce((s,w,i)=>s+unit*number(w)*at(ends[i+1]),0),trap=widths.reduce((s,w,i)=>s+unit*number(w)*(at(ends[i])+at(ends[i+1]))/2,0);
@@ -129,21 +134,25 @@ function approximation(p){
    if(d.f.coeff){const coeff=d.f.coeff.map(c=>c[0]/c[1]),ds=coeff.slice(1).map((c,i)=>c*(i+1)),dds=ds.slice(1).map((c,i)=>c*(i+1));derivative=(useSecond?dds:ds).reduceRight((a,c)=>a*x+c,0);}
    else if(d.f.family==='rational'){const A=d.f.A[0]/d.f.A[1],u=x+d.f.shift,k=d.f.power;derivative=useSecond?k*(k+1)*A/u**(k+2):-k*A/u**(k+1);}
    else if(d.f.family==='logarithmic'){const A=d.f.A[0]/d.f.A[1];derivative=useSecond?-A/x**2:A/x;}
-   else derivative=useSecond?-d.f.A[0]/d.f.A[1]*Math[d.f.trig](t):d.f.A[0]/d.f.A[1]*(d.f.trig==='sin'?Math.cos(t):-Math.sin(t));
+   else if(d.f.family==='exponential'){const A=d.f.A[0]/d.f.A[1],b=d.f.base==='e'?Math.E:d.f.base,k=d.f.rate*Math.log(b);derivative=A*b**(d.f.rate*x)*(useSecond?k*k:k);}
+   else if(d.f.family==='radical'){const A=d.f.A[0]/d.f.A[1],u=x+d.f.shift;derivative=useSecond?-A/(4*u**1.5):A/(2*Math.sqrt(u));}
+   else derivative=useSecond?-d.f.A[0]/d.f.A[1]*Math[d.f.trig](d.f.rate*t):d.f.A[0]/d.f.A[1]*(d.f.trig==='sin'?Math.cos(d.f.rate*t):-Math.sin(d.f.rate*t));
    if(Math.abs(derivative)>1e-9)signs.push(Math.sign(derivative));
   }
   assert.ok(signs.length&&new Set(signs).size===1,'Error rule not valid on full interval');const sign=signs[0],over=d.mode==='midpoint'?sign<0:d.mode==='trapezoid'?sign>0:d.mode==='left'?sign<0:sign>0;assert.equal(d.error.over,over,'Incorrect over/underestimate');
  }
- const expected=d.mode==='matched'?['left','right','midpoint'].map(m=>exactNumber(d.answers[m])):[exactNumber(d.answers[d.mode])],selected=d.choiceValues[p.correctIndex];
- (Array.isArray(selected)?selected:[selected]).forEach((v,i)=>near(exactNumber(v),expected[i],'Correct answer choice'));
- d.choiceValues.forEach((value,i)=>{const raw=p.choices[i];if(Array.isArray(value)){const labels=[...raw.matchAll(/[LRM]_\{\d+\}&=/g)];assert.equal(labels.length,3);labels.forEach((m,j)=>near(displayedNumber(raw.slice(m.index+m[0].length,labels[j+1]?.index)),exactNumber(value[j]),'Displayed matched choice'));}else{const tex=(raw.match(/\\\(([^]*?)\\\)/)||[])[1]||raw;near(displayedNumber(tex),exactNumber(value),'Displayed exact choice');}});
+ const expected=exactNumber(d.answers[d.mode]);near(exactNumber(d.expected),expected,'Stored typed answer');near(displayedNumber(p.answerTex),expected,'Displayed typed answer');
+ const checker=box.window.BatchMathUnit4Answers,answer=p.stage1.unit4Answer,canonical=checker.expression(d.expected);assert.equal(checker.check(canonical,answer).ok,true,'Typed exact answer');assert.equal(checker.check(`(${canonical})+1`,answer).ok,false,'Wrong typed answer');
+ if(d.error){const stage=p.stage2;assert.equal(stage.choices.length,8);assert.equal(new Set(stage.choices).size,8);assert.equal(stage.choices[stage.correctIndex],`${d.error.over?'Overestimate':'Underestimate'} because the function is ${d.error.behavior}`);const reason=stage.choices[stage.correctIndex];assert.equal(/concave/.test(reason),['midpoint','trapezoid'].includes(d.mode),'Method-appropriate reason');}else assert.equal(p.stage2,null);
  assert.ok(/<ol class="u4-work">/.test(p.explanation),'Missing vertical worked solution');
  const s=stats[d.kind]||(stats[d.kind]={total:0,representation:{},family:{},mode:{},n:{},tableSpacing:{},extra:0,errors:0,features:{},cross:{}});s.total++;inc(s.representation,d.representation);inc(s.family,d.family);inc(s.mode,d.mode);inc(s.n,d.n);if(d.representation==='table'){inc(s.tableSpacing,d.uniform?'equal':'unequal');if(d.extraData)s.extra++;}if(d.error){s.errors++;inc(s.features,`${d.mode}_${d.error.over?'overestimate':'underestimate'}`);}if(d.relation)inc(s.features,'left_right_relationship');if(d.f?.family==='quadratic')inc(s.features,`${d.f.coeff[2][0]>0?'upward':'downward'}_quadratic`);if(d.f?.coeff?.some(c=>c[1]!==1))inc(s.features,'fractional_coefficients');if(d.f?.trig)inc(s.features,d.f.trig);inc(s.cross,`${d.family}/${d.mode}/${d.n}`);
 }
 const sample=Number(process.env.BM_U4_QA_SAMPLES||12000),requested=process.argv.slice(2),slugs=requested.length?requested:['rectangular-approximations','trapezoidal-approximations','introduction-to-sigma-notation'];
 for(const slug of slugs){for(let i=0;i<sample;i++){const p=get(slug)();if(p.unit4Meta?.kind==='sigma')sigma(p);else approximation(p);}console.log('PASS',slug,sample);}
 for(const s of Object.values(stats).filter(s=>s.representation)){const ratio=s.representation.table/s.total;assert.ok(ratio>.47&&ratio<.53,'Representation not approximately 50/50');}
-if(stats.sigma)for(const[family,target]of Object.entries({read:.2,numerical:.1,write:.15,identities:.25,riemann:.3}))assert.ok(Math.abs(stats.sigma.family[family]/stats.sigma.total-target)<.025,'Sigma weighting '+family);
+if(stats.sigma)for(const[family,target]of Object.entries({numerical:.15,identities:.4,riemann:.45}))assert.ok(Math.abs(stats.sigma.family[family]/stats.sigma.total-target)<.025,'Sigma weighting '+family);
+for(const mode of ['left','right','midpoint'])for(let i=0;i<600;i++)assert.equal(get('rectangular-approximations')({rectangularMethod:mode}).unit4Meta.mode,mode,'Focused rectangular filter');
+const answers=box.window.BatchMathUnit4Answers;for(const text of ['n(n+1)/2','(n^2+n)/2','n/2+n^2/2'])assert.equal(answers.check(text,{kind:'n-expression',value:{2:[1,2],1:[1,2]}}).ok,true,'Equivalent factored/reordered n expression');assert.equal(answers.check('n/0',{kind:'n-expression',value:{1:[1,1]}}).valid,false);
 // With identical RNG state, filtered review must produce the exact same object.
 for(const[mode,slug]of [['rect','rectangular-approximations'],['trap','trapezoidal-approximations'],['sigma','introduction-to-sigma-notation']]){
  if(!slugs.includes(slug))continue;
