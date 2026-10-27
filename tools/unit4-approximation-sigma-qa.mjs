@@ -22,6 +22,39 @@ const poly=(coeff,x)=>coeff.reduceRight((a,c)=>add(mul(a,x),from(c)),zero());
 function evaluate(f,x){if(f.coeff)return number(poly(f.coeff,x));const t=number(x);if(f.family==='logarithmic')return number(from(f.A))*(number(from(f.offset))+Math.log(t));if(f.family==='rational')return number(from(f.offset))+number(from(f.A))/(t+f.shift)**f.power;if(f.family==='trigonometric')return number(from(f.offset))+number(from(f.A))*Math[f.trig](Math.PI*t);throw Error('Unknown function');}
 const inc=(map,key)=>map[key]=(map[key]||0)+1;
 const stats={};
+function nValue(p,n){const N=Q(n);return sum(Object.entries(p).map(([power,c])=>{const k=Number(power),term=Q(BigInt(n)**BigInt(Math.abs(k)));return k<0?div(from(c),term):mul(from(c),term);}));}
+function sigma(p){
+ const d=p.unit4Meta,choices=d.choiceValues;assert.equal(d.kind,'sigma');assert.equal(p.choices.length,4);assert.equal(new Set(p.choices).size,4);
+ const selected=choices[p.correctIndex],text=[p.questionHtml,p.explanation,...p.choices].join(' ');
+ assert.ok(!/(?:^|[^\d])1k|[kn]\^\{1\}|[kn]\^1(?!\d)|\\frac\{[^{}]+\}\{1\}/.test(text),'Bad sigma simplification');assert.ok(/<ol class="u4-work">/.test(p.explanation));
+ const finite=(coeff,a,b)=>{const out=[];for(let k=a;k<=b;k++)out.push(poly(coeff,Q(k)));return out;};
+ if(d.family==='read'){
+  if(d.symbolic)assert.equal(selected,d.answer);
+  else{const terms=finite(d.coeff,d.lower,d.upper).map(number);let answer;
+   if(d.task==='expand')answer=terms;
+   else if(d.task==='index')answer='k';
+   else if(d.task==='first')answer=terms[0];else if(d.task==='last')answer=terms.at(-1);
+   else if(d.task==='count')answer=d.upper-d.lower+1;else answer=d[d.task];
+   assert.deepEqual(JSON.parse(JSON.stringify(selected)),answer,'Reading sigma notation');
+  }
+ }else if(d.family==='numerical')assert.equal(selected,number(sum(finite(d.coeff,d.lower,d.upper))),'Finite sum');
+ else if(d.family==='write'){
+  const expected=finite(d.coeff,d.lower,d.upper).map(number);
+  choices.forEach((c,i)=>assert.equal(JSON.stringify(finite(c.coeff,c.lower,c.upper).map(number))===JSON.stringify(expected),i===p.correctIndex,'Writing sigma notation'));
+ }else{
+  const trials=[1,2,3,5,8,11];
+  function actual(n){
+   if(d.family==='identities')return sum(finite(d.coeff,1,n));
+   if(d.subtype==='constant')return mul(Q(n),div(from(d.constant),Q(BigInt(n)**BigInt(d.power))));
+   if(d.original){const {polynomial,a,width}=d.original;return sum(Array.from({length:n},(_,i)=>mul(poly(polynomial,add(Q(a),Q(width*(i+1),n))),Q(width,n))));}
+   return sum(Array.from({length:n},(_,i)=>sum(d.coeff.map((c,p)=>div(mul(from(c),Q(BigInt(i+1)**BigInt(p))),Q(BigInt(n)**BigInt(p+1)))))));
+  }
+  trials.forEach(n=>{assert.deepEqual(nValue(d.expected,n),actual(n),'Independent symbolic sum at n='+n);assert.deepEqual(nValue(selected.npoly,n),actual(n),'Correct symbolic choice');});
+  choices.forEach((c,i)=>{assert.ok(c.npoly);const equivalent=trials.every(n=>{const a=nValue(c.npoly,n),b=actual(n);return a[0]===b[0]&&a[1]===b[1];});assert.equal(equivalent,i===p.correctIndex,'Equivalent symbolic distractor');});
+  if(d.original){for(const n of [2,5,9])for(let k=1;k<=n;k++){const original=mul(poly(d.original.polynomial,add(Q(d.original.a),Q(d.original.width*k,n))),Q(d.original.width,n)),expanded=sum(d.coeff.map((c,p)=>div(mul(from(c),Q(BigInt(k)**BigInt(p))),Q(BigInt(n)**BigInt(p+1)))));assert.deepEqual(original,expanded,'Substituted sample-point expansion');}}
+ }
+ const s=stats.sigma||(stats.sigma={total:0,family:{},subtype:{}});s.total++;inc(s.family,d.family);inc(s.subtype,`${d.family}/${d.subtype}`);
+}
 function approximation(p){
  const d=p.unit4Meta;assert.ok(d,'Missing shared Unit 4 metadata');
  assert.ok(p.choices.length===4&&p.correctIndex>=0&&p.correctIndex<4);
@@ -65,6 +98,14 @@ function approximation(p){
  const s=stats[d.kind]||(stats[d.kind]={total:0,representation:{},family:{},mode:{},n:{},tableSpacing:{},extra:0,errors:0,cross:{}});s.total++;inc(s.representation,d.representation);inc(s.family,d.family);inc(s.mode,d.mode);inc(s.n,d.n);if(d.representation==='table'){inc(s.tableSpacing,d.uniform?'equal':'unequal');if(d.extraData)s.extra++;}if(d.error)s.errors++;inc(s.cross,`${d.family}/${d.mode}/${d.n}`);
 }
 const sample=Number(process.env.BM_U4_QA_SAMPLES||12000),requested=process.argv.slice(2),slugs=requested.length?requested:['rectangular-approximations','trapezoidal-approximations','introduction-to-sigma-notation'];
-for(const slug of slugs){for(let i=0;i<sample;i++){const p=get(slug)();if(p.unit4Meta?.kind==='sigma'){throw Error('Sigma verifier not installed yet');}else approximation(p);}console.log('PASS',slug,sample);}
-for(const s of Object.values(stats)){const ratio=s.representation.table/s.total;assert.ok(ratio>.47&&ratio<.53,'Representation not approximately 50/50');}
+for(const slug of slugs){for(let i=0;i<sample;i++){const p=get(slug)();if(p.unit4Meta?.kind==='sigma')sigma(p);else approximation(p);}console.log('PASS',slug,sample);}
+for(const s of Object.values(stats).filter(s=>s.representation)){const ratio=s.representation.table/s.total;assert.ok(ratio>.47&&ratio<.53,'Representation not approximately 50/50');}
+if(stats.sigma)for(const[family,target]of Object.entries({read:.2,numerical:.1,write:.15,identities:.25,riemann:.3}))assert.ok(Math.abs(stats.sigma.family[family]/stats.sigma.total-target)<.025,'Sigma weighting '+family);
+// With identical RNG state, filtered review must produce the exact same object.
+for(const[mode,slug]of [['rect','rectangular-approximations'],['trap','trapezoidal-approximations'],['sigma','introduction-to-sigma-notation']]){
+ if(!slugs.includes(slug))continue;
+ for(let i=0;i<200;i++){state=128000+i;const focused=get(slug)();state=128000+i;const review=get('unit-4-comprehensive')({unit4Mode:mode});assert.equal(JSON.stringify(review),JSON.stringify(focused),'Comprehensive Review diverged: '+mode);}
+ console.log('PASS shared Comprehensive Review inheritance',mode,200);
+}
 console.log(JSON.stringify(stats,null,2));
+if(process.env.BM_U4_QA_OUTPUT)fs.writeFileSync(process.env.BM_U4_QA_OUTPUT,JSON.stringify({ok:true,samplePerEngine:sample,stats},null,2)+'\n');

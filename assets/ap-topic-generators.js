@@ -2989,6 +2989,103 @@ G['difference-quotient']=()=>{
     }
     throw Error('Unable to construct distinct trapezoidal approximation choices');
   };
+  const np=entries=>Object.fromEntries(Object.entries(entries).map(([p,c])=>[p,Array.isArray(c)?q(...c):q(c)]).filter(([,c])=>c[0]));
+  const npKey=p=>JSON.stringify(Object.entries(p).filter(([,c])=>c[0]).sort(([a],[b])=>Number(b)-Number(a)));
+  function npTex(p){
+    const terms=Object.entries(p).filter(([,c])=>c[0]).sort(([a],[b])=>Number(b)-Number(a));
+    return terms.map(([power,c],i)=>{const k=Number(power),[n,d]=c,A=Math.abs(n),body=k===0?'':Math.abs(k)===1?'n':`n^{${Math.abs(k)}}`,num=(k>0&&A===1?'':A)+(k>0?body:''),den=k<0?`${d===1?'':d}${body}`:d===1?'':String(d);const term=den?`\\frac{${num}}{${den}}`:String(num);return `${n<0?'-':i?'+':''}${term}`;}).join('')||'0';
+  }
+  const npOption=p=>({key:npKey(p),tex:npTex(p),value:{npoly:p}});
+  const sumSymbol=(body,lower=1,upper='n')=>`\\sum_{k=${lower}}^{${upper}}${body}`;
+  const sigmaBody=coeff=>poly(coeff,'k');
+  const substituted=(coeff,k)=>poly(coeff,k<0?`(${k})`:String(k));
+  const termsTex=xs=>xs.map((x,i)=>`${i?'+':''}${x<0?`(${x})`:x}`).join('');
+  function sigmaQuestion(family,subtype,prompt,math,options,steps,meta){
+    const unique=[];for(const o of options)if(!unique.some(x=>x.key===o.key))unique.push(o);if(unique.length<4)return null;
+    const correct=unique[0].key,choices=shuffle(unique.slice(0,4));
+    return {id:`u4J-sigma-${family}-${subtype}-${JSON.stringify(meta)}`,variant:`sigma_${family}`,questionHtml:`<div class="u4-unit4-question"><div class="question-prompt">${prompt}</div><div class="u4-formula">${inline(`\\displaystyle ${math}`)}</div></div>`,choices:choices.map(o=>o.tex),correctIndex:choices.findIndex(o=>o.key===correct),fullWidthChoices:true,explanation:work(steps),unit4Meta:{kind:'sigma',family,subtype,...meta,choiceValues:choices.map(o=>o.value??null)}};
+  }
+  const plainOption=s=>({key:String(s),tex:String(s),value:String(s)});
+  const numericOption=n=>({key:String(n),tex:String(n),value:n});
+  const valueOf=(coeff,k)=>val(pv(coeff,q(k)));
+  function sigmaRead(){
+    const subtype=pick(['expand','expand','expand','first','last','index','lower','upper','count']),lower=ri(1,3),upper=lower+ri(2,4),symbolic=R()<.45&&['expand','index','upper'].includes(subtype);
+    if(symbolic){
+      const math=sumSymbol('a_k'),expanded='a_1+a_2+\\cdots+a_n';
+      if(subtype==='index')return sigmaQuestion('read',subtype,'Identify the index of summation.',math,['k','n','a_k','1'].map(plainOption),[`The terms are ${inline(expanded)}. The index ${inline('k')} runs from ${inline('1')} to ${inline('n')}.`],{symbolic:true,task:'index',answer:'k'});
+      if(subtype==='upper')return sigmaQuestion('read',subtype,'Identify the upper bound of the summation.',math,['n','1','k','a_n'].map(plainOption),[`The sum starts with ${inline('a_1')} and ends with ${inline('a_n')}, so the upper bound is ${inline('n')}.`],{symbolic:true,task:'upper',answer:'n'});
+      return sigmaQuestion('read','expand_general','Which expression writes out the terms of the sum?',math,[expanded,'a_0+a_1+\\cdots+a_n','a_1+a_2+\\cdots+a_{n-1}','a_2+a_3+\\cdots+a_n'].map(plainOption),[equation(`${math}=${expanded}`)],{symbolic:true,task:'expand_general',answer:expanded});
+    }
+    const coeff=R()<.45?[q(ri(-3,4)),q(nz(-3,3))]:[q(ri(-3,4)),q(ri(-2,2)),q(pick([-1,1,2]))],math=sumSymbol(`\\left(${sigmaBody(coeff)}\\right)`,lower,upper),xs=Array.from({length:upper-lower+1},(_,i)=>valueOf(coeff,lower+i));
+    const expansion=equation(`${math}=${termsTex(xs)}`),base={coeff,lower,upper,symbolic:false,task:subtype};
+    if(subtype==='expand'){
+      const sequences=[xs,[valueOf(coeff,lower-1),...xs],xs.slice(0,-1),xs.slice(1),Array.from({length:xs.length},(_,i)=>valueOf(coeff,lower+i+1))],options=sequences.map(terms=>({key:JSON.stringify(terms),tex:termsTex(terms),value:terms}));
+      return sigmaQuestion('read',subtype,'Which expression writes out the terms in index order, before adding?',math,options,[expansion],base);
+    }
+    if(subtype==='index')return sigmaQuestion('read',subtype,'Identify the index of summation.',math,['k',String(lower),String(upper),'x'].map(plainOption),[expansion,`The index is ${inline('k')}; it takes the integer values ${inline(`${lower},${lower+1},\\ldots,${upper}`)}.`],{...base,answer:'k'});
+    if(subtype==='first'||subtype==='last'){
+      const k=subtype==='first'?lower:upper,answer=valueOf(coeff,k),options=[answer,valueOf(coeff,subtype==='first'?lower+1:upper-1),valueOf(coeff,subtype==='first'?upper:lower),valueOf(coeff,k+1),valueOf(coeff,k-1),upper-lower+1].map(numericOption);
+      return sigmaQuestion('read',subtype,`Find the ${subtype} term of the sum.`,math,options,[`Use ${inline(`k=${k}`)}.${equation(`${substituted(coeff,k)}=${answer}`)}`,expansion],{...base,answer});
+    }
+    const answer=subtype==='lower'?lower:subtype==='upper'?upper:upper-lower+1,options=[answer,subtype==='lower'?upper:lower,upper-lower,upper+1,upper,lower-1,upper-lower+2].map(numericOption),prompt=subtype==='count'?'How many terms are in the sum?':`Identify the ${subtype} bound of the summation.`;
+    const reason=subtype==='count'?equation(`${upper}-${lower}+1=${answer}`):`The index starts at ${inline(String(lower))} and ends at ${inline(String(upper))}, so the ${subtype} bound is ${inline(String(answer))}.`;
+    return sigmaQuestion('read',subtype,prompt,math,options,[expansion,reason],{...base,answer});
+  }
+  function sigmaNumerical(){
+    const subtype=pick(['constant','linear','quadratic','combination']),N=ri(3,7),lower=1,coeff=subtype==='constant'?[q(nz(-6,6))]:subtype==='linear'?[q(ri(-4,4)),q(nz(-3,3))]:subtype==='quadratic'?[q(ri(-4,4)),q(0),q(pick([-2,-1,1,2]))]:[q(ri(-4,4)),q(nz(-3,3)),q(pick([-1,1,2]))],xs=Array.from({length:N},(_,i)=>valueOf(coeff,i+1)),answer=xs.reduce((a,b)=>a+b,0),math=sumSymbol(`\\left(${sigmaBody(coeff)}\\right)`,1,N),options=[answer,answer-xs.at(-1),answer+valueOf(coeff,0),answer+valueOf(coeff,N+1),valueOf(coeff,N),N*valueOf(coeff,1),answer-xs[0]].map(numericOption);
+    return sigmaQuestion('numerical',subtype,'Evaluate the finite sum.',math,options,[equation(`${math}=${termsTex(xs)}`),equation(`${termsTex(xs)}=${answer}`)],{coeff,lower,upper:N,answer});
+  }
+  function sigmaWrite(){
+    const subtype=pick(['constant','linear','quadratic','quadratic']),N=ri(3,5),coeff=subtype==='constant'?[q(nz(-6,6))]:subtype==='linear'?[q(ri(-4,4)),q(nz(-3,3))]:[q(ri(-3,4)),q(ri(-2,2)),q(pick([-1,1,2]))],terms=Array.from({length:N},(_,i)=>valueOf(coeff,i+1)),shifted=[pv(coeff,q(1)),add(coeff[1]||q(0),mul(q(2),coeff[2]||q(0))),coeff[2]||q(0)],changed=[add(coeff[0],q(1)),...coeff.slice(1)],descriptors=[{coeff,lower:1,upper:N},{coeff,lower:1,upper:N-1},{coeff,lower:1,upper:N+1},{coeff:shifted,lower:1,upper:N},{coeff:changed,lower:1,upper:N}],options=descriptors.map(d=>({key:JSON.stringify(Array.from({length:d.upper-d.lower+1},(_,i)=>valueOf(d.coeff,d.lower+i))),tex:sumSymbol(`\\left(${sigmaBody(d.coeff)}\\right)`,d.lower,d.upper),value:d}));
+    const math=termsTex(terms),formula=sigmaBody(coeff),steps=[`The term with index ${inline('k')} is ${inline(formula)}.${equation(`a_1=${substituted(coeff,1)}=${terms[0]},\\qquad a_{${N}}=${substituted(coeff,N)}=${terms.at(-1)}`)}`,`There are ${inline(String(N))} terms, starting at ${inline('k=1')}.${equation(sumSymbol(`\\left(${formula}\\right)`,1,N))}`];
+    return sigmaQuestion('write',subtype,'Which sigma expression generates these terms in the displayed order, starting at k = 1?',math,options,steps,{coeff,lower:1,upper:N,terms});
+  }
+  function identitiesPolynomial(coeff,left=false){
+    const C=coeff[0]||q(0),B=coeff[1]||q(0),A=coeff[2]||q(0),s=left?-1:1;
+    return np({3:div(A,q(3)),2:div(add(mul(q(s),A),B),q(2)),1:add(add(div(A,q(6)),div(mul(q(s),B),q(2))),C)});
+  }
+  const factorsTex=(c,body,den='')=>{const [n,d]=c,num=`${Math.abs(n)===1&&body?'':Math.abs(n)}${body}`,bottom=`${d===1?'':d}${den}`;return `${n<0?'-':''}${bottom?`\\frac{${num}}{${bottom}}`:num}`;};
+  const productTex=(a,b)=>a==='1'?b:a==='-1'?`-${b}`:`${a}\\!\\cdot ${b}`;
+  const sigmaChain=terms=>equation(`\\begin{aligned}S&=${terms.map((s,i)=>i?`\\\\&\\quad${s.startsWith('-')?'-'+s.slice(1):'+'+s}`:s).join('')}\\end{aligned}`);
+  function actualIdentitySteps(coeff){
+    const names=['1','k','k^2'],identities=['n','\\frac{n(n+1)}{2}','\\frac{n(n+1)(2n+1)}{6}'],nonzero=coeff.map((c,i)=>({c,i})).filter(({c})=>c[0]);
+    const separated=nonzero.map(({c,i})=>productTex(factorsTex(c,''),sumSymbol(names[i]))),substituted=nonzero.map(({c,i})=>productTex(factorsTex(c,''),identities[i]));
+    return [sigmaChain(separated),sigmaChain(substituted)];
+  }
+  function sigmaIdentities(){
+    const subtype=pick(['constant','linear','square','combination','combination']),coeff=subtype==='constant'?[q(nz(-8,8))]:subtype==='linear'?[q(R()<.4?0:nz(-5,5)),q(pick([1,1,2,3,-2]))]:subtype==='square'?[q(0),q(0),q(pick([1,1,2,3,-1]))]:[q(nz(-5,6)),q(nz(-4,4)),q(pick([-2,-1,1,2,3]))],expected=identitiesPolynomial(coeff),C=coeff[0]||q(0),B=coeff[1]||q(0),A=coeff[2]||q(0),wrongHighest=np({3:A,2:B,1:C}),lastTerm=np({2:A,1:B,0:C}),firstRepeated=np({1:add(add(A,B),C)}),constantNotSummed=np({3:div(A,q(3)),2:div(add(A,B),q(2)),1:add(div(A,q(6)),div(B,q(2))),0:C});
+    const options=[expected,identitiesPolynomial(coeff,true),wrongHighest,lastTerm,firstRepeated,constantNotSummed,np({2:C}),np({1:C,0:neg(C)})].map(npOption),steps=[...actualIdentitySteps(coeff),equation(`S=${npTex(expected)}`)];
+    return sigmaQuestion('identities',subtype,'Use the finite-sum identities and simplify as an expression in n.',sumSymbol(`\\left(${sigmaBody(coeff)}\\right)`),options,steps,{coeff,expected});
+  }
+  function riemannTerm(c,power){return factorsTex(c,power===0?'':power===1?'k':`k^{${power}}`,power+1===1?'n':`n^{${power+1}}`);}
+  const riemannBody=coeff=>coeff.map((c,i)=>({c,i})).filter(({c})=>c[0]).map(({c,i},j)=>`${c[0]<0?'-':j?'+':''}${riemannTerm(q(Math.abs(c[0]),c[1]),i)}`).join('');
+  const riemannResult=coeff=>{const[A,B,C]=coeff;return np({0:add(add(A,div(B,q(2))),div(C,q(3))),'-1':div(add(B,C),q(2)),'-2':div(C,q(6))});};
+  function sigmaRiemann(){
+    const subtype=pick(['constant','linear','quadratic','quadratic','substituted']);
+    if(subtype==='constant'){
+      const C=q(nz(-9,9)),power=R()<.75?1:2,expected=np({[1-power]:C}),body=factorsTex(C,'',power===1?'n':'n^2'),options=[expected,np({[-power]:C}),np({[2-power]:C}),np({[-power-1]:C}),np({[1-power]:neg(C)})].map(npOption),steps=[`${inline(body)} does not depend on ${inline('k')}, so the sum has ${inline('n')} identical terms.${equation(`${sumSymbol(body)}=n\\!\\cdot ${par(body)}=${npTex(expected)}`)}`];
+      return sigmaQuestion('riemann',subtype,'Simplify the sum as an expression in n.',sumSymbol(body),options,steps,{constant:C,power,expected});
+    }
+    let coeff=[q(nz(-6,9)),q(nz(-8,8)),subtype==='linear'?q(0):q(pick([-3,-2,-1,1,2,3]))],original=null,math,steps=[];
+    if(subtype==='substituted'){
+      const polynomial=R()<.3?[q(ri(-4,5)),q(nz(-3,3))]:[q(ri(-4,5)),q(ri(-3,3)),q(pick([-2,-1,1,2]))],a=ri(-2,2),width=ri(1,3),A=polynomial[2]||q(0),B=polynomial[1],C=polynomial[0];
+      coeff=[mul(q(width),pv(polynomial,q(a))),mul(q(width*width),add(mul(q(2*a),A),B)),mul(A,q(width**3))];original={polynomial,a,width};
+      const inner=`${a?a:''}${a?'+':''}\\frac{${width===1?'':width}k}{n}`,sample=poly(polynomial,`\\left(${inner}\\right)`),dx=`\\frac{${width}}{n}`;
+      math=sumSymbol(`\\left[${sample}\\right]${dx}`);steps.push(`Expand the sample expression and multiply by ${inline(dx)}.${equation(`${math}=${sumSymbol(`\\left[${riemannBody(coeff)}\\right]`)}`)}`);
+    }else math=sumSymbol(`\\left[${riemannBody(coeff)}\\right]`);
+    const expected=riemannResult(coeff),[A,B,C]=coeff,active=coeff.map((c,i)=>({c,i})).filter(({c})=>c[0]),identities=['n','\\frac{n(n+1)}{2}','\\frac{n(n+1)(2n+1)}{6}'];
+    const factor=c=>factorsTex(c.c,'',c.i+1===1?'n':`n^{${c.i+1}}`);
+    steps.push(`For this sum, ${inline('n')} is fixed while ${inline('k')} changes.${sigmaChain(active.map(t=>productTex(factor(t),sumSymbol(t.i===0?'1':t.i===1?'k':'k^2'))))}`);
+    steps.push(sigmaChain(active.map(t=>productTex(factor(t),identities[t.i]))));
+    steps.push(equation(`S=${npTex(expected)}`));
+    const left=np({0:add(add(A,div(B,q(2))),div(C,q(3))),'-1':neg(div(add(B,C),q(2))),'-2':div(C,q(6))}),first=np({0:A,'-1':B,'-2':C}),premature=np({0:expected[0]||q(0)}),missingDx=Object.fromEntries(Object.entries(expected).map(([p,c])=>[Number(p)+1,c])),options=[expected,left,first,premature,missingDx,np({0:add(add(A,B),C)})].map(npOption);
+    return sigmaQuestion('riemann',subtype,'Simplify the finite sum as an expression in n. Do not take a limit.',math,options,steps,{coeff,original,expected});
+  }
+  G['introduction-to-sigma-notation']=()=>{
+    const roll=R(),family=roll<.2?sigmaRead:roll<.3?sigmaNumerical:roll<.45?sigmaWrite:roll<.7?sigmaIdentities:sigmaRiemann;
+    for(let i=0;i<100;i++){const p=family();if(p)return p;}
+    throw Error('Unable to construct distinct sigma notation choices');
+  };
 })();
 
 window.BatchMathAPTopicGenerators={get:(slug)=>G[slug],slugs:()=>Object.keys(G)};
