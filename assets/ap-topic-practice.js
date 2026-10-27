@@ -9,7 +9,7 @@ function _balanced(s,start,open,close){let d=0;for(let i=start;i<s.length;i++){i
 function _cmdEnd(s,i){const m=s.slice(i).match(/^\\([A-Za-z]+)/);if(!m)return i+1;let j=i+m[0].length,name=m[1];if(['frac','dfrac','tfrac'].includes(name)){if(s[j]==='{')j=_balanced(s,j,'{','}');if(s[j]==='{')j=_balanced(s,j,'{','}');return j;}if(name==='sqrt'){if(s[j]==='['){const q=s.indexOf(']',j+1);if(q>=0)j=q+1;}if(s[j]==='{')j=_balanced(s,j,'{','}');return j;}if(['sin','cos','tan','sec','csc','cot','ln','log','arcsin','arccos','arctan'].includes(name)){while(j<s.length&&/\s/.test(s[j]))j++;if(s[j]==='(')j=_balanced(s,j,'(',')');else while(j<s.length&&/[A-Za-z0-9_^{}+\-*/.]/.test(s[j]))j++;return j;}return j;}
 function _wrapRawTexText(text){if(!rawTexCommandRE.test(text))return text;const slots=[];let src=text.replace(/\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/g,m=>{slots.push(m);return `@@BMMATH${slots.length-1}@@`;});let out='',i=0;while(i<src.length){const m=src.slice(i).match(/\\(?:frac|dfrac|tfrac|sqrt|pi|infty|pm|mp|cup|cap|leq?|geq?|neq|approx|cdot|times|sin|cos|tan|sec|csc|cot|ln|log|arcsin|arccos|arctan|quad|qquad|theta|Delta|partial|to)\b/);if(!m){out+=src.slice(i);break;}const st=i+m.index;out+=src.slice(i,st);const en=_cmdEnd(src,st);out+=`\\(${src.slice(st,en)}\\)`;i=en;}return out.replace(/@@BMMATH(\d+)@@/g,(_,n)=>slots[+n]);}
 function normalizeRawMath(root){if(!root)return;const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);for(const n of nodes){if(n.parentElement?.closest('mjx-container,script,style,textarea'))continue;const v=n.nodeValue||'',next=_wrapRawTexText(v);if(next!==v)n.nodeValue=next;}}
-function typeset(nodes){const list=(nodes||[document.body]).filter(Boolean);for(const n of list)normalizeRawMath(n);if(window.MathJax?.typesetPromise)window.MathJax.typesetPromise(list).catch(()=>{});}
+function typeset(nodes){const list=(nodes||[document.body]).filter(Boolean);for(const n of list)normalizeRawMath(n);return window.MathJax?.typesetPromise?window.MathJax.typesetPromise(list).catch(()=>{}):Promise.resolve();}
 function analyticsMode(){const mode=practiceMode(),base=cfg.analyticsSlug||cfg.slug||'mixed_review';return mode?`${base}:${mode}`:base;}
 function finishAnalytics(ok){window.BMAnalytics?.answerChecked(current,ok,{practice_mode:analyticsMode()});if(ok)correct++;else window.BMAnalytics?.solutionRevealed(current,{practice_mode:analyticsMode()});attempted++;$('correct-count').textContent=String(correct);$('attempted-count').textContent=String(attempted);}
 function cleanDisplayMath(value){if(typeof value!=='string')return value;const powers=value.replace(/\^\{1\}/g,'').replace(/\^1(?!\d)/g,'');return window.BatchMathAnswers?.normalizeTexFractionSigns?.(powers)??powers;}
@@ -247,8 +247,8 @@ function renderStagedCalculus(box){
   }else box.appendChild(part);
   renderPrompt(part,stage2.prompt||'Part 2');
   renderStageControl(stage2,part,(ok)=>{current.stage2Answered=true;const note=stageFeedback(part,stage2,ok,{showExplanation:true,label:'Part 2'});finishProblem(current.stage1Correct&&ok,note,ok);});
-  typeset([part]);
-  if(current.unit4Meta){part.tabIndex=-1;requestAnimationFrame(()=>{if(!part.isConnected)return;part.focus({preventScroll:true});part.scrollIntoView({block:'start',behavior:'auto'});});}
+  const ready=typeset([part]);
+  if(current.unit4Meta){part.tabIndex=-1;ready.then(()=>requestAnimationFrame(()=>{if(!part.isConnected)return;part.focus({preventScroll:true});window.scrollTo({top:Math.max(0,window.scrollY+part.getBoundingClientRect().top-24),behavior:'instant'});}));}
  }
  function finishProblem(overallOk,note,lastStageOk=overallOk){
   const allowNext=Boolean(lastStageOk||current.unit4Meta);
