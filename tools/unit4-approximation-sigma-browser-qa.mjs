@@ -25,16 +25,17 @@ try{
    await page.waitForFunction(()=>window.MathJax?.typesetPromise&&window.__u4Current?.unit4Meta,{timeout:60000});
    await page.evaluate(()=>MathJax.startup.promise);
    const samples=await page.evaluate(slug=>{
-    const samples=[],seen=new Set();for(let i=0;i<400;i++){const p=BatchMathAPTopicGenerators.get(slug)(),d=p.unit4Meta;const signature=d.kind==='sigma'?`${d.family}-${d.subtype}`:`${d.representation}-${d.family}-${d.mode}-${d.uniform?'equal':'unequal'}-${d.f?.coeff?.[2]?.[0]>0?'up':'other'}-${d.error?'error':'numeric'}-${d.relation?'relationship':'regular'}`;if(!seen.has(signature)){seen.add(signature);samples.push({p,signature});}}
-    return samples.slice(0,60);
+    const samples=[],seen=new Set();let upperOne;for(let i=0;i<400;i++){const p=BatchMathAPTopicGenerators.get(slug)(),d=p.unit4Meta;const signature=d.kind==='sigma'?`${d.family}-${d.subtype}`:`${d.representation}-${d.family}-${d.mode}-${d.uniform?'equal':'unequal'}-${d.f?.coeff?.[2]?.[0]>0?'up':'other'}-${d.error?'error':'numeric'}-${d.relation?'relationship':'regular'}`;if(d.b?.[0]===1&&d.b?.[1]===1&&!upperOne)upperOne={p,signature:'upper-bound-one'};if(!seen.has(signature)){seen.add(signature);samples.push({p,signature});}}
+    return upperOne?[...samples.slice(0,59),upperOne]:samples.slice(0,60);
    },slug);
    for(let i=0;i<samples.length;i++){
     const {p,signature}=samples[i];
     if(await page.locator('#next').isHidden()){await page.locator('#choices > button').first().click();await page.waitForSelector('#feedback.shown');}
     await page.evaluate(p=>window.__u4Forced=p,p);await page.locator('#next').click();await page.evaluate(()=>window.__u4Forced=null);
     await page.evaluate(()=>MathJax.typesetPromise([document.querySelector('#question'),document.querySelector('#choices')]));
-    const initial=await page.evaluate(()=>({id:window.__u4Current.id,attempted:Number(document.querySelector('#attempted-count').textContent),correct:Number(document.querySelector('#correct-count').textContent),count:window.BatchMathRepro?.problemCount}));
+    const initial=await page.evaluate(()=>({id:window.__u4Current.id,html:window.__u4Current.questionHtml,attempted:Number(document.querySelector('#attempted-count').textContent),correct:Number(document.querySelector('#correct-count').textContent),count:window.BatchMathRepro?.problemCount}));
     assert.equal(initial.id,p.id);
+    assert.equal(initial.html,p.questionHtml,'Display cleanup altered normalized mathematics');
     const ok=i%2===0,index=ok?p.correctIndex:(p.correctIndex+1)%4;await page.locator('#choices > button').nth(index).click();
     await page.evaluate(()=>MathJax.typesetPromise([document.querySelector('#feedback')]));
     const result=await page.evaluate(()=>{

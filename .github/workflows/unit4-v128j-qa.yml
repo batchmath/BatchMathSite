@@ -5,6 +5,7 @@ on:
     paths:
       - assets/ap-topic-generators.js
       - assets/ap-topic-practice.css
+      - assets/ap-topic-practice.js
       - tools/unit4-approximation-sigma*.mjs
       - .github/workflows/unit4-v128j-qa.yml
 permissions:

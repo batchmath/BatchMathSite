@@ -79,6 +79,15 @@ function sigma(p){
   trials.forEach(n=>{assert.deepEqual(nValue(d.expected,n),actual(n),'Independent symbolic sum at n='+n);assert.deepEqual(nValue(selected.npoly,n),actual(n),'Correct symbolic choice');});
   choices.forEach((c,i)=>{assert.ok(c.npoly);const equivalent=trials.every(n=>{const a=nValue(c.npoly,n),b=actual(n);return a[0]===b[0]&&a[1]===b[1];});assert.equal(equivalent,i===p.correctIndex,'Equivalent symbolic distractor');});
   choices.forEach((c,i)=>trials.forEach(n=>near(displayedNumber(p.choices[i],n),number(nValue(c.npoly,n)),'Displayed symbolic choice')));
+  for(const m of p.explanation.matchAll(/\\begin\{aligned\}S&=([^]*?)\\end\{aligned\}/g))if(!m[1].includes('\\sum'))for(const n of [1,3,7])near(displayedNumber(m[1],n),number(actual(n)),'Worked identity substitution');
+  if(d.family==='riemann'&&d.subtype==='constant'){
+   const math=[...p.explanation.matchAll(/\\\((?:\\displaystyle\s*)?([^]*?)\\\)/g)].map(m=>m[1]).find(s=>s.includes('\\sum'));
+   assert.ok(math);for(const part of math.split('=').slice(-2))for(const n of [1,3,7])near(displayedNumber(part,n),number(actual(n)),'Worked constant sum');
+  }
+  if(d.original){
+   const equations=[...p.explanation.matchAll(/\\begin\{gathered\}(f[^]*?)\\\\=([^]*?)\\end\{gathered\}/g)];assert.equal(equations.length,2);
+   for(const n of [2,5,9])for(const k of [1,n]){const value=poly(d.original.polynomial,add(Q(d.original.a),Q(d.original.width*k,n)));equations.forEach((m,i)=>near(displayedNumber(m[2],n,k),number(i?mul(value,Q(d.original.width,n)):value),'Worked sample-point expansion'));}
+  }
   if(d.original){for(const n of [2,5,9])for(let k=1;k<=n;k++){const original=mul(poly(d.original.polynomial,add(Q(d.original.a),Q(d.original.width*k,n))),Q(d.original.width,n)),expanded=sum(d.coeff.map((c,p)=>div(mul(from(c),Q(BigInt(k)**BigInt(p))),Q(BigInt(n)**BigInt(p+1)))));assert.deepEqual(original,expanded,'Substituted sample-point expansion');}}
  }
  if(d.family==='numerical'||(d.family==='read'&&['first','last'].includes(d.task))){

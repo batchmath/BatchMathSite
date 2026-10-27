@@ -14,6 +14,9 @@ function analyticsMode(){const mode=practiceMode(),base=cfg.analyticsSlug||cfg.s
 function finishAnalytics(ok){window.BMAnalytics?.answerChecked(current,ok,{practice_mode:analyticsMode()});if(ok)correct++;else window.BMAnalytics?.solutionRevealed(current,{practice_mode:analyticsMode()});attempted++;$('correct-count').textContent=String(correct);$('attempted-count').textContent=String(attempted);}
 function cleanDisplayMath(value){if(typeof value!=='string')return value;const powers=value.replace(/\^\{1\}/g,'').replace(/\^1(?!\d)/g,'');return window.BatchMathAnswers?.normalizeTexFractionSigns?.(powers)??powers;}
 function cleanProblemDisplay(p){
+ // Exact Unit 4 renderers already normalize their own powers and fraction signs.
+ // Do not mistake an integral's upper bound ^{1} for a removable first power.
+ if(p.normalizedMathDisplay===true)return p;
  for(const key of ['questionHtml','explanation','answerTex','hint','diagramHint','stage1Prompt','stage2Prompt'])if(key in p)p[key]=cleanDisplayMath(p[key]);
  for(const key of ['choices','stage1Choices'])if(Array.isArray(p[key]))p[key]=p[key].map(cleanDisplayMath);
  for(const stageKey of ['stage1','stage2']){

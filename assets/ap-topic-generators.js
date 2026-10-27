@@ -2936,7 +2936,7 @@ G['difference-quotient']=()=>{
     const unique=[];for(const o of options)if(!unique.some(x=>x.key===o.key))unique.push(o);
     if(unique.length<4)return null;
     const correct=unique[0].key,choices=shuffle(unique.slice(0,4));
-    return {id:problemKey(`u4J-${d.kind}-${variant}`,{f:d.f,ends:d.ends,rows:d.rows,...meta}),variant,questionHtml:display(d,prompt,meta.extraHtml||''),choices:choices.map(x=>/\\\(/.test(x.tex)?x.tex:`\\displaystyle ${x.tex}`),correctIndex:choices.findIndex(x=>x.key===correct),fullWidthChoices:true,explanation:work(steps),unit4Meta:{...d,...meta,choiceValues:choices.map(x=>x.value??null),correctKey:correct}};
+    return {id:problemKey(`u4J-${d.kind}-${variant}`,{f:d.f,ends:d.ends,rows:d.rows,...meta}),variant,normalizedMathDisplay:true,questionHtml:display(d,prompt,meta.extraHtml||''),choices:choices.map(x=>/\\\(/.test(x.tex)?x.tex:`\\displaystyle ${x.tex}`),correctIndex:choices.findIndex(x=>x.key===correct),fullWidthChoices:true,explanation:work(steps),unit4Meta:{...d,...meta,choiceValues:choices.map(x=>x.value??null),correctKey:correct}};
   }
   const option=e=>({key:key(e),tex:exactBlock(e),value:e});
   const classifiedOption=(value,word)=>({...value,key:`${value.key}:${word}`,tex:`${inline(`\\displaystyle ${value.tex}`)}; ${word}`});
@@ -3020,7 +3020,7 @@ G['difference-quotient']=()=>{
   function sigmaQuestion(family,subtype,prompt,math,options,steps,meta){
     const unique=[];for(const o of options)if(!unique.some(x=>x.key===o.key))unique.push(o);if(unique.length<4)return null;
     const correct=unique[0].key,choices=shuffle(unique.slice(0,4));
-    return {id:problemKey(`u4J-sigma-${family}-${subtype}`,meta),variant:`sigma_${family}`,questionHtml:`<div class="u4-unit4-question"><div class="question-prompt">${prompt}</div><div class="u4-formula">${inline(`\\displaystyle ${math}`)}</div></div>`,choices:choices.map(o=>`\\displaystyle ${o.tex}`),correctIndex:choices.findIndex(o=>o.key===correct),fullWidthChoices:true,explanation:work(steps),unit4Meta:{kind:'sigma',family,subtype,...meta,choiceValues:choices.map(o=>o.value??null)}};
+    return {id:problemKey(`u4J-sigma-${family}-${subtype}`,meta),variant:`sigma_${family}`,normalizedMathDisplay:true,questionHtml:`<div class="u4-unit4-question"><div class="question-prompt">${prompt}</div><div class="u4-formula">${inline(`\\displaystyle ${math}`)}</div></div>`,choices:choices.map(o=>`\\displaystyle ${o.tex}`),correctIndex:choices.findIndex(o=>o.key===correct),fullWidthChoices:true,explanation:work(steps),unit4Meta:{kind:'sigma',family,subtype,...meta,choiceValues:choices.map(o=>o.value??null)}};
   }
   const plainOption=s=>({key:String(s),tex:String(s),value:String(s)});
   const numericOption=n=>({key:String(n),tex:String(n),value:n});
