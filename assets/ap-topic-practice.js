@@ -173,8 +173,8 @@ function renderStagedCalculus(box){
  current.requirePhysicalNextClick=false;current.nextPointerArmed=false;
  current.stage1Answered=false;current.stage1Correct=false;current.stage2Answered=false;current.stage2Visible=false;
 
- const panel=document.createElement('section');panel.className='staged-part staged-part-one';panel.setAttribute('aria-label','Part 1');box.appendChild(panel);
- renderPrompt(panel,stage1.prompt||'Part 1');
+ const panel=document.createElement('section');panel.className='staged-part staged-part-one';panel.setAttribute('aria-label',stage2?'Part 1':'Answer');box.appendChild(panel);
+ renderPrompt(panel,stage1.prompt||(stage2?'Part 1':'Enter your answer.'));
  renderStageControl(stage1,panel,(ok)=>finishStage1(ok));
 
  function renderPrompt(host,text){const prompt=document.createElement('div');prompt.className='question-prompt staged-part-prompt';prompt.innerHTML=text;host.appendChild(prompt);}
@@ -183,7 +183,7 @@ function renderStagedCalculus(box){
   const note=document.createElement('div');note.className='feedback shown staged-feedback';note.tabIndex=-1;
   const correctAnswer=!ok&&stageAnswerText(stage)?`<div class="correct-answer">Correct answer: ${stage.answerIsText?stageAnswerText(stage):`\\(${stageAnswerText(stage)}\\)`}</div>`:'';
   const explanation=showExplanation&&stage.explanation?`<div class="method">${stage.explanation}</div>`:'';
-  note.innerHTML=`<div class="result ${ok?'good':'bad'}">${ok?(stage.correctFeedback||`${label} is correct.`):(stage.incorrectFeedback||`${label} is not correct.`)}</div>${correctAnswer}${explanation}`;
+  note.innerHTML=`<div class="result ${ok?'good':'bad'}">${ok?(stage.correctFeedback||(stage2?`${label} is correct.`:'Correct.')):(stage.incorrectFeedback||(stage2?`${label} is not correct.`:'Not correct.'))}</div>${correctAnswer}${explanation}`;
   host.appendChild(note);typeset([note]);return note;
  }
  function normalizeStageRaw(raw){return String(raw||'').trim().replace(/[−–—]/g,'-').replace(/^\s*(?:c|x|y|L\([^)]*\)|S\([^)]*\))\s*=\s*/i,'');}
@@ -216,7 +216,7 @@ function renderStagedCalculus(box){
    return;
   }
   const input=document.createElement('input');input.type='text';input.className='practice-answer-input staged-exact-input';input.placeholder=stage.placeholder||'Enter an exact answer';input.autocomplete='off';input.autocapitalize='off';input.spellcheck=false;input.setAttribute('aria-label',stage.ariaLabel||stage.placeholder||'Exact answer');
-  const button=document.createElement('button');button.type='button';button.className='choice staged-check';button.textContent=stage.checkLabel||'Check Part 1';
+  const button=document.createElement('button');button.type='button';button.className='choice staged-check';button.textContent=stage.checkLabel||(!stage2?'Check Answer':stage===stage1?'Check Part 1':'Check Part 2');
   const invalid=document.createElement('div');invalid.className='staged-input-message';invalid.setAttribute('aria-live','polite');
   const check=()=>{if(stage._answered)return;const result=exactResult(input.value,stage);if(!result.valid){input.classList.add('wrong');invalid.textContent=result.message;input.focus();return;}stage._answered=true;invalid.textContent='';input.disabled=true;button.disabled=true;input.classList.add(result.ok?'correct':'wrong');done(result.ok);};
   button.addEventListener('click',check);input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();event.stopPropagation();check();}});
@@ -239,9 +239,16 @@ function renderStagedCalculus(box){
   if(ok)setTimeout(()=>continueButton.focus(),0);else setTimeout(()=>note.focus(),0);
  }
  function renderPart2(){
-  const part=document.createElement('section');part.className='staged-part staged-part-two';part.setAttribute('aria-label','Part 2');box.appendChild(part);renderPrompt(part,stage2.prompt||'Part 2');
+  const part=document.createElement('section');part.className='staged-part staged-part-two';part.setAttribute('aria-label','Part 2');
+  if(current.unit4Meta){
+   box.insertBefore(part,panel);panel.classList.add('staged-completed');
+   panel.querySelectorAll('.bm-calc-keypad,.staged-check,.staged-continue').forEach(e=>e.hidden=true);
+   const heading=document.createElement('h3');heading.className='staged-review-heading';heading.textContent='Completed Part 1';panel.prepend(heading);
+  }else box.appendChild(part);
+  renderPrompt(part,stage2.prompt||'Part 2');
   renderStageControl(stage2,part,(ok)=>{current.stage2Answered=true;const note=stageFeedback(part,stage2,ok,{showExplanation:true,label:'Part 2'});finishProblem(current.stage1Correct&&ok,note,ok);});
   typeset([part]);
+  if(current.unit4Meta){part.tabIndex=-1;requestAnimationFrame(()=>{if(!part.isConnected)return;part.focus({preventScroll:true});part.scrollIntoView({block:'start',behavior:'auto'});});}
  }
  function finishProblem(overallOk,note,lastStageOk=overallOk){
   const allowNext=Boolean(lastStageOk||current.unit4Meta);

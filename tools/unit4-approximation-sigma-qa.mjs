@@ -84,14 +84,15 @@ function sigma(p){
   assert.equal(box.window.BatchMathUnit4Answers.check(`(${canonical})+1`,p.stage1.unit4Answer).ok,false,'Incorrect n answer');
   choices.forEach((c,i)=>{assert.ok(c.npoly);const equivalent=trials.every(n=>{const a=nValue(c.npoly,n),b=actual(n);return a[0]===b[0]&&a[1]===b[1];});assert.equal(equivalent,i===p.correctIndex,'Equivalent symbolic distractor');});
   choices.forEach((c,i)=>trials.forEach(n=>near(displayedNumber(p.choices[i],n),number(nValue(c.npoly,n)),'Displayed symbolic choice')));
-  for(const m of p.explanation.matchAll(/\\begin\{aligned\}S&=([^]*?)\\end\{aligned\}/g))if(!m[1].includes('\\sum'))for(const n of [1,3,7])near(displayedNumber(m[1],n),number(actual(n)),'Worked identity substitution');
+  const flows=[...p.explanation.matchAll(/<div class="u4-work-equation u4-math-flow">([^]*?)<\/div>/g)].map(m=>[...m[1].matchAll(/\\\(\\displaystyle ([^]*?)\\\)/g)].map(t=>t[1]).join(''));
+  for(const flow of flows)if(flow.startsWith('S=')&&!flow.includes('\\sum'))for(const n of [1,3,7])near(displayedNumber(flow.slice(2),n),number(actual(n)),'Worked identity substitution');
   if(d.family==='riemann'&&d.subtype==='constant'){
    const math=[...p.explanation.matchAll(/\\\((?:\\displaystyle\s*)?([^]*?)\\\)/g)].map(m=>m[1]).find(s=>s.includes('\\sum'));
    assert.ok(math);for(const part of math.split('=').slice(-2))for(const n of [1,3,7])near(displayedNumber(part,n),number(actual(n)),'Worked constant sum');
   }
   if(d.original){
-   const equations=[...p.explanation.matchAll(/\\begin\{gathered\}(f[^]*?)\\\\=([^]*?)\\end\{gathered\}/g)];assert.equal(equations.length,2);
-   for(const n of [2,5,9])for(const k of [1,n]){const value=poly(d.original.polynomial,add(Q(d.original.a),Q(d.original.width*k,n)));equations.forEach((m,i)=>near(displayedNumber(m[2],n,k),number(i?mul(value,Q(d.original.width,n)):value),'Worked sample-point expansion'));}
+   const equations=flows.filter(s=>s.startsWith('f'));assert.equal(equations.length,2);
+   for(const n of [2,5,9])for(const k of [1,n]){const value=poly(d.original.polynomial,add(Q(d.original.a),Q(d.original.width*k,n)));equations.forEach((m,i)=>near(displayedNumber(m.split('=').at(-1),n,k),number(i?mul(value,Q(d.original.width,n)):value),'Worked sample-point expansion'));}
   }
   if(d.original){for(const n of [2,5,9])for(let k=1;k<=n;k++){const original=mul(poly(d.original.polynomial,add(Q(d.original.a),Q(d.original.width*k,n))),Q(d.original.width,n)),expanded=sum(d.coeff.map((c,p)=>div(mul(from(c),Q(BigInt(k)**BigInt(p))),Q(BigInt(n)**BigInt(p+1)))));assert.deepEqual(original,expanded,'Substituted sample-point expansion');}}
  }
@@ -105,7 +106,11 @@ function approximation(p){
  const d=p.unit4Meta;assert.ok(d,'Missing shared Unit 4 metadata');
  assert.equal(p.answerType,'staged-calculus');assert.equal(p.stage1.type,'unit4-exact');assert.ok(!p.choices);assert.ok(['left','right','midpoint','trapezoid'].includes(d.mode));
  const text=[p.questionHtml,p.explanation,p.answerTex].join(' ');
- if(d.representation==='table'){assert.equal((p.questionHtml.match(/<tr>/g)||[]).length,2,'Table must have two horizontal rows');assert.ok(!/Use the partition/.test(p.questionHtml));}
+ if(d.representation==='table'){
+  assert.equal((p.questionHtml.match(/<tr>/g)||[]).length,2,'Table must have two horizontal rows');
+  assert.ok(!/Outlined|highlight|u4-partition-endpoint|u4-table-key/.test(p.questionHtml),'No table answer cues');
+  for(const m of p.questionHtml.matchAll(/<td([^>]*)>/g))assert.equal(m[1],'','All data cells must have the same ordinary markup');
+ }
  assert.ok(!/midpoint-endpoint|\\int_-|(?:^|[^\d])1k|[xkn]\^\{1\}|[xkn]\^1(?!\d)/.test(text),'Unwanted notation '+p.id);
  assert.ok(!/\.\d{5}/.test(text),'Unexpected decimal approximation');
  const ends=d.ends.map(from),mids=ends.slice(0,-1).map((x,i)=>div(add(x,ends[i+1]),Q(2))),widths=ends.slice(0,-1).map((x,i)=>sub(ends[i+1],x));
@@ -129,9 +134,17 @@ function approximation(p){
   assert.deepEqual(from(d.answers.trapezoid['']||[0,1]),div(add(result(ends.slice(0,-1)),result(ends.slice(1))),Q(2)),'Exact rational trapezoids');
  }
  if(d.error){
-  assert.ok(d.f,'Error claim from arbitrary table alone');const useSecond=['midpoint','trapezoid'].includes(d.mode);let signs=[];
+  const model=d.f||d.tableModel;assert.ok(model,'Error claim requires a valid function or constructed table model');const useSecond=['midpoint','trapezoid'].includes(d.mode);let signs=[];
+  if(d.representation==='table'){
+   assert.match(p.questionHtml,new RegExp(`The function is ${useSecond?'':'strictly '}${d.error.behavior}`));
+   d.rows.forEach(r=>near(exactNumber(r.y),evaluate(model,from(r.x)),'Table agrees with its construction'));
+   const slopes=d.rows.slice(1).map((r,i)=>(exactNumber(r.y)-exactNumber(d.rows[i].y))/(number(from(r.x))-number(from(d.rows[i].x))));
+   const required=d.error.behavior==='increasing'||d.error.behavior==='concave up'?1:-1;
+   if(useSecond)slopes.slice(1).forEach((s,i)=>assert.ok(required*(s-slopes[i])>0,'Concavity must use actual x-spacing'));
+   else slopes.forEach(s=>assert.ok(required*s>0,'Table monotonicity'));
+  }
   for(let j=1;j<100;j++){const x=number(ends[0])+(number(ends.at(-1))-number(ends[0]))*j/100,t=d.f?.family==='trigonometric'?x*Math.PI:x;let derivative;
-   if(d.f.coeff){const coeff=d.f.coeff.map(c=>c[0]/c[1]),ds=coeff.slice(1).map((c,i)=>c*(i+1)),dds=ds.slice(1).map((c,i)=>c*(i+1));derivative=(useSecond?dds:ds).reduceRight((a,c)=>a*x+c,0);}
+   if(model.coeff){const coeff=model.coeff.map(c=>c[0]/c[1]),ds=coeff.slice(1).map((c,i)=>c*(i+1)),dds=ds.slice(1).map((c,i)=>c*(i+1));derivative=(useSecond?dds:ds).reduceRight((a,c)=>a*x+c,0);}
    else if(d.f.family==='rational'){const A=d.f.A[0]/d.f.A[1],u=x+d.f.shift,k=d.f.power;derivative=useSecond?k*(k+1)*A/u**(k+2):-k*A/u**(k+1);}
    else if(d.f.family==='logarithmic'){const A=d.f.A[0]/d.f.A[1];derivative=useSecond?-A/x**2:A/x;}
    else if(d.f.family==='exponential'){const A=d.f.A[0]/d.f.A[1],b=d.f.base==='e'?Math.E:d.f.base,k=d.f.rate*Math.log(b);derivative=A*b**(d.f.rate*x)*(useSecond?k*k:k);}
@@ -140,6 +153,9 @@ function approximation(p){
    if(Math.abs(derivative)>1e-9)signs.push(Math.sign(derivative));
   }
   assert.ok(signs.length&&new Set(signs).size===1,'Error rule not valid on full interval');const sign=signs[0],over=d.mode==='midpoint'?sign<0:d.mode==='trapezoid'?sign>0:d.mode==='left'?sign<0:sign>0;assert.equal(d.error.over,over,'Incorrect over/underestimate');
+  const sketch=p.stage2.explanation;assert.match(sketch,/<svg/);assert.match(sketch,new RegExp(`data-method="${d.mode}"`));assert.equal(/Schematic:/.test(sketch),d.representation==='table');
+  const pieces=[...sketch.matchAll(/data-left="([^"]+)" data-right="([^"]+)" data-left-height="([^"]+)" data-right-height="([^"]+)"/g)];assert.equal(pieces.length,d.n,'One shape per requested subinterval');
+  pieces.forEach((m,i)=>{const l=number(ends[i]),r=number(ends[i+1]),sample=d.mode==='left'?ends[i]:d.mode==='right'?ends[i+1]:mids[i];near(+m[1],l,'Sketch left endpoint');near(+m[2],r,'Sketch right endpoint');near(+m[3],evaluate(model,d.mode==='trapezoid'?ends[i]:sample),'Sketch left height');near(+m[4],evaluate(model,d.mode==='trapezoid'?ends[i+1]:sample),'Sketch right height');});
  }
  const expected=exactNumber(d.answers[d.mode]);near(exactNumber(d.expected),expected,'Stored typed answer');near(displayedNumber(p.answerTex),expected,'Displayed typed answer');
  const checker=box.window.BatchMathUnit4Answers,answer=p.stage1.unit4Answer,canonical=checker.expression(d.expected);assert.equal(checker.check(canonical,answer).ok,true,'Typed exact answer');assert.equal(checker.check(`(${canonical})+1`,answer).ok,false,'Wrong typed answer');
