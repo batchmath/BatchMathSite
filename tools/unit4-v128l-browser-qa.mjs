@@ -55,7 +55,7 @@ async function checkHomework(page,width){
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3),false,'Quotient page overflow');
 }
 async function checkPodVideo(page){
- const button=page.locator('.solution-card button,.problem-card button').filter({hasText:/Watch (?:Video Solution|Original Short)/}).first();
+ const button=page.locator('.solution-card button:visible,.problem-card button:visible').filter({hasText:/Watch (?:Video Solution|Original Short)/}).first();
  if(await button.count()){await button.click();await page.waitForSelector('#archive-video-modal:not([hidden])');await page.keyboard.press('Escape');}
 }
 async function checkSharedTheoremFlow(page){
