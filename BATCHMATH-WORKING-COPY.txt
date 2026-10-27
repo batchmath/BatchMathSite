@@ -1,6 +1,7 @@
 BatchMath cumulative working copy
-Current full release: 12.8.J
-Archive: batchmath-site-v12.8.J.zip
+Current full release: 12.8.K
+Archive: batchmath-site-v12.8.K.zip
 Baseline: complete 12.7 release.
 Changes: v12.8.J updates the shared Rectangular Approximation, Trapezoidal Approximation, and Introduction to Sigma Notation generators and their Unit 4 Comprehensive Review inheritance. Other course content and the existing BatchMath QA workflow remain preserved.
 No deployment performed.
+Current update: v12.8.K preserves the approved Unit 4 corrections and independent Mogollon 2026 archive. The archive contains verified starter entries pending its one-time Google Sheet CSV connection.
