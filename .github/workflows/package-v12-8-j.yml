@@ -1,0 +1,79 @@
+name: Package BatchMath v12.8.J
+
+# One requested prerelease, exclusively from the authorized Unit 4 branch.
+# The existing BatchMath QA and production deployment workflows are unchanged.
+on:
+  push:
+    branches: [work/unit4-approximation-sigma-engines]
+    paths: [.github/workflows/package-v12-8-j.yml]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  package:
+    if: github.repository == 'batchmath/BatchMathSite' && github.ref == 'refs/heads/work/unit4-approximation-sigma-engines'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      QA_COMMIT: 246b25dee88179f25f5b1d4111e2986d440dc13f
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify final source and successful targeted browser QA
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse HEAD^)" = "$QA_COMMIT"
+          git diff --exit-code "$QA_COMMIT" "$GITHUB_SHA" -- . ':(exclude).github/workflows/package-v12-8-j.yml'
+          for attempt in $(seq 1 60); do
+            run="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?branch=work%2Funit4-approximation-sigma-engines&per_page=50" \
+              --jq ".workflow_runs[] | select(.head_sha == \"$QA_COMMIT\" and .name == \"Unit 4 v12.8.J targeted QA\") | [.status, .conclusion] | @tsv" | head -n 1)"
+            if [[ "$run" == completed$'\t'success ]]; then break; fi
+            if [[ "$run" == completed* ]]; then echo "Targeted QA did not pass: $run"; exit 1; fi
+            if [[ "$attempt" == 60 ]]; then echo 'Targeted QA did not finish in the allowed time'; exit 1; fi
+            sleep 15
+          done
+          npm run qa:static
+          npm run qa:pwa
+          BM_U4_QA_SAMPLES=20000 node tools/unit4-approximation-sigma-qa.mjs
+      - name: Create and verify the exact committed full-site ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          node -e 'if (require("./package.json").version !== "12.8.J" || require("./assets/app-version.json").version !== "12.8.J") throw new Error("Unexpected site version")'
+          git archive --format=zip -9 --prefix=batchmath-site-v12.8.J/ --output=batchmath-site-v12.8.J.zip "$GITHUB_SHA"
+          unzip -tq batchmath-site-v12.8.J.zip
+          python3 - <<'PY'
+          import zipfile
+          with zipfile.ZipFile('batchmath-site-v12.8.J.zip') as archive:
+              names = archive.namelist()
+              assert {name.split('/')[0] for name in names} == {'batchmath-site-v12.8.J'}
+              assert 'batchmath-site-v12.8.J/.github/workflows/batchmath-qa.yml' in names
+              assert 'batchmath-site-v12.8.J/index.html' in names
+              assert not any(name.startswith('batchmath-site-v12.8.J/qa-results/') and not name.endswith(('/', '/.gitkeep')) for name in names)
+          PY
+          checksum="$(sha256sum batchmath-site-v12.8.J.zip | cut -d ' ' -f 1)"
+          printf 'Complete BatchMath v12.8.J test build from working-branch commit `%s`.\n\nSHA-256: `%s`\n' "$GITHUB_SHA" "$checksum" > release-notes.md
+      - name: Publish the requested GitHub download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release create v12.8.J batchmath-site-v12.8.J.zip \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title 'BatchMath v12.8.J' --notes-file release-notes.md \
+            --prerelease --latest=false
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.J" \
+            --jq '.assets[] | select(.name == "batchmath-site-v12.8.J.zip") | [.state, .size, .browser_download_url] | @tsv'
