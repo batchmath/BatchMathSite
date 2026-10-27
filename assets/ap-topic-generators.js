@@ -3055,7 +3055,8 @@ G['difference-quotient']=()=>{
       if(relation&&!d.uniform)continue;
       if(relation){
         const extraHtml=`${equation(`L_{${n}}=${exact(d.answers.left)}`)}${equation(`R_{${n}}=${exact(d.answers.right)}`)}`,twice=plus(d.answers.left,d.answers.right);
-        const steps=[partitionWork(d),`These left and right sums use the same equal partition.${equation(`T_{${n}}=\\frac{L_{${n}}+R_{${n}}}{2}`)}`,sumWork(`2T_{${n}}`,[emath(d.answers.left),emath(d.answers.right)],twice)+(key(twice)===key({})?equation(`T_{${n}}=0`):equalityWork(`T_{${n}}=${halfTex(twice)}`,exact(d.answers.trapezoid)))];
+        const terms=[...additiveParts(exact(d.answers.left)),...additiveParts(exact(d.answers.right))].map((s,i)=>i&&!/^[-+]/.test(s)?'+'+s:s);
+        const steps=[partitionWork(d),`These left and right sums use the same equal partition.${equation(`T_{${n}}=\\frac{L_{${n}}+R_{${n}}}{2}`)}`,mathFlow([`T_{${n}}=`,`\\frac{1}{2}\\Bigl[`,...terms,'\\Bigr]','=',...additiveParts(exact(d.answers.trapezoid))])];
         if(d.family==='linear')steps[steps.length-1]+=' Because the graph is a straight line, the trapezoidal value is exact.';
         p=question(d,`${representation}_relationship`,'The left and right rectangular sums below use the same equal partition. Use them to approximate the integral with the trapezoidal rule.',numericOptions(d,'trapezoid'),steps,{mode:'trapezoid',relation:true,extraHtml});
       }else{
