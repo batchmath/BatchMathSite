@@ -1,0 +1,29 @@
+name: Unit 4 definite-integral engines v12.8.N targeted QA
+on:
+  push:
+    branches: [work/v12.8n-unit4-definite-integrals-ftc-rules]
+    paths-ignore: [.github/workflows/package-v12-8-n.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  baseline-seed-reproduction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --ignore-scripts --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Reproduce the deployed exact seed before changing the generic helper
+        run: node tools/unit4-v128n-baseline-seed-probe.mjs --expect-legacy-failure
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit4-v128n-baseline-seed
+          path: qa-results/unit4-v128n-baseline/
+          if-no-files-found: warn
