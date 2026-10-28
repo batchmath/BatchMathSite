@@ -17,13 +17,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 35
     env:
-      QA_COMMIT: a4a9e669e4fe190039a0eabe7d75b7b7e7c3ea51
-      QA_RUN_ID: '40630232504'
+      QA_COMMIT: 77c887599d85aea290612e330d446dc30d59fcb4
+      QA_RUN_ID: '40634337399'
+      PREVIOUS_RELEASE_COMMIT: ccc001f162113df3eb84a56b8ab40a4ce7511c49
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
-          fetch-depth: 2
+          fetch-depth: 3
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
@@ -36,7 +37,7 @@ jobs:
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test "$(git show -s --format=%P HEAD)" = "$QA_COMMIT"
-          test "$(git diff --name-status "$QA_COMMIT" "$GITHUB_SHA")" = $'A\t.github/workflows/package-v12-8-m.yml'
+          test "$(git diff --name-status "$QA_COMMIT" "$GITHUB_SHA")" = $'M\t.github/workflows/package-v12-8-m.yml'
           git diff --exit-code "$QA_COMMIT" "$GITHUB_SHA" -- . ':(exclude).github/workflows/package-v12-8-m.yml'
           test "$(sha256sum .github/workflows/batchmath-qa.yml | cut -d ' ' -f 1)" = 'd8823214cd05a010f6d2dedd12c1de1d290ab73736ac13f631e6539a44293f36'
           gh api "repos/$GITHUB_REPOSITORY/actions/runs/$QA_RUN_ID" > "$RUNNER_TEMP/v128m-green-qa.json"
@@ -55,6 +56,7 @@ jobs:
           CHECK
       - run: npm install --ignore-scripts --no-audit --no-fund
       - run: npx playwright install --with-deps chromium
+      - run: sudo apt-get install -y --no-install-recommends poppler-utils
       - name: Final static, PWA, and affected generator checks
         run: |
           npm run qa:static
@@ -147,6 +149,7 @@ jobs:
               'Package commit: ' + os.environ['GITHUB_SHA'],
               '',
               'Final package checks repeated the M-specific running-document and desktop/mobile browser QA, exact approximation mathematics, graph geometry, shared review, Sigma alignment, walkthrough placement, and both archive regressions.',
+              'Corrections included: a clear red rounded Mogollon border at the smaller size; separate condensed Problems Only printing in both live running documents; caption-free Rectangular and Trapezoidal conceptual graphs with accessible labels. Sigma is unchanged.',
               'The ZIP contains every committed site file; generated QA results and screenshots are excluded.',
               'Main and the completed J/K/L working branches remain unchanged.',
               '',
@@ -176,16 +179,52 @@ jobs:
           555f96aca77803d086f73ed14d821ae2633f8bee heads/work/v12.8k-unit4-mogollon2026
           f7da158cbba60b9a2b03871cb811a62ccf5390fd heads/work/v12.8l-unit4-polish-mogollon-live-videos
           REFS
-          gh api "repos/$GITHUB_REPOSITORY/git/matching-refs/tags/v12.8.M" > "$RUNNER_TEMP/v128m-existing-tags.json"
+          git merge-base --is-ancestor "$PREVIOUS_RELEASE_COMMIT" "$GITHUB_SHA"
+          gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/v12.8.M" > "$RUNNER_TEMP/v128m-existing-tag.json"
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.M" > "$RUNNER_TEMP/v128m-existing-release.json"
           python3 - <<'CHECK'
           import json, os
           from pathlib import Path
-          refs = json.loads((Path(os.environ['RUNNER_TEMP']) / 'v128m-existing-tags.json').read_text())
-          for ref in refs:
-              if ref['ref'] == 'refs/tags/v12.8.M':
-                  assert ref['object']['type'] == 'commit' and ref['object']['sha'] == os.environ['GITHUB_SHA'], 'Existing tag targets a different commit'
+          temp = Path(os.environ['RUNNER_TEMP'])
+          tag = json.loads((temp / 'v128m-existing-tag.json').read_text())
+          release = json.loads((temp / 'v128m-existing-release.json').read_text())
+          allowed = {os.environ['PREVIOUS_RELEASE_COMMIT'], os.environ['GITHUB_SHA']}
+          assert tag['object']['type'] == 'commit' and tag['object']['sha'] in allowed, 'Preserve any unexpected newer release progress'
+          assert release['id'] == 426259026 and release['tag_name'] == 'v12.8.M'
+          assert release['prerelease'] is True and release['target_commitish'] in allowed
           CHECK
-          gh release create v12.8.M batchmath-site-v12.8.M.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title 'BatchMath v12.8.M' --notes-file release-notes.md --prerelease --latest=false
+          # Upload and verify the replacement before changing the existing
+          # prerelease. The final handoff is made while the release is a draft.
+          cp batchmath-site-v12.8.M.zip "$RUNNER_TEMP/batchmath-site-v12.8.M-$GITHUB_SHA.zip"
+          gh release upload v12.8.M "$RUNNER_TEMP/batchmath-site-v12.8.M-$GITHUB_SHA.zip" --repo "$GITHUB_REPOSITORY" --clobber
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.M" > "$RUNNER_TEMP/v128m-staged-release.json"
+          python3 - <<'CHECK'
+          import hashlib, json, os
+          from pathlib import Path
+          temp = Path(os.environ['RUNNER_TEMP'])
+          release = json.loads((temp / 'v128m-staged-release.json').read_text())
+          package = Path('batchmath-site-v12.8.M.zip')
+          checksum = hashlib.sha256(package.read_bytes()).hexdigest()
+          staged_name = 'batchmath-site-v12.8.M-' + os.environ['GITHUB_SHA'] + '.zip'
+          assets = [asset for asset in release['assets'] if asset['name'] == staged_name]
+          assert len(assets) == 1
+          asset = assets[0]
+          assert asset['state'] == 'uploaded' and asset['size'] == package.stat().st_size > 0
+          assert asset['digest'] == 'sha256:' + checksum
+          (temp / 'v128m-staged-asset-id').write_text(str(asset['id']))
+          prior = [asset for asset in release['assets'] if asset['name'] == package.name]
+          assert len(prior) <= 1
+          (temp / 'v128m-prior-asset-id').write_text(str(prior[0]['id']) if prior else '')
+          CHECK
+          gh release edit v12.8.M --repo "$GITHUB_REPOSITORY" --draft
+          gh api --method PATCH "repos/$GITHUB_REPOSITORY/git/refs/tags/v12.8.M" -f sha="$GITHUB_SHA" -F force=true > /dev/null
+          if test -s "$RUNNER_TEMP/v128m-prior-asset-id"; then
+            prior_asset="$(cat "$RUNNER_TEMP/v128m-prior-asset-id")"
+            gh api --method DELETE "repos/$GITHUB_REPOSITORY/releases/assets/$prior_asset"
+          fi
+          staged_asset="$(cat "$RUNNER_TEMP/v128m-staged-asset-id")"
+          gh api --method PATCH "repos/$GITHUB_REPOSITORY/releases/assets/$staged_asset" -f name=batchmath-site-v12.8.M.zip -f label=batchmath-site-v12.8.M.zip > /dev/null
+          gh release edit v12.8.M --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title 'BatchMath v12.8.M' --notes-file release-notes.md --prerelease --draft=false --latest=false
           gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.M" > "$RUNNER_TEMP/v128m-release.json"
           gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/v12.8.M" > "$RUNNER_TEMP/v128m-tag.json"
           python3 - <<'CHECK'
