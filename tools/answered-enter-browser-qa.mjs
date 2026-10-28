@@ -2,6 +2,9 @@
 // editor and Calculus Prep exact-editor workflows. Never reveal Next artificially.
 export const realEnterEngines = new Set([
   'ap_topic_difference_quotient',
+  'ap_topic_fundamental_theorem_of_calculus',
+  'ap_topic_combining_integral_rules',
+  'ap_topic_integrals_using_geometry',
   'ap_topic_rectangular_approximations',
   'ap_topic_evaluating_definite_integrals_with_a_limit_and_summation',
   'ap_topic_derivatives_with_the_power_rule',

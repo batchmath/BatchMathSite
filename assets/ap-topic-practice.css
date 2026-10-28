@@ -43,3 +43,8 @@
 @media(max-width:520px){.practice-diagram-hint{padding:9px!important}.geometry-diagram-hint{gap:7px}.geometry-diagram{width:100%;max-height:min(44vh,285px);border-radius:9px}.geometry-diagram .diagram-label{font-size:20px}.diagram-fixed-notes{gap:5px}.diagram-fixed-notes span{padding:4px 7px;font-size:.75rem}}
 @media(max-width:520px){.coordinate-field{grid-template-columns:1fr;gap:4px}.coordinate-field>span{text-align:center}.coordinate-answer .practice-answer-input{font-size:1rem}}
 @media(max-width:520px){.extremum-field{grid-template-columns:1fr;gap:4px;text-align:center}.extremum-answer .practice-answer-input{font-size:1rem}}
+
+/* Source-based definite-integral worked diagrams and long constructed math. */
+.u4-geometry-figure{width:min(100%,560px);margin:12px auto 0}
+.u4-geometry-figure svg{display:block;width:100%;height:auto}
+.u4-unit4-question .u4-formula,.u4-work-equation{max-width:100%;overflow-x:auto;padding:6px 0}

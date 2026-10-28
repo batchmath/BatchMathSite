@@ -3169,5 +3169,175 @@ G['difference-quotient']=()=>{
   };
 })();
 
+// v12.8.N — source-mapped constructed definite-integral practice.
+(function definiteIntegralCurriculumN(){
+ const W={newton:[['linear_construction',35],['quadratic_monomial',20],['quadratic_combination',25],['nonpolynomial_representation',20]],geometry:[['linear_triangle',10],['linear_trapezoid',20],['cross_axis_line',10],['absolute_value',15],['semicircle',15],['quarter_circle',10],['rectangle_circle',20]],ftc:[['upper_identity',25],['lower_identity',10],['upper_linear',10],['upper_power',15],['lower_power',10],['upper_trig',10],['both_algebraic',12],['both_transcendental',8]],rules:[['reverse_limits',10],['zero_width',5],['linearity',20],['interval_decomposition',30],['combined_rules',25],['reversed_combination',10]]};
+ const tiers={linear_construction:'routine',quadratic_monomial:'intermediate',quadratic_combination:'synthesis',nonpolynomial_representation:'intermediate',linear_triangle:'routine',linear_trapezoid:'routine',cross_axis_line:'synthesis',absolute_value:'intermediate',semicircle:'routine',quarter_circle:'routine',rectangle_circle:'intermediate',upper_identity:'routine',lower_identity:'routine',upper_linear:'intermediate',upper_power:'intermediate',lower_power:'intermediate',upper_trig:'intermediate',both_algebraic:'synthesis',both_transcendental:'synthesis',reverse_limits:'routine',zero_width:'routine',linearity:'routine',interval_decomposition:'intermediate',combined_rules:'synthesis',reversed_combination:'synthesis'};
+ const weighted=kind=>{let r=R()*100;for(const[f,w]of W[kind]){r-=w;if(r<0)return f;}return W[kind].at(-1)[0];};
+ const nz=(a,b)=>pick(Array.from({length:b-a+1},(_,i)=>i+a).filter(Boolean));
+ const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),q=(a,b=1)=>{const g=gcd(a,b);return b<0?[-a/g,-b/g]:[a/g,b/g];};
+ const qa=(a,b)=>q(a[0]*b[1]+b[0]*a[1],a[1]*b[1]);
+ const qt=([a,b])=>b===1?String(a):`${a<0?'-':''}\\frac{${Math.abs(a)}}{${b}}`;
+ const im=s=>`\\(${s}\\)`,eq=s=>`<div class="u4-work-equation">${im(`\\displaystyle ${s}`)}</div>`,work=steps=>steps.map(s=>`<div class="u4-work-step">${s}</div>`).join('');
+ const signed=(n,first=false)=>n<0?'-':first?'':'+';
+ const poly=(c,v='x')=>{let out='';for(let i=c.length-1;i>=0;i--){const n=c[i];if(!n)continue;out+=signed(n,!out)+(Math.abs(n)===1&&i?'':Math.abs(n))+(i?(v.length>1?`\\left(${v}\\right)`:v)+(i>1?`^{${i}}`:''):'');}return out||'0';};
+ const pe=(c,v)=>c.map((n,i)=>n?`(${n})*(${v})^${i}`:'').filter(Boolean).join('+')||'0';
+ const shift=(v,h)=>h===0?v:h>0?`${v}-${h}`:`${v}+${-h}`;
+ const coeff=(a,v)=>a===1?v:a===-1?`-${v}`:`${a}${v}`;
+ const key=(kind,family,data)=>{let h=2166136261,g=5381;for(const ch of JSON.stringify(data)){h=Math.imul(h^ch.charCodeAt(0),16777619);g=Math.imul(g,33)^ch.charCodeAt(0);}return `u4N-${kind}-${family}-${(h>>>0).toString(16)}${(g>>>0).toString(16)}`;};
+ const scalar=(r,pi=[0,1])=>({kind:'scalar',value:{'':r,...(pi[0]?{pi}: {})}});
+ function exactStage(prompt,answer,answerTex,explanation,mode='unit4-exact'){
+  return{type:'unit4-exact',prompt,unit4Answer:answer,answerTex,explanation,keypadMode:mode};
+ }
+ function problem(kind,family,prompt,math,data,stage1,stage2){
+  const p={id:key(kind,family,{math,prompts:[stage1.prompt,stage2?.prompt]}),variant:family,normalizedMathDisplay:true,answerType:'staged-calculus',questionHtml:`<div class="u4-unit4-question"><div class="question-prompt">${prompt}</div><div class="u4-formula">${im(`\\displaystyle ${math}`)}</div></div>`,stage1,answerTex:(stage2||stage1).answerTex,explanation:(stage2||stage1).explanation,unit4Meta:{kind,family,tier:tiers[family],...data}};
+  if(stage2)p.stage2=stage2;return p;
+ }
+ function newton(){
+  const family=weighted('newton');let a=ri(-5,4),width=ri(1,7),b=a+width,c,subtype;
+  if(family==='linear_construction')c=[ri(-8,8),nz(-6,6)];
+  else if(family==='quadratic_monomial')c=[0,0,nz(-4,4)];
+  else if(family==='quadratic_combination')c=[ri(-7,7),nz(-5,5),nz(-4,4)];
+  else{subtype=pick(['polynomial_sine','exponential_tangent']);if(subtype==='exponential_tangent'){a=pick([-1,0]);b=1;width=b-a;}}
+  const sample=`${a?a+'+':''}\\frac{${width===1?'':width}k}{n}`,sampleE=`(${a}+${width}*k/n)`,dx=`\\frac{${width}}{n}`;
+  const u=nz(-4,4),v=nz(-4,4),f=c?poly(c):subtype==='polynomial_sine'?`${coeff(u,'x^2')}${v<0?'-':'+'}${coeff(Math.abs(v),'\\sin x')}`:`${coeff(u,'e^x')}${v<0?'-':'+'}${coeff(Math.abs(v),'\\tan x')}`;
+  const of=(t,expr=false)=>c?(expr?pe(c,t):poly(c,t)):subtype==='polynomial_sine'?(expr?`(${u})*(${t})^2+(${v})*sin(${t})`:`${coeff(u,`\\left(${t}\\right)^2`)}${v<0?'-':'+'}${coeff(Math.abs(v),`\\sin\\!\\left(${t}\\right)`)}`):(expr?`(${u})*exp(${t})+(${v})*tan(${t})`:`${coeff(u,`e^{${t}}`)}${v<0?'-':'+'}${coeff(Math.abs(v),`\\tan\\!\\left(${t}\\right)`)}`);
+  const expression=`(${of(sampleE,true)})*${width}/n`,summand=`\\left[${of(sample)}\\right]${dx}`,sigma=`\\sum_{k=1}^{n}`;
+  const steps=[`Divide ${im(`[${a},${b}]`)} into ${im('n')} equal subintervals: ${im(`\\Delta x=(${b}-(${a}))/n=${dx}`)}. The right endpoints are ${im(`x_k=${sample}`)}.`, `Substitute the right endpoint in the integrand and multiply by the width.${eq(`T(k,n)=${summand}`)}`,eq(`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx=\\lim_{n\\to\\infty}${sigma}${summand}`)];
+  const s1=exactStage(`Construct the right-endpoint summand ${im('T(k,n)')} in ${im(`\\displaystyle\\lim_{n\\to\\infty}${sigma}T(k,n)`)}. Include the subinterval width.`,{kind:'newton-expression',expression},summand,work(steps),'unit4-newton');
+  const data={a,b,width,coefficients:c||null,subtype:subtype||'polynomial',...(c?{}:{u,v})};
+  if(!c)return problem('newton',family,'Write the definite integral as a limit of a right-endpoint sum. Evaluation is not required.',`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx`,data,s1);
+  const A=c[2]||0,B=c[1]||0,C=c[0]||0,expanded=[width*(A*a*a+B*a+C),width*width*(2*A*a+B),A*width**3];
+  let result=[0,1];expanded.forEach((n,i)=>result=qa(result,q(n,i+1)));
+  const terms=expanded.map((n,i)=>({n,i})).filter(t=>t.n).map(({n,i},j)=>`${signed(n,j===0)}\\frac{${Math.abs(n)}${i?i===1?'k':'k^2':''}}{${i===0?'n':`n^{${i+1}}`}}`).join('')||'0';
+  const summed=expanded.map((n,i)=>({n,i})).filter(t=>t.n).map(({n,i},j)=>`${signed(n,j===0)}\\frac{${Math.abs(n)}}{${i===0?'n':`n^{${i+1}}`}}${i===0?'n':i===1?'\\frac{n(n+1)}{2}':'\\frac{n(n+1)(2n+1)}{6}'}`).join('')||'0';
+  const finite=expanded.map((v,i)=>({r:q(v,i===0?1:i===1?2:6),body:i===0?'':i===1?'\\frac{n+1}{n}':'\\frac{(n+1)(2n+1)}{n^2}'})).filter(t=>t.r[0]).map(({r,body},i)=>`${signed(r[0],i===0)}${body&&Math.abs(r[0])===r[1]?'':qt(q(Math.abs(r[0]),r[1]))}${body}`).join('')||'0';
+  const evaluation=work([`Expand the actual summand.${eq(`T(k,n)=${terms}`)}`,`Use ${im('\\sum_{k=1}^n1=n')}, ${im('\\sum_{k=1}^nk=n(n+1)/2')}, and ${im('\\sum_{k=1}^nk^2=n(n+1)(2n+1)/6')}.${eq(`${sigma}T(k,n)=${summed}`)}`,eq(`=${finite}`),`Now take the limit: ${im('(n+1)/n\\to1')} and ${im('(n+1)(2n+1)/n^2\\to2')}.${eq(`\\lim_{n\\to\\infty}${sigma}T(k,n)=${qt(result)}`)}`]);
+  return problem('newton',family,'Write the definite integral as a limit of a right-endpoint sum, then evaluate it using finite-sum identities.',`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx`,{...data,expanded,result},s1,exactStage('Use finite-sum identities and a limit to find the exact value.',scalar(result),qt(result),evaluation));
+ }
+ function geometryGraph(d){
+  const {a,b}=d,fn=x=>d.shape==='circle'?d.offset+d.sign*Math.sqrt(Math.max(0,d.r*d.r-(x-d.h)**2)):d.shape==='absolute'?d.m*Math.abs(x-d.h)+d.offset:d.m*(x-d.h)+d.offset;
+  const xs=Array.from({length:161},(_,i)=>a+(b-a)*i/160),ys=xs.map(fn),xmin=Math.min(a,0),xmax=Math.max(b,0),ymin=Math.min(...ys,0),ymax=Math.max(...ys,0),scale=Math.min(460/Math.max(xmax-xmin,1),210/Math.max(ymax-ymin,1)),w=(xmax-xmin)*scale+90,h=(ymax-ymin)*scale+75;
+  const X=x=>45+(x-xmin)*scale,Y=y=>30+(ymax-y)*scale,p=xs.map((x,i)=>`${X(x).toFixed(2)},${Y(ys[i]).toFixed(2)}`).join(' '),base=`${X(a)},${Y(0)} ${p} ${X(b)},${Y(0)}`;
+  const ticks=[...new Set([a,...(d.shape==='circle'?[d.h]:[d.h]),b])].filter(x=>x>=xmin&&x<=xmax).map(x=>`<path d="M${X(x)} ${Y(0)-4}v8" stroke="#ddd"/><text x="${X(x)}" y="${Y(0)+20}" text-anchor="middle" fill="#fff" font-size="13">${x}</text>`).join('');
+  return `<figure class="u4-geometry-figure"><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Signed regions for the given integral" data-scale-x="${scale}" data-scale-y="${scale}"><title>Signed regions for the given integral</title><desc>The curve is drawn to equal horizontal and vertical unit scales on the stated interval. Regions below the horizontal axis contribute negatively.</desc><polygon points="${base}" fill="#d71920" fill-opacity=".22"/><path d="M25 ${Y(0)}H${w-15} M${X(0)} 12V${h-15}" fill="none" stroke="#bbb"/><polyline points="${p}" fill="none" stroke="#f0d34b" stroke-width="2.5"/>${ticks}<text x="${w-18}" y="${Y(0)-9}" fill="#fff" font-size="13">x</text><text x="${X(0)+8}" y="16" fill="#fff" font-size="13">y</text></svg></figure>`;
+ }
+ function geometry(){
+  const family=weighted('geometry');let a,b,h=ri(-4,4),m=nz(-4,4),offset=0,r=ri(1,8),sign=pick([-1,1]),shape,math,rat=[0,1],pi=[0,1],steps=[];
+  if(['linear_triangle','linear_trapezoid','cross_axis_line'].includes(family)){
+   shape='line';let L=ri(1,7),U=ri(1,7);
+   if(family==='linear_triangle'){a=h;b=h+U;}
+   else if(family==='linear_trapezoid'){a=h+L;b=a+U;}
+   else{a=h-L;b=h+U;}
+   math=poly([-m*h,m]);const y1=m*(a-h),y2=m*(b-h);
+   if(family==='cross_axis_line'){
+    const left=q(-m*(h-a)**2,2),right=q(m*(b-h)**2,2);rat=qa(left,right);steps.push(`The line crosses the axis at ${im(`x=${h}`)}. Keep the signs of the two triangles.`,eq(`I_{\\rm left}=${qt(left)},\\qquad I_{\\rm right}=${qt(right)}`),eq(`I=${qt(left)}+\\left(${qt(right)}\\right)=${qt(rat)}`));
+   }else{rat=q((b-a)*(y1+y2),2);steps.push(`Endpoint heights are ${im(String(y1))} and ${im(String(y2))}; the width is ${im(String(b-a))}. Use the ${family==='linear_triangle'?'triangle':'trapezoid'} area with its sign.`,eq(`I=\\frac{${b-a}}{2}\\left(${y1}+(${y2})\\right)=${qt(rat)}`));}
+  }else if(family==='absolute_value'){
+   shape='absolute';const L=ri(1,6),U=ri(1,6);offset=R()<.45?0:nz(-7,7);a=h-L;b=h+U;
+   math=`${coeff(m,`\\left|${shift('x',h)}\\right|`)}${offset?signed(offset)+Math.abs(offset):''}`;
+   const parts=[q(m*L*L,2),q(m*U*U,2),q(offset*(L+U))];rat=parts.reduce(qa,[0,1]);
+   steps.push(`Split at the vertex ${im(`x=${h}`)}. The two absolute-value triangles have widths ${im(String(L))} and ${im(String(U))}; the vertical shift contributes a signed rectangle.`,eq(`I=${qt(parts[0])}+\\left(${qt(parts[1])}\\right)+\\left(${qt(parts[2])}\\right)=${qt(rat)}`));
+  }else{
+   shape='circle';const quarter=family==='quarter_circle'||family==='rectangle_circle'&&R()<.3;
+   a=quarter&&R()<.5?h:h-r;b=quarter&&a===h-r?h:h+r;
+   offset=family==='rectangle_circle'?pick([-1,1])*ri(r,r+7):0;
+   math=`${offset?offset:''}${sign<0?'-':offset?'+':''}\\sqrt{${r*r}-\\left(${shift('x',h)}\\right)^2}`;
+   pi=q(sign*r*r,quarter?4:2);rat=q(offset*(b-a));steps.push(`The radius is ${im(String(r))}. This interval covers a ${quarter?'quarter circle':'semicircle'}; its signed circular contribution is ${im(`${sign<0?'-':''}\\frac{\\pi(${r})^2}{${quarter?4:2}}=${qt(pi)}\\pi`)}.`,...(offset?[`The vertical shift adds the signed rectangle ${im(`${offset}(${b-a})=${rat[0]}`)}.`]:[]));
+  }
+  const answerTex=(rat[0]?qt(rat):'')+(pi[0]?(pi[0]<0?'-':rat[0]?'+':'')+coeff(Math.abs(pi[0])===pi[1]?1:qt(q(Math.abs(pi[0]),pi[1])),'\\pi'):'')||'0';
+  // A scalar stores the rational and pi coefficients separately; no rounded decimals.
+  const data={a,b,h,m,offset,r,sign,shape,rat,pi};steps.push(eq(`\\int_{${a}}^{${b}}\\left(${math}\\right)\\,dx=${answerTex}`),'The definite integral is signed area: regions below the axis contribute negatively.');
+  const solution=work(steps)+geometryGraph(data);
+  return problem('geometry',family,'Use geometry to find the exact value of the definite integral.',`\\int_{${a}}^{${b}}\\left(${math}\\right)\\,dx`,data,exactStage('Enter the exact signed value.',scalar(rat,pi),answerTex,solution));
+ }
+ // Paired expressions retain safe plain syntax for the checker and TeX for display.
+ const E=(e,t=e,p=4)=>({e,t,p}),num=n=>E(String(n));
+ const wrap=(a,p)=>a.p<p?`\\left(${a.t}\\right)`:a.t;
+ const add=(a,b)=>a.e==='0'?b:b.e==='0'?a:E(`(${a.e})+(${b.e})`,`${a.t}${b.t.startsWith('-')?'':'+'}${b.t}`,1);
+ const neg=a=>a.e==='0'?a:E(`-(${a.e})`,`-${a.t.startsWith('-')?`\\left(${a.t}\\right)`:wrap(a,2)}`,2);
+ const mul=(a,b)=>a.e==='0'||b.e==='0'?num(0):a.e==='1'?b:b.e==='1'?a:a.e==='-1'?neg(b):b.e==='-1'?neg(a):E(`(${a.e})*(${b.e})`,`${wrap(a,2)}\\,${wrap(b,2)}`,2);
+ const pow=(a,p)=>p===1?a:E(`(${a.e})^${p}`,`${wrap(a,4)}^{${p}}`,3);
+ const fn=(name,a)=>name==='exp'?E(`exp(${a.e})`,`e^{${a.t}}`,3):E(`${name}(${a.e})`,`\\${name}\\!\\left(${a.t}\\right)`);
+ const div=(a,b)=>E(`(${a.e})/(${b.e})`,`\\frac{${a.t}}{${b.t}}`,2);
+ function bound(type,k,d){
+  const x=E('x');if(type==='constant')return{type,k,d,value:num(d),derivative:num(0)};
+  if(type==='identity')return{type,k:1,d:0,value:x,derivative:num(1)};
+  if(type==='linear')return{type,k,d,value:add(mul(num(k),x),num(d)),derivative:num(k)};
+  if(type==='power')return{type,k,d,value:mul(num(k),pow(x,d)),derivative:mul(num(k*d),pow(x,d-1))};
+  const arg=mul(num(k),x);
+  if(type==='exp')return{type,k,d:0,value:fn('exp',arg),derivative:mul(num(k),fn('exp',arg))};
+  if(type==='sin')return{type,k,d:0,value:fn('sin',arg),derivative:mul(num(k),fn('cos',arg))};
+  return{type:'tan',k,d:0,value:fn('tan',arg),derivative:mul(num(k),pow(fn('sec',arg),2))};
+ }
+ function integrand(type,k,c,t){
+  if(type==='trig_product')return mul(pow(fn('sin',t),k),fn('cos',t));
+  if(type==='exponential_product')return mul(fn('exp',mul(num(k),t)),fn('cos',pow(t,c)));
+  if(type==='polynomial_exponential')return add(pow(t,c),neg(fn('exp',mul(num(k),t))));
+  if(type==='power_cosine')return mul(pow(t,c),fn('cos',t));
+  if(type==='polynomial')return add(pow(t,c),mul(num(-k),pow(t,c-1)));
+  if(type==='cosine_linear')return add(fn('cos',mul(num(k),t)),neg(t));
+  if(type==='linear_sine')return add(mul(num(k),t),neg(fn('sin',t)));
+  if(type==='gaussian')return fn('exp',neg(mul(num(k),pow(t,2))));
+  if(type==='cosine_composition')return fn('cos',pow(t,c));
+  if(type==='log_positive')return fn('ln',add(num(k),pow(t,2)));
+  if(type==='rational_positive')return div(add(t,num(-c)),add(pow(t,2),num(k)));
+  return mul(pow(t,2),add(num(k),fn('exp',t)));
+ }
+ function ftc(){
+  const family=weighted('ftc'),k=ri(1,4),c=ri(2,4),constant=ri(-6,6),type=pick(['trig_product','exponential_product','polynomial_exponential','power_cosine','polynomial','cosine_linear','linear_sine','gaussian','cosine_composition','log_positive','rational_positive','power_exponential']);
+  let lower=bound('constant',1,constant),upper;
+  if(family==='upper_identity')upper=bound('identity');
+  else if(family==='lower_identity'){lower=bound('identity');upper=bound('constant',1,constant);}
+  else if(family==='upper_linear'){const slope=nz(-4,4),intercept=ri(-5,5);upper=bound('linear',slope,slope===1&&intercept===0?1:intercept);}
+  else if(family==='upper_power')upper=bound('power',nz(-3,3),pick([2,3]));
+  else if(family==='lower_power'){lower=bound('power',nz(-3,3),pick([2,3]));upper=bound('constant',1,constant);}
+  else if(family==='upper_trig')upper=bound('sin',k);
+  else if(family==='both_algebraic'){lower=bound('linear',nz(-4,4),ri(-3,3));upper=bound('power',nz(-3,3),pick([2,3]));}
+  else{lower=bound(pick(['power','sin']),ri(1,3),2);upper=bound(pick(['exp','tan']),ri(1,3));}
+  const t=E('t'),integrandT=integrand(type,k,c,t),upperF=integrand(type,k,c,upper.value),lowerF=integrand(type,k,c,lower.value),u=mul(upperF,upper.derivative),l=mul(lowerF,lower.derivative),answer=add(u,neg(l));
+  const domain=upper.type==='tan'?`For ${im(`-${qt(q(1,2*upper.k))}\\pi<x<${qt(q(1,2*upper.k))}\\pi`)}.`:'For all real x.';
+  const steps=[`Apply the Fundamental Theorem and the chain rule; a variable lower bound contributes a minus sign.${eq("F'(x)=f(b(x))b'(x)-f(a(x))a'(x)")}`,`Here ${im(`f(t)=${integrandT.t}`)}, ${im(`a(x)=${lower.value.t}`)}, ${im(`b(x)=${upper.value.t}`)}.`,`${im(`a'(x)=${lower.derivative.t}`)} and ${im(`b'(x)=${upper.derivative.t}`)}.`,...(upper.type!=='constant'?[`Upper contribution:${eq(`f(b(x))b'(x)=${u.t}`)}`]:[]),...(lower.type!=='constant'?[`Lower contribution to subtract:${eq(`f(a(x))a'(x)=${l.t}`)}`]:[]),eq(`F'(x)=${answer.t}`)];
+  const data={integrandType:type,k,c,lower:{type:lower.type,k:lower.k,d:lower.d},upper:{type:upper.type,k:upper.k,d:upper.d},domain:upper.type==='tan'?[-Math.PI/(2*upper.k),Math.PI/(2*upper.k)]:null};
+  return problem('ftc',family,`Differentiate using the Fundamental Theorem of Calculus. ${domain}`,`F(x)=\\int_{${lower.value.t}}^{${upper.value.t}}\\left(${integrandT.t}\\right)\\,dt`,data,exactStage(`Enter ${im("F'(x)")} as an exact expression in x.`,{kind:'function-expression',expression:answer.e,probes:upper.type==='tan'?[-.22,-.1,0,.12,.24]:undefined},answer.t,work(steps),'unit4-ftc'));
+ }
+ const it=(f,a,b,body)=>`\\int_{${a}}^{${b}}${body||`${f}(x)`}\\,dx`;
+ function rules(){
+  const family=weighted('rules'),a=ri(-7,1),b=a+ri(1,5),c=b+ri(1,6),d=c+ri(1,5),u=nz(-12,12),v=nz(-12,12),w=nz(-12,12),z=nz(-12,12),p=nz(-5,5),s=nz(-5,5),other=pick(['g','h']);
+  const reversed=R()<.4,overlap=R()<.5;
+  let facts=[],target,expression,answer,derive=[],first=null,firstAnswer,firstExpr;
+  const given=(f,l,r,n)=>{const rev=reversed&&R()<.5;facts.push({f,a:rev?r:l,b:rev?l:r,value:rev?-n:n});};
+  if(family==='reverse_limits'){given('f',a,c,u);target=it('f',c,a);answer=-u;expression=`-(${u})`;derive=[`Reversing limits changes the sign.${eq(`${target}=-${it('f',a,c)}=-(${u})=${answer}`)}`];}
+  else if(family==='zero_width'){given('f',a,c,u);target=it('f',b,b);answer=0;expression='0';derive=[`Equal endpoints give an interval of zero width, so ${im(`${target}=0`)} regardless of the supplied integral value.`];}
+  else if(family==='linearity'){given('f',a,b,u);given(other,a,b,v);target=it('',a,b,`\\left[${coeff(p,'f(x)')}${s<0?'-':'+'}${coeff(Math.abs(s),other+'(x)')}\\right]`);answer=p*u+s*v;expression=`${p}*(${u})+(${s})*(${v})`;derive=[`First orient the given integrals from ${im(String(a))} to ${im(String(b))}. Then distribute the integral across the linear combination.`,eq(`${target}=${p}(${u})+(${s})(${v})=${answer}`)];}
+  else if(family==='interval_decomposition'){
+   const subtype=pick(['adjacent','missing','overlap']);
+   if(subtype==='adjacent'){given('f',a,b,u);given('f',b,c,v);target=it('f',a,c);answer=u+v;expression=`(${u})+(${v})`;derive=[`Join adjacent intervals.${eq(`${target}=${it('f',a,b)}+${it('f',b,c)}=(${u})+(${v})=${answer}`)}`];}
+   else if(subtype==='missing'){given('f',a,c,u+v);given('f',a,b,u);target=it('f',b,c);answer=v;expression=`(${u+v})-(${u})`;derive=[`Subtract the known piece from the whole interval.${eq(`${target}=${it('f',a,c)}-${it('f',a,b)}=(${u+v})-(${u})=${answer}`)}`];}
+   else{given('f',a,c,u+v);given('f',b,d,v+w);given('f',a,d,u+v+w);target=it('f',b,c);answer=v;expression=`(${u+v})+(${v+w})-(${u+v+w})`;derive=[`The two overlapping intervals count the overlap twice. Subtract the whole interval once.${eq(`${target}=(${u+v})+(${v+w})-(${u+v+w})=${answer}`)}`];}
+  }else{
+   if(overlap){given('f',a,c,u+v);given('f',a,b,u);given(other,a,c,w+z);given(other,a,b,w);}
+   else{given('f',b,c,v);given(other,b,c,z);given('f',a,b,u);given(other,a,b,w);}
+   const l=family==='reversed_combination'?c:b,r=family==='reversed_combination'?b:c,orientation=family==='reversed_combination'?-1:1;
+   first=it('f',l,r);firstAnswer=orientation*v;firstExpr=String(firstAnswer);
+   target=it('',l,r,`\\left[${coeff(p,'f(x)')}${s<0?'-':'+'}${coeff(Math.abs(s),other+'(x)')}\\right]`);answer=orientation*(p*v+s*z);expression=`${p}*(${orientation*v})+(${s})*(${orientation*z})`;
+   derive=[`Orient both integrals from ${im(String(b))} to ${im(String(c))}: ${im(`${it('f',b,c)}=${v}`)} and ${im(`${it(other,b,c)}=${z}`)}.${overlap?' Subtract the first interval from the whole interval for each function.':''}`,...(orientation<0?['Reverse each interval; both values change sign.']:[]),`Use linearity.${eq(`${target}=${p}(${orientation*v})+(${s})(${orientation*z})=${answer}`)}`];
+  }
+  const data={a,b,c,d,facts,target,expression,answer,...(first?{firstAnswer,firstExpr}:{})};
+  const math=`\\begin{gathered}${facts.map(f=>`${it(f.f,f.a,f.b)}=${f.value}`).join('\\\\[5pt]')}\\end{gathered}`;
+  const s2=exactStage(`Find ${im(`\\displaystyle ${target}`)}.`,scalar(q(answer)),String(answer),work(derive));
+  if(!first)return problem('rules',family,'Use the given signed integral values and integral rules. Do not find an antiderivative.',math,data,s2);
+  const pre=work([`Normalize the orientation of the given facts.${overlap?` For f, subtract ${im(String(u))} from ${im(String(u+v))} to get ${im(String(v))}.`:''}${family==='reversed_combination'?' Reverse the interval and change its sign.':''}`,eq(`${first}=${firstAnswer}`)]);
+  return problem('rules',family,'Use the given signed integral values and integral rules. Do not find an antiderivative.',math,data,exactStage(`Part 1: Find ${im(`\\displaystyle ${first}`)}.`,scalar(q(firstAnswer)),String(firstAnswer),pre),s2);
+ }
+ G['evaluating-definite-integrals-with-a-limit-and-summation']=newton;
+ G['integrals-using-geometry']=geometry;
+ G['fundamental-theorem-of-calculus']=ftc;
+ G['combining-integral-rules']=rules;
+ G['fundamental-theorem-of-calculus-and-integral-rules']=(o={})=>(o.ftcMode||o.mode)==='rules'?rules():ftc();
+ const oldReview=G['unit-4-comprehensive'];
+ G['unit-4-comprehensive']=(o={})=>{let mode=o.unit4Mode||o.mode||'mixed';if(mode==='mixed')mode=pick(['rect','trap','sigma','riemann','geometry','ftc','rules','basic','usub','log','mvt']);const children={riemann:newton,geometry,ftc,rules};return children[mode]?children[mode]():oldReview({...o,mode,unit4Mode:mode});};
+})();
+
 window.BatchMathAPTopicGenerators={get:(slug)=>G[slug],slugs:()=>Object.keys(G)};
 })();

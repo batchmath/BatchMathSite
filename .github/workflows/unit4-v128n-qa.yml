@@ -7,7 +7,33 @@ on:
 permissions:
   contents: read
 jobs:
-  production-seeded-checkpoint:
+  curriculum-math:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Static and source-mapped generator structure
+        run: |
+          npm run qa:static
+          npm run qa:pwa
+          npm run qa:topics
+          npm run qa:unit4
+      - name: Independent N mathematics, symbolic equivalence, source fidelity and 48000-sample distributions
+        run: node tools/unit4-v128n-qa.mjs
+      - name: Preserve approved M approximation and Sigma mathematics
+        run: BM_U4_QA_SAMPLES=20000 node tools/unit4-approximation-sigma-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit4-v128n-math
+          path: qa-results/
+  curriculum-browser:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -19,13 +45,58 @@ jobs:
           node-version: '22'
       - run: npm install --ignore-scripts --no-audit --no-fund
       - run: npx playwright install --with-deps chromium
-      - name: Exact deployed seed and genuine one/two-part student-flow regression
-        run: node tools/unit4-v128n-baseline-seed-probe.mjs
-      - name: Full production seeded generator QA on the baseline N branch
-        run: npm run qa:seeded
+      - run: sudo apt-get install -y --no-install-recommends poppler-utils
+      - name: N actual editors, constructed answers, stages, feedback, review, MathJax, mobile and held Enter
+        run: node tools/unit4-v128n-browser-qa.mjs
+      - name: Preserve both live documents and both actual PDF print modes
+        run: node tools/running-documents-v128m-qa.mjs
+      - name: Preserve M caption-free graphs, eight-pixel visibility, Sigma, videos, red border and archives
+        run: node tools/unit4-v128m-browser-qa.mjs
+      - run: node tools/mogollon2026-qa.mjs && npm run qa:problem-of-day-archive
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: unit4-v128n-baseline-seed
+          name: unit4-v128n-browser
           path: qa-results/
-          if-no-files-found: warn
+  # The connector exposes workflow reads/reruns, but no workflow-dispatch mutation.
+  # Execute the existing production workflow's exact ordered command list instead.
+  production-equivalent:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --ignore-scripts --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Assert production command parity and unchanged production workflow
+        run: python3 tools/unit4-v128n-production-parity.py
+      - name: Full production-equivalent BatchMath QA
+        run: |
+          npm run qa:static
+          npm run qa:display
+          npm run qa:semantic
+          npm run qa:prep
+          npm run qa:analytics
+          npm run qa:pwa
+          npm run qa:math
+          npm run qa:unit1-explanations
+          npm run qa:limits
+          npm run qa:topics
+          npm run qa:deep
+          npm run qa:newcalc
+          npm run qa:derivative-topics
+          npm run qa:unit1-ivt
+          npm run qa:browser-infra
+          npm run qa:advanced-trig-hints
+          npm run qa:seeded
+      - name: Retain exact Rectangular one/two-part student-flow regressions
+        run: node tools/unit4-v128n-baseline-seed-probe.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit4-v128n-production-equivalent
+          path: qa-results/

@@ -2,8 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://batchmath.net/</loc></url>
   <url><loc>https://batchmath.net/about/</loc></url>
-  <url><loc>https://batchmath.net/archive/</loc></url>
-  <url><loc>https://batchmath.net/mogollon2026/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/ap-test-preparation/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/ap-test-preparation/free-response-questions/</loc></url>
@@ -120,6 +118,7 @@
   <url><loc>https://batchmath.net/ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/practice/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/</loc></url>
+  <url><loc>https://batchmath.net/ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/integral-rules-practice/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/practice/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-4-integrals/topics/integrals-resulting-in-natural-log-and-inverse-trigonometric-functions/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-4-integrals/topics/integrals-resulting-in-natural-log-and-inverse-trigonometric-functions/practice/</loc></url>
@@ -161,6 +160,8 @@
   <url><loc>https://batchmath.net/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/practice/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/</loc></url>
   <url><loc>https://batchmath.net/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/practice/</loc></url>
+  <url><loc>https://batchmath.net/archive/</loc></url>
+  <url><loc>https://batchmath.net/archive/problem-list/</loc></url>
   <url><loc>https://batchmath.net/calculus-prep/</loc></url>
   <url><loc>https://batchmath.net/calculus-prep/calculus-algebra/</loc></url>
   <url><loc>https://batchmath.net/calculus-prep/domains/</loc></url>
@@ -263,6 +264,6 @@
   <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/practice/</loc></url>
   <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/</loc></url>
   <url><loc>https://batchmath.net/im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/</loc></url>
-  <url><loc>https://batchmath.net/archive/problem-list/</loc></url>
+  <url><loc>https://batchmath.net/mogollon2026/</loc></url>
   <url><loc>https://batchmath.net/mogollon2026/problem-list/</loc></url>
 </urlset>

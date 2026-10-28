@@ -816,6 +816,8 @@
       "unit3-number":{fraction:true,decimal:true,arithmetic:true,parentheses:true},
       "unit3-exact":{fraction:true,radical:true,exponent:true,constants:["pi","e"],logarithm:true,arithmetic:true,parentheses:true},
       "unit4-exact":{fraction:true,radical:true,exponent:true,constants:["pi","e"],logarithm:true,arithmetic:true,parentheses:true},
+      "unit4-newton":{fraction:true,radical:true,exponent:true,constants:["pi","e"],variables:["k","n"],logarithm:true,functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"]],arithmetic:true,parentheses:true},
+      "unit4-ftc":{fraction:true,radical:true,exponent:true,constants:["pi","e"],variables:["x"],logarithm:true,functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"]],arithmetic:true,parentheses:true},
       "unit4-sigma":{fraction:true,exponent:true,variables:["n"],arithmetic:true,parentheses:true},
       "unit3-geometry-exact":{fraction:true,radical:true,exponent:true,constants:["pi"],arithmetic:true,parentheses:true},
       "unit3-formula":{fraction:true,exponent:true,sequence:true,variables:["n"],arithmetic:true,parentheses:true,equality:true},

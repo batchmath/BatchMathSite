@@ -62,3 +62,121 @@
   }
   window.BatchMathUnit4Answers={check,expression};
 })();
+
+/* Exact symbolic answers for the source-based Newton and FTC engines.
+   Existing approximation/Sigma answer paths remain in unit4-exact-answers.js. */
+(function(){
+ 'use strict';
+ const legacy=window.BatchMathUnit4Answers,parser=window.BatchMathDerivativeExpressions;
+ const gcd=(a,b)=>b?gcd(b,a%b):a<0n?-a:a;
+ const q=(a,b=1n)=>{a=BigInt(a);b=BigInt(b);if(!b)throw Error('zero denominator');if(b<0n){a=-a;b=-b;}const g=gcd(a,b);return[a/g,b/g];};
+ const qa=(a,b)=>q(a[0]*b[1]+b[0]*a[1],a[1]*b[1]),qm=(a,b)=>q(a[0]*b[0],a[1]*b[1]),qn=a=>[-a[0],a[1]],qd=(a,b)=>q(a[0]*b[1],a[1]*b[0]);
+ const literal=n=>{const s=String(n);if(!Number.isFinite(n)||/e/i.test(s))throw Error('ordinary exact number');const [a,b='']=s.split('.');return q(BigInt(a+b),10n**BigInt(b.length));};
+ function poweredFunctions(text){
+  for(let i=0;i<30;i++){
+   const m=text.match(/\b(sin|cos|tan|sec|csc|cot)\^([+-]?\d+)\(/);if(!m)break;
+   const start=m.index,open=start+m[0].length-1;let depth=1,end=open+1;for(;end<text.length&&depth;end++){if(text[end]==='(')depth++;if(text[end]===')')depth--;}
+   if(depth)throw Error('parenthesis');text=text.slice(0,start)+`(${m[1]}(${text.slice(open+1,end-1)}))^(${m[2]})`+text.slice(end);
+  }
+  return text.replace(/\b(sin|cos|tan|sec|csc|cot)\^([+-]?\d+)([xykn])\b/g,'($1($3))^($2)');
+ }
+ function prepare(raw,kind){
+  let s=String(raw||'').trim().replace(/[−–—]/g,'-');
+  if(kind==='newton-expression'){
+   s=s.replace(/^\s*T\s*(?:\(\s*k\s*,\s*n\s*\))?\s*=\s*/i,'');
+   if(/(?<![a-z])[xy](?![a-z])/i.test(s))throw Error('use k and n');
+   s=s.replace(/(?<![a-z])[kn]+(?![a-z])/gi,t=>t.toLowerCase().split('').join('*'));
+   s=s.replace(/(?<![a-z])n(?![a-z])/gi,'x').replace(/(?<![a-z])k(?![a-z])/gi,'y');
+  }else s=s.replace(/^\s*(?:F\s*['′]\s*(?:\(\s*x\s*\))?|y\s*['′]|dy\s*\/\s*dx)\s*=\s*/i,'');
+  return poweredFunctions(s.toLowerCase().replace(/\s+/g,''));
+ }
+ function normalForm(tree,{positiveX=false}={}){
+  const expArgs=new Map(),trigArgs=new Map();let operations=0;
+  const zero=()=>new Map(),constant=c=>c[0]?new Map([['[]',c]]):zero();
+  const monomial=items=>JSON.stringify([...items].filter(([,p])=>p).sort((a,b)=>a[0].localeCompare(b[0])));
+  function bump(){if(++operations>15000)throw Error('expression too large');}
+  function addTerm(poly,key,value){const total=qa(poly.get(key)||q(0),value);if(total[0])poly.set(key,total);else poly.delete(key);if(poly.size>400)throw Error('expression too large');}
+  const pa=(a,b)=>{const out=new Map(a);for(const[k,c]of b)addTerm(out,k,c);return out;};
+  const pn=a=>new Map([...a].map(([k,c])=>[k,qn(c)]));
+  const scalar=(a,c)=>new Map([...a].map(([k,d])=>[k,qm(c,d)]).filter(([,d])=>d[0]));
+  function trigReduce(poly){
+   const out=zero(),queue=[...poly];
+   while(queue.length){bump();const [key,c]=queue.pop(),items=JSON.parse(key),found=items.find(([name,p])=>p>=2&&name.startsWith('cos:'));
+    if(!found){addTerm(out,key,c);continue;}
+    const [name]=found,rest=items.map(([n,p])=>[n,p-(n===name?2:0)]).filter(([,p])=>p),sin='sin:'+name.slice(4),other=new Map(rest);other.set(sin,(other.get(sin)||0)+2);
+    queue.push([monomial(rest),c],[monomial(other),qn(c)]);
+   }
+   return out;
+  }
+  function pm(a,b){
+   const out=zero();for(const[ka,ca]of a)for(const[kb,cb]of b){bump();const items=new Map(JSON.parse(ka));for(const[n,p]of JSON.parse(kb))items.set(n,(items.get(n)||0)+p);
+    let exponential=R(0);for(const[n,p]of [...items])if(expArgs.has(n)){exponential=ra(exponential,rs(expArgs.get(n),q(p)));items.delete(n);}
+    if(exponential.a.size){const name='exp:'+serialize(exponential);expArgs.set(name,exponential);items.set(name,(items.get(name)||0)+1);}
+    addTerm(out,monomial(items),qm(ca,cb));
+   }return trigReduce(out);
+  }
+  function normalize(a,b){
+   a=trigReduce(a);b=trigReduce(b);if(!b.size)throw Error('zero denominator');if(!a.size)return{a:zero(),b:constant(q(1))};
+   const common=new Map();let first=true;
+   for(const poly of [a,b])for(const key of poly.keys()){const items=new Map(JSON.parse(key));if(first){for(const[n,p]of items)common.set(n,p);first=false;}else for(const[n,p]of [...common]){const low=Math.min(p,items.get(n)||0);if(low)common.set(n,low);else common.delete(n);}}
+   if(common.size){const cancel=poly=>{const out=zero();for(const[key,c]of poly){const items=new Map(JSON.parse(key));for(const[n,p]of common)items.set(n,items.get(n)-p);addTerm(out,monomial(items),c);}return out;};a=cancel(a);b=cancel(b);}
+   const lead=[...b].sort((l,r)=>l[0].localeCompare(r[0]))[0][1];return{a:scalar(a,qd(q(1),lead)),b:scalar(b,qd(q(1),lead))};
+  }
+  const R=n=>({a:constant(q(n)),b:constant(q(1))});
+  const ra=(a,b)=>normalize(pa(pm(a.a,b.b),pm(b.a,a.b)),pm(a.b,b.b));
+  const rn=a=>({a:pn(a.a),b:a.b});
+  const rs=(a,c)=>normalize(scalar(a.a,c),a.b);
+  const rm=(a,b)=>normalize(pm(a.a,b.a),pm(a.b,b.b));
+  const rd=(a,b)=>normalize(pm(a.a,b.b),pm(a.b,b.a));
+  const serialize=r=>{const pack=p=>[...p].sort((a,b)=>a[0].localeCompare(b[0])).map(([k,c])=>[k,c.map(String)]);r=normalize(r.a,r.b);return JSON.stringify([pack(r.a),pack(r.b)]);};
+  const atom=name=>({a:new Map([[monomial([[name,1]]),q(1)]]),b:constant(q(1))});
+  const integer=r=>{r=normalize(r.a,r.b);if(r.b.size!==1||!r.b.has('[]')||r.a.size>1||r.a.size&&!r.a.has('[]'))return null;const c=r.a.get('[]')||q(0);return c[1]===1n?Number(c[0]):null;};
+  function exponential(arg){arg=normalize(arg.a,arg.b);if(!arg.a.size)return R(1);const name='exp:'+serialize(arg);expArgs.set(name,arg);return atom(name);}
+  function fun(name,arg){
+   arg=normalize(arg.a,arg.b);if(name==='exp')return exponential(arg);
+   if(!arg.a.size){if(['sin','tan'].includes(name))return R(0);if(['cos','sec'].includes(name))return R(1);}
+   if(['sin','cos','tan','sec','csc','cot'].includes(name)){
+    // Normalize parity before assigning a formal function atom.
+    const first=[...arg.a].sort((a,b)=>a[0].localeCompare(b[0]))[0]?.[1];let sign=1;if(first?.[0]<0n){arg=rn(arg);if(['sin','tan','csc','cot'].includes(name))sign=-1;}
+    const key=serialize(arg),sin=atom('sin:'+key),cos=atom('cos:'+key);trigArgs.set(key,arg);
+    const value=name==='sin'?sin:name==='cos'?cos:name==='tan'?rd(sin,cos):name==='sec'?rd(R(1),cos):name==='csc'?rd(R(1),sin):rd(cos,sin);
+    return sign<0?rn(value):value;
+   }
+   return atom(name+':'+serialize(arg));
+  }
+  function build(t,depth=0){
+   bump();if(depth>70)throw Error('expression too deep');
+   if(t.kind==='number')return{a:constant(literal(t.value)),b:constant(q(1))};
+   if(t.kind==='variable')return atom(t.name);
+   if(t.kind==='constant')return t.name==='e'?exponential(R(1)):atom('pi');
+   if(t.kind==='unary'){const v=build(t.value,depth+1);return t.op==='-'?rn(v):v;}
+   if(t.kind==='function'){
+    if(!['sin','cos','tan','sec','csc','cot','ln','exp','sqrt','abs'].includes(t.name))throw Error('unsupported function');
+    if(t.name==='ln'&&positiveX&&t.argument.kind==='op'&&t.argument.op==='^'&&t.argument.left.kind==='variable'&&t.argument.left.name==='x'){
+     const power=integer(build(t.argument.right,depth+1));if(power!==null)return rs(fun('ln',atom('x')),q(power));
+    }
+    return fun(t.name,build(t.argument,depth+1));
+   }
+   if(t.kind!=='op')throw Error('expression');
+   if(t.op==='^'&&t.left.kind==='constant'&&t.left.name==='e')return exponential(build(t.right,depth+1));
+   const a=build(t.left,depth+1),b=build(t.right,depth+1);
+   if(t.op==='+')return ra(a,b);if(t.op==='-')return ra(a,rn(b));if(t.op==='*')return rm(a,b);if(t.op==='/')return rd(a,b);
+   if(t.op==='^'){const n=integer(b);if(n===null)return atom('pow:'+serialize(a)+':'+serialize(b));if(Math.abs(n)>16)throw Error('power too large');let out=R(1);for(let i=0;i<Math.abs(n);i++)out=rm(out,a);return n<0?rd(R(1),out):out;}
+   throw Error('operator');
+  }
+  const result=build(tree);return{result,serialize,equal:other=>{const b=build(other),difference=trigReduce(pa(pm(result.a,b.b),pn(pm(b.a,result.b))));return difference.size===0;}};
+ }
+ function check(raw,answer){
+  if(!['newton-expression','function-expression'].includes(answer.kind))return legacyCheck(raw,answer);
+  const message=answer.kind==='newton-expression'?'Enter a valid expression using k and n.':'Enter a valid exact expression in x.';
+  if(!String(raw||'').trim())return{valid:false,message:'Enter an answer before checking.'};if(String(raw).length>2500)return{valid:false,message:'Enter a shorter expression.'};
+  try{
+   const text=prepare(raw,answer.kind),want=prepare(answer.expression,answer.kind),tree=parser.parse(text),expected=parser.parse(want);
+   const contexts=answer.kind==='newton-expression'?[{x:2,y:1},{x:3,y:3},{x:7,y:2},{x:11,y:7},{x:23,y:13}]:(answer.probes||[-.83,-.37,0,.19,.61,.94]).map(x=>({x}));
+   for(const context of contexts){const actual=parser.evaluate(tree,context);if(!Number.isFinite(actual))throw Error('undefined answer');}
+   const normal=normalForm(tree,{positiveX:Boolean(answer.positiveX)});return{valid:true,ok:normal.equal(expected)};
+  }catch(_){return{valid:false,message};}
+ }
+ const legacyCheck=legacy.check.bind(legacy);legacy.check=check;
+ window.BatchMathUnit4DefiniteAnswers={check,prepare};
+})();
