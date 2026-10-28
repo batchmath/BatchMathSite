@@ -63,6 +63,39 @@
   window.BatchMathUnit4Answers={check,expression};
 })();
 
+// Riemann notation belongs to the Newton engine. Other answer kinds do not use it.
+(function(){
+ 'use strict';
+ function close(s,open){let d=0;for(let i=open;i<s.length;i++){if(s[i]==='(')d++;else if(s[i]===')'&&!--d)return i;}throw Error('Close the parentheses.');}
+ function args(s){let d=0,start=0,out=[];for(let i=0;i<s.length;i++){if(s[i]==='(')d++;else if(s[i]===')')d--;else if(s[i]===','&&!d){out.push(s.slice(start,i));start=i+1;}}out.push(s.slice(start));return out;}
+ function normalize(raw){
+  let s=String(raw||'').trim().toLowerCase().replace(/[−–—]/g,'-').replace(/→/g,'->').replace(/∞/g,'infinity').replace(/[×·⋅]/g,'*').replace(/π/g,'pi').replace(/∑|Σ|σ/g,'\\sum');
+  s=s.replace(/^\s*(?:T\s*(?:\(\s*k\s*,\s*n\s*\))?|I|L)\s*=\s*/i,'').replace(/^\$+|\$+$/g,'').replace(/\\[()[\]]|\\displaystyle|\\left|\\right|\\[,;!]/g,'');
+  let under=null,tex=s.match(/^(?:\\lim|lim)_\{([^{}]+)\}/);if(tex){under=tex[1];s=s.slice(tex[0].length);}
+  const sum=s.match(/\\sum_\{([^{}]+)\}\^(?:\{([^{}]+)\}|([a-z0-9]+))/);if(sum)s=s.slice(0,sum.index)+`sum(${sum[1]},${sum[2]||sum[3]},`+s.slice(sum.index+sum[0].length)+')';
+  s=s.replace(/\\(?:rightarrow|to)/g,'->').replace(/\\infty/g,'infinity').replace(/\\(?:cdot|times)/g,'*');
+  let before;do{before=s;s=s.replace(/\^\{([^{}]*)\}/g,'^($1)').replace(/\\(?:dfrac|tfrac|frac)\{([^{}]*)\}\{([^{}]*)\}/g,'($1)/($2)').replace(/\\sqrt\{([^{}]*)\}/g,'sqrt($1)');}while(before!==s);
+  s=s.replace(/\\(sin|cos|tan|sec|csc|cot|ln|exp)\b/g,'$1').replace(/\\pi/g,'pi').replace(/[\[{]/g,'(').replace(/[\]}]/g,')').replace(/\s+/g,'').replace(/\^([+-]?\d+)\b/g,'^($1)').replace(/\.$/,'');
+  if(under)s=`lim(${under.replace(/\\(?:rightarrow|to)/g,'->').replace(/\\infty/g,'infinity').replace(/\s+/g,'')},${s})`;
+  return s.replace(/\bsigma\(/gi,'sum(');
+ }
+ function read(raw){
+  let s=normalize(raw);while(s[0]==='('&&close(s,0)===s.length-1)s=s.slice(1,-1);
+  let limit=null;
+  if(s.startsWith('lim(')){
+   const end=close(s,3);if(end!==s.length-1)throw Error('Put the summation inside the limit.');const fields=args(s.slice(4,end));
+   if(fields.length===2)limit=fields[0].split('->');else if(fields.length===3)limit=fields.slice(0,2);else throw Error('Complete the limit.');
+   s=fields.at(-1);
+  }
+  const found=s.match(/\bsum\(/);if(!found){if(limit)throw Error('Include the summation.');return{body:s,complete:false};}
+  const start=found.index,end=close(s,start+3),fields=args(s.slice(start+4,end));if(fields.length!==3||!fields[2])throw Error('Complete the summation.');
+  const index=fields[0].split('='),prefix=s.slice(0,start),suffix=s.slice(end+1);
+  if(/(?<![a-z])[kxy](?![a-z])/i.test(prefix+suffix)||/\b(?:sum|lim)\(/.test(prefix+suffix+fields[2]))throw Error('Use one right-endpoint sum.');
+  return{body:prefix+'('+fields[2]+')'+suffix,complete:true,limit,index,upper:fields[1],outer:prefix+'@'+suffix};
+ }
+ window.BatchMathNewtonNotation={normalize,read};
+})();
+
 /* Exact symbolic answers for the source-based Newton and FTC engines.
    Existing approximation/Sigma answer paths remain in unit4-exact-answers.js. */
 (function(){
@@ -83,14 +116,14 @@
  function prepare(raw,kind){
   let s=String(raw||'').trim().replace(/[−–—]/g,'-');
   if(kind==='newton-expression'){
-   s=s.replace(/^\s*T\s*(?:\(\s*k\s*,\s*n\s*\))?\s*=\s*/i,'');
+   s=window.BatchMathNewtonNotation.read(s).body;
    if(/(?<![a-z])[xy](?![a-z])/i.test(s))throw Error('use k and n');
    s=s.replace(/(?<![a-z])[kn]+(?![a-z])/gi,t=>t.toLowerCase().split('').join('*'));
    s=s.replace(/(?<![a-z])n(?![a-z])/gi,'x').replace(/(?<![a-z])k(?![a-z])/gi,'y');
   }else s=s.replace(/^\s*(?:F\s*['′]\s*(?:\(\s*x\s*\))?|y\s*['′]|dy\s*\/\s*dx)\s*=\s*/i,'');
   return poweredFunctions(s.toLowerCase().replace(/\s+/g,''));
  }
- function normalForm(tree,{positiveX=false}={}){
+ function normalForm(tree,{positiveX=false,newtonRoots=false}={}){
   const expArgs=new Map(),trigArgs=new Map();let operations=0;
   const zero=()=>new Map(),constant=c=>c[0]?new Map([['[]',c]]):zero();
   const monomial=items=>JSON.stringify([...items].filter(([,p])=>p).sort((a,b)=>a[0].localeCompare(b[0])));
@@ -161,7 +194,9 @@
    if(t.op==='^'&&t.left.kind==='constant'&&t.left.name==='e')return exponential(build(t.right,depth+1));
    const a=build(t.left,depth+1),b=build(t.right,depth+1);
    if(t.op==='+')return ra(a,b);if(t.op==='-')return ra(a,rn(b));if(t.op==='*')return rm(a,b);if(t.op==='/')return rd(a,b);
-   if(t.op==='^'){const n=integer(b);if(n===null)return atom('pow:'+serialize(a)+':'+serialize(b));if(Math.abs(n)>16)throw Error('power too large');let out=R(1);for(let i=0;i<Math.abs(n);i++)out=rm(out,a);return n<0?rd(R(1),out):out;}
+   if(t.op==='^'){const n=integer(b);if(n===null){
+    if(newtonRoots&&b.a.size===1&&b.a.has('[]')&&b.b.size===1&&b.b.has('[]')){const r=qd(b.a.get('[]'),b.b.get('[]'));if(r[1]===2n&&[1n,-1n].includes(r[0])){const root=fun('sqrt',a);return r[0]<0n?rd(R(1),root):root;}}
+    return atom('pow:'+serialize(a)+':'+serialize(b));}if(Math.abs(n)>16)throw Error('power too large');let out=R(1);for(let i=0;i<Math.abs(n);i++)out=rm(out,a);return n<0?rd(R(1),out):out;}
    throw Error('operator');
   }
   const result=build(tree);return{result,serialize,equal:other=>{const b=build(other),difference=trigReduce(pa(pm(result.a,b.b),pn(pm(b.a,result.b))));return difference.size===0;}};
@@ -171,10 +206,20 @@
   const message=answer.kind==='newton-expression'?'Enter a valid expression using k and n.':'Enter a valid exact expression in x.';
   if(!String(raw||'').trim())return{valid:false,message:'Enter an answer before checking.'};if(String(raw).length>2500)return{valid:false,message:'Enter a shorter expression.'};
   try{
+   if(answer.kind==='newton-expression'){
+    const form=window.BatchMathNewtonNotation.read(raw);
+    if(form.complete){
+     const mapN=s=>{if(/(?<![a-z])[kxy](?![a-z])/i.test(s))throw Error('bound variable');return s.replace(/(?<![a-z])n(?![a-z])/g,'x');};
+     const same=(a,b)=>normalForm(parser.parse(mapN(a))).equal(parser.parse(b));
+     if(form.limit?.length!==2||form.limit[0]!=='n'||!['infinity','+infinity'].includes(form.limit[1])||form.index.length!==2||form.index[0]!=='k'||!same(form.index[1],'1')||!same(form.upper,'x'))return{valid:true,ok:false};
+     const outside=mapN(form.outer),factor=outside.replace('@','1'),outer=outside.replace('@','y');
+     if(!normalForm(parser.parse(outer)).equal(parser.parse(`(${factor})*y`)))return{valid:true,ok:false};
+    }
+   }
    const text=prepare(raw,answer.kind),want=prepare(answer.expression,answer.kind),tree=parser.parse(text),expected=parser.parse(want);
    const contexts=answer.kind==='newton-expression'?[{x:2,y:1},{x:3,y:3},{x:7,y:2},{x:11,y:7},{x:23,y:13}]:(answer.probes||[-.83,-.37,0,.19,.61,.94]).map(x=>({x}));
    for(const context of contexts){const actual=parser.evaluate(tree,context);if(!Number.isFinite(actual))throw Error('undefined answer');}
-   const normal=normalForm(tree,{positiveX:Boolean(answer.positiveX)});return{valid:true,ok:normal.equal(expected)};
+   const normal=normalForm(tree,{positiveX:Boolean(answer.positiveX),newtonRoots:answer.kind==='newton-expression'});return{valid:true,ok:normal.equal(expected)};
   }catch(_){return{valid:false,message};}
  }
  const legacyCheck=legacy.check.bind(legacy);legacy.check=check;

@@ -10,8 +10,22 @@ const close=(a,b,label,tol=2e-9)=>assert.ok(Number.isFinite(a)&&Math.abs(a-b)<=t
 const evalExpr=(s,vars={})=>parser.evaluate(parser.parse(s),vars),qval=r=>r[0]/r[1];
 const expr=a=>a.expression||w.BatchMathUnit4Answers.expression(a.value),scalar=s=>evalExpr(expr(s.unit4Answer));
 const fn=(c,x)=>c.reduce((sum,n,i)=>sum+n*x**i,0);
+function independentNewtonFunction(d,x){
+ const {u,v,power,rate,shiftBy,denominator}=d;
+ switch(d.subtype){
+  case 'polynomial_sine':return u*x*x+v*Math.sin(x);
+  case 'exponential_tangent':return u*Math.exp(x)+v*Math.tan(x);
+  case 'polynomial_exponential':return u*x**power+v*Math.exp(rate*x);
+  case 'radical_linear':return u*Math.sqrt(x+shiftBy)+v*x;
+  case 'exponential_cosine':return u*Math.exp(rate*x)+v*Math.cos(rate*x);
+  case 'rational_polynomial':return u/(x*x+denominator)+v*x**power;
+  case 'logarithm_polynomial':return u*Math.log(x+shiftBy)+v*x**power;
+  case 'logarithm_radical':return u*Math.log(x+shiftBy)+v*Math.sqrt(x+shiftBy);
+  default:throw Error('Unrecognized Newton construction-only function');
+ }
+}
 function newtonOracle(p){const d=p.unit4Meta,{a,b,width,coefficients:c}=d;assert.equal(b-a,width);const prepared=parser.parse(w.BatchMathUnit4DefiniteAnswers.prepare(p.stage1.unit4Answer.expression,'newton-expression'));
- for(const n of [7,13,31]){let sum=0;for(let k=1;k<=n;k++){const x=a+(b-a)*k/n,f=c?fn(c,x):d.subtype==='polynomial_sine'?d.u*x*x+d.v*Math.sin(x):d.u*Math.exp(x)+d.v*Math.tan(x),term=f*(b-a)/n;close(parser.evaluate(prepared,{x:n,y:k}),term,'Newton substitution and delta x');sum+=term;}
+ for(const n of [7,13,31]){let sum=0;for(let k=1;k<=n;k++){const x=a+(b-a)*k/n,f=c?fn(c,x):independentNewtonFunction(d,x),term=f*(b-a)/n;close(parser.evaluate(prepared,{x:n,y:k}),term,'Newton substitution and delta x');sum+=term;}
   if(c){const [C,B=0,A=0]=c,dx=(b-a)/n;const finite=dx*(n*(A*a*a+B*a+C)+(2*A*a+B)*dx*n*(n+1)/2+A*dx*dx*n*(n+1)*(2*n+1)/6);close(sum,finite,'Independent finite sum');const e=d.expanded;close(sum,e[0]+e[1]*(n+1)/(2*n)+e[2]*(n+1)*(2*n+1)/(6*n*n),'Worked finite-sum coefficients');}
  }
  if(c){const value=c.reduce((s,n,i)=>s+n*(b**(i+1)-a**(i+1))/(i+1),0);close(scalar(p.stage2),value,'Independent polynomial integral');assert.match(p.stage2.explanation,/take the limit/);assert.doesNotMatch(p.stage2.explanation,/antiderivative/);}

@@ -25,6 +25,10 @@ jobs:
           npm run qa:topics
           npm run qa:unit4
           npm run qa:fidelity
+      - name: Newton-only notation, worked limits, domains and unchanged-generator regression
+        run: |
+          git fetch --no-tags --depth=1 origin 561ca3e1a20ded8a0443bed73d07b3a00d1ccf70
+          node tools/newton-sums-revision-qa.mjs
       - name: Independent N mathematics, symbolic equivalence, source fidelity and 48000-sample distributions
         run: node tools/unit4-v128n-qa.mjs
       - name: Preserve approved M approximation and Sigma mathematics
@@ -47,6 +51,10 @@ jobs:
       - run: npm install --ignore-scripts --no-audit --no-fund
       - run: npx playwright install --with-deps chromium
       - run: sudo apt-get install -y --no-install-recommends poppler-utils
+      - name: Newton-only desktop, Chromebook, keypad, scrolling and unchanged-appearance regression
+        run: |
+          git fetch --no-tags --depth=1 origin 561ca3e1a20ded8a0443bed73d07b3a00d1ccf70
+          node tools/newton-sums-browser-qa.mjs
       - name: N actual editors, constructed answers, stages, feedback, review, MathJax, mobile and held Enter
         run: node tools/unit4-v128n-browser-qa.mjs
       - name: Preserve both live documents and both actual PDF print modes

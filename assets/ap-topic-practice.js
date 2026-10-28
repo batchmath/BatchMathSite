@@ -169,12 +169,13 @@ function renderStagedCalculus(box){
  const stage1=current.stage1||{},stage2=current.stage2||null;
  box.classList.add('composite-answer','staged-calculus-answer');
  if(current.unit4Meta)box.classList.add('unit4-typed-answer');
+ if(current.unit4Meta?.kind==='newton')box.classList.add('unit4-newton-answer');
  current.blockEnterAdvance=true;current.enterAdvanceAllowed=false;current.pendingStageAdvance=null;
  current.requirePhysicalNextClick=false;current.nextPointerArmed=false;
  current.stage1Answered=false;current.stage1Correct=false;current.stage2Answered=false;current.stage2Visible=false;
 
  const panel=document.createElement('section');panel.className='staged-part staged-part-one';panel.setAttribute('aria-label',stage2?'Part 1':'Answer');box.appendChild(panel);
- renderPrompt(panel,stage1.prompt||(stage2?'Part 1':'Enter your answer.'));
+ if(!(current.unit4Meta?.kind==='newton'&&stage1.hidePrompt))renderPrompt(panel,stage1.prompt||(stage2?'Part 1':'Enter your answer.'));
  renderStageControl(stage1,panel,(ok)=>finishStage1(ok));
 
  function renderPrompt(host,text){const prompt=document.createElement('div');prompt.className='question-prompt staged-part-prompt';prompt.innerHTML=text;host.appendChild(prompt);}

@@ -109,3 +109,12 @@ sup .bm-calc-caret{height:.9em;vertical-align:-.12em}
 
 /* v10.3.3 semantic-token display */
 .bm-calc-token.infinity{font-family:"Cambria Math","STIX Two Math","DejaVu Math TeX Gyre","Times New Roman",serif;font-weight:400}
+
+/* Structured Newton notation, enabled only by this engine's opt-in editor mode. */
+.bm-calc-editor:has(.bm-calc-newton-structure){min-height:90px;padding-top:14px;padding-bottom:14px}
+.bm-calc-newton-structure{display:inline-flex;align-items:center;gap:.22em;vertical-align:middle;margin:0 .12em;line-height:1.15}
+.bm-calc-newton-op{display:inline-grid;grid-template-columns:max-content;text-align:center;align-items:center;font-style:normal;line-height:1.1}
+.bm-calc-newton-upper,.bm-calc-newton-under{display:block;font-size:.6em;line-height:1.2;min-height:1.2em}
+.bm-calc-newton-sign{font-size:1.8em;line-height:1.05}
+.bm-calc-newton-body,.bm-calc-newton-zone{display:inline-block;min-width:.6em;vertical-align:middle}
+.bm-calc-newton-body>.bm-calc-newton-zone{display:inline-flex;align-items:center}

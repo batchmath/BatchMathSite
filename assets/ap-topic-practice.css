@@ -48,3 +48,11 @@
 .u4-geometry-figure{width:min(100%,560px);margin:12px auto 0}
 .u4-geometry-figure svg{display:block;width:100%;height:auto;max-height:360px}
 .u4-definite-question .u4-formula,.u4-definite-equation{max-width:100%;overflow-x:auto;padding:6px 0}
+
+/* Newton sums only: natural-height mathematics with horizontal overflow reserved for long equations. */
+.question-box:has(>.u4-newton-question){min-height:170px;overflow:visible}
+.u4-newton-question .u4-formula,.u4-newton-equation{display:block;min-height:3.5em;height:auto;max-height:none;max-width:100%;overflow-x:auto;overflow-y:hidden;padding:.6em .15em;margin:.35em 0}
+.u4-newton-question .u4-formula mjx-container,.u4-newton-equation mjx-container{margin:.2em 0!important}
+.unit4-newton-answer .staged-feedback{height:auto;max-height:none;overflow:visible}
+.unit4-newton-answer .correct-answer{max-width:100%;overflow-x:auto;overflow-y:hidden;padding:.5em .1em}
+@media(max-width:600px){.question-box:has(>.u4-newton-question){min-height:175px}}

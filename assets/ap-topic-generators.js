@@ -3194,26 +3194,54 @@ G['difference-quotient']=()=>{
   if(stage2)p.stage2=stage2;return p;
  }
  function newton(){
+  // Only this engine's construction and feedback change; all other factories stay intact.
   const family=weighted('newton');let a=ri(-5,4),width=ri(1,7),b=a+width,c,subtype;
   if(family==='linear_construction')c=[ri(-8,8),nz(-6,6)];
   else if(family==='quadratic_monomial')c=[0,0,nz(-4,4)];
   else if(family==='quadratic_combination')c=[ri(-7,7),nz(-5,5),nz(-4,4)];
-  else{subtype=pick(['polynomial_sine','exponential_tangent']);if(subtype==='exponential_tangent'){a=pick([-1,0]);b=1;width=b-a;}}
+  else subtype=pick(['polynomial_sine','exponential_tangent','polynomial_exponential','radical_linear','exponential_cosine','rational_polynomial','logarithm_polynomial','logarithm_radical']);
+  const u=nz(-4,4),v=nz(-4,4),power=c?1:ri(1,4),rate=c?1:ri(1,3),shiftBy=c?0:ri(0,7),denominator=c?1:ri(1,6);
+  if(subtype==='exponential_tangent'){a=pick([-1,0]);b=1;width=b-a;}
+  if(['radical_linear','logarithm_polynomial','logarithm_radical'].includes(subtype)){a=ri(1-shiftBy,4);b=a+width;}
   const sample=`${a?a+'+':''}\\frac{${width===1?'':width}k}{n}`,sampleE=`(${a}+${width}*k/n)`,dx=`\\frac{${width}}{n}`;
-  const u=nz(-4,4),v=nz(-4,4),f=c?poly(c):subtype==='polynomial_sine'?`${coeff(u,'x^2')}${v<0?'-':'+'}${coeff(Math.abs(v),'\\sin x')}`:`${coeff(u,'e^x')}${v<0?'-':'+'}${coeff(Math.abs(v),'\\tan x')}`;
-  const of=(t,expr=false)=>c?(expr?pe(c,t):poly(c,t)):subtype==='polynomial_sine'?(expr?`(${u})*(${t})^2+(${v})*sin(${t})`:`${coeff(u,`\\left(${t}\\right)^2`)}${v<0?'-':'+'}${coeff(Math.abs(v),`\\sin\\!\\left(${t}\\right)`)}`):(expr?`(${u})*exp(${t})+(${v})*tan(${t})`:`${coeff(u,`e^{${t}}`)}${v<0?'-':'+'}${coeff(Math.abs(v),`\\tan\\!\\left(${t}\\right)`)}`);
-  const expression=`(${of(sampleE,true)})*${width}/n`,summand=`\\left[${of(sample)}\\right]${dx}`,sigma=`\\sum_{k=1}^{n}`;
-  const steps=[`Divide ${im(`[${a},${b}]`)} into ${im('n')} equal subintervals: ${im(`\\Delta x=(${b}-(${a}))/n=${dx}`)}. The right endpoints are ${im(`x_k=${sample}`)}.`, `Substitute the right endpoint in the integrand and multiply by the width.${eq(`T(k,n)=${summand}`)}`,eq(`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx=\\lim_{n\\to\\infty}${sigma}${summand}`)];
-  const s1=exactStage(`Construct the right-endpoint summand ${im('T(k,n)')} in ${im(`\\displaystyle\\lim_{n\\to\\infty}${sigma}T(k,n)`)}. Include the subinterval width.`,{kind:'newton-expression',expression},summand,work(steps),'unit4-newton');
-  const data={a,b,width,coefficients:c||null,subtype:subtype||'polynomial',...(c?{}:{u,v})};
-  if(!c)return problem('newton',family,'Write the definite integral as a limit of a right-endpoint sum. Evaluation is not required.',`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx`,data,s1);
+  const pair=(e,t)=>({e,t}),P=(t,p)=>p===1?(t==='x'?t:`\\left(${t}\\right)`):`\\left(${t}\\right)^{${p}}`;
+  function nonpoly(t,tex){
+   const arg=`(${t})`,x=tex,px=P(x,power),shifted=shiftBy?`${x}+${shiftBy}`:x,shiftE=`${arg}+${shiftBy}`;
+   let left,right;
+   if(subtype==='polynomial_sine'){left=pair(`${arg}^2`,P(x,2));right=pair(`sin(${arg})`,`\\sin\\!\\left(${x}\\right)`);}
+   else if(subtype==='exponential_tangent'){left=pair(`exp(${arg})`,`e^{${x}}`);right=pair(`tan(${arg})`,`\\tan\\!\\left(${x}\\right)`);}
+   else if(subtype==='polynomial_exponential'){left=pair(`${arg}^${power}`,px);right=pair(`exp(${rate}*${arg})`,`e^{${coeff(rate,`\\left(${x}\\right)`)}}`);}
+   else if(subtype==='radical_linear'){left=pair(`sqrt(${shiftE})`,`\\sqrt{${shifted}}`);right=pair(arg,x==='x'?x:`\\left(${x}\\right)`);}
+   else if(subtype==='exponential_cosine'){left=pair(`exp(${rate}*${arg})`,`e^{${coeff(rate,`\\left(${x}\\right)`)}}`);right=pair(`cos(${rate}*${arg})`,`\\cos\\!\\left(${coeff(rate,`\\left(${x}\\right)`)}\\right)`);}
+   else if(subtype==='rational_polynomial'){left=pair(`1/(${arg}^2+${denominator})`,`\\frac{1}{${P(x,2)}+${denominator}}`);right=pair(`${arg}^${power}`,px);}
+   else if(subtype==='logarithm_polynomial'){left=pair(`ln(${shiftE})`,`\\ln\\!\\left(${shifted}\\right)`);right=pair(`${arg}^${power}`,px);}
+   else{left=pair(`ln(${shiftE})`,`\\ln\\!\\left(${shifted}\\right)`);right=pair(`sqrt(${shiftE})`,`\\sqrt{${shifted}}`);}
+   return pair(`(${u})*(${left.e})+(${v})*(${right.e})`,`${coeff(u,left.t)}${v<0?'-':'+'}${coeff(Math.abs(v),right.t)}`);
+  }
+  const f=c?poly(c):nonpoly('x','x').t,of=(t,tex)=>c?pair(pe(c,t),poly(c,tex)):nonpoly(t,tex),value=of(sampleE,sample),expression=`(${value.e})*${width}/n`,summand=`\\left[${value.t}\\right]${dx}`,sigma='\\sum_{k=1}^{n}',limitTex=`\\lim_{n\\to\\infty}${sigma}${summand}`;
+  const nEq=(s,step)=>`<div class="u4-newton-equation"${step?` data-newton-step="${step}"`:''}>${im(`\\displaystyle ${s}`)}</div>`;
+  const setup=[
+   `Divide ${im(`[${a},${b}]`)} into ${im('n')} equal subintervals.${nEq(`\\Delta x=\\frac{b-a}{n}=\\frac{${b}${a?`-(${a})`:''}}{n}=${dx}`,'width')}`,
+   `Use the right endpoint of each subinterval.${nEq(`x_k=a+k\\Delta x=${sample}`,'endpoint')}`,
+   `Evaluate the function at that endpoint and include the width.${nEq(`T(k,n)=f(x_k)\\Delta x=${summand}`,'summand')}`,
+   nEq(`S_n=${sigma}T(k,n)=${sigma}${summand}`,'sum'),
+   nEq(`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx=${limitTex}`,'representation')
+  ];
+  const s1=exactStage('',{kind:'newton-expression',expression},limitTex,work(setup),'unit4-newton');
+  Object.assign(s1,{hidePrompt:true,ariaLabel:'Right-endpoint limit and summation',placeholder:'Enter a limit and summation',fullExpression:`lim(n->infinity,sum(k=1,n,${expression}))`});
+  const data={a,b,width,coefficients:c||null,subtype:subtype||'polynomial',summandTex:summand,...(c?{}:{u,v,power,rate,shiftBy,denominator})};
+  const finish=p=>{p.questionHtml=p.questionHtml.replace('u4-definite-question','u4-definite-question u4-newton-question');return p;};
+  if(!c)return finish(problem('newton',family,'Write the definite integral as a right-endpoint limit and summation. Do not evaluate it.',`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx`,data,s1));
   const A=c[2]||0,B=c[1]||0,C=c[0]||0,expanded=[width*(A*a*a+B*a+C),width*width*(2*A*a+B),A*width**3];
   let result=[0,1];expanded.forEach((n,i)=>result=qa(result,q(n,i+1)));
-  const terms=expanded.map((n,i)=>({n,i})).filter(t=>t.n).map(({n,i},j)=>`${signed(n,j===0)}\\frac{${Math.abs(n)}${i?i===1?'k':'k^2':''}}{${i===0?'n':`n^{${i+1}}`}}`).join('')||'0';
-  const summed=expanded.map((n,i)=>({n,i})).filter(t=>t.n).map(({n,i},j)=>`${signed(n,j===0)}\\frac{${Math.abs(n)}}{${i===0?'n':`n^{${i+1}}`}}${i===0?'n':i===1?'\\frac{n(n+1)}{2}':'\\frac{n(n+1)(2n+1)}{6}'}`).join('')||'0';
-  const finite=expanded.map((v,i)=>({r:q(v,i===0?1:i===1?2:6),body:i===0?'':i===1?'\\frac{n+1}{n}':'\\frac{(n+1)(2n+1)}{n^2}'})).filter(t=>t.r[0]).map(({r,body},i)=>`${signed(r[0],i===0)}${body&&Math.abs(r[0])===r[1]?'':qt(q(Math.abs(r[0]),r[1]))}${body}`).join('')||'0';
-  const evaluation=work([`Expand the actual summand.${eq(`T(k,n)=${terms}`)}`,`Use ${im('\\sum_{k=1}^n1=n')}, ${im('\\sum_{k=1}^nk=n(n+1)/2')}, and ${im('\\sum_{k=1}^nk^2=n(n+1)(2n+1)/6')}.${eq(`${sigma}T(k,n)=${summed}`)}`,eq(`=${finite}`),`Now take the limit: ${im('(n+1)/n\\to1')} and ${im('(n+1)(2n+1)/n^2\\to2')}.${eq(`\\lim_{n\\to\\infty}${sigma}T(k,n)=${qt(result)}`)}`]);
-  return problem('newton',family,'Write the definite integral as a limit of a right-endpoint sum, then evaluate it using finite-sum identities.',`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx`,{...data,expanded,result},s1,exactStage('Use finite-sum identities and a limit to find the exact value.',scalar(result),qt(result),evaluation));
+  const active=expanded.map((n,i)=>({n,i})).filter(t=>t.n),powers=active.map(t=>t.i),identities=['\\sum_{k=1}^n1=n','\\sum_{k=1}^nk=\\frac{n(n+1)}{2}','\\sum_{k=1}^nk^2=\\frac{n(n+1)(2n+1)}{6}'];
+  const terms=active.map(({n,i},j)=>`${signed(n,j===0)}\\frac{${Math.abs(n)}${i?i===1?'k':'k^2':''}}{${i===0?'n':`n^{${i+1}}`}}`).join('')||'0';
+  const summed=active.map(({n,i},j)=>`${signed(n,j===0)}\\frac{${Math.abs(n)}}{${i===0?'n':`n^{${i+1}}`}}${i===0?'n':i===1?'\\frac{n(n+1)}{2}':'\\frac{n(n+1)(2n+1)}{6}'}`).join('')||'0';
+  const finite=active.map(({n,i},j)=>{const r=q(n,i===0?1:i===1?2:6),body=i===0?'':i===1?'\\frac{n+1}{n}':'\\frac{(n+1)(2n+1)}{n^2}';return `${signed(r[0],j===0)}${body&&Math.abs(r[0])===r[1]?'':qt(q(Math.abs(r[0]),r[1]))}${body}`;}).join('')||'0';
+  const substituted=active.map(({n,i},j)=>{const r=q(n,i===0?1:i===1?2:6),factor=i===0?'':`(${i===1?1:2})`;return `${signed(r[0],j===0)}${factor&&Math.abs(r[0])===r[1]?'':qt(q(Math.abs(r[0]),r[1]))}${factor}`;}).join('')||'0';
+  const explicitLimit=`\\lim_{n\\to\\infty}\\left[${finite}\\right]`,ratios=powers.filter(i=>i>0).map(i=>i===1?'\\frac{n+1}{n}\\to1':'\\frac{(n+1)(2n+1)}{n^2}\\to2');
+  const evaluation=work([...setup.slice(0,4),`Expand the actual summand.${nEq(`T(k,n)=${terms}`,'expanded')}`,`Use only the identities needed here.${powers.map(i=>nEq(identities[i],`identity-${i}`)).join('')}`,nEq(`S_n=${summed}`,'identities'),`Simplify the finite sum as an expression in ${im('n')}.${nEq(`S_n=${finite}`,'finite')}`,`Now take the limit of that expression.${nEq(`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx=${explicitLimit}`,'limit')}`,`Here ${ratios.map(im).join(' and ')}.${nEq(`=${substituted}`,'substitution')}`,nEq(`=${qt(result)}`,'result')]);
+  return finish(problem('newton',family,'Write the definite integral as a right-endpoint limit and summation, then evaluate it using finite-sum identities.',`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx`,{...data,expanded,result,neededPowers:powers,finiteTex:finite,explicitLimitTex:explicitLimit,substitutionTex:substituted},s1,exactStage('Use finite-sum identities and a limit to find the exact value.',scalar(result),qt(result),evaluation,'unit4-newton-value')));
  }
  function geometryGraph(d){
   const {a,b}=d,fn=x=>d.shape==='circle'?d.offset+d.sign*Math.sqrt(Math.max(0,d.r*d.r-(x-d.h)**2)):d.shape==='absolute'?d.m*Math.abs(x-d.h)+d.offset:d.m*(x-d.h)+d.offset;
