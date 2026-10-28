@@ -24,6 +24,7 @@ jobs:
           npm run qa:pwa
           npm run qa:topics
           npm run qa:unit4
+          npm run qa:fidelity
       - name: Independent N mathematics, symbolic equivalence, source fidelity and 48000-sample distributions
         run: node tools/unit4-v128n-qa.mjs
       - name: Preserve approved M approximation and Sigma mathematics

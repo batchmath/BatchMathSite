@@ -27,13 +27,13 @@ const cases=[
  ['rolle-s-theorem-and-the-mean-value-theorem',{mvtMode:'theorem'},['rolle_quadratic','rolle_sine','rolle_cosine','mvt_hypothesis_rational','mvt_hypothesis_corner']],
  ['rolle-s-theorem-and-the-mean-value-theorem',{mvtMode:'find-c'},['mvt_quadratic','mvt_cubic_symmetric','mvt_reciprocal','mvt_square_root','mvt_logarithm','mvt_exponential']],
  ['l-hopital-s-rule',{},['simple_exponential','simple_radical','two_application_exponential','three_application_trig','cosine_ratio','nested_log_trig','logarithm_over_power','power_over_exponential','exponential_cosine_remainders','cosine_exponential_remainders','radical_difference_quotient','inverse_trig_limit','shifted_exponential_trig']],
- ['rectangular-approximations',{},['left_function','right_function','midpoint_function','left_quadratic','right_table','left_table','midpoint_table']],
- ['trapezoidal-approximations',{},['equal_table','unequal_table','function_evaluation']],
- ['introduction-to-sigma-notation',{},['sigma_polynomial']],
- ['evaluating-definite-integrals-with-a-limit-and-summation',{},['integral_to_sum']],
- ['integrals-using-geometry',{},['triangle_area','signed_triangle','upper_semicircle','lower_semicircle_signed_area','quarter_circle_area','shifted_semicircle','complementary_semicircle','absolute_value_geometry','rectangle_plus_semicircle','cross_axis_linear']],
- ['fundamental-theorem-of-calculus-and-integral-rules',{ftcMode:'ftc'},['ftc_linear_upper','ftc_quadratic_upper','ftc_variable_lower','ftc_two_variable_bounds','ftc_trig_upper','ftc_exponential_upper','ftc_trig_lower','ftc_two_nonlinear_bounds']],
- ['fundamental-theorem-of-calculus-and-integral-rules',{ftcMode:'rules'},['reverse_bounds','split_interval','combine_functions','constant_multiple','solve_missing_interval','sum_difference']],
+ ['rectangular-approximations',{},["function_left", "function_right", "function_midpoint", "table_left", "table_right", "table_midpoint"]],
+ ['trapezoidal-approximations',{},["table_equal", "table_unequal", "function_equal", "table_relationship", "function_relationship"]],
+ ['introduction-to-sigma-notation',{},["sigma_numerical", "sigma_identities", "sigma_riemann"]],
+ ['evaluating-definite-integrals-with-a-limit-and-summation',{},["linear_construction", "quadratic_monomial", "quadratic_combination", "nonpolynomial_representation"]],
+ ['integrals-using-geometry',{},["linear_triangle", "linear_trapezoid", "cross_axis_line", "absolute_value", "semicircle", "quarter_circle", "rectangle_circle"]],
+ ['fundamental-theorem-of-calculus-and-integral-rules',{ftcMode:'ftc'},["upper_identity", "lower_identity", "upper_linear", "upper_power", "lower_power", "upper_trig", "both_algebraic", "both_transcendental"]],
+ ['fundamental-theorem-of-calculus-and-integral-rules',{ftcMode:'rules'},["reverse_limits", "zero_width", "linearity", "interval_decomposition", "combined_rules", "reversed_combination"]],
  ['basic-integrals',{},['polynomial','negative_power','fractional_power','divide_each_term','trig_identity','basic_trig','definite_polynomial']],
  ['u-substitution-integrals',{},['linear_inner_power','trig_linear','secant_tangent','cosecant_cotangent','exponential_of_trig','linear_denominator','radical_linear','power_composition','power_times_root','fourth_root']],
  ['mean-value-theorem-for-integrals',{},['average_polynomial','average_trig','average_radical','average_exponential','find_c']],
@@ -136,8 +136,14 @@ for(const [slug,opts,variant] of calcVariants){
  need(Number(found.numericTolerance)>0,`${found.id}: calculator answer tolerance missing`);
 }
 
-// Riemann Part 1/Part 2 structural + independent evaluation.
-for(let i=1;i<=12000;i++){const p=gen('evaluating-definite-integrals-with-a-limit-and-summation',(1234567+i*8191)>>>0);need(p.answerType==='two-stage',`${p.id}: not two-stage`);need(p.stage1CorrectIndex>=0&&p.stage1CorrectIndex<p.stage1Choices.length,`${p.id}: invalid Part 1 correct index`);need(p.stage1Choices[p.stage1CorrectIndex]===p._correctRep||!p._correctRep,`${p.id}: Part 1 correct representation mismatch`);need(!p.stage1Choices.some(x=>/\\sum_\{i\b/.test(x)),`${p.id}: uses i instead of k`);let m;if((m=p.id.match(/^riemV-mono-(\d+)-(\d+)-(\d+)$/))){const [b,pow,c]=m.slice(1).map(Number),e=c*Math.pow(b,pow+1)/(pow+1);checks.numeric++;need(near(p.numericAnswer,e),`${p.id}: Part 2 ${p.numericAnswer} != ${e}`)}else if((m=p.id.match(/^riemV-lin-(-?\d+)-(\d+)-(\d+)-(-?\d+)$/))){const [a,w,A,C]=m.slice(1).map(Number),b=a+w,e=A*(b*b-a*a)/2+C*(b-a);checks.numeric++;need(near(p.numericAnswer,e),`${p.id}: Part 2 ${p.numericAnswer} != ${e}`)}else if((m=p.id.match(/^riemV-shift-(-?\d+)-(\d+)$/))){const w=+m[2],e=w**3/3;checks.numeric++;need(near(p.numericAnswer,e),`${p.id}: Part 2 ${p.numericAnswer} != ${e}`)}else if((m=p.id.match(/^riem2-l-(-?\d+)-(-?\d+)-(-?\d+)-(-?\d+)$/))){const [A,C,a,b]=m.slice(1).map(Number),e=A*(b*b-a*a)/2+C*(b-a);checks.numeric++;need(near(p.numericAnswer,e),`${p.id}: Part 2 ${p.numericAnswer} != ${e}`)}else if((m=p.id.match(/^riem2-q-(-?\d+)-(-?\d+)-(-?\d+)$/))){const [C,a,b]=m.slice(1).map(Number),e=(b**3-a**3)/3+C*(b-a);checks.numeric++;need(near(p.numericAnswer,e),`${p.id}: Part 2 ${p.numericAnswer} != ${e}`)}}
+// Constructed Newton answers replace the former MC representation contract.
+for(let i=1;i<=12000;i++){
+ const p=gen('evaluating-definite-integrals-with-a-limit-and-summation',(1234567+i*8191)>>>0),d=p.unit4Meta;
+ need(p.answerType==='staged-calculus'&&p.stage1.unit4Answer.kind==='newton-expression',`${p.id}: missing constructed Newton summand`);
+ need(!p.stage1Choices,`${p.id}: construction replaced by recognition`);
+ need(Boolean(p.stage2)===(d.coefficients!==null),`${p.id}: incorrect source-supported evaluation stage`);
+ if(d.coefficients){const expected=d.coefficients.reduce((sum,c,power)=>sum+c*(d.b**(power+1)-d.a**(power+1))/(power+1),0),r=p.stage2.unit4Answer.value[''];checks.numeric++;need(near(r[0]/r[1],expected),`${p.id}: independent Newton evaluation differs`);}
+}
 
 // Instructional behavior checks from the manual review.
 for(let i=1;i<=5000;i++){
