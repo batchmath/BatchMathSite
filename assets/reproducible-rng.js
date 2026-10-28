@@ -1,4 +1,4 @@
-/* BatchMath reproducible generator sessions — v12.8.L
+/* BatchMath reproducible generator sessions — v12.8.M
    Gives every practice-engine session a deterministic random seed so generated
    problems can be reproduced for QA and bug reports. Problem reports contain
    the entered answer, but no student identity or contact information. */
@@ -165,7 +165,7 @@
     const config = configSnapshot();
     return {
       schema: 2,
-      appVersion: clean(window.BatchMathPWA?.version || '12.8.L'),
+      appVersion: clean(window.BatchMathPWA?.version || '12.8.M'),
       course: config.course,
       engineId: config.engineId,
       generatorVersion: config.generatorVersion,
