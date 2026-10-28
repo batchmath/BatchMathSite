@@ -2,7 +2,7 @@ name: Unit 4 definite-integral engines v12.8.N targeted QA
 on:
   push:
     branches: [work/v12.8n-unit4-definite-integrals-ftc-rules]
-    paths-ignore: [.github/workflows/package-v12-8-n.yml]
+    paths-ignore: [.github/workflows/package-v12-8-n.yml, .github/workflows/package-v12-8-p.yml]
   workflow_dispatch:
 permissions:
   contents: read
@@ -29,6 +29,10 @@ jobs:
         run: |
           git fetch --no-tags --depth=1 origin 561ca3e1a20ded8a0443bed73d07b3a00d1ccf70
           node tools/newton-sums-revision-qa.mjs
+      - name: P geometry regions, semicircle distribution, single-answer rules and unchanged Newton scope
+        run: |
+          git fetch --no-tags --depth=1 origin dfe1f8a2ea8eff1e9cdc7cf2abe6c550aa59928f
+          node tools/unit4-v128p-qa.mjs
       - name: Independent N mathematics, symbolic equivalence, source fidelity and 48000-sample distributions
         run: node tools/unit4-v128n-qa.mjs
       - name: Preserve approved M approximation and Sigma mathematics
@@ -55,6 +59,10 @@ jobs:
         run: |
           git fetch --no-tags --depth=1 origin 561ca3e1a20ded8a0443bed73d07b3a00d1ccf70
           node tools/newton-sums-browser-qa.mjs
+      - name: P desktop, Chromebook and mobile layouts, three revised engines and frozen Newton appearance
+        run: |
+          git fetch --no-tags --depth=1 origin dfe1f8a2ea8eff1e9cdc7cf2abe6c550aa59928f
+          node tools/unit4-v128p-browser-qa.mjs
       - name: N actual editors, constructed answers, stages, feedback, review, MathJax, mobile and held Enter
         run: node tools/unit4-v128n-browser-qa.mjs
       - name: Preserve both live documents and both actual PDF print modes

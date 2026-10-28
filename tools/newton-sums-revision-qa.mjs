@@ -8,11 +8,12 @@ for(const f of ['derivative-expression-checker','unit4-exact-answers'])vm.runInC
 const w=current.window,check=w.BatchMathUnit4Answers.check,parser=w.BatchMathDerivativeExpressions,report={ok:false,samples:10000,constructionSubtypes:{},intervals:{positive:0,negative:0,mixed:0},unchangedFactories:[],errors:[]};
 try{
  for(const s of old.window.BatchMathAPTopicGenerators.slugs()){
-  if(s===slug||s==='unit-4-comprehensive')continue;
+  // P explicitly revises these three engines; the P gate freezes Newton at dfe1f8a.
+  if([slug,'unit-4-comprehensive','integrals-using-geometry','fundamental-theorem-of-calculus','combining-integral-rules','fundamental-theorem-of-calculus-and-integral-rules'].includes(s))continue;
   for(let i=0;i<40;i++){old.window.BatchMathRNG={random:rng(1040000+i)};w.BatchMathRNG={random:rng(1040000+i)};let a,b;try{a=JSON.stringify(old.window.BatchMathAPTopicGenerators.get(s)());}catch(e){a='error:'+e.message;}try{b=JSON.stringify(w.BatchMathAPTopicGenerators.get(s)());}catch(e){b='error:'+e.message;}assert.equal(b,a,'Other factory changed: '+s);}
   report.unchangedFactories.push(s);
  }
- for(const mode of ['rect','trap','sigma','geometry','ftc','rules','basic','usub','log','mvt'])for(let i=0;i<40;i++){old.window.BatchMathRNG={random:rng(i+372)};w.BatchMathRNG={random:rng(i+372)};assert.equal(JSON.stringify(w.BatchMathAPTopicGenerators.get('unit-4-comprehensive')({unit4Mode:mode})),JSON.stringify(old.window.BatchMathAPTopicGenerators.get('unit-4-comprehensive')({unit4Mode:mode})),'Other review mode changed');}
+ for(const mode of ['rect','trap','sigma','basic','usub','log','mvt'])for(let i=0;i<40;i++){old.window.BatchMathRNG={random:rng(i+372)};w.BatchMathRNG={random:rng(i+372)};assert.equal(JSON.stringify(w.BatchMathAPTopicGenerators.get('unit-4-comprehensive')({unit4Mode:mode})),JSON.stringify(old.window.BatchMathAPTopicGenerators.get('unit-4-comprehensive')({unit4Mode:mode})),'Other review mode changed');}
  w.BatchMathRNG={random:rng(19847)};
  for(let i=0;i<10000;i++){
   const p=w.BatchMathAPTopicGenerators.get(slug)(),d=p.unit4Meta,a=p.stage1.unit4Answer,body=a.expression;report.intervals[d.a>=0?'positive':d.b<=0?'negative':'mixed']++;

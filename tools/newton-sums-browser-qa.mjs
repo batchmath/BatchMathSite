@@ -47,7 +47,7 @@ try{
   await context.close();
  }
  // Exact before/after screenshots and editor DOM for other approved profiles.
- const unchanged=[['rectangular-approximations','(5)/(2)'],['trapezoidal-approximations','(5)/(2)'],['introduction-to-sigma-notation','(n*(n+1))/(2)'],['fundamental-theorem-of-calculus-and-integral-rules','2*x*sin(x)'],['integrals-using-geometry','(3*pi)/(2)']];
+ const unchanged=[['rectangular-approximations','(5)/(2)'],['trapezoidal-approximations','(5)/(2)'],['introduction-to-sigma-notation','(n*(n+1))/(2)']];
  const originals={};for(const f of ['calculus-keypad.js','calculus-keypad.css','ap-topic-practice.js','ap-topic-practice.css','unit4-exact-answers.js'])originals[f]=execFileSync('git',['show',baseline+':assets/'+f],{cwd:root,encoding:'utf8',maxBuffer:1000000});
  for(const width of [1280,390])for(const [other,raw]of unchanged){const shots=[],doms=[];
   for(const old of [true,false]){const context=await browser.newContext({viewport:{width,height:900},serviceWorkers:'block'});await localMathJax(context);

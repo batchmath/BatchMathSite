@@ -56,3 +56,12 @@
 .unit4-newton-answer .staged-feedback{height:auto;max-height:none;overflow:visible}
 .unit4-newton-answer .correct-answer{max-width:100%;overflow-x:auto;overflow-y:hidden;padding:.5em .1em}
 @media(max-width:600px){.question-box:has(>.u4-newton-question){min-height:175px}}
+
+/* P review: only Geometry, FTC and Integral Rules, including their review modes. */
+.question-box:has(>.u4-revised-question){min-height:170px;height:auto;max-height:none;overflow:visible}
+.u4-revised-question .u4-formula,.unit4-revised-answer .u4-definite-equation{display:block;height:auto;max-height:none;min-height:3em;overflow:visible;padding:.7em .15em;margin:.4em 0}
+.u4-revised-question mjx-container,.unit4-revised-answer .u4-definite-equation mjx-container{margin:.2em 0!important}
+.unit4-revised-answer .staged-feedback,.unit4-revised-answer .method{height:auto;max-height:none;overflow:visible}
+.unit4-revised-answer .u4-work-step{margin:.8em 0}
+.unit4-revised-answer .correct-answer{padding:.6em 0;max-width:100%;overflow:visible}
+.unit4-revised-answer .u4-geometry-figure{margin:18px auto 4px}
