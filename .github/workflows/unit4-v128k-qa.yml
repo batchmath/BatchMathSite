@@ -1,0 +1,41 @@
+name: Unit 4 and Mogollon v12.8.K targeted QA
+on:
+  push:
+    branches: [work/v12.8k-unit4-mogollon2026]
+    paths-ignore: [.github/workflows/package-v12-8-k.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  targeted-v128k:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --ignore-scripts --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Static, PWA, and affected generator structure
+        run: |
+          npm run qa:static
+          npm run qa:pwa
+          npm run qa:topics
+          npm run qa:unit4
+      - name: Independent exact arithmetic, symbolic n equivalence, distributions, and shared review
+        run: BM_U4_QA_SAMPLES=20000 node tools/unit4-approximation-sigma-qa.mjs
+      - name: Mogollon publication and CSV safety; existing live archive
+        run: |
+          node tools/mogollon2026-qa.mjs
+          npm run qa:problem-of-day-archive
+      - name: Real-page desktop and mobile interaction and rendering
+        run: node tools/unit4-v128k-browser-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit4-v128k-targeted-browser
+          path: qa-results/unit4-v128k-browser/
+          if-no-files-found: warn

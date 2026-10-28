@@ -1,0 +1,84 @@
+name: Package BatchMath v12.8.K
+
+# One requested prerelease, exclusively from the authorized Unit 4 branch.
+# The existing BatchMath QA and production deployment workflows are unchanged.
+on:
+  push:
+    branches: [work/v12.8k-unit4-mogollon2026]
+    paths: [.github/workflows/package-v12-8-k.yml]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  package:
+    if: github.repository == 'batchmath/BatchMathSite' && github.ref == 'refs/heads/work/v12.8k-unit4-mogollon2026'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      QA_COMMIT: 9c36009865db00f15a701dde1503473438706097
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify final source and successful targeted browser QA
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse HEAD^)" = "$QA_COMMIT"
+          git diff --exit-code "$QA_COMMIT" "$GITHUB_SHA" -- . ':(exclude).github/workflows/package-v12-8-k.yml'
+          for attempt in $(seq 1 60); do
+            run="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?branch=work%2Fv12.8k-unit4-mogollon2026&per_page=50" \
+              --jq ".workflow_runs[] | select(.head_sha == \"$QA_COMMIT\" and .name == \"Unit 4 and Mogollon v12.8.K targeted QA\") | [.status, .conclusion] | @tsv" | head -n 1)"
+            if [[ "$run" == completed$'\t'success ]]; then break; fi
+            if [[ "$run" == completed* ]]; then echo "Targeted QA did not pass: $run"; exit 1; fi
+            if [[ "$attempt" == 60 ]]; then echo 'Targeted QA did not finish in the allowed time'; exit 1; fi
+            sleep 15
+          done
+          npm run qa:static
+          npm run qa:pwa
+          BM_U4_QA_SAMPLES=20000 node tools/unit4-approximation-sigma-qa.mjs
+          node tools/mogollon2026-qa.mjs
+          npm run qa:problem-of-day-archive
+      - name: Create and verify the exact committed full-site ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          node -e 'if (require("./package.json").version !== "12.8.K" || require("./assets/app-version.json").version !== "12.8.K") throw new Error("Unexpected site version")'
+          git archive --format=zip -9 --prefix=batchmath-site-v12.8.K/ --output=batchmath-site-v12.8.K.zip "$GITHUB_SHA"
+          unzip -tq batchmath-site-v12.8.K.zip
+          python3 - <<'PY'
+          import zipfile
+          with zipfile.ZipFile('batchmath-site-v12.8.K.zip') as archive:
+              names = archive.namelist()
+              assert {name.split('/')[0] for name in names} == {'batchmath-site-v12.8.K'}
+              assert 'batchmath-site-v12.8.K/.github/workflows/batchmath-qa.yml' in names
+              assert 'batchmath-site-v12.8.K/index.html' in names
+              assert 'batchmath-site-v12.8.K/mogollon2026/index.html' in names
+              assert 'batchmath-site-v12.8.K/mogollon2026/starter.csv' in names
+              assert 'batchmath-site-v12.8.K/mogollon2026/SETUP.md' in names
+              assert not any(name.startswith('batchmath-site-v12.8.K/qa-results/') and not name.endswith(('/', '/.gitkeep')) for name in names)
+          PY
+          checksum="$(sha256sum batchmath-site-v12.8.K.zip | cut -d ' ' -f 1)"
+          printf 'Complete BatchMath v12.8.K test build from working-branch commit `%s`.\n\nGreen implementation/version QA commit: `%s`.\n\nMogollon displays the six verified starter miles; the dedicated Google Sheet CSV requires one-time connection as documented in `mogollon2026/SETUP.md`. Main and the completed J branch are unchanged.\n\nSHA-256: `%s`\n' "$GITHUB_SHA" "$QA_COMMIT" "$checksum" > release-notes.md
+      - name: Publish the requested GitHub download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release create v12.8.K batchmath-site-v12.8.K.zip \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title 'BatchMath v12.8.K' --notes-file release-notes.md \
+            --prerelease --latest=false
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.K" \
+            --jq '.assets[] | select(.name == "batchmath-site-v12.8.K.zip") | [.state, .size, .browser_download_url] | @tsv'

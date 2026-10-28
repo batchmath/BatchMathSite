@@ -1,0 +1,88 @@
+name: Package BatchMath v12.8.L
+
+# One requested prerelease, exclusively from the authorized Unit 4 branch.
+# The existing BatchMath QA and production deployment workflows are unchanged.
+on:
+  push:
+    branches: [work/v12.8l-unit4-polish-mogollon-live-videos]
+    paths: [.github/workflows/package-v12-8-l.yml]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  package:
+    if: github.repository == 'batchmath/BatchMathSite' && github.ref == 'refs/heads/work/v12.8l-unit4-polish-mogollon-live-videos'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      QA_COMMIT: b1a9895005a223b6cd53cf3a94aadd05d55060e9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify final source and successful targeted browser QA
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse HEAD^)" = "$QA_COMMIT"
+          git diff --exit-code "$QA_COMMIT" "$GITHUB_SHA" -- . ':(exclude).github/workflows/package-v12-8-l.yml'
+          for attempt in $(seq 1 60); do
+            run="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?branch=work%2Fv12.8l-unit4-polish-mogollon-live-videos&per_page=50" \
+              --jq ".workflow_runs[] | select(.head_sha == \"$QA_COMMIT\" and .name == \"Unit 4 and Mogollon v12.8.L targeted QA\") | [.status, .conclusion] | @tsv" | head -n 1)"
+            if [[ "$run" == completed$'\t'success ]]; then break; fi
+            if [[ "$run" == completed* ]]; then echo "Targeted QA did not pass: $run"; exit 1; fi
+            if [[ "$attempt" == 60 ]]; then echo 'Targeted QA did not finish in the allowed time'; exit 1; fi
+            sleep 15
+          done
+          test "$(sha256sum .github/workflows/batchmath-qa.yml | cut -d ' ' -f 1)" = 'd8823214cd05a010f6d2dedd12c1de1d290ab73736ac13f631e6539a44293f36'
+          npm run qa:static
+          npm run qa:pwa
+          BM_U4_QA_SAMPLES=20000 node tools/unit4-approximation-sigma-qa.mjs
+          node tools/mogollon2026-qa.mjs
+          npm run qa:problem-of-day-archive
+      - name: Create and verify the exact committed full-site ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          node -e 'if (require("./package.json").version !== "12.8.L" || require("./assets/app-version.json").version !== "12.8.L") throw new Error("Unexpected site version")'
+          git archive --format=zip -9 --prefix=batchmath-site-v12.8.L/ --output=batchmath-site-v12.8.L.zip "$GITHUB_SHA"
+          unzip -tq batchmath-site-v12.8.L.zip
+          python3 - <<'PY'
+          import zipfile
+          with zipfile.ZipFile('batchmath-site-v12.8.L.zip') as archive:
+              names = archive.namelist()
+              assert {name.split('/')[0] for name in names} == {'batchmath-site-v12.8.L'}
+              assert 'batchmath-site-v12.8.L/.github/workflows/batchmath-qa.yml' in names
+              assert 'batchmath-site-v12.8.L/index.html' in names
+              assert 'batchmath-site-v12.8.L/mogollon2026/index.html' in names
+              assert 'batchmath-site-v12.8.L/mogollon2026/starter.csv' in names
+              assert 'batchmath-site-v12.8.L/mogollon2026/SETUP.md' in names
+              assert 'batchmath-site-v12.8.L/assets/mogollon2026-home.webp' in names
+              assert 'batchmath-site-v12.8.L/.github/workflows/unit4-v128l-qa.yml' in names
+              assert not any(name.startswith('batchmath-site-v12.8.L/qa-results/') and not name.endswith(('/', '/.gitkeep')) for name in names)
+          PY
+          checksum="$(sha256sum batchmath-site-v12.8.L.zip | cut -d ' ' -f 1)"
+          printf 'Complete BatchMath v12.8.L test build from working-branch commit `%s`.\n\nGreen implementation/version QA commit: `%s`.\n\nUnit 4 staged flow, flowing explanations, unmarked tables, validated table reasoning and sketches, the live Mogollon CSV and smaller supplied-buckle homepage link, and both Quotient Rule table walkthroughs are included. Targeted desktop/mobile, mathematical, live-data, and existing Problem of the Day regression checks passed. YouTube playback itself could not be confirmed inside CI because of its bot-sign-in screen; the new embed destinations and independent controls were verified. Main and the completed J/K branches are unchanged.\n\nSHA-256: `%s`\n' "$GITHUB_SHA" "$QA_COMMIT" "$checksum" > release-notes.md
+      - name: Publish the requested GitHub download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release create v12.8.L batchmath-site-v12.8.L.zip \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title 'BatchMath v12.8.L' --notes-file release-notes.md \
+            --prerelease --latest=false
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.L" \
+            --jq '.assets[] | select(.name == "batchmath-site-v12.8.L.zip") | [.state, .size, .browser_download_url] | @tsv'
+

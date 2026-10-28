@@ -1,0 +1,35 @@
+name: Unit 4 v12.8.J targeted QA
+on:
+  push:
+    branches: [work/unit4-approximation-sigma-engines]
+    paths:
+      - assets/ap-topic-generators.js
+      - assets/ap-topic-practice.css
+      - assets/ap-topic-practice.js
+      - tools/unit4-approximation-sigma*.mjs
+      - .github/workflows/unit4-v128j-qa.yml
+permissions:
+  contents: read
+jobs:
+  targeted-unit4:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --ignore-scripts --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Independent exact mathematics and shared-review checks
+        run: node tools/unit4-approximation-sigma-qa.mjs
+      - name: Targeted real-page desktop and mobile QA
+        run: node tools/unit4-approximation-sigma-browser-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit4-v128j-targeted-browser
+          path: qa-results/unit4-v128j-browser/
+          if-no-files-found: warn

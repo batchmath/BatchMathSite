@@ -1,0 +1,24 @@
+/* Only the two written running documents load this stylesheet. */
+*{box-sizing:border-box}body{margin:0;background:#030303;color:#f4f4f4;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.65}
+[hidden]{display:none!important}.running-nav{width:min(960px,calc(100% - 40px));margin:auto;padding:20px 0;border-bottom:1px solid #362126;display:flex;align-items:center;justify-content:space-between;gap:20px}.running-brand{color:#d71920;font-weight:950;font-size:1.8rem;letter-spacing:-.04em;text-decoration:none}.running-brand sup{font-size:.4em}.running-back{color:#f5c400;font-size:.88rem;text-decoration:none}
+.running-main{width:min(880px,calc(100% - 40px));margin:auto;padding:35px 0 70px}.running-title{margin:0;color:#f5c400;font-size:clamp(1.7rem,4.5vw,2.5rem);line-height:1.2;letter-spacing:-.03em}.running-intro{color:#bdbdbd;max-width:660px;font-size:.95rem;margin:14px 0 20px}.running-controls{display:flex;gap:10px;flex-wrap:wrap}.running-button{border:1px solid #d71920;border-radius:10px;background:#090909;color:#f5c400;padding:10px 16px;font:inherit;font-size:.87rem;font-weight:750;min-height:44px;cursor:pointer}.running-button:hover{background:#241014;border-color:#f04449}.running-button:disabled{opacity:.55;cursor:wait}:focus-visible{outline:2px solid #f5c400;outline-offset:4px}
+.running-status{font-size:.8rem;color:#aaa;margin:14px 0 25px}.running-error{border-left:3px solid #d71920;padding:15px 20px;background:#170a0d;margin:24px 0}.running-error h2{font-size:1.1rem;color:#f5c400;margin:0}.running-error p{color:#ddd;font-size:.94rem}.running-entry{border-top:1px solid #663036;padding:29px 0 36px;scroll-margin-top:20px}.running-entry-heading h2{color:#f5c400;font-size:1.4rem;margin:0;line-height:1.3}.running-meta{font-size:.85rem;line-height:1.6;color:#b8b8b8;margin:6px 0 20px}.running-written-section{margin-top:24px}.running-written-section h3{margin:0 0 10px;color:#ebc8cc;font-size:1rem;font-weight:750}.running-math{overflow-x:auto;overflow-y:hidden;max-width:100%;padding:8px 5px;text-align:center}.running-math-inner{display:inline-block;min-width:max-content;font-size:clamp(1rem,2.5vw,1.22rem)}.running-math mjx-container[display="true"]{margin:.6em 0!important}.running-explanation{white-space:pre-line;overflow-wrap:anywhere;margin:16px 0;color:#ddd;font-size:.97rem}.running-footer{color:#888;font-size:.8rem;text-align:center;padding:20px;border-top:1px solid #282828}
+@media(max-width:480px){.running-nav,.running-main{width:calc(100% - 28px)}.running-nav{gap:12px;padding:14px 0}.running-brand{font-size:1.5rem}.running-back{font-size:.77rem}.running-main{padding-top:26px}.running-entry{padding:24px 0 30px}.running-math-inner{font-size:1rem}.running-meta{font-size:.8rem}}
+@page{margin:16mm 14mm}
+.running-math-warning{border-left:3px solid #c89d18;background:#191505;color:#f5d570;padding:12px 18px;margin:20px 0}.running-math-warning p{margin:0 0 10px}
+@media print{.bm-pwa-actions,.running-math-warning{display:none!important}}
+@media print{
+ html,body{background:#fff!important;color:#000!important;font-size:10.5pt}body{line-height:1.5}.running-nav,.running-controls,.running-status,.running-error,.running-footer,.running-intro,button{display:none!important}.running-main{width:100%;max-width:none;margin:0;padding:0}.running-title{font-size:19pt;color:#000;margin:0 0 18pt}.running-entry{border-color:#aaa;padding:16pt 0;break-inside:avoid-page;page-break-inside:avoid}.running-entry-heading{break-after:avoid-page}.running-entry-heading h2{font-size:14pt;color:#000}.running-meta{color:#333;font-size:9pt}.running-written-section{margin-top:12pt}.running-written-section h3{color:#000;break-after:avoid-page}.running-math{overflow:visible!important;padding:3pt 0;break-inside:avoid-page}.running-math-inner{min-width:0;max-width:100%;font-size:10pt}.running-explanation{color:#000;font-size:10pt;orphans:3;widows:3}mjx-container,mjx-container *{color:#000!important}a{color:#000;text-decoration:none}
+}
+
+/* A cumulative worksheet from the same live entries, with no copied data. */
+@media print{
+ body.running-problems-only{line-height:1.25}
+ .running-problems-only .running-title{font-size:14pt;line-height:1.15;margin:0 0 9pt}
+ .running-problems-only .running-entry{padding:7pt 0 8pt;border-top:1px solid #ccc;break-before:auto;break-after:auto;break-inside:avoid-page;page-break-before:auto;page-break-after:auto;page-break-inside:avoid}
+ .running-problems-only .running-entry-heading h2{font-size:10.5pt;line-height:1.2;margin:0 0 3pt}
+ .running-problems-only .running-meta,.running-problems-only .running-written-section{display:none!important}
+ .running-problems-only .running-math{padding:1pt 0}
+ .running-problems-only .running-math-inner{font-size:10pt}
+ .running-problems-only .running-math mjx-container[display="true"]{margin:.2em 0!important}
+}

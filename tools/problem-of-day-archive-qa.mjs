@@ -43,7 +43,9 @@ assert.ok(problem3.alternatives.filter(alternative => alternative.explanation).e
 assert.match(problem3.explanation, /\\\(/, 'Inline LaTeX should remain intact');
 assert.equal(problem4.location, 'Mt. Soledad, San Diego, CA');
 assert.equal(problem4.date, '10/12/2026');
-assert.equal(problem4.solutionVideo, '', 'Blank Solution Video URL cells must stay blank');
+// The live sheet is intentionally editable; #004 now has a published video.
+// Blank-cell behavior is checked with the controlled fixtures below instead.
+if (problem4.solutionVideo) assert.ok(archive.youtubeVideo(problem4.solutionVideo), 'Published solution videos must remain valid YouTube links');
 assert.equal(problem4.alternatives.every(alternative => !alternative.explanation), true, 'Orphan alternative notes must not attach to Problem #004');
 
 const parserProbe = archive.parseCsv('number,problem_latex,explanation\r\n5,"x^2, x>0","first line\nsecond, line"\r\n');
@@ -86,7 +88,7 @@ assert.match(js, /Watch Original Short/);
 assert.match(js, /Watch Video Solution/);
 assert.match(js, /solutionVideo:\s*\[/);
 assert.match(js, /videoButton\('Watch Original Short', entry\.video\)/);
-assert.match(js, /videoButton\('Watch Video Solution', entry\.solutionVideo\)/);
+assert.match(js, /videoButton\('Watch Video Solution', entry\.solutionVideo, entry\.solutionVideoOrientation\)/);
 assert.match(js, /youtube-nocookie\.com\/embed/);
 assert.match(js, /frameWrap\.replaceChildren\(\)/);
 assert.match(html, /id="archive-video-modal"/);

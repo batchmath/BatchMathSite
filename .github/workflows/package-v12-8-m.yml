@@ -1,0 +1,252 @@
+name: Package BatchMath v12.8.M
+
+# One requested prerelease, exclusively from the authorized M working branch.
+# The completed J/K/L workflows and existing BatchMath QA remain unchanged.
+on:
+  push:
+    branches: [work/v12.8m-approximation-running-docs-video-fixes]
+    paths: [.github/workflows/package-v12-8-m.yml]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  package:
+    if: github.repository == 'batchmath/BatchMathSite' && github.ref == 'refs/heads/work/v12.8m-approximation-running-docs-video-fixes'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      QA_COMMIT: 77c887599d85aea290612e330d446dc30d59fcb4
+      QA_RUN_ID: '40634337399'
+      PREVIOUS_RELEASE_COMMIT: ccc001f162113df3eb84a56b8ab40a4ce7511c49
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 3
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify immutable source and exact successful M targeted QA
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git show -s --format=%P HEAD)" = "$QA_COMMIT"
+          test "$(git diff --name-status "$QA_COMMIT" "$GITHUB_SHA")" = $'M\t.github/workflows/package-v12-8-m.yml'
+          git diff --exit-code "$QA_COMMIT" "$GITHUB_SHA" -- . ':(exclude).github/workflows/package-v12-8-m.yml'
+          test "$(sha256sum .github/workflows/batchmath-qa.yml | cut -d ' ' -f 1)" = 'd8823214cd05a010f6d2dedd12c1de1d290ab73736ac13f631e6539a44293f36'
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$QA_RUN_ID" > "$RUNNER_TEMP/v128m-green-qa.json"
+          python3 - <<'CHECK'
+          import json, os
+          from pathlib import Path
+          run = json.loads((Path(os.environ['RUNNER_TEMP']) / 'v128m-green-qa.json').read_text())
+          assert str(run['id']) == os.environ['QA_RUN_ID']
+          assert run['head_sha'] == os.environ['QA_COMMIT']
+          assert run['head_branch'] == 'work/v12.8m-approximation-running-docs-video-fixes'
+          assert run['name'] == 'Unit 4 and running documents v12.8.M targeted QA'
+          assert run['path'] == '.github/workflows/unit4-v128m-qa.yml'
+          assert run['event'] == 'push'
+          assert run['status'] == 'completed' and run['conclusion'] == 'success'
+          print('Verified exact green version-sync QA:', run['html_url'])
+          CHECK
+      - run: npm install --ignore-scripts --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - run: sudo apt-get install -y --no-install-recommends poppler-utils
+      - name: Final static, PWA, and affected generator checks
+        run: |
+          npm run qa:static
+          npm run qa:pwa
+          npm run qa:topics
+          npm run qa:unit4
+          node tools/v124-keypad-tangent-mvt-qa.mjs
+      - name: Final exact arithmetic, properties, graph geometry, distributions, and shared review
+        run: BM_U4_QA_SAMPLES=20000 BM_U4_QA_OUTPUT=qa-results/unit4-v128m-math.json node tools/unit4-approximation-sigma-qa.mjs
+      - name: Final archive publication, CSV safety, and live data regressions
+        run: |
+          node tools/mogollon2026-qa.mjs
+          npm run qa:problem-of-day-archive
+      - name: Final M running-document, printing, refresh, retry, growth, and safety QA
+        run: node tools/running-documents-v128m-qa.mjs
+      - name: Final M approximation, Sigma, walkthroughs, and archive desktop/mobile QA
+        run: node tools/unit4-v128m-browser-qa.mjs
+      - name: Create and verify the exact committed full-site ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          git archive --format=zip -9 --prefix=batchmath-site-v12.8.M/ --output=batchmath-site-v12.8.M.zip "$GITHUB_SHA"
+          unzip -tq batchmath-site-v12.8.M.zip
+          python3 - <<'CHECK'
+          import hashlib, json, os, subprocess, zipfile
+          from pathlib import Path
+          assert json.loads(Path('package.json').read_text())['version'] == '12.8.M'
+          version = json.loads(Path('assets/app-version.json').read_text())
+          assert version['version'] == '12.8.M' and version['release'] == 'v12.8.M'
+          assert "const APP_VERSION = '12.8.M';" in Path('assets/pwa.js').read_text()
+          assert "const VERSION = '12.8.M';" in Path('sw.js').read_text()
+          prefix = 'batchmath-site-v12.8.M/'
+          package = Path('batchmath-site-v12.8.M.zip')
+          assert package.stat().st_size > 0
+          tracked = {}
+          for entry in subprocess.check_output(['git', 'ls-tree', '-rz', os.environ['GITHUB_SHA']]).split(b'\0'):
+              if not entry:
+                  continue
+              metadata, name = entry.split(b'\t', 1)
+              mode, kind, oid = metadata.split()
+              assert kind == b'blob', name
+              tracked[name.decode()] = oid.decode()
+          required = {
+              'index.html',
+              '.github/workflows/batchmath-qa.yml',
+              '.github/workflows/unit4-v128m-qa.yml',
+              '.github/workflows/package-v12-8-m.yml',
+              'archive/index.html',
+              'archive/problem-list/index.html',
+              'mogollon2026/index.html',
+              'mogollon2026/problem-list/index.html',
+              'mogollon2026/starter.csv',
+              'mogollon2026/SETUP.md',
+              'assets/mogollon2026-home.webp',
+              'assets/archive-running-document.js',
+              'assets/archive-running-document.css',
+              'assets/ap-topic-generators.js',
+              'assets/ap-topic-practice.js',
+              'assets/ap-topic-practice.css',
+              'ap-calculus/unit-4-integrals/topics/rectangular-approximations/practice/index.html',
+              'ap-calculus/unit-4-integrals/topics/trapezoidal-approximations/practice/index.html',
+              'ap-calculus/unit-4-integrals/topics/introduction-to-sigma-notation/practice/index.html',
+              'ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html',
+              'ap-calculus/unit-2-derivatives/topics/the-chain-rule/index.html',
+              'ap-calculus/unit-2-derivatives/topics/the-quotient-rule/index.html',
+              'tools/running-documents-v128m-qa.mjs',
+              'tools/unit4-v128m-browser-qa.mjs',
+          }
+          with zipfile.ZipFile(package) as archive:
+              names = archive.namelist()
+              assert len(names) == len(set(names)), 'Duplicate ZIP entries'
+              assert {name.split('/')[0] for name in names} == {prefix.rstrip('/')}
+              assert archive.testzip() is None, 'ZIP integrity check failed'
+              files = {info.filename[len(prefix):] for info in archive.infolist() if not info.is_dir()}
+              assert files == set(tracked), 'ZIP must contain the entire committed Git tree'
+              assert required <= files, sorted(required - files)
+              assert not any(name.startswith('qa-results/') and name != 'qa-results/.gitkeep' for name in files)
+              assert not any(name.startswith(('node_modules/', 'test-results/', 'playwright-report/')) for name in files)
+              for name, oid in tracked.items():
+                  content = archive.read(prefix + name)
+                  actual = hashlib.sha1(b'blob ' + str(len(content)).encode() + b'\0' + content).hexdigest()
+                  assert actual == oid, 'ZIP differs from committed blob: ' + name
+          checksum = hashlib.sha256(package.read_bytes()).hexdigest()
+          notes = [
+              'Complete BatchMath v12.8.M prerelease from the M working branch.',
+              '',
+              'Implementation checkpoint: d454b6154c500baf800a1fd3f18352d01b570cbd',
+              'Green version-sync QA commit: ' + os.environ['QA_COMMIT'],
+              'Successful QA run: https://github.com/' + os.environ['GITHUB_REPOSITORY'] + '/actions/runs/' + os.environ['QA_RUN_ID'],
+              'Package commit: ' + os.environ['GITHUB_SHA'],
+              '',
+              'Final package checks repeated the M-specific running-document and desktop/mobile browser QA, exact approximation mathematics, graph geometry, shared review, Sigma alignment, walkthrough placement, and both archive regressions.',
+              'Corrections included: a clear red rounded Mogollon border at the smaller size; separate condensed Problems Only printing in both live running documents; caption-free Rectangular and Trapezoidal conceptual graphs with accessible labels. Sigma is unchanged.',
+              'The ZIP contains every committed site file; generated QA results and screenshots are excluded.',
+              'Main and the completed J/K/L working branches remain unchanged.',
+              '',
+              'ZIP: ' + package.name,
+              'SHA-256: ' + checksum,
+          ]
+          Path('release-notes.md').write_text('\n'.join(notes) + '\n')
+          print('Verified committed files:', len(tracked))
+          print('ZIP bytes:', package.stat().st_size)
+          print('SHA-256:', checksum)
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              summary.write('\n'.join(notes) + '\n')
+          CHECK
+      - name: Verify protected branches and publish the requested prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/work/v12.8m-approximation-running-docs-video-fixes" --jq .object.sha)" = "$GITHUB_SHA"
+          while read -r expected ref; do
+            actual="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/$ref" --jq .object.sha)"
+            test "$actual" = "$expected" || { echo "::error::Protected ref changed: $ref"; exit 1; }
+          done <<'REFS'
+          c97c14000a3f98965efd13b29b775de4f28470ba heads/main
+          6e3dbc6711f4082484c622a7b06072b093168699 heads/work/unit4-approximation-sigma-engines
+          555f96aca77803d086f73ed14d821ae2633f8bee heads/work/v12.8k-unit4-mogollon2026
+          f7da158cbba60b9a2b03871cb811a62ccf5390fd heads/work/v12.8l-unit4-polish-mogollon-live-videos
+          REFS
+          git merge-base --is-ancestor "$PREVIOUS_RELEASE_COMMIT" "$GITHUB_SHA"
+          gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/v12.8.M" > "$RUNNER_TEMP/v128m-existing-tag.json"
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.M" > "$RUNNER_TEMP/v128m-existing-release.json"
+          python3 - <<'CHECK'
+          import json, os
+          from pathlib import Path
+          temp = Path(os.environ['RUNNER_TEMP'])
+          tag = json.loads((temp / 'v128m-existing-tag.json').read_text())
+          release = json.loads((temp / 'v128m-existing-release.json').read_text())
+          allowed = {os.environ['PREVIOUS_RELEASE_COMMIT'], os.environ['GITHUB_SHA']}
+          assert tag['object']['type'] == 'commit' and tag['object']['sha'] in allowed, 'Preserve any unexpected newer release progress'
+          assert release['id'] == 426259026 and release['tag_name'] == 'v12.8.M'
+          assert release['prerelease'] is True and release['target_commitish'] in allowed
+          CHECK
+          # Upload and verify the replacement before changing the existing
+          # prerelease. The final handoff is made while the release is a draft.
+          cp batchmath-site-v12.8.M.zip "$RUNNER_TEMP/batchmath-site-v12.8.M-$GITHUB_SHA.zip"
+          gh release upload v12.8.M "$RUNNER_TEMP/batchmath-site-v12.8.M-$GITHUB_SHA.zip" --repo "$GITHUB_REPOSITORY" --clobber
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.M" > "$RUNNER_TEMP/v128m-staged-release.json"
+          python3 - <<'CHECK'
+          import hashlib, json, os
+          from pathlib import Path
+          temp = Path(os.environ['RUNNER_TEMP'])
+          release = json.loads((temp / 'v128m-staged-release.json').read_text())
+          package = Path('batchmath-site-v12.8.M.zip')
+          checksum = hashlib.sha256(package.read_bytes()).hexdigest()
+          staged_name = 'batchmath-site-v12.8.M-' + os.environ['GITHUB_SHA'] + '.zip'
+          assets = [asset for asset in release['assets'] if asset['name'] == staged_name]
+          assert len(assets) == 1
+          asset = assets[0]
+          assert asset['state'] == 'uploaded' and asset['size'] == package.stat().st_size > 0
+          assert asset['digest'] == 'sha256:' + checksum
+          (temp / 'v128m-staged-asset-id').write_text(str(asset['id']))
+          prior = [asset for asset in release['assets'] if asset['name'] == package.name]
+          assert len(prior) <= 1
+          (temp / 'v128m-prior-asset-id').write_text(str(prior[0]['id']) if prior else '')
+          CHECK
+          gh release edit v12.8.M --repo "$GITHUB_REPOSITORY" --draft
+          gh api --method PATCH "repos/$GITHUB_REPOSITORY/git/refs/tags/v12.8.M" -f sha="$GITHUB_SHA" -F force=true > /dev/null
+          if test -s "$RUNNER_TEMP/v128m-prior-asset-id"; then
+            prior_asset="$(cat "$RUNNER_TEMP/v128m-prior-asset-id")"
+            gh api --method DELETE "repos/$GITHUB_REPOSITORY/releases/assets/$prior_asset"
+          fi
+          staged_asset="$(cat "$RUNNER_TEMP/v128m-staged-asset-id")"
+          gh api --method PATCH "repos/$GITHUB_REPOSITORY/releases/assets/$staged_asset" -f name=batchmath-site-v12.8.M.zip -f label=batchmath-site-v12.8.M.zip > /dev/null
+          gh release edit v12.8.M --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title 'BatchMath v12.8.M' --notes-file release-notes.md --prerelease --draft=false --latest=false
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.M" > "$RUNNER_TEMP/v128m-release.json"
+          gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/v12.8.M" > "$RUNNER_TEMP/v128m-tag.json"
+          python3 - <<'CHECK'
+          import hashlib, json, os
+          from pathlib import Path
+          temp = Path(os.environ['RUNNER_TEMP'])
+          release = json.loads((temp / 'v128m-release.json').read_text())
+          tag = json.loads((temp / 'v128m-tag.json').read_text())
+          package = Path('batchmath-site-v12.8.M.zip')
+          checksum = hashlib.sha256(package.read_bytes()).hexdigest()
+          assert tag['object']['type'] == 'commit' and tag['object']['sha'] == os.environ['GITHUB_SHA']
+          assert release['tag_name'] == 'v12.8.M' and release['name'] == 'BatchMath v12.8.M'
+          assert release['prerelease'] is True and release['draft'] is False
+          assert release['target_commitish'] == os.environ['GITHUB_SHA']
+          assert checksum in release['body'], 'Release notes must record ZIP SHA-256'
+          assets = [asset for asset in release['assets'] if asset['name'] == package.name]
+          assert len(assets) == 1
+          asset = assets[0]
+          assert asset['state'] == 'uploaded' and asset['size'] == package.stat().st_size > 0
+          if asset.get('digest'):
+              assert asset['digest'] == 'sha256:' + checksum
+          print('Release:', release['html_url'])
+          print('Download:', asset['browser_download_url'])
+          print('SHA-256:', checksum)
+          CHECK
