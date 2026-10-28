@@ -13,7 +13,7 @@ const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json
 const server=http.createServer((req,res)=>{try{let f=path.join(root,decodeURIComponent(new URL(req.url,'http://local').pathname));if(!f.startsWith(root+path.sep)){res.writeHead(403).end();return;}if(fs.statSync(f).isDirectory())f=path.join(f,'index.html');res.writeHead(200,{'content-type':mime[path.extname(f)]||'application/octet-stream'});fs.createReadStream(f).pipe(res);}catch{res.writeHead(404).end();}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin=`http://127.0.0.1:${server.address().port}`,report={ok:false,live:[],fixtures:[],failures:[]};let browser;
 const csv=rows=>rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
-async function ready(page){await page.waitForFunction(()=>document.querySelector('#running-content')?.getAttribute('aria-busy')==='false'&&document.querySelector('.running-entry'),null,{timeout:60000});await page.evaluate(()=>MathJax.startup.promise);}
+async function ready(page){await page.waitForFunction(()=>document.querySelector('#running-content')?.getAttribute('aria-busy')==='false'&&(document.querySelector('.running-entry')||!document.querySelector('#running-error').hidden),null,{timeout:60000});assert.equal(await page.locator('#running-error').isHidden(),true,await page.locator('#running-status').textContent());await page.evaluate(()=>MathJax.startup.promise);}
 async function clean(page){
  assert.equal(await page.locator('iframe,video,a[href*="youtu"],a[href*="vimeo"],[class*="video"],input[type="search"],select').count(),0,'Written documents contain no video/filter UI');
  assert.equal(await page.locator('mjx-merror,[data-mjx-error]').count(),0,'Document MathJax error');
@@ -56,7 +56,7 @@ try{
   else rows.push([5,'FALSE','Not published','x','x'],[105,'TRUE','Incomplete','x','','']);
   let body=csv(rows),fail=false,requests=0;const urls=[];
   await context.route(source.api.sourceUrl.split('?')[0]+'?*',route=>{requests++;urls.push(route.request().url());assert.match(route.request().url(),/_bm_refresh=/);return route.fulfill({status:fail?503:200,contentType:'text/csv',headers:{'access-control-allow-origin':'*'},body});});
-  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));await page.goto(origin+source.path+'problem-list/',{waitUntil:'domcontentloaded'});await ready(page);await clean(page);
+  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='warning')console.log('Document diagnostic:',source.key,m.text());});await page.goto(origin+source.path+'problem-list/',{waitUntil:'domcontentloaded'});await ready(page);await clean(page);
   assert.equal(await page.locator('.running-entry').count(),source.key==='pod'?104:103);assert.equal(await page.locator(source.key==='pod'?'#problem-005':'#mile-005').count(),0);
   if(source.key==='pod')assert.equal(await page.locator('#problem-105 .running-written-section').count(),0,'No invented missing primary solution');
   const first=page.locator('.running-entry').first();assert.equal(await first.locator('img,script').count(),0);

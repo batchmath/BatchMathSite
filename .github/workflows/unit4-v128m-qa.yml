@@ -32,11 +32,12 @@ jobs:
         run: |
           node tools/mogollon2026-qa.mjs
           npm run qa:problem-of-day-archive
-      - name: Real-page approximation, Sigma alignment, videos, and archive desktop/mobile regressions
-        run: node tools/unit4-v128m-browser-qa.mjs
       - name: Both live running documents and browser printing
         if: ${{ !cancelled() }}
         run: node tools/running-documents-v128m-qa.mjs
+      - name: Real-page approximation, Sigma alignment, videos, and archive desktop/mobile regressions
+        if: ${{ !cancelled() }}
+        run: node tools/unit4-v128m-browser-qa.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

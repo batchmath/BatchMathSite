@@ -55,7 +55,10 @@
       state.loadedAt=Date.now();$('running-status').textContent=`${items.length} published ${mogollon?'miles':'problems'} · Refreshed ${new Date(state.loadedAt).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}. Spreadsheet updates may take a few minutes to publish.`;
       $('running-print').disabled=!items.length;
       const target=location.hash&&document.getElementById(location.hash.slice(1));if(target)target.scrollIntoView();
-    }catch(_){
+    }catch(error){
+      // Keep the student-facing retry state simple; a concise console message
+      // distinguishes CSV/network and typesetting failures without a stack.
+      console.warn('BatchMath running document: '+String(error.message||'The live document could not load.'));
       window.MathJax?.typesetClear?.([$('running-content')]);$('running-content').replaceChildren();$('running-error').hidden=false;
       $('running-status').textContent='No current document data is being displayed. Check your connection and try again. Google Sheets publishing can take a few minutes.';
     }finally{state.loading=false;$('running-content').setAttribute('aria-busy','false');$('running-refresh').disabled=false;}
