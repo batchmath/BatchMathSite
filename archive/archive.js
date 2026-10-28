@@ -667,6 +667,7 @@
   }
 
   const publicApi = Object.freeze({
+    sourceUrl: SHEET_URL,
     parseCsv,
     normalizeRows,
     safeUrl,
@@ -677,7 +678,9 @@
 
   if (typeof module !== 'undefined' && module.exports) module.exports = publicApi;
   if (typeof window !== 'undefined') window.BatchMathArchive = publicApi;
-  if (typeof document === 'undefined') return;
+  // The running document reuses only the approved data parser/source. It must
+  // not initialize archive controls, pagination, or players on that page.
+  if (typeof document === 'undefined' || document.currentScript?.hasAttribute('data-archive-data-only')) return;
 
   state.view = initialView();
   bindControls();

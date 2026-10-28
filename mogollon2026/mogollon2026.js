@@ -104,6 +104,8 @@
     setInterval(()=>{if(document.visibilityState==='visible')load();},REFRESH_MS);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&Date.now()-state.loadedAt>60000)load();});load();
   }
   // Pure data functions support the focused Node QA without a second parser.
-  if(typeof document!=='undefined')init();
-  if(typeof module!=='undefined'&&module.exports)module.exports={parseCsv,normalizeRows,youtube};
+  const publicData=Object.freeze({sourceUrl:SHEET_CSV_URL,parseCsv,normalizeRows,youtube});
+  if(typeof module!=='undefined'&&module.exports)module.exports=publicData;
+  if(typeof window!=='undefined')window.BatchMathMogollonData=publicData;
+  if(typeof document!=='undefined'&&!document.currentScript?.hasAttribute('data-archive-data-only'))init();
 })();

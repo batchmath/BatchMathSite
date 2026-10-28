@@ -1,0 +1,68 @@
+// Targeted browser QA of the two new live, written-only document views.
+import fs from 'node:fs';
+import path from 'node:path';
+import http from 'node:http';
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+import {chromium} from 'playwright';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),out=path.join(root,'qa-results/running-documents-v128m');fs.mkdirSync(out,{recursive:true});
+const require=createRequire(import.meta.url),pod=require(path.join(root,'archive/archive.js')),mog=require(path.join(root,'mogollon2026/mogollon2026.js'));
+const sources=[{key:'pod',path:'/archive/',api:pod,min:19},{key:'mogollon',path:'/mogollon2026/',api:mog,min:6}];
+const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.csv':'text/csv','.svg':'image/svg+xml','.jpg':'image/jpeg','.png':'image/png'};
+const server=http.createServer((req,res)=>{try{let f=path.join(root,decodeURIComponent(new URL(req.url,'http://local').pathname));if(!f.startsWith(root+path.sep)){res.writeHead(403).end();return;}if(fs.statSync(f).isDirectory())f=path.join(f,'index.html');res.writeHead(200,{'content-type':mime[path.extname(f)]||'application/octet-stream'});fs.createReadStream(f).pipe(res);}catch{res.writeHead(404).end();}});
+await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin=`http://127.0.0.1:${server.address().port}`,report={ok:false,live:[],fixtures:[],failures:[]};let browser;
+const csv=rows=>rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
+async function ready(page){await page.waitForFunction(()=>document.querySelector('#running-content')?.getAttribute('aria-busy')==='false'&&document.querySelector('.running-entry'),{timeout:60000});await page.evaluate(()=>MathJax.startup.promise);}
+async function clean(page){
+ assert.equal(await page.locator('iframe,video,a[href*="youtu"],a[href*="vimeo"],[class*="video"],input[type="search"],select').count(),0,'Written documents contain no video/filter UI');
+ assert.equal(await page.locator('mjx-merror,[data-mjx-error]').count(),0,'Document MathJax error');
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false,'Document page overflow');
+ assert.equal(await page.locator('button').filter({hasText:/Show More|Show Older|Watch/i}).count(),0,'No pagination/video controls');
+ assert.ok(await page.locator('mjx-container').count()>0);
+}
+try{
+ browser=await chromium.launch({headless:true});
+ for(const source of sources)for(const width of [1280,375,320]){
+  const context=await browser.newContext({viewport:{width,height:900},serviceWorkers:'block'}),errors=[];await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());
+  let liveCsv;context.on('response',r=>{if(/text\/csv/i.test(r.headers()['content-type']||''))liveCsv=r.text();});
+  const archive=await context.newPage();archive.on('pageerror',e=>errors.push(String(e)));await archive.goto(origin+source.path,{waitUntil:'domcontentloaded'});
+  const link=archive.getByRole('link',{name:'View Running Document',exact:true});assert.equal(await link.getAttribute('target'),'_blank');assert.equal(await link.getAttribute('rel'),'noopener');
+  const popup=context.waitForEvent('page');await link.click();const page=await popup;page.on('pageerror',e=>errors.push(String(e)));await page.waitForLoadState('domcontentloaded');assert.equal(new URL(page.url()).pathname,source.path+'problem-list/');await ready(page);await clean(page);
+  assert.ok(liveCsv,'Live browser CSV response was not observed');const entries=source.api.normalizeRows(source.api.parseCsv(await liveCsv)).sort((a,b)=>(a.number??a.mile)-(b.number??b.mile));
+  const numbers=await page.locator('.running-entry').evaluateAll(es=>es.map(e=>+e.dataset.number));assert.deepEqual(numbers,entries.map(e=>e.number??e.mile),'The entire currently published collection must be present');assert.ok(numbers.length>=source.min);
+  if(source.key==='pod'){assert.equal(await page.locator('#problem-003 .running-written-section').count(),3);assert.ok(await page.locator('#problem-003 .running-explanation mjx-container').count()>0);}
+  const publishedSolutions=entries.filter(e=>e.solution||source.key==='mogollon'&&e.explanation).length;assert.equal(await page.locator('.running-entry').evaluateAll(es=>es.filter(e=>e.querySelector('.running-written-section')).length),publishedSolutions);
+  await page.screenshot({path:path.join(out,`${source.key}-${width}-screen.png`)});
+  await page.evaluate(()=>{window.__printed=0;window.print=()=>{window.__printed++;};});await page.getByRole('button',{name:'Print / Save as PDF',exact:true}).click();assert.equal(await page.evaluate(()=>window.__printed),1);
+  if(width===1280){
+   await page.emulateMedia({media:'print'});const printStyles=await page.evaluate(()=>({bg:getComputedStyle(document.body).backgroundColor,color:getComputedStyle(document.body).color,nav:getComputedStyle(document.querySelector('.running-nav')).display,controls:getComputedStyle(document.querySelector('.running-controls')).display,status:getComputedStyle(document.querySelector('.running-status')).display,footer:getComputedStyle(document.querySelector('.running-footer')).display}));assert.deepEqual(printStyles,{bg:'rgb(255, 255, 255)',color:'rgb(0, 0, 0)',nav:'none',controls:'none',status:'none',footer:'none'});
+   await page.pdf({path:path.join(out,source.key+'-live-print.pdf'),format:'Letter',printBackground:true});await page.emulateMedia({media:'screen'});
+  }
+  const before=await page.locator('#running-status').textContent();await page.getByRole('button',{name:'Refresh',exact:true}).click();await ready(page);await clean(page);assert.match(await page.locator('#running-status').textContent(),/published/);assert.deepEqual(errors,[],'Archive/document runtime errors');report.live.push({source:source.key,width,count:numbers.length,solutions:publishedSolutions});await context.close();
+ }
+ // Controlled mutable responses prove growth, publication, blanks, safe text,
+ // current-data failure/retry, and fresh reads without editing either sheet.
+ for(const source of sources){
+  const context=await browser.newContext({viewport:{width:375,height:812},serviceWorkers:'block'});await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());
+  const podHead=['Problem Number','Date Published','Location','Topic','Problem (LaTeX)','Worked Solution (LaTeX)','Explanation','Video Link','Alternative 1 Method','Alternative 1 Solution','Alternative 2 Method','Alternative 2 Solution','Solution Video URL','Solution Video Orientation'];
+  const mogHead=['Mile','Published','Topic','ProblemLaTeX','SolutionLaTeX','Explanation','VideoURL','VideoLabel','PublishedDate'];
+  const rows=[source.key==='pod'?podHead:mogHead];
+  for(let n=104;n>=1;n--)if(n!==5)rows.push(source.key==='pod'?[n,'','Location','Exact Topic',String.raw`\frac{x}{2}`,'x',String.raw`Use \(x^2\).`,'https://www.youtube.com/shorts/MQif1qWGxQ0','Alternate',String.raw`\begin{aligned}a&=1+2\\&=3\end{aligned}`,'','','https://youtu.be/IAn8hB0_lOM','Portrait']:[n,'TRUE','Exact Topic',String.raw`\frac{x}{2}`,'x',String.raw`Use \(x^2\).`,'https://youtu.be/MQif1qWGxQ0','Watch fixture','']);
+  if(source.key==='pod')rows.push(['','','','','','',''],['105','','','Unpublished solution','x','','Explanation without a primary solution','https://youtu.be/IAn8hB0_lOM','Alternate','x']);
+  else rows.push([5,'FALSE','Not published','x','x'],[105,'TRUE','Incomplete','x','','']);
+  let body=csv(rows),fail=false,requests=0;const urls=[];
+  await context.route(source.api.sourceUrl.split('?')[0]+'?*',route=>{requests++;urls.push(route.request().url());assert.match(route.request().url(),/_bm_refresh=/);assert.ok(/no-cache|no-store|max-age=0/i.test(JSON.stringify(route.request().headers())),'No-store request must bypass browser caches');return route.fulfill({status:fail?503:200,contentType:'text/csv',headers:{'access-control-allow-origin':'*'},body});});
+  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));await page.goto(origin+source.path+'problem-list/',{waitUntil:'domcontentloaded'});await ready(page);await clean(page);
+  assert.equal(await page.locator('.running-entry').count(),source.key==='pod'?104:103);assert.equal(await page.locator(source.key==='pod'?'#problem-005':'#mile-005').count(),0);
+  if(source.key==='pod')assert.equal(await page.locator('#problem-105 .running-written-section').count(),0,'No invented missing primary solution');
+  const first=page.locator('.running-entry').first();assert.equal(await first.locator('img,script').count(),0);
+  // Replace live data and refresh, with no file changes/redeployment.
+  body=csv(source.key==='pod'?[podHead,['106','','','<img src=x onerror=alert(1)>','x','x','<script>bad</script>','javascript:alert(1)']]:[mogHead,['106','TRUE','<img src=x onerror=alert(1)>','x','x','<script>bad</script>','','','']]);
+  await page.locator('#running-refresh').click();await ready(page);assert.deepEqual(await page.locator('.running-entry').evaluateAll(es=>es.map(e=>+e.dataset.number)),[106]);assert.equal(await page.locator('.running-entry img,.running-entry script').count(),0);await clean(page);
+  const before=requests;fail=true;await page.locator('#running-refresh').click();await page.waitForSelector('#running-error:not([hidden])');assert.equal(requests,before+2);assert.equal(await page.locator('.running-entry').count(),0);assert.equal(await page.locator('#running-print').isDisabled(),true);
+  fail=false;await page.locator('#running-retry').click();await ready(page);assert.equal(await page.locator('#running-error').isHidden(),true);assert.equal(await page.locator('#running-print').isEnabled(),true);assert.equal(new Set(urls).size,urls.length,'Refresh must use unique cache-busting URLs');assert.deepEqual(errors,[]);
+  report.fixtures.push({source:source.key,growth:source.key==='pod'?104:103,refresh:true,errorRetry:true,requests});await context.close();
+ }
+ report.ok=true;console.log('PASS live running documents, written solutions/alternatives, desktop/mobile, new tabs, printing, publication/gaps, growth, safety, refresh, and failure/retry');
+}catch(error){report.failures.push({error:String(error),stack:error.stack});const page=browser?.contexts().at(-1)?.pages().at(-1);if(page){report.failureUrl=page.url();await page.screenshot({path:path.join(out,'failure-final.png'),fullPage:true}).catch(()=>{});}throw error;}finally{if(browser)await browser.close();await new Promise(r=>server.close(r));fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');}

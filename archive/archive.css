@@ -143,3 +143,6 @@ body.archive-modal-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important}
 }
+/* Secondary written-document view; archive cards and video controls unchanged. */
+.archive-document-link{display:inline-flex;align-items:center;justify-content:center;min-height:42px;margin-top:12px;padding:8px 15px;border:1px solid #d71920;border-radius:10px;background:#080808;color:#f5c400;text-decoration:none;font-size:.86rem;font-weight:750}
+.archive-document-link:hover{background:#211012;border-color:#f04449}.archive-document-link:focus-visible{outline:2px solid #f5c400;outline-offset:3px}

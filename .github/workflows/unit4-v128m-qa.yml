@@ -1,0 +1,47 @@
+name: Unit 4 and running documents v12.8.M targeted QA
+on:
+  push:
+    branches: [work/v12.8m-approximation-running-docs-video-fixes]
+    paths-ignore: [.github/workflows/package-v12-8-m.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  targeted-v128m:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --ignore-scripts --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Static, PWA, and affected generator structure
+        run: |
+          npm run qa:static
+          npm run qa:pwa
+          npm run qa:topics
+          npm run qa:unit4
+          node tools/v124-keypad-tangent-mvt-qa.mjs
+      - name: Independent exact arithmetic, stated properties, graph geometry, distributions, and shared review
+        run: BM_U4_QA_SAMPLES=20000 BM_U4_QA_OUTPUT=qa-results/unit4-v128m-math.json node tools/unit4-approximation-sigma-qa.mjs
+      - name: Archive publication, CSV safety, and existing live data regressions
+        run: |
+          node tools/mogollon2026-qa.mjs
+          npm run qa:problem-of-day-archive
+      - name: Real-page approximation, Sigma alignment, videos, and archive desktop/mobile regressions
+        run: node tools/unit4-v128m-browser-qa.mjs
+      - name: Both live running documents and browser printing
+        run: node tools/running-documents-v128m-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit4-v128m-targeted-browser
+          path: |
+            qa-results/unit4-v128m-browser/
+            qa-results/running-documents-v128m/
+            qa-results/unit4-v128m-math.json
+          if-no-files-found: warn
