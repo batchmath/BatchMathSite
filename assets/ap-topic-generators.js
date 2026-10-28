@@ -2904,30 +2904,34 @@ G['difference-quotient']=()=>{
     if(representation==='function'){
       const p=makeFunction(family,n);({f,a,b}=p);ends=Array.from({length:n+1},(_,i)=>add(a,mul(q(i),p.step)));
     }else{
-      uniform=R()<.5;a=q(ri(-3,2));const widths=uniform?Array(n).fill(pick([1,2])):Array.from({length:n},()=>ri(1,3));
+      uniform=needMidpoints||R()<.5;a=q(ri(-3,2));const widths=uniform?Array(n).fill(pick([1,2])):Array.from({length:n},()=>ri(1,3));
       if(!uniform&&new Set(widths).size===1)widths[n-1]=widths[0]===3?2:widths[0]+1;
       ends=[a];for(const w of widths)ends.push(add(ends.at(-1),q(w)));b=ends.at(-1);
     }
     const mids=ends.slice(0,-1).map((x,i)=>midpoint(x,ends[i+1])),points=[...ends,...(needMidpoints?mids:[])];
     let extraData=false;
-    // Only equal partitions receive unused samples. Unequal midpoint tables
-    // state the partition separately, never by emphasizing answer cells.
-    if(representation==='table'&&uniform&&R()<.4){extraData=true;const i=ri(0,n-1);points.push(midpoint(ends[i],mids[i]));if(n>2)points.push(midpoint(mids[(i+1)%n],ends[(i+1)%n+1]));}
-    let tableModel=null;
+    // Equal tables sometimes give twice as many smaller intervals as needed.
+    // Midpoint tables already need the half-step grid; extra samples refine it
+    // once more without identifying which columns the student should select.
+    if(representation==='table'&&uniform&&R()<.4){extraData=true;for(let i=0;i<n;i++){points.push(mids[i]);if(needMidpoints)points.push(midpoint(ends[i],mids[i]),midpoint(mids[i],ends[i+1]));}}
+    let tableModel=null,tableProperties=null;
     if(representation==='table'&&tableConcept){
       // A hidden smooth model constructs compatible data, rather than asserting
       // monotonicity/concavity after generating arbitrary table values.
-      const bend=q(pick([-1,1]),pick([2,4])),sign=pick([-1,1]);
-      const slope=['left','right'].includes(method)?add(q(sign*ri(1,3)),Math.sign(bend[0])===-sign?mul(q(sign*2),mul(q(Math.abs(bend[0]),bend[1]),sub(b,a))):q(0)):q(ri(-3,3));
-      const constant=q(ri(2,8)),coeff=[add(sub(constant,mul(slope,a)),mul(bend,mul(a,a))),sub(slope,mul(q(2),mul(bend,a))),bend];
+      const bend=q(pick([-1,1]),2),sign=pick([-1,1]),dual=R()<.5,span=sub(b,a),needsMonotone=dual||['left','right'].includes(method);
+      const slope=needsMonotone?add(q(sign,2),Math.sign(bend[0])===-sign?mul(q(sign*2),mul(q(Math.abs(bend[0]),bend[1]),span)):q(0)):neg(mul(bend,span));
+      // Center the ordinates rather than adding a large irrelevant vertical
+      // offset that would conceal the curvature in the explanation sketch.
+      const constant=neg(div(add(mul(slope,span),mul(bend,mul(span,span))),q(2))),coeff=[add(sub(constant,mul(slope,a)),mul(bend,mul(a,a))),sub(slope,mul(q(2),mul(bend,a))),bend];
       tableModel={family:'quadratic',coeff,monotone:signOn(derivative(coeff),a,b),concavity:Math.sign(bend[0])};
+      tableProperties={monotone:needsMonotone?tableModel.monotone:0,concavity:dual||!['left','right'].includes(method)?tableModel.concavity:0};
     }
     const unique=[...new Map(points.map(x=>[x.join('/'),x])).values()].sort((x,y)=>val(x)-val(y)),rows=unique.map(x=>({x,y:f?functionValue(f,x):tableModel?scalar(pv(tableModel.coeff,x)):scalar(ri(-4,14))})),lookup=x=>rows.find(r=>val(r.x)===val(x)).y;
     const widths=ends.slice(0,-1).map((x,i)=>sub(ends[i+1],x)),L=ends.slice(0,-1).map(lookup),Rt=ends.slice(1).map(lookup),M=needMidpoints?mids.map(lookup):null;
     const integrate=ys=>total(ys.map((y,i)=>widthValue(y,widths[i],f)));
     const answers={left:integrate(L),right:integrate(Rt),...(M?{midpoint:integrate(M)}:{})};
     answers.trapezoid=scale(plus(answers.left,answers.right),q(1,2));
-    return {kind,representation,family:f?.family||'table',f,tableModel,n,a,b,ends,mids,widths,uniform,extraData,rows,answers,heights:{left:L,right:Rt,midpoint:M}};
+    return {kind,representation,family:f?.family||'table',f,tableModel,tableProperties,n,a,b,ends,mids,widths,uniform,extraData,rows,answers,heights:{left:L,right:Rt,midpoint:M}};
   }
   const inline=s=>`\\(${s}\\)`, equation=s=>`<div class="u4-work-equation">${inline(`\\displaystyle ${s}`)}</div>`;
   // Each fragment is a complete mathematical term. Flex wrapping happens only
@@ -2946,8 +2950,7 @@ G['difference-quotient']=()=>{
   }
   function display(d,prompt,extra=''){
     const integral=`\\int_{${coordinate(d.a,d.f)}}^{${coordinate(d.b,d.f)}}${d.representation==='table'?'f(x)':d.f.tex}\\,dx`;
-    const partition=d.representation==='table'&&!d.uniform&&d.mode==='midpoint'?`<p class="u4-partition">Subintervals: ${d.ends.slice(0,-1).map((x,i)=>inline(`[${tq(x)},${tq(d.ends[i+1])}]`)).join(', ')}.</p>`:'';
-    return `<div class="u4-unit4-question"><div class="question-prompt">${prompt}</div><div class="u4-formula">${inline(`\\displaystyle ${integral}`)}</div>${partition}${d.representation==='table'?table(d):''}${extra}</div>`;
+    return `<div class="u4-unit4-question"><div class="question-prompt">${prompt}</div><div class="u4-formula">${inline(`\\displaystyle ${integral}`)}</div>${d.representation==='table'?table(d):''}${extra}</div>`;
   }
   function partitionWork(d){
     const info=`On ${inline(`[${coordinate(d.a,d.f)},${coordinate(d.b,d.f)}]`)}, use ${inline(`n=${d.n}`)}.`;
@@ -2972,9 +2975,8 @@ G['difference-quotient']=()=>{
     reason+=` ${mid?'The midpoint approximation':trap?'The trapezoidal approximation':`The ${method}-endpoint approximation`} therefore ${over?'overestimates':'underestimates'} the integral.`;
     return {over,behavior,reason};
   }
-  function approximationSketch(d,method){
-    const model=d.f||d.tableModel,a=val(d.a),b=val(d.b);
-    const value=x=>{
+  function sketchGeometry(d,method){
+    const model=d.f||d.tableModel,a=val(d.a),b=val(d.b),value=x=>{
       if(model.coeff)return model.coeff.reduceRight((s,c)=>s*x+val(c),0);
       const A=val(model.A),offset=val(model.offset);
       if(model.family==='rational')return offset+A/(x+model.shift)**model.power;
@@ -2983,26 +2985,35 @@ G['difference-quotient']=()=>{
       if(model.family==='radical')return offset+A*Math.sqrt(x+model.shift);
       return offset+A*Math[model.trig](Math.PI*((model.rate||1)*x+(model.phase||0)));
     };
-    const samples=Array.from({length:121},(_,i)=>{const x=a+(b-a)*i/120;return [x,value(x)];});
+    const samples=Array.from({length:241},(_,i)=>{const x=a+(b-a)*i/240;return [x,value(x)];}),ends=d.ends.map(val);
     let low=Math.min(0,...samples.map(p=>p[1])),high=Math.max(0,...samples.map(p=>p[1]));
-    const padding=(high-low||1)*.1;low-=padding;high+=padding;
-    const X=x=>42+380*(x-a)/(b-a),Y=y=>18+166*(high-y)/(high-low),fmt=n=>Number(n.toFixed(3));
-    const point=(x,y)=>`${fmt(X(x))},${fmt(Y(y))}`,zero=Y(0),ends=d.ends.map(val);
+    const padding=(high-low||1)*.07;low-=padding;high+=padding;
+    let gap=0;
+    for(let i=0;i<d.n;i++)for(let j=1;j<20;j++){
+      const l=ends[i],r=ends[i+1],x=l+(r-l)*j/20,approx=method==='trapezoid'?value(l)+(value(r)-value(l))*(x-l)/(r-l):value(method==='left'?l:method==='right'?r:(l+r)/2);
+      gap=Math.max(gap,Math.abs(value(x)-approx));
+    }
+    return {a,b,value,samples,ends,low,high,gapPixels:208*gap/(high-low)};
+  }
+  function approximationSketch(d,method){
+    const {a,b,value,samples,ends,low,high,gapPixels}=sketchGeometry(d,method);
+    const X=x=>42+380*(x-a)/(b-a),Y=y=>18+208*(high-y)/(high-low),fmt=n=>Number(n.toFixed(3));
+    const point=(x,y)=>`${fmt(X(x))},${fmt(Y(y))}`,zero=Y(0);
     const path=samples.map(([x,y],i)=>`${i?'L':'M'}${point(x,y)}`).join(' ');
     const polygons=ends.slice(0,-1).map((x,i)=>{
       const right=ends[i+1],sample=method==='left'?x:method==='right'?right:(x+right)/2;
       const leftHeight=method==='trapezoid'?value(x):value(sample),rightHeight=method==='trapezoid'?value(right):leftHeight;
       return `<path class="u4-sketch-approximation" data-left="${x}" data-right="${right}" data-left-height="${leftHeight}" data-right-height="${rightHeight}" d="M${point(x,0)} L${point(x,leftHeight)} L${point(right,rightHeight)} L${point(right,0)} Z"/>`;
     }).join('');
-    const guides=ends.map(x=>`<line class="u4-sketch-partition" x1="${fmt(X(x))}" y1="18" x2="${fmt(X(x))}" y2="184"/>`).join('');
+    const guides=ends.map(x=>`<line class="u4-sketch-partition" x1="${fmt(X(x))}" y1="18" x2="${fmt(X(x))}" y2="226"/>`).join('');
     const dots=method==='trapezoid'?ends.map(x=>[x,value(x)]):ends.slice(0,-1).map((x,i)=>{const sample=method==='left'?x:method==='right'?ends[i+1]:(x+ends[i+1])/2;return [sample,value(sample)];});
     const label=(x,v)=>{
       const numerator=d.f?.family==='trigonometric'?`${v[0]===-1?'-':v[0]===1?'':v[0]}π`:String(v[0]),top=v[0]===0?'0':numerator;
-      return v[1]===1?`<text class="u4-sketch-label" x="${x}" y="211" text-anchor="middle">${top}</text>`:`<g class="u4-sketch-label" transform="translate(${x},204)"><text text-anchor="middle">${top}</text><line x1="-15" x2="15" y1="4" y2="4" stroke="currentColor"/><text y="19" text-anchor="middle">${v[1]}</text></g>`;
+      return v[1]===1?`<text class="u4-sketch-label" x="${x}" y="253" text-anchor="middle">${top}</text>`:`<g class="u4-sketch-label" transform="translate(${x},246)"><text text-anchor="middle">${top}</text><line x1="-15" x2="15" y1="4" y2="4" stroke="currentColor"/><text y="19" text-anchor="middle">${v[1]}</text></g>`;
     };
     const title=`${method==='trapezoid'?'Trapezoids':`${method==='midpoint'?'Midpoint':method==='left'?'Left-endpoint':'Right-endpoint'} rectangles`} on the given partition`;
     const caption=d.representation==='table'?'Schematic: one curve consistent with the table and stated behavior.':'The given function and its actual approximation.';
-    return `<figure class="u4-approximation-sketch"><svg viewBox="0 0 460 235" role="img" aria-label="${title}. ${caption}" data-method="${method}" data-representation="${d.representation}"><title>${title}</title><desc>${caption} Yellow outlines show the approximation; the red curve shows the function.</desc>${guides}<line class="u4-sketch-axis" x1="32" y1="${fmt(zero)}" x2="436" y2="${fmt(zero)}"/>${a<=0&&b>=0?`<line class="u4-sketch-axis" x1="${fmt(X(0))}" y1="12" x2="${fmt(X(0))}" y2="190"/>`:''}${polygons}<path class="u4-sketch-curve" d="${path}"/>${dots.map(([x,y])=>`<circle class="u4-sketch-sample" cx="${fmt(X(x))}" cy="${fmt(Y(y))}" r="2.8"/>`).join('')}${label(42,d.a)}${label(422,d.b)}<text class="u4-sketch-label" x="441" y="${fmt(zero-6)}">x</text></svg><figcaption>${caption}</figcaption></figure>`;
+    return `<figure class="u4-approximation-sketch"><svg viewBox="0 0 460 278" role="img" aria-label="${title}. ${caption}" data-method="${method}" data-representation="${d.representation}" data-y-min="${low}" data-y-max="${high}" data-gap-pixels="${gapPixels}"><title>${title}</title><desc>${caption} Yellow outlines show the approximation; the red curve shows the function.</desc>${guides}<line class="u4-sketch-axis" x1="32" y1="${fmt(zero)}" x2="436" y2="${fmt(zero)}"/>${a<=0&&b>=0?`<line class="u4-sketch-axis" x1="${fmt(X(0))}" y1="12" x2="${fmt(X(0))}" y2="232"/>`:''}${polygons}<path class="u4-sketch-curve" d="${path}"/>${dots.map(([x,y])=>`<circle class="u4-sketch-sample" cx="${fmt(X(x))}" cy="${fmt(Y(y))}" r="2.8"/>`).join('')}${label(42,d.a)}${label(422,d.b)}<text class="u4-sketch-label" x="441" y="${fmt(zero-6)}">x</text></svg><figcaption>${caption}</figcaption></figure>`;
   }
   function question(d,variant,prompt,options,steps,meta={}){
     const answer=d.answers[meta.mode],solution=work(steps),stage1={type:'unit4-exact',prompt:meta.error?'Part 1: Find the approximation.':'Enter the approximation.',answerTex:exactBlock(answer),unit4Answer:{kind:'scalar',value:answer},keypadMode:'unit4-exact',explanation:solution};
@@ -3020,19 +3031,27 @@ G['difference-quotient']=()=>{
     return [correct,d.answers.left,d.answers.right,d.answers.midpoint,d.answers.trapezoid,total(ys),omit,scale(correct,q(2)),scale(correct,q(1,2)),scale(correct,q(-1))].filter(Boolean).map(option);
   }
   const approximationFamily=()=>pick(['linear','quadratic','quadratic','cubic','higher-degree','rational','rational','trigonometric','trigonometric','trigonometric','exponential','exponential','logarithmic','radical']);
-  const sampleCount=(family,representation)=>representation==='function'&&['trigonometric','exponential','radical','higher-degree','rational'].includes(family)?pick([2,3]):pick([2,3,4,6]);
+  const sampleCount=(family,representation)=>representation==='function'&&['trigonometric','exponential','radical','higher-degree','rational'].includes(family)?pick([2,3]):pick([2,3,4]);
+  function tableBehavior(d){
+    const p=d.tableProperties,parts=[];
+    if(p.monotone)parts.push(`strictly ${p.monotone>0?'increasing':'decreasing'}`);
+    if(p.concavity)parts.push(`concave ${p.concavity>0?'up':'down'}`);
+    return ` The function is ${parts.join(' and ')} throughout the interval.`;
+  }
+  const approximationInstruction=(d,shape)=>d.uniform?`Use ${d.n} equal subintervals and ${shape} to approximate the integral.`:`Use ${shape} on the subintervals defined by the table to approximate the integral.`;
   G['rectangular-approximations']=(opts={})=>{
-    const representation=R()<.5?'table':'function',requested=opts.rectangularMethod||opts.mode,mode=['left','right','midpoint'].includes(requested)?requested:pick(['left','right','midpoint']),family=approximationFamily(),n=sampleCount(family,representation);
+    const representation=R()<.5?'table':'function',requested=opts.rectangularMethod||opts.mode,mode=['left','right','midpoint'].includes(requested)?requested:pick(['left','right','midpoint']),concept=R()<(representation==='table'?.75:1/3);
     for(let attempt=0;attempt<100;attempt++){
-      const tableConcept=representation==='table'&&R()<.35,d=makeData('rectangular',representation,family,n,mode==='midpoint',tableConcept,mode);d.mode=mode;
+      const family=approximationFamily(),n=sampleCount(family,representation),tableConcept=representation==='table'&&concept,d=makeData('rectangular',representation,family,n,mode==='midpoint',tableConcept,mode);d.mode=mode;
       const sensible=Object.values(d.answers).every(e=>Object.values(e).every(c=>Math.abs(c[0])<=2000000&&c[1]<=1000000));if(!sensible)continue;
       let p;
       {
-        const error=tableConcept||representation==='function'&&R()<(mode==='midpoint'?.28:.55)?classification(d,mode):null;
-        let options=numericOptions(d,mode),steps=[partitionWork(d),...rectangleWork(d,mode)],prompt=`Use ${n}${d.uniform?' equal-width':''} ${mode==='midpoint'?'midpoint':`${mode}-endpoint`} rectangles to approximate the integral.`;
+        const error=concept?classification(d,mode):null;
+        if(concept&&(!error||sketchGeometry(d,mode).gapPixels<2.5))continue;
+        let options=numericOptions(d,mode),steps=[partitionWork(d),...rectangleWork(d,mode)],prompt=approximationInstruction(d,`${mode==='midpoint'?'midpoint':`${mode}-endpoint`} rectangles`);
         if(error){
           prompt+=' Then classify the estimate.';
-          if(tableConcept)prompt+=` The function is ${['left','right'].includes(mode)?'strictly ':''}${error.behavior} throughout the interval.`;
+          if(tableConcept)prompt+=tableBehavior(d);
         }
         p=question(d,`${representation}_${mode}`,prompt,options,steps,{mode,error});
       }
@@ -3048,9 +3067,9 @@ G['difference-quotient']=()=>{
     return [evaluations,mathFlow([`T_{${d.n}}=`,`${coordinate(div(d.widths[0],q(2)),d.f)}\\Bigl[${terms[0]}`,...terms.slice(1).map((s,i)=>`+${s}${i===terms.length-2?'\\Bigr]':''}`),'=',...additiveParts(exact(d.answers.trapezoid))])];
   }
   G['trapezoidal-approximations']=()=>{
-    const representation=R()<.5?'table':'function',family=approximationFamily(),n=sampleCount(family,representation),relation=R()<.1;
+    const representation=R()<.5?'table':'function',concept=R()<(representation==='table'?.75:1/3),relation=!concept&&R()<.1/(representation==='table'?.25:2/3);
     for(let attempt=0;attempt<100;attempt++){
-      const tableConcept=representation==='table'&&!relation&&R()<.35,d=makeData('trapezoidal',representation,family,n,false,tableConcept,'trapezoid');let p;
+      const family=approximationFamily(),n=sampleCount(family,representation),tableConcept=representation==='table'&&concept,d=makeData('trapezoidal',representation,family,n,false,tableConcept,'trapezoid');let p;
       // T=(L+R)/2 is requested only for one shared equal partition.
       if(relation&&!d.uniform)continue;
       if(relation){
@@ -3060,10 +3079,12 @@ G['difference-quotient']=()=>{
         if(d.family==='linear')steps[steps.length-1]+=' Because the graph is a straight line, the trapezoidal value is exact.';
         p=question(d,`${representation}_relationship`,'The left and right rectangular sums below use the same equal partition. Use them to approximate the integral with the trapezoidal rule.',numericOptions(d,'trapezoid'),steps,{mode:'trapezoid',relation:true,extraHtml});
       }else{
-        const error=tableConcept||representation==='function'&&R()<.6?classification(d,'trapezoid'):null;let options=numericOptions(d,'trapezoid'),steps=[partitionWork(d),...trapezoidWork(d)],prompt=`Use ${n}${d.uniform?' equal-width':''} trapezoids to approximate the integral.`;
+        const error=concept?classification(d,'trapezoid'):null;
+        if(concept&&(!error||sketchGeometry(d,'trapezoid').gapPixels<2.5))continue;
+        let options=numericOptions(d,'trapezoid'),steps=[partitionWork(d),...trapezoidWork(d)],prompt=approximationInstruction(d,'trapezoids');
         if(error){
           prompt+=' Then classify the estimate.';
-          if(tableConcept)prompt+=` The function is ${error.behavior} throughout the interval.`;
+          if(tableConcept)prompt+=tableBehavior(d);
         }
         if(d.family==='linear')steps[steps.length-1]+=' Because the graph is a straight line, the trapezoidal value is exact.';
         p=question(d,`${representation}_${d.uniform?'equal':'unequal'}`,prompt,options,steps,{mode:'trapezoid',error,relation:false});

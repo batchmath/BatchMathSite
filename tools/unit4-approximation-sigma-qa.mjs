@@ -104,12 +104,17 @@ function sigma(p){
 }
 function approximation(p){
  const d=p.unit4Meta;assert.ok(d,'Missing shared Unit 4 metadata');
+ assert.ok(d.n>=2&&d.n<=4,'Approximation exceeds four subintervals');
  assert.equal(p.answerType,'staged-calculus');assert.equal(p.stage1.type,'unit4-exact');assert.ok(!p.choices);assert.ok(['left','right','midpoint','trapezoid'].includes(d.mode));
  const text=[p.questionHtml,p.explanation,p.answerTex].join(' ');
  if(d.representation==='table'){
   assert.equal((p.questionHtml.match(/<tr>/g)||[]).length,2,'Table must have two horizontal rows');
   assert.ok(!/Outlined|highlight|u4-partition-endpoint|u4-table-key/.test(p.questionHtml),'No table answer cues');
   for(const m of p.questionHtml.matchAll(/<td([^>]*)>/g))assert.equal(m[1],'','All data cells must have the same ordinary markup');
+  assert.doesNotMatch(p.questionHtml,/Subintervals:|Use the partition|u4-partition"/,'No partition giveaway');
+  if(d.mode==='midpoint')assert.equal(d.uniform,true,'Midpoint tables must use equal subintervals');
+  if(d.uniform&&!d.relation)assert.match(p.questionHtml,new RegExp(`Use ${d.n} equal subintervals`));
+  if(!d.uniform)assert.equal(d.extraData,false,'Unequal tables must not have ambiguous extra columns');
  }
  assert.ok(!/midpoint-endpoint|\\int_-|(?:^|[^\d])1k|[xkn]\^\{1\}|[xkn]\^1(?!\d)/.test(text),'Unwanted notation '+p.id);
  assert.ok(!/\.\d{5}/.test(text),'Unexpected decimal approximation');
@@ -121,7 +126,7 @@ function approximation(p){
  const at=x=>{const e=data.get(x.join('/'));assert.ok(e,'Missing required sample '+x.join('/'));if(d.f)near(exactNumber(e),evaluate(d.f,x),'Independent function evaluation');return exactNumber(e);};
  const needed=[...ends,...((d.mode==='midpoint'||d.mode==='matched')?mids:[])];needed.forEach(at);
  if(d.f)needed.forEach(x=>near(displayedNumber(d.f.tex,number(x)*(d.f.family==='trigonometric'?Math.PI:1)),evaluate(d.f,x),`Displayed function ${d.f.tex} at ${x}: ${JSON.stringify(d.f)}`));
- if(d.extraData)assert.ok(d.rows.length>new Set(needed.map(x=>x.join('/'))).size,'Flagged extra data is not extra');
+ if(d.extraData){assert.ok(d.rows.length>new Set(needed.map(x=>x.join('/'))).size,'Flagged extra data is not extra');assert.equal(d.rows.length-1,d.n*(d.mode==='midpoint'?4:2),'Whole regular extra-data grid');}
  const unit=d.f?.family==='trigonometric'?Math.PI:1;
  const left=widths.reduce((s,w,i)=>s+unit*number(w)*at(ends[i]),0),right=widths.reduce((s,w,i)=>s+unit*number(w)*at(ends[i+1]),0),trap=widths.reduce((s,w,i)=>s+unit*number(w)*(at(ends[i])+at(ends[i+1]))/2,0);
  near(exactNumber(d.answers.left),left,'Left sum');near(exactNumber(d.answers.right),right,'Right sum');near(exactNumber(d.answers.trapezoid),trap,'Trapezoids');
@@ -136,9 +141,14 @@ function approximation(p){
  if(d.error){
   const model=d.f||d.tableModel;assert.ok(model,'Error claim requires a valid function or constructed table model');const useSecond=['midpoint','trapezoid'].includes(d.mode);let signs=[];
   if(d.representation==='table'){
-   assert.match(p.questionHtml,new RegExp(`The function is ${useSecond?'':'strictly '}${d.error.behavior}`));
+   assert.match(p.questionHtml,new RegExp(`${useSecond?'':'strictly '}${d.error.behavior}`));
    d.rows.forEach(r=>near(exactNumber(r.y),evaluate(model,from(r.x)),'Table agrees with its construction'));
    const slopes=d.rows.slice(1).map((r,i)=>(exactNumber(r.y)-exactNumber(d.rows[i].y))/(number(from(r.x))-number(from(d.rows[i].x))));
+   // Read every claimed property from the actual prompt, not its metadata.
+   const monotone=/strictly increasing/.test(p.questionHtml)?1:/strictly decreasing/.test(p.questionHtml)?-1:0,concavity=/concave up/.test(p.questionHtml)?1:/concave down/.test(p.questionHtml)?-1:0;
+   if(monotone)slopes.forEach(s=>assert.ok(monotone*s>1e-9,'Every stated monotonicity property must be true'));
+   if(concavity)slopes.slice(1).forEach((s,i)=>assert.ok(concavity*(s-slopes[i])>1e-9,'Every stated concavity property must use actual x-spacing'));
+   assert.ok(useSecond?concavity:monotone,'Required property was not stated');
    const required=d.error.behavior==='increasing'||d.error.behavior==='concave up'?1:-1;
    if(useSecond)slopes.slice(1).forEach((s,i)=>assert.ok(required*(s-slopes[i])>0,'Concavity must use actual x-spacing'));
    else slopes.forEach(s=>assert.ok(required*s>0,'Table monotonicity'));
@@ -159,6 +169,13 @@ function approximation(p){
   const error=exactNumber(d.answers[d.mode])-(model.family==='trigonometric'?Math.PI:1)*integral;
   assert.equal(error>0,d.error.over,'Independently integrated over/under classification');assert.ok(Math.abs(error)>1e-8,'Conceptual estimate should not accidentally be exact');
   const sketch=p.stage2.explanation;assert.match(sketch,/<svg/);assert.match(sketch,new RegExp(`data-method="${d.mode}"`));assert.equal(/Schematic:/.test(sketch),d.representation==='table');
+  const low=Number(sketch.match(/data-y-min="([^"]+)"/)[1]),high=Number(sketch.match(/data-y-max="([^"]+)"/)[1]);let gap=0,min=0,max=0;
+  for(let i=0;i<d.n;i++)for(let j=0;j<=40;j++){
+   const x=add(ends[i],mul(widths[i],Q(j,40))),y=evaluate(model,x),l=evaluate(model,ends[i]),r=evaluate(model,ends[i+1]),approx=d.mode==='trapezoid'?l+(r-l)*j/40:evaluate(model,d.mode==='left'?ends[i]:d.mode==='right'?ends[i+1]:mids[i]);
+   assert.ok(y>low&&y<high&&approx>low&&approx<high,'Curve/approximation must not be clipped');gap=Math.max(gap,Math.abs(y-approx));min=Math.min(min,y,approx);max=Math.max(max,y,approx);
+  }
+  assert.ok(208*gap/(high-low)>=2.49,'Error geometry is too flat to see');assert.ok((max-min)/(high-low)>.85,'Excessive unused graph range');
+  for(const path of sketch.matchAll(/\bd="([ML0-9., Z-]+)"/g))for(const xy of path[1].matchAll(/(?:M|L)([0-9.-]+),([0-9.-]+)/g)){assert.ok(+xy[1]>=41.999&&+xy[1]<=422.001,'Sketch horizontal clipping');assert.ok(+xy[2]>=17.999&&+xy[2]<=226.001,'Sketch vertical clipping');}
   const pieces=[...sketch.matchAll(/data-left="([^"]+)" data-right="([^"]+)" data-left-height="([^"]+)" data-right-height="([^"]+)"/g)];assert.equal(pieces.length,d.n,'One shape per requested subinterval');
   pieces.forEach((m,i)=>{const l=number(ends[i]),r=number(ends[i+1]),sample=d.mode==='left'?ends[i]:d.mode==='right'?ends[i+1]:mids[i];near(+m[1],l,'Sketch left endpoint');near(+m[2],r,'Sketch right endpoint');near(+m[3],evaluate(model,d.mode==='trapezoid'?ends[i]:sample),'Sketch left height');near(+m[4],evaluate(model,d.mode==='trapezoid'?ends[i+1]:sample),'Sketch right height');});
  }
@@ -166,11 +183,11 @@ function approximation(p){
  const checker=box.window.BatchMathUnit4Answers,answer=p.stage1.unit4Answer,canonical=checker.expression(d.expected);assert.equal(checker.check(canonical,answer).ok,true,'Typed exact answer');assert.equal(checker.check(`(${canonical})+1`,answer).ok,false,'Wrong typed answer');
  if(d.error){const stage=p.stage2;assert.equal(stage.choices.length,8);assert.equal(new Set(stage.choices).size,8);assert.equal(stage.choices[stage.correctIndex],`${d.error.over?'Overestimate':'Underestimate'} because the function is ${d.error.behavior}`);const reason=stage.choices[stage.correctIndex];assert.equal(/concave/.test(reason),['midpoint','trapezoid'].includes(d.mode),'Method-appropriate reason');}else assert.equal(p.stage2,null);
  assert.ok(/<ol class="u4-work">/.test(p.explanation),'Missing vertical worked solution');
- const s=stats[d.kind]||(stats[d.kind]={total:0,representation:{},family:{},mode:{},n:{},tableSpacing:{},extra:0,errors:0,features:{},cross:{}});s.total++;inc(s.representation,d.representation);inc(s.family,d.family);inc(s.mode,d.mode);inc(s.n,d.n);if(d.representation==='table'){inc(s.tableSpacing,d.uniform?'equal':'unequal');if(d.extraData)s.extra++;if(d.error)inc(s.features,'two_part_table');}if(d.error){s.errors++;inc(s.features,`${d.mode}_${d.error.over?'overestimate':'underestimate'}`);}if(d.relation)inc(s.features,'left_right_relationship');if(d.f?.family==='quadratic')inc(s.features,`${d.f.coeff[2][0]>0?'upward':'downward'}_quadratic`);if(d.f?.coeff?.some(c=>c[1]!==1))inc(s.features,'fractional_coefficients');if(d.f?.trig)inc(s.features,d.f.trig);inc(s.cross,`${d.family}/${d.mode}/${d.n}`);
+ const s=stats[d.kind]||(stats[d.kind]={total:0,representation:{},family:{},mode:{},n:{},tableSpacing:{},extra:0,errors:0,features:{},cross:{}});s.total++;inc(s.representation,d.representation);inc(s.family,d.family);inc(s.mode,d.mode);inc(s.n,d.n);if(d.representation==='table'){inc(s.tableSpacing,d.uniform?'equal':'unequal');if(d.extraData)s.extra++;if(d.error)inc(s.features,'two_part_table');if(d.tableProperties?.monotone&&d.tableProperties?.concavity)inc(s.features,'dual_property_table');}else if(d.error)inc(s.features,'two_part_function');if(d.error){s.errors++;inc(s.features,`${d.mode}_${d.error.over?'overestimate':'underestimate'}`);}if(d.relation)inc(s.features,'left_right_relationship');if(d.f?.family==='quadratic')inc(s.features,`${d.f.coeff[2][0]>0?'upward':'downward'}_quadratic`);if(d.f?.coeff?.some(c=>c[1]!==1))inc(s.features,'fractional_coefficients');if(d.f?.trig)inc(s.features,d.f.trig);inc(s.cross,`${d.family}/${d.mode}/${d.n}`);
 }
 const sample=Number(process.env.BM_U4_QA_SAMPLES||12000),requested=process.argv.slice(2),slugs=requested.length?requested:['rectangular-approximations','trapezoidal-approximations','introduction-to-sigma-notation'];
 for(const slug of slugs){for(let i=0;i<sample;i++){const p=get(slug)();if(p.unit4Meta?.kind==='sigma')sigma(p);else approximation(p);}console.log('PASS',slug,sample);}
-for(const s of Object.values(stats).filter(s=>s.representation)){const ratio=s.representation.table/s.total;assert.ok(ratio>.47&&ratio<.53,'Representation not approximately 50/50');const two=s.features.two_part_table/s.representation.table;assert.ok(two>.24&&two<.42,'Two-part tables must be a meaningful subset, not every table');}
+for(const s of Object.values(stats).filter(s=>s.representation)){const ratio=s.representation.table/s.total;assert.ok(ratio>.47&&ratio<.53,'Representation not approximately 50/50');const two=s.features.two_part_table/s.representation.table,formula=s.features.two_part_function/s.representation.function;assert.ok(Math.abs(two-.75)<.025,'Table two-part distribution must be 75/25');assert.ok(Math.abs(formula-1/3)<.025,'Function two-part distribution must be 1/3');assert.ok(s.features.dual_property_table/s.features.two_part_table>.3,'Meaningful dual-property subset');assert.ok(s.extra/s.tableSpacing.equal>.25,'Extra-data equal tables must occur regularly');}
 if(stats.sigma)for(const[family,target]of Object.entries({numerical:.15,identities:.4,riemann:.45}))assert.ok(Math.abs(stats.sigma.family[family]/stats.sigma.total-target)<.025,'Sigma weighting '+family);
 for(const mode of ['left','right','midpoint'])for(let i=0;i<600;i++)assert.equal(get('rectangular-approximations')({rectangularMethod:mode}).unit4Meta.mode,mode,'Focused rectangular filter');
 const answers=box.window.BatchMathUnit4Answers;for(const text of ['n(n+1)/2','(n^2+n)/2','n/2+n^2/2'])assert.equal(answers.check(text,{kind:'n-expression',value:{2:[1,2],1:[1,2]}}).ok,true,'Equivalent factored/reordered n expression');assert.equal(answers.check('n/0',{kind:'n-expression',value:{1:[1,1]}}).valid,false);
