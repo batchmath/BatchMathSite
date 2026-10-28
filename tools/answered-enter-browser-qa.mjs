@@ -9,6 +9,7 @@ export const realEnterEngines = new Set([
   'calc_prep_trig_equations',
 ]);
 export async function exerciseAnsweredEnter(page) {
+  if(await page.locator('#choices.unit4-typed-answer.staged-calculus-answer').count())return exerciseStagedAnsweredEnter(page);
   const before=await page.evaluate(()=>window.BatchMathRepro.problemCount);
   const stage1=page.locator('[data-stage1]').first();
   if(await stage1.count())await stage1.click();
@@ -33,14 +34,55 @@ export async function exerciseAnsweredEnter(page) {
   if(submitted.count!==before)throw new Error('answer submission skipped its feedback and generated another problem');
   if(!submitted.feedback)throw new Error('answer submission did not reveal feedback');
   await page.locator('#next').waitFor({state:'visible',timeout:3000});
-  // Use focus left by the actual answer handler, including custom editors.
-  await page.keyboard.press('Enter');
-  await page.waitForTimeout(1000); // catches delayed default activation/auto-next
+  await advanceAnsweredExactlyOnce(page,before);
+  return {staged:false,parts:await stage1.count()?2:1};
+}
+
+async function advanceAnsweredExactlyOnce(page,before){
+  // Hold the physical key across the transition; repeated keydown events must
+  // reach the actual focused editor/document, rather than an unrelated window.
+  await page.keyboard.down('Enter');
+  try{
+    await page.waitForFunction(n=>window.BatchMathRepro.problemCount===n+1,before,{timeout:3000});
+    await page.keyboard.down('Enter');await page.waitForTimeout(180);
+    await page.keyboard.down('Enter');await page.waitForTimeout(180);
+  }finally{await page.keyboard.up('Enter');}
+  await page.waitForTimeout(650);
   const after=await page.evaluate(()=>window.BatchMathRepro.problemCount);
-  if(after!==before+1)throw new Error(`answered Enter generated ${after-before} problems instead of 1`);
-  await page.evaluate(()=>window.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',repeat:true,bubbles:true,cancelable:true})));
-  await page.waitForTimeout(250);
-  if(await page.evaluate(()=>window.BatchMathRepro.problemCount)!==after)throw new Error('held Enter generated another problem');
+  if(after!==before+1)throw new Error(`answered/held Enter generated ${after-before} problems instead of 1`);
+}
+async function exerciseStagedAnsweredEnter(page){
+  const before=await page.evaluate(()=>window.BatchMathRepro.problemCount),box=page.locator('#choices'),one=box.locator('.staged-part-one');
+  const sameCount=async label=>{if(await page.evaluate(()=>window.BatchMathRepro.problemCount)!==before)throw new Error(label+' silently generated another problem');};
+  const submit=async host=>{
+    const choices=host.locator('.staged-choice:enabled');
+    if(await choices.count())await choices.first().click();
+    else{
+      const editor=host.locator('.bm-calc-editor');
+      if(await editor.count()){await editor.click();await page.keyboard.type('12345');await page.keyboard.press('Enter');}
+      else{const input=host.locator('.staged-exact-input');await input.fill('12345');await input.press('Enter');}
+    }
+    const feedback=host.locator('.staged-feedback .result');await feedback.waitFor({state:'visible',timeout:3000});
+    if(!(await feedback.textContent()).trim())throw new Error('stage submission did not reveal its feedback');
+    await sameCount('Stage submission');
+  };
+  if(await page.locator('#next').isVisible())throw new Error('Next appeared before an answer');
+  await submit(one);const advance=one.locator('.staged-continue');let parts=1;
+  if(await advance.count()){
+    parts=2;
+    if(await page.locator('#next').isVisible())throw new Error('Next appeared before Part 2 was answered');
+    if(await box.locator('.staged-part-two').count())throw new Error('Part 2 appeared before Continue');
+    await page.keyboard.press('Enter');await page.waitForTimeout(100);await sameCount('Premature Enter');
+    if(await box.locator('.staged-part-two').count())throw new Error('Wrong Part 1 feedback was skipped by Enter');
+    await advance.click();const two=box.locator('.staged-part-two');await two.waitFor({state:'visible'});
+    await sameCount('Continue');if(await page.locator('#next').isVisible())throw new Error('Next appeared before the second answer');
+    await submit(two);
+  }
+  await page.locator('#next').waitFor({state:'visible',timeout:3000});await sameCount('Completed feedback');
+  if(await box.locator('.staged-feedback .result').count()!==parts)throw new Error('A completed stage lost its feedback');
+  await page.waitForFunction(()=>document.activeElement===document.getElementById('next'),null,{timeout:3000});
+  await advanceAnsweredExactlyOnce(page,before);
+  return {staged:true,parts,feedback:true,nextAfterCompletion:true,heldEnter:true};
 }
 
 export async function exerciseAdvancedHints(page){

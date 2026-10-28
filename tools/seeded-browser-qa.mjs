@@ -14,7 +14,7 @@ fs.mkdirSync(OUT,{recursive:true});
 const PORT=Number(process.env.BM_QA_PORT||4173);
 const SEED_COUNT=Math.max(2,Number(process.env.BM_QA_SEEDS||3));
 const BASE_SEED=Number(process.env.BM_QA_BASE_SEED||1040000);
-const errors=[];const warnings=[];const results=[];let enterAdvanceChecks=0;let answeredEnterChecks=0;
+const errors=[];const warnings=[];const results=[];let enterAdvanceChecks=0;let answeredEnterChecks=0;const rectangularStageRegression=[];
 const ENTER_ADVANCE_EXCLUSIONS=new Set(['ap_classifying_discontinuities']);
 const norm=p=>p.split(path.sep).join('/');
 
@@ -27,7 +27,7 @@ function staticServer(){return http.createServer((req,res)=>{try{const u=new URL
 async function waitForServer(server){await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(PORT,'127.0.0.1',resolve);});}
 
 async function sample(context,engine,seed,checkEnterAdvance=false){
-  const page=await context.newPage();const pageErrors=[];const consoleErrors=[];
+  const page=await context.newPage();const pageErrors=[];const consoleErrors=[];let answeredFlow=null;
   page.on('pageerror',e=>pageErrors.push(String(e.message||e)));
   page.on('console',msg=>{if(msg.type()==='error'){const t=msg.text();if(!/ERR_FAILED|Failed to load resource/i.test(t))consoleErrors.push(t);}});
   const url=`http://127.0.0.1:${PORT}${engine.route}?bm_seed=${encodeURIComponent(seed)}&bm_qa=1&bm_debug=0`;
@@ -70,9 +70,12 @@ async function sample(context,engine,seed,checkEnterAdvance=false){
     if(checkEnterAdvance && (engine.course==='ap_calculus_ab'||engine.course==='calculus_prep')){
       if(engine.engineId==='ap_advanced_trig_limits'){await exerciseAdvancedHints(page);answeredEnterChecks++;}
       if(realEnterEngines.has(engine.engineId)){
-        await exerciseAnsweredEnter(page);
+        answeredFlow=await exerciseAnsweredEnter(page);
         answeredEnterChecks++;
       }
+      // A real staged submission already exercised Next and held Enter. Its new
+      // unanswered problem intentionally blocks Enter; do not override that guard.
+      if(answeredFlow?.staged){enterAdvanceChecks++;}else{
       // Routing-only smoke test for every standard engine. The separate tests
       // above submit real answers; this synthetic setup tests the visible control.
       const before=await page.evaluate(()=>window.BatchMathRepro.problemCount);
@@ -98,10 +101,11 @@ async function sample(context,engine,seed,checkEnterAdvance=false){
       const after=await page.evaluate(()=>Number(window.BatchMathRepro?.problemCount||0));
       if(after!==before+1)throw new Error(`Enter advance generated ${after-before} problems instead of exactly 1`);
       enterAdvanceChecks++;
+      }
     }
     if(pageErrors.length)throw new Error(`page error after interaction: ${pageErrors.join(" | ")}`);
     if(consoleErrors.length)throw new Error(`console error after interaction: ${consoleErrors.join(" | ")}`);
-    return snap;
+    return {...snap,answeredFlow};
   } finally {await page.close();}
 }
 
@@ -131,10 +135,21 @@ try{
     }
     if(seen.size<2)warnings.push(`${engine.engineId}: ${SEED_COUNT} sampled seeds produced only ${seen.size} unique first-problem ID(s)`);
   }
+  // Both shapes are deterministic regression requirements, independent of any
+  // optional seed-count/base-seed settings used for the broad engine sample.
+  const rectangular=list.find(e=>e.engineId==='ap_topic_rectangular_approximations');
+  if(!rectangular)errors.push('Rectangular regression engine is missing');
+  else for(const [seed,parts]of [[1040000,1],[1040001,2]]){
+    try{
+      const a=await sample(context,rectangular,String(seed),true);
+      if(!a.answeredFlow?.staged||a.answeredFlow.parts!==parts)throw new Error(`Expected a genuine ${parts}-part problem`);
+      rectangularStageRegression.push({seed,parts,...a.answeredFlow,ok:true});
+    }catch(e){errors.push(`Rectangular staged regression seed=${seed}: ${e.message}`);rectangularStageRegression.push({seed,parts,ok:false,error:e.message});}
+  }
   await context.close();
 } catch(e){errors.push(`Browser QA infrastructure failure: ${e.stack||e.message||e}`);
 } finally {if(browser)await browser.close().catch(()=>{});await new Promise(r=>server.close(r));}
 
-const report={ok:errors.length===0,generatedAt:new Date().toISOString(),seedCount:SEED_COUNT,engineCount:new Set(results.map(r=>r.engineId)).size,samples:results.length,enterAdvanceChecks,answeredEnterChecks,errors,warnings,results};
+const report={ok:errors.length===0,generatedAt:new Date().toISOString(),seedCount:SEED_COUNT,engineCount:new Set(results.map(r=>r.engineId)).size,samples:results.length,enterAdvanceChecks,answeredEnterChecks,rectangularStageRegression,errors,warnings,results};
 fs.writeFileSync(path.join(OUT,'seeded-generator-qa.json'),JSON.stringify(report,null,2)+'\n');
-const lines=[`BatchMath seeded generator browser QA`,`Result: ${report.ok?'PASS':'FAIL'}`,`Engines: ${report.engineCount}`,`Seeds per engine: ${SEED_COUNT}`,`Reproducibility samples: ${results.filter(r=>r.ok).length}`,`Calculus/Calculus Prep Enter routing checks: ${enterAdvanceChecks}`,`Real answer/Enter workflow checks: ${answeredEnterChecks}`,'',`Warnings: ${warnings.length}`,...warnings.map(x=>`- ${x}`),'',`Errors: ${errors.length}`,...errors.map(x=>`- ${x}`),''];fs.writeFileSync(path.join(OUT,'seeded-generator-qa.txt'),lines.join('\n'));console.log(lines.join('\n'));if(errors.length)process.exit(1);
+const lines=[`BatchMath seeded generator browser QA`,`Result: ${report.ok?'PASS':'FAIL'}`,`Engines: ${report.engineCount}`,`Seeds per engine: ${SEED_COUNT}`,`Reproducibility samples: ${results.filter(r=>r.ok).length}`,`Calculus/Calculus Prep Enter routing checks: ${enterAdvanceChecks}`,`Real answer/Enter workflow checks: ${answeredEnterChecks}`,`Rectangular one/two-part regressions: ${rectangularStageRegression.filter(x=>x.ok).length}/2`,'',`Warnings: ${warnings.length}`,...warnings.map(x=>`- ${x}`),'',`Errors: ${errors.length}`,...errors.map(x=>`- ${x}`),''];fs.writeFileSync(path.join(OUT,'seeded-generator-qa.txt'),lines.join('\n'));console.log(lines.join('\n'));if(errors.length)process.exit(1);
