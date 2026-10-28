@@ -1,0 +1,302 @@
+{
+  "notes_grouping": {
+    "newton_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "geometry_pages": [
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "theorems_and_rules_pages": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "ftc_examples_pages": [
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "integral_rules_examples_pages": [
+      21,
+      22
+    ]
+  },
+  "sources": {
+    "notes": {
+      "file": "28-49.pdf",
+      "pages": 22,
+      "sha256": "79978aef0a13e57da7f7a72b8dabed56102c89f9e576473b9c22a62dd6afb09e"
+    },
+    "newton_assignment": {
+      "file": "03 - Integrals in Newton_s Notation.pdf",
+      "pages": 1,
+      "sha256": "11f12d6298b4e9fe6ef9bf9864dfb59769c812e8cc0e6c1db05aab5f115a15aa"
+    },
+    "newton_key": {
+      "file": "03 - Integrals in Newton_s Notation Answers.pdf",
+      "pages": 1,
+      "sha256": "471a888a40829d18e8416a2111327d6adac67d83ae969834506c31c5d58bb7bb"
+    },
+    "geometry_assignment": {
+      "file": "04 - Integrals using Geometry.pdf",
+      "pages": 1,
+      "sha256": "10636770ed689595336b38c83be16c131d37616562bc4961954aad0feb5444b7"
+    },
+    "geometry_key": {
+      "file": "04 - Integrals using Geometry Answers.pdf",
+      "pages": 2,
+      "sha256": "4175eee7cb35f42a74e5a208d1b5646ddef928cca758d0cc33a1f1cfc0a364a4"
+    },
+    "ftc_assignment": {
+      "file": "05 - Fundamental Theorem of Calculus.pdf",
+      "pages": 1,
+      "sha256": "2744f2862537c51ac01eb5caddc60f781635c1a1bffa726631829a4abe96f7c5"
+    },
+    "ftc_key": {
+      "file": "05 - Fundamental Theorem of Calculus Answers.pdf",
+      "pages": 1,
+      "sha256": "de192e43a7723e410e7f8e95e9860d83de1e710362e0383ef92cf6abbdfe7d5a"
+    },
+    "rules_assignment": {
+      "file": "06 - Combining Integrals Rules.pdf",
+      "pages": 1,
+      "sha256": "19f03645320af0f1862227d52389024aa510e04bf5a6faa6c865bc29ba5bd1cd"
+    },
+    "rules_key": {
+      "file": "06 - Combining Integrals Rules Answers.pdf",
+      "pages": 1,
+      "sha256": "12cf540b68313caed2af53bc446375798ed84bb43e82324c51a094f5814d1c33"
+    },
+    "review15": {
+      "file": "15 - Integrals Test Review.pdf",
+      "pages": 4,
+      "sha256": "8d41c0dbd5855a9a39fed75947928b6445bd92d5c07cce16923490cdf1b7ac49"
+    },
+    "review15_key": {
+      "file": "15 - Integrals Test Review Answers.pdf",
+      "pages": 15,
+      "sha256": "0abe7e6960d1276930b2aff494d0b142673ada2369c8bbaee2145f5fcac16234"
+    },
+    "review17": {
+      "file": "17 - Extra Integrals Test Review.pdf",
+      "pages": 5,
+      "sha256": "152535b2e52fba4ffedc7b3f7911c7af7a440ffac140e6d8a540d7f8f9946cb5"
+    },
+    "review17_key": {
+      "file": "17 - Extra Integrals Test Review Answers.pdf",
+      "pages": 12,
+      "sha256": "213bb5b57a9f8e9349974c82935cb76f7ffecaf124ca382922d5c056b6c4be5c"
+    }
+  },
+  "duplicates": {
+    "15 - Test Review.pdf": "15 - Integrals Test Review.pdf",
+    "15 - Test Review Answers.pdf": "15 - Integrals Test Review Answers.pdf"
+  },
+  "families": {
+    "newton": [
+      {
+        "family": "linear_construction",
+        "targetPercent": 35,
+        "tier": "routine",
+        "evidence": "N1-4; A03 1-2; R17 1a,c"
+      },
+      {
+        "family": "quadratic_monomial",
+        "targetPercent": 20,
+        "tier": "intermediate",
+        "evidence": "N5; A03 3"
+      },
+      {
+        "family": "quadratic_combination",
+        "targetPercent": 25,
+        "tier": "synthesis",
+        "evidence": "N6; A03 4-6; R15 3a,d; R17 1b,d"
+      },
+      {
+        "family": "nonpolynomial_representation",
+        "targetPercent": 20,
+        "tier": "intermediate",
+        "evidence": "R15 3b,e (representation only)"
+      }
+    ],
+    "geometry": [
+      {
+        "family": "linear_triangle",
+        "targetPercent": 10,
+        "tier": "routine",
+        "evidence": "A04 2; R17 5b"
+      },
+      {
+        "family": "linear_trapezoid",
+        "targetPercent": 20,
+        "tier": "routine",
+        "evidence": "A04 1,3; R17 5a,c"
+      },
+      {
+        "family": "cross_axis_line",
+        "targetPercent": 10,
+        "tier": "synthesis",
+        "evidence": "A04 4 and its signed-area key"
+      },
+      {
+        "family": "absolute_value",
+        "targetPercent": 15,
+        "tier": "intermediate",
+        "evidence": "N7-8; A04 5-6"
+      },
+      {
+        "family": "semicircle",
+        "targetPercent": 15,
+        "tier": "routine",
+        "evidence": "N9; A04 7,9; R17 5f,i"
+      },
+      {
+        "family": "quarter_circle",
+        "targetPercent": 10,
+        "tier": "routine",
+        "evidence": "A04 8; R17 5d,e"
+      },
+      {
+        "family": "rectangle_circle",
+        "targetPercent": 20,
+        "tier": "intermediate",
+        "evidence": "N10-11; A04 10; R17 5g,h"
+      }
+    ],
+    "ftc": [
+      {
+        "family": "upper_identity",
+        "targetPercent": 25,
+        "tier": "routine",
+        "evidence": "N16; A05 1-2; R15 2a,b; R17 3a"
+      },
+      {
+        "family": "lower_identity",
+        "targetPercent": 10,
+        "tier": "routine",
+        "evidence": "N18; A05 6; R15 2c"
+      },
+      {
+        "family": "upper_linear",
+        "targetPercent": 10,
+        "tier": "intermediate",
+        "evidence": "Chain-rule component of A05 8 and R15 2f"
+      },
+      {
+        "family": "upper_power",
+        "targetPercent": 15,
+        "tier": "intermediate",
+        "evidence": "N17; A05 3; R15 2d; R17 3b"
+      },
+      {
+        "family": "lower_power",
+        "targetPercent": 10,
+        "tier": "intermediate",
+        "evidence": "A05 7; lower-bound component of R17 3d"
+      },
+      {
+        "family": "upper_trig",
+        "targetPercent": 10,
+        "tier": "intermediate",
+        "evidence": "A05 4; R15 2e"
+      },
+      {
+        "family": "both_algebraic",
+        "targetPercent": 12,
+        "tier": "synthesis",
+        "evidence": "N19; A05 5,8; R15 2f"
+      },
+      {
+        "family": "both_transcendental",
+        "targetPercent": 8,
+        "tier": "synthesis",
+        "evidence": "N20; A05 9; R15 2g; R17 3c,d"
+      }
+    ],
+    "rules": [
+      {
+        "family": "reverse_limits",
+        "targetPercent": 10,
+        "tier": "routine",
+        "evidence": "N22; A06 1a; R15 4f; R17 2e"
+      },
+      {
+        "family": "zero_width",
+        "targetPercent": 5,
+        "tier": "routine",
+        "evidence": "N13,21; A06 1c; R15 4b,5a; R17 2b"
+      },
+      {
+        "family": "linearity",
+        "targetPercent": 20,
+        "tier": "routine",
+        "evidence": "N13,21; A06 1b; R15 4a,5c; R17 2c"
+      },
+      {
+        "family": "interval_decomposition",
+        "targetPercent": 30,
+        "tier": "intermediate",
+        "evidence": "N13,22; A06 1d,2a,b,d; R15 4c,d,5d-f; R17 2a,f,g"
+      },
+      {
+        "family": "combined_rules",
+        "targetPercent": 25,
+        "tier": "synthesis",
+        "evidence": "A06 1e,2c,e; R15 4e,5b,c; R17 2d,f"
+      },
+      {
+        "family": "reversed_combination",
+        "targetPercent": 10,
+        "tier": "synthesis",
+        "evidence": "A06 1e; R17 2g and combined/reversed source facts"
+      }
+    ]
+  },
+  "interaction_targets": {
+    "newton": {
+      "onePart": 20,
+      "twoPart": 80,
+      "typed": 100,
+      "multipleChoice": 0
+    },
+    "geometry": {
+      "onePart": 100,
+      "twoPart": 0,
+      "typed": 100,
+      "multipleChoice": 0
+    },
+    "ftc": {
+      "onePart": 100,
+      "twoPart": 0,
+      "typed": 100,
+      "multipleChoice": 0
+    },
+    "rules": {
+      "onePart": 65,
+      "twoPart": 35,
+      "typed": 100,
+      "multipleChoice": 0
+    }
+  },
+  "scope_exclusions": [
+    "Inverse sum-to-integral recognition families without source questions",
+    "Left-endpoint construction families without source questions",
+    "Polynomial powers above two in Newton evaluation",
+    "Standalone graph-only geometry questions",
+    "Standalone total-area questions",
+    "Improper integral assessment",
+    "FTC antiderivative-finding or unrelated Part 2 evaluation practice"
+  ]
+}
