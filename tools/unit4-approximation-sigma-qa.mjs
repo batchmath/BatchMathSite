@@ -48,6 +48,34 @@ const near=(a,b,context)=>assert.ok(Math.abs(a-b)<1e-8*Math.max(1,Math.abs(a),Ma
 function exactNumber(e){let out=0;for(const[k,c]of Object.entries(e)){let atom=1;for(const part of k.split('*').filter(Boolean)){if(part==='pi')atom*=Math.PI;else if(part.startsWith('sqrt'))atom*=Math.sqrt(Number(part.slice(4)));else if(part.startsWith('ln'))atom*=Math.log(Number(part.slice(2)));else if(part.startsWith('exp:')){const[,b,n,d]=part.split(':');atom*=(b==='e'?Math.E:Number(b))**(Number(n)/Number(d));}else throw Error('Unknown exact atom '+part);}out+=c[0]/c[1]*atom;}return out;}
 const poly=(coeff,x)=>coeff.reduceRight((a,c)=>add(mul(a,x),from(c)),zero());
 function evaluate(f,x){if(f.coeff)return number(poly(f.coeff,x));const t=number(x),A=f.A[0]/f.A[1],offset=f.offset[0]/f.offset[1];if(f.family==='logarithmic')return A*(offset+Math.log(t));if(f.family==='rational')return offset+A/(t+f.shift)**f.power;if(f.family==='exponential')return offset+A*(f.base==='e'?Math.E:f.base)**(f.rate*t);if(f.family==='radical')return offset+A*Math.sqrt(t+f.shift);if(f.family==='trigonometric')return offset+A*Math[f.trig](Math.PI*(f.rate*t+(f.phase||0)));throw Error('Unknown function');}
+const polynomialAt=(c,x)=>c.reduceRight((s,v)=>s*x+v,0),differentiate=c=>c.slice(1).map((v,i)=>v*(i+1));
+// Independent interval analysis: polynomial extrema occur only at endpoints
+// or roots of the derivative. Recursive derivative isolation catches even
+// narrow/tangent critical points that a uniform sampling grid could miss.
+function polynomialRoots(c,a,b){
+ c=c.slice();while(c.length>1&&Math.abs(c.at(-1))<1e-14)c.pop();if(c.length<=1)return [];
+ if(c.length===2){const x=-c[0]/c[1];return x>a&&x<b?[x]:[];}
+ const cuts=[a,...polynomialRoots(differentiate(c),a,b),b],roots=[];
+ for(const x of cuts)if(Math.abs(polynomialAt(c,x))<1e-10)roots.push(x);
+ for(let i=0;i<cuts.length-1;i++){let l=cuts[i],r=cuts[i+1],fl=polynomialAt(c,l),fr=polynomialAt(c,r);if(fl*fr>=0)continue;for(let j=0;j<60;j++){const m=(l+r)/2,fm=polynomialAt(c,m);if(fl*fm<=0){r=m;fr=fm;}else{l=m;fl=fm;}}roots.push((l+r)/2);}
+ return roots.filter((x,i)=>x>a&&x<b&&!roots.slice(0,i).some(y=>Math.abs(x-y)<1e-8)).sort((x,y)=>x-y);
+}
+function verifyWholeInterval(model,a,b,second,sign){
+ let values;
+ if(model.coeff){let c=model.coeff.map(v=>v[0]/v[1]);c=differentiate(c);if(second)c=differentiate(c);values=[a,...polynomialRoots(differentiate(c),a,b),b].map(x=>polynomialAt(c,x));}
+ else{
+  const A=model.A[0]/model.A[1];
+  if(model.family==='rational'){assert.ok(a+model.shift>0&&b+model.shift>0,'Rational domain on full interval');values=[second?A:-A];}
+  else if(model.family==='logarithmic'){assert.ok(a>0,'Log domain on full interval');values=[second?-A:A];}
+  else if(model.family==='radical'){assert.ok(a+model.shift>0,'Root derivative domain on full interval');values=[second?-A:A];}
+  else if(model.family==='exponential'){assert.ok(model.base==='e'||model.base>0&&model.base!==1);values=[second?A:A*model.rate];}
+  else{
+   const lo=Math.PI*(model.rate*a+(model.phase||0)),hi=Math.PI*(model.rate*b+(model.phase||0)),angles=[lo,hi];for(let k=Math.ceil(lo/(Math.PI/2));k<=Math.floor(hi/(Math.PI/2));k++)angles.push(k*Math.PI/2);
+   values=angles.map(t=>second?-A*Math[model.trig](t):A*(model.trig==='sin'?Math.cos(t):-Math.sin(t)));
+  }
+ }
+ assert.ok(values.every(v=>sign*v>=-1e-8)&&values.some(v=>sign*v>1e-8),'Claim fails independent whole-interval derivative analysis');
+}
 const inc=(map,key)=>map[key]=(map[key]||0)+1;
 const stats={};
 function nValue(p,n){const N=Q(n);return sum(Object.entries(p).map(([power,c])=>{const k=Number(power),term=Q(BigInt(n)**BigInt(Math.abs(k)));return k<0?div(from(c),term):mul(from(c),term);}));}
@@ -113,7 +141,7 @@ function approximation(p){
   for(const m of p.questionHtml.matchAll(/<td([^>]*)>/g))assert.equal(m[1],'','All data cells must have the same ordinary markup');
   assert.doesNotMatch(p.questionHtml,/Subintervals:|Use the partition|u4-partition"/,'No partition giveaway');
   if(d.mode==='midpoint')assert.equal(d.uniform,true,'Midpoint tables must use equal subintervals');
-  if(d.uniform&&!d.relation)assert.match(p.questionHtml,new RegExp(`Use ${d.n} equal subintervals`));
+  if(d.uniform)assert.match(p.questionHtml,new RegExp(`${d.n} equal subintervals`));
   if(!d.uniform)assert.equal(d.extraData,false,'Unequal tables must not have ambiguous extra columns');
  }
  assert.ok(!/midpoint-endpoint|\\int_-|(?:^|[^\d])1k|[xkn]\^\{1\}|[xkn]\^1(?!\d)/.test(text),'Unwanted notation '+p.id);
@@ -163,6 +191,7 @@ function approximation(p){
    if(Math.abs(derivative)>1e-9)signs.push(Math.sign(derivative));
   }
   assert.ok(signs.length&&new Set(signs).size===1,'Error rule not valid on full interval');const sign=signs[0],over=d.mode==='midpoint'?sign<0:d.mode==='trapezoid'?sign>0:d.mode==='left'?sign<0:sign>0;assert.equal(d.error.over,over,'Incorrect over/underestimate');
+  verifyWholeInterval(model,number(ends[0]),number(ends.at(-1)),useSecond,sign);
   const lo=number(ends[0]),hi=number(ends.at(-1));let integral;
   if(model.coeff)integral=model.coeff.reduce((s,c,i)=>s+c[0]/c[1]*(hi**(i+1)-lo**(i+1))/(i+1),0);
   else{let total=0;for(let i=0;i<=80;i++){const x=add(ends[0],mul(sub(ends.at(-1),ends[0]),Q(i,80)));total+=(i===0||i===80?1:i%2?4:2)*evaluate(model,x);}integral=(hi-lo)*total/240;}

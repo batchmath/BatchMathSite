@@ -3077,7 +3077,7 @@ G['difference-quotient']=()=>{
         const terms=[...additiveParts(exact(d.answers.left)),...additiveParts(exact(d.answers.right))].map((s,i)=>i&&!/^[-+]/.test(s)?'+'+s:s);
         const steps=[partitionWork(d),`These left and right sums use the same equal partition.${equation(`T_{${n}}=\\frac{L_{${n}}+R_{${n}}}{2}`)}`,mathFlow([`T_{${n}}=`,`\\frac{1}{2}\\Bigl[`,...terms,'\\Bigr]','=',...additiveParts(exact(d.answers.trapezoid))])];
         if(d.family==='linear')steps[steps.length-1]+=' Because the graph is a straight line, the trapezoidal value is exact.';
-        p=question(d,`${representation}_relationship`,'The left and right rectangular sums below use the same equal partition. Use them to approximate the integral with the trapezoidal rule.',numericOptions(d,'trapezoid'),steps,{mode:'trapezoid',relation:true,extraHtml});
+        p=question(d,`${representation}_relationship`,`The left and right rectangular sums below use ${n} equal subintervals on the same interval. Use them to approximate the integral with the trapezoidal rule.`,numericOptions(d,'trapezoid'),steps,{mode:'trapezoid',relation:true,extraHtml});
       }else{
         const error=concept?classification(d,'trapezoid'):null;
         if(concept&&(!error||sketchGeometry(d,'trapezoid').gapPixels<2.5))continue;

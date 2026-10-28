@@ -13,7 +13,7 @@ const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json
 const server=http.createServer((req,res)=>{try{let f=path.join(root,decodeURIComponent(new URL(req.url,'http://local').pathname));if(!f.startsWith(root+path.sep)){res.writeHead(403).end();return;}if(fs.statSync(f).isDirectory())f=path.join(f,'index.html');res.writeHead(200,{'content-type':mime[path.extname(f)]||'application/octet-stream'});fs.createReadStream(f).pipe(res);}catch{res.writeHead(404).end();}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin=`http://127.0.0.1:${server.address().port}`,report={ok:false,live:[],fixtures:[],failures:[]};let browser;
 const csv=rows=>rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
-async function ready(page){await page.waitForFunction(()=>document.querySelector('#running-content')?.getAttribute('aria-busy')==='false'&&document.querySelector('.running-entry'),{timeout:60000});await page.evaluate(()=>MathJax.startup.promise);}
+async function ready(page){await page.waitForFunction(()=>document.querySelector('#running-content')?.getAttribute('aria-busy')==='false'&&document.querySelector('.running-entry'),null,{timeout:60000});await page.evaluate(()=>MathJax.startup.promise);}
 async function clean(page){
  assert.equal(await page.locator('iframe,video,a[href*="youtu"],a[href*="vimeo"],[class*="video"],input[type="search"],select').count(),0,'Written documents contain no video/filter UI');
  assert.equal(await page.locator('mjx-merror,[data-mjx-error]').count(),0,'Document MathJax error');
