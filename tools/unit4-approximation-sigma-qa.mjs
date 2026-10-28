@@ -140,7 +140,7 @@ function approximation(p){
   assert.ok(!/Outlined|highlight|u4-partition-endpoint|u4-table-key/.test(p.questionHtml),'No table answer cues');
   for(const m of p.questionHtml.matchAll(/<td([^>]*)>/g))assert.equal(m[1],'','All data cells must have the same ordinary markup');
   assert.doesNotMatch(p.questionHtml,/Subintervals:|Use the partition|u4-partition"/,'No partition giveaway');
-  if(d.mode==='midpoint')assert.equal(d.uniform,true,'Midpoint tables must use equal subintervals');
+  if(d.mode==='midpoint'){assert.equal(d.uniform,true,'Midpoint tables must use equal subintervals');assert.equal(d.rows.length-1,2*d.n,'Midpoint half-step grid must never be finer than 2n');}
   if(d.uniform)assert.match(p.questionHtml,new RegExp(`${d.n} equal subintervals`));
   if(!d.uniform)assert.equal(d.extraData,false,'Unequal tables must not have ambiguous extra columns');
  }
@@ -154,7 +154,7 @@ function approximation(p){
  const at=x=>{const e=data.get(x.join('/'));assert.ok(e,'Missing required sample '+x.join('/'));if(d.f)near(exactNumber(e),evaluate(d.f,x),'Independent function evaluation');return exactNumber(e);};
  const needed=[...ends,...((d.mode==='midpoint'||d.mode==='matched')?mids:[])];needed.forEach(at);
  if(d.f)needed.forEach(x=>near(displayedNumber(d.f.tex,number(x)*(d.f.family==='trigonometric'?Math.PI:1)),evaluate(d.f,x),`Displayed function ${d.f.tex} at ${x}: ${JSON.stringify(d.f)}`));
- if(d.extraData){assert.ok(d.rows.length>new Set(needed.map(x=>x.join('/'))).size,'Flagged extra data is not extra');assert.equal(d.rows.length-1,d.n*(d.mode==='midpoint'?4:2),'Whole regular extra-data grid');}
+ if(d.extraData){const selected=d.mode==='midpoint'?mids:ends;assert.ok(d.rows.length>new Set(selected.map(x=>x.join('/'))).size,'Flagged extra data is not extra');assert.equal(d.rows.length-1,2*d.n,'Whole regular extra-data grid must be 2n, never 4n');}
  const unit=d.f?.family==='trigonometric'?Math.PI:1;
  const left=widths.reduce((s,w,i)=>s+unit*number(w)*at(ends[i]),0),right=widths.reduce((s,w,i)=>s+unit*number(w)*at(ends[i+1]),0),trap=widths.reduce((s,w,i)=>s+unit*number(w)*(at(ends[i])+at(ends[i+1]))/2,0);
  near(exactNumber(d.answers.left),left,'Left sum');near(exactNumber(d.answers.right),right,'Right sum');near(exactNumber(d.answers.trapezoid),trap,'Trapezoids');
@@ -203,7 +203,7 @@ function approximation(p){
    const x=add(ends[i],mul(widths[i],Q(j,40))),y=evaluate(model,x),l=evaluate(model,ends[i]),r=evaluate(model,ends[i+1]),approx=d.mode==='trapezoid'?l+(r-l)*j/40:evaluate(model,d.mode==='left'?ends[i]:d.mode==='right'?ends[i+1]:mids[i]);
    assert.ok(y>low&&y<high&&approx>low&&approx<high,'Curve/approximation must not be clipped');gap=Math.max(gap,Math.abs(y-approx));min=Math.min(min,y,approx);max=Math.max(max,y,approx);
   }
-  assert.ok(208*gap/(high-low)>=2.49,'Error geometry is too flat to see');assert.ok((max-min)/(high-low)>.85,'Excessive unused graph range');
+  assert.ok(208*gap/(high-low)>=7.99,'Error geometry must have at least eight native pixels of visible separation');assert.ok((max-min)/(high-low)>.85,'Excessive unused graph range');
   for(const path of sketch.matchAll(/\bd="([ML0-9., Z-]+)"/g))for(const xy of path[1].matchAll(/(?:M|L)([0-9.-]+),([0-9.-]+)/g)){assert.ok(+xy[1]>=41.999&&+xy[1]<=422.001,'Sketch horizontal clipping');assert.ok(+xy[2]>=17.999&&+xy[2]<=226.001,'Sketch vertical clipping');}
   const pieces=[...sketch.matchAll(/data-left="([^"]+)" data-right="([^"]+)" data-left-height="([^"]+)" data-right-height="([^"]+)"/g)];assert.equal(pieces.length,d.n,'One shape per requested subinterval');
   pieces.forEach((m,i)=>{const l=number(ends[i]),r=number(ends[i+1]),sample=d.mode==='left'?ends[i]:d.mode==='right'?ends[i+1]:mids[i];near(+m[1],l,'Sketch left endpoint');near(+m[2],r,'Sketch right endpoint');near(+m[3],evaluate(model,d.mode==='trapezoid'?ends[i]:sample),'Sketch left height');near(+m[4],evaluate(model,d.mode==='trapezoid'?ends[i+1]:sample),'Sketch right height');});

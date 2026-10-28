@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/assets/archive-running-document.css">
   <script>window.MathJax={loader:{load:['ui/safe']},tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],processEscapes:true},options:{enableMenu:false,safeOptions:{allow:{URLs:'none',classes:'safe',cssIDs:'none',styles:'safe'}}}};</script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js"></script>
-  <script src="/assets/batchmath-storage.js" defer></script><script src="/assets/pwa.js" defer></script>
+  <script src="/assets/batchmath-storage.js" defer></script>
   <script src="/mogollon2026/mogollon2026.js" data-archive-data-only defer></script>
   <script src="/assets/archive-running-document.js" defer></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-377MTFXSF3"></script>
@@ -23,6 +23,7 @@
     <p class="running-intro">100 Miles of Calculus 1. Every completed, published mile in race order; unpublished mile numbers are intentionally skipped.</p>
     <div class="running-controls"><button id="running-print" class="running-button" type="button" disabled>Print / Save as PDF</button><button id="running-refresh" class="running-button" type="button">Refresh</button></div>
     <p id="running-status" class="running-status" role="status" aria-live="polite">Loading the complete live collection…</p>
+    <section id="running-math-warning" class="running-math-warning" role="status" hidden><p>The current problems loaded, but math formatting could not finish. Refresh the page to try again.</p><button id="running-math-retry" class="running-button" type="button">Reload Page</button></section>
     <section id="running-error" class="running-error" role="alert" hidden><h2>The live document could not be loaded.</h2><p>Check your connection, then try again. No outdated copy is being substituted.</p><button id="running-retry" class="running-button" type="button">Try Again</button></section>
     <div id="running-content" aria-busy="true"></div>
     <noscript><p>Enable JavaScript to load the live written collection.</p></noscript>

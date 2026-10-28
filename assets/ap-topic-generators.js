@@ -2899,7 +2899,7 @@ G['difference-quotient']=()=>{
   const difference=(a,b,f)=>b[0]===0?coordinate(a,f):b[0]<0?`${a[0]?coordinate(a,f)+'+':''}${coordinate(neg(b),f)}`:`${coordinate(a,f)}-${coordinate(b,f)}`;
   const widthValue=(e,w,f)=>f?.family==='trigonometric'?Object.fromEntries(Object.entries(scale(e,w)).map(([k,c])=>[k?`pi*${k}`:'pi',c])):scale(e,w);
   const midpoint=(a,b)=>div(add(a,b),q(2));
-  function makeData(kind,representation,family,n,needMidpoints,tableConcept=false,method='left'){
+  function makeData(kind,representation,family,n,needMidpoints,tableConcept=false,method='left',dualProperties=false){
     let f=null,a,b,ends,uniform=true;
     if(representation==='function'){
       const p=makeFunction(family,n);({f,a,b}=p);ends=Array.from({length:n+1},(_,i)=>add(a,mul(q(i),p.step)));
@@ -2909,16 +2909,16 @@ G['difference-quotient']=()=>{
       ends=[a];for(const w of widths)ends.push(add(ends.at(-1),q(w)));b=ends.at(-1);
     }
     const mids=ends.slice(0,-1).map((x,i)=>midpoint(x,ends[i+1])),points=[...ends,...(needMidpoints?mids:[])];
-    let extraData=false;
+    let extraData=representation==='table'&&needMidpoints;
     // Equal tables sometimes give twice as many smaller intervals as needed.
-    // Midpoint tables already need the half-step grid; extra samples refine it
-    // once more without identifying which columns the student should select.
-    if(representation==='table'&&uniform&&R()<.4){extraData=true;for(let i=0;i<n;i++){points.push(mids[i]);if(needMidpoints)points.push(midpoint(ends[i],mids[i]),midpoint(mids[i],ends[i+1]));}}
+    // For midpoint, endpoints + midpoints already form that complete 2n grid.
+    // The unused endpoint columns require interpretation, not a 4n refinement.
+    if(representation==='table'&&uniform&&!needMidpoints&&R()<.4){extraData=true;points.push(...mids);}
     let tableModel=null,tableProperties=null;
     if(representation==='table'&&tableConcept){
       // A hidden smooth model constructs compatible data, rather than asserting
       // monotonicity/concavity after generating arbitrary table values.
-      const bend=q(pick([-1,1]),2),sign=pick([-1,1]),dual=R()<.5,span=sub(b,a),needsMonotone=dual||['left','right'].includes(method);
+      const bend=q(pick([-1,1]),2),sign=pick([-1,1]),dual=dualProperties,span=sub(b,a),needsMonotone=dual||['left','right'].includes(method);
       const slope=needsMonotone?add(q(sign,2),Math.sign(bend[0])===-sign?mul(q(sign*2),mul(q(Math.abs(bend[0]),bend[1]),span)):q(0)):neg(mul(bend,span));
       // Center the ordinates rather than adding a large irrelevant vertical
       // offset that would conceal the curvature in the explanation sketch.
@@ -3039,15 +3039,16 @@ G['difference-quotient']=()=>{
     return ` The function is ${parts.join(' and ')} throughout the interval.`;
   }
   const approximationInstruction=(d,shape)=>d.uniform?`Use ${d.n} equal subintervals and ${shape} to approximate the integral.`:`Use ${shape} on the subintervals defined by the table to approximate the integral.`;
+  const MIN_SKETCH_GAP_PIXELS=8;
   G['rectangular-approximations']=(opts={})=>{
-    const representation=R()<.5?'table':'function',requested=opts.rectangularMethod||opts.mode,mode=['left','right','midpoint'].includes(requested)?requested:pick(['left','right','midpoint']),concept=R()<(representation==='table'?.75:1/3);
-    for(let attempt=0;attempt<100;attempt++){
-      const family=approximationFamily(),n=sampleCount(family,representation),tableConcept=representation==='table'&&concept,d=makeData('rectangular',representation,family,n,mode==='midpoint',tableConcept,mode);d.mode=mode;
+    const representation=R()<.5?'table':'function',requested=opts.rectangularMethod||opts.mode,mode=['left','right','midpoint'].includes(requested)?requested:pick(['left','right','midpoint']),concept=R()<(representation==='table'?.75:1/3),dual=representation==='table'&&concept&&R()<.5;
+    for(let attempt=0;attempt<300;attempt++){
+      const family=approximationFamily(),n=sampleCount(family,representation),tableConcept=representation==='table'&&concept,d=makeData('rectangular',representation,family,n,mode==='midpoint',tableConcept,mode,dual);d.mode=mode;
       const sensible=Object.values(d.answers).every(e=>Object.values(e).every(c=>Math.abs(c[0])<=2000000&&c[1]<=1000000));if(!sensible)continue;
       let p;
       {
         const error=concept?classification(d,mode):null;
-        if(concept&&(!error||sketchGeometry(d,mode).gapPixels<2.5))continue;
+        if(concept&&(!error||sketchGeometry(d,mode).gapPixels<MIN_SKETCH_GAP_PIXELS))continue;
         let options=numericOptions(d,mode),steps=[partitionWork(d),...rectangleWork(d,mode)],prompt=approximationInstruction(d,`${mode==='midpoint'?'midpoint':`${mode}-endpoint`} rectangles`);
         if(error){
           prompt+=' Then classify the estimate.';
@@ -3067,9 +3068,9 @@ G['difference-quotient']=()=>{
     return [evaluations,mathFlow([`T_{${d.n}}=`,`${coordinate(div(d.widths[0],q(2)),d.f)}\\Bigl[${terms[0]}`,...terms.slice(1).map((s,i)=>`+${s}${i===terms.length-2?'\\Bigr]':''}`),'=',...additiveParts(exact(d.answers.trapezoid))])];
   }
   G['trapezoidal-approximations']=()=>{
-    const representation=R()<.5?'table':'function',concept=R()<(representation==='table'?.75:1/3),relation=!concept&&R()<.1/(representation==='table'?.25:2/3);
-    for(let attempt=0;attempt<100;attempt++){
-      const family=approximationFamily(),n=sampleCount(family,representation),tableConcept=representation==='table'&&concept,d=makeData('trapezoidal',representation,family,n,false,tableConcept,'trapezoid');let p;
+    const representation=R()<.5?'table':'function',concept=R()<(representation==='table'?.75:1/3),relation=!concept&&R()<.1/(representation==='table'?.25:2/3),dual=representation==='table'&&concept&&R()<.5;
+    for(let attempt=0;attempt<300;attempt++){
+      const family=approximationFamily(),n=sampleCount(family,representation),tableConcept=representation==='table'&&concept,d=makeData('trapezoidal',representation,family,n,false,tableConcept,'trapezoid',dual);let p;
       // T=(L+R)/2 is requested only for one shared equal partition.
       if(relation&&!d.uniform)continue;
       if(relation){
@@ -3080,7 +3081,7 @@ G['difference-quotient']=()=>{
         p=question(d,`${representation}_relationship`,`The left and right rectangular sums below use ${n} equal subintervals on the same interval. Use them to approximate the integral with the trapezoidal rule.`,numericOptions(d,'trapezoid'),steps,{mode:'trapezoid',relation:true,extraHtml});
       }else{
         const error=concept?classification(d,'trapezoid'):null;
-        if(concept&&(!error||sketchGeometry(d,'trapezoid').gapPixels<2.5))continue;
+        if(concept&&(!error||sketchGeometry(d,'trapezoid').gapPixels<MIN_SKETCH_GAP_PIXELS))continue;
         let options=numericOptions(d,'trapezoid'),steps=[partitionWork(d),...trapezoidWork(d)],prompt=approximationInstruction(d,'trapezoids');
         if(error){
           prompt+=' Then classify the estimate.';

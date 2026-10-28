@@ -6,6 +6,7 @@ import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {chromium} from 'playwright';
+import {localMathJax} from './mathjax-browser-qa.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),out=path.join(root,'qa-results','unit4-v128m-browser');fs.mkdirSync(out,{recursive:true});
 const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.json':'application/json','.csv':'text/csv'};
 const server=http.createServer((req,res)=>{try{let file=path.join(root,decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(!file.startsWith(root+path.sep)){res.writeHead(403).end();return;}if(fs.statSync(file).isDirectory())file=path.join(file,'index.html');res.writeHead(200,{'content-type':mime[path.extname(file)]||'application/octet-stream'});fs.createReadStream(file).pipe(res);}catch{res.writeHead(404).end();}});
@@ -78,7 +79,7 @@ try{
  browser=await chromium.launch({headless:true});
  for(const width of [1280,375,320]){
   const context=await browser.newContext({viewport:{width,height:900},serviceWorkers:'block'});
-  await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());
+  await localMathJax(context);await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());
   await context.addInitScript(()=>{let api;Object.defineProperty(window,'BatchMathAPTopicGenerators',{configurable:true,get:()=>api,set:original=>{api={...original,get:slug=>{const gen=original.get(slug);return gen?opts=>{const p=window.__forcedU4?structuredClone(window.__forcedU4):gen(opts);window.__currentU4=p;return p;}:gen;}};}});});
   const page=await context.newPage(),pageErrors=[];page.on('pageerror',e=>pageErrors.push(String(e)));
   for(const slug of ['rectangular-approximations','trapezoidal-approximations','introduction-to-sigma-notation']){
@@ -112,7 +113,7 @@ try{
      assert.equal(await page.locator('.u4-work>li').first().evaluate(e=>getComputedStyle(e).alignItems),'baseline');
      if(index<4)await screenshot(page,width+'-sigma-numbering-'+index,'.staged-feedback');
     }
-    if(p.stage2){const geometry=await page.locator('.u4-approximation-sketch svg').evaluate(e=>({gap:+e.dataset.gapPixels,rect:e.getBoundingClientRect().toJSON(),view:e.viewBox.baseVal.height}));assert.ok(geometry.gap>=2.5);assert.ok(geometry.rect.width<=width);assert.equal(geometry.view,278);}
+    if(p.stage2){const geometry=await page.locator('.u4-approximation-sketch svg').evaluate(e=>({gap:+e.dataset.gapPixels,rect:e.getBoundingClientRect().toJSON(),view:e.viewBox.baseVal.height}));assert.ok(geometry.gap>=8);assert.ok(geometry.rect.width<=width);assert.equal(geometry.view,278);}
 
     if(index<7&&width!==320)await screenshot(page,`${width}-${slug}-${signature}`.replace(/[^a-zA-Z0-9_.-]/g,'_'),'.practice-shell');
     await page.evaluate(()=>document.activeElement?.blur());await page.keyboard.press('Enter');await page.waitForTimeout(40);const after=await page.evaluate(()=>BatchMathRepro.problemCount);assert.equal(after,initial.count+1,'Completed Enter must advance exactly one problem');
@@ -135,7 +136,7 @@ try{
  const csv=rows=>rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');
  const starter=fs.readFileSync(path.join(root,'mogollon2026/starter.csv'),'utf8');
  for(const width of [1280,375,320]){
-  const context=await browser.newContext({viewport:{width,height:768},serviceWorkers:'block'});await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());
+  const context=await browser.newContext({viewport:{width,height:768},serviceWorkers:'block'});await localMathJax(context);await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));
   await page.goto(origin+'/mogollon2026',{waitUntil:'domcontentloaded'});await page.waitForSelector('.mile-card');await page.evaluate(()=>MathJax.startup.promise);await rendered(page);
   await page.keyboard.press('Tab');assert.equal(await page.locator('.skip-link').evaluate(e=>e===document.activeElement),true);await page.keyboard.press('Tab');assert.equal(await page.locator('.skip-link').evaluate(e=>getComputedStyle(e).clipPath),'inset(50%)');
@@ -156,7 +157,7 @@ try{
  }
 
  // Existing Problem of the Day: use its actual live CSV from a real browser.
- const context=await browser.newContext({viewport:{width:1280,height:768},serviceWorkers:'block'});await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());const page=await context.newPage();
+ const context=await browser.newContext({viewport:{width:1280,height:768},serviceWorkers:'block'});await localMathJax(context);await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());const page=await context.newPage();
  await page.goto(origin+'/archive/',{waitUntil:'domcontentloaded',timeout:60000});await page.waitForSelector('.problem-card',{timeout:60000});await page.evaluate(()=>MathJax.startup.promise);await rendered(page);const numbers=await page.locator('.problem-card').evaluateAll(es=>es.map(e=>+e.dataset.problemNumber));assert.ok(numbers.every((n,i)=>!i||numbers[i-1]>n));await page.locator('#solutions-tab').click();await page.waitForSelector('.solution-card');assert.equal(await page.locator('.solution-card button').filter({hasText:'Watch Original Short'}).count(),0);await checkPodVideo(page);await page.locator('#problems-tab').click();await page.locator('#archive-search').fill('003');await page.waitForSelector('#problem-003');await page.locator('#refresh-archive').click();await page.waitForSelector('#problem-003');await screenshot(page,'1280-existing-pod-regression');await page.setViewportSize({width:375,height:812});await rendered(page);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3),false);await screenshot(page,'375-existing-pod-regression');await checkPodVideo(page);await context.close();
  report.ok=true;console.log(`PASS v12.8.M browser QA: ${report.unit4.length} Unit 4 problems, all filters/review, ${report.archive.length} archive widths, live original archive regression`);
 }catch(error){report.failures.push({error:String(error),stack:error.stack});const page=browser?.contexts().at(-1)?.pages().at(-1);if(page){report.failureUrl=page.url();report.failureGeometry=await page.evaluate(()=>({scrollY,focused:document.activeElement?.className,part:document.querySelector('.staged-part-two')?.getBoundingClientRect().toJSON(),problem:window.__currentU4?.unit4Meta})).catch(()=>null);await page.screenshot({path:path.join(out,'failure-final.png'),fullPage:true}).catch(()=>{});}throw error;}finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');}

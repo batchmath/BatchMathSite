@@ -58,6 +58,8 @@
     ,"qa:unit3-optimization-related-rates-v128": "node tools/unit3-optimization-related-rates-v128-qa.mjs"
   },
   "devDependencies": {
-    "playwright": "1.62.1"
+    "playwright": "1.62.1",
+    "mathjax": "4.1.3",
+    "@mathjax/mathjax-newcm-font": "4.1.3"
   }
 }

@@ -3,7 +3,7 @@
 (() => {
   'use strict';
   const mogollon=document.body.dataset.runningSource==='mogollon',api=mogollon?window.BatchMathMogollonData:window.BatchMathArchive;
-  const $=id=>document.getElementById(id),state={loading:false,loadedAt:0};
+  const $=id=>document.getElementById(id),state={loading:false,formatting:false,loadedAt:0,count:0};
   const node=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=String(text);return e;};
   const displayMath=raw=>/\\\[[\s\S]*\\\]|\\\([\s\S]*\\\)/.test(raw)?raw:`\\[${raw}\\]`;
   function math(raw){const wrap=node('div','running-math'),body=node('div','running-math-inner',displayMath(raw));wrap.append(body);return wrap;}
@@ -41,29 +41,46 @@
     }
     throw lastError;
   }
+  function bounded(promise){
+    return new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Math formatting timed out.')),15000);Promise.resolve(promise).then(value=>{clearTimeout(timer);resolve(value);},error=>{clearTimeout(timer);reject(error);});});
+  }
+  async function formatMath(){
+    if(state.formatting||!state.count)return;state.formatting=true;$('running-print').disabled=true;$('running-math-retry').disabled=true;
+    try{
+      // Data can arrive before startup installs typesetPromise. A missing,
+      // rejected, or stalled CDN is a formatting issue, never a CSV failure.
+      if(!window.MathJax?.startup?.promise)throw Error('Math typesetting could not load.');
+      await bounded(window.MathJax.startup.promise);
+      if(!window.MathJax.typesetPromise)throw Error('Math typesetting could not load.');
+      const list=$('running-content');await bounded(window.MathJax.typesetPromise([list]));
+      if(list.querySelector('mjx-merror,[data-mjx-error]'))throw Error('Some mathematics could not be typeset.');
+      $('running-math-warning').hidden=true;$('running-print').disabled=false;
+    }catch(_){
+      $('running-math-warning').hidden=false;
+      // Leave every current entry/solution in place, even as raw LaTeX.
+    }finally{state.formatting=false;$('running-math-retry').disabled=false;}
+  }
   async function load(){
-    if(state.loading)return;state.loading=true;$('running-content').setAttribute('aria-busy','true');$('running-refresh').disabled=true;$('running-print').disabled=true;$('running-error').hidden=true;
+    if(state.loading||state.formatting)return;state.loading=true;$('running-content').setAttribute('aria-busy','true');$('running-refresh').disabled=true;$('running-print').disabled=true;$('running-error').hidden=true;$('running-math-warning').hidden=true;
     $('running-status').textContent='Loading the complete live collection…';
     try{
-      const items=await retrieve(),list=$('running-content'),fragment=document.createDocumentFragment();
+      let items;
+      try{items=await retrieve();}catch(_){
+        state.count=0;window.MathJax?.typesetClear?.([$('running-content')]);$('running-content').replaceChildren();$('running-error').hidden=false;
+        $('running-status').textContent='No current document data is being displayed. Check your connection and try again. Google Sheets publishing can take a few minutes.';
+        return;
+      }
+      const list=$('running-content'),fragment=document.createDocumentFragment();
       for(const item of items)fragment.append(entry(item));
       if(!items.length)fragment.append(node('p','running-empty','No completed entries have been published yet.'));
-      window.MathJax?.typesetClear?.([list]);list.replaceChildren(fragment);
-      if(!window.MathJax?.typesetPromise)throw Error('Math typesetting could not load.');
-      await window.MathJax.startup.promise;await window.MathJax.typesetPromise([list]);
-      if(list.querySelector('mjx-merror,[data-mjx-error]'))throw Error('Some mathematics could not be typeset.');
-      state.loadedAt=Date.now();$('running-status').textContent=`${items.length} published ${mogollon?'miles':'problems'} · Refreshed ${new Date(state.loadedAt).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}. Spreadsheet updates may take a few minutes to publish.`;
-      $('running-print').disabled=!items.length;
+      window.MathJax?.typesetClear?.([list]);list.replaceChildren(fragment);state.count=items.length;state.loadedAt=Date.now();
+      $('running-status').textContent=`${items.length} published ${mogollon?'miles':'problems'} · Refreshed ${new Date(state.loadedAt).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}. Spreadsheet updates may take a few minutes to publish.`;
+      await formatMath();
       const target=location.hash&&document.getElementById(location.hash.slice(1));if(target)target.scrollIntoView();
-    }catch(error){
-      // Keep the student-facing retry state simple; a concise console message
-      // distinguishes CSV/network and typesetting failures without a stack.
-      console.warn('BatchMath running document: '+String(error.message||'The live document could not load.'));
-      window.MathJax?.typesetClear?.([$('running-content')]);$('running-content').replaceChildren();$('running-error').hidden=false;
-      $('running-status').textContent='No current document data is being displayed. Check your connection and try again. Google Sheets publishing can take a few minutes.';
     }finally{state.loading=false;$('running-content').setAttribute('aria-busy','false');$('running-refresh').disabled=false;}
   }
   $('running-print').addEventListener('click',()=>window.print());$('running-refresh').addEventListener('click',load);$('running-retry').addEventListener('click',load);
+  $('running-math-retry').addEventListener('click',()=>location.reload());
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&Date.now()-state.loadedAt>60000)load();});
   setInterval(()=>{if(document.visibilityState==='visible'&&navigator.onLine!==false)load();},5*60*1000);
   load();

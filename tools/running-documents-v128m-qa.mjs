@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
 import {chromium} from 'playwright';
+import {localMathJax} from './mathjax-browser-qa.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),out=path.join(root,'qa-results/running-documents-v128m');fs.mkdirSync(out,{recursive:true});
 const require=createRequire(import.meta.url),pod=require(path.join(root,'archive/archive.js')),mog=require(path.join(root,'mogollon2026/mogollon2026.js'));
 const sources=[{key:'pod',path:'/archive/',api:pod,min:19},{key:'mogollon',path:'/mogollon2026/',api:mog,min:6}];
@@ -13,7 +14,7 @@ const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json
 const server=http.createServer((req,res)=>{try{let f=path.join(root,decodeURIComponent(new URL(req.url,'http://local').pathname));if(!f.startsWith(root+path.sep)){res.writeHead(403).end();return;}if(fs.statSync(f).isDirectory())f=path.join(f,'index.html');res.writeHead(200,{'content-type':mime[path.extname(f)]||'application/octet-stream'});fs.createReadStream(f).pipe(res);}catch{res.writeHead(404).end();}});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin=`http://127.0.0.1:${server.address().port}`,report={ok:false,live:[],fixtures:[],failures:[]};let browser;
 const csv=rows=>rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
-async function ready(page){await page.waitForFunction(()=>document.querySelector('#running-content')?.getAttribute('aria-busy')==='false'&&(document.querySelector('.running-entry')||!document.querySelector('#running-error').hidden),null,{timeout:60000});assert.equal(await page.locator('#running-error').isHidden(),true,await page.locator('#running-status').textContent());await page.evaluate(()=>MathJax.startup.promise);}
+async function ready(page,{formatted=true}={}){await page.waitForFunction(()=>document.querySelector('#running-content')?.getAttribute('aria-busy')==='false'&&(document.querySelector('.running-entry')||!document.querySelector('#running-error').hidden),null,{timeout:60000});assert.equal(await page.locator('#running-error').isHidden(),true,await page.locator('#running-status').textContent());if(formatted){assert.equal(await page.locator('#running-math-warning').isHidden(),true,'Math must render in the real pinned-renderer tests');await page.evaluate(()=>MathJax.startup.promise);}assert.equal(await page.locator('script[src="/assets/pwa.js"]').count(),0,'Document-only pages need no PWA registration');}
 async function clean(page){
  assert.equal(await page.locator('iframe,video,a[href*="youtu"],a[href*="vimeo"],[class*="video"],input[type="search"],select').count(),0,'Written documents contain no video/filter UI');
  assert.equal(await page.locator('mjx-merror,[data-mjx-error]').count(),0,'Document MathJax error');
@@ -24,7 +25,7 @@ async function clean(page){
 try{
  browser=await chromium.launch({headless:true});
  for(const source of sources)for(const width of [1280,375,320]){
-  const context=await browser.newContext({viewport:{width,height:900},serviceWorkers:'block'}),errors=[];await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());
+  const context=await browser.newContext({viewport:{width,height:900},serviceWorkers:'block'}),errors=[];await localMathJax(context);await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());
   let liveCsv;context.on('response',r=>{if(/text\/csv/i.test(r.headers()['content-type']||''))liveCsv=r.text();});
   const archive=await context.newPage();archive.on('pageerror',e=>errors.push(String(e)));await archive.goto(origin+source.path,{waitUntil:'domcontentloaded'});
   const link=archive.getByRole('link',{name:'View Running Document',exact:true});assert.equal(await link.getAttribute('target'),'_blank');assert.equal(await link.getAttribute('rel'),'noopener');
@@ -44,7 +45,7 @@ try{
  // Controlled mutable responses prove growth, publication, blanks, safe text,
  // current-data failure/retry, and fresh reads without editing either sheet.
  for(const source of sources){
-  const context=await browser.newContext({viewport:{width:375,height:812},serviceWorkers:'block'});await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());
+  const context=await browser.newContext({viewport:{width:375,height:812},serviceWorkers:'block'});await localMathJax(context);await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());
   // Verify the actual Fetch cache policy. Playwright route interception does
   // not consistently expose Chromium's synthesized cache-control headers.
   await context.addInitScript(()=>{window.__documentFetchOptions=[];const fetch=window.fetch;window.fetch=function(input,options){if(String(input).includes('docs.google.com/spreadsheets/'))window.__documentFetchOptions.push({cache:options?.cache,credentials:options?.credentials});return fetch.call(this,input,options);};});
@@ -63,9 +64,26 @@ try{
   // Replace live data and refresh, with no file changes/redeployment.
   body=csv(source.key==='pod'?[podHead,['106','','','<img src=x onerror=alert(1)>','x','x','<script>bad</script>','javascript:alert(1)']]:[mogHead,['106','TRUE','<img src=x onerror=alert(1)>','x','x','<script>bad</script>','','','']]);
   await page.locator('#running-refresh').click();await ready(page);assert.deepEqual(await page.locator('.running-entry').evaluateAll(es=>es.map(e=>+e.dataset.number)),[106]);assert.equal(await page.locator('.running-entry img,.running-entry script').count(),0);await clean(page);
-  const before=requests;fail=true;await page.locator('#running-refresh').click();await page.waitForSelector('#running-error:not([hidden])');assert.equal(requests,before+2);assert.equal(await page.locator('.running-entry').count(),0);assert.equal(await page.locator('#running-print').isDisabled(),true);
+  const before=requests;fail=true;await page.locator('#running-refresh').click();await page.waitForSelector('#running-error:not([hidden])');assert.equal(requests,before+2);assert.equal(await page.locator('.running-entry').count(),0);assert.equal(await page.locator('#running-print').isDisabled(),true);assert.equal(await page.locator('#running-math-warning').isHidden(),true,'Data failures must remain distinct from formatting failures');
   fail=false;await page.locator('#running-retry').click();await ready(page);assert.equal(await page.locator('#running-error').isHidden(),true);assert.equal(await page.locator('#running-print').isEnabled(),true);assert.equal(new Set(urls).size,urls.length,'Refresh must use unique cache-busting URLs');assert.deepEqual(await page.evaluate(()=>window.__documentFetchOptions),Array.from({length:requests},()=>({cache:'no-store',credentials:'omit'})),'Every live request must explicitly bypass caches');assert.deepEqual(errors,[]);
   report.fixtures.push({source:source.key,growth:source.key==='pod'?104:103,refresh:true,errorRetry:true,requests});await context.close();
+  // Missing CDN, rejected startup, failed typesetting, and explicit math errors
+  // must retain every current written entry and never impersonate a CSV error.
+  for(const failure of ['missing','startup','typeset','math-error']){
+   const context=await browser.newContext({viewport:{width:375,height:812},serviceWorkers:'block'});await localMathJax(context);let recover=false;
+   await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());
+   const fixture=csv([rows[0],...rows.slice(1,4)]);await context.route(source.api.sourceUrl.split('?')[0]+'?*',r=>r.fulfill({status:200,contentType:'text/csv',headers:{'access-control-allow-origin':'*'},body:fixture}));
+   await context.route('https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js',r=>{
+    if(recover)return r.fallback();if(failure==='missing')return r.abort('failed');
+    const script=failure==='startup'?`const p=Promise.reject(Error('Controlled startup failure'));p.catch(()=>{});window.MathJax={startup:{promise:p}};`:failure==='typeset'?`window.MathJax={startup:{promise:Promise.resolve()},typesetPromise:async()=>{throw Error('Controlled formatter failure');}};`:`window.MathJax={startup:{promise:Promise.resolve()},typesetPromise:async nodes=>{nodes[0].append(document.createElement('mjx-merror'));}};`;
+    return r.fulfill({status:200,contentType:'text/javascript',body:script});
+   });
+   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));await page.goto(origin+source.path+'problem-list/',{waitUntil:'domcontentloaded'});await ready(page,{formatted:false});
+   assert.equal(await page.locator('.running-entry').count(),3);assert.equal(await page.locator('.running-written-section').count(),source.key==='pod'?6:3,'All written solutions/alternatives survive formatting failure');
+   assert.equal(await page.locator('#running-math-warning').isVisible(),true);assert.match(await page.locator('#running-status').textContent(),/3 published/);assert.doesNotMatch(await page.locator('#running-status').textContent(),/No current|could not|spreadsheet failed/);assert.equal(await page.locator('#running-print').isDisabled(),true);assert.equal(await page.locator('#running-error').isHidden(),true);assert.equal(await page.locator('iframe,video,a[href*="youtu"]').count(),0);
+   recover=true;const navigation=page.waitForEvent('domcontentloaded');await page.locator('#running-math-retry').click();await navigation;await ready(page);await clean(page);assert.equal(await page.locator('.running-entry').count(),3);assert.equal(await page.locator('#running-print').isEnabled(),true);assert.deepEqual(errors,[]);
+   report.fixtures.push({source:source.key,formattingFailure:failure,dataPreserved:true,recovery:true});await context.close();
+  }
  }
  report.ok=true;console.log('PASS live running documents, written solutions/alternatives, desktop/mobile, new tabs, printing, publication/gaps, growth, safety, refresh, and failure/retry');
 }catch(error){report.failures.push({error:String(error),stack:error.stack});const page=browser?.contexts().at(-1)?.pages().at(-1);if(page){report.failureUrl=page.url();await page.screenshot({path:path.join(out,'failure-final.png'),fullPage:true}).catch(()=>{});}throw error;}finally{if(browser)await browser.close();await new Promise(r=>server.close(r));fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');}
