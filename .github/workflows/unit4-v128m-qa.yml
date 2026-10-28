@@ -19,6 +19,7 @@ jobs:
           node-version: '22'
       - run: npm install --ignore-scripts --no-audit --no-fund
       - run: npx playwright install --with-deps chromium
+      - run: sudo apt-get install -y --no-install-recommends poppler-utils
       - name: Static, PWA, and affected generator structure
         run: |
           npm run qa:static

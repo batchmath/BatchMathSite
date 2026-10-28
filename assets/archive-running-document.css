@@ -10,3 +10,15 @@
 @media print{
  html,body{background:#fff!important;color:#000!important;font-size:10.5pt}body{line-height:1.5}.running-nav,.running-controls,.running-status,.running-error,.running-footer,.running-intro,button{display:none!important}.running-main{width:100%;max-width:none;margin:0;padding:0}.running-title{font-size:19pt;color:#000;margin:0 0 18pt}.running-entry{border-color:#aaa;padding:16pt 0;break-inside:avoid-page;page-break-inside:avoid}.running-entry-heading{break-after:avoid-page}.running-entry-heading h2{font-size:14pt;color:#000}.running-meta{color:#333;font-size:9pt}.running-written-section{margin-top:12pt}.running-written-section h3{color:#000;break-after:avoid-page}.running-math{overflow:visible!important;padding:3pt 0;break-inside:avoid-page}.running-math-inner{min-width:0;max-width:100%;font-size:10pt}.running-explanation{color:#000;font-size:10pt;orphans:3;widows:3}mjx-container,mjx-container *{color:#000!important}a{color:#000;text-decoration:none}
 }
+
+/* A cumulative worksheet from the same live entries, with no copied data. */
+@media print{
+ body.running-problems-only{line-height:1.25}
+ .running-problems-only .running-title{font-size:14pt;line-height:1.15;margin:0 0 9pt}
+ .running-problems-only .running-entry{padding:7pt 0 8pt;border-top:1px solid #ccc;break-before:auto;break-after:auto;break-inside:avoid-page;page-break-before:auto;page-break-after:auto;page-break-inside:avoid}
+ .running-problems-only .running-entry-heading h2{font-size:10.5pt;line-height:1.2;margin:0 0 3pt}
+ .running-problems-only .running-meta,.running-problems-only .running-written-section{display:none!important}
+ .running-problems-only .running-math{padding:1pt 0}
+ .running-problems-only .running-math-inner{font-size:10pt}
+ .running-problems-only .running-math mjx-container[display="true"]{margin:.2em 0!important}
+}

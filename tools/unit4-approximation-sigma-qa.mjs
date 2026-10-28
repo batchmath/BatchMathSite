@@ -198,6 +198,8 @@ function approximation(p){
   const error=exactNumber(d.answers[d.mode])-(model.family==='trigonometric'?Math.PI:1)*integral;
   assert.equal(error>0,d.error.over,'Independently integrated over/under classification');assert.ok(Math.abs(error)>1e-8,'Conceptual estimate should not accidentally be exact');
   const sketch=p.stage2.explanation;assert.match(sketch,/<svg/);assert.match(sketch,new RegExp(`data-method="${d.mode}"`));assert.equal(/Schematic:/.test(sketch),d.representation==='table');
+  assert.doesNotMatch(sketch,/<figcaption/i,'Conceptual graphs must have no visible caption');
+  assert.match(sketch,/<figure class="u4-approximation-sketch"><svg[^>]+role="img"[^>]+aria-label="[^"]+"[^>]*><title>[^<]+<\/title><desc>[^<]+<\/desc>[\s\S]*<\/svg><\/figure>$/,'Only the accessible SVG belongs inside the graph figure');
   const low=Number(sketch.match(/data-y-min="([^"]+)"/)[1]),high=Number(sketch.match(/data-y-max="([^"]+)"/)[1]);let gap=0,min=0,max=0;
   for(let i=0;i<d.n;i++)for(let j=0;j<=40;j++){
    const x=add(ends[i],mul(widths[i],Q(j,40))),y=evaluate(model,x),l=evaluate(model,ends[i]),r=evaluate(model,ends[i+1]),approx=d.mode==='trapezoid'?l+(r-l)*j/40:evaluate(model,d.mode==='left'?ends[i]:d.mode==='right'?ends[i+1]:mids[i]);

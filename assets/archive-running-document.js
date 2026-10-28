@@ -3,7 +3,8 @@
 (() => {
   'use strict';
   const mogollon=document.body.dataset.runningSource==='mogollon',api=mogollon?window.BatchMathMogollonData:window.BatchMathArchive;
-  const $=id=>document.getElementById(id),state={loading:false,formatting:false,loadedAt:0,count:0};
+  const $=id=>document.getElementById(id),state={loading:false,formatting:false,printing:false,loadedAt:0,count:0};
+  function printDisabled(disabled){for(const id of ['running-print','running-print-problems'])$(id).disabled=disabled;}
   const node=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=String(text);return e;};
   const displayMath=raw=>/\\\[[\s\S]*\\\]|\\\([\s\S]*\\\)/.test(raw)?raw:`\\[${raw}\\]`;
   function math(raw){const wrap=node('div','running-math'),body=node('div','running-math-inner',displayMath(raw));wrap.append(body);return wrap;}
@@ -45,7 +46,7 @@
     return new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Math formatting timed out.')),15000);Promise.resolve(promise).then(value=>{clearTimeout(timer);resolve(value);},error=>{clearTimeout(timer);reject(error);});});
   }
   async function formatMath(){
-    if(state.formatting||!state.count)return;state.formatting=true;$('running-print').disabled=true;$('running-math-retry').disabled=true;
+    if(state.formatting||!state.count)return;state.formatting=true;printDisabled(true);$('running-math-retry').disabled=true;
     try{
       // Data can arrive before startup installs typesetPromise. A missing,
       // rejected, or stalled CDN is a formatting issue, never a CSV failure.
@@ -54,14 +55,14 @@
       if(!window.MathJax.typesetPromise)throw Error('Math typesetting could not load.');
       const list=$('running-content');await bounded(window.MathJax.typesetPromise([list]));
       if(list.querySelector('mjx-merror,[data-mjx-error]'))throw Error('Some mathematics could not be typeset.');
-      $('running-math-warning').hidden=true;$('running-print').disabled=false;
+      $('running-math-warning').hidden=true;printDisabled(false);
     }catch(_){
       $('running-math-warning').hidden=false;
       // Leave every current entry/solution in place, even as raw LaTeX.
     }finally{state.formatting=false;$('running-math-retry').disabled=false;}
   }
   async function load(){
-    if(state.loading||state.formatting)return;state.loading=true;$('running-content').setAttribute('aria-busy','true');$('running-refresh').disabled=true;$('running-print').disabled=true;$('running-error').hidden=true;$('running-math-warning').hidden=true;
+    if(state.loading||state.formatting||state.printing)return;state.loading=true;$('running-content').setAttribute('aria-busy','true');$('running-refresh').disabled=true;printDisabled(true);$('running-error').hidden=true;$('running-math-warning').hidden=true;
     $('running-status').textContent='Loading the complete live collection…';
     try{
       let items;
@@ -79,7 +80,22 @@
       const target=location.hash&&document.getElementById(location.hash.slice(1));if(target)target.scrollIntoView();
     }finally{state.loading=false;$('running-content').setAttribute('aria-busy','false');$('running-refresh').disabled=false;}
   }
-  $('running-print').addEventListener('click',()=>window.print());$('running-refresh').addEventListener('click',load);$('running-retry').addEventListener('click',load);
+  const printMedia=window.matchMedia('print');
+  function restoreDocument(){
+    document.body.classList.remove('running-problems-only');state.printing=false;
+  }
+  function printDocument(problemsOnly){
+    if(state.loading||state.formatting||state.printing||!state.count)return;
+    state.printing=true;document.body.classList.toggle('running-problems-only',problemsOnly);
+    // Keep the mode until the browser finishes printing or cancels the dialog.
+    // Returning from print() alone is insufficient on asynchronous browsers.
+    try{window.print();}catch(error){restoreDocument();throw error;}
+  }
+  window.addEventListener('afterprint',restoreDocument);
+  printMedia.addEventListener('change',event=>{if(!event.matches)restoreDocument();});
+  $('running-print').addEventListener('click',()=>printDocument(false));
+  $('running-print-problems').addEventListener('click',()=>printDocument(true));
+  $('running-refresh').addEventListener('click',load);$('running-retry').addEventListener('click',load);
   $('running-math-retry').addEventListener('click',()=>location.reload());
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&Date.now()-state.loadedAt>60000)load();});
   setInterval(()=>{if(document.visibilityState==='visible'&&navigator.onLine!==false)load();},5*60*1000);
