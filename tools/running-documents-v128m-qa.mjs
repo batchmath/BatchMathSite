@@ -45,6 +45,9 @@ try{
  // current-data failure/retry, and fresh reads without editing either sheet.
  for(const source of sources){
   const context=await browser.newContext({viewport:{width:375,height:812},serviceWorkers:'block'});await context.route(/googletagmanager\.com|google-analytics\.com/,r=>r.abort());
+  // Verify the actual Fetch cache policy. Playwright route interception does
+  // not consistently expose Chromium's synthesized cache-control headers.
+  await context.addInitScript(()=>{window.__documentFetchOptions=[];const fetch=window.fetch;window.fetch=function(input,options){if(String(input).includes('docs.google.com/spreadsheets/'))window.__documentFetchOptions.push({cache:options?.cache,credentials:options?.credentials});return fetch.call(this,input,options);};});
   const podHead=['Problem Number','Date Published','Location','Topic','Problem (LaTeX)','Worked Solution (LaTeX)','Explanation','Video Link','Alternative 1 Method','Alternative 1 Solution','Alternative 2 Method','Alternative 2 Solution','Solution Video URL','Solution Video Orientation'];
   const mogHead=['Mile','Published','Topic','ProblemLaTeX','SolutionLaTeX','Explanation','VideoURL','VideoLabel','PublishedDate'];
   const rows=[source.key==='pod'?podHead:mogHead];
@@ -52,7 +55,7 @@ try{
   if(source.key==='pod')rows.push(['','','','','','',''],['105','','','Unpublished solution','x','','Explanation without a primary solution','https://youtu.be/IAn8hB0_lOM','Alternate','x']);
   else rows.push([5,'FALSE','Not published','x','x'],[105,'TRUE','Incomplete','x','','']);
   let body=csv(rows),fail=false,requests=0;const urls=[];
-  await context.route(source.api.sourceUrl.split('?')[0]+'?*',route=>{requests++;urls.push(route.request().url());assert.match(route.request().url(),/_bm_refresh=/);assert.ok(/no-cache|no-store|max-age=0/i.test(JSON.stringify(route.request().headers())),'No-store request must bypass browser caches');return route.fulfill({status:fail?503:200,contentType:'text/csv',headers:{'access-control-allow-origin':'*'},body});});
+  await context.route(source.api.sourceUrl.split('?')[0]+'?*',route=>{requests++;urls.push(route.request().url());assert.match(route.request().url(),/_bm_refresh=/);return route.fulfill({status:fail?503:200,contentType:'text/csv',headers:{'access-control-allow-origin':'*'},body});});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));await page.goto(origin+source.path+'problem-list/',{waitUntil:'domcontentloaded'});await ready(page);await clean(page);
   assert.equal(await page.locator('.running-entry').count(),source.key==='pod'?104:103);assert.equal(await page.locator(source.key==='pod'?'#problem-005':'#mile-005').count(),0);
   if(source.key==='pod')assert.equal(await page.locator('#problem-105 .running-written-section').count(),0,'No invented missing primary solution');
@@ -61,7 +64,7 @@ try{
   body=csv(source.key==='pod'?[podHead,['106','','','<img src=x onerror=alert(1)>','x','x','<script>bad</script>','javascript:alert(1)']]:[mogHead,['106','TRUE','<img src=x onerror=alert(1)>','x','x','<script>bad</script>','','','']]);
   await page.locator('#running-refresh').click();await ready(page);assert.deepEqual(await page.locator('.running-entry').evaluateAll(es=>es.map(e=>+e.dataset.number)),[106]);assert.equal(await page.locator('.running-entry img,.running-entry script').count(),0);await clean(page);
   const before=requests;fail=true;await page.locator('#running-refresh').click();await page.waitForSelector('#running-error:not([hidden])');assert.equal(requests,before+2);assert.equal(await page.locator('.running-entry').count(),0);assert.equal(await page.locator('#running-print').isDisabled(),true);
-  fail=false;await page.locator('#running-retry').click();await ready(page);assert.equal(await page.locator('#running-error').isHidden(),true);assert.equal(await page.locator('#running-print').isEnabled(),true);assert.equal(new Set(urls).size,urls.length,'Refresh must use unique cache-busting URLs');assert.deepEqual(errors,[]);
+  fail=false;await page.locator('#running-retry').click();await ready(page);assert.equal(await page.locator('#running-error').isHidden(),true);assert.equal(await page.locator('#running-print').isEnabled(),true);assert.equal(new Set(urls).size,urls.length,'Refresh must use unique cache-busting URLs');assert.deepEqual(await page.evaluate(()=>window.__documentFetchOptions),Array.from({length:requests},()=>({cache:'no-store',credentials:'omit'})),'Every live request must explicitly bypass caches');assert.deepEqual(errors,[]);
   report.fixtures.push({source:source.key,growth:source.key==='pod'?104:103,refresh:true,errorRetry:true,requests});await context.close();
  }
  report.ok=true;console.log('PASS live running documents, written solutions/alternatives, desktop/mobile, new tabs, printing, publication/gaps, growth, safety, refresh, and failure/retry');
