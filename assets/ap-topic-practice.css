@@ -47,4 +47,4 @@
 /* Source-based definite-integral worked diagrams and long constructed math. */
 .u4-geometry-figure{width:min(100%,560px);margin:12px auto 0}
 .u4-geometry-figure svg{display:block;width:100%;height:auto}
-.u4-unit4-question .u4-formula,.u4-work-equation{max-width:100%;overflow-x:auto;padding:6px 0}
+.u4-definite-question .u4-formula,.u4-definite-equation{max-width:100%;overflow-x:auto;padding:6px 0}

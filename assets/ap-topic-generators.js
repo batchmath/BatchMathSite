@@ -3178,7 +3178,7 @@ G['difference-quotient']=()=>{
  const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),q=(a,b=1)=>{const g=gcd(a,b);return b<0?[-a/g,-b/g]:[a/g,b/g];};
  const qa=(a,b)=>q(a[0]*b[1]+b[0]*a[1],a[1]*b[1]);
  const qt=([a,b])=>b===1?String(a):`${a<0?'-':''}\\frac{${Math.abs(a)}}{${b}}`;
- const im=s=>`\\(${s}\\)`,eq=s=>`<div class="u4-work-equation">${im(`\\displaystyle ${s}`)}</div>`,work=steps=>steps.map(s=>`<div class="u4-work-step">${s}</div>`).join('');
+ const im=s=>`\\(${s}\\)`,eq=s=>`<div class="u4-work-equation u4-definite-equation">${im(`\\displaystyle ${s}`)}</div>`,work=steps=>steps.map(s=>`<div class="u4-work-step">${s}</div>`).join('');
  const signed=(n,first=false)=>n<0?'-':first?'':'+';
  const poly=(c,v='x')=>{let out='';for(let i=c.length-1;i>=0;i--){const n=c[i];if(!n)continue;out+=signed(n,!out)+(Math.abs(n)===1&&i?'':Math.abs(n))+(i?(v.length>1?`\\left(${v}\\right)`:v)+(i>1?`^{${i}}`:''):'');}return out||'0';};
  const pe=(c,v)=>c.map((n,i)=>n?`(${n})*(${v})^${i}`:'').filter(Boolean).join('+')||'0';
@@ -3190,7 +3190,7 @@ G['difference-quotient']=()=>{
   return{type:'unit4-exact',prompt,unit4Answer:answer,answerTex,explanation,keypadMode:mode};
  }
  function problem(kind,family,prompt,math,data,stage1,stage2){
-  const p={id:key(kind,family,{math,prompts:[stage1.prompt,stage2?.prompt]}),variant:family,normalizedMathDisplay:true,answerType:'staged-calculus',questionHtml:`<div class="u4-unit4-question"><div class="question-prompt">${prompt}</div><div class="u4-formula">${im(`\\displaystyle ${math}`)}</div></div>`,stage1,answerTex:(stage2||stage1).answerTex,explanation:(stage2||stage1).explanation,unit4Meta:{kind,family,tier:tiers[family],...data}};
+  const p={id:key(kind,family,{math,prompts:[stage1.prompt,stage2?.prompt]}),variant:family,normalizedMathDisplay:true,answerType:'staged-calculus',questionHtml:`<div class="u4-unit4-question u4-definite-question"><div class="question-prompt">${prompt}</div><div class="u4-formula">${im(`\\displaystyle ${math}`)}</div></div>`,stage1,answerTex:(stage2||stage1).answerTex,explanation:(stage2||stage1).explanation,unit4Meta:{kind,family,tier:tiers[family],...data}};
   if(stage2)p.stage2=stage2;return p;
  }
  function newton(){

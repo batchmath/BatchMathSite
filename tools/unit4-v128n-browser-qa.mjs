@@ -25,7 +25,7 @@ try{
    if(['ftc','rules'].includes(kind))assert.equal(await page.locator('#ftcMode').count(),0,'Separate engines have no mode switch between FTC and rules');
    for(const [i,p]of examples[kind].entries()){
     await force(page,p);assert.equal(await page.locator('.staged-choice').count(),0,'Constructed answer, no MC replacement');assert.equal(await page.locator('#next').isVisible(),false);
-    const one=page.locator('.staged-part-one');const buttons=one.locator('.bm-calc-keypad button');assert.ok(await buttons.count()>12);assert.equal(await one.locator('.bm-calc-editor').getAttribute('contenteditable'),'true');
+    const one=page.locator('.staged-part-one');const buttons=one.locator('.bm-calc-keypad button');assert.ok(await buttons.count()>12);assert.equal(await one.locator('.bm-calc-editor').getAttribute('role'),'textbox');assert.equal(await one.locator('.bm-calc-editor').getAttribute('tabindex'),'0');
     if(kind==='newton'){assert.equal(await buttons.filter({hasText:/^k$/}).count(),1);assert.equal(await buttons.filter({hasText:/^n$/}).count(),1);assert.equal(await buttons.filter({hasText:/^x$/}).count(),0);}
     if(kind==='ftc')assert.equal(await buttons.filter({hasText:/^x$/}).count(),1);
     await layout(page,width+' '+kind+' '+p.variant+' before answer');await answer(page,one,p.stage1,i%3!==0);
