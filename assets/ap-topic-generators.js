@@ -4571,6 +4571,335 @@ G['difference-quotient']=()=>{
  }
  const USUB={linear_inner_trig_exp:uLinearTrigExp,linear_inner_power_root:uLinearPower,polynomial_inner_constant_adjust:uPolyInner,shifted_quadratic_power:uShiftedQuadratic,trig_power_chain:uTrigPower,composite_exponential_log:uComposite,back_substitution:uBackSub,definite_linear_inner:uDefLinear,definite_polynomial_trig_inner:uDefPolyTrig,definite_back_substitution:uDefBackSub,odd_trig_powers:uOddTrig};
 
+ // ======================= NATURAL LOG AND INVERSE TRIG =======================
+ const LI='unit4-log-indef',LD='unit4-log-def';
+ const lnA=t=>`\\ln|${t}|`,lnP=t=>`\\ln\\left(${t}\\right)`;
+ const DU_U='\\int\\frac{du}{u}=\\ln|u|';
+ // kx + b written as "x-3", "2x+5", "-x+4"
+ const lin=(k,b)=>{const kt=k===1?'x':k===-1?'-x':`${k}x`;return b?`${kt}${b<0?'-':'+'}${Math.abs(b)}`:kt;};
+ const linE=(k,b)=>`(${k})*x+(${b})`;
+ const rootComps=(roots,pad=4)=>{const lo=Math.min(...roots)-pad,hi=Math.max(...roots)+pad;return comps(lo,hi,roots,0.1);};
+ // c·ln(r) for a positive rational r, written with r > 1
+ function lnX(c,r){if(qone(r)||qz(c))return X();if(r[0]<r[1]){c=qneg(c);r=[r[1],r[0]];}return X({[`ln:${r[0]}/${r[1]}`]:c});}
+ const kTexOf=k=>qone(k)?'':qtex(k);
+ const polyFromCoefs=coefs=>simplifyTerms(coefs.map((c,i)=>T(c,coefs.length-1-i)));
+
+ function lLinear(){
+  const kind=pick(['monic','monic','scaled','scaled','reversed','monomial','sum','sum']);
+  const one=(k,b,a,first)=>{
+   const den=k<0&&b>0?`${b}-${k===-1?'':-k}x`:lin(k,b),c=Q(a,k);
+   return{den,k,b,a,c,root:-b/k,tex:`${a<0?'-':first?'':'+'}\\frac{${Math.abs(a)}}{${den}}`,exp:`(${a})/(${linE(k,b)})`,ans:ctex(c,lnA(den),first),aexp:`${qexpr(c)}*ln(abs(${linE(k,b)}))`};
+  };
+  const A=()=>nzr(-9,9);
+  if(kind==='monomial'){
+   const k=pick([2,3,4,5,6,7]);let a=nzr(-9,9);if(Math.abs(a)===k)a+=a>0?1:-1;
+   const c=Q(a,k),integrand=`${a<0?'-':''}\\frac{${Math.abs(a)}}{${k}x}`,fin=ctex(c,lnA('x'),true);
+   const steps=[step('Rewrite the integrand.','',`${integrand}=${ctex(c,'\\cdot\\frac{1}{x}',true)}`),step('Integrate.',`Use ${im('\\int\\frac{1}{x}\\,dx=\\ln|x|')}.`,`\\int ${integrand}\\,dx=${fin}+C`)];
+   return indefinite('log','linear_denominator',{integrand,integrandExp:`(${a})/(${k}*x)`,answerTex:fin,answerExp:`${qexpr(c)}*ln(abs(x))`,components:comps(-5,5,[0],0.1),steps,mode:LI,data:{subtype:kind}});
+  }
+  let parts;
+  if(kind==='monic')parts=[one(1,nzr(-9,9),A(),true)];
+  else if(kind==='scaled')parts=[one(pick([2,3,4,5,6,7]),nzr(-9,9),A(),true)];
+  else if(kind==='reversed')parts=[one(-pick([1,1,2,3,4]),rint(1,9),A(),true)];
+  else{
+   const k1=pick([1,1,2,3]),b1=nzr(-6,6),k2=pick([1,2,3,5]);let b2=nzr(-6,6);if(Math.abs(-b1/k1+b2/k2)<0.3)b2=b2>0?b2-7:b2+7;
+   parts=[one(k1,b1,A(),true),one(k2,b2,A(),false)];
+  }
+  const integrand=parts.length>1?`\\left(${parts.map(p=>p.tex).join('')}\\right)`:parts[0].tex,fin=parts.map(p=>p.ans).join('');
+  let steps;const P=parts[0];
+  if(parts.length>1)steps=[step('Integrate each term.',`Use ${im(DU_U)} for each one; the coefficient of x in each denominator divides the result.`,`\\int${integrand}dx=${fin}+C`)];
+  else if(P.k===1)steps=[step('Integrate.',`Use ${im(DU_U)} with ${im(`u=${P.den}`)}.`,`\\int ${integrand}\\,dx=${fin}+C`)];
+  else steps=[step(`Let ${im(`u=${P.den}`)}.`,`Then ${im(`du=${P.k}\\,dx`)}.`,`\\int ${integrand}\\,dx=${coefOnly(P.c)}\\int\\frac{du}{u}`),step('Integrate, then substitute back.',`Use ${im(DU_U)}.`,`${ctex(P.c,lnA('u'),true)}+C=${fin}+C`)];
+  return indefinite('log','linear_denominator',{integrand,integrandExp:parts.map(p=>p.exp).join('+'),answerTex:fin,answerExp:parts.map(p=>p.aexp).join('+'),components:rootComps(parts.map(p=>p.root)),steps,mode:LI,data:{subtype:kind}});
+ }
+
+ // ∫ c·g'(x)/g(x) dx = c ln|g(x)|
+ function lDerivOver(){
+  const kind=pick(['quadratic','quadratic','power_inner','power_inner','exp','exp_minus_x','trig_sin','trig_cos','trig_tan','ln_x']);
+  const a=nzr(-6,6);
+  let integrand,iexp,g,gE,du,coef,pos=false,dom,adjust='';
+  if(kind==='quadratic'){
+   const h=nzr(-6,6);let q=nzr(-9,12);if(q===h*h)q+=1;
+   g=`x^{2}${2*h<0?'-':'+'}${Math.abs(2*h)}x${q<0?'-':'+'}${Math.abs(q)}`;gE=`x^2+(${2*h})*x+(${q})`;
+   const half=chance(.5),mu=nzr(-4,4),num=half?lin(mu,mu*h):lin(2*mu,2*mu*h);
+   coef=half?Q(mu,2):[mu,1];pos=q>h*h;integrand=`\\frac{${num}}{${g}}`;
+   iexp=`(${half?mu:2*mu})*(x+(${h}))/(${gE})`;
+   du=`du=\\left(${lin(2,2*h)}\\right)dx`;if(half)adjust=`, so ${im(`\\left(${num}\\right)dx=${qtex(Q(mu,2))}\\,du`)}`;else if(mu!==1)adjust=`, so ${im(`\\left(${num}\\right)dx=${mu}\\,du`)}`;
+   const d=Math.sqrt(h*h-q);dom=pos?[[-h-4,-h+4]]:rootComps([-h-d,-h+d]);
+  }else if(kind==='power_inner'){
+   const m=pick([2,2,3,4]),c=nzr(-9,9),xf=m===2?'x':`x^{${m-1}}`;
+   g=`x^{${m}}${c<0?'-':'+'}${Math.abs(c)}`;gE=`x^${m}+(${c})`;coef=Q(a,m);pos=m%2===0&&c>0;
+   integrand=sfrac(ctex([a,1],xf,true),g);iexp=`(${a})*x^${m-1}/(${gE})`;du=`du=${m}${xf}\\,dx`;adjust=`, so ${im(`${xf}\\,dx=\\frac{1}{${m}}\\,du`)}`;
+   const r=Math.pow(Math.abs(c),1/m),roots=m%2?[c>0?-r:r]:c<0?[-r,r]:[];dom=roots.length?rootComps(roots,3):[[-3,3]];
+  }else if(kind==='exp'){
+   const k=pick([1,1,2,3,-1]),c=nzr(-6,9),kx=lin(k,0);
+   g=`e^{${kx}}${c<0?'-':'+'}${Math.abs(c)}`;gE=`e^(${k}*x)+(${c})`;coef=Q(a,k);pos=c>0;
+   integrand=sfrac(ctex([a,1],`e^{${kx}}`,true),g);iexp=`(${a})*e^(${k}*x)/(${gE})`;du=`du=${k===1?'':k===-1?'-':k}e^{${kx}}\\,dx`;
+   dom=c<0?rootComps([Math.log(-c)/k],3):[[-2.5,2.5]];
+  }else if(kind==='exp_minus_x'){
+   g='e^{x}-x';gE='e^x-x';coef=[a,1];pos=true;integrand=sfrac(a===1?'e^{x}-1':a===-1?'-\\left(e^{x}-1\\right)':`${a}\\left(e^{x}-1\\right)`,g);iexp=`(${a})*(e^x-1)/(e^x-x)`;du='du=\\left(e^{x}-1\\right)dx';dom=[[-3,3]];
+  }else if(kind==='trig_sin'||kind==='trig_cos'){
+   const c=pick([2,3,4,5,-2,-3,-4]),isSin=kind==='trig_sin';
+   g=isSin?`\\sin x${c<0?'-':'+'}${Math.abs(c)}`:c>0?`${c}+\\cos x`:`\\cos x-${-c}`;gE=isSin?`sin(x)+(${c})`:`(${c})+cos(x)`;
+   coef=isSin?[a,1]:[-a,1];pos=c>0;integrand=sfrac(ctex([a,1],isSin?'\\cos x':'\\sin x',true),g);iexp=`(${a})*${isSin?'cos':'sin'}(x)/(${gE})`;
+   du=isSin?'du=\\cos x\\,dx':'du=-\\sin x\\,dx';dom=[[-3,3]];
+  }else if(kind==='trig_tan'){
+   const c=nzr(-4,4);g=`\\tan x${c<0?'-':'+'}${Math.abs(c)}`;gE=`tan(x)+(${c})`;coef=[a,1];
+   integrand=sfrac(ctex([a,1],'\\sec^{2}x',true),g);iexp=`(${a})*sec(x)^2/(${gE})`;du='du=\\sec^{2}x\\,dx';
+   const t0=Math.atan(-c);dom=comps(-3,3,[-Math.PI/2,Math.PI/2,t0,t0-Math.PI,t0+Math.PI],0.06);
+  }else{
+   const c=pick([0,0,1,2,-1,-2]);g=c?`\\ln x${c<0?'-':'+'}${Math.abs(c)}`:'\\ln x';gE=`ln(x)+(${c})`;coef=[a,1];
+   integrand=`${a<0?'-':''}\\frac{${Math.abs(a)}}{x${c?`\\left(${g}\\right)`:'\\ln x'}}`;iexp=`(${a})/(x*(${gE}))`;du='du=\\frac{1}{x}\\,dx';
+   const r=Math.exp(-c);dom=comps(0.04,Math.max(8,r+4),[r],0.1);
+  }
+  const fin=ctex(coef,pos?lnP(g):lnA(g),true);
+  const steps=[step(`Let ${im(`u=${g}`)}.`,`Then ${im(du)}${adjust}.`,`\\int ${integrand}\\,dx=${coefOnly(coef)}\\int\\frac{du}{u}`),
+   step('Integrate, then substitute back.',`Use ${im(DU_U)}.${pos?` Since ${im(g)} is always positive, the absolute value is not needed.`:''}`,`${ctex(coef,lnA('u'),true)}+C=${fin}+C`)];
+  return indefinite('log','derivative_over_function',{integrand,integrandExp:iexp,answerTex:fin,answerExp:`${qexpr(coef)}*ln(abs(${gE}))`,components:dom,steps,mode:LI,data:{subtype:kind,positive:pos}});
+ }
+
+ // tangent and cotangent, including composites
+ function lTanCot(){
+  const kind=pick(['tan','tan','cot','cot','reciprocal','quotient','x_tan_square','with_terms']);
+  const a=nzr(-6,6),k=pick([[1,1],[1,1],[2,1],[3,1],[4,1],[1,2],[1,3]]),arg=linTexK(k,'x'),kv=qnum(k),kE=`(${k[0]}/${k[1]})*x`;
+  const cutsFor=(fn,kk)=>{const out=[];for(let n=-8;n<=8;n++){const z=fn==='tan'?(Math.PI/2+n*Math.PI)/kk:n*Math.PI/kk;if(Math.abs(z)<3.1)out.push(z);}return out;};
+  if(kind==='x_tan_square'){
+   const c=Q(-a,2),fin=ctex(c,lnA(fnTex('cos','x^{2}')),true),integrand=`${ctex([a,1],'x',true)}${fnTex('tan','x^{2}')}`;
+   const steps=[step(`Let ${im('u=x^{2}')}.`,`Then ${im('du=2x\\,dx')}.`,`\\int ${integrand}\\,dx=${coefOnly(Q(a,2))}\\int\\tan u\\,du`),step('Integrate, then substitute back.',`Use ${im('\\int\\tan u\\,du=-\\ln|\\cos u|')}.`,`${ctex(c,lnA('\\cos u'),true)}+C=${fin}+C`)];
+   const cuts=[];for(let n=0;n<3;n++){const z=Math.sqrt(Math.PI/2+n*Math.PI);cuts.push(z,-z);}
+   return indefinite('log','tan_cot_composite',{integrand,integrandExp:`(${a})*x*tan(x^2)`,answerTex:fin,answerExp:`${qexpr(c)}*ln(abs(cos(x^2)))`,components:comps(-3,3,cuts,0.04),steps,mode:LI,data:{subtype:kind}});
+  }
+  if(kind==='with_terms'){
+   const fn=pick(['tan','cot']),m=nzr(-6,6),p=pick([0,1,2]),poly=T(m,p),pa=integrateTerms([poly])[0],ek=pick([2,3,-2]),ec=nzr(-4,4),b=nzr(-5,5);
+   const eArg=ek===2?'\\frac{x}{2}':ek===3?'\\frac{x}{3}':'-\\frac{x}{2}',eAnti=Q(ec*ek,1);
+   const items=[termTex(poly.c,poly.e,'x',true),ctex([ec,1],`e^{${eArg}}`,false),ctex([b,1],fnTex(fn,'x'),false)];
+   const ans=[termTex(pa.c,pa.e,'x',true),ctex(eAnti,`e^{${eArg}}`,false),fn==='tan'?ctex([-b,1],lnA('\\cos x'),false):ctex([b,1],lnA('\\sin x'),false)];
+   const integrand=`\\left(${join(items)}\\right)`,fin=join(ans);
+   const rule=fn==='tan'?'\\int\\tan x\\,dx=-\\ln|\\cos x|':'\\int\\cot x\\,dx=\\ln|\\sin x|';
+   const steps=[step('Integrate each term.',`Use the power rule, ${im(`\\int e^{x/${Math.abs(ek)}}\\,dx=${Math.abs(ek)}e^{x/${Math.abs(ek)}}`)}${ek<0?' (with the sign of the exponent)':''}, and ${im(rule)}.`,`\\int${integrand}dx=${fin}+C`)];
+   return indefinite('log','tan_cot_composite',{integrand,integrandExp:`${polyExp([poly])}+(${ec})*e^(x/(${ek}))+(${b})*${fn}(x)`,answerTex:fin,answerExp:`${polyExp([pa])}+(${eAnti[0]})*e^(x/(${ek}))+(${fn==='tan'?-b:b})*ln(abs(${fn==='tan'?'cos':'sin'}(x)))`,components:comps(-3.1,3.1,cutsFor(fn,1),0.06),steps,mode:LI,data:{subtype:kind,fn}});
+  }
+  const fn=kind==='cot'?'cot':kind==='tan'||kind==='reciprocal'?'tan':pick(['tan','cot']),c=qdiv([a,1],k),kT=kTexOf(k);
+  const top=fn==='tan'?'sin':'cos',bot=fn==='tan'?'cos':'sin';
+  let integrand,pre=[];
+  if(kind==='reciprocal'){integrand=sfrac(String(a),fnTex('cot',arg));pre=[step('Rewrite the integrand.',`Use ${im('\\frac{1}{\\cot\\theta}=\\tan\\theta')}.`,`${integrand}=${ctex([a,1],fnTex('tan',arg),true)}`)];}
+  else if(kind==='quotient')integrand=sfrac(ctex([a,1],fnTex(top,arg),true),fnTex(bot,arg));
+  else integrand=ctex([a,1],fnTex(fn,arg),true);
+  if(kind!=='quotient')pre.push(step('Rewrite with sine and cosine.','',`${fnTex(fn,arg)}=\\frac{${fnTex(top,arg)}}{${fnTex(bot,arg)}}`));
+  const uc=fn==='tan'?qneg(c):c,base=ctex(uc,lnA(fnTex(bot,arg)),true);
+  // equivalent textbook forms: ln|sec| for tan, -ln|csc| for cot
+  const alt=chance(.35),fin=alt?ctex(qneg(uc),lnA(fnTex(fn==='tan'?'sec':'csc',arg)),true):base;
+  const duTex=fn==='tan'?`du=-${kT}${fnTex('sin',arg)}\\,dx`:`du=${kT}${fnTex('cos',arg)}\\,dx`;
+  const steps=[...pre,step(`Let ${im(`u=${fnTex(bot,arg)}`)}.`,`Then ${im(duTex)}.`,`\\int ${integrand}\\,dx=${coefOnly(uc)}\\int\\frac{du}{u}`),
+   step('Integrate, then substitute back.',`Use ${im(DU_U)}.${alt?` Since ${im(`-\\ln|${fnTex(bot,arg)}|=\\ln|${fnTex(fn==='tan'?'sec':'csc',arg)}|`)}, this can also be written with ${fn==='tan'?'secant':'cosecant'}.`:''}`,`${ctex(uc,lnA('u'),true)}+C=${base}+C${alt?`=${fin}+C`:''}`)];
+  const fexp=`${qexpr(uc)}*ln(abs(${bot}(${kE})))`,iexp=kind==='reciprocal'?`(${a})/cot(${kE})`:kind==='quotient'?`(${a})*${top}(${kE})/${bot}(${kE})`:`(${a})*${fn}(${kE})`;
+  return indefinite('log','tan_cot_composite',{integrand,integrandExp:iexp,answerTex:fin,answerExp:fexp,components:comps(-3.1,3.1,cutsFor(fn,kv),0.06),steps,mode:LI,data:{subtype:kind,fn,k:k.join('/'),alt}});
+ }
+
+ // ---------- division ----------
+ function synth(coefs,r){const out=[coefs[0]],prod=[null];for(let i=1;i<coefs.length;i++){const p=r*out[i-1];prod.push(p);out.push(coefs[i]+p);}return{quotient:out.slice(0,-1),remainder:out.at(-1),prod};}
+ function synthTable(coefs,r,res){
+  const row1=[r,...coefs].join('&'),row2=['',...res.prod.map(p=>p===null?'':p)].join('&'),row3=['',...res.quotient,res.remainder].join('&');
+  return `\\begin{array}{r|${'r'.repeat(coefs.length)}}${row1}\\\\${row2}\\\\\\hline ${row3}\\end{array}`;
+ }
+ // (Ax + B)/den with a positive leading term in the numerator; an all-negative numerator puts its sign in front
+ function remFrac(A,B,den){
+  const terms=[[A,'x'],[B,'']].filter(([c])=>c);
+  if(terms.every(([c])=>c<0))return `-\\frac{${join(terms.map(([c,b],i)=>ctex([-c,1],b,i===0)))}}{${den}}`;
+  const ordered=terms[0][0]<0?[...terms].reverse():terms;
+  return `\\frac{${join(ordered.map(([c,b],i)=>ctex([c,1],b,i===0)))}}{${den}}`;
+ }
+ function lDivision(){
+  const kind=pick(['quadratic','quadratic','cubic','cubic','cubic','quartic','nonmonic','nonmonic','quadratic_divisor','quadratic_divisor']);
+  if(kind==='quadratic_divisor'){
+   const c=pick([1,4,9]),p=rint(-4,4),q=rint(-6,6),r=rint(-8,8),s=Math.sqrt(c);
+   const A=q-c,B=r-p*c;if(!A)throw Error('retry');
+   const num=polyFromCoefs([1,p,q,r]),numTex=polyTex(num,'x'),den=`x^{2}+${c}`,quotTex=p?`x${p<0?'-':'+'}${Math.abs(p)}`:'x';
+   const remTex=join([ctex([A,1],'x',true),ctex([B,1],'',false)]);
+   const lnC=Q(A,2),atC=Q(B,s),qa=simplifyTerms([T([1,2],2),T(p,1)]);
+   const fin=join([...qa.map((t,i)=>termTex(t.c,t.e,'x',i===0)),ctex(lnC,lnP(den),false),B?ctex(atC,s===1?'\\tan^{-1}x':`\\tan^{-1}\\left(\\frac{x}{${s}}\\right)`,false):'']);
+   const fexp=`${polyExp(qa)}+${qexpr(lnC)}*ln(x^2+${c})+${qexpr(atC)}*atan(x/${s})`;
+   const integrand=`\\frac{${numTex}}{${den}}`;
+   const split=B?`${ctex([A,1],'',true)}\\cdot\\frac{x}{${den}}${ctex([B,1],'',false)}\\cdot\\frac{1}{${den}}`.replace(/^1\\cdot|([+-])1\\cdot/g,'$1'):'';
+   const steps=[step('Divide.','',`${numTex}=\\left(${quotTex}\\right)\\left(${den}\\right)${/^-/.test(remTex)?'':'+'}${remTex}`,`${integrand}=${quotTex}${remFrac(A,B,den).startsWith('-')?'':'+'}${remFrac(A,B,den)}`),
+    ...(B?[step('Split the last fraction.','',`${remFrac(A,B,den)}=${split}`)]:[]),
+    step('Integrate.',`Use ${im(`\\int\\frac{x}{x^{2}+${c}}\\,dx=\\frac{1}{2}\\ln\\left(x^{2}+${c}\\right)`)}${B?` and ${im(`\\int\\frac{1}{x^{2}+${c}}\\,dx=${s===1?'\\tan^{-1}x':`\\frac{1}{${s}}\\tan^{-1}\\left(\\frac{x}{${s}}\\right)`}`)}`:''}.`,`\\int ${integrand}\\,dx=${fin}+C`)];
+   return indefinite('log','division_to_log',{integrand,integrandExp:`(${polyExp(num)})/(x^2+${c})`,answerTex:fin,answerExp:fexp,components:[[-3.5,3.5]],steps,mode:LI,data:{subtype:kind}});
+  }
+  const deg=kind==='quadratic'?2:kind==='quartic'?pick([4,4,5]):kind==='nonmonic'?pick([2,2,3]):3;
+  const r=nzr(-4,4),lead=kind==='nonmonic'?pick([1,2]):pick([1,1,1,2,3]);
+  const coefs=[lead,...Array.from({length:deg},(_,i)=>chance(deg>=4&&i<deg-2?.35:.12)?0:rint(-7,7))];
+  const res=synth(coefs,r);if(!res.remainder||res.quotient.every(c=>!c))throw Error('retry');
+  const kk=kind==='nonmonic'?pick([2,3]):1,divTex=`x${r<0?'+':'-'}${Math.abs(r)}`,shownDiv=kk===1?divTex:`${kk}x${r<0?'+':'-'}${Math.abs(kk*r)}`;
+  const num=polyFromCoefs(coefs),numTex=polyTex(num,'x'),quot=polyFromCoefs(res.quotient),quotTex=polyTex(quot,'x'),R=res.remainder;
+  const scale=[1,kk],anti=integrateTerms(quot).map(t=>({c:qmul(t.c,scale),e:t.e})),lnC=Q(R,kk);
+  const fin=join([...anti.map((t,i)=>termTex(t.c,t.e,'x',i===0)),ctex(lnC,lnA(divTex),false)]);
+  const integrand=`\\frac{${numTex}}{${shownDiv}}`;
+  const divided=`${quotTex}${R<0?'-':'+'}\\frac{${Math.abs(R)}}{${divTex}}`;
+  const steps=[...(kk>1?[step('Factor the divisor.','',`${integrand}=\\frac{1}{${kk}}\\cdot\\frac{${numTex}}{${divTex}}`)]:[]),
+   step(`Divide by ${im(divTex)} using synthetic division.`,`Use ${im(String(r))} and the coefficients of the numerator${coefs.includes(0)?', with 0 for each missing power':''}.`,synthTable(coefs,r,res),`\\frac{${numTex}}{${divTex}}=${divided}`),
+   step('Integrate.',`Use the power rule and ${im(`\\int\\frac{1}{${divTex}}\\,dx=\\ln|${divTex}|`)}${kk>1?`, then multiply by ${im(`\\frac{1}{${kk}}`)}`:''}.`,`\\int ${integrand}\\,dx=${fin}+C`)];
+  return indefinite('log','division_to_log',{integrand,integrandExp:`(${polyExp(num)})/(${kk}*(x-(${r})))`,answerTex:fin,answerExp:`${polyExp(anti)}+${qexpr(lnC)}*ln(abs(x-(${r})))`,components:rootComps([r],4),steps,mode:LI,data:{subtype:kind,degree:deg,divisor:kk}});
+ }
+
+ // ---------- inverse trig ----------
+ const atanTex=(num,den)=>den==='1'?(num==='x'?'\\tan^{-1}x':`\\tan^{-1}\\left(${num}\\right)`):`\\tan^{-1}\\left(\\frac{${num}}{${den}}\\right)`;
+ const asinTex=(num,den)=>den==='1'?(num==='x'?'\\sin^{-1}x':`\\sin^{-1}\\left(${num}\\right)`):`\\sin^{-1}\\left(\\frac{${num}}{${den}}\\right)`;
+ function lAtan(){
+  const kind=pick(['standard','standard','standard','scaled','scaled','exp']),a=nzr(-9,9);
+  if(kind==='exp'){
+   const k=pick([1,1,2,3]),kx=lin(k,0),c=Q(a,k),integrand=sfrac(ctex([a,1],`e^{${kx}}`,true),`1+e^{${lin(2*k,0)}}`),fin=ctex(c,atanTex(`e^{${kx}}`,'1'),true);
+   const steps=[step(`Let ${im(`u=e^{${kx}}`)}.`,`Then ${im(`du=${k===1?'':k}e^{${kx}}\\,dx`)} and ${im(`e^{${lin(2*k,0)}}=u^{2}`)}.`,`\\int ${integrand}\\,dx=${coefOnly(c)}\\int\\frac{du}{1+u^{2}}`),step('Integrate, then substitute back.',`Use ${im('\\int\\frac{du}{1+u^{2}}=\\tan^{-1}u')}.`,`${ctex(c,'\\tan^{-1}u',true)}+C=${fin}+C`)];
+   return indefinite('log','inverse_tangent',{integrand,integrandExp:`(${a})*e^(${k}*x)/(1+e^(${2*k}*x))`,answerTex:fin,answerExp:`${qexpr(c)}*atan(e^(${k}*x))`,components:[[-2,2]],steps,mode:LI,data:{subtype:kind}});
+  }
+  const cc=kind==='scaled'?pick([1,2,3,4,5,6]):pick([1,2,3,4,5,6,7,8,9,10]),k=kind==='scaled'?pick([2,3,4,5]):1,first=chance(.5);
+  const den=first?`${cc*cc}+${k===1?'':k*k}x^{2}`:`${k===1?'':k*k}x^{2}+${cc*cc}`,integrand=sfrac(String(a),den),c=Q(a,k*cc);
+  const fin=ctex(c,atanTex(lin(k,0),String(cc)),true);
+  const rule=`\\int\\frac{du}{a^{2}+u^{2}}=\\frac{1}{a}\\tan^{-1}\\left(\\frac{u}{a}\\right)`;
+  const steps=k===1?[step('Identify the form.',`The denominator is ${im(`${cc*cc}+x^{2}=${cc}^{2}+x^{2}`)}, so use ${im(rule)} with ${im(`a=${cc}`)}.`),step('Integrate.','',`\\int ${integrand}\\,dx=${fin}+C`)]
+   :[step(`Let ${im(`u=${k}x`)}.`,`Then ${im(`du=${k}\\,dx`)} and ${im(`${k*k}x^{2}=u^{2}`)}.`,`\\int ${integrand}\\,dx=${coefOnly(Q(a,k))}\\int\\frac{du}{${cc*cc}+u^{2}}`),step('Integrate, then substitute back.',`Use ${im(rule)} with ${im(`a=${cc}`)}.`,`${ctex(c,atanTex('u',String(cc)),true)}+C=${fin}+C`)];
+  return indefinite('log','inverse_tangent',{integrand,integrandExp:`(${a})/(${cc*cc}+${k*k}*x^2)`,answerTex:fin,answerExp:`${qexpr(c)}*atan(${k}*x/${cc})`,components:[[-4,4]],steps,mode:LI,data:{subtype:kind,a:cc,k}});
+ }
+ function lAsin(){
+  const kind=pick(['standard','standard','standard','scaled','scaled','exp']),a=nzr(-9,9);
+  if(kind==='exp'){
+   const k=pick([1,1,2]),kx=lin(k,0),c=Q(a,k),integrand=sfrac(ctex([a,1],`e^{${kx}}`,true),`\\sqrt{1-e^{${lin(2*k,0)}}}`),fin=ctex(c,asinTex(`e^{${kx}}`,'1'),true);
+   const steps=[step(`Let ${im(`u=e^{${kx}}`)}.`,`Then ${im(`du=${k===1?'':k}e^{${kx}}\\,dx`)} and ${im(`e^{${lin(2*k,0)}}=u^{2}`)}.`,`\\int ${integrand}\\,dx=${coefOnly(c)}\\int\\frac{du}{\\sqrt{1-u^{2}}}`),step('Integrate, then substitute back.',`Use ${im('\\int\\frac{du}{\\sqrt{1-u^{2}}}=\\sin^{-1}u')}.`,`${ctex(c,'\\sin^{-1}u',true)}+C=${fin}+C`)];
+   return indefinite('log','inverse_sine',{integrand,integrandExp:`(${a})*e^(${k}*x)/sqrt(1-e^(${2*k}*x))`,answerTex:fin,answerExp:`${qexpr(c)}*asin(e^(${k}*x))`,components:[[-3,-0.08/k]],steps,mode:LI,data:{subtype:kind}});
+  }
+  const cc=kind==='scaled'?pick([1,2,3,4,5,6]):pick([1,2,3,4,5,6,7,8,9,10]),k=kind==='scaled'?pick([2,3,4,5]):1;
+  const den=`\\sqrt{${cc*cc}-${k===1?'':k*k}x^{2}}`,integrand=sfrac(String(a),den),c=Q(a,k),fin=ctex(c,asinTex(lin(k,0),String(cc)),true);
+  const rule=`\\int\\frac{du}{\\sqrt{a^{2}-u^{2}}}=\\sin^{-1}\\left(\\frac{u}{a}\\right)`,edge=cc/k*0.96;
+  const steps=k===1?[step('Identify the form.',`The denominator is ${im(`\\sqrt{${cc}^{2}-x^{2}}`)}, so use ${im(rule)} with ${im(`a=${cc}`)}.`),step('Integrate.','',`\\int ${integrand}\\,dx=${fin}+C`)]
+   :[step(`Let ${im(`u=${k}x`)}.`,`Then ${im(`du=${k}\\,dx`)} and ${im(`${k*k}x^{2}=u^{2}`)}.`,`\\int ${integrand}\\,dx=${coefOnly(c)}\\int\\frac{du}{\\sqrt{${cc*cc}-u^{2}}}`),step('Integrate, then substitute back.',`Use ${im(rule)} with ${im(`a=${cc}`)}.`,`${ctex(c,asinTex('u',String(cc)),true)}+C=${fin}+C`)];
+  return indefinite('log','inverse_sine',{integrand,integrandExp:`(${a})/sqrt(${cc*cc}-${k*k}*x^2)`,answerTex:fin,answerExp:`${qexpr(c)}*asin(${k}*x/${cc})`,components:[[-edge,edge]],steps,mode:LI,data:{subtype:kind,a:cc,k}});
+ }
+
+ // ---------- definite integrals with logarithms ----------
+ // -ln(cos t) and ln(sin t) at special angles, as rational multiples of ln 2 and ln 3
+ const L23=(p2,p3)=>xadd(lnX(Q(...p2),[2,1]),lnX(Q(...p3),[3,1]));
+ const LN_COS={'0':X(),'1/6':L23([-1,1],[1,2]),'1/4':L23([-1,2],[0,1]),'1/3':L23([-1,1],[0,1])};
+ const LN_SIN={'1/6':L23([-1,1],[0,1]),'1/4':L23([-1,2],[0,1]),'1/3':L23([-1,1],[1,2]),'1/2':X()};
+ const lnArg=v=>{const t=xtex(v);return /^\d+$/.test(t)?t:`\\left(${t}\\right)`;};
+ function lDefLog(){
+  const kind=pick(['linear','linear','linear_negative','derivative_over','tan_cot','tan_cot','plus_power','division','exp_ln']);
+  if(kind==='linear'||kind==='linear_negative'){
+   const k=pick([1,1,2,3,-1]),b=nzr(-8,8),A=nzr(-6,6),root=-b/k;
+   const xs=[];for(let x=-10;x<=12;x++){const u=k*x+b;if(u!==0&&(kind==='linear_negative'?u<0:u>0)&&Math.abs(u)<=16)xs.push(x);}
+   if(xs.length<2)throw Error('retry');const [x0,x1]=twoOf(xs,4),u0=k*x0+b,u1=k*x1+b;
+   const c=Q(A,k),value=lnX(c,Q(Math.abs(u1),Math.abs(u0)));if(!value.size)throw Error('zero');
+   const den=lin(k,b),integrand=`${A<0?'-':''}\\frac{${Math.abs(A)}}{${den}}`;
+   const F=ctex(c,lnA(den),true),cl=u=>ctex(c,`\\ln|${u}|`,true);
+   const line=evalLine(`F(${x1})-F(${x0})`,cl(u1),cl(u0),xtex(value));
+   const steps=[step('Find an antiderivative.',k===1?`Use ${im('\\int\\frac{1}{x+b}\\,dx=\\ln|x+b|')}.`:`With ${im(`u=${den}`)}, ${im(`du=${k}\\,dx`)}.`,`F(x)=${F}`),step('Evaluate.',`Use ${im('\\ln a-\\ln b=\\ln\\frac{a}{b}')}${Math.abs(u0)===1||Math.abs(u1)===1?` and ${im('\\ln 1=0')}`:''}.`,line)];
+   return definite('log','definite_log',{integrand,integrandExp:`(${A})/(${linE(k,b)})`,lo:String(x0),hi:String(x1),loExp:String(x0),hiExp:String(x1),value,steps,mode:LD,data:{subtype:kind,root}});
+  }
+  if(kind==='derivative_over'){
+   const sub=pick(['x_square','x_square','quadratic']);let integrand,iexp,F,x0,x1,g0,g1,coef,gT,du;
+   if(sub==='x_square'){const c=pick([1,2,3,4,5,7,8,9]),a=nzr(-6,6);[x0,x1]=twoOf([0,1,2,3,4],3);g0=x0*x0+c;g1=x1*x1+c;coef=Q(a,2);gT=`x^{2}+${c}`;integrand=sfrac(ctex([a,1],'x',true),gT);iexp=`(${a})*x/(x^2+${c})`;du='du=2x\\,dx';}
+   else{const h=nzr(-4,4),q=h*h+pick([1,2,3,4,5]),mu=nzr(-3,3);[x0,x1]=twoOf([-3,-2,-1,0,1,2,3],3);g0=x0*x0+2*h*x0+q;g1=x1*x1+2*h*x1+q;coef=[mu,1];gT=`x^{2}${2*h<0?'-':'+'}${Math.abs(2*h)}x+${q}`;integrand=`\\frac{${lin(2*mu,2*mu*h)}}{${gT}}`;iexp=`(${2*mu})*(x+(${h}))/(x^2+(${2*h})*x+(${q}))`;du=`du=\\left(${lin(2,2*h)}\\right)dx`;}
+   const value=lnX(coef,Q(g1,g0));if(!value.size)throw Error('zero');
+   F=ctex(coef,lnP(gT),true);
+   const steps=[step('Find an antiderivative.',`With ${im(`u=${gT}`)}, ${im(du)}; the denominator is always positive.`,`F(x)=${F}`),step('Evaluate.',`Use ${im('\\ln a-\\ln b=\\ln\\frac{a}{b}')}.`,`F(${x1})-F(${x0})=${ctex(coef,`\\ln ${g1}`,true)}-${subWrap(ctex(coef,`\\ln ${g0}`,true))}=${xtex(value)}`)];
+   return definite('log','definite_log',{integrand,integrandExp:iexp,lo:String(x0),hi:String(x1),loExp:String(x0),hiExp:String(x1),value,steps,mode:LD,data:{subtype:kind,sub}});
+  }
+  if(kind==='tan_cot'){
+   const fn=pick(['tan','cot']),a=nzr(-6,6),table=fn==='tan'?LN_COS:LN_SIN,keys=Object.keys(table),[t0,t1]=pickBounds(keys);
+   const k0=Object.keys(ANG).find(k=>ANG[k]===t0),k1=Object.keys(ANG).find(k=>ANG[k]===t1);
+   // F = -a ln(cos x) for tan, a ln(sin x) for cot
+   const s=fn==='tan'?-1:1,Fat=key=>xscale(table[key],[s*a,1]);// the tables hold ln(cos t) and ln(sin t)
+   const Fhi=Fat(k1),Flo=Fat(k0),value=xsub(Fhi,Flo);if(!value.size)throw Error('zero');
+   const trigAt=t=>fn==='tan'?cosX(t):sinX(t),F=fn==='tan'?ctex([-a,1],lnA('\\cos x'),true):ctex([a,1],lnA('\\sin x'),true);
+   const lnTerm=(t,first)=>{const v=trigAt(t);return xtex(v)==='1'?'':ctex([s*a,1],`\\ln ${lnArg(v)}`,first);};
+   const trigName=t=>`\\${fn==='tan'?'cos':'sin'}${angTex(t)==='0'?' 0':`\\left(${angTex(t)}\\right)`}`;
+   const facts=[...new Set([k1,k0].filter(key=>table[key].size).map(key=>`\\ln ${lnArg(trigAt(ANG[key]))}=${xtex(table[key])}`))];
+   const logFacts=facts.length?` Use ${facts.map(im).join(' and ')}.`:'';
+   const hiP=lnTerm(t1,true),loP=lnTerm(t0,true);
+   const mid=hiP&&loP?`${hiP}-${subWrap(loP)}`:hiP?hiP:`-${subWrap(loP)}`;
+   const steps=[step('Find an antiderivative.',`Use ${im(fn==='tan'?'\\int\\tan x\\,dx=-\\ln|\\cos x|':'\\int\\cot x\\,dx=\\ln|\\sin x|')}.`,`F(x)=${F}`),
+    step('Evaluate.',`Here ${im(`${trigName(t1)}=${xtex(trigAt(t1))}`)} and ${im(`${trigName(t0)}=${xtex(trigAt(t0))}`)}.${logFacts}`,
+     `F\\left(${angTex(t1)}\\right)-F\\left(${angTex(t0)}\\right)=${mid}=${xtex(value)}`)];
+   return definite('log','definite_log',{integrand:ctex([a,1],`\\${fn} x`,true),integrandExp:`(${a})*${fn}(x)`,lo:angTex(t0),hi:angTex(t1),loExp:angExp(t0),hiExp:angExp(t1),value,steps,mode:LD,data:{subtype:kind,fn}});
+  }
+  if(kind==='plus_power'){
+   // ∫ (p + q/x) dx or ∫ (p x + q/x) dx on positive bounds
+   const p=nzr(-6,6),q=nzr(-6,6),xpow=pick([0,0,1]),[x0,x1]=pick([[1,2],[1,3],[1,4],[2,4],[2,6],[1,5],[[1,3],5],[[1,2],2],[[1,2],4],[3,6]]).map(v=>Array.isArray(v)?Q(...v):[v,1]);
+   const pt=T(p,xpow),pa=integrateTerms([pt])[0],poly=qsub(qmul(pa.c,qpow(x1,xpow+1)),qmul(pa.c,qpow(x0,xpow+1)));
+   const value=xadd(xq(poly),lnX([q,1],qdiv(x1,x0)));
+   const integrand=`\\left(${termTex(pt.c,pt.e,'x',true)}${q<0?'-':'+'}\\frac{${Math.abs(q)}}{x}\\right)`,F=`${termTex(pa.c,pa.e,'x',true)}${ctex([q,1],lnA('x'),false)}`;
+   const Fat=x=>xadd(xq(qmul(pa.c,qpow(x,xpow+1))),lnX([q,1],x)),Fl=x=>qint(x)?`F(${x[0]})`:`F\\left(${qtex(x)}\\right)`;
+   const steps=[step('Find an antiderivative.','',`F(x)=${F}`),step('Evaluate.',`Use ${im('\\ln 1=0')}${qint(x0)?'':` and ${im(`\\ln\\frac{1}{${x0[1]}}=-\\ln ${x0[1]}`)}`}.`,evalLine(`${Fl(x1)}-${Fl(x0)}`,xtex(Fat(x1)),xtex(Fat(x0)),xtex(value)))];
+   return definite('log','definite_log',{integrand,integrandExp:`${polyExp([pt])}+(${q})/x`,lo:qtex(x0),hi:qtex(x1),loExp:qexpr(x0),hiExp:qexpr(x1),value,steps,mode:LD,data:{subtype:kind}});
+  }
+  if(kind==='division'){
+   const r=nzr(-4,4),coefs=[1,rint(-5,5),rint(-6,6)],res=synth(coefs,r);if(!res.remainder)throw Error('retry');
+   const xs=[];for(let x=-6;x<=8;x++)if(x!==r)xs.push(x);const below=chance(.5);const pool=xs.filter(x=>below?x<r:x>r);if(pool.length<2)throw Error('retry');
+   const [x0,x1]=twoOf(pool,3),quot=polyFromCoefs(res.quotient),anti=integrateTerms(quot),R=res.remainder;
+   const polyPart=qsub(evalTerms(anti,x1),evalTerms(anti,x0)),value=xadd(xq(polyPart),lnX([R,1],Q(Math.abs(x1-r),Math.abs(x0-r))));if(!value.size)throw Error('zero');
+   const num=polyFromCoefs(coefs),numTex=polyTex(num,'x'),divTex=`x${r<0?'+':'-'}${Math.abs(r)}`,integrand=`\\frac{${numTex}}{${divTex}}`;
+   const F=join([...anti.map((t,i)=>termTex(t.c,t.e,'x',i===0)),ctex([R,1],lnA(divTex),false)]);
+   const steps=[step(`Divide by ${im(divTex)} using synthetic division.`,'',synthTable(coefs,r,res),`${integrand}=${polyTex(quot,'x')}${R<0?'-':'+'}\\frac{${Math.abs(R)}}{${divTex}}`),
+    step('Find an antiderivative.','',`F(x)=${F}`),step('Evaluate.',`Here ${im(`|${x1}${r<0?'+':'-'}${Math.abs(r)}|=${Math.abs(x1-r)}`)} and ${im(`|${x0}${r<0?'+':'-'}${Math.abs(r)}|=${Math.abs(x0-r)}`)}.`,`F(${x1})-F(${x0})=${xtex(value)}`)];
+   return definite('log','definite_log',{integrand,integrandExp:`(${polyExp(num)})/(x-(${r}))`,lo:String(x0),hi:String(x1),loExp:String(x0),hiExp:String(x1),value,steps,mode:LD,data:{subtype:kind}});
+  }
+  // exp_ln: e^x/(e^x + c) from 0 to ln m, a/x from 1 to e^n, 1/(x ln x) from e to e^n
+  const sub=pick(['exp','exp','reciprocal_x','x_ln_x']),a=nzr(-6,6);
+  if(sub==='exp'){
+   const c=pick([1,2,3,4,5]),m=pick([2,3,4,5,7]),value=lnX([a,1],Q(m+c,1+c));if(!value.size)throw Error('zero');
+   const integrand=sfrac(ctex([a,1],'e^{x}',true),`e^{x}+${c}`),F=ctex([a,1],lnP(`e^{x}+${c}`),true);
+   const steps=[step('Find an antiderivative.',`With ${im(`u=e^{x}+${c}`)}, ${im('du=e^{x}\\,dx')}.`,`F(x)=${F}`),step('Evaluate.',`Use ${im(`e^{\\ln ${m}}=${m}`)} and ${im('e^{0}=1')}.`,`F(\\ln ${m})-F(0)=${ctex([a,1],`\\ln ${m+c}`,true)}-${subWrap(ctex([a,1],`\\ln ${1+c}`,true))}=${xtex(value)}`)];
+   return definite('log','definite_log',{integrand,integrandExp:`(${a})*e^x/(e^x+${c})`,lo:'0',hi:`\\ln ${m}`,loExp:'0',hiExp:`ln(${m})`,value,steps,mode:LD,data:{subtype:sub}});
+  }
+  if(sub==='reciprocal_x'){
+   const [n0,n1]=pick([[0,1],[0,2],[1,2],[0,3],[1,3],[-1,1]]),value=xq([a*(n1-n0),1]),eT=n=>n===0?'1':n===1?'e':`e^{${n}}`,eE=n=>n===0?'1':`e^(${n})`;
+   const integrand=`${a<0?'-':''}\\frac{${Math.abs(a)}}{x}`,F=ctex([a,1],lnA('x'),true);
+   const steps=[step('Find an antiderivative.','',`F(x)=${F}`),step('Evaluate.',`Use ${im('\\ln e^{n}=n')}.`,evalLine(`F\\left(${eT(n1)}\\right)-F\\left(${eT(n0)}\\right)`,String(a*n1),String(a*n0),xtex(value)))];
+   return definite('log','definite_log',{integrand,integrandExp:`(${a})/x`,lo:eT(n0),hi:eT(n1),loExp:eE(n0),hiExp:eE(n1),value,steps,mode:LD,data:{subtype:sub}});
+  }
+  const [n0,n1]=pick([[1,2],[1,3],[1,4],[2,4]]),value=lnX([a,1],Q(n1,n0)),eT=n=>n===1?'e':`e^{${n}}`;
+  const integrand=`${a<0?'-':''}\\frac{${Math.abs(a)}}{x\\ln x}`,F=ctex([a,1],lnA('\\ln x'),true);
+  const steps=[step('Find an antiderivative.',`With ${im('u=\\ln x')}, ${im('du=\\frac{1}{x}\\,dx')}.`,`F(x)=${F}`),step('Evaluate.',`Use ${im('\\ln e^{n}=n')}.`,evalLine(`F\\left(${eT(n1)}\\right)-F\\left(${eT(n0)}\\right)`,ctex([a,1],`\\ln ${n1}`,true),n0===1?'0':ctex([a,1],`\\ln ${n0}`,true),xtex(value)))];
+  return definite('log','definite_log',{integrand,integrandExp:`(${a})/(x*ln(x))`,lo:eT(n0),hi:eT(n1),loExp:`e^(${n0})`,hiExp:`e^(${n1})`,value,steps,mode:LD,data:{subtype:'x_ln_x'}});
+ }
+
+ // ---------- does it give a logarithm? ----------
+ function lLogOrNot(){
+  const kind=pick(['power_of_quadratic','log_of_quadratic','arctan_not_log','sqrt_not_asin','ln_power_over_x','ln_of_ln','exp_power','arctan_squared','divide_simple','divide_no_log']);
+  const a=nzr(-6,6);let integrand,iexp,fin,fexp,dom=[[-3,3]],why,steps;
+  if(kind==='power_of_quadratic'||kind==='log_of_quadratic'){
+   const c=pick([1,2,3,4,5,9]),n=kind==='power_of_quadratic'?pick([2,3]):1,g=`x^{2}+${c}`;
+   integrand=sfrac(ctex([a,1],'x',true),n===1?g:`\\left(${g}\\right)^{${n}}`);iexp=`(${a})*x/(x^2+${c})^${n}`;
+   if(n===1){fin=ctex(Q(a,2),lnP(g),true);fexp=`${qexpr(Q(a,2))}*ln(x^2+${c})`;why=`The numerator is a multiple of the derivative of the denominator, so the result is a logarithm.`;}
+   else{const cc=Q(a,2*(1-n));fin=innerTerm(cc,g,[1-n,1],true);fexp=innerExp(cc,`x^2+${c}`,[1-n,1]);why=`The numerator is a multiple of the derivative of ${im(g)}, but the denominator is a power of it, so the power rule applies, not a logarithm.`;}
+   steps=[step('Identify the form.',why),step(`Let ${im(`u=${g}`)}.`,`Then ${im('du=2x\\,dx')}.`,`\\int ${integrand}\\,dx=${coefOnly(Q(a,2))}\\int ${n===1?'\\frac{du}{u}':`u^{-${n}}\\,du`}`),step('Integrate, then substitute back.','',`${fin}+C`)];
+  }else if(kind==='arctan_not_log'){
+   const cc=pick([1,2,3,4,5]),den=`x^{2}+${cc*cc}`,c=Q(a,cc);integrand=sfrac(String(a),den);iexp=`(${a})/(x^2+${cc*cc})`;fin=ctex(c,atanTex('x',String(cc)),true);fexp=`${qexpr(c)}*atan(x/${cc})`;
+   steps=[step('Identify the form.',`The numerator is a constant, not a multiple of ${im('2x')}, so this is not ${im('\\frac{du}{u}')}. It matches ${im('\\int\\frac{du}{a^{2}+u^{2}}=\\frac{1}{a}\\tan^{-1}\\left(\\frac{u}{a}\\right)')} with ${im(`a=${cc}`)}.`),step('Integrate.','',`\\int ${integrand}\\,dx=${fin}+C`)];dom=[[-4,4]];
+  }else if(kind==='sqrt_not_asin'){
+   const cc=pick([1,2,3,4,5,6]),g=`${cc*cc}-x^{2}`;integrand=sfrac(ctex([a,1],'x',true),`\\sqrt{${g}}`);iexp=`(${a})*x/sqrt(${cc*cc}-x^2)`;fin=ctex([-a,1],`\\sqrt{${g}}`,true);fexp=`(${-a})*sqrt(${cc*cc}-x^2)`;
+   steps=[step('Identify the form.',`The numerator is a constant multiple of ${im('x')}, and ${im(`\\frac{d}{dx}\\left(${g}\\right)=-2x`)}, so substitute ${im(`u=${g}`)} instead of using ${im('\\sin^{-1}')}.`),step(`Let ${im(`u=${g}`)}.`,`Then ${im('du=-2x\\,dx')}.`,`\\int ${integrand}\\,dx=${coefOnly(Q(-a,2))}\\int u^{-\\frac{1}{2}}\\,du`),step('Integrate, then substitute back.','',`${ctex([-a,1],'\\sqrt{u}',true)}+C=${fin}+C`)];dom=[[-cc*0.96,cc*0.96]];
+  }else if(kind==='ln_power_over_x'||kind==='ln_of_ln'){
+   if(kind==='ln_power_over_x'){const n=pick([1,2,3]),c=Q(a,n+1);integrand=sfrac(ctex([a,1],n===1?'\\ln x':`\\left(\\ln x\\right)^{${n}}`,true),'x');iexp=`(${a})*ln(x)^${n}/x`;fin=ctex(c,`\\left(\\ln x\\right)^{${n+1}}`,true);fexp=`${qexpr(c)}*ln(x)^${n+1}`;
+    steps=[step('Identify the form.',`With ${im('u=\\ln x')}, ${im('du=\\frac{1}{x}\\,dx')} and the integrand becomes ${im(`${coefOnly([a,1])}u^{${n}}`)}, a power of ${im('u')}, so the result is not a logarithm.`),step('Integrate, then substitute back.','',`\\int ${integrand}\\,dx=${coefOnly([a,1])}\\int u^{${n}}\\,du=${fin}+C`)];dom=[[0.1,6]];}
+   else{integrand=`${a<0?'-':''}\\frac{${Math.abs(a)}}{x\\ln x}`;iexp=`(${a})/(x*ln(x))`;fin=ctex([a,1],lnA('\\ln x'),true);fexp=`(${a})*ln(abs(ln(x)))`;
+    steps=[step('Identify the form.',`With ${im('u=\\ln x')}, ${im('du=\\frac{1}{x}\\,dx')} and the integrand becomes ${im(`${coefOnly([a,1])}\\frac{1}{u}`)}, so the result is a logarithm.`),step('Integrate, then substitute back.','',`\\int ${integrand}\\,dx=${coefOnly([a,1])}\\int\\frac{du}{u}=${fin}+C`)];dom=comps(0.05,7,[1],0.1);}
+  }else if(kind==='exp_power'){
+   const c=pick([1,2,3,4,5]),n=pick([2,3]),g=`e^{x}+${c}`,cc=Q(a,1-n);integrand=sfrac(ctex([a,1],'e^{x}',true),`\\left(${g}\\right)^{${n}}`);iexp=`(${a})*e^x/(e^x+${c})^${n}`;fin=innerTerm(cc,g,[1-n,1],true);fexp=innerExp(cc,`e^x+${c}`,[1-n,1]);
+   steps=[step('Identify the form.',`The numerator is the derivative of ${im(g)}, but the denominator is a power of it, so the power rule applies, not a logarithm.`),step(`Let ${im(`u=${g}`)}.`,`Then ${im('du=e^{x}\\,dx')}.`,`\\int ${integrand}\\,dx=${coefOnly([a,1])}\\int u^{-${n}}\\,du`),step('Integrate, then substitute back.','',`${fin}+C`)];
+  }else if(kind==='arctan_squared'){
+   const c=Q(a,2);integrand=sfrac(ctex([a,1],'\\tan^{-1}x',true),'1+x^{2}');iexp=`(${a})*atan(x)/(1+x^2)`;fin=ctex(c,'\\left(\\tan^{-1}x\\right)^{2}',true);fexp=`${qexpr(c)}*atan(x)^2`;
+   steps=[step('Identify the form.',`With ${im('u=\\tan^{-1}x')}, ${im('du=\\frac{1}{1+x^{2}}\\,dx')} and the integrand becomes ${im(`${coefOnly([a,1])}u`)}, so the result is not a logarithm or an inverse tangent alone.`),step('Integrate, then substitute back.','',`\\int ${integrand}\\,dx=${coefOnly([a,1])}\\int u\\,du=${fin}+C`)];
+  }else if(kind==='divide_simple'){
+   const b=nzr(-6,6),p=pick([1,2,3]);integrand=`\\frac{${p===1?'':p}x${b<0?'-':'+'}${Math.abs(b)}}{x}`;iexp=`(${p}*x+(${b}))/x`;fin=`${p===1?'':p}x${ctex([b,1],lnA('x'),false)}`;fexp=`${p}*x+(${b})*ln(abs(x))`;
+   steps=[step('Divide each term by x.','',`${integrand}=${p}${b<0?'-':'+'}\\frac{${Math.abs(b)}}{x}`),step('Integrate.',`The constant term gives ${im(`${p===1?'':p}x`)}; the term with ${im('\\frac{1}{x}')} gives a logarithm.`,`\\int ${integrand}\\,dx=${fin}+C`)];dom=comps(-5,5,[0],0.1);
+  }else{
+   const b=nzr(-6,6);integrand=`\\frac{x^{2}${b<0?'-':'+'}${Math.abs(b)}}{x^{2}}`;iexp=`(x^2+(${b}))/x^2`;fin=`x${b<0?'+':'-'}\\frac{${Math.abs(b)}}{x}`;fexp=`x-(${b})/x`;
+   steps=[step(`Divide each term by ${im('x^{2}')}.`,'',`${integrand}=1${b<0?'-':'+'}${Math.abs(b)}x^{-2}`),step('Integrate.',`No term is ${im('\\frac{1}{x}')}, so there is no logarithm; use the power rule.`,`\\int ${integrand}\\,dx=${fin}+C`)];dom=comps(-5,5,[0],0.1);
+  }
+  return indefinite('log','log_or_not',{integrand,integrandExp:iexp,answerTex:fin,answerExp:fexp,components:dom,steps,mode:LI,data:{subtype:kind}});
+ }
+ const LOGS={linear_denominator:lLinear,derivative_over_function:lDerivOver,tan_cot_composite:lTanCot,division_to_log:lDivision,inverse_tangent:lAtan,inverse_sine:lAsin,definite_log:lDefLog,log_or_not:lLogOrNot};
+
 
  // ======================= registration =======================
  const ENGINES={basic:()=>BASIC,usub:()=>(typeof USUB!=='undefined'?USUB:null),log:()=>(typeof LOGS!=='undefined'?LOGS:null),mvt:()=>(typeof MVTS!=='undefined'?MVTS:null)};
