@@ -254,3 +254,220 @@
  const legacyCheck=legacy.check.bind(legacy);legacy.check=check;
  window.BatchMathUnit4DefiniteAnswers={check,prepare};
 })();
+
+/* v12.8.U exact checking for the final four integrals engines.
+   antiderivative: equal to the intended answer up to an additive constant on
+   every interval of its domain, defined wherever it is defined, and + C present.
+   exact-number: one exact real value. exact-list: a set of exact values, or
+   "Does not apply". Decimals never stand in for exact answers. */
+(function(){
+ 'use strict';
+ const answers=window.BatchMathUnit4Answers,parser=window.BatchMathDerivativeExpressions;
+ if(!answers||!parser)return;
+ const prior=answers.check.bind(answers);
+ const FN=['asin','acos','atan','acot','asec','acsc','sqrt','cbrt','root','sin','cos','tan','sec','csc','cot','ln','log','exp','abs'];
+ const TRIG=['sin','cos','tan','sec','csc','cot'];
+ const LETTER={x:'x',t:'t',theta:'θ',r:'r'};
+ const fail=(code,extra)=>{const e=Error(code);e.code=code;e.extra=extra;throw e;};
+
+ function lex(raw,variable){
+  let s=String(raw??'').trim()
+   .replace(/[−–—]/g,'-').replace(/[×·⋅∙]/g,'*').replace(/÷/g,'/').replace(/π/g,'pi').replace(/√/g,'sqrt').replace(/∛/g,'cbrt')
+   .replace(/⁻¹/g,'^(-1)').replace(/²/g,'^2').replace(/³/g,'^3').replace(/[\[{]/g,'(').replace(/[\]}]/g,')').replace(/theta/gi,'θ');
+  s=s.replace(/^\s*[A-Za-zθ]\s*(?:\(\s*[A-Za-zθ]\s*\))?\s*=\s*/,'');
+  if(s.includes('='))fail('equals');
+  for(let i=0;i<20&&/\|[^|]*\|/.test(s);i++)s=s.replace(/\|([^|]*)\|/,'(abs($1))');
+  if(s.includes('|'))fail('bars');
+  s=s.replace(/arc(sin|cos|tan|sec|csc|cot)/gi,'a$1');
+  const tokens=[],letter=LETTER[variable];let i=0;
+  while(i<s.length){
+   const ch=s[i];
+   if(/\s/.test(ch)){i++;continue;}
+   if(/[0-9.]/.test(ch)){let j=i;while(j<s.length&&/[0-9.]/.test(s[j]))j++;const lit=s.slice(i,j);if(lit==='.'||(lit.match(/\./g)||[]).length>1)fail('number');tokens.push({t:'num',v:lit});i=j;continue;}
+   if('+-*/^(),'.includes(ch)){tokens.push({t:ch});i++;continue;}
+   if(/[A-Za-zθ]/.test(ch)){
+    const rest=s.slice(i).toLowerCase(),fn=FN.find(f=>rest.startsWith(f));
+    if(fn){tokens.push({t:'fn',v:fn});i+=fn.length;continue;}
+    if(rest.startsWith('pi')){tokens.push({t:'const',v:'pi'});i+=2;continue;}
+    if(ch==='e'){tokens.push({t:'const',v:'e'});i++;continue;}
+    if(ch==='C'||ch==='c'){tokens.push({t:'C'});i++;continue;}
+    if(letter&&ch===letter){tokens.push({t:'var'});i++;continue;}
+    if(/[xtrθ]/.test(ch))fail(letter?'wrong-variable':'variable',ch);
+    fail(/[kK]/.test(ch)?'constant-name':'letter',ch);
+   }
+   fail('character',ch);
+  }
+  return tokens;
+ }
+ // Matching close for the token at i, which must be '('.
+ function closeAt(tokens,i){let d=0;for(let j=i;j<tokens.length;j++){if(tokens[j].t==='(')d++;else if(tokens[j].t===')'&&--d===0)return j;}fail('parenthesis');}
+ // An argument written without parentheses, as in sin 3x, ln x or sin x^2.
+ function bareArgument(tokens,i){
+  if(tokens[i]?.t==='fn')return tokens[i+1]?.t==='('?closeAt(tokens,i+1)+1:bareArgument(tokens,i+1);
+  let j=i;if(tokens[j]?.t==='num')j++;
+  if(['var','const','C'].includes(tokens[j]?.t))j++;
+  if(j===i)fail('function');
+  if(tokens[j]?.t==='^'){j++;if(tokens[j]?.t==='-')j++;if(tokens[j]?.t==='('){j=closeAt(tokens,j)+1;}else if(['num','var','const'].includes(tokens[j]?.t))j++;else fail('power');}
+  return j;
+ }
+ // Rewrites trig powers (sin^2 x), inverse notation (tan^-1 x), bare arguments,
+ // cube roots and nth roots into the shared parser's grammar.
+ function canonical(tokens){
+  const out=[];
+  for(let i=0;i<tokens.length;i++){
+   const tok=tokens[i];
+   if(tok.t!=='fn'){out.push(tok);continue;}
+   let name=tok.v,power=null,j=i+1;
+   if(TRIG.includes(name)&&tokens[j]?.t==='^'){
+    j++;let sign='';
+    if(tokens[j]?.t==='('&&tokens[j+1]?.t==='-'&&tokens[j+2]?.t==='num'&&tokens[j+3]?.t===')'){sign='-';power=tokens[j+2].v;j+=4;}
+    else if(tokens[j]?.t==='('&&tokens[j+1]?.t==='num'&&tokens[j+2]?.t===')'){power=tokens[j+1].v;j+=3;}
+    else if(tokens[j]?.t==='-'&&tokens[j+1]?.t==='num'){sign='-';power=tokens[j+1].v;j+=2;}
+    else if(tokens[j]?.t==='num'){power=tokens[j].v;j++;}
+    else fail('function power');
+    power=sign+power;if(power==='-1'){name='a'+name;power=null;}
+   }
+   let arg;
+   if(tokens[j]?.t==='('){const c=closeAt(tokens,j);arg=canonical(tokens.slice(j+1,c));j=c+1;}
+   else{const e=bareArgument(tokens,j);arg=canonical(tokens.slice(j,e));j=e;}
+   let piece;
+   if(name==='cbrt')piece=[{t:'('},{t:'('},...arg,{t:')'},{t:'^'},{t:'('},{t:'num',v:'1'},{t:'/'},{t:'num',v:'3'},{t:')'},{t:')'}];
+   else if(name==='root'){
+    const comma=arg.findIndex(x=>x.t===',');if(comma<1)fail('root');
+    piece=[{t:'('},{t:'('},...arg.slice(comma+1),{t:')'},{t:'^'},{t:'('},{t:'num',v:'1'},{t:'/'},{t:'('},...arg.slice(0,comma),{t:')'},{t:')'},{t:')'}];
+   }else piece=[{t:'fn',v:name},{t:'('},...arg,{t:')'}];
+   if(power!==null)piece=[{t:'('},...piece,{t:')'},{t:'^'},{t:'('},...(power.startsWith('-')?[{t:'-'},{t:'num',v:power.slice(1)}]:[{t:'num',v:power}]),{t:')'}];
+   out.push({t:'group',items:piece});i=j-1;
+  }
+  return out;
+ }
+ function emit(tokens){
+  const ends=t=>['num','var','const','C',')','group'].includes(t?.t),starts=t=>['num','var','const','C','fn','(','group'].includes(t?.t);
+  let s='',prev=null;
+  for(const tok of tokens){
+   if(tok.t===','&&!tok.keep)fail('comma');
+   if(ends(prev)&&starts(tok))s+='*';
+   s+=tok.t==='num'?tok.v:tok.t==='var'?'x':tok.t==='C'?'y':tok.t==='const'?tok.v:tok.t==='fn'?tok.v:tok.t==='group'?emit(tok.items.map(x=>x.t===','?{...x,keep:true}:x)):tok.t;
+   prev=tok;
+  }
+  return s;
+ }
+ function parseInput(raw,variable){return parser.parse(emit(canonical(lex(raw,variable))));}
+
+ // Real-valued evaluation: odd roots of negative numbers are real, as in class.
+ function rational(v){for(let q=1;q<=64;q++){const p=Math.round(v*q);if(Math.abs(v*q-p)<1e-9)return[p,q];}return null;}
+ function realPow(a,b){
+  if(a>=0||Number.isInteger(b))return Math.pow(a,b);
+  const r=rational(b);if(!r||r[1]%2===0)return NaN;
+  const m=Math.pow(-a,b);return r[0]%2===0?m:-m;
+ }
+ function evaluate(t,ctx){
+  if(t.kind==='number')return t.value;
+  if(t.kind==='constant')return t.name==='pi'?Math.PI:Math.E;
+  if(t.kind==='variable'){const v=ctx[t.name];if(!Number.isFinite(v))throw Error('variable');return v;}
+  if(t.kind==='unary'){const v=evaluate(t.value,ctx);return t.op==='-'?-v:v;}
+  if(t.kind==='op'){
+   const a=evaluate(t.left,ctx),b=evaluate(t.right,ctx);
+   return t.op==='+'?a+b:t.op==='-'?a-b:t.op==='*'?a*b:t.op==='/'?a/b:realPow(a,b);
+  }
+  const a=evaluate(t.argument,ctx);
+  switch(t.name){
+   case 'sin':return Math.sin(a);case 'cos':return Math.cos(a);case 'tan':return Math.tan(a);
+   case 'sec':return 1/Math.cos(a);case 'csc':return 1/Math.sin(a);case 'cot':return Math.cos(a)/Math.sin(a);
+   case 'asin':return Math.asin(a);case 'acos':return Math.acos(a);case 'atan':return Math.atan(a);
+   case 'acot':return Math.PI/2-Math.atan(a);case 'asec':return Math.acos(1/a);case 'acsc':return Math.asin(1/a);
+   case 'ln':return a>0?Math.log(a):NaN;case 'log':return a>0?Math.log10(a):NaN;case 'exp':return Math.exp(a);
+   case 'sqrt':return a>=0?Math.sqrt(a):NaN;case 'abs':return Math.abs(a);
+  }
+  throw Error('function');
+ }
+ const uses=(t,name)=>!!t&&(t.kind==='variable'&&t.name===name||['value','left','right','argument'].some(k=>uses(t[k],name)));
+ const decimalUsed=raw=>/(?:^|[^A-Za-z0-9.])(?:\d+\.\d*|\.\d+)/.test(String(raw||''));
+ const shown=v=>v==='theta'?'θ':v||'x';
+ function inputMessage(e,variable,kind){
+  const v=shown(variable);
+  if(e.code==='constant-name')return 'Use C for the constant of integration.';
+  if(e.code==='wrong-variable')return `This problem uses ${v}. Write your answer in terms of ${v}.`;
+  if(e.code==='variable')return 'Enter a number. The answer should not contain a variable.';
+  if(e.code==='bars')return 'Close each absolute value.';
+  if(kind==='antiderivative')return `Enter a valid expression in ${v}, including + C.`;
+  return 'Enter a valid exact value.';
+ }
+ function points(components){
+  return (components&&components.length?components:[[-3,3]]).map(([a,b])=>Array.from({length:29},(_,k)=>a+(b-a)*(k+0.41)/29));
+ }
+
+ function checkAntiderivative(raw,answer){
+  if(!String(raw||'').trim())return{valid:false,message:'Enter an answer before checking.'};
+  let tree;try{tree=parseInput(raw,answer.variable||'x');}catch(e){return{valid:false,message:inputMessage(e,answer.variable,'antiderivative')};}
+  if(decimalUsed(raw))return{valid:true,ok:false,note:'Use exact values. Decimal approximations are not accepted.'};
+  const expected=parseInput(answer.expression,'x'),groups=points(answer.components);
+  // Equal up to one additive constant on each interval of the intended domain,
+  // and defined at every point where the intended answer is defined.
+  for(const group of groups){
+   let ref=null,count=0;
+   for(const x of group){
+    let want;try{want=evaluate(expected,{x,y:0});}catch(_){continue;}
+    if(!Number.isFinite(want))continue;
+    let got;try{got=evaluate(tree,{x,y:0});}catch(_){got=NaN;}
+    if(!Number.isFinite(got))return{valid:true,ok:false};
+    const d=got-want,scale=Math.abs(got)+Math.abs(want);
+    if(!ref)ref={d,scale};else if(Math.abs(d-ref.d)>1e-9*(scale+ref.scale)+1e-10)return{valid:true,ok:false};
+    count++;
+   }
+   if(count<8)return{valid:true,ok:false};
+  }
+  if(!uses(tree,'y'))return{valid:true,ok:false,note:'Your antiderivative is correct, but you forgot + C.'};
+  // C must be an added arbitrary constant, not a factor of another term.
+  let k=null;
+  for(const group of groups)for(const x of group.slice(0,8)){
+   let f0,f1,f2;try{f0=evaluate(tree,{x,y:0});f1=evaluate(tree,{x,y:1});f2=evaluate(tree,{x,y:2});}catch(_){f0=NaN;}
+   const tol=1e-9*(Math.abs(f0)+Math.abs(f1)+Math.abs(f2))+1e-10,d1=f1-f0;
+   if(![f0,f1,f2].every(Number.isFinite)||Math.abs(d1)<1e-6||Math.abs(f2-f0-2*d1)>tol||k!==null&&Math.abs(d1-k)>tol)return{valid:true,ok:false,note:'Add the constant of integration as + C.'};
+   k=d1;
+  }
+  return{valid:true,ok:true};
+ }
+ function exactValue(raw){
+  const tree=parseInput(raw,null);
+  if(uses(tree,'y'))fail('constant-in-number');
+  const v=evaluate(tree,{});if(!Number.isFinite(v))fail('undefined');return v;
+ }
+ const same=(a,b)=>Math.abs(a-b)<=1e-10*Math.max(1,Math.abs(a),Math.abs(b));
+ function checkNumber(raw,answer){
+  if(!String(raw||'').trim())return{valid:false,message:'Enter an answer before checking.'};
+  let got;try{got=exactValue(raw);}catch(e){return{valid:false,message:e.code==='undefined'?'That expression is undefined. Check it and try again.':inputMessage(e,null,'number')};}
+  if(decimalUsed(raw))return{valid:true,ok:false,note:'Use an exact value. Decimal approximations are not accepted.'};
+  return{valid:true,ok:same(got,evaluate(parseInput(answer.expression,null),{}))};
+ }
+ function splitList(text){
+  const parts=[];let depth=0,start=0;
+  for(let i=0;i<text.length;i++){const ch=text[i];if(ch==='('||ch==='[')depth++;else if(ch===')'||ch===']')depth--;else if((ch===','||ch===';')&&depth===0){parts.push(text.slice(start,i));start=i+1;}}
+  parts.push(text.slice(start));
+  return parts.flatMap(p=>p.split(/\band\b/i)).map(p=>p.trim()).filter(Boolean)
+   .flatMap(p=>p.includes('±')?[p.replace('±','+'),p.replace('±','-')]:[p]);
+ }
+ function checkList(raw,answer){
+  const text=String(raw||'').trim();
+  if(!text)return{valid:false,message:'Enter every value of c, or choose Does not apply.'};
+  const none=/^(?:does\s*not\s*apply|dna|none)$/i.test(text.replace(/\s+/g,' '));
+  if(none)return{valid:true,ok:!!answer.none};
+  if(/does\s*not\s*apply/i.test(text))return{valid:false,message:'Enter either the values of c or Does not apply, not both.'};
+  let values;
+  try{values=splitList(text.replace(/^\s*\{|\}\s*$/g,'')).map(p=>exactValue(p.replace(/^\s*c\s*=\s*/i,'')));}
+  catch(e){return{valid:false,message:'Enter each exact value of c, separated by commas.'};}
+  if(decimalUsed(text))return{valid:true,ok:false,note:'Use exact values. Decimal approximations are not accepted.'};
+  if(answer.none)return{valid:true,ok:false};
+  const want=answer.values.map(v=>evaluate(parseInput(v,null),{})).sort((a,b)=>a-b),got=[...values].sort((a,b)=>a-b);
+  for(let i=1;i<got.length;i++)if(same(got[i],got[i-1]))return{valid:true,ok:false,note:'List each value of c only once.'};
+  return{valid:true,ok:got.length===want.length&&got.every((v,i)=>same(v,want[i]))};
+ }
+ function check(raw,answer){
+  if(answer?.kind==='antiderivative')return checkAntiderivative(raw,answer);
+  if(answer?.kind==='exact-number')return checkNumber(raw,answer);
+  if(answer?.kind==='exact-list')return checkList(raw,answer);
+  return prior(raw,answer);
+ }
+ answers.check=check;
+ window.BatchMathUnit4Integrals=Object.freeze({check,parseInput,evaluate,realPow});
+})();

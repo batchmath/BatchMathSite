@@ -183,9 +183,10 @@ function renderStagedCalculus(box){
  function stageAnswerText(stage){return stage.answerTex||stage.choices?.[stage.correctIndex]||'';}
  function stageFeedback(host,stage,ok,{showExplanation=true,label='Part 1'}={}){
   const note=document.createElement('div');note.className='feedback shown staged-feedback';note.tabIndex=-1;
+  const formatNote=!ok&&stage._resultNote?`<div class="answer-format-note">${stage._resultNote}</div>`:'';
   const correctAnswer=!ok&&stageAnswerText(stage)?`<div class="correct-answer">Correct answer: ${stage.answerIsText?stageAnswerText(stage):`\\(${stageAnswerText(stage)}\\)`}</div>`:'';
   const explanation=showExplanation&&stage.explanation?`<div class="method">${stage.explanation}</div>`:'';
-  note.innerHTML=`<div class="result ${ok?'good':'bad'}">${ok?(stage.correctFeedback||(stage2?`${label} is correct.`:'Correct.')):(stage.incorrectFeedback||(stage2?`${label} is not correct.`:'Not correct.'))}</div>${correctAnswer}${explanation}`;
+  note.innerHTML=`<div class="result ${ok?'good':'bad'}">${ok?(stage.correctFeedback||(stage2?`${label} is correct.`:'Correct.')):(stage.incorrectFeedback||(stage2?`${label} is not correct.`:'Not correct.'))}</div>${formatNote}${correctAnswer}${explanation}`;
   host.appendChild(note);typeset([note]);return note;
  }
  function normalizeStageRaw(raw){return String(raw||'').trim().replace(/[−–—]/g,'-').replace(/^\s*(?:c|x|y|L\([^)]*\)|S\([^)]*\))\s*=\s*/i,'');}
@@ -220,7 +221,7 @@ function renderStagedCalculus(box){
   const input=document.createElement('input');input.type='text';input.className='practice-answer-input staged-exact-input';input.placeholder=stage.placeholder||'Enter an exact answer';input.autocomplete='off';input.autocapitalize='off';input.spellcheck=false;input.setAttribute('aria-label',stage.ariaLabel||stage.placeholder||'Exact answer');
   const button=document.createElement('button');button.type='button';button.className='choice staged-check';button.textContent=stage.checkLabel||(!stage2?'Check Answer':stage===stage1?'Check Part 1':'Check Part 2');
   const invalid=document.createElement('div');invalid.className='staged-input-message';invalid.setAttribute('aria-live','polite');
-  const check=()=>{if(stage._answered)return;const result=exactResult(input.value,stage);if(!result.valid){input.classList.add('wrong');invalid.textContent=result.message;input.focus();return;}stage._answered=true;invalid.textContent='';input.disabled=true;button.disabled=true;input.classList.add(result.ok?'correct':'wrong');done(result.ok);};
+  const check=()=>{if(stage._answered)return;const result=exactResult(input.value,stage);if(!result.valid){input.classList.add('wrong');invalid.textContent=result.message;input.focus();return;}stage._answered=true;stage._resultNote=result.note||'';invalid.textContent='';input.disabled=true;button.disabled=true;input.classList.add(result.ok?'correct':'wrong');done(result.ok);};
   button.addEventListener('click',check);input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();event.stopPropagation();check();}});
   host.append(input,button,invalid);mountUnit3Keypad(input,host,stage.keypadMode||'unit3-exact',check);setTimeout(()=>input.focus(),0);
  }

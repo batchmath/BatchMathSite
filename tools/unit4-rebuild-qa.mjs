@@ -9,7 +9,8 @@ const req={
  'trapezoidal-approximations':['table_equal','table_unequal','function_equal','table_relationship','function_relationship'],
  'introduction-to-sigma-notation':['sigma_numerical','sigma_identities','sigma_riemann'],
  'integrals-using-geometry':['linear_triangle','linear_trapezoid','cross_axis_line','absolute_value','semicircle','quarter_circle','rectangle_circle'],
- 'basic-integrals':['polynomial','negative_power','fractional_power','divide_each_term','trig_identity','basic_trig','definite_polynomial'],
+ // v12.8.U: typed Basic Integrals families (see tools/unit4-final-four-qa.mjs for the full audit)
+ 'basic-integrals':['polynomial_power_rule','radicals_negative_powers','expand_first','divide_each_term','divide_each_term_ln','basic_trig_exponential','trig_identity_rewrite','definite_power_root','definite_trig_exponential','power_reduction','exponential_base_a'],
  'u-substitution-integrals':['linear_inner_power','trig_linear','secant_tangent','cosecant_cotangent','exponential_of_trig','linear_denominator','radical_linear','power_composition','power_times_root','fourth_root'],
  'integrals-resulting-in-natural-log-and-inverse-trigonometric-functions':['natural_log','polynomial_division_log','inverse_tangent_antiderivative','inverse_sine_antiderivative'],
  'mean-value-theorem-for-integrals':['average_polynomial','average_trig','average_radical','average_exponential','find_c']

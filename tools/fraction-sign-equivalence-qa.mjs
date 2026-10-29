@@ -45,6 +45,16 @@ const exactCases=new Map([
 for(const [input,expected] of exactCases){const got=normalize(input);if(got!==expected)fail(`exact case ${input} -> ${got}, expected ${expected}`);}
 stats.explicitCases=exactCases.size;
 
+// v12.8.U: a sign may move only within a whole-expression fraction. A leading
+// negative fraction followed by more factors or terms must stay exactly as typed;
+// rewriting it pulled the rest of the answer into the denominator.
+const wholeExpressionCases=[
+  '-(1)/(5)cot(5x)+C','-x^2/2+C','-3/x-5tan(x)-x+C','-1/4cos(2x)+C','-(1)/(2)pi','-(x^(2))/(2)+C',
+  '-7/2ln|2x+2|+C','-(1)/(3)ln(abs(cos(3x)))+C','x^2-1/-3','3/-4x','-(2)/(3)x','-(4)/(15)(5x+1)^((3)/(4))+C'
+];
+for(const input of wholeExpressionCases){const got=normalize(input);if(got!==input)fail(`whole-expression case ${input} was rewritten to ${got}`);}
+stats.wholeExpressionCases=wholeExpressionCases.length;
+
 function numeric(s){
   s=String(s).replace(/\s+/g,'');
   const m=s.match(/^([+-]?(?:\d+(?:\.\d*)?|\.\d+))\/([+-]?(?:\d+(?:\.\d*)?|\.\d+))$/);

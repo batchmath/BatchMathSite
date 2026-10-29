@@ -3714,5 +3714,478 @@ G['difference-quotient']=()=>{
  G['unit-4-comprehensive']=(o={})=>{let mode=o.unit4Mode||o.mode||'mixed';if(mode==='mixed')mode=pick(['rect','trap','sigma','riemann','geometry','ftc','rules','basic','usub','log','mvt']);const children={riemann:newton,geometry,ftc,rules};return children[mode]?children[mode]():oldReview({...o,mode,unit4Mode:mode});};
 })();
 
+// ==== v12.8.U final four integrals engines START ====
+// Basic Integrals, U-Substitution, Natural Log / Inverse Trig and the MVT for
+// Integrals. Every problem is typed and checked exactly (unit4-exact-answers.js:
+// antiderivative, exact-number, exact-list). Families and weights follow the
+// approved v12.8.U specification (docs/v12.8.U-final-four-integrals.md).
+(function finalFourIntegralsU(){
+ const W={
+  basic:[['polynomial_power_rule',10],['radicals_negative_powers',11],['expand_first',8],['divide_each_term',13],['divide_each_term_ln',5],['basic_trig_exponential',10],['trig_identity_rewrite',8],['definite_power_root',14],['definite_trig_exponential',9],['power_reduction',8],['exponential_base_a',4]],
+  usub:[['linear_inner_trig_exp',9],['linear_inner_power_root',9],['polynomial_inner_constant_adjust',12],['shifted_quadratic_power',8],['trig_power_chain',10],['composite_exponential_log',4],['back_substitution',8],['definite_linear_inner',15],['definite_polynomial_trig_inner',13],['definite_back_substitution',4],['odd_trig_powers',8]],
+  log:[['linear_denominator',12],['derivative_over_function',14],['tan_cot_composite',10],['division_to_log',22],['inverse_tangent',10],['inverse_sine',10],['definite_log',16],['log_or_not',6]],
+  mvt:[['average_polynomial',21],['average_substitution_trig_exp_log',27],['average_piecewise',22],['find_c_single',14],['find_c_piecewise',16]]
+ };
+ const TIER={
+  polynomial_power_rule:'routine',radicals_negative_powers:'routine',basic_trig_exponential:'routine',expand_first:'intermediate',divide_each_term:'intermediate',definite_power_root:'intermediate',power_reduction:'intermediate',exponential_base_a:'intermediate',divide_each_term_ln:'challenging',trig_identity_rewrite:'challenging',definite_trig_exponential:'challenging',
+  linear_inner_trig_exp:'routine',linear_inner_power_root:'routine',definite_linear_inner:'routine',polynomial_inner_constant_adjust:'intermediate',shifted_quadratic_power:'intermediate',trig_power_chain:'intermediate',composite_exponential_log:'intermediate',definite_polynomial_trig_inner:'intermediate',back_substitution:'challenging',definite_back_substitution:'challenging',odd_trig_powers:'challenging',
+  linear_denominator:'routine',inverse_tangent:'routine',inverse_sine:'routine',derivative_over_function:'intermediate',tan_cot_composite:'intermediate',division_to_log:'intermediate',definite_log:'challenging',log_or_not:'challenging',
+  average_polynomial:'routine',average_substitution_trig_exp_log:'intermediate',average_piecewise:'intermediate',find_c_single:'challenging',find_c_piecewise:'challenging'
+ };
+ const weighted=kind=>{let r=R()*100;for(const[f,w]of W[kind]){r-=w;if(r<0)return f;}return W[kind].at(-1)[0];};
+ const rint=(a,b)=>ri(a,b),nzr=(a,b)=>pick(Array.from({length:b-a+1},(_,i)=>i+a).filter(Boolean));
+ const chance=p=>R()<p;
+ const shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(R()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;};
+
+ // ---------- exact rationals ----------
+ const g2=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b];}return a||1;};
+ const Q=(n,d=1)=>{if(!d)throw Error('zero denominator');if(d<0){n=-n;d=-d;}const g=g2(n,d);return[n/g,d/g];};
+ const qadd=(a,b)=>Q(a[0]*b[1]+b[0]*a[1],a[1]*b[1]),qsub=(a,b)=>qadd(a,[-b[0],b[1]]),qmul=(a,b)=>Q(a[0]*b[0],a[1]*b[1]),qdiv=(a,b)=>Q(a[0]*b[1],a[1]*b[0]),qneg=a=>[-a[0],a[1]];
+ const qz=a=>a[0]===0,qone=a=>a[0]===a[1],qint=a=>a[1]===1,qnum=a=>a[0]/a[1];
+ const qpow=(a,n)=>{let r=[1,1];for(let i=0;i<Math.abs(n);i++)r=qmul(r,a);return n<0?qdiv([1,1],r):r;};
+ const qtex=(a,sign=true)=>{const[n,d]=a;const s=n<0&&sign?'-':'';return d===1?`${s}${Math.abs(n)}`:`${s}\\frac{${Math.abs(n)}}{${d}}`;};
+ const qexpr=a=>a[1]===1?`(${a[0]})`:`(${a[0]}/${a[1]})`;
+
+ // ---------- display helpers ----------
+ const im=s=>`\\(${s}\\)`;
+ const eq=s=>`<div class="u4-work-equation u4-definite-equation">${im(`\\displaystyle ${s}`)}</div>`;
+ const step=(h,text='',...eqs)=>`<div class="u4-work-step"><strong>${h}</strong>${text?' '+text:''}${eqs.map(eq).join('')}</div>`;
+ const VT={x:'x',t:'t',theta:'\\theta',r:'r'};
+ const dv=v=>`\\,d${VT[v]}`;
+ // coefficient (rational) in front of a TeX body; body '' means the constant itself
+ function ctex(c,body,first){
+  if(qz(c))return '';
+  const neg=c[0]<0,a=[Math.abs(c[0]),c[1]],sign=neg?'-':first?'':'+';
+  if(!body)return sign+qtex(a,false);
+  if(qone(a))return sign+body;
+  return sign+qtex(a,false)+body;
+ }
+ const join=parts=>{const s=parts.filter(Boolean).join('');return s.startsWith('+')?s.slice(1):s||'0';};
+ const sumTex=items=>join(items.map((it,i)=>i===0?it.replace(/^\+/,''):(/^[+-]/.test(it)?it:'+'+it)));
+ // a·body in checker syntax
+ const cexp=(c,body)=>body?`${qexpr(c)}*(${body})`:qexpr(c);
+ const sumExp=parts=>parts.filter(Boolean).join('+')||'0';
+
+ // powers of a variable: e = [n,d]
+ function powTex(v,e,style='answer'){
+  const V=VT[v],[n,d]=e;
+  if(n===0)return '';
+  if(d===1)return n===1?V:`${V}^{${n}}`;
+  if(n<0)return `${V}^{-\\frac{${-n}}{${d}}}`;
+  if(style==='plain')return `${V}^{\\frac{${n}}{${d}}}`;
+  if(style==='radical'&&n>0){
+   if(d===2)return n===1?`\\sqrt{${V}}`:n===3?`${V}\\sqrt{${V}}`:`${V}^{\\frac{${n}}{2}}`;
+   if(d===3)return n===1?`\\sqrt[3]{${V}}`:n===2?`\\sqrt[3]{${V}^{2}}`:`${V}^{\\frac{${n}}{3}}`;
+   if(d===4&&n===1)return `\\sqrt[4]{${V}}`;
+  }
+  if(n===1&&d===2)return `\\sqrt{${V}}`;
+  return `${V}^{\\frac{${n}}{${d}}}`;
+ }
+ // one term c·v^e, signs handled by caller through ctex conventions
+ function termTex(c,e,v,first,style='answer'){
+  if(qz(c))return '';
+  if(e[0]>=0||style==='plain')return ctex(c,powTex(v,e,style),first);
+  const pos=[-e[0],e[1]],den=powTex(v,pos,style==='radical'?'radical':'answer');
+  const neg=c[0]<0,sign=neg?'-':first?'':'+',num=Math.abs(c[0]);
+  return `${sign}\\frac{${num}}{${c[1]===1?'':c[1]}${den}}`;
+ }
+ const polyTex=(terms,v,style='answer')=>join(terms.map((t,i)=>termTex(t.c,t.e,v,i===0,style)))||'0';
+ const polyExp=terms=>sumExp(terms.map(t=>qz(t.c)?'':t.e[0]===0?qexpr(t.c):`${qexpr(t.c)}*x^(${t.e[0]}/${t.e[1]})`));
+ // combine like powers and sort by exponent (descending)
+ function simplifyTerms(terms){
+  const m=new Map();for(const t of terms){const k=t.e[0]/t.e[1];const prev=m.get(k);m.set(k,prev?{c:qadd(prev.c,t.c),e:t.e}:{c:t.c,e:Q(...t.e)});}
+  return [...m.values()].filter(t=>!qz(t.c)).sort((a,b)=>b.e[0]/b.e[1]-a.e[0]/a.e[1]);
+ }
+ // antiderivative of a power sum (no x^-1 terms)
+ const integrateTerms=terms=>terms.map(t=>{const e=qadd(t.e,[1,1]);if(qz(e))throw Error('log term');return{c:qdiv(t.c,e),e};});
+
+ // ---------- exact real numbers: rational combinations of basis values ----------
+ // basis keys: '1', 'r2','r3','r6' (square roots), 'pi', 'e:p/q' (e^(p/q)), 'ln:p/q' (ln of a rational), 'b:base:p/q' (base^(p/q))
+ const X=(entries={})=>{const m=new Map();for(const[k,v]of Object.entries(entries))if(!qz(v))m.set(k,v);return m;};
+ const xadd=(a,b)=>{const m=new Map(a);for(const[k,v]of b){const s=m.has(k)?qadd(m.get(k),v):v;if(qz(s))m.delete(k);else m.set(k,s);}return m;};
+ const xscale=(a,c)=>{const m=new Map();for(const[k,v]of a){const s=qmul(v,c);if(!qz(s))m.set(k,s);}return m;};
+ const xsub=(a,b)=>xadd(a,xscale(b,[-1,1]));
+ const xq=c=>X({'1':c});
+ const xIsRational=a=>[...a.keys()].every(k=>k==='1');
+ const xRational=a=>a.get('1')||[0,1];
+ const BASIS_ORDER=k=>k.startsWith('e:')?1:k.startsWith('b:')?2:k==='pi'?3:k.startsWith('r')?4:k==='1'?5:k.startsWith('ln:')?6:7;
+ function basisTex(k){
+  if(k==='1')return '';
+  if(k==='pi')return '\\pi';
+  if(k[0]==='r')return `\\sqrt{${k.slice(1)}}`;
+  if(k.startsWith('e:')){const [n,d]=k.slice(2).split('/').map(Number);return d===1?(n===1?'e':`e^{${n}}`):`e^{\\frac{${n}}{${d}}}`;}
+  if(k.startsWith('ln:')){const [n,d]=k.slice(3).split('/').map(Number);return d===1?`\\ln ${n}`:`\\ln\\left(\\frac{${n}}{${d}}\\right)`;}
+  if(k.startsWith('b:')){const [,b,e]=k.split(':');const [n,d]=e.split('/').map(Number);return d===1?`${b}^{${n}}`:`${b}^{\\frac{${n}}{${d}}}`;}
+  if(k.startsWith('iln:'))return `\\frac{1}{\\ln ${k.slice(4)}}`;
+  throw Error('basis '+k);
+ }
+ function basisExp(k){
+  if(k.startsWith('iln:'))return `(1/ln(${k.slice(4)}))`;
+  if(k==='1')return '1';
+  if(k==='pi')return 'pi';
+  if(k[0]==='r')return `sqrt(${k.slice(1)})`;
+  if(k.startsWith('e:'))return `e^(${k.slice(2)})`;
+  if(k.startsWith('ln:'))return `ln(${k.slice(3)})`;
+  if(k.startsWith('b:')){const [,b,e]=k.split(':');return `${b}^(${e})`;}
+  throw Error('basis '+k);
+ }
+ const xkeys=a=>[...a.keys()].sort((p,q)=>BASIS_ORDER(p)-BASIS_ORDER(q)||p.localeCompare(q));
+ function xtex(a){
+  if(!a.size)return '0';
+  return join(xkeys(a).map((k,i)=>{const c=a.get(k);
+   // surds and pi sit in the numerator: 2√3/3, 2π/3
+   if((k==='pi'||k[0]==='r')&&c[1]!==1){const sign=c[0]<0?'-':i===0?'':'+',n=Math.abs(c[0]);return `${sign}\\frac{${n===1?'':n}${basisTex(k)}}{${c[1]}}`;}
+   if(!k.startsWith('iln:'))return ctex(c,basisTex(k),i===0);const sign=c[0]<0?'-':i===0?'':'+';return `${sign}\\frac{${Math.abs(c[0])}}{${c[1]===1?'':c[1]}\\ln ${k.slice(4)}}`;}));
+ }
+ const xexp=a=>a.size?xkeys(a).map(k=>k==='1'?qexpr(a.get(k)):`${qexpr(a.get(k))}*${basisExp(k)}`).join('+'):'0';
+ // value over a multiple of pi, e.g. 3 ln 2 / pi
+ function xOverPiTex(a,r=[1,1]){
+  const s=xscale(a,qdiv([1,1],r));let den=1;for(const v of s.values())den=den/g2(den,v[1])*v[1];
+  const num=xscale(s,[den,1]),allNeg=[...num.values()].every(v=>v[0]<0),top=xtex(allNeg?xscale(num,[-1,1]):num);
+  return `${allNeg?'-':''}\\frac{${top}}{${den===1?'':den}\\pi}`;
+ }
+ const xOverPiExp=(a,r=[1,1])=>`(${xexp(xscale(a,qdiv([1,1],r)))})/pi`;
+ // value of an antiderivative at a bound, wrapped only when needed for subtraction
+ const multiTerm=t=>{let d=0;for(let i=0;i<t.length;i++){const ch=t[i];if('{(['.includes(ch))d++;else if('})]'.includes(ch))d--;else if((ch==='+'||ch==='-')&&d===0&&i>0)return true;}return false;};
+ const subWrap=t=>multiTerm(t)||t.startsWith('-')?`\\left(${t}\\right)`:t;
+ // "F(b) - F(a) = (value at b) - (value at a) = result", skipping lines that repeat
+ function evalLine(lhs,hiTex,loTex,resultTex){
+  const parts=[lhs];
+  if(loTex==='0'){if(hiTex!==resultTex)parts.push(hiTex);}
+  else parts.push(`${multiTerm(hiTex)?`\\left(${hiTex}\\right)`:hiTex}-${subWrap(loTex)}`);
+  parts.push(resultTex);
+  return parts.filter((t,i)=>i===0||t!==parts[i-1]).join('=');
+ }
+
+ // special angles: multiples of pi/12 used here are 0, pi/6, pi/4, pi/3, pi/2, 2pi/3, 3pi/4, 5pi/6, pi
+ const ANG={'0':[0,1],'1/6':[1,6],'1/4':[1,4],'1/3':[1,3],'1/2':[1,2],'2/3':[2,3],'3/4':[3,4],'5/6':[5,6],'1':[1,1]};
+ const angTex=a=>{const[n,d]=a;if(n===0)return '0';const top=n===1?'\\pi':`${n}\\pi`;return d===1?top:`\\frac{${top}}{${d}}`;};
+ const angExp=a=>`(${a[0]}*pi/${a[1]})`;
+ const SQ=(c,k)=>k===1?xq(c):X({['r'+k]:c});
+ // sine and cosine of multiples of pi/12 that appear above, as exact values
+ function sinX(a){const t=qnum(a)%2;const tab={0:xq([0,1]),[1/6]:xq([1,2]),[1/4]:SQ([1,2],2),[1/3]:SQ([1,2],3),[1/2]:xq([1,1]),[2/3]:SQ([1,2],3),[3/4]:SQ([1,2],2),[5/6]:xq([1,2]),1:xq([0,1])};const key=Object.keys(tab).find(k=>Math.abs(Number(k)-t)<1e-12);if(key===undefined)throw Error('angle');return tab[key];}
+ function cosX(a){const t=qnum(a)%2;const tab={0:xq([1,1]),[1/6]:SQ([1,2],3),[1/4]:SQ([1,2],2),[1/3]:xq([1,2]),[1/2]:xq([0,1]),[2/3]:xq([-1,2]),[3/4]:SQ([-1,2],2),[5/6]:SQ([-1,2],3),1:xq([-1,1])};const key=Object.keys(tab).find(k=>Math.abs(Number(k)-t)<1e-12);if(key===undefined)throw Error('angle');return tab[key];}
+ // reciprocal of a single-term exact value c·sqrt(k): 1/(c√k) = √k/(c k)
+ function xrecip(a){if(a.size!==1)throw Error('recip');const[k,c]=[...a][0];if(k==='1')return xq(qdiv([1,1],c));const r=Number(k.slice(1));return X({[k]:qdiv([1,1],qmul(c,[r,1]))});}
+ const tanX=a=>{const s=sinX(a),c=cosX(a);if(!c.size)throw Error('tan');return xmulSingle(s,xrecip(c));};
+ const secX=a=>xrecip(cosX(a)),cscX=a=>xrecip(sinX(a)),cotX=a=>xmulSingle(cosX(a),xrecip(sinX(a)));
+ // product of two single-term surds (each c·√k)
+ function xmulSingle(a,b){
+  if(!a.size||!b.size)return X();
+  if(a.size!==1||b.size!==1)throw Error('mul');
+  const[ka,ca]=[...a][0],[kb,cb]=[...b][0],c=qmul(ca,cb);
+  const ra=ka==='1'?1:Number(ka.slice(1)),rb=kb==='1'?1:Number(kb.slice(1));
+  let r=ra*rb,out=1;for(let p=2;p*p<=r;p++)while(r%(p*p)===0){r/=p*p;out*=p;}
+  return r===1?xq(qmul(c,[out,1])):X({['r'+r]:qmul(c,[out,1])});
+ }
+ const xpowSingle=(a,n)=>{let r=xq([1,1]);for(let i=0;i<n;i++)r=xmulSingle(r,a);return r;};
+ const xmul=(a,b)=>{let r=X();for(const[ka,ca]of a)for(const[kb,cb]of b)r=xadd(r,xmulSingle(X({[ka]:ca}),X({[kb]:cb})));return r;};
+
+ // ---------- numeric helpers for domains ----------
+ // intervals where every function in fns is finite, split at the given points
+ function comps(lo,hi,cuts=[],pad=0.04){
+  const pts=[lo,...cuts.filter(c=>c>lo&&c<hi).sort((a,b)=>a-b),hi],out=[];
+  for(let i=0;i<pts.length-1;i++){const a=pts[i],b=pts[i+1],w=b-a,m=Math.min(pad*Math.max(1,w),w/6);if(w>0.2)out.push([+(a+(i?m:0)).toFixed(6),+(b-(i<pts.length-2?m:0)).toFixed(6)]);}
+  return out;
+ }
+ const keyOf=(kind,family,data)=>{let h=2166136261,g=5381;for(const ch of JSON.stringify(data)){h=Math.imul(h^ch.charCodeAt(0),16777619);g=Math.imul(g,33)^ch.charCodeAt(0);}return `u4U-${kind}-${family}-${(h>>>0).toString(16)}${(g>>>0).toString(16)}`;};
+
+ // ---------- problem assembly ----------
+ // spec: {prompt, math (TeX), stages:[{prompt,answer,answerTex,explanation,keypadMode}], data}
+ function assemble(kind,family,spec){
+  const stages=spec.stages.map(s=>({type:'unit4-exact',prompt:s.prompt,unit4Answer:s.answer,answerTex:s.answerTex,explanation:s.explanation,keypadMode:s.keypadMode,placeholder:s.placeholder||'Enter an exact answer',ariaLabel:s.ariaLabel||'Exact answer'}));
+  const last=stages.at(-1);
+  const p={id:keyOf(kind,family,{m:spec.math,a:stages.map(s=>s.answerTex)}),variant:family,normalizedMathDisplay:true,answerType:'staged-calculus',
+   questionHtml:`<div class="u4-unit4-question u4-definite-question u4-revised-question u4-final-four-question u4-${kind}-question"><div class="question-prompt">${spec.prompt}</div><div class="u4-formula">${im(`\\displaystyle ${spec.math}`)}</div></div>`,
+   stage1:stages[0],answerTex:last.answerTex,explanation:stages.map(s=>s.explanation).join(''),unit4Meta:{kind,family,tier:TIER[family],...(spec.data||{})}};
+  if(stages[1])p.stage2=stages[1];
+  return p;
+ }
+ // an indefinite integral answered with + C
+ function indefinite(kind,family,{v='x',integrand,integrandExp,answerTex,answerExp,components,steps,mode,data={}}){
+  const math=`\\int ${integrand}${dv(v)}`;
+  return assemble(kind,family,{prompt:'Find the indefinite integral.',math,data:{...data,variable:v,mode:'indefinite',integrandExp,answerExp,components},stages:[{
+   prompt:'Enter the antiderivative, including + C.',answer:{kind:'antiderivative',expression:answerExp,variable:v,components},answerTex:`${answerTex}+C`,explanation:steps.join(''),keypadMode:mode,placeholder:'Enter the antiderivative + C',ariaLabel:'Antiderivative'}]});
+ }
+ function definite(kind,family,{v='x',integrand,integrandExp,lo,hi,loExp,hiExp,value,steps,mode,data={}}){
+  const math=`\\int_{${lo}}^{${hi}} ${integrand}${dv(v)}`;
+  return assemble(kind,family,{prompt:'Evaluate the definite integral.',math,data:{...data,variable:v,mode:'definite',integrandExp,lo:loExp,hi:hiExp,valueExp:xexp(value)},stages:[{
+   prompt:'Enter the exact value.',answer:{kind:'exact-number',expression:xexp(value)},answerTex:xtex(value),explanation:steps.join(''),keypadMode:mode,placeholder:'Enter the exact value',ariaLabel:'Exact value'}]});
+ }
+
+ // ======================= BASIC INTEGRALS =======================
+ const T=(c,e)=>({c:Array.isArray(c)?Q(...c):[c,1],e:Array.isArray(e)?Q(...e):[e,1]});
+ const paren=s=>`\\left(${s}\\right)`;
+ // parenthesize only a sum: a top-level + or - after the first character
+ function hasTerms(t){let d=0;for(let i=0;i<t.length;i++){const ch=t[i];if('{(['.includes(ch))d++;else if('})]'.includes(ch))d--;else if((ch==='+'||ch==='-')&&d===0&&i>0)return true;}return false;}
+ const wrapSum=t=>hasTerms(t)?paren(t):t;
+ // c·v^e/(e+1) written the way the power rule produces it, before simplifying
+ function rawPower(t,v,first){
+  const e=qadd(t.e,[1,1]),V=VT[v];
+  if(qz(t.e))return ctex(t.c,V,first);
+  const P=powTex(v,e,'plain'),total=qdiv(t.c,e),sign=total[0]<0?'-':first?'':'+',a=[Math.abs(t.c[0]),t.c[1]],ae=[Math.abs(e[0]),e[1]];
+  if(qint(e)&&qint(a))return `${sign}\\frac{${a[0]===1?'':a[0]}${P}}{${ae[0]}}`;
+  return `${sign}${qone(a)?'':qtex(a,false)+'\\cdot '}${qtex(qdiv([1,1],ae),false)}${P}`;
+ }
+ // coefficient alone in front of a parenthesis or integral: 1 -> '', -1 -> '-'
+ const coefOnly=c=>qone(c)?'':qone(qneg(c))?'-':qtex(c);
+ const wrapNeg=t=>t.startsWith('-')?`\\left(${t}\\right)`:t;
+ const rawPowerSum=(terms,v)=>join(terms.map((t,i)=>rawPower(t,v,i===0)));
+ // a·x^p for a positive rational base x (perfect powers only), or null
+ function qroot(x,e){
+  const[n,d]=e;const sign=x<0?-1:1;let ax=Math.abs(x);
+  if(x<0&&d%2===0)return null;
+  const r=Math.round(Math.pow(ax,1/d));let root=null;for(const c of [r-1,r,r+1])if(c>=0&&Math.pow(c,d)===ax)root=c;if(root===null)return null;
+  const base=sign<0?-root:root;return qpow([base,1],n);
+ }
+ const evalTerms=(terms,x)=>terms.reduce((s,t)=>{if(qz(t.e))return qadd(s,t.c);const v=qroot(x,t.e);if(v===null)throw Error('irrational');return qadd(s,qmul(t.c,v));},[0,1]);
+ const avoid=(e,bad)=>bad.some(b=>Math.abs(e[0]/e[1]-b)<1e-12);
+ function mulTerms(a,b){const out=[];for(const s of a)for(const t of b)out.push({c:qmul(s.c,t.c),e:qadd(s.e,t.e)});return simplifyTerms(out);}
+ const termsHaveEvenRoot=terms=>terms.some(t=>t.e[1]%2===0);
+ const domainFor=terms=>termsHaveEvenRoot(terms)?[[0.08,6]]:terms.some(t=>t.e[0]<0)?comps(-5,5,[0]):[[-4,4]];
+
+ function bPolynomial(){
+  const count=pick([2,3,3,3,4]),powers=shuffle([0,1,2,3,4,5,6,7]).slice(0,count).sort((a,b)=>b-a);
+  const terms=powers.map(p=>T(nzr(-9,9),p));
+  if(chance(.2)){const t=pick(terms.filter(t=>!qz(t.e))||terms);if(t)t.c=Q(nzr(-5,5),pick([2,3,4]));}
+  const anti=integrateTerms(terms),poly=polyTex(terms,'x'),raw=rawPowerSum(terms,'x'),fin=polyTex(anti,'x');
+  const steps=[step('Apply the power rule to each term.','',`\\int ${terms.length>1?paren(poly):poly}\\,dx=${raw===fin?fin:`${raw}+C=${fin}`}+C`)];
+  return indefinite('basic','polynomial_power_rule',{integrand:terms.length>1?paren(poly):poly,integrandExp:polyExp(terms),answerTex:fin,answerExp:polyExp(anti),components:[[-4,4]],steps,mode:'unit4-basic-indef',data:{terms:terms.length}});
+ }
+ function bRadicals(){
+  const pool=[[1,2],[-1,2],[1,3],[-1,3],[2,3],[3,2],[-2,1],[-3,1],[-4,1],[3,4],[-2,3],[5,2],[4,3]];
+  const count=pick([2,2,3]);let es=shuffle(pool).slice(0,count);
+  if(chance(.35))es.push(pick([[0,1],[1,1],[2,1]]));
+  const terms=simplifyTerms(es.map(e=>T(nzr(-9,9),e)));
+  const anti=integrateTerms(terms),shown=polyTex(terms,'x','radical'),plain=polyTex(terms,'x','plain'),fin=polyTex(anti,'x'),raw=rawPowerSum(terms,'x');
+  const steps=[...(shown===plain?[]:[step('Rewrite each term as a power of x.','',`${shown}=${plain}`)]),step('Apply the power rule to each term.','',`\\int\\left(${plain}\\right)dx=${raw===fin?fin:`${raw}+C=${fin}`}+C`)];
+  return indefinite('basic','radicals_negative_powers',{integrand:paren(shown),integrandExp:polyExp(terms),answerTex:fin,answerExp:polyExp(anti),components:domainFor(terms),steps,mode:'unit4-basic-indef',data:{exponents:terms.map(t=>t.e.join('/'))}});
+ }
+ const linTex=(p,a,v='x')=>`${p===1?'':p===-1?'-':p}${VT[v]}${a<0?'-':'+'}${Math.abs(a)}`;
+ function bExpand(){
+  const kind=pick(['binomials','binomials','monomial_times','radical_square','power_of_binomial']);
+  let factors,shownFactor;
+  if(kind==='binomials'){
+   const p=pick([1,1,1,2,3]),q=pick([1,1,2]),a=nzr(-7,7),b=nzr(-7,7);
+   factors=[[T(p,1),T(a,0)],[T(q,1),T(b,0)]];shownFactor=`\\left(${linTex(p,a)}\\right)\\left(${linTex(q,b)}\\right)`;
+  }else if(kind==='monomial_times'){
+   const m=pick([[1,1],[2,1],[3,1],[1,3],[1,2],[2,3]]),a=nzr(-6,6),k=nzr(-4,4);
+   factors=[[T(k,m)],[T(1,1),T(a,0)]];shownFactor=`${termTex([k,1],Q(...m),'x',true,'radical')}\\left(x${a<0?'-':'+'}${Math.abs(a)}\\right)`;
+  }else if(kind==='radical_square'){
+   const p=pick([1,1,2,3]),a=nzr(-6,6),rootFirst=chance(.5);
+   factors=[[T(p,[1,2]),T(a,0)],[T(p,[1,2]),T(a,0)]];
+   const r=`${p===1?'':p}\\sqrt{x}`;shownFactor=rootFirst?`\\left(${r}${a<0?'-':'+'}${Math.abs(a)}\\right)^{2}`:`\\left(${a}${'-'}${r}\\right)^{2}`;
+   if(!rootFirst)factors=[[T(-p,[1,2]),T(a,0)],[T(-p,[1,2]),T(a,0)]];
+  }else{
+   const a=nzr(-4,4);
+   if(chance(.5)){factors=[[T(1,2),T(a,1)],[T(1,2),T(a,1)]];shownFactor=`\\left(x^{2}${a<0?'-':'+'}${Math.abs(a)===1?'':Math.abs(a)}x\\right)^{2}`;}
+   else{factors=[[T(1,1),T(a,0)],[T(1,1),T(a,0)],[T(1,1),T(a,0)]];shownFactor=`\\left(x${a<0?'-':'+'}${Math.abs(a)}\\right)^{3}`;}
+  }
+  let prod=[T(1,0)];for(const f of factors)prod=mulTerms(prod,f);
+  const anti=integrateTerms(prod),plain=polyTex(prod,'x','plain'),fin=polyTex(anti,'x'),raw=rawPowerSum(prod,'x');
+  const steps=[step('Expand the integrand.','',`${shownFactor}=${plain}`),step('Apply the power rule to each term.','',`\\int\\left(${plain}\\right)dx=${raw===fin?fin:`${raw}+C=${fin}`}+C`)];
+  return indefinite('basic','expand_first',{integrand:shownFactor,integrandExp:polyExp(prod),answerTex:fin,answerExp:polyExp(anti),components:domainFor(prod),steps,mode:'unit4-basic-indef',data:{subtype:kind}});
+ }
+ // denominators for dividing each term: [exponent, coefficient]
+ const DENOMS=[[[1,1],1],[[2,1],1],[[3,1],1],[[1,2],1],[[1,3],1],[[2,3],1],[[2,1],2],[[1,2],2],[[3,1],2],[[1,1],3],[[2,3],3],[[1,2],7]];
+ function denomTex(e,c){const body=powTex('x',e,'radical');return `${c===1?'':c}${body}`;}
+ function bDivide(withLn){
+  let den,num,quot,tries=0;
+  do{
+   const [e,c]=withLn?pick([[[1,1],1],[[2,1],1],[[3,1],1],[[2,1],2],[[1,1],2],[[3,1],3]]):pick(DENOMS);den={e:Q(...e),c};
+   const count=pick([2,3,3,4]),powers=withLn?shuffle([0,1,2,3,4,5]).slice(0,count-1):shuffle([0,1,2,3,4,5,6]).slice(0,count);
+   if(withLn)powers.push(Math.round(qnum(den.e))-1);
+   num=simplifyTerms(powers.map(p=>T(nzr(-8,8),p)));
+   if(!withLn&&chance(.25)&&den.e[1]!==1)num=simplifyTerms([...num,T(nzr(-6,6),qadd(den.e,[pick([0,1]),1]))]);
+   quot=simplifyTerms(num.map(t=>({c:qdiv(t.c,[den.c,1]),e:qsub(t.e,den.e)})));
+   tries++;
+  }while(tries<50&&(withLn?quot.filter(t=>t.e[0]===-t.e[1]).length!==1||quot.length<3:quot.some(t=>t.e[0]===-t.e[1])||quot.length<2));
+  const lnTerm=quot.find(t=>t.e[0]===-t.e[1]),rest=quot.filter(t=>t!==lnTerm);
+  const anti=integrateTerms(rest),numTex=polyTex(num,'x','radical'),denTex=denomTex(den.e,den.c),plain=polyTex(quot,'x','plain');
+  const lnTex=lnTerm?ctex(lnTerm.c,'\\ln|x|',!anti.length):'',fin=join([...anti.map((t,i)=>termTex(t.c,t.e,'x',i===0)),lnTex]);
+  const lnExp=lnTerm?`${qexpr(lnTerm.c)}*ln(abs(x))`:'',finExp=sumExp([polyExp(anti),lnExp]);
+  const integrand=`\\frac{${numTex}}{${denTex}}`,raw=join([rawPowerSum(rest,'x'),lnTex]);
+  const steps=[step(`Divide each term by ${im(denTex)}.`,'',`${integrand}=${plain}`)];
+  if(lnTerm)steps.push(step('Integrate each term.',`The power rule handles every term except ${im(termTex(lnTerm.c,lnTerm.e,'x',true,'answer'))}; use ${im('\\int\\frac{1}{x}\\,dx=\\ln|x|')} for that one.`,`\\int\\left(${plain}\\right)dx=${fin}+C`));
+  else steps.push(step('Apply the power rule to each term.','',`\\int\\left(${plain}\\right)dx=${raw===fin?fin:`${raw}+C=${fin}`}+C`));
+  const comp=den.e[1]%2===0||quot.some(t=>t.e[1]%2===0)?[[0.08,6]]:comps(-5,5,[0]);
+  return indefinite('basic',withLn?'divide_each_term_ln':'divide_each_term',{integrand,integrandExp:polyExp(quot)+(lnTerm?'':''),answerTex:fin,answerExp:finExp,components:comp,steps,mode:'unit4-basic-indef',data:{denominator:denTex,lnTerm:!!lnTerm}});
+ }
+ // basic trig antiderivatives: integrand, antiderivative, rule text, singularities (sin=0 'S', cos=0 'C')
+ const TRIGB={
+  sin:{tex:'\\sin x',exp:'sin(x)',anti:[-1,'\\cos x','cos(x)'],rule:'\\int\\sin x\\,dx=-\\cos x'},
+  cos:{tex:'\\cos x',exp:'cos(x)',anti:[1,'\\sin x','sin(x)'],rule:'\\int\\cos x\\,dx=\\sin x'},
+  sec2:{tex:'\\sec^{2}x',exp:'sec(x)^2',anti:[1,'\\tan x','tan(x)'],rule:'\\int\\sec^{2}x\\,dx=\\tan x',cut:'C'},
+  csc2:{tex:'\\csc^{2}x',exp:'csc(x)^2',anti:[-1,'\\cot x','cot(x)'],rule:'\\int\\csc^{2}x\\,dx=-\\cot x',cut:'S'},
+  sectan:{tex:'\\sec x\\tan x',exp:'sec(x)*tan(x)',anti:[1,'\\sec x','sec(x)'],rule:'\\int\\sec x\\tan x\\,dx=\\sec x',cut:'C'},
+  csccot:{tex:'\\csc x\\cot x',exp:'csc(x)*cot(x)',anti:[-1,'\\csc x','csc(x)'],rule:'\\int\\csc x\\cot x\\,dx=-\\csc x',cut:'S'},
+  exp:{tex:'e^{x}',exp:'e^x',anti:[1,'e^{x}','e^x'],rule:'\\int e^{x}\\,dx=e^{x}'}
+ };
+ function trigCuts(keys){const cuts=[];if(keys.some(k=>TRIGB[k]?.cut==='C'))cuts.push(-Math.PI/2,Math.PI/2);if(keys.some(k=>TRIGB[k]?.cut==='S'))cuts.push(-Math.PI,0,Math.PI);return comps(-3.1,3.1,cuts);}
+ function bTrigExp(){
+  const keys=shuffle(Object.keys(TRIGB)).slice(0,pick([2,2,3])),coef=keys.map(()=>chance(.15)?Q(nzr(-5,5),pick([2,3])):[nzr(-9,9),1]);
+  const extra=chance(.35)?T(nzr(-9,9),pick([0,1,2])):null;
+  const items=keys.map((k,i)=>ctex(coef[i],TRIGB[k].tex,i===0)),antiItems=keys.map((k,i)=>ctex(qmul(coef[i],[TRIGB[k].anti[0],1]),TRIGB[k].anti[1],i===0));
+  const exps=keys.map((k,i)=>cexp(coef[i],TRIGB[k].exp)),antiExps=keys.map((k,i)=>cexp(qmul(coef[i],[TRIGB[k].anti[0],1]),TRIGB[k].anti[2]));
+  if(extra){items.push(termTex(extra.c,extra.e,'x',false,'answer'));const a=integrateTerms([extra])[0];antiItems.push(termTex(a.c,a.e,'x',false));exps.push(polyExp([extra]));antiExps.push(polyExp([a]));}
+  const integrand=paren(join(items)),fin=join(antiItems);
+  const rules=keys.map(k=>im(TRIGB[k].rule));
+  const steps=[step('Integrate each term.',`Use ${rules.length>1?rules.slice(0,-1).join(', ')+' and '+rules.at(-1):rules[0]}${extra?', and the power rule for the remaining term':''}.`,`\\int${integrand}dx=${fin}+C`)];
+  return indefinite('basic','basic_trig_exponential',{integrand,integrandExp:sumExp(exps),answerTex:fin,answerExp:sumExp(antiExps),components:trigCuts(keys),steps,mode:'unit4-basic-indef',data:{functions:keys}});
+ }
+ function bIdentity(){
+  const kind=pick(['quotient_cos','quotient_sin','double_angle_quotient','pythagorean_sec','pythagorean_csc','tan_squared','sin_cos_sum','secant_product','cosecant_product','double_angle_cos','sine_over_cos_squared']);
+  const a=nzr(-6,6),b=nzr(-6,6);let integrand,iexp,ident,rewritten,rexp,fin,fexp,cuts=[];
+  const A=x=>Math.abs(x)===1?(x<0?'-':''):String(x);
+  if(kind==='quotient_cos'){integrand=`\\frac{${A(a)}\\cos^{3}x${b<0?'-':'+'}${Math.abs(b)}}{\\cos^{2}x}`;iexp=`(${a}*cos(x)^3+(${b}))/cos(x)^2`;ident=`Divide each term by ${im('\\cos^{2}x')}, and write ${im('\\frac{1}{\\cos^{2}x}=\\sec^{2}x')}.`;rewritten=`${A(a)}\\cos x${b<0?'-':'+'}${Math.abs(b)===1?'':Math.abs(b)}\\sec^{2}x`;rexp='';fin=`${A(a)}\\sin x${b<0?'-':'+'}${Math.abs(b)===1?'':Math.abs(b)}\\tan x`;fexp=`${a}*sin(x)+(${b})*tan(x)`;cuts=[-Math.PI/2,Math.PI/2];}
+  else if(kind==='quotient_sin'){integrand=`\\frac{${A(a)}\\sin^{3}x${b<0?'-':'+'}${Math.abs(b)}}{\\sin^{2}x}`;iexp=`(${a}*sin(x)^3+(${b}))/sin(x)^2`;ident=`Divide each term by ${im('\\sin^{2}x')}, and write ${im('\\frac{1}{\\sin^{2}x}=\\csc^{2}x')}.`;rewritten=`${A(a)}\\sin x${b<0?'-':'+'}${Math.abs(b)===1?'':Math.abs(b)}\\csc^{2}x`;fin=join([ctex([-a,1],'\\cos x',true),ctex([-b,1],'\\cot x',false)]);fexp=`${-a}*cos(x)+(${-b})*cot(x)`;cuts=[-Math.PI,0,Math.PI];}
+  else if(kind==='double_angle_quotient'){const useCos=chance(.6);integrand=`\\frac{${A(a)}\\sin(2x)}{${useCos?'\\cos x':'\\sin x'}}`;iexp=`${a}*sin(2*x)/${useCos?'cos(x)':'sin(x)'}`;ident=`Use ${im('\\sin(2x)=2\\sin x\\cos x')}.`;rewritten=useCos?ctex([2*a,1],'\\sin x',true):ctex([2*a,1],'\\cos x',true);fin=useCos?ctex([-2*a,1],'\\cos x',true):ctex([2*a,1],'\\sin x',true);fexp=useCos?`${-2*a}*cos(x)`:`${2*a}*sin(x)`;cuts=useCos?[-Math.PI/2,Math.PI/2]:[-Math.PI,0,Math.PI];}
+  else if(kind==='pythagorean_sec'){const k=Math.abs(a);integrand=`${k}+${k===1?'':k}\\tan^{2}x`;iexp=`${k}+${k}*tan(x)^2`;ident=`Factor and use ${im('1+\\tan^{2}x=\\sec^{2}x')}.`;rewritten=`${k===1?'':k}\\sec^{2}x`;fin=`${k===1?'':k}\\tan x`;fexp=`${k}*tan(x)`;cuts=[-Math.PI/2,Math.PI/2];}
+  else if(kind==='pythagorean_csc'){const k=Math.abs(a);integrand=`${k}+${k===1?'':k}\\cot^{2}x`;iexp=`${k}+${k}*cot(x)^2`;ident=`Factor and use ${im('1+\\cot^{2}x=\\csc^{2}x')}.`;rewritten=`${k===1?'':k}\\csc^{2}x`;fin=`-${k===1?'':k}\\cot x`;fexp=`${-k}*cot(x)`;cuts=[-Math.PI,0,Math.PI];}
+  else if(kind==='tan_squared'){integrand=`${A(a)}\\tan^{2}x`;iexp=`${a}*tan(x)^2`;ident=`Use ${im('\\tan^{2}x=\\sec^{2}x-1')}.`;rewritten=`${A(a)}\\sec^{2}x${a<0?'+':'-'}${Math.abs(a)}`;fin=join([ctex([a,1],'\\tan x',true),ctex([-a,1],'x',false)]);fexp=`${a}*tan(x)-(${a})*x`;cuts=[-Math.PI/2,Math.PI/2];}
+  else if(kind==='sin_cos_sum'){const k=Math.abs(a),m=nzr(-5,5);integrand=`${k===1?'':k}\\sin^{2}x+${k===1?'':k}\\cos^{2}x${m<0?'-':'+'}${Math.abs(m)}x`;iexp=`${k}*sin(x)^2+${k}*cos(x)^2+(${m})*x`;ident=`Factor and use ${im('\\sin^{2}x+\\cos^{2}x=1')}.`;rewritten=`${k}${m<0?'-':'+'}${Math.abs(m)===1?'':Math.abs(m)}x`;fin=join([ctex([k,1],'x',true),ctex(Q(m,2),'x^{2}',false)]);fexp=`${k}*x+(${m}/2)*x^2`;}
+  else if(kind==='secant_product'){const k=Math.abs(a);integrand=`${k===1?'':k}\\sec x\\left(\\frac{1+\\sin x}{\\cos x}\\right)`;iexp=`${k}*sec(x)*(1+sin(x))/cos(x)`;ident=`Distribute: ${im('\\sec x\\cdot\\frac{1}{\\cos x}=\\sec^{2}x')} and ${im('\\sec x\\cdot\\frac{\\sin x}{\\cos x}=\\sec x\\tan x')}.`;rewritten=`${k===1?'':k}\\sec^{2}x+${k===1?'':k}\\sec x\\tan x`;fin=`${k===1?'':k}\\tan x+${k===1?'':k}\\sec x`;fexp=`${k}*tan(x)+${k}*sec(x)`;cuts=[-Math.PI/2,Math.PI/2];}
+  else if(kind==='cosecant_product'){const k=Math.abs(a);integrand=`${k===1?'':k}\\csc x\\left(\\frac{1+\\cos x}{\\sin x}\\right)`;iexp=`${k}*csc(x)*(1+cos(x))/sin(x)`;ident=`Distribute: ${im('\\csc x\\cdot\\frac{1}{\\sin x}=\\csc^{2}x')} and ${im('\\csc x\\cdot\\frac{\\cos x}{\\sin x}=\\csc x\\cot x')}.`;rewritten=`${k===1?'':k}\\csc^{2}x+${k===1?'':k}\\csc x\\cot x`;fin=`-${k===1?'':k}\\cot x-${k===1?'':k}\\csc x`;fexp=`${-k}*cot(x)-${k}*csc(x)`;cuts=[-Math.PI,0,Math.PI];}
+  else if(kind==='double_angle_cos'){const k=Math.abs(a)*2,form=pick(['cos2','sin2','diff']);
+   if(form==='cos2'){integrand=`${2*k}\\cos^{2}x-${k}`;iexp=`${2*k}*cos(x)^2-${k}`;ident=`Factor out ${im(String(k))} and use ${im('2\\cos^{2}x-1=\\cos(2x)')}.`;}
+   else if(form==='sin2'){integrand=`${k}-${2*k}\\sin^{2}x`;iexp=`${k}-${2*k}*sin(x)^2`;ident=`Factor out ${im(String(k))} and use ${im('1-2\\sin^{2}x=\\cos(2x)')}.`;}
+   else{integrand=`${k}\\cos^{2}x-${k}\\sin^{2}x`;iexp=`${k}*cos(x)^2-${k}*sin(x)^2`;ident=`Factor out ${im(String(k))} and use ${im('\\cos^{2}x-\\sin^{2}x=\\cos(2x)')}.`;}
+   rewritten=`${k}\\cos(2x)`;fin=ctex(Q(k,2),'\\sin(2x)',true);fexp=`(${k}/2)*sin(2*x)`;}
+  else{const useSin=chance(.5),k=Math.abs(a);integrand=useSin?`\\frac{${k===1?'':k}\\sin x}{1-\\sin^{2}x}`:`\\frac{${k===1?'':k}\\cos x}{1-\\cos^{2}x}`;iexp=useSin?`${k}*sin(x)/(1-sin(x)^2)`:`${k}*cos(x)/(1-cos(x)^2)`;ident=useSin?`Use ${im('1-\\sin^{2}x=\\cos^{2}x')}, so the integrand is ${im('\\frac{\\sin x}{\\cos^{2}x}=\\sec x\\tan x')}.`:`Use ${im('1-\\cos^{2}x=\\sin^{2}x')}, so the integrand is ${im('\\frac{\\cos x}{\\sin^{2}x}=\\csc x\\cot x')}.`;rewritten=useSin?`${k===1?'':k}\\sec x\\tan x`:`${k===1?'':k}\\csc x\\cot x`;fin=useSin?`${k===1?'':k}\\sec x`:`-${k===1?'':k}\\csc x`;fexp=useSin?`${k}*sec(x)`:`${-k}*csc(x)`;cuts=useSin?[-Math.PI/2,Math.PI/2]:[-Math.PI,0,Math.PI];}
+  const steps=[step('Rewrite with an identity.',ident,`${integrand}=${rewritten}`),step('Integrate.','',`\\int ${wrapSum(rewritten)}\\,dx=${fin}+C`)];
+  return indefinite('basic','trig_identity_rewrite',{integrand:wrapSum(integrand),integrandExp:iexp,answerTex:fin,answerExp:fexp,components:comps(-3.1,3.1,cuts),steps,mode:'unit4-basic-indef',data:{subtype:kind}});
+ }
+ // exact value of a power sum at an integer, shown in the evaluation line
+ const atTex=x=>x<0?`(${x})`:String(x);
+ function bDefinitePower(){
+  const kind=pick(['polynomial','polynomial','cube_root','scaled_root','perfect_square','perfect_square']);
+  let terms,a,b,shown,iexp,stepsPre=[],loTex,hiTex;
+  if(kind==='polynomial'){
+   const powers=shuffle([0,1,2,3]).slice(0,pick([2,3])).sort((p,q)=>q-p);terms=powers.map(p=>T(nzr(-6,6),p));a=rint(-3,3);b=a+rint(1,4);shown=paren(polyTex(terms,'x'));
+  }else if(kind==='cube_root'){
+   const e=pick([[1,3],[2,3],[1,3]]),k=nzr(-4,4),pts=[-27,-8,-1,0,1,8,27];let i=rint(0,5),j=rint(i+1,6);if(pts[j]-pts[i]>35){i=1;j=4;}a=pts[i];b=pts[j];
+   terms=[T(k,e)];shown=termTex([k,1],Q(...e),'x',true,'radical');
+  }else if(kind==='scaled_root'){
+   const k=pick([2,3,5,6,7]),s=rint(0,2),t=s+rint(1,3);a=k*s*s;b=k*t*t;
+   const val=qmul(Q(2*k*k,3),[t**3-s**3,1]);
+   shown=`\\sqrt{${k}x}`;iexp=`sqrt(${k}*x)`;
+   const F=`\\frac{2\\sqrt{${k}}}{3}x^{\\frac{3}{2}}`,hb=`${k*t**3}\\sqrt{${k}}`,ha=`${k*s**3}\\sqrt{${k}}`;
+   const steps=[step(`Rewrite ${im(`\\sqrt{${k}x}=\\sqrt{${k}}\\,x^{\\frac{1}{2}}`)} and apply the power rule.`,'',`F(x)=${F}`),
+    step(`Evaluate ${im(`F(${b})-F(${a})`)}.`,`Here ${im(`${b}^{\\frac{3}{2}}=${hb}`)}${a?` and ${im(`${a}^{\\frac{3}{2}}=${ha}`)}`:''}.`,`\\frac{2\\sqrt{${k}}}{3}${a?`\\left(${hb}-${ha}\\right)`:`\\cdot ${hb}`}=${qtex(val)}`)];
+   return definite('basic','definite_power_root',{integrand:shown,integrandExp:iexp,lo:String(a),hi:String(b),loExp:String(a),hiExp:String(b),value:xq(val),steps,mode:'unit4-basic-def',data:{subtype:kind}});
+  }else{
+   const pairs=[[1,4],[4,9],[1,9],[4,16],[1,16],[9,16],[0,4],[0,9],[1,64]];[a,b]=pick(pairs);
+   if(b===64&&a===1){const p1=rint(1,4),p2=nzr(-3,3);terms=[T(p1,[-1,2]),T(p2,[-1,6])];const num=`${p1}${p2<0?'-':'+'}${Math.abs(p2)===1?'':Math.abs(p2)}\\sqrt[3]{x}`;shown=`\\frac{${num}}{\\sqrt{x}}`;iexp=`(${p1}+(${p2})*x^(1/3))/sqrt(x)`;stepsPre=[step('Divide each term by the square root.','',`${shown}=${polyTex(terms,'x','plain')}`)];}
+   else{const es=a===0?shuffle([[1,2],[3,2],[1,1],[2,1]]).slice(0,2):shuffle([[1,2],[3,2],[-1,2],[-2,1],[1,1],[-3,2]]).slice(0,2);terms=simplifyTerms(es.map(e=>T(nzr(-6,6),e)));shown=paren(polyTex(terms,'x','radical'));}
+  }
+  iexp=iexp||polyExp(terms);
+  const anti=integrateTerms(terms),F=polyTex(anti,'x'),Fb=evalTerms(anti,b),Fa=evalTerms(anti,a),val=qsub(Fb,Fa);
+  const sub=t=>join(anti.map((u,i)=>{const v=qz(u.e)?[1,1]:qroot(t,u.e);return ctex(qmul(u.c,v),'',i===0);}));
+  const steps=[...stepsPre,step('Find an antiderivative.','',`F(x)=${F}`),step(`Evaluate ${im(`F(${b})-F(${a})`)}.`,'',qz(Fa)&&!anti.some(u=>qz(u.e))&&a===0?`${wrapSum(sub(b))}-0=${qtex(val)}`:`${paren(sub(b))}-${paren(sub(a))}=${qtex(Fb)}-${wrapNeg(qtex(Fa))}=${qtex(val)}`)];
+  return definite('basic','definite_power_root',{integrand:shown,integrandExp:iexp,lo:String(a),hi:String(b),loExp:String(a),hiExp:String(b),value:xq(val),steps,mode:'unit4-basic-def',data:{subtype:kind}});
+ }
+ const ANGS=Object.values(ANG);
+ function pickBounds(allowed){const list=allowed.map(k=>ANG[k]);let i=rint(0,list.length-2),j=rint(i+1,list.length-1);return [list[i],list[j]];}
+ function bDefiniteTrig(){
+  const kind=pick(['sin_cos','sin_cos','sec2','sectan','csc2','exp_ln','exp_poly']);
+  const a=nzr(-6,6),b=nzr(-6,6);let integrand,iexp,F,Fexp,FX,lo,hi,loTex,hiTex,loExp,hiExp,val,subLine;
+  if(kind==='exp_ln'){
+   const k=rint(2,6),c=nzr(-5,5),A=Math.abs(a);integrand=`\\left(${A===1?'':A}e^{x}${c<0?'-':'+'}${Math.abs(c)}\\right)`;iexp=`${A}*e^x+(${c})`;
+   val=xadd(xq([A*(k-1),1]),X({[`ln:${k}/1`]:[c,1]}));F=`${A===1?'':A}e^{x}${c<0?'-':'+'}${Math.abs(c)===1?'':Math.abs(c)}x`;
+   const steps=[step('Find an antiderivative.','',`F(x)=${F}`),step(`Evaluate ${im(`F(\\ln ${k})-F(0)`)}.`,`Use ${im(`e^{\\ln ${k}}=${k}`)}.`,`\\left(${A*k}${c<0?'-':'+'}${Math.abs(c)===1?'':Math.abs(c)}\\ln ${k}\\right)-${A}=${xtex(val)}`)];
+   return definite('basic','definite_trig_exponential',{integrand,integrandExp:iexp,lo:'0',hi:`\\ln ${k}`,loExp:'0',hiExp:`ln(${k})`,value:val,steps,mode:'unit4-basic-def',data:{subtype:kind}});
+  }
+  if(kind==='exp_poly'){
+   const A=Math.abs(a),hiV=rint(1,3),c=nzr(-6,6);integrand=`\\left(${A===1?'':A}e^{x}${c<0?'-':'+'}${Math.abs(c)===1?'':Math.abs(c)}x\\right)`;iexp=`${A}*e^x+(${c})*x`;
+   val=xadd(X({[`e:${hiV}/1`]:[A,1]}),xq(qadd([-A,1],Q(c*hiV*hiV,2))));F=`${A===1?'':A}e^{x}${ctex(Q(c,2),'x^{2}',false)}`;
+   const steps=[step('Find an antiderivative.','',`F(x)=${F}`),step(`Evaluate ${im(`F(${hiV})-F(0)`)}.`,'',`\\left(${A===1?'':A}${hiV===1?'e':`e^{${hiV}}`}${ctex(Q(c*hiV*hiV,2),'',false)}\\right)-${A}=${xtex(val)}`)];
+   return definite('basic','definite_trig_exponential',{integrand,integrandExp:iexp,lo:'0',hi:String(hiV),loExp:'0',hiExp:String(hiV),value:val,steps,mode:'unit4-basic-def',data:{subtype:kind}});
+  }
+  let anti,Fx;
+  if(kind==='sin_cos'){[lo,hi]=pickBounds(['0','1/6','1/4','1/3','1/2','2/3','3/4','5/6','1']);integrand=paren(join([ctex([a,1],'\\sin x',true),ctex([b,1],'\\cos x',false)]));iexp=`${a}*sin(x)+(${b})*cos(x)`;F=join([ctex([-a,1],'\\cos x',true),ctex([b,1],'\\sin x',false)]);FX=t=>xadd(xscale(cosX(t),[-a,1]),xscale(sinX(t),[b,1]));}
+  else if(kind==='sec2'){[lo,hi]=pickBounds(['0','1/6','1/4','1/3']);integrand=ctex([a,1],'\\sec^{2}x',true);iexp=`${a}*sec(x)^2`;F=ctex([a,1],'\\tan x',true);FX=t=>xscale(tanX(t),[a,1]);}
+  else if(kind==='sectan'){[lo,hi]=pickBounds(['0','1/6','1/4','1/3']);integrand=ctex([a,1],'\\sec x\\tan x',true);iexp=`${a}*sec(x)*tan(x)`;F=ctex([a,1],'\\sec x',true);FX=t=>xscale(secX(t),[a,1]);}
+  else{[lo,hi]=pickBounds(['1/6','1/4','1/3','1/2']);integrand=ctex([a,1],'\\csc^{2}x',true);iexp=`${a}*csc(x)^2`;F=ctex([-a,1],'\\cot x',true);FX=t=>xscale(cotX(t),[-a,1]);}
+  const Fb=FX(hi),Fa=FX(lo);val=xsub(Fb,Fa);
+  const steps=[step('Find an antiderivative.','',`F(x)=${F}`),step('Evaluate at the bounds.','',evalLine(`F\\left(${angTex(hi)}\\right)-F\\left(${angTex(lo)}\\right)`,xtex(Fb),xtex(Fa),xtex(val)))];
+  return definite('basic','definite_trig_exponential',{integrand,integrandExp:iexp,lo:angTex(lo),hi:angTex(hi),loExp:angExp(lo),hiExp:angExp(hi),value:val,steps,mode:'unit4-basic-def',data:{subtype:kind}});
+ }
+ function bPowerReduction(){
+  const kind=pick(['single','single','single_inner','combination','with_term','definite','definite']);
+  const useSin=chance(.5),A=nzr(-6,6),fn=useSin?'\\sin':'\\cos',fe=useSin?'sin':'cos',id=useSin?'\\sin^{2}x=\\frac{1-\\cos(2x)}{2}':'\\cos^{2}x=\\frac{1+\\cos(2x)}{2}',sgn=useSin?-1:1;
+  if(kind==='definite'){
+   const k=A,[lo,hi]=pickBounds(['0','1/6','1/4','1/3','1/2','2/3','1']);
+   const integrand=ctex([k,1],`${fn}^{2}x`,true),iexp=`${k}*${fe}(x)^2`;
+   const F=join([ctex(Q(k,2),'x',true),ctex(Q(sgn*k,4),'\\sin(2x)',false)]);
+   const FX=t=>xadd(X({pi:qmul(Q(k,2),t)}),xscale(sinX(qmul(t,[2,1])),Q(sgn*k,4)));
+   const Fb=FX(hi),Fa=FX(lo),val=xsub(Fb,Fa);
+   const steps=[step('Use the power-reduction identity.','',id,`\\int ${integrand}\\,dx=${coefOnly(Q(k,2))}\\int\\left(1${useSin?'-':'+'}\\cos(2x)\\right)dx`),step('Integrate.','',`F(x)=${F}`),step('Evaluate at the bounds.','',evalLine(`F\\left(${angTex(hi)}\\right)-F\\left(${angTex(lo)}\\right)`,xtex(Fb),xtex(Fa),xtex(val)))];
+   return definite('basic','power_reduction',{integrand,integrandExp:iexp,lo:angTex(lo),hi:angTex(hi),loExp:angExp(lo),hiExp:angExp(hi),value:val,steps,mode:'unit4-basic-def',data:{subtype:kind,fn:fe}});
+  }
+  let integrand,iexp,rewritten,fin,fexp,idLine=id;
+  if(kind==='single'||kind==='single_inner'){
+   const k=kind==='single'?1:pick([2,3,[1,2]]),half=Array.isArray(k),arg=half?'\\frac{x}{2}':k===1?'x':`${k}x`,twoArg=half?'x':`${2*k}x`,kv=half?0.5:k;
+   const cos2=twoArg==='x'?'\\cos x':`\\cos(${twoArg})`,sin2=twoArg==='x'?'\\sin x':`\\sin(${twoArg})`;
+   integrand=ctex([A,1],`${fn}^{2}${k===1?'x':`\\left(${arg}\\right)`}`,true);iexp=`${A}*${fe}(${kv}*x)^2`;
+   if(k!==1)idLine=useSin?`\\sin^{2}\\left(${arg}\\right)=\\frac{1-${cos2}}{2}`:`\\cos^{2}\\left(${arg}\\right)=\\frac{1+${cos2}}{2}`;
+   rewritten=`${coefOnly(Q(A,2))}\\left(1${useSin?'-':'+'}${cos2}\\right)`;
+   const sc=half?Q(sgn*A,2):Q(sgn*A,4*k);
+   fin=join([ctex(Q(A,2),'x',true),ctex(sc,sin2,false)]);fexp=`(${A}/2)*x+(${sc[0]}/${sc[1]})*sin(${2*kv}*x)`;
+  }else if(kind==='combination'){
+   let P=nzr(-6,6),M=nzr(-6,6);if(P===M)M=P+1||2;
+   integrand=join([ctex([P,1],'\\sin^{2}x',true),ctex([M,1],'\\cos^{2}x',false)]);iexp=`${P}*sin(x)^2+(${M})*cos(x)^2`;
+   idLine=`\\sin^{2}x=\\frac{1-\\cos(2x)}{2},\\qquad\\cos^{2}x=\\frac{1+\\cos(2x)}{2}`;
+   const c0=Q(P+M,2),c2=Q(M-P,2);rewritten=join([ctex(c0,'',true),ctex(c2,'\\cos(2x)',qz(c0))]);
+   fin=join([ctex(c0,'x',true),ctex(Q(M-P,4),'\\sin(2x)',qz(c0))]);fexp=`(${P+M}/2)*x+(${M-P}/4)*sin(2*x)`;
+  }else{
+   const m=nzr(-6,6),p=pick([0,1,2]);const extra=T(m,p),ea=integrateTerms([extra])[0];
+   integrand=join([ctex([A,1],`${fn}^{2}x`,true),termTex(extra.c,extra.e,'x',false)]);iexp=`${A}*${fe}(x)^2+${polyExp([extra])}`;
+   rewritten=join([ctex(Q(A,2),'',true),ctex(Q(sgn*A,2),'\\cos(2x)',false),termTex(extra.c,extra.e,'x',false)]);
+   const lin=simplifyTerms([T(Q(A,2),1),ea]);fin=join([...lin.map((t,i)=>termTex(t.c,t.e,'x',i===0)),ctex(Q(sgn*A,4),'\\sin(2x)',false)]);fexp=`${polyExp(lin)}+(${sgn*A}/4)*sin(2*x)`;
+  }
+  const steps=[step('Use the power-reduction identity.','',idLine,`${integrand}=${rewritten}`),step('Integrate.',`Use ${im('\\int\\cos(kx)\\,dx=\\frac{1}{k}\\sin(kx)')}.`,`\\int ${wrapSum(integrand)}\\,dx=${fin}+C`)];
+  return indefinite('basic','power_reduction',{integrand:wrapSum(integrand),integrandExp:iexp,answerTex:fin,answerExp:fexp,components:[[-3,3]],steps,mode:'unit4-basic-indef',data:{subtype:kind,fn:fe}});
+ }
+ function bBaseA(){
+  const kind=pick(['single','single','with_term','product','definite']);const kindPos=()=>rint(1,7);const bases=[2,3,4,5,6,7,10];
+  const b=pick(bases),k=kindPos(),K=k===1?'':String(k);
+  if(kind==='definite'){
+   const [lo,hi]=pick([[0,1],[0,2],[0,3],[-1,1],[1,2],[-1,0],[-2,0]]);const kk=Math.abs(k);
+   const vHi=qmul([kk,1],qpow([b,1],hi)),vLo=qmul([kk,1],qpow([b,1],lo)),diff=qsub(vHi,vLo);
+   const val=X({[`iln:${b}`]:diff});const integrand=`${kk===1?'':kk}\\cdot ${b}^{x}`.replace(/^\\cdot /,'');
+   const steps=[step(`Use ${im('\\int a^{x}\\,dx=\\frac{a^{x}}{\\ln a}')}.`,'',`F(x)=\\frac{${kk===1?'':kk+'\\cdot '}${b}^{x}}{\\ln ${b}}`),step('Evaluate at the bounds.','',`\\frac{${kk===1?'':kk+'\\cdot '}${b}^{${hi}}-${kk===1?'':kk+'\\cdot '}${b}^{${lo}}}{\\ln ${b}}=${xtex(val)}`)];
+   return definite('basic','exponential_base_a',{integrand:kk===1?`${b}^{x}`:`${kk}\\cdot ${b}^{x}`,integrandExp:`${kk}*${b}^x`,lo:String(lo),hi:String(hi),loExp:String(lo),hiExp:String(hi),value:val,steps,mode:'unit4-basic-def',data:{subtype:kind,base:b}});
+  }
+  let integrand,iexp,fin,fexp,pre=[];
+  if(kind==='product'){
+   const [p,q]=pick([[2,3],[2,5],[3,5],[2,7],[3,4]]),pq=p*q;integrand=`${p}^{x}\\cdot ${q}^{x}`;iexp=`${p}^x*${q}^x`;
+   pre=[step('Combine the bases.','',`${p}^{x}\\cdot ${q}^{x}=(${p}\\cdot ${q})^{x}=${pq}^{x}`)];fin=`\\frac{${pq}^{x}}{\\ln ${pq}}`;fexp=`${pq}^x/ln(${pq})`;
+  }else{
+   integrand=k===1?`${b}^{x}`:`${K}\\cdot ${b}^{x}`;iexp=`${k}*${b}^x`;fin=`${k<0?'-':''}\\frac{${Math.abs(k)===1?'':Math.abs(k)+'\\cdot '}${b}^{x}}{\\ln ${b}}`;fexp=`${k}*${b}^x/ln(${b})`;
+   if(kind==='with_term'){
+    if(chance(.5)){const m=nzr(-6,6),p=pick([1,2]);const e=T(m,p),a=integrateTerms([e])[0];integrand=join([integrand,termTex(e.c,e.e,'x',false)]);iexp+=`+${polyExp([e])}`;fin=join([fin,termTex(a.c,a.e,'x',false)]);fexp+=`+${polyExp([a])}`;}
+    else{const m=nzr(-5,5);integrand=join([integrand,ctex([m,1],'e^{x}',false)]);iexp+=`+(${m})*e^x`;fin=join([fin,ctex([m,1],'e^{x}',false)]);fexp+=`+(${m})*e^x`;}
+    integrand=paren(integrand);
+   }
+  }
+  const steps=[...pre,step(`Use ${im('\\int a^{x}\\,dx=\\frac{a^{x}}{\\ln a}')}.`,kind==='with_term'?'Integrate the other term separately.':'',`\\int ${integrand}\\,dx=${fin}+C`)];
+  return indefinite('basic','exponential_base_a',{integrand,integrandExp:iexp,answerTex:fin,answerExp:fexp,components:[[-3,3]],steps,mode:'unit4-basic-indef',data:{subtype:kind,base:b}});
+ }
+ const BASIC={polynomial_power_rule:bPolynomial,radicals_negative_powers:bRadicals,expand_first:bExpand,divide_each_term:()=>bDivide(false),divide_each_term_ln:()=>bDivide(true),basic_trig_exponential:bTrigExp,trig_identity_rewrite:bIdentity,definite_power_root:bDefinitePower,definite_trig_exponential:bDefiniteTrig,power_reduction:bPowerReduction,exponential_base_a:bBaseA};
+
+ // ======================= registration =======================
+ const ENGINES={basic:()=>BASIC,usub:()=>(typeof USUB!=='undefined'?USUB:null),log:()=>(typeof LOGS!=='undefined'?LOGS:null),mvt:()=>(typeof MVTS!=='undefined'?MVTS:null)};
+ function make(kind,o={}){
+  const table=ENGINES[kind]();const family=o.family&&table[o.family]?o.family:weighted(kind);
+  for(let tries=0;tries<40;tries++){try{return table[family]();}catch(e){if(tries===39)throw e;}}
+ }
+ G['basic-integrals']=o=>make('basic',o);
+ if(typeof USUB!=='undefined')G['u-substitution-integrals']=o=>make('usub',o);
+ if(typeof LOGS!=='undefined')G['integrals-resulting-in-natural-log-and-inverse-trigonometric-functions']=o=>make('log',o);
+ if(typeof MVTS!=='undefined')G['mean-value-theorem-for-integrals']=o=>make('mvt',o);
+ window.BatchMathUnit4FinalFour=Object.freeze({make,W,TIER});
+})();
+// ==== v12.8.U final four integrals engines END ====
+
 window.BatchMathAPTopicGenerators={get:(slug)=>G[slug],slugs:()=>Object.keys(G)};
 })();

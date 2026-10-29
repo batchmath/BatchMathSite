@@ -35,6 +35,7 @@
     "qa:infinity-variety": "node tools/unit1-infinity-variety-qa.mjs",
     "qa:unit1-infinity-update": "node tools/unit1-infinity-update-qa.mjs",
     "qa:fractions": "node tools/fraction-sign-equivalence-qa.mjs",
+    "qa:unit4-final-four": "node tools/unit4-final-four-qa.mjs",
     "qa:browser-infra": "node tools/browser-infra-regression-qa.mjs",
     "qa:advanced-trig-hints": "node tools/advanced-trig-hints-qa.mjs",
     "qa:unit1-explanations": "node tools/unit1-explanations-qa.mjs",
