@@ -34,8 +34,9 @@ const cases=[
  ['integrals-using-geometry',{},["linear_triangle", "linear_trapezoid", "cross_axis_line", "absolute_value", "semicircle", "quarter_circle", "rectangle_circle"]],
  ['fundamental-theorem-of-calculus-and-integral-rules',{ftcMode:'ftc'},["upper_identity", "lower_identity", "upper_linear", "upper_power", "lower_power", "upper_trig", "both_algebraic", "both_transcendental"]],
  ['fundamental-theorem-of-calculus-and-integral-rules',{ftcMode:'rules'},["reverse_limits", "zero_width", "linearity", "interval_decomposition", "combined_rules", "reversed_combination"]],
- ['basic-integrals',{},['polynomial','negative_power','fractional_power','divide_each_term','trig_identity','basic_trig','definite_polynomial']],
- ['u-substitution-integrals',{},['linear_inner_power','trig_linear','secant_tangent','cosecant_cotangent','exponential_of_trig','linear_denominator','radical_linear','power_composition','power_times_root','fourth_root']],
+ // v12.8.U: rebuilt typed engines (families audited in tools/unit4-final-four-qa.mjs)
+ ['basic-integrals',{},['polynomial_power_rule','radicals_negative_powers','expand_first','divide_each_term','divide_each_term_ln','basic_trig_exponential','trig_identity_rewrite','definite_power_root','definite_trig_exponential','power_reduction','exponential_base_a']],
+ ['u-substitution-integrals',{},['linear_inner_trig_exp','linear_inner_power_root','polynomial_inner_constant_adjust','shifted_quadratic_power','trig_power_chain','composite_exponential_log','back_substitution','definite_linear_inner','definite_polynomial_trig_inner','definite_back_substitution','odd_trig_powers']],
  ['mean-value-theorem-for-integrals',{},['average_polynomial','average_trig','average_radical','average_exponential','find_c']],
  ['basic-first-order-differential-equations',{},['initial_value_polynomial','initial_value_trig','initial_value_exponential','initial_value_secant','initial_value_composition','initial_value_log']],
  ['motion-problems',{},['velocity_from_acceleration','speed_from_acceleration','total_distance','speed_increasing','direction_from_velocity']],

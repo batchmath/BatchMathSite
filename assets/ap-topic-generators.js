@@ -4176,7 +4176,7 @@ G['difference-quotient']=()=>{
 
  // ======================= U-SUBSTITUTION =======================
  const isSym=t=>/^(?:x|t|r|u|\\theta)$/.test(t);
- // \frac{-3…}{…} -> -\frac{3…}{…}
+ // a leading minus in the numerator moves in front of the fraction
  const sfrac=(num,den)=>num.startsWith('-')?`-\\frac{${num.slice(1)}}{${den}}`:`\\frac{${num}}{${den}}`;
  // \sin x, \sin\theta, \sin(5x), \sin^{3}x
  function fnTex(name,arg,pw){const p=pw&&pw!==1?`^{${pw}}`:'';return isSym(arg)?`\\${name}${p}${arg==='\\theta'?'':' '}${arg}`:`\\${name}${p}\\left(${arg}\\right)`;}
