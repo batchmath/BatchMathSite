@@ -153,6 +153,16 @@ function lint(engine,p,html){
  const opens=(s.match(/\\\(/g)||[]).length,closes=(s.match(/\\\)/g)||[]).length;if(opens!==closes)fail(engine,p,'unbalanced math delimiters');
  const outside=s.replace(/\\\([\s\S]*?\\\)/g,'').replace(/<[^>]+>/g,'');if(/\\(?:frac|sqrt|sin|cos|ln|int|pi|left|right)\b|\^\{/.test(outside))fail(engine,p,'raw TeX outside math: '+outside.slice(0,120));
  const eqs=[...s.matchAll(/<div class="u4-work-equation[^"]*">([\s\S]*?)<\/div>/g)].map(m=>m[1]);for(let i=1;i<eqs.length;i++)if(eqs[i]===eqs[i-1])fail(engine,p,'repeated equation line');
+ // v12.8.V: conventional, simplified notation in every question, answer and explanation
+ const g=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b)[a,b]=[b,a%b];return a;};
+ // limits of integration and evaluation (_{a}^{b}) are values, not powers: drop them before the notation rules
+ const stripLimits=t=>{let out='',i=0;const close=(j)=>{let d=0;for(let k=j;k<t.length;k++){if(t[k]==='{')d++;else if(t[k]==='}'&&--d===0)return k;}return -1;};
+  while(i<t.length){if(t.startsWith('_{',i)){const e=close(i+1);if(e>0&&t.startsWith('^{',e+1)){const f=close(e+2);if(f>0){out+=' ';i=f+1;continue;}}}out+=t[i++];}return out;};
+ for(const m of s.matchAll(/\\\(([\s\S]*?)\\\)/g)){const t=stripLimits(m[1]);
+  const rules=[[/\\frac\{[^{}]*\}\{1\}/,'denominator of 1'],[/\^\{1\}/,'power of 1'],[/(?:^|[^\d.}{_^])1(?=[a-zA-Z(]|\\(?:sin|cos|tan|sec|csc|cot|ln|sqrt|pi|left|theta|int)\b)/,'coefficient of 1'],[/\\cdot\s*1(?![\d.])|(?:^|[^\d.{])1\s*\\cdot/,'multiplication by 1'],[/\+\s*0(?![\d.])/,'+0'],[/(?:\+|-)\s*(?:\+|-)/,'doubled sign']];
+  for(const [re,label] of rules)if(re.test(t)){fail(engine,p,`notation (${label}): ${t.slice(0,140)}`);break;}
+  for(const f of t.matchAll(/\\frac\{(\d+)([a-zA-Z]?)\}\{(\d+)\}/g)){if(g(+f[1],+f[3])>1){fail(engine,p,`unreduced fraction ${f[0]} in ${t.slice(0,120)}`);break;}}
+ }
  for(const e of eqs){const parts=e.replace(/^\\\(\\displaystyle |\\\)$/g,'').split('=');for(let i=1;i<parts.length;i++)if(parts[i].trim()===parts[i-1].trim()&&parts[i].trim())fail(engine,p,'repeated side in '+e.slice(0,120));}
 }
 function checkIndefinite(engine,p,stage){

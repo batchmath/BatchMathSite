@@ -3925,6 +3925,7 @@ G['difference-quotient']=()=>{
   const e=qadd(t.e,[1,1]),V=VT[v];
   if(qz(t.e))return ctex(t.c,V,first);
   const P=powTex(v,e,'plain'),total=qdiv(t.c,e),sign=total[0]<0?'-':first?'':'+',a=[Math.abs(t.c[0]),t.c[1]],ae=[Math.abs(e[0]),e[1]];
+  if(qone(ae))return `${sign}${qone(a)?'':qtex(a,false)}${P}`;// dividing by 1 is not shown
   if(qint(e)&&qint(a))return `${sign}\\frac{${a[0]===1?'':a[0]}${P}}{${ae[0]}}`;
   return `${sign}${qone(a)?'':qtex(a,false)+'\\cdot '}${qtex(qdiv([1,1],ae),false)}${P}`;
  }
@@ -4044,7 +4045,7 @@ G['difference-quotient']=()=>{
   else if(kind==='pythagorean_sec'){const k=Math.abs(a);integrand=`${k}+${k===1?'':k}\\tan^{2}x`;iexp=`${k}+${k}*tan(x)^2`;ident=`Factor and use ${im('1+\\tan^{2}x=\\sec^{2}x')}.`;rewritten=`${k===1?'':k}\\sec^{2}x`;fin=`${k===1?'':k}\\tan x`;fexp=`${k}*tan(x)`;cuts=[-Math.PI/2,Math.PI/2];}
   else if(kind==='pythagorean_csc'){const k=Math.abs(a);integrand=`${k}+${k===1?'':k}\\cot^{2}x`;iexp=`${k}+${k}*cot(x)^2`;ident=`Factor and use ${im('1+\\cot^{2}x=\\csc^{2}x')}.`;rewritten=`${k===1?'':k}\\csc^{2}x`;fin=`-${k===1?'':k}\\cot x`;fexp=`${-k}*cot(x)`;cuts=[-Math.PI,0,Math.PI];}
   else if(kind==='tan_squared'){integrand=`${A(a)}\\tan^{2}x`;iexp=`${a}*tan(x)^2`;ident=`Use ${im('\\tan^{2}x=\\sec^{2}x-1')}.`;rewritten=`${A(a)}\\sec^{2}x${a<0?'+':'-'}${Math.abs(a)}`;fin=join([ctex([a,1],'\\tan x',true),ctex([-a,1],'x',false)]);fexp=`${a}*tan(x)-(${a})*x`;cuts=[-Math.PI/2,Math.PI/2];}
-  else if(kind==='sin_cos_sum'){const k=Math.abs(a),m=nzr(-5,5);integrand=`${k===1?'':k}\\sin^{2}x+${k===1?'':k}\\cos^{2}x${m<0?'-':'+'}${Math.abs(m)}x`;iexp=`${k}*sin(x)^2+${k}*cos(x)^2+(${m})*x`;ident=`Factor and use ${im('\\sin^{2}x+\\cos^{2}x=1')}.`;rewritten=`${k}${m<0?'-':'+'}${Math.abs(m)===1?'':Math.abs(m)}x`;fin=join([ctex([k,1],'x',true),ctex(Q(m,2),'x^{2}',false)]);fexp=`${k}*x+(${m}/2)*x^2`;}
+  else if(kind==='sin_cos_sum'){const k=Math.abs(a),m=nzr(-5,5);integrand=`${k===1?'':k}\\sin^{2}x+${k===1?'':k}\\cos^{2}x${m<0?'-':'+'}${Math.abs(m)===1?'':Math.abs(m)}x`;iexp=`${k}*sin(x)^2+${k}*cos(x)^2+(${m})*x`;ident=`Factor and use ${im('\\sin^{2}x+\\cos^{2}x=1')}.`;rewritten=`${k}${m<0?'-':'+'}${Math.abs(m)===1?'':Math.abs(m)}x`;fin=join([ctex([k,1],'x',true),ctex(Q(m,2),'x^{2}',false)]);fexp=`${k}*x+(${m}/2)*x^2`;}
   else if(kind==='secant_product'){const k=Math.abs(a);integrand=`${k===1?'':k}\\sec x\\left(\\frac{1+\\sin x}{\\cos x}\\right)`;iexp=`${k}*sec(x)*(1+sin(x))/cos(x)`;ident=`Distribute: ${im('\\sec x\\cdot\\frac{1}{\\cos x}=\\sec^{2}x')} and ${im('\\sec x\\cdot\\frac{\\sin x}{\\cos x}=\\sec x\\tan x')}.`;rewritten=`${k===1?'':k}\\sec^{2}x+${k===1?'':k}\\sec x\\tan x`;fin=`${k===1?'':k}\\tan x+${k===1?'':k}\\sec x`;fexp=`${k}*tan(x)+${k}*sec(x)`;cuts=[-Math.PI/2,Math.PI/2];}
   else if(kind==='cosecant_product'){const k=Math.abs(a);integrand=`${k===1?'':k}\\csc x\\left(\\frac{1+\\cos x}{\\sin x}\\right)`;iexp=`${k}*csc(x)*(1+cos(x))/sin(x)`;ident=`Distribute: ${im('\\csc x\\cdot\\frac{1}{\\sin x}=\\csc^{2}x')} and ${im('\\csc x\\cdot\\frac{\\cos x}{\\sin x}=\\csc x\\cot x')}.`;rewritten=`${k===1?'':k}\\csc^{2}x+${k===1?'':k}\\csc x\\cot x`;fin=`-${k===1?'':k}\\cot x-${k===1?'':k}\\csc x`;fexp=`${-k}*cot(x)-${k}*csc(x)`;cuts=[-Math.PI,0,Math.PI];}
   else if(kind==='double_angle_cos'){const k=Math.abs(a)*2,form=pick(['cos2','sin2','diff']);
@@ -4154,7 +4155,7 @@ G['difference-quotient']=()=>{
    const [lo,hi]=pick([[0,1],[0,2],[0,3],[-1,1],[1,2],[-1,0],[-2,0]]);const kk=Math.abs(k);
    const vHi=qmul([kk,1],qpow([b,1],hi)),vLo=qmul([kk,1],qpow([b,1],lo)),diff=qsub(vHi,vLo);
    const val=X({[`iln:${b}`]:diff});const integrand=`${kk===1?'':kk}\\cdot ${b}^{x}`.replace(/^\\cdot /,'');
-   const steps=[step(`Use ${im('\\int a^{x}\\,dx=\\frac{a^{x}}{\\ln a}')}.`,'',`F(x)=\\frac{${kk===1?'':kk+'\\cdot '}${b}^{x}}{\\ln ${b}}`),step('Evaluate at the bounds.','',`\\frac{${kk===1?'':kk+'\\cdot '}${b}^{${hi}}-${kk===1?'':kk+'\\cdot '}${b}^{${lo}}}{\\ln ${b}}=${xtex(val)}`)];
+   const steps=[step(`Use ${im('\\int a^{x}\\,dx=\\frac{a^{x}}{\\ln a}')}.`,'',`F(x)=\\frac{${kk===1?'':kk+'\\cdot '}${b}^{x}}{\\ln ${b}}`),step('Evaluate at the bounds.','',`F(${hi})-F(${lo})=\\frac{1}{\\ln ${b}}\\left(${qtex(vHi)}-${qtex(vLo)}\\right)=${xtex(val)}`)];
    return definite('basic','exponential_base_a',{integrand:kk===1?`${b}^{x}`:`${kk}\\cdot ${b}^{x}`,integrandExp:`${kk}*${b}^x`,lo:String(lo),hi:String(hi),loExp:String(lo),hiExp:String(hi),value:val,steps,mode:'unit4-basic-def',data:{subtype:kind,base:b}});
   }
   let integrand,iexp,fin,fexp,pre=[];
@@ -4305,8 +4306,8 @@ G['difference-quotient']=()=>{
    du=pw==='sin'?`du=${fnTex('cos',V)}\\,d${V}`:`du=-${fnTex('sin',V)}\\,d${V}`;uIntegral=`${coefOnly([s*a,1])}\\int u^{${n}}\\,du`;fin=ctex(coef,fnTex(pw,V,n+1),true);fexp=`${qexpr(coef)}*${pw}(x)^${n+1}`;dom=[[-3,3]];
   }else if(kind==='tan_power'||kind==='sqrt_tan'||kind==='sec_power'){
    const n=kind==='sqrt_tan'?Q(1,2):[rint(kind==='sec_power'?2:1,5),1],n1=qadd(n,[1,1]);
-   if(kind==='sec_power'){const k=n[0];integrand=`${ctex([a,1],fnTex('sec',V,k),true)}${fnTex('tan',V)}`;iexp=`${a}*sec(x)^${k}*tan(x)`;uTex=fnTex('sec',V);du=`du=${fnTex('sec',V)}${fnTex('tan',V)}\\,d${V}`;uIntegral=`${coefOnly([a,1])}\\int u^{${k-1}}\\,du`;const coef=Q(a,k);fin=ctex(coef,fnTex('sec',V,k),true);fexp=`${qexpr(coef)}*sec(x)^${k}`;dom=COS_OK;}
-   else{const shown=kind==='sqrt_tan'?`\\sqrt{${fnTex('tan',V)}}`:fnTex('tan',V,n[0]);integrand=`${ctex([a,1],shown,true)}${fnTex('sec',V,2)}`;iexp=`${a}*tan(x)^(${n[0]}/${n[1]})*sec(x)^2`;uTex=fnTex('tan',V);du=`du=${fnTex('sec',V,2)}\\,d${V}`;uIntegral=`${coefOnly([a,1])}\\int u^{${qint(n)?n[0]:'\\frac{1}{2}'}}\\,du`;const coef=qdiv([a,1],n1);
+   if(kind==='sec_power'){const k=n[0];integrand=`${ctex([a,1],fnTex('sec',V,k),true)}${fnTex('tan',V)}`;iexp=`${a}*sec(x)^${k}*tan(x)`;uTex=fnTex('sec',V);du=`du=${fnTex('sec',V)}${fnTex('tan',V)}\\,d${V}`;uIntegral=`${coefOnly([a,1])}\\int ${uPowTex([k-1,1])}\\,du`;const coef=Q(a,k);fin=ctex(coef,fnTex('sec',V,k),true);fexp=`${qexpr(coef)}*sec(x)^${k}`;dom=COS_OK;}
+   else{const shown=kind==='sqrt_tan'?`\\sqrt{${fnTex('tan',V)}}`:fnTex('tan',V,n[0]);integrand=`${ctex([a,1],shown,true)}${fnTex('sec',V,2)}`;iexp=`${a}*tan(x)^(${n[0]}/${n[1]})*sec(x)^2`;uTex=fnTex('tan',V);du=`du=${fnTex('sec',V,2)}\\,d${V}`;uIntegral=`${coefOnly([a,1])}\\int ${uPowTex(n)}\\,du`;const coef=qdiv([a,1],n1);
     fin=qint(n1)?ctex(coef,fnTex('tan',V,n1[0]),true):ctex(coef,`\\left(${fnTex('tan',V)}\\right)^{\\frac{3}{2}}`,true);fexp=`${qexpr(coef)}*tan(x)^(${n1[0]}/${n1[1]})`;dom=kind==='sqrt_tan'?[[0.05,1.5],[3.2,4.6]]:COS_OK;}
   }else{
    const n=rint(3,5),k=n-1;integrand=sfrac(ctex([a,1],fnTex('sin','2'+V),true),fnTex('cos',V,n));iexp=`${a}*sin(2*x)/cos(x)^${n}`;
@@ -4327,7 +4328,7 @@ G['difference-quotient']=()=>{
   else if(kind==='exp_tan'){integrand=`${ctex(a,'\\sec^{2}x',true)}\\,e^{\\tan x}`;iexp=`${a[0]}*sec(x)^2*e^(tan(x))`;uTex='\\tan x';du='du=\\sec^{2}x\\,dx';uInt=`${coefOnly(a)}\\int e^{u}\\,du`;fin=ctex(a,'e^{\\tan x}',true);fexp=`${a[0]}*e^(tan(x))`;dom=[[-1.3,1.3]];}
   else if(kind==='exp_sqrt'){const c=rint(1,9);integrand=sfrac(ctex(a,'e^{x}',true),`\\sqrt{e^{x}+${c}}`);iexp=`${a[0]}*e^x/sqrt(e^x+${c})`;uTex=`e^{x}+${c}`;du='du=e^{x}\\,dx';uInt=`${coefOnly(a)}\\int u^{-\\frac{1}{2}}\\,du`;fin=ctex([2*a[0],1],`\\sqrt{e^{x}+${c}}`,true);fexp=`${2*a[0]}*sqrt(e^x+${c})`;}
   else if(kind==='exp_power'){const c=nzr(-5,5),n=rint(2,5);integrand=`${ctex(a,'e^{x}',true)}\\left(e^{x}${c<0?'-':'+'}${Math.abs(c)}\\right)^{${n}}`;iexp=`${a[0]}*e^x*(e^x+(${c}))^${n}`;uTex=`e^{x}${c<0?'-':'+'}${Math.abs(c)}`;du='du=e^{x}\\,dx';uInt=`${coefOnly(a)}\\int u^{${n}}\\,du`;const coef=Q(a[0],n+1);fin=innerTerm(coef,uTex,[n+1,1],true);fexp=innerExp(coef,`e^x+(${c})`,[n+1,1]);}
-  else if(kind==='ln_power'){const n=rint(1,4);integrand=sfrac(ctex(a,n===1?'\\ln x':`\\left(\\ln x\\right)^{${n}}`,true),'x');iexp=`${a[0]}*ln(x)^${n}/x`;uTex='\\ln x';du='du=\\frac{1}{x}\\,dx';uInt=`${coefOnly(a)}\\int u^{${n}}\\,du`;const coef=Q(a[0],n+1);fin=ctex(coef,`\\left(\\ln x\\right)^{${n+1}}`,true);fexp=`${qexpr(coef)}*ln(x)^${n+1}`;dom=[[0.1,6]];}
+  else if(kind==='ln_power'){const n=rint(1,4);integrand=sfrac(ctex(a,n===1?'\\ln x':`\\left(\\ln x\\right)^{${n}}`,true),'x');iexp=`${a[0]}*ln(x)^${n}/x`;uTex='\\ln x';du='du=\\frac{1}{x}\\,dx';uInt=`${coefOnly(a)}\\int ${uPowTex([n,1])}\\,du`;const coef=Q(a[0],n+1);fin=ctex(coef,`\\left(\\ln x\\right)^{${n+1}}`,true);fexp=`${qexpr(coef)}*ln(x)^${n+1}`;dom=[[0.1,6]];}
   else if(kind==='exp_root'){integrand=sfrac(ctex(a,'e^{\\sqrt{x}}',true),'\\sqrt{x}');iexp=`${a[0]}*e^(sqrt(x))/sqrt(x)`;uTex='\\sqrt{x}';du='du=\\frac{1}{2\\sqrt{x}}\\,dx';uInt=`${coefOnly([2*a[0],1])}\\int e^{u}\\,du`;fin=ctex([2*a[0],1],'e^{\\sqrt{x}}',true);fexp=`${2*a[0]}*e^(sqrt(x))`;dom=[[0.05,6]];}
   else{integrand=sfrac(ctex(a,'e^{\\frac{1}{x}}',true),'x^{2}');iexp=`${a[0]}*e^(1/x)/x^2`;uTex='\\frac{1}{x}';du='du=-\\frac{1}{x^{2}}\\,dx';uInt=`${coefOnly(qneg(a))}\\int e^{u}\\,du`;fin=ctex(qneg(a),'e^{\\frac{1}{x}}',true);fexp=`${-a[0]}*e^(1/x)`;dom=[[0.35,4],[-4,-0.35]];}
   const steps=[step(`Let ${im(`u=${uTex}`)}.`,`Then ${im(du)}.`,`\\int ${integrand}\\,dx=${uInt}`),step('Integrate, then substitute back.','',`${fin}+C`)];
@@ -4745,6 +4746,8 @@ G['difference-quotient']=()=>{
  // ---------- inverse trig ----------
  const atanTex=(num,den)=>den==='1'?(num==='x'?'\\tan^{-1}x':`\\tan^{-1}\\left(${num}\\right)`):`\\tan^{-1}\\left(\\frac{${num}}{${den}}\\right)`;
  const asinTex=(num,den)=>den==='1'?(num==='x'?'\\sin^{-1}x':`\\sin^{-1}\\left(${num}\\right)`):`\\sin^{-1}\\left(\\frac{${num}}{${den}}\\right)`;
+ // tan^-1 / sin^-1 of (k/c)x with the coefficient reduced: (4x/2) -> 2x, (3x/6) -> x/2
+ const invArg=(fn,k,c)=>{const q=Q(k,c),inv=`\\${fn}^{-1}`;if(q[1]===1)return q[0]===1?`${inv}x`:`${inv}\\left(${lin(q[0],0)}\\right)`;return `${inv}\\left(\\frac{${q[0]===1?'':q[0]}x}{${q[1]}}\\right)`;};
  function lAtan(){
   const kind=pick(['standard','standard','standard','scaled','scaled','exp']),a=nzr(-9,9);
   if(kind==='exp'){
@@ -4754,7 +4757,7 @@ G['difference-quotient']=()=>{
   }
   const cc=kind==='scaled'?pick([1,2,3,4,5,6]):pick([1,2,3,4,5,6,7,8,9,10]),k=kind==='scaled'?pick([2,3,4,5]):1,first=chance(.5);
   const den=first?`${cc*cc}+${k===1?'':k*k}x^{2}`:`${k===1?'':k*k}x^{2}+${cc*cc}`,integrand=sfrac(String(a),den),c=Q(a,k*cc);
-  const fin=ctex(c,atanTex(lin(k,0),String(cc)),true);
+  const fin=ctex(c,invArg('tan',k,cc),true);
   const rule=`\\int\\frac{du}{a^{2}+u^{2}}=\\frac{1}{a}\\tan^{-1}\\left(\\frac{u}{a}\\right)`;
   const steps=k===1?[step('Identify the form.',`The denominator is ${im(`${cc*cc}+x^{2}=${cc}^{2}+x^{2}`)}, so use ${im(rule)} with ${im(`a=${cc}`)}.`),step('Integrate.','',`\\int ${integrand}\\,dx=${fin}+C`)]
    :[step(`Let ${im(`u=${k}x`)}.`,`Then ${im(`du=${k}\\,dx`)} and ${im(`${k*k}x^{2}=u^{2}`)}.`,`\\int ${integrand}\\,dx=${coefOnly(Q(a,k))}\\int\\frac{du}{${cc*cc}+u^{2}}`),step('Integrate, then substitute back.',`Use ${im(rule)} with ${im(`a=${cc}`)}.`,`${ctex(c,atanTex('u',String(cc)),true)}+C=${fin}+C`)];
@@ -4768,7 +4771,7 @@ G['difference-quotient']=()=>{
    return indefinite('log','inverse_sine',{integrand,integrandExp:`(${a})*e^(${k}*x)/sqrt(1-e^(${2*k}*x))`,answerTex:fin,answerExp:`${qexpr(c)}*asin(e^(${k}*x))`,components:[[-3,-0.08/k]],steps,mode:LI,data:{subtype:kind}});
   }
   const cc=kind==='scaled'?pick([1,2,3,4,5,6]):pick([1,2,3,4,5,6,7,8,9,10]),k=kind==='scaled'?pick([2,3,4,5]):1;
-  const den=`\\sqrt{${cc*cc}-${k===1?'':k*k}x^{2}}`,integrand=sfrac(String(a),den),c=Q(a,k),fin=ctex(c,asinTex(lin(k,0),String(cc)),true);
+  const den=`\\sqrt{${cc*cc}-${k===1?'':k*k}x^{2}}`,integrand=sfrac(String(a),den),c=Q(a,k),fin=ctex(c,invArg('sin',k,cc),true);
   const rule=`\\int\\frac{du}{\\sqrt{a^{2}-u^{2}}}=\\sin^{-1}\\left(\\frac{u}{a}\\right)`,edge=cc/k*0.96;
   const steps=k===1?[step('Identify the form.',`The denominator is ${im(`\\sqrt{${cc}^{2}-x^{2}}`)}, so use ${im(rule)} with ${im(`a=${cc}`)}.`),step('Integrate.','',`\\int ${integrand}\\,dx=${fin}+C`)]
    :[step(`Let ${im(`u=${k}x`)}.`,`Then ${im(`du=${k}\\,dx`)} and ${im(`${k*k}x^{2}=u^{2}`)}.`,`\\int ${integrand}\\,dx=${coefOnly(c)}\\int\\frac{du}{\\sqrt{${cc*cc}-u^{2}}}`),step('Integrate, then substitute back.',`Use ${im(rule)} with ${im(`a=${cc}`)}.`,`${ctex(c,asinTex('u',String(cc)),true)}+C=${fin}+C`)];
@@ -4880,7 +4883,7 @@ G['difference-quotient']=()=>{
    steps=[step('Identify the form.',`The numerator is a constant multiple of ${im('x')}, and ${im(`\\frac{d}{dx}\\left(${g}\\right)=-2x`)}, so substitute ${im(`u=${g}`)} instead of using ${im('\\sin^{-1}')}.`),step(`Let ${im(`u=${g}`)}.`,`Then ${im('du=-2x\\,dx')}.`,`\\int ${integrand}\\,dx=${coefOnly(Q(-a,2))}\\int u^{-\\frac{1}{2}}\\,du`),step('Integrate, then substitute back.','',`${ctex([-a,1],'\\sqrt{u}',true)}+C=${fin}+C`)];dom=[[-cc*0.96,cc*0.96]];
   }else if(kind==='ln_power_over_x'||kind==='ln_of_ln'){
    if(kind==='ln_power_over_x'){const n=pick([1,2,3]),c=Q(a,n+1);integrand=sfrac(ctex([a,1],n===1?'\\ln x':`\\left(\\ln x\\right)^{${n}}`,true),'x');iexp=`(${a})*ln(x)^${n}/x`;fin=ctex(c,`\\left(\\ln x\\right)^{${n+1}}`,true);fexp=`${qexpr(c)}*ln(x)^${n+1}`;
-    steps=[step('Identify the form.',`With ${im('u=\\ln x')}, ${im('du=\\frac{1}{x}\\,dx')} and the integrand becomes ${im(`${coefOnly([a,1])}u^{${n}}`)}, a power of ${im('u')}, so the result is not a logarithm.`),step('Integrate, then substitute back.','',`\\int ${integrand}\\,dx=${coefOnly([a,1])}\\int u^{${n}}\\,du=${fin}+C`)];dom=[[0.1,6]];}
+    steps=[step('Identify the form.',`With ${im('u=\\ln x')}, ${im('du=\\frac{1}{x}\\,dx')} and the integrand becomes ${im(`${coefOnly([a,1])}${uPowTex([n,1])}`)}, a power of ${im('u')}, so the result is not a logarithm.`),step('Integrate, then substitute back.','',`\\int ${integrand}\\,dx=${coefOnly([a,1])}\\int ${uPowTex([n,1])}\\,du=${fin}+C`)];dom=[[0.1,6]];}
    else{integrand=`${a<0?'-':''}\\frac{${Math.abs(a)}}{x\\ln x}`;iexp=`(${a})/(x*ln(x))`;fin=ctex([a,1],lnA('\\ln x'),true);fexp=`(${a})*ln(abs(ln(x)))`;
     steps=[step('Identify the form.',`With ${im('u=\\ln x')}, ${im('du=\\frac{1}{x}\\,dx')} and the integrand becomes ${im(`${coefOnly([a,1])}\\frac{1}{u}`)}, so the result is a logarithm.`),step('Integrate, then substitute back.','',`\\int ${integrand}\\,dx=${coefOnly([a,1])}\\int\\frac{du}{u}=${fin}+C`)];dom=comps(0.05,7,[1],0.1);}
   }else if(kind==='exp_power'){
@@ -4894,7 +4897,7 @@ G['difference-quotient']=()=>{
    steps=[step('Divide each term by x.','',`${integrand}=${p}${b<0?'-':'+'}\\frac{${Math.abs(b)}}{x}`),step('Integrate.',`The constant term gives ${im(`${p===1?'':p}x`)}; the term with ${im('\\frac{1}{x}')} gives a logarithm.`,`\\int ${integrand}\\,dx=${fin}+C`)];dom=comps(-5,5,[0],0.1);
   }else{
    const b=nzr(-6,6);integrand=`\\frac{x^{2}${b<0?'-':'+'}${Math.abs(b)}}{x^{2}}`;iexp=`(x^2+(${b}))/x^2`;fin=`x${b<0?'+':'-'}\\frac{${Math.abs(b)}}{x}`;fexp=`x-(${b})/x`;
-   steps=[step(`Divide each term by ${im('x^{2}')}.`,'',`${integrand}=1${b<0?'-':'+'}${Math.abs(b)}x^{-2}`),step('Integrate.',`No term is ${im('\\frac{1}{x}')}, so there is no logarithm; use the power rule.`,`\\int ${integrand}\\,dx=${fin}+C`)];dom=comps(-5,5,[0],0.1);
+   steps=[step(`Divide each term by ${im('x^{2}')}.`,'',`${integrand}=1${b<0?'-':'+'}${Math.abs(b)===1?'':Math.abs(b)}x^{-2}`),step('Integrate.',`No term is ${im('\\frac{1}{x}')}, so there is no logarithm; use the power rule.`,`\\int ${integrand}\\,dx=${fin}+C`)];dom=comps(-5,5,[0],0.1);
   }
   return indefinite('log','log_or_not',{integrand,integrandExp:iexp,answerTex:fin,answerExp:fexp,components:dom,steps,mode:LI,data:{subtype:kind}});
  }
@@ -4950,11 +4953,13 @@ G['difference-quotient']=()=>{
  const at=b=>/^-?\d+$/.test(b.tex)?`(${b.tex})`:`\\left(${b.tex}\\right)`;
  function avgSteps({fTex,lo,hi,LI,parts,I,avg}){
   // parts: [{lo,hi,fTex,F,I}] — one part for a single function, two for a piecewise one
-  const out=[step('Use the average value formula.','',`${FAVG}=\\frac{1}{b-a}\\int_{a}^{b}f(x)\\,dx=${LI.inv}\\int_{${lo.tex}}^{${hi.tex}}f(x)\\,dx`)];
+  const inv=LI.inv==='1'?'':LI.inv;// an interval of length 1 needs no factor
+  const out=[step('Use the average value formula.','',`${FAVG}=\\frac{1}{b-a}\\int_{a}^{b}f(x)\\,dx=${inv}\\int_{${lo.tex}}^{${hi.tex}}f(x)\\,dx`)];
   if(parts.length===1){const P=parts[0];out.push(step('Integrate.',P.method||'',`\\int_{${lo.tex}}^{${hi.tex}}${wrapSum(P.fTex)}\\,dx=\\left[${P.F}\\right]_{${lo.tex}}^{${hi.tex}}=${xtex(P.I)}`));}
   else{out.push(step(`Split the integral at ${im(`x=${parts[0].hi.tex}`)}.`,'',`\\int_{${lo.tex}}^{${hi.tex}}f(x)\\,dx=\\int_{${parts[0].lo.tex}}^{${parts[0].hi.tex}}${wrapSum(parts[0].fTex)}\\,dx+\\int_{${parts[1].lo.tex}}^{${parts[1].hi.tex}}${wrapSum(parts[1].fTex)}\\,dx`),
    step('Integrate each piece.','',...parts.map(P=>`\\int_{${P.lo.tex}}^{${P.hi.tex}}${wrapSum(P.fTex)}\\,dx=\\left[${P.F}\\right]_{${P.lo.tex}}^{${P.hi.tex}}=${xtex(P.I)}`)));}
-  out.push(step('Find the average.','',`${FAVG}=${LI.inv}\\cdot ${subWrap(xtex(I))}=${avg.tex}`.replace(`=${avg.tex}=${avg.tex}`,`=${avg.tex}`)));
+  const product=!inv||xtex(I)==='1'?'':`${inv}\\cdot ${subWrap(xtex(I))}=`;
+  out.push(step('Find the average.',!inv?`The interval has length ${im('1')}, so the average equals the integral.`:'',`${FAVG}=${product}${avg.tex}`));
   return out;
  }
  function mvtProblem(family,{fTex,lo,hi,parts,c,cSteps,cMode,data={}}){
