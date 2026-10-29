@@ -170,7 +170,7 @@ function renderStagedCalculus(box){
  box.classList.add('composite-answer','staged-calculus-answer');
  if(current.unit4Meta)box.classList.add('unit4-typed-answer');
  if(current.unit4Meta?.kind==='newton')box.classList.add('unit4-newton-answer');
- if(['geometry','ftc','rules'].includes(current.unit4Meta?.kind))box.classList.add('unit4-revised-answer');
+ if(['geometry','ftc','rules','basic','usub','log','mvt'].includes(current.unit4Meta?.kind))box.classList.add('unit4-revised-answer');
  current.blockEnterAdvance=true;current.enterAdvanceAllowed=false;current.pendingStageAdvance=null;
  current.requirePhysicalNextClick=false;current.nextPointerArmed=false;
  current.stage1Answered=false;current.stage1Correct=false;current.stage2Answered=false;current.stage2Visible=false;

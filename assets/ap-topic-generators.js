@@ -4972,7 +4972,7 @@ G['difference-quotient']=()=>{
    prompt=`${AVG_PROMPT} Then find every value of c guaranteed by the Mean Value Theorem for Integrals.`;
    stages.push({prompt:`Enter every value of ${im('c')} in ${im(intervalTex(lo,hi))} guaranteed by the theorem, separated by commas, or choose Does not apply.`,answer:{kind:'exact-list',values:res.none?[]:res.values.map(v=>v.exp),none:!!res.none},answerTex:res.none?'\\text{Does not apply}':res.values.map(v=>v.tex).join(',\\ '),explanation:res.steps.join(''),keypadMode:cMode||MC,placeholder:'Enter c values, or Does not apply',ariaLabel:'Values of c'});
   }
-  return assemble('mvt',family,{prompt,math:`f(x)=${fTex}\\text{ on }${intervalTex(lo,hi)}`,stages,data:{...data,mode:'mvt',a:lo.exp,b:hi.exp}});
+  return assemble('mvt',family,{prompt,math:`f(x)=${fTex}\\allowbreak\\text{ on }${intervalTex(lo,hi)}`,stages,data:{...data,mode:'mvt',a:lo.exp,b:hi.exp}});
  }
 
  // ---------- pieces with exact integrals ----------

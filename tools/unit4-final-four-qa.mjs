@@ -203,7 +203,7 @@ function checkKeys(engine,p,stage,usage){
 // ---- MVT: f, the interval and any piecewise conditions are read from the displayed formula
 const AVG_PROMPT='Find the average value of the function on the given interval.';
 function parseMvt(p){
- const tex=questionMath(p.questionHtml),m=tex.match(/^f\(x\)=([\s\S]*)\\text\{ on \}\\left\[([\s\S]*),\\,([\s\S]*)\\right\]$/);
+ const tex=questionMath(p.questionHtml).replace(/\\allowbreak/g,''),m=tex.match(/^f\(x\)=([\s\S]*)\\text\{ on \}\\left\[([\s\S]*),\\,([\s\S]*)\\right\]$/);
  if(!m)throw Error('MVT formula not recognized: '+tex.slice(0,120));
  const a=evalAst(parseTex(m[2]),0),b=evalAst(parseTex(m[3]),0),body=m[1];let pieces;
  if(body.startsWith('\\begin{cases}')){
