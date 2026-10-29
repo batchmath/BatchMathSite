@@ -21,11 +21,13 @@ const keypadSource=fs.readFileSync(path.join(ROOT,'assets/calculus-keypad.js'),'
 // ---------------- independent TeX reader ----------------
 const FNS=['arcsin','arccos','arctan','sin','cos','tan','sec','csc','cot','ln','exp'];
 function texTokens(tex){
- const s=String(tex).replace(/\\displaystyle|\\left|\\right|\\,|\\!|\;|\\quad|\\qquad/g,' ').replace(/\\cdot/g,'*').replace(/\\theta/g,'θ').replace(/\\pi/g,'π').replace(/\\infty/g,'∞');
+ const s=String(tex).replace(/\\,/g,'§').replace(/\\displaystyle|\\left|\\right|\\!|\;|\\quad|\\qquad/g,' ').replace(/\\cdot/g,'*').replace(/\\theta/g,'θ').replace(/\\pi/g,'π').replace(/\\infty/g,'∞');
  const out=[];let i=0;
  while(i<s.length){
   const ch=s[i];
   if(/\s/.test(ch)){i++;continue;}
+  // a thin space ends a bare function argument: \cos x\,e^{u} is cos(x)·e^u
+  if(ch==='§'){if(out.length)out.at(-1).sepAfter=true;i++;continue;}
   if(ch==='\\'){const m=s.slice(i+1).match(/^[A-Za-z]+/);if(!m)throw Error('tex command at '+i+' in '+tex);out.push({t:'cmd',v:m[0]});i+=1+m[0].length;continue;}
   if(/[0-9.]/.test(ch)){let j=i;while(j<s.length&&/[0-9.]/.test(s[j]))j++;out.push({t:'num',v:Number(s.slice(i,j))});i=j;continue;}
   if(/[A-Za-zθπ]/.test(ch)){out.push({t:'id',v:ch});i++;continue;}
@@ -50,7 +52,7 @@ function parseTex(tex,variable='x'){
   if(p?.t==='{')return group();
   if(p?.t==='|'){return atom();}
   let e=null;
-  while(peek()&&(peek().t==='num'||peek().t==='id')){const x=atom();e=e?{k:'*',a:e,b:x}:x;if(peek()?.t==='^'){take();e={k:'^',a:e,b:peek()?.t==='{'?group():atom()};}}
+  while(peek()&&(peek().t==='num'||peek().t==='id')){const last=peek();const x=atom();e=e?{k:'*',a:e,b:x}:x;if(peek()?.t==='^'){take();e={k:'^',a:e,b:peek()?.t==='{'?group():atom()};}if(last.sepAfter||T[i-1]?.sepAfter)break;}
   if(e)return e;
   if(peek()?.t==='cmd')return atom();
   throw Error('function argument in '+tex);

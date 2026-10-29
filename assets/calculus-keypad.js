@@ -885,7 +885,10 @@
       // v12.8.U final four integrals engines: one profile per engine and answer kind.
       "unit4-basic-indef":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["e"],variables:["x","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"],["|u|","abs"]],arithmetic:true,parentheses:true},
       "unit4-basic-def":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["pi","e"],arithmetic:true,parentheses:true},
-      ...Object.fromEntries([["x","x"],["t","t"],["theta","θ"],["r","r"]].map(([id,v])=>[`unit4-usub-${id}`,{fraction:true,radical:true,exponent:true,logarithm:true,constants:["e"],variables:[v,"C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true}])),
+      "unit4-usub-x":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["e"],variables:["x","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "unit4-usub-t":{fraction:true,radical:true,exponent:true,constants:["e"],variables:["t","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "unit4-usub-theta":{fraction:true,exponent:true,constants:["e"],variables:["θ","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "unit4-usub-r":{fraction:true,radical:true,exponent:true,variables:["r","C"],arithmetic:true,parentheses:true},
       "unit4-usub-def":{fraction:true,radical:true,exponent:true,constants:["e"],arithmetic:true,parentheses:true},
       "unit4-log-indef":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["e"],variables:["x","C"],functions:[["sin","sin"],["cos","cos"],["sec","sec"],["csc","csc"],["sin⁻¹","asin"],["tan⁻¹","atan"],["|u|","abs"]],arithmetic:true,parentheses:true},
       "unit4-log-def":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["e"],arithmetic:true,parentheses:true},

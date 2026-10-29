@@ -3813,7 +3813,7 @@ G['difference-quotient']=()=>{
   if(k==='1')return '';
   if(k==='pi')return '\\pi';
   if(k[0]==='r')return `\\sqrt{${k.slice(1)}}`;
-  if(k.startsWith('e:')){const [n,d]=k.slice(2).split('/').map(Number);return d===1?(n===1?'e':`e^{${n}}`):`e^{\\frac{${n}}{${d}}}`;}
+  if(k.startsWith('e:')){const [n,d]=k.slice(2).split('/').map(Number);return d===1?(n===1?'e':`e^{${n}}`):`e^{${n<0?'-':''}\\frac{${Math.abs(n)}}{${d}}}`;}
   if(k.startsWith('ln:')){const [n,d]=k.slice(3).split('/').map(Number);return d===1?`\\ln ${n}`:`\\ln\\left(\\frac{${n}}{${d}}\\right)`;}
   if(k.startsWith('b:')){const [,b,e]=k.split(':');const [n,d]=e.split('/').map(Number);return d===1?`${b}^{${n}}`:`${b}^{\\frac{${n}}{${d}}}`;}
   if(k.startsWith('iln:'))return `\\frac{1}{\\ln ${k.slice(4)}}`;
@@ -3829,7 +3829,8 @@ G['difference-quotient']=()=>{
   if(k.startsWith('b:')){const [,b,e]=k.split(':');return `${b}^(${e})`;}
   throw Error('basis '+k);
  }
- const xkeys=a=>[...a.keys()].sort((p,q)=>BASIS_ORDER(p)-BASIS_ORDER(q)||p.localeCompare(q));
+ // basis order, except that a positive term leads when there is one: 4-2√2 rather than -2√2+4
+ const xkeys=a=>{const k=[...a.keys()].sort((p,q)=>BASIS_ORDER(p)-BASIS_ORDER(q)||p.localeCompare(q));const i=k.findIndex(x=>a.get(x)[0]>0);if(i>0)k.unshift(...k.splice(i,1));return k;};
  function xtex(a){
   if(!a.size)return '0';
   return join(xkeys(a).map((k,i)=>{const c=a.get(k);
@@ -4172,6 +4173,404 @@ G['difference-quotient']=()=>{
   return indefinite('basic','exponential_base_a',{integrand,integrandExp:iexp,answerTex:fin,answerExp:fexp,components:[[-3,3]],steps,mode:'unit4-basic-indef',data:{subtype:kind,base:b}});
  }
  const BASIC={polynomial_power_rule:bPolynomial,radicals_negative_powers:bRadicals,expand_first:bExpand,divide_each_term:()=>bDivide(false),divide_each_term_ln:()=>bDivide(true),basic_trig_exponential:bTrigExp,trig_identity_rewrite:bIdentity,definite_power_root:bDefinitePower,definite_trig_exponential:bDefiniteTrig,power_reduction:bPowerReduction,exponential_base_a:bBaseA};
+
+ // ======================= U-SUBSTITUTION =======================
+ const isSym=t=>/^(?:x|t|r|u|\\theta)$/.test(t);
+ // \frac{-3…}{…} -> -\frac{3…}{…}
+ const sfrac=(num,den)=>num.startsWith('-')?`-\\frac{${num.slice(1)}}{${den}}`:`\\frac{${num}}{${den}}`;
+ // \sin x, \sin\theta, \sin(5x), \sin^{3}x
+ function fnTex(name,arg,pw){const p=pw&&pw!==1?`^{${pw}}`:'';return isSym(arg)?`\\${name}${p}${arg==='\\theta'?'':' '}${arg}`:`\\${name}${p}\\left(${arg}\\right)`;}
+ const fnExp=(name,arg,pw)=>pw&&pw!==1?`(${name}(${arg}))^(${pw})`:`${name}(${arg})`;
+ function linTexK(k,v){const V=VT[v];if(qint(k))return k[0]===1?V:k[0]===-1?`-${V}`:`${k[0]}${V}`;const n=Math.abs(k[0]);return `${k[0]<0?'-':''}\\frac{${n===1?'':n}${V}}{${k[1]}}`;}
+ function linear(k,b,v='x'){const kt=linTexK(k,v);return{tex:b?`${kt}${b<0?'-':'+'}${Math.abs(b)}`:kt,exp:`(${k[0]}/${k[1]})*x+(${b})`,k,b,at:x=>qnum(k)*x+b,dTex:qtex(k)};}
+ // inner^p displayed: roots for 1/2, 1/3, 1/4; parentheses otherwise
+ function powInner(inner,p,style='answer'){
+  const[n,d]=p;
+  if(n===1&&d===1)return inner;
+  if(n===1&&d===2)return `\\sqrt{${inner}}`;
+  if(style==='radical'&&n===1&&(d===3||d===4))return `\\sqrt[${d}]{${inner}}`;
+  return `\\left(${inner}\\right)^{${d===1?n:`\\frac{${n}}{${d}}`}}`;
+ }
+ // c·inner^p as one term (negative p goes to the denominator)
+ function innerTerm(c,inner,p,first,style='answer'){
+  if(qz(c))return '';
+  const unit=Math.abs(p[0])===p[1],wrap=unit&&hasTerms(inner);
+  if(p[0]>0)return ctex(c,wrap&&!qone(c)?`\\left(${inner}\\right)`:powInner(inner,p,style),first);
+  const sign=c[0]<0?'-':first?'':'+',num=Math.abs(c[0]),den=c[1]===1?'':c[1];
+  return `${sign}\\frac{${num}}{${den}${wrap&&den?`\\left(${inner}\\right)`:powInner(inner,[-p[0],p[1]],style)}}`;
+ }
+ const innerExp=(c,inner,p)=>`${qexpr(c)}*(${inner})^(${p[0]}/${p[1]})`;
+ // map u-intervals back to x-intervals for u = kx + b
+ const uToX=(L,ivals)=>ivals.map(([p,q])=>{const a=(p-L.b)/qnum(L.k),b=(q-L.b)/qnum(L.k);return a<b?[+a.toFixed(6),+b.toFixed(6)]:[+b.toFixed(6),+a.toFixed(6)];});
+ const COS_OK=[[-1.45,1.45],[1.7,4.58]],SIN_OK=[[0.12,3.02],[-3.02,-0.12]],ALL_U=[[-3,3]];
+ const pickVar=(p=0.18,pool=['t','theta','r'])=>chance(p)?pick(pool):'x';
+ const usubMode=v=>`unit4-usub-${v}`;
+ // outer functions of a linear inner u: integrand, antiderivative, sign of antiderivative, safe u-intervals
+ const OUTER={
+  cos:{f:u=>fnTex('cos',u),fe:u=>`cos(${u})`,F:u=>fnTex('sin',u),Fe:u=>`sin(${u})`,s:1,rule:'\\int\\cos u\\,du=\\sin u',dom:ALL_U},
+  sin:{f:u=>fnTex('sin',u),fe:u=>`sin(${u})`,F:u=>fnTex('cos',u),Fe:u=>`cos(${u})`,s:-1,rule:'\\int\\sin u\\,du=-\\cos u',dom:ALL_U},
+  sec2:{f:u=>fnTex('sec',u,2),fe:u=>`sec(${u})^2`,F:u=>fnTex('tan',u),Fe:u=>`tan(${u})`,s:1,rule:'\\int\\sec^{2}u\\,du=\\tan u',dom:COS_OK},
+  csc2:{f:u=>fnTex('csc',u,2),fe:u=>`csc(${u})^2`,F:u=>fnTex('cot',u),Fe:u=>`cot(${u})`,s:-1,rule:'\\int\\csc^{2}u\\,du=-\\cot u',dom:SIN_OK},
+  sectan:{f:u=>`${fnTex('sec',u)}${fnTex('tan',u)}`,fe:u=>`sec(${u})*tan(${u})`,F:u=>fnTex('sec',u),Fe:u=>`sec(${u})`,s:1,rule:'\\int\\sec u\\tan u\\,du=\\sec u',dom:COS_OK},
+  csccot:{f:u=>`${fnTex('csc',u)}${fnTex('cot',u)}`,fe:u=>`csc(${u})*cot(${u})`,F:u=>fnTex('csc',u),Fe:u=>`csc(${u})`,s:-1,rule:'\\int\\csc u\\cot u\\,du=-\\csc u',dom:SIN_OK},
+  exp:{f:u=>`e^{${u}}`,fe:u=>`e^(${u})`,F:u=>`e^{${u}}`,Fe:u=>`e^(${u})`,s:1,rule:'\\int e^{u}\\,du=e^{u}',dom:[[-3.5,3.5]]}
+ };
+ // "Let u = …, so du = …" with the dx rewrite for a linear inner
+ function letLinear(L,v){const V=VT[v];return `Then ${im(`du=${qone(L.k)?'':qtex(L.k)}\\,d${V}`)}, so ${im(`d${V}=${qone(qdiv([1,1],L.k))?'':qtex(qdiv([1,1],L.k))}\\,du`)}.`;}
+ function uLinearTrigExp(){
+  const name=pick(Object.keys(OUTER)),O=OUTER[name],v=chance(.12)?pick(['t','theta']):'x';
+  const k=chance(.2)?Q(pick([1,-1]),pick([2,3,4])):[pick([2,3,4,5,6,7,8,9,-2,-3,-4,-5]),1],b=chance(.4)?nzr(-6,6):0,a=chance(.15)?Q(nzr(-4,4),pick([2,3])):[nzr(-9,9),1];
+  const L=linear(k,b,v),c=qdiv(a,k),uT='u';
+  const integrand=ctex(a,O.f(L.tex),true),fin=ctex(qmul(c,[O.s,1]),O.F(L.tex),true);
+  const steps=[step(`Let ${im(`u=${L.tex}`)}.`,letLinear(L,v),`\\int ${integrand}${dv(v)}=${coefOnly(c)}\\int ${O.f(uT)}\\,du`),
+   step('Integrate, then substitute back.',`Use ${im(O.rule)}.`,`${coefOnly(c)}\\int ${O.f(uT)}\\,du=${ctex(qmul(c,[O.s,1]),O.F(uT),true)}+C=${fin}+C`)];
+  return indefinite('usub','linear_inner_trig_exp',{v,integrand,integrandExp:cexp(a,O.fe(L.exp)),answerTex:fin,answerExp:cexp(qmul(c,[O.s,1]),O.Fe(L.exp)),components:uToX(L,O.dom),steps,mode:usubMode(v),data:{outer:name,k:k.join('/'),b}});
+ }
+ function uLinearPower(){
+  const v=chance(.1)?'t':'x',kind=pick(['power','power','negative_power','sqrt','reciprocal_sqrt','cube_root','reciprocal_cube_root','reciprocal_fourth_root','three_halves']);
+  const k=[pick([2,3,4,5,6,7,-2,-3]),1],b=nzr(-8,8),a=[nzr(-9,9),1],L=linear(k,b,v);
+  const P={power:[rint(2,9),1],negative_power:[-rint(2,5),1],sqrt:[1,2],reciprocal_sqrt:[-1,2],cube_root:[1,3],reciprocal_cube_root:[-1,3],reciprocal_fourth_root:[-1,4],three_halves:[3,2]}[kind];
+  const p1=qadd(P,[1,1]),c=qdiv(a,qmul(k,p1));
+  const integrand=innerTerm(a,L.tex,P,true,'radical'),fin=innerTerm(c,L.tex,p1,true);
+  const kc=qdiv(a,k);
+  const steps=[step(`Let ${im(`u=${L.tex}`)}.`,letLinear(L,v),`\\int ${integrand}${dv(v)}=${coefOnly(kc)}\\int u^{${P[1]===1?P[0]:`${P[0]<0?'-':''}\\frac{${Math.abs(P[0])}}{${P[1]}}`}}\\,du`),
+   step('Apply the power rule, then substitute back.','',`${coefOnly(kc)}\\cdot\\frac{u^{${p1[1]===1?p1[0]:`\\frac{${p1[0]}}{${p1[1]}}`}}}{${qtex(p1)}}+C=${fin}+C`)];
+  const M=Math.min(6,10**(7/Math.abs(qnum(p1))));
+  const comps2=uToX(L,P[1]%2===0?[[0.15,M]]:P[0]<0?[[-M,-0.3],[0.3,M]]:[[-M,M]]);
+  return indefinite('usub','linear_inner_power_root',{v,integrand,integrandExp:innerExp(a,L.exp,P),answerTex:fin,answerExp:innerExp(c,L.exp,p1),components:comps2,steps,mode:usubMode(v),data:{subtype:kind}});
+ }
+ // polynomial inner g = p·v^m + c; integrand a·v^(m-1)·g^n
+ function polyInner(p,m,c,v){const V=VT[v];const lead=p===1?'':p===-1?'-':String(p);return{tex:`${lead}${m===1?V:`${V}^{${m}}`}${c<0?'-':'+'}${Math.abs(c)}`,exp:`(${p})*x^${m}+(${c})`,at:x=>p*x**m+c,dTex:`${p*m===1?'':p*m===-1?'-':p*m}${m-1===0?'':m-1===1?V:`${V}^{${m-1}}`}`};}
+ function rootsOf(g,lo=-6,hi=6){const r=[];let px=lo,pv=g(lo);for(let i=1;i<=1200;i++){const x=lo+(hi-lo)*i/1200,vv=g(x);if(pv===0||pv*vv<0)r.push(px);px=x;pv=vv;}return r;}
+ function compsWhere(g,need,lo=-5,hi=5){
+  // need: 'pos' (g>0) or 'nonzero'
+  const roots=rootsOf(g,lo,hi);const iv=comps(lo,hi,roots,0.12);
+  return need==='pos'?iv.filter(([a,b])=>g((a+b)/2)>0):iv;
+ }
+ function boundedComps(g,need,M,minAbs=0,lo=-6,hi=6){
+  const cuts=[...(need==='any'?[]:rootsOf(g,lo,hi)),...rootsOf(x=>g(x)-M,lo,hi),...rootsOf(x=>g(x)+M,lo,hi),...(minAbs?[...rootsOf(x=>g(x)-minAbs,lo,hi),...rootsOf(x=>g(x)+minAbs,lo,hi)]:[])];
+  const out=comps(lo,hi,cuts,0.06).filter(([a,b])=>{const v=g((a+b)/2);return Math.abs(v)<M&&Math.abs(v)>minAbs&&(need==='pos'?v>0:true);});
+  if(out.reduce((w,[a,b])=>w+b-a,0)<1)throw Error('retry: domain too small');
+  return out;
+ }
+ function uPolyInner(){
+  const kind=pick(['power','power','root','root','reciprocal_root','trig','exp']),v=pickVar(.2,kind==='trig'||kind==='exp'?['t']:['t','r']),V=VT[v];
+  if(kind==='trig'||kind==='exp'){
+   const m=pick([2,2,3]),p=pick([1,1,2,3,[1,2]]),pq=Array.isArray(p)?Q(...p):[p,1],c=chance(.5)?0:nzr(-5,5),a=[nzr(-8,8),1];
+   const gTex=`${qint(pq)?(pq[0]===1?'':pq[0]):`\\frac{1}{${pq[1]}}`}${V}^{${m}}${c?`${c<0?'-':'+'}${Math.abs(c)}`:''}`.replace(`^{1}`,''),gExp=`(${pq[0]}/${pq[1]})*x^${m}+(${c})`;
+   const dTex=`${qtex(qmul(pq,[m,1]))}${m-1===1?V:`${V}^{${m-1}}`}`.replace(/^1(?=[a-z\\])/,''),factor=qdiv(a,qmul(pq,[m,1]));
+   const name=kind==='exp'?'exp':pick(['cos','sin','sec2']),O=OUTER[name],vPow=m-1===1?V:`${V}^{${m-1}}`;
+   const integrand=`${ctex(a,vPow,true)}${kind==='exp'?`e^{${gTex}}`:O.f(gTex)}`,fin=ctex(qmul(factor,[O.s,1]),O.F(gTex),true);
+   const steps=[step(`Let ${im(`u=${gTex}`)}.`,`Then ${im(`du=${dTex}\\,d${V}`)}${qone(factor)?'':`, so ${im(`${ctex(a,vPow,true)}\\,d${V}=${coefOnly(factor)}\\,du`)}`}.`,`\\int ${integrand}${dv(v)}=${coefOnly(factor)}\\int ${O.f('u')}\\,du`),
+    step('Integrate, then substitute back.',`Use ${im(O.rule)}.`,`${ctex(qmul(factor,[O.s,1]),O.F('u'),true)}+C=${fin}+C`)];
+   const g=x=>qnum(pq)*x**m+c,dom=name==='sec2'?compsWhere(x=>Math.cos(g(x)),'nonzero',-1.6,1.6):[[-1.5,1.5]];
+   return indefinite('usub','polynomial_inner_constant_adjust',{v,integrand,integrandExp:`${qexpr(a)}*x^${m-1}*${O.fe(gExp)}`,answerTex:fin,answerExp:cexp(qmul(factor,[O.s,1]),O.Fe(gExp)),components:dom,steps,mode:usubMode(v),data:{subtype:kind}});
+  }
+  const m=pick([2,2,3,3,4]),p=pick([1,1,1,2,3,-1]),c=nzr(-9,9),g=polyInner(p,m,c,v);
+  const n={power:[rint(2,6),1],root:pick([[1,2],[1,3],[3,2]]),reciprocal_root:pick([[-1,2],[-1,3],[-2,3]])}[kind];
+  const deriv=p*m,matches=chance(.25),a=matches?[deriv*nzr(1,2),1]:[nzr(-9,9),1],factor=qdiv(a,[deriv,1]);
+  const vPow=m-1===1?V:`${V}^{${m-1}}`,lead=ctex(a,vPow,true);
+  let integrand;
+  if(n[0]<0)integrand=sfrac(lead,powInner(g.tex,[-n[0],n[1]],'radical'));
+  else integrand=`${lead}${powInner(g.tex,n,'radical')}`;
+  const n1=qadd(n,[1,1]),coef=qdiv(factor,n1),fin=innerTerm(coef,g.tex,n1,true);
+  const uPow=`u^{${n[1]===1?n[0]:`${n[0]<0?'-':''}\\frac{${Math.abs(n[0])}}{${n[1]}}`}}`;
+  const steps=[step(`Let ${im(`u=${g.tex}`)}.`,`Then ${im(`du=${g.dTex}\\,d${V}`)}${qone(factor)?'':`, so ${im(`${lead}\\,d${V}=${coefOnly(factor)}\\,du`)}`}.`,`\\int ${integrand}${dv(v)}=${coefOnly(factor)}\\int ${uPow}\\,du`),
+   step('Apply the power rule, then substitute back.','',`${coefOnly(factor)}\\cdot\\frac{u^{${n1[1]===1?n1[0]:`\\frac{${n1[0]}}{${n1[1]}}`}}}{${qtex(n1)}}+C=${fin}+C`)];
+  const need=n[1]%2===0?'pos':n[0]<0?'nonzero':'any';
+  const dom=boundedComps(g.at,need,10**(7/qnum(n1)),n[0]<0?0.3:0);
+  return indefinite('usub','polynomial_inner_constant_adjust',{v,integrand,integrandExp:`${qexpr(a)}*x^${m-1}*(${g.exp})^(${n[0]}/${n[1]})`,answerTex:fin,answerExp:innerExp(coef,g.exp,n1),components:dom,steps,mode:usubMode(v),data:{subtype:kind,m,n:n.join('/')}});
+ }
+ function uShiftedQuadratic(){
+  const v=chance(.45)?'t':'x',V=VT[v],h=nzr(-6,6),n=rint(2,5),lam=pick([1,1,1,2,3,4,-1]);let c=nzr(-9,9);if(c===h*h)c+=1;
+  const qTex=`${V}^{2}${-2*h<0?'-':'+'}${Math.abs(2*h)}${V}${c<0?'-':'+'}${Math.abs(c)}`,qExp=`x^2+(${-2*h})*x+(${c})`,g=x=>x*x-2*h*x+c;
+  const numTex=lam===1?`${V}${-h<0?'-':'+'}${Math.abs(h)}`:lam===-1?`${h}-${V}`.replace(/^(-?\d+)-/,'$1-'):`${lam}${V}${-lam*h<0?'-':'+'}${Math.abs(lam*h)}`;
+  const integrand=`\\frac{${numTex}}{${powInner(qTex,[n,1])}}`,factor=Q(lam,2),coef=qdiv(factor,[1-n,1]),fin=innerTerm(coef,qTex,[1-n,1],true);
+  const steps=[step(`Let ${im(`u=${qTex}`)}.`,`Then ${im(`du=(2${V}${-2*h<0?'-':'+'}${Math.abs(2*h)})\\,d${V}=2(${V}${-h<0?'-':'+'}${Math.abs(h)})\\,d${V}`)}, so ${im(`(${numTex})\\,d${V}=${qtex(factor)}\\,du`)}.`,`\\int ${integrand}${dv(v)}=${coefOnly(factor)}\\int u^{-${n}}\\,du`),
+   step('Apply the power rule, then substitute back.','',`${coefOnly(factor)}\\cdot\\frac{u^{${1-n}}}{${1-n}}+C=${fin}+C`)];
+  return indefinite('usub','shifted_quadratic_power',{v,integrand,integrandExp:`(${lam})*(x-(${h}))/(${qExp})^${n}`,answerTex:fin,answerExp:innerExp(coef,qExp,[1-n,1]),components:boundedComps(g,'nonzero',60,0.5,h-6,h+6),steps,mode:usubMode(v),data:{n,h,c}});
+ }
+ function uTrigPower(){
+  const v=chance(.35)?'theta':'x',V=VT[v],kind=pick(['sin_over_cos','cos_over_sin','sin_power_cos','cos_power_sin','tan_power','sqrt_tan','sec_power','double_angle_over']);
+  const a=nzr(-6,6);let integrand,iexp,uTex,du,uIntegral,fin,fexp,dom,adjust=1;
+  if(kind==='sin_over_cos'||kind==='cos_over_sin'){
+   const n=rint(2,7),top=kind==='sin_over_cos'?'sin':'cos',bot=top==='sin'?'cos':'sin';
+   integrand=sfrac(ctex([a,1],fnTex(top,V),true),fnTex(bot,V,n));iexp=`${a}*${top}(x)/${bot}(x)^${n}`;uTex=fnTex(bot,V);
+   du=top==='sin'?`du=-${fnTex('sin',V)}\\,d${V}`:`du=${fnTex('cos',V)}\\,d${V}`;const s=top==='sin'?-1:1,coef=Q(s*a,1-n);
+   uIntegral=`${coefOnly([s*a,1])}\\int u^{-${n}}\\,du`;fin=innerTerm(coef,fnTex(bot,V),[1-n,1],true).replace(/\\left\(\\(sin|cos)[ ]?([^\\]*?|\\theta)\\right\)\^\{(\d+)\}/g,'\\$1^{$3}$2');fexp=innerExp(coef,`${bot}(x)`,[1-n,1]);
+   dom=bot==='cos'?COS_OK.map(([p,q])=>[p,Math.min(q,3)]):SIN_OK;
+  }else if(kind==='sin_power_cos'||kind==='cos_power_sin'){
+   const n=rint(2,6),pw=kind==='sin_power_cos'?'sin':'cos',other=pw==='sin'?'cos':'sin',s=pw==='sin'?1:-1,coef=Q(s*a,n+1);
+   integrand=`${ctex([a,1],fnTex(pw,V,n),true)}${fnTex(other,V)}`;iexp=`${a}*${pw}(x)^${n}*${other}(x)`;uTex=fnTex(pw,V);
+   du=pw==='sin'?`du=${fnTex('cos',V)}\\,d${V}`:`du=-${fnTex('sin',V)}\\,d${V}`;uIntegral=`${coefOnly([s*a,1])}\\int u^{${n}}\\,du`;fin=ctex(coef,fnTex(pw,V,n+1),true);fexp=`${qexpr(coef)}*${pw}(x)^${n+1}`;dom=[[-3,3]];
+  }else if(kind==='tan_power'||kind==='sqrt_tan'||kind==='sec_power'){
+   const n=kind==='sqrt_tan'?Q(1,2):[rint(kind==='sec_power'?2:1,5),1],n1=qadd(n,[1,1]);
+   if(kind==='sec_power'){const k=n[0];integrand=`${ctex([a,1],fnTex('sec',V,k),true)}${fnTex('tan',V)}`;iexp=`${a}*sec(x)^${k}*tan(x)`;uTex=fnTex('sec',V);du=`du=${fnTex('sec',V)}${fnTex('tan',V)}\\,d${V}`;uIntegral=`${coefOnly([a,1])}\\int u^{${k-1}}\\,du`;const coef=Q(a,k);fin=ctex(coef,fnTex('sec',V,k),true);fexp=`${qexpr(coef)}*sec(x)^${k}`;dom=COS_OK;}
+   else{const shown=kind==='sqrt_tan'?`\\sqrt{${fnTex('tan',V)}}`:fnTex('tan',V,n[0]);integrand=`${ctex([a,1],shown,true)}${fnTex('sec',V,2)}`;iexp=`${a}*tan(x)^(${n[0]}/${n[1]})*sec(x)^2`;uTex=fnTex('tan',V);du=`du=${fnTex('sec',V,2)}\\,d${V}`;uIntegral=`${coefOnly([a,1])}\\int u^{${qint(n)?n[0]:'\\frac{1}{2}'}}\\,du`;const coef=qdiv([a,1],n1);
+    fin=qint(n1)?ctex(coef,fnTex('tan',V,n1[0]),true):ctex(coef,`\\left(${fnTex('tan',V)}\\right)^{\\frac{3}{2}}`,true);fexp=`${qexpr(coef)}*tan(x)^(${n1[0]}/${n1[1]})`;dom=kind==='sqrt_tan'?[[0.05,1.5],[3.2,4.6]]:COS_OK;}
+  }else{
+   const n=rint(3,5),k=n-1;integrand=sfrac(ctex([a,1],fnTex('sin','2'+V),true),fnTex('cos',V,n));iexp=`${a}*sin(2*x)/cos(x)^${n}`;
+   uTex=fnTex('cos',V);du=`du=-${fnTex('sin',V)}\\,d${V}`;uIntegral=`${coefOnly([-2*a,1])}\\int u^{-${k}}\\,du`;const coef=Q(-2*a,1-k);
+   fin=innerTerm(coef,fnTex('cos',V),[1-k,1],true).replace(/\\left\(\\cos[ ]?([^\\]*?|\\theta)\\right\)\^\{(\d+)\}/g,'\\cos^{$2}$1');fexp=innerExp(coef,'cos(x)',[1-k,1]);dom=COS_OK.map(([p,q])=>[p,Math.min(q,3)]);
+   const pre=step('Rewrite with the double-angle identity.',`Use ${im(`\\sin(2${V})=2${fnTex('sin',V)}${fnTex('cos',V)}`)}.`,`${integrand}=${sfrac(ctex([2*a,1],fnTex('sin',V),true),fnTex('cos',V,k))}`);
+   const steps=[pre,step(`Let ${im(`u=${uTex}`)}.`,`Then ${im(du)}.`,`\\int ${integrand}${dv(v)}=${uIntegral}`),step('Apply the power rule, then substitute back.','',`${fin}+C`)];
+   return indefinite('usub','trig_power_chain',{v,integrand,integrandExp:iexp,answerTex:fin,answerExp:fexp,components:dom,steps,mode:usubMode(v),data:{subtype:kind}});
+  }
+  const steps=[step(`Let ${im(`u=${uTex}`)}.`,`Then ${im(du)}.`,`\\int ${integrand}${dv(v)}=${uIntegral}`),step('Apply the power rule, then substitute back.','',`${fin}+C`)];
+  return indefinite('usub','trig_power_chain',{v,integrand,integrandExp:iexp,answerTex:fin,answerExp:fexp,components:dom,steps,mode:usubMode(v),data:{subtype:kind}});
+ }
+ function uComposite(){
+  const kind=pick(['exp_sin','exp_cos','exp_tan','exp_sqrt','exp_power','ln_power','exp_root','exp_reciprocal']),a=[nzr(-6,6),1];
+  let integrand,iexp,uTex,du,uInt,fin,fexp,dom=[[-2.5,2.5]],rule='';
+  if(kind==='exp_sin'){integrand=`${ctex(a,'\\cos x',true)}\\,e^{\\sin x}`;iexp=`${a[0]}*cos(x)*e^(sin(x))`;uTex='\\sin x';du='du=\\cos x\\,dx';uInt=`${coefOnly(a)}\\int e^{u}\\,du`;fin=ctex(a,'e^{\\sin x}',true);fexp=`${a[0]}*e^(sin(x))`;}
+  else if(kind==='exp_cos'){integrand=`${ctex(a,'\\sin x',true)}\\,e^{\\cos x}`;iexp=`${a[0]}*sin(x)*e^(cos(x))`;uTex='\\cos x';du='du=-\\sin x\\,dx';uInt=`${coefOnly(qneg(a))}\\int e^{u}\\,du`;fin=ctex(qneg(a),'e^{\\cos x}',true);fexp=`${-a[0]}*e^(cos(x))`;}
+  else if(kind==='exp_tan'){integrand=`${ctex(a,'\\sec^{2}x',true)}\\,e^{\\tan x}`;iexp=`${a[0]}*sec(x)^2*e^(tan(x))`;uTex='\\tan x';du='du=\\sec^{2}x\\,dx';uInt=`${coefOnly(a)}\\int e^{u}\\,du`;fin=ctex(a,'e^{\\tan x}',true);fexp=`${a[0]}*e^(tan(x))`;dom=[[-1.3,1.3]];}
+  else if(kind==='exp_sqrt'){const c=rint(1,9);integrand=sfrac(ctex(a,'e^{x}',true),`\\sqrt{e^{x}+${c}}`);iexp=`${a[0]}*e^x/sqrt(e^x+${c})`;uTex=`e^{x}+${c}`;du='du=e^{x}\\,dx';uInt=`${coefOnly(a)}\\int u^{-\\frac{1}{2}}\\,du`;fin=ctex([2*a[0],1],`\\sqrt{e^{x}+${c}}`,true);fexp=`${2*a[0]}*sqrt(e^x+${c})`;}
+  else if(kind==='exp_power'){const c=nzr(-5,5),n=rint(2,5);integrand=`${ctex(a,'e^{x}',true)}\\left(e^{x}${c<0?'-':'+'}${Math.abs(c)}\\right)^{${n}}`;iexp=`${a[0]}*e^x*(e^x+(${c}))^${n}`;uTex=`e^{x}${c<0?'-':'+'}${Math.abs(c)}`;du='du=e^{x}\\,dx';uInt=`${coefOnly(a)}\\int u^{${n}}\\,du`;const coef=Q(a[0],n+1);fin=innerTerm(coef,uTex,[n+1,1],true);fexp=innerExp(coef,`e^x+(${c})`,[n+1,1]);}
+  else if(kind==='ln_power'){const n=rint(1,4);integrand=sfrac(ctex(a,n===1?'\\ln x':`\\left(\\ln x\\right)^{${n}}`,true),'x');iexp=`${a[0]}*ln(x)^${n}/x`;uTex='\\ln x';du='du=\\frac{1}{x}\\,dx';uInt=`${coefOnly(a)}\\int u^{${n}}\\,du`;const coef=Q(a[0],n+1);fin=ctex(coef,`\\left(\\ln x\\right)^{${n+1}}`,true);fexp=`${qexpr(coef)}*ln(x)^${n+1}`;dom=[[0.1,6]];}
+  else if(kind==='exp_root'){integrand=sfrac(ctex(a,'e^{\\sqrt{x}}',true),'\\sqrt{x}');iexp=`${a[0]}*e^(sqrt(x))/sqrt(x)`;uTex='\\sqrt{x}';du='du=\\frac{1}{2\\sqrt{x}}\\,dx';uInt=`${coefOnly([2*a[0],1])}\\int e^{u}\\,du`;fin=ctex([2*a[0],1],'e^{\\sqrt{x}}',true);fexp=`${2*a[0]}*e^(sqrt(x))`;dom=[[0.05,6]];}
+  else{integrand=sfrac(ctex(a,'e^{\\frac{1}{x}}',true),'x^{2}');iexp=`${a[0]}*e^(1/x)/x^2`;uTex='\\frac{1}{x}';du='du=-\\frac{1}{x^{2}}\\,dx';uInt=`${coefOnly(qneg(a))}\\int e^{u}\\,du`;fin=ctex(qneg(a),'e^{\\frac{1}{x}}',true);fexp=`${-a[0]}*e^(1/x)`;dom=[[0.35,4],[-4,-0.35]];}
+  const steps=[step(`Let ${im(`u=${uTex}`)}.`,`Then ${im(du)}.`,`\\int ${integrand}\\,dx=${uInt}`),step('Integrate, then substitute back.','',`${fin}+C`)];
+  return indefinite('usub','composite_exponential_log',{integrand,integrandExp:iexp,answerTex:fin,answerExp:fexp,components:dom,steps,mode:usubMode('x'),data:{subtype:kind}});
+ }
+ // polynomial in u with rational coefficients: [[coef, exponent], …] -> terms
+ function backSubTerms(pairs,innerTex,innerExpr){
+  const terms=pairs.filter(([c])=>!qz(c)).sort((p,q)=>qnum(q[1])-qnum(p[1]));
+  // the multiplied-out integrand in u, before integrating: (c/e)·u^e came from c·u^(e-1)
+  const integrand=terms.map(([c,e])=>({c:qmul(c,e),e:qsub(e,[1,1])}));
+  return{integrand,tex:join(terms.map(([c,e],i)=>innerTerm(c,innerTex,e,i===0))),exp:terms.map(([c,e])=>innerExp(c,innerExpr,e)).join('+'),uTex:join(terms.map(([c,e],i)=>termTex(c,e,'x',i===0,'plain').replace(/x/g,'u')))};
+ }
+ function uBackSub(){
+  const kind=pick(['cubic_root','cubic_root','linear_times','linear_times','square_times','fifth_root']),a=pick([1,1,1,2,3,4,-2]);
+  let integrand,iexp,innerTex,innerE,relation,rewritten,pairs,dom,uSetup,pre;
+  const p=pick([[1,2],[1,2],[1,3],[3,2]]),pTex=p[1]===1?p[0]:`\\frac{${p[0]}}{${p[1]}}`;
+  if(kind==='cubic_root'){
+   const c=nzr(-9,9);innerTex=`x^{2}${c<0?'-':'+'}${Math.abs(c)}`;innerE=`x^2+(${c})`;
+   integrand=`${a===1?'':a===-1?'-':a}x^{3}${powInner(innerTex,p,'radical')}`;iexp=`${a}*x^3*(${innerE})^(${p[0]}/${p[1]})`;
+   relation=`x^{2}=u${c<0?'+':'-'}${Math.abs(c)}`;uSetup=`du=2x\\,dx`;
+   const h=Q(a,2);rewritten=`${coefOnly(h)}\\int\\left(u${c<0?'+':'-'}${Math.abs(c)}\\right)u^{${pTex}}\\,du`;
+   const e1=qadd(p,[1,1]),e2=qadd(p,[2,1]);pairs=[[qdiv(h,e2),e2],[qdiv(qmul(h,[-c,1]),e1),e1]];
+   dom=p[1]%2===0?compsWhere(x=>x*x+c,'pos',-4,4):[[-3,3]];pre=`${coefOnly(h)}\\int x^{2}\\cdot ${powInner(innerTex,p,'radical')}\\cdot 2x\\,dx`;
+  }else if(kind==='linear_times'||kind==='square_times'){
+   const c=nzr(-7,7),flip=kind==='linear_times'&&chance(.2);
+   innerTex=flip?`${c}-x`:`x${c<0?'-':'+'}${Math.abs(c)}`;innerE=flip?`${c}-x`:`x+(${c})`;
+   const pp=kind==='linear_times'?pick([[1,2],[1,2],[-1,2],[1,3],[rint(3,6),1]]):pick([[1,2],[-1,2]]),ppTex=pp[1]===1?pp[0]:`${pp[0]<0?'-':''}\\frac{${Math.abs(pp[0])}}{${pp[1]}}`;
+   const xpow=kind==='square_times'?2:1,xt=xpow===2?'x^{2}':'x';
+   integrand=pp[0]<0?sfrac(`${a===1?'':a===-1?'-':a}${xt}`,powInner(innerTex,[-pp[0],pp[1]],'radical')):`${a===1?'':a===-1?'-':a}${xt}${powInner(innerTex,pp,'radical')}`;
+   iexp=`${a}*x^${xpow}*(${innerE})^(${pp[0]}/${pp[1]})`;
+   // x = s·u + c0 where u = s·x + c (s = ±1)
+   const s=flip?-1:1,c0=flip?c:-c;relation=`x=${flip?`${c}-u`:`u${c<0?'+':'-'}${Math.abs(c)}`}`;uSetup=flip?'du=-dx':'du=dx';
+   const lead=[a*s,1];// dx = s du
+   let poly=xpow===1?[[[s,1],[1,1]],[[c0,1],[0,1]]]:[[[1,1],[2,1]],[[2*s*c0,1],[1,1]],[[c0*c0,1],[0,1]]];// coefficients of x in u
+   pairs=poly.map(([cc,e])=>{const ee=qadd(e,pp),e1=qadd(ee,[1,1]);return[qdiv(qmul(lead,cc),e1),e1];});
+   const xu=xpow===1?`\\left(${flip?`${c}-u`:`u${c<0?'+':'-'}${Math.abs(c)}`}\\right)`:`\\left(${flip?`${c}-u`:`u${c<0?'+':'-'}${Math.abs(c)}`}\\right)^{2}`;
+   rewritten=`${coefOnly(lead)}\\int ${xu}u^{${ppTex}}\\,du`;pre=null;
+   const g=flip?(x=>c-x):(x=>x+c),root=flip?c:-c;dom=pp[1]%2===0?compsWhere(g,'pos',root-6,root+6):pp[0]<0?compsWhere(g,'nonzero',root-5,root+5):[[root-4,root+4]];
+  }else{
+   const c=nzr(-8,8);innerTex=`x^{3}${c<0?'-':'+'}${Math.abs(c)}`;innerE=`x^3+(${c})`;
+   integrand=`${a===1?'':a===-1?'-':a}x^{5}${powInner(innerTex,p,'radical')}`;iexp=`${a}*x^5*(${innerE})^(${p[0]}/${p[1]})`;
+   relation=`x^{3}=u${c<0?'+':'-'}${Math.abs(c)}`;uSetup=`du=3x^{2}\\,dx`;const h=Q(a,3);
+   rewritten=`${coefOnly(h)}\\int\\left(u${c<0?'+':'-'}${Math.abs(c)}\\right)u^{${pTex}}\\,du`;const e1=qadd(p,[1,1]),e2=qadd(p,[2,1]);pairs=[[qdiv(h,e2),e2],[qdiv(qmul(h,[-c,1]),e1),e1]];
+   dom=p[1]%2===0?compsWhere(x=>x**3+c,'pos',-3,3):[[-2.5,2.5]];pre=`${coefOnly(h)}\\int x^{3}\\cdot ${powInner(innerTex,p,'radical')}\\cdot 3x^{2}\\,dx`;
+  }
+  const B=backSubTerms(pairs,innerTex,innerE);
+  const steps=[step(`Let ${im(`u=${innerTex}`)}.`,`Then ${im(uSetup)} and ${im(relation)}.`),step('Rewrite the integral in terms of u.','',pre?`\\int ${integrand}\\,dx=${pre}=${rewritten}`:`\\int ${integrand}\\,dx=${rewritten}`),
+   step('Multiply out and integrate.','',`\\int\\left(${uPlainTex(B.integrand)}\\right)du=${B.uTex}+C`),step('Substitute back.','',`${B.tex}+C`)];
+  return indefinite('usub','back_substitution',{integrand,integrandExp:iexp,answerTex:B.tex,answerExp:B.exp,components:dom,steps,mode:usubMode('x'),data:{subtype:kind}});
+ }
+ // ---------- definite U-substitution ----------
+ const uPowTex=p=>{const[n,d]=p;if(d===1)return n===1?'u':`u^{${n}}`;return `u^{${n<0?'-':''}\\frac{${Math.abs(n)}}{${d}}}`;};
+ // c·u^e with negative powers in the denominator
+ const uTermTex=(c,e,first)=>termTex(c,e,'x',first,'answer').replace(/x/g,'u');
+ const uPlainTex=terms=>join(terms.map((t,i)=>termTex(t.c,t.e,'x',i===0,'plain'))).replace(/x/g,'u');
+ const uAnswerTex=terms=>join(terms.map((t,i)=>termTex(t.c,t.e,'x',i===0,'answer'))).replace(/x/g,'u');
+ const atF=t=>/^-?\d+$/.test(t)?`F(${t})`:`F\\left(${t}\\right)`;
+ // u^e at an integer u (perfect powers only)
+ const qup=(u,e)=>{if(u===0)return e[0]>0?[0,1]:null;const r=qroot(u,e);if(r===null)throw Error('irrational');return r;};
+ const evalU=(terms,u)=>terms.reduce((s,t)=>qadd(s,qmul(t.c,qup(u,t.e))),[0,1]);
+ const eQ=(q,c)=>qz(q)?xq(c):X({[`e:${q[0]}/${q[1]}`]:c});
+ // pairs (c, x values) with x^2 + c a perfect square, used for exact square-root bounds
+ const SQ_PAIRS=(()=>{const out=[];for(let c=-16;c<=36;c++){if(!c)continue;const xs=[];for(let x=0;x<=12;x++){const u=x*x+c;if(u>=0&&u<=100&&Number.isInteger(Math.sqrt(u)))xs.push(x);}if(xs.length>=2)out.push([c,xs]);}return out;})();
+ const CUBE_SQ=(()=>{const out=[];for(let c=-8;c<=30;c++){if(!c)continue;const xs=[];for(let x=-3;x<=4;x++){const u=x**3+c;if(u>=0&&u<=81&&Number.isInteger(Math.sqrt(u)))xs.push(x);}if(xs.length>=2)out.push([c,xs]);}return out;})();
+ function twoOf(list,maxGap=99){const i=rint(0,list.length-2),j=rint(i+1,Math.min(list.length-1,i+maxGap));return [list[i],list[j]];}
+ // Let u → change the bounds → integrate → evaluate
+ function defUSteps({v='x',uTex,duText,xlo,xhi,ulo,uhi,integrand,rewritten,rule,F,Fhi,Flo,value,note='',pre=[]}){
+  const V=VT[v];
+  return [...pre,
+   step(`Let ${im(`u=${uTex}`)}.`,duText),
+   step('Change the bounds.',`When ${im(`${V}=${xlo}`)}, ${im(`u=${ulo}`)}. When ${im(`${V}=${xhi}`)}, ${im(`u=${uhi}`)}.`,`\\int_{${xlo}}^{${xhi}} ${integrand}${dv(v)}=${rewritten}`),
+   step('Integrate.',rule?`Use ${im(rule)}.`:'',`F(u)=${F}`),
+   step('Evaluate.',note,evalLine(`${atF(uhi)}-${atF(ulo)}`,xtex(Fhi),xtex(Flo),xtex(value)))];
+ }
+ const UBOUNDS={cos:['0','1/6','1/4','1/3','1/2','2/3','3/4','5/6','1'],sin:['0','1/6','1/4','1/3','1/2','2/3','3/4','5/6','1'],sec2:['0','1/6','1/4','1/3'],sectan:['0','1/6','1/4','1/3'],csc2:['1/6','1/4','1/3','1/2']};
+ const UVAL={cos:t=>sinX(t),sin:t=>xscale(cosX(t),[-1,1]),sec2:t=>tanX(t),sectan:t=>secX(t),csc2:t=>xscale(cotX(t),[-1,1])};
+ function uDefLinearTrig(){
+  const name=pick(['cos','cos','sin','sin','sec2','sectan','csc2']),O=OUTER[name],v=chance(.15)?pick(['t','theta']):'x';
+  const k=pick([[2,1],[3,1],[4,1],[2,1],[3,1],[1,2],[1,3]]),a=chance(.5)&&qint(k)?[k[0]*nzr(-3,3),1]:[nzr(-9,9),1];
+  const [u0,u1]=pickBounds(UBOUNDS[name]),x0=qdiv(u0,k),x1=qdiv(u1,k),L=linear(k,0,v),c=qdiv(a,k);
+  const Fu=t=>xscale(UVAL[name](t),c),Fhi=Fu(u1),Flo=Fu(u0),value=xsub(Fhi,Flo);if(!value.size)throw Error('zero');
+  const integrand=ctex(a,O.f(L.tex),true);
+  const steps=defUSteps({v,uTex:L.tex,duText:letLinear(L,v),xlo:angTex(x0),xhi:angTex(x1),ulo:angTex(u0),uhi:angTex(u1),integrand,rewritten:`${coefOnly(c)}\\int_{${angTex(u0)}}^{${angTex(u1)}} ${O.f('u')}\\,du`,rule:O.rule,F:ctex(qmul(c,[O.s,1]),O.F('u'),true),Fhi,Flo,value});
+  return definite('usub','definite_linear_inner',{v,integrand,integrandExp:cexp(a,O.fe(L.exp)),lo:angTex(x0),hi:angTex(x1),loExp:angExp(x0),hiExp:angExp(x1),value,steps,mode:'unit4-usub-def',data:{subtype:'trig',outer:name}});
+ }
+ function uDefLinearExp(kind){
+  const v=chance(.12)?'t':'x';
+  if(kind==='exp_ln'){
+   const k=pick([2,2,3]),m=k===3?2:pick([2,3]),a=[chance(.5)?k*nzr(-3,3):nzr(-9,9),1],c=Q(a[0],k),L=linear([k,1],0,v);
+   const Fhi=xq(qmul(c,[m**k,1])),Flo=xq(c),value=xsub(Fhi,Flo);
+   const integrand=ctex(a,`e^{${L.tex}}`,true),hiT=`\\ln ${m}`,uhi=`${k}\\ln ${m}`;
+   const steps=defUSteps({v,uTex:L.tex,duText:letLinear(L,v),xlo:'0',xhi:hiT,ulo:'0',uhi,integrand,rewritten:`${coefOnly(c)}\\int_{0}^{${uhi}} e^{u}\\,du`,F:ctex(c,'e^{u}',true),Fhi,Flo,value,note:`Use ${im(`e^{${k}\\ln ${m}}=${m}^{${k}}=${m**k}`)}.`});
+   return definite('usub','definite_linear_inner',{v,integrand,integrandExp:cexp(a,`e^(${k}*x)`),lo:'0',hi:hiT,loExp:'0',hiExp:`ln(${m})`,value,steps,mode:'unit4-usub-def',data:{subtype:kind}});
+  }
+  const k=pick([2,3,4,-1,-2,2,3]),b=chance(.4)?nzr(-3,3):0,x0=rint(-1,1),x1=x0+pick([1,1,2]),u0=k*x0+b,u1=k*x1+b;
+  if(Math.max(Math.abs(u0),Math.abs(u1))>4)throw Error('retry');
+  const L=linear([k,1],b,v),a=[chance(.4)?k*nzr(-3,3):nzr(-9,9),1],c=Q(a[0],k);
+  const Fhi=eQ([u1,1],c),Flo=eQ([u0,1],c),value=xsub(Fhi,Flo);
+  const integrand=ctex(a,`e^{${L.tex}}`,true);
+  const steps=defUSteps({v,uTex:L.tex,duText:letLinear(L,v),xlo:String(x0),xhi:String(x1),ulo:String(u0),uhi:String(u1),integrand,rewritten:`${coefOnly(c)}\\int_{${u0}}^{${u1}} e^{u}\\,du`,F:ctex(c,'e^{u}',true),Fhi,Flo,value});
+  return definite('usub','definite_linear_inner',{v,integrand,integrandExp:cexp(a,`e^(${L.exp})`),lo:String(x0),hi:String(x1),loExp:String(x0),hiExp:String(x1),value,steps,mode:'unit4-usub-def',data:{subtype:kind}});
+ }
+ function uDefLinear(){
+  const kind=pick(['power','power','root','root','root','reciprocal_power','exp','exp_ln','trig','trig','trig','trig']);
+  if(kind==='trig')return uDefLinearTrig();
+  if(kind==='exp'||kind==='exp_ln')return uDefLinearExp(kind);
+  const v=chance(.12)?'t':'x';
+  const P=kind==='power'?[pick([2,2,3,3,4]),1]:kind==='reciprocal_power'?[-pick([2,2,3]),1]:pick([[1,2],[1,2],[-1,2],[3,2],[1,3],[-1,3],[2,3]]);
+  const k=[pick([2,3,4,5,2,3,-2,-3]),1],b=rint(-6,6),L=linear(k,b,v);
+  const okU=u=>{
+   if(P[1]===1)return P[0]>0?Math.abs(u)<=(P[0]===2?7:P[0]===3?5:4):u!==0&&Math.abs(u)<=6;
+   if(P[1]===2)return u>=(P[0]<0?1:0)&&u<=49&&Number.isInteger(Math.sqrt(u));
+   const r=Math.round(Math.cbrt(u));return r**3===u&&Math.abs(u)<=27&&(P[0]>0||u!==0);
+  };
+  const xs=[];for(let x=-10;x<=14;x++)if(okU(k[0]*x+b))xs.push(x);
+  if(xs.length<2)throw Error('retry');
+  const [x0,x1]=twoOf(xs,3),u0=k[0]*x0+b,u1=k[0]*x1+b;
+  if(P[0]<0&&u0*u1<=0)throw Error('retry');
+  const a=[chance(.4)?k[0]*nzr(-3,3):nzr(-9,9),1],c=qdiv(a,k),p1=qadd(P,[1,1]),coef=qdiv(c,p1),terms=[{c:coef,e:p1}];
+  const Fhi=xq(evalU(terms,u1)),Flo=xq(evalU(terms,u0)),value=xsub(Fhi,Flo);if(!value.size)throw Error('zero');
+  const integrand=innerTerm(a,L.tex,P,true,'radical');
+  const steps=defUSteps({v,uTex:L.tex,duText:letLinear(L,v),xlo:String(x0),xhi:String(x1),ulo:String(u0),uhi:String(u1),integrand,rewritten:`${coefOnly(c)}\\int_{${u0}}^{${u1}} ${uPowTex(P)}\\,du`,F:uTermTex(coef,p1,true),Fhi,Flo,value});
+  return definite('usub','definite_linear_inner',{v,integrand,integrandExp:innerExp(a,L.exp,P),lo:String(x0),hi:String(x1),loExp:String(x0),hiExp:String(x1),value,steps,mode:'unit4-usub-def',data:{subtype:kind,p:P.join('/')}});
+ }
+ const trigU={sin:sinX,cos:cosX,tan:tanX};
+ function uDefPolyTrig(){
+  const kind=pick(['poly_power','poly_power','poly_root','poly_root','x2_cubic','sin_power_cos','sin_power_cos','cos_power_sin','tan_sec2','x_exp_square','reciprocal_square_trig','exp_trig','ln_power']);
+  const a=[nzr(-6,6),1];
+  if(kind==='poly_power'||kind==='x2_cubic'){
+   const m=kind==='poly_power'?2:3,n=pick(m===2?[2,3,4]:[2,3]),c=nzr(-4,5),[x0,x1]=twoOf(m===2?[-2,-1,0,1,2,3]:[-1,0,1,2]),u0=x0**m+c,u1=x1**m+c;
+   if(Math.max(Math.abs(u0),Math.abs(u1))>(n===2?12:7)||u0===u1)throw Error('retry');
+   const g=polyInner(1,m,c,'x'),factor=Q(a[0],m),terms=[{c:Q(a[0],m*(n+1)),e:[n+1,1]}];
+   const Fhi=xq(evalU(terms,u1)),Flo=xq(evalU(terms,u0)),value=xsub(Fhi,Flo);if(!value.size)throw Error('zero');
+   const xf=m===2?'x':'x^{2}',integrand=`${ctex(a,xf,true)}${powInner(g.tex,[n,1])}`;
+   const steps=defUSteps({uTex:g.tex,duText:`Then ${im(`du=${m}${xf}\\,dx`)}, so ${im(`${xf}\\,dx=\\frac{1}{${m}}\\,du`)}.`,xlo:String(x0),xhi:String(x1),ulo:String(u0),uhi:String(u1),integrand,rewritten:`${coefOnly(factor)}\\int_{${u0}}^{${u1}} u^{${n}}\\,du`,F:uAnswerTex(terms),Fhi,Flo,value});
+   return definite('usub','definite_polynomial_trig_inner',{integrand,integrandExp:`${a[0]}*x^${m-1}*(${g.exp})^${n}`,lo:String(x0),hi:String(x1),loExp:String(x0),hiExp:String(x1),value,steps,mode:'unit4-usub-def',data:{subtype:kind}});
+  }
+  if(kind==='poly_root'){
+   const cubic=chance(.3),recip=chance(.35),[c,xs]=pick(cubic?CUBE_SQ:SQ_PAIRS),[x0,x1]=twoOf(xs),m=cubic?3:2,u0=x0**m+c,u1=x1**m+c;
+   if(recip&&u0*u1===0)throw Error('retry');
+   const g=polyInner(1,m,c,'x'),P=recip?[-1,2]:[1,2],p1=qadd(P,[1,1]),factor=Q(a[0],m),terms=[{c:qdiv(factor,p1),e:p1}];
+   const Fhi=xq(evalU(terms,u1)),Flo=xq(evalU(terms,u0)),value=xsub(Fhi,Flo);if(!value.size)throw Error('zero');
+   const xf=m===2?'x':'x^{2}',integrand=recip?sfrac(ctex(a,xf,true),`\\sqrt{${g.tex}}`):`${ctex(a,xf,true)}\\sqrt{${g.tex}}`;
+   const steps=defUSteps({uTex:g.tex,duText:`Then ${im(`du=${m}${xf}\\,dx`)}, so ${im(`${xf}\\,dx=\\frac{1}{${m}}\\,du`)}.`,xlo:String(x0),xhi:String(x1),ulo:String(u0),uhi:String(u1),integrand,rewritten:`${coefOnly(factor)}\\int_{${u0}}^{${u1}} ${uPowTex(P)}\\,du`,F:uAnswerTex(terms),Fhi,Flo,value});
+   return definite('usub','definite_polynomial_trig_inner',{integrand,integrandExp:`${a[0]}*x^${m-1}*(${g.exp})^(${P[0]}/${P[1]})`,lo:String(x0),hi:String(x1),loExp:String(x0),hiExp:String(x1),value,steps,mode:'unit4-usub-def',data:{subtype:kind,recip,cubic}});
+  }
+  if(kind==='sin_power_cos'||kind==='cos_power_sin'||kind==='tan_sec2'){
+   const v=chance(.15)?'theta':'x',V=VT[v],n=pick([1,2,3,4]),fn=kind==='sin_power_cos'?'sin':kind==='cos_power_sin'?'cos':'tan';
+   const [t0,t1]=pickBounds(fn==='tan'?['0','1/6','1/4','1/3']:['0','1/6','1/4','1/3','1/2','2/3','3/4','5/6','1']);
+   const integrand=fn==='sin'?`${ctex(a,fnTex('sin',V,n),true)}${fnTex('cos',V)}`:fn==='cos'?`${ctex(a,fnTex('cos',V,n),true)}${fnTex('sin',V)}`:`${ctex(a,fnTex('tan',V,n),true)}${fnTex('sec',V,2)}`;
+   const iexp=fn==='sin'?`${a[0]}*sin(x)^${n}*cos(x)`:fn==='cos'?`${a[0]}*cos(x)^${n}*sin(x)`:`${a[0]}*tan(x)^${n}*sec(x)^2`;
+   const s=fn==='cos'?-1:1,lead=[s*a[0],1],coef=Q(s*a[0],n+1);
+   const du=fn==='sin'?`du=${fnTex('cos',V)}\\,d${V}`:fn==='cos'?`du=-${fnTex('sin',V)}\\,d${V}`:`du=${fnTex('sec',V,2)}\\,d${V}`;
+   const U=trigU[fn],u0=U(t0),u1=U(t1),Fhi=xscale(xpowSingle(u1,n+1),coef),Flo=xscale(xpowSingle(u0,n+1),coef),value=xsub(Fhi,Flo);if(!value.size)throw Error('zero');
+   const steps=defUSteps({v,uTex:fnTex(fn,V),duText:`Then ${im(du)}.`,xlo:angTex(t0),xhi:angTex(t1),ulo:xtex(u0),uhi:xtex(u1),integrand,rewritten:`${coefOnly(lead)}\\int_{${xtex(u0)}}^{${xtex(u1)}} ${uPowTex([n,1])}\\,du`,F:ctex(coef,`u^{${n+1}}`,true),Fhi,Flo,value});
+   return definite('usub','definite_polynomial_trig_inner',{v,integrand,integrandExp:iexp,lo:angTex(t0),hi:angTex(t1),loExp:angExp(t0),hiExp:angExp(t1),value,steps,mode:'unit4-usub-def',data:{subtype:kind,n}});
+  }
+  if(kind==='x_exp_square'){
+   const neg=chance(.3),sg=neg?-1:1,[x0,x1]=pick([[0,1],[0,1],[0,2],[1,2],[-1,0],[-2,0]]),u0=sg*x0*x0,u1=sg*x1*x1,factor=Q(sg*a[0],2);
+   const Fhi=eQ([u1,1],factor),Flo=eQ([u0,1],factor),value=xsub(Fhi,Flo),uTex=`${neg?'-':''}x^{2}`;
+   const integrand=`${ctex(a,'x',true)}e^{${uTex}}`;
+   const steps=defUSteps({uTex,duText:`Then ${im(`du=${neg?'-':''}2x\\,dx`)}, so ${im(`x\\,dx=${neg?'-':''}\\frac{1}{2}\\,du`)}.`,xlo:String(x0),xhi:String(x1),ulo:String(u0),uhi:String(u1),integrand,rewritten:`${coefOnly(factor)}\\int_{${u0}}^{${u1}} e^{u}\\,du`,F:ctex(factor,'e^{u}',true),Fhi,Flo,value});
+   return definite('usub','definite_polynomial_trig_inner',{integrand,integrandExp:`${a[0]}*x*e^(${sg}*x^2)`,lo:String(x0),hi:String(x1),loExp:String(x0),hiExp:String(x1),value,steps,mode:'unit4-usub-def',data:{subtype:kind,neg}});
+  }
+  if(kind==='reciprocal_square_trig'){
+   // a cos x / sin^2 x with u = sin x, or a sin x / cos^2 x with u = cos x
+   const useSin=chance(.5),fn=useSin?'sin':'cos',other=useSin?'cos':'sin',[t0,t1]=pickBounds(useSin?['1/6','1/4','1/3','1/2','2/3','3/4','5/6']:['0','1/6','1/4','1/3']);
+   const lead=[useSin?a[0]:-a[0],1],U=trigU[fn],u0=U(t0),u1=U(t1),Fu=t=>xscale(xrecip(t),qneg(lead)),Fhi=Fu(u1),Flo=Fu(u0),value=xsub(Fhi,Flo);if(!value.size)throw Error('zero');
+   const integrand=sfrac(ctex(a,`\\${other} x`,true),`\\${fn}^{2}x`);
+   const steps=defUSteps({uTex:`\\${fn} x`,duText:`Then ${im(useSin?'du=\\cos x\\,dx':'du=-\\sin x\\,dx')}.`,xlo:angTex(t0),xhi:angTex(t1),ulo:xtex(u0),uhi:xtex(u1),integrand,rewritten:`${coefOnly(lead)}\\int_{${xtex(u0)}}^{${xtex(u1)}} u^{-2}\\,du`,F:uTermTex(qneg(lead),[-1,1],true),Fhi,Flo,value});
+   return definite('usub','definite_polynomial_trig_inner',{integrand,integrandExp:`${a[0]}*${other}(x)/${fn}(x)^2`,lo:angTex(t0),hi:angTex(t1),loExp:angExp(t0),hiExp:angExp(t1),value,steps,mode:'unit4-usub-def',data:{subtype:kind,fn}});
+  }
+  if(kind==='exp_trig'){
+   const useSin=chance(.55),fn=useSin?'sin':'cos',other=useSin?'cos':'sin',[t0,t1]=pickBounds(useSin?['0','1/6','1/2','5/6','1']:['0','1/3','1/2','2/3','1']);
+   const lead=[useSin?a[0]:-a[0],1],q0=xRational(trigU[fn](t0)),q1=xRational(trigU[fn](t1)),Fhi=eQ(q1,lead),Flo=eQ(q0,lead),value=xsub(Fhi,Flo);if(!value.size)throw Error('zero');
+   const integrand=`${ctex(a,`\\${other} x`,true)}\\,e^{\\${fn} x}`;
+   const steps=defUSteps({uTex:`\\${fn} x`,duText:`Then ${im(useSin?'du=\\cos x\\,dx':'du=-\\sin x\\,dx')}.`,xlo:angTex(t0),xhi:angTex(t1),ulo:qtex(q0),uhi:qtex(q1),integrand,rewritten:`${coefOnly(lead)}\\int_{${qtex(q0)}}^{${qtex(q1)}} e^{u}\\,du`,F:ctex(lead,'e^{u}',true),Fhi,Flo,value});
+   return definite('usub','definite_polynomial_trig_inner',{integrand,integrandExp:`${a[0]}*${other}(x)*e^(${fn}(x))`,lo:angTex(t0),hi:angTex(t1),loExp:angExp(t0),hiExp:angExp(t1),value,steps,mode:'unit4-usub-def',data:{subtype:kind,fn}});
+  }
+  // ln_power: (ln x)^n / x with bounds that are powers of e
+  const n=pick([1,1,2,3,-2]),B=n<0?pick([[1,2],[1,3]]):pick([[0,1],[0,1],[0,2],[1,2],[0,3]]),eT=p=>p===0?'1':p===1?'e':`e^{${p}}`,eE=p=>p===0?'1':`e^(${p})`;
+  const terms=[{c:Q(a[0],n+1),e:[n+1,1]}],Fhi=xq(evalU(terms,B[1])),Flo=xq(evalU(terms,B[0])),value=xsub(Fhi,Flo);
+  const integrand=n<0?sfrac(ctex(a,'',true),'x\\left(\\ln x\\right)^{2}'):sfrac(ctex(a,n===1?'\\ln x':`\\left(\\ln x\\right)^{${n}}`,true),'x');
+  const steps=defUSteps({uTex:'\\ln x',duText:`Then ${im('du=\\frac{1}{x}\\,dx')}.`,xlo:eT(B[0]),xhi:eT(B[1]),ulo:String(B[0]),uhi:String(B[1]),integrand,rewritten:`${coefOnly(a)}\\int_{${B[0]}}^{${B[1]}} ${uPowTex([n,1])}\\,du`,F:uAnswerTex(terms),Fhi,Flo,value});
+  return definite('usub','definite_polynomial_trig_inner',{integrand,integrandExp:`${a[0]}*ln(x)^(${n})/x`,lo:eT(B[0]),hi:eT(B[1]),loExp:eE(B[0]),hiExp:eE(B[1]),value,steps,mode:'unit4-usub-def',data:{subtype:kind,n}});
+ }
+ // back-substitution with changed bounds: u = x + c (x = u - c) or u = x^2 + c (x^2 = u - c)
+ function uDefBackSub(){
+  const kind=pick(['linear_sqrt','linear_sqrt','linear_reciprocal_sqrt','linear_cube_root','square_sqrt','cubic_sqrt']),a=pick([1,1,1,2,3,-1,-2]);
+  const A=a===1?'':a===-1?'-':String(a);
+  let P,c,x0,x1,u0,u1,innerTex,integrand,iexp,duText,xpow=1,lead=[a,1];
+  if(kind==='cubic_sqrt'){
+   const pool=SQ_PAIRS.filter(([cc,xs])=>xs.filter(x=>x*x+cc<=49).length>=2),[cc,xs]=pick(pool);c=cc;[x0,x1]=twoOf(xs.filter(x=>x*x+c<=49));u0=x0*x0+c;u1=x1*x1+c;P=[1,2];
+   innerTex=`x^{2}${c<0?'-':'+'}${Math.abs(c)}`;integrand=`${A}x^{3}\\sqrt{${innerTex}}`;iexp=`${a}*x^3*sqrt(x^2+(${c}))`;lead=Q(a,2);
+   duText=`Then ${im('du=2x\\,dx')}, so ${im('x\\,dx=\\frac{1}{2}\\,du')}, and ${im(`x^{2}=u${c<0?'+':'-'}${Math.abs(c)}`)}.`;
+  }else{
+   P=kind==='linear_reciprocal_sqrt'?[-1,2]:kind==='linear_cube_root'?[1,3]:[1,2];xpow=kind==='square_sqrt'?2:1;
+   const pool=kind==='linear_cube_root'?[-8,-1,0,1,8]:kind==='linear_reciprocal_sqrt'?[1,4,9,16,25]:xpow===2?[0,1,4,9]:[0,1,4,9,16,25];
+   [u0,u1]=twoOf(pool,3);c=nzr(-6,6);x0=u0-c;x1=u1-c;
+   innerTex=`x${c<0?'-':'+'}${Math.abs(c)}`;const xt=xpow===2?'x^{2}':'x';
+   integrand=P[0]<0?sfrac(`${A}${xt}`,`\\sqrt{${innerTex}}`):`${A}${xt}${powInner(innerTex,P,'radical')}`;iexp=`${a}*x^${xpow}*(x+(${c}))^(${P[0]}/${P[1]})`;
+   duText=`Then ${im('du=dx')} and ${im(`x=u${c<0?'+':'-'}${Math.abs(c)}`)}.`;
+  }
+  // (u - c)^xpow · u^P, times the leading coefficient
+  const base=xpow===1?[{c:[1,1],e:[1,1]},{c:[-c,1],e:[0,1]}]:[{c:[1,1],e:[2,1]},{c:[-2*c,1],e:[1,1]},{c:[c*c,1],e:[0,1]}];
+  const expanded=simplifyTerms(base.map(t=>({c:qmul(t.c,lead),e:qadd(t.e,P)}))),anti=integrateTerms(expanded);
+  const Fhi=xq(evalU(anti,u1)),Flo=xq(evalU(anti,u0)),value=xsub(Fhi,Flo);if(!value.size)throw Error('zero');
+  const shift=`\\left(u${c<0?'+':'-'}${Math.abs(c)}\\right)${xpow===2?'^{2}':''}`;
+  const rewritten=`${coefOnly(lead)}\\int_{${u0}}^{${u1}} ${shift}${uPowTex(P)}\\,du=\\int_{${u0}}^{${u1}}\\left(${uPlainTex(expanded)}\\right)du`;
+  const steps=defUSteps({uTex:innerTex,duText,xlo:String(x0),xhi:String(x1),ulo:String(u0),uhi:String(u1),integrand,rewritten,F:uAnswerTex(anti),Fhi,Flo,value});
+  return definite('usub','definite_back_substitution',{integrand,integrandExp:iexp,lo:String(x0),hi:String(x1),loExp:String(x0),hiExp:String(x1),value,steps,mode:'unit4-usub-def',data:{subtype:kind}});
+ }
+ // odd powers of sine or cosine: save one factor, convert the rest with sin^2 + cos^2 = 1
+ function uOddTrig(){
+  const odd=pick(['cos','sin']),other=odd==='cos'?'sin':'cos',n=pick([3,3,5,5]),m=n===3?pick([0,0,2,2,4]):pick([0,0,2]),j=(n-1)/2;
+  const isDef=chance(.35),v=!isDef&&chance(.15)?'theta':'x',V=VT[v],a=pick([1,1,1,2,3,4,5,6,-1,-2,-3]);
+  const s=odd==='cos'?1:-1,lead=[s*a,1];
+  // a·s·u^m (1 - u^2)^j
+  const binom=j===1?[{c:[1,1],e:[0,1]},{c:[-1,1],e:[2,1]}]:[{c:[1,1],e:[0,1]},{c:[-2,1],e:[2,1]},{c:[1,1],e:[4,1]}];
+  // ascending powers, as in u - (2/3)u^3 + (1/5)u^5
+  const poly=simplifyTerms(binom.map(t=>({c:qmul(t.c,lead),e:qadd(t.e,[m,1])}))).reverse(),anti=integrateTerms(poly);
+  const integrand=ctex([a,1],`${m?fnTex(other,V,m):''}${fnTex(odd,V,n)}`,true);
+  const oneMinus=`\\left(1-${fnTex(other,V,2)}\\right)${j===2?'^{2}':''}`;
+  const rewrittenX=ctex([a,1],`${m?fnTex(other,V,m):''}${oneMinus}${fnTex(odd,V)}`,true);
+  const save=step(`Save one factor of ${im(fnTex(odd,V))}.`,`Use ${im(`${fnTex(odd,V,2)}=1-${fnTex(other,V,2)}`)}.`,`${integrand}=${rewrittenX}`);
+  const du=odd==='cos'?`du=${fnTex('cos',V)}\\,d${V}`:`du=-${fnTex('sin',V)}\\,d${V}`;
+  const uFactored=`${m?`u^{${m}}`:''}\\left(1-u^{2}\\right)${j===2?'^{2}':''}`,needExpand=m>0||j>1;
+  const iexp=`${a}*${m?`${other}(x)^${m}*`:''}${odd}(x)^${n}`;
+  if(isDef){
+   const [t0,t1]=pick([['0','1/2'],['0','1/6'],['0','1/4'],['0','1/3'],['1/6','1/2'],['1/4','1/2'],['1/3','1/2'],['0','1'],['1/6','1/3'],['1/2','1'],['1/2','2/3'],['1/4','3/4']]).map(k=>ANG[k]);
+   const U=trigU[other],u0=U(t0),u1=U(t1),Fx=u=>anti.reduce((acc,t)=>xadd(acc,xscale(xpowSingle(u,t.e[0]),t.c)),X()),Fhi=Fx(u1),Flo=Fx(u0),value=xsub(Fhi,Flo);if(!value.size)throw Error('zero');
+   const rewritten=`${coefOnly(lead)}\\int_{${xtex(u0)}}^{${xtex(u1)}} ${uFactored}\\,du${needExpand?`=\\int_{${xtex(u0)}}^{${xtex(u1)}}\\left(${uPlainTex(poly)}\\right)du`:''}`;
+   const steps=defUSteps({uTex:fnTex(other,'x'),duText:`Then ${im(du)}.`,xlo:angTex(t0),xhi:angTex(t1),ulo:xtex(u0),uhi:xtex(u1),integrand,rewritten,F:uAnswerTex(anti),Fhi,Flo,value,pre:[save]});
+   return definite('usub','odd_trig_powers',{integrand,integrandExp:iexp,lo:angTex(t0),hi:angTex(t1),loExp:angExp(t0),hiExp:angExp(t1),value,steps,mode:'unit4-usub-def',data:{subtype:`${odd}${n}_${other}${m}`,definite:true}});
+  }
+  const fin=join(anti.map((t,i)=>ctex(t.c,fnTex(other,V,t.e[0]),i===0))),fexp=anti.map(t=>`${qexpr(t.c)}*${other}(x)^${t.e[0]}`).join('+');
+  const steps=[save,step(`Let ${im(`u=${fnTex(other,V)}`)}.`,`Then ${im(du)}.`,`\\int ${integrand}${dv(v)}=${coefOnly(lead)}\\int ${uFactored}\\,du`),
+   step(needExpand?'Expand and integrate.':'Integrate.','',`${needExpand?`\\int\\left(${uPlainTex(poly)}\\right)du`:`${coefOnly(lead)}\\int ${uFactored}\\,du`}=${uAnswerTex(anti)}+C`),
+   step('Substitute back.','',`${fin}+C`)];
+  return indefinite('usub','odd_trig_powers',{v,integrand,integrandExp:iexp,answerTex:fin,answerExp:fexp,components:[[-3,3]],steps,mode:usubMode(v),data:{subtype:`${odd}${n}_${other}${m}`}});
+ }
+ const USUB={linear_inner_trig_exp:uLinearTrigExp,linear_inner_power_root:uLinearPower,polynomial_inner_constant_adjust:uPolyInner,shifted_quadratic_power:uShiftedQuadratic,trig_power_chain:uTrigPower,composite_exponential_log:uComposite,back_substitution:uBackSub,definite_linear_inner:uDefLinear,definite_polynomial_trig_inner:uDefPolyTrig,definite_back_substitution:uDefBackSub,odd_trig_powers:uOddTrig};
+
 
  // ======================= registration =======================
  const ENGINES={basic:()=>BASIC,usub:()=>(typeof USUB!=='undefined'?USUB:null),log:()=>(typeof LOGS!=='undefined'?LOGS:null),mvt:()=>(typeof MVTS!=='undefined'?MVTS:null)};
