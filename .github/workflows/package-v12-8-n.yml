@@ -1,0 +1,134 @@
+name: Package BatchMath v12.8.N
+on:
+  push:
+    branches: [work/v12.8n-unit4-definite-integrals-ftc-rules]
+    paths: [.github/workflows/package-v12-8-n.yml]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  package:
+    if: github.repository == 'batchmath/BatchMathSite' && github.ref == 'refs/heads/work/v12.8n-unit4-definite-integrals-ftc-rules'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      QA_COMMIT: 49b5541994b176dc13024bac14780dfcb6b94c60
+      QA_RUN_ID: '40698872142'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact green version-sync parent and workflow-only diff
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git show -s --format=%P HEAD)" = "$QA_COMMIT"
+          test "$(git diff --name-status "$QA_COMMIT" "$GITHUB_SHA")" = $'A\t.github/workflows/package-v12-8-n.yml'
+          git diff --exit-code "$QA_COMMIT" "$GITHUB_SHA" -- . ':(exclude).github/workflows/package-v12-8-n.yml'
+          python3 tools/unit4-v128n-production-parity.py
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$QA_RUN_ID" > "$RUNNER_TEMP/n-green-run.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$QA_RUN_ID/jobs" > "$RUNNER_TEMP/n-green-jobs.json"
+          python3 - <<'CHECK'
+          import json, os
+          from pathlib import Path
+          temp = Path(os.environ['RUNNER_TEMP'])
+          run = json.loads((temp / 'n-green-run.json').read_text())
+          assert str(run['id']) == os.environ['QA_RUN_ID']
+          assert run['head_sha'] == os.environ['QA_COMMIT']
+          assert run['head_branch'] == 'work/v12.8n-unit4-definite-integrals-ftc-rules'
+          assert run['name'] == 'Unit 4 definite-integral engines v12.8.N targeted QA'
+          assert run['path'] == '.github/workflows/unit4-v128n-qa.yml'
+          assert run['event'] == 'push'
+          assert run['status'] == 'completed' and run['conclusion'] == 'success'
+          jobs = json.loads((temp / 'n-green-jobs.json').read_text())['jobs']
+          assert {job['name'] for job in jobs} == {'curriculum-math', 'curriculum-browser', 'production-equivalent'}
+          assert all(job['status'] == 'completed' and job['conclusion'] == 'success' for job in jobs)
+          assert all(step['conclusion'] not in {'failure', 'cancelled', 'skipped'} for job in jobs for step in job['steps'])
+          print('Exact N and production-equivalent gates:', run['html_url'])
+          CHECK
+      - run: npm install --ignore-scripts --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - run: sudo apt-get install -y --no-install-recommends poppler-utils
+      - name: Final N static, runtime, source-fidelity and mathematical checks
+        run: |
+          npm run qa:static
+          npm run qa:pwa
+          node tools/unit4-v128n-qa.mjs
+      - name: Final actual N desktop/mobile editor and review checks
+        run: node tools/unit4-v128n-browser-qa.mjs
+      - name: Final retained full and problems-only PDF regressions
+        run: node tools/running-documents-v128m-qa.mjs
+      - name: Final retained M graph, Sigma, walkthrough, border and archive browser checks
+        run: node tools/unit4-v128m-browser-qa.mjs
+      - name: Package and verify every committed Git blob
+        shell: bash
+        run: |
+          set -euo pipefail
+          git archive --format=zip -9 --prefix=batchmath-site-v12.8.N/ --output=batchmath-site-v12.8.N.zip "$GITHUB_SHA"
+          unzip -tq batchmath-site-v12.8.N.zip
+          python3 tools/package-v128n-verify.py
+      - name: Verify protected heads, publish N only, and verify uploaded checksum
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/work/v12.8n-unit4-definite-integrals-ftc-rules" --jq .object.sha)" = "$GITHUB_SHA"
+          while read -r expected ref; do
+            actual="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/$ref" --jq .object.sha)"
+            test "$actual" = "$expected" || { echo "::error::Protected ref changed: $ref"; exit 1; }
+          done <<'REFS'
+          6784b980277b3416d4fd7cece07d39a3e908e050 heads/main
+          af2189e27fb86c7f995631ab1e7a1ba204453537 heads/work/optimization-related-rates-diagram-hints
+          6e3dbc6711f4082484c622a7b06072b093168699 heads/work/unit4-approximation-sigma-engines
+          555f96aca77803d086f73ed14d821ae2633f8bee heads/work/v12.8k-unit4-mogollon2026
+          f7da158cbba60b9a2b03871cb811a62ccf5390fd heads/work/v12.8l-unit4-polish-mogollon-live-videos
+          e85d71434195edc5c377997f1702d163a57a74c4 heads/work/v12.8m-approximation-running-docs-video-fixes
+          REFS
+          if gh release view v12.8.N --repo "$GITHUB_REPOSITORY" --json targetCommitish > "$RUNNER_TEMP/n-existing.json" 2>/dev/null; then
+            test "$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["targetCommitish"])' "$RUNNER_TEMP/n-existing.json")" = "$GITHUB_SHA"
+            gh release upload v12.8.N batchmath-site-v12.8.N.zip --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create v12.8.N batchmath-site-v12.8.N.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title 'BatchMath v12.8.N' --notes-file release-notes.md --prerelease --latest=false
+          fi
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.N" > "$RUNNER_TEMP/n-release.json"
+          gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/v12.8.N" > "$RUNNER_TEMP/n-tag.json"
+          python3 - <<'CHECK'
+          import hashlib, json, os
+          from pathlib import Path
+          temp = Path(os.environ['RUNNER_TEMP'])
+          release = json.loads((temp / 'n-release.json').read_text())
+          tag = json.loads((temp / 'n-tag.json').read_text())
+          package = Path('batchmath-site-v12.8.N.zip')
+          checksum = hashlib.sha256(package.read_bytes()).hexdigest()
+          assert tag['object']['type'] == 'commit' and tag['object']['sha'] == os.environ['GITHUB_SHA']
+          assert release['tag_name'] == 'v12.8.N' and release['name'] == 'BatchMath v12.8.N'
+          assert release['target_commitish'] == os.environ['GITHUB_SHA']
+          assert release['prerelease'] is True and release['draft'] is False
+          assert checksum in release['body']
+          assets = [asset for asset in release['assets'] if asset['name'] == package.name]
+          assert len(assets) == 1
+          asset = assets[0]
+          assert asset['state'] == 'uploaded' and asset['size'] == package.stat().st_size > 0
+          assert asset['digest'] == 'sha256:' + checksum
+          print('Release:', release['html_url'])
+          print('Download:', asset['browser_download_url'])
+          print('SHA-256:', checksum)
+          CHECK
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: batchmath-v12.8.N-package-verification
+          path: |
+            qa-results/
+            release-notes.md
+            batchmath-site-v12.8.N.sha256
+          if-no-files-found: warn

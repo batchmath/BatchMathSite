@@ -59,8 +59,8 @@ function summarize(record,problems){
   if(record.rawImmediateRepeatRate>.08)warnings.push(`${record.title}: raw immediate-repeat rate ${(100*record.rawImmediateRepeatRate).toFixed(1)}%; UI recent-ID protection should prevent visible short-window repeats.`);
 }
 
-const topicFiles=walk(path.join(ROOT,'ap-calculus')).filter(f=>/[/\\]topics[/\\][^/\\]+[/\\]practice[/\\]index\.html$/.test(f)&&!/[/\\](?:comprehensive-review|semester-1-review)[/\\]practice[/\\]index\.html$/.test(f)).sort();
-if(topicFiles.length!==54)errors.push(`Expected exactly 54 individual AP topic practice pages, found ${topicFiles.length}`);
+const topicFiles=walk(path.join(ROOT,'ap-calculus')).filter(f=>/[/\\]topics[/\\][^/\\]+[/\\](?:practice|integral-rules-practice)[/\\]index\.html$/.test(f)&&!/[/\\](?:comprehensive-review|semester-1-review)[/\\]practice[/\\]index\.html$/.test(f)).sort();
+if(topicFiles.length!==55)errors.push(`Expected exactly 55 individual AP topic practice pages, found ${topicFiles.length}`);
 
 const sharedSource=fs.readFileSync(path.join(ROOT,'assets/ap-topic-generators.js'),'utf8');
 const sharedBox={window:{},console};vm.createContext(sharedBox);vm.runInContext(sharedSource,sharedBox,{filename:'ap-topic-generators.js'});

@@ -145,6 +145,34 @@
     return `<span class="bm-calc-token${cls?" "+cls:""}${selectionClass(start,end)}" data-bm-start="${start}" data-bm-end="${end}">${escapeHtml(display)}</span>`;
   }
 
+  // Limit/sum syntax is opt-in to the Newton profile. Every existing mode
+  // retains its original parsing, cursor stops, and rendering.
+  function newtonStructureAt(start,end=state.raw.length){
+    if(state.mode!=="unit4-newton")return null;
+    const kind=state.raw.startsWith("lim(",start)?"limit":state.raw.startsWith("sum(",start)?"sum":null;if(!kind)return null;
+    const open=start+3,close=findClose(state.raw,open);if(close<0||close>=end)return null;
+    let depth=0,from=open+1;const zones=[];
+    for(let i=from;i<=close;i++){
+      if(i===close||(state.raw[i]===","&&!depth)){zones.push({start:from,end:i});from=i+1;}
+      else if(state.raw[i]==="(")depth++;else if(state.raw[i]===")")depth--;
+    }
+    if(zones.length!==(kind==="limit"?2:3))return null;
+    return{kind,start,end:close+1,zones};
+  }
+  function allNewtonStructures(){
+    const out=[];if(state.mode!=="unit4-newton")return out;
+    for(let i=0;i<state.raw.length;i++){const item=newtonStructureAt(i);if(item)out.push(item);}
+    return out.sort((a,b)=>(a.end-a.start)-(b.end-b.start));
+  }
+  function insertNewtonStructure(kind){
+    const prefix=kind==="limit"?"lim(n->infinity,":"sum(k=1,n,",r=hasSelection()?safeSelectionRange():selectionRange(),body=hasSelection()?state.raw.slice(r.start,r.end):"";
+    insert(prefix+body+")",prefix.length);
+  }
+  function newtonHeader(kind,zone,text){
+    const item=allNewtonStructures().find(item=>item.kind===kind&&state.cursor>=item.start&&state.cursor<=item.end);
+    if(!item){insert(text);return;}const target=item.zones[zone];state.selectionAnchor=target.start;state.selectionFocus=target.end;state.cursor=target.end;insert(text);const updated=newtonStructureAt(item.start);if(updated){collapseSelection(updated.zones.at(-1).start);render();state.editor.focus();}
+  }
+
   function functionShellAt(start){
     const name=fnNames.find(f=>state.raw.startsWith(f+"(",start));
     if(!name)return null;
@@ -153,12 +181,15 @@
     return {name,start,tokenEnd:open,argStart:open+1,close,end:close>=0?close+1:null};
   }
   function atomicAt(start){
-    const word=atomicWords.find(w=>state.raw.startsWith(w,start)) ||
+    const word=(state.mode==="unit4-newton"?["->","lim","sum",...atomicWords]:atomicWords).find(w=>state.raw.startsWith(w,start)) ||
       fnNames.find(w=>state.raw.startsWith(w,start));
     return word?{word,start,end:start+word.length}:null;
   }
   function normalizeCursor(pos,dir=0){
     let p=Math.max(0,Math.min(Number(pos)||0,state.raw.length));
+    if(state.mode==="unit4-newton")for(const item of allNewtonStructures()){
+      const first=item.zones[0].start;if(p>item.start&&p<first)return dir<0?item.start:first;
+    }
     // Invisible fraction syntax )/( is one visual boundary between the stacked
     // numerator and denominator, so no caret may sit inside those raw characters.
     for(let start=0;start<state.raw.length;start++){
@@ -207,6 +238,14 @@
     let out="",i=start;
     while(i<end){
       if(!hasSelection()&&state.cursor===i)out+=caret();
+
+      const calculus=newtonStructureAt(i,end);
+      if(calculus){
+        const zone=(which,name)=>{const z=calculus.zones[which],inner=renderPlain(z.start,z.end);return `<span class="bm-calc-newton-zone" data-bm-zone="${name}" data-bm-zone-start="${z.start}" data-bm-zone-end="${z.end}">${inner}${z.start===z.end?emptyBox():""}</span>`;};
+        const limits=calculus.kind==="limit"?`<span class="bm-calc-newton-op">lim<span class="bm-calc-newton-under">${zone(0,"limit-under")}</span></span>`:`<span class="bm-calc-newton-op bm-calc-newton-sigma"><span class="bm-calc-newton-upper">${zone(1,"sum-upper")}</span><span class="bm-calc-newton-sign">∑</span><span class="bm-calc-newton-under">${zone(0,"sum-lower")}</span></span>`;
+        out+=`<span class="bm-calc-newton-structure ${calculus.kind}${structureSelectionClass(i,calculus.end)}">${limits}<span class="bm-calc-newton-body">${zone(calculus.zones.length-1,calculus.kind+"-body")}</span></span>`;i=calculus.end;continue;
+      }
+      if(state.mode==="unit4-newton"&&s.startsWith("->",i)){out+=renderToken("→",i,i+2,"symbol");i+=2;continue;}
 
       const root=rootAt(s,i,end);
       if(root){
@@ -324,6 +363,10 @@
     let r={start:Math.max(0,range.start),end:Math.min(state.raw.length,range.end)},changed=true;
     while(changed&&r.end>r.start){
       changed=false;
+      for(const item of allNewtonStructures()){
+        if(!overlaps(r,item.start,item.end)||item.zones.some(z=>inside(r,z.start,z.end))||r.start===item.start&&r.end===item.end)continue;
+        const start=Math.min(r.start,item.start),end=Math.max(r.end,item.end);if(start!==r.start||end!==r.end){r={start,end};changed=true;}
+      }
       for(const f of allFractions()){
         if(!overlaps(r,f.start,f.end))continue;
         if(inside(r,f.numStart,f.numClose)||inside(r,f.denStart,f.denClose)||inside(r,f.start,f.end)&&r.start===f.start&&r.end===f.end)continue;
@@ -353,6 +396,7 @@
   }
 
   function normalizePastedText(value){
+    if(state.mode==="unit4-newton"&&window.BatchMathNewtonNotation)return window.BatchMathNewtonNotation.normalize(value);
     let text=String(value??'').trim().replace(/[−–—]/g,'-').replace(/π/g,'pi').replace(/∞/g,'infinity').replace(/[×·]/g,'*');
     text=text.replace(/^\$+|\$+$/g,'').replace(/\\left|\\right/g,'').replace(/\\,/g,'').replace(/\\;/g,'');
     let prior='';
@@ -484,6 +528,11 @@
     if(!state.input||state.input.disabled)return;
     if(removeSelection())return;
     if(state.cursor<=0)return;
+    if(state.mode==="unit4-newton")for(const item of allNewtonStructures()){
+      const index=item.zones.findIndex(z=>z.start===state.cursor);
+      if(index>=0){collapseSelection(index===0?item.start:item.zones[index-1].end);render();state.editor.focus();return;}
+      if(state.cursor===item.end){collapseSelection(item.zones.at(-1).end);render();state.editor.focus();return;}
+    }
     state.cursor=normalizeCursor(state.cursor,-1);
     if(state.cursor<=0)return;
 
@@ -568,6 +617,10 @@
     if(!state.input||state.input.disabled)return;
     if(removeSelection())return;
     if(state.cursor>=state.raw.length)return;
+    if(state.mode==="unit4-newton")for(const item of allNewtonStructures()){
+      if(state.cursor===item.start){if(item.zones.at(-1).start===item.zones.at(-1).end)removeSpan(item.start,item.end);else{collapseSelection(item.zones[0].start);render();state.editor.focus();}return;}
+      const index=item.zones.findIndex(z=>z.end===state.cursor);if(index>=0){collapseSelection(index===item.zones.length-1?item.end:item.zones[index+1].start);render();state.editor.focus();return;}
+    }
     state.cursor=normalizeCursor(state.cursor,1);
     if(state.cursor>=state.raw.length)return;
 
@@ -700,6 +753,11 @@
     const anchor=extend?(hasSelection()?state.selectionAnchor:state.cursor):null;
     state.cursor=normalizeCursor(state.cursor,delta);
     const f=containingFraction();
+    if(!f&&state.mode==="unit4-newton"){
+      const item=allNewtonStructures().find(item=>state.cursor>=item.start&&state.cursor<=item.end);if(!item)return;
+      const last=item.zones.length-1,index=item.zones.findIndex(z=>state.cursor>=z.start&&state.cursor<=z.end),target=item.kind==="sum"?(index===last?(delta<0?1:0):delta<0?1:0):(index===last?0:last);
+      collapseSelection(item.zones[target].end);render();state.editor.focus();return;
+    }
     if(!f)return;
     if(delta<0 && state.cursor>=f.denStart&&state.cursor<=f.denClose){
       const off=state.cursor-f.denStart;
@@ -816,6 +874,10 @@
       "unit3-number":{fraction:true,decimal:true,arithmetic:true,parentheses:true},
       "unit3-exact":{fraction:true,radical:true,exponent:true,constants:["pi","e"],logarithm:true,arithmetic:true,parentheses:true},
       "unit4-exact":{fraction:true,radical:true,exponent:true,constants:["pi","e"],logarithm:true,arithmetic:true,parentheses:true},
+      "unit4-newton":{riemann:true,fraction:true,radical:true,exponent:true,constants:["e"],variables:["k","n"],logarithm:true,functions:[["sin","sin"],["cos","cos"],["tan","tan"]],arithmetic:true,parentheses:true},
+      "unit4-newton-value":{fraction:true},
+      "unit4-geometry":{fraction:true,constants:["pi"],plus:true},
+      "unit4-ftc":{fraction:true,radical:true,exponent:true,constants:["pi","e"],variables:["x"],logarithm:true,functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"]],arithmetic:true,parentheses:true},
       "unit4-sigma":{fraction:true,exponent:true,variables:["n"],arithmetic:true,parentheses:true},
       "unit3-geometry-exact":{fraction:true,radical:true,exponent:true,constants:["pi"],arithmetic:true,parentheses:true},
       "unit3-formula":{fraction:true,exponent:true,sequence:true,variables:["n"],arithmetic:true,parentheses:true,equality:true},
@@ -845,6 +907,11 @@
     if(contextualUnit3){
       const structures=document.createElement("div");
       structures.className="bm-calc-special-row bm-calc-balanced-row";
+      if(contextualUnit3.riemann){
+        const lk=key('<span class="bm-newton-icon"><span class="bm-newton-icon-word">lim</span><span class="bm-newton-icon-sub">n→∞</span></span>',"function bm-newton-key",()=>insertNewtonStructure("limit"),"Insert limit as n approaches infinity template",true);
+        const sk=key('<span class="bm-newton-icon bm-newton-icon-sum"><span class="bm-newton-icon-top">n</span><span class="bm-newton-icon-sigma">∑</span><span class="bm-newton-icon-bot">k=1</span></span>',"function bm-newton-key",()=>insertNewtonStructure("sum"),"Insert summation from k equals 1 to n template",true);
+        structures.appendChild(lk);structures.appendChild(sk);
+      }
       if(contextualUnit3.fraction)addFraction(structures);
       if(contextualUnit3.radical)addFunction(structures,"√","sqrt");
       if(contextualUnit3.cubeRoot)addFunction(structures,"∛","cbrt");
@@ -912,6 +979,7 @@
       if(contextualUnit3.decimal)rows.push([".","."]);
       if(contextualUnit3.parentheses)rows.push(["(","("],[")",")"]);
       if(contextualUnit3.arithmetic)rows.push(["+","+"],["·","*"]);
+      else if(contextualUnit3.plus)rows.push(["+","+"]);
       if(contextualUnit3.equality)rows.push(["=","="]);
       (contextualUnit3.variables||[]).forEach(name=>rows.push([name,name]));
       if(contextualUnit3.list||contextualUnit3.pair)rows.push([",",","]);
@@ -1029,6 +1097,7 @@
       const prior=state.raw[state.cursor-1];
       if(prior==="f"||prior==="g"){e.preventDefault();insert("p");return;}
     }
+    if(state.mode==="unit4-newton"&&e.key===">"){e.preventDefault();insert(">");return;}
     if(e.key.length===1&&/[0-9a-zA-Z+\-*().,=\[\]]/.test(e.key)){e.preventDefault();insert(e.key);return;}
   }
 

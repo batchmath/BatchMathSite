@@ -43,3 +43,25 @@
 @media(max-width:520px){.practice-diagram-hint{padding:9px!important}.geometry-diagram-hint{gap:7px}.geometry-diagram{width:100%;max-height:min(44vh,285px);border-radius:9px}.geometry-diagram .diagram-label{font-size:20px}.diagram-fixed-notes{gap:5px}.diagram-fixed-notes span{padding:4px 7px;font-size:.75rem}}
 @media(max-width:520px){.coordinate-field{grid-template-columns:1fr;gap:4px}.coordinate-field>span{text-align:center}.coordinate-answer .practice-answer-input{font-size:1rem}}
 @media(max-width:520px){.extremum-field{grid-template-columns:1fr;gap:4px;text-align:center}.extremum-answer .practice-answer-input{font-size:1rem}}
+
+/* Source-based definite-integral worked diagrams and long constructed math. */
+.u4-geometry-figure{width:min(100%,560px);margin:4px auto 16px}
+.u4-geometry-figure svg{display:block;width:100%;height:auto;max-height:360px}
+.u4-definite-question .u4-formula,.u4-definite-equation{max-width:100%;overflow-x:auto;padding:6px 0}
+
+/* Newton sums only: natural-height mathematics with horizontal overflow reserved for long equations. */
+.question-box:has(>.u4-newton-question){min-height:170px;overflow:visible}
+.u4-newton-question .u4-formula,.u4-newton-equation{display:block;min-height:3.5em;height:auto;max-height:none;max-width:100%;overflow-x:auto;overflow-y:hidden;padding:.6em .15em;margin:.35em 0}
+.u4-newton-question .u4-formula mjx-container,.u4-newton-equation mjx-container{margin:.2em 0!important}
+.unit4-newton-answer .staged-feedback{height:auto;max-height:none;overflow:visible}
+.unit4-newton-answer .correct-answer{max-width:100%;overflow-x:auto;overflow-y:hidden;padding:.5em .1em}
+@media(max-width:600px){.question-box:has(>.u4-newton-question){min-height:175px}}
+
+/* P review: only Geometry, FTC and Integral Rules, including their review modes. */
+.question-box:has(>.u4-revised-question){min-height:170px;height:auto;max-height:none;overflow:visible}
+.u4-revised-question .u4-formula,.unit4-revised-answer .u4-definite-equation{display:block;height:auto;max-height:none;min-height:3em;overflow:visible;padding:.7em .15em;margin:.4em 0}
+.u4-revised-question mjx-container,.unit4-revised-answer .u4-definite-equation mjx-container{margin:.2em 0!important}
+.unit4-revised-answer .staged-feedback,.unit4-revised-answer .method{height:auto;max-height:none;overflow:visible}
+.unit4-revised-answer .u4-work-step{margin:.8em 0}
+.unit4-revised-answer .correct-answer{padding:.6em 0;max-width:100%;overflow:visible}
+.unit4-revised-answer .u4-geometry-figure{margin:4px auto 16px}

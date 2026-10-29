@@ -3169,5 +3169,550 @@ G['difference-quotient']=()=>{
   };
 })();
 
+// v12.8.N — source-mapped constructed definite-integral practice.
+(function definiteIntegralCurriculumN(){
+ const W={newton:[['linear_construction',35],['quadratic_monomial',20],['quadratic_combination',25],['nonpolynomial_representation',20]],geometry:[['linear_triangle',10],['linear_trapezoid',20],['cross_axis_line',10],['absolute_value',15],['semicircle',15],['quarter_circle',10],['rectangle_circle',20]],ftc:[['upper_identity',25],['lower_identity',10],['upper_linear',10],['upper_power',15],['lower_power',10],['upper_trig',10],['both_algebraic',12],['both_transcendental',8]],rules:[['reverse_limits',10],['zero_width',5],['linearity',20],['interval_decomposition',30],['combined_rules',25],['reversed_combination',10]]};
+ const tiers={linear_construction:'routine',quadratic_monomial:'intermediate',quadratic_combination:'synthesis',nonpolynomial_representation:'intermediate',linear_triangle:'routine',linear_trapezoid:'routine',cross_axis_line:'synthesis',absolute_value:'intermediate',semicircle:'routine',quarter_circle:'routine',rectangle_circle:'intermediate',upper_identity:'routine',lower_identity:'routine',upper_linear:'intermediate',upper_power:'intermediate',lower_power:'intermediate',upper_trig:'intermediate',both_algebraic:'synthesis',both_transcendental:'synthesis',reverse_limits:'routine',zero_width:'routine',linearity:'routine',interval_decomposition:'intermediate',combined_rules:'synthesis',reversed_combination:'synthesis'};
+ const weighted=kind=>{let r=R()*100;for(const[f,w]of W[kind]){r-=w;if(r<0)return f;}return W[kind].at(-1)[0];};
+ const nz=(a,b)=>pick(Array.from({length:b-a+1},(_,i)=>i+a).filter(Boolean));
+ const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a),q=(a,b=1)=>{const g=gcd(a,b);return b<0?[-a/g,-b/g]:[a/g,b/g];};
+ const qa=(a,b)=>q(a[0]*b[1]+b[0]*a[1],a[1]*b[1]);
+ const qt=([a,b])=>b===1?String(a):`${a<0?'-':''}\\frac{${Math.abs(a)}}{${b}}`;
+ const im=s=>`\\(${s}\\)`,eq=s=>`<div class="u4-work-equation u4-definite-equation">${im(`\\displaystyle ${s}`)}</div>`,work=steps=>steps.map(s=>`<div class="u4-work-step">${s}</div>`).join('');
+ const signed=(n,first=false)=>n<0?'-':first?'':'+';
+ const poly=(c,v='x')=>{let out='';for(let i=c.length-1;i>=0;i--){const n=c[i];if(!n)continue;out+=signed(n,!out)+(Math.abs(n)===1&&i?'':Math.abs(n))+(i?(v.length>1?`\\left(${v}\\right)`:v)+(i>1?`^{${i}}`:''):'');}return out||'0';};
+ const pe=(c,v)=>c.map((n,i)=>n?`(${n})*(${v})^${i}`:'').filter(Boolean).join('+')||'0';
+ const shift=(v,h)=>h===0?v:h>0?`${v}-${h}`:`${v}+${-h}`;
+ const coeff=(a,v)=>a===1?v:a===-1?`-${v}`:`${a}${v}`;
+ const key=(kind,family,data)=>{let h=2166136261,g=5381;for(const ch of JSON.stringify(data)){h=Math.imul(h^ch.charCodeAt(0),16777619);g=Math.imul(g,33)^ch.charCodeAt(0);}return `u4N-${kind}-${family}-${(h>>>0).toString(16)}${(g>>>0).toString(16)}`;};
+ const scalar=(r,pi=[0,1])=>({kind:'scalar',value:{'':r,...(pi[0]?{pi}: {})}});
+ function exactStage(prompt,answer,answerTex,explanation,mode='unit4-exact'){
+  return{type:'unit4-exact',prompt,unit4Answer:answer,answerTex,explanation,keypadMode:mode};
+ }
+ function problem(kind,family,prompt,math,data,stage1,stage2){
+  const p={id:key(kind,family,{math,prompts:[stage1.prompt,stage2?.prompt]}),variant:family,normalizedMathDisplay:true,answerType:'staged-calculus',questionHtml:`<div class="u4-unit4-question u4-definite-question"><div class="question-prompt">${prompt}</div><div class="u4-formula">${im(`\\displaystyle ${math}`)}</div></div>`,stage1,answerTex:(stage2||stage1).answerTex,explanation:(stage2||stage1).explanation,unit4Meta:{kind,family,tier:tiers[family],...data}};
+  if(stage2)p.stage2=stage2;return p;
+ }
+ function newton(){
+  // Only this engine's construction and feedback change; all other factories stay intact.
+  const family=weighted('newton');let a=ri(-5,4),width=ri(1,7),b=a+width,c,subtype;
+  if(family==='linear_construction')c=[ri(-8,8),nz(-6,6)];
+  else if(family==='quadratic_monomial')c=[0,0,nz(-4,4)];
+  else if(family==='quadratic_combination')c=[ri(-7,7),nz(-5,5),nz(-4,4)];
+  else subtype=pick(['polynomial_sine','exponential_tangent','polynomial_exponential','radical_linear','exponential_cosine','rational_polynomial','logarithm_polynomial','logarithm_radical']);
+  const u=nz(-4,4),v=nz(-4,4),power=c?1:ri(1,4),rate=c?1:ri(1,3),shiftBy=c?0:ri(0,7),denominator=c?1:ri(1,6);
+  if(subtype==='exponential_tangent'){a=pick([-1,0]);b=1;width=b-a;}
+  if(['radical_linear','logarithm_polynomial','logarithm_radical'].includes(subtype)){a=ri(1-shiftBy,4);b=a+width;}
+  const sample=`${a?a+'+':''}\\frac{${width===1?'':width}k}{n}`,sampleE=`(${a}+${width}*k/n)`,dx=`\\frac{${width}}{n}`;
+  const pair=(e,t)=>({e,t}),P=(t,p)=>p===1?(t==='x'?t:`\\left(${t}\\right)`):`\\left(${t}\\right)^{${p}}`;
+  function nonpoly(t,tex){
+   const arg=`(${t})`,x=tex,px=P(x,power),shifted=shiftBy?`${x}+${shiftBy}`:x,shiftE=`${arg}+${shiftBy}`;
+   let left,right;
+   if(subtype==='polynomial_sine'){left=pair(`${arg}^2`,P(x,2));right=pair(`sin(${arg})`,`\\sin\\!\\left(${x}\\right)`);}
+   else if(subtype==='exponential_tangent'){left=pair(`exp(${arg})`,`e^{${x}}`);right=pair(`tan(${arg})`,`\\tan\\!\\left(${x}\\right)`);}
+   else if(subtype==='polynomial_exponential'){left=pair(`${arg}^${power}`,px);right=pair(`exp(${rate}*${arg})`,`e^{${coeff(rate,`\\left(${x}\\right)`)}}`);}
+   else if(subtype==='radical_linear'){left=pair(`sqrt(${shiftE})`,`\\sqrt{${shifted}}`);right=pair(arg,x==='x'?x:`\\left(${x}\\right)`);}
+   else if(subtype==='exponential_cosine'){left=pair(`exp(${rate}*${arg})`,`e^{${coeff(rate,`\\left(${x}\\right)`)}}`);right=pair(`cos(${rate}*${arg})`,`\\cos\\!\\left(${coeff(rate,`\\left(${x}\\right)`)}\\right)`);}
+   else if(subtype==='rational_polynomial'){left=pair(`1/(${arg}^2+${denominator})`,`\\frac{1}{${P(x,2)}+${denominator}}`);right=pair(`${arg}^${power}`,px);}
+   else if(subtype==='logarithm_polynomial'){left=pair(`ln(${shiftE})`,`\\ln\\!\\left(${shifted}\\right)`);right=pair(`${arg}^${power}`,px);}
+   else{left=pair(`ln(${shiftE})`,`\\ln\\!\\left(${shifted}\\right)`);right=pair(`sqrt(${shiftE})`,`\\sqrt{${shifted}}`);}
+   return pair(`(${u})*(${left.e})+(${v})*(${right.e})`,`${coeff(u,left.t)}${v<0?'-':'+'}${coeff(Math.abs(v),right.t)}`);
+  }
+  const f=c?poly(c):nonpoly('x','x').t,of=(t,tex)=>c?pair(pe(c,t),poly(c,tex)):nonpoly(t,tex),value=of(sampleE,sample),expression=`(${value.e})*${width}/n`,summand=`\\left[${value.t}\\right]${dx}`,sigma='\\sum_{k=1}^{n}',limitTex=`\\lim_{n\\to\\infty}${sigma}${summand}`;
+  const nEq=(s,step)=>`<div class="u4-newton-equation"${step?` data-newton-step="${step}"`:''}>${im(`\\displaystyle ${s}`)}</div>`;
+  const why=t=>`<div class="u4-newton-why">${t}</div>`;
+  const aTex=a<0?`(${a})`:String(a),integralTex=`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx`;
+  const setup=[
+   `Divide ${im(`[${a},${b}]`)} into ${im('n')} equal subintervals. Each one has width${nEq(`\\Delta x=\\frac{b-a}{n}=\\frac{${b}-${aTex}}{n}=${dx}`,'width')}`,
+   `The right endpoint of the ${im('k')}th subinterval is${nEq(`x_k=a+k\\,\\Delta x=${a}+k\\cdot${dx}=${sample}`,'endpoint')}`,
+   `The definite integral is the limit of the right-endpoint sums.${nEq(`${integralTex}=\\lim_{n\\to\\infty}\\sum_{k=1}^{n}f(x_k)\\,\\Delta x`,'definition')}`,
+   `Replace ${im('x_k')} and ${im('\\Delta x')} with the expressions we just found.${nEq(`${integralTex}=${limitTex}`,'representation')}`
+  ];
+  const s1=exactStage('',{kind:'newton-expression',expression},limitTex,work(setup),'unit4-newton');
+  Object.assign(s1,{hidePrompt:true,ariaLabel:'Right-endpoint limit and summation',placeholder:'Enter a limit and summation',fullExpression:`lim(n->infinity,sum(k=1,n,${expression}))`});
+  const data={a,b,width,coefficients:c||null,subtype:subtype||'polynomial',summandTex:summand,...(c?{}:{u,v,power,rate,shiftBy,denominator})};
+  const finish=p=>{p.questionHtml=p.questionHtml.replace('u4-definite-question','u4-definite-question u4-newton-question');return p;};
+  if(!c)return finish(problem('newton',family,'Write the definite integral as a right-endpoint limit and summation. Do not evaluate it.',`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx`,data,s1));
+  const A=c[2]||0,B=c[1]||0,C=c[0]||0,expanded=[width*(A*a*a+B*a+C),width*width*(2*A*a+B),A*width**3];
+  let result=[0,1];expanded.forEach((n,i)=>result=qa(result,q(n,i+1)));
+  const active=expanded.map((n,i)=>({n,i})).filter(t=>t.n),powers=active.map(t=>t.i),denom=[1,2,6];
+  const ident=[['\\sum_{k=1}^{n}1=n','Adding 1 a total of n times gives n.'],['\\sum_{k=1}^{n}k=\\frac{n(n+1)}{2}','This is the sum of the first n counting numbers.'],['\\sum_{k=1}^{n}k^{2}=\\frac{n(n+1)(2n+1)}{6}','This is the sum of the first n squares.']];
+  const rt=(r,body,first)=>{const mag=q(Math.abs(r[0]),r[1]),coef=body&&mag[0]===1&&mag[1]===1?'':qt(mag),join=coef&&body?(mag[1]!==1?'\\cdot ':body.startsWith('\\left(')?'':'\\,'):'';return signed(r[0],first)+coef+join+body;};
+  const fin=['','\\frac{n+1}{n}','\\frac{(n+1)(2n+1)}{n^{2}}'],spl=['','\\left(1+\\frac{1}{n}\\right)','\\left(2+\\frac{3}{n}+\\frac{1}{n^{2}}\\right)'],zer=['','\\left(1+0\\right)','\\left(2+0+0\\right)'];
+  const terms=active.map(({n,i},j)=>`${signed(n,j===0)}\\frac{${Math.abs(n)===1&&i?'':Math.abs(n)}${i?(i===1?'k':'k^{2}'):''}}{${i===0?'n':`n^{${i+1}}`}}`).join('')||'0';
+  const applied=active.map(({n,i},j)=>`${signed(n,j===0)}\\frac{${Math.abs(n)}}{${i===0?'n':`n^{${i+1}}`}}\\cdot ${['n','\\frac{n(n+1)}{2}','\\frac{n(n+1)(2n+1)}{6}'][i]}`).join('')||'0';
+  const mk=bodies=>active.map(({n,i},j)=>rt(q(n,denom[i]),bodies[i],j===0)).join('')||'0';
+  const finite=mk(fin),split=mk(spl),substituted=mk(zer),L='\\lim_{n\\to\\infty}',sig='\\sum_{k=1}^{n}';
+  const explicitLimit=`${L}\\left[${finite}\\right]`;
+  const needSplit=powers.some(i=>i>0);
+  const evaluation=work([...setup,
+   `Multiply out the summand and write it as separate terms.${nEq(`${integralTex}=${L}${sig}\\left(${terms}\\right)`,'expanded')}`,
+   `Pull each constant outside the sum. Then use ${powers.length>1?'these summation formulas':'this summation formula'}.${powers.map(i=>nEq(ident[i][0],`identity-${i}`)+why(ident[i][1])).join('')}`,
+   `Substitute ${powers.length>1?'them':'it'} into the sum.${nEq(`${integralTex}=${L}\\left[${applied}\\right]`,'identities')}`,
+   `Simplify the algebra so the expression involves only ${im('n')}.${nEq(`${integralTex}=${explicitLimit}`,'finite')}`,
+   ...(needSplit?[`To see what happens as ${im('n')} grows, split each fraction into separate terms.${powers.filter(i=>i>0).map(i=>nEq(`${fin[i]}=${spl[i].slice(6,-7)}`,`split-${i}`)).join('')}${nEq(`${integralTex}=${L}\\left[${split}\\right]`,'split')}`]:[]),
+   `Now take the limit. As ${im('n\\to\\infty')}, ${im('\\frac{1}{n}\\to 0')}${powers.includes(2)?` and ${im('\\frac{1}{n^{2}}\\to 0')}`:''}, so every term with ${im('n')} in the denominator vanishes.${nEq(`${integralTex}=${substituted}`,'substitution')}`,
+   `Simplify.${nEq(`${integralTex}=${qt(result)}`,'result')}`
+  ]);
+  return finish(problem('newton',family,'Write the definite integral as a right-endpoint limit and summation, then evaluate it using finite-sum identities.',`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx`,{...data,expanded,result,neededPowers:powers,finiteTex:finite,explicitLimitTex:explicitLimit,substitutionTex:substituted},s1,exactStage('Use finite-sum identities and a limit to find the exact value.',scalar(result),qt(result),evaluation,'unit4-newton-value')));
+ }
+ function revisedProblem(p){
+  p.questionHtml=p.questionHtml.replace('u4-definite-question',`u4-definite-question u4-revised-question u4-${p.unit4Meta.kind}-question`);
+  return p;
+ }
+ // Exact geometric regions, shared only by this geometry factory and its diagrams.
+ const gval=a=>a[0]/a[1],gabs=a=>[Math.abs(a[0]),a[1]],gneg=a=>[-a[0],a[1]],gsub=(a,b)=>qa(a,gneg(b)),gmul=(a,b)=>q(a[0]*b[0],a[1]*b[1]);
+ const areaTex=(rat,pi=[0,1])=>(rat[0]?qt(rat):'')+(pi[0]?(pi[0]<0?'-':rat[0]?'+':'')+coeff(Math.abs(pi[0])===pi[1]?1:qt(q(Math.abs(pi[0]),pi[1])),'\\pi'):'')||'0';
+ function lineRegions(a,b,h,m,offset,absolute){
+  const cuts=[q(a),...(absolute&&h>a&&h<b?[q(h)]:[]),q(b)],regions=[];
+  for(let i=0;i<cuts.length-1;i++){
+   const left=cuts[i],right=cuts[i+1],slope=absolute&&gval(right)<=h?-m:m;
+   const height=x=>qa(gmul(q(slope),gsub(x,q(h))),q(offset)),yl=height(left),yr=height(right);
+   const root=q(slope*h-offset,slope),points=yl[0]*yr[0]<0?[left,root,right]:[left,right];
+   for(let j=0;j<points.length-1;j++){
+    const l=points[j],r=points[j+1],y1=height(l),y2=height(r),height1=gabs(y1),height2=gabs(y2),width=gsub(r,l),area=gmul(q(1,2),gmul(width,qa(height1,height2)));
+    const side=Math.sign(y1[0]||y2[0]),shape=!height1[0]||!height2[0]?'triangle':gval(height1)===gval(height2)?'rectangle':'trapezoid';
+    regions.push({label:`R${regions.length+1}`,a:l,b:r,y1,y2,height1,height2,width,area,side,shape});
+   }
+  }
+  return regions;
+ }
+ function geometryGraph(d){
+  const {a,b}=d,fn=x=>d.shape==='circle'?d.offset+d.sign*Math.sqrt(Math.max(0,d.r*d.r-(x-d.h)**2)):d.shape==='absolute'?d.m*Math.abs(x-d.h)+d.offset:d.m*(x-d.h)+d.offset;
+  const xs=Array.from({length:161},(_,i)=>a+(b-a)*i/160),ys=xs.map(fn),xmin=Math.min(a,0),xmax=Math.max(b,0),ymin=Math.min(...ys,0),ymax=Math.max(...ys,0),scale=Math.min(460/Math.max(xmax-xmin,1),210/Math.max(ymax-ymin,1)),w=(xmax-xmin)*scale+90,h=(ymax-ymin)*scale+75;
+  const X=x=>45+(x-xmin)*scale,Y=y=>30+(ymax-y)*scale,p=xs.map((x,i)=>`${X(x).toFixed(2)},${Y(ys[i]).toFixed(2)}`).join(' ');
+  const regions=d.regions||[{label:'R1',a:q(a),b:q(b),side:d.side}];
+  const shading=regions.map(g=>{
+   const l=gval(g.a),r=gval(g.b),xx=Array.from({length:81},(_,i)=>l+(r-l)*i/80),poly=xx.map(x=>`${X(x)},${Y(fn(x))}`).join(' '),mid=[.18,.5,.82].map(t=>l+(r-l)*t).sort((x,y)=>Math.abs(fn(y))-Math.abs(fn(x)))[0];
+   return `<g data-region="${g.label}" data-from="${l}" data-to="${r}" data-side="${g.side}"><polygon points="${X(l)},${Y(0)} ${poly} ${X(r)},${Y(0)}" fill="#d71920" fill-opacity=".22"/><path d="M${X(l)} ${Y(0)}V${Y(fn(l))} M${X(r)} ${Y(0)}V${Y(fn(r))}" stroke="#bbb" stroke-dasharray="3 4"/><text x="${X(mid)}" y="${Y(fn(mid)/2)+4}" text-anchor="middle" fill="#fff" font-size="13" stroke="#111" stroke-width="3" paint-order="stroke">${g.label}</text></g>`;
+  }).join('');
+  const ticks=[...new Set([a,d.h,b])].filter(x=>x>=xmin&&x<=xmax).map(x=>`<path d="M${X(x)} ${Y(0)-4}v8" stroke="#ddd"/><text x="${X(x)}" y="${Y(0)+20}" text-anchor="middle" fill="#fff" font-size="13">${x}</text>`).join('');
+  const baseline=d.shape==='circle'&&d.offset?`<path d="M${X(a)} ${Y(d.offset)}H${X(b)}" stroke="#bbb" stroke-dasharray="4 4"/><text x="${X(b)+5}" y="${Y(d.offset)+4}" fill="#ddd" font-size="12">${d.offset}</text>`:'';
+  return `<figure class="u4-geometry-figure"><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Signed regions for the given integral" data-scale-x="${scale}" data-scale-y="${scale}"><title>Signed regions for the given integral</title><desc>The curve uses equal horizontal and vertical unit scales. R labels match the regions in the explanation. Shading shows the area between the curve and the x-axis; a dashed horizontal line marks a nonzero circle-center height.</desc>${shading}<path d="M25 ${Y(0)}H${w-15} M${X(0)} 12V${h-15}" fill="none" stroke="#bbb"/>${baseline}<polyline points="${p}" fill="none" stroke="#f0d34b" stroke-width="2.5"/>${ticks}<text x="${w-18}" y="${Y(0)-9}" fill="#fff" font-size="13">x</text><text x="${X(0)+8}" y="16" fill="#fff" font-size="13">y</text></svg></figure>`;
+ }
+ function geometry(){
+  const family=weighted('geometry');let a,b,h=ri(-4,4),m=nz(-4,4),offset=0,r=ri(1,8),sign=pick([-1,1]),shape,math,rat=[0,1],pi=[0,1],steps=[],regions,quarter=false,shiftCategory,shiftType,side;
+  if(['linear_triangle','linear_trapezoid','cross_axis_line'].includes(family)){
+   shape='line';let L=ri(1,7),U=ri(1,7);
+   if(family==='linear_triangle'){a=h;b=h+U;}
+   else if(family==='linear_trapezoid'){a=h+L;b=a+U;}
+   else{a=h-L;b=h+U;}
+   math=poly([-m*h,m]);rat=q((b-a)*(m*(a-h)+m*(b-h)),2);
+  }else if(family==='absolute_value'){
+   shape='absolute';const L=ri(1,6),U=ri(1,6);offset=R()<.45?0:nz(-7,7);a=h-L;b=h+U;
+   math=`${coeff(m,`\\left|${shift('x',h)}\\right|`)}${offset?signed(offset)+Math.abs(offset):''}`;
+   rat=[q(m*L*L,2),q(m*U*U,2),q(offset*(L+U))].reduce(qa,[0,1]);
+  }else{
+   shape='circle';quarter=family==='quarter_circle'||family==='rectangle_circle'&&R()<.3;
+   if(!quarter){
+    // Full semicircles occur in both existing circle families (weights 15 and 14).
+    // Keep unshifted/rectangle families and their weights: total origin/single/both = 1/3 each.
+    // Single shifts split 16:13 horizontally/vertically; every category samples both sides equally.
+    if(family==='semicircle'){h=R()<29/45?0:nz(-4,4);offset=0;}
+    else{h=R()<13/42?0:nz(-4,4);offset=pick([-1,1])*ri(r,r+5);}
+    side=offset?Math.sign(offset):pick([-1,1]);sign=offset?pick([-1,1]):side;
+    a=h-r;b=h+r;
+   }else{
+    a=R()<.5?h:h-r;b=a===h-r?h:h+r;
+    offset=family==='rectangle_circle'?pick([-1,1])*ri(r,r+7):0;
+    side=offset?Math.sign(offset):sign;
+   }
+   shiftType=h?(offset?'both':'horizontal'):(offset?'vertical':'origin');shiftCategory=shiftType==='origin'?'origin':shiftType==='both'?'both':'single';
+   const square=h?`\\left(${shift('x',h)}\\right)^2`:'x^2';
+   math=`${offset?offset:''}${sign<0?'-':offset?'+':''}\\sqrt{${r*r}-${square}}`;
+   pi=q(sign*r*r,quarter?4:2);rat=q(offset*(b-a));
+   const circular=q(r*r,quarter?4:2),rectangle=(b-a)*Math.abs(offset),area=areaTex(q(rectangle),gmul(q(side),pi));
+   steps.push(`Region R1 lies between the curve and the x-axis from ${im(`x=${a}`)} to ${im(`x=${b}`)}. The underlying circle has center ${im(`(${h},${offset})`)} and radius ${im(String(r))}.`);
+   steps.push(`The ${quarter?'quarter-circle':'semicircle'} area is${eq(`A_{\\rm circle}=\\frac{1}{${quarter?4:2}}\\pi(${r})^2=${areaTex([0,1],circular)}`)}`);
+   if(offset){
+    const plus=sign===side;
+    steps.push(`The rectangle has width ${im(String(b-a))} and height ${im(String(Math.abs(offset)))}. ${plus?'Add':'Subtract'} the circular area ${plus?'to':'from'} the rectangle to obtain the nonnegative area between the curve and the x-axis.${eq(`A_{\\rm rectangle}=(${b-a})(${Math.abs(offset)})=${rectangle}`)}${eq(`A_{R1}=${rectangle}${plus?'+':'-'}${areaTex([0,1],circular)}`)}`);
+   }else steps.push(eq(`A_{R1}=${area}`));
+   steps.push(`R1 is entirely ${side>0?'above':'below'} the x-axis (possibly touching it), so its signed contribution is ${side>0?'positive':'negative'}.${eq(`I_{R1}=${side<0?`-\\left(${area}\\right)=${areaTex(rat,pi)}`:area}`)}`);
+  }
+  if(shape!=='circle'){
+   regions=lineRegions(a,b,h,m,offset,shape==='absolute');
+   for(const g of regions){
+    const {label,height1:v1,height2:v2,width,area,shape:form,side:sgn}=g,ht=v1[0]?v1:v2;
+    const description=form==='triangle'?`base ${im(qt(width))} and height ${im(qt(ht))}`:form==='rectangle'?`width ${im(qt(width))} and height ${im(qt(v1))}`:`parallel sides ${im(qt(v1))} and ${im(qt(v2))}, separated by width ${im(qt(width))}`;
+    const formula=form==='triangle'?`\\frac{1}{2}\\left(${qt(width)}\\right)\\left(${qt(ht)}\\right)`:form==='rectangle'?`\\left(${qt(width)}\\right)\\left(${qt(v1)}\\right)`:`\\frac{1}{2}\\left(${qt(v1)}+${qt(v2)}\\right)\\left(${qt(width)}\\right)`;
+    steps.push(`Region ${label}, from ${im(`x=${qt(g.a)}`)} to ${im(`x=${qt(g.b)}`)}, is a ${form} with ${description}.${eq(`A_{${label}}=${formula}=${qt(area)}`)}It lies ${sgn>0?'above':'below'} the x-axis, so its signed contribution is ${im(`I_{${label}}=${qt(gmul(q(sgn),area))}`)}.`);
+   }
+   if(regions.length>1)steps.push(`Combine the signed contributions.${eq(`I=${regions.map(g=>qt(gmul(q(g.side),g.area))).map((s,i)=>i&&s[0]!=='-'?'+'+s:s).join('')}=${qt(rat)}`)}`);
+  }
+  const answerTex=areaTex(rat,pi),integral=`\\int_{${a}}^{${b}}${math}\\,dx`;
+  const data={a,b,h,m,offset,r,sign,shape,rat,pi,regions,quarter,shiftCategory,shiftType,side};
+  steps.push(`Thus the signed area gives${eq(`${integral}=${answerTex}`)}`);
+  const solution=geometryGraph(data)+work(steps),stage=exactStage('',scalar(rat,pi),answerTex,solution,'unit4-geometry');stage.hidePrompt=true;
+  return revisedProblem(problem('geometry',family,'Use geometry to find the exact value of the definite integral.',integral,data,stage));
+ }
+ // Paired expressions retain safe plain syntax for the checker and TeX for display.
+ const E=(e,t=e,p=4)=>({e,t,p}),num=n=>E(String(n));
+ const wrap=(a,p)=>a.p<p?`\\left(${a.t}\\right)`:a.t;
+ const add=(a,b)=>a.e==='0'?b:b.e==='0'?a:E(`(${a.e})+(${b.e})`,`${a.t}${b.t.startsWith('-')?'':'+'}${b.t}`,1);
+ const neg=a=>a.e==='0'?a:E(`-(${a.e})`,a.p>=2&&a.t.startsWith('-')?a.t.slice(1):`-${wrap(a,2)}`,2);
+ const mul=(a,b)=>a.e==='0'||b.e==='0'?num(0):a.e==='1'?b:b.e==='1'?a:a.e==='-1'?neg(b):b.e==='-1'?neg(a):E(`(${a.e})*(${b.e})`,`${wrap(a,2)}${/^[0-9]/.test(b.t)?'\\cdot ':' '}${b.t.startsWith('-')?`\\left(${b.t}\\right)`:wrap(b,2)}`,2);
+ const pow=(a,p)=>p===1?a:E(`(${a.e})^${p}`,`${wrap(a,4)}^{${p}}`,3);
+ const fn=(name,a)=>name==='exp'?E(`exp(${a.e})`,`e^{${a.t}}`,3):E(`${name}(${a.e})`,`\\${name}\\left(${a.t}\\right)`);
+ const div=(a,b)=>E(`(${a.e})/(${b.e})`,`\\frac{${a.t}}{${b.t}}`,2);
+ function bound(type,k,d){
+  const x=E('x');if(type==='constant')return{type,k,d,value:num(d),derivative:num(0)};
+  if(type==='identity')return{type,k:1,d:0,value:x,derivative:num(1)};
+  if(type==='linear')return{type,k,d,value:add(mul(num(k),x),num(d)),derivative:num(k)};
+  if(type==='power')return{type,k,d,value:mul(num(k),pow(x,d)),derivative:mul(num(k*d),pow(x,d-1))};
+  const arg=mul(num(k),x);
+  if(type==='exp')return{type,k,d:0,value:fn('exp',arg),derivative:mul(num(k),fn('exp',arg))};
+  if(type==='sin')return{type,k,d:0,value:fn('sin',arg),derivative:mul(num(k),fn('cos',arg))};
+  return{type:'tan',k,d:0,value:fn('tan',arg),derivative:mul(num(k),pow(fn('sec',arg),2))};
+ }
+ function integrand(type,k,c,t){
+  if(type==='trig_product')return mul(pow(fn('sin',t),k),fn('cos',t));
+  if(type==='exponential_product')return mul(fn('exp',mul(num(k),t)),fn('cos',pow(t,c)));
+  if(type==='polynomial_exponential')return add(pow(t,c),neg(fn('exp',mul(num(k),t))));
+  if(type==='power_cosine')return mul(pow(t,c),fn('cos',t));
+  if(type==='polynomial')return add(pow(t,c),mul(num(-k),pow(t,c-1)));
+  if(type==='cosine_linear')return add(fn('cos',mul(num(k),t)),neg(t));
+  if(type==='linear_sine')return add(mul(num(k),t),neg(fn('sin',t)));
+  if(type==='gaussian')return fn('exp',neg(mul(num(k),pow(t,2))));
+  if(type==='cosine_composition')return fn('cos',pow(t,c));
+  if(type==='log_positive')return fn('ln',add(num(k),pow(t,2)));
+  if(type==='rational_positive')return div(add(t,num(-c)),add(pow(t,2),num(k)));
+  return mul(pow(t,2),add(num(k),fn('exp',t)));
+ }
+ // ---- v12.8.T: exact simplifier used by the Fundamental Theorem engine ----
+ // Integer-coefficient expression trees in x. Used to build the displayed answer,
+ // the checker's expected value and every intermediate line from one source.
+ const CAS=(()=>{
+  const N=v=>({k:'n',v}),X={k:'x',name:'x'},T={k:'x',name:'t'},A=a=>({k:'+',a}),M=(a,dot)=>dot?{k:'*',a,dot:true}:{k:'*',a},P=(b,n)=>({k:'^',b,n}),F=(n,a)=>({k:'f',n,a}),EX=a=>({k:'e',a}),D=(n,d)=>({k:'/',n,d});
+  const mk=(c,t)=>c===1?t:M([N(c),t]);
+  const FN={sin:'\\sin',cos:'\\cos',tan:'\\tan',sec:'\\sec',ln:'\\ln'},FORDER=['cos','ln','sec','sin','tan'];
+  const isN=(x,v)=>x.k==='n'&&(v===undefined||x.v===v);
+  // ----- TeX -----
+  function fnTex(f,e){const head=FN[f.n]+(e&&e!==1?`^{${e}}`:'');return f.a.k==='x'?`${head} ${f.a.name}`:`${head}\\left(${tex(f.a)}\\right)`;}
+  function powTex(n){
+   if(n.n===1)return n.b.k==='+'?`\\left(${tex(n.b)}\\right)`:tex(n.b);
+   if(n.b.k==='f')return fnTex(n.b,n.n);
+   if(n.b.k==='x')return `${n.b.name}^{${n.n}}`;
+   if(n.b.k==='n'&&n.b.v>=0)return `${n.b.v}^{${n.n}}`;
+   return `\\left(${tex(n.b)}\\right)^{${n.n}}`;
+  }
+  const isFnHead=s=>/^\\(?:sin|cos|tan|sec|ln)\b/.test(s);
+  function mulTex(n){
+   let a=n.a,sign='';
+   if(!n.dot&&a.length>1&&isN(a[0],-1)){sign='-';a=a.slice(1);}
+   else if(!n.dot&&a.length>1&&isN(a[0],1))a=a.slice(1);
+   const parts=a.map((f,i)=>{let s=tex(f);if(f.k==='+')s=`\\left(${s}\\right)`;else if(s[0]==='-'&&(i>0||sign))s=`\\left(${s}\\right)`;return s;});
+   if(n.dot)return sign+parts.join(' \\cdot ');
+   let out=parts[0];
+   for(let i=1;i<parts.length;i++){const prev=a[i-1],cur=parts[i];let sep=isFnHead(cur)?(prev.k==='n'?'':'\\,'):cur.startsWith('\\frac')?'\\,':'';if(/[0-9]$/.test(out)&&/^[0-9]/.test(cur))sep='\\cdot ';out+=sep+cur;}
+   return sign+out;
+  }
+  function tex(n){
+   switch(n.k){
+    case 'n':return String(n.v);
+    case 'x':return n.name;
+    case 'f':return fnTex(n);
+    case 'e':return `e^{${tex(n.a)}}`;
+    case '/':{let top=n.n,sign='';if(top.k==='n'&&top.v<0){sign='-';top=N(-top.v);}else if(top.k==='*'&&isN(top.a[0])&&top.a[0].v<0){sign='-';const rest=top.a.slice(1);top=isN(top.a[0],-1)?(rest.length===1?rest[0]:M(rest)):M([N(-top.a[0].v),...rest]);}return `${sign}\\frac{${tex(top)}}{${tex(n.d)}}`;}
+    case '^':return powTex(n);
+    case '+':return n.a.map((t,i)=>{const s=tex(t);return i===0?s:s[0]==='-'?`-${s.slice(1)}`:`+${s}`;}).join('');
+    case '*':return mulTex(n);
+   }
+  }
+  // ----- parseable string for the answer checker -----
+  function e(n){
+   switch(n.k){
+    case 'n':return n.v<0?`(${n.v})`:String(n.v);
+    case 'x':return n.name;
+    case 'f':return `${n.n}(${e(n.a)})`;
+    case 'e':return `exp(${e(n.a)})`;
+    case '/':return `(${e(n.n)})/(${e(n.d)})`;
+    case '^':return n.n===1?e(n.b):`(${e(n.b)})^${n.n}`;
+    case '+':return `(${n.a.map(e).join('+')})`;
+    case '*':return n.a.map(e).join('*');
+   }
+  }
+  // ----- simplification -----
+  function simpPow(b,n){
+   if(n===0)return N(1);if(n===1)return b;
+   if(b.k==='n')return N(b.v**n);
+   if(b.k==='*')return simpMul(b.a.map(f=>simpPow(f,n)));
+   if(b.k==='^')return simpPow(b.b,b.n*n);
+   if(b.k==='e')return EX(simp(M([N(n),b.a])));
+   if(b.k==='/')return simpDiv(simpPow(b.n,n),simpPow(b.d,n));
+   return P(b,n);
+  }
+  function simpDiv(n,d){if(isN(n,0))return N(0);if(isN(d,1))return n;return D(n,d);}
+  function simpMul(list){
+   const flat=[];const push=f=>f.k==='*'?f.a.forEach(push):flat.push(f);list.forEach(push);
+   if(flat.some(f=>f.k==='/')){const nums=[],dens=[];for(const f of flat){if(f.k==='/'){nums.push(f.n);dens.push(f.d);}else nums.push(f);}return simpDiv(simpMul(nums),simpMul(dens));}
+   let coef=1,xp=0;const expArgs=[],groups=new Map();
+   const group=(base,exp)=>{const key=e(base),g=groups.get(key);if(g)g.exp+=exp;else groups.set(key,{base,exp});};
+   for(const f of flat){
+    if(f.k==='n')coef*=f.v;
+    else if(f.k==='x')xp+=1;
+    else if(f.k==='^'&&f.b.k==='x')xp+=f.n;
+    else if(f.k==='e')expArgs.push(f.a);
+    else if(f.k==='^')group(f.b,f.n);
+    else group(f,1);
+   }
+   if(coef===0)return N(0);
+   const parts=[];
+   const xs=xp===0?null:xp===1?X:P(X,xp);
+   let ex=null;if(expArgs.length){const arg=simp(expArgs.length===1?expArgs[0]:A(expArgs));if(!isN(arg,0))ex=EX(arg);}
+   const items=[...groups.values()].filter(g=>g.exp!==0).map(g=>({node:g.exp===1?g.base:P(g.base,g.exp),base:g.base,key:e(g.base)}));
+   const rank=it=>it.base.k==='f'?[1,Math.max(0,FORDER.indexOf(it.base.n))]:it.base.k==='+'?[3,0]:[2,0];
+   items.sort((p,q2)=>{const a=rank(p),b=rank(q2);return a[0]-b[0]||a[1]-b[1]||(p.key<q2.key?-1:p.key>q2.key?1:0);});
+   const rest=[xs,ex,...items.map(i=>i.node)].filter(Boolean);
+   if(coef!==1||!rest.length)parts.push(N(coef));
+   parts.push(...rest);
+   return parts.length===1?parts[0]:M(parts);
+  }
+  const monoOf=t=>{if(t.k==='n')return{c:t.v,p:0};if(t.k==='x')return{c:1,p:1};if(t.k==='^'&&t.b.k==='x')return{c:1,p:t.n};if(t.k==='*'){let c=1,p=0;for(const f of t.a){const m=monoOf(f);if(!m)return null;c*=m.c;p+=m.p;}return{c,p};}return null;};
+  const isPolySum=s=>s.k==='+'&&s.a.every(monoOf);
+  function splitTerm(t){
+   if(t.k==='n')return{c:t.v,rest:null,key:''};
+   if(t.k==='*'&&isN(t.a[0])){const rest=t.a.length===2?t.a[1]:M(t.a.slice(1));return{c:t.a[0].v,rest,key:e(rest)};}
+   return{c:1,rest:t,key:e(t)};
+  }
+  function simpAdd(list){
+   const flat=[];const push=t=>t.k==='+'?t.a.forEach(push):flat.push(t);list.forEach(push);
+   const map=new Map();
+   for(const t of flat){const s=splitTerm(t),g=map.get(s.key);if(g)g.c+=s.c;else map.set(s.key,{c:s.c,rest:s.rest});}
+   let terms=[...map.values()].filter(g=>g.c!==0).map(g=>g.rest?(g.c===1?g.rest:simpMul([N(g.c),g.rest])):N(g.c));
+   const deg=t=>{const m=monoOf(t);return m?m.p:-1;};
+   const poly=terms.filter(t=>deg(t)>=0).sort((a,b)=>deg(b)-deg(a)),other=terms.filter(t=>deg(t)<0);
+   terms=[...poly,...other];
+   return terms.length===0?N(0):terms.length===1?terms[0]:A(terms);
+  }
+  function simp(n){
+   switch(n.k){
+    case 'n':case 'x':return n;
+    case 'f':{
+     const a=simp(n.a),negMono=(a.k==='n'&&a.v<0)||(a.k==='*'&&isN(a.a[0])&&a.a[0].v<0&&a.a.slice(1).every(f=>f.k==='x'||(f.k==='^'&&f.b.k==='x')));
+     if(negMono&&n.n!=='ln'){const u=simp(M([N(-1),a]));return n.n==='cos'||n.n==='sec'?F(n.n,u):simpMul([N(-1),F(n.n,u)]);}   // cos and sec are even; sin and tan are odd
+     return F(n.n,a);
+    }
+    case 'e':{const a=simp(n.a);return isN(a,0)?N(1):EX(a);}
+    case '/':return simpDiv(simp(n.n),simp(n.d));
+    case '^':return simpPow(simp(n.b),n.n);
+    case '+':return simpAdd(n.a.map(simp));
+    case '*':return simpMul(n.a.map(simp));
+   }
+  }
+  // Multiply out only polynomial products such as 6x(27x^6-36x^4); keep factors like (2+e^(3x^2)).
+  function expandTerm(t){
+   if(t.k!=='*')return t;
+   if(!t.a.every(f=>monoOf(f)||isPolySum(f))||!t.a.some(isPolySum))return t;
+   let poly=new Map([[0,1]]);
+   for(const f of t.a){
+    const ms=f.k==='+'?f.a.map(monoOf):[monoOf(f)],next=new Map();
+    for(const [p,c] of poly)for(const m of ms)next.set(p+m.p,(next.get(p+m.p)||0)+c*m.c);
+    poly=next;
+   }
+   return A([...poly].filter(([,c])=>c).map(([p,c])=>simpMul([N(c),p===0?N(1):p===1?X:P(X,p)])));
+  }
+  function finalize(n){const top=simp(n);return simp(A((top.k==='+'?top.a:[top]).map(expandTerm)));}
+  // Apply powers to monomial bases but leave the multiplication visible: (3x^2)^2 -> 9x^4.
+  function middle(n){
+   if(n.k!=='*')return n;
+   const out=[];
+   for(const f of n.a){const g=(f.k==='^'&&(f.b.k==='*'||f.b.k==='^'))?simpPow(simp(f.b),f.n):f;if(g.k==='*'&&!g.dot)out.push(...g.a);else out.push(g);}
+   return M(out);
+  }
+  const prod=(fx,gp)=>isN(gp,1)?fx:M([fx,gp]);
+  const prodDot=(fx,gp)=>isN(gp,1)?fx:M([fx,gp],true);
+  return{N,X,T,A,M,P,F,EX,D,mk,tex,e,simp,finalize,middle,prod,prodDot,isN};
+ })();
+ function ftc(){
+  const family=weighted('ftc'),k=ri(1,4),c=ri(2,4),constant=ri(-6,6),type=pick(['trig_product','exponential_product','polynomial_exponential','power_cosine','polynomial','cosine_linear','linear_sine','gaussian','cosine_composition','log_positive','rational_positive','power_exponential']);
+  let lower=bound('constant',1,constant),upper;
+  if(family==='upper_identity')upper=bound('identity');
+  else if(family==='lower_identity'){lower=bound('identity');upper=bound('constant',1,constant);}
+  else if(family==='upper_linear'){const slope=nz(-4,4),intercept=ri(-5,5);upper=bound('linear',slope,slope===1&&intercept===0?1:intercept);}
+  else if(family==='upper_power')upper=bound('power',nz(-3,3),pick([2,3]));
+  else if(family==='lower_power'){lower=bound('power',nz(-3,3),pick([2,3]));upper=bound('constant',1,constant);}
+  else if(family==='upper_trig')upper=bound('sin',k);
+  else if(family==='both_algebraic'){lower=bound('linear',nz(-4,4),ri(-3,3));upper=bound('power',nz(-3,3),pick([2,3]));}
+  else{lower=bound(pick(['power','sin']),ri(1,3),2);upper=bound(pick(['exp','tan']),ri(1,3));}
+  const {N,X,T,A,M,P,F,EX,D,mk,tex,e,simp,finalize,middle,prod,prodDot,isN}=CAS;
+  // limit value g(x) and derivative g'(x) as expression trees
+  const gOf=b=>b.type==='constant'?N(b.d):b.type==='identity'?X:b.type==='linear'?(b.d===0?mk(b.k,X):A([mk(b.k,X),N(b.d)])):b.type==='power'?(b.k===1?P(X,b.d):M([N(b.k),P(X,b.d)])):b.type==='exp'?EX(mk(b.k,X)):b.type==='sin'?F('sin',mk(b.k,X)):F('tan',mk(b.k,X));
+  const dOf=b=>b.type==='constant'?N(0):b.type==='identity'?N(1):b.type==='linear'?N(b.k):b.type==='power'?M([N(b.k*b.d),b.d-1===1?X:P(X,b.d-1)]):b.type==='exp'?(b.k===1?EX(mk(1,X)):M([N(b.k),EX(mk(b.k,X))])):b.type==='sin'?(b.k===1?F('cos',X):M([N(b.k),F('cos',mk(b.k,X))])):(b.k===1?P(F('sec',X),2):M([N(b.k),P(F('sec',mk(b.k,X)),2)]));
+  const sq=(t,n)=>n===1?t:P(t,n);
+  const f=(tt)=>{
+   if(type==='trig_product')return M([sq(F('sin',tt),k),F('cos',tt)]);
+   if(type==='exponential_product')return M([EX(mk(k,tt)),F('cos',sq(tt,c))]);
+   if(type==='polynomial_exponential')return A([sq(tt,c),M([N(-1),EX(mk(k,tt))])]);
+   if(type==='power_cosine')return M([sq(tt,c),F('cos',tt)]);
+   if(type==='polynomial')return A([sq(tt,c),M([N(-k),sq(tt,c-1)])]);
+   if(type==='cosine_linear')return A([F('cos',mk(k,tt)),M([N(-1),tt])]);
+   if(type==='linear_sine')return A([mk(k,tt),M([N(-1),F('sin',tt)])]);
+   if(type==='gaussian')return EX(M([N(-k),sq(tt,2)]));
+   if(type==='cosine_composition')return F('cos',sq(tt,c));
+   if(type==='log_positive')return F('ln',A([N(k),sq(tt,2)]));
+   if(type==='rational_positive')return D(A([tt,N(-c)]),A([sq(tt,2),N(k)]));
+   return M([sq(tt,2),A([N(k),EX(tt)])]);
+  };
+  const fT=f(T),gU=gOf(upper),gL=gOf(lower),dU=dOf(upper),dL=dOf(lower),fU=f(gU),fL=f(gL);
+  const uProd=upper.type==='constant'?N(0):prod(fU,dU),lProd=lower.type==='constant'?N(0):prod(fL,dL);
+  const answerTree=finalize(A([uProd,M([N(-1),lProd])])),answer={e:e(answerTree),t:tex(answerTree)};
+  const domain=upper.type==='tan'?`For ${im(`-${qt(q(1,2*upper.k))}\\pi\\lt x\\lt ${qt(q(1,2*upper.k))}\\pi`)}.`:'For all real x.';
+  const Uv=tex(gU),Lv=tex(gL),wrapSum=(node,s)=>node.k==='+'?`\\left(${s}\\right)`:s;
+  // One evaluation: show g, g', f(g), then f(g)*g' and every simplification of that product.
+  // Per-term forms: raw f(g)g', powers applied (mid), fully simplified (fin).
+  const formsOf=(bd,dg,fg,node)=>{
+   if(bd.type==='constant')return null;
+   const raw=bd.type==='identity'?fg:prodDot(fg,dg),fin=simp(node);
+   let mid=null;
+   if(bd.type!=='identity'){const m=middle(fg);if(m!==fg)mid=prodDot(m,dg);}
+   if(mid&&(tex(mid)===tex(raw)||tex(mid)===tex(fin)))mid=null;
+   return{raw,mid,fin};
+  };
+  // f(g)*g' as shown in the rule line (the chain-rule factor is omitted when g(x)=x).
+  const ruleTerm=(bd,gS,dg)=>{
+   if(bd.type==='constant')return null;
+   if(bd.type==='identity')return `f\\left(${gS}\\right)`;
+   const d=tex(simp(dg));
+   if(d==='1')return `f\\left(${gS}\\right)`;
+   return `f\\left(${gS}\\right)\\cdot ${d[0]==='-'?`\\left(${d}\\right)`:d}`;
+  };
+  const termRaw=(bd,fg,dg)=>bd.type==='constant'?'0':bd.type==='identity'?tex(fg):tex(prodDot(fg,dg)),termSimp=(bd,node)=>bd.type==='constant'?'0':tex(simp(node));
+  const uRaw=termRaw(upper,fU,dU),lRaw=termRaw(lower,fL,dL),uSimp=termSimp(upper,uProd),lSimp=termSimp(lower,lProd);
+  const lRawNode=lower.type==='identity'?fL:prodDot(fL,dL),lSimpNode=simp(lProd);
+  // a - b without double signs; wrap b when it is a sum (or, in unsimplified lines, negative).
+  const diff=(aStr,bStr,bIsSum,simplified)=>{
+   if(bStr==='0')return aStr;
+   const flip=!bIsSum&&simplified&&bStr[0]==='-',wrap=bIsSum||(!simplified&&bStr[0]==='-');
+   if(aStr==='0')return flip?bStr.slice(1):wrap?`-\\left(${bStr}\\right)`:`-${bStr}`;
+   return flip?`${aStr}+${bStr.slice(1)}`:wrap?`${aStr}-\\left(${bStr}\\right)`:`${aStr}-${bStr}`;
+  };
+  const stepOne=diff(uRaw,lRaw,lRawNode.k==='+',false),stepTwo=diff(uSimp,lSimp,lower.type==='constant'?false:lSimpNode.k==='+',true);
+  const tU=ruleTerm(upper,Uv,dU),tL=ruleTerm(lower,Lv,dL);
+  const rule=tU&&tL?`${tU}-${tL}`:tU||`-${tL}`;
+  const varU=upper.type!=='constant',varL=lower.type!=='constant';
+  const anyChain=(varU&&tex(simp(dU))!=='1')||(varL&&tex(simp(dL))!=='1');
+  const opening=varU&&varL?`Apply the FTC${anyChain?' and chain rule':''}: upper contribution minus lower contribution.`
+   :`Apply the FTC${anyChain?' and chain rule':''}.${varU?'':' The variable is the lower limit, so subtract.'}`;
+  const steps=[
+   `<strong>${opening}</strong>${eq(`H'(x)=${rule}`)}`,
+   `<strong>${varU&&varL?'Substitute the bounds.':`Substitute ${im(varU?Uv:Lv)} into the function.`}</strong>${eq(`H'(x)=${stepOne}`)}`
+  ];
+  // Later lines are shown only when they change something beyond the order of factors.
+  const fu=formsOf(upper,dU,fU,uProd),fl=formsOf(lower,dL,fL,lProd);
+  const midWhole=()=>{const pt=f=>{if(!f)return{s:'0',sum:false};const n=f.mid||f.fin;return{s:tex(n),sum:n.k==='+'};};const u=pt(fu),l=pt(fl);return diff(u.s,l.s,l.sum,false);};
+  const hasMid=!!((fu&&fu.mid)||(fl&&fl.mid)),midStr=hasMid?midWhole():null;
+  const norm=t=>t.replace(/\\left\(/g,'(').replace(/\\right\)/g,')').replace(/\\cdot|\\,|\\ |\s/g,'').split('').sort().join('');
+  const cand=[stepOne];if(hasMid)cand.push(midStr);cand.push(stepTwo,answer.t);
+  const kept=[cand[0]];cand.slice(1).forEach(c=>{if(norm(c)!==norm(kept.at(-1)))kept.push(c);});
+  if(kept.length>1){
+   const needLike=answer.t!==stepTwo&&kept.includes(answer.t);
+   const label=hasMid&&kept.includes(midStr)?'Combine the coefficients and powers.':needLike?'Simplify and combine like terms.':'Simplify.';
+   const parity=/\\(?:sin|cos|tan|sec)(?:\^\{\d+\})?\\left\(-/.test(stepOne)?` Use ${im('\\cos(-u)=\\cos u')} and ${im('\\sin(-u)=-\\sin u')}.`:'';
+   steps.push(`<strong>${label}</strong>${parity}${kept.slice(1).map(c=>eq(`H'(x)=${c}`)).join('')}`);
+  }
+  const data={rawUpper:e(uProd),rawLower:e(lProd),integrandType:type,k,c,lower:{type:lower.type,k:lower.k,d:lower.d},upper:{type:upper.type,k:upper.k,d:upper.d},domain:upper.type==='tan'?[-Math.PI/(2*upper.k),Math.PI/(2*upper.k)]:null};
+  return revisedProblem(problem('ftc',family,`Differentiate using the Fundamental Theorem of Calculus. ${domain}`,`H(x)=\\int_{${Lv}}^{${Uv}}\\left(${tex(fT)}\\right)\\,dt`,data,exactStage(`Enter ${im("H'(x)")} as an exact expression in x.`,{kind:'function-expression',expression:answer.e,probes:upper.type==='tan'?[-.22,-.1,0,.12,.24]:undefined},answer.t,work(steps),'unit4-ftc')));
+ }
+ const it=(f,a,b,body)=>`\\int_{${a}}^{${b}}${body||`${f}(x)`}\\,dx`;
+ function rules(){
+  const family=weighted('rules'),a=ri(-7,1),b=a+ri(1,5),c=b+ri(1,6),d=c+ri(1,5),u=nz(-12,12),v=nz(-12,12),w=nz(-12,12),z=nz(-12,12),p=nz(-5,5),s=nz(-5,5),other=pick(['g','h']);
+  const reversed=R()<.4,overlap=R()<.5;
+  let facts=[],target,expression,answer,subtype=null;
+  const given=(f,l,r,n)=>{const rev=reversed&&R()<.5;facts.push({f,a:rev?r:l,b:rev?l:r,value:rev?-n:n});};
+  if(family==='reverse_limits'){given('f',a,c,u);target=it('f',c,a);answer=-u;expression=`-(${u})`;}
+  else if(family==='zero_width'){target=it('f',b,b);answer=0;expression='0';}
+  else if(family==='linearity'){given('f',a,b,u);given(other,a,b,v);target=it('',a,b,`\\left[${coeff(p,'f(x)')}${s<0?'-':'+'}${coeff(Math.abs(s),other+'(x)')}\\right]`);answer=p*u+s*v;expression=`${p}*(${u})+(${s})*(${v})`;}
+  else if(family==='interval_decomposition'){
+   subtype=pick(['adjacent','missing','overlap']);
+   if(subtype==='adjacent'){given('f',a,b,u);given('f',b,c,v);target=it('f',a,c);answer=u+v;expression=`(${u})+(${v})`;}
+   else if(subtype==='missing'){given('f',a,c,u+v);given('f',a,b,u);target=it('f',b,c);answer=v;expression=`(${u+v})-(${u})`;}
+   else{given('f',a,c,u+v);given('f',b,d,v+w);given('f',a,d,u+v+w);target=it('f',b,c);answer=v;expression=`(${u+v})+(${v+w})-(${u+v+w})`;}
+  }else{
+   if(overlap){given('f',a,c,u+v);given('f',a,b,u);given(other,a,c,w+z);given(other,a,b,w);}
+   else{given('f',b,c,v);given(other,b,c,z);given('f',a,b,u);given(other,a,b,w);}
+   var l=family==='reversed_combination'?c:b,r=family==='reversed_combination'?b:c,orientation=family==='reversed_combination'?-1:1;
+   target=it('',l,r,`\\left[${coeff(p,'f(x)')}${s<0?'-':'+'}${coeff(Math.abs(s),other+'(x)')}\\right]`);answer=orientation*(p*v+s*z);expression=`${p}*(${orientation*v})+(${s})*(${orientation*z})`;
+  }
+  // ---- teacher-style derivation: rule, original, apply, substitute, algebra, why, answer ----
+  const L=(t,x)=>`<strong>${t}</strong> ${x}`,pv=n=>n<0?`(${n})`:`${n}`,sg=n=>n<0?`-${-n}`:`+${n}`;
+  const find=(f,l,r)=>{const x=facts.find(t=>t.f===f&&t.a===l&&t.b===r);if(x)return{v:x.value,flip:false};const y=facts.find(t=>t.f===f&&t.a===r&&t.b===l);return{v:-y.value,flip:true,y};};
+  const orient=need=>{const flips=need.map(([f,l,r])=>({f,l,r,o:find(f,l,r)})).filter(x=>x.o.flip);
+   return flips.length?[L('Orient the given values.',`The rules below add integrals that run from left to right, so rewrite any given integral that runs backwards. Swapping the limits changes the sign: ${im('\\int_{b}^{a}h(x)\\,dx=-\\int_{a}^{b}h(x)\\,dx')}.${flips.map(x=>eq(`${it(x.f,x.l,x.r)}=-${it(x.f,x.r,x.l)}=-${pv(x.o.y.value)}=${x.o.v}`)).join('')}`)]:[];};
+  const val=(f,l,r)=>find(f,l,r).v,O=[L('Original integral.',`We want${eq(target)}`)];
+  let derive=[];
+  if(family==='reverse_limits'){
+   const need=[['f',a,c]],uu=val('f',a,c);
+   derive=[L('Rule.',`Reversing the limits of integration changes the sign.${eq('\\int_{b}^{a}f(x)\\,dx=-\\int_{a}^{b}f(x)\\,dx')}`),...O,
+    ...orient(need),
+    L('Apply the rule.',`Here the limits run from ${im(String(c))} down to ${im(String(a))}, which is backwards. Swap them and put a minus sign in front.${eq(`${target}=-${it('f',a,c)}`)}`),
+    L('Substitute the number.',`${im(it('f',a,c)+`=${uu}`)}, so${eq(`${target}=-${pv(uu)}`)}`),
+    L('Algebra.',`${uu<0?`Subtracting a negative number is the same as adding its positive: ${im(`-${pv(uu)}=${-uu}`)}.`:`The minus sign makes the value negative.`}${eq(`${target}=${answer}`)}`),
+    L('Why it works.',`Integrating from ${im(String(a))} to ${im(String(c))} adds up terms ${im('f(x)\\,\\Delta x')} with ${im('\\Delta x\\gt 0')}. Going from ${im(String(c))} back to ${im(String(a))} makes every ${im('\\Delta x')} negative, so every term, and therefore the total, changes sign.`),
+    L('Answer.',im(String(answer)))];
+  }else if(family==='zero_width'){
+   derive=[L('Rule.',`If the upper and lower limits are the same number, the integral is zero.${eq('\\int_{a}^{a}f(x)\\,dx=0')}`),...O,
+    L('Identify the limits.',`The lower limit is ${im(String(b))} and the upper limit is ${im(String(b))}. They are equal.`),
+    L('Apply the rule.',`${eq(`${target}=0`)}`),
+    L('Why it works.',`The interval from ${im(String(b))} to ${im(String(b))} has width ${im(`${b}-${pv(b)}=0`)}, so every ${im('\\Delta x')} is ${im('0')}. Every term ${im('f(x)\\,\\Delta x')} is then ${im('0')} no matter what ${im('f')} is, so the total is ${im('0')}.`),
+    L('Answer.',im('0'))];
+  }else if(family==='linearity'){
+   const need=[['f',a,b],[other,a,b]],A=it('f',a,b),B=it(other,a,b),tm=(co,n)=>`${co===1?'':co===-1?'-':co}(${n})`;
+   derive=[L('Rule.',`An integral of a sum or difference of constant multiples splits into separate integrals, and constants move outside.${eq(`\\int_{a}^{b}\\left[p\\,f(x)+q\\,g(x)\\right]dx=p\\int_{a}^{b}f(x)\\,dx+q\\int_{a}^{b}g(x)\\,dx`)}`),...O,
+    ...orient(need),
+    L('Apply the rule.',`Split the integral and pull out the constants ${im(String(p))} and ${im(String(s))}.${eq(`${target}=${coeff(p,A)}${s<0?'-':'+'}${coeff(Math.abs(s),B)}`)}`),
+    L('Substitute the numbers.',`${im(A+`=${val('f',a,b)}`)} and ${im(B+`=${val(other,a,b)}`)}.${eq(`${target}=${tm(p,val('f',a,b))}${s<0?'-':'+'}${Math.abs(s)===1?'':Math.abs(s)}(${val(other,a,b)})`)}`),
+    L('Algebra.',`Multiply first, then add.${eq(`${target}=${p*val('f',a,b)}${sg(s*val(other,a,b))}=${answer}`)}`),
+    L('Why it works.',`An integral is a limit of sums, and sums distribute over addition and constant multiples, so the integral does too.`),
+    L('Answer.',im(String(answer)))];
+  }else if(family==='interval_decomposition'){
+   const F=(l,r)=>it('f',l,r);
+   if(subtype==='adjacent'){const need=[['f',a,b],['f',b,c]];
+    derive=[L('Rule.',`Integrals over neighboring intervals add to the integral over the combined interval.${eq('\\int_{a}^{c}f(x)\\,dx=\\int_{a}^{b}f(x)\\,dx+\\int_{b}^{c}f(x)\\,dx')}`),...O,...orient(need),
+     L('Apply the rule.',`Split at ${im(`x=${b}`)}.${eq(`${target}=${F(a,b)}+${F(b,c)}`)}`),
+     L('Substitute the numbers.',eq(`${target}=${pv(val('f',a,b))}+${pv(val('f',b,c))}`)),
+     L('Algebra.',eq(`${target}=${answer}`)),
+     L('Why it works.',`The area (or signed total) from ${im(String(a))} to ${im(String(c))} is the total from ${im(String(a))} to ${im(String(b))} plus the total from ${im(String(b))} to ${im(String(c))}.`),L('Answer.',im(String(answer)))];
+   }else if(subtype==='missing'){const need=[['f',a,c],['f',a,b]];
+    derive=[L('Rule.',`The whole interval equals the sum of its pieces. Subtract the known piece to get the missing one.${eq('\\int_{a}^{c}f=\\int_{a}^{b}f+\\int_{b}^{c}f\\quad\\Longrightarrow\\quad\\int_{b}^{c}f=\\int_{a}^{c}f-\\int_{a}^{b}f')}`),...O,...orient(need),
+     L('Apply the rule.',eq(`${target}=${F(a,c)}-${F(a,b)}`)),
+     L('Substitute the numbers.',eq(`${target}=${pv(val('f',a,c))}-${pv(val('f',a,b))}`)),
+     L('Algebra.',`${val('f',a,b)<0?`Subtracting a negative number adds its positive. `:''}${eq(`${target}=${answer}`)}`),
+     L('Why it works.',`Removing the piece from ${im(String(a))} to ${im(String(b))} from the whole leaves only the piece from ${im(String(b))} to ${im(String(c))}.`),L('Answer.',im(String(answer)))];
+   }else{const need=[['f',a,c],['f',b,d],['f',a,d]];
+    derive=[L('Rule.',`Write each interval as a sum of pieces. The overlap ${im(`[${b},${c}]`)} appears in both of the first two integrals but only once in the whole interval, so add them and subtract the whole.${eq('\\int_{a}^{c}f+\\int_{b}^{d}f-\\int_{a}^{d}f=\\int_{b}^{c}f')}`),...O,...orient(need),
+     L('Apply the rule.',eq(`${target}=${F(a,c)}+${F(b,d)}-${F(a,d)}`)),
+     L('Substitute the numbers.',eq(`${target}=${pv(val('f',a,c))}+${pv(val('f',b,d))}-${pv(val('f',a,d))}`)),
+     L('Algebra.',`Add first, then subtract.${eq(`${target}=${val('f',a,c)+val('f',b,d)}-${pv(val('f',a,d))}=${answer}`)}`),
+     L('Why it works.',`${im(F(a,c))} is the piece ${im(`[${a},${b}]`)} plus the overlap, ${im(F(b,d))} is the overlap plus ${im(`[${c},${d}]`)}, and ${im(F(a,d))} is all three pieces once. Adding the first two counts the overlap twice, and subtracting the whole removes everything except one copy of the overlap.`),L('Answer.',im(String(answer)))];}
+  }else{
+   const Fm=(f,l,r)=>it(f,l,r),rev=orientation<0,oo=overlap,vf=oo?val('f',a,c)-val('f',a,b):val('f',b,c),vg=oo?val(other,a,c)-val(other,a,b):val(other,b,c);
+   const need=oo?[['f',a,c],['f',a,b],[other,a,c],[other,a,b]]:[['f',b,c],[other,b,c]];
+   const comb=(A,B)=>`${coeff(p,A)}${s<0?'-':'+'}${coeff(Math.abs(s),B)}`;
+   derive=[L('Rules.',`Use linearity to split the integral and pull out constants${rev?', reverse the limits to run left to right':''}${oo?', and subtract overlapping intervals':''}.${eq(`\\int_{a}^{b}\\left[p\\,f+q\\,g\\right]dx=p\\int_{a}^{b}f\\,dx+q\\int_{a}^{b}g\\,dx`)}`),...O,
+    ...orient(need),
+    L('Apply linearity.',eq(`${target}=${comb(Fm('f',l,r),Fm(other,l,r))}`)),
+    ...(rev?[L('Reverse the limits.',`Each integral runs from ${im(String(c))} down to ${im(String(b))}, so swap its limits and change its sign.${eq(`${target}=${coeff(p,`\\left(-${Fm('f',b,c)}\\right)`)}${s<0?'-':'+'}${coeff(Math.abs(s),`\\left(-${Fm(other,b,c)}\\right)`)}`)}`)]:[]),
+    ...(oo?[L('Find the values on the needed interval.',`The given integrals start at ${im(String(a))}. Subtract the part before ${im(String(b))}.${eq(`${Fm('f',b,c)}=${Fm('f',a,c)}-${Fm('f',a,b)}=${pv(val('f',a,c))}-${pv(val('f',a,b))}=${vf}`)}${eq(`${Fm(other,b,c)}=${Fm(other,a,c)}-${Fm(other,a,b)}=${pv(val(other,a,c))}-${pv(val(other,a,b))}=${vg}`)}`)]:[]),
+    L('Substitute the numbers.',`${im(Fm('f',b,c)+`=${vf}`)} and ${im(Fm(other,b,c)+`=${vg}`)}.${eq(`${target}=${rev?`${p===1?'':p===-1?'-':p}(${-vf})${s<0?'-':'+'}${Math.abs(s)===1?'':Math.abs(s)}(${-vg})`:`${p===1?'':p===-1?'-':p}(${vf})${s<0?'-':'+'}${Math.abs(s)===1?'':Math.abs(s)}(${vg})`}`)}`),
+    L('Algebra.',`Multiply first, then add.${eq(`${target}=${p*orientation*vf}${sg(s*orientation*vg)}=${answer}`)}`),
+    L('Why it works.',`Integrals are limits of sums, so they split over addition, constants move outside, ${rev?'reversing the limits flips the sign of every term, ':''}and an interval is the sum of its pieces.`),
+    L('Answer.',im(String(answer)))];
+  }
+  const data={a,b,c,d,facts,target,expression,answer};
+  const math=family==='zero_width'?target:`\\begin{gathered}${facts.map(f=>`${it(f.f,f.a,f.b)}=${f.value}`).join('\\\\[5pt]')}\\end{gathered}`;
+  const stage=exactStage(family==='zero_width'?'':`Find ${im(`\\displaystyle ${target}`)}.`,scalar(q(answer)),String(answer),work(derive));
+  if(family==='zero_width')stage.hidePrompt=true;
+  return revisedProblem(problem('rules',family,family==='zero_width'?'Find the value of the definite integral.':'Use the given signed integral values and integral rules.',math,data,stage));
+ }
+ G['evaluating-definite-integrals-with-a-limit-and-summation']=newton;
+ G['integrals-using-geometry']=geometry;
+ G['fundamental-theorem-of-calculus']=ftc;
+ G['combining-integral-rules']=rules;
+ G['fundamental-theorem-of-calculus-and-integral-rules']=(o={})=>(o.ftcMode||o.mode)==='rules'?rules():ftc();
+ const oldReview=G['unit-4-comprehensive'];
+ G['unit-4-comprehensive']=(o={})=>{let mode=o.unit4Mode||o.mode||'mixed';if(mode==='mixed')mode=pick(['rect','trap','sigma','riemann','geometry','ftc','rules','basic','usub','log','mvt']);const children={riemann:newton,geometry,ftc,rules};return children[mode]?children[mode]():oldReview({...o,mode,unit4Mode:mode});};
+})();
+
 window.BatchMathAPTopicGenerators={get:(slug)=>G[slug],slugs:()=>Object.keys(G)};
 })();
