@@ -112,7 +112,10 @@ for(const f of expressionParserFiles){
   if(!src.includes('BatchMathAnswers?.normalizeFractionSigns'))fail(`${rel}: normalizeInput parser does not call sitewide fraction normalizer`);
 }
 stats.expressionParserDefenseFiles=expressionParserFiles.length;
-if(expressionParserFiles.length!==16)fail(`expected 16 normalizeInput parser files, found ${expressionParserFiles.length}`);
+// v12.8.U: 12, down from 16. The Basic, U-Substitution, Natural Log and MVT pages
+// no longer carry inline normalizeInput parsers; they use the shared typed practice
+// engine and unit4-exact-answers.js.
+if(expressionParserFiles.length!==12)fail(`expected 12 normalizeInput parser files, found ${expressionParserFiles.length}`);
 
 const sharedPracticeRenderer=fs.readFileSync(path.join(ROOT,'assets/ap-topic-practice.js'),'utf8');
 if(!sharedPracticeRenderer.includes('normalizeTexFractionSigns'))fail('shared AP practice renderer does not normalize generated fraction-sign placement');
