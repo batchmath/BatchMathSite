@@ -5158,7 +5158,12 @@ G['difference-quotient']=()=>{
    const steps=[contStep],kept=[];
    for(const [P,u,v] of [[p1,lo,brk],[p2,brk,hi]]){
     let roots,eqs;
-    if(P.kind==='poly'){if(!avg.x||!xIsRational(avg.x))throw Error('irrational avg');const S=solvePolyPiece(P,xRational(avg.x));if(S===null)throw Error('tangent');roots=S.roots;eqs=S.eqs;}
+    if(P.kind==='poly'&&Math.max(...P.terms.map(t=>t.e[0]))===1&&!(avg.x&&xIsRational(avg.x))){
+     // a linear piece against an average with e or ln in it: c = (average - n)/m exactly
+     const t=new Map(P.terms.map(x=>[x.e[0],x.c])),cx=xscale(xsub(avg.x,xq(t.get(0)||[0,1])),qdiv([1,1],t.get(1)));
+     const r={tex:xOverTex(cx),exp:xexp(cx),val:xnum(cx)};roots=[r];eqs=[`${P.tex.replace(/x/g,'c')}=${avg.tex}`,`c=${r.tex}`];
+    }
+    else if(P.kind==='poly'){if(!avg.x||!xIsRational(avg.x))throw Error('irrational avg');const S=solvePolyPiece(P,xRational(avg.x));if(S===null)throw Error('tangent');roots=S.roots;eqs=S.eqs;}
     else if(P.kind==='exp'){const Z=xscale(avg.x,Q(1,P.k));if(xnum(Z)<=0){roots=[];eqs=[`${P.tex.replace(/x/g,'c')}=${avg.tex}`];}else{const r={tex:`${P.s}+${lnP(xOverTex(Z))}`.replace(/^0\+/,''),exp:`(${P.s})+ln(${xexp(Z)})`,val:P.s+Math.log(xnum(Z))};roots=[r];eqs=[`${P.tex.replace(/x/g,'c')}=${avg.tex}`,`c=${r.tex}`];}}
     else throw Error('unsolvable piece');
     const inPiece=roots.filter(r=>r.val>=u.val-1e-12&&r.val<=v.val+1e-12),out=roots.filter(r=>!inPiece.includes(r));
