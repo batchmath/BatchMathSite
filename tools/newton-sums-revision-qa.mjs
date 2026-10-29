@@ -8,7 +8,7 @@ for(const f of ['derivative-expression-checker','unit4-exact-answers'])vm.runInC
 const w=current.window,check=w.BatchMathUnit4Answers.check,parser=w.BatchMathDerivativeExpressions,report={ok:false,samples:10000,constructionSubtypes:{},intervals:{positive:0,negative:0,mixed:0},unchangedFactories:[],errors:[]};
 try{
  for(const s of old.window.BatchMathAPTopicGenerators.slugs()){
-  // P explicitly revises these three engines; the P gate freezes Newton at dfe1f8a.
+  // Q revises the four integral engines; preserve every unrelated generator.
   if([slug,'unit-4-comprehensive','integrals-using-geometry','fundamental-theorem-of-calculus','combining-integral-rules','fundamental-theorem-of-calculus-and-integral-rules'].includes(s))continue;
   for(let i=0;i<40;i++){old.window.BatchMathRNG={random:rng(1040000+i)};w.BatchMathRNG={random:rng(1040000+i)};let a,b;try{a=JSON.stringify(old.window.BatchMathAPTopicGenerators.get(s)());}catch(e){a='error:'+e.message;}try{b=JSON.stringify(w.BatchMathAPTopicGenerators.get(s)());}catch(e){b='error:'+e.message;}assert.equal(b,a,'Other factory changed: '+s);}
   report.unchangedFactories.push(s);
@@ -27,8 +27,8 @@ try{
   if(d.coefficients){
    assert.ok(p.stage2);assert.equal(p.stage2.keypadMode,'unit4-newton-value');assert.equal(JSON.stringify(d.neededPowers),JSON.stringify(d.expanded.map((n,j)=>n?j:-1).filter(j=>j>=0)));
    for(const n of [2,9,31]){const finite=d.expanded[0]+d.expanded[1]*(n+1)/(2*n)+d.expanded[2]*(n+1)*(2*n+1)/(6*n*n),step=d.finiteTex;assert.ok(step);assert.ok(Number.isFinite(finite));}
-   const html=p.stage2.explanation,markers=[...html.matchAll(/data-newton-step="([^"]+)"/g)].map(m=>m[1]);for(const name of ['width','endpoint','summand','sum','expanded','identities','finite','limit','substitution','result'])assert.ok(markers.includes(name),name);
-   assert.ok(markers.indexOf('finite')<markers.indexOf('limit')&&markers.indexOf('limit')<markers.indexOf('substitution')&&markers.indexOf('substitution')<markers.indexOf('result'));
+   const html=p.stage2.explanation,markers=[...html.matchAll(/data-newton-step="([^"]+)"/g)].map(m=>m[1]);for(const name of ['representation','expanded','identities','finite','substitution','result'])assert.ok(markers.includes(name),name);
+   assert.ok(markers.indexOf('finite')<markers.indexOf('substitution')&&markers.indexOf('substitution')<markers.indexOf('result')); assert.doesNotMatch(html,/T\(k,n\)|S_n/); if(d.neededPowers.some(i=>i>0)){assert.ok(markers.includes('limit'));assert.match(html,/approaches zero/);}
    assert.ok(d.explicitLimitTex.includes(d.finiteTex),'Take the limit of the actual simplified finite sum');
    for(let j=0;j<3;j++)assert.equal(html.includes(`data-newton-step="identity-${j}"`),d.neededPowers.includes(j),'Show only relevant identities');
   }else{

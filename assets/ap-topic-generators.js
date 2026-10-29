@@ -3220,12 +3220,12 @@ G['difference-quotient']=()=>{
   }
   const f=c?poly(c):nonpoly('x','x').t,of=(t,tex)=>c?pair(pe(c,t),poly(c,tex)):nonpoly(t,tex),value=of(sampleE,sample),expression=`(${value.e})*${width}/n`,summand=`\\left[${value.t}\\right]${dx}`,sigma='\\sum_{k=1}^{n}',limitTex=`\\lim_{n\\to\\infty}${sigma}${summand}`;
   const nEq=(s,step)=>`<div class="u4-newton-equation"${step?` data-newton-step="${step}"`:''}>${im(`\\displaystyle ${s}`)}</div>`;
+  const integral=`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx`;
   const setup=[
    `Divide ${im(`[${a},${b}]`)} into ${im('n')} equal subintervals.${nEq(`\\Delta x=\\frac{b-a}{n}=\\frac{${b}${a?`-(${a})`:''}}{n}=${dx}`,'width')}`,
    `Use the right endpoint of each subinterval.${nEq(`x_k=a+k\\Delta x=${sample}`,'endpoint')}`,
-   `Evaluate the function at that endpoint and include the width.${nEq(`T(k,n)=f(x_k)\\Delta x=${summand}`,'summand')}`,
-   nEq(`S_n=${sigma}T(k,n)=${sigma}${summand}`,'sum'),
-   nEq(`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx=${limitTex}`,'representation')
+   `Add the signed rectangle areas, then let the number of rectangles grow without bound.${nEq(`${integral}=\\lim_{n\\to\\infty}${sigma}f(x_k)\\Delta x`,'sum')}`,
+   `Substitute the endpoint into the function and multiply by the width.${nEq(`${integral}=${limitTex}`,'representation')}`
   ];
   const s1=exactStage('',{kind:'newton-expression',expression},limitTex,work(setup),'unit4-newton');
   Object.assign(s1,{hidePrompt:true,ariaLabel:'Right-endpoint limit and summation',placeholder:'Enter a limit and summation',fullExpression:`lim(n->infinity,sum(k=1,n,${expression}))`});
@@ -3239,8 +3239,17 @@ G['difference-quotient']=()=>{
   const summed=active.map(({n,i},j)=>`${signed(n,j===0)}\\frac{${Math.abs(n)}}{${i===0?'n':`n^{${i+1}}`}}${i===0?'n':i===1?'\\frac{n(n+1)}{2}':'\\frac{n(n+1)(2n+1)}{6}'}`).join('')||'0';
   const finite=active.map(({n,i},j)=>{const r=q(n,i===0?1:i===1?2:6),body=i===0?'':i===1?'\\frac{n+1}{n}':'\\frac{(n+1)(2n+1)}{n^2}';return `${signed(r[0],j===0)}${body&&Math.abs(r[0])===r[1]?'':qt(q(Math.abs(r[0]),r[1]))}${body}`;}).join('')||'0';
   const substituted=active.map(({n,i},j)=>{const r=q(n,i===0?1:i===1?2:6),factor=i===0?'':`(${i===1?1:2})`;return `${signed(r[0],j===0)}${factor&&Math.abs(r[0])===r[1]?'':qt(q(Math.abs(r[0]),r[1]))}${factor}`;}).join('')||'0';
-  const explicitLimit=`\\lim_{n\\to\\infty}\\left[${finite}\\right]`,ratios=powers.filter(i=>i>0).map(i=>i===1?'\\frac{n+1}{n}\\to1':'\\frac{(n+1)(2n+1)}{n^2}\\to2');
-  const evaluation=work([...setup.slice(0,4),`Expand the actual summand.${nEq(`T(k,n)=${terms}`,'expanded')}`,`Use only the identities needed here.${powers.map(i=>nEq(identities[i],`identity-${i}`)).join('')}`,nEq(`S_n=${summed}`,'identities'),`Simplify the finite sum as an expression in ${im('n')}.${nEq(`S_n=${finite}`,'finite')}`,`Now take the limit of that expression.${nEq(`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx=${explicitLimit}`,'limit')}`,`Here ${ratios.map(im).join(' and ')}.${nEq(`=${substituted}`,'substitution')}`,nEq(`=${qt(result)}`,'result')]);
+  const normalized=active.map(({n,i},j)=>{const r=q(n,i===0?1:i===1?2:6),body=i===0?'':i===1?'\\left(1+\\frac1n\\right)':'\\left(1+\\frac1n\\right)\\left(2+\\frac1n\\right)';return `${signed(r[0],j===0)}${body&&Math.abs(r[0])===r[1]?'':qt(q(Math.abs(r[0]),r[1]))}${body}`;}).join('')||'0';
+  const explicitLimit=`\\lim_{n\\to\\infty}\\left[${finite}\\right]`;
+  const evaluation=work([
+   `Start with the right-endpoint limit and summation.${nEq(`${integral}=${limitTex}`,'representation')}`,
+   `Expand the function and multiply every term by the rectangle width.${nEq(`=\\lim_{n\\to\\infty}${sigma}\\left[${terms}\\right]`,'expanded')}`,
+   `For a fixed ${im('n')}, factors that do not depend on ${im('k')} can be taken outside the sum. Use ${powers.length===1?'this summation identity':'these summation identities'}.${powers.map(i=>nEq(identities[i],`identity-${i}`)).join('')}`,
+   nEq(`=\\lim_{n\\to\\infty}\\left[${summed}\\right]`,'identities'),
+   `Cancel a factor of ${im('n')} and simplify the numerical coefficients.${nEq(`=${explicitLimit}`,'finite')}`,
+   ...(powers.some(i=>i>0)?[`Divide each remaining linear factor by ${im('n')}. This writes the expression using ${im('\\frac1n')}.${nEq(`=\\lim_{n\\to\\infty}\\left[${normalized}\\right]`,'limit')}`,`As ${im('n')} grows without bound, ${im('\\frac1n')} approaches zero. Now take the limit by replacing each ${im('\\frac1n')} with zero.${nEq(`=${substituted}`,'substitution')}`]:[`The expression is constant, so its limit is that same constant.${nEq(`=${substituted}`,'substitution')}`]),
+   `Simplify to obtain the signed area.${nEq(`=${qt(result)}`,'result')}`
+  ]);
   return finish(problem('newton',family,'Write the definite integral as a right-endpoint limit and summation, then evaluate it using finite-sum identities.',`\\int_{${a}}^{${b}}\\left(${f}\\right)\\,dx`,{...data,expanded,result,neededPowers:powers,finiteTex:finite,explicitLimitTex:explicitLimit,substitutionTex:substituted},s1,exactStage('Use finite-sum identities and a limit to find the exact value.',scalar(result),qt(result),evaluation,'unit4-newton-value')));
  }
  function revisedProblem(p){
@@ -3330,16 +3339,17 @@ G['difference-quotient']=()=>{
   const answerTex=areaTex(rat,pi),integral=`\\int_{${a}}^{${b}}${math}\\,dx`;
   const data={a,b,h,m,offset,r,sign,shape,rat,pi,regions,quarter,shiftCategory,shiftType,side};
   steps.push(`Thus the signed area gives${eq(`${integral}=${answerTex}`)}`);
-  const solution=work(steps)+geometryGraph(data),stage=exactStage('',scalar(rat,pi),answerTex,solution);stage.hidePrompt=true;
+  const solution=geometryGraph(data)+work(steps),stage=exactStage('',scalar(rat,pi),answerTex,solution,'unit4-geometry');stage.hidePrompt=true;
   return revisedProblem(problem('geometry',family,'Use geometry to find the exact value of the definite integral.',integral,data,stage));
  }
  // Paired expressions retain safe plain syntax for the checker and TeX for display.
- const E=(e,t=e,p=4)=>({e,t,p}),num=n=>E(String(n));
+ const E=(e,t=e,p=4)=>({e,t,p,...(/^[-]?\d+$/.test(e)?{mono:{c:Number(e),v:'',d:0}}:/^[xt]$/.test(e)?{mono:{c:1,v:e,d:1}}:{})}),num=n=>E(String(n));
  const wrap=(a,p)=>a.p<p?`\\left(${a.t}\\right)`:a.t;
- const add=(a,b)=>a.e==='0'?b:b.e==='0'?a:E(`(${a.e})+(${b.e})`,`${a.t}${b.t.startsWith('-')?'':'+'}${b.t}`,1);
- const neg=a=>a.e==='0'?a:E(`-(${a.e})`,a.p>=2&&a.t.startsWith('-')?a.t.slice(1):`-${wrap(a,2)}`,2);
- const mul=(a,b)=>a.e==='0'||b.e==='0'?num(0):a.e==='1'?b:b.e==='1'?a:a.e==='-1'?neg(b):b.e==='-1'?neg(a):E(`(${a.e})*(${b.e})`,`${wrap(a,2)} ${b.t.startsWith('-')?`\\left(${b.t}\\right)`:wrap(b,2)}`,2);
- const pow=(a,p)=>p===1?a:E(`(${a.e})^${p}`,`${wrap(a,4)}^{${p}}`,3);
+ const monomial=(c,v,d)=>{if(!c||!d)return num(c);const variable=d===1?v:`${v}^{${d}}`;return {...E(`${c}*${v}^${d}`,coeff(c,variable),c===1?3:2),mono:{c,v,d}};};
+ const add=(a,b)=>a.e==='0'?b:b.e==='0'?a:a.mono&&b.mono&&a.mono.v===b.mono.v&&a.mono.d===b.mono.d?monomial(a.mono.c+b.mono.c,a.mono.v,a.mono.d):({...E(`(${a.e})+(${b.e})`,`${a.t}${b.t.startsWith('-')?'':'+'}${b.t}`,1),sum:[a,b]});
+ const neg=a=>a.sum?add(neg(a.sum[0]),neg(a.sum[1])):a.mono?monomial(-a.mono.c,a.mono.v,a.mono.d):E(`-(${a.e})`,a.p>=2&&a.t.startsWith('-')?a.t.slice(1):`-${wrap(a,2)}`,2);
+ const mul=(a,b)=>a.e==='0'||b.e==='0'?num(0):a.e==='1'?b:b.e==='1'?a:a.e==='-1'?neg(b):b.e==='-1'?neg(a):a.mono&&!a.mono.v&&b.sum?add(mul(a,b.sum[0]),mul(a,b.sum[1])):a.mono&&b.mono&&(!a.mono.v||!b.mono.v||a.mono.v===b.mono.v)?monomial(a.mono.c*b.mono.c,a.mono.v||b.mono.v,a.mono.d+b.mono.d):E(`(${a.e})*(${b.e})`,`${wrap(a,2)} ${b.t.startsWith('-')?`\\left(${b.t}\\right)`:wrap(b,2)}`,2);
+ const pow=(a,p)=>p===1?a:a.mono?monomial(a.mono.c**p,a.mono.v,a.mono.d*p):E(`(${a.e})^${p}`,`${wrap(a,4)}^{${p}}`,3);
  const fn=(name,a)=>name==='exp'?E(`exp(${a.e})`,`e^{${a.t}}`,3):E(`${name}(${a.e})`,`\\${name}\\left(${a.t}\\right)`);
  const div=(a,b)=>E(`(${a.e})/(${b.e})`,`\\frac{${a.t}}{${b.t}}`,2);
  function bound(type,k,d){
@@ -3382,7 +3392,17 @@ G['difference-quotient']=()=>{
   const upperEval=`F\\left(${upper.value.t}\\right)`,lowerEval=`F\\left(${lower.value.t}\\right)`;
   const derivativeTerm=b=>b.type==='constant'?'0':`F'\\left(${b.value.t}\\right)${b.derivative.e==='1'?'':`\\left(${b.derivative.t}\\right)`}`;
   const constantNote=lower.type==='constant'?`${im(lowerEval)} is constant, so its derivative is zero.`:upper.type==='constant'?`${im(upperEval)} is constant, so its derivative is zero.`:'Both limits vary with x; apply the chain rule to each evaluation.';
-  const steps=[`Let ${im('F')} be an antiderivative of ${im(`f(t)=${integrandT.t}`)}, so ${im("F'=f")}. Evaluate at the upper limit minus the lower limit.${eq(`H(x)=${upperEval}-${lowerEval}`)}`,`${constantNote}${eq(`H'(x)=${derivativeTerm(upper)}-${derivativeTerm(lower)}`)}`,`Substitute ${im("F'=f")}${[upper,lower].some(b=>!['constant','identity'].includes(b.type))?' and include the chain-rule factors':''}.${eq(`H'(x)=${answer.t}`)}`];
+  const variableBounds=[upper,lower].filter(b=>b.type!=='constant');
+  const endpointWork=b=>`Differentiate the ${b===upper?'upper':'lower'} endpoint${['exp','sin','tan'].includes(b.type)?'; use the chain rule for the inside function':''}.${eq(`\\frac{d}{dx}\\left[${b.value.t}\\right]=${b.derivative.t}`)}`;
+  const substitution=b=>b.type==='constant'?'0':b.derivative.e==='1'?`\\left[${integrand(type,k,c,E(b.value.e,b.value.t,b.value.p)).t}\\right]`:`\\left[${integrand(type,k,c,E(b.value.e,b.value.t,b.value.p)).t}\\right]\\left(${b.derivative.t}\\right)`;
+  const steps=[
+   `We want ${im("H'(x)")}, the rate of change of the integral function. Let ${im('F')} be an antiderivative of ${im(`f(t)=${integrandT.t}`)}, so ${im("F'=f")}. By the Fundamental Theorem of Calculus, evaluate at the upper limit minus the lower limit.${eq(`H(x)=${upperEval}-${lowerEval}`)}`,
+   `${constantNote} For a changing endpoint, differentiate the outside function ${im('F')} and multiply by the derivative of its inside function.${eq(`\\frac{d}{dx}F(g(x))=f(g(x))g'(x)`)}`,
+   ...variableBounds.map(endpointWork),
+   `Differentiate the upper value, then subtract the derivative of the lower value.${eq(`H'(x)=${derivativeTerm(upper)}-${derivativeTerm(lower)}`)}`,
+   `Replace ${im("F'")} with ${im('f')}: put each changing endpoint in place of every ${im('t')} in the integrand. Keep its endpoint derivative as a factor.${eq(`H'(x)=${substitution(upper)}-${substitution(lower)}`)}`,
+   `Simplify powers, numerical factors and signs.${eq(`H'(x)=${answer.t}`)}`
+  ];
 
   const data={integrandType:type,k,c,lower:{type:lower.type,k:lower.k,d:lower.d},upper:{type:upper.type,k:upper.k,d:upper.d},domain:upper.type==='tan'?[-Math.PI/(2*upper.k),Math.PI/(2*upper.k)]:null};
   return revisedProblem(problem('ftc',family,`Differentiate using the Fundamental Theorem of Calculus. ${domain}`,`H(x)=\\int_{${lower.value.t}}^{${upper.value.t}}\\left(${integrandT.t}\\right)\\,dt`,data,exactStage(`Enter ${im("H'(x)")} as an exact expression in x.`,{kind:'function-expression',expression:answer.e,probes:upper.type==='tan'?[-.22,-.1,0,.12,.24]:undefined},answer.t,work(steps),'unit4-ftc')));
@@ -3408,6 +3428,18 @@ G['difference-quotient']=()=>{
    target=it('',l,r,`\\left[${coeff(p,'f(x)')}${s<0?'-':'+'}${coeff(Math.abs(s),other+'(x)')}\\right]`);answer=orientation*(p*v+s*z);expression=`${p}*(${orientation*v})+(${s})*(${orientation*z})`;
    derive=[`Orient both integrals from ${im(String(b))} to ${im(String(c))}: ${im(`${it('f',b,c)}=${v}`)} and ${im(`${it(other,b,c)}=${z}`)}.${overlap?' Subtract the first interval from the whole interval for each function.':''}`,...(orientation<0?['Reverse each interval; both values change sign.']:[]),`Use linearity.${eq(`${target}=${p}(${orientation*v})+(${s})(${orientation*z})=${answer}`)}`];
   }
+  const normalizedFacts=facts.filter(f=>f.a>f.b).map(f=>`The given bounds run backward. Reverse them and change the sign.${eq(`${it(f.f,f.b,f.a)}=-${it(f.f,f.a,f.b)}=-(${f.value})=${-f.value}`)}`);
+  const combination=(l,r)=>`${coeff(p,it('f',l,r))}${s<0?'-':'+'}${coeff(Math.abs(s),it(other,l,r))}`;
+  if(family==='zero_width')derive=[`The lower and upper bounds are both ${im(String(b))}. There is no interval over which to accumulate signed area.${eq(`${target}=0`)}`];
+  if(family==='linearity')derive=[`Use linearity: integrate each term separately and keep its constant multiplier.${eq(`${target}=${combination(a,b)}`)}`,`Substitute the given signed values, then multiply and add.${eq(`=${p}(${u})+(${s})(${v})`)}${eq(`=${p*u}${s*v<0?'-':'+'}${Math.abs(s*v)}=${answer}`)}`];
+  if(family==='interval_decomposition'&&facts.length===3)derive=[`The intervals ${im(`[${a},${c}]`)} and ${im(`[${b},${d}]`)} cover the whole interval, but count ${im(`[${b},${c}]`)} twice. Subtract the whole integral to leave the overlap once.${eq(`${target}=${it('f',a,c)}+${it('f',b,d)}-${it('f',a,d)}`)}`,`Substitute the signed values and simplify.${eq(`=(${u+v})+(${v+w})-(${u+v+w})=${answer}`)}`];
+  if(family==='combined_rules'||family==='reversed_combination'){
+   const orientation=family==='reversed_combination'?-1:1,l=orientation<0?c:b,r=orientation<0?b:c;
+   derive=overlap?[`Split the whole interval at ${im(String(b))}. Subtract its first piece to find the remaining piece for each function.${eq(`${it('f',b,c)}=${it('f',a,c)}-${it('f',a,b)}=(${u+v})-(${u})=${v}`)}${eq(`${it(other,b,c)}=${it(other,a,c)}-${it(other,a,b)}=(${w+z})-(${w})=${z}`)}`]:[`Use the given values on the requested interval.${eq(`${it('f',b,c)}=${v}`)}${eq(`${it(other,b,c)}=${z}`)}`];
+   if(orientation<0)derive.push(`Both integrals now need reversed bounds. Reversing bounds changes the sign of each value.${eq(`${it('f',c,b)}=-${it('f',b,c)}=-(${v})=${-v}`)}${eq(`${it(other,c,b)}=-${it(other,b,c)}=-(${z})=${-z}`)}`);
+   derive.push(`Use linearity to separate the terms and pull out their constant multipliers.${eq(`${target}=${combination(l,r)}`)}`,`Substitute, multiply, and add.${eq(`=${p}(${orientation*v})+(${s})(${orientation*z})`)}${eq(`=${p*orientation*v}${s*orientation*z<0?'-':'+'}${Math.abs(s*orientation*z)}=${answer}`)}`);
+  }
+  derive=[`Find ${im(target)}.`,...normalizedFacts,...derive];
   const data={a,b,c,d,facts,target,expression,answer};
   const math=family==='zero_width'?target:`\\begin{gathered}${facts.map(f=>`${it(f.f,f.a,f.b)}=${f.value}`).join('\\\\[5pt]')}\\end{gathered}`;
   const stage=exactStage(family==='zero_width'?'':`Find ${im(`\\displaystyle ${target}`)}.`,scalar(q(answer)),String(answer),work(derive));

@@ -168,10 +168,6 @@
     const prefix=kind==="limit"?"lim(n->infinity,":"sum(k=1,n,",r=hasSelection()?safeSelectionRange():selectionRange(),body=hasSelection()?state.raw.slice(r.start,r.end):"";
     insert(prefix+body+")",prefix.length);
   }
-  function newtonHeader(kind,zone,text){
-    const item=allNewtonStructures().find(item=>item.kind===kind&&state.cursor>=item.start&&state.cursor<=item.end);
-    if(!item){insert(text);return;}const target=item.zones[zone];state.selectionAnchor=target.start;state.selectionFocus=target.end;state.cursor=target.end;insert(text);const updated=newtonStructureAt(item.start);if(updated){collapseSelection(updated.zones.at(-1).start);render();state.editor.focus();}
-  }
 
   function functionShellAt(start){
     const name=fnNames.find(f=>state.raw.startsWith(f+"(",start));
@@ -530,6 +526,7 @@
     if(state.cursor<=0)return;
     if(state.mode==="unit4-newton")for(const item of allNewtonStructures()){
       const index=item.zones.findIndex(z=>z.start===state.cursor);
+      if(index===item.zones.length-1&&item.zones[index].start===item.zones[index].end){removeSpan(item.start,item.end);return;}
       if(index>=0){collapseSelection(index===0?item.start:item.zones[index-1].end);render();state.editor.focus();return;}
       if(state.cursor===item.end){collapseSelection(item.zones.at(-1).end);render();state.editor.focus();return;}
     }
@@ -755,7 +752,7 @@
     const f=containingFraction();
     if(!f&&state.mode==="unit4-newton"){
       const item=allNewtonStructures().find(item=>state.cursor>=item.start&&state.cursor<=item.end);if(!item)return;
-      const last=item.zones.length-1,index=item.zones.findIndex(z=>state.cursor>=z.start&&state.cursor<=z.end),target=item.kind==="sum"?(index===last?(delta<0?1:0):delta<0?1:0):(index===last?0:last);
+      const index=item.zones.findIndex(z=>state.cursor>=z.start&&state.cursor<=z.end),order=item.kind==="sum"?[1,2,0]:[1,0],position=order.indexOf(index),target=order[Math.max(0,Math.min(order.length-1,position+(delta<0?-1:1)))];
       collapseSelection(item.zones[target].end);render();state.editor.focus();return;
     }
     if(!f)return;
@@ -875,6 +872,7 @@
       "unit3-exact":{fraction:true,radical:true,exponent:true,constants:["pi","e"],logarithm:true,arithmetic:true,parentheses:true},
       "unit4-exact":{fraction:true,radical:true,exponent:true,constants:["pi","e"],logarithm:true,arithmetic:true,parentheses:true},
       "unit4-newton":{riemann:true,fraction:true,radical:true,exponent:true,constants:["e"],variables:["k","n"],logarithm:true,functions:[["sin","sin"],["cos","cos"],["tan","tan"]],arithmetic:true,parentheses:true},
+      "unit4-geometry":{fraction:true,exponent:true,constants:["pi"],arithmetic:true,parentheses:true},
       "unit4-newton-value":{fraction:true,exponent:true,arithmetic:true,parentheses:true},
       "unit4-ftc":{fraction:true,radical:true,exponent:true,constants:["pi","e"],variables:["x"],logarithm:true,functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"]],arithmetic:true,parentheses:true},
       "unit4-sigma":{fraction:true,exponent:true,variables:["n"],arithmetic:true,parentheses:true},
@@ -907,12 +905,8 @@
       const structures=document.createElement("div");
       structures.className="bm-calc-special-row bm-calc-balanced-row";
       if(contextualUnit3.riemann){
-        structures.appendChild(key("lim","function",()=>insertNewtonStructure("limit"),"Insert limit as n approaches infinity"));
-        structures.appendChild(key("n→∞","function",()=>newtonHeader("limit",0,"n->infinity"),"Set limit to n approaches infinity"));
-        structures.appendChild(key("∑","function",()=>insertNewtonStructure("sum"),"Insert summation from k equals 1 to n"));
-        structures.appendChild(key("k=1","function",()=>newtonHeader("sum",0,"k=1"),"Set lower summation index k equals 1"));
-        structures.appendChild(key("upper n","function",()=>newtonHeader("sum",1,"n"),"Set upper summation bound n"));
-        addInsert(structures,"∞","infinity","function","Insert infinity");
+        structures.appendChild(key("Limit","function",()=>insertNewtonStructure("limit"),"Insert limit as n approaches infinity"));
+        structures.appendChild(key("Summation","function",()=>insertNewtonStructure("sum"),"Insert summation from k equals 1 to n"));
       }
       if(contextualUnit3.fraction)addFraction(structures);
       if(contextualUnit3.radical)addFunction(structures,"√","sqrt");

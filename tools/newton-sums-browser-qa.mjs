@@ -26,7 +26,7 @@ try{
   const context=await browser.newContext({viewport:{width,height:width===1024?768:900},serviceWorkers:'block'});await localMathJax(context);await context.route(/https:\/\/(?:www\.googletagmanager\.com|www\.google-analytics\.com)\//,r=>r.abort());
   const page=await open(context,route);await install(page);await inject(page,example);
   // Construct the PDF's exact example with actual math keys and physical typing.
-  await key(page,'Insert limit as n approaches infinity');await key(page,'Set limit to n approaches infinity');await key(page,'Insert summation from k equals 1 to n');await key(page,'Set lower summation index k equals 1');await key(page,'Set upper summation bound n');
+  await key(page,'Insert limit as n approaches infinity');await key(page,'Insert summation from k equals 1 to n');
   assert.equal(await page.locator('.bm-calc-newton-structure.limit').count(),1);assert.equal(await page.locator('.bm-calc-newton-structure.sum').count(),1);
   await page.keyboard.type('4*(-3+6*k');await page.keyboard.press('/');await page.keyboard.type('n');await key(page,'Move cursor right');await page.keyboard.type(')*6');await page.keyboard.press('/');await page.keyboard.type('n');
   const raw=await page.evaluate(()=>BatchMathCalculusKeypad.raw);
@@ -39,7 +39,7 @@ try{
   const solution=`${width}-worked-limit.png`;await page.locator('main').screenshot({path:path.join(out,solution)});report.screenshots.push(solution);
   const count=await page.evaluate(()=>BatchMathRepro.problemCount);await page.keyboard.down('Enter');await page.waitForTimeout(400);await page.keyboard.up('Enter');assert.equal(await page.evaluate(()=>BatchMathRepro.problemCount),count+1,'Held Enter advances exactly once');
   for(const [family,p]of samples){
-   await inject(page,p);const pad=page.locator('.bm-calc-mode-unit4-newton');for(const aria of ['Insert limit as n approaches infinity','Insert summation from k equals 1 to n','Insert stacked fraction','Insert exponent','Insert infinity'])assert.equal(await pad.getByRole('button',{name:aria,exact:true}).count(),1);assert.equal(await pad.getByRole('button',{name:/Insert (?:π|sec|x)$/}).count(),0,'Omit unrelated symbols');
+   await inject(page,p);const pad=page.locator('.bm-calc-mode-unit4-newton');for(const aria of ['Insert limit as n approaches infinity','Insert summation from k equals 1 to n','Insert stacked fraction','Insert exponent'])assert.equal(await pad.getByRole('button',{name:aria,exact:true}).count(),1);assert.equal(await pad.getByRole('button',{name:/Insert (?:π|sec|x)$/}).count(),0,'Omit unrelated symbols');
    await submit(page,page.locator('.staged-part-one'),p.stage1.fullExpression);
    if(p.stage2){await page.locator('.staged-continue').click();assert.equal(await page.locator('.bm-calc-mode-unit4-newton-value').count(),1);assert.equal(await page.locator('.staged-part-two').getByRole('button',{name:/^Insert (?:ln|sin|e|infinity)$/}).count(),0,'Evaluation keypad contains numerical tools');const answer=await page.evaluate(a=>BatchMathUnit4Answers.expression(a.value),p.stage2.unit4Answer);await submit(page,page.locator('.staged-part-two'),answer);}
    await noVerticalBars(page,`${width}/${family}`);report.checks.push({width,family,parts:p.stage2?2:1});
