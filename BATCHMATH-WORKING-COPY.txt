@@ -1,7 +1,7 @@
 BatchMath cumulative working copy
-Current full release: 12.8.M
-Archive: batchmath-site-v12.8.M.zip
-Baseline: complete 12.7 release.
-Changes: v12.8.J updates the shared Rectangular Approximation, Trapezoidal Approximation, and Introduction to Sigma Notation generators and their Unit 4 Comprehensive Review inheritance. Other course content and the existing BatchMath QA workflow remain preserved.
+Current full release: 12.8.U (review build)
+Archive: batchmath-site-v12.8.U.zip
+Baseline: v12.8.T (origin/main bea5cc9).
+Changes: v12.8.U rebuilds the final four Unit 4 integrals engines (Basic Integrals, U-Substitution, Integrals Resulting in Natural Log and Inverse Trig, and the Mean Value Theorem for Integrals) as typed exact-answer practice with the math keypad, and the Unit 4 Comprehensive Review uses the same generators for those four topics. Other course content and the existing BatchMath QA workflow remain preserved.
 No deployment performed.
-Current update: v12.8.M refines approximation mathematics, midpoint tables and conceptual graphs, preserves Comprehensive Review inheritance and Sigma alignment, adds live archive running documents with printing and refresh/retry support, corrects Chain Rule and Quotient Rule walkthrough placement, and verifies Mogollon controls and both archive regressions.
+Current update: v12.8.U adds the rebuilt engines, exact antiderivative / value / list checking with a required + C, context-specific keypads (including t, theta, r and inverse trig), the single-fraction answer-normalization fix, and an independent 48,000-problem audit (npm run qa:unit4-final-four). See docs/v12.8.U-revisions.md.
