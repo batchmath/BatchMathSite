@@ -4900,6 +4900,280 @@ G['difference-quotient']=()=>{
  }
  const LOGS={linear_denominator:lLinear,derivative_over_function:lDerivOver,tan_cot_composite:lTanCot,division_to_log:lDivision,inverse_tangent:lAtan,inverse_sine:lAsin,definite_log:lDefLog,log_or_not:lLogOrNot};
 
+ // ======================= MEAN VALUE THEOREM FOR INTEGRALS =======================
+ const MA='unit4-mvt-avg',MC='unit4-mvt-c',MCT='unit4-mvt-c-trig';
+ const AVG_PROMPT='Find the average value of the function on the given interval.';
+ const FAVG='f_{\\text{avg}}';
+ const lcm=(a,b)=>a/g2(a,b)*b;
+ const surdParts=m=>{let k=1,s=m;for(let p=2;p*p<=s;p++)while(s%(p*p)===0){s/=p*p;k*=p;}return [k,s];};
+ const cubeParts=m=>{let k=1,s=Math.abs(m);for(let p=2;p*p*p<=s;p++)while(s%(p*p*p)===0){s/=p*p*p;k*=p;}return [Math.sign(m)*k,s];};
+ // numeric value of an exact value
+ function xnum(a){let v=0;for(const[k,c]of a){let b;if(k==='1')b=1;else if(k==='pi')b=Math.PI;else if(k[0]==='r')b=Math.sqrt(Number(k.slice(1)));else if(k.startsWith('e:')){const[n,d]=k.slice(2).split('/').map(Number);b=Math.exp(n/d);}else if(k.startsWith('ln:')){const[n,d]=k.slice(3).split('/').map(Number);b=Math.log(n/d);}else if(k.startsWith('iln:'))b=1/Math.log(Number(k.slice(4)));else throw Error('basis '+k);v+=qnum(c)*b;}return v;}
+ // an exact value as one fraction: (e^2 - 1)/2 rather than e^2/2 - 1/2
+ function xOverTex(a){if(!a.size)return '0';let den=1;for(const v of a.values())den=lcm(den,v[1]);if(den===1)return xtex(a);const num=xscale(a,[den,1]),neg=[...num.values()].every(v=>v[0]<0);return `${neg?'-':''}\\frac{${xtex(neg?xscale(num,[-1,1]):num)}}{${den}}`;}
+ // values of c: {tex, exp, val}
+ const cRat=q=>({tex:qtex(q),exp:qexpr(q),val:qnum(q)});
+ function cSurd(rat,coef,s){
+  if(s===1)return cRat(qadd(rat,coef));
+  const d=lcm(rat[1],coef[1]),P=rat[0]*d/rat[1],R=coef[0]*d/coef[1],rt=`${Math.abs(R)===1?'':Math.abs(R)}\\sqrt{${s}}`;
+  let tex;
+  if(d===1)tex=join([ctex([P,1],'',true),ctex([R,1],`\\sqrt{${s}}`,!P)]);
+  else if(!P)tex=`${R<0?'-':''}\\frac{${rt}}{${d}}`;
+  else if(P>0)tex=`\\frac{${P}${R<0?'-':'+'}${rt}}{${d}}`;
+  else if(R>0)tex=`\\frac{${rt}-${-P}}{${d}}`;
+  else tex=`-\\frac{${-P}+${rt}}{${d}}`;
+  return{tex,exp:`(${P})/(${d})+(${R})/(${d})*sqrt(${s})`,val:(P+R*Math.sqrt(s))/d};
+ }
+ function cCbrt(q){
+  const[n,d]=q,[k,s]=cubeParts(n*d*d);if(s===1)return cRat(Q(k,d));
+  const body=`${Math.abs(k)===1?'':Math.abs(k)}\\sqrt[3]{${s}}`;
+  return{tex:`${k<0?'-':''}${d===1?body:`\\frac{${body}}{${d}}`}`,exp:`(${k})/(${d})*(${s})^(1/3)`,val:k*Math.cbrt(s)/d};
+ }
+ const cX=a=>({tex:xtex(a),exp:xexp(a),val:xnum(a)});
+ const near=(u,v)=>Math.abs(u-v)<1e-9*Math.max(1,Math.abs(u));
+ // real roots of A c^2 + B c + K = 0 (rational coefficients); null for a double root
+ function quadSolve(A,B,K){
+  if(A[0]<0){A=qneg(A);B=qneg(B);K=qneg(K);}
+  const D=qsub(qmul(B,B),qmul([4,1],qmul(A,K)));if(D[0]<0)return [];if(qz(D))return null;
+  const mid=qdiv(qneg(B),qmul([2,1],A)),[k,s]=surdParts(D[0]*D[1]),w=qdiv(Q(k,D[1]),qmul([2,1],A));
+  return{A,B,K,D,roots:[cSurd(mid,qneg(w),s),cSurd(mid,w,s)]};
+ }
+ const bnd=v=>Array.isArray(v)?{tex:qtex(v),exp:qexpr(v),val:qnum(v),q:v}:v;
+ const angB=a=>({tex:angTex(a),exp:angExp(a),val:qnum(a)*Math.PI,pi:a});
+ const intervalTex=(lo,hi)=>`\\left[${lo.tex},\\,${hi.tex}\\right]`;
+ // 1/(b - a) as TeX and the average from the integral I, for rational or pi-multiple lengths
+ function lengthInfo(lo,hi){
+  if(lo.pi||hi.pi){const r=qsub(hi.pi||[0,1],lo.pi||[0,1]),inv=qdiv([1,1],r);return{inv:`\\frac{${inv[0]}}{${inv[1]===1?'':inv[1]}\\pi}`,avg:I=>{const pip=I.get('pi')||[0,1],rest=new Map(I);rest.delete('pi');const rat=qdiv(pip,r),parts=[qz(rat)?'':qtex(rat),rest.size?xOverPiTex(rest,r):''];return{tex:parts[0]&&parts[1]?`${parts[0]}${parts[1].startsWith('-')?'':'+'}${parts[1]}`:parts[0]||parts[1]||'0',exp:`(${qexpr(rat)})+${rest.size?xOverPiExp(rest,r):'0'}`,val:(xnum(I))/(qnum(r)*Math.PI),pi:true};}};}
+  const L=qsub(hi.q,lo.q);return{inv:qtex(qdiv([1,1],L)),avg:I=>{const v=xscale(I,qdiv([1,1],L));return{tex:xIsRational(v)?xtex(v):xOverTex(v),exp:xexp(v),val:xnum(v),x:v};}};
+ }
+ // F(x) at a bound, for the evaluation line
+ const at=b=>/^-?\d+$/.test(b.tex)?`(${b.tex})`:`\\left(${b.tex}\\right)`;
+ function avgSteps({fTex,lo,hi,LI,parts,I,avg}){
+  // parts: [{lo,hi,fTex,F,I}] — one part for a single function, two for a piecewise one
+  const out=[step('Use the average value formula.','',`${FAVG}=\\frac{1}{b-a}\\int_{a}^{b}f(x)\\,dx=${LI.inv}\\int_{${lo.tex}}^{${hi.tex}}f(x)\\,dx`)];
+  if(parts.length===1){const P=parts[0];out.push(step('Integrate.',P.method||'',`\\int_{${lo.tex}}^{${hi.tex}}${wrapSum(P.fTex)}\\,dx=\\left[${P.F}\\right]_{${lo.tex}}^{${hi.tex}}=${xtex(P.I)}`));}
+  else{out.push(step(`Split the integral at ${im(`x=${parts[0].hi.tex}`)}.`,'',`\\int_{${lo.tex}}^{${hi.tex}}f(x)\\,dx=\\int_{${parts[0].lo.tex}}^{${parts[0].hi.tex}}${wrapSum(parts[0].fTex)}\\,dx+\\int_{${parts[1].lo.tex}}^{${parts[1].hi.tex}}${wrapSum(parts[1].fTex)}\\,dx`),
+   step('Integrate each piece.','',...parts.map(P=>`\\int_{${P.lo.tex}}^{${P.hi.tex}}${wrapSum(P.fTex)}\\,dx=\\left[${P.F}\\right]_{${P.lo.tex}}^{${P.hi.tex}}=${xtex(P.I)}`)));}
+  out.push(step('Find the average.','',`${FAVG}=${LI.inv}\\cdot ${subWrap(xtex(I))}=${avg.tex}`.replace(`=${avg.tex}=${avg.tex}`,`=${avg.tex}`)));
+  return out;
+ }
+ function mvtProblem(family,{fTex,lo,hi,parts,c,cSteps,cMode,data={}}){
+  const LI=lengthInfo(lo,hi),I=parts.reduce((s,P)=>xadd(s,P.I),X()),avg=LI.avg(I);
+  if(!Number.isFinite(avg.val))throw Error('average');
+  const s1={prompt:'Enter the average value.',answer:{kind:'exact-number',expression:avg.exp},answerTex:avg.tex,explanation:avgSteps({fTex,lo,hi,LI,parts,I,avg}).join(''),keypadMode:MA,placeholder:'Enter the exact average value',ariaLabel:'Average value'};
+  const stages=[s1];let prompt=AVG_PROMPT;
+  if(c){
+   const res=c(avg);// {none, values, steps}
+   prompt=`${AVG_PROMPT} Then find every value of c guaranteed by the Mean Value Theorem for Integrals.`;
+   stages.push({prompt:`Enter every value of ${im('c')} in ${im(intervalTex(lo,hi))} guaranteed by the theorem, separated by commas, or choose Does not apply.`,answer:{kind:'exact-list',values:res.none?[]:res.values.map(v=>v.exp),none:!!res.none},answerTex:res.none?'\\text{Does not apply}':res.values.map(v=>v.tex).join(',\\ '),explanation:res.steps.join(''),keypadMode:cMode||MC,placeholder:'Enter c values, or Does not apply',ariaLabel:'Values of c'});
+  }
+  return assemble('mvt',family,{prompt,math:`f(x)=${fTex}\\text{ on }${intervalTex(lo,hi)}`,stages,data:{...data,mode:'mvt',a:lo.exp,b:hi.exp}});
+ }
+
+ // ---------- pieces with exact integrals ----------
+ const qpowSum=(terms,x)=>terms.reduce((s,t)=>qadd(s,qmul(t.c,qpow(x,t.e[0]))),[0,1]);
+ function polyPiece(terms){const anti=integrateTerms(terms);return{kind:'poly',terms,tex:polyTex(terms,'x'),exp:polyExp(terms),F:polyTex(anti,'x'),at:x=>qpowSum(terms,x),num:x=>terms.reduce((s,t)=>s+qnum(t.c)*x**t.e[0],0),int:(p,q)=>xq(qsub(qpowSum(anti,q),qpowSum(anti,p)))};}
+ function expPiece(k,s){const e=`e^{${s?lin(1,-s):'x'}}`;return{kind:'exp',k,s,tex:ctex([k,1],e,true),exp:`(${k})*e^(x-(${s}))`,F:ctex([k,1],e,true),at:x=>qint(x)&&x[0]===s?[k,1]:null,num:x=>k*Math.exp(x-s),int:(p,q)=>xsub(eQ(qsub(q,[s,1]),[k,1]),eQ(qsub(p,[s,1]),[k,1]))};}
+ function recipPiece(k,s){const den=s?lin(1,-s):'x';return{kind:'recip',k,s,tex:`${k<0?'-':''}\\frac{${Math.abs(k)}}{${den}}`,exp:`(${k})/(x-(${s}))`,F:ctex([k,1],lnA(den),true),at:x=>qdiv([k,1],qsub(x,[s,1])),num:x=>k/(x-s),int:(p,q)=>lnX([k,1],qdiv(qabs2(qsub(q,[s,1])),qabs2(qsub(p,[s,1]))))};}
+ const qabs2=q=>[Math.abs(q[0]),q[1]];
+ function sqrtPiece(k,s,c=0){const inner=s?lin(1,-s):'x',root=`\\sqrt{${inner}}`;
+  return{kind:'sqrt',k,s,c,tex:join([ctex([k,1],root,true),ctex([c,1],'',false)]),exp:`(${k})*sqrt(x-(${s}))+(${c})`,F:join([ctex(Q(2*k,3),`\\left(${inner}\\right)^{\\frac{3}{2}}`,true),ctex([c,1],'x',false)]),
+   at:x=>{const r=qroot2(qsub(x,[s,1]));return r?qadd(qmul([k,1],r),[c,1]):null;},num:x=>k*Math.sqrt(x-s)+c,
+   int:(p,q)=>{const rq=qroot2(qsub(q,[s,1])),rp=qroot2(qsub(p,[s,1]));if(!rq||!rp)throw Error('irrational');return xq(qadd(qmul(Q(2*k,3),qsub(qpow(rq,3),qpow(rp,3))),qmul([c,1],qsub(q,p))));}};}
+ const qroot2=q=>{if(q[0]<0)return null;const a=Math.round(Math.sqrt(q[0])),b=Math.round(Math.sqrt(q[1]));return a*a===q[0]&&b*b===q[1]?[a,b]:null;};
+ const part=(P,lo,hi,method)=>({lo,hi,fTex:P.tex,F:P.F,I:P.int(lo.q,hi.q),method});
+ const randPoly=(deg,big=6)=>{let t;do{t=simplifyTerms(Array.from({length:deg+1},(_,i)=>T(i===0?nzr(-big,big):chance(.75)?rint(-big,big):0,deg-i)));}while(!t.length||t[0].e[0]!==deg);return t;};
+
+ function mAvgPolynomial(){
+  const deg=pick([1,2,2,2,3,3,4]),terms=randPoly(deg,deg>=3?4:7),a=rint(-3,2),b=a+rint(1,deg>=3?3:5),P=polyPiece(terms);
+  return mvtProblem('average_polynomial',{fTex:P.tex,lo:bnd([a,1]),hi:bnd([b,1]),parts:[part(P,bnd([a,1]),bnd([b,1]))],data:{subtype:`degree_${deg}`}});
+ }
+
+ // ---------- substitution, trig, exponential and log averages ----------
+ function mAvgSubstitution(){
+  const kind=pick(['sin_cos','trig','trig','tan_cot','exp','linear_power','sqrt_linear','x_sqrt','reciprocal_linear','arctan','division','negative_powers']);
+  const A=nzr(-6,6);
+  const single=(fTex,lo,hi,F,I,method,data={})=>mvtProblem('average_substitution_trig_exp_log',{fTex,lo,hi,parts:[{lo,hi,fTex,F,I,method}],data:{subtype:kind,...data}});
+  if(kind==='sin_cos'){const t=pick([[1,6],[1,4],[1,3],[1,2]]),I=xscale(xpowSingle(sinX(t),2),Q(A,2));return single(ctex([A,1],'\\sin x\\cos x',true),angB([0,1]),angB(t),ctex(Q(A,2),'\\sin^{2}x',true),I,`Use ${im('u=\\sin x')}, ${im('du=\\cos x\\,dx')}.`);}
+  if(kind==='trig'){
+   const fn=pick(['sin','cos','sec2']),t=fn==='sec2'?pick([[1,6],[1,4],[1,3]]):pick([[1,3],[1,2],[2,3],[1,1],[1,4],[1,6]]);
+   const I=fn==='sin'?xscale(xsub(xq([1,1]),cosX(t)),[A,1]):fn==='cos'?xscale(sinX(t),[A,1]):xscale(tanX(t),[A,1]);
+   if(!I.size)throw Error('zero');
+   return single(ctex([A,1],fn==='sec2'?'\\sec^{2}x':`\\${fn} x`,true),angB([0,1]),angB(t),fn==='sin'?ctex([-A,1],'\\cos x',true):fn==='cos'?ctex([A,1],'\\sin x',true):ctex([A,1],'\\tan x',true),I);
+  }
+  if(kind==='tan_cot'){
+   const fn=pick(['tan','cot']),k=pick([1,1,2]),table=fn==='tan'?LN_COS:LN_SIN,[k0,k1]=(()=>{const ks=Object.keys(table);const i=rint(0,ks.length-2),j=rint(i+1,ks.length-1);return[ks[i],ks[j]];})();
+   const s=fn==='tan'?-1:1,I=xscale(xsub(table[k1],table[k0]),Q(s*A,k)),arg=k===1?'x':'2x';if(!I.size)throw Error('zero');
+   const F=fn==='tan'?ctex(Q(-A,k),lnA(fnTex('cos',arg)),true):ctex(Q(A,k),lnA(fnTex('sin',arg)),true);
+   return single(ctex([A,1],fnTex(fn,arg),true),angB(qdiv(ANG[k0],[k,1])),angB(qdiv(ANG[k1],[k,1])),F,I,`Use ${im(fn==='tan'?'\\int\\tan u\\,du=-\\ln|\\cos u|':'\\int\\cot u\\,du=\\ln|\\sin u|')}${k===2?` with ${im('u=2x')}`:''}.`,{fn,k});
+  }
+  if(kind==='exp'){const k=pick([1,1,2,-1,3]),a=rint(-1,1),b=a+pick([1,1,2]),kx=lin(k,0),I=xscale(xsub(eQ([k*b,1],[1,1]),eQ([k*a,1],[1,1])),Q(A,k));
+   return single(ctex([A,1],`e^{${kx}}`,true),bnd([a,1]),bnd([b,1]),ctex(Q(A,k),`e^{${kx}}`,true),I);}
+  if(kind==='linear_power'){
+   const m=pick([2,3,-1,2]),n=pick([2,3,4,5,6]),s=nzr(-5,5),xs=[];for(let x=-6;x<=6;x++)if(Math.abs(m*x+s)<=(n>=5?2:3))xs.push(x);if(xs.length<2)throw Error('retry');
+   const[a,b]=twoOf(xs,4),inner=lin(m,s),I=xq(qmul(Q(1,m*(n+1)),[(m*b+s)**(n+1)-(m*a+s)**(n+1),1]));if(!I.size)throw Error('zero');
+   return single(`\\left(${inner}\\right)^{${n}}`,bnd([a,1]),bnd([b,1]),ctex(Q(1,m*(n+1)),`\\left(${inner}\\right)^{${n+1}}`,true),I,`Use ${im(`u=${inner}`)}.`,{n});
+  }
+  if(kind==='sqrt_linear'){
+   const m=pick([1,2,3,5]),s=nzr(-4,6),xs=[];for(let x=-6;x<=16;x++){const u=m*x+s;if(u>=0&&u<=49&&Number.isInteger(Math.sqrt(u)))xs.push(x);}if(xs.length<2)throw Error('retry');
+   const[a,b]=twoOf(xs,3),inner=lin(m,s),I=xq(qmul(Q(2,3*m),[Math.sqrt(m*b+s)**3-Math.sqrt(m*a+s)**3,1]));
+   return single(`\\sqrt{${inner}}`,bnd([a,1]),bnd([b,1]),ctex(Q(2,3*m),`\\left(${inner}\\right)^{\\frac{3}{2}}`,true),I,`Use ${im(`u=${inner}`)}.`);
+  }
+  if(kind==='x_sqrt'){
+   const[c,xs]=pick(SQ_PAIRS.filter(([cc,xx])=>xx.filter(x=>x*x+cc<=64).length>=2)),[a,b]=twoOf(xs.filter(x=>x*x+c<=64)),inner=`x^{2}${c<0?'-':'+'}${Math.abs(c)}`;
+   const I=xq(qmul(Q(A,3),[Math.sqrt(b*b+c)**3-Math.sqrt(a*a+c)**3,1]));
+   return single(`${ctex([A,1],'x',true)}\\sqrt{${inner}}`,bnd([a,1]),bnd([b,1]),ctex(Q(A,3),`\\left(${inner}\\right)^{\\frac{3}{2}}`,true),I,`Use ${im(`u=${inner}`)}, ${im('du=2x\\,dx')}.`);
+  }
+  if(kind==='reciprocal_linear'){
+   const s=nzr(-5,5),xs=[];for(let x=-8;x<=8;x++)if(x+s!==0)xs.push(x);const below=chance(.4),pool=xs.filter(x=>below?x+s<0:x+s>0);const[a,b]=twoOf(pool,4);
+   const P=recipPiece(A,-s),I=P.int([a,1],[b,1]);if(!I.size)throw Error('zero');
+   return single(P.tex,bnd([a,1]),bnd([b,1]),P.F,I);
+  }
+  if(kind==='arctan'){
+   if(chance(.35)){const I=X({pi:Q(A,4)});return single(sfrac(ctex([2*A,1],'x',true),'1+x^{4}'),bnd([0,1]),bnd([1,1]),ctex([A,1],'\\tan^{-1}\\left(x^{2}\\right)',true),I,`Use ${im('u=x^{2}')}, ${im('du=2x\\,dx')}.`);}
+   const c=pick([1,2,3,4,5]),sym=chance(.4),lo=sym?[-c,1]:[0,1],I=X({pi:Q(A*(sym?2:1),4*c)});
+   return single(sfrac(String(A),`${c*c}+x^{2}`),bnd(lo),bnd([c,1]),ctex(Q(A,c),atanTex('x',String(c)),true),I);
+  }
+  if(kind==='division'){
+   const r=nzr(-3,3),coefs=[1,rint(-4,4),rint(-5,5)],res=synth(coefs,r);if(!res.remainder)throw Error('retry');
+   const xs=[];for(let x=-5;x<=7;x++)if(x!==r)xs.push(x);const below=chance(.5),pool=xs.filter(x=>below?x<r:x>r);const[a,b]=twoOf(pool,3);
+   const quot=polyFromCoefs(res.quotient),anti=integrateTerms(quot),R=res.remainder,I=xadd(xq(qsub(qpowSum(anti,[b,1]),qpowSum(anti,[a,1]))),lnX([R,1],Q(b-r,a-r)));
+   const num=polyTex(polyFromCoefs(coefs),'x'),div=`x${r<0?'+':'-'}${Math.abs(r)}`;
+   return single(`\\frac{${num}}{${div}}`,bnd([a,1]),bnd([b,1]),join([...anti.map((t,i)=>termTex(t.c,t.e,'x',i===0)),ctex([R,1],lnA(div),false)]),I,`Divide first: ${im(`\\frac{${num}}{${div}}=${polyTex(quot,'x')}${R<0?'-':'+'}\\frac{${Math.abs(R)}}{${div}}`)}.`);
+  }
+  // negative powers such as x^{-2} - x on a positive interval
+  const terms=simplifyTerms([T(nzr(-6,6),pick([-2,-3])),T(nzr(-5,5),pick([0,1,2]))]),a=rint(1,3),b=a+rint(1,3),P=polyPiece(terms);
+  return mvtProblem('average_substitution_trig_exp_log',{fTex:polyTex(terms,'x'),lo:bnd([a,1]),hi:bnd([b,1]),parts:[{lo:bnd([a,1]),hi:bnd([b,1]),fTex:polyTex(terms,'x'),F:P.F,I:P.int([a,1],[b,1])}],data:{subtype:kind}});
+ }
+
+ // ---------- piecewise ----------
+ const casesTex=(p1,p2,brk,leftClosed)=>`\\begin{cases}${p1.tex}, & x${leftClosed?'\\le':'\\lt'} ${brk.tex}\\\\${p2.tex}, & x${leftClosed?'\\gt':'\\ge'} ${brk.tex}\\end{cases}`;
+ function pickPieces(kind){
+  // integer interval [a, b] with break p; pieces chosen so every integral is exact
+  const a=rint(-3,1),p=a+rint(1,3),b=p+rint(1,3);
+  if(kind==='poly'){const p1=polyPiece(randPoly(pick([1,2]),5)),p2=polyPiece(randPoly(pick([1,2]),5));return{a,p,b,p1,p2};}
+  if(kind==='poly_exp'){const p1=polyPiece(randPoly(pick([1,2]),4)),p2=expPiece(nzr(-4,4),p);return{a,p,b,p1,p2};}
+  if(kind==='exp_recip'){const s=pick([0,1]);const a2=s,p2v=a2+pick([1,2]),b2=p2v+pick([2,3]);return{a:a2,p:p2v,b:b2,p1:expPiece(nzr(-3,3),0),p2:recipPiece(nzr(-6,6),p2v-1)};}
+  if(kind==='poly_recip'){const p1=polyPiece(randPoly(pick([1,2]),4));return{a,p,b,p1,p2:recipPiece(nzr(-6,6),p-1)};}
+  // sqrt first piece: k sqrt(x - s) on [a, p] with a - s and p - s perfect squares
+  const s=a-pick([0,1]);let p2;const sq=[1,4,9].map(v=>v+s).filter(v=>v>a);const pp=pick(sq),bb=pp+rint(1,3);p2=polyPiece(randPoly(pick([1,2]),4));
+  return{a,p:pp,b:bb,p1:sqrtPiece(nzr(-4,4),s,rint(-3,3)),p2};
+ }
+ function mAvgPiecewise(){
+  const kind=pick(['poly','poly','poly','poly_exp','poly_recip','exp_recip','sqrt_poly']);const{a,p,b,p1,p2}=pickPieces(kind);if(p1.tex===p2.tex)throw Error('identical pieces');
+  const lo=bnd([a,1]),brk=bnd([p,1]),hi=bnd([b,1]),leftClosed=chance(.5);
+  return mvtProblem('average_piecewise',{fTex:casesTex(p1,p2,brk,leftClosed),lo,hi,parts:[part(p1,lo,brk),part(p2,brk,hi)],data:{subtype:kind}});
+ }
+
+ // ---------- find c ----------
+ const dedupe=eqs=>eqs.filter((e,i)=>e!==eqs[i-1]);
+ // a step whose conclusion follows its equations
+ const stepThen=(h,eqs,after)=>step(h,'',...eqs).replace(/<\/div>$/,`<div class="u4-work-note">${after}</div></div>`);
+ const hypothesis=(fTex,lo,hi)=>step('Check the hypothesis.',`${im(`f(x)=${fTex}`)} is continuous on ${im(intervalTex(lo,hi))}, so the theorem guarantees at least one ${im('c')} in the interval with ${im(`f(c)=${FAVG}`)}.`);
+ // solving a polynomial piece of degree 1 or 2 equal to a rational average; returns roots and explanation equations
+ function solvePolyPiece(P,avg,name='f(c)'){
+  const t=new Map(P.terms.map(x=>[x.e[0],x.c])),A=t.get(2)||[0,1],B=t.get(1)||[0,1],K=qsub(t.get(0)||[0,1],avg),cTex=polyTex(P.terms,'x').replace(/x/g,'c');
+  if(qz(A)){const r=qdiv(qneg(K),B);return{roots:[cRat(r)],eqs:[`${cTex}=${qtex(avg)}`,`c=${qtex(r)}`]};}
+  // clear fractions first: integer coefficients with no common factor and a positive leading term
+  const m=lcm(lcm(A[1],B[1]),K[1]);let Ai=A[0]*m/A[1],Bi=B[0]*m/B[1],Ki=K[0]*m/K[1];const g=g2(g2(Ai,Bi),Ki)*(Ai<0?-1:1);Ai/=g;Bi/=g;Ki/=g;
+  const S=quadSolve([Ai,1],[Bi,1],[Ki,1]);if(S===null)return null;
+  const lhs=polyTex(simplifyTerms([T(Ai,2),T(Bi,1),T(Ki,0)]),'x').replace(/x/g,'c'),eqs=[`${cTex}=${qtex(avg)}`,`${lhs}=0`];
+  if(!S.roots)return{roots:[],eqs,none:true};
+  if(!Bi){const q=Q(-Ki,Ai);eqs.push(`c^{2}=${qtex(q)}`,`c=\\pm${S.roots[1].tex}`);}
+  else eqs.push(`c=\\frac{${-Bi}\\pm\\sqrt{${S.D[0]}}}{${2*Ai}}`);
+  return{roots:S.roots,eqs};
+ }
+ const keepText=(kept,rejected,lo,hi)=>{const parts=[];if(rejected.length)parts.push(`${rejected.map(r=>im(`c=${r.tex}`)).join(' and ')} ${rejected.length>1?'are':'is'} not in ${im(intervalTex(lo,hi))}, so ${rejected.length>1?'they are':'it is'} rejected.`);parts.push(`${kept.length>1?'The values in the interval are':'The value in the interval is'} ${kept.map(r=>im(`c=${r.tex}`)).join(' and ')}.`);return parts.join(' ');};
+ function mFindCSingle(){
+  const kind=pick(['quadratic','quadratic','quadratic','symmetric','cubic','sqrt','reciprocal_square','reciprocal','exp','trig_cos','trig_sin']);
+  const A=nzr(-4,4),C=rint(-6,6);
+  let fTex,lo,hi,parts,solver,cMode=MC;
+  const finish=(kept,rejected,eqs,extra='')=>{if(!kept.length)throw Error('no c');if(kept.some(r=>near(r.val,lo.val)||near(r.val,hi.val)))throw Error('endpoint');
+   return{values:kept.sort((u,v)=>u.val-v.val),steps:[hypothesis(fTex,lo,hi),step(`Solve ${im(`f(c)=${FAVG}`)}.`,extra,...dedupe(eqs)),step('Keep the values in the interval.',keepText(kept,rejected,lo,hi))]};};
+  const inside=r=>r.val>=lo.val-1e-12&&r.val<=hi.val+1e-12;
+  if(kind==='quadratic'||kind==='symmetric'){
+   let P,a,b;
+   if(kind==='symmetric'){const m=rint(1,4);a=-m;b=m;P=polyPiece(simplifyTerms([T(A,2),T(C,0)]));}
+   else{a=rint(-3,2);b=a+rint(2,4);P=polyPiece(simplifyTerms([T(A,2),T(nzr(-6,6),1),T(C,0)]));}
+   lo=bnd([a,1]);hi=bnd([b,1]);fTex=P.tex;parts=[part(P,lo,hi)];
+   solver=avg=>{const S=solvePolyPiece(P,xRational(avg.x));if(!S||S.none)throw Error('tangent');const kept=S.roots.filter(inside),rej=S.roots.filter(r=>!inside(r));return finish(kept,rej,S.eqs);};
+  }else if(kind==='cubic'){
+   const a=pick([0,0,-1,1,-2]),b=a+pick([1,2,3]);lo=bnd([a,1]);hi=bnd([b,1]);const P=polyPiece(simplifyTerms([T(A,3),T(C,0)]));fTex=P.tex;parts=[part(P,lo,hi)];
+   solver=avg=>{const q=qdiv(qsub(xRational(avg.x),[C,1]),[A,1]),r=cCbrt(q);return finish([r].filter(inside),[r].filter(x=>!inside(x)),[`${ctex([A,1],'c^{3}',true)}${ctex([C,1],'',false)}=${avg.tex}`,`c^{3}=${qtex(q)}`,`c=${r.tex}`]);};
+  }else if(kind==='sqrt'){
+   const m=rint(0,3),n=m+rint(1,3);lo=bnd([m*m,1]);hi=bnd([n*n,1]);const P=sqrtPiece(Math.abs(A),0,0);fTex=P.tex;parts=[part(P,lo,hi)];
+   solver=avg=>{const w=qdiv(xRational(avg.x),[Math.abs(A),1]),r=cRat(qmul(w,w));return finish([r],[],[`${ctex([Math.abs(A),1],'\\sqrt{c}',true)}=${avg.tex}`,`\\sqrt{c}=${qtex(w)}`,`c=${r.tex}`]);};
+  }else if(kind==='reciprocal_square'){
+   const p=rint(1,4),q=p+rint(1,5);lo=bnd([p,1]);hi=bnd([q,1]);const P=polyPiece([T(A,-2)]);fTex=P.tex;parts=[part(P,lo,hi)];
+   solver=avg=>{const[k,s]=surdParts(p*q),r=cSurd([0,1],[k,1],s);return finish([r],[cSurd([0,1],[-k,1],s)],[`${sfrac(String(A),'c^{2}')}=${avg.tex}`,`c^{2}=${p*q}`,`c=\\pm${s===1?k:`${k===1?'':k}\\sqrt{${s}}`}`]);};
+  }else if(kind==='reciprocal'){
+   const p=rint(1,4),q=p+rint(1,5),B=Math.abs(A);lo=bnd([p,1]);hi=bnd([q,1]);const P=recipPiece(B,0);fTex=P.tex;parts=[part(P,lo,hi)];
+   solver=avg=>{const r0=Q(q,p),lnT=r0[1]===1?`\\ln ${r0[0]}`:`\\ln\\left(\\frac{${r0[0]}}{${r0[1]}}\\right)`,r={tex:`\\frac{${q-p}}{${lnT}}`,exp:`(${q-p})/ln(${r0[0]}/${r0[1]})`,val:(q-p)/Math.log(q/p)};
+    return finish([r],[],[`\\frac{${B}}{c}=${avg.tex}`,`c=${r.tex}`]);};
+  }else if(kind==='exp'){
+   const k=pick([1,1,2,-1]),a=rint(-1,1),b=a+pick([1,2]),B=Math.abs(A);lo=bnd([a,1]);hi=bnd([b,1]);const kx=lin(k,0),P={tex:ctex([B,1],`e^{${kx}}`,true),F:ctex(Q(B,k),`e^{${kx}}`,true),int:(u,v)=>xscale(xsub(eQ(qmul([k,1],v),[1,1]),eQ(qmul([k,1],u),[1,1])),Q(B,k))};fTex=P.tex;parts=[part(P,lo,hi)];
+   solver=avg=>{const Z=xscale(avg.x,Q(1,B)),r={tex:ctex(Q(1,k),lnP(xOverTex(Z)),true),exp:`(1/${k})*ln(${xexp(Z)})`,val:Math.log(xnum(Z))/k};
+    return finish([r].filter(inside),[],[`${P.tex.replace(/x/g,'c')}=${avg.tex}`,`e^{${lin(k,0).replace('x','c')}}=${xOverTex(Z)}`,`c=${r.tex}`]);};
+  }else{
+   const isCos=kind==='trig_cos',B=Math.abs(A),wide=chance(.5);cMode=MCT;
+   if(isCos){lo=angB(wide?[-1,2]:[0,1]);hi=angB([1,2]);}else{lo=angB([0,1]);hi=angB(wide?[1,1]:[1,2]);}
+   const fn=isCos?'cos':'sin',P={tex:join([ctex([B,1],`\\${fn} x`,true),ctex([C,1],'',false)]),F:join([isCos?ctex([B,1],'\\sin x',true):ctex([-B,1],'\\cos x',true),ctex([C,1],'x',false)])};
+   const I=xadd(isCos?xscale(xsub(sinX(hi.pi),sinX(lo.pi)),[B,1]):xscale(xsub(cosX(lo.pi),cosX(hi.pi)),[B,1]),X({pi:qmul([C,1],qsub(hi.pi,lo.pi))}));
+   fTex=P.tex;parts=[{lo,hi,fTex,F:P.F,I}];
+   solver=avg=>{const inv=isCos?'\\cos^{-1}':'\\sin^{-1}',base=`${inv}\\left(\\frac{2}{\\pi}\\right)`,bexp=`${isCos?'acos':'asin'}(2/pi)`,bval=isCos?Math.acos(2/Math.PI):Math.asin(2/Math.PI);
+    const roots=isCos?[{tex:base,exp:bexp,val:bval},{tex:`-${base}`,exp:`-${bexp}`,val:-bval}]:[{tex:base,exp:bexp,val:bval},{tex:`\\pi-${base}`,exp:`pi-${bexp}`,val:Math.PI-bval}];
+    const kept=roots.filter(inside),rej=roots.filter(r=>!inside(r));
+    return finish(kept,rej,[`${join([ctex([B,1],`\\${fn} c`,true),ctex([C,1],'',false)])}=${avg.tex}`,`\\${fn} c=\\frac{2}{\\pi}`,`c=${roots.map(r=>r.tex).join('\\text{ or }c=')}`]);};
+  }
+  return mvtProblem('find_c_single',{fTex,lo,hi,parts,c:avg=>solver(avg),cMode,data:{subtype:kind}});
+ }
+ function mFindCPiecewise(){
+  const kind=pick(['poly_continuous','poly_continuous','poly_continuous','poly_discontinuous','poly_discontinuous','exp_continuous','mixed_discontinuous']);
+  const a=rint(-3,1),p=a+rint(1,3),b=p+rint(1,3),lo=bnd([a,1]),brk=bnd([p,1]),hi=bnd([b,1]),leftClosed=chance(.5);
+  let p1,p2;const continuous=kind.endsWith('_continuous');
+  if(kind.startsWith('poly')){
+   p1=polyPiece(randPoly(pick([1,1,2]),3));const t2=randPoly(pick([1,2]),3);
+   const shift=qsub(p1.at([p,1]),polyPiece(t2).at([p,1]));
+   const adj=continuous?shift:qadd(shift,[nzr(-4,4),1]);p2=polyPiece(simplifyTerms([...t2,{c:adj,e:[0,1]}]));
+   if(!p2.terms.some(t=>t.e[0]>0))throw Error('constant piece');
+  }else if(kind==='exp_continuous'){
+   const k=nzr(-3,3),m=nzr(-3,3);p2=expPiece(k,p);p1=polyPiece(simplifyTerms([T(m,1),T(k-m*p,0)]));
+  }else{
+   if(chance(.5)){p1=expPiece(nzr(-3,3),0);p2=recipPiece(nzr(-6,6),p-1);}else{p1=polyPiece(randPoly(1,4));p2=recipPiece(nzr(-6,6),p-1);}
+  }
+  if(p1.tex===p2.tex)throw Error('identical pieces');
+  const fTex=casesTex(p1,p2,brk,leftClosed);
+  // one-sided values at the break, exact where rational and as k e^n otherwise
+  const valTex=P=>{const v=P.at([p,1]);if(v)return qtex(v);if(P.kind==='exp'){const n=p-P.s;return ctex([P.k,1],n===1?'e':`e^{${n}}`,true);}throw Error('value');};
+  const cont=Math.abs(p1.num(p)-p2.num(p))<1e-12;if(cont!==continuous)throw Error('continuity');
+  const v1=valTex(p1),v2=valTex(p2);
+  const contStep=cont?step(`Check continuity at ${im(`x=${p}`)}.`,`Both pieces give ${im(v1)} at ${im(`x=${p}`)}, so ${im('f')} is continuous on ${im(intervalTex(lo,hi))} and the theorem applies.`,`\\lim_{x\\to ${p}^{-}}f(x)=${v1}=\\lim_{x\\to ${p}^{+}}f(x)`)
+   :step(`Check continuity at ${im(`x=${p}`)}.`,`The left piece gives ${im(v1)} and the right piece gives ${im(v2)}, so ${im('f')} is not continuous on ${im(intervalTex(lo,hi))}. The Mean Value Theorem for Integrals does not apply.`,`\\lim_{x\\to ${p}^{-}}f(x)=${v1}\\ne ${v2}=\\lim_{x\\to ${p}^{+}}f(x)`);
+  const c=avg=>{
+   // every solution of f(c) = average, piece by piece, numerically first so "happens to exist" is known
+   const scan=(P,u,v)=>{const g=x=>P.num(x)-avg.val,out=[];let px=u,pv=g(u);for(let i=1;i<=4000;i++){const x=u+(v-u)*i/4000,w=g(x);if(pv===0||pv*w<0)out.push((px+x)/2);if(Math.abs(w)<1e-12&&i===4000)out.push(x);px=x;pv=w;}return out;};
+   const found=[...scan(p1,a,p),...scan(p2,p,b)];
+   if(!cont){const exists=found.length>0;return{none:true,steps:[contStep,step('Conclusion.',exists?`Solving ${im(`f(c)=${FAVG}`)} does give a value in the interval here, but that value only happens to exist; the theorem does not guarantee it because ${im('f')} is not continuous.`:`In fact no ${im('c')} in the interval satisfies ${im(`f(c)=${FAVG}`)}, which shows why continuity is needed.`)]};}
+   if(found.some(r=>Math.abs(r-a)<1e-6||Math.abs(r-b)<1e-6))throw Error('endpoint');
+   const steps=[contStep],kept=[];
+   for(const [P,u,v] of [[p1,lo,brk],[p2,brk,hi]]){
+    let roots,eqs;
+    if(P.kind==='poly'){if(!avg.x||!xIsRational(avg.x))throw Error('irrational avg');const S=solvePolyPiece(P,xRational(avg.x));if(S===null)throw Error('tangent');roots=S.roots;eqs=S.eqs;}
+    else if(P.kind==='exp'){const Z=xscale(avg.x,Q(1,P.k));if(xnum(Z)<=0){roots=[];eqs=[`${P.tex.replace(/x/g,'c')}=${avg.tex}`];}else{const r={tex:`${P.s}+${lnP(xOverTex(Z))}`.replace(/^0\+/,''),exp:`(${P.s})+ln(${xexp(Z)})`,val:P.s+Math.log(xnum(Z))};roots=[r];eqs=[`${P.tex.replace(/x/g,'c')}=${avg.tex}`,`c=${r.tex}`];}}
+    else throw Error('unsolvable piece');
+    const inPiece=roots.filter(r=>r.val>=u.val-1e-12&&r.val<=v.val+1e-12),out=roots.filter(r=>!inPiece.includes(r));
+    const txt=[out.length?`${out.map(r=>im(`c=${r.tex}`)).join(' and ')} ${out.length>1?'are':'is'} not in ${im(intervalTex(u,v))}, so ${out.length>1?'they are':'it is'} rejected.`:'',inPiece.length?`Keep ${inPiece.map(r=>im(`c=${r.tex}`)).join(' and ')}.`:`No solution lies in ${im(intervalTex(u,v))}.`].filter(Boolean).join(' ');
+    steps.push(stepThen(`Solve on ${im(intervalTex(u,v))}.`,dedupe(eqs),txt));
+    for(const r of inPiece)if(!kept.some(k=>near(k.val,r.val)))kept.push(r);
+   }
+   if(!kept.length)throw Error('no c');
+   if(kept.length!==found.filter((r,i)=>!found.slice(0,i).some(s=>Math.abs(s-r)<1e-6)).length)throw Error('root count');
+   return{values:kept.sort((u,v)=>u.val-v.val),steps};
+  };
+  return mvtProblem('find_c_piecewise',{fTex,lo,hi,parts:[part(p1,lo,brk),part(p2,brk,hi)],c,data:{subtype:kind,continuous:cont}});
+ }
+ const MVTS={average_polynomial:mAvgPolynomial,average_substitution_trig_exp_log:mAvgSubstitution,average_piecewise:mAvgPiecewise,find_c_single:mFindCSingle,find_c_piecewise:mFindCPiecewise};
+
 
  // ======================= registration =======================
  const ENGINES={basic:()=>BASIC,usub:()=>(typeof USUB!=='undefined'?USUB:null),log:()=>(typeof LOGS!=='undefined'?LOGS:null),mvt:()=>(typeof MVTS!=='undefined'?MVTS:null)};

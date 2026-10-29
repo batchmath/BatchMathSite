@@ -116,8 +116,10 @@ function profiles(){const out={};const re=/"(unit4-(?:basic|usub|log|mvt)[^"]*)"
  return out;}
 const PROFILES=profiles();
 function neededKeys(tex){
- const need=new Set();const s=String(tex);
- if(/\\frac/.test(s))need.add('fraction');if(/\\sqrt/.test(s))need.add('radical');if(/\^/.test(s))need.add('exponent');
+ const need=new Set();let s=String(tex);
+ if(/\\text\{Does not apply\}/.test(s)){need.add('dna');s=s.replace(/\\text\{Does not apply\}/g,'');}
+ if(/,\\ /.test(s))need.add('comma');
+ if(/\\frac/.test(s))need.add('fraction');if(/\\sqrt/.test(s))need.add('radical');if(/\^/.test(s.replace(/\\(?:sin|cos|tan)\^\{-1\}/g,'')))need.add('exponent');// sin⁻¹ keys enter the whole function
  if(/\\ln/.test(s))need.add('logarithm');if(/\\pi/.test(s))need.add('pi');if(/(^|[^a-z\\])e(?![a-z])|e\^/.test(s.replace(/\\[a-z]+/gi,' ')))need.add('e');
  if(/\|/.test(s))need.add('abs');if(/\+C$/.test(s))need.add('C');
  for(const f of ['sin','cos','tan','sec','csc','cot'])if(new RegExp(`\\\\${f}(?!\\^\\{-1\\})`).test(s))need.add(f);
@@ -188,6 +190,74 @@ function checkKeys(engine,p,stage,usage){
  for(const k of need){if(k==='C'&&have.has('C'))continue;if(!have.has(k))fail(engine,p,`answer needs key ${k} missing from ${stage.keypadMode}: ${stage.answerTex}`);}
  const u=usage[stage.keypadMode]||(usage[stage.keypadMode]=new Set());for(const k of need)u.add(k);
 }
+// ---- MVT: f, the interval and any piecewise conditions are read from the displayed formula
+const AVG_PROMPT='Find the average value of the function on the given interval.';
+function parseMvt(p){
+ const tex=questionMath(p.questionHtml),m=tex.match(/^f\(x\)=([\s\S]*)\\text\{ on \}\\left\[([\s\S]*),\\,([\s\S]*)\\right\]$/);
+ if(!m)throw Error('MVT formula not recognized: '+tex.slice(0,120));
+ const a=evalAst(parseTex(m[2]),0),b=evalAst(parseTex(m[3]),0),body=m[1];let pieces;
+ if(body.startsWith('\\begin{cases}')){
+  pieces=body.replace(/^\\begin\{cases\}/,'').replace(/\\end\{cases\}$/,'').split('\\\\').map(row=>{
+   const [e,c]=row.split(', &'),cm=String(c||'').trim().match(/^x\s*\\(le|lt|ge|gt)\s*([\s\S]+)$/);if(!cm)throw Error('piece condition: '+row);
+   return{f:parseTex(e.trim()),op:cm[1],v:evalAst(parseTex(cm[2]),0)};});
+  if(pieces.length!==2||pieces[0].v!==pieces[1].v||!['le','lt'].includes(pieces[0].op)||(pieces[0].op==='le')===(pieces[1].op==='ge'))throw Error('piece conditions do not split the line at one point');
+ }else pieces=[{f:parseTex(body),op:null}];
+ const f=x=>{for(const P of pieces){if(!P.op)return evalAst(P.f,x);const ok=P.op==='le'?x<=P.v:P.op==='lt'?x<P.v:P.op==='ge'?x>=P.v:x>P.v;if(ok)return evalAst(P.f,x);}return NaN;};
+ return{a,b,pieces,f,brk:pieces.length>1?pieces[0].v:null};
+}
+function mvtAverage(M){
+ const segs=M.brk===null?[[M.a,M.b,M.pieces[0].f]]:[[M.a,M.brk,M.pieces[0].f],[M.brk,M.b,M.pieces[1].f]];
+ let I=0;for(const [u,v,ast] of segs){const g=x=>evalAst(ast,x);if(!finiteOn(g,u,v))throw Error(`f undefined or unbounded on [${u},${v}]`);I+=integrate(g,u,v);}
+ return{avg:I/(M.b-M.a),segs};
+}
+// every c in [a, b] with f(c) = average, piece by piece (each piece on its own closed subinterval)
+function mvtRoots(M,avg){
+ const roots=[];let tangent=false;
+ for(const [u,v,ast] of mvtAverage(M).segs){const g=x=>evalAst(ast,x)-avg,N=20000;let px=u,pv=g(u);
+  if(pv===0)roots.push(u);
+  for(let i=1;i<=N;i++){const x=u+(v-u)*i/N,w=g(x);
+   if(w===0)roots.push(x);
+   else if(pv*w<0){let lo=px,hi=x;for(let k=0;k<200;k++){const mid=(lo+hi)/2;if(g(lo)*g(mid)<=0)hi=mid;else lo=mid;}roots.push((lo+hi)/2);}
+   // a tangent root: |g| nearly 0 at a local minimum with the same sign on both sides
+   else if(i<N){const nx=g(x+(v-u)/N);if(Math.abs(w)<1e-7&&Math.abs(w)<Math.abs(pv)&&Math.abs(w)<Math.abs(nx)&&pv*w>0&&w*nx>0)tangent=true;}
+   px=x;pv=w;}
+ }
+ const out=[];for(const r of roots.sort((p,q)=>p-q))if(!out.some(o=>Math.abs(o-r)<1e-7))out.push(r);
+ return{roots:out,tangent};
+}
+function checkMvt(engine,p,stage){
+ const M=parseMvt(p),{avg}=mvtAverage(M);
+ if(!p.questionHtml.includes(AVG_PROMPT))fail(engine,p,'average-value direction missing');
+ if(stage.unit4Answer.kind==='exact-number'){
+  const shown=evalAst(parseTex(stage.answerTex),0);if(!close(avg,shown,1e-8)){fail(engine,p,`average ${avg} != displayed ${shown}`);return;}
+  const keyed=keypadForm(stage.answerTex),r=A.check(keyed,stage.unit4Answer);if(!r.valid||!r.ok)fail(engine,p,`average keypad form rejected: ${keyed} ${JSON.stringify(r)}`);
+  const rw=A.check(`${keyed}+1`,stage.unit4Answer);if(rw.valid&&rw.ok)fail(engine,p,'wrong average accepted');
+  const rd=A.check(shown.toFixed(6),stage.unit4Answer);if(rd.valid&&rd.ok&&!Number.isInteger(shown*1e6))fail(engine,p,'decimal average accepted');
+  verified++;return;
+ }
+ // stage 2: does the theorem apply, and which values of c does it guarantee?
+ let continuous=true;
+ if(M.brk!==null){const L=evalAst(M.pieces[0].f,M.brk),R=evalAst(M.pieces[1].f,M.brk);continuous=close(L,R,1e-10);}
+ const dna=/\\text\{Does not apply\}/.test(stage.answerTex);
+ if(!continuous){
+  if(!dna){fail(engine,p,'f is discontinuous but values of c are given');return;}
+  if(!/does not apply/i.test(stage.explanation))fail(engine,p,'explanation does not say the theorem does not apply');
+  const r=A.check('Does not apply',stage.unit4Answer);if(!r.valid||!r.ok)fail(engine,p,'Does not apply rejected');
+  const rw=A.check('0',stage.unit4Answer);if(rw.valid&&rw.ok)fail(engine,p,'a value accepted when the theorem does not apply');
+  verified++;return;
+ }
+ if(dna){fail(engine,p,'f is continuous but the answer is Does not apply');return;}
+ const {roots,tangent}=mvtRoots(M,avg);if(tangent)warnings.push(`${engine} ${p.id}: possible tangent root of f(c) = average`);
+ if(!roots.length){fail(engine,p,'continuous f with no c found (theorem violated?)');return;}
+ const shownTex=stage.answerTex.split(',\\ '),shown=shownTex.map(t=>evalAst(parseTex(t),0)).sort((u,v)=>u-v);
+ if(shown.length!==roots.length||!shown.every((v,i)=>close(v,roots[i],1e-7))){fail(engine,p,`c values ${JSON.stringify(shown)} != roots ${JSON.stringify(roots)}`);return;}
+ const keyed=shownTex.map(keypadForm);
+ for(const list of [keyed.join(','),[...keyed].reverse().join(', ')]){const r=A.check(list,stage.unit4Answer);if(!r.valid||!r.ok)fail(engine,p,`c list rejected: ${list} ${JSON.stringify(r)}`);}
+ if(keyed.length>1){const r=A.check(keyed.slice(1).join(','),stage.unit4Answer);if(r.valid&&r.ok)fail(engine,p,'incomplete c list accepted');}
+ const rn=A.check('Does not apply',stage.unit4Answer);if(rn.valid&&rn.ok)fail(engine,p,'Does not apply accepted for a continuous f');
+ const rd=A.check(shown.map(v=>v.toFixed(6)).join(','),stage.unit4Answer);if(rd.valid&&rd.ok)fail(engine,p,'decimal c accepted');
+ verified++;
+}
 for(const engine of ONLY){
  const slug=SLUGS[engine],gen=G.get(slug);if(!gen){errors.push(`${engine}: generator missing`);continue;}
  const fam={},tier={},ids=new Map(),texts=new Set(),usage={};let repeats=0,prev=null,t0=Date.now();
@@ -217,7 +287,6 @@ for(const engine of ONLY){
  const unused={};for(const [mode,used] of Object.entries(usage)){const have=profileKeys(PROFILES[mode]||{});const extra=[...have].filter(k=>!used.has(k)&&!['digits','fraction','exponent'].includes(k)&&!(k==='C'));if(extra.length)unused[mode]=extra;}
  report.engines[engine]={slug,families:famReport,tiers:tierReport,distinctIds:ids.size,distinctQuestions:texts.size,maxSingleProblemPercent:+maxShare.toFixed(3),immediateRepeats:repeats,keysNeverUsed:unused,seconds:(Date.now()-t0)/1000};
 }
-let checkMvt=null;
 report.independentlyVerified=verified;report.errors=errors;report.warnings=warnings;report.ok=errors.length===0;
 fs.writeFileSync(path.join(OUT,'unit4-final-four-qa.json'),JSON.stringify(report,null,2)+'\n');
 const lines=['BatchMath v12.8.U final four integrals QA',`Result: ${report.ok?'PASS':'FAIL'}`,`Samples per engine: ${N}`,`Independently verified answers: ${verified}`];
