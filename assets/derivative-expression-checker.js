@@ -46,7 +46,16 @@
         if(FUNCTIONS.has(name))tokens.push({type:"func",value:name});
         else if(CONSTANTS.has(name))tokens.push({type:"const",value:name});
         else if(name==="x"||name==="y")tokens.push({type:"var",value:name});
-        else throw Error("identifier");
+        else{
+          // A letter run such as "xsec" or "xe" (x, then the sec key or e on the keypad) is a
+          // variable or constant followed by more input: take that one token and continue,
+          // so a function name after it is read as a function. Unknown letters stay invalid.
+          const lead=name.startsWith("pi")?"pi":name[0];
+          if(lead==="x"||lead==="y")tokens.push({type:"var",value:lead});
+          else if(CONSTANTS.has(lead))tokens.push({type:"const",value:lead});
+          else throw Error("identifier");
+          i+=lead.length;continue;
+        }
         i=j;continue;
       }
       throw Error("character");
@@ -116,7 +125,8 @@
         }else{
           if(!peek())throw Error("function");
           argument=unary();
-          while(peek()?.type==="*"&&peek().implicit){take();argument={kind:"op",op:"*",left:argument,right:unary()};}
+          // sin2x is sin(2x), but sinxcosx is sin(x)cos(x): a bare argument stops at the next function.
+          while(peek()?.type==="*"&&peek().implicit&&tokens[index+1]?.type!=="func"){take();argument={kind:"op",op:"*",left:argument,right:unary()};}
         }
         return {kind:"function",name:token.value,argument};
       }

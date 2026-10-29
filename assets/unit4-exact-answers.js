@@ -130,7 +130,13 @@
    if(/(?<![a-z])[xy](?![a-z])/i.test(s))throw Error('use k and n');
    s=s.replace(/(?<![a-z])[kn]+(?![a-z])/gi,t=>t.toLowerCase().split('').join('*'));
    s=s.replace(/(?<![a-z])n(?![a-z])/gi,'x').replace(/(?<![a-z])k(?![a-z])/gi,'y');
-  }else s=s.replace(/^\s*(?:F\s*['′]\s*(?:\(\s*x\s*\))?|y\s*['′]|dy\s*\/\s*dx)\s*=\s*/i,'');
+  }else{
+   s=s.replace(/^\s*(?:F\s*['′]\s*(?:\(\s*x\s*\))?|y\s*['′]|dy\s*\/\s*dx)\s*=\s*/i,'');
+   // A factor written directly before a function, as the keypad serializes 2x·sec(x^6) ("2xsec(x^6)",
+   // "3sin^(2)(3x)"), is a product: mark it so the trig-notation rules below, which start at a word
+   // boundary, still apply. asin, acos, … are left whole (the "a" is not a factor).
+   s=s.replace(/([0-9x)])(?=(?:sin|cos|tan|sec|csc|cot|ln|exp|sqrt|abs)(?![a-z]))/gi,'$1*');
+  }
   return poweredFunctions(spacedFactors(readableTrig(s)).toLowerCase().replace(/\s+/g,''));
  }
  function normalForm(tree,{positiveX=false,newtonRoots=false}={}){
@@ -217,11 +223,15 @@
  function numericAgreement(tree,expected,probes){
   const span=probes&&probes.length?Math.max(...probes.map(Math.abs))*.95:.95,points=Array.from({length:25},(_,i)=>-span+2*span*i/24);
   let valid=0;
-  for(const x of points){
-   let want;try{want=parser.evaluate(expected,{x});}catch(_){continue;}
-   if(!Number.isFinite(want))continue;
+  const wants=points.map(x=>{try{const v=parser.evaluate(expected,{x});return Number.isFinite(v)?v:null;}catch(_){return null;}});
+  // Round-off slack scaled to this function's typical (median) size: a fixed 1e-15 hid factors such as 2
+  // when the answer is near 1e-28 everywhere (e^(-4(x-4)^2) close to x = 0), and the largest value would
+  // let one huge point (e^(3e^(3x)) near x = 1) excuse errors everywhere else.
+  const sizes=wants.filter(v=>v!==null).map(Math.abs).sort((a,b)=>a-b),slack=sizes.length?1e-12*sizes[Math.floor(sizes.length/2)]:0;
+  for(let i=0;i<points.length;i++){
+   const want=wants[i],x=points[i];if(want===null)continue;
    let got;try{got=parser.evaluate(tree,{x});}catch(_){return false;}
-   if(!Number.isFinite(got)||Math.abs(want-got)>1e-9*Math.max(Math.abs(want),Math.abs(got))+1e-15)return false;
+   if(!Number.isFinite(got)||Math.abs(want-got)>1e-9*Math.max(Math.abs(want),Math.abs(got))+slack)return false;
    valid++;
   }
   return valid>=12;
