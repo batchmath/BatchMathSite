@@ -11,6 +11,7 @@ seedable RNG, so results are reproducible.
 | `show.mjs <slug> <count> fam= tier= seed= files=` | samples filtered by family or tier |
 | `nested.mjs <slug> <engine file> [N]` | answers with a fraction inside a fraction |
 | `wrong-sep.mjs` | Separable: wrong branch, missing restriction, closed brackets and leftover C are rejected with feedback |
+| `slope-qa.mjs [N]` | Slope Fields: grading of correct, imperfect and wrong segment sets and curves (reversal, near-horizontal and near-vertical, undefined slopes, wrong branch, short curves) |
 | `verify-rate.mjs [N]` | Rate: independent recomputation of every displayed integral (adaptive Simpson on the re-parsed TeX formula), candidate amounts, instantaneous rates and derivatives |
 
 Example: `node tools/review-lab/unit5/qa/smoke.mjs separable-differential-equations unit5-separable.js 3000`

@@ -310,7 +310,7 @@ function parseSlope(text){const t=String(text||'').trim().toLowerCase().replace(
 function segmentsControl(part,panel,done){
  const w=part.board.win,targets=part.board.targets,o=ODES[part.board.ode],s=scale(w);
  const {holder,svg}=makeBoard(w,{title:`Grid for drawing slope segments at ${targets.length} points`});
- const layer=svgEl('g'),marks=svgEl('g'),model=svgEl('g');svg.append(model,layer,marks);
+ const layer=svgEl('g'),marks=svgEl('g'),model=svgEl('g');svg.append(layer,model,marks); // the dashed model is drawn over the student's work so both stay visible
  const dots=targets.map((t,i)=>{const c=svgEl('circle',{cx:X(w,t.x),cy:Y(w,t.y),r:4.5,'data-i':i,'data-x':t.x,'data-y':t.y},'target');svg.appendChild(c);return c;});
  const drawn=new Array(targets.length).fill(null),lines=new Array(targets.length).fill(null);
  const status=el('div','u5-board-status','Drag across each marked point in the direction of its slope.');status.setAttribute('aria-live','polite');
@@ -366,7 +366,7 @@ const fmt=v=>{for(const d of [1,2,3,4,5,6,8,9,10,12]){const n=v*d;if(Math.abs(n-
 function curveControl(part,panel,done){
  const w=part.board.win,o=ODES[part.board.ode],ic=part.board.ic,ref=part.board.ref;
  const {holder,svg}=makeBoard(w,{field:o,spacing:part.board.spacing,points:[{x:ic[0],y:ic[1],r:6}],title:'Slope field with the initial point marked'});
- const model=svgEl('g'),layer=svgEl('g');svg.insertBefore(model,svg.querySelector('.ic-point'));svg.insertBefore(layer,svg.querySelector('.ic-point'));
+ const model=svgEl('g'),layer=svgEl('g');svg.insertBefore(layer,svg.querySelector('.ic-point'));svg.insertBefore(model,svg.querySelector('.ic-point'));
  const status=el('div','u5-board-status','Press on the marked point and drag to draw the curve. Drawing again replaces it.');status.setAttribute('aria-live','polite');
  const tools=el('div','u5-tools unit5-tools');const btn=label=>{const b=el('button','choice',label);b.type='button';tools.appendChild(b);return b;};
  const clearB=btn('Clear'),typeB=btn('Enter points instead');

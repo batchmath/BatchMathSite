@@ -12,6 +12,20 @@ if(!page){console.error('usage: unit5/entry.mjs <page-path> [count] [width] [hei
 const PORT=randomPort(8900),srv=await serve(PORT),b=await browser({scrollbars:true}),c=await context(b,{width:+W,height:+H,mobile:!!mob});
 const p=await open(c,`http://127.0.0.1:${PORT}/${page.replace(/^\/|\/$/g,'')}/?bm_seed=u5entry-${W}`);
 if(process.env.BM_MODE){await p.selectOption('#u5Mode',process.env.BM_MODE);await p.waitForTimeout(400);}
+// drawing parts: a real mouse on desktop contexts, CDP touch events (real touch input, pointerType "touch") on mobile ones
+const cdp=mob?await c.newCDPSession(p):null;
+async function drag(points){
+ if(cdp){await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:points[0][0],y:points[0][1]}]});for(const [x,y] of points.slice(1))await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+ else{await p.mouse.move(...points[0]);await p.mouse.down();for(const pt of points.slice(1))await p.mouse.move(...pt);await p.mouse.up();}
+}
+async function drawPart(k,scope){
+ await p.locator(`${scope} svg.u5-board`).scrollIntoViewIfNeeded();await p.waitForTimeout(100);
+ const strokes=await p.evaluate(({k,scope})=>{const part=window.BatchMathUnit5Last.parts[k],svg=document.querySelector(`${scope} svg.u5-board`),w=JSON.parse(svg.dataset.win),UI=window.BatchMathUnit5SlopeUI;
+  if(part.control==='slope-segments')return part.board.targets.map(t=>{const a=t.vertical?Math.PI/2:Math.atan(t.slope),dx=0.3*Math.cos(a),dy=0.3*Math.sin(a);return[UI.toClient(svg,w,t.x-dx,t.y-dy),UI.toClient(svg,w,t.x,t.y),UI.toClient(svg,w,t.x+dx,t.y+dy)];});
+  return[part.board.ref.filter((_,i)=>i%4===0).map(([x,y])=>UI.toClient(svg,w,x,y))];},{k,scope});
+ for(const st of strokes)await drag(st);
+ await p.locator(`${scope} .staged-check`).click();return `${strokes.length} stroke${strokes.length>1?'s':''} (${cdp?'touch':'mouse'})`;
+}
 // physical keyboard; θ has no key, so it is pressed on the on-screen keypad
 const typeStrokes=async(lin,scope)=>{for(const st of strokes(lin)){if(st.key)await p.keyboard.press(st.key);else if(st.pad)await keypad(p,scope).key(st.pad);else await p.keyboard.type(st.text);}};
 const typedForm=(part)=>{
@@ -28,6 +42,7 @@ for(let i=0;i<+count;i++){
  for(let k=0;k<info.parts.length;k++){
   const part=info.parts[k],scope=`#choices .unit5-part-${k+1}`;
   if(part.control==='choice'||part.control==='svg-choice'){await p.locator(`${scope} .staged-choice`).nth(part.correctIndex).click();}
+  else if(part.control==='slope-segments'||part.control==='solution-curve'){row.push(await drawPart(k,scope));}
   else if(part.control==='input'){
    const lin=typedForm(part),mode=(i+k)%2?'keypad':'keyboard',submit=(i+k)%3===2?'Check':'Enter';
    await p.locator(`${scope} .bm-calc-editor`).first().click();
