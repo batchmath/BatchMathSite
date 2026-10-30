@@ -38,6 +38,10 @@ PAGES = [
          description='Calculator active. Build the exponential model from the given information, keep k exact until the end, and round as each part directs. Use the worked explanation to see every step.',
          modes=[('mixed', 'Mixed Practice'), ('growth', 'Exponential Growth'), ('decay', 'Exponential Decay and Half-Life'), ('cooling', "Newton's Law: Cooling"),
                 ('heating', "Newton's Law: Warming"), ('interest', 'Compound and Continuous Interest'), ('reverse', 'Find the Unknown (Initial Amount, Rate, Dose)')]),
+    dict(topic='rate-problems', page='practice', slug='rate-problems', title='Rate Problems', engine_id='ap_topic_rate_problems', scripts=['/assets/unit5-rate.js'],
+         description='Most problems are calculator active: set up the accumulation integral, include the starting amount when it matters, and round to three decimal places. Use the worked explanation to see every step.',
+         modes=[('mixed', 'Mixed Practice'), ('one_rate', 'Accumulate One Rate'), ('initial_change', 'Initial Amount Plus or Minus Change'), ('in_out', 'Inflow and Outflow'),
+                ('delayed_piecewise', 'Delayed Starts and Piecewise Rates'), ('monotonic', 'Increasing, Decreasing and Extreme Amounts'), ('multipart', 'Connected Multi-Part Problems')]),
 ]
 
 TEMPLATE = U5 / 'basic-first-order-differential-equations' / 'practice' / 'index.html'

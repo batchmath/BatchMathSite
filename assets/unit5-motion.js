@@ -196,7 +196,7 @@ function famDirection(tier){
    step('Make a sign chart.',`Test one value in each interval: ${rows}.`)+step(`The particle moves ${want} where ${m(`v(t)${sign>0?'>':'<'}0`)}.`,'',ivTex);
   return problem({engine:'motion',family:'direction_speed',tier,id:`dir-${A}-${r1}-${r2}-${T}-${want}`,
    questionHtml:question({context:`${C0.intro} Its velocity is ${m(`v(t)=${vt}`)} for ${m(`0<t<${T}`)}.`,calculator:false}),
-   parts:[{prompt:`On what interval or intervals is the particle moving to the ${want}?`,answer:{kind:'interval',variable:'t',parts:pieces.map(([a,b])=>({left:String(a),right:String(b)}))},answerTex:ivTex,explanation:expl,keypadMode:'unit5-motion-intervals',placeholder:'e.g. (0,2)∪(5,7)'}]});
+   parts:[{prompt:`On what interval or intervals is the particle moving to the ${want}?`,answer:{kind:'interval',variable:'t',anyBrackets:true,parts:pieces.map(([a,b])=>({left:String(a),right:String(b)}))},answerTex:ivTex,explanation:expl,keypadMode:'unit5-motion-intervals',placeholder:'e.g. (0,2)∪(5,7)'}]});
  }
  if(kind==='change_direction'){
   // v has a double root (no sign change) and a simple root
@@ -221,7 +221,7 @@ function famDirection(tier){
   step('Compare signs on each interval.',`Speed increases where ${m('v')} and ${m('a')} have the same sign. ${rows}.`,ivTex);
  return problem({engine:'motion',family:'direction_speed',tier,id:`spdint-${A}-${r1}-${r2}-${T}`,
   questionHtml:question({context:`${C0.intro} Its velocity is ${m(`v(t)=${vP.tex('t')}`)} for ${m(`0<t<${T}`)}.`,calculator:false}),
-  parts:[{prompt:'On what interval or intervals is the speed of the particle increasing?',answer:{kind:'interval',variable:'t',parts:up.map(s=>({left:String(s.a),right:String(s.b)}))},answerTex:ivTex,explanation:expl,keypadMode:'unit5-motion-intervals',placeholder:'e.g. (1,2)∪(3,5)'}]});
+  parts:[{prompt:'On what interval or intervals is the speed of the particle increasing?',answer:{kind:'interval',variable:'t',anyBrackets:true,parts:up.map(s=>({left:String(s.a),right:String(s.b)}))},answerTex:ivTex,explanation:expl,keypadMode:'unit5-motion-intervals',placeholder:'e.g. (1,2)∪(3,5)'}]});
 }
 
 // ---------- family 4: calculator motion ----------
@@ -266,7 +266,7 @@ function famCalc(tier){
   const pts=[0,...zs,T],right=[];for(let i=0;i<pts.length-1;i++)if(V.f((pts[i]+pts[i+1])/2)>0)right.push([pts[i],pts[i+1]]);
   if(!right.length)return null;
   const ivTex=right.map(([a,b])=>`(${fix(a)},\\,${fix(b)})`).join('\\cup ');
-  parts.push({prompt:`For ${m(`0<t<${T}`)}, on what interval or intervals is the particle moving to the right? Round endpoints to three decimal places.`,answer:{kind:'interval',variable:'t',tolerance:0.0015,parts:right.map(([a,b])=>({left:a,right:b}))},answerTex:ivTex,
+  parts.push({prompt:`For ${m(`0<t<${T}`)}, on what interval or intervals is the particle moving to the right? Round endpoints to three decimal places.`,answer:{kind:'interval',variable:'t',anyBrackets:true,tolerance:0.0015,parts:right.map(([a,b])=>({left:a,right:b}))},answerTex:ivTex,
    explanation:step('Moving right means v(t) > 0.',`Graph ${m('v')} or use the calculator's zero finder: on ${m(`(0,${T})`)} the velocity is zero at ${zs.map(z=>m(`t\\approx ${fix(z)}`)).join(', ')}. Testing a value between consecutive zeros shows where ${m('v>0')}.`,ivTex),keypadMode:'unit5-motion-intervals-dec',placeholder:'e.g. (0, 1.234)'});
   parts.forEach(p=>{if(p.answer.kind==='interval')p.answer.parts=p.answer.parts.map(q=>({left:+fix(q.left,6),right:+fix(q.right,6)}));});
  }
@@ -300,7 +300,7 @@ function famMulti(tier){
  }
  if(last==='left'){
   const left=[[0,r1],[r1,r2],[r2,T]].filter(([a,b])=>vP.f((a+b)/2)<0);const ivTex=left.map(([a,b])=>`(${a},${b})`).join('\\cup ');
-  PC={prompt:`On what interval or intervals, for ${m(`0<t<${T}`)}, is the particle moving to the left?`,answer:{kind:'interval',variable:'t',parts:left.map(([a,b])=>({left:String(a),right:String(b)}))},answerTex:ivTex,
+  PC={prompt:`On what interval or intervals, for ${m(`0<t<${T}`)}, is the particle moving to the left?`,answer:{kind:'interval',variable:'t',anyBrackets:true,parts:left.map(([a,b])=>({left:String(a),right:String(b)}))},answerTex:ivTex,
    explanation:step('Moving left means v(t) < 0.',`The velocity is zero at ${m(`t=${r1}`)} and ${m(`t=${r2}`)}. Test a value in each interval of ${m(`(0,${T})`)}: ${[[0,r1],[r1,r2],[r2,T]].map(([a,b])=>`${m(`(${a},${b})`)}: ${m(`v${vP.f((a+b)/2)>0?'>':'<'}0`)}`).join('; ')}.`,ivTex),keypadMode:'unit5-motion-intervals',placeholder:'e.g. (1,3)'};
  }
  const parts=tier==='foundational'?[PA,PB]:[PA,PB,PC];

@@ -155,7 +155,7 @@ function checkInterval(raw,spec){
  if(got.empty)return{valid:false,message:'Enter an answer before checking.'};
  const want=spec.none?[]:expectedParts(spec);
  if(got.none)return{valid:true,ok:want.length===0,note:want.length?'There is at least one interval; find where the condition holds.':''};
- const ok=got.parts.length===want.length&&got.parts.every((p,i)=>sameEnd(p.left,want[i].left)&&sameEnd(p.right,want[i].right)&&p.lc===want[i].lc&&p.rc===want[i].rc);
+ const ok=got.parts.length===want.length&&got.parts.every((p,i)=>sameEnd(p.left,want[i].left)&&sameEnd(p.right,want[i].right)&&(spec.anyBrackets||p.lc===want[i].lc&&p.rc===want[i].rc)); // anyBrackets: open or closed finite endpoints (intervals of increase, direction)
  if(ok)return{valid:true,ok:true};
  const v=shownVar(spec.variable);
  if(spec.validity){
