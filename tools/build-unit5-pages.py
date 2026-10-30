@@ -31,7 +31,62 @@ PAGES = [
          description='Solve each initial-value problem, then state the interval of validity of your solution. Enter answers with the math keypad and use the worked explanation to see every step.',
          modes=[('mixed', 'Mixed Practice'), ('product', 'Product Forms'), ('powers_y', 'Powers of y'), ('log_rational', 'Logarithmic and Rational'),
                 ('trig', 'Trigonometric'), ('exp_y', 'Exponentials of y'), ('radical_branch', 'Radicals, Implicit Solutions and Branches')]),
+    dict(topic='exponential-growth-and-decay-interest-newton-s-law-of-cooling', page='practice', new=True,
+         slug='exponential-growth-and-decay-interest-newton-s-law-of-cooling',
+         title="Exponential Growth and Decay, Interest, Newton's Law of Cooling", seo_title="Growth, Decay and Newton's Law",
+         engine_id='ap_topic_exponential_growth_and_decay_interest_newton_s_law_of_cooling', scripts=['/assets/unit5-growth.js'],
+         description='Calculator active. Build the exponential model from the given information, keep k exact until the end, and round as each part directs. Use the worked explanation to see every step.',
+         modes=[('mixed', 'Mixed Practice'), ('growth', 'Exponential Growth'), ('decay', 'Exponential Decay and Half-Life'), ('cooling', "Newton's Law: Cooling"),
+                ('heating', "Newton's Law: Warming"), ('interest', 'Compound and Continuous Interest'), ('reverse', 'Find the Unknown (Initial Amount, Rate, Dose)')]),
 ]
+
+TEMPLATE = U5 / 'basic-first-order-differential-equations' / 'practice' / 'index.html'
+TEMPLATE_TITLE = 'Basic First-Order Differential Equations'
+LAUNCH = ('<section class="resource-section" data-bm-topic-practice="1"><div class="resource-actions bm-practice-launch-row">'
+          '<a aria-label="{label}" class="resource-link bm-practice-launch bm-practice-integral" data-bm-resource="practice" href="practice/">'
+          '<span aria-hidden="true" class="bm-practice-icon bm-practice-icon-integral">∫</span><span class="bm-practice-label">{label}</span>'
+          '<span aria-hidden="true" class="bm-practice-arrow">›</span></a></div></section>')
+
+def create_page(cfg):
+    """A new practice page: the Basic page with this topic's titles, URLs, structured data and engine id."""
+    dst = U5 / cfg['topic'] / cfg['page'] / 'index.html'
+    if dst.exists():
+        return False
+    text = TEMPLATE.read_text(encoding='utf-8')
+    seo = cfg.get('seo_title', cfg['title'])
+    text = text.replace(f'{TEMPLATE_TITLE} Practice | AP Calculus AB | BatchMath', f'{seo} Practice | AP Calculus AB | BatchMath')
+    text = text.replace('basic-first-order-differential-equations', cfg['topic'])
+    text = text.replace('ap_topic_basic_first_order_differential_equations', cfg['engine_id'])
+    text = text.replace(TEMPLATE_TITLE, cfg['title'])
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    dst.write_text(text, encoding='utf-8')
+    return True
+
+def add_launch(cfg):
+    """The practice launch button on the topic page, after the resources and before the topic pager."""
+    path = U5 / cfg['topic'] / 'index.html'
+    text = path.read_text(encoding='utf-8')
+    if 'data-bm-topic-practice' in text:
+        return False
+    nav = '<nav aria-label="Previous and next calculus topics" class="topic-pager">'
+    if text.count(nav) != 1:
+        raise SystemExit(f'{path}: topic pager not found')
+    text = text.replace(nav, LAUNCH.format(label=html.escape(cfg['title'] + ' Practice', quote=False)) + nav)
+    path.write_text(text, encoding='utf-8')
+    return True
+
+def add_sitemap(cfg):
+    path = ROOT / 'sitemap.xml'
+    text = path.read_text(encoding='utf-8')
+    base = f'https://batchmath.net/ap-calculus/unit-5-differential-equations/topics/{cfg["topic"]}/'
+    page = f'  <url><loc>{base}{cfg["page"]}/</loc></url>\n'
+    if page.strip() in text:
+        return False
+    topic = f'  <url><loc>{base}</loc></url>\n'
+    if topic not in text:
+        raise SystemExit(f'sitemap: {base} not found')
+    path.write_text(text.replace(topic, topic + page, 1), encoding='utf-8')
+    return True
 
 def tag(src):
     return f'<script src="{src}"></script>'
@@ -77,5 +132,9 @@ def wire(path, cfg):
 
 if __name__ == '__main__':
     for cfg in PAGES:
+        if cfg.get('new'):
+            if create_page(cfg): print('created', cfg['topic'])
+            if add_launch(cfg): print('launch link added to', cfg['topic'])
+            if add_sitemap(cfg): print('sitemap entry added for', cfg['topic'])
         p = U5 / cfg['topic'] / cfg['page'] / 'index.html'
         print('wired', wire(p, cfg).relative_to(ROOT))
