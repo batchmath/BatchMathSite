@@ -29,4 +29,4 @@ seedable RNG, so results are reproducible.
 
 Example: `node tools/review-lab/unit5/qa/smoke.mjs separable-differential-equations unit5-separable.js 3000`
 
-Browser entry tests are in `tools/review-lab/unit5/entry.mjs`; the real-page rounding test is `tools/review-lab/unit5/rounding-browser.mjs [width] [height] [mobile]` (see `tools/review-lab/README.md`).
+Browser entry tests are in `tools/review-lab/unit5/entry.mjs`; every Practice Type option on every page: `tools/review-lab/unit5/dropdown-browser.mjs`; release screenshots: `tools/review-lab/unit5/evidence.mjs <out dir>`; the real-page rounding test is `tools/review-lab/unit5/rounding-browser.mjs [width] [height] [mobile]` (see `tools/review-lab/README.md`).

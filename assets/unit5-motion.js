@@ -336,16 +336,17 @@ function famCalcDistance(tier){
 function famCalcSpeed(tier){
  const C0=ctx(),h=1e-5;
  if(tier==='challenging'){ // acceleration given: velocity from an integral, then the speed at that time
-  const A=pick(VEL)(),T=pick(A.T),t0=0,v0=ri(-3,3),c=ri(2,T);const vc=v0+integrate(A.f,t0,c),ac=A.f(c);
+  const A=pick(VEL)(),T=pick(A.T),t0=0,v0=pick([-4,-3,-2,-1,1,2]),c=ri(2,T);const vc=v0+integrate(A.f,t0,c),ac=A.f(c);
   if(Math.abs(vc)<0.05||Math.abs(ac)<0.05)return null;const inc=vc*ac>0;
   return problem({engine:'motion',family:'calc_speed',tier,id:`cspa-${T}-${v0}-${c}`,calculator:true,
    questionHtml:question({context:`${C0.intro} Its acceleration is ${m(`a(t)=${A.tex}`)} ${C0.acc} for ${m(`0\\le t\\le ${T}`)}, and ${m(`v(0)=${v0}`)}.`,prompt:'Use your calculator. Answer each part.',calculator:true}),
    parts:[{prompt:`Find the velocity of the particle at ${m(`t=${c}`)}. ${DEC3}`,answer:{kind:'numeric',value:vc,places:3},answerTex:fix(vc),keypadMode:'unit5-number',placeholder:'Decimal answer',
      explanation:step('Velocity is the starting velocity plus the integral of acceleration.','',`v(${c})=v(0)+\\int_{0}^{${c}}a(t)\\,dt=${v0}+\\int_{0}^{${c}}\\left(${A.tex}\\right)dt\\approx ${fix(vc)}`)},
-    {prompt:`Find the speed of the particle at ${m(`t=${c}`)}. ${DEC3}`,answer:{kind:'numeric',value:Math.abs(vc),places:3,wrongValues:vc<0?[{value:vc,note:'Speed is the absolute value of velocity, so it is never negative.'}]:[]},answerTex:fix(Math.abs(vc)),keypadMode:'unit5-number',placeholder:'Decimal answer',
-     explanation:step('Speed is the absolute value of velocity.','',`\\left|v(${c})\\right|\\approx ${fix(Math.abs(vc))}`)},
+    // the speed part only when the velocity is negative, where it differs from the velocity
+    ...(vc<0?[{prompt:`Find the speed of the particle at ${m(`t=${c}`)}. ${DEC3}`,answer:{kind:'numeric',value:Math.abs(vc),places:3,wrongValues:[{value:vc,note:'Speed is the absolute value of velocity, so it is never negative.'}]},answerTex:fix(Math.abs(vc)),keypadMode:'unit5-number',placeholder:'Decimal answer',
+     explanation:step('Speed is the absolute value of velocity.','',`\\left|v(${c})\\right|\\approx\\left|${fix(vc)}\\right|=${fix(Math.abs(vc))}`)}]:[]),
     {prompt:`Is the particle's speed increasing or decreasing at ${m(`t=${c}`)}?`,control:'choice',choices:['Increasing','Decreasing'],correctIndex:inc?0:1,answerIsText:true,answerTex:inc?'Increasing':'Decreasing',
-     explanation:step('Compare the signs of velocity and acceleration.',`${m(`v(${c})\\approx ${fix(vc)}`)} is ${sgnWord(vc)} and ${m(`a(${c})=${fix(ac)}`)} (evaluate the given acceleration) is ${sgnWord(ac)}. ${inc?'Same sign: the speed is increasing.':'Opposite signs: the speed is decreasing.'}`)}]});
+     explanation:step('Compare the signs of velocity and acceleration.',`${m(`v(${c})\\approx ${fix(vc)}`)} is ${sgnWord(vc)} and ${m(`a(${c})\\approx ${fix(ac)}`)} (evaluate the given acceleration) is ${sgnWord(ac)}. ${inc?'Same sign: the speed is increasing.':'Opposite signs: the speed is decreasing.'}`)}]});
  }
  const V=pick(VEL)(),T=pick(V.T),c=ri(1,T-1),vc=V.f(c),ac=(V.f(c+h)-V.f(c-h))/(2*h);if(Math.abs(vc)<0.05||Math.abs(ac)<0.05)return null;const inc=vc*ac>0;
  const parts=[{prompt:`Find the acceleration of the particle at ${m(`t=${c}`)}. ${DEC3}`,answer:{kind:'numeric',value:ac,places:3,wrongValues:[{value:vc,note:'That is the velocity. Acceleration is the derivative of velocity.'}]},answerTex:fix(ac),keypadMode:'unit5-number',placeholder:'Decimal answer',

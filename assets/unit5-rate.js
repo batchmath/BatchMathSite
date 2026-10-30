@@ -204,8 +204,8 @@ function famOne(tier,calc){
  const v1=integrate(s.f,a1,b1),v2=integrate(s.f,a2,b2),d=v2-v1;if(Math.abs(d)<0.5)return null;
  const more=d>0,F1=int(F,a1,b1),F2=int(F,a2,b2);
  return build('one_rate',tier,`onecmp-${C.F}-${M}-${T}-${w}`,ctx,[`${F}=${s.tex}`],[decPart(`How many ${more?'more':'fewer'} ${C.amt} ${C.ask} from ${at(C,a2)} to ${at(C,b2)} than from ${at(C,a1)} to ${at(C,b1)}?`,Math.abs(d),C.amt,
-  step('Accumulate over each window.','Each total is the integral of the rate over its own window.',`${F2}\\approx ${fx(v2)}`,`${F1}\\approx ${fx(v1)}`)+
-  step('Compare.',`${more?'Subtract the first total from the second.':'The second total is smaller; subtract it from the first.'}`,`${more?`${fx(v2)}-${fx(v1)}`:`${fx(v1)}-${fx(v2)}`}\\approx ${fx(Math.abs(d))}`),
+  step('Accumulate over each window.','Each total is the integral of the rate over its own window; keep the unrounded values for the subtraction.',`${F2}\\approx ${fx(v2,4)}`,`${F1}\\approx ${fx(v1,4)}`)+
+  step('Compare.',`${more?'Subtract the first total from the second.':'The second total is smaller; subtract it from the first.'}`,`${more?`${fx(v2,4)}-${fx(v1,4)}`:`${fx(v1,4)}-${fx(v2,4)}`}\\approx ${fx(Math.abs(d))}`),
   [{value:s.f(b2)-s.f(b1),note:'That compares the rates at two instants. Compare the totals: integrate over each window.'},{value:v2+v1,note:'That adds the two totals. The question asks for their difference.'}])],true);
 }
 
