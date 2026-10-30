@@ -16,6 +16,7 @@ seedable RNG, so results are reproducible.
 | `verify-motion.mjs [N]` | Motion: re-parses every question (v(t), or a(t) with the given velocity and positions) and recomputes every part with its own root finding and integration |
 | `verify-growth.mjs [N]` | Growth, decay, interest, Newton's law: reads the numbers back from the wording and recomputes every answer; also checks physical sense |
 | `verify-slope.mjs [N]` | Slope Fields: slopes at every marked point, reference curves re-integrated with a different method, and every analysis answer, from the displayed equation |
+| `equivalence.mjs [N]` | Every answer format: SymPy-equivalent forms of function answers (`equiv_variants.py`), inequality and union notation, units and currency, reordered lists accepted; sign errors, added constants, rounded decimals of exact values, wrong brackets and missing values rejected (needs sympy) |
 | `review-audit.mjs [N]` | Comprehensive Review: topic and difficulty percentages, independence, slope-field drawing share, focused modes |
 | `verify-rate.mjs [N]` | Rate: independent recomputation of every displayed integral (adaptive Simpson on the re-parsed TeX formula), candidate amounts, instantaneous rates and derivatives |
 

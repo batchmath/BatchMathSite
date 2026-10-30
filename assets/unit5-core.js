@@ -152,9 +152,12 @@ function question({prompt,formula,formulas,context,calculator,extra=''}){
 
 // ---------- problem objects ----------
 const TIERS=['foundational','intermediate','challenging'];
+// a short content hash so that different problems never share an id (the parameters in an id do not always
+// determine the problem) while the same problem always gets the same id
+function hash(text){let h=0x811c9dc5;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,0x01000193);}return(h>>>0).toString(36);}
 function problem({engine,family,tier,id,questionHtml,parts,calculator=false,data={}}){
  if(!TIERS.includes(tier))throw Error(`tier ${tier}`);
- return{id:`u5-${engine}-${id}`,variant:family,normalizedMathDisplay:true,answerType:'unit5-staged',calculatorActive:!!calculator,
+ return{id:`u5-${engine}-${id}-${hash(questionHtml+parts.map(x=>x.answerTex||'').join('|'))}`,variant:family,normalizedMathDisplay:true,answerType:'unit5-staged',calculatorActive:!!calculator,
   questionHtml,parts,answerTex:parts[parts.length-1].answerTex,explanation:parts.map(p=>p.explanation||'').join(''),
   unit5Meta:{engine,family,tier,calculator:!!calculator,parts:parts.length,...data}};
 }
