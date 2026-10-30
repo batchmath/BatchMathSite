@@ -24,7 +24,7 @@ for(let i=1;i<=N;i++){L.seed(i*3301);const p=gen({});const q=plain(p.questionHtm
   ctx.k=Math.log((T0-Ts)/(T1-Ts))/t1;ctx.T=t=>Ts+(T0-Ts)*Math.exp(-ctx.k*t);Object.assign(ctx,{T0,Ts,t1,T1,kind:'newton'});
   if(!(ctx.k>0))sense.push(`${p.id}: k = ${ctx.k} is not positive`);if((T1-Ts)*(T0-Ts)<=0||Math.abs(T1-Ts)>=Math.abs(T0-Ts))sense.push(`${p.id}: reading ${T1} is not between ${T0} and ${Ts}`);
   if(/warming/.test(q)!==(T0<Ts))sense.push(`${p.id}: warming label does not match the temperatures`);}
- else if((m=q.match(new RegExp(`${NUM} dollars is invested in an account that earns ${NUM}% annual interest(?: compounded (\\w+))?`)))){Object.assign(ctx,{P:num(m[1]),r:num(m[2])/100,how:m[3]||null,kind:'interest'});}
+ else if((m=q.match(new RegExp(`A deposit of ${NUM} dollars is made into a savings account that pays ${NUM}% annual interest(?: compounded (\\w+))?`)))){Object.assign(ctx,{P:num(m[1]),r:num(m[2])/100,how:m[3]||null,kind:'interest'});}
  else if((m=q.match(new RegExp(`An account earns ${NUM}% annual interest compounded continuously`)))){Object.assign(ctx,{r:num(m[1])/100,kind:'present value'});}
  else if((m=q.match(new RegExp(`half-life of ${NUM} hours\\. A treatment requires at least ${NUM} milligrams to remain (\\d+) hours`)))){const H=num(m[1]);Object.assign(ctx,{need:num(m[2])*Math.pow(2,+m[3]/H),k:Math.LN2/H,kind:'dose'});}
  else if((m=q.match(new RegExp(`half-life of ${NUM} (\\w+)\\. Delivery takes (\\d+|1) \\w+, and the experiment needs ${NUM} units`)))){const H=num(m[1]);Object.assign(ctx,{need:num(m[4])*Math.pow(2,+m[3]/H),kind:'shipping'});}

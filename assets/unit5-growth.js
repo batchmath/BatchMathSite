@@ -200,15 +200,15 @@ function famInterest(tier){
  const compStep=step('Use the compound interest formula.',`For interest compounded ${m('n')} times per year, ${m('A=P\\left(1+\\frac{r}{n}\\right)^{nt}')}. Here ${m(`P=${nt(P)}`)}, ${m(`r=${r}`)} (the rate as a decimal), ${m(`n=${n}`)} and ${m(`t=${t}`)}.`,
   `A=${nt(P)}\\left(1+\\frac{${r}}{${n}}\\right)^{${n}\\cdot ${t}}\\approx ${nt(money(A))}`);
  const contStep=step('Use continuous compounding.',`Continuous compounding is the solution of ${m('\\frac{dA}{dt}=rA')}, so ${m('A=Pe^{rt}')} with ${m(`P=${nt(P)}`)}, ${m(`r=${r}`)} and ${m(`t=${t}`)}.`,`A=${nt(P)}e^{${r}\\cdot ${t}}\\approx ${nt(money(Ac))}`);
- const intro=`${comma(P)} dollars is invested in an account that earns ${rp}% annual interest.`;
- const compPart=()=>moneyPart(`How much is in the account after ${t} years if the interest is compounded ${how}?`,A,compStep,[{value:Ac,note:`That is the continuously compounded amount. This account compounds ${how}, so use A = P(1 + r/n)^(nt).`},SIMPLE]);
- const contPart=()=>moneyPart(`How much is in the account after ${t} years if the interest is compounded continuously?`,Ac,contStep,[{value:A,note:'That uses a finite number of compoundings. Continuous compounding uses A = Pe^(rt).'},SIMPLE]);
+ const intro=`A deposit of ${comma(P)} dollars is made into a savings account that pays ${rp}% annual interest.`;
+ const compPart=()=>moneyPart(`What is the balance after ${t} years if the interest is compounded ${how}?`,A,compStep,[{value:Ac,note:`That is the continuously compounded amount. This account compounds ${how}, so use A = P(1 + r/n)^(nt).`},SIMPLE]);
+ const contPart=()=>moneyPart(`What is the balance after ${t} years if the interest is compounded continuously?`,Ac,contStep,[{value:A,note:'That uses a finite number of compoundings. Continuous compounding uses A = Pe^(rt).'},SIMPLE]);
  if(tier==='foundational')return build('interest',tier,`int-${P}-${rp}-${t}-${n}`,intro,multi(tier)&&n!==365?[compPart(),contPart()]:[pick([compPart,contPart])()]);
  if(tier==='intermediate'){
   if(multi(tier)&&n!==365&&Math.abs(Ac-A)>=0.05)return build('interest',tier,`intc-${P}-${rp}-${t}-${n}`,intro,[compPart(),contPart()]);
   // time to reach a target with continuous compounding
   const f=pick([2,1.5,3]),target=P*f,tt=Math.log(f)/r;
-  return build('interest',tier,`intt-${P}-${rp}-${f}`,`${comma(P)} dollars is invested in an account that earns ${rp}% annual interest compounded continuously.`,
+  return build('interest',tier,`intt-${P}-${rp}-${f}`,`A deposit of ${comma(P)} dollars is made into a savings account that pays ${rp}% annual interest compounded continuously.`,
    [decPart(`How many years will it take for the account to reach ${comma(target)} dollars?`,tt,'years',step('Write the model.','Continuous compounding gives',`A=${nt(P)}e^{${r}t}`)+step(`Solve for ${m('t')}.`,'Set the model equal to the target, divide, and take the natural log.',`${nt(target)}=${nt(P)}e^{${r}t}`,`e^{${r}t}=${f}`,`t=\\frac{\\ln ${f}}{${r}}\\approx ${fx(tt)}`))]);
  }
  // challenging: time to a target with periodic compounding, or interest earned and the difference
@@ -216,12 +216,12 @@ function famInterest(tier){
   const [n2,how2]=pick(COMP.slice(0,4)),f=pick([2,1.5]),tt=Math.log(f)/(n2*Math.log(1+r/n2));
   const parts=[decPart(`How many years will it take for the account to grow to ${comma(P*f)} dollars?`,tt,'years',step('Use the compound interest formula.',`With interest compounded ${how2}, ${m(`A=${nt(P)}\\left(1+\\frac{${r}}{${n2}}\\right)^{${n2}t}`)}.`)+
    step(`Solve for ${m('t')}.`,'Divide by the principal, then take the natural log of both sides; the exponent comes down as a factor.',`\\left(1+\\frac{${r}}{${n2}}\\right)^{${n2}t}=${f}`,`${n2}t\\ln\\left(1+\\frac{${r}}{${n2}}\\right)=\\ln ${f}`,`t=\\frac{\\ln ${f}}{${n2}\\ln\\left(1+\\frac{${r}}{${n2}}\\right)}\\approx ${fx(tt)}`),{wrong:[{value:Math.log(f)/r,note:'That is the time for continuous compounding. This account compounds a whole number of times per year.'}]})];
-  if(multi(tier)){parts.unshift(moneyPart(`How much is in the account after ${t} years?`,P*Math.pow(1+r/n2,n2*t),step('Use the compound interest formula.',`${m('A=P\\left(1+\\frac{r}{n}\\right)^{nt}')} with ${m(`n=${n2}`)}.`,`A=${nt(P)}\\left(1+\\frac{${r}}{${n2}}\\right)^{${n2}\\cdot ${t}}\\approx ${nt(money(P*Math.pow(1+r/n2,n2*t)))}`)));}
-  return build('interest',tier,`intn-${P}-${rp}-${n2}-${f}`,`${comma(P)} dollars is invested in an account that earns ${rp}% annual interest compounded ${how2}.`,parts);
+  if(multi(tier)){parts.unshift(moneyPart(`What is the balance after ${t} years?`,P*Math.pow(1+r/n2,n2*t),step('Use the compound interest formula.',`${m('A=P\\left(1+\\frac{r}{n}\\right)^{nt}')} with ${m(`n=${n2}`)}.`,`A=${nt(P)}\\left(1+\\frac{${r}}{${n2}}\\right)^{${n2}\\cdot ${t}}\\approx ${nt(money(P*Math.pow(1+r/n2,n2*t)))}`)));}
+  return build('interest',tier,`intn-${P}-${rp}-${n2}-${f}`,`A deposit of ${comma(P)} dollars is made into a savings account that pays ${rp}% annual interest compounded ${how2}.`,parts);
  }
  const [n3,how3]=pick(COMP.slice(0,4)),A3=P*Math.pow(1+r/n3,n3*t);if(Math.abs(Ac-A3)<0.05)return null;
  const s3=step('Use the compound interest formula.',`${m('A=P\\left(1+\\frac{r}{n}\\right)^{nt}')} with ${m(`n=${n3}`)}.`,`A=${nt(P)}\\left(1+\\frac{${r}}{${n3}}\\right)^{${n3}\\cdot ${t}}\\approx ${nt(money(A3))}`);
- const earned=moneyPart(`How much interest does the account earn in ${t} years if the interest is compounded ${how3}?`,A3-P,s3+step('Subtract the principal.','The interest earned is the final amount minus the amount invested.',`${nt(money(A3))}-${nt(P)}=${nt(money(A3-P))}`),[{value:A3,note:'That is the final balance. The interest earned is the balance minus the amount invested.'}]);
+ const earned=moneyPart(`How much interest does the account earn in ${t} years if the interest is compounded ${how3}?`,A3-P,s3+step('Subtract the principal.','The interest earned is the final balance minus the amount deposited.',`${nt(money(A3))}-${nt(P)}=${nt(money(A3-P))}`),[{value:A3,note:'That is the final balance. The interest earned is the balance minus the amount invested.'}]);
  const diff=moneyPart(`How much more would the account contain after ${t} years with continuous compounding instead?`,Ac-A3,step('Compute both balances and subtract.',`Continuous: ${m(`${nt(P)}e^{${r}\\cdot ${t}}\\approx ${nt(money(Ac))}`)}. Compounded ${how3}: ${m(`\\approx ${nt(money(A3))}`)}.`,`${nt(money(Ac))}-${nt(money(A3))}\\approx ${nt(money(Ac-A3))}`));
  return build('interest',tier,`inte-${P}-${rp}-${t}-${n3}`,intro,multi(tier)?[earned,diff]:[earned]);
 }

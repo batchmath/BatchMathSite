@@ -60,13 +60,17 @@ function summarize(record,problems){
 }
 
 const topicFiles=walk(path.join(ROOT,'ap-calculus')).filter(f=>/[/\\]topics[/\\][^/\\]+[/\\](?:practice|integral-rules-practice)[/\\]index\.html$/.test(f)&&!/[/\\](?:comprehensive-review|semester-1-review)[/\\]practice[/\\]index\.html$/.test(f)).sort();
-if(topicFiles.length!==55)errors.push(`Expected exactly 55 individual AP topic practice pages, found ${topicFiles.length}`);
+// v12.8.W adds the Slope Fields and Growth/Decay practice pages (55 -> 57).
+if(topicFiles.length!==57)errors.push(`Expected exactly 57 individual AP topic practice pages, found ${topicFiles.length}`);
 
 const sharedSource=fs.readFileSync(path.join(ROOT,'assets/ap-topic-generators.js'),'utf8');
 const sharedBox={window:{},console};vm.createContext(sharedBox);vm.runInContext(sharedSource,sharedBox,{filename:'ap-topic-generators.js'});
 vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/unit3-applications-generators.js'),'utf8'),sharedBox,{filename:'unit3-applications-generators.js'});
+// v12.8.W: Unit 5 pages load their engine after ap-topic-generators.js; it registers over the shared slug.
+const unit5Box={window:{BatchMathRNG:{random:rng('unit5-load')}},console,document:{addEventListener(){}}};vm.createContext(unit5Box);
+for(const f of ['derivative-expression-checker.js','unit4-exact-answers.js','ap-topic-generators.js','unit5-core.js','unit5-answers.js','unit5-basic.js','unit5-motion.js','unit5-slope-fields.js','unit5-separable.js','unit5-growth.js','unit5-rate.js'])vm.runInContext(fs.readFileSync(path.join(ROOT,'assets',f),'utf8'),unit5Box,{filename:f});
 
-function sampleShared(slug,seedBase){const gen=sharedBox.window.BatchMathAPTopicGenerators?.get(slug);if(typeof gen!=='function')throw new Error(`shared generator ${slug} missing`);const out=[];for(let i=0;i<PER_TOPIC;i++){sharedBox.window.BatchMathRNG={random:rng(`${seedBase}:${i}`)};out.push(structuredClone(gen()));}return out;}
+function sampleShared(slug,seedBase,box=sharedBox){const gen=box.window.BatchMathAPTopicGenerators?.get(slug);if(typeof gen!=='function')throw new Error(`shared generator ${slug} missing`);const out=[];for(let i=0;i<PER_TOPIC;i++){box.window.BatchMathRNG={random:rng(`${seedBase}:${i}`)};out.push(box===sharedBox?structuredClone(gen()):JSON.parse(JSON.stringify(gen())));}return out;} // Unit 5 problems carry checker functions; the audit reads only data
 function sampleContinuousMerged(seedBase){
   const box={window:{BatchMathRNG:{random:rng(seedBase)}},console};box.BatchMathRNG=box.window.BatchMathRNG;vm.createContext(box);
   vm.runInContext(fs.readFileSync(path.join(ROOT,'assets/unit1-core-expansions.js'),'utf8'),box,{filename:'unit1-core-expansions.js'});
@@ -100,7 +104,7 @@ for(const file of topicFiles){
   const html=fs.readFileSync(file,'utf8'),rel=path.relative(path.join(ROOT,'ap-calculus'),file).replaceAll(path.sep,'/'),folder=path.basename(path.dirname(path.dirname(file))),id=engineId(html),title=titleFrom(html,folder);
   let sourceType,sourceKey,problems=[];
   try{
-    if(html.includes('/assets/ap-topic-generators.js')){sourceType='shared_topic_generator';sourceKey=topicSlug(html,folder);problems=sampleShared(sourceKey,`deep:${sourceKey}`);}
+    if(html.includes('/assets/ap-topic-generators.js')){sourceType='shared_topic_generator';sourceKey=topicSlug(html,folder);problems=sampleShared(sourceKey,`deep:${sourceKey}`,rel.startsWith('unit-5-')?unit5Box:sharedBox);}
     else if(id==='ap_topic_limits_of_continuous_functions'){sourceType='shared_unit1_module';sourceKey='continuous:mixed';problems=sampleContinuousMerged(`deep:${sourceKey}`);}
     else if(['ap_limit_proofs','ap_classifying_discontinuities','ap_advanced_trig_limits','ap_topic_derivatives_with_the_power_rule'].includes(id)){sourceType='specialized';sourceKey=id;problems=sampleSpecial(file,id,`deep:${id}`);}
     else{sourceType='filtered_comprehensive';const cat=selectedCategory(html);if(!cat)throw Error('selected category not found');const family=rel.startsWith('unit-1-')?'limits':rel.startsWith('unit-2-')?'derivatives':rel.startsWith('unit-4-')?'integrals':'unknown';sourceKey=`${family}:${cat}`;problems=sampleFiltered(html,cat,`deep:${sourceKey}`);}

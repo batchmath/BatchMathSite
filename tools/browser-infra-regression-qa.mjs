@@ -18,19 +18,24 @@ if(!/id:`int-\$\{op===\"\+\"\?\"add\":\"sub\"\}-\$\{x\}-\$\{y\}`/.test(ints))fai
 if(!/key:`int-\$\{op===\"\+\"\?\"add\":\"sub\"\}-\$\{x\}-\$\{y\}`/.test(ints))fail('IM1 integer add/sub problems missing deterministic key');
 stats.integerIdKeyGuards=2;
 
-// Unit 5 comprehensive review must reference only live shared generators.
+// Unit 5 comprehensive review (v12.8.W): one generator, unit5-comprehensive-review, drawing on all six rebuilt
+// Unit 5 engines. The page must load every engine script, and the review must reach every topic.
 const u5rel='ap-calculus/unit-5-differential-equations/topics/comprehensive-review/assignment-practice/index.html';
 const u5=fs.readFileSync(path.join(ROOT,u5rel),'utf8');
-const m=u5.match(/window\.BM_TOPIC_PRACTICE=\{slugs:\[([^\]]+)\]/);
-if(!m)fail('Unit 5 comprehensive review slugs could not be parsed');
-let slugs=[];
-if(m){slugs=[...m[1].matchAll(/"([^"]+)"/g)].map(x=>x[1]);}
-const genSrc=fs.readFileSync(path.join(ROOT,'assets/ap-topic-generators.js'),'utf8');
-const box={window:{BatchMathRNG:{random:()=>0.5}},console,Math};box.window.window=box.window;vm.createContext(box);
-try{vm.runInContext(genSrc,box,{filename:'ap-topic-generators.js'});}catch(e){fail(`shared generator registry failed to load: ${e.message}`);}
-for(const slug of slugs){if(typeof box.window.BatchMathAPTopicGenerators?.get?.(slug)!=='function')fail(`Unit 5 comprehensive review references unavailable generator: ${slug}`);}
-for(const retired of ['slope-fields','exponential-growth-and-decay-interest-newton-s-law-of-cooling'])if(slugs.includes(retired))fail(`Unit 5 review still contains retired generator: ${retired}`);
-stats.unit5LiveReviewGenerators=slugs.length;
+let u5cfg=null;try{u5cfg=JSON.parse((u5.match(/window\.BM_TOPIC_PRACTICE=(\{[^<]*?\});/)||[])[1]);}catch(e){}
+if(!u5cfg?.slug)fail('Unit 5 comprehensive review config could not be parsed');
+const u5scripts=[...u5.matchAll(/<script[^>]*src="\/assets\/([^"]+)"/g)].map(x=>x[1]);
+const u5engines=['unit5-basic.js','unit5-motion.js','unit5-slope-fields.js','unit5-separable.js','unit5-growth.js','unit5-rate.js'];
+for(const f of ['ap-topic-generators.js','unit5-core.js','unit5-answers.js',...u5engines,'unit5-review.js'])if(!u5scripts.includes(f))fail(`Unit 5 comprehensive review does not load ${f}`);
+let u5seed=12345;const u5rng=()=>{u5seed=(u5seed*1103515245+12345)%2147483648;return u5seed/2147483648;};
+const box={window:{BatchMathRNG:{random:u5rng}},console,Math,document:{addEventListener(){}}};box.window.window=box.window;vm.createContext(box);
+try{for(const f of u5scripts.filter(f=>/^(?:derivative-expression-checker|unit4-exact-answers|ap-topic-generators|unit5-(?!ui))/.test(f)))vm.runInContext(fs.readFileSync(path.join(ROOT,'assets',f),'utf8'),box,{filename:f});}catch(e){fail(`Unit 5 review scripts failed to load: ${e.message}`);}
+const u5review=u5cfg?.slug&&box.window.BatchMathAPTopicGenerators?.get?.(u5cfg.slug);
+const reached=new Set();
+if(typeof u5review!=='function')fail(`Unit 5 comprehensive review references unavailable generator: ${u5cfg?.slug}`);
+else{try{for(let i=0;i<300;i++)reached.add(u5review({}).unit5Meta?.reviewTopic);}catch(e){fail(`Unit 5 comprehensive review failed to generate: ${e.message}`);}}
+for(const t of ['basic','motion','slope','separable','growth','rate'])if(!reached.has(t))fail(`Unit 5 comprehensive review never drew from ${t} in 300 problems`);
+stats.unit5LiveReviewGenerators=reached.size;
 
 // Seeded browser QA itself must preserve the repaired snapshot reference and normalizer/browser checks.
 const seeded=fs.readFileSync(path.join(ROOT,'tools/seeded-browser-qa.mjs'),'utf8');

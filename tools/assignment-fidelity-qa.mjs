@@ -57,9 +57,9 @@ for(const [slug,opts,required] of cases){const seen=new Set();for(let i=1;i<=300
 // Retired engines: lesson/resource pages remain, practice generators and practice directories must not.
 const retired=[
  ['limit-proof','ap-calculus/unit-1-limits-continuity/topics/delta-epsilon-proofs/practice'],
- ['converting-a-rectangular-approximation-into-exact-area','ap-calculus/unit-4-integrals/topics/converting-a-rectangular-approximation-into-exact-area/practice'],
- ['slope-fields','ap-calculus/unit-5-differential-equations/topics/slope-fields/practice'],
- ['exponential-growth-and-decay-interest-newton-s-law-of-cooling','ap-calculus/unit-5-differential-equations/topics/exponential-growth-and-decay-interest-newton-s-law-of-cooling/practice']
+ ['converting-a-rectangular-approximation-into-exact-area','ap-calculus/unit-4-integrals/topics/converting-a-rectangular-approximation-into-exact-area/practice']
+ // slope-fields and exponential-growth-and-decay-interest-newton-s-law-of-cooling were retired here until v12.8.W,
+ // which brings them back as new engines (assets/unit5-slope-fields.js, assets/unit5-growth.js) with practice pages.
 ];
 for(const [slug,rel] of retired){if(slug!=='limit-proof')need(typeof get(slug)!=='function',`retired generator still exported: ${slug}`);need(!fs.existsSync(path.join(ROOT,rel)),`retired practice directory still exists: ${rel}`)}
 

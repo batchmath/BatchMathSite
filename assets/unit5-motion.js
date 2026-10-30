@@ -180,7 +180,7 @@ function famDirection(tier){
   const vt=vP.tex('t');
   const P1={prompt:`Find the velocity at ${m(`t=${c}`)}.`,answer:{kind:'exact',value:qv(vc)},answerTex:qtex(vc),explanation:step('Evaluate the velocity.','',`v(${c})=${vP.tex(`(${c})`)}=${qtex(vc)}`),keypadMode:'unit5-motion-value',placeholder:'Exact value'};
   const P2={prompt:`Find the acceleration at ${m(`t=${c}`)}.`,answer:{kind:'exact',value:qv(ac)},answerTex:qtex(ac),explanation:step('Differentiate the velocity.','Acceleration is the derivative of velocity.',`a(t)=v'(t)=${aP.tex('t')}`,`a(${c})=${qtex(ac)}`),keypadMode:'unit5-motion-value',placeholder:'Exact value'};
-  const P3={prompt:`Is the speed of the particle increasing or decreasing at ${m(`t=${c}`)}?`,control:'choice',choices:['Increasing','Decreasing'],correctIndex:inc?0:1,answerIsText:true,answerTex:inc?'Increasing':'Decreasing',
+  const P3={prompt:`Is the particle's speed increasing or decreasing at ${m(`t=${c}`)}?`,control:'choice',choices:['Increasing','Decreasing'],correctIndex:inc?0:1,answerIsText:true,answerTex:inc?'Increasing':'Decreasing',
    explanation:step('Compare the signs of velocity and acceleration.',`${m(`v(${c})=${qtex(vc)}`)} is ${sgnWord(qv(vc))} and ${m(`a(${c})=${qtex(ac)}`)} is ${sgnWord(qv(ac))}. ${inc?'They have the same sign, so the speed is increasing.':'They have opposite signs, so the speed is decreasing.'} (The sign of ${m('a')} alone does not decide this.)`)};
   return problem({engine:'motion',family:'direction_speed',tier,id:`speed-${A}-${r1}-${r2}-${c}`,
    questionHtml:question({context:`${C0.intro} Its velocity is ${m(`v(t)=${vt}`)} for ${m('t\\ge 0')}.`,calculator:false}),parts:[P1,P2,P3]});
@@ -258,7 +258,7 @@ function famCalc(tier){
   const c=pick([1,2,3,T-1].filter(x=>x>0&&x<T));const h=1e-5,vc=V.f(c),ac=(V.f(c+h)-V.f(c-h))/(2*h);if(Math.abs(vc)<0.05||Math.abs(ac)<0.05)return null;
   const inc=vc*ac>0;
   parts.push({prompt:`Find the acceleration of the particle at ${m(`t=${c}`)}. Give your answer correct to three decimal places.`,answer:{kind:'numeric',value:ac,tolerance:0.001},answerTex:fix(ac),explanation:step('Acceleration is the derivative of velocity.','Use the calculator to evaluate the derivative at the point.',`a(${c})=v'(${c})\\approx ${fix(ac)}`),keypadMode:'unit5-number',placeholder:'Decimal answer'});
-  parts.push({prompt:`Is the speed of the particle increasing or decreasing at ${m(`t=${c}`)}?`,control:'choice',choices:['Increasing','Decreasing'],correctIndex:inc?0:1,answerIsText:true,answerTex:inc?'Increasing':'Decreasing',
+  parts.push({prompt:`Is the particle's speed increasing or decreasing at ${m(`t=${c}`)}?`,control:'choice',choices:['Increasing','Decreasing'],correctIndex:inc?0:1,answerIsText:true,answerTex:inc?'Increasing':'Decreasing',
    explanation:step('Compare the signs of velocity and acceleration.',`${m(`v(${c})\\approx ${fix(vc)}`)} is ${sgnWord(vc)} and ${m(`a(${c})\\approx ${fix(ac)}`)} is ${sgnWord(ac)}. ${inc?'Same sign: the speed is increasing.':'Opposite signs: the speed is decreasing.'}`)});
  }
  if(kind==='right_intervals'){
