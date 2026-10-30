@@ -155,7 +155,7 @@ function tExp(c,k){ // c e^{kv} -> (c/k) e^{kv}
 function tExpBase(c,b){ // c·b^v -> c b^v / ln b
  c=U.asQ(c);const lnb=U.atom(`1/ln${b}`,`\\frac{1}{\\ln ${b}}`,`(1/ln(${b}))`,1/Math.log(b));
  return{kind:'expb',b,c,
-  itex:(V,first)=>termTex(c,`${b}^{${V.v}}`,first),iexpr:`${qexpr(c)}*${b}^x`,f:x=>qv(c)*b**x,
+  itex:(V,first)=>{const a=Math.abs(c.n),s=c.n<0?(first?'-':' - '):(first?'':' + ');return s+(a===1&&c.d===1?`${b}^{${V.v}}`:`${c.d===1?a:`\\frac{${a}}{${c.d}}`}\\cdot ${b}^{${V.v}}`);},iexpr:`${qexpr(c)}*${b}^x`,f:x=>qv(c)*b**x,
   atex:(V,first)=>{const s=c.n<0?'-':'',a=Math.abs(c.n),num=a===1&&c.d===1?`${b}^{${V.v}}`:`${a}\\cdot ${b}^{${V.v}}`,den=c.d===1?`\\ln ${b}`:`${c.d}\\ln ${b}`,body=`\\frac{${num}}{${den}}`;return first?s+body:(s?' - ':' + ')+body;},
   aexpr:`${qexpr(c)}*${b}^x/ln(${b})`,af:x=>qv(c)*b**x/Math.log(b),
   aAt:x0=>{if(!x0.q||x0.q.d!==1||x0.q.n<0||x0.q.n>2)return null;return ex(qmul(c,Q(b**x0.q.n)),lnb);},

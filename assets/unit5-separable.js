@@ -57,6 +57,9 @@ function build(o){
  for(let k=1;k<40;k++){const x=a+(b-a)*k/40,y=sol.f(x),h=1e-6*Math.max(1,Math.abs(x)),d=(sol.f(x+h)-sol.f(x-h))/(2*h),want=o.f(x,y);
   if(!Number.isFinite(y))throw Error(`solution undefined inside ${id} at ${x}`);
   if(Number.isFinite(want)&&Math.abs(want)<1e6&&Math.abs(d-want)>1e-4*Math.max(1,Math.abs(want)))throw Error(`residual ${id} at ${x}`);}
+ // no hidden pole inside the interval: a sign change between huge values on a dense scan means the solution blows up
+ {let prev=null;for(let k=1;k<4000;k++){const x=a+(b-a)*k/4000,y=sol.f(x);if(!Number.isFinite(y))throw Error(`solution undefined inside ${id}`);
+  if(prev!==null&&Math.sign(prev)!==Math.sign(y)&&Math.min(Math.abs(prev),Math.abs(y))>1e3)throw Error(`pole inside ${id} near ${x}`);prev=y;}}
  // an endpoint is a break when, at it or just past it, the solution is undefined or the equation is undefined or unbounded
  const bad=x=>{const y=sol.f(x);if(!Number.isFinite(y))return true;const fx=o.f(x,y);return !Number.isFinite(fx)||Math.abs(fx)>1e6;};
  for(const [e,dir] of [[lo,-1],[hi,1]])if(Number.isFinite(e.val)){const s=Math.max(1,Math.abs(e.val));
@@ -163,7 +166,7 @@ function famPower(tier){
   // poles of den around x0
   let lo=NINF,hi=INF;const why=[];
   if(den.deg===1){const r=qdiv(qneg(den.c[0]),den.c[1]);if(qv(r)>x0v)hi=R(r);else lo=R(r);why.push(`The solution is undefined where ${m(`${denTex}=0`)}, at ${m(`${V.x}=${qtex(r)}`)}.`);}
-  else{const r2=qdiv(qneg(den.c[0]),den.c[2]);if(qv(r2)>0){const s=sqrtQ(r2);lo=neg(s);hi=s;if(x0v>s.val||x0v< -s.val)return null;why.push(`The solution is undefined where ${m(`${denTex}=0`)}, at ${m(`${V.x}=\\pm ${s.tex}`)}.`);}else why.push(`${m(`${denTex}`)} is never 0, so the solution is defined for every ${m(V.x)}.`);}
+  else{const r2=qdiv(qneg(den.c[0]),den.c[2]);if(qzero(r2)){if(x0v===0)return null;if(x0v>0)lo=R(0);else hi=R(0);why.push(`The solution is undefined where ${m(`${denTex}=0`)}, which happens only at ${m(`${V.x}=0`)}.`);}else if(qv(r2)>0){const s=sqrtQ(r2);lo=neg(s);hi=s;if(x0v>s.val||x0v< -s.val)return null;why.push(`The solution is undefined where ${m(`${denTex}=0`)}, at ${m(`${V.x}=\\pm ${s.tex}`)}.`);}else why.push(`${m(`${denTex}`)} is never 0, so the solution is defined for every ${m(V.x)}.`);}
   const gT=g.tex(V.x),y0=R(y0q);
   return build({V,family:'powers_y',tier,id:`y2-${g.c.map(q=>q.n).join('_')}-${x0v}-${y0q.n}_${y0q.d}`,rhsTex:`${gT==='1'?'':gT==='-1'?'-':gT}${V.y}^{2}`,f:(x,y)=>g.f(x)*y*y,x0:R(x0v),y0,solution:sol,
    eqNote:eqNote(V,0,`${V.y}^{2}`),sepTex:`\\frac{d${V.y}}{${V.y}^{2}}=${gT==='1'?'':gT==='-1'?'-':gT+'\\,'}d${V.x}`,intTex:[`-\\frac{1}{${V.y}}=${G.tex(V.x)}+C`],
@@ -310,7 +313,7 @@ function famTrig(tier){
   const sol={tex:`\\sin^{-1}\\left(${inner}\\right)`,expr:`asin(${qexpr(kq)}*sin(x)+(${qexpr(s0)}))`,f:x=>Math.asin(qv(kq)*Math.sin(x)+qv(s0))};
   const lo=bt?V_(bt[0],String(bv[0]),bv[0]):NINF,hi=bt?V_(bt[1],String(bv[1]),bv[1]):INF;
   const kT=qv(kq)===1?'':qtex(kq);
-  return build({V,family:'trig',tier,id:`cosxy-${kq.n}_${kq.d}-${s0.n}_${s0.d}`,rhsTex:`\\frac{${kT}\\cos ${V.x}}{\\cos ${V.y}}`.replace(/\\frac\{\\frac\{(\d+)\}\{(\d+)\}/,'\\frac{$1'),
+  return build({V,family:'trig',tier,id:`cosxy-${kq.n}_${kq.d}-${s0.n}_${s0.d}`,rhsTex:`\\frac{${kq.n===1?'':kq.n}\\cos ${V.x}}{${kq.d===1?'':kq.d}\\cos ${V.y}}`, // k = n/d written as n cos x over d cos y
    f:(x,y)=>qv(kq)*Math.cos(x)/Math.cos(y),x0:R(0),y0:V_(y0tex,`asin(${qexpr(s0)})`,Math.asin(qv(s0))),solution:sol,
    sepText:`Multiply both sides by ${m(`\\cos ${V.y}\\,d${V.x}`)}.`,sepTex:`\\cos ${V.y}\\,d${V.y}=${kT}\\cos ${V.x}\\,d${V.x}`,intTex:[`\\sin ${V.y}=${termTex(kq,`\\sin ${V.x}`,true)}+C`],
    icTex:[`\\sin\\left(${y0tex}\\right)=${kT}\\sin 0+C\\quad\\Longrightarrow\\quad C=${qtex(s0)}`],
