@@ -116,7 +116,7 @@ function polyRate(c){
   I:(a,b)=>X(qsub(F.at(Q(b)),F.at(Q(a)))),
   work:(a,b)=>{const hi=F.at(Q(b)),lo=F.at(Q(a));return `\\left[${ascTex(F)}\\right]_{${a}}^{${b}}=${qtex(hi)}${qzero(lo)?'':`${lo.n<0?'+'+qtex(qneg(lo)):'-'+qtex(lo)}=${qtex(qsub(hi,lo))}`}`;}};
 }
-function sqrtRate(c,d){ // c√t + d on perfect-square endpoints: (2c/3)t^{3/2} + dt
+function sqrtRate(c,d){ // c√t + d on perfect-square endpoints: (2c/3)t^(3/2) + dt
  const k=Q(2*c,3),F=t=>qadd(qmul(k,Q(Math.round(Math.sqrt(t))**3)),Q(d*t));
  const anti=`${termTex(k,'t^{\\frac{3}{2}}',true)}${d?termTex(Q(d),'t',false):''}`;
  return{kind:'sqrt',tex:`${c}\\sqrt{t}${d?`+${d}`:''}`,f:t=>c*Math.sqrt(t)+d,anti,I:(a,b)=>X(qsub(F(b),F(a))),work:(a,b)=>`\\left[${anti}\\right]_{${a}}^{${b}}=${qtex(F(b))}${qzero(F(a))?'':`-${qtex(F(a))}=${qtex(qsub(F(b),F(a)))}`}`};
