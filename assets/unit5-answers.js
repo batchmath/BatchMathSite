@@ -172,7 +172,7 @@ function checkInterval(raw,spec){
 
 // ---------- numbers ----------
 function numberOf(raw){
- const text=String(raw||'').trim().replace(/[$,](?=\d)/g,'').replace(/\s*(?:dollars?|years?|days?|hours?|minutes?|mg|grams?|°\s*[CF]?|degrees?)\s*$/i,'');
+ const text=String(raw||'').trim().replace(/[$,](?=\d)/g,'').replace(/\s*(?:dollars?|years?|weeks?|days?|hours?|minutes?|mg|milligrams?|grams?|units?|%|percent|°\s*[CF]?|degrees?)\s*$/i,'');
  const tree=parse(text,null);if(usesVar(tree,'y'))throw Object.assign(Error('C'),{code:'variable'});
  const v=I.evaluate(tree,{});if(!Number.isFinite(v))throw Object.assign(Error('undefined'),{code:'undefined'});
  return v;
