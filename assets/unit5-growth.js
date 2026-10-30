@@ -229,7 +229,7 @@ function famInterest(tier){
 // ======================================================================
 // reverse / unknown quantity
 function famReverse(tier){
- const kind=tier==='foundational'?pick(['principal','dose']):tier==='intermediate'?pick(['rate','initial_count','dose']):pick(['initial_temp','halflife_two']);
+ const kind=tier==='foundational'?pick(['principal','dose']):tier==='intermediate'?pick(['rate','initial_count','dose','ambient','equiv_rate']):pick(['initial_temp','halflife_two','ambient3']);
  if(kind==='principal'){
   const A=pick([5000,8000,10000,15000,20000,25000]),rp=pick([2.5,3,3.25,3.75,4,4.5,5]),r=rp/100,t=pick([5,8,10,12,15,18]),P=A*Math.exp(-r*t);
   return build('reverse',tier,`pv-${A}-${rp}-${t}`,`An account earns ${rp}% annual interest compounded continuously.`,
@@ -271,6 +271,33 @@ function famReverse(tier){
    step(`Find ${m('e^{-k\\cdot '+t1+'}')} from the two readings.`,`The readings are ${t1} minutes apart, so the difference shrinks by the same factor over each ${t1}-minute period.`,`\\frac{${T2}-${Ts}}{${T1}-${Ts}}=e^{-${t1}k}=${qtex(q)}`,`k=${over(lnQ(Q(q.d,q.n)),t1)}\\approx ${kd(k)}`)+
    step(`Solve for ${m('T_0')}.`,`Over the first ${t1} minutes the difference also shrank by the factor ${m(qtex(q))}.`,`${D1}=(T_0-${Ts})\\cdot ${qtex(q)}`,`T_0-${Ts}=${D0}`,`T_0=${T0}`))];
   return build('reverse',tier,`t0-${Ts}-${t1}-${D1}-${q.n}_${q.d}`,intro,parts);
+ }
+ if(kind==='ambient'){ // surrounding temperature from a known k
+  const heat=U.rand()<0.3,C=pick(heat?COLD:HOT),T0=pick(C.T0),Ts=pick(C.Ts),t1=pick(C.t),q=pick([Q(1,2),Q(2,3),Q(3,4),Q(3,5)]),D0=T0-Ts;if(D0%q.d)return null;
+  const T1=Ts+D0*q.n/q.d,kTex=over(lnQ(Q(q.d,q.n)),t1);
+  const intro=`${C.what} is at ${T0}${C.deg} when it is placed in ${C.place.replace(/ (kept at|set to|at)$/,'')} whose temperature is unknown. Its temperature follows Newton's Law of Cooling with ${m(`k=${kTex}`)} per minute, and after ${t1} minutes it is ${T1}${C.deg}.`;
+  return build('reverse',tier,`amb-${T0}-${Ts}-${t1}-${q.n}_${q.d}`,intro,[decPart(`Find the temperature ${m('T_s')} of the surroundings.`,Ts,C.deg,
+   step("Write Newton's Law of Cooling.",`The unknown is now ${m('T_s')}; everything else is given.`,`T-T_s=(${T0}-T_s)e^{-kt}`)+
+   step(`Evaluate the exponential at ${m(`t=${t1}`)}.`,`With ${m(`k=${kTex}`)}, the exponent is a logarithm, so the exponential simplifies exactly.`,`e^{-${t1}k}=e^{-${lnQ(Q(q.d,q.n))}}=${qtex(q)}`)+
+   step(`Solve the linear equation for ${m('T_s')}.`,`Substitute ${m(`T=${T1}`)}, distribute, and collect the ${m('T_s')} terms.`,`${T1}-T_s=${qtex(q)}\\left(${T0}-T_s\\right)`,`${T1}-${qtex(Q(T0*q.n,q.d))}=T_s-${qtex(q)}T_s=${qtex(Q(q.d-q.n,q.d))}T_s`,`T_s=${Ts}`))]);
+ }
+ if(kind==='ambient3'){ // surrounding temperature from three equally spaced readings
+  const C=pick(HOT.filter(c=>!/boiling/.test(c.what))),T0=pick(C.T0),Ts=pick(C.Ts),h=pick(C.t),q=pick(RATIOS),D0=T0-Ts;if(D0%(q.d*q.d))return null;
+  const a=T0,b=Ts+D0*q.n/q.d,c=Ts+D0*q.n*q.n/(q.d*q.d);
+  const intro=`${C.what} cools in ${C.place.replace(/ (kept at|set to|at)$/,'')} whose temperature is unknown. Its temperature is ${a}${C.deg} at ${m('t=0')}, ${b}${C.deg} at ${m(`t=${h}`)} and ${c}${C.deg} at ${m(`t=${2*h}`)} minutes. Assume Newton's Law of Cooling.`;
+  return build('reverse',tier,`amb3-${a}-${b}-${c}`,intro,[decPart(`Find the temperature ${m('T_s')} of the surroundings.`,Ts,C.deg,
+   step("Use Newton's law over equal time steps.",`Over each ${h}-minute step the difference ${m('T-T_s')} is multiplied by the same factor ${m(`e^{-${h}k}`)}, so the ratios of consecutive differences are equal.`,`\\frac{${b}-T_s}{${a}-T_s}=\\frac{${c}-T_s}{${b}-T_s}`)+
+   step('Cross-multiply and solve.',`The ${m('T_s^{2}')} terms cancel, leaving a linear equation.`,`\\left(${b}-T_s\\right)^{2}=\\left(${a}-T_s\\right)\\left(${c}-T_s\\right)`,`${nt(b*b)}-${nt(2*b)}T_s=${nt(a*c)}-${nt(a+c)}T_s`,`${nt(a+c-2*b)}T_s=${nt(a*c-b*b)}`,`T_s=${Ts}`)+
+   step('Check.',`The differences are ${a-Ts}, ${b-Ts} and ${c-Ts}; each is ${m(qtex(q))} of the one before.`))]);
+ }
+ if(kind==='equiv_rate'){ // continuous rate with the same growth as periodic compounding
+  const rp=pick([3,3.5,4,4.5,5,5.5,6,6.5,7,8]),r=rp/100,[n,how]=pick(COMP.slice(1)),rc=n*Math.log(1+r/n);
+  return build('reverse',tier,`eqr-${rp}-${n}`,`An account pays ${rp}% annual interest compounded ${how}.`,
+   [decPart('What continuously compounded annual rate would give exactly the same balance after every whole number of years? Give the rate as a percent.',100*rc,'%',
+    step('Match the growth factors for one year.',`Both accounts must multiply the balance by the same factor each year: ${m('e^{r_c}')} for continuous compounding and ${m('\\left(1+\\frac{r}{n}\\right)^{n}')} for compounding ${how}.`,`e^{r_c}=\\left(1+\\frac{${r}}{${n}}\\right)^{${n}}`)+
+    step(`Solve for ${m('r_c')}.`,'Take the natural log of both sides.',`r_c=${n}\\ln\\left(1+\\frac{${r}}{${n}}\\right)\\approx ${fx(rc,6)}`,`${fx(rc,6)}\\times 100\\approx ${fx(100*rc)}\\%`)+
+    step('Interpret.',`The continuous rate is slightly lower than ${rp}%: compounding continuously earns interest on interest at every instant, so it needs a smaller stated rate for the same growth.`),
+    {wrong:[{value:rc,note:'That is the rate as a decimal. Give it as a percent.'},{value:rp,note:`Continuous compounding grows faster than compounding ${how} at the same stated rate, so the equivalent continuous rate is a little less than ${rp}%.`}]})]);
  }
  // half-life and initial amount from two later measurements
  const P=pick([Q(3,4),Q(2,3),Q(4,5),Q(1,2)]),a=pick([60,80,90,120,150,240]),gap=pick([2,3,4,5]),t1=pick([1,2,3]);if(a%P.d)return null;
