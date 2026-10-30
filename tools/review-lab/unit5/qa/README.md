@@ -21,6 +21,7 @@ seedable RNG, so results are reproducible.
 | `rounding.mjs [N]` | v12.8.X rounding matrix: hand-written cases (ties, thresholds, zero and −0, cents, whole numbers, intervals, lists, invalid input) and every rounded part of N generated problems per engine |
 | `calc-eligibility.mjs [N]` | v12.8.X: every Unit 5 page's config and Practice Type options sampled as the page calls them; no calculator leak in either direction, fixed types stay in their family, Mixed shares match the renormalized weights, tiers per kind, impossible requests raise errors, unknown types give mixed |
 | `verify-basic-calc.mjs [N]` | v12.8.X Basic calculator families: f' and the given values re-parsed from the question, adaptive Simpson, value and its rounding compared |
+| `verify-rate-x.mjs [N] [calc]` | v12.8.X Rate: rates, in/out roles, windows, amounts and prompts re-read from the question; every answer recomputed (exact to 1e-9, calculator to 1e-7 and after rounding); scan for derivative-of-rate, increasing/decreasing, extremes, target-time and threshold content |
 | `inventory.mjs [N]` | per engine, family and tier: problems, calculator share, distinct problems, answer kinds |
 | `keypad-audit.mjs [N]` | Keypads, all and only (13.2): every key a generated answer needs is on that part's keypad profile (fails otherwise), and lists any key a profile offers that no sampled answer needs |
 | `verify-rate.mjs [N]` | Rate: independent recomputation of every displayed integral (adaptive Simpson on the re-parsed TeX formula), candidate amounts, instantaneous rates and derivatives |

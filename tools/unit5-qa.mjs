@@ -15,6 +15,8 @@ const runs=[
  ['Rate generation and answers',[QA+'smoke.mjs','rate-problems','unit5-rate.js',n(1500)]],
  ['Slope-field grading cases',[QA+'slope-qa.mjs',n(600)]],
  ['Rate independent recomputation',[QA+'verify-rate.mjs',n(800)]],
+ ['Rate semantic recomputation and content scan (v12.8.X)',[QA+'verify-rate-x.mjs',n(1500)]],
+ ['Rate non-calculator recomputation (v12.8.X)',[QA+'verify-rate-x.mjs',n(1500),'non-calculator']],
  ['Motion independent recomputation',[QA+'verify-motion.mjs',n(400)]],
  ['Motion calculator independent recomputation (v12.8.X)',[QA+'verify-motion.mjs',n(1500),'mixed','calculator']],
  ['Growth independent recomputation',[QA+'verify-growth.mjs',n(1500)]],
@@ -31,6 +33,6 @@ let failed=0;
 for(const [name,args] of runs){const r=spawnSync(process.execPath,args,{encoding:'utf8',maxBuffer:64*1024*1024});
  const out=(r.stdout||'')+(r.stderr||'');const smokeFail=/parts \d+ fails (\d+)/.exec(out);
  const ok=r.status===0&&(!smokeFail||smokeFail[1]==='0');if(!ok)failed++;
- const summary=out.trim().split('\n').filter(l=>/fails|issues|disagreements|failed|FAIL|chi-square|topics|difficulty|checks|recomputed|checked|keypad|MISSING|rounding|pages \d+/.test(l)).slice(0,4).join(' | ');
+ const summary=out.trim().split('\n').filter(l=>/fails|issues|disagreements|failed|FAIL|chi-square|topics|difficulty|checks|recomputed|checked|keypad|MISSING|rounding|pages \d+|recomputed/.test(l)).slice(0,4).join(' | ');
  console.log(`${ok?'PASS':'FAIL'}  ${name}${summary?`: ${summary}`:''}`);if(!ok)console.log(out.split('\n').slice(-12).join('\n'));}
 console.log(failed?`${failed} Unit 5 check(s) failed`:'All Unit 5 checks passed');process.exitCode=failed?1:0;

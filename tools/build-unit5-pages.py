@@ -19,6 +19,9 @@ COMMON_HEAD = ['/assets/derivative-expression-checker.js', '/assets/unit4-exact-
 COMMON_BODY = ['/assets/unit5-core.js', '/assets/unit5-answers.js', '/assets/unit5-ui.js']
 
 # Practice Types on the calculator pages: only families with calculator problems (checked by qa/calc-eligibility.mjs)
+RATE_MODES = [('mixed', 'Mixed Practice'), ('one_rate', 'Accumulate One Rate'), ('initial_change', 'Initial Amount Plus or Minus Change'),
+              ('in_out', 'Inflow and Outflow'), ('delayed_piecewise', 'Delayed Starts and Piecewise Rates'), ('multipart', 'Connected Accumulation Problems')]
+
 CALC_MODES = {
     'basic': [('mixed', 'Mixed Calculator Practice'), ('calc_value', 'Values from an Initial Condition'), ('calc_initial', 'Find the Starting Value'),
               ('calc_two_point', 'Net Change and Two Values')],
@@ -75,10 +78,19 @@ PAGES = [
          description='Calculator active. Build the exponential model from the given information, keep k exact until the end, and round as each part directs. Use the worked explanation to see every step.',
          modes=[('mixed', 'Mixed Practice'), ('growth', 'Exponential Growth'), ('decay', 'Exponential Decay and Half-Life'), ('cooling', "Newton's Law: Cooling"),
                 ('heating', "Newton's Law: Warming"), ('interest', 'Compound and Continuous Interest'), ('reverse', 'Find the Unknown (Initial Amount, Rate, Dose)')]),
+    # v12.8.X: accumulation only; the Increasing, Decreasing and Extreme Amounts type is retired
     dict(topic='rate-problems', page='practice', slug='rate-problems', title='Rate Problems', engine_id='ap_topic_rate_problems', scripts=['/assets/unit5-rate.js'],
-         description='Most problems are calculator active: set up the accumulation integral, include the starting amount when it matters, and round to three decimal places. Use the worked explanation to see every step.',
-         modes=[('mixed', 'Mixed Practice'), ('one_rate', 'Accumulate One Rate'), ('initial_change', 'Initial Amount Plus or Minus Change'), ('in_out', 'Inflow and Outflow'),
-                ('delayed_piecewise', 'Delayed Starts and Piecewise Rates'), ('monotonic', 'Increasing, Decreasing and Extreme Amounts'), ('multipart', 'Connected Multi-Part Problems')]),
+         label='Mixed Practice',
+         description='Mixed practice: calculator and non-calculator accumulation. Integrate each rate over the time it applies, include the starting amount when it matters, and give exact answers or round to three decimal places as each question directs.',
+         modes=RATE_MODES),
+    dict(topic='rate-problems', page='calculator-practice', source='practice', calc='calculator', slug='rate-problems', analytics_slug='rate-problems_calculator',
+         title='Rate Problems', label='Calculator Practice', engine_id='ap_topic_rate_problems_calculator', scripts=['/assets/unit5-rate.js'],
+         description='Calculator active. Set up each accumulation integral, evaluate it with the calculator, include the starting amount when it matters, and round to three decimal places.',
+         modes=[('mixed', 'Mixed Calculator Practice')] + RATE_MODES[1:]),
+    dict(topic='rate-problems', page='non-calculator-practice', source='practice', calc='non-calculator', slug='rate-problems', analytics_slug='rate-problems_noncalculator',
+         title='Rate Problems', label='Non-Calculator Practice', engine_id='ap_topic_rate_problems_noncalculator', scripts=['/assets/unit5-rate.js'],
+         description='No calculator. Integrate polynomial, square-root, trigonometric and reciprocal rates exactly, include the starting amount when it matters, and give exact answers.',
+         modes=[('mixed', 'Mixed Non-Calculator Practice')] + RATE_MODES[1:]),
     dict(topic='slope-fields', page='practice', new=True, slug='slope-fields', title='Slope Fields', engine_id='ap_topic_slope_fields', scripts=['/assets/unit5-slope-fields.js'],
          description='Draw slope segments and solution curves with a mouse, pen or finger (or type slopes and points instead), match fields with equations, and analyze slopes. After you check a drawing, the correct segments or curve appear on the same grid.',
          modes=[('mixed', 'Mixed Practice'), ('draw_segments', 'Draw Slope Segments'), ('draw_curve', 'Draw Solution Curves'), ('match', 'Match Fields, Equations and Curves'), ('analyze', 'Analyze Slopes and Solutions')]),

@@ -37,15 +37,17 @@ for(const pg of pages){
    const extra=Object.keys(fam).filter(k=>!el.some(([e])=>e===k));if(extra.length)fails.push(`${pg.rel} [mixed]: ineligible families ${extra}`);}
   lines.push(`${pg.rel.padEnd(70)} ${calc?calc.padEnd(15):'mixed'.padEnd(15)} ${mode.padEnd(22)} leaks ${leaks} errors ${errs} tiers ${JSON.stringify(tiers)}${dist?`\n      shares (got/target %): ${dist}`:''}`);
  }
- // engine-level guarantees for this page's kind
+ // engine-level guarantees for this page's kind (the reviews need every tier of every kind)
  if(eng){
   for(const kind of calc?[calc]:['calculator','non-calculator']){const any=Object.values(eng.FAMILIES).some(F=>(F.calc||(F.calculator?{calculator:F.tiers,noncalculator:[]}:{calculator:[],noncalculator:F.tiers}))[KIND[kind]].length);
    if(!any)continue;
-   for(const tier of ['foundational','intermediate','challenging']){try{L.seed(77);const p=eng.make({calc:kind,tier});if(p.unit5Meta.tier!==tier)fails.push(`${pg.rel}: ${kind} ${tier} gave ${p.unit5Meta.tier}`);}catch(e){lines.push(`  note: ${pg.conf.slug} has no ${kind} ${tier} problems (${e.message})`);}}}
+   for(const tier of ['foundational','intermediate','challenging']){try{L.seed(77);const p=eng.make({calc:kind,tier});if(p.unit5Meta.tier!==tier)fails.push(`${pg.rel}: ${kind} ${tier} gave ${p.unit5Meta.tier}`);}catch(e){fails.push(`${pg.rel}: no ${kind} ${tier} problems (${e.message})`);}}}
   for(const [k,F] of Object.entries(eng.FAMILIES)){const ks=F.calc||(F.calculator?{calculator:F.tiers,noncalculator:[]}:{calculator:[],noncalculator:F.tiers});
    for(const kind of ['calculator','non-calculator'])if(!ks[KIND[kind]].length){let threw=false;try{eng.make({calc:kind,family:k});}catch(_){threw=true;}if(!threw)fails.push(`${pg.conf.slug}: ${kind} request for family ${k} did not raise an error`);}}
   let unk;try{L.seed(5);unk=gen({mode:'no-such-practice-type'});}catch(e){fails.push(`${pg.rel}: an unknown Practice Type raised ${e.message}`);}
   if(unk&&calc&&unk.calculatorActive!==(calc==='calculator'))fails.push(`${pg.rel}: unknown Practice Type escaped the calculator filter`);
+  // v12.8.X: the retired Rate type "monotonic" (a browser may restore it into the dropdown) gives mixed practice
+  if(pg.conf.slug==='rate-problems'){for(let k=1;k<=200;k++){L.seed(k);const p=gen({mode:'monotonic'});if(!(p.unit5Meta.family in eng.FAMILIES)||p.unit5Meta.family==='monotonic'){fails.push(`${pg.rel}: retired type produced ${p.unit5Meta.family}`);break;}if(calc&&p.calculatorActive!==(calc==='calculator')){fails.push(`${pg.rel}: retired type escaped the calculator filter`);break;}}}
  }
 }
 console.log(lines.join('\n'));
