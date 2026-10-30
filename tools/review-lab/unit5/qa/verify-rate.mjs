@@ -4,7 +4,7 @@
 import {load,keypadForm} from './lib.mjs';
 const N=+(process.argv[2]||1500);const L=load(['unit5-rate.js']),gen=L.G.get('rate-problems'),A=L.A;
 // adaptive Simpson (an integrator independent of the engine's Gauss-Legendre rule; adaptive so sqrt(t) at 0 converges)
-const simpson=(f,a,b)=>{const S=(a,b,fa,fm,fb)=>(b-a)/6*(fa+4*fm+fb);const rec=(a,b,fa,fm,fb,whole,eps,d)=>{const m=(a+b)/2,lm=(a+m)/2,rm=(m+b)/2,flm=f(lm),frm=f(rm),l=S(a,m,fa,flm,fm),r=S(m,b,fm,frm,fb);if(d>40||Math.abs(l+r-whole)<=15*eps)return l+r+(l+r-whole)/15;return rec(a,m,fa,flm,fm,l,eps/2,d+1)+rec(m,b,fm,frm,fb,r,eps/2,d+1);};
+const simpson=(f,a,b)=>{const S=(a,b,fa,fm,fb)=>(b-a)/6*(fa+4*fm+fb);const rec=(a,b,fa,fm,fb,whole,eps,d)=>{const m=(a+b)/2,lm=(a+m)/2,rm=(m+b)/2,flm=f(lm),frm=f(rm),l=S(a,m,fa,flm,fm),r=S(m,b,fm,frm,fb);if(!Number.isFinite(l+r))return NaN;if(d>40||Math.abs(l+r-whole)<=15*eps)return l+r+(l+r-whole)/15;return rec(a,m,fa,flm,fm,l,eps/2,d+1)+rec(m,b,fm,frm,fb,r,eps/2,d+1);};
  if(a===b)return 0;const n=64,h=(b-a)/n;let tot=0;for(let i=0;i<n;i++){const x=a+i*h,y=x+h,fx=f(x),fy=f(y),fm=f((x+y)/2);tot+=rec(x,y,fx,fm,fy,S(x,y,fx,fm,fy),1e-10,0);}return tot;};
 const fn=tex=>{const tree=A.parse(keypadForm(tex.replace(/\{,\}/g,'')),'t');return t=>A.value(tree,t);};
 const num=s=>Number(String(s).replace(/\{,\}/g,''));

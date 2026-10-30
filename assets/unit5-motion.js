@@ -130,11 +130,11 @@ function famRecover(tier){
 // ---------- family 2: displacement versus total distance ----------
 function famDistance(tier){
  const C0=ctx();
- let vP,lo,hi,rts;
- if(tier==='foundational'){const r=ri(1,4),A=nz(-4,4);vP=Poly.fromRoots(Q(A),[r]);lo=0;hi=r+ri(1,4);rts=[r];}
- else if(tier==='intermediate'){const r1=ri(0,3),r2=r1+ri(1,4),A=nz(-3,3);vP=Poly.fromRoots(Q(A),[r1,r2]);lo=Math.max(0,r1-ri(0,1));hi=r2+ri(1,2);rts=[r1,r2].filter(r=>r>lo&&r<hi);if(r1===lo&&U.rand()<0.5){lo=0;}}
- else{const r1=ri(0,2),r2=r1+ri(1,3),r3=r2+ri(1,3),A=pick([1,-1,2,-2]);vP=Poly.fromRoots(Q(A),[r1,r2,r3]);lo=0;hi=r3+ri(0,1);rts=[r1,r2,r3].filter(r=>r>lo&&r<hi);}
- rts=rts.filter(r=>r>lo&&r<hi);
+ let vP,lo,hi,roots;
+ if(tier==='foundational'){const r=ri(1,4),A=nz(-4,4);vP=Poly.fromRoots(Q(A),[r]);lo=0;hi=r+ri(1,4);roots=[r];}
+ else if(tier==='intermediate'){const r1=ri(0,3),r2=r1+ri(1,4),A=nz(-3,3);vP=Poly.fromRoots(Q(A),[r1,r2]);lo=Math.max(0,r1-ri(0,1));hi=r2+ri(1,2);if(r1===lo&&U.rand()<0.5)lo=0;roots=[r1,r2];}
+ else{const r1=ri(0,2),r2=r1+ri(1,3),r3=r2+ri(1,3),A=pick([1,-1,2,-2]);vP=Poly.fromRoots(Q(A),[r1,r2,r3]);lo=0;hi=r3+ri(0,1);roots=[r1,r2,r3];}
+ let rts=roots.filter(r=>r>lo&&r<hi); // only after both endpoints are final
  if(!rts.length)return null;
  const S=vP.integ(0),disp=qsub(S.at(hi),S.at(lo));
  const pts=[lo,...rts,hi];let dist=Q(0);const pieces=[];
