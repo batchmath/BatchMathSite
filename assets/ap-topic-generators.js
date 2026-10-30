@@ -3748,7 +3748,27 @@ G['difference-quotient']=()=>{
 
  // ---------- display helpers ----------
  const im=s=>`\\(${s}\\)`;
- const eq=s=>`<div class="u4-work-equation u4-definite-equation">${im(`\\displaystyle ${s}`)}</div>`;
+ // Keep each integral (sign, limits, integrand, differential) in one group so that MathJax wraps a long
+ // explanation line only at = or between terms, never between an integrand and its du.
+ function groupIntegrals(t){
+  let out='',i=0;
+  while(i<t.length){
+   const k=t.indexOf('\\int',i);if(k<0){out+=t.slice(i);break;}
+   out+=t.slice(i,k);let j=k+4;
+   const group=at=>{let d=0;for(let m=at;m<t.length;m++){if(t[m]==='{')d++;else if(t[m]==='}'&&--d===0)return m+1;}return t.length;};
+   while(t[j]==='_'||t[j]==='^'){j=t[j+1]==='{'?group(j+1):j+2;}
+   while(t[j]===' ')j++;if(t[j]==='-'||t[j]==='+')j++;
+   let depth=0,lr=0;
+   for(;j<t.length;j++){
+    if(t.startsWith('\\left',j)){lr++;j+=4;continue;}if(t.startsWith('\\right',j)){lr--;j+=5;continue;}
+    const ch=t[j];if(ch==='{')depth++;else if(ch==='}')depth--;
+    else if(!depth&&!lr&&(ch==='='||ch==='+'||ch==='-'))break;
+   }
+   out+=`{${t.slice(k,j)}}`;i=j;
+  }
+  return out;
+ }
+ const eq=s=>`<div class="u4-work-equation u4-definite-equation">${im(`\\displaystyle ${groupIntegrals(s)}`)}</div>`;
  const step=(h,text='',...eqs)=>`<div class="u4-work-step"><strong>${h}</strong>${text?' '+text:''}${eqs.map(eq).join('')}</div>`;
  const VT={x:'x',t:'t',theta:'\\theta',r:'r'};
  const dv=v=>`\\,d${VT[v]}`;

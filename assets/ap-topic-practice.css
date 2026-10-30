@@ -64,5 +64,9 @@
 .u4-revised-question mjx-container,.unit4-revised-answer .u4-definite-equation mjx-container{margin:.2em 0!important}
 .unit4-revised-answer .staged-feedback,.unit4-revised-answer .method{height:auto;max-height:none;overflow:visible}
 .unit4-revised-answer .u4-work-step{margin:.8em 0}
+/* v12.8.V: short math inside an explanation sentence stays on one line (x = u - 5, not x / = u - 5):
+   MathJax's break points (mjx-break) are kept from wrapping there; equation lines still wrap at = and +. */
+.unit4-revised-answer .u4-work-step mjx-container[jax="CHTML"] mjx-break{white-space:nowrap}
+.unit4-revised-answer .u4-work-equation mjx-container[jax="CHTML"] mjx-break{white-space:normal}
 .unit4-revised-answer .correct-answer{padding:.6em 0;max-width:100%;overflow:visible}
 .unit4-revised-answer .u4-geometry-figure{margin:4px auto 16px}
