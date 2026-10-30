@@ -74,7 +74,7 @@ const tUnits=c=>`${m('t')} is measured in ${c.unit}${c.clock!==undefined?` after
 
 // ---------- parts ----------
 function decPart(prompt,value,unit,explanation,wrong=[]){
- return{prompt:`${prompt} ${DEC}`,answer:{kind:'numeric',value,tolerance:0.001,wrongValues:wrong.filter(w=>Number.isFinite(w.value)&&Math.abs(w.value-value)>0.002)},
+ return{prompt:`${prompt} ${DEC}`,answer:{kind:'numeric',value,places:3,wrongValues:wrong.filter(w=>Number.isFinite(w.value)&&U.roundScaled(w.value,3)!==U.roundScaled(value,3))},
   answerTex:`${fx(value)}${unit?`\\text{ ${unit}}`:''}`,explanation,keypadMode:'unit5-number',placeholder:'Decimal answer'};
 }
 function exactPart(prompt,q,unit,explanation,wrong=[]){
@@ -254,7 +254,7 @@ function famMonotonic(tier){
   const pts=[0,...zs,T],up=[];for(let i=0;i<pts.length-1;i++)if(net((pts[i]+pts[i+1])/2)>0)up.push([pts[i],pts[i+1]]);if(!up.length)return null;
   const texIv=up.map(([a,b])=>`\\left(${fe(a)},\\,${fe(b)}\\right)`).join('\\cup ');
   return build('monotonic',tier,`imono-${C.inF}-${M}-${T}`,ctx,forms,[{prompt:`On what interval or intervals is the amount in ${C.ref} increasing? Give endpoints correct to three decimal places.`,
-   answer:{kind:'interval',variable:'t',tolerance:0.0015,anyBrackets:true,parts:up.map(([a,b])=>({left:a,right:b}))},answerTex:texIv,keypadMode:'unit5-rate-intervals',placeholder:'Interval, e.g. (0, 2.5)',
+   answer:{kind:'interval',variable:'t',places:3,anyBrackets:true,parts:up.map(([a,b])=>({left:a,right:b}))},answerTex:texIv,keypadMode:'unit5-rate-intervals',placeholder:'Interval, e.g. (0, 2.5)',
    explanation:step('The amount increases where the net rate is positive.',`${m(`A'(t)=${Fi}-${Fo}`)}, so find where inflow exceeds outflow.`)+
     step('Find where inflow equals outflow.',`Solve ${m(`${Fi}=${Fo}`)} on ${m(`[0,${T}]`)} with the calculator.`,zs.map(z=>`t\\approx ${fx(z)}`).join(',\\quad '))+
     step('Test the sign on each piece.',`Choose a time in each piece and compare the two rates. The net rate is positive on ${up.length>1?'these intervals':'this interval'}:`,texIv)}]);

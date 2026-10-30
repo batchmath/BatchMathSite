@@ -244,20 +244,20 @@ function famCalc(tier){
  const distance=()=>{const pts=[0,...zs,T];let d=0;const pcs=[];for(let i=0;i<pts.length-1;i++){const v=integrate(V.f,pts[i],pts[i+1]);pcs.push({a:pts[i],b:pts[i+1],v});d+=Math.abs(v);}return{d,pcs};};
  if(kind==='position'||kind==='position_distance'){
   const t1=pick([Math.round(T/2),T-1,T]);const val=pos(t1),I=val-s0;
-  parts.push({prompt:`Find the position of the particle at ${m(`t=${t1}`)}. Give your answer correct to three decimal places.`,answer:{kind:'numeric',value:val,tolerance:0.001},answerTex:fix(val),
+  parts.push({prompt:`Find the position of the particle at ${m(`t=${t1}`)}. Give your answer correct to three decimal places.`,answer:{kind:'numeric',value:val,places:3},answerTex:fix(val),
    explanation:step('Add the displacement to the starting position.','The change in position is the integral of velocity (signed, because position can decrease).',`${C0.pos}(${t1})=${C0.pos}(0)+\\int_{0}^{${t1}}v(t)\\,dt=${s0}+\\int_{0}^{${t1}}\\left(${V.tex}\\right)dt`,`\\approx ${s0}${I<0?'-':'+'}${fix(Math.abs(I),4)}\\approx ${fix(val)}`),keypadMode:'unit5-number',placeholder:'Decimal answer'});
  }
  if(kind==='distance'||kind==='position_distance'){
   if(!zs.length&&U.rand()<0.7)return null;
   const {d,pcs}=distance();
-  parts.push({prompt:`Find the total distance traveled from ${m('t=0')} to ${m(`t=${T}`)}. Give your answer correct to three decimal places.`,answer:{kind:'numeric',value:d,tolerance:0.001},answerTex:fix(d),
+  parts.push({prompt:`Find the total distance traveled from ${m('t=0')} to ${m(`t=${T}`)}. Give your answer correct to three decimal places.`,answer:{kind:'numeric',value:d,places:3},answerTex:fix(d),
    explanation:step('Total distance is the integral of speed.',`Speed is ${m('|v(t)|')}. ${zs.length?`On ${m(`[0,${T}]`)} the velocity is zero at ${zs.map(z=>m(`t\\approx ${fix(z)}`)).join(', ')} (found with the calculator), and the calculator integrates ${m('|v|')} directly.`:`The velocity does not change sign on ${m(`[0,${T}]`)}, so the distance equals the absolute value of the displacement.`}`,`\\int_{0}^{${T}}\\left|${V.tex}\\right|dt\\approx ${fix(d)}`)+
     (zs.length?step('Check by pieces.','The same total comes from adding the absolute value of the integral on each piece.',`${pcs.map(p=>`\\left|${fix(p.v,4)}\\right|`).join('+')}\\approx ${fix(d)}`):''),keypadMode:'unit5-number',placeholder:'Decimal answer'});
  }
  if(kind==='speed'){
   const c=pick([1,2,3,T-1].filter(x=>x>0&&x<T));const h=1e-5,vc=V.f(c),ac=(V.f(c+h)-V.f(c-h))/(2*h);if(Math.abs(vc)<0.05||Math.abs(ac)<0.05)return null;
   const inc=vc*ac>0;
-  parts.push({prompt:`Find the acceleration of the particle at ${m(`t=${c}`)}. Give your answer correct to three decimal places.`,answer:{kind:'numeric',value:ac,tolerance:0.001},answerTex:fix(ac),explanation:step('Acceleration is the derivative of velocity.','Use the calculator to evaluate the derivative at the point.',`a(${c})=v'(${c})\\approx ${fix(ac)}`),keypadMode:'unit5-number',placeholder:'Decimal answer'});
+  parts.push({prompt:`Find the acceleration of the particle at ${m(`t=${c}`)}. Give your answer correct to three decimal places.`,answer:{kind:'numeric',value:ac,places:3},answerTex:fix(ac),explanation:step('Acceleration is the derivative of velocity.','Use the calculator to evaluate the derivative at the point.',`a(${c})=v'(${c})\\approx ${fix(ac)}`),keypadMode:'unit5-number',placeholder:'Decimal answer'});
   parts.push({prompt:`Is the particle's speed increasing or decreasing at ${m(`t=${c}`)}?`,control:'choice',choices:['Increasing','Decreasing'],correctIndex:inc?0:1,answerIsText:true,answerTex:inc?'Increasing':'Decreasing',
    explanation:step('Compare the signs of velocity and acceleration.',`${m(`v(${c})\\approx ${fix(vc)}`)} is ${sgnWord(vc)} and ${m(`a(${c})\\approx ${fix(ac)}`)} is ${sgnWord(ac)}. ${inc?'Same sign: the speed is increasing.':'Opposite signs: the speed is decreasing.'}`)});
  }
@@ -266,9 +266,8 @@ function famCalc(tier){
   const pts=[0,...zs,T],right=[];for(let i=0;i<pts.length-1;i++)if(V.f((pts[i]+pts[i+1])/2)>0)right.push([pts[i],pts[i+1]]);
   if(!right.length)return null;
   const ivTex=right.map(([a,b])=>`(${fix(a)},\\,${fix(b)})`).join('\\cup ');
-  parts.push({prompt:`For ${m(`0<t<${T}`)}, on what interval or intervals is the particle moving to the right? Round endpoints to three decimal places.`,answer:{kind:'interval',variable:'t',anyBrackets:true,tolerance:0.0015,parts:right.map(([a,b])=>({left:a,right:b}))},answerTex:ivTex,
+  parts.push({prompt:`For ${m(`0<t<${T}`)}, on what interval or intervals is the particle moving to the right? Round endpoints to three decimal places.`,answer:{kind:'interval',variable:'t',anyBrackets:true,places:3,parts:right.map(([a,b])=>({left:a,right:b}))},answerTex:ivTex,
    explanation:step('Moving right means v(t) > 0.',`Graph ${m('v')} or use the calculator's zero finder: on ${m(`(0,${T})`)} the velocity is zero at ${zs.map(z=>m(`t\\approx ${fix(z)}`)).join(', ')}. Testing a value between consecutive zeros shows where ${m('v>0')}.`,ivTex),keypadMode:'unit5-motion-intervals-dec',placeholder:'e.g. (0, 1.234)'});
-  parts.forEach(p=>{if(p.answer.kind==='interval')p.answer.parts=p.answer.parts.map(q=>({left:+fix(q.left,6),right:+fix(q.right,6)}));});
  }
  if(!parts.length)return null;
  return problem({engine:'motion',family:'calculator',tier,id:`calc-${CALC_V.indexOf(V)}-${T}-${s0}-${kind}`,

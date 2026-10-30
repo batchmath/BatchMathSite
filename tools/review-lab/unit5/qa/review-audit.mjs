@@ -4,6 +4,8 @@
 import {load} from './lib.mjs';
 const N=+(process.argv[2]||10000);
 const L=load(['unit5-basic.js','unit5-motion.js','unit5-slope-fields.js','unit5-separable.js','unit5-growth.js','unit5-rate.js','unit5-review.js']),gen=L.G.get('unit5-comprehensive-review');
+// v12.8.X: rounded answers are entered as their correctly rounded decimal
+const R=(a,v)=>a.places===undefined||typeof v!=='number'||!Number.isFinite(v)?v:L.W.BatchMathUnit5Core.fix(v,a.places);
 const TOP=['basic','motion','slope','separable','growth','rate'],TIERS=['foundational','intermediate','challenging'];
 const tab={};TOP.forEach(t=>tab[t]=Object.fromEntries(TIERS.map(x=>[x,0])));let slopeDraw=0,slopeAll=0,errors=0,fails=[];
 const S=L.W.BatchMathUnit5Slope;
@@ -14,8 +16,8 @@ for(let i=1;i<=N;i++){L.seed(i*6007);let p;try{p=gen({});}catch(e){errors++;cont
   if(part.control==='slope-segments'){const T=part.board.targets;if(!S.gradeSegments(T,T.map(x=>x.vertical?90:S.angleOf(x.slope))).ok)fails.push(`${p.id} segments`);continue;}
   if(part.control==='solution-curve'){if(!S.gradeCurve(part.board.ref,part.board.ref,part.board.ic,S.ODES[part.board.ode]).ok)fails.push(`${p.id} curve`);continue;}
   const a=part.answer;let raw;if(a.kind==='ivp'||a.kind==='function'||a.kind==='general'){raw=a.expression+(a.kind==='general'?'+C':'');if(a.variable==='t')raw=raw.replace(/(?<![a-z])x(?![a-z])/g,'t');if(a.variable==='theta')raw=raw.replace(/(?<![a-z])x(?![a-z])/g,'θ');}
-  else if(a.kind==='interval'){const ps=a.parts||[{left:a.left,right:a.right,lc:a.lc,rc:a.rc}];raw=a.none?'none':ps.map(q=>`${q.lc?'[':'('}${q.left},${q.right}${q.rc?']':')'}`).join('U');}
-  else if(a.kind==='list')raw=a.values.length?a.values.join(','):'none';else raw=String(a.value??a.expression);
+  else if(a.kind==='interval'){const ps=a.parts||[{left:a.left,right:a.right,lc:a.lc,rc:a.rc}];raw=a.none?'none':ps.map(q=>`${q.lc?'[':'('}${R(a,q.left)},${R(a,q.right)}${q.rc?']':')'}`).join('U');}
+  else if(a.kind==='list')raw=a.values.length?a.values.map(v=>R(a,v)).join(','):'none';else raw=String(R(a,a.value)??a.expression);
   if(!L.A.check(raw,a).ok)fails.push(`${p.id} ${a.kind}: ${raw}`);}}
 const tot=Object.values(tab).reduce((s,r)=>s+Object.values(r).reduce((a,b)=>a+b,0),0);
 const rowT=Object.fromEntries(TOP.map(t=>[t,Object.values(tab[t]).reduce((a,b)=>a+b,0)])),colT=Object.fromEntries(TIERS.map(x=>[x,TOP.reduce((a,t)=>a+tab[t][x],0)]));

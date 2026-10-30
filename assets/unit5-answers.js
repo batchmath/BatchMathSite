@@ -1,4 +1,4 @@
-/* BatchMath v12.8.W — Unit 5 answer checking.
+/* BatchMath v12.8.X — Unit 5 answer checking.
    Kinds:
    ivp        a particular solution y = f(x): equal to the exact solution at many points spread over the whole
               interval of validity; diagnoses a wrong constant, a wrong branch, a missing initial condition, an
@@ -6,7 +6,9 @@
    function   y = f(x) with no initial condition to satisfy (for example the line of horizontal segments).
    general    a general solution y = F(x) + C (the Unit 4 antiderivative checker).
    interval   one interval or a union of intervals, in interval or inequality notation, with exact endpoints.
-   numeric    a calculator value, correct to the stated tolerance (three decimal places: within 0.001).
+   numeric    a calculator value rounded as the question directs (places: 3 for three decimal places, 2 for cents,
+              0 for a whole number). v12.8.X: the entry must be a decimal number equal to the correctly rounded
+              value (half away from zero); trailing zeros are optional, more digits are not. See checkNumeric.
    exact      one exact value; terminating decimals that equal it are fine, approximations are not.
    list       a set of exact values, or None.
    Expressions are read with the shared Unit 4 parser (x, t, θ; e, π; trig, inverse trig, ln, roots, |u|). */
@@ -110,14 +112,14 @@ function splitTop(text,sep){
 }
 function parseOneInterval(s){
  s=s.trim();
- if(/^(?:all\s*real\s*numbers?|all\s*reals?|r|ℝ|\(-∞,\s*∞\))$/i.test(s))return{left:-Infinity,right:Infinity,lc:false,rc:false};
+ if(/^(?:all\s*real\s*numbers?|all\s*reals?|r|ℝ|\(-∞,\s*∞\))$/i.test(s))return{left:-Infinity,right:Infinity,lc:false,rc:false,leftRaw:'-∞',rightRaw:'∞'};
  // inequality forms: a<x<b, x>a, x<=b, a<=x
  const ineq=s.replace(/\s+/g,'').match(/^(?:(.+?)(<=|<))?([xytθ])(?:(<=|<|>=|>)(.+))?$/i);
  if(ineq&&(ineq[1]!==undefined||ineq[4]!==undefined)&&!/^[(\[]/.test(s)){
-  const [, lo, lop, , op, rhs]=ineq;let left=-Infinity,right=Infinity,lc=false,rc=false;
-  if(lo!==undefined){left=endpointValue(lo);lc=lop==='<=';}
-  if(op!==undefined){const v=endpointValue(rhs);if(op[0]==='<'){right=v;rc=op==='<=';}else{if(lo!==undefined)throw Error('form');left=v;lc=op==='>=';}}
-  return{left,right,lc,rc};
+  const [, lo, lop, , op, rhs]=ineq;let left=-Infinity,right=Infinity,lc=false,rc=false,leftRaw='-∞',rightRaw='∞';
+  if(lo!==undefined){left=endpointValue(lo);lc=lop==='<=';leftRaw=lo;}
+  if(op!==undefined){const v=endpointValue(rhs);if(op[0]==='<'){right=v;rc=op==='<=';rightRaw=rhs;}else{if(lo!==undefined)throw Error('form');left=v;lc=op==='>=';leftRaw=rhs;}}
+  return{left,right,lc,rc,leftRaw,rightRaw};
  }
  if(!/^[(\[]/.test(s)||!/[)\]]$/.test(s))throw Error('form');
  const inner=s.slice(1,-1),parts=splitTop(inner,ch=>ch===',');
@@ -127,7 +129,7 @@ function parseOneInterval(s){
  const lc=s[0]==='[',rc=s[s.length-1]===']';
  if((lc&&!Number.isFinite(left))||(rc&&!Number.isFinite(right)))throw Error('infinite-bracket');
  if(!(left<right))throw Error('order');
- return{left,right,lc,rc};
+ return{left,right,lc,rc,leftRaw:parts[0].trim(),rightRaw:parts[1].trim()};
 }
 function parseIntervals(raw){
  const text=normalizeIntervalText(raw);
@@ -137,14 +139,33 @@ function parseIntervals(raw){
  const parts=pieces.map(parseOneInterval).sort((p,q)=>p.left-q.left);
  return{parts};
 }
-let endTol=0;// set per check: calculator answers may give rounded endpoints
-const sameEnd=(a,b)=>a===b||(Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=Math.max(endTol,1e-9*Math.max(1,Math.abs(a))));
+const sameEnd=(a,b)=>a===b||(Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=1e-9*Math.max(1,Math.abs(a)));
 function expectedParts(spec){
  const list=spec.parts||[{left:spec.left,right:spec.right,lc:!!(spec.lc??spec.leftClosed),rc:!!(spec.rc??spec.rightClosed)}];
  return list.map(p=>({left:typeof p.left==='string'?endpointValue(p.left):p.left,right:typeof p.right==='string'?endpointValue(p.right):p.right,lc:!!(p.lc??p.leftClosed),rc:!!(p.rc??p.rightClosed)}));
 }
+// Calculator intervals (v12.8.X): every finite endpoint is a decimal rounded to spec.places and must equal the
+// correctly rounded endpoint (core roundScaled); an exact whole-number endpoint such as 0 may be written as 0.
+function checkRoundedIntervals(parts,want,spec){
+ const p=placesOf(spec),words=precisionWords(spec,p);
+ const end=(rawEnd,value)=>{
+  if(!Number.isFinite(value))return{scaled:value};
+  const r=readRounded(rawEnd,spec,'each endpoint');if(r.error)return{error:`Give each endpoint as a decimal rounded to ${words}.`};
+  return r;
+ };
+ const read=parts.map(q=>({lc:q.lc,rc:q.rc,l:end(q.leftRaw,q.left),r:end(q.rightRaw,q.right)}));
+ const bad=read.find(q=>q.l.error||q.r.error);if(bad)return{valid:false,message:(bad.l.error||bad.r.error)};
+ if(read.some(q=>q.l.tooPrecise||q.r.tooPrecise))return{valid:true,ok:false,note:`Round each endpoint to ${words} as the question asks.`};
+ const target=w=>({l:Number.isFinite(w.left)?C5().roundScaled(w.left,p):w.left,r:Number.isFinite(w.right)?C5().roundScaled(w.right,p):w.right});
+ const sameEnds=read.length===want.length&&read.every((q,i)=>{const t=target(want[i]);return q.l.scaled===t.l&&q.r.scaled===t.r;});
+ if(sameEnds&&(spec.anyBrackets||read.every((q,i)=>q.lc===want[i].lc&&q.rc===want[i].rc)))return{valid:true,ok:true};
+ if(sameEnds)return{valid:true,ok:false,note:'The endpoints are right, but check which endpoints are included.'};
+ const near=read.length===want.length&&read.every((q,i)=>{const t=target(want[i]);return [[q.l.scaled,t.l],[q.r.scaled,t.r]].every(([a,b])=>a===b||Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=2);});
+ if(near)return{valid:true,ok:false,note:`Close, but at least one endpoint is not correctly rounded. Keep full calculator precision, then round each endpoint to ${words}.`};
+ return{valid:true,ok:false};
+}
 function checkInterval(raw,spec){
- endTol=Number(spec.tolerance||0);
+ const rounded=spec.places!==undefined||spec.tolerance!==undefined;
  let got;
  try{got=parseIntervals(raw);}
  catch(e){
@@ -155,6 +176,7 @@ function checkInterval(raw,spec){
  if(got.empty)return{valid:false,message:'Enter an answer before checking.'};
  const want=spec.none?[]:expectedParts(spec);
  if(got.none)return{valid:true,ok:want.length===0,note:want.length?'There is at least one interval; find where the condition holds.':''};
+ if(rounded)return checkRoundedIntervals(got.parts,want,spec);
  const ok=got.parts.length===want.length&&got.parts.every((p,i)=>sameEnd(p.left,want[i].left)&&sameEnd(p.right,want[i].right)&&(spec.anyBrackets||p.lc===want[i].lc&&p.rc===want[i].rc)); // anyBrackets: open or closed finite endpoints (intervals of increase, direction)
  if(ok)return{valid:true,ok:true};
  const v=shownVar(spec.variable);
@@ -171,20 +193,67 @@ function checkInterval(raw,spec){
 }
 
 // ---------- numbers ----------
+const UNITS=/\s*(?:dollars?|years?|weeks?|days?|hours?|minutes?|mg|milligrams?|grams?|units?|%|percent|°\s*[CF]?|degrees?)\s*$/i;
 function numberOf(raw){
- const text=String(raw||'').trim().replace(/[$,](?=\d)/g,'').replace(/\s*(?:dollars?|years?|weeks?|days?|hours?|minutes?|mg|milligrams?|grams?|units?|%|percent|°\s*[CF]?|degrees?)\s*$/i,'');
+ const text=String(raw||'').trim().replace(/[$,](?=\d)/g,'').replace(UNITS,'');
  const tree=parse(text,null);if(usesVar(tree,'y'))throw Object.assign(Error('C'),{code:'variable'});
  const v=I.evaluate(tree,{});if(!Number.isFinite(v))throw Object.assign(Error('undefined'),{code:'undefined'});
  return v;
 }
+// ---------- rounded answers (v12.8.X) ----------
+// Policy: a question that says "round to three decimal places", "to the nearest cent" or "to the nearest whole
+// number" takes a decimal number, and that number must equal the correctly rounded value of the exact answer
+// (rounded half away from zero; core roundScaled). Accepted: a leading decimal point (.923), a sign, -0, trailing
+// zeros (1.25, 1.250, 1.2500 for 1.250), a dollar sign, thousands commas and a unit word. Graded wrong: a
+// neighbouring rounded value (1.234 for 1.235) and an unrounded value with extra non-zero digits (1.2503 for
+// 1.250). Not graded (the student is asked to re-enter): an expression such as ln(2)/5, so an unrounded
+// calculator expression cannot stand in for the rounded number the question asks for.
+const C5=()=>window.BatchMathUnit5Core;
+const LEGACY_PLACES={0.001:3,0.0015:3,0.005:2,0.5:0};
+function placesOf(spec){
+ if(Number.isInteger(spec.places))return spec.places;
+ const p=LEGACY_PLACES[spec.tolerance];if(p===undefined)throw Error(`unit5-answers: rounded answer without places (${JSON.stringify(spec).slice(0,80)})`);
+ return p;
+}
+const precisionWords=(spec,p)=>spec.money?'the nearest cent':p===0?'the nearest whole number':`${['zero','one','two','three','four','five','six'][p]} decimal places`;
+// A plain decimal as typed, or null: optional sign, optional dollar sign, digits with an optional decimal point
+// (".923", "5.", "-0"), thousands commas, an optional unit word.
+function decimalParts(raw){
+ let t=String(raw||'').trim().replace(/[−–—]/g,'-').replace(UNITS,'').trim();
+ let neg=false;
+ const sign=()=>{if(t[0]==='-'||t[0]==='+'){neg=neg!==(t[0]==='-');t=t.slice(1).trim();return true;}return false;};
+ sign();if(t[0]==='$'){t=t.slice(1).trim();sign();}
+ if(/^\d{1,3}(?:,\d{3})+(?:\.\d*)?$/.test(t))t=t.replace(/,/g,'');
+ const m=t.match(/^(\d*)(?:\.(\d*))?$/);
+ if(!m||!m[1]&&!m[2])return null;
+ return{neg,int:m[1]||'0',frac:m[2]||''};
+}
+// The entry as an integer count of the last place (1.25 at three places -> 1250), or tooPrecise when it has more
+// non-zero decimal places than were asked for.
+function scaledEntry(d,p){
+ const frac=d.frac.replace(/0+$/,'');
+ if(frac.length>p)return{tooPrecise:true};
+ const v=Number((d.int.replace(/^0+(?=\d)/,''))+frac.padEnd(p,'0'));
+ return{scaled:d.neg&&v!==0?-v:v};
+}
+function readRounded(raw,spec,what){
+ const p=placesOf(spec),words=precisionWords(spec,p),d=decimalParts(raw);
+ if(!d){
+  let bad=false;try{numberOf(raw);}catch(_){bad=true;}
+  return{error:bad?`Enter ${what||'a number'} rounded to ${words}${p===3?', for example 2.718 or .923':''}.`:`Enter ${what||'your answer'} as a decimal number rounded to ${words}, not as an expression.`,p,words};
+ }
+ return{...scaledEntry(d,p),p,words};
+}
 function checkNumeric(raw,spec){
  if(!String(raw||'').trim())return{valid:false,message:'Enter an answer before checking.'};
- let got;try{got=numberOf(raw);}catch(e){return{valid:false,message:e.code==='undefined'?'That expression is undefined. Check it and try again.':message(e,null,'Enter a number, or an expression a calculator can evaluate.')};}
- const want=Number(spec.value),tol=Number(spec.tolerance??0.001);
- if(Math.abs(got-want)<=tol+1e-12)return{valid:true,ok:true};
- for(const w of spec.wrongValues||[])if(Math.abs(got-w.value)<=tol+1e-12)return{valid:true,ok:false,note:w.note};
- if(Math.abs(got+want)<=tol+1e-12&&Math.abs(want)>tol)return{valid:true,ok:false,note:'Check the sign of your answer.'};
- if(Math.abs(got-want)<=0.01*Math.abs(want))return{valid:true,ok:false,note:spec.roundingNote||'Very close. Keep full calculator precision until the last step, then round as directed.'};
+ const r=readRounded(raw,spec);
+ if(r.error)return{valid:false,message:r.error};
+ if(r.tooPrecise)return{valid:true,ok:false,note:`Round your answer to ${r.words} as the question asks; it has more decimal places than that.`};
+ const target=C5().roundScaled(Number(spec.value),r.p),got=r.scaled;
+ if(got===target)return{valid:true,ok:true};
+ for(const w of spec.wrongValues||[])if(Number.isFinite(w.value)&&got===C5().roundScaled(w.value,r.p))return{valid:true,ok:false,note:w.note};
+ if(target!==0&&got===-target)return{valid:true,ok:false,note:'Check the sign of your answer.'};
+ if(Math.abs(got-target)<=2)return{valid:true,ok:false,note:spec.roundingNote||`Close, but not the correctly rounded value. Keep full calculator precision until the last step, then round to ${r.words}.`};
  return{valid:true,ok:false};
 }
 function checkExact(raw,spec){
@@ -200,17 +269,31 @@ function checkExact(raw,spec){
 function splitList(text){
  return splitTop(text,ch=>ch===','||ch===';').flatMap(p=>p.split(/\band\b/i)).map(p=>p.trim()).filter(Boolean);
 }
+// A list of calculator values (v12.8.X): each one a decimal rounded to spec.places, in any order.
+function checkRoundedList(items,spec){
+ const read=items.map(t=>readRounded(t,spec,'each value'));
+ const bad=read.find(r=>r.error);if(bad)return{valid:false,message:bad.error};
+ const p=placesOf(spec);
+ if(read.some(r=>r.tooPrecise))return{valid:true,ok:false,note:`Round each value to ${precisionWords(spec,p)} as the question asks.`};
+ const g=read.map(r=>r.scaled).sort((a,b)=>a-b),want=(spec.values||[]).map(v=>C5().roundScaled(Number(v),p)).sort((a,b)=>a-b);
+ for(let i=1;i<g.length;i++)if(g[i]===g[i-1])return{valid:true,ok:false,note:'List each value only once.'};
+ if(g.length===want.length&&g.every((v,i)=>v===want[i]))return{valid:true,ok:true};
+ if(g.length<want.length&&g.every(v=>want.includes(v)))return{valid:true,ok:false,note:'Those values are correct, but at least one is missing.'};
+ if(g.length>want.length&&want.every(w=>g.includes(w)))return{valid:true,ok:false,note:spec.extraNote||'All the correct values are there, but you also included at least one value that does not belong.'};
+ return{valid:true,ok:false};
+}
 function checkList(raw,spec){
  const text=String(raw||'').trim();
  if(!text)return{valid:false,message:'Enter every value, separated by commas, or choose None.'};
  if(/^(?:none|never|no\s*(?:times?|values?|solutions?)|∅|\{\s*\})$/i.test(text))return{valid:true,ok:!(spec.values||[]).length,note:(spec.values||[]).length?'There is at least one value; solve the equation.':''};
+ const items=splitList(text.replace(/^\s*\{|\}\s*$/g,'')).map(p=>p.replace(/^\s*[a-zθ]\s*=\s*/i,''));
+ if(spec.places!==undefined)return checkRoundedList(items,spec);
  let got;
- try{got=splitList(text.replace(/^\s*\{|\}\s*$/g,'')).map(p=>numberOf(p.replace(/^\s*[a-zθ]\s*=\s*/i,'')));}
+ try{got=items.map(numberOf);}
  catch(_){return{valid:false,message:'Enter each value, separated by commas.'};}
  const want=(spec.values||[]).map(v=>typeof v==='number'?v:I.evaluate(parse(v,null),{})).sort((a,b)=>a-b),g=[...got].sort((a,b)=>a-b);
  for(let i=1;i<g.length;i++)if(close(g[i],g[i-1],1e-10))return{valid:true,ok:false,note:'List each value only once.'};
- const tol=spec.tolerance;
- const same=(a,b)=>tol?Math.abs(a-b)<=tol+1e-12:close(a,b,1e-10);
+ const same=(a,b)=>close(a,b,1e-10);
  const ok=g.length===want.length&&g.every((v,i)=>same(v,want[i]));
  if(ok)return{valid:true,ok:true};
  if(g.length<want.length&&g.every(v=>want.some(w=>same(v,w))))return{valid:true,ok:false,note:'Those values are correct, but at least one is missing.'};
@@ -229,5 +312,5 @@ function check(raw,spec){
  }
  return{valid:false,message:'This answer type is not supported.'};
 }
-window.BatchMathUnit5Answers=Object.freeze({check,parseIntervals,parse,value,probes});
+window.BatchMathUnit5Answers=Object.freeze({check,parseIntervals,parse,value,probes,decimalParts});
 })();

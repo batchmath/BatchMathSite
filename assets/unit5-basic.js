@@ -450,7 +450,7 @@ function famCalc(tier){
   step('Use the Fundamental Theorem of Calculus.',`${m(V.fn)} is an antiderivative of ${m(`${V.fn}'`)}, so the change in ${m(V.fn)} from ${m(`${V.v}=${a}`)} to ${m(`${V.v}=${b}`)} is the definite integral of ${m(`${V.fn}'`)}.${backwards?` Here ${m(`${b}<${a}`)}, so the integral runs backward and its sign takes care of the direction.`:''}`,`${V.fn}(${b})=${V.fn}(${a})+\\int_{${a}}^{${b}}${coefTex}${it.tex('s')}\\,ds`),
   step('Evaluate with a calculator.',it.elementary?`Use the calculator's definite-integral feature; there is no need to find an antiderivative.`:`This integrand has no elementary antiderivative, so evaluate the definite integral numerically.`,`\\int_{${a}}^{${b}}${coefTex}${it.tex('s')}\\,ds\\approx ${fix(integral,4)}`,`${V.fn}(${b})\\approx ${ya}${integral<0?' - ':' + '}${fix(Math.abs(integral),4)}\\approx ${fix(value,3)}`)];
  const part={prompt:`Find ${m(`${V.fn}(${b})`)}. Give your answer correct to three decimal places.`,control:'input',
-  answer:{kind:'numeric',value,tolerance:0.001},answerTex:fix(value,3),explanation:steps.join(''),keypadMode:'unit5-number',placeholder:'Decimal answer'};
+  answer:{kind:'numeric',value,places:3},answerTex:fix(value,3),explanation:steps.join(''),keypadMode:'unit5-number',placeholder:'Decimal answer'};
  return problem({engine:'basic',family:'calculator_ftc',tier,id:`calc-${it.tex('x').length}-${a}-${b}-${ya}-${scale}`,
   questionHtml:question({prompt:`Use your calculator. ${m(V.fn)} is the solution of the initial-value problem below.`,formulas:[fp,cond],calculator:true}),
   parts:[part],calculator:true});

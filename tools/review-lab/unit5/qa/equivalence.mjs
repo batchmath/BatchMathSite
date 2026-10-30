@@ -23,18 +23,20 @@ for(const {L,p,part,key} of parts){const a=part.answer,A=L.A;const chk=(raw,labe
   for(const v of variants[key]||[])chk(sub(v,a.variable),'SymPy-equivalent form accepted',true);
   chk(sub(`(${a.expression})+1`,a.variable),'plus a constant rejected',false);
   if(Math.abs(A.value(A.parse(a.expression,'x'),a.x0??0))>1e-6)chk(sub(`-(${a.expression})`,a.variable),'negated rejected',false);}
- else if(a.kind==='numeric'){const v=a.value,tol=a.tolerance??0.001;
-  chk(v.toFixed(6),'more decimals accepted',true);
-  if(tol>=0.004){chk(`$${v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}`,'dollar sign and commas accepted',true);}
-  else if(tol<0.4)chk(`${v.toFixed(4)} units`.replace(' units',/minute|hour|year|day/i.test(part.answerTex)?' '+(part.answerTex.match(/minutes|hours|years|days/)||[''])[0]:''),'value with a unit word accepted',true);
-  if(Math.abs(v)>0.01)chk((v+Math.max(0.01,Math.abs(v)*0.02,2*tol)).toFixed(3),'2% (and beyond the tolerance) off rejected',false);
-  if(Math.abs(v)>0.002)chk((-v).toFixed(4),'wrong sign rejected',false);}
+ else if(a.kind==='numeric'){const v=a.value,k=a.places,C=L.W.BatchMathUnit5Core,r=C.fix(v,k),sc=C.roundScaled(v,k); // v12.8.X: correctly rounded values only
+  chk(k?`${r}00`:`${r}.00`,'rounded value with trailing zeros accepted',true);
+  if(a.money){chk(`$${Number(r).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}`,'dollar sign and commas accepted',true);}
+  else{const unit=(part.answerTex.match(/minutes|hours|years|days/)||[''])[0];if(unit)chk(`${r} ${unit}`,'rounded value with a unit word accepted',true);}
+  if(Math.abs(v)>0&&k>0&&Math.abs(v)<1)chk(r.replace(/^(-?)0\./,'$1.'),'leading decimal point accepted',true);
+  chk(C.scaledText(sc+1,k),'next rounded value up rejected',false);chk(C.scaledText(sc-1,k),'next rounded value down rejected',false);
+  const raw=v.toFixed(k+3);if(C.roundScaled(Number(raw),k)===sc&&/[1-9]/.test(raw.slice(-3)))chk(raw,'unrounded value (more digits) rejected',false);
+  if(sc!==0)chk(C.scaledText(-sc,k),'wrong sign rejected',false);}
  else if(a.kind==='exact'){const v=typeof a.value==='number'?a.value:NaN;if(!Number.isFinite(v))continue;
   if(Math.abs(v*1000-Math.round(v*1000))>1e-6)chk(v.toFixed(3),'rounded decimal of a non-terminating exact value rejected',false);
   if(Math.abs(v*1e6-Math.round(v*1e6))<1e-6)chk(String(v),'terminating decimal of the exact value accepted',true);
   if(Math.abs(v)>1e-9)chk(String(-v),'negated rejected',false);}
  else if(a.kind==='interval'){const ps=a.parts||[{left:a.left,right:a.right,lc:a.lc,rc:a.rc}];const val=e=>typeof e==='number'?e:/infinity/.test(String(e))?(String(e).startsWith('-')?-Infinity:Infinity):A.value(A.parse(String(e),null),0);
-  const fmt=x=>x===Infinity?'infinity':x===-Infinity?'-infinity':String(Number(x.toFixed(9)));
+  const fmt=x=>x===Infinity?'infinity':x===-Infinity?'-infinity':a.places!==undefined?L.W.BatchMathUnit5Core.fix(x,a.places):String(Number(x.toFixed(9))); // v12.8.X: calculator endpoints are entered rounded
   const vals=ps.map(q=>[val(q.left),val(q.right)]);const vv=a.variable==='t'?'t':a.variable==='theta'?'θ':a.variable==='y'?'y':'x';
   chk(vals.map(([l,r],k)=>`${ps[k].lc?'[':'('}${fmt(l)}, ${fmt(r)}${ps[k].rc?']':')'}`).join(' ∪ '),'decimal endpoints with ∪ accepted',true);
   if(vals.length===1){const [l,r]=vals[0],q=ps[0];const ineq=l===-Infinity&&r===Infinity?null:l===-Infinity?`${vv}${q.rc?'<=':'<'}${fmt(r)}`:r===Infinity?`${vv}${q.lc?'>=':'>'}${fmt(l)}`:`${fmt(l)}${q.lc?'<=':'<'}${vv}${q.rc?'<=':'<'}${fmt(r)}`;

@@ -5,9 +5,11 @@ const L=load(file.split(',')),gen=L.G.get(slug);
 const fam={},tier={},fails=[],errs={},kinds={};let parts=0,multi=0,calc=0;
 const canon=(a)=>{
  if(a.kind==='ivp'||a.kind==='function'||a.kind==='general'){let r=a.expression+(a.kind==='general'?'+C':'');if(a.variable==='t')r=r.replace(/(?<![a-z])x(?![a-z])/g,'t');if(a.variable==='theta')r=r.replace(/(?<![a-z])x(?![a-z])/g,'θ');return r;}
- if(a.kind==='interval'){if(a.none)return 'none';const ps=a.parts||[{left:a.left,right:a.right,lc:a.lc??a.leftClosed,rc:a.rc??a.rightClosed}];return ps.map(p=>`${p.lc?'[':'('}${p.left},${p.right}${p.rc?']':')'}`).join('U');}
- if(a.kind==='numeric'||a.kind==='exact')return String(a.value??a.expression);
- if(a.kind==='list')return a.values.length?a.values.join(','):'none';
+ // v12.8.X: a rounded answer is entered as its correctly rounded decimal, not as the raw value
+ const R=v=>a.places===undefined||typeof v!=='number'||!Number.isFinite(v)?v:L.W.BatchMathUnit5Core.fix(v,a.places);
+ if(a.kind==='interval'){if(a.none)return 'none';const ps=a.parts||[{left:a.left,right:a.right,lc:a.lc??a.leftClosed,rc:a.rc??a.rightClosed}];return ps.map(p=>`${p.lc?'[':'('}${R(p.left)},${R(p.right)}${p.rc?']':')'}`).join('U');}
+ if(a.kind==='numeric'||a.kind==='exact')return String(R(a.value)??a.expression);
+ if(a.kind==='list')return a.values.length?a.values.map(R).join(','):'none';
 };
 for(let i=1;i<=N;i++){L.seed(i*7919);let p;try{p=gen({});}catch(e){errs[e.message]=(errs[e.message]||0)+1;continue;}
  fam[p.variant]=(fam[p.variant]||0)+1;tier[p.unit5Meta.tier]=(tier[p.unit5Meta.tier]||0)+1;if(p.parts.length>1)multi++;if(p.calculatorActive)calc++;

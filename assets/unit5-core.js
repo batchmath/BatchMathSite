@@ -1,4 +1,4 @@
-/* BatchMath v12.8.W — Unit 5 generator toolkit.
+/* BatchMath v12.8.X — Unit 5 generator toolkit.
    Exact arithmetic (rationals and sums of rational multiples of constants such as √3, π, e, ln 2), term builders
    whose TeX, parser expression and JS function stay in step, numerical integration and root finding for
    calculator problems, explanation builders in the approved Unit 4 style, weighted family selection with
@@ -135,8 +135,23 @@ function roots(f,a,b,{steps=4000,tol=1e-12}={}){
  }
  return out.filter((r,i)=>i===0||Math.abs(r-out[i-1])>1e-9);
 }
-const fix=(x,p=3)=>{const s=(Math.round(x*10**p)/10**p).toFixed(p);return s==='-0.000'?'0.000':s;};
-const money=x=>(Math.round(x*100)/100).toFixed(2);
+// ---------- rounding (v12.8.X) ----------
+// Correct rounding to p decimal places, half away from zero (1.2345 -> 1.235, -1.2345 -> -1.235), returned as
+// the integer x·10^p. A value within floating-point noise of a half step (1e-9 of the last place plus a relative
+// 1e-12) counts as exactly half, so the binary form of 1.2345 does not round it down. Generated answers never sit
+// that close to a half step: problem() rejects them (nearTie), so their rounding does not depend on noise.
+function roundScaled(x,p){
+ const N=Math.abs(x)*10**p,fl=Math.floor(N),fr=N-fl,eps=1e-9+1e-12*N;
+ const r=fr<0.5-eps?fl:fl+1;
+ return x<0&&r!==0?-r:r;
+}
+const nearTie=(x,p)=>{const N=Math.abs(x)*10**p;return Math.abs(N-Math.floor(N)-0.5)<2e-6+1e-10*N;};
+function scaledText(s,p){
+ const digits=String(Math.abs(s)).padStart(p+1,'0'),int=digits.slice(0,digits.length-p),frac=digits.slice(digits.length-p);
+ return `${s<0?'-':''}${int}${p?'.'+frac:''}`;
+}
+const fix=(x,p=3)=>scaledText(roundScaled(x,p),p);
+const money=x=>fix(x,2);
 
 // ---------- explanation and question HTML ----------
 // < and > inside math become the TeX commands lt and gt, so HTML never mistakes them for tags
@@ -155,8 +170,18 @@ const TIERS=['foundational','intermediate','challenging'];
 // a short content hash so that different problems never share an id (the parameters in an id do not always
 // determine the problem) while the same problem always gets the same id
 function hash(text){let h=0x811c9dc5;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,0x01000193);}return(h>>>0).toString(36);}
+// Every rounded answer (numeric values, calculator interval endpoints, rounded lists) must not sit within noise
+// of a rounding half step; such a problem is regenerated (makeEngine retries) instead of graded on a coin flip.
+function roundedValues(a){
+ if(!a||a.places===undefined)return[];
+ if(a.kind==='numeric')return[a.value];
+ if(a.kind==='interval')return(a.parts||[]).flatMap(q=>[q.left,q.right]).filter(v=>typeof v==='number'&&Number.isFinite(v));
+ if(a.kind==='list')return(a.values||[]).filter(v=>typeof v==='number');
+ return[];
+}
 function problem({engine,family,tier,id,questionHtml,parts,calculator=false,data={}}){
  if(!TIERS.includes(tier))throw Error(`tier ${tier}`);
+ for(const q of parts)for(const v of roundedValues(q.answer))if(nearTie(v,q.answer.places))throw Error('an answer lies on a rounding half step');
  return{id:`u5-${engine}-${id}-${hash(questionHtml+parts.map(x=>x.answerTex||'').join('|'))}`,variant:family,normalizedMathDisplay:true,answerType:'unit5-staged',calculatorActive:!!calculator,
   questionHtml,parts,answerTex:parts[parts.length-1].answerTex,explanation:parts.map(p=>p.explanation||'').join(''),
   unit5Meta:{engine,family,tier,calculator:!!calculator,parts:parts.length,...data}};
@@ -188,5 +213,5 @@ profile('unit5-money',{decimal:true});
 
 window.BatchMathUnit5Core=Object.freeze({rand,ri,pick,nz,shuffle,weighted,Q,qv,qadd,qsub,qmul,qdiv,qneg,qint,qzero,qone,qeq,asQ,qtex,qexpr,gcd,
  K,atom,lnAtom,expAtom,E,ex,safe,trigExact,piTexQ,xRat,xPi,Poly,eadd,escale,eneg,esub,eval:eval_,ezero,erational,etex,eexpr,termTex,sum,integrate,roots,fix,money,eq,step,m,question,problem,
- makeEngine,register,profile,TIERS});
+ makeEngine,register,profile,TIERS,roundScaled,nearTie,scaledText});
 })();

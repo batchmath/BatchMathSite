@@ -29,11 +29,11 @@ const KEEP=`Keep the exact value of ${m('k')} (or store it in the calculator) an
 function decPart(prompt,value,unit,explanation,o={}){
  const whole=!!o.whole;
  return{prompt:`${prompt} ${whole?'Round to the nearest whole number.':DEC}`,
-  answer:{kind:'numeric',value,tolerance:whole?0.5:0.001,...(o.wrong?{wrongValues:o.wrong.filter(w=>Number.isFinite(w.value)&&Math.abs(w.value-value)>(whole?1:0.002))}:{})},
-  answerTex:`${whole?nt(Math.round(value)):nt(fix(value))}${unit==='%'?'\\%':unit?`\\text{ ${unit}}`:''}`,explanation,keypadMode:'unit5-number',placeholder:whole?'Whole number':'Decimal answer'};
+  answer:{kind:'numeric',value,places:whole?0:3,...(o.wrong?{wrongValues:o.wrong.filter(w=>Number.isFinite(w.value)&&U.roundScaled(w.value,whole?0:3)!==U.roundScaled(value,whole?0:3))}:{})},
+  answerTex:`${nt(fix(value,whole?0:3))}${unit==='%'?'\\%':unit?`\\text{ ${unit}}`:''}`,explanation,keypadMode:'unit5-number',placeholder:whole?'Whole number':'Decimal answer'};
 }
 function moneyPart(prompt,value,explanation,wrong=[]){
- return{prompt:`${prompt} Round to the nearest cent.`,answer:{kind:'numeric',value,tolerance:0.005,wrongValues:wrong.filter(w=>Math.abs(w.value-value)>0.01)},
+ return{prompt:`${prompt} Round to the nearest cent.`,answer:{kind:'numeric',value,places:2,money:true,wrongValues:wrong.filter(w=>Number.isFinite(w.value)&&U.roundScaled(w.value,2)!==U.roundScaled(value,2))},
   answerTex:`\\$${nt(money(value))}`,explanation,keypadMode:'unit5-money',placeholder:'Dollars and cents'};
 }
 function exactPart(prompt,value,tex,explanation,name='k'){
