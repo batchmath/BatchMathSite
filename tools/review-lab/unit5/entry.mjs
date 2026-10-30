@@ -55,7 +55,7 @@ for(let i=0;i<+count;i++){
   await p.waitForTimeout(250);
   const res=await p.evaluate(s=>{const f=document.querySelector(`${s} .staged-feedback .result`);return f?f.textContent.trim():(document.querySelector(`${s} .staged-input-message`)?.textContent.trim()||'(no feedback)');},scope);
   out.parts++;
-  if(!/is correct\.|^Correct\./.test(res))out.failures.push(`${info.id} part ${k+1} [${part.answer?.kind||part.control}]: ${res} | answer ${part.answerTex}`);
+  if(!/is correct\.|^Correct\./.test(res)){const val=await p.$eval(`${scope} input.staged-exact-input`,e=>e.value).catch(()=>'');out.failures.push(`${info.id} part ${k+1} [${part.answer?.kind||part.control}]: ${res} | answer ${part.answerTex}${val?` | field held ${val}`:''}`);}
   if(k<info.parts.length-1){const cont=p.locator(`${scope} .staged-continue`);if(await cont.count())await cont.click();await p.waitForTimeout(300);}
  }
  await p.evaluate(()=>window.MathJax?.typesetPromise?.()).catch(()=>{});await p.waitForTimeout(200);

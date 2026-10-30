@@ -45,6 +45,13 @@ PAGES = [
     dict(topic='slope-fields', page='practice', new=True, slug='slope-fields', title='Slope Fields', engine_id='ap_topic_slope_fields', scripts=['/assets/unit5-slope-fields.js'],
          description='Draw slope segments and solution curves with a mouse, pen or finger (or type slopes and points instead), match fields with equations, and analyze slopes. After you check a drawing, the correct segments or curve appear on the same grid.',
          modes=[('mixed', 'Mixed Practice'), ('draw_segments', 'Draw Slope Segments'), ('draw_curve', 'Draw Solution Curves'), ('match', 'Match Fields, Equations and Curves'), ('analyze', 'Analyze Slopes and Solutions')]),
+    dict(topic='comprehensive-review', page='assignment-practice', slug='unit5-comprehensive-review', analytics_slug='unit5_assignment_review',
+         title='Differential Equations Review', engine_id='ap_unit5_assignment_review',
+         scripts=['/assets/unit5-basic.js', '/assets/unit5-motion.js', '/assets/unit5-slope-fields.js', '/assets/unit5-separable.js', '/assets/unit5-growth.js', '/assets/unit5-rate.js', '/assets/unit5-review.js'],
+         description='A mixed review of all six Unit 5 topics, from short skills to a smaller share of challenging problems. Each question uses the same input, checking and worked explanations as its topic practice page.',
+         modes=[('mixed', 'Mixed Review'), ('basic', 'Basic First-Order Differential Equations'), ('motion', 'Motion Problems'), ('slope', 'Slope Fields'),
+                ('separable', 'Separable Differential Equations'), ('growth', "Growth, Decay, Interest and Newton's Law"), ('rate', 'Rate Problems'),
+                ('foundational', 'Foundational (all topics)'), ('intermediate', 'Intermediate (all topics)'), ('challenging', 'Challenging (all topics)')]),
 ]
 
 TEMPLATE = U5 / 'basic-first-order-differential-equations' / 'practice' / 'index.html'
@@ -119,6 +126,8 @@ def wire(path, cfg):
     text = re.sub(r'(BM_ANALYTICS_CONFIG=\{[^}]*generatorVersion:")[^"]*(")', rf'\g<1>{VERSION}\g<2>', text)
     # page config
     conf = {'slug': cfg['slug'], 'title': cfg['title'], 'generatorVersion': VERSION, 'modeSelectIds': ['u5Mode']}
+    if cfg.get('analytics_slug') and not cfg.get('slugs'):
+        conf = {'slug': cfg['slug'], 'analyticsSlug': cfg['analytics_slug'], 'title': cfg['title'], 'generatorVersion': VERSION, 'modeSelectIds': ['u5Mode']}
     if cfg.get('slugs'):
         conf = {'slugs': cfg['slugs'], 'analyticsSlug': cfg['analytics_slug'], 'title': cfg['title'], 'generatorVersion': VERSION, 'modeSelectIds': ['u5Mode']}
     js = 'window.BM_TOPIC_PRACTICE=' + json.dumps(conf, separators=(',', ':')) + ';'

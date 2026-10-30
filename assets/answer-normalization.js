@@ -233,6 +233,7 @@
     return [...root.querySelectorAll(sel)].filter(el => {
       if (el.disabled || el.readOnly) return false;
       if (el.closest('#bm-report-dialog')) return false;
+      if (el.dataset && el.dataset.bmNoNormalize==='true') return false; // engines whose checker parses signs itself
       const meta=`${el.id||''} ${el.name||''} ${el.getAttribute('aria-label')||''} ${el.className||''} ${el.getAttribute('data-bm-calc-keypad')||''} ${el.getAttribute('data-bm-keypad')||''}`;
       return /answer|response|location|quotient|remainder|practice-answer|keypad|factor/i.test(meta) || !!el.closest('.practice-shell,.question-area,#practiceCard');
     });
@@ -240,6 +241,7 @@
 
   function normalizeElement(el) {
     if (!el || typeof el.value!=='string') return false;
+    if (el.dataset && el.dataset.bmNoNormalize==='true') return false;
     const next=normalizeFractionSigns(el.value);
     if (next===el.value) return false;
     el.value=next;

@@ -92,7 +92,7 @@ function input(part,panel,done){
  const row=el('div','unit5-input-row');
  if(part.prefix){row.appendChild(el('span','unit5-prefix',`\\(${part.prefix}\\)`));row.classList.add('has-prefix');}
  const field=el('input','practice-answer-input staged-exact-input');field.type='text';
- field.placeholder=part.placeholder||'Enter your answer';field.autocomplete='off';field.autocapitalize='off';field.spellcheck=false;
+ field.placeholder=part.placeholder||'Enter your answer';field.dataset.bmNoNormalize='true';field.autocomplete='off';field.autocapitalize='off';field.spellcheck=false;
  field.setAttribute('aria-label',part.ariaLabel||part.placeholder||'Answer');
  row.appendChild(field);
  const button=el('button','choice staged-check',part.checkLabel||'Check Answer');button.type='button';
