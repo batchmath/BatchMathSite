@@ -383,6 +383,7 @@ function famMulti(tier,calc){
  const part=(prompt,x,expl,wrong)=>calcOn?decPart(prompt,x,C.amt,expl,wrong):exactPart(`${prompt} Give an exact answer.`,x,C.amt,expl,wrong);
  const evalStep=(F,R,a,b,x,what)=>calcOn?step(what||'Evaluate with the calculator.','',`${int(F,a,b)}\\approx ${fx(x)}`):exactStep(F,R,a,b,x,what);
  const plus=(a,b)=>calcOn?a+b:xadd(a,b),minus=(a,b)=>calcOn?a-b:xadd(a,b,-1),base=calcOn?A0:X(Q(A0)),show=x=>calcOn?fx(x):xtex(x);
+ const inSum=x=>calcOn?(x<0?`\\left(${fx(x)}\\right)`:fx(x)):px(x); // a value after + or −, in parentheses when negative
  const t1=(()=>{if(calcOn)return Math.round(T*pick([0.4,0.5,0.6]))||1;const R={r:fIn,T,k:fIn.kind==='trig'?Number((fIn.tex.match(/\\frac\{\\pi t\}\{(\d+)\}/)||[])[1]||1):undefined};
   const ok=[];for(let t=1;t<T;t++){if(fIn.kind==='sqrt'||fOut.kind==='sqrt'){if(!Number.isInteger(Math.sqrt(t)))continue;}if(fIn.kind==='trig'&&(2*t)%R.k!==0)continue;ok.push(t);}return ok.length?pick(ok):null;})();
  const xin=Iin(0,T),xout=Iout(0,T),AT=minus(plus(base,xin),xout);if(!(V(AT)>0))return null;
@@ -400,10 +401,10 @@ function famMulti(tier,calc){
   const ni=Iin(0,t1),no=Iout(0,t1),net=minus(ni,no),A1=plus(base,net);if(!(V(A1)>0))return null;
   const pNet=part(`By how much does the amount in ${C.ref} change from ${m('t=0')} to ${m(`t=${t1}`)}? (A decrease is negative.)`,net,
    step('The net change is the integral of inflow minus outflow.','',`\\int_{0}^{${t1}}\\left(${Fi}-${Fo}\\right)dt=${int(Fi,0,t1)}-${int(Fo,0,t1)}`)+evalStep(Fi,fIn,0,t1,ni,calcOn?undefined:'Integrate the inflow rate.')+evalStep(Fo,fOut,0,t1,no,calcOn?undefined:'Integrate the outflow rate.')+
-   step('Subtract.','',`${show(ni)}-${calcOn?show(no):px(no)}${calcOn?'\\approx':'='} ${show(net)}`),[{value:V(A1),note:'That is the amount present. The question asks for the change.'}]);
-  const pA1=part(`How many ${C.amt} are in ${C.ref} at ${m(`t=${t1}`)}?`,A1,step('Add the net change to the initial amount.','',`A(${t1})=${nt(A0)}+${calcOn?show(net):px(net)}${calcOn?'\\approx':'='} ${show(A1)}`),[{value:V(net),note:`That is only the change. Add the initial ${comma(A0)} ${C.amt}.`}]);
+   step('Subtract.','',`${show(ni)}-${inSum(no)}${calcOn?'\\approx':'='} ${show(net)}`),[{value:V(A1),note:'That is the amount present. The question asks for the change.'}]);
+  const pA1=part(`How many ${C.amt} are in ${C.ref} at ${m(`t=${t1}`)}?`,A1,step('Add the net change to the initial amount.','',`A(${t1})=${nt(A0)}+${inSum(net)}${calcOn?'\\approx':'='} ${show(A1)}`),[{value:V(net),note:`That is only the change. Add the initial ${comma(A0)} ${C.amt}.`}]);
   const ri2=Iin(t1,T),ro2=Iout(t1,T);
-  const pAT=part(`How many ${C.amt} are in ${C.ref} at ${m(`t=${T}`)}?`,AT,step(`Continue from ${m(`t=${t1}`)}.`,`Start from the amount at ${m(`t=${t1}`)} and add the net change over the rest of the interval (or start again from ${m('t=0')}; the result is the same).${!calcOn&&!qzero(A1.l)&&!qzero(ri2.l||Q(0))?` The logarithms combine by ${m('\\ln a+\\ln b=\\ln(ab)')}.`:''}`,`A(${T})=A(${t1})+${int(Fi,t1,T)}-${int(Fo,t1,T)}`,`${calcOn?'\\approx':'='} ${show(A1)}+${calcOn?show(ri2):px(ri2)}-${calcOn?show(ro2):px(ro2)}${calcOn?'\\approx':'='} ${show(AT)}`),
+  const pAT=part(`How many ${C.amt} are in ${C.ref} at ${m(`t=${T}`)}?`,AT,step(`Continue from ${m(`t=${t1}`)}.`,`Start from the amount at ${m(`t=${t1}`)} and add the net change over the rest of the interval (or start again from ${m('t=0')}; the result is the same).${!calcOn&&!qzero(A1.l)&&!qzero(ri2.l||Q(0))?` The logarithms combine by ${m('\\ln a+\\ln b=\\ln(ab)')}.`:''}`,`A(${T})=A(${t1})+${int(Fi,t1,T)}-${int(Fo,t1,T)}`,`${calcOn?'\\approx':'='} ${show(A1)}+${inSum(ri2)}-${inSum(ro2)}${calcOn?'\\approx':'='} ${show(AT)}`),
    [{value:V(minus(xin,xout)),note:`That is the net change from ${'t = 0'}. Add the initial ${comma(A0)} ${C.amt}.`}]);
   parts=[pNet,pA1,pAT];
  }
