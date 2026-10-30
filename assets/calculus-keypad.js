@@ -941,7 +941,6 @@
       (contextualUnit3.constants||[]).forEach(name=>addInsert(structures,name==="pi"?"π":name,name,"function"));
       if(contextualUnit3.dne)addInsert(structures,"DNE","DNE","function","Insert DNE");
       if(contextualUnit3.dna)addInsert(structures,"Does not apply","Does not apply","function","Insert does not apply");
-      if(contextualUnit3.none)addInsert(structures,"None","None","function","Insert None");
       if(contextualUnit3.infinity){
         addInsert(structures,"∞","infinity","function math-infinity-key","Insert infinity");
         addInsert(structures,"−∞","-infinity","function math-infinity-key","Insert negative infinity");
