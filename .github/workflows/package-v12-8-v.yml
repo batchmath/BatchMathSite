@@ -1,0 +1,96 @@
+name: Package BatchMath v12.8.V
+on:
+  push:
+    branches: [claude/v12.8v-integrals-polish-ftc-checker]
+    paths: [.github/workflows/package-v12-8-v.yml]
+permissions:
+  contents: write
+jobs:
+  package:
+    if: github.repository == 'batchmath/BatchMathSite' && github.ref == 'refs/heads/claude/v12.8v-integrals-polish-ftc-checker'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      QA_COMMIT: 60e4e0a5a30fbe89c1ae8770d4fedbaa3482a12a
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify the reviewed V parent and a workflow-only diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git show -s --format=%P HEAD)" = "$QA_COMMIT"
+          test "$(git diff --name-status "$QA_COMMIT" "$GITHUB_SHA")" = $'A\t.github/workflows/package-v12-8-v.yml'
+          git merge-base --is-ancestor be705b157c608335ac2b6801e5b6d9a68c5e4e2e "$QA_COMMIT"
+          test "$(git show "$QA_COMMIT:assets/app-version.json" | python3 -c 'import json,sys; print(json.load(sys.stdin)["version"])')" = '12.8.V'
+      - name: Package the reviewed commit and verify every file
+        shell: bash
+        run: |
+          set -euo pipefail
+          git archive --format=zip -9 --prefix=batchmath-site-v12.8.V/ --output=batchmath-site-v12.8.V.zip "$QA_COMMIT"
+          unzip -tq batchmath-site-v12.8.V.zip
+          python3 - <<'CHECK'
+          import hashlib, os, subprocess, zipfile
+          commit = os.environ['QA_COMMIT']
+          tree = {}
+          for line in subprocess.run(['git', 'ls-tree', '-r', '-z', commit], check=True, capture_output=True).stdout.decode().split('\0'):
+              if line:
+                  meta, path = line.split('\t', 1)
+                  tree['batchmath-site-v12.8.V/' + path] = meta.split()[2]
+          with zipfile.ZipFile('batchmath-site-v12.8.V.zip') as z:
+              files = {i.filename: i for i in z.infolist() if not i.is_dir()}
+              assert set(files) == set(tree), 'file list differs from the commit'
+              for name, blob in tree.items():
+                  data = z.read(name)
+                  assert hashlib.sha1(b'blob %d\0' % len(data) + data).hexdigest() == blob, name
+          bad = [n for n in files if any(c in n for c in '<>:"\\|?*') or n.endswith((' ', '.'))]
+          assert not bad, bad
+          assert not any('/node_modules/' in n for n in files)
+          print('Files verified against', commit, ':', len(files))
+          CHECK
+          sha256sum batchmath-site-v12.8.V.zip | tee batchmath-site-v12.8.V.sha256
+      - name: Verify protected refs and publish the v12.8.V prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/claude/v12.8v-integrals-polish-ftc-checker" --jq .object.sha)" = "$GITHUB_SHA"
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)" = 'bea5cc9e405160b21f4d0c7e82d81fd62af84e5d' || { echo '::error::main changed'; exit 1; }
+          checksum="$(cut -d' ' -f1 batchmath-site-v12.8.V.sha256)"
+          {
+            echo 'Review build. Not deployed: production `main` is unchanged (v12.8.T, bea5cc9).'
+            echo
+            echo "Source: branch \`claude/v12.8v-integrals-polish-ftc-checker\`, commit $QA_COMMIT (v12.8.U plus the V corrections)."
+            echo
+            echo '- Short mathematics in questions and explanations no longer shows small scrollbars; long equations wrap.'
+            echo '- Inverse-trig arguments are reduced, e.g. tan^-1(4x/2) is now tan^-1(2x).'
+            echo '- The FTC checker accepts keypad products such as 2xsec(x^6); wrong derivatives are still rejected.'
+            echo '- FTC and Integral Rules practice buttons are in their own section on the topic page.'
+            echo
+            echo 'See docs/v12.8.V-revisions.md. Serve the extracted folder with `py -m http.server 8000`.'
+            echo
+            echo "SHA-256 of batchmath-site-v12.8.V.zip: $checksum"
+          } > release-notes-v.md
+          if gh release view v12.8.V --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            echo '::error::A v12.8.V release already exists; not changing it.'; exit 1
+          fi
+          gh release create v12.8.V batchmath-site-v12.8.V.zip --repo "$GITHUB_REPOSITORY" --target "$QA_COMMIT" --title 'BatchMath v12.8.V (review build)' --notes-file release-notes-v.md --prerelease --latest=false
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.V" > "$RUNNER_TEMP/v-release.json"
+          python3 - "$checksum" <<'CHECK'
+          import json, os, sys
+          from pathlib import Path
+          release = json.loads((Path(os.environ['RUNNER_TEMP']) / 'v-release.json').read_text())
+          assert release['tag_name'] == 'v12.8.V' and release['prerelease'] is True and release['draft'] is False
+          asset = [a for a in release['assets'] if a['name'] == 'batchmath-site-v12.8.V.zip']
+          assert len(asset) == 1 and asset[0]['state'] == 'uploaded'
+          assert asset[0]['size'] == Path('batchmath-site-v12.8.V.zip').stat().st_size
+          assert asset[0].get('digest') in (None, 'sha256:' + sys.argv[1])
+          print('Release:', release['html_url'])
+          print('Download:', asset[0]['browser_download_url'])
+          CHECK
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)" = 'bea5cc9e405160b21f4d0c7e82d81fd62af84e5d'
