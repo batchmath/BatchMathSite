@@ -25,6 +25,8 @@ function sqrtQ(q){ // √q for rational q > 0, simplified: (s/d)√r
 }
 const neg=o=>({tex:o.tex==='0'?'0':o.tex.startsWith('-')?o.tex.slice(1):`-${o.tex}`,expr:`-(${o.expr})`,val:-o.val});
 const coefTex=(k,body,first=true)=>termTex(Q(k),body,first);
+// a fraction with any minus sign written in front of it, not inside the numerator
+const signedFrac=(num,den)=>num.startsWith('-')?'-'+'\\frac{'+num.slice(1)+'}{'+den+'}':'\\frac{'+num+'}{'+den+'}';
 const coefStr=q=>qeq(q,Q(1))?'':qeq(q,Q(-1))?'-':qtex(q);           // coefficient in front of a factor
 const negRecip=q=>q.d===1&&Math.abs(q.n)===1?String(-q.n):`-\\frac{1}{${q.d===1?q.n:`${q.n}/${q.d}`}}`; // -1/y0 without a fraction inside a fraction
 const negExp=t=>t.startsWith('-')?`\\left(${t}\\right)`:t;           // exponent -(y0) that only needs parentheses for a negative y0
@@ -201,7 +203,7 @@ function famPower(tier){
    else{lo=neg(r);hi=r;}
    why.push(`The square root requires ${m(`${innerTex}\\ge 0`)}, and the differential equation divides by ${m(V.y)}, so ${m(`${V.y}\\ne 0`)}: together, ${m(`${innerTex}>0`)}. The radicand is 0 at ${m(`${V.x}=\\pm ${r.tex}`)}.`);}
  const kT=k===1?'':k===-1?'-':k;
-  return build({V,family:'powers_y',tier,id:`xy-${k}-${x0v}-${y0v}`,rhsTex:`\\frac{${kT}${V.x}}{${V.y}}`.replace('\\frac{-','-\\frac{'),f:(x,y)=>k*x/y,x0:R(x0v),y0:R(y0v),solution:sol,branch:true,
+  return build({V,family:'powers_y',tier,id:`xy-${k}-${x0v}-${y0v}`,rhsTex:signedFrac(`${kT}${V.x}`,V.y),f:(x,y)=>k*x/y,x0:R(x0v),y0:R(y0v),solution:sol,branch:true,
    sepText:`Multiply both sides by ${m(`${V.y}\\,d${V.x}`)}.`,sepTex:`${V.y}\\,d${V.y}=${kT}${V.x}\\,d${V.x}`,intTex:[`\\frac{${V.y}^{2}}{2}=${termTex(Q(k,2),`${V.x}^{2}`,true)}+C`],
    icTex:[`\\frac{\\left(${y0v}\\right)^{2}}{2}=${termTex(Q(k,2),`\\left(${x0v}\\right)^{2}`,true)}+C\\quad\\Longrightarrow\\quad C=${qtex(qdiv(C,Q(2)))}`],
    solveText:`Multiply by 2: ${m(`${V.y}^{2}=${innerTex}`)}. The initial value ${m(`${V.y}=${y0v}`)} is ${sgn>0?'positive':'negative'}, so take the ${sgn>0?'positive':'negative'} square root.`,solveTex:[],lo,hi,why});
@@ -213,7 +215,7 @@ function famPower(tier){
   const r2=qdiv(qneg(C),kk);
   if(qv(r2)>0){const r=sqrtQ(r2);lo=neg(r);hi=r;why.push(`The cube root is defined for every number, but the differential equation divides by ${m(`${V.y}^{2}`)}, so ${m(`${V.y}\\ne 0`)}. The solution is 0 where ${m(`${innerTex}=0`)}, at ${m(`${V.x}=\\pm ${r.tex}`)}.`);}
   else why.push(`${m(innerTex)} is never 0 (it is ${qv(C)>0?'at least':'at most'} ${m(qtex(C))} for every ${m(V.x)}), so ${m(`${V.y}\\ne 0`)} and the solution is valid everywhere.`);
-  return build({V,family:'powers_y',tier,id:`cbrt-${k}-${y0}`,rhsTex:`\\frac{${k}${V.x}}{${V.y}^{2}}`.replace('\\frac{-','-\\frac{'),f:(x,y)=>k*x/(y*y),x0:R(0),y0:R(y0),solution:sol,
+  return build({V,family:'powers_y',tier,id:`cbrt-${k}-${y0}`,rhsTex:signedFrac(`${k}${V.x}`,`${V.y}^{2}`),f:(x,y)=>k*x/(y*y),x0:R(0),y0:R(y0),solution:sol,
    sepText:`Multiply both sides by ${m(`${V.y}^{2}\\,d${V.x}`)}.`,sepTex:`${V.y}^{2}\\,d${V.y}=${k}${V.x}\\,d${V.x}`,intTex:[`\\frac{${V.y}^{3}}{3}=${termTex(Q(k,2),`${V.x}^{2}`,true)}+C`],
    icTex:[`\\frac{\\left(${y0}\\right)^{3}}{3}=0+C\\quad\\Longrightarrow\\quad C=${qtex(Q(y0**3,3))}`],
    solveText:`Multiply by 3, then take the cube root (one real cube root, so no sign choice is needed).`,solveTex:[`${V.y}^{3}=${innerTex}`],lo,hi,why});
@@ -246,7 +248,7 @@ function famLogRational(tier){
   if(side>0){if(eVal>1){lo=R(0);hi=E1;}else{lo=E1;hi=INF;}}
   else{if(eVal>1){lo=neg(E1);hi=R(0);}else{lo=NINF;hi=neg(E1);}}
   const kT=k===1?'':k===-1?'-':k;
-  return build({V:W,family:'log_rational',tier,id:`y2x-${kind}-${k}-${side}-${y0q.n}_${y0q.d}`,rhsTex:`\\frac{${kT}${W.y}^{2}}{${W.x}}`.replace('\\frac{-','-\\frac{'),f:(x,y)=>k*y*y/x,x0:R(x0v),y0:R(y0q),solution:sol,
+  return build({V:W,family:'log_rational',tier,id:`y2x-${kind}-${k}-${side}-${y0q.n}_${y0q.d}`,rhsTex:signedFrac(`${kT}${W.y}^{2}`,W.x),f:(x,y)=>k*y*y/x,x0:R(x0v),y0:R(y0q),solution:sol,
    eqNote:eqNote(W,0,`${W.y}^{2}`),sepTex:`\\frac{d${W.y}}{${W.y}^{2}}=${kT}\\frac{d${W.x}}{${W.x}}`,intTex:[`-\\frac{1}{${W.y}}=${kT}\\ln\\left|${W.x}\\right|+C`],
    icTex:[`${negRecip(y0q)}=${kT}\\ln\\left|${x0v}\\right|+C=0+C\\quad\\Longrightarrow\\quad C=${qtex(qneg(c))}`],
    solveText:`Multiply by −1 and take reciprocals.${c.d===1?'':CLEAR(c.d)}${side>0?` Near ${m(`${W.x}=1`)}, ${m(`${W.x}>0`)}, so ${m(`\\ln\\left|${W.x}\\right|=\\ln ${W.x}`)}.`:''}`,solveTex:[`\\frac{1}{${W.y}}=${den}`],lo,hi,

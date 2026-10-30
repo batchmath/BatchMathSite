@@ -35,7 +35,7 @@ const piTex=q=>xPi(q).tex;
 
 // ---------- variable and notation ----------
 function vars(tier){
- const useT=Math.random?U.rand()<0.25:false;
+ const useT=U.rand()<0.25;
  if(!useT){const dep=pick(['y','y','y','u','z']);return{v:'x',dep,d:`\\frac{d${dep}}{dx}`,keypad:'unit5-basic-x',name:'x'};}
  const dep=pick(['y','v','r','A']);return{v:'t',dep,d:`\\frac{d${dep}}{dt}`,keypad:'unit5-basic-t',name:'t'};
 }

@@ -1,7 +1,7 @@
 BatchMath cumulative working copy
-Current full release: 12.8.V (review build)
-Archive: batchmath-site-v12.8.V.zip
-Baseline: v12.8.U (review build), built on v12.8.T (origin/main bea5cc9).
-Changes: v12.8.V keeps all of v12.8.U (the rebuilt Basic Integrals, U-Substitution, Natural Log and Inverse Trig, and Mean Value Theorem for Integrals engines and their Comprehensive Review topics) and polishes it. Other course content and the existing BatchMath QA workflow remain preserved.
+Current full release: 12.8.W (review build)
+Archive: batchmath-site-v12.8.W.zip
+Baseline: v12.8.V (origin/main b349803), with the review lab merged.
+Changes: v12.8.W rebuilds AP Calculus AB Unit 5 (Differential Equations): Basic First-Order, Motion, Separable and Rate Problems engines rebuilt; new Slope Fields (drawing with grading and model overlay, matching, analysis) and Growth/Decay/Interest/Newton's Law engines and pages; Comprehensive Review rebuilt from all six engines (topics 20/20/20/20/10/10, difficulty 40/40/20). Units 1-4, IM1 and the existing BatchMath QA workflow remain preserved.
 No deployment performed.
-Current update: v12.8.V removes the small scrollbars from short mathematics in questions and explanations (long equations wrap instead), reduces inverse-trig arguments such as tan^-1(4x/2) to tan^-1(2x), fixes the FTC checker rejecting keypad products such as 2xsec(x^6) (new test: npm run qa:ftc-checker), and moves the FTC and Integral Rules practice buttons to their own section. See docs/v12.8.V-revisions.md.
+Current update: see docs/v12.8.W-revisions.md (release notes) and docs/v12.8.W-progress.md (development log, QA results). New tests: npm run qa:unit5, npm run qa:unit5-sympy.

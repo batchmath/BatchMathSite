@@ -5,7 +5,7 @@
    difficulty tiers, and registration with the shared AP topic generator registry. */
 (function(){
 'use strict';
-const rand=()=>window.BatchMathRNG?.random?.()??Math.random();
+const rand=()=>window.BatchMathRNG.random(); // the site's seeded generator, so sessions are reproducible
 const ri=(a,b)=>a+Math.floor(rand()*(b-a+1));
 const pick=a=>a[Math.floor(rand()*a.length)];
 const nz=(a,b)=>{let v=0;while(v===0)v=ri(a,b);return v;};
@@ -139,7 +139,7 @@ const fix=(x,p=3)=>{const s=(Math.round(x*10**p)/10**p).toFixed(p);return s==='-
 const money=x=>(Math.round(x*100)/100).toFixed(2);
 
 // ---------- explanation and question HTML ----------
-// < and > inside math become \lt and \gt so HTML never mistakes them for tags
+// < and > inside math become the TeX commands lt and gt, so HTML never mistakes them for tags
 const safe=tex=>String(tex).replace(/</g,'\\lt ').replace(/>/g,'\\gt ');
 const eq=tex=>`<div class="u4-work-equation u4-definite-equation">\\(\\displaystyle ${safe(tex)}\\)</div>`;
 function step(heading,text='',...eqs){return `<div class="u4-work-step"><strong>${heading}</strong>${text?' '+text:''}${eqs.map(eq).join('')}</div>`;}
