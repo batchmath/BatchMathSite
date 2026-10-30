@@ -49,7 +49,7 @@ function compareFunction(tree,expected,points){
   const want=value(expected,x);if(!Number.isFinite(want))continue;
   const got=value(tree,x);if(!Number.isFinite(got))return{ok:false,undefinedAt:x};
   used++;
-  const d=got-want;if(offset===null)offset=d;else if(!close(d,offset,1e-8))constant=false;
+  const d=got-want;if(Math.abs(want)<1e6){if(offset===null)offset=d;else if(!close(d,offset,1e-8))constant=false;} // a difference of huge values has no precision left
   if(!close(got,want))mismatch=true;
  }
  if(used<8)return{ok:false,tooFew:true};

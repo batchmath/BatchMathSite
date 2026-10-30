@@ -80,7 +80,7 @@ function famRecover(tier){
    const Tt=n===1?'e':'e^{2}';
    const expl=step('Find the position function.',`Integrate the velocity. Since ${m('t>0')}, ${m('\\int\\frac{1}{t}\\,dt=\\ln t')}.`,`s(t)=\\int\\left(${vtex}\\right)dt=${stex}+C`)+
     step(`Use ${m(`s(1)=${s1}`)}.`,`${m('\\ln 1=0')}.`,`${s1}=${k}\\ln 1${termTex(half,'(1)^{2}')}+C=${qtex(half)}+C`,`C=${qtex(Cq)}`)+
-    step(`Evaluate at ${m(`t=${Tt}`)}.`,`${m(`\\ln ${Tt}=${n}`)}.`,`s(${Tt})=${k}(${n})${termTex(half,`(${Tt})^{2}`)}${termTex(Cq,'')}=${etex(val)}`);
+    step(`Evaluate at ${m(`t=${Tt}`)}.`,`${m(`\\ln ${Tt}=${n}`)}.`,`s(${Tt})=${k}(${n})${termTex(half,`(${Tt})^{2}`)}${qzero(Cq)?'':termTex(Cq,'')}=${etex(val)}`);
    return problem({engine:'motion',family:'recover',tier,id:`logs-${k}-${mm}-${s1}-${n}`,
     questionHtml:question({context:`For ${m('t>0')}, a particle moves with velocity ${m(`v(t)=${vtex}`)}. Its position at ${m('t=1')} is ${m(`s(1)=${s1}`)}.`,calculator:false}),
     parts:[{prompt:`Find ${m(`s(${Tt})`)}.`,answer:{kind:'exact',value:evE(val)},answerTex:etex(val),explanation:expl,keypadMode:'unit5-motion-value-e',placeholder:'Exact value'}]});
@@ -92,7 +92,7 @@ function famRecover(tier){
   const tt=piTexQ(T);
   const expl=step('Find the velocity function.','Velocity is an antiderivative of acceleration.',`v(t)=\\int ${k===1?'':k===-1?'-':k}\\sec^{2}t\\,dt=${termTex(Q(k),'\\tan t',true)}+C`)+
    step(`Use ${m(`v\\left(\\frac{\\pi}{4}\\right)=${v1}`)}.`,`${m('\\tan\\frac{\\pi}{4}=1')}.`,`${v1}=${qtex(Q(k))}+C`,`C=${qtex(Cq)}`)+
-   step(`Evaluate at ${m(`t=${tt}`)}.`,'',`v\\left(${tt}\\right)=${termTex(Q(k),`\\tan\\left(${tt}\\right)`,true)}${termTex(Cq,'')}=${etex(val)}`);
+   step(`Evaluate at ${m(`t=${tt}`)}.`,'',`v\\left(${tt}\\right)=${termTex(Q(k),`\\tan\\left(${tt}\\right)`,true)}${qzero(Cq)?'':termTex(Cq,'')}=${etex(val)}`);
   return problem({engine:'motion',family:'recover',tier,id:`sec-${k}-${v1}-${T.n}_${T.d}`,
    questionHtml:question({context:`A particle accelerates according to ${m(`a(t)=${termTex(Q(k),'\\sec^{2}t',true)}`)} for ${m('-\\frac{\\pi}{2}<t<\\frac{\\pi}{2}')}. Its velocity at ${m('t=\\frac{\\pi}{4}')} is ${m(String(v1))}.`,calculator:false}),
    parts:[{prompt:`Find the velocity of the particle at ${m(`t=${tt}`)}.`,answer:{kind:'exact',value:evE(val)},answerTex:etex(val),explanation:expl,keypadMode:'unit5-motion-value-r',placeholder:'Exact value'}]});
@@ -111,8 +111,8 @@ function famRecover(tier){
   const tt=piTexQ(T),C1tex=qzero(K1)?'0':K1.d===1&&Math.abs(K1.n)===1?`${K1.n<0?'-':''}\\frac{1}{\\pi}`:`${K1.n<0?'-':''}\\frac{${Math.abs(K1.n)}}{${K1.d===1?'':K1.d}\\pi}`;
   const expl=step('Integrate twice.','Each integration adds a constant.',`v(t)=\\int\\left(${aTex}\\right)dt=${vT}+C_1`,`s(t)=\\int\\left(${vT}+C_1\\right)dt=${sT}+C_1t+C_2`)+
    step(`Use ${m(`s(0)=${s0}`)}.`,`${m('\\sin 0=0')} and ${m('\\cos 0=1')}.`,`${s0}=${qtex(Q(-B))}+C_2\\quad\\Longrightarrow\\quad C_2=${qtex(C2)}`)+
-   step(`Use ${m(`s\\left(\\frac{\\pi}{2}\\right)=${s1}`)}.`,`${m('\\sin\\frac{\\pi}{2}=1')} and ${m('\\cos\\frac{\\pi}{2}=0')}.`,`${s1}=${qtex(Q(-A))}+\\frac{\\pi}{2}C_1${termTex(C2,'')}\\quad\\Longrightarrow\\quad C_1=${C1tex}`)+
-   step(`Evaluate at ${m(`t=${tt}`)}.`,'',`s\\left(${tt}\\right)=${termTex(Q(-A),`\\sin\\left(${tt}\\right)`,true)}${termTex(Q(-B),`\\cos\\left(${tt}\\right)`)}+\\left(${C1tex}\\right)\\left(${tt}\\right)${termTex(C2,'')}=${etex(val)}`);
+   step(`Use ${m(`s\\left(\\frac{\\pi}{2}\\right)=${s1}`)}.`,`${m('\\sin\\frac{\\pi}{2}=1')} and ${m('\\cos\\frac{\\pi}{2}=0')}.`,`${s1}=${qtex(Q(-A))}+\\frac{\\pi}{2}C_1${qzero(C2)?'':termTex(C2,'')}\\quad\\Longrightarrow\\quad C_1=${C1tex}`)+
+   step(`Evaluate at ${m(`t=${tt}`)}.`,'',`s\\left(${tt}\\right)=${termTex(Q(-A),`\\sin\\left(${tt}\\right)`,true)}${termTex(Q(-B),`\\cos\\left(${tt}\\right)`)}+\\left(${C1tex}\\right)\\left(${tt}\\right)${qzero(C2)?'':termTex(C2,'')}=${etex(val)}`);
   return problem({engine:'motion',family:'recover',tier,id:`trig2-${A}-${B}-${s0}-${s1}-${T.n}_${T.d}`,
    questionHtml:question({context:`A particle's acceleration is ${m(`a(t)=${aTex}`)}. Its position is ${m(String(s0))} at ${m('t=0')} and ${m(String(s1))} at ${m('t=\\frac{\\pi}{2}')}.`,calculator:false}),
    parts:[{prompt:`Find the position of the particle at ${m(`t=${tt}`)}.`,answer:{kind:'exact',value:evE(val)},answerTex:etex(val),explanation:expl,keypadMode:'unit5-motion-value-r',placeholder:'Exact value'}]});

@@ -12,6 +12,8 @@ if(!page){console.error('usage: unit5/entry.mjs <page-path> [count] [width] [hei
 const PORT=randomPort(8900),srv=await serve(PORT),b=await browser({scrollbars:true}),c=await context(b,{width:+W,height:+H,mobile:!!mob});
 const p=await open(c,`http://127.0.0.1:${PORT}/${page.replace(/^\/|\/$/g,'')}/?bm_seed=u5entry-${W}`);
 if(process.env.BM_MODE){await p.selectOption('#u5Mode',process.env.BM_MODE);await p.waitForTimeout(400);}
+// physical keyboard; θ has no key, so it is pressed on the on-screen keypad
+const typeStrokes=async(lin,scope)=>{for(const st of strokes(lin)){if(st.key)await p.keyboard.press(st.key);else if(st.pad)await keypad(p,scope).key(st.pad);else await p.keyboard.type(st.text);}};
 const typedForm=(part)=>{
  let tex=part.answerTex.replace(/^[A-Za-z](\([a-z]\))?\s*=\s*/,'');
  if(part.answer.kind==='interval')tex=tex.replace(/\\left|\\right|\\,/g,'').replace(/\\infty/g,'infinity').replace(/\\cup/g,'U');
@@ -28,8 +30,8 @@ for(let i=0;i<+count;i++){
   else if(part.control==='input'){
    const lin=typedForm(part),mode=(i+k)%2?'keypad':'keyboard',submit=(i+k)%3===2?'Check':'Enter';
    await p.locator(`${scope} .bm-calc-editor`).first().click();
-   if(mode==='keypad'){try{const kp=keypad(p,scope);await kp.emit(parse(lin));}catch(e){out.failures.push(`${info.id} part ${k+1}: keypad entry error ${e.message.slice(0,100)} for ${lin}`);await p.keyboard.press('Control+A');await p.keyboard.press('Backspace');for(const st of strokes(lin)){if(st.key)await p.keyboard.press(st.key);else await p.keyboard.type(st.text);}}}
-   else for(const st of strokes(lin)){if(st.key)await p.keyboard.press(st.key);else await p.keyboard.type(st.text);}
+   if(mode==='keypad'){try{const kp=keypad(p,scope);await kp.emit(parse(lin));}catch(e){out.failures.push(`${info.id} part ${k+1}: keypad entry error ${e.message.slice(0,100)} for ${lin}`);await p.keyboard.press('Control+A');await p.keyboard.press('Backspace');await typeStrokes(lin,scope);}}
+   else await typeStrokes(lin,scope);
    const src=await p.$eval(`${scope} .bm-calc-source`,e=>e.value);
    if(submit==='Enter')await p.keyboard.press('Enter');else await p.locator(`${scope} .staged-check`).click();
    row.push(`${mode}/${submit}: ${src}`);

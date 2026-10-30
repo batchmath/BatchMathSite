@@ -26,6 +26,11 @@ PAGES = [
          scripts=['/assets/unit5-motion.js'],
          modes=[('mixed', 'Mixed Practice'), ('recover', 'Recover Velocity or Position'), ('displacement_distance', 'Displacement and Total Distance'),
                 ('direction_speed', 'Direction, Rest and Speed'), ('calculator', 'Calculator Motion'), ('multipart', 'Connected Multi-Part Problems')]),
+    dict(topic='separable-differential-equations', page='practice', slug='separable-differential-equations', title='Separable Differential Equations',
+         engine_id='ap_topic_separable_differential_equations', scripts=['/assets/unit5-separable.js'],
+         description='Solve each initial-value problem, then state the interval of validity of your solution. Enter answers with the math keypad and use the worked explanation to see every step.',
+         modes=[('mixed', 'Mixed Practice'), ('product', 'Product Forms'), ('powers_y', 'Powers of y'), ('log_rational', 'Logarithmic and Rational'),
+                ('trig', 'Trigonometric'), ('exp_y', 'Exponentials of y'), ('radical_branch', 'Radicals, Implicit Solutions and Branches')]),
 ]
 
 def tag(src):
