@@ -26,6 +26,7 @@ const runs=[
  ['Rounding matrix (v12.8.X)',[QA+'rounding.mjs',n(400)]],
  ['Calculator / non-calculator eligibility (v12.8.X)',[QA+'calc-eligibility.mjs',n(800)]],
  ['Basic calculator independent recomputation (v12.8.X)',[QA+'verify-basic-calc.mjs',n(1500)]],
+ ['Separable exponentiation chains (v12.8.X)',[QA+'verify-sep-exp.mjs',n(2000)]],
 ];
 // tools/review-lab is developer-only and left out of the site package (export-ignore); skip there
 if(!fs.existsSync(QA+'smoke.mjs')){console.log('Unit 5 QA scripts live in tools/review-lab, which the site package leaves out; skipped.');process.exit(0);}
@@ -33,6 +34,6 @@ let failed=0;
 for(const [name,args] of runs){const r=spawnSync(process.execPath,args,{encoding:'utf8',maxBuffer:64*1024*1024});
  const out=(r.stdout||'')+(r.stderr||'');const smokeFail=/parts \d+ fails (\d+)/.exec(out);
  const ok=r.status===0&&(!smokeFail||smokeFail[1]==='0');if(!ok)failed++;
- const summary=out.trim().split('\n').filter(l=>/fails|issues|disagreements|failed|FAIL|chi-square|topics|difficulty|checks|recomputed|checked|keypad|MISSING|rounding|pages \d+|recomputed/.test(l)).slice(0,4).join(' | ');
+ const summary=out.trim().split('\n').filter(l=>/fails|issues|disagreements|failed|FAIL|chi-square|topics|difficulty|checks|recomputed|checked|keypad|MISSING|rounding|pages \d+|recomputed|chains/.test(l)).slice(0,4).join(' | ');
  console.log(`${ok?'PASS':'FAIL'}  ${name}${summary?`: ${summary}`:''}`);if(!ok)console.log(out.split('\n').slice(-12).join('\n'));}
 console.log(failed?`${failed} Unit 5 check(s) failed`:'All Unit 5 checks passed');process.exitCode=failed?1:0;

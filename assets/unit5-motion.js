@@ -145,11 +145,15 @@ function famDistance(tier){
  const vt=vP.tex('t'),St=S.tex('t');
  const signText=pieces.map(p=>`${m(`v(t)${p.sign>0?'>':'<'}0`)} on ${m(`(${p.a},${p.b})`)}`).join(', ');
  const zerosText=`${m(`v(t)=${vt}=0`)} at ${listJoin(rts.map(r=>m(`t=${r}`)))}`;
- const dispExpl=step('Displacement is the signed integral of velocity.','Movement to the left subtracts from movement to the right, so no absolute value is used.',`\\int_{${lo}}^{${hi}}v(t)\\,dt=\\Big[${St}\\Big]_{${lo}}^{${hi}}=${qtex(S.at(hi))}-\\left(${qtex(S.at(lo))}\\right)=${qtex(disp)}`);
+ const less=q=>qzero(q)?'':q.n<0?`+${qtex(qneg(q))}`:`-${qtex(q)}`; // F(b) - F(a), with nothing to subtract when F(a) = 0
+ const dispExpl=step('Displacement is the signed integral of velocity.','Movement to the left subtracts from movement to the right, so no absolute value is used.',`\\int_{${lo}}^{${hi}}v(t)\\,dt=\\Big[${St}\\Big]_{${lo}}^{${hi}}=${qtex(S.at(hi))}${less(S.at(lo))}${qzero(S.at(lo))?'':`=${qtex(disp)}`}`);
+ // v12.8.X: after the sign of v is known on each piece, only the negative pieces need an absolute value
+ const pieceInt=p=>`\\int_{${p.a}}^{${p.b}}v(t)\\,dt`;
  const distExpl=step('Find where the velocity changes sign.',`${zerosText}. A test value in each piece gives ${signText}.`)+
-  step('Total distance is the integral of speed, |v|.','Integrate each piece separately and add the absolute values, because distance traveled to the left still counts.',
-   `\\int_{${lo}}^{${hi}}\\left|v(t)\\right|dt=${pieces.map(p=>`\\left|\\int_{${p.a}}^{${p.b}}v(t)\\,dt\\right|`).join('+')}`,
-   `=${pieces.map(p=>`\\left|${qtex(p.val)}\\right|`).join('+')}=${qtex(dist)}`);
+  step('Evaluate the integral of v on each piece.',`Use the antiderivative ${m(`${St}`)}.`,...pieces.map(p=>`${pieceInt(p)}=${qtex(S.at(p.b))}${less(S.at(p.a))}${qzero(S.at(p.a))?'':`=${qtex(p.val)}`}`))+
+  step('Add the distance traveled on each piece.',`Where ${m('v\\gt 0')} the particle moves right and the integral is already the distance traveled; where ${m('v\\lt 0')} it moves left, the integral is negative, and its absolute value is the distance.`,
+   `\\text{Total distance}=${pieces.map((p,j)=>`${j?'+':''}${p.sign>0?pieceInt(p):`\\left|${pieceInt(p)}\\right|`}`).join('')}`,
+   `=${pieces.map((p,j)=>`${j?'+':''}${p.sign>0?qtex(p.val):`\\left|${qtex(p.val)}\\right|`}`).join('')}=${qtex(dist)}`);
  const ctxHtml=`${C0.intro} Its velocity is ${m(`v(t)=${vt}`)} ${C0.rate} for ${m(`${lo}\\le t\\le ${hi}`)}.`;
  const parts=[];
  if(mode!=='distance')parts.push({prompt:`Find the displacement of the particle from ${m(`t=${lo}`)} to ${m(`t=${hi}`)}.`,answer:{kind:'exact',value:qv(disp)},answerTex:qtex(disp),explanation:dispExpl,keypadMode:'unit5-motion-value',placeholder:'Exact value'});
@@ -396,8 +400,10 @@ function famMulti(tier){
  if(last==='distance'){
   const pts=[0,r1,r2,T];let dist=Q(0);const vals=[];for(let i=0;i<3;i++){const v=qsub(sP.at(pts[i+1]),sP.at(pts[i]));vals.push(v);dist=qadd(dist,v.n<0?qneg(v):v);}
   PC={prompt:`Find the total distance traveled from ${m('t=0')} to ${m(`t=${T}`)}.`,answer:{kind:'exact',value:qv(dist),wrongValues:[{value:qv(qsub(sP.at(T),sP.at(0))),note:'That is the displacement. Split at the times where v changes sign and add absolute values.'}]},answerTex:qtex(dist),
-   explanation:step('Split where the velocity changes sign.',`${m('v(t)=0')} at ${m(`t=${r1}`)} and ${m(`t=${r2}`)}, and ${m('v')} changes sign at each, so the particle reverses direction there.`)+
-    step('Add the distance on each piece.','Each piece is the change in position over that piece, taken in absolute value.',`\\left|${C0.pos}(${r1})-${C0.pos}(0)\\right|+\\left|${C0.pos}(${r2})-${C0.pos}(${r1})\\right|+\\left|${C0.pos}(${T})-${C0.pos}(${r2})\\right|`,`=${vals.map(v=>`\\left|${qtex(v)}\\right|`).join('+')}=${qtex(dist)}`),keypadMode:'unit5-motion-value',placeholder:'Exact value'};
+   explanation:(()=>{const segs=[[0,r1],[r1,r2],[r2,T]].map(([a,b],i)=>({a,b,val:vals[i],pos:vP.f((a+b)/2)>0}));const d=(a,b)=>`${C0.pos}(${b})-${C0.pos}(${a})`; // v12.8.X: bars only where v < 0
+    return step('Split where the velocity changes sign.',`${m('v(t)=0')} at ${m(`t=${r1}`)} and ${m(`t=${r2}`)}. A test value in each piece gives ${segs.map(q=>`${m(`v(t)${q.pos?'\\gt':'\\lt'}0`)} on ${m(`(${q.a},${q.b})`)}`).join(', ')}, so the particle reverses direction at each zero.`)+
+    step('Add the distance traveled on each piece.',`Where ${m('v\\gt 0')} the change in position is the distance traveled; where ${m('v\\lt 0')} the change in position is negative, and its absolute value is the distance.`,
+     `\\text{Total distance}=${segs.map((q,j)=>`${j?'+':''}${q.pos?`\\left[${d(q.a,q.b)}\\right]`:`\\left|${d(q.a,q.b)}\\right|`}`).join('')}`,`=${segs.map((q,j)=>`${j?'+':''}${q.pos?qtex(q.val):`\\left|${qtex(q.val)}\\right|`}`).join('')}=${qtex(dist)}`);})(),keypadMode:'unit5-motion-value',placeholder:'Exact value'};
  }
  if(last==='left'){
   const left=[[0,r1],[r1,r2],[r2,T]].filter(([a,b])=>vP.f((a+b)/2)<0);const ivTex=left.map(([a,b])=>`(${a},${b})`).join('\\cup ');

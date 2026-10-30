@@ -99,11 +99,36 @@ function pickDefault(V,x0,lo,hi){
  if(fl)return `The initial value ${X} lies to the right of the excluded value ${m(lo.tex)}, and nothing to its right is excluded.`+tail;
  return `The initial value ${X} lies to the left of the excluded value ${m(hi.tex)}, and nothing to its left is excluded.`+tail;
 }
+// v12.8.X: exponentiating ln|U| = (x-part) + C with a logarithmic C: substitute C, split the exponent with
+// e^{a+b} = e^a·e^b, use e^{ln n} = n, then resolve |U| = n·e^(...) as U = ±n·e^(...) with the initial condition.
+const INVERSE=`Because the exponential and the natural logarithm are inverse functions, ${'\\('}e^{\\ln n}=n${'\\)'} for ${'\\('}n\\gt 0${'\\)'}.`;
+const nTex=q=>q.d===1?String(q.n):`\\frac{${q.n}}{${q.d}}`;
+const lnTex=q=>q.d===1?`\\ln ${q.n}`:`\\ln\\left(${nTex(q)}\\right)`;
+// |U| = e^{rest + ln n} = e^{rest}·e^{ln n} = n e^{rest}; rest is TeX (may be empty), n a positive rational
+function expChain(U,rest,n,{abs=true}={}){
+ const lhs=abs?`\\left|${U}\\right|`:U,one=n.n===n.d,coef=one?'':nTex(n),er=rest?`e^{${rest}}`:'';
+ if(one)return[`${lhs}=${er||'1'}`];
+ if(!rest)return[`${lhs}=e^{${lnTex(n)}}=${nTex(n)}`];
+ return[`${lhs}=e^{${rest}+${lnTex(n)}}=e^{${rest}}\\cdot e^{${lnTex(n)}}=${coef}${er}`];
+}
+const INVERSE_SO=`the exponential and the natural logarithm are inverse functions, so ${'\\('}e^{\\ln n}=n${'\\)'}`;
+const signLine=(U,body)=>`${U}=${body}\\quad\\text{or}\\quad ${U}=-${body}`;
 const eqNote=(V,val,tex)=>`Dividing by ${m(tex)} assumes ${m(tex.replace(/^\\left\(|\\right\)$/g,'')+'\\ne 0')}; the constant solution ${m(`${V.y}=${val}`)} also satisfies the equation, but it does not pass through the initial point.`;
 
 // ---------- family 1: product forms ----------
 function famProduct(tier){
  const V=vars();
+ if(tier==='foundational'&&U.rand()<0.25){ // v12.8.X: y' = k x^n y with y(0) = ±1/q, so C = -ln q and e^{G - ln q} = e^{G}/q
+  const n=pick([0,1,2]),k=nz(-3,3)*(n+1),q=pick([2,3,4]),sg=pick([1,-1]),x0=R(0),y0=Q(sg,q);
+  const g=new Poly(Array(n).fill(0).concat([k]));const G=g.integ(0),Gt=G.tex(V.x);
+  const sol={tex:`${sg<0?'-':''}\\frac{e^{${Gt}}}{${q}}`,expr:`(${sg}/${q})*e^(${G.expr()})`,f:x=>sg/q*Math.exp(G.f(x))};
+  return build({V,family:'product',tier,id:`kxyq-${n}-${k}-${sg}-${q}`,rhsTex:`${n===0?coefStr(g.c[0]):g.tex(V.x)}${V.y}`,f:(x,y)=>g.f(x)*y,x0,y0:R(y0),solution:sol,
+   eqNote:eqNote(V,0,V.y),sepTex:`\\frac{d${V.y}}{${V.y}}=${n===0?(coefStr(g.c[0])==='-'?'-':coefStr(g.c[0])?coefStr(g.c[0])+'\\,':''):g.tex(V.x)+'\\,'}d${V.x}`,intTex:[`\\ln\\left|${V.y}\\right|=${Gt}+C`],
+   icTex:[`\\ln\\left|${qtex(y0)}\\right|=0+C\\quad\\Longrightarrow\\quad C=\\ln\\frac{1}{${q}}=-\\ln ${q}`],
+   solveText:`Substitute ${m('C')} and exponentiate both sides, splitting the exponent with ${m('e^{a-b}=\\frac{e^{a}}{e^{b}}')}; ${INVERSE_SO}. Then remove the absolute value: ${m(V.y)} is never 0, so it keeps the sign it has at the initial point, where ${m(`${V.y}=${qtex(y0)}`)} is ${sg>0?'positive':'negative'}.`,
+   solveTex:[`\\left|${V.y}\\right|=e^{${Gt}-\\ln ${q}}=\\frac{e^{${Gt}}}{e^{\\ln ${q}}}=\\frac{e^{${Gt}}}{${q}}`,signLine(V.y,`\\frac{e^{${Gt}}}{${q}}`)],
+   lo:NINF,hi:INF,why:[`${m(`e^{${Gt}}`)} is defined for every ${m(V.x)}, and the differential equation has no restrictions.`]});
+ }
  if(tier==='foundational'){ // y' = k x^n y
   const n=pick([0,1,2]),k=nz(-3,3)*(n+1),y0=nz(-5,6),x0=R(0);
   const g=new Poly(Array(n).fill(0).concat([k]));const G=g.integ(0);
@@ -112,7 +137,8 @@ function famProduct(tier){
   return build({V,family:'product',tier,id:`kxy-${n}-${k}-${y0}`,rhsTex:`${n===0?coefStr(g.c[0]):g.tex(V.x)}${V.y}`,f:(x,y)=>g.f(x)*y,x0,y0:R(y0),solution:sol,
    eqNote:eqNote(V,0,V.y),sepTex:`\\frac{d${V.y}}{${V.y}}=${n===0?(coefStr(g.c[0])==='-'?'-':coefStr(g.c[0])?coefStr(g.c[0])+'\\,':''):g.tex(V.x)+'\\,'}d${V.x}`,intTex:[`\\ln\\left|${V.y}\\right|=${Gt}+C`],
    icTex:[`\\ln\\left|${y0}\\right|=0+C\\quad\\Longrightarrow\\quad C=${Math.abs(y0)===1?'0':`\\ln ${Math.abs(y0)}`}`],
-   solveText:`Exponentiate: ${m(`\\left|${V.y}\\right|=${Math.abs(y0)===1?'':Math.abs(y0)}e^{${Gt}}`)}. Since ${m(`${V.y}`)} starts ${y0>0?'positive':'negative'} and can never equal 0, ${m(V.y)} keeps that sign.`,solveTex:[],
+   solveText:`Substitute ${m('C')} and exponentiate both sides${Math.abs(y0)===1?'':`, splitting the exponent with ${m('e^{a+b}=e^{a}\\cdot e^{b}')}. ${INVERSE}`} Then remove the absolute value: ${m(V.y)} is never 0, so it keeps the sign it has at the initial point, where ${m(`${V.y}=${y0}`)} is ${y0>0?'positive':'negative'}.`,
+   solveTex:[...expChain(V.y,Gt,Q(Math.abs(y0))),signLine(V.y,`${Math.abs(y0)===1?'':Math.abs(y0)}e^{${Gt}}`)],
    lo:NINF,hi:INF,why:[`${m(`e^{${Gt}}`)} is defined for every ${m(V.x)}, and the differential equation has no restrictions.`]});
  }
  if(tier==='intermediate'||U.rand()<0.4){ // y' = (2x + q)(y - a), Extra Separable #3
@@ -125,8 +151,8 @@ function famProduct(tier){
   return build({V,family:'product',tier,id:`lin-${q}-${a}-${x0v}-${y0}`,rhsTex:`\\left(${lin}\\right)\\left(${ya}\\right)`,f:(x,y)=>(2*x+q)*(y-a),x0:R(x0v),y0:R(y0),solution:sol,
    eqNote:eqNote(V,a,`\\left(${ya}\\right)`),sepTex:`\\frac{d${V.y}}{${ya}}=\\left(${lin}\\right)d${V.x}`,intTex:[`\\ln\\left|${ya}\\right|=${G.tex(V.x)}+C`],
    icTex:[`\\ln\\left|${y0}${a>0?` - ${a}`:` + ${-a}`}\\right|=${G0}+C\\quad\\Longrightarrow\\quad C=${Math.abs(A)===1?(G0?qtex(Q(-G0)):'0'):`\\ln ${Math.abs(A)}${G0?termTex(Q(-G0),''):''}`}`],
-   solveText:`Exponentiate: ${m(`\\left|${ya}\\right|=${Math.abs(A)===1?'':Math.abs(A)}e^{${expo}}`)}. At the initial point ${m(`${ya}=${A}`)} is ${A>0?'positive':'negative'}, and it can never be 0, so it keeps that sign.`,
-   solveTex:[`${ya}=${A===1?'':A===-1?'-':A}e^{${expo}}`],lo:NINF,hi:INF,why:['The exponential is defined for every real number, and the differential equation has no restrictions.']});
+   solveText:`Substitute ${m('C')} and exponentiate both sides${Math.abs(A)===1?'':`, splitting the exponent with ${m('e^{a+b}=e^{a}\\cdot e^{b}')}. ${INVERSE}`} Then remove the absolute value: ${m(ya)} is never 0, so it keeps the sign it has at the initial point, where ${m(`${ya}=${A}`)} is ${A>0?'positive':'negative'}.`,
+   solveTex:[...expChain(ya,expo,Q(Math.abs(A))),signLine(ya,`${Math.abs(A)===1?'':Math.abs(A)}e^{${expo}}`),`${ya}=${A===1?'':A===-1?'-':A}e^{${expo}}`],lo:NINF,hi:INF,why:['The exponential is defined for every real number, and the differential equation has no restrictions.']});
  }
  // challenging: y' = k (y - a)/(x - h): the formula may be defined at x = h, the equation is not
  const k=pick([1,1,2,-1]),h=nz(-3,3),a=pick([0,0,nz(-4,4)]),side=pick([1,-1]),x0v=h+side*ri(1,3),y0=a+nz(-4,5);
@@ -143,8 +169,9 @@ function famProduct(tier){
  return build({V,family:'product',tier,id:`yx-${k}-${h}-${a}-${x0v}-${y0}`,rhsTex:rhs,f:(x,y)=>k*(y-a)/(x-h),x0:R(x0v),y0:R(y0),solution:sol,
   eqNote:eqNote(V,a,a===0?V.y:`\\left(${ya}\\right)`),sepTex:`\\frac{d${V.y}}{${ya}}=${k===1?'':k===-1?'-':k}\\frac{d${V.x}}{${xh}}`,intTex:[`\\ln\\left|${ya}\\right|=${kTex}\\ln\\left|${xh}\\right|+C`],
   icTex:[`\\ln\\left|${y0-a}\\right|=${kTex}\\ln\\left|${d0}\\right|+C\\quad\\Longrightarrow\\quad C=${lnCombo(Math.abs(y0-a),-k,Math.abs(d0))}`],
-  solveText:`Exponentiate both sides. On the interval around ${m(`${V.x}=${x0v}`)}, ${m(xh)} keeps one sign, so the absolute values combine into one constant fixed by the initial condition.`,
-  solveTex:[k===-1?`${ya}=\\frac{${(y0-a)*d0}}{${xh}}`:`${ya}=${termTex(A,powTex,true)}`],
+  solveText:(()=>{const pw=k===1?'':`^{${k}}`;
+   return `Substitute ${m('C')} and exponentiate both sides, splitting the exponent with ${m('e^{a+b}=e^{a}\\cdot e^{b}')}; ${INVERSE_SO}, and ${m(`e^{${kTex}\\ln\\left|${xh}\\right|}=\\left|${xh}\\right|${pw}`)}${/-/.test(lnCombo(Math.abs(y0-a),-k,Math.abs(d0)))?`; for the constant, ${m('e^{a-b}=\\frac{e^{a}}{e^{b}}')} gives ${m(`e^{${lnCombo(Math.abs(y0-a),-k,Math.abs(d0))}}=${nTex(Q(Math.abs(y0-a),Math.abs(d0)**k))}`)}`:''}. Then remove the absolute values on the interval around ${m(`${V.x}=${x0v}`)}: there ${m(`${xh}`)} is ${d0>0?'positive':'negative'}${k===2?' (its square needs no sign)':`, so ${m(`\\left|${xh}\\right|=${d0>0?'':'-'}\\left(${xh}\\right)`)}`}, and ${m(ya)}, which is never 0, keeps the sign it has at the initial point (${m(`${ya}=${y0-a}`)}).`;})(),
+  solveTex:[`\\left|${ya}\\right|=e^{${kTex}\\ln\\left|${xh}\\right|+${lnCombo(Math.abs(y0-a),-k,Math.abs(d0))}}=e^{${kTex}\\ln\\left|${xh}\\right|}\\cdot e^{${lnCombo(Math.abs(y0-a),-k,Math.abs(d0))}}=${nTex(Q(Math.abs(y0-a),Math.abs(d0)**k))}\\left|${xh}\\right|${k===1?'':`^{${k}}`}`,k===-1?`${ya}=\\frac{${(y0-a)*d0}}{${xh}}`:`${ya}=${termTex(A,powTex,true)}`],
   lo:side>0?R(h):NINF,hi:side>0?INF:R(h),branch:false,
   why:[`The differential equation divides by ${m(xh)}, so it is undefined at ${m(`${V.x}=${h}`)}${k===-1?', where the solution is undefined too':', even though the formula for the solution is defined there'}.`],
   pickText:`The initial value ${m(`${V.x}=${x0v}`)} is ${side>0?'to the right':'to the left'} of ${m(`${V.x}=${h}`)}, so the interval of validity stops at ${m(`${V.x}=${h}`)}.`});
@@ -276,7 +303,8 @@ function famLogRational(tier){
   eqNote:eqNote(V,0,V.y),sepTex:`\\frac{d${V.y}}{${V.y}}=\\frac{${kT||1}}{${V.x}\\ln ${V.x}}\\,d${V.x}`,intText:`For the right side, let ${m(`u=\\ln ${V.x}`)}, so ${m(`du=\\frac{1}{${V.x}}\\,d${V.x}`)}.`,
   intTex:[`\\ln\\left|${V.y}\\right|=${kT}\\ln\\left|\\ln ${V.x}\\right|+C`],
   icTex:[`\\ln\\left|${y0}\\right|=${kT}\\ln\\left|\\ln ${x0.tex}\\right|+C=0+C\\quad\\Longrightarrow\\quad C=${Math.abs(y0)===1?'0':`\\ln ${Math.abs(y0)}`}`],
-  solveText:`Exponentiate: ${m(`\\left|${V.y}\\right|=${Math.abs(y0)===1?'':Math.abs(y0)}\\left|\\ln ${V.x}\\right|${k===1?'':`^{${k}}`}`)}; the sign is fixed by the initial point, where ${m(`\\ln ${x0.tex}=${inv?-1:1}`)}.`,solveTex:[],
+  solveText:`Substitute ${m('C')} and exponentiate both sides: ${m(`e^{${kT}\\ln\\left|\\ln ${V.x}\\right|}=\\left|\\ln ${V.x}\\right|${k===1?'':`^{${k}}`}`)}${Math.abs(y0)===1?'':` and, because ${INVERSE_SO}, ${m(`e^{\\ln ${Math.abs(y0)}}=${Math.abs(y0)}`)}`}. Then remove the absolute values on the interval ${m(inv?'0\\lt x\\lt 1':'x\\gt 1')}: there ${m(`\\ln ${V.x}`)} is ${inv?'negative':'positive'}, so ${m(`\\left|\\ln ${V.x}\\right|=${inv?'-':''}\\ln ${V.x}`)}, and ${m(V.y)}, never 0, keeps the sign of its initial value ${m(`${V.y}=${y0}`)}.`,
+  solveTex:[`\\left|${V.y}\\right|=e^{${kT}\\ln\\left|\\ln ${V.x}\\right|${Math.abs(y0)===1?'':`+\\ln ${Math.abs(y0)}`}}=${Math.abs(y0)===1?'':Math.abs(y0)}\\left|\\ln ${V.x}\\right|${k===1?'':`^{${k}}`}`],
   lo:inv?R(0):R(1),hi:inv?R(1):INF,
   why:[`${m(`\\ln ${V.x}`)} requires ${m(`${V.x}>0`)}, and the differential equation divides by ${m(`\\ln ${V.x}`)}, which is 0 at ${m(`${V.x}=1`)}. The formula for the solution is defined at ${m(`${V.x}=1`)}, but the differential equation is not.`]});
 }
@@ -342,7 +370,8 @@ function famTrig(tier){
  return build({V,family:'trig',tier,id:`tany-${k}-${opt[1]}`,rhsTex:`${2*k}${V.x}\\tan ${V.y}`,f:(x,y)=>2*k*x*Math.tan(y),x0:R(0),y0:V_(opt[1],String(opt[2]),opt[2]),solution:sol,
   eqNote:eqNote(V,0,`\\tan ${V.y}`),sepTex:`\\cot ${V.y}\\,d${V.y}=${2*k}${V.x}\\,d${V.x}`,intText:`${m(`\\int\\cot ${V.y}\\,d${V.y}=\\ln\\left|\\sin ${V.y}\\right|`)}.`,
   intTex:[`\\ln\\left|\\sin ${V.y}\\right|=${k===1?'':k}${V.x}^{2}+C`],icTex:[`\\ln\\left(\\sin ${opt[1]}\\right)=0+C\\quad\\Longrightarrow\\quad C=\\ln ${s0tex}`],
-  solveText:`Exponentiate: ${m(`\\sin ${V.y}=${s0tex}${ek}`)} (positive at the initial point). The initial value lies in ${m('\\left(-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right)')}, so take the inverse sine.`,solveTex:[],
+  solveText:`Substitute ${m('C')} and exponentiate both sides, splitting the exponent with ${m('e^{a+b}=e^{a}\\cdot e^{b}')}. ${INVERSE} At the initial point ${m(`\\sin ${V.y}`)} is positive, so the absolute value is removed with a plus sign. The initial value lies in ${m('\\left(-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right)')}, so take the inverse sine.`,
+  solveTex:[`\\left|\\sin ${V.y}\\right|=e^{${k===1?'':k}${V.x}^{2}+\\ln ${s0tex}}=e^{${k===1?'':k}${V.x}^{2}}\\cdot e^{\\ln ${s0tex}}=${s0tex}${ek}`,`\\sin ${V.y}=${s0tex}${ek}`],
   lo:V_(`-${bTex}`,`-${bExpr}`,-Math.sqrt(bound)),hi:V_(bTex,bExpr,Math.sqrt(bound)),
   why:[`${m('\\sin^{-1}')} needs ${m(`${s0tex}${ek}\\le 1`)}, and ${m(`\\tan ${V.y}`)} is undefined when ${m(`${V.y}=\\frac{\\pi}{2}`)}, so ${m(`${s0tex}${ek}<1`)}. That means ${m(`${k===1?'':k}${V.x}^{2}<${opt[0]?'\\ln 2':'\\frac{1}{2}\\ln 2'}`)}.`]});
 }
@@ -462,7 +491,8 @@ function famBranch(tier){
  return build({V,family:'radical_branch',tier,id:`expsq-${y0v}`,rhsTex:`\\frac{${V.x}\\left(${V.y}^{2}+1\\right)}{${V.y}}`,f:(x,y)=>x*(y*y+1)/y,x0:R(0),y0:R(y0v),solution:sol,branch:true,
   sepText:`Multiply by ${m(`\\frac{${V.y}}{${V.y}^{2}+1}`)} and by ${m(`d${V.x}`)}.`,sepTex:`\\frac{${V.y}}{${V.y}^{2}+1}\\,d${V.y}=${V.x}\\,d${V.x}`,intText:`On the left, let ${m(`u=${V.y}^{2}+1`)}, so ${m(`du=2${V.y}\\,d${V.y}`)}.`,
   intTex:[`\\frac{1}{2}\\ln\\left(${V.y}^{2}+1\\right)=\\frac{${V.x}^{2}}{2}+C`],icTex:[`\\frac{1}{2}\\ln\\left(${A}\\right)=0+C\\quad\\Longrightarrow\\quad C=\\frac{1}{2}\\ln ${A}`],
-  solveText:`Multiply by 2 and exponentiate: ${m(`${V.y}^{2}+1=${A}e^{${V.x}^{2}}`)}. The initial value is ${y0v>0?'positive':'negative'}, so take the ${y0v>0?'positive':'negative'} square root.`,solveTex:[],
+  solveText:`Multiply by 2, then exponentiate both sides, splitting the exponent with ${m('e^{a+b}=e^{a}\\cdot e^{b}')}. ${INVERSE} (${m(`${V.y}^{2}+1`)} is always positive, so no absolute value is needed.) The initial value is ${y0v>0?'positive':'negative'}, so take the ${y0v>0?'positive':'negative'} square root.`,
+  solveTex:[`\\ln\\left(${V.y}^{2}+1\\right)=${V.x}^{2}+\\ln ${A}`,`${V.y}^{2}+1=e^{${V.x}^{2}+\\ln ${A}}=e^{${V.x}^{2}}\\cdot e^{\\ln ${A}}=${A}e^{${V.x}^{2}}`],
   lo:NINF,hi:INF,why:[`${m(`${A}e^{${V.x}^{2}} - 1\\ge ${A-1}>0`)}, so ${m(`${V.y}\\ne 0`)} and the solution is valid for every ${m(V.x)}.`]});
 }
 
