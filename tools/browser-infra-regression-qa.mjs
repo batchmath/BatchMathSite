@@ -52,7 +52,7 @@ stats.keyboardBehaviorSuite=1;
 // should not be forced through the standard one-step Enter-advance test.
 if(!/['"]#problem['"]/.test(seeded))fail('seeded browser QA does not inspect the custom #problem question container');
 if(!/ENTER_ADVANCE_EXCLUSIONS=new Set\(\['ap_classifying_discontinuities'\]\)/.test(seeded))fail('custom discontinuity engine is not excluded from inappropriate standard Enter-advance QA');
-if(!/Expected 141 engines/.test(seeded))fail('seeded browser QA expected engine count is not 141');
+if(!/Expected 143 engines/.test(seeded))fail('seeded browser QA expected engine count is not 143');
 stats.seededCustomEngineGuards=3;
 
 // Unit 1 comprehensive-review cleanup requested for this checkpoint.

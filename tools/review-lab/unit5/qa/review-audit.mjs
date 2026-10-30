@@ -1,15 +1,21 @@
 // Comprehensive Review audit: topic and difficulty percentages, their independence (chi-square on the topic ×
 // difficulty table), the Slope Fields drawing share, focused Practice Types, and that every part's answer checks.
-// Usage: node tools/review-lab/unit5/qa/review-audit.mjs [N=10000]
+// v12.8.X: also the Calculator and Non-Calculator Reviews (topic weights renormalized over the eligible topics, the
+// same 40/40/20 difficulty, no problem of the wrong kind); shares and independence are now pass / fail checks.
+// Usage: node tools/review-lab/unit5/qa/review-audit.mjs [N=10000] [mixed|calculator|non-calculator]
 import {load} from './lib.mjs';
-const N=+(process.argv[2]||10000);
+const N=+(process.argv[2]||10000),CALC=process.argv[3]&&process.argv[3]!=='mixed'?process.argv[3]:undefined;
 const L=load(['unit5-basic.js','unit5-motion.js','unit5-slope-fields.js','unit5-separable.js','unit5-growth.js','unit5-rate.js','unit5-review.js']),gen=L.G.get('unit5-comprehensive-review');
 // v12.8.X: rounded answers are entered as their correctly rounded decimal
 const R=(a,v)=>a.places===undefined||typeof v!=='number'||!Number.isFinite(v)?v:L.W.BatchMathUnit5Core.fix(v,a.places);
-const TOP=['basic','motion','slope','separable','growth','rate'],TIERS=['foundational','intermediate','challenging'];
+const ALL={basic:20,motion:20,slope:20,separable:20,growth:10,rate:10},ELIG={calculator:['basic','motion','growth','rate'],'non-calculator':['basic','motion','slope','separable','rate']};
+const TOP=CALC?ELIG[CALC]:Object.keys(ALL),TIERS=['foundational','intermediate','challenging'],TW={foundational:40,intermediate:40,challenging:20};
+const wsum=TOP.reduce((a,t)=>a+ALL[t],0),TARGET=Object.fromEntries(TOP.map(t=>[t,ALL[t]/wsum]));
 const tab={};TOP.forEach(t=>tab[t]=Object.fromEntries(TIERS.map(x=>[x,0])));let slopeDraw=0,slopeAll=0,errors=0,fails=[];
 const S=L.W.BatchMathUnit5Slope;
-for(let i=1;i<=N;i++){L.seed(i*6007);let p;try{p=gen({});}catch(e){errors++;continue;}const m=p.unit5Meta;tab[m.reviewTopic][m.reviewTier]++;
+for(let i=1;i<=N;i++){L.seed(i*6007);let p;try{p=gen({calc:CALC});}catch(e){errors++;if(errors<4)fails.push(`generation: ${e.message}`);continue;}const m=p.unit5Meta;
+ if(!TOP.includes(m.reviewTopic)){fails.push(`${p.id}: topic ${m.reviewTopic} is not part of this review`);continue;}tab[m.reviewTopic][m.reviewTier]++;
+ if(CALC&&p.calculatorActive!==(CALC==='calculator'))fails.push(`${p.id}: ${p.calculatorActive?'calculator':'non-calculator'} problem in the ${CALC} review`);
  if(m.tier!==m.reviewTier)fails.push(`${p.id}: tier ${m.tier} vs requested ${m.reviewTier}`);
  if(m.reviewTopic==='slope'){slopeAll++;if(/draw_/.test(p.variant))slopeDraw++;}
  if(i<=3000)for(const part of p.parts){if(part.control==='choice'||part.control==='svg-choice'){if(!(part.correctIndex>=0))fails.push(`${p.id} choice`);continue;}
@@ -24,13 +30,20 @@ const rowT=Object.fromEntries(TOP.map(t=>[t,Object.values(tab[t]).reduce((a,b)=>
 let chi=0;for(const t of TOP)for(const x of TIERS){const e=rowT[t]*colT[x]/tot;chi+=(tab[t][x]-e)**2/e;}
 const pct=v=>(100*v/tot).toFixed(1)+'%';
 console.log(`review problems: ${tot} (generation errors ${errors})`);
-console.log('topics (target 20/20/20/20/10/10):',TOP.map(t=>`${t} ${pct(rowT[t])}`).join(', '));
+const CRIT={4:9.49,6:12.59,8:15.51,10:18.31},df=(TOP.length-1)*(TIERS.length-1);
+const near=(got,want)=>Math.abs(got-want)<=Math.max(0.01,4*Math.sqrt(want*(1-want)/tot));
+console.log(`review: ${CALC||'mixed'}`);
+console.log(`topics (target ${TOP.map(t=>(100*TARGET[t]).toFixed(1)).join('/')}):`,TOP.map(t=>`${t} ${pct(rowT[t])}`).join(', '));
 console.log('difficulty (target 40/40/20):',TIERS.map(x=>`${x} ${pct(colT[x])}`).join(', '));
-console.log(`independence: chi-square ${chi.toFixed(2)} on 10 degrees of freedom (95% critical value 18.31)`);
+console.log(`independence: chi-square ${chi.toFixed(2)} on ${df} degrees of freedom (95% critical value ${CRIT[df]})`);
+for(const t of TOP)if(!near(rowT[t]/tot,TARGET[t]))fails.push(`topic ${t}: ${pct(rowT[t])} vs target ${(100*TARGET[t]).toFixed(1)}%`);
+for(const x of TIERS)if(!near(colT[x]/tot,TW[x]/100))fails.push(`difficulty ${x}: ${pct(colT[x])} vs target ${TW[x]}%`);
+if(chi>CRIT[df]*1.3)fails.push(`topic and difficulty look dependent: chi-square ${chi.toFixed(2)}`);
 console.log('per-topic difficulty split:',TOP.map(t=>`${t} ${TIERS.map(x=>(100*tab[t][x]/rowT[t]).toFixed(0)).join('/')}`).join('; '));
-console.log(`slope fields drawing share: ${(100*slopeDraw/slopeAll).toFixed(1)}% of ${slopeAll} (target 50%)`);
+if(slopeAll)console.log(`slope fields drawing share: ${(100*slopeDraw/slopeAll).toFixed(1)}% of ${slopeAll} (target 50%)`);
 // focused Practice Types
-for(const mode of [...TOP,...TIERS]){const c={};for(let i=1;i<=600;i++){L.seed(i*31+mode.length);const p=gen({mode});const k=TOP.includes(mode)?p.unit5Meta.reviewTier:p.unit5Meta.reviewTopic;c[k]=(c[k]||0)+1;
+for(const t of Object.keys(ALL).filter(t=>!TOP.includes(t))){let threw=false;try{gen({mode:t,calc:CALC});}catch(_){threw=true;}if(!threw)fails.push(`mode ${t} should not be offered in the ${CALC} review`);}
+for(const mode of [...TOP,...TIERS]){const c={};for(let i=1;i<=600;i++){L.seed(i*31+mode.length);const p=gen({mode,calc:CALC});if(CALC&&p.calculatorActive!==(CALC==='calculator'))fails.push(`mode ${mode}: wrong calculator kind`);const k=TOP.includes(mode)?p.unit5Meta.reviewTier:p.unit5Meta.reviewTopic;c[k]=(c[k]||0)+1;
   if(TOP.includes(mode)&&p.unit5Meta.reviewTopic!==mode||TIERS.includes(mode)&&p.unit5Meta.reviewTier!==mode)fails.push(`mode ${mode} produced ${p.unit5Meta.reviewTopic}/${p.unit5Meta.reviewTier}`);}
  console.log(`mode ${mode}: ${Object.entries(c).map(([k,v])=>`${k} ${(v/6).toFixed(0)}%`).join(', ')}`);}
-console.log(`answer checks on the first 3000 problems: ${fails.length} failures`);console.log(fails.slice(0,10).join('\n'));process.exitCode=fails.length||errors?1:0;
+console.log(`checks (answers on the first 3000 problems, shares, independence, kinds, modes): ${fails.length} failures`);console.log(fails.slice(0,10).join('\n'));process.exitCode=fails.length||errors?1:0;

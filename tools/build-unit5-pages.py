@@ -19,6 +19,12 @@ COMMON_HEAD = ['/assets/derivative-expression-checker.js', '/assets/unit4-exact-
 COMMON_BODY = ['/assets/unit5-core.js', '/assets/unit5-answers.js', '/assets/unit5-ui.js']
 
 # Practice Types on the calculator pages: only families with calculator problems (checked by qa/calc-eligibility.mjs)
+REVIEW_SCRIPTS = ['/assets/unit5-basic.js', '/assets/unit5-motion.js', '/assets/unit5-slope-fields.js', '/assets/unit5-separable.js', '/assets/unit5-growth.js',
+                  '/assets/unit5-rate.js', '/assets/unit5-review.js']
+REVIEW_TOPICS = [('basic', 'Basic First-Order Differential Equations'), ('motion', 'Motion Problems'), ('slope', 'Slope Fields'),
+                 ('separable', 'Separable Differential Equations'), ('growth', "Growth, Decay, Interest and Newton's Law"), ('rate', 'Rate Problems')]
+REVIEW_TIERS = [('foundational', 'Foundational (all topics)'), ('intermediate', 'Intermediate (all topics)'), ('challenging', 'Challenging (all topics)')]
+
 RATE_MODES = [('mixed', 'Mixed Practice'), ('one_rate', 'Accumulate One Rate'), ('initial_change', 'Initial Amount Plus or Minus Change'),
               ('in_out', 'Inflow and Outflow'), ('delayed_piecewise', 'Delayed Starts and Piecewise Rates'), ('multipart', 'Connected Accumulation Problems')]
 
@@ -95,12 +101,20 @@ PAGES = [
          description='Draw slope segments and solution curves with a mouse, pen or finger (or type slopes and points instead), match fields with equations, and analyze slopes. After you check a drawing, the correct segments or curve appear on the same grid.',
          modes=[('mixed', 'Mixed Practice'), ('draw_segments', 'Draw Slope Segments'), ('draw_curve', 'Draw Solution Curves'), ('match', 'Match Fields, Equations and Curves'), ('analyze', 'Analyze Slopes and Solutions')]),
     dict(topic='comprehensive-review', page='assignment-practice', slug='unit5-comprehensive-review', analytics_slug='unit5_assignment_review',
-         title='Differential Equations Review', engine_id='ap_unit5_assignment_review',
-         scripts=['/assets/unit5-basic.js', '/assets/unit5-motion.js', '/assets/unit5-slope-fields.js', '/assets/unit5-separable.js', '/assets/unit5-growth.js', '/assets/unit5-rate.js', '/assets/unit5-review.js'],
-         description='A mixed review of all six Unit 5 topics, from short skills to a smaller share of challenging problems. Each question uses the same input, checking and worked explanations as its topic practice page.',
-         modes=[('mixed', 'Mixed Review'), ('basic', 'Basic First-Order Differential Equations'), ('motion', 'Motion Problems'), ('slope', 'Slope Fields'),
-                ('separable', 'Separable Differential Equations'), ('growth', "Growth, Decay, Interest and Newton's Law"), ('rate', 'Rate Problems'),
-                ('foundational', 'Foundational (all topics)'), ('intermediate', 'Intermediate (all topics)'), ('challenging', 'Challenging (all topics)')]),
+         title='Differential Equations', label='Mixed Review', conf_title='Differential Equations Review', engine_id='ap_unit5_assignment_review',
+         scripts=REVIEW_SCRIPTS,
+         description='A mixed review of all six Unit 5 topics, calculator and non-calculator, from short skills to a smaller share of challenging problems. Each question uses the same input, checking and worked explanations as its topic practice page.',
+         modes=[('mixed', 'Mixed Review')] + REVIEW_TOPICS + REVIEW_TIERS),
+    dict(topic='comprehensive-review', page='calculator-practice', source='assignment-practice', calc='calculator', slug='unit5-comprehensive-review',
+         analytics_slug='unit5_assignment_review_calculator', title='Differential Equations', label='Calculator Review', engine_id='ap_unit5_assignment_review_calculator',
+         scripts=REVIEW_SCRIPTS,
+         description='Calculator active. A review of the calculator topics: Basic First-Order Differential Equations, Motion, Growth and Decay, and Rate Problems (weighted 2 : 2 : 1 : 1), from short skills to a smaller share of challenging problems.',
+         modes=[('mixed', 'Mixed Calculator Review')] + [m for m in REVIEW_TOPICS if m[0] in ('basic', 'motion', 'growth', 'rate')] + REVIEW_TIERS),
+    dict(topic='comprehensive-review', page='non-calculator-practice', source='assignment-practice', calc='non-calculator', slug='unit5-comprehensive-review',
+         analytics_slug='unit5_assignment_review_noncalculator', title='Differential Equations', label='Non-Calculator Review', engine_id='ap_unit5_assignment_review_noncalculator',
+         scripts=REVIEW_SCRIPTS,
+         description='No calculator. A review of Basic First-Order Differential Equations, Motion, Slope Fields (including drawing), Separable Differential Equations and Rate Problems (weighted 2 : 2 : 2 : 2 : 1), from short skills to a smaller share of challenging problems.',
+         modes=[('mixed', 'Mixed Non-Calculator Review')] + [m for m in REVIEW_TOPICS if m[0] in ('basic', 'motion', 'slope', 'separable', 'rate')] + REVIEW_TIERS),
 ]
 
 TEMPLATE = U5 / 'basic-first-order-differential-equations' / 'practice' / 'index.html'
@@ -202,7 +216,7 @@ def set_identity(text, cfg):
 def launch_row(topic):
     """One launch button per practice page of a topic: Mixed, Non-Calculator, Calculator (the Unit 3 order)."""
     cfgs = [c for c in PAGES if c['topic'] == topic and c.get('label')]
-    order = {'practice': 0, 'non-calculator-practice': 1, 'calculator-practice': 2}
+    order = {'practice': 0, 'assignment-practice': 0, 'non-calculator-practice': 1, 'calculator-practice': 2}
     links = []
     for c in sorted(cfgs, key=lambda c: order.get(c['page'], 9)):
         label = html.escape(f"{c['title']} {c['label']}", quote=False)
@@ -272,7 +286,7 @@ def wire(path, cfg):
         conf = {'slug': cfg['slug'], 'analyticsSlug': cfg['analytics_slug'], 'calculator': cfg['calc'], 'title': f"{cfg['title']} {cfg['label']}",
                 'generatorVersion': VERSION, 'modeSelectIds': ['u5Mode']}
     elif cfg.get('analytics_slug') and not cfg.get('slugs'):
-        conf = {'slug': cfg['slug'], 'analyticsSlug': cfg['analytics_slug'], 'title': cfg['title'], 'generatorVersion': VERSION, 'modeSelectIds': ['u5Mode']}
+        conf = {'slug': cfg['slug'], 'analyticsSlug': cfg['analytics_slug'], 'title': cfg.get('conf_title', cfg['title']), 'generatorVersion': VERSION, 'modeSelectIds': ['u5Mode']}
     if cfg.get('slugs'):
         conf = {'slugs': cfg['slugs'], 'analyticsSlug': cfg['analytics_slug'], 'title': cfg['title'], 'generatorVersion': VERSION, 'modeSelectIds': ['u5Mode']}
     js = 'window.BM_TOPIC_PRACTICE=' + json.dumps(conf, separators=(',', ':')) + ';'
