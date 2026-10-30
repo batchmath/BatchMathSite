@@ -862,6 +862,9 @@
     pad.classList.add("bm-calc-keypad-standardized");
   }
 
+  // Profiles registered by engine scripts (v12.8.W Unit 5), keyed by mode name.
+  const customProfiles={};
+
   function buildPad(mode){
     const pad=document.createElement("div");
     pad.className=`bm-calc-keypad bm-calc-mode-${mode}`;
@@ -918,7 +921,7 @@
       "derivative-implicit":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x","y"],constants:["pi","e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"]],arithmetic:true,parentheses:true},
       "derivative-log":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x","y"],constants:["pi","e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"]],arithmetic:true,parentheses:true},
       "derivative-inverse-trig":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x"],constants:["pi","e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"],["sin⁻¹","asin"],["cos⁻¹","acos"],["tan⁻¹","atan"],["cot⁻¹","acot"],["sec⁻¹","asec"],["csc⁻¹","acsc"]],arithmetic:true,parentheses:true}
-    }[mode]||null;
+    }[mode]||customProfiles[mode]||null;
 
     if(contextualUnit3){
       const structures=document.createElement("div");
@@ -938,6 +941,7 @@
       (contextualUnit3.constants||[]).forEach(name=>addInsert(structures,name==="pi"?"π":name,name,"function"));
       if(contextualUnit3.dne)addInsert(structures,"DNE","DNE","function","Insert DNE");
       if(contextualUnit3.dna)addInsert(structures,"Does not apply","Does not apply","function","Insert does not apply");
+      if(contextualUnit3.none)addInsert(structures,"None","None","function","Insert None");
       if(contextualUnit3.infinity){
         addInsert(structures,"∞","infinity","function math-infinity-key","Insert infinity");
         addInsert(structures,"−∞","-infinity","function math-infinity-key","Insert negative infinity");
@@ -1045,7 +1049,7 @@
       if(contextualUnit3.interval){
         addInsert(extras,"[","[","symbol","Insert left bracket");
         addInsert(extras,"]","]","symbol","Insert right bracket");
-        addInsert(extras,"∪","U","symbol","Insert union");
+        if(contextualUnit3.union!==false)addInsert(extras,"∪","U","symbol","Insert union");
       }
       if(contextualUnit3.classification){
         addInsert(extras,"Under","underestimate","function","Insert underestimate");
@@ -1323,5 +1327,5 @@
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
   else init();
 
-  window.BatchMathCalculusKeypad={init,mountInputs,reset,focus,setRaw:(v)=>{const stacks=historyStacks();stacks.undo.length=0;stacks.redo.length=0;setRaw(v,String(v||"").length,{record:false});},move,moveVertical,backspace,del,undo,redo,get raw(){return serializeRange()},get cursor(){return state.cursor},get selection(){return selectionRange();},setCursor:(v)=>{collapseSelection(Number(v)||0);render();}};
+  window.BatchMathCalculusKeypad={init,mountInputs,registerProfile:(name,spec)=>{customProfiles[name]=spec;},reset,focus,setRaw:(v)=>{const stacks=historyStacks();stacks.undo.length=0;stacks.redo.length=0;setRaw(v,String(v||"").length,{record:false});},move,moveVertical,backspace,del,undo,redo,get raw(){return serializeRange()},get cursor(){return state.cursor},get selection(){return selectionRange();},setCursor:(v)=>{collapseSelection(Number(v)||0);render();}};
 })();

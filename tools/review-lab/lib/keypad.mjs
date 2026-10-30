@@ -21,8 +21,8 @@ export function parse(s){
   const ch=s[i];
   if(ch==='('){const g=group();if(s[i]==='/'&&s[i+1]==='('){i++;return{t:'frac',n:g,d:group()};}return{t:'group',g};}
   if(ch==='^'){i++;return{t:'pow',g:s[i]==='('?group():[{t:'atom',v:s[i++]}]};}
-  const w=s.slice(i).match(/^(asin|acos|atan|sqrt|abs|sin|cos|tan|sec|csc|cot|ln|pi)/);
-  if(w){i+=w[0].length;if(w[0]==='pi')return{t:'atom',v:'π'};let power=null;if(s[i]==='^'&&s[i+1]==='('){i++;power=group();}const f={t:'func',name:w[0],arg:bare()};return power?{t:'powfunc',f,p:power}:f;}
+  const w=s.slice(i).match(/^(infinity|asin|acos|atan|sqrt|abs|sin|cos|tan|sec|csc|cot|ln|pi)/);
+  if(w){i+=w[0].length;if(w[0]==='pi')return{t:'atom',v:'π'};if(w[0]==='infinity')return{t:'atom',v:'∞'};let power=null;if(s[i]==='^'&&s[i+1]==='('){i++;power=group();}const f={t:'func',name:w[0],arg:bare()};return power?{t:'powfunc',f,p:power}:f;}
   i++;return{t:'atom',v:ch};
  }
  return seq(undefined);
