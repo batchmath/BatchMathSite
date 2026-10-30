@@ -28,7 +28,7 @@ export function parse(s){
  return seq(undefined);
 }
 const FKEY={sqrt:'√',ln:'ln',abs:'|u|',sin:'sin',cos:'cos',tan:'tan',sec:'sec',csc:'csc',cot:'cot',asin:'sin⁻¹',acos:'cos⁻¹',atan:'tan⁻¹'};
-const AKEY={'-':'−','*':'·'};
+const AKEY={'-':'−','*':'·','U':'∪'};
 const esc=t=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 // On-screen keypad driver for one page; scope selects which staged part's keypad is used.
 export function keypad(p,scope='#choices'){

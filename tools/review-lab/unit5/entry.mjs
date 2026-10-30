@@ -13,8 +13,9 @@ const PORT=randomPort(8900),srv=await serve(PORT),b=await browser({scrollbars:tr
 const p=await open(c,`http://127.0.0.1:${PORT}/${page.replace(/^\/|\/$/g,'')}/?bm_seed=u5entry-${W}`);
 if(process.env.BM_MODE){await p.selectOption('#u5Mode',process.env.BM_MODE);await p.waitForTimeout(400);}
 const typedForm=(part)=>{
- let tex=part.answerTex.replace(/^[A-Za-z]\s*=\s*/,'');
- if(part.answer.kind==='interval')tex=tex.replace(/\\left|\\right|\\,/g,'').replace(/\\infty/g,'infinity');
+ let tex=part.answerTex.replace(/^[A-Za-z](\([a-z]\))?\s*=\s*/,'');
+ if(part.answer.kind==='interval')tex=tex.replace(/\\left|\\right|\\,/g,'').replace(/\\infty/g,'infinity').replace(/\\cup/g,'U');
+ if(part.answer.kind==='list')tex=tex.replace(/[a-z]=/g,'').replace(/\\ /g,'');
  return keypadForm(tex).replace(/\\text\{[^}]*\}/g,'');
 };
 const out={page,viewport:`${W}x${H}${mob?' mobile':''}`,mode:process.env.BM_MODE||'mixed',checked:0,parts:0,failures:[],scrollBoxes:[],pageOverflow:0,errors:p._errs,entered:[]};

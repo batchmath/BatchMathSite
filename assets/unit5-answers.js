@@ -137,12 +137,14 @@ function parseIntervals(raw){
  const parts=pieces.map(parseOneInterval).sort((p,q)=>p.left-q.left);
  return{parts};
 }
-const sameEnd=(a,b)=>a===b||(Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=1e-9*Math.max(1,Math.abs(a)));
+let endTol=0;// set per check: calculator answers may give rounded endpoints
+const sameEnd=(a,b)=>a===b||(Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=Math.max(endTol,1e-9*Math.max(1,Math.abs(a))));
 function expectedParts(spec){
  const list=spec.parts||[{left:spec.left,right:spec.right,lc:!!(spec.lc??spec.leftClosed),rc:!!(spec.rc??spec.rightClosed)}];
  return list.map(p=>({left:typeof p.left==='string'?endpointValue(p.left):p.left,right:typeof p.right==='string'?endpointValue(p.right):p.right,lc:!!(p.lc??p.leftClosed),rc:!!(p.rc??p.rightClosed)}));
 }
 function checkInterval(raw,spec){
+ endTol=Number(spec.tolerance||0);
  let got;
  try{got=parseIntervals(raw);}
  catch(e){
@@ -180,6 +182,7 @@ function checkNumeric(raw,spec){
  let got;try{got=numberOf(raw);}catch(e){return{valid:false,message:e.code==='undefined'?'That expression is undefined. Check it and try again.':message(e,null,'Enter a number, or an expression a calculator can evaluate.')};}
  const want=Number(spec.value),tol=Number(spec.tolerance??0.001);
  if(Math.abs(got-want)<=tol+1e-12)return{valid:true,ok:true};
+ for(const w of spec.wrongValues||[])if(Math.abs(got-w.value)<=tol+1e-12)return{valid:true,ok:false,note:w.note};
  if(Math.abs(got+want)<=tol+1e-12&&Math.abs(want)>tol)return{valid:true,ok:false,note:'Check the sign of your answer.'};
  if(Math.abs(got-want)<=0.01*Math.abs(want))return{valid:true,ok:false,note:spec.roundingNote||'Very close. Keep full calculator precision until the last step, then round as directed.'};
  return{valid:true,ok:false};
@@ -189,6 +192,7 @@ function checkExact(raw,spec){
  let got;try{got=numberOf(raw);}catch(e){return{valid:false,message:e.code==='undefined'?'That expression is undefined. Check it and try again.':message(e,null,'Enter an exact value.')};}
  const want=typeof spec.value==='number'?spec.value:I.evaluate(parse(spec.expression,null),{});
  if(close(got,want,1e-10))return{valid:true,ok:true};
+ for(const w of spec.wrongValues||[])if(close(got,w.value,1e-10))return{valid:true,ok:false,note:w.note};
  if(decimalUsed(raw)&&Math.abs(got-want)<=1e-3*Math.max(1,Math.abs(want)))return{valid:true,ok:false,note:'Use an exact value. A rounded decimal is only an approximation.'};
  if(close(got,-want,1e-10))return{valid:true,ok:false,note:'Check the sign of your answer.'};
  return{valid:true,ok:false};

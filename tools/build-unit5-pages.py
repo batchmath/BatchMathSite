@@ -22,6 +22,10 @@ PAGES = [
          modes=[('mixed', 'Mixed Practice'), ('poly_power', 'Polynomial, Power and Radical IVPs'), ('trig', 'Trigonometric and Inverse-Trig IVPs'),
                 ('exp_composition', 'Exponential and Composition IVPs'), ('log_domain', 'Logarithmic and Domain-Restricted IVPs'),
                 ('calculator_ftc', 'Calculator IVPs (FTC)'), ('general_solution', 'General Solutions')]),
+    dict(topic='motion-problems', page='practice', slug='motion-problems', title='Motion Problems', engine_id='ap_topic_motion_problems',
+         scripts=['/assets/unit5-motion.js'],
+         modes=[('mixed', 'Mixed Practice'), ('recover', 'Recover Velocity or Position'), ('displacement_distance', 'Displacement and Total Distance'),
+                ('direction_speed', 'Direction, Rest and Speed'), ('calculator', 'Calculator Motion'), ('multipart', 'Connected Multi-Part Problems')]),
 ]
 
 def tag(src):

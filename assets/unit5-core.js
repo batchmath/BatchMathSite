@@ -81,6 +81,39 @@ function sum(items,constant=E(),{constantFirst=false}={}){
  return{tex,expr:exprs.join('+')||'0',f:x=>fs.reduce((s,t)=>s+t.q*t.f(x),0)+cval};
 }
 
+// ---------- exact trig values and x-values ----------
+const TRIG_CANDIDATES=(()=>{const list=[];const add=e=>{list.push(e);list.push(escale(e,Q(-1)));};
+ const R2=K.sqrt2,R3=K.sqrt3;add(E());add(ex(Q(1,2)));add(ex(1));add(ex(2));add(ex(Q(1,2),R2));add(ex(1,R2));add(ex(Q(1,2),R3));add(ex(1,R3));add(ex(Q(1,3),R3));add(ex(Q(2,3),R3));
+ return list;})();
+// exact value of fn(qπ) for standard angles; undefined where the function is undefined; null if not standard
+function trigExact(fn,qpi){
+ if(![1,2,3,4,6].includes(qpi.d))return null;
+ const a=qv(qpi)*Math.PI,s=Math.sin(a),c=Math.cos(a);
+ const val={sin:s,cos:c,tan:s/c,sec:1/c,csc:1/s,cot:c/s}[fn];
+ if(!Number.isFinite(val)||Math.abs(val)>1e6)return undefined;
+ for(const cand of TRIG_CANDIDATES)if(Math.abs(eval_(cand)-val)<1e-12)return cand;
+ return null;
+}
+function piTexQ(q){if(qzero(q))return '0';const s=q.n<0?'-':'',a=Math.abs(q.n);if(q.d===1)return `${s}${a===1?'':a}\\pi`;return `${s}\\frac{${a===1?'':a}\\pi}{${q.d}}`;}
+const xRat=q=>{q=typeof q==='number'?Q(q):q;return{tex:qtex(q),val:qv(q),exact:ex(q),q};};
+const xPi=q=>{q=typeof q==='number'?Q(q):q;return{tex:piTexQ(q),val:qv(q)*Math.PI,exact:qzero(q)?E():ex(q,K.pi),qpi:q};};
+
+// ---------- polynomials with rational coefficients (ascending powers) ----------
+class Poly{
+ constructor(c){this.c=c.map(asQ);while(this.c.length>1&&qzero(this.c[this.c.length-1]))this.c.pop();}
+ static fromRoots(lead,roots){let p=new Poly([lead]);for(const r of roots)p=p.mul(new Poly([qneg(asQ(r)),Q(1)]));return p;}
+ get deg(){return this.c.length-1;}
+ mul(o){const out=Array(this.c.length+o.c.length-1).fill(Q(0));this.c.forEach((a,i)=>o.c.forEach((b,j)=>{out[i+j]=qadd(out[i+j],qmul(a,b));}));return new Poly(out);}
+ add(o){const n=Math.max(this.c.length,o.c.length),out=[];for(let i=0;i<n;i++)out.push(qadd(this.c[i]||Q(0),o.c[i]||Q(0)));return new Poly(out);}
+ scale(s){return new Poly(this.c.map(a=>qmul(a,asQ(s))));}
+ deriv(){return new Poly(this.c.length>1?this.c.slice(1).map((a,i)=>qmul(a,Q(i+1))):[Q(0)]);}
+ integ(C=0){return new Poly([asQ(C),...this.c.map((a,i)=>qdiv(a,Q(i+1)))]);}
+ at(x){x=asQ(x);let s=Q(0);for(let i=this.c.length-1;i>=0;i--)s=qadd(qmul(s,x),this.c[i]);return s;}
+ f(x){let s=0;for(let i=this.c.length-1;i>=0;i--)s=s*x+qv(this.c[i]);return s;}
+ tex(v='t'){const items=[];for(let i=this.c.length-1;i>=0;i--){const q=this.c[i];if(qzero(q))continue;items.push({q,tex:i===0?'':i===1?v:`${v}^{${i}}`});}return items.length?items.map((it,k)=>termTex(it.q,it.tex,k===0)).join(''):'0';}
+ expr(){return this.c.map((q,i)=>`${qexpr(q)}*x^${i}`).join('+');}
+ isZero(){return this.c.length===1&&qzero(this.c[0]);}
+}
 // ---------- numerics ----------
 const GL=[[-0.9739065285171717,0.0666713443086881],[-0.8650633666889845,0.1494513491505806],[-0.6794095682990244,0.2190863625159820],[-0.4333953941292472,0.2692667193099963],[-0.1488743389816312,0.2955242247147529],[0.1488743389816312,0.2955242247147529],[0.4333953941292472,0.2692667193099963],[0.6794095682990244,0.2190863625159820],[0.8650633666889845,0.1494513491505806],[0.9739065285171717,0.0666713443086881]];
 function glPanel(f,a,b){const m=(a+b)/2,h=(b-a)/2;let s=0;for(const [x,w] of GL)s+=w*f(m+h*x);return s*h;}
@@ -151,6 +184,6 @@ profile('unit5-number',{decimal:true});
 profile('unit5-money',{decimal:true});
 
 window.BatchMathUnit5Core=Object.freeze({rand,ri,pick,nz,shuffle,weighted,Q,qv,qadd,qsub,qmul,qdiv,qneg,qint,qzero,qone,qeq,asQ,qtex,qexpr,gcd,
- K,atom,lnAtom,expAtom,E,ex,safe,eadd,escale,eneg,esub,eval:eval_,ezero,erational,etex,eexpr,termTex,sum,integrate,roots,fix,money,eq,step,m,question,problem,
+ K,atom,lnAtom,expAtom,E,ex,safe,trigExact,piTexQ,xRat,xPi,Poly,eadd,escale,eneg,esub,eval:eval_,ezero,erational,etex,eexpr,termTex,sum,integrate,roots,fix,money,eq,step,m,question,problem,
  makeEngine,register,profile,TIERS});
 })();

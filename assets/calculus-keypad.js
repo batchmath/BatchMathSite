@@ -1047,8 +1047,8 @@
         if(contextualUnit3.recursive)addInsert(extras,",",",","symbol","Comma between recursive conditions");
       }
       if(contextualUnit3.interval){
-        addInsert(extras,"[","[","symbol","Insert left bracket");
-        addInsert(extras,"]","]","symbol","Insert right bracket");
+        if(contextualUnit3.brackets!==false){addInsert(extras,"[","[","symbol","Insert left bracket");
+        addInsert(extras,"]","]","symbol","Insert right bracket");}
         if(contextualUnit3.union!==false)addInsert(extras,"∪","U","symbol","Insert union");
       }
       if(contextualUnit3.classification){
