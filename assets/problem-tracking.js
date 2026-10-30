@@ -1,11 +1,11 @@
-/* BatchMath engine analytics — v12.8.W
+/* BatchMath engine analytics — v12.8.X
    Anonymous usage instrumentation for practice engines.
    No names, email addresses, student IDs, typed answers, or literal problem text are sent.
    Events generated while offline are queued locally and flushed after connectivity returns. */
 (() => {
   'use strict';
 
-  const APP_VERSION = '12.8.W';
+  const APP_VERSION = '12.8.X';
   const TRACKING_SCHEMA = '1';
   const QUEUE_KEY = 'batchmath.analytics.queue.v1';
   const DEBUG_KEY = 'batchmath.analytics.debug.v1';

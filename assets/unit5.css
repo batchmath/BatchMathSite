@@ -1,4 +1,4 @@
-/* BatchMath v12.8.W — Unit 5 practice styles (multi-part answers, calculator badge, figure choices,
+/* BatchMath v12.8.X — Unit 5 practice styles (multi-part answers, calculator badge, figure choices,
    slope-field drawing board). Math containers grow to fit; nothing here creates a nested scroll box. */
 .u5-question{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%}
 .u5-calculator-badge{align-self:flex-start;font-size:.78rem;font-weight:900;letter-spacing:.02em;border-radius:999px;padding:3px 10px;margin:0 0 4px;border:1px solid #555;color:#c7c7c7}

@@ -1,4 +1,4 @@
-/* BatchMath v12.8.W — Unit 5 engine 5: Exponential Growth and Decay, Interest, Newton's Law of Cooling.
+/* BatchMath v12.8.X — Unit 5 engine 5: Exponential Growth and Decay, Interest, Newton's Law of Cooling.
    Calculator-active applications of dy/dt = ky. Families (mixed mode): growth 20%, decay 25%, cooling 20%,
    heating 10%, interest 15%, reverse / unknown quantity 10%; about 30% are connected multi-part problems.
    Conventions (Differential Equation Reminders): growth y = y0 e^{kt}, decay y = y0 e^{-kt} with k > 0, and

@@ -1,7 +1,7 @@
 BatchMath cumulative working copy
-Current full release: 12.8.W (review build)
-Archive: batchmath-site-v12.8.W.zip
-Baseline: v12.8.V (origin/main b349803), with the review lab merged.
-Changes: v12.8.W rebuilds AP Calculus AB Unit 5 (Differential Equations): Basic First-Order, Motion, Separable and Rate Problems engines rebuilt; new Slope Fields (drawing with grading and model overlay, matching, analysis) and Growth/Decay/Interest/Newton's Law engines and pages; Comprehensive Review rebuilt from all six engines (topics 20/20/20/20/10/10, difficulty 40/40/20). Units 1-4, IM1 and the existing BatchMath QA workflow remain preserved.
+Current full release: 12.8.X (review build)
+Archive: batchmath-site-v12.8.X.zip
+Baseline: v12.8.W (review build, tag v12.8.W at dd2689e), built on v12.8.V (origin/main b349803).
+Changes: v12.8.X keeps the v12.8.W Unit 5 rebuild and adds strict rounding for numeric answers, separate Calculator and Non-Calculator practice pages (Basic First-Order, Motion, Rate) and Reviews, more calculator variety, Rate Problems limited to accumulation (25/25/25/15/10) with a non-calculator pool, and clearer Motion distance and Separable exponentiation explanations. Units 1-4, IM1 and the existing BatchMath QA workflow remain preserved.
 No deployment performed.
-Current update: see docs/v12.8.W-revisions.md (release notes) and docs/v12.8.W-progress.md (development log, QA results). New tests: npm run qa:unit5, npm run qa:unit5-sympy.
+Current update: see docs/v12.8.X-revisions.md (release notes) and docs/v12.8.X-progress.md (development log, QA results). Tests: npm run qa:unit5 (now with the rounding matrix, calculator eligibility, Basic calculator, Rate and Separable checks), npm run qa:unit5-sympy.
