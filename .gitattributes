@@ -1,0 +1,3 @@
+# Developer-only review tooling is kept out of the site package (git archive / the review ZIP).
+tools/review-lab export-ignore
+.gitattributes export-ignore

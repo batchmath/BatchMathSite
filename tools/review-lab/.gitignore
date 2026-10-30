@@ -1,0 +1,3 @@
+# Generated files normally live in REVIEW_HOME (outside the checkout); these guard against stray copies.
+.cache/
+out/
