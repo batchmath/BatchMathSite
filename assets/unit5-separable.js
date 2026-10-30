@@ -243,7 +243,7 @@ function famLogRational(tier){
   const absX=side>0?W.x:`\\left|${W.x}\\right|`;
   const den=niceSum([{q:c,body:''},{q:Q(-k),body:`\\ln ${absX}`}]);
   const sol={tex:niceRecip(c.d,[{q:Q(c.n),body:''},{q:Q(-k*c.d),body:`\\ln ${absX}`}]),expr:`1/(${qexpr(c)}-${k}*ln(abs(x)))`,f:x=>1/(qv(c)-k*Math.log(Math.abs(x)))};
-  // interval: x on the side of x0, excluding 0 and |x| = e^{c/k}
+  // interval: x on the side of x0, excluding 0 and |x| = e^(c/k)
   let lo,hi;const E1=V_(eTex,`e^(${qexpr(bnd)})`,eVal);
   if(side>0){if(eVal>1){lo=R(0);hi=E1;}else{lo=E1;hi=INF;}}
   else{if(eVal>1){lo=neg(E1);hi=R(0);}else{lo=NINF;hi=neg(E1);}}

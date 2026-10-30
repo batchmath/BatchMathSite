@@ -237,7 +237,7 @@ function tExpLog(c,a){ // c e^v/(e^v+a) -> c ln(e^v + a)
   aAt:x0=>x0.q&&qzero(x0.q)?ex(c,U.lnAtom(1+a)):null,bounds:()=>ALL(),
   note:V=>`For ${m(`\\frac{e^{${V.v}}}{e^{${V.v}}+${a}}`)}, let ${m(`u=e^{${V.v}}+${a}`)}, so ${m(`du=e^{${V.v}}\\,d${V.v}`)}; ${m(`u>0`)} always.`};
 }
-function tShiftRoot(c,a,half){ // half: c sqrt(v-a) -> (2c/3)(v-a)^{3/2} on [a,inf); else c/sqrt(v-a) -> 2c sqrt(v-a) on (a,inf)
+function tShiftRoot(c,a,half){ // half: c sqrt(v-a) -> (2c/3)(v-a)^(3/2) on [a,inf); else c/sqrt(v-a) -> 2c sqrt(v-a) on (a,inf)
  c=U.asQ(c);const inner=V=>`${V.v}${a>0?` - ${a}`:` + ${-a}`}`;
  const aq=half?qmul(c,Q(2,3)):qmul(c,Q(2));
  return{kind:half?'sqrtshift':'invsqrtshift',c,
