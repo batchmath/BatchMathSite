@@ -13,6 +13,9 @@ seedable RNG, so results are reproducible.
 | `wrong-sep.mjs` | Separable: wrong branch, missing restriction, closed brackets and leftover C are rejected with feedback |
 | `slope-qa.mjs [N]` | Slope Fields: grading of correct, imperfect and wrong segment sets and curves (reversal, near-horizontal and near-vertical, undefined slopes, wrong branch, short curves) |
 | `dump-ivp.mjs <slug> <file> [N]` then `python3 -I sympy_ivp.py` | Basic and Separable: independent SymPy check. The equation and initial condition are re-parsed from the displayed TeX; the answer is verified by symbolic differentiation and the initial condition, and the interval of validity is recomputed from the structure of the solution and of the original equation (needs `pip install sympy`) |
+| `verify-motion.mjs [N]` | Motion: re-parses every question (v(t), or a(t) with the given velocity and positions) and recomputes every part with its own root finding and integration |
+| `verify-growth.mjs [N]` | Growth, decay, interest, Newton's law: reads the numbers back from the wording and recomputes every answer; also checks physical sense |
+| `verify-slope.mjs [N]` | Slope Fields: slopes at every marked point, reference curves re-integrated with a different method, and every analysis answer, from the displayed equation |
 | `review-audit.mjs [N]` | Comprehensive Review: topic and difficulty percentages, independence, slope-field drawing share, focused modes |
 | `verify-rate.mjs [N]` | Rate: independent recomputation of every displayed integral (adaptive Simpson on the re-parsed TeX formula), candidate amounts, instantaneous rates and derivatives |
 

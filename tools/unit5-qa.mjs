@@ -15,12 +15,14 @@ const runs=[
  ['Slope-field grading cases',[QA+'slope-qa.mjs',n(600)]],
  ['Rate independent recomputation',[QA+'verify-rate.mjs',n(800)]],
  ['Motion independent recomputation',[QA+'verify-motion.mjs',n(400)]],
+ ['Growth independent recomputation',[QA+'verify-growth.mjs',n(1500)]],
+ ['Slope Fields independent recomputation',[QA+'verify-slope.mjs',n(600)]],
  ['Comprehensive Review audit',[QA+'review-audit.mjs',n(4000)]],
 ];
 let failed=0;
 for(const [name,args] of runs){const r=spawnSync(process.execPath,args,{encoding:'utf8',maxBuffer:64*1024*1024});
  const out=(r.stdout||'')+(r.stderr||'');const smokeFail=/parts \d+ fails (\d+)/.exec(out);
  const ok=r.status===0&&(!smokeFail||smokeFail[1]==='0');if(!ok)failed++;
- const summary=out.trim().split('\n').filter(l=>/fails|issues|disagreements|failed|FAIL|chi-square|topics|difficulty|checks/.test(l)).slice(0,4).join(' | ');
+ const summary=out.trim().split('\n').filter(l=>/fails|issues|disagreements|failed|FAIL|chi-square|topics|difficulty|checks|recomputed|checked/.test(l)).slice(0,4).join(' | ');
  console.log(`${ok?'PASS':'FAIL'}  ${name}${summary?`: ${summary}`:''}`);if(!ok)console.log(out.split('\n').slice(-12).join('\n'));}
 console.log(failed?`${failed} Unit 5 check(s) failed`:'All Unit 5 checks passed');process.exitCode=failed?1:0;
