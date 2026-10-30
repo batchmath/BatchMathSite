@@ -467,12 +467,12 @@ function famBranch(tier){
 }
 
 const FAMILIES={
- product:{weight:20,tiers:['foundational','intermediate','challenging'],make:famProduct},
- powers_y:{weight:20,tiers:['foundational','intermediate','challenging'],make:famPower},
- log_rational:{weight:15,tiers:['intermediate','challenging'],make:famLogRational},
- trig:{weight:15,tiers:['foundational','intermediate','challenging'],make:famTrig},
- exp_y:{weight:15,tiers:['intermediate','challenging'],make:famExpY},
- radical_branch:{weight:15,tiers:['intermediate','challenging'],make:famBranch},
+ product:{weight:20,tiers:['foundational','intermediate','challenging'],make:famProduct,calculator:false},
+ powers_y:{weight:20,tiers:['foundational','intermediate','challenging'],make:famPower,calculator:false},
+ log_rational:{weight:15,tiers:['intermediate','challenging'],make:famLogRational,calculator:false},
+ trig:{weight:15,tiers:['foundational','intermediate','challenging'],make:famTrig,calculator:false},
+ exp_y:{weight:15,tiers:['intermediate','challenging'],make:famExpY,calculator:false},
+ radical_branch:{weight:15,tiers:['intermediate','challenging'],make:famBranch,calculator:false},
 };
 const engine=U.makeEngine('separable',FAMILIES);
 const fns=[['sin','sin'],['cos','cos'],['sin⁻¹','asin'],['cos⁻¹','acos'],['tan⁻¹','atan'],['|u|','abs']];

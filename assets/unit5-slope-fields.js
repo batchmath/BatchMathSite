@@ -283,10 +283,10 @@ function famAnalysis(tier){
 }
 
 const FAMILIES={
- draw_segments:{weight:25,tiers:['foundational','intermediate','challenging'],make:famSegments},
- draw_curve:{weight:25,tiers:['foundational','intermediate','challenging'],make:famCurve},
- match:{weight:25,tiers:['foundational','intermediate','challenging'],make:famMatch},
- analyze:{weight:25,tiers:['foundational','intermediate','challenging'],make:famAnalysis},
+ draw_segments:{weight:25,tiers:['foundational','intermediate','challenging'],make:famSegments,calculator:false},
+ draw_curve:{weight:25,tiers:['foundational','intermediate','challenging'],make:famCurve,calculator:false},
+ match:{weight:25,tiers:['foundational','intermediate','challenging'],make:famMatch,calculator:false},
+ analyze:{weight:25,tiers:['foundational','intermediate','challenging'],make:famAnalysis,calculator:false},
 };
 const engine=U.makeEngine('slope',FAMILIES);
 U.profile('unit5-slope-exact',{fraction:true,parentheses:true});

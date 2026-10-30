@@ -482,12 +482,12 @@ function famGeneral(tier){
 }
 
 const FAMILIES={
- poly_power:{weight:20,tiers:['foundational','intermediate','challenging'],make:famPoly,label:'Polynomial, power and radical IVPs'},
- trig:{weight:20,tiers:['foundational','intermediate','challenging'],make:famTrig,label:'Trigonometric and inverse-trig IVPs'},
- exp_composition:{weight:20,tiers:['foundational','intermediate','challenging'],make:famExp,label:'Exponential and composition IVPs'},
- log_domain:{weight:15,tiers:['intermediate','challenging'],make:famLog,label:'Logarithmic and domain-restricted IVPs'},
- calculator_ftc:{weight:15,tiers:['foundational','intermediate','challenging'],make:famCalc,label:'Calculator IVPs (FTC)'},
- general_solution:{weight:10,tiers:['foundational','intermediate'],make:famGeneral,label:'General solutions'},
+ poly_power:{weight:20,tiers:['foundational','intermediate','challenging'],make:famPoly,label:'Polynomial, power and radical IVPs',calculator:false},
+ trig:{weight:20,tiers:['foundational','intermediate','challenging'],make:famTrig,label:'Trigonometric and inverse-trig IVPs',calculator:false},
+ exp_composition:{weight:20,tiers:['foundational','intermediate','challenging'],make:famExp,label:'Exponential and composition IVPs',calculator:false},
+ log_domain:{weight:15,tiers:['intermediate','challenging'],make:famLog,label:'Logarithmic and domain-restricted IVPs',calculator:false},
+ calculator_ftc:{weight:15,tiers:['foundational','intermediate','challenging'],make:famCalc,label:'Calculator IVPs (FTC)',calculator:true},
+ general_solution:{weight:10,tiers:['foundational','intermediate'],make:famGeneral,label:'General solutions',calculator:false},
 };
 const engine=U.makeEngine('basic',FAMILIES);
 const fnKeys=[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['sin⁻¹','asin'],['tan⁻¹','atan'],['|u|','abs']];

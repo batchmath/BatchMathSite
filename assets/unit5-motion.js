@@ -308,11 +308,11 @@ function famMulti(tier){
 }
 
 const FAMILIES={
- recover:{weight:25,tiers:['foundational','intermediate','challenging'],make:famRecover},
- displacement_distance:{weight:25,tiers:['foundational','intermediate','challenging'],make:famDistance},
- direction_speed:{weight:20,tiers:['foundational','intermediate','challenging'],make:famDirection},
- calculator:{weight:15,tiers:['intermediate','challenging'],make:famCalc},
- multipart:{weight:15,tiers:['foundational','intermediate','challenging'],make:famMulti},
+ recover:{weight:25,tiers:['foundational','intermediate','challenging'],make:famRecover,calculator:false},
+ displacement_distance:{weight:25,tiers:['foundational','intermediate','challenging'],make:famDistance,calculator:false},
+ direction_speed:{weight:20,tiers:['foundational','intermediate','challenging'],make:famDirection,calculator:false},
+ calculator:{weight:15,tiers:['intermediate','challenging'],make:famCalc,calculator:true},
+ multipart:{weight:15,tiers:['foundational','intermediate','challenging'],make:famMulti,calculator:false},
 };
 const engine=U.makeEngine('motion',FAMILIES);
 U.profile('unit5-motion-value',{fraction:true,parentheses:true});

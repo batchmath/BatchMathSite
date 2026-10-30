@@ -88,9 +88,9 @@ const CALC_STEP=(F,a,b,v,why)=>step('Evaluate with the calculator.',why||'Use th
 
 // ======================================================================
 // 1. accumulate one rate
-function famOne(tier){
+function famOne(tier,calc){
  const C=pick(ONE),T=pick(C.T),M=pick(C.M),F=`${C.F}(t)`;
- if(tier==='foundational'&&U.rand()<0.35){ // no calculator: a polynomial rate
+ if(calc===false||calc===undefined&&tier==='foundational'&&U.rand()<0.35){ // no calculator: a polynomial rate
   const a=ri(2,9)*(C.M[0]>=40?5:1),b=ri(1,6)*(C.M[0]>=40?2:1),Tn=pick([2,3,4,6]);const val=Q(2*a*Tn+b*Tn*Tn,2);
   const tex=`${a}+${b}t`;
   const ctx=`${C.who} at a rate of ${m(F)} ${C.amt} per ${C.one}, where ${tUnits(C)}.`;
@@ -139,9 +139,9 @@ const termHalf=b=>b%2===0?(b/2===1?'':String(b/2)):`\\frac{${b}}{2}`;
 
 // ======================================================================
 // 2. initial amount plus or minus accumulated change
-function famInitial(tier){
+function famInitial(tier,calc){
  const C=pick(TANK),T=pick(C.T),M=pick(C.M),A0=pick(C.A0);
- if(tier==='foundational'&&U.rand()<0.35){ // no calculator: a net rate that is a polynomial
+ if(calc===false||calc===undefined&&tier==='foundational'&&U.rand()<0.35){ // no calculator: a net rate that is a polynomial
   const a=ri(2,8)*5,b=ri(1,4)*2,Tn=pick([2,3,4]),net=`${a}-${b}t`,val=Q(2*A0+2*a*Tn-b*Tn*Tn,2);
   return build('initial_change',tier,`ini-poly-${A0}-${a}-${b}-${Tn}`,`At ${m('t=0')}, ${C.what} contains ${comma(A0)} ${C.amt}. The amount changes at a net rate of ${m('N(t)')} ${C.amt} per ${C.one}, where ${tUnits(C)}.`,[`N(t)=${net}`],
    [exactPart(`How many ${C.amt} are in ${C.ref} at ${m(`t=${Tn}`)}?`,val,C.amt,step('Start with the initial amount and add the net change.','The integral of the net rate gives the change in the amount, so add it to the starting amount.',`A(${Tn})=${nt(A0)}+\\int_{0}^{${Tn}}\\left(${net}\\right)dt`)+
@@ -299,12 +299,12 @@ function famMulti(tier){
 }
 
 const FAMILIES={
- one_rate:{weight:25,tiers:['foundational','intermediate','challenging'],make:famOne},
- initial_change:{weight:20,tiers:['foundational','intermediate','challenging'],make:famInitial},
- in_out:{weight:20,tiers:['foundational','intermediate','challenging'],make:famInOut},
- delayed_piecewise:{weight:15,tiers:['foundational','intermediate','challenging'],make:famDelayed},
- monotonic:{weight:10,tiers:['foundational','intermediate','challenging'],make:famMonotonic},
- multipart:{weight:10,tiers:['foundational','intermediate','challenging'],make:famMulti},
+ one_rate:{weight:25,tiers:['foundational','intermediate','challenging'],make:famOne,calc:{calculator:['foundational','intermediate','challenging'],noncalculator:['foundational']}},
+ initial_change:{weight:20,tiers:['foundational','intermediate','challenging'],make:famInitial,calc:{calculator:['foundational','intermediate','challenging'],noncalculator:['foundational']}},
+ in_out:{weight:20,tiers:['foundational','intermediate','challenging'],make:famInOut,calculator:true},
+ delayed_piecewise:{weight:15,tiers:['foundational','intermediate','challenging'],make:famDelayed,calculator:true},
+ monotonic:{weight:10,tiers:['foundational','intermediate','challenging'],make:famMonotonic,calculator:true},
+ multipart:{weight:10,tiers:['foundational','intermediate','challenging'],make:famMulti,calculator:true},
 };
 const engine=U.makeEngine('rate',FAMILIES);
 U.profile('unit5-rate-exact',{fraction:true,parentheses:true});

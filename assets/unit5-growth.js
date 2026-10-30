@@ -310,12 +310,12 @@ function famReverse(tier){
 }
 
 const FAMILIES={
- growth:{weight:20,tiers:['foundational','intermediate','challenging'],make:famGrowth},
- decay:{weight:25,tiers:['foundational','intermediate','challenging'],make:famDecay},
- cooling:{weight:20,tiers:['foundational','intermediate','challenging'],make:t=>newton('cooling',t)},
- heating:{weight:10,tiers:['foundational','intermediate','challenging'],make:t=>newton('heating',t)},
- interest:{weight:15,tiers:['foundational','intermediate','challenging'],make:famInterest},
- reverse:{weight:10,tiers:['foundational','intermediate','challenging'],make:famReverse},
+ growth:{weight:20,tiers:['foundational','intermediate','challenging'],make:famGrowth,calculator:true},
+ decay:{weight:25,tiers:['foundational','intermediate','challenging'],make:famDecay,calculator:true},
+ cooling:{weight:20,tiers:['foundational','intermediate','challenging'],make:t=>newton('cooling',t),calculator:true},
+ heating:{weight:10,tiers:['foundational','intermediate','challenging'],make:t=>newton('heating',t),calculator:true},
+ interest:{weight:15,tiers:['foundational','intermediate','challenging'],make:famInterest,calculator:true},
+ reverse:{weight:10,tiers:['foundational','intermediate','challenging'],make:famReverse,calculator:true},
 };
 const engine=U.makeEngine('growth',FAMILIES);
 U.profile('unit5-growth-exact',{fraction:true,logarithm:true,parentheses:true,decimal:true});
