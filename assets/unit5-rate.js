@@ -307,7 +307,7 @@ const FAMILIES={
  multipart:{weight:10,tiers:['foundational','intermediate','challenging'],make:famMulti},
 };
 const engine=U.makeEngine('rate',FAMILIES);
-U.profile('unit5-rate-exact',{fraction:true,arithmetic:true,parentheses:true});
+U.profile('unit5-rate-exact',{fraction:true,parentheses:true});
 U.profile('unit5-rate-intervals',{decimal:true,parentheses:true,list:true,interval:true,brackets:false});
 window.BatchMathUnit5Rate=Object.freeze({make:engine.make,FAMILIES,weights:engine.weights,shape,SHAPES});
 U.register('rate-problems',o=>engine.make(o||{}));

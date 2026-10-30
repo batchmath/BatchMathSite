@@ -316,11 +316,11 @@ const FAMILIES={
  multipart:{weight:15,tiers:['foundational','intermediate','challenging'],make:famMulti},
 };
 const engine=U.makeEngine('motion',FAMILIES);
-U.profile('unit5-motion-value',{fraction:true,arithmetic:true,parentheses:true});
-U.profile('unit5-motion-value-e',{fraction:true,exponent:true,constants:['e'],arithmetic:true,parentheses:true});
+U.profile('unit5-motion-value',{fraction:true,parentheses:true});
+U.profile('unit5-motion-value-e',{exponent:true,constants:['e'],arithmetic:true,parentheses:true});
 U.profile('unit5-motion-value-r',{fraction:true,radical:true,arithmetic:true,parentheses:true});
 U.profile('unit5-motion-t',{fraction:true,exponent:true,variables:['t'],arithmetic:true,parentheses:true});
-U.profile('unit5-motion-list',{list:true,none:true});
+U.profile('unit5-motion-list',{list:true});
 U.profile('unit5-motion-intervals',{parentheses:true,list:true,interval:true,brackets:false});
 U.profile('unit5-motion-intervals-dec',{decimal:true,parentheses:true,list:true,interval:true,brackets:false});
 window.BatchMathUnit5Motion=Object.freeze({make:engine.make,FAMILIES,weights:engine.weights});

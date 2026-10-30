@@ -289,10 +289,10 @@ const FAMILIES={
  analyze:{weight:25,tiers:['foundational','intermediate','challenging'],make:famAnalysis},
 };
 const engine=U.makeEngine('slope',FAMILIES);
-U.profile('unit5-slope-exact',{fraction:true,arithmetic:true,parentheses:true});
-U.profile('unit5-slope-line',{fraction:true,exponent:true,variables:['x'],arithmetic:true,parentheses:true});
-U.profile('unit5-slope-list',{fraction:true,arithmetic:true,list:true});
-U.profile('unit5-slope-interval',{fraction:true,parentheses:true,list:true,interval:true,union:true,infinity:true});
+U.profile('unit5-slope-exact',{fraction:true,parentheses:true});
+U.profile('unit5-slope-line',{fraction:true,exponent:true,variables:['x'],parentheses:true});
+U.profile('unit5-slope-list',{list:true});
+U.profile('unit5-slope-interval',{parentheses:true,list:true,interval:true,union:true,infinity:true});
 
 // ======================================================================
 // interactive drawing controls (browser only)

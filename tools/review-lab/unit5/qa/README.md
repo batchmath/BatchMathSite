@@ -18,6 +18,7 @@ seedable RNG, so results are reproducible.
 | `verify-slope.mjs [N]` | Slope Fields: slopes at every marked point, reference curves re-integrated with a different method, and every analysis answer, from the displayed equation |
 | `equivalence.mjs [N]` | Every answer format: SymPy-equivalent forms of function answers (`equiv_variants.py`), inequality and union notation, units and currency, reordered lists accepted; sign errors, added constants, rounded decimals of exact values, wrong brackets and missing values rejected (needs sympy) |
 | `review-audit.mjs [N]` | Comprehensive Review: topic and difficulty percentages, independence, slope-field drawing share, focused modes |
+| `keypad-audit.mjs [N]` | Keypads, all and only (13.2): every key a generated answer needs is on that part's keypad profile (fails otherwise), and lists any key a profile offers that no sampled answer needs |
 | `verify-rate.mjs [N]` | Rate: independent recomputation of every displayed integral (adaptive Simpson on the re-parsed TeX formula), candidate amounts, instantaneous rates and derivatives |
 
 Example: `node tools/review-lab/unit5/qa/smoke.mjs separable-differential-equations unit5-separable.js 3000`

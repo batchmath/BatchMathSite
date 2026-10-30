@@ -318,8 +318,8 @@ const FAMILIES={
  reverse:{weight:10,tiers:['foundational','intermediate','challenging'],make:famReverse},
 };
 const engine=U.makeEngine('growth',FAMILIES);
-U.profile('unit5-growth-exact',{fraction:true,logarithm:true,constants:['e'],arithmetic:true,parentheses:true,decimal:true});
-U.profile('unit5-growth-formula',{fraction:true,exponent:true,logarithm:true,constants:['e'],variables:['t'],arithmetic:true,parentheses:true,decimal:true});
+U.profile('unit5-growth-exact',{fraction:true,logarithm:true,parentheses:true,decimal:true});
+U.profile('unit5-growth-formula',{fraction:true,exponent:true,logarithm:true,constants:['e'],variables:['t'],parentheses:true,decimal:true});
 window.BatchMathUnit5Growth=Object.freeze({make:engine.make,FAMILIES,weights:engine.weights});
 U.register('exponential-growth-and-decay-interest-newton-s-law-of-cooling',o=>engine.make(o||{}));
 })();

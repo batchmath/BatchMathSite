@@ -493,7 +493,7 @@ const engine=U.makeEngine('basic',FAMILIES);
 const fnKeys=[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['sin⁻¹','asin'],['tan⁻¹','atan'],['|u|','abs']];
 for(const v of ['x','t']){
  U.profile(`unit5-basic-${v}`,{fraction:true,radical:true,exponent:true,logarithm:true,constants:['pi','e'],variables:[v],functions:fnKeys,arithmetic:true,parentheses:true});
- U.profile(`unit5-basic-${v}-c`,{fraction:true,radical:true,exponent:true,logarithm:true,constants:['e'],variables:[v,'C'],functions:fnKeys.filter(([,n])=>!['csc','cot','abs'].includes(n)),arithmetic:true,parentheses:true});
+ U.profile(`unit5-basic-${v}-c`,{fraction:true,exponent:true,constants:['e'],variables:[v,'C'],functions:fnKeys.filter(([,n])=>['sin','cos','tan','atan'].includes(n)),arithmetic:true,parentheses:true});
 }
 U.profile('unit5-interval-basic',{fraction:true,constants:['pi'],parentheses:true,list:true,interval:true,union:false,infinity:true});
 window.BatchMathUnit5Basic=Object.freeze({make:engine.make,FAMILIES,weights:engine.weights});
