@@ -1,7 +1,7 @@
-/* BatchMath v12.8.W — Unit 5 engine 1: Basic First-Order Differential Equations (dy/dx = f(x)).
+/* BatchMath v12.8.X — Unit 5 engine 1: Basic First-Order Differential Equations (dy/dx = f(x)).
    Families (mixed mode): polynomial / rational-power / radical IVPs 20%, trig and inverse-trig IVPs 20%,
    exponential and composition IVPs 20%, logarithmic / rational / domain-restricted IVPs 15%, calculator FTC
-   IVPs 15%, general solutions 10%. IVPs ask for the particular solution and, where the domain matters (and
+   IVPs 15% (v12.8.X: values 6, starting value 4, net change / two values 5), general solutions 10%. IVPs ask for the particular solution and, where the domain matters (and
    sometimes when it does not), its interval of validity: the maximal interval containing the initial value
    on which the solution is defined and satisfies the differential equation. */
 (function(){
@@ -419,41 +419,95 @@ function famLog(tier){
 }
 
 // ---------- calculator FTC IVPs ----------
+// ---------- calculator IVPs (v12.8.X: three families in the 'calculator_ftc' group) ----------
+// f' has no convenient antiderivative (or one not worth finding), so the Fundamental Theorem of Calculus and the
+// calculator's definite integral give values of f. Points are halves or, as in the homework, multiples of π.
 const NONELEM=[
  {tex:v=>`e^{-${v}^{2}}`,f:x=>Math.exp(-x*x),dom:[-4,4]},
- {tex:v=>`\\sin\\left(${v}^{2}\\right)`,f:x=>Math.sin(x*x),dom:[-3,3]},
- {tex:v=>`\\cos\\left(${v}^{2}\\right)`,f:x=>Math.cos(x*x),dom:[-3,3]},
+ {tex:v=>`\\sin\\left(${v}^{2}\\right)`,f:x=>Math.sin(x*x),dom:[-3,3],pi:true},
+ {tex:v=>`\\cos\\left(${v}^{2}\\right)`,f:x=>Math.cos(x*x),dom:[-3,3],pi:true},
  {tex:v=>`\\sqrt{1+${v}^{3}}`,f:x=>Math.sqrt(1+x**3),dom:[0,4]},
- {tex:v=>`\\frac{\\sin ${v}}{${v}}`,f:x=>Math.sin(x)/x,dom:[0.2,4]},
- {tex:v=>`\\frac{e^{${v}}}{${v}}`,f:x=>Math.exp(x)/x,dom:[0.5,3]},
+ {tex:v=>`\\frac{\\sin ${v}}{${v}}`,f:x=>Math.sin(x)/x,dom:[0.2,4],pi:true},
+ {tex:v=>`\\frac{e^{${v}}}{${v}}`,f:x=>Math.exp(x)/x,dom:[0.5,3.5],pi:true},
  {tex:v=>`\\frac{1}{\\ln ${v}}`,f:x=>1/Math.log(x),dom:[1.5,6]},
  {tex:v=>`\\sqrt{100-${v}^{4}}`,f:x=>Math.sqrt(100-x**4),dom:[-3,3]},
- {tex:v=>`\\ln\\left(1+${v}^{2}\\right)\\cos ${v}`,f:x=>Math.log(1+x*x)*Math.cos(x),dom:[-3,3]},
+ {tex:v=>`\\ln\\left(1+${v}^{2}\\right)\\cos ${v}`,f:x=>Math.log(1+x*x)*Math.cos(x),dom:[-3,3],pi:true},
  {tex:v=>`\\frac{1}{1+${v}^{4}}`,f:x=>1/(1+x**4),dom:[-3,3],elementary:true},
  {tex:v=>`${v}e^{-${v}}`,f:x=>x*Math.exp(-x),dom:[0,5],elementary:true},
  {tex:v=>`\\sqrt{${v}^{2}+4}`,f:x=>Math.sqrt(x*x+4),dom:[-3,3],elementary:true},
+ {tex:v=>`\\sqrt{1-${v}^{4}}`,f:x=>Math.sqrt(1-x**4),dom:[-1,1],small:true},
+ {tex:v=>`\\cos\\left(\\sqrt{${v}}\\right)`,f:x=>Math.cos(Math.sqrt(x)),dom:[0,9],pi:true},
+ {tex:v=>`\\ln\\left(1+${v}^{3}\\right)`,f:x=>Math.log(1+x**3),dom:[0,3]},
+ {tex:v=>`\\sin\\left(e^{${v}}\\right)`,f:x=>Math.sin(Math.exp(x)),dom:[-2,1.5]},
+ {tex:v=>`e^{${v}^{2}}`,f:x=>Math.exp(x*x),dom:[-1.5,1.5]},
+ {tex:v=>`\\frac{\\cos ${v}}{1+${v}^{2}}`,f:x=>Math.cos(x)/(1+x*x),dom:[-3,3],pi:true},
 ];
-function famCalc(tier){
- const V={v:pick(['x','x','t']),fn:pick(['f','g','h'])};
- const it=pick(NONELEM),[lo,hi]=it.dom;
- const nice=v=>Math.round(v*2)/2;
- let a=nice(lo+(hi-lo)*(0.15+0.7*U.rand())),b=nice(lo+(hi-lo)*(0.15+0.7*U.rand()));
- if(Math.abs(a-b)<0.5)return null;if(a<=lo||b<=lo||a>=hi||b>=hi)return null;
- const ya=pick([-4,-3,-2,-1,1,2,3,4,5,6,7]),scale=tier==='foundational'?1:pick([2,3,-2,4]);
- const g=x=>scale*it.f(x);
- const integral=integrate(g,a,b),value=ya+integral;
- const coefTex=scale===1?'':scale===-1?'-':String(scale);
- const fp=`${V.fn}'(${V.v})=${coefTex}${it.tex(V.v)}`;
- const cond=`${V.fn}(${a})=${ya}`;
- const backwards=b<a;
- const steps=[
-  step('Use the Fundamental Theorem of Calculus.',`${m(V.fn)} is an antiderivative of ${m(`${V.fn}'`)}, so the change in ${m(V.fn)} from ${m(`${V.v}=${a}`)} to ${m(`${V.v}=${b}`)} is the definite integral of ${m(`${V.fn}'`)}.${backwards?` Here ${m(`${b}<${a}`)}, so the integral runs backward and its sign takes care of the direction.`:''}`,`${V.fn}(${b})=${V.fn}(${a})+\\int_{${a}}^{${b}}${coefTex}${it.tex('s')}\\,ds`),
-  step('Evaluate with a calculator.',it.elementary?`Use the calculator's definite-integral feature; there is no need to find an antiderivative.`:`This integrand has no elementary antiderivative, so evaluate the definite integral numerically.`,`\\int_{${a}}^{${b}}${coefTex}${it.tex('s')}\\,ds\\approx ${fix(integral,4)}`,`${V.fn}(${b})\\approx ${ya}${integral<0?' - ':' + '}${fix(Math.abs(integral),4)}\\approx ${fix(value,3)}`)];
- const part={prompt:`Find ${m(`${V.fn}(${b})`)}. Give your answer correct to three decimal places.`,control:'input',
-  answer:{kind:'numeric',value,places:3},answerTex:fix(value,3),explanation:steps.join(''),keypadMode:'unit5-number',placeholder:'Decimal answer'};
- return problem({engine:'basic',family:'calculator_ftc',tier,id:`calc-${it.tex('x').length}-${a}-${b}-${ya}-${scale}`,
-  questionHtml:question({prompt:`Use your calculator. ${m(V.fn)} is the solution of the initial-value problem below.`,formulas:[fp,cond],calculator:true}),
-  parts:[part],calculator:true});
+const PI_Q=[Q(1,6),Q(1,4),Q(1,3),Q(1,2),Q(2,3),Q(3,4),Q(1),Q(-1,6),Q(-1,4),Q(-1,3),Q(-1,2),Q(-1)];
+// points strictly inside the integrand's domain: halves (tenths for the small domain [-1, 1]) or multiples of π
+function calcPoints(it,n,{usePi=false}={}){
+ const [lo,hi]=it.dom,inside=v=>v>lo+1e-9&&v<hi-1e-9;
+ const pool=[];
+ if(it.small)for(let k=-9;k<=9;k++){const q=Q(k,10);if(inside(qv(q)))pool.push({tex:qtex(q),val:qv(q),key:`${k}/10`});}
+ else for(let k=Math.ceil(lo*2);k<=Math.floor(hi*2);k++){const q=Q(k,2);if(inside(qv(q)))pool.push({tex:qtex(q),val:qv(q),key:`${k}/2`});}
+ if(usePi&&it.pi){const pis=PI_Q.map(q=>({tex:U.piTexQ(q),val:qv(q)*Math.PI,key:`${q.n}pi/${q.d}`})).filter(p=>inside(p.val));if(pis.length)for(let k=0;k<3;k++)pool.push(...pis);}
+ for(let i=0;i<40;i++){const pts=U.shuffle(pool).slice(0,n);if(pts.length===n&&pts.every((p,j)=>pts.slice(0,j).every(q=>Math.abs(q.val-p.val)>=0.4)))return pts;}
+ return null;
+}
+// f'(x): a scaled non-elementary term, sometimes plus a polynomial term on the challenging tier
+function calcDerivative(tier){
+ const it=pick(NONELEM),scale=tier==='foundational'?1:pick([2,3,-2,4,-1]);
+ const lin=tier==='challenging'&&U.rand()<0.4?nz(-3,3)*2:0; // + c·x, still integrated numerically with the rest
+ const coef=scale===1?'':scale===-1?'-':String(scale);
+ const tex=v=>`${coef}${it.tex(v)}${lin?`${lin<0?'-':'+'}${Math.abs(lin)===1?'':Math.abs(lin)}${v}`:''}`;
+ return{it,tex,g:x=>scale*it.f(x)+lin*x,lin};
+}
+const calcVars=()=>({v:pick(['x','x','t']),fn:pick(['f','g','h'])});
+const intOf=(D,a,b)=>`\\int_{${a.tex}}^{${b.tex}}\\left(${D.tex('s')}\\right)ds`;
+const calcWhy=D=>D.it.elementary&&!D.lin?`Use the calculator's definite-integral feature; there is no need to find an antiderivative.`:`${D.lin?'Part of this integrand':'This integrand'} has no elementary antiderivative, so evaluate the definite integral numerically.`;
+const DEC3B='Give your answer correct to three decimal places.';
+const numPart=(prompt,value,steps,wrong=[])=>({prompt:`${prompt} ${DEC3B}`,control:'input',answer:{kind:'numeric',value,places:3,wrongValues:wrong},answerTex:fix(value,3),explanation:steps,keypadMode:'unit5-number',placeholder:'Decimal answer'});
+const calcQuestion=(V,D,lines,prompt)=>question({prompt:`Use your calculator. ${prompt}`,formulas:[`${V.fn}'(${V.v})=${D.tex(V.v)}`,...lines],calculator:true});
+
+// 1. a value of f from the initial condition (forward or, above the foundational tier, backward)
+function famCalcValue(tier){
+ const V=calcVars(),D=calcDerivative(tier);const pts=calcPoints(D.it,2,{usePi:tier!=='foundational'});if(!pts)return null;
+ let [a,b]=pts;if(tier==='foundational'&&b.val<a.val)[a,b]=[b,a];
+ const ya=pick([-4,-3,-2,-1,1,2,3,4,5,6,7]),I=integrate(D.g,a.val,b.val),value=ya+I,back=b.val<a.val;
+ const steps=step('Use the Fundamental Theorem of Calculus.',`${m(V.fn)} is an antiderivative of ${m(`${V.fn}'`)}, so the change in ${m(V.fn)} from ${m(`${V.v}=${a.tex}`)} to ${m(`${V.v}=${b.tex}`)} is the definite integral of ${m(`${V.fn}'`)}.${back?` Here ${m(`${b.tex}\\lt ${a.tex}`)}, so the integral runs backward and its sign takes care of the direction.`:''}`,`${V.fn}\\left(${b.tex}\\right)=${V.fn}\\left(${a.tex}\\right)+${intOf(D,a,b)}`)+
+  step('Evaluate with a calculator.',calcWhy(D),`${intOf(D,a,b)}\\approx ${fix(I,4)}`,`${V.fn}\\left(${b.tex}\\right)\\approx ${ya}${I<0?' - ':' + '}${fix(Math.abs(I),4)}\\approx ${fix(value,3)}`);
+ return problem({engine:'basic',family:'calc_value',tier,id:`cval-${a.key}-${b.key}-${ya}`,calculator:true,
+  questionHtml:calcQuestion(V,D,[`${V.fn}\\left(${a.tex}\\right)=${ya}`],`${m(V.fn)} is the solution of the initial-value problem below.`),
+  parts:[numPart(`Find ${m(`${V.fn}\\left(${b.tex}\\right)`)}.`,value,steps,[{value:ya-I,note:'Check the direction: integrate from the point you know to the point you want.'},{value:I,note:`That is only the change in ${V.fn}. Add the known value.`}])]});
+}
+// 2. work back to the starting value: f(a) from a later value f(b)
+function famCalcInitial(tier){
+ const V=calcVars(),D=calcDerivative(tier);const pts=calcPoints(D.it,2,{usePi:tier==='challenging'});if(!pts)return null;
+ let [a,b]=pts;if(b.val<a.val)[a,b]=[b,a];if(tier==='challenging'&&U.rand()<0.5)[a,b]=[b,a]; // the known point may lie on either side
+ const yb=pick([-3,-2,-1,1,2,3,4,5,8,10]),I=integrate(D.g,a.val,b.val),ya=yb-I;
+ const steps=step('Relate the two values with the Fundamental Theorem of Calculus.',`The change from ${m(`${V.v}=${a.tex}`)} to ${m(`${V.v}=${b.tex}`)} is the integral of ${m(`${V.fn}'`)}, so ${m(`${V.fn}\\left(${b.tex}\\right)=${V.fn}\\left(${a.tex}\\right)+${intOf(D,a,b)}`)}.`)+
+  step(`Solve for ${m(`${V.fn}\\left(${a.tex}\\right)`)}.`,`Subtract the integral from the known value. ${calcWhy(D)}`,`${V.fn}\\left(${a.tex}\\right)=${V.fn}\\left(${b.tex}\\right)-${intOf(D,a,b)}\\approx ${yb}-\\left(${fix(I,4)}\\right)\\approx ${fix(ya,3)}`);
+ return problem({engine:'basic',family:'calc_initial',tier,id:`cini-${a.key}-${b.key}-${yb}`,calculator:true,
+  questionHtml:calcQuestion(V,D,[`${V.fn}\\left(${b.tex}\\right)=${yb}`],`${m(V.fn)} satisfies the differential equation below and the given value.`),
+  parts:[numPart(`Find ${m(`${V.fn}\\left(${a.tex}\\right)`)}.`,ya,steps,[{value:yb+I,note:'Going back undoes the change: subtract the integral rather than adding it.'},{value:-I,note:`That is the change between the two points, with its sign reversed. Use the known value of ${V.fn}.`}])]});
+}
+// 3. net change with no initial condition, or two values on either side of the initial point
+function famCalcTwo(tier){
+ const V=calcVars(),D=calcDerivative(tier);
+ if(tier==='foundational'){
+  const pts=calcPoints(D.it,2);if(!pts)return null;let [a,b]=pts;if(b.val<a.val)[a,b]=[b,a];const I=integrate(D.g,a.val,b.val);
+  const steps=step('The change in a function is the integral of its derivative.','No initial condition is needed: the Fundamental Theorem of Calculus gives the change directly.',`${V.fn}\\left(${b.tex}\\right)-${V.fn}\\left(${a.tex}\\right)=${intOf(D,a,b)}`)+step('Evaluate with a calculator.',calcWhy(D),`${intOf(D,a,b)}\\approx ${fix(I,3)}`);
+  return problem({engine:'basic',family:'calc_two_point',tier,id:`cchg-${a.key}-${b.key}`,calculator:true,
+   questionHtml:calcQuestion(V,D,[],`${m(V.fn)} is a differentiable function with the derivative below.`),
+   parts:[numPart(`Find the change in ${m(V.fn)} from ${m(`${V.v}=${a.tex}`)} to ${m(`${V.v}=${b.tex}`)}, that is, ${m(`${V.fn}\\left(${b.tex}\\right)-${V.fn}\\left(${a.tex}\\right)`)}.`,I,steps,[{value:-I,note:'Integrate from the first point to the second; the order sets the sign.'},{value:D.g(b.val)-D.g(a.val),note:`That is the change in ${V.fn}'. The change in ${V.fn} is the integral of ${V.fn}'.`}])]});
+ }
+ const pts=calcPoints(D.it,3,{usePi:tier==='challenging'});if(!pts)return null;const sorted=[...pts].sort((p,q)=>p.val-q.val);const [c,a,b]=sorted; // known point in the middle
+ const ya=pick([-3,-1,1,2,3,4,6]),Ib=integrate(D.g,a.val,b.val),Ic=integrate(D.g,a.val,c.val);
+ const part=(x,I,label)=>numPart(`Find ${m(`${V.fn}\\left(${x.tex}\\right)`)}.`,ya+I,
+  step(label,`${m(`${V.fn}\\left(${x.tex}\\right)=${V.fn}\\left(${a.tex}\\right)+${intOf(D,a,x)}`)}.${x.val<a.val?` The integral runs backward (${m(`${x.tex}\\lt ${a.tex}`)}), so its sign takes care of the direction.`:''}`)+step('Evaluate with a calculator.',calcWhy(D),`${intOf(D,a,x)}\\approx ${fix(I,4)}`,`${V.fn}\\left(${x.tex}\\right)\\approx ${ya}${I<0?' - ':' + '}${fix(Math.abs(I),4)}\\approx ${fix(ya+I,3)}`),
+  [{value:ya-I,note:'Check the direction: integrate from the point you know to the point you want.'}]);
+ return problem({engine:'basic',family:'calc_two_point',tier,id:`ctwo-${c.key}-${a.key}-${b.key}-${ya}`,calculator:true,
+  questionHtml:calcQuestion(V,D,[`${V.fn}\\left(${a.tex}\\right)=${ya}`],`${m(V.fn)} is the solution of the initial-value problem below. Answer each part.`),
+  parts:[part(b,Ib,'Start from the initial condition and integrate forward.'),part(c,Ic,'Start again from the initial condition and integrate backward.')]});
 }
 
 // ---------- general solutions ----------
@@ -486,7 +540,10 @@ const FAMILIES={
  trig:{weight:20,tiers:['foundational','intermediate','challenging'],make:famTrig,label:'Trigonometric and inverse-trig IVPs',calculator:false},
  exp_composition:{weight:20,tiers:['foundational','intermediate','challenging'],make:famExp,label:'Exponential and composition IVPs',calculator:false},
  log_domain:{weight:15,tiers:['intermediate','challenging'],make:famLog,label:'Logarithmic and domain-restricted IVPs',calculator:false},
- calculator_ftc:{weight:15,tiers:['foundational','intermediate','challenging'],make:famCalc,label:'Calculator IVPs (FTC)',calculator:true},
+ // W's 15% calculator share is now three families in the 'calculator_ftc' group (the Practice Type keeps its value)
+ calc_value:{weight:6,group:'calculator_ftc',tiers:['foundational','intermediate','challenging'],make:famCalcValue,label:'Calculator: values from an initial condition',calculator:true},
+ calc_initial:{weight:4,group:'calculator_ftc',tiers:['foundational','intermediate','challenging'],make:famCalcInitial,label:'Calculator: find the starting value',calculator:true},
+ calc_two_point:{weight:5,group:'calculator_ftc',tiers:['foundational','intermediate','challenging'],make:famCalcTwo,label:'Calculator: net change and two values',calculator:true},
  general_solution:{weight:10,tiers:['foundational','intermediate'],make:famGeneral,label:'General solutions',calculator:false},
 };
 const engine=U.makeEngine('basic',FAMILIES);

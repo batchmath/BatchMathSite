@@ -16,12 +16,14 @@ const runs=[
  ['Slope-field grading cases',[QA+'slope-qa.mjs',n(600)]],
  ['Rate independent recomputation',[QA+'verify-rate.mjs',n(800)]],
  ['Motion independent recomputation',[QA+'verify-motion.mjs',n(400)]],
+ ['Motion calculator independent recomputation (v12.8.X)',[QA+'verify-motion.mjs',n(1500),'mixed','calculator']],
  ['Growth independent recomputation',[QA+'verify-growth.mjs',n(1500)]],
  ['Slope Fields independent recomputation',[QA+'verify-slope.mjs',n(600)]],
  ['Comprehensive Review audit',[QA+'review-audit.mjs',n(4000)]],
  ['Keypad coverage audit',[QA+'keypad-audit.mjs',n(1000)]],
  ['Rounding matrix (v12.8.X)',[QA+'rounding.mjs',n(400)]],
  ['Calculator / non-calculator eligibility (v12.8.X)',[QA+'calc-eligibility.mjs',n(800)]],
+ ['Basic calculator independent recomputation (v12.8.X)',[QA+'verify-basic-calc.mjs',n(1500)]],
 ];
 // tools/review-lab is developer-only and left out of the site package (export-ignore); skip there
 if(!fs.existsSync(QA+'smoke.mjs')){console.log('Unit 5 QA scripts live in tools/review-lab, which the site package leaves out; skipped.');process.exit(0);}

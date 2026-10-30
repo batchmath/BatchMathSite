@@ -20,8 +20,10 @@ COMMON_BODY = ['/assets/unit5-core.js', '/assets/unit5-answers.js', '/assets/uni
 
 # Practice Types on the calculator pages: only families with calculator problems (checked by qa/calc-eligibility.mjs)
 CALC_MODES = {
-    'basic': [('mixed', 'Mixed Calculator Practice')],
-    'motion': [('mixed', 'Mixed Calculator Practice')],
+    'basic': [('mixed', 'Mixed Calculator Practice'), ('calc_value', 'Values from an Initial Condition'), ('calc_initial', 'Find the Starting Value'),
+              ('calc_two_point', 'Net Change and Two Values')],
+    'motion': [('mixed', 'Mixed Calculator Practice'), ('calc_position', 'Position and Average Velocity'), ('calc_distance', 'Displacement and Total Distance'),
+               ('calc_speed', 'Velocity, Acceleration and Speed'), ('calc_direction', 'Rest and Direction of Motion')],
 }
 
 PAGES = [

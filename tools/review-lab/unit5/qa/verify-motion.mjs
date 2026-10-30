@@ -3,7 +3,7 @@
 // dense sampling and bisection (touching zeros by refining minima of |v|), displacement and total distance by
 // adaptive Simpson on v and |v|, direction and speed intervals from the signs of v and v·a, positions by
 // integrating from the given value. Parts it cannot interpret are counted, not guessed.
-// Usage: node tools/review-lab/unit5/qa/verify-motion.mjs [N]
+// Usage: node tools/review-lab/unit5/qa/verify-motion.mjs [N] [practice type] [calculator / non-calculator]
 import {load,keypadForm} from './lib.mjs';
 const N=+(process.argv[2]||2000);const L=load(['unit5-motion.js']),gen=L.G.get('motion-problems'),A=L.A;
 const lin=t=>keypadForm(String(t).replace(/\{,\}/g,'').replace(/\\lt|\\gt/g,''));
@@ -22,7 +22,8 @@ function signIntervals(g,a,b,zs){const pts=[a,...zs,b],out=[];for(let i=0;i<pts.
  for(let i=out.length-1;i>0;i--)if(Math.abs(out[i][0]-out[i-1][1])<1e-9){out[i-1][1]=out[i][1];out.splice(i,1);}return out;}
 let checked=0,skipped=0;const bad=[],skipKinds={};
 const close=(x,y,tol)=>Math.abs(x-y)<=tol;
-for(let i=1;i<=N;i++){L.seed(i*5153);const p=gen({});const q=p.questionHtml;
+const MODE=process.argv[3]||undefined,CALC=process.argv[4]||undefined; // optional Practice Type and calculator mode
+for(let i=1;i<=N;i++){L.seed(i*5153);const p=gen({mode:MODE,calc:CALC});const q=p.questionHtml;
  const mv=q.match(/\\\(v\(t\)=(.*?)\\\)/),ma=q.match(/\\\(a\(t\)=(.*?)\\\)/);
  const dom=q.match(/\\\(([-\d.]+)\\le t\\le ([-\d.]+)\\\)/)||q.match(/\\\(([-\d.]+)\\lt t\\lt ([-\d.]+)\\\)/);
  let v=null,a=null,s=null,T0=0,T1=null;
@@ -59,6 +60,8 @@ for(let i=1;i<=N;i++){L.seed(i*5153);const p=gen({});const q=p.questionHtml;
   else if(/speed of the particle increasing\?|speed .* increasing\?$/.test(pr)&&/interval/.test(pr)&&T1!==null){const zs=[...zeros(v,T0,T1),...zeros(a,T0,T1)].sort((x,y)=>x-y);want=signIntervals(t=>v(t)*a(t),T0,T1,zs);kind='speed intervals';}
   else if(/increasing or decreasing/.test(pr)&&tAt!==undefined){want=v(+tAt)*a(+tAt)>0?0:1;kind='speed choice';}
   else if(/acceleration/.test(pr)&&tAt!==undefined){want=a(+tAt);kind='acceleration';}
+  else if(/Find the speed/.test(pr)&&tAt!==undefined){want=Math.abs(v(+tAt));kind='speed';}
+  else if(/average velocity/.test(pr)&&range){const [x,y]=[+range[1],+range[2]];want=simpson(v,x,y)/(y-x);kind='average velocity';}
   else if(/velocity function/.test(pr)){want=v;kind='v function';}
   else if(/position function/.test(pr)&&s){want=s;kind='s function';}
   else if((/velocity/.test(pr)&&tAt!==undefined)||/^Find v\(/.test(pr)){const c=tAt!==undefined?+tAt:numOf((pr.match(/v\(([^)]*)\)/)||[])[1]);want=v(c);kind='velocity';}
@@ -67,11 +70,13 @@ for(let i=1;i<=N;i++){L.seed(i*5153);const p=gen({});const q=p.questionHtml;
   if(want===null){skipped++;const k=`${p.variant}: ${kind}`;skipKinds[k]=(skipKinds[k]||0)+1;if(process.env.SHOW_SKIPS&&skipKinds[k]<=2)console.log('skip',k,'|',q.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').slice(0,200),'|',pr);continue;}
   checked++;let ok=true,got='';
   if(kind==='rest'||kind==='direction change'){const vals=ans.values.map(Number);ok=vals.length===want.length&&vals.every((x,j)=>close(x,want[j],1e-6));got=JSON.stringify(vals);}
-  else if(kind.endsWith('intervals')){const ps=(ans.parts||[]).map(x=>[typeof x.left==='string'?numOf(x.left):x.left,typeof x.right==='string'?numOf(x.right):x.right]);const tol=ans.tolerance?0.002:1e-6;
+  else if(kind.endsWith('intervals')){const ps=(ans.parts||[]).map(x=>[typeof x.left==='string'?numOf(x.left):x.left,typeof x.right==='string'?numOf(x.right):x.right]);const tol=1e-6; // v12.8.X: calculator endpoints are stored unrounded
    ok=ps.length===want.length&&ps.every((x,j)=>close(x[0],want[j][0],tol)&&close(x[1],want[j][1],tol));got=JSON.stringify(ps);}
   else if(kind==='speed choice'){ok=part.correctIndex===want;got=part.correctIndex;}
   else if(kind.endsWith('function')){const f=fn(part.answerTex.replace(/^[a-z]\(t\)=/,''));ok=[0.3,1.1,2.7,4.2].every(t=>close(f(t),want(t),1e-6*Math.max(1,Math.abs(want(t)))));got=part.answerTex;}
-  else{const val=ans.kind==='numeric'?ans.value:ans.kind==='exact'?(typeof ans.value==='number'?ans.value:numOf(ans.expression)):NaN;ok=close(val,want,ans.kind==='numeric'?0.0011:1e-6*Math.max(1,Math.abs(want)));got=val;}
+  else{const val=ans.kind==='numeric'?ans.value:ans.kind==='exact'?(typeof ans.value==='number'?ans.value:numOf(ans.expression)):NaN;ok=close(val,want,ans.kind==='numeric'?1e-6*Math.max(1,Math.abs(want)):1e-6*Math.max(1,Math.abs(want)));got=val;
+   // v12.8.X: the rounded answer students must give agrees with the independent value rounded the same way
+   if(ok&&ans.places!==undefined&&L.W.BatchMathUnit5Core.fix(val,ans.places)!==L.W.BatchMathUnit5Core.fix(want,ans.places)){ok=false;got=`rounded ${L.W.BatchMathUnit5Core.fix(val,ans.places)} vs ${L.W.BatchMathUnit5Core.fix(want,ans.places)}`;}}
   if(!ok)bad.push(`${p.id} [${kind}] ${pr.slice(0,70)} | engine ${typeof got==='number'?got.toFixed?.(6):got} independent ${JSON.stringify(typeof want==='function'?'fn':want)}`);}}
 console.log(`problems ${N}; parts checked independently ${checked}; parts not interpreted ${skipped}; disagreements ${bad.length}`);
 console.log('not interpreted by kind:',JSON.stringify(skipKinds));console.log(bad.slice(0,15).join('\n'));process.exitCode=bad.length?1:0;
