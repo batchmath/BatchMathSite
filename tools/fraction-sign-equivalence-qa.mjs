@@ -45,6 +45,16 @@ const exactCases=new Map([
 for(const [input,expected] of exactCases){const got=normalize(input);if(got!==expected)fail(`exact case ${input} -> ${got}, expected ${expected}`);}
 stats.explicitCases=exactCases.size;
 
+// v12.8.U: a sign may move only within a whole-expression fraction. A leading
+// negative fraction followed by more factors or terms must stay exactly as typed;
+// rewriting it pulled the rest of the answer into the denominator.
+const wholeExpressionCases=[
+  '-(1)/(5)cot(5x)+C','-x^2/2+C','-3/x-5tan(x)-x+C','-1/4cos(2x)+C','-(1)/(2)pi','-(x^(2))/(2)+C',
+  '-7/2ln|2x+2|+C','-(1)/(3)ln(abs(cos(3x)))+C','x^2-1/-3','3/-4x','-(2)/(3)x','-(4)/(15)(5x+1)^((3)/(4))+C'
+];
+for(const input of wholeExpressionCases){const got=normalize(input);if(got!==input)fail(`whole-expression case ${input} was rewritten to ${got}`);}
+stats.wholeExpressionCases=wholeExpressionCases.length;
+
 function numeric(s){
   s=String(s).replace(/\s+/g,'');
   const m=s.match(/^([+-]?(?:\d+(?:\.\d*)?|\.\d+))\/([+-]?(?:\d+(?:\.\d*)?|\.\d+))$/);
@@ -102,7 +112,10 @@ for(const f of expressionParserFiles){
   if(!src.includes('BatchMathAnswers?.normalizeFractionSigns'))fail(`${rel}: normalizeInput parser does not call sitewide fraction normalizer`);
 }
 stats.expressionParserDefenseFiles=expressionParserFiles.length;
-if(expressionParserFiles.length!==16)fail(`expected 16 normalizeInput parser files, found ${expressionParserFiles.length}`);
+// v12.8.U: 12, down from 16. The Basic, U-Substitution, Natural Log and MVT pages
+// no longer carry inline normalizeInput parsers; they use the shared typed practice
+// engine and unit4-exact-answers.js.
+if(expressionParserFiles.length!==12)fail(`expected 12 normalizeInput parser files, found ${expressionParserFiles.length}`);
 
 const sharedPracticeRenderer=fs.readFileSync(path.join(ROOT,'assets/ap-topic-practice.js'),'utf8');
 if(!sharedPracticeRenderer.includes('normalizeTexFractionSigns'))fail('shared AP practice renderer does not normalize generated fraction-sign placement');

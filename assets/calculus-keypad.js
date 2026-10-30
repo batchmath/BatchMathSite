@@ -7,7 +7,9 @@
   // parser-friendly (numerator)/(denominator) form before reaching the engine.
   const FRAC_OPEN="\uE000",FRAC_MID="\uE001",FRAC_END="\uE002";
   const fnNames=["asin","acos","atan","acot","asec","acsc","sqrt","cbrt","root","sin","cos","tan","sec","csc","cot","ln","log","exp","abs","fp","gp","f","g"];
-  const atomicWords=["aₙ₋₁","aₙ","a₁","infinity","undefined","DNE","pi"];
+  const atomicWords=["aₙ₋₁","aₙ","a₁","infinity","undefined","DNE","Does not apply","pi"];
+  // Inverse functions are stored as asin(...) for the parsers but shown in conventional notation.
+  const fnDisplay={sqrt:"√",cbrt:"∛",root:"ⁿ√",fp:"f′",gp:"g′",asin:"sin⁻¹",acos:"cos⁻¹",atan:"tan⁻¹",acot:"cot⁻¹",asec:"sec⁻¹",acsc:"csc⁻¹"};
   const nextFrame=fn=>typeof requestAnimationFrame==="function"?requestAnimationFrame(fn):fn();
 
   function escapeHtml(s){
@@ -282,7 +284,7 @@
 
       let token=null,shown=null;
       for(const f of fnNames){
-        if(s.startsWith(f,i)){token=f;shown=f==="sqrt"?"√":f==="cbrt"?"∛":f==="root"?"ⁿ√":f==="fp"?"f′":f==="gp"?"g′":f;break;}
+        if(s.startsWith(f,i)){token=f;shown=fnDisplay[f]||f;break;}
       }
       if(token){
         out+=renderToken(shown,i,i+token.length,"function");
@@ -292,6 +294,7 @@
       if(s.startsWith("infinity",i)){out+=renderToken("∞",i,i+8,"math infinity");i+=8;continue;}
       if(s.startsWith("undefined",i)){out+=renderToken("Undefined",i,i+9,"word");i+=9;continue;}
       if(s.startsWith("DNE",i)){out+=renderToken("DNE",i,i+3,"word");i+=3;continue;}
+      if(s.startsWith("Does not apply",i)){out+=renderToken("Does not apply",i,i+14,"word");i+=14;continue;}
       if(s.startsWith("pi",i)){out+=renderToken("π",i,i+2,"math");i+=2;continue;}
 
       const ch=s[i];
@@ -818,7 +821,7 @@
    */
   function isDoubleWidthKey(button){
     const label=String(button.textContent||"").trim().replace(/\s+/g," ");
-    return /^(?:Undefined|No Solution|Infinite Solutions|Underestimate|Overestimate)$/i.test(label);
+    return /^(?:Undefined|No Solution|Infinite Solutions|Underestimate|Overestimate|Does not apply)$/i.test(label);
   }
   function normalizePadLayout(pad){
     const main=pad.querySelector(".bm-calc-main-grid");
@@ -879,6 +882,19 @@
       "unit4-geometry":{fraction:true,constants:["pi"],plus:true},
       "unit4-ftc":{fraction:true,radical:true,exponent:true,constants:["pi","e"],variables:["x"],logarithm:true,functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"]],arithmetic:true,parentheses:true},
       "unit4-sigma":{fraction:true,exponent:true,variables:["n"],arithmetic:true,parentheses:true},
+      // v12.8.U final four integrals engines: one profile per engine and answer kind.
+      "unit4-basic-indef":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["e"],variables:["x","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"],["|u|","abs"]],arithmetic:true,parentheses:true},
+      "unit4-basic-def":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["pi","e"],arithmetic:true,parentheses:true},
+      "unit4-usub-x":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["e"],variables:["x","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "unit4-usub-t":{fraction:true,radical:true,exponent:true,constants:["e"],variables:["t","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "unit4-usub-theta":{fraction:true,exponent:true,constants:["e"],variables:["θ","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "unit4-usub-r":{fraction:true,radical:true,exponent:true,variables:["r","C"],arithmetic:true,parentheses:true},
+      "unit4-usub-def":{fraction:true,radical:true,exponent:true,constants:["e"],arithmetic:true,parentheses:true},
+      "unit4-log-indef":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["e"],variables:["x","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["sin⁻¹","asin"],["tan⁻¹","atan"],["|u|","abs"]],arithmetic:true,parentheses:true},
+      "unit4-log-def":{fraction:true,logarithm:true,arithmetic:true,parentheses:true},
+      "unit4-mvt-avg":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["pi","e"],arithmetic:true,parentheses:true},
+      "unit4-mvt-c":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["e"],arithmetic:true,parentheses:true,list:true,dna:true},
+      "unit4-mvt-c-trig":{fraction:true,constants:["pi"],functions:[["sin⁻¹","asin"],["cos⁻¹","acos"]],arithmetic:true,parentheses:true,list:true},
       "unit3-geometry-exact":{fraction:true,radical:true,exponent:true,constants:["pi"],arithmetic:true,parentheses:true},
       "unit3-formula":{fraction:true,exponent:true,sequence:true,variables:["n"],arithmetic:true,parentheses:true,equality:true},
       "unit3-equation":{fraction:true,exponent:true,equation:true,variables:["x","y"],arithmetic:true,parentheses:true,equality:true},
@@ -921,6 +937,7 @@
       if(contextualUnit3.exponent)structures.appendChild(key("xⁿ","symbol",insertExponent,"Insert exponent"));
       (contextualUnit3.constants||[]).forEach(name=>addInsert(structures,name==="pi"?"π":name,name,"function"));
       if(contextualUnit3.dne)addInsert(structures,"DNE","DNE","function","Insert DNE");
+      if(contextualUnit3.dna)addInsert(structures,"Does not apply","Does not apply","function","Insert does not apply");
       if(contextualUnit3.infinity){
         addInsert(structures,"∞","infinity","function math-infinity-key","Insert infinity");
         addInsert(structures,"−∞","-infinity","function math-infinity-key","Insert negative infinity");
@@ -1098,6 +1115,8 @@
       if(prior==="f"||prior==="g"){e.preventDefault();insert("p");return;}
     }
     if(state.mode==="unit4-newton"&&e.key===">"){e.preventDefault();insert(">");return;}
+    // A physical | opens the absolute-value structure on keypads that offer |u|.
+    if(e.key==="|"&&state.binding?.pad?.querySelector('[aria-label="Insert |u|"]')){e.preventDefault();insertFunction("abs");return;}
     if(e.key.length===1&&/[0-9a-zA-Z+\-*().,=\[\]]/.test(e.key)){e.preventDefault();insert(e.key);return;}
   }
 

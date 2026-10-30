@@ -102,6 +102,40 @@
     return `(${s})`;
   }
 
+  // One multiplicative factor after optional leading signs: a number, a name,
+  // a function call, or a parenthesized group, optionally raised to a power.
+  // In a/b·c the trailing ·c multiplies the whole quotient, so a denominator
+  // followed by more factors or terms is not a single fraction and must not be
+  // rewritten (v12.8.U: -(1)/(5)cot(5x)+C was turning into -1/((5)cot(5x)+C)).
+  function singleFactor(part) {
+    const s=String(part||'').replace(/^[+-]+/,'');
+    let i=0;
+    const primary=()=>{
+      if (s[i]==='(') { const close=matchingClose(s,i,'(',')'); if (close<0) return false; i=close+1; return true; }
+      const m=s.slice(i).match(/^(?:\d+(?:\.\d*)?|\.\d+|[A-Za-zπθ]+)/);
+      if (!m) return false;
+      i+=m[0].length;
+      if (/^[A-Za-zπθ]/.test(m[0]) && s[i]==='(') { const close=matchingClose(s,i,'(',')'); if (close<0) return false; i=close+1; }
+      return true;
+    };
+    if (!s || !primary()) return false;
+    if (s[i]==='^') { i++; if (s[i]==='+'||s[i]==='-') i++; if (!primary()) return false; }
+    return i===s.length;
+  }
+
+  // True when a + or - outside every bracket separates terms (a leading sign
+  // and a sign directly after ^ do not).
+  function hasSeparateTerms(part) {
+    let depth=0;
+    for (let i=0;i<part.length;i++) {
+      const ch=part[i];
+      if (ch==='('||ch==='['||ch==='{') depth++;
+      else if (ch===')'||ch===']'||ch==='}') depth=Math.max(0,depth-1);
+      else if ((ch==='+'||ch==='-') && depth===0 && i>0 && part[i-1]!=='^' && !/[+-]/.test(part[i-1])) return true;
+    }
+    return false;
+  }
+
   function normalizeFractionSigns(value) {
     const original=String(value ?? '');
     let s=trim(original).replace(/\s+/g,'');
@@ -122,6 +156,9 @@
     const slash=slashes[0];
     const left=s.slice(0,slash),right=s.slice(slash+1);
     if (!left || !right) return trim(original);
+    // Only a whole-expression fraction may have its sign moved: no other
+    // additive terms in the numerator and exactly one denominator factor.
+    if (hasSeparateTerms(left) || !singleFactor(right)) return trim(original);
 
     const n=wholeSign(left), d=wholeSign(right);
     if (!n.body || !d.body) return trim(original);

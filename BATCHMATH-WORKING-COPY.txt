@@ -1,7 +1,7 @@
 BatchMath cumulative working copy
-Current full release: 12.8.M
-Archive: batchmath-site-v12.8.M.zip
-Baseline: complete 12.7 release.
-Changes: v12.8.J updates the shared Rectangular Approximation, Trapezoidal Approximation, and Introduction to Sigma Notation generators and their Unit 4 Comprehensive Review inheritance. Other course content and the existing BatchMath QA workflow remain preserved.
+Current full release: 12.8.V (review build)
+Archive: batchmath-site-v12.8.V.zip
+Baseline: v12.8.U (review build), built on v12.8.T (origin/main bea5cc9).
+Changes: v12.8.V keeps all of v12.8.U (the rebuilt Basic Integrals, U-Substitution, Natural Log and Inverse Trig, and Mean Value Theorem for Integrals engines and their Comprehensive Review topics) and polishes it. Other course content and the existing BatchMath QA workflow remain preserved.
 No deployment performed.
-Current update: v12.8.M refines approximation mathematics, midpoint tables and conceptual graphs, preserves Comprehensive Review inheritance and Sigma alignment, adds live archive running documents with printing and refresh/retry support, corrects Chain Rule and Quotient Rule walkthrough placement, and verifies Mogollon controls and both archive regressions.
+Current update: v12.8.V removes the small scrollbars from short mathematics in questions and explanations (long equations wrap instead), reduces inverse-trig arguments such as tan^-1(4x/2) to tan^-1(2x), fixes the FTC checker rejecting keypad products such as 2xsec(x^6) (new test: npm run qa:ftc-checker), and moves the FTC and Integral Rules practice buttons to their own section. See docs/v12.8.V-revisions.md.
