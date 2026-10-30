@@ -42,6 +42,9 @@ PAGES = [
          description='Most problems are calculator active: set up the accumulation integral, include the starting amount when it matters, and round to three decimal places. Use the worked explanation to see every step.',
          modes=[('mixed', 'Mixed Practice'), ('one_rate', 'Accumulate One Rate'), ('initial_change', 'Initial Amount Plus or Minus Change'), ('in_out', 'Inflow and Outflow'),
                 ('delayed_piecewise', 'Delayed Starts and Piecewise Rates'), ('monotonic', 'Increasing, Decreasing and Extreme Amounts'), ('multipart', 'Connected Multi-Part Problems')]),
+    dict(topic='slope-fields', page='practice', new=True, slug='slope-fields', title='Slope Fields', engine_id='ap_topic_slope_fields', scripts=['/assets/unit5-slope-fields.js'],
+         description='Draw slope segments and solution curves with a mouse, pen or finger (or type slopes and points instead), match fields with equations, and analyze slopes. After you check a drawing, the correct segments or curve appear on the same grid.',
+         modes=[('mixed', 'Mixed Practice'), ('draw_segments', 'Draw Slope Segments'), ('draw_curve', 'Draw Solution Curves'), ('match', 'Match Fields, Equations and Curves'), ('analyze', 'Analyze Slopes and Solutions')]),
 ]
 
 TEMPLATE = U5 / 'basic-first-order-differential-equations' / 'practice' / 'index.html'

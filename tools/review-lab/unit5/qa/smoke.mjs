@@ -13,6 +13,11 @@ for(let i=1;i<=N;i++){L.seed(i*7919);let p;try{p=gen({});}catch(e){errs[e.messag
  fam[p.variant]=(fam[p.variant]||0)+1;tier[p.unit5Meta.tier]=(tier[p.unit5Meta.tier]||0)+1;if(p.parts.length>1)multi++;if(p.calculatorActive)calc++;
  const bad=lint(p.questionHtml+p.parts.map(x=>x.prompt+(x.answerIsText?'':x.answerTex)+x.explanation).join(''));if(bad.length)fails.push(`${p.id} TeX: ${bad.join(',')}`);
  for(const part of p.parts){parts++;
+  if(part.control==='slope-segments'||part.control==='solution-curve'){const S=L.W.BatchMathUnit5Slope;kinds[part.control]=(kinds[part.control]||0)+1;
+   if(part.control==='slope-segments'){const t=part.board.targets;const good=S.gradeSegments(t,t.map(x=>x.vertical?90:S.angleOf(x.slope)));const bad=S.gradeSegments(t,t.map(x=>(x.vertical?90:S.angleOf(x.slope))+30));
+    if(!good.ok||bad.ok)fails.push(`${p.id} segment grading: exact ${good.ok} rotated ${bad.ok}`);}
+   else{const o=S.ODES[part.board.ode],g=S.gradeCurve(part.board.ref,part.board.ref,part.board.ic,o);if(!g.ok)fails.push(`${p.id} reference curve not accepted: ${g.note}`);}
+   continue;}
   if(part.control==='choice'||part.control==='svg-choice'){kinds.choice=(kinds.choice||0)+1;if(!(part.correctIndex>=0&&part.correctIndex<part.choices.length))fails.push(`${p.id} choice index`);continue;}
   const a=part.answer;kinds[a.kind]=(kinds[a.kind]||0)+1;const raw=canon(a);
   const r=L.A.check(raw,a);if(!r.ok)fails.push(`${p.id} canonical ${a.kind}: ${raw} -> ${JSON.stringify(r)}`);

@@ -112,7 +112,7 @@ function parseOneInterval(s){
  s=s.trim();
  if(/^(?:all\s*real\s*numbers?|all\s*reals?|r|ℝ|\(-∞,\s*∞\))$/i.test(s))return{left:-Infinity,right:Infinity,lc:false,rc:false};
  // inequality forms: a<x<b, x>a, x<=b, a<=x
- const ineq=s.replace(/\s+/g,'').match(/^(?:(.+?)(<=|<))?([xtθ])(?:(<=|<|>=|>)(.+))?$/i);
+ const ineq=s.replace(/\s+/g,'').match(/^(?:(.+?)(<=|<))?([xytθ])(?:(<=|<|>=|>)(.+))?$/i);
  if(ineq&&(ineq[1]!==undefined||ineq[4]!==undefined)&&!/^[(\[]/.test(s)){
   const [, lo, lop, , op, rhs]=ineq;let left=-Infinity,right=Infinity,lc=false,rc=false;
   if(lo!==undefined){left=endpointValue(lo);lc=lop==='<=';}
