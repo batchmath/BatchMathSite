@@ -302,6 +302,10 @@ def wire(path, cfg):
     text = re.sub(r'<p class="topic-description">.*?</p>',
                   '<p class="topic-description">' + cfg.get('description', 'Enter your answers with the math keypad, check each part, and use the worked explanation to see every step.') + '</p>',
                   text, count=1, flags=re.S)
+    # the static "Calculator Active" note (from W's calculator-only Rate page) belongs only on calculator pages;
+    # Mixed and Non-Calculator pages rely on each problem's own badge
+    if cfg.get('calc') != 'calculator':
+        text = re.sub(r'<div class="calculator-active-note">.*?</div>', '', text, count=1, flags=re.S)
     if cfg.get('label'):
         text = set_identity(text, cfg)
     path.write_text(text, encoding='utf-8')
