@@ -1,0 +1,11 @@
+/* Loaded on the Power Rule pilot only. The legacy keypad supplies the layout. */
+:root{--bm-mathlive-pilot-ready:1}
+.bm-mathlive-answer{display:block;flex:1 1 300px;min-width:0;max-width:100%;min-height:56px;padding:8px 12px;border:1px solid var(--yellow,#f5c400);border-radius:8px;background:#050505;color:#fff;font-size:1.35rem;line-height:1.35;overflow-x:auto;--caret-color:#f5c400;--selection-background-color:#635000;--selection-color:#fff;--contains-highlight-background-color:#302900;--placeholder-color:#999}
+.bm-mathlive-answer:focus-within{outline:2px solid rgba(245,196,0,.35);outline-offset:1px}
+.bm-mathlive-answer[aria-disabled="true"]{opacity:.62}
+.bm-mathlive-answer::part(virtual-keyboard-toggle),.bm-mathlive-answer::part(menu-toggle){display:none}
+.bm-mathlive-answer::part(container){overflow-x:auto;max-width:100%}
+.bm-mathlive-answer[hidden],.bm-calc-editor[hidden],.bm-calc-keypad[hidden]{display:none!important}
+.bm-mathlive-notice{color:#ddd;font-size:.85rem;line-height:1.4}
+.bm-mathlive-recovery{display:block;width:100%;background:#050505;color:#fff;border:1px solid #f5c400}
+@media(max-width:760px){.bm-mathlive-answer{width:100%;flex-basis:100%;font-size:1.17rem;min-height:50px;padding:7px 9px}}

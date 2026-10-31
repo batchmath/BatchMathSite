@@ -1,0 +1,155 @@
+{
+  "browser": "154.0.8037.57",
+  "mathjax": "Real cached MathJax 4.1.3 + NewCM; CDN transport substituted",
+  "results": [
+    {
+      "name": "real MathJax renders the existing question and worked feedback alongside MathLive",
+      "passed": true
+    },
+    {
+      "name": "default MathLive, 20 local fonts, no Compute Engine or duplicate keypad",
+      "passed": true
+    },
+    {
+      "name": "first key reaches the field on a new question, without clicking",
+      "passed": true
+    },
+    {
+      "name": "blank prompts without consuming an attempt",
+      "passed": true
+    },
+    {
+      "name": "actual browser grading parity first:mixed: correct, wrong, unsimplified, incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual browser grading parity first:polynomial: correct, wrong, unsimplified, incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual browser grading parity first:negative: correct, wrong, unsimplified, incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual browser grading parity first:fractional: correct, wrong, unsimplified, incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual browser grading parity first:irrational: correct, wrong, unsimplified, incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual browser grading parity higher:mixed: correct, wrong, unsimplified, incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual browser grading parity higher:polynomial: correct, wrong, unsimplified, incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual browser grading parity higher:negative: correct, wrong, unsimplified, incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual browser grading parity higher:fractional: correct, wrong, unsimplified, incomplete",
+      "passed": true
+    },
+    {
+      "name": "45 more actual generated answerTex responses survive MathLive canonicalization",
+      "passed": true
+    },
+    {
+      "name": "native typing, slash capture, fraction navigation and keyboard undo/redo",
+      "passed": true
+    },
+    {
+      "name": "physical exponent, dead-key Shift+6 bridge and exponent exit",
+      "passed": true
+    },
+    {
+      "name": "question reset flushes native inline-shortcut snapshots as well as undo history",
+      "passed": true
+    },
+    {
+      "name": "every existing keypad button is mapped and edits the real field",
+      "passed": true
+    },
+    {
+      "name": "nested fractions, fractional exponents, roots and supported functions retain structure",
+      "passed": true
+    },
+    {
+      "name": "structural selection, Backspace, Delete and cursor movement",
+      "passed": true
+    },
+    {
+      "name": "native clipboard copy and paste plus ordinary LaTeX paste",
+      "passed": true
+    },
+    {
+      "name": "legacy private structured clipboard imports without losing fraction slots",
+      "passed": true
+    },
+    {
+      "name": "change and blur do not submit; Enter grades once; held Enter cannot skip feedback",
+      "passed": true
+    },
+    {
+      "name": "keypad Check invokes one existing check; source and keypad disable after grading",
+      "passed": true
+    },
+    {
+      "name": "immediate Enter synchronizes the final key before the unmodified checker reads it",
+      "passed": true
+    },
+    {
+      "name": "practice selections preserve higher-order restrictions and reset state",
+      "passed": true
+    },
+    {
+      "name": "responsive 375px and horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "responsive 1600px and horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "explicit mathlive mode and original HTML work without test instrumentation",
+      "passed": true
+    },
+    {
+      "name": "missing runtime: legacy remains usable and a pending answer survives",
+      "passed": true
+    },
+    {
+      "name": "missing pilot stylesheet leaves a usable legacy editor",
+      "passed": true
+    },
+    {
+      "name": "successful delayed initialization imports an answer typed into legacy during loading",
+      "passed": true
+    },
+    {
+      "name": "unsupported legacy syntax during startup is retained when import refuses it",
+      "passed": true
+    },
+    {
+      "name": "missing font: typed legacy answer survives and can be checked",
+      "passed": true
+    },
+    {
+      "name": "runtime command exception restores the actual legacy editor with the current answer",
+      "passed": true
+    },
+    {
+      "name": "unsupported LaTeX survives a library error as a selectable recovery copy",
+      "passed": true
+    },
+    {
+      "name": "unrelated Product Rule page loads only its existing editor and shared keypad",
+      "passed": true
+    }
+  ],
+  "pageErrors": []
+}
