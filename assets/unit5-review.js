@@ -46,7 +46,11 @@ function make(opts={}){
  if(!engine)throw Error(`unit5-review: the ${topic.label} engine is not loaded`);
  const p=engine.make(calc?{tier,calc}:{tier});
  if(calc&&p.calculatorActive!==(calc==='calculator'))throw Error(`unit5-review: ${topic.label} gave the wrong calculator kind`);
- p.questionHtml=`<div class="u5-review-tag">${topic.label} · ${TIER_LABEL[tier]}</div>`+p.questionHtml;
+ // the tag goes first inside the question's column wrapper, so it sits above the question rather than beside it
+ // (the question box is a row, and its sizing rule needs the wrapper as its direct child)
+ const tag=`<div class="u5-review-tag">${topic.label} · ${TIER_LABEL[tier]}</div>`,html=p.questionHtml;
+ p.questionHtml=html.replace(/^<div class="[^"]*\bu5-question\b[^"]*">/,open=>open+tag);
+ if(p.questionHtml===html)p.questionHtml=tag+html;
  p.variant=`${topic.key}/${p.variant}`;
  p.unit5Meta={...p.unit5Meta,review:true,reviewTopic:topic.key,reviewTier:tier,reviewCalc:calc||'mixed'};
  return p;

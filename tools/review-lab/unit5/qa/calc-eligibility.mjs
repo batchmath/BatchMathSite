@@ -14,11 +14,19 @@ for(const topic of fs.readdirSync(U5))for(const pg of ['practice','calculator-pr
  const conf=JSON.parse(h.match(/window\.BM_TOPIC_PRACTICE=(\{.*?\});/)[1]);
  const scripts=[...h.matchAll(/<script src="\/assets\/(unit5-(?!core|answers|ui)[a-z-]+\.js)"/g)].map(m=>m[1]);
  const modes=[...h.match(/<select id="u5Mode"[^>]*>(.*?)<\/select>/)[1].matchAll(/<option value="([^"]+)"[^>]*>([^<]*)/g)].map(m=>[m[1],m[2]]);
- pages.push({rel:`${topic}/${pg}`,conf,scripts,modes});
+ const desc=(h.match(/<p class="topic-description">(.*?)<\/p>/)||[])[1]||'',note=/class="calculator-active-note"/.test(h);
+ pages.push({rel:`${topic}/${pg}`,conf,scripts,modes,desc,note});
 }
 const GLOBAL={'basic-first-order-differential-equations':'BatchMathUnit5Basic','motion-problems':'BatchMathUnit5Motion','slope-fields':'BatchMathUnit5Slope','separable-differential-equations':'BatchMathUnit5Separable','exponential-growth-and-decay-interest-newton-s-law-of-cooling':'BatchMathUnit5Growth','rate-problems':'BatchMathUnit5Rate'};
 const KIND={calculator:'calculator','non-calculator':'noncalculator'};
-const fails=[];const lines=[];
+const fails=[];
+// the page's static text must agree with its calculator mode: the "Calculator Active" note only on calculator pages
+// (a Mixed page shows each problem's own badge), and the description opens with "Calculator active" or "No calculator"
+for(const pg of pages){const calc=pg.conf.calculator||null;
+ if(pg.note&&calc!=='calculator')fails.push(`${pg.rel}: static "Calculator Active" note on a ${calc||'mixed'} page`);
+ if(calc==='calculator'&&!/^Calculator active\./.test(pg.desc))fails.push(`${pg.rel}: description does not say the calculator is active`);
+ if(calc==='non-calculator'&&!/^No calculator\./.test(pg.desc))fails.push(`${pg.rel}: description does not say no calculator`);}
+const lines=[];
 for(const pg of pages){
  const L=load(pg.scripts,{BM_TOPIC_PRACTICE:pg.conf});const gen=L.G.get(pg.conf.slug);const eng=L.W[GLOBAL[pg.conf.slug]];
  const calc=pg.conf.calculator||null;
