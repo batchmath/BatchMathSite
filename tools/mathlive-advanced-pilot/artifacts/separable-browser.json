@@ -1,0 +1,175 @@
+{
+  "browser": "154.0.8037.57",
+  "realMathJax": true,
+  "results": [
+    {
+      "name": "actual IVP product/kxyq: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP product/kxy: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP product/lin: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP product/yx: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP powers_y/y2: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP powers_y/y3: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP powers_y/xy: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP powers_y/cbrt: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP powers_y/sqrty: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP log_rational/y2x: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP log_rational/lnxy: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP log_rational/xlnx: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP trig/cos2: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP trig/y2sin: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP trig/cosxy: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP trig/xsin: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP trig/tany: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP exp_y/exmy: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP exp_y/quad: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP exp_y/xey: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP exp_y/eyt: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP exp_y/cosesin: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP radical_branch/circ: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP radical_branch/shift: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP radical_branch/xpb: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "actual IVP radical_branch/expsq: particular solution and interval through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "product: wrong, unsimplified, unwanted C and incomplete particular answers preserve feedback",
+      "passed": true
+    },
+    {
+      "name": "powers_y: wrong, unsimplified, unwanted C and incomplete particular answers preserve feedback",
+      "passed": true
+    },
+    {
+      "name": "log_rational: wrong, unsimplified, unwanted C and incomplete particular answers preserve feedback",
+      "passed": true
+    },
+    {
+      "name": "trig: wrong, unsimplified, unwanted C and incomplete particular answers preserve feedback",
+      "passed": true
+    },
+    {
+      "name": "exp_y: wrong, unsimplified, unwanted C and incomplete particular answers preserve feedback",
+      "passed": true
+    },
+    {
+      "name": "radical_branch: wrong, unsimplified, unwanted C and incomplete particular answers preserve feedback",
+      "passed": true
+    },
+    {
+      "name": "Greek theta is a working keypad key; a complete actual theta solution can be entered on screen",
+      "passed": true
+    },
+    {
+      "name": "inverse trig, cube roots, logs, absolute value and exponentials remain native editable input",
+      "passed": true
+    },
+    {
+      "name": "wrong Part A waits for Continue; Part B blank/bracket errors, correct interval and Enter progression stay intact",
+      "passed": true
+    },
+    {
+      "name": "first-key focus, copy/paste, undo/redo and no blur/change grading in Part A",
+      "passed": true
+    },
+    {
+      "name": "particular-solution prefix and long expression fit 375px",
+      "passed": true
+    },
+    {
+      "name": "particular-solution prefix and long expression fit 1500px",
+      "passed": true
+    },
+    {
+      "name": "Separable runtime failure preserves Part A and keeps the native interval stage usable",
+      "passed": true
+    },
+    {
+      "name": "Separable fonts failure preserves Part A and keeps the native interval stage usable",
+      "passed": true
+    },
+    {
+      "name": "runtime failure preserves the current particular solution and exact latex for unsupported input",
+      "passed": true
+    },
+    {
+      "name": "uninstrumented separable page defaults to MathLive only for Part A",
+      "passed": true
+    }
+  ],
+  "pageErrors": []
+}

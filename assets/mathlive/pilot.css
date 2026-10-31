@@ -9,5 +9,6 @@
 .bm-mathlive-notice{color:#ddd;font-size:.85rem;line-height:1.4}
 .bm-mathlive-recovery{display:block;width:100%;background:#050505;color:#fff;border:1px solid #f5c400}
 .bm-mathlive-dynamic{width:100%;max-width:100%;margin:0 auto 10px;flex:none}
+.unit5-input-row .bm-mathlive-dynamic{flex:1 1 0;width:0;margin-bottom:0}
 .bm-mathlive-answer.wrong{border-color:var(--red,#d71920)}
 @media(max-width:760px){.bm-mathlive-answer{width:100%;flex-basis:100%;font-size:1.17rem;min-height:50px;padding:7px 9px}}
