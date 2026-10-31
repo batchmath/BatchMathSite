@@ -196,32 +196,38 @@ function problem({engine,family,tier,id,questionHtml,parts,calculator=false,data
 // to all families; an unknown Practice Type (for example a retired one restored by the browser) is mixed.
 const KINDS={calculator:'calculator','non-calculator':'noncalculator'};
 function kindTiers(f){return f.calc||(f.calculator?{calculator:f.tiers,noncalculator:[]}:{calculator:[],noncalculator:f.tiers});}
-function makeEngine(engine,families){
- const known=new Set(Object.entries(families).flatMap(([k,f])=>[k,f.group].filter(Boolean)));
+// v12.8.Y: an engine may list its Practice Types (modes): each names the families it draws from (true for all of a
+// family's tiers, or a list of tiers) and may require the problem to pass a test. Only listed modes are offered; any
+// other value (such as a retired selector) gives the page's whole pool, never another calculator kind.
+function makeEngine(engine,families,modes){
+ const known=modes?new Set(Object.keys(modes)):new Set(Object.entries(families).flatMap(([k,f])=>[k,f.group].filter(Boolean)));
  function make(opts={}){
   if(opts.calc&&!KINDS[opts.calc])throw Error(`${engine}: unknown calculator mode ${opts.calc}`);
   const kind=KINDS[opts.calc]||null,flag=kind?kind==='calculator':undefined;
   let mode=opts.mode&&opts.mode!=='mixed'?opts.mode:null;
   if(mode&&!known.has(mode)){console.warn(`unit5 ${engine}: Practice Type "${mode}" is not offered; using mixed practice`);mode=null;}
+  // a Practice Type with no families of the page's calculator kind is not offered there either
+  if(mode&&modes&&kind&&!Object.keys(modes[mode].families).some(k=>families[k]&&kindTiers(families[k])[kind].length)){console.warn(`unit5 ${engine}: Practice Type "${mode}" is not offered on ${opts.calc} practice; using mixed practice`);mode=null;}
+  const M=modes&&mode?modes[mode]:null;
   const tier=opts.tier||null;
-  const tiersOf=f=>kind?kindTiers(f)[kind]:f.tiers;
-  const eligible=([k,f])=>(!mode||k===mode||f.group===mode)&&tiersOf(f).length>0&&(!tier||tiersOf(f).includes(tier));
+  const tiersOf=(f,k)=>{const t=kind?kindTiers(f)[kind]:f.tiers,only=M&&M.families[k];return Array.isArray(only)?t.filter(x=>only.includes(x)):t;};
+  const eligible=([k,f])=>(!mode||(M?k in M.families:k===mode||f.group===mode))&&tiersOf(f,k).length>0&&(!tier||tiersOf(f,k).includes(tier));
   const pool=Object.fromEntries(Object.entries(families).filter(eligible).map(([k,f])=>[k,f.weight]));
   if(opts.family&&!(opts.family in pool))throw Error(`${engine}: family ${opts.family} has no ${opts.calc||''} problems${tier?` at the ${tier} tier`:''}`);
   if(!Object.keys(pool).length)throw Error(`${engine}: no ${opts.calc?opts.calc+' ':''}problems for ${mode||'mixed practice'}${tier?` at the ${tier} tier`:''}`);
   const name=opts.family||weighted(pool);const fam=families[name];
-  const t=tier||pick(tiersOf(fam));
+  const t=tier||pick(tiersOf(fam,name));
   let last;
   for(let tries=0;tries<60;tries++){
    let p;try{p=fam.make(t,flag);}catch(e){last=e;continue;}
-   if(!p)continue;
+   if(!p||(M?.accept&&!M.accept(p)))continue;
    if(flag!==undefined&&p.calculatorActive!==flag)throw Error(`${engine}/${name}: made a ${p.calculatorActive?'calculator':'non-calculator'} problem for ${opts.calc} practice`);
    return p;
   }
   throw last||Error(`${engine}/${name} failed`);
  }
  const eligibleKinds=Object.fromEntries(Object.entries(families).map(([k,f])=>[k,kindTiers(f)]));
- return{make,families,eligibleKinds,weights:Object.fromEntries(Object.entries(families).map(([k,f])=>[k,f.weight]))};
+ return{make,families,modes,eligibleKinds,weights:Object.fromEntries(Object.entries(families).map(([k,f])=>[k,f.weight]))};
 }
 // The page's calculator mode (BM_TOPIC_PRACTICE.calculator) reaches every generator call unless the caller sets one.
 function register(slug,gen){

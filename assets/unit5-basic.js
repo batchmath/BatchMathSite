@@ -556,13 +556,21 @@ const FAMILIES={
  calc_value:{weight:6,group:'calculator_ftc',tiers:['foundational','intermediate','challenging'],make:famCalcValue,label:'Calculator: values from an initial condition',calculator:true},
  general_solution:{weight:10,tiers:['foundational','intermediate'],make:famGeneral,label:'General solutions',calculator:false},
 };
-const engine=U.makeEngine('basic',FAMILIES);
+// v12.8.Y Practice Types (Non-Calculator Practice; Calculator Practice has none): every IVP shape; the IVPs whose
+// solution is restricted to part of the line (unit5Meta.restricted); general solutions
+const LATER=['intermediate','challenging'];
+const MODES={
+ ivp:{families:{poly_power:true,trig:true,exp_composition:true,log_domain:true}},
+ domain_restricted:{families:{poly_power:LATER,trig:LATER,log_domain:LATER},accept:p=>p.unit5Meta.restricted===true},
+ general_solution:{families:{general_solution:true}},
+};
+const engine=U.makeEngine('basic',FAMILIES,MODES);
 const fnKeys=[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['sin⁻¹','asin'],['tan⁻¹','atan'],['|u|','abs']];
 for(const v of ['x','t']){
  U.profile(`unit5-basic-${v}`,{fraction:true,radical:true,exponent:true,logarithm:true,constants:['pi','e'],variables:[v],functions:fnKeys,arithmetic:true,parentheses:true});
  U.profile(`unit5-basic-${v}-c`,{fraction:true,exponent:true,constants:['e'],variables:[v,'C'],functions:fnKeys.filter(([,n])=>['sin','cos','tan','atan'].includes(n)),arithmetic:true,parentheses:true});
 }
 U.profile('unit5-interval-basic',{fraction:true,constants:['pi'],parentheses:true,list:true,interval:true,union:false,infinity:true});
-window.BatchMathUnit5Basic=Object.freeze({make:engine.make,FAMILIES,weights:engine.weights});
+window.BatchMathUnit5Basic=Object.freeze({make:engine.make,FAMILIES,MODES,weights:engine.weights});
 U.register('basic-first-order-differential-equations',o=>engine.make(o||{}));
 })();

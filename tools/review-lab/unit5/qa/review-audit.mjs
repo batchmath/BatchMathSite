@@ -2,6 +2,7 @@
 // difficulty table), the Slope Fields drawing share, focused Practice Types, and that every part's answer checks.
 // v12.8.X: also the Calculator and Non-Calculator Reviews (topic weights renormalized over the eligible topics, the
 // same 40/40/20 difficulty, no problem of the wrong kind); shares and independence are now pass / fail checks.
+// v12.8.Y: the reviews are chosen by difficulty only (no topic Practice Type).
 // Usage: node tools/review-lab/unit5/qa/review-audit.mjs [N=10000] [mixed|calculator|non-calculator]
 import {load} from './lib.mjs';
 const N=+(process.argv[2]||10000),CALC=process.argv[3]&&process.argv[3]!=='mixed'?process.argv[3]:undefined;
@@ -41,9 +42,10 @@ for(const x of TIERS)if(!near(colT[x]/tot,TW[x]/100))fails.push(`difficulty ${x}
 if(chi>CRIT[df]*1.3)fails.push(`topic and difficulty look dependent: chi-square ${chi.toFixed(2)}`);
 console.log('per-topic difficulty split:',TOP.map(t=>`${t} ${TIERS.map(x=>(100*tab[t][x]/rowT[t]).toFixed(0)).join('/')}`).join('; '));
 if(slopeAll)console.log(`slope fields drawing share: ${(100*slopeDraw/slopeAll).toFixed(1)}% of ${slopeAll} (target 50%)`);
-// focused Practice Types
-for(const t of Object.keys(ALL).filter(t=>!TOP.includes(t))){let threw=false;try{gen({mode:t,calc:CALC});}catch(_){threw=true;}if(!threw)fails.push(`mode ${t} should not be offered in the ${CALC} review`);}
-for(const mode of [...TOP,...TIERS]){const c={};for(let i=1;i<=600;i++){L.seed(i*31+mode.length);const p=gen({mode,calc:CALC});if(CALC&&p.calculatorActive!==(CALC==='calculator'))fails.push(`mode ${mode}: wrong calculator kind`);const k=TOP.includes(mode)?p.unit5Meta.reviewTier:p.unit5Meta.reviewTopic;c[k]=(c[k]||0)+1;
-  if(TOP.includes(mode)&&p.unit5Meta.reviewTopic!==mode||TIERS.includes(mode)&&p.unit5Meta.reviewTier!==mode)fails.push(`mode ${mode} produced ${p.unit5Meta.reviewTopic}/${p.unit5Meta.reviewTier}`);}
+// focused Practice Types (v12.8.Y: difficulty only; a former topic value gives all review problems of the review's kind)
+for(const t of Object.keys(ALL)){const seen=new Set();for(let i=1;i<=200;i++){L.seed(i*53+t.length);const p=gen({mode:t,calc:CALC});seen.add(p.unit5Meta.reviewTopic);if(CALC&&p.calculatorActive!==(CALC==='calculator'))fails.push(`former topic mode ${t}: wrong calculator kind`);}
+ if(seen.size<2)fails.push(`former topic mode ${t} still fixes the topic`);}
+for(const mode of TIERS){const c={};for(let i=1;i<=600;i++){L.seed(i*31+mode.length);const p=gen({mode,calc:CALC});if(CALC&&p.calculatorActive!==(CALC==='calculator'))fails.push(`mode ${mode}: wrong calculator kind`);const k=p.unit5Meta.reviewTopic;c[k]=(c[k]||0)+1;
+  if(p.unit5Meta.reviewTier!==mode)fails.push(`mode ${mode} produced ${p.unit5Meta.reviewTopic}/${p.unit5Meta.reviewTier}`);}
  console.log(`mode ${mode}: ${Object.entries(c).map(([k,v])=>`${k} ${(v/6).toFixed(0)}%`).join(', ')}`);}
 console.log(`checks (answers on the first 3000 problems, shares, independence, kinds, modes): ${fails.length} failures`);console.log(fails.slice(0,10).join('\n'));process.exitCode=fails.length||errors?1:0;

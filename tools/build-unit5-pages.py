@@ -23,18 +23,19 @@ COMMON_BODY = ['/assets/unit5-core.js', '/assets/unit5-answers.js', '/assets/uni
 # Practice Types on the calculator pages: only families with calculator problems (checked by qa/calc-eligibility.mjs)
 REVIEW_SCRIPTS = ['/assets/unit5-basic.js', '/assets/unit5-motion.js', '/assets/unit5-slope-fields.js', '/assets/unit5-separable.js', '/assets/unit5-growth.js',
                   '/assets/unit5-rate.js', '/assets/unit5-review.js']
-REVIEW_TOPICS = [('basic', 'Basic First-Order Differential Equations'), ('motion', 'Motion Problems'), ('slope', 'Slope Fields'),
-                 ('separable', 'Separable Differential Equations'), ('growth', "Growth, Decay, Interest and Newton's Law"), ('rate', 'Rate Problems')]
-REVIEW_TIERS = [('foundational', 'Foundational (all topics)'), ('intermediate', 'Intermediate (all topics)'), ('challenging', 'Challenging (all topics)')]
+# v12.8.Y: the reviews are chosen by difficulty only
+REVIEW_MODES = [('mixed', 'All Review Problems'), ('foundational', 'Foundational'), ('intermediate', 'Intermediate'), ('challenging', 'Challenging')]
 
-RATE_MODES = [('mixed', 'Mixed Practice'), ('one_rate', 'Accumulate One Rate'), ('initial_change', 'Initial Amount Plus or Minus Change'),
-              ('in_out', 'Inflow and Outflow'), ('delayed_piecewise', 'Delayed Starts and Piecewise Rates'), ('multipart', 'Connected Accumulation Problems')]
+# v12.8.Y Practice Types ('mixed' is All Problems: every eligible family of the page's calculator kind); the values
+# match the engines' MODES
+RATE_MODES = [('mixed', 'All Problems'), ('one_rate', 'Accumulation from One Rate'), ('initial_net_change', 'Initial Amount and Net Change'),
+              ('delayed_piecewise', 'Delayed and Piecewise Rates')]
 
 CALC_MODES = {
     # v12.8.Y: one question family (values from an initial condition), so no Practice Type dropdown
     'basic': None,
-    'motion': [('mixed', 'Mixed Calculator Practice'), ('calc_position', 'Position and Average Velocity'), ('calc_distance', 'Displacement and Total Distance'),
-               ('calc_speed', 'Velocity, Acceleration and Speed'), ('calc_direction', 'Rest and Direction of Motion')],
+    'motion': [('mixed', 'All Problems'), ('position_displacement', 'Position and Displacement'), ('total_distance', 'Total Distance'),
+               ('motion_analysis', 'Motion Analysis')],
 }
 
 PAGES = [
@@ -49,8 +50,7 @@ PAGES = [
          title='Basic First-Order Differential Equations', seo_title='Basic First-Order DEs', label='Non-Calculator Practice',
          engine_id='ap_topic_basic_first_order_differential_equations_noncalculator', scripts=['/assets/unit5-basic.js'],
          description='No calculator. Solve initial-value problems exactly, state where each solution is defined, and find general solutions. Enter answers with the math keypad and use the worked explanation to see every step.',
-         modes=[('mixed', 'Mixed Non-Calculator Practice'), ('poly_power', 'Polynomial, Power and Radical IVPs'), ('trig', 'Trigonometric and Inverse-Trig IVPs'),
-                ('exp_composition', 'Exponential and Composition IVPs'), ('log_domain', 'Logarithmic and Domain-Restricted IVPs'), ('general_solution', 'General Solutions')]),
+         modes=[('mixed', 'All Problems'), ('ivp', 'Initial-Value Problems'), ('domain_restricted', 'Domain-Restricted IVPs'), ('general_solution', 'General Solutions')]),
     dict(topic='motion-problems', page='calculator-practice', source='practice', calc='calculator',
          slug='motion-problems', analytics_slug='motion-problems_calculator', title='Motion Problems', label='Calculator Practice',
          engine_id='ap_topic_motion_problems_calculator', scripts=['/assets/unit5-motion.js'],
@@ -60,42 +60,41 @@ PAGES = [
          slug='motion-problems', analytics_slug='motion-problems_noncalculator', title='Motion Problems', label='Non-Calculator Practice',
          engine_id='ap_topic_motion_problems_noncalculator', scripts=['/assets/unit5-motion.js'],
          description='No calculator. Recover velocity and position, compare displacement with total distance, and analyze direction, rest and speed with exact values.',
-         modes=[('mixed', 'Mixed Non-Calculator Practice'), ('recover', 'Recover Velocity or Position'), ('displacement_distance', 'Displacement and Total Distance'),
-                ('direction_speed', 'Direction, Rest and Speed'), ('multipart', 'Connected Multi-Part Problems')]),
+         modes=[('mixed', 'All Problems'), ('recover', 'Recover Velocity or Position'), ('displacement_distance', 'Displacement and Total Distance'),
+                ('direction_speed', 'Direction and Speed')]),
     dict(topic='separable-differential-equations', page='practice', slug='separable-differential-equations', title='Separable Differential Equations',
          engine_id='ap_topic_separable_differential_equations', scripts=['/assets/unit5-separable.js'],
          description='Solve each initial-value problem, then state the interval of validity of your solution. Enter answers with the math keypad and use the worked explanation to see every step.',
-         modes=[('mixed', 'Mixed Practice'), ('product', 'Product Forms'), ('powers_y', 'Powers of y'), ('log_rational', 'Logarithmic and Rational'),
-                ('trig', 'Trigonometric'), ('exp_y', 'Exponentials of y'), ('radical_branch', 'Radicals, Implicit Solutions and Branches')]),
+         modes=None),  # v12.8.Y: no Practice Type dropdown; all six families
     dict(topic='exponential-growth-and-decay-interest-newton-s-law-of-cooling', page='practice', new=True,
          slug='exponential-growth-and-decay-interest-newton-s-law-of-cooling',
          title="Exponential Growth and Decay, Interest, Newton's Law of Cooling", seo_title="Growth, Decay and Newton's Law",
          engine_id='ap_topic_exponential_growth_and_decay_interest_newton_s_law_of_cooling', scripts=['/assets/unit5-growth.js'],
          description='Calculator active. Build the exponential model from the given information, keep k exact until the end, and round as each part directs. Use the worked explanation to see every step.',
-         modes=[('mixed', 'Mixed Practice'), ('growth', 'Exponential Growth'), ('decay', 'Exponential Decay and Half-Life'), ('cooling', "Newton's Law: Cooling"),
-                ('heating', "Newton's Law: Warming"), ('interest', 'Compound and Continuous Interest'), ('reverse', 'Find the Unknown (Initial Amount, Rate, Dose)')]),
+         modes=[('mixed', 'All Problems'), ('growth_decay', 'Exponential Growth and Decay'), ('newton', "Newton's Law of Cooling and Warming"),
+                ('interest', 'Compound and Continuous Interest')]),
     # v12.8.X: accumulation only; the Increasing, Decreasing and Extreme Amounts type is retired
     dict(topic='rate-problems', page='calculator-practice', source='practice', calc='calculator', slug='rate-problems', analytics_slug='rate-problems_calculator',
          title='Rate Problems', label='Calculator Practice', engine_id='ap_topic_rate_problems_calculator', scripts=['/assets/unit5-rate.js'],
          description='Calculator active. Set up each accumulation integral, evaluate it with the calculator, include the starting amount when it matters, and round to three decimal places.',
-         modes=[('mixed', 'Mixed Calculator Practice')] + RATE_MODES[1:]),
+         modes=RATE_MODES),
     dict(topic='rate-problems', page='non-calculator-practice', source='practice', calc='non-calculator', slug='rate-problems', analytics_slug='rate-problems_noncalculator',
          title='Rate Problems', label='Non-Calculator Practice', engine_id='ap_topic_rate_problems_noncalculator', scripts=['/assets/unit5-rate.js'],
          description='No calculator. Integrate polynomial, square-root, trigonometric and reciprocal rates exactly, include the starting amount when it matters, and give exact answers.',
-         modes=[('mixed', 'Mixed Non-Calculator Practice')] + RATE_MODES[1:]),
+         modes=RATE_MODES),
     dict(topic='slope-fields', page='practice', new=True, slug='slope-fields', title='Slope Fields', engine_id='ap_topic_slope_fields', scripts=['/assets/unit5-slope-fields.js'],
          description='Draw slope segments and solution curves with a mouse, pen or finger (or type slopes and points instead), match fields with equations, and analyze slopes. After you check a drawing, the correct segments or curve appear on the same grid.',
-         modes=[('mixed', 'Mixed Practice'), ('draw_segments', 'Draw Slope Segments'), ('draw_curve', 'Draw Solution Curves'), ('match', 'Match Fields, Equations and Curves'), ('analyze', 'Analyze Slopes and Solutions')]),
+         modes=[('mixed', 'All Problems'), ('draw_segments', 'Draw Slope Segments'), ('draw_curve', 'Draw Solution Curves'), ('match', 'Match Fields, Equations and Curves'), ('analyze', 'Analyze Slopes and Solutions')]),
     dict(topic='comprehensive-review', page='calculator-practice', source='assignment-practice', calc='calculator', slug='unit5-comprehensive-review',
          analytics_slug='unit5_assignment_review_calculator', title='Differential Equations', label='Calculator Review', engine_id='ap_unit5_assignment_review_calculator',
          scripts=REVIEW_SCRIPTS,
          description='Calculator active. A review of the calculator topics: Basic First-Order Differential Equations, Motion, Growth and Decay, and Rate Problems (weighted 2 : 2 : 1 : 1), from short skills to a smaller share of challenging problems.',
-         modes=[('mixed', 'Mixed Calculator Review')] + [m for m in REVIEW_TOPICS if m[0] in ('basic', 'motion', 'growth', 'rate')] + REVIEW_TIERS),
+         modes=REVIEW_MODES),
     dict(topic='comprehensive-review', page='non-calculator-practice', source='assignment-practice', calc='non-calculator', slug='unit5-comprehensive-review',
          analytics_slug='unit5_assignment_review_noncalculator', title='Differential Equations', label='Non-Calculator Review', engine_id='ap_unit5_assignment_review_noncalculator',
          scripts=REVIEW_SCRIPTS,
          description='No calculator. A review of Basic First-Order Differential Equations, Motion, Slope Fields (including drawing), Separable Differential Equations and Rate Problems (weighted 2 : 2 : 2 : 2 : 1), from short skills to a smaller share of challenging problems.',
-         modes=[('mixed', 'Mixed Non-Calculator Review')] + [m for m in REVIEW_TOPICS if m[0] in ('basic', 'motion', 'slope', 'separable', 'rate')] + REVIEW_TIERS),
+         modes=REVIEW_MODES),
 ]
 
 TEMPLATE = U5 / 'basic-first-order-differential-equations' / 'practice' / 'index.html'
@@ -192,6 +191,9 @@ def set_identity(text, cfg):
     if n != 1:
         raise SystemExit(f"{cfg['topic']}/{cfg['page']}: structured data not found")
     text = re.sub(r'(BM_ANALYTICS_CONFIG=\{[^}]*engineId:")[^"]*(")', lambda m: m.group(1) + cfg['engine_id'] + m.group(2), text, count=1)
+    # v12.8.Y: the context line names the topic (the review pages had inherited "Differential Equations Mixed")
+    text = re.sub(r'(data-batchmath-seo-context="11">Use this interactive AP Calculus AB practice to work on )[^<]*?( with immediate answer checking\.)',
+                  lambda m: m.group(1) + html.escape(cfg['title'], quote=False) + m.group(2), text, count=1)
     return text
 
 def launch_row(topic):

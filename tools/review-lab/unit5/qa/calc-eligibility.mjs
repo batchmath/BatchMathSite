@@ -8,12 +8,16 @@
 import fs from 'node:fs';import {load,ROOT} from './lib.mjs';
 const N=+(process.argv[2]||1500);
 const U5=`${ROOT}/ap-calculus/unit-5-differential-equations/topics`;
-const pages=[];
+const pages=[];let redirects=0;
 for(const topic of fs.readdirSync(U5))for(const pg of ['practice','calculator-practice','non-calculator-practice','assignment-practice']){
  const f=`${U5}/${topic}/${pg}/index.html`;if(!fs.existsSync(f))continue;const h=fs.readFileSync(f,'utf8');
+ // v12.8.Y: a retired combined page is a redirect with no practice engine (checked by y-menus.mjs)
+ if(!/window\.BM_TOPIC_PRACTICE=/.test(h)){redirects++;continue;}
  const conf=JSON.parse(h.match(/window\.BM_TOPIC_PRACTICE=(\{.*?\});/)[1]);
  const scripts=[...h.matchAll(/<script src="\/assets\/(unit5-(?!core|answers|ui)[a-z-]+\.js)"/g)].map(m=>m[1]);
- const modes=[...h.match(/<select id="u5Mode"[^>]*>(.*?)<\/select>/)[1].matchAll(/<option value="([^"]+)"[^>]*>([^<]*)/g)].map(m=>[m[1],m[2]]);
+ // v12.8.Y: a page without a dropdown draws from its whole pool, checked as the default choice
+ const sel=h.match(/<select id="u5Mode"[^>]*>(.*?)<\/select>/);
+ const modes=sel?[...sel[1].matchAll(/<option value="([^"]+)"[^>]*>([^<]*)/g)].map(m=>[m[1],m[2]]):[['mixed','(no dropdown)']];
  const desc=(h.match(/<p class="topic-description">(.*?)<\/p>/)||[])[1]||'',note=/class="calculator-active-note"/.test(h);
  pages.push({rel:`${topic}/${pg}`,conf,scripts,modes,desc,note});
 }
@@ -35,7 +39,9 @@ for(const pg of pages){
   for(let i=1;i<=N;i++){L.seed(i*6007+mode.length);let p;try{p=gen({mode,modes:{u5Mode:mode},u5Mode:mode});}catch(e){errs++;if(errs<3)fails.push(`${pg.rel} [${mode}] generation error: ${e.message}`);continue;}
    if(calc&&p.calculatorActive!==(calc==='calculator'))leaks++;
    const f=p.unit5Meta.family;fam[f]=(fam[f]||0)+1;tiers[p.unit5Meta.tier]=(tiers[p.unit5Meta.tier]||0)+1;
-   if(eng&&mode!=='mixed'){const F=eng.FAMILIES[f];if(!(f===mode||F?.group===mode))stray++;}}
+   // v12.8.Y: a Practice Type is one of the engine's MODES (families, tiers, and any test the problem must pass)
+   if(eng&&mode!=='mixed'){const F=eng.FAMILIES[f],M=eng.MODES?.[mode];
+    const inMode=M?f in M.families&&(!Array.isArray(M.families[f])||M.families[f].includes(p.unit5Meta.tier))&&(!M.accept||M.accept(p)):f===mode||F?.group===mode;if(!inMode)stray++;}}
   if(leaks)fails.push(`${pg.rel} [${mode}]: ${leaks} problems of the wrong calculator kind`);
   if(stray)fails.push(`${pg.rel} [${mode}]: ${stray} problems outside the chosen Practice Type`);
   let dist='';
@@ -59,5 +65,5 @@ for(const pg of pages){
  }
 }
 console.log(lines.join('\n'));
-console.log(`pages ${pages.length}; Practice Type options ${pages.reduce((s,p)=>s+p.modes.length,0)}; problems ${N} per option; failures ${fails.length}`);
+console.log(`pages ${pages.length} (redirects without an engine ${redirects}); Practice Type options ${pages.reduce((s,p)=>s+p.modes.length,0)}; problems ${N} per option; failures ${fails.length}`);
 if(fails.length)console.log(fails.slice(0,30).join('\n'));process.exitCode=fails.length?1:0;

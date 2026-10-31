@@ -419,10 +419,16 @@ const FAMILIES={
  delayed_piecewise:{weight:15,tiers:['foundational','intermediate','challenging'],make:famDelayed,...BOTH},
  multipart:{weight:10,tiers:['foundational','intermediate','challenging'],make:famMulti,...BOTH},
 };
-const engine=U.makeEngine('rate',FAMILIES);
+// v12.8.Y Practice Types (same on both pages); connected multi-part problems appear in All Problems
+const MODES={
+ one_rate:{families:{one_rate:true}},
+ initial_net_change:{families:{initial_change:true,in_out:true}},
+ delayed_piecewise:{families:{delayed_piecewise:true}},
+};
+const engine=U.makeEngine('rate',FAMILIES,MODES);
 U.profile('unit5-rate-exact',{parentheses:true}); // these exact answers are whole numbers (even coefficients, multiples of 3 under a root)
 U.profile('unit5-rate-exact-pi',{fraction:true,arithmetic:true,parentheses:true,constants:['pi']});
 U.profile('unit5-rate-exact-ln',{fraction:true,arithmetic:true,parentheses:true,logarithm:true});
-window.BatchMathUnit5Rate=Object.freeze({make:engine.make,FAMILIES,weights:engine.weights,shape,SHAPES});
+window.BatchMathUnit5Rate=Object.freeze({make:engine.make,FAMILIES,MODES,weights:engine.weights,shape,SHAPES});
 U.register('rate-problems',o=>engine.make(o||{}));
 })();

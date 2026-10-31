@@ -5,13 +5,12 @@
 //   fraction template is seen with every coefficient (1, -1, 2, 3, -2, 4).
 // - Against final X (same seed, same family and tier): the answer value is identical, f' evaluates to the same
 //   numbers, and the question and explanation are X's with only the derivative's TeX replaced.
-// Usage: node tools/review-lab/unit5/qa/y-basic-calc.mjs <X tree> [N per tier]
+// Usage: node tools/review-lab/unit5/qa/y-basic-calc.mjs [N per tier] [X tree]   (the X comparison needs an X tree)
 import path from 'node:path';import {load,keypadForm} from './lib.mjs';
-const [XTREE,NS='1500']=process.argv.slice(2);const N=+NS;
-if(!XTREE){console.error('usage: y-basic-calc.mjs <X tree> [N]');process.exit(2);}
-const XL=(await import(path.join(path.resolve(XTREE),'tools/review-lab/unit5/qa/lib.mjs'))).load(['unit5-basic.js']);
+const [NS='1500',XTREE]=process.argv.slice(2);const N=+NS;
+const XL=XTREE?(await import(path.join(path.resolve(XTREE),'tools/review-lab/unit5/qa/lib.mjs'))).load(['unit5-basic.js']):null;
 const YL=load(['unit5-basic.js','unit5-motion.js','unit5-growth.js','unit5-rate.js','unit5-slope-fields.js','unit5-separable.js','unit5-review.js']);
-const YB=YL.W.BatchMathUnit5Basic,XB=XL.W.BatchMathUnit5Basic,R=YL.W.BatchMathUnit5Review,A=YL.A;
+const YB=YL.W.BatchMathUnit5Basic,XB=XL?.W.BatchMathUnit5Basic,R=YL.W.BatchMathUnit5Review,A=YL.A;
 const fails=[];const fail=s=>{if(fails.length<40)fails.push(s);fails.n=(fails.n||0)+1;};
 const TIERS=['foundational','intermediate','challenging'];
 const ADJ=/\d\s*\\(?:d|t)?frac/; // a number directly before a stacked fraction
@@ -26,11 +25,14 @@ let review=0;for(let i=1;i<=6*N;i++){YL.seed(i*389);const p=R.make({calc:'calcul
 // 2 and 3. fraction coefficients, and the comparison with X
 const combos=new Set();let compared=0,fracProblems=0;
 for(const tier of TIERS)for(let i=1;i<=N;i++){const seed=i*977+tier.length;
- YL.seed(seed);const y=YB.make({calc:'calculator',family:'calc_value',tier});XL.seed(seed);const x=XB.make({calc:'calculator',family:'calc_value',tier});
+ YL.seed(seed);const y=YB.make({calc:'calculator',family:'calc_value',tier});let x=y;if(XL){XL.seed(seed);x=XB.make({calc:'calculator',family:'calc_value',tier});}
  const texts=[y.questionHtml,...y.parts.map(q=>q.explanation)];
  if(texts.some(t=>ADJ.test(t)))fail(`${y.id}: number before a fraction: ${texts.find(t=>ADJ.test(t)).match(/.{0,40}\d\s*\\(?:d|t)?frac.{0,30}/)[0]}`);
  const [fy,vy,dy]=formula(y),[,,dx]=formula(x);if(!dy||!dx){fail(`${y.id}: derivative not found`);continue;}
- if(/\\frac/.test(dx)&&dx.replace(/[+-]\d*[xt]$/,'').match(/^-?(\d*)\\frac/)){fracProblems++;const c=(dx.match(/^(-?\d*)\\frac/)||[])[1];const tmpl=dx.replace(/^-?\d*/,'').replace(/[+-]\d*[xt]$/,'').replace(/\b[xt]\b|(?<=\{)[xt](?=[}^])|(?<=\\(?:sin|cos|ln) )[xt]/g,'v');combos.add(`${tmpl} × ${c===''?'1':c==='-'?'-1':c}`);}
+ // the template and coefficient, read from Y's TeX: [-]\frac{[c]numerator}{denominator}[ + linear term]
+ {const lead=dy.replace(/[+-]\d*[xt]$/,''),mm=lead.match(/^(-?)\\frac\{(\d*)(.*)\}\{(.*)\}$/);
+  if(mm){fracProblems++;const [,sg,c,num,den]=mm;const coef=(sg?-1:1)*(num===''?+c:(c===''?1:+c));const tmpl=`\\frac{${num===''?'1':num}}{${den}}`.replace(new RegExp(`(?<![a-z\\\\])${vy}(?![a-z])`,'g'),'v');combos.add(`${tmpl} × ${coef}`);}}
+ if(!XL){compared--;}
  if(y.parts[0].answer.value!==x.parts[0].answer.value)fail(`${y.id}: answer ${y.parts[0].answer.value} vs X ${x.parts[0].answer.value}`);
  // f' evaluates to the same numbers as X's
  try{const ty=A.parse(keypadForm(dy),vy),tx=A.parse(keypadForm(dx),vy);

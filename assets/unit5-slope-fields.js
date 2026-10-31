@@ -288,7 +288,9 @@ const FAMILIES={
  match:{weight:25,tiers:['foundational','intermediate','challenging'],make:famMatch,calculator:false},
  analyze:{weight:25,tiers:['foundational','intermediate','challenging'],make:famAnalysis,calculator:false},
 };
-const engine=U.makeEngine('slope',FAMILIES);
+// v12.8.Y Practice Types: the four families (only the default choice was renamed, to All Problems)
+const MODES={draw_segments:{families:{draw_segments:true}},draw_curve:{families:{draw_curve:true}},match:{families:{match:true}},analyze:{families:{analyze:true}}};
+const engine=U.makeEngine('slope',FAMILIES,MODES);
 U.profile('unit5-slope-exact',{fraction:true,parentheses:true});
 U.profile('unit5-slope-line',{fraction:true,exponent:true,variables:['x'],parentheses:true});
 U.profile('unit5-slope-list',{list:true});
@@ -399,7 +401,7 @@ function curveControl(part,panel,done){
  return{svg};
 }
 
-window.BatchMathUnit5Slope=Object.freeze({make:engine.make,FAMILIES,weights:engine.weights,ODES,truthAt,solve,gradeSegments,gradeCurve,angleOf,angDiff,boardSVG,TOL_SEG,CURVE,win});
+window.BatchMathUnit5Slope=Object.freeze({make:engine.make,FAMILIES,MODES,weights:engine.weights,ODES,truthAt,solve,gradeSegments,gradeCurve,angleOf,angDiff,boardSVG,TOL_SEG,CURVE,win});
 window.BatchMathUnit5SlopeUI=Object.freeze({controls:{'slope-segments':segmentsControl,'solution-curve':curveControl},toClient,toMath});
 U.register('slope-fields',o=>engine.make(o||{}));
 })();

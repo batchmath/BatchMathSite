@@ -4,8 +4,8 @@
    difficulty — foundational 40%, intermediate 40%, challenging 20%.
    The topic is chosen first and the difficulty separately; the topic's own engine then builds a problem of that
    difficulty with its usual families, input methods and explanations (Slope Fields keeps its 50% drawing /
-   50% matching and analysis split). Practice Type can fix one topic or one difficulty; the other distribution
-   still applies. v12.8.X: the Calculator Review (BM_TOPIC_PRACTICE.calculator) uses Basic, Motion, Growth and Rate
+   50% matching and analysis split). Practice Type can fix one difficulty; the topic distribution still applies
+   (v12.8.Y: topics are no longer a Practice Type; each topic has its own practice pages). v12.8.X: the Calculator Review (BM_TOPIC_PRACTICE.calculator) uses Basic, Motion, Growth and Rate
    (weights 20:20:10:10, about 33/33/17/17%) and the Non-Calculator Review uses Basic, Motion, Slope Fields,
    Separable and Rate (20:20:20:20:10, about 22/22/22/22/11%), with the same 40/40/20 difficulty. */
 (function(){
@@ -38,9 +38,10 @@ function make(opts={}){
  if(opts.calc&&!calc)throw Error(`unit5-review: unknown calculator mode ${opts.calc}`);
  const pool=topicsFor(calc);
  const mode=opts.mode&&opts.mode!=='mixed'?opts.mode:null;
- const fixedTopic=TOPICS.find(t=>t.key===mode),fixedTier=TIER_WEIGHTS[mode]?mode:null;
- if(fixedTopic&&!pool.includes(fixedTopic))throw Error(`unit5-review: ${fixedTopic.label} has no ${calc} problems`);
- const topicKey=fixedTopic?fixedTopic.key:U.weighted(Object.fromEntries(pool.map(t=>[t.key,t.weight])));
+ // v12.8.Y: only a difficulty can be chosen; any other value (such as a former topic choice) gives all review problems
+ const fixedTier=TIER_WEIGHTS[mode]?mode:null;
+ if(mode&&!fixedTier)console.warn(`unit5 review: Practice Type "${mode}" is not offered; using all review problems`);
+ const topicKey=U.weighted(Object.fromEntries(pool.map(t=>[t.key,t.weight])));
  const tier=fixedTier||U.weighted(TIER_WEIGHTS);
  const topic=TOPICS.find(t=>t.key===topicKey),engine=topic.engine();
  if(!engine)throw Error(`unit5-review: the ${topic.label} engine is not loaded`);

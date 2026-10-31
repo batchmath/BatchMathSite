@@ -504,12 +504,14 @@ const FAMILIES={
  exp_y:{weight:15,tiers:['intermediate','challenging'],make:famExpY,calculator:false},
  radical_branch:{weight:15,tiers:['intermediate','challenging'],make:famBranch,calculator:false},
 };
-const engine=U.makeEngine('separable',FAMILIES);
+// v12.8.Y: no Practice Type menu; every problem draws from all six families
+const MODES={};
+const engine=U.makeEngine('separable',FAMILIES,MODES);
 const fns=[['sin','sin'],['cos','cos'],['sin⁻¹','asin'],['cos⁻¹','acos'],['tan⁻¹','atan'],['|u|','abs']];
 U.profile('unit5-sep-x',{fraction:true,radical:true,cubeRoot:true,exponent:true,logarithm:true,constants:['e'],variables:['x'],functions:fns,arithmetic:true,parentheses:true});
 U.profile('unit5-sep-t',{fraction:true,radical:true,cubeRoot:true,exponent:true,logarithm:true,constants:['e'],variables:['t'],functions:fns,arithmetic:true,parentheses:true});
 U.profile('unit5-sep-theta',{fraction:true,logarithm:true,variables:['θ'],arithmetic:true,parentheses:true});
 U.profile('unit5-sep-interval',{fraction:true,radical:true,exponent:true,logarithm:true,constants:['pi','e'],functions:[['sin⁻¹','asin']],arithmetic:true,parentheses:true,list:true,interval:true,brackets:false,union:false,infinity:true});
-window.BatchMathUnit5Separable=Object.freeze({make:engine.make,FAMILIES,weights:engine.weights});
+window.BatchMathUnit5Separable=Object.freeze({make:engine.make,FAMILIES,MODES,weights:engine.weights});
 U.register('separable-differential-equations',o=>engine.make(o||{}));
 })();

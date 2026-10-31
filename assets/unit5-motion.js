@@ -430,7 +430,17 @@ const FAMILIES={
  calc_direction:{weight:3,group:'calculator',tiers:['foundational','intermediate','challenging'],make:famCalcDirection,calculator:true},
  multipart:{weight:15,tiers:['foundational','intermediate','challenging'],make:famMulti,calculator:false},
 };
-const engine=U.makeEngine('motion',FAMILIES);
+// v12.8.Y Practice Types: Non-Calculator (the three single-topic families; multi-part problems only in All Problems)
+// and Calculator (position, total distance, and speed / acceleration / direction / rest)
+const MODES={
+ recover:{families:{recover:true}},
+ displacement_distance:{families:{displacement_distance:true}},
+ direction_speed:{families:{direction_speed:true}},
+ position_displacement:{families:{calc_position:true}},
+ total_distance:{families:{calc_distance:true}},
+ motion_analysis:{families:{calc_speed:true,calc_direction:true}},
+};
+const engine=U.makeEngine('motion',FAMILIES,MODES);
 U.profile('unit5-motion-value',{fraction:true,parentheses:true});
 U.profile('unit5-motion-value-e',{exponent:true,constants:['e'],arithmetic:true,parentheses:true});
 U.profile('unit5-motion-value-r',{fraction:true,radical:true,arithmetic:true,parentheses:true});
@@ -439,6 +449,6 @@ U.profile('unit5-motion-list',{list:true});
 U.profile('unit5-motion-list-dec',{list:true,decimal:true});
 U.profile('unit5-motion-intervals',{parentheses:true,list:true,interval:true,brackets:false});
 U.profile('unit5-motion-intervals-dec',{decimal:true,parentheses:true,list:true,interval:true,brackets:false});
-window.BatchMathUnit5Motion=Object.freeze({make:engine.make,FAMILIES,weights:engine.weights});
+window.BatchMathUnit5Motion=Object.freeze({make:engine.make,FAMILIES,MODES,weights:engine.weights});
 U.register('motion-problems',o=>engine.make(o||{}));
 })();

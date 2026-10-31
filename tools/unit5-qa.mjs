@@ -1,4 +1,5 @@
-// v12.8.W Unit 5 release QA without a browser: every engine's generation and answer checks, the slope-field
+// v12.8.W Unit 5 release QA without a browser (v12.8.Y: the Mixed Review audit is retired with its page; the Y page,
+// menu and Basic Calculator checks are added; with an X tree, y-menus, y-basic-calc and y-motion also compare with X): every engine's generation and answer checks, the slope-field
 // grading cases, the independent Rate, Motion, Growth and Slope Fields recomputations, the Comprehensive Review
 // distribution audit, and the keypad audit (every key an answer needs is on its keypad).
 // The SymPy check of Basic and Separable is separate (npm run qa:unit5-sympy; needs Python with sympy).
@@ -21,7 +22,6 @@ const runs=[
  ['Motion calculator independent recomputation (v12.8.X)',[QA+'verify-motion.mjs',n(1500),'mixed','calculator']],
  ['Growth independent recomputation',[QA+'verify-growth.mjs',n(1500)]],
  ['Slope Fields independent recomputation',[QA+'verify-slope.mjs',n(600)]],
- ['Comprehensive Review audit (Mixed Review)',[QA+'review-audit.mjs',n(4000)]],
  ['Calculator Review audit (v12.8.X)',[QA+'review-audit.mjs',n(4000),'calculator']],
  ['Non-Calculator Review audit (v12.8.X)',[QA+'review-audit.mjs',n(4000),'non-calculator']],
  ['Keypad coverage audit',[QA+'keypad-audit.mjs',n(1000)]],
@@ -29,6 +29,8 @@ const runs=[
  ['Calculator / non-calculator eligibility (v12.8.X)',[QA+'calc-eligibility.mjs',n(800)]],
  ['Basic calculator independent recomputation (v12.8.X)',[QA+'verify-basic-calc.mjs',n(1500)]],
  ['Separable exponentiation chains (v12.8.X)',[QA+'verify-sep-exp.mjs',n(2000)]],
+ ['Pages and Practice Type menus (v12.8.Y)',[QA+'y-menus.mjs',n(600)]],
+ ['Basic Calculator: one family, fraction coefficients (v12.8.Y)',[QA+'y-basic-calc.mjs',n(800)]],
 ];
 // tools/review-lab is developer-only and left out of the site package (export-ignore); skip there
 if(!fs.existsSync(QA+'smoke.mjs')){console.log('Unit 5 QA scripts live in tools/review-lab, which the site package leaves out; skipped.');process.exit(0);}
@@ -36,6 +38,6 @@ let failed=0;
 for(const [name,args] of runs){const r=spawnSync(process.execPath,args,{encoding:'utf8',maxBuffer:64*1024*1024});
  const out=(r.stdout||'')+(r.stderr||'');const smokeFail=/parts \d+ fails (\d+)/.exec(out);
  const ok=r.status===0&&(!smokeFail||smokeFail[1]==='0');if(!ok)failed++;
- const summary=out.trim().split('\n').filter(l=>/fails|issues|disagreements|failed|FAIL|chi-square|topics|difficulty|checks|recomputed|checked|keypad|MISSING|rounding|pages \d+|recomputed|chains/.test(l)).slice(0,4).join(' | ');
+ const summary=out.trim().split('\n').filter(l=>/fails|issues|disagreements|failed|FAIL|chi-square|topics|difficulty|checks|recomputed|checked|keypad|MISSING|rounding|pages \d+|recomputed|chains|failures/.test(l)).slice(0,4).join(' | ');
  console.log(`${ok?'PASS':'FAIL'}  ${name}${summary?`: ${summary}`:''}`);if(!ok)console.log(out.split('\n').slice(-12).join('\n'));}
 console.log(failed?`${failed} Unit 5 check(s) failed`:'All Unit 5 checks passed');process.exitCode=failed?1:0;

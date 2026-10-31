@@ -317,9 +317,15 @@ const FAMILIES={
  interest:{weight:15,tiers:['foundational','intermediate','challenging'],make:famInterest,calculator:true},
  reverse:{weight:10,tiers:['foundational','intermediate','challenging'],make:famReverse,calculator:true},
 };
-const engine=U.makeEngine('growth',FAMILIES);
+// v12.8.Y Practice Types; the find-the-unknown problems (reverse) appear in All Problems
+const MODES={
+ growth_decay:{families:{growth:true,decay:true}},
+ newton:{families:{cooling:true,heating:true}},
+ interest:{families:{interest:true}},
+};
+const engine=U.makeEngine('growth',FAMILIES,MODES);
 U.profile('unit5-growth-exact',{fraction:true,logarithm:true,parentheses:true,decimal:true});
 U.profile('unit5-growth-formula',{fraction:true,exponent:true,logarithm:true,constants:['e'],variables:['t'],parentheses:true,decimal:true});
-window.BatchMathUnit5Growth=Object.freeze({make:engine.make,FAMILIES,weights:engine.weights});
+window.BatchMathUnit5Growth=Object.freeze({make:engine.make,FAMILIES,MODES,weights:engine.weights});
 U.register('exponential-growth-and-decay-interest-newton-s-law-of-cooling',o=>engine.make(o||{}));
 })();
