@@ -74,7 +74,7 @@ function rootLineAxis(){
  const [c,t]=pick([[1,2],[1,3],[1,4],[2,3],[2,4]]),k=t*t-c*t,top=mono(c,Q(1,2)),Y=c*t;
  return region({xs:[{a:bq(0),b:bq(k),top,bot:fconst(0)},{a:bq(k),b:bq(t*t),top,bot:line(1,-k)}],ys:[{a:bq(0),b:bq(Y),right:line(1,k),left:mono(Q(1,c*c),2)}],
   eqs:[`y=${top.tex('x')}`,`y=x-${k}`,'y=0'],text:`the region in the first quadrant bounded above by \\(y=${top.tex('x')}\\) and below by the x-axis and the line \\(y=x-${k}\\)`,
-  bounds:`\\(${top.tex('x')}=x-${k}\\) at \\(x=${t*t}\\) (then \\(y=${Y}\\)); the line meets the x-axis at \\(x=${k}\\). In terms of y the boundaries are \\(x=${mono(Q(1,c*c),2).tex('y')}\\) (left) and \\(x=y+${k}\\) (right) for \\(0\\le y\\le ${Y}\\).`,
+  bounds:`\\(${top.tex('x')}=x-${k}\\) at \\(x=${t*t}\\) (then \\(y=${Y}\\)); the line meets the x-axis at \\(x=${k}\\). In terms of y the left boundary is \\(x=${mono(Q(1,c*c),2).tex('y')}\\) and the right boundary is \\(x=y+${k}\\), for \\(0\\le y\\le ${Y}\\).`,
   xb:[0,t*t],yb:[0,Y],view:{xmin:-1,xmax:t*t+1,ymin:-1,ymax:Y+1},draw:[{f:x=>c*Math.sqrt(x),tex:`y=${top.tex('x')}`,dom:[0,t*t+1]},{f:x=>x-k,tex:`y=x-${k}`,dom:[k-1,t*t+1]}],
   data:{kind:'root_line_axis',dyBetter:true,splitX:k}});
 }
