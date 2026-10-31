@@ -20,7 +20,7 @@ function zeros(v,a,b){const n=20000,out=[];let px=a,pv=v(a);for(let k=1;k<=n;k++
 const deriv=(f,t)=>{const h=1e-4;return(f(t-2*h)-8*f(t-h)+8*f(t+h)-f(t+2*h))/(12*h);};
 function signIntervals(g,a,b,zs){const pts=[a,...zs,b],out=[];for(let i=0;i<pts.length-1;i++)if(g((pts[i]+pts[i+1])/2)>0)out.push([pts[i],pts[i+1]]);
  for(let i=out.length-1;i>0;i--)if(Math.abs(out[i][0]-out[i-1][1])<1e-9){out[i-1][1]=out[i][1];out.splice(i,1);}return out;}
-let checked=0,skipped=0,distExpl=0;const bad=[],skipKinds={};
+let checked=0,skipped=0,distExpl=0,distCalc=0;const bad=[],skipKinds={};
 const close=(x,y,tol)=>Math.abs(x-y)<=tol;
 const MODE=process.argv[3]||undefined,CALC=process.argv[4]||undefined; // optional Practice Type and calculator mode
 for(let i=1;i<=N;i++){L.seed(i*5153);const p=gen({mode:MODE,calc:CALC});const q=p.questionHtml;
@@ -78,8 +78,15 @@ for(let i=1;i<=N;i++){L.seed(i*5153);const p=gen({mode:MODE,calc:CALC});const q=
    // v12.8.X: the rounded answer students must give agrees with the independent value rounded the same way
    if(ok&&ans.places!==undefined&&L.W.BatchMathUnit5Core.fix(val,ans.places)!==L.W.BatchMathUnit5Core.fix(want,ans.places)){ok=false;got=`rounded ${L.W.BatchMathUnit5Core.fix(val,ans.places)} vs ${L.W.BatchMathUnit5Core.fix(want,ans.places)}`;}}
   if(!ok)bad.push(`${p.id} [${kind}] ${pr.slice(0,70)} | engine ${typeof got==='number'?got.toFixed?.(6):got} independent ${JSON.stringify(typeof want==='function'?'fn':want)}`);
+  // v12.8.Y: a calculator total-distance explanation is one integral of speed, ∫|v(t)| dt ≈ the answer, with no zeros,
+  // sign tests or pieces shown
+  if(kind==='distance'&&p.calculatorActive){distCalc++;const e=part.explanation;
+   const form=/\\text\{Total distance\}=\\int_\{0\}\^\{(\d+)\}\\text\{speed\}\\,dt=\\int_\{0\}\^\{\1\}\\left\|v\(t\)\\right\|dt/.test(e);
+   const approx=(e.match(/\\right\|dt\\approx (-?[\d.]+)/)||[])[1];
+   const pieces=/Find the sign|Find where the velocity is zero|\\text\{on\}|Add the distance/.test(e)||(e.match(/\\int_/g)||[]).length!==3;
+   if(!form||pieces||approx!==part.answerTex)bad.push(`${p.id}: calculator distance explanation is not one integral of speed (form ${form}, pieces ${pieces}, value ${approx} vs ${part.answerTex})`);}
   // v12.8.X: the total-distance explanation puts bars exactly on the pieces where v < 0 and its numbers add up
-  if(kind==='distance'&&/Total distance/.test(part.explanation)){distExpl++;
+  else if(kind==='distance'&&/Total distance/.test(part.explanation)){distExpl++;
    const eqs=[...part.explanation.matchAll(/\\\(\\displaystyle (.*?)\\\)<\/div>/g)].map(x=>x[1]);const i=eqs.findIndex(e=>/\\text\{Total distance\}/.test(e));
    const numLine=(eqs[i+1]||'').replace(/^(?:=|\\approx)\s*/,'').replace(/(?:=|\\approx)\s*[^=]*$/,'');
    const terms=numLine.split(/\+(?![^{]*\})/).map(t=>t.trim()).filter(Boolean);
@@ -88,5 +95,5 @@ for(let i=1;i<=N;i++){L.seed(i*5153);const p=gen({mode:MODE,calc:CALC});const q=
    const wrongBar=vals.find(x=>x.abs?x.v>1e-9:x.v<-1e-9);
    if(!vals.length||wrongBar||Math.abs(sum-total)>2e-3*Math.max(1,total))bad.push(`${p.id}: distance explanation ${numLine.slice(0,120)} (bars must be exactly on the negative pieces, sum ${sum} vs ${total})`);
    const symLine=eqs[i];const nAbs=(symLine.match(/\\left\|/g)||[]).length;if(nAbs!==vals.filter(x=>x.abs).length)bad.push(`${p.id}: symbolic and numeric lines disagree on the bars`);}}}
-console.log(`problems ${N}; parts checked independently ${checked}; parts not interpreted ${skipped}; distance explanations checked ${distExpl}; disagreements ${bad.length}`);
+console.log(`problems ${N}; parts checked independently ${checked}; parts not interpreted ${skipped}; distance explanations checked ${distExpl}; calculator speed-integral explanations checked ${distCalc}; disagreements ${bad.length}`);
 console.log('not interpreted by kind:',JSON.stringify(skipKinds));console.log(bad.slice(0,15).join('\n'));process.exitCode=bad.length?1:0;

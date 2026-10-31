@@ -3,7 +3,7 @@
    direction / rest / speed 20%, calculator motion 15% (v12.8.X: position 4, total distance 5, speed 3,
    direction 3, each with all three tiers), connected multi-part problems 15%.
    Total distance is always the integral of |v|: every zero of v in the interval is found and the signed
-   pieces are added in absolute value. Direction comes from the sign of v; speed increases when v and a
+   pieces are added in absolute value (v12.8.Y: calculator explanations show it as one integral of speed). Direction comes from the sign of v; speed increases when v and a
    have the same sign. */
 (function(){
 'use strict';
@@ -323,8 +323,11 @@ function famCalcDistance(tier){
  const V=tier==='foundational'?calcVel(1,2,{poly:true}):tier==='intermediate'?calcVel(1,2):calcVel(2,3);if(!V)return null;
  const T=V.T,D=distanceSteps(V,0,T,V.zs,C0),disp=integrate(V.f,0,T);
  const pDist={prompt:`Find the total distance traveled by the particle from ${m('t=0')} to ${m(`t=${T}`)}. ${DEC3}`,
-  answer:{kind:'numeric',value:D.d,places:3,wrongValues:[{value:disp,note:'That is the displacement. Total distance counts every piece of the motion as positive.'},{value:Math.abs(disp),note:'That is the absolute value of the displacement. Split the interval where the velocity changes sign and add the distance on each piece.'}]},
-  answerTex:fix(D.d),keypadMode:'unit5-number',placeholder:'Decimal answer',explanation:zerosStep(V,C0,T)+D.steps};
+  answer:{kind:'numeric',value:D.d,places:3,wrongValues:[{value:disp,note:'That is the displacement. Total distance counts every piece of the motion as positive.'},{value:Math.abs(disp),note:'That is the absolute value of the displacement. Total distance is the integral of speed: integrate |v(t)| instead.'}]},
+  answerTex:fix(D.d),keypadMode:'unit5-number',placeholder:'Decimal answer',
+  // v12.8.Y: the calculator integrates speed directly; D (split at the zeros of v) still computes the value
+  explanation:step('Total distance is the integral of speed.',`Speed is the absolute value of velocity, ${m('\\left|v(t)\\right|')}, so the calculator evaluates the definite integral of speed numerically.`,
+   `\\text{Total distance}=\\int_{0}^{${T}}\\text{speed}\\,dt=\\int_{0}^{${T}}\\left|v(t)\\right|dt`,`=\\int_{0}^{${T}}\\left|${V.tex}\\right|dt\\approx ${fix(D.d)}`)};
  const parts=[];
  if(tier!=='foundational'&&U.rand()<0.5)parts.push({prompt:`Find the displacement of the particle from ${m('t=0')} to ${m(`t=${T}`)}. ${DEC3}`,answer:{kind:'numeric',value:disp,places:3},answerTex:fix(disp),keypadMode:'unit5-number',placeholder:'Decimal answer',
   explanation:step('Displacement is the integral of velocity.','Positive and negative pieces cancel, so no splitting is needed.',`\\int_{0}^{${T}}\\left(${V.tex}\\right)dt\\approx ${fix(disp)}`)});
