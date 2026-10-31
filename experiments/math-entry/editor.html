@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>BatchMath experimental editor</title>
+  <link rel="stylesheet" href="../../assets/calculus-keypad.css">
+  <link rel="stylesheet" href="comparison.css">
+  <script type="module" src="editor.mjs"></script>
+</head>
+<body class="editor-page">
+  <header class="pane-heading"><span class="option-letter" id="letter"></span><div><h2 id="title">Loading editor…</h2><p id="description"></p></div></header>
+  <main>
+    <div id="loading" class="loading" role="status">Loading the actual BatchMath editor and checkers…</div>
+    <div id="failure" class="asset-failure" role="alert" hidden></div>
+    <div id="font-warning" class="asset-failure" role="alert" hidden></div>
+    <div id="fields"></div>
+    <div id="toolbar" class="edit-toolbar" hidden><button id="undo" type="button">Undo</button><button id="redo" type="button">Redo</button><button id="reset-pane" type="button">Reset this option</button></div>
+    <div id="keypad-host"></div>
+    <div id="reference" hidden inert aria-hidden="true"></div>
+    <p id="bridge-message" class="small-note" aria-live="polite"></p>
+    <div class="check-row"><button id="check" class="primary" type="button" disabled>Check answer</button><span id="summary" role="status">Experiment only · no score or progress is saved.</span></div>
+    <details id="diagnostic-details"><summary>Answer representation &amp; grading details</summary><div id="diagnostics"></div></details>
+    <details class="differences"><summary>What differs in this option?</summary><div id="differences"></div></details>
+  </main>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Math Entry Lab · BatchMath</title>
+  <link rel="stylesheet" href="comparison.css">
+  <script type="module" src="comparison.mjs"></script>
+</head>
+<body>
+  <div class="top-rule"></div>
+  <header class="site-header"><a class="wordmark" href="./" aria-label="BatchMath math entry experiment">Batch<span>Math</span></a><span class="experiment-badge">EXPERIMENT · NO STUDENT PROGRESS</span><a class="guide-link" href="README.md">Experiment notes ↗</a></header>
+  <main class="page">
+    <section class="intro"><p class="eyebrow">MATH ENTRY LAB</p><h1>Different editors.<br><span>The same starting math.</span></h1><p class="lead">Try the current BatchMath editor, add a live preview, or edit typeset mathematics with MathLive. Type, use the keypad, and decide what feels right.</p></section>
+    <section class="example-picker" aria-label="Comparison controls">
+      <div class="example-select"><label for="example">Choose an example</label><select id="example"></select></div>
+      <button class="primary" id="load" type="button">Reload all three</button>
+      <div class="view-select"><label for="view">Show</label><select id="view"><option value="all">All three options</option value="A">A · Existing editor</option><option value="B">B · Editor + preview</option><option value="C">C · MathLive</option></select></div>
+      <p id="prompt" class="example-prompt"></p>
+    </section>
+    <div class="try-bar"><span><strong>Try it:</strong> <kbd>/</kbd> fraction</span><span><kbd>^</kbd> exponent</span><span><kbd>→</kbd> leave a structure</span><span><kbd>Ctrl</kbd> + <kbd>Z</kbd> undo</span><span>Click the scratch field to switch keypad targets.</span></div>
+    <section class="panes" id="panes" data-view="all" aria-label="Interactive editor comparison">
+      <article class="pane" data-option="A"><iframe id="frame-A" title="Option A: actual existing BatchMath editor" src="editor.html?option=A&amp;fixture=fraction"></iframe></article>
+      <article class="pane" data-option="B"><iframe id="frame-B" title="Option B: existing BatchMath editor with live MathJax preview" src="editor.html?option=B&amp;fixture=fraction"></iframe></article>
+      <article class="pane candidate" data-option="C"><iframe id="frame-C" title="Option C: actual MathLive editor with BatchMath keypad" src="editor.html?option=C&amp;fixture=fraction"></iframe></article>
+    </section>
+    <section class="about-lab"><h2>A fair comparison, with visible limits.</h2><p>Each option loads equivalent mathematics, then edits independently. Check uses representative existing BatchMath graders. Open an option’s details to inspect its answer string or known differences. Ordered pairs and geometric sequences demonstrate editing only; no replacement grader is invented for them.</p><p>MathLive has its own navigation, deletion, and undo behavior. This experiment tests a separate keypad command bridge; it does not change the production editors. All library assets are included locally. Nothing here saves a score, sends analytics, or registers a service worker.</p></section>
+  </main>
+  <footer class="site-footer"><span>BatchMath · Experimental comparison</span><span>Production baseline v12.8.Y · MathLive 0.111.1 · MathJax 4.1.3</span></footer>
+</body>
+</html>
