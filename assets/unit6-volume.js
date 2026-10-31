@@ -9,7 +9,8 @@
    dy; shells the other way round)
      disk_basic  regions touching the axis: disks about the x-axis or the y-axis (exact)
      washer      washers about the axes and about shifted lines y = c and x = c; radii measured from the axis
-     shells      vertical shells (dx) about vertical lines, horizontal shells (dy) about horizontal lines
+     shells      vertical shells (dx) about vertical lines, horizontal shells (dy) about horizontal lines; some
+                 intermediate problems ask for the radius r and the height h first
      two_axes    one region, two rotations: a washer setup and a shell setup about different lines, then a volume
      trig_solid  y = A + sin x on [0, pi/2] about y = -c or y = d (assignment: answers with pi^2)
      solid_calc  calculator: 1 + ln x with x^2 - 1, e^{kx} with the axes, 2 ln(x+1) with a line, cos x with x^2; the
@@ -118,8 +119,13 @@ function famWasher(tier){
  return one('Answer each part.',parts,{engine:'solids',family:'washer',tier,id:`wash-${R.eqs.join('|')}-${axis.type}${axis.c}-${parts.length}`,context:solidContext(R,axis),formulas:R.eqs,extra:figure(R,{axis,label:'Region R and the axis of rotation'}),data:{method:'washer',axis:`${axis.type}=${axis.c}`,region:R.data.kind}});
 }
 function famShell(tier){
- const {R,axis,T,e}=solidPick('shell'),v=methodVar('shell',axis);
- const parts=[integralPart('Using cylindrical shells, write an integral expression for the volume of the solid.',T,W.boundsStep(R)+W.shellWork(R,axis,T),{variable:v,methodNote:`That integral has the right value, but shells about this axis are integrated with respect to ${v}.`}),exactPart('Find the volume of the solid.',exactAnswer(e),W.evalWork(T))];
+ const {R,axis,T,e}=solidPick('shell'),v=methodVar('shell',axis),work=W.boundsStep(R)+W.shellWork(R,axis,T);
+ // intermediate problems with one integral may ask for the radius and the height first (as the washer problems ask for R and r)
+ const typed=tier==='intermediate'&&T.length===1&&pick([true,false]),t=T[0],dom=[t.a.v,t.b.v];
+ const parts=typed?[exprPart(`Find the radius \\(r(${v})\\) of a shell, measured from the axis of rotation.`,`r(${v})=`,t.rad,v,dom,work.split('Set up the volume.')[0].replace(/<div class="u4-work-step"><strong>$/,''),{notes:[{expr:t.h,note:'That is the height of the shell; the radius is the distance from the axis.'}]}),
+   exprPart(`Find the height \\(h(${v})\\) of a shell.`,`h(${v})=`,t.h,v,dom,'',{notes:[{expr:t.rad,note:'That is the radius; the height is '+(v==='x'?'top minus bottom.':'right minus left.')}]}),
+   exactPart('Find the volume of the solid.',exactAnswer(e),W.shellWork(R,axis,T)+W.evalWork(T))]
+  :[integralPart('Using cylindrical shells, write an integral expression for the volume of the solid.',T,work,{variable:v,methodNote:`That integral has the right value, but shells about this axis are integrated with respect to ${v}.`}),exactPart('Find the volume of the solid.',exactAnswer(e),W.evalWork(T))];
  return one('Answer each part.',parts,{engine:'solids',family:'shells',tier,id:`shell-${R.eqs.join('|')}-${axis.type}${axis.c}`,context:solidContext(R,axis),formulas:R.eqs,extra:figure(R,{axis,label:'Region R and the axis of rotation'}),data:{method:'shell',axis:`${axis.type}=${axis.c}`,region:R.data.kind}});
 }
 function famTwoAxes(tier){ // assignment: the same region about several lines, with washers and with shells
