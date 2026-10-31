@@ -1,0 +1,116 @@
+{
+  "browser": "154.0.8037.57",
+  "mathjax": true,
+  "gradingPairs": 69,
+  "results": [
+    {
+      "name": "default and explicit legacy modes use one visible editor/keypad; all 20 local fonts load",
+      "passed": true
+    },
+    {
+      "name": "real MathJax renders the actual Chain Rule question and worked feedback",
+      "passed": true
+    },
+    {
+      "name": "actual selector simple: correct, wrong, unsimplified and incomplete grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "actual selector multiple: correct, wrong, unsimplified and incomplete grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "actual selector other: correct, wrong, unsimplified and incomplete grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "actual selector all: correct, wrong, unsimplified and incomplete grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "every one of the 51 actual Chain Rule generator families grades correctly through both editor paths",
+      "passed": true
+    },
+    {
+      "name": "complete answers using only keypad clicks: compositions, trig powers, exponentials, sec/csc, product and quotient",
+      "passed": true
+    },
+    {
+      "name": "all necessary function keys insert the intended call; irrelevant inverse trig/pi keys are absent",
+      "passed": true
+    },
+    {
+      "name": "alternate cube-root answer notation retains meaning for an actual generated question",
+      "passed": true
+    },
+    {
+      "name": "missing inner derivative factor stays wrong in an actual sine-composition question",
+      "passed": true
+    },
+    {
+      "name": "blank is non-consuming; unsupported cannot submit a previous valid answer",
+      "passed": true
+    },
+    {
+      "name": "first-key focus, native slash, fraction movement, exponent exit and nested insertion",
+      "passed": true
+    },
+    {
+      "name": "selection, structural deletion, cursor movement, undo and redo",
+      "passed": true
+    },
+    {
+      "name": "native copy/paste and legacy structured clipboard preserve nested content",
+      "passed": true
+    },
+    {
+      "name": "one Enter action, held-key protection, blur/change isolation, reset focus and no stale history across consecutive questions",
+      "passed": true
+    },
+    {
+      "name": "Practice Type changes reset the field and preserve the actual available family pools",
+      "passed": true
+    },
+    {
+      "name": "long nested expression and keypad layout at 375px",
+      "passed": true
+    },
+    {
+      "name": "long nested expression and keypad layout at 1600px",
+      "passed": true
+    },
+    {
+      "name": "explicit MathLive mode works on the uninstrumented actual page",
+      "passed": true
+    },
+    {
+      "name": "missing runtime preserves a usable legacy answer",
+      "passed": true
+    },
+    {
+      "name": "missing fonts preserves a usable legacy answer",
+      "passed": true
+    },
+    {
+      "name": "missing stylesheet preserves a usable legacy answer",
+      "passed": true
+    },
+    {
+      "name": "late successful startup imports a legacy answer, and refuses unsupported import without losing it",
+      "passed": true
+    },
+    {
+      "name": "runtime command failure restores current nested answer into the real legacy editor",
+      "passed": true
+    },
+    {
+      "name": "unsupported MathLive input is retained exactly in a recovery copy on runtime failure",
+      "passed": true
+    },
+    {
+      "name": "unrelated Quotient Rule uses only its existing editor even with the pilot query parameter",
+      "passed": true
+    }
+  ],
+  "pageErrors": []
+}

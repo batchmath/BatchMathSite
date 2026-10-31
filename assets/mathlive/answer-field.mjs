@@ -3,7 +3,7 @@ import {bridgeKeypad,focusMathfield} from './keypad-bridge.mjs';
 
 // A source-input adapter, not an engine: the caller retains generation,
 // submission, scoring and progression. Legacy remains mounted for recovery.
-export async function mountMathLiveAnswer({source,legacy,submit,translate}) {
+export async function mountMathLiveAnswer({source,legacy,submit,translate,label='Derivative'}) {
   const oldEditor=source.previousElementSibling;
   const oldPad=source.closest('.answer-row').nextElementSibling;
   if(!oldEditor?.classList.contains('bm-calc-editor')||!oldPad?.classList.contains('bm-calc-keypad'))throw Error('Legacy editor is not ready.');
@@ -66,7 +66,7 @@ export async function mountMathLiveAnswer({source,legacy,submit,translate}) {
       recovery.readOnly=true;recovery.setAttribute('aria-label','Saved MathLive answer in LaTeX');recovery.value=lastLatex;
       notice.append(' Saved LaTeX:',recovery);
     }
-    console.warn('Power Rule MathLive fallback:',error);
+    console.warn(label+' MathLive fallback:',error);
     if(!source.disabled)original.focus();
   }
   const guard=fn=>(...args)=>{if(!active)return;try{return fn(...args);}catch(error){recover(error);}};

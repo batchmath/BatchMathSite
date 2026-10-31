@@ -1,0 +1,49 @@
+{
+  "baselineCommit": "26ec4f15185c37f9e8843e96a09d583b47babcdf",
+  "results": [
+    {
+      "suite": "calculus-keypad-structure-qa",
+      "exitCode": 0,
+      "classification": "pass"
+    },
+    {
+      "suite": "keyboard-regression-qa",
+      "exitCode": 0,
+      "classification": "pass"
+    },
+    {
+      "suite": "power-rule-family-qa",
+      "exitCode": 0,
+      "classification": "pass"
+    },
+    {
+      "suite": "derivative-topic-enhancements-qa",
+      "exitCode": 0,
+      "classification": "pass"
+    },
+    {
+      "suite": "new-derivative-engines-unit-qa",
+      "exitCode": 0,
+      "classification": "pass"
+    },
+    {
+      "suite": "ftc-checker-regression-qa",
+      "exitCode": 0,
+      "classification": "pass"
+    },
+    {
+      "suite": "fraction-sign-equivalence-qa",
+      "exitCode": 1,
+      "classification": "identical preexisting baseline failure",
+      "baselineFindingsMatch": true,
+      "findings": 1
+    },
+    {
+      "suite": "sitewide-fractional-exponent-qa",
+      "exitCode": 1,
+      "classification": "identical preexisting baseline failure",
+      "baselineFindingsMatch": true,
+      "findings": 22
+    }
+  ]
+}

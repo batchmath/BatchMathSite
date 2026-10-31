@@ -301,10 +301,11 @@ export function batchmathToLatex(source) {
   return{...parsed,latex:parsed.tree?toLatex(parsed.tree):null};
 }
 
-// Power Rule's existing grammar has no root() identifier. Lower nth-root
+// Both pilot derivative checkers have the same restricted expression grammar
+// and no root() identifier. Lower nth-root
 // notation to the same fractional-power notation used by its generators.
 // This is structural translation only: retain the index, arithmetic and slots.
-export function translatePowerRule(source) {
+export function translateDerivative(source) {
   // The existing normalizer intentionally checks only the text after the last
   // equals sign (e.g. f'(x)=...). Preserve that policy without parsing/solving
   // the label on the left. Retain '=' so an empty RHS stays nonempty invalid.
@@ -314,7 +315,7 @@ export function translatePowerRule(source) {
   if(!parsed.tree)return {...parsed,input:null};
   const allowed=new Set(['sin','cos','tan','sec','csc','cot','sqrt','ln','log','abs','exp']);
   function lower(n) {
-    if(n.type==='sym'&&!['x','y','e','pi'].includes(n.name))fail(`The Power Rule checker does not support ${n.name}.`);
+    if(n.type==='sym'&&!['x','y','e','pi'].includes(n.name))fail(`The derivative checker does not support ${n.name}.`);
     if(n.type==='list'||n.type==='binary'&&!['+','-','*','/','^'].includes(n.op))fail('This answer requires an expression.');
     if(n.type==='call') {
       const args=n.args.map(lower);
@@ -322,7 +323,7 @@ export function translatePowerRule(source) {
         const index=n.name==='cbrt'?{type:'num',raw:'3'}:args[0];
         return {type:'binary',op:'^',left:{type:'group',open:'(',close:')',value:args[n.name==='cbrt'?0:1]},right:{type:'fraction',numerator:{type:'num',raw:'1'},denominator:index}};
       }
-      if(!allowed.has(n.name)||args.length!==1)fail(`The Power Rule checker does not support ${n.name}.`);
+      if(!allowed.has(n.name)||args.length!==1)fail(`The derivative checker does not support ${n.name}.`);
       return {...n,args};
     }
     const result={...n};
@@ -332,3 +333,6 @@ export function translatePowerRule(source) {
   try{return {...parsed,input:(equalAt<0?'':'=')+emitBatch(lower(parsed.tree))};}
   catch(e){return {status:'unsupported',message:e.message,input:null};}
 }
+
+// Keep the successful Power Rule pilot's public import stable.
+export {translateDerivative as translatePowerRule};

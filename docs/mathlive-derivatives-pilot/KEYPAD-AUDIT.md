@@ -22,3 +22,22 @@ Verification samples 3,600 actual generated answers across all nine available se
 The old shared-keypad QA explicitly required Power Rule to omit `e` and `π`. That obsolete expectation is updated to require the audited keys, while retaining its unrelated profile/editor tests. A separate scope test proves that the shared keypad implementation and all unrelated profiles are otherwise identical to the successful pilot checkpoint.
 
 Part A checkpoint: 44/44 focused Node tests, 38/38 real Chromium checks, shared-keypad QA (139 reported cases), keyboard/accounting QA (46 cases), and Power Rule family QA (22,500 individual + 12,000 review samples) pass. The original generator/checker script is byte-for-byte unchanged.
+
+## Part B: Chain Rule
+
+The actual page has four modes and one first-derivative answer field. There is no higher-order or multipart workflow to migrate here.
+
+| Mode | Actual active families |
+| --- | --- |
+| Simple | Cube root; power of a linear/quadratic expression; sine of a quadratic; square root of a quadratic |
+| Multiple | Cosine of a power; power of sine; sine of cosine; nested square roots |
+| Product/quotient | All six trig functions composed with a linear/cubic expression, paired with a polynomial or cube-root factor |
+| Everything combined | Those families plus simple exponential/logarithmic questions; exponential-of-sine and sine-squared; logarithm of a square root; tangent of a square root of an exponential; exponential product/quotient factors |
+
+The combined pool has 51 structural family/function combinations: seven simple, eight multiple-layer, and 36 product/quotient × trig function × other-factor combinations. High/low inside polynomials and either numerator orientation in quotients are also sampled. The label says “Full-Unit Review,” but its actual generator still selects these Chain Rule pools; it does not invoke the page's unused inverse-trig or unrelated derivative generators.
+
+The Chain Rule profile retains digits, signs, arithmetic, grouping, fractions, exponents, `x`, `e`, `√` and `ln`. **`sec` and `csc` are added**: differentiating tangent/cotangent/secant/cosecant legitimately produces these functions. All six trig keys are required. The existing `π` button is removed from this profile because no active family uses pi; Power Rule retains its newly required pi key. No inverse trig, base-log, other-variable or special-outcome buttons are added. Natural logarithm entry remains available as requested, although canonical derivatives of the active logarithm questions reduce to rational expressions. Exponentials use `e` plus the exponent key.
+
+Nth roots are accessible as fractional powers with the existing exponent/fraction keys. The shared unchanged checkers do not accept the legacy `root()` template, so neither profile exposes that ungradeable shortcut. MathLive's native nth-root notation remains editable and translates structurally; the browser suite grades an alternate cube-root derivative form for an actual generated problem.
+
+The existing dense-grid builder, key styles, insertion handlers and every unrelated profile remain unchanged. Only the two appropriate profile declarations differ from the original pilot's shared keypad source. Browser tests construct complete actual composition, cube-root, trig-power, exponential, secant-product and cosecant-quotient answers through visible keypad clicks in both editors.

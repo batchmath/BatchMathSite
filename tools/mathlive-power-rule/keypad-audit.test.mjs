@@ -9,8 +9,8 @@ import {parseInput} from '../../assets/mathlive/answer-adapter.mjs';
 test('the shared keypad implementation and unrelated profiles are unchanged from the successful pilot',()=>{
   const before=execFileSync('git',['show','1fdbcbec2550d08dc900aacbc83529389e942e7f:assets/calculus-keypad.js'],{cwd:root,encoding:'utf8'});
   const current=fs.readFileSync(root+'assets/calculus-keypad.js','utf8');
-  const withoutPower=s=>s.replace(/^.*"derivative-power":.*$/m,'');
-  assert.equal(withoutPower(current),withoutPower(before));
+  const withoutPilots=s=>s.replace(/^.*"derivative-(?:power|chain)":.*$/gm,'');
+  assert.equal(withoutPilots(current),withoutPilots(before));
 });
 
 test('Power Rule profile covers the actual generated answer grammar, including all irrational constants',()=>{

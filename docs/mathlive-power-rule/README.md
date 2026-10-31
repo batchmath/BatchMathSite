@@ -1,5 +1,7 @@
 # MathLive Power Rule pilot
 
+This describes the original single-engine checkpoint. For the current combined experimental build, use the [two-engine ZIP guide](../mathlive-derivatives-pilot/README.md) and its current keypad audit/results.
+
 Branch: `experiment/mathlive-power-rule-pilot`.
 
 This branch defaults to editable MathLive on the **AP Calculus Power Rule practice page only**. The generator, randomized distributions, higher derivatives, equivalence checker, scoring, feedback, explanations and practice selections are unchanged. The existing page has four added lines loading the pilot; its complete engine script matches the main baseline byte for byte.

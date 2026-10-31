@@ -1,5 +1,7 @@
 # Power Rule MathLive pilot verification
 
+Historical single-engine checkpoint report. See the [combined derivatives report](../mathlive-derivatives-pilot/TEST-RESULTS.md) for current verification after the keypad correction and Chain Rule integration.
+
 Verified 2026-10-31 UTC using Node 24.19.0 and Linux headless Chromium **154.0.8037.57**. No actual Chromebook, Windows browser, touch device or assistive technology was available. A 375 px viewport is a responsive-layout check, not a claim of mobile-device compatibility.
 
 Starting remote `main`: `26ec4f15185c37f9e8843e96a09d583b47babcdf`.
