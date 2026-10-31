@@ -11,20 +11,24 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      QA_COMMIT: 25de1cfb28d90ae22a7c679ec9b2215aee8d0cc3
+      QA_COMMIT: 8e3a7d07ebbfdbef34abd3185ec626c59e3aff75
+      # the first v12.8.X build, replaced by this rebuild (the only existing release this workflow may change)
+      REPLACED_COMMIT: 25de1cfb28d90ae22a7c679ec9b2215aee8d0cc3
+      REPLACED_SHA256: f307a3d7f391178568d061536e05773fa5b99f348bee7eea41e24ba187da215c
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
           persist-credentials: false
-      - name: Verify the reviewed W parent and a workflow-only diff
+      - name: Verify the reviewed X commit and a workflow-only diff
         shell: bash
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test "$(git show -s --format=%P HEAD)" = "$QA_COMMIT"
-          test "$(git diff --name-status "$QA_COMMIT" "$GITHUB_SHA")" = $'A\t.github/workflows/package-v12-8-x.yml'
+          test "$(git diff --name-status "$QA_COMMIT" "$GITHUB_SHA")" = $'M\t.github/workflows/package-v12-8-x.yml'
+          git merge-base --is-ancestor "$REPLACED_COMMIT" "$QA_COMMIT"
           git merge-base --is-ancestor b3498035f930abe5cb0205c9f9871e50cb8316a7 "$QA_COMMIT"
           test "$(git show "$QA_COMMIT:assets/app-version.json" | python3 -c 'import json,sys; print(json.load(sys.stdin)["version"])')" = '12.8.X'
       - name: Package the reviewed commit and verify every file
@@ -74,6 +78,8 @@ jobs:
             echo
             echo "Source: branch \`claude/v12.8x-unit5-calculator-rounding-polish\`, commit $QA_COMMIT."
             echo
+            echo "Rebuild: replaces the first v12.8.X build (commit $REPLACED_COMMIT, SHA-256 $REPLACED_SHA256). That build showed W's static \"Calculator Active\" line on the Rate Mixed and Non-Calculator pages and placed each review problem's topic tag beside the question instead of above it; both are fixed. Nothing else changed."
+            echo
             echo 'Builds on the v12.8.W Unit 5 review build (tag v12.8.W).'
             echo '- Strict rounding: a rounded answer must equal the correctly rounded value (half away from zero); .923, trailing zeros, $1.2 for $1.20 accepted; neighbouring values and unrounded values rejected.'
             echo '- Calculator Practice and Non-Calculator Practice pages for Basic First-Order, Motion and Rate Problems (the practice/ pages remain as Mixed Practice), with more calculator variety.'
@@ -86,9 +92,29 @@ jobs:
             echo "SHA-256 of batchmath-site-v12.8.X.zip: $checksum"
           } > release-notes-x.md
           if gh release view v12.8.X --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
-            echo '::error::A v12.8.X release already exists; not changing it.'; exit 1
+            # only the first v12.8.X build (or a partly finished run of this rebuild) may be replaced
+            tag_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/v12.8.X" --jq .object.sha)"
+            gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.X" > "$RUNNER_TEMP/old-release.json"
+            python3 - "$tag_sha" <<'OLD'
+          import json, os, sys
+          from pathlib import Path
+          old = json.loads((Path(os.environ['RUNNER_TEMP']) / 'old-release.json').read_text())
+          tag_sha = sys.argv[1]
+          assert old['prerelease'] is True and old['draft'] is False, 'existing v12.8.X is not a published prerelease'
+          digests = [a.get('digest') for a in old['assets'] if a['name'] == 'batchmath-site-v12.8.X.zip']
+          if tag_sha == os.environ['REPLACED_COMMIT']:
+              assert digests == ['sha256:' + os.environ['REPLACED_SHA256']], digests
+          else:
+              assert tag_sha == os.environ['QA_COMMIT'], 'v12.8.X points at an unexpected commit: ' + tag_sha
+          print('Replacing release', old['html_url'], 'tag', tag_sha, 'assets', digests)
+          OLD
+            gh api -X PATCH "repos/$GITHUB_REPOSITORY/git/refs/tags/v12.8.X" -f sha="$QA_COMMIT" -F force=true > /dev/null
+            gh release upload v12.8.X batchmath-site-v12.8.X.zip --repo "$GITHUB_REPOSITORY" --clobber
+            gh release edit v12.8.X --repo "$GITHUB_REPOSITORY" --title 'BatchMath v12.8.X (review build)' --notes-file release-notes-x.md --prerelease
+          else
+            gh release create v12.8.X batchmath-site-v12.8.X.zip --repo "$GITHUB_REPOSITORY" --target "$QA_COMMIT" --title 'BatchMath v12.8.X (review build)' --notes-file release-notes-x.md --prerelease --latest=false
           fi
-          gh release create v12.8.X batchmath-site-v12.8.X.zip --repo "$GITHUB_REPOSITORY" --target "$QA_COMMIT" --title 'BatchMath v12.8.X (review build)' --notes-file release-notes-x.md --prerelease --latest=false
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/v12.8.X" --jq .object.sha)" = "$QA_COMMIT"
           gh api "repos/$GITHUB_REPOSITORY/releases/tags/v12.8.X" > "$RUNNER_TEMP/x-release.json"
           python3 - "$checksum" <<'CHECK'
           import json, os, sys
