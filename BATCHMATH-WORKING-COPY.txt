@@ -1,7 +1,7 @@
 BatchMath cumulative working copy
-Current full release: 12.8.X (review build)
-Archive: batchmath-site-v12.8.X.zip
-Baseline: v12.8.W (review build, tag v12.8.W at dd2689e), built on v12.8.V (origin/main b349803).
-Changes: v12.8.X keeps the v12.8.W Unit 5 rebuild and adds strict rounding for numeric answers, separate Calculator and Non-Calculator practice pages (Basic First-Order, Motion, Rate) and Reviews, more calculator variety, Rate Problems limited to accumulation (25/25/25/15/10) with a non-calculator pool, and clearer Motion distance and Separable exponentiation explanations. Units 1-4, IM1 and the existing BatchMath QA workflow remain preserved.
+Current full release: 12.8.Y (review build)
+Archive: batchmath-site-v12.8.Y.zip
+Baseline: v12.8.X (review build, tag v12.8.X), built on v12.8.W and v12.8.V (origin/main b349803).
+Changes: v12.8.Y is a scoped Unit 5 cleanup of v12.8.X: the combined Mixed Practice pages (Basic First-Order, Motion, Rate) and the Mixed Review are retired (old URLs redirect to the topic page); Basic First-Order Calculator has one question family, no dropdown and fraction coefficients in the numerator; calculator total distance is explained as the integral of speed; every Unit 5 Practice Type menu uses the compact choices. Everything else is as in v12.8.X.
 No deployment performed.
-Current update: see docs/v12.8.X-revisions.md (release notes) and docs/v12.8.X-progress.md (development log, QA results). Tests: npm run qa:unit5 (now with the rounding matrix, calculator eligibility, Basic calculator, Rate and Separable checks), npm run qa:unit5-sympy.
+Current update: see docs/v12.8.Y-revisions.md (changes, before/after inventory, teacher checklist) and docs/v12.8.Y-progress.md (commits, checks). Tests: npm run qa:unit5 (now with the Y page, menu and Basic Calculator checks).
