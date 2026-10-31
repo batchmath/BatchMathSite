@@ -202,15 +202,15 @@ function shellTerms(R,axis){
 }
 // cross sections: shape factor applied to the side length s (top-bottom or right-left)
 const SHAPES={
- square:{k:F1,sq:true,name:'squares',area:s=>sqTex(s),rule:'A square with side s has area s^{2}.'},
- semicircle_d:{k:{q:Q(1,8),atom:K.pi},sq:true,name:'semicircles whose diameter lies across the region',area:s=>`\\frac{\\pi}{8}${sqTex(s)}`,rule:'A semicircle with diameter s has radius \\frac{s}{2}, so its area is \\frac{1}{2}\\pi\\left(\\frac{s}{2}\\right)^{2}=\\frac{\\pi}{8}s^{2}.'},
- semicircle_r:{k:{q:Q(1,2),atom:K.pi},sq:true,name:'semicircles whose radius lies across the region',area:s=>`\\frac{\\pi}{2}${sqTex(s)}`,rule:'A semicircle with radius s has area \\frac{1}{2}\\pi s^{2}.'},
- quarter:{k:{q:Q(1,4),atom:K.pi},sq:true,name:'quarter circles whose radius lies across the region',area:s=>`\\frac{\\pi}{4}${sqTex(s)}`,rule:'A quarter circle with radius s has area \\frac{1}{4}\\pi s^{2}.'},
- equilateral:{k:{q:Q(1,4),atom:K.sqrt3},sq:true,name:'equilateral triangles with one side across the region',area:s=>`\\frac{\\sqrt{3}}{4}${sqTex(s)}`,rule:'An equilateral triangle with side s has height \\frac{\\sqrt{3}}{2}s, so its area is \\frac{\\sqrt{3}}{4}s^{2}.'},
- iso_leg:{k:{q:Q(1,2),atom:null},sq:true,name:'isosceles right triangles with one leg across the region',area:s=>`\\frac{1}{2}${sqTex(s)}`,rule:'An isosceles right triangle with legs s has area \\frac{1}{2}s^{2}.'},
- iso_hyp:{k:{q:Q(1,4),atom:null},sq:true,name:'isosceles right triangles with the hypotenuse across the region',area:s=>`\\frac{1}{4}${sqTex(s)}`,rule:'With hypotenuse s, each leg is \\frac{s}{\\sqrt{2}}, so the area is \\frac{1}{2}\\left(\\frac{s}{\\sqrt{2}}\\right)^{2}=\\frac{1}{4}s^{2}.'},
+ square:{k:F1,sq:true,name:'squares',area:s=>sqTex(s),rule:'A square with side \\(s\\) has area \\(s^{2}\\).'},
+ semicircle_d:{k:{q:Q(1,8),atom:K.pi},sq:true,name:'semicircles whose diameter lies across the region',area:s=>`\\frac{\\pi}{8}${sqTex(s)}`,rule:'A semicircle with diameter \\(s\\) has radius \\(\\frac{s}{2}\\), so its area is \\(\\frac{1}{2}\\pi\\left(\\frac{s}{2}\\right)^{2}=\\frac{\\pi}{8}s^{2}\\).'},
+ semicircle_r:{k:{q:Q(1,2),atom:K.pi},sq:true,name:'semicircles whose radius lies across the region',area:s=>`\\frac{\\pi}{2}${sqTex(s)}`,rule:'A semicircle with radius \\(s\\) has area \\(\\frac{1}{2}\\pi s^{2}\\).'},
+ quarter:{k:{q:Q(1,4),atom:K.pi},sq:true,name:'quarter circles whose radius lies across the region',area:s=>`\\frac{\\pi}{4}${sqTex(s)}`,rule:'A quarter circle with radius \\(s\\) has area \\(\\frac{1}{4}\\pi s^{2}\\).'},
+ equilateral:{k:{q:Q(1,4),atom:K.sqrt3},sq:true,name:'equilateral triangles with one side across the region',area:s=>`\\frac{\\sqrt{3}}{4}${sqTex(s)}`,rule:'An equilateral triangle with side \\(s\\) has height \\(\\frac{\\sqrt{3}}{2}s\\), so its area is \\(\\frac{1}{2}s\\cdot\\frac{\\sqrt{3}}{2}s=\\frac{\\sqrt{3}}{4}s^{2}\\).'},
+ iso_leg:{k:{q:Q(1,2),atom:null},sq:true,name:'isosceles right triangles with one leg across the region',area:s=>`\\frac{1}{2}${sqTex(s)}`,rule:'An isosceles right triangle with legs \\(s\\) has area \\(\\frac{1}{2}s^{2}\\).'},
+ iso_hyp:{k:{q:Q(1,4),atom:null},sq:true,name:'isosceles right triangles with the hypotenuse across the region',area:s=>`\\frac{1}{4}${sqTex(s)}`,rule:'With hypotenuse \\(s\\), each leg is \\(\\frac{s}{\\sqrt{2}}\\), so the area is \\(\\frac{1}{2}\\left(\\frac{s}{\\sqrt{2}}\\right)^{2}=\\frac{1}{4}s^{2}\\).'},
 };
-function rectShape(mult){return{k:{q:Q(mult),atom:null},sq:true,name:`rectangles whose height is ${mult===1?'equal to':`${['','','twice','three times','four times'][mult]}`} the base across the region`,area:s=>`${mult===1?'':mult}${sqTex(s)}`,rule:`The base is s and the height is ${mult===1?'s':`${mult}s`}, so the area is ${mult===1?'':mult}s^{2}.`};}
+function rectShape(mult){return{k:{q:Q(mult),atom:null},sq:true,name:`rectangles whose height is ${mult===1?'equal to':`${['','','twice','three times','four times'][mult]}`} the base across the region`,area:s=>`${mult===1?'':mult}${sqTex(s)}`,rule:`The base is \\(s\\) and the height is \\(${mult===1?'s':`${mult}s`}\\), so the area is \\(${mult===1?'':mult}s^{2}\\).`};}
 function sectionTerms(R,v,shape){
  const pieces=v==='x'?R.xs:R.ys,hi=v==='x'?'top':'right',lo=v==='x'?'bot':'left';
  return pieces.map(p=>{const s=p.w||fsub(p[hi],p[lo]),stex=p.w?p.w.tex(v):areaTex(p[hi],p[lo],v);

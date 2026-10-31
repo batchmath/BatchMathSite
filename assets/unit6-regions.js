@@ -193,5 +193,46 @@ function expParabola(){
 const CALC={logLine,logParabola,expAxes,cosParabola,expParabola};
 function build(name,...args){for(let i=0;i<20;i++){const R=(EXACT[name]||CALC[name])(...args);if(R)return R;}throw Error(`region ${name} failed`);}
 
-window.BatchMathUnit6Regions=Object.freeze({EXACT,CALC,build,mono,line,fx});
+// ---------- worked steps shared by the engines ----------
+const {step,setupTex,evalSteps,exactValue,numValue,etex}=C;
+const axisTex=a=>`${a.type}=${a.tex??a.c}`;
+function sliceText(R,v){
+ const ps=v==='x'?R.xs:R.ys;
+ return ps.map(p=>v==='x'?`from \\(x=${p.a.tex}\\) to \\(x=${p.b.tex}\\) the top is \\(y=${p.top.tex('x')}\\) and the bottom is \\(y=${p.bot.tex('x')}\\)`:`from \\(y=${p.a.tex}\\) to \\(y=${p.b.tex}\\) the right side is \\(x=${p.right.tex('y')}\\) and the left side is \\(x=${p.left.tex('y')}\\)`).join('; ');
+}
+function boundsStep(R,heading='Find the bounds.'){return step(heading,R.bounds||'');}
+function areaWork(R,v,terms){
+ const hv=v==='x'?'vertical slices of width \\(dx\\): each has height top minus bottom':'horizontal slices of height \\(dy\\): each has length right minus left';
+ return step(`Set up the area with ${v==='x'?'vertical':'horizontal'} slices.`,`Use ${hv}. ${sliceText(R,v).replace(/^./,c=>c.toUpperCase())}${terms.length>1?'. The boundary changes, so the area needs one integral for each piece':''}.`,`A=${setupTex(terms)}`);
+}
+function washerWork(R,axis,terms){
+ const horiz=axis.type==='y',v=horiz?'x':'y';
+ const words=horiz?`The axis \\(${axisTex(axis)}\\) is horizontal, so slice perpendicular to it: the slices are ${terms[0].r?'washers':'disks'} of thickness \\(dx\\).`:`The axis \\(${axisTex(axis)}\\) is vertical, so slice perpendicular to it: the slices are ${terms[0].r?'washers':'disks'} of thickness \\(dy\\), and every boundary is written as x in terms of y.`;
+ const radii=terms.map(t=>`\\(R(${v})=${t.R.tex(v)}\\)${t.r?` and \\(r(${v})=${t.r.tex(v)}\\)`:''}${terms.length>1?` for \\(${t.a.tex}\\le ${v}\\le ${t.b.tex}\\)`:''}`).join('; ');
+ const where=horiz?(terms[0].R&&R.xs&&R.xs[0].bot.f(R.xs[0].a.v+1e-6)>=axis.c-1e-9?'The region lies above the axis, so each radius is a boundary height minus':'The region lies below the axis, so each radius is')
+  :(R.ys&&R.ys[0].left.f(R.ys[0].a.v+1e-6)>=axis.c-1e-9?'The region lies to the right of the axis, so each radius is a boundary x-value minus':'The region lies to the left of the axis, so each radius is');
+ const tail=horiz?(where.endsWith('minus')?` \\(${axis.c}\\).`:` \\(${axis.c}\\) minus a boundary height.`):(where.endsWith('minus')?` \\(${axis.c}\\).`:` \\(${axis.c}\\) minus a boundary x-value.`);
+ return step('Choose the slices.',words)+step('Measure the radii from the axis.',`${where}${tail} The outer radius R reaches the boundary farther from the axis${terms[0].r?'; the inner radius r reaches the nearer one':''}: ${radii}.`)+step('Set up the volume.',terms[0].r?'Each washer has area \\(\\pi\\left(R^{2}-r^{2}\\right)\\) (square each radius before subtracting).':'Each disk has area \\(\\pi R^{2}\\).',`V=${setupTex(terms)}`);
+}
+function shellWork(R,axis,terms){
+ const vert=axis.type==='x',v=vert?'x':'y';
+ const words=vert?`The axis \\(${axisTex(axis)}\\) is vertical, so the shells are vertical: slice parallel to the axis with thickness \\(dx\\).`:`The axis \\(${axisTex(axis)}\\) is horizontal, so the shells are horizontal: slice parallel to the axis with thickness \\(dy\\), and every boundary is written as x in terms of y.`;
+ const t=terms[0];
+ return step('Choose the shells.',words)+step('Find the radius and height.',`The radius is the distance from the axis to the shell: \\(r(${v})=${t.rad.tex(v)}\\). The height is ${vert?'top minus bottom':'right minus left'}: ${terms.map(q=>`\\(h(${v})=${q.htex}\\)${terms.length>1?` for \\(${q.a.tex}\\le ${v}\\le ${q.b.tex}\\)`:''}`).join('; ')}.`)+step('Set up the volume.','Each shell has volume \\(2\\pi\\,r\\,h\\) times its thickness.',`V=${setupTex(terms)}`);
+}
+function sectionWork(R,v,shape,terms){
+ const t=terms[0];
+ return step('Choose the slices.',`Cross sections are perpendicular to the ${v}-axis, so integrate with respect to \\(${v}\\). ${v==='x'?'Each slice is vertical; its length across the region is top minus bottom':'Each slice is horizontal; its length across the region is right minus left'}: ${terms.map(q=>`\\(s(${v})=${q.stex}\\)${terms.length>1?` for \\(${q.a.tex}\\le ${v}\\le ${q.b.tex}\\)`:''}`).join('; ')}.`)
+  +step('Find the area of one cross section.',`${shape.rule} So \\(A(${v})=${shape.area(t.stex)}\\).`)
+  +step('Set up the volume.','Add the cross sections: integrate their area.',`V=${setupTex(terms)}`);
+}
+function evalWork(terms,heading='Evaluate.'){
+ const parts=terms.map(evalSteps);if(!parts.every(Boolean))return '';
+ const eqs=[];for(const s of parts)eqs.push(s.expanded,`=${s.anti}`,`=${s.value}`);
+ const total=exactValue(terms);
+ return step(heading,terms.length>1?'Evaluate each integral and add the results.':'Expand the integrand, find an antiderivative and evaluate it at the limits.',...eqs,...(terms.length>1?[`\\text{Total}=${etex(total)}`]:[]));
+}
+function calcWork(terms,label='V'){return step('Evaluate with the calculator.','Use the numerical integration feature; store intersection values instead of retyping rounded ones.',`${label}=${setupTex(terms)}\\approx ${fixed(numValue(terms),3)}`);}
+
+window.BatchMathUnit6Regions=Object.freeze({EXACT,CALC,build,mono,line,fx,work:Object.freeze({axisTex,sliceText,boundsStep,areaWork,washerWork,shellWork,sectionWork,evalWork,calcWork})});
 })();
