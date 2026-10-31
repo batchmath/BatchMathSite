@@ -7,6 +7,8 @@ practice pages are created from the Basic First-Order page with their own titles
 v12.8.X: topics with both kinds of problems also get calculator-practice/ and non-calculator-practice/ pages
 (created from the topic's practice/ page, which becomes "Mixed Practice"); the page config carries the calculator
 mode, and the topic page gets one launch button per page.
+v12.8.Y: the combined Mixed Practice pages (Basic, Motion, Rate) and the Mixed Review are retired; their URLs
+become small redirects to the topic page, where the student chooses Calculator or Non-Calculator.
 Run from the repository root: python3 tools/build-unit5-pages.py
 """
 import html, json, re
@@ -36,18 +38,6 @@ CALC_MODES = {
 }
 
 PAGES = [
-    dict(topic='basic-first-order-differential-equations', page='practice', slug='basic-first-order-differential-equations',
-         title='Basic First-Order Differential Equations', engine_id='ap_topic_basic_first_order_differential_equations',
-         scripts=['/assets/unit5-basic.js'], label='Mixed Practice', seo_title='Basic First-Order DEs',
-         description='Mixed practice: calculator and non-calculator initial-value problems, intervals of definition and general solutions. Enter answers with the math keypad, check each part, and use the worked explanation to see every step.',
-         modes=[('mixed', 'Mixed Practice'), ('poly_power', 'Polynomial, Power and Radical IVPs'), ('trig', 'Trigonometric and Inverse-Trig IVPs'),
-                ('exp_composition', 'Exponential and Composition IVPs'), ('log_domain', 'Logarithmic and Domain-Restricted IVPs'),
-                ('calculator_ftc', 'Calculator IVPs (FTC)'), ('general_solution', 'General Solutions')]),
-    dict(topic='motion-problems', page='practice', slug='motion-problems', title='Motion Problems', engine_id='ap_topic_motion_problems',
-         scripts=['/assets/unit5-motion.js'], label='Mixed Practice',
-         description='Mixed practice: calculator and non-calculator motion along a line. Enter answers with the math keypad, check each part, and use the worked explanation to see every step.',
-         modes=[('mixed', 'Mixed Practice'), ('recover', 'Recover Velocity or Position'), ('displacement_distance', 'Displacement and Total Distance'),
-                ('direction_speed', 'Direction, Rest and Speed'), ('calculator', 'Calculator Motion'), ('multipart', 'Connected Multi-Part Problems')]),
     dict(topic='basic-first-order-differential-equations', page='calculator-practice', source='practice', calc='calculator',
          slug='basic-first-order-differential-equations', analytics_slug='basic-first-order-differential-equations_calculator',
          title='Basic First-Order Differential Equations', seo_title='Basic First-Order DEs', label='Calculator Practice',
@@ -85,10 +75,6 @@ PAGES = [
          modes=[('mixed', 'Mixed Practice'), ('growth', 'Exponential Growth'), ('decay', 'Exponential Decay and Half-Life'), ('cooling', "Newton's Law: Cooling"),
                 ('heating', "Newton's Law: Warming"), ('interest', 'Compound and Continuous Interest'), ('reverse', 'Find the Unknown (Initial Amount, Rate, Dose)')]),
     # v12.8.X: accumulation only; the Increasing, Decreasing and Extreme Amounts type is retired
-    dict(topic='rate-problems', page='practice', slug='rate-problems', title='Rate Problems', engine_id='ap_topic_rate_problems', scripts=['/assets/unit5-rate.js'],
-         label='Mixed Practice',
-         description='Mixed practice: calculator and non-calculator accumulation. Integrate each rate over the time it applies, include the starting amount when it matters, and give exact answers or round to three decimal places as each question directs.',
-         modes=RATE_MODES),
     dict(topic='rate-problems', page='calculator-practice', source='practice', calc='calculator', slug='rate-problems', analytics_slug='rate-problems_calculator',
          title='Rate Problems', label='Calculator Practice', engine_id='ap_topic_rate_problems_calculator', scripts=['/assets/unit5-rate.js'],
          description='Calculator active. Set up each accumulation integral, evaluate it with the calculator, include the starting amount when it matters, and round to three decimal places.',
@@ -100,11 +86,6 @@ PAGES = [
     dict(topic='slope-fields', page='practice', new=True, slug='slope-fields', title='Slope Fields', engine_id='ap_topic_slope_fields', scripts=['/assets/unit5-slope-fields.js'],
          description='Draw slope segments and solution curves with a mouse, pen or finger (or type slopes and points instead), match fields with equations, and analyze slopes. After you check a drawing, the correct segments or curve appear on the same grid.',
          modes=[('mixed', 'Mixed Practice'), ('draw_segments', 'Draw Slope Segments'), ('draw_curve', 'Draw Solution Curves'), ('match', 'Match Fields, Equations and Curves'), ('analyze', 'Analyze Slopes and Solutions')]),
-    dict(topic='comprehensive-review', page='assignment-practice', slug='unit5-comprehensive-review', analytics_slug='unit5_assignment_review',
-         title='Differential Equations', label='Mixed Review', conf_title='Differential Equations Review', engine_id='ap_unit5_assignment_review',
-         scripts=REVIEW_SCRIPTS,
-         description='A mixed review of all six Unit 5 topics, calculator and non-calculator, from short skills to a smaller share of challenging problems. Each question uses the same input, checking and worked explanations as its topic practice page.',
-         modes=[('mixed', 'Mixed Review')] + REVIEW_TOPICS + REVIEW_TIERS),
     dict(topic='comprehensive-review', page='calculator-practice', source='assignment-practice', calc='calculator', slug='unit5-comprehensive-review',
          analytics_slug='unit5_assignment_review_calculator', title='Differential Equations', label='Calculator Review', engine_id='ap_unit5_assignment_review_calculator',
          scripts=REVIEW_SCRIPTS,
@@ -258,6 +239,38 @@ def add_sibling_sitemap(cfg):
     path.write_text(text[:pos] + entry + text[pos:], encoding='utf-8')
     return True
 
+# v12.8.Y: the retired combined pages; each URL keeps working as a redirect to its topic page
+LEGACY = [('basic-first-order-differential-equations', 'practice', 'Basic First-Order Differential Equations', 'Calculator Practice or Non-Calculator Practice'),
+          ('motion-problems', 'practice', 'Motion Problems', 'Calculator Practice or Non-Calculator Practice'),
+          ('rate-problems', 'practice', 'Rate Problems', 'Calculator Practice or Non-Calculator Practice'),
+          ('comprehensive-review', 'assignment-practice', 'Differential Equations Review', 'the Calculator Review or the Non-Calculator Review')]
+LEGACY_PAGE = '''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>{title} | AP Calculus AB | BatchMath</title>
+<meta name="robots" content="noindex"><link rel="canonical" href="{topic_url}"><meta http-equiv="refresh" content="0; url=../">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="stylesheet" href="/assets/site.css">
+</head>
+<body><main id="main-content" class="main"><h1 class="page-title">{title}</h1><p>This page has moved. Choose {choice} on the <a href="../">{title} page</a>.</p></main></body></html>
+'''
+
+def write_legacy(topic, page, title, choice):
+    """v12.8.Y: a retired combined page becomes a redirect to its topic page (no questions, not in the sitemap)."""
+    path = U5 / topic / page / 'index.html'
+    text = LEGACY_PAGE.format(title=html.escape(title, quote=False), choice=choice,
+                              topic_url=f'{SITE}/ap-calculus/unit-5-differential-equations/topics/{topic}/')
+    if path.read_text(encoding='utf-8') == text:
+        return False
+    path.write_text(text, encoding='utf-8')
+    return True
+
+def remove_sitemap(topic, page):
+    path = ROOT / 'sitemap.xml'
+    text = path.read_text(encoding='utf-8')
+    entry = f'  <url><loc>{SITE}/ap-calculus/unit-5-differential-equations/topics/{topic}/{page}/</loc></url>\n'
+    if entry not in text:
+        return False
+    path.write_text(text.replace(entry, '', 1), encoding='utf-8')
+    return True
+
 def tag(src):
     return f'<script src="{src}"></script>'
 
@@ -324,3 +337,6 @@ if __name__ == '__main__':
         print('wired', wire(p, cfg).relative_to(ROOT))
     for topic in sorted({c['topic'] for c in PAGES if c.get('source')}):
         if set_launch_row(topic): print('launch buttons updated for', topic)
+    for topic, page, title, choice in LEGACY:
+        if write_legacy(topic, page, title, choice): print('redirect written for', topic, page)
+        if remove_sitemap(topic, page): print('sitemap entry removed for', topic, page)
