@@ -29,7 +29,7 @@ function pair(){
  const top=fp(pm(ct,et)),bot=fp(pm(cb,eb)),Y=top.f(s);
  const L=inversePow(ct,et),Rr=inversePow(cb,eb);
  return region({name:'R',xs:[{a:bq(0),b:bq(s),top,bot}],ys:L&&Rr?[{a:bq(0),b:bq(nice(Y)),right:Rr,left:L}]:null,
-  eqs:[`y=${top.tex('x')}`,`y=${bot.tex('x')}`],text:'the region enclosed by the two curves',
+  eqs:[`y=${top.tex('x')}`,`y=${bot.tex('x')}`],text:`the region enclosed by \\(y=${top.tex('x')}\\) and \\(y=${bot.tex('x')}\\)`,
   bounds:`Set ${top.tex('x')}=${bot.tex('x')}: the curves meet at \\(x=0\\) and \\(x=${s}\\) (where \\(y=${nice(Y)}\\)).`,
   boundsTex:[`x=0`,`x=${s}`],xb:[0,s],yb:[0,nice(Y)],
   view:{xmin:-1,xmax:s+1,ymin:-1,ymax:Math.ceil(Y)+1},draw:[{f:top.f,tex:`y=${top.tex('x')}`,dom:[0,s+1]},{f:bot.f,tex:`y=${bot.tex('x')}`,dom:[0,s+1]}],
