@@ -1,0 +1,115 @@
+{
+  "browser": "154.0.8037.57",
+  "realMathJax": true,
+  "results": [
+    {
+      "name": "Newton quadratic_combination: actual complete notation, wrong bounds and final value parity",
+      "passed": true
+    },
+    {
+      "name": "Newton quadratic_monomial: actual complete notation, wrong bounds and final value parity",
+      "passed": true
+    },
+    {
+      "name": "Newton linear_construction: actual complete notation, wrong bounds and final value parity",
+      "passed": true
+    },
+    {
+      "name": "Newton polynomial_exponential: actual complete notation, wrong bounds and final value parity",
+      "passed": true
+    },
+    {
+      "name": "Newton logarithm_polynomial: actual complete notation, wrong bounds and final value parity",
+      "passed": true
+    },
+    {
+      "name": "Newton exponential_tangent: actual complete notation, wrong bounds and final value parity",
+      "passed": true
+    },
+    {
+      "name": "Newton exponential_cosine: actual complete notation, wrong bounds and final value parity",
+      "passed": true
+    },
+    {
+      "name": "Newton polynomial_sine: actual complete notation, wrong bounds and final value parity",
+      "passed": true
+    },
+    {
+      "name": "Newton logarithm_radical: actual complete notation, wrong bounds and final value parity",
+      "passed": true
+    },
+    {
+      "name": "Newton rational_polynomial: actual complete notation, wrong bounds and final value parity",
+      "passed": true
+    },
+    {
+      "name": "Newton radical_linear: actual complete notation, wrong bounds and final value parity",
+      "passed": true
+    },
+    {
+      "name": "sum and limit buttons insert editable structures; bounds, body, fractions and exponents remain editable",
+      "passed": true
+    },
+    {
+      "name": "wrong Part 1 does not auto-advance; Continue opens a distinct field and keypad",
+      "passed": true
+    },
+    {
+      "name": "incomplete bounds and denominators do not consume a part or drop entered content",
+      "passed": true
+    },
+    {
+      "name": "native copy/paste retains complete bounds and summand; source uses the original Newton format",
+      "passed": true
+    },
+    {
+      "name": "Newton runtime failure preserves native legacy notation entry",
+      "passed": true
+    },
+    {
+      "name": "Newton fonts failure preserves native legacy notation entry",
+      "passed": true
+    },
+    {
+      "name": "runtime failure preserves a complete lim/sum in the actual legacy editor",
+      "passed": true
+    },
+    {
+      "name": "unsupported unexpanded indexed/delta notation offers lossless legacy recovery",
+      "passed": true
+    },
+    {
+      "name": "isolated editable indefinite template, with no grading contract",
+      "passed": true
+    },
+    {
+      "name": "isolated editable definite template, with no grading contract",
+      "passed": true
+    },
+    {
+      "name": "isolated editable double template, with no grading contract",
+      "passed": true
+    },
+    {
+      "name": "isolated editable subscript template, with no grading contract",
+      "passed": true
+    },
+    {
+      "name": "isolated editable delta template, with no grading contract",
+      "passed": true
+    },
+    {
+      "name": "isolated editable sum template, with no grading contract",
+      "passed": true
+    },
+    {
+      "name": "isolated editable limit template, with no grading contract",
+      "passed": true
+    },
+    {
+      "name": "isolated nested integral/summation retains differential and editable limits",
+      "passed": true
+    }
+  ],
+  "pageErrors": []
+}

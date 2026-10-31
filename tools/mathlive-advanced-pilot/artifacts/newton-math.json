@@ -1,0 +1,21 @@
+{
+  "samples": 4000,
+  "families": [
+    "linear_construction",
+    "nonpolynomial_representation",
+    "quadratic_combination",
+    "quadratic_monomial"
+  ],
+  "nonpolynomialSubtypes": [
+    "exponential_cosine",
+    "exponential_tangent",
+    "logarithm_polynomial",
+    "logarithm_radical",
+    "polynomial_exponential",
+    "polynomial_sine",
+    "radical_linear",
+    "rational_polynomial"
+  ],
+  "secondParts": 3185,
+  "gradingPairs": 16000
+}

@@ -1,3 +1,4 @@
+import {insertTemplate} from './templates.mjs';
 const functionLatex={sin:'sin',cos:'cos',tan:'tan',sec:'sec',csc:'csc',cot:'cot',ln:'ln',log:'log',exp:'exp','sin⁻¹':'arcsin','cos⁻¹':'arccos','tan⁻¹':'arctan','cot⁻¹':'arccot','sec⁻¹':'arcsec','csc⁻¹':'arccsc'};
 const commands={'←':'moveToPreviousChar','→':'moveToNextChar','↑':'moveUp','↓':'moveDown','⌫':'deleteBackward',Del:'deleteForward',Clear:'deleteAll'};
 const literals={'−':'-','·':'\\cdot ','π':'\\pi ','∞':'\\infty ','−∞':'-\\infty ','∪':'\\cup ','a₁':'a_{1}','aₙ':'a_{n}','aₙ₋₁':'a_{n-1}'};
@@ -20,6 +21,8 @@ export function bridgeKeypad(originalPad,{active,onCheck,onChange,onUnsupported,
       const mf=active();if(!mf)return;focusMathfield(mf);
       if(label==='Check'){onCheck();return;}
       if(commands[label])mf.executeCommand(commands[label]);
+      else if(aria.startsWith('Insert limit as n'))insertTemplate(mf,'limit');
+      else if(aria.startsWith('Insert summation from k'))insertTemplate(mf,'sum');
       else if(aria==='Insert stacked fraction')mf.insert('\\frac{#?}{#?}');
       else if(label==='xⁿ')mf.executeCommand('moveToSuperscript');
       else if(label==='√')mf.insert('\\sqrt{#?}');
