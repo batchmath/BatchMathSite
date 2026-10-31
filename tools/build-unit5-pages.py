@@ -31,8 +31,8 @@ RATE_MODES = [('mixed', 'Mixed Practice'), ('one_rate', 'Accumulate One Rate'), 
               ('in_out', 'Inflow and Outflow'), ('delayed_piecewise', 'Delayed Starts and Piecewise Rates'), ('multipart', 'Connected Accumulation Problems')]
 
 CALC_MODES = {
-    'basic': [('mixed', 'Mixed Calculator Practice'), ('calc_value', 'Values from an Initial Condition'), ('calc_initial', 'Find the Starting Value'),
-              ('calc_two_point', 'Net Change and Two Values')],
+    # v12.8.Y: one question family (values from an initial condition), so no Practice Type dropdown
+    'basic': None,
     'motion': [('mixed', 'Mixed Calculator Practice'), ('calc_position', 'Position and Average Velocity'), ('calc_distance', 'Displacement and Total Distance'),
                ('calc_speed', 'Velocity, Acceleration and Speed'), ('calc_direction', 'Rest and Direction of Motion')],
 }
@@ -302,15 +302,18 @@ def wire(path, cfg):
         conf = {'slug': cfg['slug'], 'analyticsSlug': cfg['analytics_slug'], 'title': cfg.get('conf_title', cfg['title']), 'generatorVersion': VERSION, 'modeSelectIds': ['u5Mode']}
     if cfg.get('slugs'):
         conf = {'slugs': cfg['slugs'], 'analyticsSlug': cfg['analytics_slug'], 'title': cfg['title'], 'generatorVersion': VERSION, 'modeSelectIds': ['u5Mode']}
+    if not cfg['modes']:
+        conf['modeSelectIds'] = []
     js = 'window.BM_TOPIC_PRACTICE=' + json.dumps(conf, separators=(',', ':')) + ';'
     text, n = re.subn(r'window\.BM_TOPIC_PRACTICE=\{.*?\};', lambda _: js, text, count=1)
     if n != 1:
         raise SystemExit(f'{path}: page config not found')
-    # Practice Type dropdown
-    options = ''.join(f'<option value="{v}"{" selected" if i == 0 else ""}>{html.escape(l)}</option>' for i, (v, l) in enumerate(cfg['modes']))
-    controls = f'<div class="practice-controls"><label for="u5Mode" class="bm-practice-select-label">Practice Type</label><select id="u5Mode" class="bm-practice-select">{options}</select></div>'
+    # Practice Type dropdown (v12.8.Y: none when the page has a single pool, modes=None)
     text = re.sub(r'<div class="practice-controls">.*?</select></div>', '', text, flags=re.S)
-    text = text.replace('<section class="practice-shell">', '<section class="practice-shell">' + controls, 1)
+    if cfg['modes']:
+        options = ''.join(f'<option value="{v}"{" selected" if i == 0 else ""}>{html.escape(l)}</option>' for i, (v, l) in enumerate(cfg['modes']))
+        controls = f'<div class="practice-controls"><label for="u5Mode" class="bm-practice-select-label">Practice Type</label><select id="u5Mode" class="bm-practice-select">{options}</select></div>'
+        text = text.replace('<section class="practice-shell">', '<section class="practice-shell">' + controls, 1)
     # description
     text = re.sub(r'<p class="topic-description">.*?</p>',
                   '<p class="topic-description">' + cfg.get('description', 'Enter your answers with the math keypad, check each part, and use the worked explanation to see every step.') + '</p>',

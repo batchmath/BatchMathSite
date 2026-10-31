@@ -1,7 +1,8 @@
 /* BatchMath v12.8.X — Unit 5 engine 1: Basic First-Order Differential Equations (dy/dx = f(x)).
    Families (mixed mode): polynomial / rational-power / radical IVPs 20%, trig and inverse-trig IVPs 20%,
    exponential and composition IVPs 20%, logarithmic / rational / domain-restricted IVPs 15%, calculator FTC
-   IVPs 15% (v12.8.X: values 6, starting value 4, net change / two values 5), general solutions 10%. IVPs ask for the particular solution and, where the domain matters (and
+   IVPs (v12.8.Y: only values from an initial condition, weight 6; the Calculator Practice page uses nothing else),
+   general solutions 10%. IVPs ask for the particular solution and, where the domain matters (and
    sometimes when it does not), its interval of validity: the maximal interval containing the initial value
    on which the solution is defined and satisfies the differential equation. */
 (function(){
@@ -453,12 +454,22 @@ function calcPoints(it,n,{usePi=false}={}){
  for(let i=0;i<40;i++){const pts=U.shuffle(pool).slice(0,n);if(pts.length===n&&pts.every((p,j)=>pts.slice(0,j).every(q=>Math.abs(q.val-p.val)>=0.4)))return pts;}
  return null;
 }
+// [numerator, denominator] when tex is exactly one \frac{…}{…}, otherwise null
+function fracParts(tex){
+ if(!tex.startsWith('\\frac{'))return null;const g=[];let i=5;
+ for(let k=0;k<2;k++){if(tex[i]!=='{')return null;let d=0,j=i;for(;j<tex.length;j++){if(tex[j]==='{')d++;else if(tex[j]==='}'&&--d===0)break;}g.push(tex.slice(i+1,j));i=j+1;}
+ return i===tex.length?g:null;
+}
 // f'(x): a scaled non-elementary term, sometimes plus a polynomial term on the challenging tier
+// v12.8.Y: a scalar in front of a single fraction goes into its numerator, since 3\frac{\sin x}{x} reads like a
+// mixed number: \frac{3\sin x}{x}, -\frac{2e^{x}}{x}, \frac{4}{\ln x} (and -\frac{\sin x}{x} for -1)
 function calcDerivative(tier){
  const it=pick(NONELEM),scale=tier==='foundational'?1:pick([2,3,-2,4,-1]);
  const lin=tier==='challenging'&&U.rand()<0.4?nz(-3,3)*2:0; // + c·x, still integrated numerically with the rest
  const coef=scale===1?'':scale===-1?'-':String(scale);
- const tex=v=>`${coef}${it.tex(v)}${lin?`${lin<0?'-':'+'}${Math.abs(lin)===1?'':Math.abs(lin)}${v}`:''}`;
+ const lead=v=>{const t=it.tex(v),fr=Math.abs(scale)===1?null:fracParts(t);if(!fr)return `${coef}${t}`;
+  const a=Math.abs(scale);return `${scale<0?'-':''}\\frac{${fr[0]==='1'?a:`${a}${fr[0]}`}}{${fr[1]}}`;};
+ const tex=v=>`${lead(v)}${lin?`${lin<0?'-':'+'}${Math.abs(lin)===1?'':Math.abs(lin)}${v}`:''}`;
  return{it,tex,g:x=>scale*it.f(x)+lin*x,lin};
 }
 const calcVars=()=>({v:pick(['x','x','t']),fn:pick(['f','g','h'])});
@@ -541,9 +552,8 @@ const FAMILIES={
  exp_composition:{weight:20,tiers:['foundational','intermediate','challenging'],make:famExp,label:'Exponential and composition IVPs',calculator:false},
  log_domain:{weight:15,tiers:['intermediate','challenging'],make:famLog,label:'Logarithmic and domain-restricted IVPs',calculator:false},
  // W's 15% calculator share is now three families in the 'calculator_ftc' group (the Practice Type keeps its value)
+ // v12.8.Y: only the value from an initial condition remains; famCalcInitial and famCalcTwo are retired (not registered)
  calc_value:{weight:6,group:'calculator_ftc',tiers:['foundational','intermediate','challenging'],make:famCalcValue,label:'Calculator: values from an initial condition',calculator:true},
- calc_initial:{weight:4,group:'calculator_ftc',tiers:['foundational','intermediate','challenging'],make:famCalcInitial,label:'Calculator: find the starting value',calculator:true},
- calc_two_point:{weight:5,group:'calculator_ftc',tiers:['foundational','intermediate','challenging'],make:famCalcTwo,label:'Calculator: net change and two values',calculator:true},
  general_solution:{weight:10,tiers:['foundational','intermediate'],make:famGeneral,label:'General solutions',calculator:false},
 };
 const engine=U.makeEngine('basic',FAMILIES);
