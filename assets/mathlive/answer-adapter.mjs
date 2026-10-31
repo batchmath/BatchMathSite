@@ -336,3 +336,24 @@ export function translateDerivative(source) {
 
 // Keep the successful Power Rule pilot's public import stable.
 export {translateDerivative as translatePowerRule};
+
+// The Unit 4/5 parsers accept C, inverse trig and real roots. Keep this separate
+// from the narrower derivative contract, and let each unchanged checker judge
+// variables, constants, exactness, equations and +C. No equals-sign stripping.
+export function translateAdvancedExpression(source){
+  const parsed=parseInput(source,'latex');
+  if(!String(source).trim())return {...parsed,input:''};
+  if(!parsed.tree)return {...parsed,input:null};
+  function inspect(n){
+    if(n.type==='sym'&&!/^(?:[A-Za-zθ]|pi|infinity)$/.test(n.name))fail('Unsupported answer symbol.');
+    if(n.type==='call'&&!functions.has(n.name))fail('Unsupported answer function.');
+    if(n.type==='binary'&&!['+','-','*','/','^','='].includes(n.op))fail('Unsupported answer relation.');
+    if(n.type==='group'&&n.open!=='('&&n.open!=='{')fail('Use expression grouping in this field.');
+    for(const value of Object.values(n)){
+      if(Array.isArray(value))value.forEach(x=>x&&typeof x==='object'&&inspect(x));
+      else if(value&&typeof value==='object')inspect(value);
+    }
+  }
+  try{inspect(parsed.tree);return {...parsed,input:emitBatch(parsed.tree)};}
+  catch(error){return {status:'unsupported',message:error.message,input:null};}
+}

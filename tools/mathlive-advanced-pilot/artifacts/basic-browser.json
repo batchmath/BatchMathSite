@@ -1,0 +1,95 @@
+{
+  "browser": "154.0.8037.57",
+  "realMathJax": true,
+  "results": [
+    {
+      "name": "default MathLive, local fonts, unchanged keypad and real question/feedback rendering",
+      "passed": true
+    },
+    {
+      "name": "actual grading parity polynomial_power_rule: correct, wrong, unsimplified, missing C and incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual grading parity radicals_negative_powers: correct, wrong, unsimplified, missing C and incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual grading parity expand_first: correct, wrong, unsimplified, missing C and incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual grading parity divide_each_term: correct, wrong, unsimplified, missing C and incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual grading parity divide_each_term_ln: correct, wrong, unsimplified, missing C and incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual grading parity basic_trig_exponential: correct, wrong, unsimplified, missing C and incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual grading parity trig_identity_rewrite: correct, wrong, unsimplified, missing C and incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual grading parity definite_power_root: correct, wrong, unsimplified, missing C and incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual grading parity definite_trig_exponential: correct, wrong, unsimplified, missing C and incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual grading parity power_reduction: correct, wrong, unsimplified, missing C and incomplete",
+      "passed": true
+    },
+    {
+      "name": "actual grading parity exponential_base_a: correct, wrong, unsimplified, missing C and incomplete",
+      "passed": true
+    },
+    {
+      "name": "C is entered only by the student; keypad C, e, roots and native fraction/exponent editing work",
+      "passed": true
+    },
+    {
+      "name": "blank/incomplete remains editable; Enter checks once, held Enter cannot skip, reset clears history",
+      "passed": true
+    },
+    {
+      "name": "native selection, delete, undo/redo, copy/paste and blur without submission",
+      "passed": true
+    },
+    {
+      "name": "long answer remains inside 375px viewport",
+      "passed": true
+    },
+    {
+      "name": "long answer remains inside 1500px viewport",
+      "passed": true
+    },
+    {
+      "name": "missing runtime preserves a usable legacy answer",
+      "passed": true
+    },
+    {
+      "name": "missing fonts preserves a usable legacy answer",
+      "passed": true
+    },
+    {
+      "name": "missing stylesheet preserves a usable legacy answer",
+      "passed": true
+    },
+    {
+      "name": "runtime exception restores the actual legacy field and current answer",
+      "passed": true
+    },
+    {
+      "name": "uninstrumented explicit MathLive page submits normally",
+      "passed": true
+    }
+  ],
+  "pageErrors": []
+}
