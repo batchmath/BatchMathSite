@@ -70,6 +70,8 @@ PAGES = [
          slug='exponential-growth-and-decay-interest-newton-s-law-of-cooling',
          title="Exponential Growth and Decay, Interest, Newton's Law of Cooling", seo_title="Growth, Decay and Newton's Law",
          engine_id='ap_topic_exponential_growth_and_decay_interest_newton_s_law_of_cooling', scripts=['/assets/unit5-growth.js'],
+         # v12.9.A: calculator-only engine, so it is named and marked as Calculator Practice (labels and icon only)
+         label='Calculator Practice', icon='calculator',
          description='Calculator active. Build the exponential model from the given information, keep k exact until the end, and round as each part directs. Use the worked explanation to see every step.',
          modes=[('mixed', 'All Problems'), ('growth_decay', 'Exponential Growth and Decay'), ('newton', "Newton's Law of Cooling and Warming"),
                 ('interest', 'Compound and Continuous Interest')]),
@@ -203,7 +205,7 @@ def launch_row(topic):
     links = []
     for c in sorted(cfgs, key=lambda c: order.get(c['page'], 9)):
         label = html.escape(f"{c['title']} {c['label']}", quote=False)
-        icon = KIND_ICON.get(c.get('calc'), INTEGRAL_ICON)
+        icon = KIND_ICON.get(c.get('calc') or c.get('icon'), INTEGRAL_ICON)
         links.append(f'<a aria-label="{label}" class="resource-link bm-practice-launch bm-practice-integral" data-bm-resource="practice" href="{c["page"]}/">'
                      f'{icon}<span class="bm-practice-label">{label}</span><span aria-hidden="true" class="bm-practice-arrow">›</span></a>')
     return f'<section class="resource-section" data-bm-topic-practice="1"><div class="resource-actions bm-practice-launch-row">{"".join(links)}</div></section>'
@@ -340,7 +342,7 @@ if __name__ == '__main__':
             if add_sibling_sitemap(cfg): print('sitemap entry added for', cfg['topic'], cfg['page'])
         p = U5 / cfg['topic'] / cfg['page'] / 'index.html'
         print('wired', wire(p, cfg).relative_to(ROOT))
-    for topic in sorted({c['topic'] for c in PAGES if c.get('source')}):
+    for topic in sorted({c['topic'] for c in PAGES if c.get('source') or c.get('icon')}):
         if set_launch_row(topic): print('launch buttons updated for', topic)
     for topic, page, title, choice in LEGACY:
         if write_legacy(topic, page, title, choice): print('redirect written for', topic, page)
