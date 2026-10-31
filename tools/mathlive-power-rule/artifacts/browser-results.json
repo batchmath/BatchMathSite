@@ -19,6 +19,10 @@
       "passed": true
     },
     {
+      "name": "actual e, pi, sqrt2 and sqrt3 questions can be answered entirely with either keypad",
+      "passed": true
+    },
+    {
       "name": "actual browser grading parity first:mixed: correct, wrong, unsimplified, incomplete",
       "passed": true
     },

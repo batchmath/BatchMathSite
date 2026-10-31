@@ -4,6 +4,8 @@ import {createRequire} from 'node:module';
 import {spawn} from 'node:child_process';
 import path from 'node:path';
 import {root,target,instrument} from './engine.mjs';
+import {parseInput} from '../../assets/mathlive/answer-adapter.mjs';
+import {enterWithKeypad} from './keypad-entry.mjs';
 const {chromium}=createRequire(import.meta.url)('playwright');
 const base=process.env.PILOT_URL||'http://127.0.0.1:8138';
 const output=root+'tools/mathlive-power-rule/artifacts/';fs.mkdirSync(output,{recursive:true});
@@ -67,6 +69,18 @@ try {
     await p.evaluate(()=>powerQA.makeProblem());const before=(await state(p)).attempts;await p.keyboard.press('Enter');assert.equal((await state(p)).attempts,before);assert.match((await state(p)).feedback,/Enter an answer first/);
   });
   const legacy=await page({mode:'legacy'});
+  await test('actual e, pi, sqrt2 and sqrt3 questions can be answered entirely with either keypad',async()=>{
+    const problems=await p.evaluate(()=>{
+      const found={};for(let i=0;i<200;i++){const q=powerQA.powerRuleProblem('first','irrational');found[q.id.split('-')[3]]=q;if(Object.keys(found).length===4)break;}return found;
+    });
+    assert.deepEqual(Object.keys(problems).sort(),['e','pi','sqrt2','sqrt3']);
+    for(const problem of Object.values(problems))for(const editor of [p,legacy]){
+      await editor.evaluate(problem=>{powerQA.current={...problem,answered:false};document.getElementById('question').innerHTML=problem.q;document.getElementById('answer').value='';document.getElementById('answer').disabled=false;document.getElementById('submit').disabled=false;document.getElementById('next').style.display='none';BatchMathCalculusKeypad.reset();},problem);
+      const parsed=parseInput(problem.answerTex,'latex');assert.equal(parsed.status,'complete');await enterWithKeypad(editor,parsed.tree);
+      const entered=await state(editor);assert.equal(await editor.evaluate(expected=>powerQA.equivalent(document.getElementById('answer').value,expected,['x']),problem.answerExpr),true,JSON.stringify(entered));
+      await editor.locator('.bm-calc-keypad:visible .check').click();assert.equal((await state(editor)).status,'Correct.');
+    }
+  });
   for(const order of ['first','higher'])for(const family of ['mixed','polynomial','negative','fractional','irrational']) {
     if(order==='higher'&&family==='irrational')continue;
     await test(`actual browser grading parity ${order}:${family}: correct, wrong, unsimplified, incomplete`,async()=>{

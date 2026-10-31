@@ -912,7 +912,7 @@
       "unit3-rounded-line":{decimal:true,equality:true,variables:["x","y"]},
       "limits-finite":{fraction:true,radical:true,cubeRoot:true,nthRoot:true,logarithm:true,exponent:true,constants:["pi","e"],arithmetic:true,parentheses:true},
       "limits-no-infinity":{fraction:true,radical:true,cubeRoot:true,nthRoot:true,logarithm:true,exponent:true,constants:["pi","e"],arithmetic:true,parentheses:true,dne:true},
-      "derivative-power":{fraction:true,exponent:true,variables:["x"],arithmetic:true,parentheses:true},
+      "derivative-power":{fraction:true,radical:true,exponent:true,constants:["pi","e"],variables:["x"],arithmetic:true,parentheses:true},
       "derivative-algebra":{fraction:true,exponent:true,radical:true,variables:["x"],arithmetic:true,parentheses:true},
       "derivative-at-point-basic":{fraction:true,radical:true,constants:["pi"],arithmetic:true,parentheses:true},
       "derivative-trig":{fraction:true,exponent:true,variables:["x"],constants:["pi"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
