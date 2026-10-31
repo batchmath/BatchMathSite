@@ -1,4 +1,5 @@
-// v12.8.X rounding through the real page: the Comprehensive Review page's generator is replaced by a queue of
+// v12.8.X rounding through the real page: the Comprehensive Review page's generator (v12.8.Y: the Calculator Review;
+// the Mixed Review is retired) is replaced by a queue of
 // problems with known targets (0, .923, 1.25, 1.2346, 1.2503, ties, cents, whole numbers, calculator intervals),
 // and each entry is typed with the on-screen keypad or the physical keyboard, checked with Enter or the Check
 // button, and graded by the page's own driver, UI, keypad and checker. Expressions must be refused without
@@ -8,7 +9,7 @@ import {serve,browser,context,open,randomPort} from '../lib/browser.mjs';
 import {parse,keypad,strokes} from '../lib/keypad.mjs';
 const [W='1366',H='768',mob='']=process.argv.slice(2);
 const PORT=randomPort(9100),srv=await serve(PORT),b=await browser({scrollbars:true}),c=await context(b,{width:+W,height:+H,mobile:!!mob});
-const p=await open(c,`http://127.0.0.1:${PORT}/ap-calculus/unit-5-differential-equations/topics/comprehensive-review/assignment-practice/?bm_seed=rounding`);
+const p=await open(c,`http://127.0.0.1:${PORT}/ap-calculus/unit-5-differential-equations/topics/comprehensive-review/calculator-practice/?bm_seed=rounding`);
 const N=(value,places=3,o={})=>({kind:'numeric',value,places,...o}),IV=(parts,o={})=>({kind:'interval',variable:'t',places:3,anyBrackets:true,parts,...o});
 // [answer spec, keypad mode, typed text, expected: accept | reject | invalid, how: keypad | keyboard]
 const CASES=[
@@ -59,7 +60,7 @@ const typeText=async(text,how)=>{
 for(let i=0;i<CASES.length;i++){
  const [spec,mode,text,want,how]=CASES[i];
  // a Practice Type change makes the driver build the next problem (from the queue) without answering the current one
- await p.selectOption('#u5Mode',i%2?'mixed':'basic');await p.waitForTimeout(250);
+ await p.selectOption('#u5Mode',i%2?'mixed':'foundational');await p.waitForTimeout(250);
  await typeText(text,how);
  const src=await p.$eval(`${scope} .bm-calc-source`,e=>e.value);out.sources.push(`${how}: ${text} -> ${src}`);
  if(i%2)await p.keyboard.press('Enter');else await p.locator(`${scope} .staged-check`).click();
