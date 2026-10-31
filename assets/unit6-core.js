@@ -63,10 +63,10 @@ function termTex(t,v,first){
  if(c.d===1)return sign+`${c.n}${body}`;
  return sign+`\\frac{${c.n===1?'':c.n}${body}}{${c.d}}`;
 }
-// constFirst: the constant term first (radii such as 2-x^2, 4+\sqrt{x}); otherwise descending powers
+// constFirst: a positive constant term first (radii such as 2-x^2, 4+\sqrt{x}); otherwise descending powers
 function ptex(a,v='x',constFirst=false){
  if(pzero(a))return '0';
- const ts=constFirst?[...a.filter(t=>qzero(t.e)),...a.filter(t=>!qzero(t.e))]:a;
+ const ts=constFirst&&a.some(t=>qzero(t.e)&&t.c.n>0)?[...a.filter(t=>qzero(t.e)),...a.filter(t=>!qzero(t.e))]:a; // 2-x^2, 4+\sqrt{x}, but x-6
  return ts.map((t,i)=>termTex(t,v,i===0)).join('');
 }
 function pkey(a,v='x'){
@@ -232,11 +232,16 @@ function readExpr(raw,v){
  return{f,tree};
 }
 const closeRel=(a,b,r)=>Math.abs(a-b)<=r*Math.max(1,Math.abs(a),Math.abs(b));
-// rows: [{coef, lower, upper, integrand, v}] as typed; spec: {value, variable?, notes?:[{value,note}], methodNote?}
+// decimal places of a limit typed as a plain decimal (0.138 -> 3), or null
+const placesOf=t=>{const m=String(t??'').trim().match(/^[-−]?\d*\.(\d+)$/);return m?m[1].length:null;};
+// rows: [{coef, lower, upper, integrand, v}] as typed; spec: {value, variable?, notes?:[{value,note}], methodNote?, decimals?}
+// decimals (calculator problems): a limit typed as a decimal with at least three places stands for a stored calculator
+// value, so the integral may differ from the exact value by what that rounding can change: |coefficient times the
+// integrand at the limit| times half a unit in the last place typed. Exact limits get no such allowance.
 function checkIntegral(rows,spec){
  const used=rows.filter(r=>[r.coef,r.lower,r.upper,r.integrand].some(t=>String(t||'').trim()));
  if(!used.length)return{valid:false,message:'Enter an integral before checking.'};
- let total=0,depends=false,vars=new Set();
+ let total=0,depends=false,vars=new Set(),slack=0,coarse=false;
  for(const [i,r] of used.entries()){
   const which=used.length>1?` in integral ${i+1}`:'';
   if(!r.v)return{valid:false,message:`Choose dx or dy${which}.`};
@@ -255,11 +260,13 @@ function checkIntegral(rows,spec){
   if(new Set(probe.map(z=>z.toFixed(9))).size>1)depends=true;
   vars.add(r.v);
   total+=C*quad(g.f,A,B,1e-10);
+  if(spec.decimals)for(const [txt,at,inward] of [[r.lower,A,B],[r.upper,B,A]]){const pl=placesOf(txt);if(pl===null)continue;if(pl<3){coarse=true;continue;}
+   let y=g.f(at);if(!Number.isFinite(y))y=g.f(at+(inward-at)*1e-6);if(Number.isFinite(y))slack+=Math.abs(C*y)*0.6*10**-pl;}
  }
  if(!depends)return{valid:true,ok:false,note:'Write the integral itself: the integrand should be an expression in x or y, not a single number.'};
  if(!Number.isFinite(total))return{valid:true,ok:false,note:'Your integral could not be evaluated. Check the limits and the expression.'};
  const T=spec.value;
- if(closeRel(total,T,2e-6)){
+ if(closeRel(total,T,2e-6)||Math.abs(total-T)<=slack){
   if(spec.variable&&[...vars].some(w=>w!==spec.variable))return{valid:true,ok:false,note:spec.methodNote||`That integral has the right value, but this question asks for the method that integrates with respect to ${spec.variable}.`};
   return{valid:true,ok:true};
  }
@@ -267,6 +274,7 @@ function checkIntegral(rows,spec){
  if(closeRel(total,-T,2e-6))return{valid:true,ok:false,note:'Your integral has the opposite sign. Check the order of the limits and of the subtraction.'};
  if(closeRel(total*Math.PI,T,2e-6))return{valid:true,ok:false,note:'Your integral is missing the factor \\(\\pi\\).'};
  if(closeRel(total*2*Math.PI,T,2e-6))return{valid:true,ok:false,note:'Your integral is missing the factor \\(2\\pi\\).'};
+ if(coarse&&closeRel(total,T,2e-2))return{valid:true,ok:false,note:'Close: keep at least three decimal places (better, the stored calculator values) in limits found with the calculator.'};
  return{valid:true,ok:false};
 }
 // an expression in v that must equal spec.expr (a fn) on spec.domain [lo, hi]
@@ -287,7 +295,9 @@ const exactKeys='unit6-exact',numberKeys='unit5-number';
 function exactPart(prompt,ans,explanation,extra={}){return{prompt,control:'input',answer:{kind:'exact',value:ans.value,wrongValues:extra.wrong||[]},answerTex:ans.tex,explanation,keypadMode:exactKeys,placeholder:'Exact answer',...extra.part};}
 function numPart(prompt,value,explanation,extra={}){return{prompt:`${prompt} Give your answer correct to three decimal places.`,control:'input',answer:{kind:'numeric',value,places:3,wrongValues:extra.wrong||[]},answerTex:fixed(value,3),explanation,keypadMode:numberKeys,placeholder:'Decimal answer',...extra.part};}
 function integralPart(prompt,terms,explanation,extra={}){
- return{prompt,control:'u6-integral',answer:{kind:'u6-integral',value:numValue(terms),variable:extra.variable||null,notes:extra.notes||[],methodNote:extra.methodNote},answerTex:setupTex(terms),explanation,maxIntegrals:extra.max||3,help:extra.help};
+ // rows: the model setup, one row per integral (TeX), kept for the review lab's typed-entry tests
+ return{prompt,control:'u6-integral',answer:{kind:'u6-integral',value:numValue(terms),variable:extra.variable||null,notes:extra.notes||[],methodNote:extra.methodNote,
+  rows:terms.map(t=>({coef:factorTex(t.k),lower:t.a.tex,upper:t.b.tex,integrand:t.tex,v:t.v}))},answerTex:setupTex(terms),explanation,maxIntegrals:extra.max||3,help:extra.help};
 }
 function exprPart(prompt,label,fn,v,domain,explanation,extra={}){
  return{prompt,control:'u6-expr',prefix:label,answer:{kind:'u6-expr',expr:fn,variable:v,domain,notes:extra.notes||[]},answerTex:`${label}${fn.tex(v)}`,explanation,keypadMode:'unit6-integral',placeholder:`Expression in ${v}`};
@@ -301,6 +311,7 @@ function problem({engine,family,tier,id,questionHtml,parts,calculator=false,data
  if(!U5.TIERS.includes(tier))throw Error(`tier ${tier}`);
  for(const q of parts){const a=q.answer;if(a?.kind==='numeric'&&U5.nearTie(a.value,a.places))throw Error('an answer lies on a rounding half step');
   if(a?.kind==='numeric'&&!Number.isFinite(a.value))throw Error('numeric answer is not finite');}
+ if(calculator)for(const q of parts)if(q.answer?.kind==='u6-integral')q.answer.decimals=true; // stored calculator values may be typed as decimals
  const meta={unit:6,engine,family,tier,calculator:!!calculator,parts:parts.length,...data};
  return{id:`u6-${engine}-${id}-${hash(questionHtml+parts.map(x=>x.answerTex||'').join('|'))}`,variant:family,normalizedMathDisplay:true,answerType:'unit5-staged',calculatorActive:!!calculator,
   questionHtml,parts,answerTex:parts[parts.length-1].answerTex,explanation:parts.map(p=>p.explanation||'').join(''),unit5Meta:meta,unit6Meta:meta};
@@ -319,8 +330,9 @@ function figure(R,opt={}){
  for(let y=Math.ceil(V.ymin/step0)*step0;y<=V.ymax;y+=step0)parts.push(`<line x1="0" y1="${Y(y)}" x2="${W}" y2="${Y(y)}" class="u6-grid"/>`);
  if(V.ymin<0&&V.ymax>0)parts.push(`<line x1="0" y1="${Y(0)}" x2="${W}" y2="${Y(0)}" class="u6-axis"/>`);
  if(V.xmin<0&&V.xmax>0)parts.push(`<line x1="${X(0)}" y1="0" x2="${X(0)}" y2="${hmax}" class="u6-axis"/>`);
- const lab=[];for(let x=Math.ceil(V.xmin/step0)*step0;x<=V.xmax;x+=step0)if(x!==0)lab.push(`<text x="${X(x)}" y="${Math.min(hmax-3,+Y(0)+13)}" class="u6-tick">${x}</text>`);
- for(let y=Math.ceil(V.ymin/step0)*step0;y<=V.ymax;y+=step0)if(y!==0)lab.push(`<text x="${Math.max(3,+X(0)-5)}" y="${+Y(y)+4}" class="u6-tick u6-tick-y">${y}</text>`);
+ const lab=[],inside=(t,lo,hi)=>t>lo+0.3*step0&&t<hi-0.3*step0; // no label on the frame's edges
+ for(let x=Math.ceil(V.xmin/step0)*step0;x<=V.xmax;x+=step0)if(x!==0&&inside(x,V.xmin,V.xmax))lab.push(`<text x="${X(x)}" y="${Math.min(hmax-3,+Y(0)+13)}" class="u6-tick">${x}</text>`);
+ for(let y=Math.ceil(V.ymin/step0)*step0;y<=V.ymax;y+=step0)if(y!==0&&inside(y,V.ymin,V.ymax))lab.push(`<text x="${Math.max(3,+X(0)-5)}" y="${+Y(y)+4}" class="u6-tick u6-tick-y">${y}</text>`);
  // shading
  if(R.xs&&!opt.noShade)for(const p of R.xs){const pts=[];for(let i=0;i<=60;i++){const t=p.a.v+(p.b.v-p.a.v)*i/60;pts.push(`${X(t)},${Y(p.top.f(t))}`);}for(let i=60;i>=0;i--){const t=p.a.v+(p.b.v-p.a.v)*i/60;pts.push(`${X(t)},${Y(p.bot.f(t))}`);}parts.push(`<polygon points="${pts.join(' ')}" class="u6-shade"/>`);}
  else if(R.ys&&!opt.noShade)for(const p of R.ys){const pts=[];for(let i=0;i<=60;i++){const t=p.a.v+(p.b.v-p.a.v)*i/60;pts.push(`${X(p.right.f(t))},${Y(t)}`);}for(let i=60;i>=0;i--){const t=p.a.v+(p.b.v-p.a.v)*i/60;pts.push(`${X(p.left.f(t))},${Y(t)}`);}parts.push(`<polygon points="${pts.join(' ')}" class="u6-shade"/>`);}

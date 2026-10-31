@@ -1,0 +1,56 @@
+/* BatchMath v12.9.A — Unit 6 practice styles: region and graph figures, and the integral-setup answer control.
+   Loaded after unit5.css (the staged multi-part answers, calculator badge and review tag come from there).
+   Figures scale with the column; nothing here creates a nested scroll box. */
+/* ---------- figures ---------- */
+.u6-figure{margin:10px auto 4px;width:100%;max-width:460px}
+.u6-graph-figure{max-width:520px}
+.u6-svg{display:block;width:100%;height:auto;background:#050505;border:1px solid #303030;border-radius:10px}
+.u6-grid{stroke:#1f1f1f;stroke-width:1}
+.u6-axis{stroke:#8a8a8a;stroke-width:1.4}
+.u6-tick{fill:#bdbdbd;font-size:11px;font-family:inherit;text-anchor:middle}
+.u6-tick-y{text-anchor:end}
+.u6-shade{fill:rgba(255,212,0,.2);stroke:none}
+.u6-curve{fill:none;stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
+.u6-graph-f{stroke:#4fb3ff;stroke-width:2.6}
+.u6-rot{stroke:#ff8f93;stroke-width:2;stroke-dasharray:7 5}
+.u6-mark{fill:#f4f4f4}
+.u6-legend{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:.86rem;color:#ddd;margin-top:6px}
+.u6-key{display:inline-flex;align-items:center;gap:6px}
+.u6-swatch{display:inline-block;width:22px;height:4px;border-radius:2px;background:#4fb3ff}
+.u6-swatch-rot{height:0;background:none;border-radius:0;border-top:3px dashed #ff8f93}
+.u6-swatch-f{background:#4fb3ff}
+
+/* ---------- integral setup: [number] ∫ from [a] to [b] of [integrand] dx | dy ---------- */
+.u6-integrals{display:flex;flex-direction:column;gap:10px;width:100%}
+.u6-int-row{display:flex;align-items:center;gap:6px;width:100%;min-width:0}
+.u6-int-row[hidden]{display:none}
+.u6-plus{flex:0 0 auto;min-width:.8em;font-size:1.3rem;color:#f4f4f4;text-align:center}
+.u6-plus:empty{display:none}
+.u6-intsign{flex:0 0 auto;font-family:"Times New Roman",Times,serif;font-size:2.6rem;line-height:1;color:#f4f4f4;margin:0 -2px 0 2px}
+.u6-limits{flex:0 0 auto;display:inline-flex;flex-direction:column;gap:4px}
+.u6-limits .bm-calc-editor{width:76px;min-width:0}
+.u6-int-row>.bm-calc-editor{flex:1 1 150px;min-width:0}
+.u6-int-row>.u6-plus+.bm-calc-editor{flex:0 0 74px}
+.u6-dvar{flex:0 0 auto;display:inline-flex;gap:4px}
+.u6-dbtn{min-height:42px;min-width:46px;padding:6px 8px;font-style:italic}
+.u6-dbtn.selected{border-color:var(--yellow);color:var(--yellow)}
+.u6-int-row.correct .u6-intsign{color:#66c977}
+.u6-int-row.wrong .u6-intsign{color:#ff6b6b}
+.u6-int-tools{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px}
+.u6-int-tools .choice{min-height:40px;padding:6px 12px}
+.u6-int-tools .choice[hidden]{display:none}
+@media(max-width:560px){
+ .u6-int-row{flex-wrap:wrap;row-gap:6px}
+ .u6-intsign{font-size:2.2rem}
+ .u6-limits .bm-calc-editor{width:64px}
+ .u6-int-row>.bm-calc-editor{flex:1 1 120px}
+ .u6-int-row>.u6-plus+.bm-calc-editor{flex:0 0 60px}
+ .u6-dvar{flex:1 0 100%;justify-content:center}
+}
+/* the keypad editor shows "Enter answer" in every empty field; in the integral control each field names its role */
+.u6-int-row .bm-calc-empty{font-size:0}
+.u6-int-row .bm-calc-empty::after{font-size:.9rem}
+.u6-int-row>.u6-plus+.bm-calc-editor .bm-calc-empty::after{content:"1"}
+.u6-limits>.bm-calc-editor:first-child .bm-calc-empty::after{content:"b"}
+.u6-limits>.bm-calc-editor:nth-child(3) .bm-calc-empty::after{content:"a"}
+.u6-limits+.bm-calc-editor .bm-calc-empty::after{content:"integrand"}

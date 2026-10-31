@@ -164,7 +164,7 @@ function famSolidCalc(tier){
   const free=tier!=='challenging';
   const parts=tier==='challenging'?[integralPart(`Write an integral expression for the volume of the solid${R.ys?'':' (use washers or disks)'}. You may use decimal limits.`,T,W.boundsStep(R)+workFor(R,method,axis,T),{help:'Any correct method is accepted; use stored values (at least four decimals) for calculator limits.'}),numPart('Find the volume of the solid.',val,W.calcWork(T))]
    :[numPart('Find the volume of the solid.',val,W.boundsStep(R)+workFor(R,method,axis,T)+W.calcWork(T))];
-  return one('Use your calculator. Answer each part.',parts,{engine:'solids',family:'solid_calc',tier,id:`sc-${R.eqs.join('|')}-${axis.type}${axis.c}-${method}`,calc:true,context:solidContext(R,axis),formulas:R.eqs,extra:figure(R,{axis,label:'Region R and the axis of rotation'}),data:{method:free?'any':method,axis:`${axis.type}=${axis.c}`,region:R.data.kind}});
+  return one('Use your calculator. Answer each part.',parts,{engine:'solids',family:'solid_calc',tier,id:`sc-${R.eqs.join('|')}-${axis.type}${axis.c}-${method}`,calc:true,context:solidContext(R,axis),formulas:R.eqs,extra:figure(R,{axis,label:'Region R and the axis of rotation'}),data:{method:free?'any':method,shown:method,axis:`${axis.type}=${axis.c}`,region:R.data.kind}});
  }
  throw Error('solid_calc failed');
 }
@@ -176,7 +176,9 @@ const SOLIDS={
  trig_solid:{weight:8,tiers:['intermediate','challenging'],make:famTrigSolid,calculator:false},
  solid_calc:{weight:18,tiers:['foundational','intermediate','challenging'],make:famSolidCalc,calculator:true},
 };
-const SOLID_MODES={disks_washers:{families:{disk_basic:true,washer:true,trig_solid:true,solid_calc:true},accept:p=>p.unit5Meta.method!=='shell'},shells:{families:{shells:true,solid_calc:true},accept:p=>p.unit5Meta.method==='shell'||p.unit5Meta.method==='any'}};
+// a calculator problem that accepts any method is filed under the method its explanation uses (shown)
+const shownMethod=p=>p.unit5Meta.shown||p.unit5Meta.method;
+const SOLID_MODES={disks_washers:{families:{disk_basic:true,washer:true,trig_solid:true,solid_calc:true},accept:p=>shownMethod(p)!=='shell'},shells:{families:{shells:true,solid_calc:true},accept:p=>shownMethod(p)==='shell'}};
 const csEngine=U5.makeEngine('unit6-cross-sections',CS,CS_MODES),solidEngine=U5.makeEngine('unit6-solids',SOLIDS,SOLID_MODES);
 window.BatchMathUnit6Volume=Object.freeze({makeCS:csEngine.make,FAMILIES_CS:CS,MODES_CS:CS_MODES,makeSolid:solidEngine.make,FAMILIES_SOLID:SOLIDS,MODES_SOLID:SOLID_MODES,axesFor,termsFor,workFor,methodVar,axisWords,expBase,shapeOf,SH});
 U5.register('volume-by-cross-sections',o=>csEngine.make(o||{}));
