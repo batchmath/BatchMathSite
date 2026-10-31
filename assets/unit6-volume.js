@@ -151,8 +151,8 @@ function famTrigSolid(tier){ // y = A + sin x, the x-axis, 0 <= x <= pi/2, about
  const g=fnc({tex:()=>'',key:()=>'',f:x=>Rf.f(x)**2-rf.f(x)**2});
  const T=[Object.assign(C.term(C.FPI,bq(0),bn(Math.PI/2,'\\frac{\\pi}{2}'),'x',g,`${C.sqTex(Rf.tex('x'))}-${C.sqTex(rf.tex('x'))}`),{R:Rf,r:rf})];
  const e=below?eadd(ex(Q(2*(A+c)*(A+c)+1-2*c*c,4),PI2),ex(Q(2*(A+c)),K.pi)):eadd(ex(Q(4*c*A-2*A*A-1,4),PI2),ex(Q(2*c-2*A),K.pi));
- const expand=below?`\\pi\\int_{0}^{\\pi/2}\\left(${(A+c)**2-c*c}+${2*(A+c)}\\sin x+\\sin^{2}x\\right)dx`:`\\pi\\int_{0}^{\\pi/2}\\left(${2*c*A-A*A}+${2*c-2*A}\\sin x-\\sin^{2}x\\right)dx`;
- const work=W.washerWork(R,axis,T)+step('Evaluate.','Use \\(\\sin^{2}x=\\frac{1-\\cos 2x}{2}\\), so \\(\\int_{0}^{\\pi/2}\\sin^{2}x\\,dx=\\frac{\\pi}{4}\\), and \\(\\int_{0}^{\\pi/2}\\sin x\\,dx=1\\).',expand,`=${etex(e)}`);
+ const expand=below?`\\pi\\int_{0}^{\\frac{\\pi}{2}}\\left(${(A+c)**2-c*c}+${2*(A+c)}\\sin x+\\sin^{2}x\\right)dx`:`\\pi\\int_{0}^{\\frac{\\pi}{2}}\\left(${2*c*A-A*A}+${2*c-2*A}\\sin x-\\sin^{2}x\\right)dx`;
+ const work=W.washerWork(R,axis,T)+step('Evaluate.','Use \\(\\sin^{2}x=\\frac{1-\\cos 2x}{2}\\), so \\(\\int_{0}^{\\frac{\\pi}{2}}\\sin^{2}x\\,dx=\\frac{\\pi}{4}\\), and \\(\\int_{0}^{\\frac{\\pi}{2}}\\sin x\\,dx=1\\).',expand,`=${etex(e)}`);
  const parts=tier==='challenging'?[integralPart('Write an integral expression for the volume of the solid.',T,W.washerWork(R,axis,T),{variable:'x'}),exactPart('Find the volume.',exactAnswer(e),work)]:[exactPart('Find the volume.',exactAnswer(e),work)];
  return one('Answer each part.',parts,{engine:'solids',family:'trig_solid',tier,id:`trig-${A}-${axis.c}`,context:solidContext(R,axis),formulas:R.eqs,extra:figure(R,{axis,label:'Region and axis of rotation'}),data:{method:'washer',axis:`y=${axis.c}`,region:'trig'}});
 }

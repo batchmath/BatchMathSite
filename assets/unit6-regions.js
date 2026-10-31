@@ -154,7 +154,7 @@ function logLine(){
  return region({xs:[{a:bq(0),b:bn(p),top:lg,bot:fconst(0)},{a:bn(p),b:bq(b),top:ln,bot:fconst(0)}],
   ys:[{a:bq(0),b:bn(Y),right:fx(`${b}-@`,`${b}-@`,y=>b-y),left:fx(`e^{\\frac{@}{${a}}}-1`,`e^(@/${a})-1`,y=>Math.exp(y/a)-1)}],
   eqs:['y=0',`y=${a}\\ln(x+1)`,`y=-x+${b}`],text:`the region enclosed by \\(y=0\\), \\(y=${a}\\ln(x+1)\\) and \\(y=-x+${b}\\)`,
-  bounds:`The curve meets the x-axis at \\(x=0\\) and the line at \\(x=b\\approx${fixed(p,4)}\\) (calculator), where \\(y\\approx${fixed(Y,4)}\\); the line meets the x-axis at \\(x=${b}\\). Solved for x: \\(x=e^{y/${a}}-1\\) and \\(x=${b}-y\\).`,
+  bounds:`The curve meets the x-axis at \\(x=0\\) and the line at \\(x=b\\approx${fixed(p,4)}\\) (calculator), where \\(y\\approx${fixed(Y,4)}\\); the line meets the x-axis at \\(x=${b}\\). Solved for x: \\(x=e^{\\frac{y}{${a}}}-1\\) and \\(x=${b}-y\\).`,
   xb:[0,b],yb:[0,Y],view:{xmin:-1,xmax:b+1,ymin:-1,ymax:Math.ceil(Y)+1},draw:[{f:lg.f,tex:`y=${a}\\ln(x+1)`,dom:[-0.6,b+1]},{f:ln.f,tex:`y=-x+${b}`,dom:[-1,b+1]}],data:{kind:'log_line',p}});
 }
 // y = 1 + ln x and y = x^2 - 1 (tests, calculator questions 2-5)
@@ -183,12 +183,12 @@ function cosParabola(){
   bounds:`With a calculator, \\(${ct}=${G.tex('x')}\\) at \\(x\\approx\\pm${fixed(p,4)}\\).`,xb:[-p,p],yb:[0,k],
   view:{xmin:-2,xmax:2,ymin:-1,ymax:k+1},draw:[{f,tex:`y=${ct}`,dom:[-2,2]},{f:g,tex:`y=${G.tex('x')}`,dom:[-1.4,1.4]}],data:{kind:'cos_parabola',p}});
 }
-// y = e^{x/2} and y = 4 - x^2 (enclosed, both intersections from the calculator)
+// y = e^(x/2) and y = 4 - x^2 (enclosed, both intersections from the calculator)
 function expParabola(){
  const c=pick([3,4,5,6]),f=x=>Math.exp(x/2),g=x=>c-x*x,r=zeros(x=>g(x)-f(x),-3,3);if(r.length!==2)return null;const [p,q]=r;
- return region({xs:[{a:bn(p),b:bn(q),top:fx(`${c}-@^{2}`,`${c}-@^2`,g),bot:fx('e^{\\frac{@}{2}}','e^(@/2)',f)}],ys:null,eqs:[`y=${c}-x^{2}`,'y=e^{x/2}'],
-  text:`the region enclosed by \\(y=${c}-x^{2}\\) and \\(y=e^{x/2}\\)`,bounds:`With a calculator, the curves meet at \\(x\\approx${fixed(p,4)}\\) and \\(x\\approx${fixed(q,4)}\\).`,xb:[p,q],
-  view:{xmin:-3,xmax:3,ymin:-1,ymax:c+1},draw:[{f:g,tex:`y=${c}-x^{2}`,dom:[-2.6,2.6]},{f,tex:'y=e^{x/2}',dom:[-3,2.8]}],data:{kind:'exp_parabola',p,q}});
+ return region({xs:[{a:bn(p),b:bn(q),top:fx(`${c}-@^{2}`,`${c}-@^2`,g),bot:fx('e^{\\frac{@}{2}}','e^(@/2)',f)}],ys:null,eqs:[`y=${c}-x^{2}`,'y=e^{\\frac{x}{2}}'],
+  text:`the region enclosed by \\(y=${c}-x^{2}\\) and \\(y=e^{\\frac{x}{2}}\\)`,bounds:`With a calculator, the curves meet at \\(x\\approx${fixed(p,4)}\\) and \\(x\\approx${fixed(q,4)}\\).`,xb:[p,q],
+  view:{xmin:-3,xmax:3,ymin:-1,ymax:c+1},draw:[{f:g,tex:`y=${c}-x^{2}`,dom:[-2.6,2.6]},{f,tex:'y=e^{\\frac{x}{2}}',dom:[-3,2.8]}],data:{kind:'exp_parabola',p,q}});
 }
 const CALC={logLine,logParabola,expAxes,cosParabola,expParabola};
 function build(name,...args){for(let i=0;i<20;i++){const R=(EXACT[name]||CALC[name])(...args);if(R)return R;}throw Error(`region ${name} failed`);}

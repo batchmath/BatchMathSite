@@ -5,7 +5,7 @@
      frq_cap_line   non-calculator: f(x) = k/(1 + x^2) and a horizontal line (tests 2025-26): the area (arctangent), a
                     volume setup about another horizontal line, the rate of change of the vertical distance h(x)
      frq_calc       calculator: 2 ln(x + 1) with a line and the x-axis, 1 + ln x with x^2 - 1, e^{kx} with the axes,
-                    4 - x^2 with e^{x/2}, cos x with x^2: intersections, area, cross sections, volumes about lines
+                    4 - x^2 with e^(x/2), cos x with x^2: intersections, area, cross sections, volumes about lines
    Graph free-response problems (non-calculator, modelled on the 2025-26 tests): the graph of f is made of line
    segments with a semicircle or quarter circles, drawn on integer grid points.
      graph_derivative  f is the derivative of g and one value of g is given: values of g, points of inflection, the

@@ -14,7 +14,7 @@
      exp_log_between   k/x with the line y = c - x (they meet at p and q, pq = k), e^x with e^{-x}, with 1, with x + 1
      calc_given        calculator: non-elementary curves on a given interval (the v10.6 families, now typed)
      calc_find         calculator: intersections found with the calculator (a ln(x+1) with a line, c + ln x with
-                       x^2 - d, k cos x with a x^2, e^{x/2} with c - x^2)
+                       x^2 - d, k cos x with a x^2, e^(x/2) with c - x^2)
    Finding Area in Terms of y
      y_given           right minus left with given y-bounds (the v10.6 families, now typed)
      y_between         two curves x = f(y): find where they meet, then right minus left
@@ -67,7 +67,7 @@ function famAxis(tier){
   const f=`${c===0?'':`${c}+`}${k===1?'':k}\\${useSin?'sin':'cos'} x`,I=useSin?'0\\le x\\le \\pi':'-\\frac{\\pi}{2}\\le x\\le \\frac{\\pi}{2}';
   return one('Find the area between the curve and the horizontal line.',[exactPart('Find the area.',ans(ex(2*k)),
    step('Subtract the line.',`The vertical distance between the curve and \\(y=${c}\\) is \\(${k===1?'':k}\\${useSin?'sin':'cos'} x\\), which is never negative on the interval.`,
-    useSin?`A=\\int_{0}^{\\pi}${k===1?'':k}\\sin x\\,dx=\\left[-${k===1?'':k}\\cos x\\right]_{0}^{\\pi}=${k}+${k}=${2*k}`:`A=\\int_{-\\pi/2}^{\\pi/2}${k===1?'':k}\\cos x\\,dx=\\left[${k===1?'':k}\\sin x\\right]_{-\\pi/2}^{\\pi/2}=${2*k}`))],
+    useSin?`A=\\int_{0}^{\\pi}${k===1?'':k}\\sin x\\,dx=\\left[-${k===1?'':k}\\cos x\\right]_{0}^{\\pi}=${k}+${k}=${2*k}`:`A=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}${k===1?'':k}\\cos x\\,dx=\\left[${k===1?'':k}\\sin x\\right]_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}=${2*k}`))],
    {engine:'area',family:'axis_basic',tier,id:`trig-${k}-${c}-${useSin}`,context:'Find the area of the region between the curve and the line.',formulas:[`y=${f},\\qquad y=${c},\\qquad ${I}`],data:{sub}});
  }
  let Pp,a,b,ftex,why;
@@ -137,7 +137,7 @@ function famSwitch(tier){
   const R=region({xs:[{a:bq(0),b:bn(Math.PI/4,'\\frac{\\pi}{4}'),top:fnc({tex:()=>'\\cos x',key:()=>'cos(x)',f:Math.cos}),bot:fnc({tex:()=>'\\sin x',key:()=>'sin(x)',f:Math.sin})},{a:bn(Math.PI/4,'\\frac{\\pi}{4}'),b:bn(full?Math.PI:Math.PI/2,bT),top:fnc({tex:()=>'\\sin x',key:()=>'sin(x)',f:Math.sin}),bot:fnc({tex:()=>'\\cos x',key:()=>'cos(x)',f:Math.cos})}]});
   const T=areaTerms(R,'x');
   const work=step('Find where the curves cross.',`\\(\\sin x=\\cos x\\) at \\(x=\\frac{\\pi}{4}\\): cosine is on top before it and sine after it.`)+W.areaWork(R,'x',T)
-   +step('Evaluate.','',`\\int_{0}^{\\pi/4}(\\cos x-\\sin x)\\,dx=\\left[\\sin x+\\cos x\\right]_{0}^{\\pi/4}=\\sqrt{2}-1`,full?`\\int_{\\pi/4}^{\\pi}(\\sin x-\\cos x)\\,dx=\\left[-\\cos x-\\sin x\\right]_{\\pi/4}^{\\pi}=1+\\sqrt{2}`:`\\int_{\\pi/4}^{\\pi/2}(\\sin x-\\cos x)\\,dx=\\left[-\\cos x-\\sin x\\right]_{\\pi/4}^{\\pi/2}=\\sqrt{2}-1`,`A=${etex(e)}`);
+   +step('Evaluate.','',`\\int_{0}^{\\frac{\\pi}{4}}(\\cos x-\\sin x)\\,dx=\\left[\\sin x+\\cos x\\right]_{0}^{\\frac{\\pi}{4}}=\\sqrt{2}-1`,full?`\\int_{\\frac{\\pi}{4}}^{\\pi}(\\sin x-\\cos x)\\,dx=\\left[-\\cos x-\\sin x\\right]_{\\frac{\\pi}{4}}^{\\pi}=1+\\sqrt{2}`:`\\int_{\\frac{\\pi}{4}}^{\\frac{\\pi}{2}}(\\sin x-\\cos x)\\,dx=\\left[-\\cos x-\\sin x\\right]_{\\frac{\\pi}{4}}^{\\frac{\\pi}{2}}=\\sqrt{2}-1`,`A=${etex(e)}`);
   const parts=tier==='challenging'?[integralPart(`Write a sum of integrals for the area between the curves on \\([0,${bT}]\\).`,T,step('Find where the curves cross.','\\(\\sin x=\\cos x\\) at \\(x=\\frac{\\pi}{4}\\).')+W.areaWork(R,'x',T)),exactPart('Evaluate the area.',ans(e),work)]:[exactPart('Find the area.',ans(e),work)];
   return one(parts.length>1?'Answer each part.':'',parts,{engine:'area',family:'between_switch',tier,id:`sincos-${full}`,context:`Find the area of the regions between the curves on \\(\\left[0,${bT}\\right]\\).`,formulas:['f(x)=\\sin x','g(x)=\\cos x'],data:{sub:'sin_cos'}});
  }
@@ -181,7 +181,7 @@ function famTrig(tier){
  if(sub==='sec'){
   const withCos=pick([true,false]),e=withCos?eadd(ex(1),ex(Q(-1,2),K.sqrt2)):ex(Q(1,2),K.sqrt2);
   const g=withCos?'\\cos x':'\\sin x',anti=withCos?'\\tan x-\\sin x':'\\tan x+\\cos x';
-  return one('Find the area between the curves.',[exactPart('Find the area.',ans(e),step('Decide which curve is on top.',`On \\(\\left[0,\\frac{\\pi}{4}\\right]\\), \\(\\sec^{2}x\\ge 1\\ge ${g}\\).`,`A=\\int_{0}^{\\pi/4}\\left(\\sec^{2}x-${g}\\right)dx=\\left[${anti}\\right]_{0}^{\\pi/4}=${etex(e)}`))],
+  return one('Find the area between the curves.',[exactPart('Find the area.',ans(e),step('Decide which curve is on top.',`On \\(\\left[0,\\frac{\\pi}{4}\\right]\\), \\(\\sec^{2}x\\ge 1\\ge ${g}\\).`,`A=\\int_{0}^{\\frac{\\pi}{4}}\\left(\\sec^{2}x-${g}\\right)dx=\\left[${anti}\\right]_{0}^{\\frac{\\pi}{4}}=${etex(e)}`))],
    {engine:'area',family:'trig_area',tier,id:`sec-${withCos}`,context:'Find the area between the curves from \\(x=0\\) to \\(x=\\frac{\\pi}{4}\\).',formulas:['f(x)=\\sec^{2}x',`g(x)=${g}`],data:{sub}});
  }
  const a=pick([1,2,3]);
@@ -193,8 +193,8 @@ const OLD=[
  ()=>{const A=pick([2,3,4]),B=pick([1,2]),T=pick([1.5,2,2.5]);return{id:`c1-${A}-${B}-${T}`,f:x=>A+Math.sin(x*x)+B*x/5,g:()=>0,tex:[`y=${A}+\\sin(x^{2})+\\frac{${B}}{5}x`,'y=0'],T,why:'The curve stays above the x-axis.'};},
  ()=>{const q=pick([2,3,4]),r=pick([3,4,5]),T=pick([1.5,2]);return{id:`c2-${q}-${r}-${T}`,f:x=>Math.exp(x/q)+Math.log(x+2),g:x=>x*x/r+0.5*Math.cos(x),tex:[`y=e^{\\frac{x}{${q}}}+\\ln(x+2)`,`y=\\frac{x^{2}}{${r}}+\\frac{1}{2}\\cos x`],T,why:'The first curve stays above the second.'};},
  ()=>{const T=pick([1.5,2,2.5]),k=pick([1,2]);return{id:`c3-${k}-${T}`,f:x=>2+Math.sqrt(x+3)+Math.sin(k*x*x/2),g:x=>1+Math.log(x+1),tex:[`y=2+\\sqrt{x+3}+\\sin\\left(\\frac{${k}x^{2}}{2}\\right)`,'y=1+\\ln(x+1)'],T,why:'The first curve stays above the second.'};},
- ()=>{const A=pick([3,4,5]),T=pick([2,2.5,3]);return{id:`c4-${A}-${T}`,f:x=>A+Math.cos(x*x),g:x=>Math.exp(-x/2)+x/3,tex:[`y=${A}+\\cos(x^{2})`,'y=e^{-x/2}+\\frac{x}{3}'],T,why:'The first curve stays above the second.'};},
- ()=>{const A=pick([2,3,4]),T=pick([1.5,2,2.5]);return{id:`c5-${A}-${T}`,f:x=>A+Math.exp(-x*x/3)+0.4*Math.sin(x*x),g:x=>Math.sqrt(x+1)/2,tex:[`y=${A}+e^{-x^{2}/3}+\\frac{2}{5}\\sin(x^{2})`,'y=\\frac{1}{2}\\sqrt{x+1}'],T,why:'The first curve stays above the second.'};},
+ ()=>{const A=pick([3,4,5]),T=pick([2,2.5,3]);return{id:`c4-${A}-${T}`,f:x=>A+Math.cos(x*x),g:x=>Math.exp(-x/2)+x/3,tex:[`y=${A}+\\cos(x^{2})`,'y=e^{-\\frac{x}{2}}+\\frac{x}{3}'],T,why:'The first curve stays above the second.'};},
+ ()=>{const A=pick([2,3,4]),T=pick([1.5,2,2.5]);return{id:`c5-${A}-${T}`,f:x=>A+Math.exp(-x*x/3)+0.4*Math.sin(x*x),g:x=>Math.sqrt(x+1)/2,tex:[`y=${A}+e^{-\\frac{x^{2}}{3}}+\\frac{2}{5}\\sin(x^{2})`,'y=\\frac{1}{2}\\sqrt{x+1}'],T,why:'The first curve stays above the second.'};},
 ];
 function famCalcGiven(tier){
  const o=pick(OLD)(),v=quad(x=>o.f(x)-o.g(x),0,o.T);
