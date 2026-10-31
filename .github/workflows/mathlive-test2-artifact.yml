@@ -1,0 +1,39 @@
+# Approved in chat: user answered "ok" to the specific request for a
+# branch-scoped, read-only GitHub Actions download artifact retained 14 days.
+# Packages only the already-tested public commit; never deploys or publishes a release.
+name: MathLive Test 2 download artifact
+on:
+  push:
+    branches: [experiment/mathlive-advanced-pilot]
+    paths: [.github/workflows/mathlive-test2-artifact.yml]
+permissions:
+  contents: read
+jobs:
+  package:
+    if: github.ref == 'refs/heads/experiment/mathlive-advanced-pilot' && github.event.head_commit.message == 'Build requested MathLive Test 2 download artifact'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ee97c977538f8a1a169cab9c614f8ad59dbdb9fa
+      - name: Prepare tested public website with short root
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = ee97c977538f8a1a169cab9c614f8ad59dbdb9fa
+          mkdir package
+          git archive --format=zip --prefix=BM-ML2/ HEAD -o short-root.zip
+          python3 - <<'PY'
+          import zipfile
+          with zipfile.ZipFile("short-root.zip") as z:
+              assert z.testzip() is None
+              assert {n.split('/')[0] for n in z.namelist()} == {'BM-ML2'}
+              assert 'BM-ML2/index.html' in z.namelist()
+              z.extractall('package')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BatchMath MathLive Test 2
+          path: package/
+          include-hidden-files: true
+          compression-level: 6
+          retention-days: 14
