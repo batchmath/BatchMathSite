@@ -1,3 +1,5 @@
+> Updated by the Test 2 corrections. See [current changes and verification](CORRECTIONS.md). Download the custom `BatchMath MathLive Test 2.zip` attachment; its root is `BM-ML2`, not a GitHub source-archive folder.
+
 # MathLive advanced integration pilot
 
 This experimental branch extends the verified Power Rule and Chain Rule pilot to Basic Integrals, FTC, Integral Rules, Newton Sums & Limits, and Separable Differential Equations. The requested FTC & Rules group has two existing practice pages, so there are seven participating pages across six engine groups.
@@ -38,15 +40,15 @@ MathLive 0.111.1 JavaScript, CSS and fonts are hosted locally in the ZIP; no npm
 | Basic Integrals | Antiderivative including typed C; exact definite-integral value | Existing C and exactness decisions |
 | FTC & Rules | FTC derivative expressions; Rules exact scalar values | Two existing pages; no integral-entry answers |
 | Newton Sums & Limits | Explicit sum/limit construction and existing exact second-part value | Current checker requires explicit expressions in k,n; no expansion of indexed placeholders |
-| Separable Equations | Part A explicit particular solution | Part B uses the specialized standard interval editor |
+| Separable Equations | Part A explicit particular solution; Part B interval of validity | Both fields use editable MathLive |
 
-Each page uses its existing engine-specific keypad. No universal keypad or new shared profile is introduced. The existing C key works in Basic Integrals; the Newton sum/limit keys insert editable structures; the Separable theta key maps to a MathLive theta. Interval controls stay native. Missing assets or runtime failures restore the standard editor and retain the answer; unsupported content offers recovery including an exact LaTeX copy when translation is unavailable.
+Each page uses its existing engine-specific keypad. No universal keypad or new shared profile is introduced. The existing C key works in Basic Integrals; Newton adds signed infinity, a bare limit operator, subscript and approach arrow alongside its templates; the Separable theta key maps to a MathLive theta. Interval controls now use the restricted interval adapter; bracket and union controls are available on this page. Missing assets or runtime failures restore the standard editor and retain the answer; unsupported content offers recovery including an exact LaTeX copy when translation is unavailable.
 
 Reusable templates cover indefinite, definite and double integrals; sums; limits; subscripts/indexed variables; delta; arrows; and infinity. Integral bounds, regions, integrands and nested structures can be edited in the scratchpad. This establishes insertion/editing capability, **not** compatibility with future Unit 6 graders. No integral buttons were added to engines where an integral is only the question statement.
 
 ## Readiness and limitations
 
-The results support a larger **staged** rollout with a field and checker audit for each engine. Native interval controls remain appropriate here. Newton's existing checker cannot grade unexpanded `f(x_k) Δx`, arbitrary indexed symbols, integral answers or arbitrary nested sums. These are not evaluated or rewritten to award credit. Separable questions require explicit particular solutions; general C answers and arbitrary implicit equations do not gain a new grading contract.
+The results support a larger **staged** rollout with a field and checker audit for each engine. The interval adapter preserves punctuation and translates exact endpoints for the original checker. Newton's existing checker cannot grade unexpanded `f(x_k) Δx`, arbitrary indexed symbols, integral answers or arbitrary nested sums. These are not evaluated or rewritten to award credit. Separable questions require explicit particular solutions; general C answers and arbitrary implicit equations do not gain a new grading contract.
 
 The adapter preserves grouping, constants, decimal digits and unsimplified arithmetic; original checkers decide mathematical equivalence, exactness and validity. It never integrates, solves, evaluates a sum or supplies C. Testing found and fixed one translator grouping error for bare trig powers followed by a parenthesized factor; the original graders were unchanged.
 

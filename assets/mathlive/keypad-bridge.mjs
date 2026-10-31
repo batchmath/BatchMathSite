@@ -20,9 +20,13 @@ export function bridgeKeypad(originalPad,{active,onCheck,onChange,onUnsupported,
     button.addEventListener('click',()=>{try{
       const mf=active();if(!mf)return;focusMathfield(mf);
       if(label==='Check'){onCheck();return;}
-      if(commands[label])mf.executeCommand(commands[label]);
+      if(aria==='Insert approach arrow')mf.insert('\\to ');
+      else if(commands[label])mf.executeCommand(commands[label]);
       else if(aria.startsWith('Insert limit as n'))insertTemplate(mf,'limit');
       else if(aria.startsWith('Insert summation from k'))insertTemplate(mf,'sum');
+      else if(aria==='Insert bare limit operator')mf.insert('\\lim ');
+      else if(aria==='Insert subscript')mf.executeCommand('moveToSubscript');
+      else if(aria==='Insert approach arrow')mf.insert('\\to ');
       else if(aria==='Insert stacked fraction')mf.insert('\\frac{#?}{#?}');
       else if(label==='xⁿ')mf.executeCommand('moveToSuperscript');
       else if(label==='√')mf.insert('\\sqrt{#?}');

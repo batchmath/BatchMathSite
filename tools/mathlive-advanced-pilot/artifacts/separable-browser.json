@@ -167,7 +167,7 @@
       "passed": true
     },
     {
-      "name": "uninstrumented separable page defaults to MathLive only for Part A",
+      "name": "uninstrumented separable page defaults to MathLive for both parts",
       "passed": true
     }
   ],

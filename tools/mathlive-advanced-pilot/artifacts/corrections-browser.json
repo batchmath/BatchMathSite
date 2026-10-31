@@ -1,0 +1,27 @@
+{
+  "browser": "154.0.8037.57",
+  "realMathJax": true,
+  "results": [
+    {
+      "name": "standalone signed infinity, approach and subscript respect selection",
+      "passed": true
+    },
+    {
+      "name": "legacy standalone infinities retain original checker syntax",
+      "passed": true
+    },
+    {
+      "name": "Part B interval keypad only creates infinite endpoints and has isolated history",
+      "passed": true
+    },
+    {
+      "name": "Part B incomplete/order/closed infinity preserve native invalid feedback; exact endpoints and inequalities serialize",
+      "passed": true
+    },
+    {
+      "name": "Part B runtime failure keeps the actual interval and restores standard editor",
+      "passed": true
+    }
+  ],
+  "pageErrors": []
+}

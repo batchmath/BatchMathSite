@@ -1,3 +1,5 @@
+> Historical verification at `63d7005`. See [Test 2 corrections](CORRECTIONS.md) for the current interval coverage and rerun results.
+
 # Advanced pilot verification
 
 Verified on 2026-10-31 UTC with Node 24.19.0 and Linux headless Chromium **154.0.8037.57**. The final combined run passed **93/93 focused tests** and **178/178 browser checks**, with zero unhandled page errors. No tests were skipped in the focused run. There was no actual Windows, Chromebook, touch-device or assistive-technology testing.
