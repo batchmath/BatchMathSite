@@ -161,8 +161,8 @@ function evalSteps(t){
 function region(o){return Object.freeze({xs:o.xs||null,ys:o.ys||null,eqs:o.eqs||[],text:o.text||'',view:o.view,draw:o.draw||[],marks:o.marks||[],name:o.name||'R',data:o.data||{}});}
 // area
 function areaTerms(R,v){
- if(v==='x')return R.xs.map(p=>term(F1,p.a,p.b,'x',fsub(p.top,p.bot),areaTex(p.top,p.bot,'x')));
- return R.ys.map(p=>term(F1,p.a,p.b,'y',fsub(p.right,p.left),areaTex(p.right,p.left,'y')));
+ const ps=v==='x'?R.xs:R.ys,hi=v==='x'?'top':'right',lo=v==='x'?'bot':'left';
+ return ps.map(p=>p.w?term(F1,p.a,p.b,v,p.w,p.w.tex(v)):term(F1,p.a,p.b,v,fsub(p[hi],p[lo]),areaTex(p[hi],p[lo],v)));
 }
 function areaTex(g,h,v){const d=fsub(g,h);if(h.zero)return g.tex(v);if(g.P&&h.P&&!h.zero)return `${g.tex(v)}-${parTex(h.tex(v))}`;return d.tex(v);}
 // distance from the axis line c to a boundary g on the side where the region lies (sign s: +1 region beyond c)
@@ -213,7 +213,9 @@ const SHAPES={
 function rectShape(mult){return{k:{q:Q(mult),atom:null},sq:true,name:`rectangles whose height is ${mult===1?'equal to':`${['','','twice','three times','four times'][mult]}`} the base across the region`,area:s=>`${mult===1?'':mult}${sqTex(s)}`,rule:`The base is s and the height is ${mult===1?'s':`${mult}s`}, so the area is ${mult===1?'':mult}s^{2}.`};}
 function sectionTerms(R,v,shape){
  const pieces=v==='x'?R.xs:R.ys,hi=v==='x'?'top':'right',lo=v==='x'?'bot':'left';
- return pieces.map(p=>{const s=fsub(p[hi],p[lo]),stex=areaTex(p[hi],p[lo],v);return Object.assign(term(shape.k,p.a,p.b,v,fmul(s,s),sqTex(stex)),{s,stex});});
+ return pieces.map(p=>{const s=p.w||fsub(p[hi],p[lo]),stex=p.w?p.w.tex(v):areaTex(p[hi],p[lo],v);
+  const g=p.s2?Object.freeze({...p.s2,tex:p.s2.tex,key:p.s2.key,f:p.s2.f}):fmul(s,s);
+  return Object.assign(term(shape.k,p.a,p.b,v,g,sqTex(stex)),{s,stex});});
 }
 
 // ---------- typed-answer checking ----------
