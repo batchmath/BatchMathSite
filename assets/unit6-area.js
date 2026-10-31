@@ -46,6 +46,9 @@ function absArea(Pp,pieces,v='x',name='f(x)'){
   lines.push(`\\int_{${tq(pc0.a)}}^{${tq(pc0.b)}}${C.parTex(ptex(Pp,v))}\\,d${v}=${tq(d)}`);}
  return{total,sym,lines};
 }
+// the signed pieces as one sum: "... - \int" rather than "... + -\int"
+function symSum(sym){return sym.map((t,i)=>i?(t.startsWith('-')?` - ${t.slice(1)}`:` + ${t}`):t).join('');
+}
 
 // ---------------- Area Below and Between Curves ----------------
 function famAxis(tier){
@@ -87,7 +90,7 @@ function famSign(tier){
  const pieces=signPieces(Pp,a,b,roots),A=absArea(Pp,pieces),inside=roots.filter(r=>qv(r)>qv(a)&&qv(r)<qv(b));
  const ftex=ptex(Pp,'x'),e=ex(A.total);
  const work=step('Find where the curve crosses the x-axis.',`\\(${ftex}=0\\) at ${roots.map(r=>`\\(x=${tq(r)}\\)`).join(', ')}.`)
-  +step('Split the interval at the crossings.',`Areas below the axis come from integrals that are negative, so take their opposites: ${pieces.map(p=>`on \\([${tq(p.a)},${tq(p.b)}]\\) the curve is ${p.sign>0?'above':'below'} the axis`).join('; ')}.`,`A=${A.sym.join('+')}`)
+  +step('Split the interval at the crossings.',`Areas below the axis come from integrals that are negative, so take their opposites: ${pieces.map(p=>`on \\([${tq(p.a)},${tq(p.b)}]\\) the curve is ${p.sign>0?'above':'below'} the axis`).join('; ')}.`,`A=${symSum(A.sym)}`)
   +step('Evaluate each integral.','',...A.lines,`A=${etex(e)}`);
  const ctx=qv(a)===qv(roots[0])&&qv(b)===qv(roots[roots.length-1])?'Find the total area of the regions enclosed by the graph and the x-axis.':`Find the total area of the regions between the graph and the x-axis from \\(x=${tq(a)}\\) to \\(x=${tq(b)}\\).`;
  const parts=tier==='foundational'?[exactPart('Find the total area.',ans(e),work)]:[listPart(`Find every x-value in \\((${tq(a)},${tq(b)})\\) where the graph crosses the x-axis.`,inside.map(qv),inside.map(tq),step('Factor and solve.',`\\(${ftex}=0\\) at ${roots.map(r=>`\\(x=${tq(r)}\\)`).join(', ')}; inside the interval: ${inside.map(r=>`\\(${tq(r)}\\)`).join(', ')}.`)),exactPart('Find the total area.',ans(e),work)];
@@ -247,7 +250,7 @@ function famYAxis(tier){ // x = k(y - r1)(y - r2) and the y-axis from y = a to y
  const r1=ri(-2,1),r2=r1+ri(2,3),k=pick([1,-1,2]),Pp=fromRoots(k,[r1,r2]),a=r1-pick([0,1]),b=r2+pick([0,1]);
  const pieces=signPieces(Pp,Q(a),Q(b),[Q(r1),Q(r2)]),A=absArea(Pp,pieces,'y'),e=ex(A.total),ftex=ptex(Pp,'y');
  const work=step('Find where the curve crosses the y-axis.',`\\(${ftex}=0\\) at \\(y=${r1}\\) and \\(y=${r2}\\).`)
-  +step('Split at the crossings.',`Where the curve is to the right of the y-axis the integral is the area; where it is to the left the integral is negative, so take its opposite: ${pieces.map(p=>`on \\([${tq(p.a)},${tq(p.b)}]\\) the curve is ${p.sign>0?'right':'left'} of the axis`).join('; ')}.`,`A=${A.sym.join('+')}`)
+  +step('Split at the crossings.',`Where the curve is to the right of the y-axis the integral is the area; where it is to the left the integral is negative, so take its opposite: ${pieces.map(p=>`on \\([${tq(p.a)},${tq(p.b)}]\\) the curve is ${p.sign>0?'right':'left'} of the axis`).join('; ')}.`,`A=${symSum(A.sym)}`)
   +step('Evaluate each integral.','',...A.lines,`A=${etex(e)}`);
  return one('Integrate with respect to y.',[exactPart(`Find the total area of the regions between the curve and the y-axis from \\(y=${a}\\) to \\(y=${b}\\).`,ans(e),work)],{engine:'area_y',family:'y_axis_cross',tier,id:`ya-${ftex}-${a}-${b}`,context:'A curve is given with x as a function of y.',formulas:[`x=${ftex}`]});
 }

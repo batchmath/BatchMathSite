@@ -98,16 +98,24 @@ const sqTex=s=>simpleTex(s)?`${s}^{2}`:`\\left(${s}\\right)^{2}`;
 const parTex=wrap;
 
 // ---------- numeric integration and roots ----------
+// at most QUAD_BUDGET evaluations of f: an integrand with a pole in the interval (typed by a student) gives NaN
+// instead of an endless subdivision; the engines' own integrals need far fewer (QUAD_USED records the last count)
+const QUAD_BUDGET=400000;let quadUsed=0;
 function quad(f,a,b,eps=1e-11){
  if(a===b)return 0;if(a>b)return -quad(f,b,a,eps);
- const n=48,h=(b-a)/n;let total=0;
+ const n=48,h=(b-a)/n;let total=0,count=0;const g=t=>{if(++count>QUAD_BUDGET)throw QUAD_BUDGET;return f(t);};
+ try{total=quadRun(g,a,b,eps,n,h);}catch(e){if(e===QUAD_BUDGET){quadUsed=count;return NaN;}throw e;}
+ quadUsed=count;return total;
+}
+function quadRun(f,a,b,eps,n,h){let total=0;
  const simpson=(l,r,fl,fm,fr)=>(r-l)/6*(fl+4*fm+fr);
  function rec(l,r,fl,fm,fr,whole,e,depth){
   const m=(l+r)/2,lm=(l+m)/2,rm=(m+r)/2,flm=f(lm),frm=f(rm),L=simpson(l,m,fl,flm,fm),Rr=simpson(m,r,fm,frm,fr);
+  if(!Number.isFinite(L+Rr))return NaN; // undefined somewhere (a typed integrand outside its domain): stop, do not subdivide forever
   if(depth>40||Math.abs(L+Rr-whole)<=15*e)return L+Rr+(L+Rr-whole)/15;
   return rec(l,m,fl,flm,fm,L,e/2,depth+1)+rec(m,r,fm,frm,fr,Rr,e/2,depth+1);
  }
- for(let i=0;i<n;i++){const l=a+i*h,r=l+h,fl=f(l),fr=f(r),fm=f((l+r)/2);total+=rec(l,r,fl,fm,fr,simpson(l,r,fl,fm,fr),eps/n,0);}
+ for(let i=0;i<n;i++){const l=a+i*h,r=l+h,fl=f(l),fr=f(r),fm=f((l+r)/2);total+=rec(l,r,fl,fm,fr,simpson(l,r,fl,fm,fr),eps/n,0);if(!Number.isFinite(total))return NaN;}
  return total;
 }
 function zeros(f,a,b,n=3000){
@@ -137,7 +145,8 @@ function factorTex(k){
 // term: {k:factor, a:bound, b:bound, v:'x'|'y', g:fn (integrand), tex (integrand TeX, as written in the setup)}
 function term(k,a,b,v,g,tex){return{k,a,b,v,g,tex:tex||g.tex(v)};}
 function setupTex(terms){
- return terms.map((t,i)=>{const f=factorTex(t.k);return `${i?' + ':''}${f}\\int_{${t.a.tex}}^{${t.b.tex}}${parTex(t.tex)}\\,d${t.v}`;}).join('');
+ return terms.map((t,i)=>{let f=factorTex(t.k),sign=i?' + ':'';if(i&&f.startsWith('-')){sign=' - ';f=f.slice(1);} // a later integral with a negative factor: " - \\int", not " + -\\int"
+  return `${sign}${f}\\int_{${t.a.tex}}^{${t.b.tex}}${parTex(t.tex)}\\,d${t.v}`;}).join('');
 }
 function numValue(terms){return terms.reduce((s,t)=>s+fval(t.k)*quad(t.g.f,t.a.v,t.b.v),0);}
 // exact value as a Unit 5 exact constant, or null
@@ -294,9 +303,20 @@ function checkExpr(raw,spec){
 const exactKeys='unit6-exact',numberKeys='unit5-number';
 function exactPart(prompt,ans,explanation,extra={}){return{prompt,control:'input',answer:{kind:'exact',value:ans.value,wrongValues:extra.wrong||[]},answerTex:ans.tex,explanation,keypadMode:exactKeys,placeholder:'Exact answer',...extra.part};}
 function numPart(prompt,value,explanation,extra={}){return{prompt:`${prompt} Give your answer correct to three decimal places.`,control:'input',answer:{kind:'numeric',value,places:3,wrongValues:extra.wrong||[]},answerTex:fixed(value,3),explanation,keypadMode:numberKeys,placeholder:'Decimal answer',...extra.part};}
+// common wrong setups (a width or a radius not squared, (R - r)^2 for a washer, a shell without its radius); a setup is
+// graded by its value, so a problem where one of them has the right value too is not used (the engine draws again)
+function wrongValues(terms){
+ const out=[],k=t=>qv(t.k.q)*(t.k.atom?t.k.atom.val:1),sum=g=>terms.reduce((a,t)=>a+k(t)*quad(z=>g(t,z),t.a.v,t.b.v,1e-9),0);
+ if(terms.every(t=>t.s))out.push(sum((t,z)=>t.s.f(z)));
+ if(terms.every(t=>t.R)){out.push(sum((t,z)=>t.R.f(z)-(t.r?t.r.f(z):0)));if(terms.some(t=>t.r))out.push(sum((t,z)=>(t.R.f(z)-(t.r?t.r.f(z):0))**2));}
+ if(terms.every(t=>t.rad&&t.h))out.push(sum((t,z)=>t.h.f(z)));
+ return out;
+}
 function integralPart(prompt,terms,explanation,extra={}){
+ const value=numValue(terms);
+ for(const w of wrongValues(terms))if(closeRel(w,value,1e-5))throw Error('a common wrong setup has the same value');
  // rows: the model setup, one row per integral (TeX), kept for the review lab's typed-entry tests
- return{prompt,control:'u6-integral',answer:{kind:'u6-integral',value:numValue(terms),variable:extra.variable||null,notes:extra.notes||[],methodNote:extra.methodNote,
+ return{prompt,control:'u6-integral',answer:{kind:'u6-integral',value,variable:extra.variable||null,notes:extra.notes||[],methodNote:extra.methodNote,
   rows:terms.map(t=>({coef:factorTex(t.k),lower:t.a.tex,upper:t.b.tex,integrand:t.tex,v:t.v}))},answerTex:setupTex(terms),explanation,maxIntegrals:extra.max||3,help:extra.help};
 }
 function exprPart(prompt,label,fn,v,domain,explanation,extra={}){
@@ -354,7 +374,7 @@ U5.profile('unit6-integral',{fraction:true,radical:true,exponent:true,logarithm:
 U5.profile('unit6-list',{fraction:true,radical:true,constants:['pi'],arithmetic:true,parentheses:true,list:true});
 
 window.BatchMathUnit6Core=Object.freeze({U5,Q,qv,K,E,ex,eadd,escale,etex,evalE,P,pc,pm,pv,padd,psub,pmul,pscale,ppow,pint,pval,pdef,ptex,pkey,qpow,
- fp,fnc,fconst,fsub,fmul,dist,sqTex,parTex,topSum,simpleTex,quad,zeros,bq,bn,fixed,F1,FPI,F2PI,factorTex,term,setupTex,numValue,exactValue,exactAnswer,evalSteps,
+ fp,fnc,fconst,fsub,fmul,dist,sqTex,parTex,topSum,simpleTex,quad,quadUsed:()=>quadUsed,zeros,bq,bn,fixed,F1,FPI,F2PI,factorTex,term,setupTex,numValue,exactValue,exactAnswer,evalSteps,
  region,areaTerms,areaTex,washerTerms,shellTerms,sectionTerms,SHAPES,rectShape,side,readExpr,checkIntegral,checkExpr,
  exactPart,numPart,integralPart,exprPart,choicePart,listPart,problem,figure,step,m,question,hash});
 })();

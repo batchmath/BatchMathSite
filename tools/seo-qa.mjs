@@ -203,7 +203,12 @@ const expectedNoindex = new Set(["404.html", "diagnostics/index.html", "offline.
   "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/practice/index.html",
   "ap-calculus/unit-5-differential-equations/topics/motion-problems/practice/index.html",
   "ap-calculus/unit-5-differential-equations/topics/rate-problems/practice/index.html",
-  "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/assignment-practice/index.html"]);
+  "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/assignment-practice/index.html",
+  // v12.9.A: the retired Unit 6 combined pages (Area, Cross Sections, Solids, the review) likewise
+  "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/practice/index.html",
+  "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/practice/index.html",
+  "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/practice/index.html",
+  "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/assignment-practice/index.html"]);
 for (const file of noindexFiles) {
   const rel = relFor(file);
   if (!expectedNoindex.has(rel)) fail(rel + ": unexpected noindex page remains");

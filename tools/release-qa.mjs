@@ -104,7 +104,7 @@ for(const f of htmlFiles){
   const rel=norm(path.relative(ROOT,f));
   if(!/(?:\/practice\/|\/assignment-practice\/)/.test('/'+rel))continue;
   const html=fs.readFileSync(f,'utf8');
-  // v12.8.Y: a retired Unit 5 practice URL kept as a redirect to its topic page has no practice
+  // v12.8.Y, v12.9.A: a retired Unit 5 or Unit 6 practice URL kept as a redirect to its topic page has no practice
   if(/<meta http-equiv="refresh"/.test(html)&&!/BM_TOPIC_PRACTICE/.test(html))continue;
   if(!html.includes('/assets/answer-normalization.js'))fail(`${rel}: practice route missing sitewide answer-normalization.js`);
 }
@@ -113,7 +113,7 @@ for(const f of htmlFiles){
 const engines=[];
 for(const f of htmlFiles){const html=fs.readFileSync(f,'utf8');if(!html.includes('problem-tracking.js'))continue;const rel=norm(path.relative(ROOT,f));const m=html.match(/window\.BM_ANALYTICS_CONFIG=\{course:"([^"]+)",engineId:"([^"]+)",generatorVersion:"([^"]+)"\}/);if(!m){fail(`${rel}: analytics engine config not parsed`);continue;}const seedPos=html.indexOf('/assets/reproducible-rng.js'), trackPos=html.indexOf('/assets/problem-tracking.js'), answerPos=html.indexOf('/assets/answer-normalization.js');if(seedPos<0)fail(`${rel}: missing reproducible-rng.js`);else if(seedPos>trackPos)fail(`${rel}: reproducible-rng.js must load before problem tracking`);if(answerPos<0)fail(`${rel}: missing answer-normalization.js`);else if(answerPos>trackPos)fail(`${rel}: answer-normalization.js must load before problem tracking`);engines.push({rel,course:m[1],engineId:m[2],generatorVersion:m[3]});}
 const ids=engines.map(x=>x.engineId);if(new Set(ids).size!==ids.length)fail('duplicate analytics engineId detected');
-if(engines.length!==139)fail(`expected 139 instrumented engines, found ${engines.length}`);stats.practiceEngines=engines.length;
+if(engines.length!==143)fail(`expected 143 instrumented engines, found ${engines.length}`);stats.practiceEngines=engines.length;
 
 
 // Generator randomness must use the dedicated seeded RNG, never raw Math.random.

@@ -1,7 +1,7 @@
 BatchMath cumulative working copy
-Current full release: 12.8.Y (review build)
-Archive: batchmath-site-v12.8.Y.zip
-Baseline: v12.8.X (review build, tag v12.8.X), built on v12.8.W and v12.8.V (origin/main b349803).
-Changes: v12.8.Y is a scoped Unit 5 cleanup of v12.8.X: the combined Mixed Practice pages (Basic First-Order, Motion, Rate) and the Mixed Review are retired (old URLs redirect to the topic page); Basic First-Order Calculator has one question family, no dropdown and fraction coefficients in the numerator; calculator total distance is explained as the integral of speed; every Unit 5 Practice Type menu uses the compact choices. Everything else is as in v12.8.X.
+Current full release: 12.9.A (review build)
+Archive: batchmath-site-v12.9.A.zip
+Baseline: v12.8.Y (origin/main 26ec4f1, the deployed release), built on v12.8.X, v12.8.W and v12.8.V.
+Changes: v12.9.A rebuilds Unit 6 (Applications of Integration) to match the course materials: area in terms of x and of y, cross sections, disks and washers, shells, multipart area and volume free-response problems and graph free-response problems, with typed answers (integral setups are typed as integrals and graded by value); Area, Cross Sections and Solids of Revolution get Non-Calculator and Calculator Practice pages, the Comprehensive Review gets a Non-Calculator Review and a Calculator Review (the retired combined pages redirect to their topic pages). Unit 5 Growth and Decay is labeled Calculator Practice with the calculator icon (labels only). Everything else is as in v12.8.Y.
 No deployment performed.
-Current update: see docs/v12.8.Y-revisions.md (changes, before/after inventory, teacher checklist) and docs/v12.8.Y-progress.md (commits, checks). Tests: npm run qa:unit5 (now with the Y page, menu and Basic Calculator checks).
+Current update: see docs/v12.9.A-revisions.md (curriculum alignment, problem inventory, QA, teacher checklist) and docs/v12.9.A-progress.md (commits, checks). Tests: npm run qa:unit6.

@@ -188,14 +188,17 @@ function buildGraph(){
   const L=pick([-6,-5,-4]);let x=L,y=ri(-2,2);const pieces=[];let ok=true;
   for(const type of plan){const p=nextPiece(type,x,y);if(!p){ok=false;break;}pieces.push(p);x=p.b;y=p.yb;}
   if(!ok)continue;const R=x;if(R-L<8||R-L>14||R>8)continue;
-  const G=analyze(pieces,L,R);if(G)return G;
+  const G=analyze(pieces,L,R);if(usable(G))return G;
  }
  throw Error('graph generation failed');
 }
+// a generated graph: crosses the x-axis both ways (at least one sign change of f), two to five inflection points of g,
+// at most four extrema, and fits the figure (as the tests' graphs do)
+const usable=G=>G.ymax-G.ymin<=7&&G.ymax>=1&&G.ymin<=-1&&G.poi.length>=2&&G.poi.length<=5&&G.maxes.length+G.mins.length>=1&&G.maxes.length+G.mins.length<=4;
 function analyze(pieces,L,R){
  const G={pieces,L,R};
  let ymin=0,ymax=0;for(const p of pieces){for(const yv of [p.ya,p.yb,p.type==='seg'?p.ya:p.cy+p.s*p.r]){ymin=Math.min(ymin,yv);ymax=Math.max(ymax,yv);}}
- if(ymax-ymin>7||ymax<1||ymin>-1)return null;G.ymin=ymin;G.ymax=ymax;
+ G.ymin=ymin;G.ymax=ymax;
  // sign runs of f, zeros, sign changes (local extrema of g)
  const runs=[],zerosAt=new Set(),touch=[];
  for(const p of pieces){
@@ -213,7 +216,6 @@ function analyze(pieces,L,R){
  for(let i=0;i+1<pieces.length;i++){const v=pieces[i].b;if(dirEnd(pieces[i])!==dirStart(pieces[i+1]))poi.push(v);else corners.push(v);}
  for(const p of pieces)if(p.type==='semi')poi.push(p.cx);
  poi.sort((u,w)=>u-w);
- if(poi.length<2||poi.length>5||!maxes.length||!mins.length||maxes.length+mins.length>4)return null;
  // grid points where the integral is exact
  const pts=new Set();for(const p of pieces){if(p.type==='seg')for(let x=p.a;x<=p.b;x++)pts.add(x);else{pts.add(p.a);pts.add(p.b);if(p.type==='semi')pts.add(p.cx);}}
  const crit=[...new Set([...maxes,...mins,...flat])].sort((u,w)=>u-w);
@@ -347,7 +349,7 @@ function famGraphAccum(tier){
   const left=G.points.filter(x=>x<G.c),right=G.points.filter(x=>x>G.c);if(!left.length||!right.length)continue;
   const x1=pick([G.L,...left]),x2=pick([G.R,...right]),parts=[exactPart(`Find \\(g(${x1})\\).`,ans(toE(gOf(G,x1))),valueWork(G,x1,false))];
   if(tier==='challenging')parts.push(exactPart(`Find \\(g(${x2})\\).`,ans(toE(gOf(G,x2))),valueWork(G,x2,false)));
-  const ext=pick(['max','min']),inc=increasingPart(G);
+  const ext=pick([...(G.maxes.length?['max']:[]),...(G.mins.length?['min']:[])]),inc=increasingPart(G);
   if(tier==='challenging')parts.push(...poiParts(G),extremaParts(G,ext)[0]);
   else parts.push(...(pick([true,false])?poiParts(G):extremaParts(G,ext)));
   if(tier!=='challenging'&&inc&&pick([true,false,false]))parts.push(inc);
@@ -367,5 +369,5 @@ const FAMILIES={
 };
 const MODES={region:{families:{frq_region:true,frq_cap_line:true,frq_calc:true}},graph:{families:{graph_derivative:true,graph_accum:true}}};
 const engine=U5.makeEngine('unit6-frq',FAMILIES,MODES);
-window.BatchMathUnit6FRQ=Object.freeze({make:engine.make,FAMILIES,MODES,buildGraph,gOf,cum,fAt,pieceArea,graphFigure,qpVal,qpTex});
+window.BatchMathUnit6FRQ=Object.freeze({make:engine.make,FAMILIES,MODES,buildGraph,analyze,gOf,cum,fAt,pieceArea,graphFigure,qpVal,qpTex});
 })();
