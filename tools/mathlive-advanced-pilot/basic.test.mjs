@@ -35,7 +35,7 @@ test('advanced translation preserves constants, precision, roots and unsupported
   assert.notEqual(translateAdvancedExpression('y=x=2').input,'2');
 });
 test('production generators, graders and UI renderer are unchanged',()=>{
-  for(const name of ['ap-topic-generators.js','unit4-exact-answers.js','derivative-expression-checker.js','ap-topic-practice.js','unit5-separable.js','unit5-answers.js','unit5-ui.js']){
+  for(const name of ['ap-topic-generators.js','unit4-exact-answers.js','derivative-expression-checker.js','ap-topic-practice.js','unit5-separable.js','unit5-answers.js','unit5-ui.js','unit5-core.js','calculus-keypad.js']){
     const old=execFileSync('git',['show',baseline+':assets/'+name],{cwd:root,encoding:'utf8',maxBuffer:8000000});assert.equal(fs.readFileSync(root+'assets/'+name,'utf8'),old,name);
   }
   fs.mkdirSync(root+'tools/mathlive-advanced-pilot/artifacts',{recursive:true});fs.writeFileSync(root+'tools/mathlive-advanced-pilot/artifacts/basic-math.json',JSON.stringify({families:results},null,2)+'\n');

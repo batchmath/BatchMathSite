@@ -67,3 +67,20 @@ Part B intentionally retains the specialized native interval editor and unchange
 No shared keypad profile changes are required. The bridge now translates the existing theta button into a MathLive theta symbol, and the pilot stylesheet keeps the prefixed Part A field within narrow layouts. Existing Unit 5 generator, grader, profiles, family weights and UI renderer are untouched.
 
 Stage 4 checkpoint: all 7 focused test groups pass (3,000 actual IVPs; 15,000 paired particular-solution checks; native correct/wrong-bracket interval checks for every question). All 42 browser checks pass, with zero page errors. These include all 26 subtypes through both parts in both editor modes; six-family wrong/unsimplified/unwanted-C/incomplete checks; keypad-only theta entry; inverse/root/log/absolute-value keys; the existing Continue-after-wrong-Part-A rule; invalid/wrong Part B feedback; completion/Next; separate histories; first key, clipboard and undo; 375/1500-pixel layouts; missing runtime/fonts; unsupported-content recovery; and an uninstrumented real page.
+
+## Preserved difficulty mapping
+
+These are the generators' existing labels, not new editor settings. Unit 4 assigns a fixed tier per family; its aggregate percentages follow directly from the family weights above.
+
+| Engine | Routine | Intermediate | Highest existing tier |
+| --- | --- | --- | --- |
+| Basic | polynomial, radicals/negative powers, basic trig/exponential (31%) | expand, divide, definite power/root, power reduction, base-a exponential (47%) | challenging: divide with logarithm, trig rewrite, definite trig/exponential (22%) |
+| FTC | upper/lower identity (35%) | upper linear/power, lower power, upper trig (45%) | synthesis: both algebraic/transcendental (20%) |
+| Rules | reverse, zero width, linearity (35%) | interval decomposition (30%) | synthesis: combined/reversed combination (35%) |
+| Newton | linear construction (35%) | quadratic monomial, nonpolynomial representation (40%) | synthesis: quadratic combination (25%) |
+
+Separable chooses uniformly among each selected family's eligible tiers. Product, powers of y and trig retain foundational/intermediate/challenging; log/rational, exponentials of y and radicals/branches retain intermediate/challenging. Both the family weights and per-family tier lists are unchanged and tested. Validity-domain and branch restrictions remain encoded in each existing IVP/interval answer specification.
+
+## Stage 5 — Combined verification
+
+All 93 focused tests and all 178 real-browser checks pass on the complete six-group pilot. The final integrity proof covers nine unchanged production generator/checker/UI/keypad sources and all 24 vendor-file hashes. No generator/grade correction or shared keypad profile change was needed. Stage 5 records the completed runs, refreshed derivative screenshots, field-level delivery guide, exact regression/baseline findings and later-merge boundary in [TEST-RESULTS.md](TEST-RESULTS.md) and [README.md](README.md).
