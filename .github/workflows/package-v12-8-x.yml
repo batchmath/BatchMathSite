@@ -11,7 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      QA_COMMIT: 8e3a7d07ebbfdbef34abd3185ec626c59e3aff75
+      # the release commit: the reviewed commit replayed onto the first build without this workflow file, so the
+      # v12.8.X tag fast-forwards from the first build without touching workflow files (which the Actions token
+      # may not do)
+      QA_COMMIT: 6f27a9496db1085eb7927a4d3f1fe7f27c9d687f
+      REVIEWED_COMMIT: 8e3a7d07ebbfdbef34abd3185ec626c59e3aff75
       # the first v12.8.X build, replaced by this rebuild (the only existing release this workflow may change)
       REPLACED_COMMIT: 25de1cfb28d90ae22a7c679ec9b2215aee8d0cc3
       REPLACED_SHA256: f307a3d7f391178568d061536e05773fa5b99f348bee7eea41e24ba187da215c
@@ -26,9 +30,13 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
-          test "$(git show -s --format=%P HEAD)" = "$QA_COMMIT"
-          test "$(git diff --name-status "$QA_COMMIT" "$GITHUB_SHA")" = $'M\t.github/workflows/package-v12-8-x.yml'
-          git merge-base --is-ancestor "$REPLACED_COMMIT" "$QA_COMMIT"
+          # this packaging commit merges the release commit into the branch and adds only this workflow to it
+          test "$(git rev-parse HEAD^2)" = "$QA_COMMIT"
+          test "$(git diff --name-status "$QA_COMMIT" "$GITHUB_SHA")" = $'A\t.github/workflows/package-v12-8-x.yml'
+          # the release commit is the reviewed commit without this workflow, directly on the first build
+          test "$(git show -s --format=%P "$QA_COMMIT")" = "$REPLACED_COMMIT"
+          test "$(git diff --name-status "$REVIEWED_COMMIT" "$QA_COMMIT")" = $'D\t.github/workflows/package-v12-8-x.yml'
+          test -z "$(git diff --name-only "$REPLACED_COMMIT" "$QA_COMMIT" -- .github)"
           git merge-base --is-ancestor b3498035f930abe5cb0205c9f9871e50cb8316a7 "$QA_COMMIT"
           test "$(git show "$QA_COMMIT:assets/app-version.json" | python3 -c 'import json,sys; print(json.load(sys.stdin)["version"])')" = '12.8.X'
       - name: Package the reviewed commit and verify every file
@@ -76,7 +84,7 @@ jobs:
             echo 'Review build for teacher testing. Not deployed: production `main` is unchanged (v12.8.V, b349803).'
             echo 'Not approved: automated QA passed, and the build awaits the teacher'"'"'s review.'
             echo
-            echo "Source: branch \`claude/v12.8x-unit5-calculator-rounding-polish\`, commit $QA_COMMIT."
+            echo "Source: branch \`claude/v12.8x-unit5-calculator-rounding-polish\`, commit $QA_COMMIT (the reviewed commit $REVIEWED_COMMIT without its packaging workflow)."
             echo
             echo "Rebuild: replaces the first v12.8.X build (commit $REPLACED_COMMIT, SHA-256 $REPLACED_SHA256). That build showed W's static \"Calculator Active\" line on the Rate Mixed and Non-Calculator pages and placed each review problem's topic tag beside the question instead of above it; both are fixed. Nothing else changed."
             echo
@@ -108,7 +116,7 @@ jobs:
               assert tag_sha == os.environ['QA_COMMIT'], 'v12.8.X points at an unexpected commit: ' + tag_sha
           print('Replacing release', old['html_url'], 'tag', tag_sha, 'assets', digests)
           OLD
-            gh api -X PATCH "repos/$GITHUB_REPOSITORY/git/refs/tags/v12.8.X" -f sha="$QA_COMMIT" -F force=true > /dev/null
+            gh api -X PATCH "repos/$GITHUB_REPOSITORY/git/refs/tags/v12.8.X" -f sha="$QA_COMMIT" -F force=false > /dev/null
             gh release upload v12.8.X batchmath-site-v12.8.X.zip --repo "$GITHUB_REPOSITORY" --clobber
             gh release edit v12.8.X --repo "$GITHUB_REPOSITORY" --title 'BatchMath v12.8.X (review build)' --notes-file release-notes-x.md --prerelease
           else
