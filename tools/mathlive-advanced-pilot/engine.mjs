@@ -3,8 +3,8 @@ import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 export const root=fileURLToPath(new URL('../../',import.meta.url));
 export const baseline='58d98cda663ff21b0a7e9f434bf0e5ca504ae03b';
-export const slugs={basic:'basic-integrals',ftc:'fundamental-theorem-of-calculus-and-integral-rules',newton:'evaluating-definite-integrals-with-a-limit-and-summation',separable:'separable-differential-equations'};
-export const target=key=>`ap-calculus/${key==='separable'?'unit-5-differential-equations':'unit-4-integrals'}/topics/${slugs[key]}/practice/`;
+export const slugs={basic:'basic-integrals',ftc:'fundamental-theorem-of-calculus',rules:'combining-integral-rules',newton:'evaluating-definite-integrals-with-a-limit-and-summation',separable:'separable-differential-equations'};
+export const target=key=>['ftc','rules'].includes(key)?`ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/${key==='rules'?'integral-rules-practice':'practice'}/`:`ap-calculus/${key==='separable'?'unit-5-differential-equations':'unit-4-integrals'}/topics/${slugs[key]}/practice/`;
 export function rng(seed){let s=seed>>>0;return()=>{s=(s+0x6d2b79f5)>>>0;let t=s;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296;};}
 export function engine(seed=1){
   const window={BatchMathRNG:{random:rng(seed)}};

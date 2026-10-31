@@ -1,0 +1,95 @@
+{
+  "browser": "154.0.8037.57",
+  "realMathJax": true,
+  "results": [
+    {
+      "name": "ftc actual rendering, first key, matching engine-specific keypads",
+      "passed": true
+    },
+    {
+      "name": "ftc upper_identity — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "ftc lower_identity — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "ftc upper_linear — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "ftc upper_power — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "ftc lower_power — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "ftc upper_trig — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "ftc both_algebraic — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "ftc both_transcendental — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "ftc Check/Enter, no blur submission, held Enter and fresh question history",
+      "passed": true
+    },
+    {
+      "name": "rules actual rendering, first key, matching engine-specific keypads",
+      "passed": true
+    },
+    {
+      "name": "rules reverse_limits — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "rules zero_width — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "rules linearity — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "rules interval_decomposition — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "rules combined_rules — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "rules reversed_combination — actual correct/wrong/unsimplified/incomplete submissions",
+      "passed": true
+    },
+    {
+      "name": "rules Check/Enter, no blur submission, held Enter and fresh question history",
+      "passed": true
+    },
+    {
+      "name": "2x sec(x^6) reaches the existing FTC checker without losing its factor",
+      "passed": true
+    },
+    {
+      "name": "actual secant-squared factor followed by a parenthesized factor retains multiplication",
+      "passed": true
+    },
+    {
+      "name": "FTC runtime failure retains a working legacy field",
+      "passed": true
+    },
+    {
+      "name": "FTC fonts failure retains a working legacy field",
+      "passed": true
+    }
+  ],
+  "pageErrors": []
+}

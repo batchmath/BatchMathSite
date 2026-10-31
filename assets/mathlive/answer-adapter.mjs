@@ -179,9 +179,10 @@ export function parseInput(source,format='batchmath') {
           else if(peek()==='('){const g=primary();arg=g.value;}
           else if(starts()) {
             arg=unary();
-            // Match this checker's conventional bare function argument:
-            // cos 3x absorbs 3x; sin x cos x stops before the next function.
-            while(starts()&&!['fn','radical','abs-open','|'].includes(peek()))arg={type:'binary',op:'*',implicit:true,left:arg,right:unary()};
+            // Bare cos 3x absorbs the monomial. In TeX, a following parenthesized
+            // factor belongs outside sec^2 x (factor), unlike an explicit
+            // sec(x(factor)) argument. Keep legacy BatchMath parsing unchanged.
+            while(starts()&&!['fn','radical','abs-open','|'].includes(peek())&&!(format==='latex'&&['(','[','{'].includes(peek())))arg={type:'binary',op:'*',implicit:true,left:arg,right:unary()};
           }
           else arg=empty();
           const args=arg.type==='list'?arg.items:[arg];
