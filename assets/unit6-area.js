@@ -7,11 +7,14 @@
      axis_sign         a curve that crosses the x-axis: find the zeros, split, take the opposite of the parts below
      between_enclosed  two curves enclosing a region: find the intersections, then top minus bottom
      between_switch    curves that change places on the interval: one integral per piece
-     multi_boundary    regions with three or more boundaries: two dx integrals or one dy integral
+     multi_boundary    regions where one direction needs two integrals and the other one (sqrt(x) with x - k and the
+                       x-axis, x = y^2 with x = my + k, y = x with 1/x^2 and x = b, two lines with x = b)
      trig_area         A + cos(x/n) and sin(kx) on [0, pi] (tests), sec^2 x with sin x or cos x, 2a sin x and a sin 2x
+     exp_log_under     k e^{mx} from 0 to ln c, k/x on [a, ra], k e^x on [0, 1]
+     exp_log_between   k/x with the line y = c - x (they meet at p and q, pq = k), e^x with e^{-x}, with 1, with x + 1
      calc_given        calculator: non-elementary curves on a given interval (the v10.6 families, now typed)
-     calc_find         calculator: intersections found with the calculator (a ln(x+1) with a line, 1 + ln x with
-                       x^2 - 1, cos x with x^2, e^{x/2} with c - x^2)
+     calc_find         calculator: intersections found with the calculator (a ln(x+1) with a line, c + ln x with
+                       x^2 - d, k cos x with a x^2, e^{x/2} with c - x^2)
    Finding Area in Terms of y
      y_given           right minus left with given y-bounds (the v10.6 families, now typed)
      y_between         two curves x = f(y): find where they meet, then right minus left
@@ -81,7 +84,7 @@ function famSign(tier){
  let Pp,a,b,roots;
  if(pick([true,false])){ // cubic with three integer zeros, area of the regions it encloses with the x-axis (tests: 4x^3-16x^2+12x)
   let r;do{r=[ri(-3,1),ri(-1,3),ri(1,5)].sort((u,w)=>u-w);}while(new Set(r).size<3||r[2]-r[0]>6);
-  const k=pick([1,2,4,-1,-2]);Pp=fromRoots(k,r);roots=r.map(Q);a=roots[0];b=roots[2];
+  const k=pick([1,2,4,-1,-2]);Pp=fromRoots(k,r);roots=r.map(t=>Q(t));a=roots[0];b=roots[2];
  }else{ // quadratic with rational zeros on an interval that extends past both (assignment: 2x^2 - x - 3 on [-2, 2])
   const pairs=[[Q(-1),Q(3,2),2],[Q(-1),Q(2),1],[Q(-2),Q(1),1],[Q(-1,2),Q(2),2],[Q(-3,2),Q(1),2]];const [r1,r2,k]=pick(pairs);
   Pp=pscale(pmul(lin(1,U5.qneg(r1)),lin(1,U5.qneg(r2))),k);roots=[r1,r2];a=Q(Math.floor(qv(r1))-pick([0,1]));b=Q(Math.ceil(qv(r2))+pick([0,1]));
@@ -157,7 +160,7 @@ function cornerRegion(){ // y = x, y = 1/x^2, x = b and the x-axis (assignment)
   draw:[{f:x=>x,tex:'y=x',dom:[-0.5,1.6]},{f:x=>1/(x*x),tex:'y=\\frac{1}{x^{2}}',dom:[0.6,b+1]},{g:()=>b,tex:`x=${b}`,dom:[-1,2]}],data:{kind:'corner'}});
 }
 function famMulti(tier){
- const sub=pick(['rootLineAxis','sidewaysLine','corner']),R=sub==='corner'?cornerRegion():RG.build(sub);
+ const sub=pick(['rootLineAxis','sidewaysLine','corner','wedge']),R=sub==='corner'?cornerRegion():RG.build(sub); // one integral in y beats two in x, or the other way round
  const Tx=areaTerms(R,'x'),Ty=areaTerms(R,'y'),e=exactValue(Tx)||exactValue(Ty);
  const both=step('Two ways to slice.',`With vertical slices the top or bottom boundary changes, so you need ${Tx.length} integrals in x; with horizontal slices you need ${Ty.length===1?'only one integral':`${Ty.length} integrals`} in y.`,`A=${setupTex(Tx)}`,`A=${setupTex(Ty)}`);
  const better=Ty.length<Tx.length?Ty:Tx;
@@ -208,6 +211,61 @@ function famCalcFind(tier){
  return one('Use your calculator. Answer each part.',parts,{engine:'area',family:'calc_find',tier,id:`cf-${sub}-${R.eqs.join('|')}`,calc:true,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:figure(R,{label:'Region R'}),data:{sub}});
 }
 const T3=['foundational','intermediate','challenging'];
+// ---------- exponential and logarithmic boundaries (non-calculator; antiderivatives e^{mx}/m and k ln x) ----------
+const lnE=(k,num,den=1)=>{ // k ln(num/den) for num, den made of 2s and 3s, as exact atoms (ln 4 = 2 ln 2, ln 3/2 = ln 3 - ln 2)
+ const f=n=>{let a=0,b=0;while(n%2===0){n/=2;a++;}while(n%3===0){n/=3;b++;}return[a,b];},[a1,b1]=f(num),[a2,b2]=f(den);
+ return eadd(ex(Q(k*(a1-a2)),K.ln2),ex(Q(k*(b1-b2)),K.ln3));
+};
+const expFn=(k,m)=>fnc({tex:v=>`${k===1?'':k}e^{${m===1?'':m}${v}}`,key:v=>`${k}*e^(${m}*${v})`,f:t=>k*Math.exp(m*t)});
+const recipFn=k=>fnc({tex:v=>`\\frac{${k}}{${v}}`,key:v=>`${k}/${v}`,f:t=>k/t});
+function famExpLogUnder(tier){
+ const sub=pick(tier==='foundational'?['exp','recip']:['exp','recip','e_unit']);
+ if(sub==='exp'){ // y = k e^{mx} from 0 to ln c
+  const m=pick([1,1,2]),c=pick(m===1?[2,3,4,5]:[2,3]),k=pick([1,2,3,4]),val=Q(k*(c**m-1),m),f=expFn(k,m),cq=U5.qtex(Q(k,m))==='1'?'':U5.qtex(Q(k,m));
+  const work=step('Set up the area.',`\\(${f.tex('x')}\\gt 0\\), so the area is the integral from \\(0\\) to \\(\\ln ${c}\\).`,`A=\\int_{0}^{\\ln ${c}}${f.tex('x')}\\,dx`)
+   +step('Evaluate.',`An antiderivative of \\(e^{${m===1?'':m}x}\\) is \\(${m===1?'':`\\frac{1}{${m}}`}e^{${m===1?'':m}x}\\), and \\(e^{${m===1?'':m}\\ln ${c}}=${c}^{${m}}=${c**m}\\).`,`A=\\left[${cq}e^{${m===1?'':m}x}\\right]_{0}^{\\ln ${c}}=${cq}\\left(${c**m}-1\\right)=${U5.qtex(val)}`);
+  return one('',[exactPart('Find the area.',ans(ex(val)),work)],{engine:'area',family:'exp_log_under',tier,id:`exp-${k}-${m}-${c}`,context:'Find the area of the region between the curve and the x-axis on the interval.',formulas:[`y=${f.tex('x')},\\qquad 0\\le x\\le \\ln ${c}`],data:{sub}});
+ }
+ if(sub==='recip'){ // y = k/x from a to r a
+  const k=pick([1,2,3,4,6]),a=pick([1,2,3]),r=pick([2,3]),b=a*r,e=lnE(k,b,a),f=recipFn(k);
+  const work=step('Set up the area.',`\\(${f.tex('x')}\\gt 0\\) for \\(x\\gt 0\\).`,`A=\\int_{${a}}^{${b}}${f.tex('x')}\\,dx`)
+   +step('Evaluate.',`An antiderivative of \\(\\frac{1}{x}\\) is \\(\\ln|x|\\).`,`A=${k===1?'':k}\\left[\\ln x\\right]_{${a}}^{${b}}=${k===1?'':k}\\left(\\ln ${b}-\\ln ${a}\\right)=${k===1?'':k}\\ln ${r}`);
+  return one('',[exactPart('Find the area.',ans(e),work,{wrong:[{value:k*(1/a-1/b),note:'The antiderivative of 1/x is ln|x|, not a power of x.'}]})],{engine:'area',family:'exp_log_under',tier,id:`recip-${k}-${a}-${b}`,context:'Find the area of the region between the curve and the x-axis on the interval.',formulas:[`y=${f.tex('x')},\\qquad ${a}\\le x\\le ${b}`],data:{sub}});
+ }
+ // y = k e^x on [0, 1]: k(e - 1)
+ const k=pick([1,2,3,5]),e=eadd(ex(k,K.e),ex(-k));
+ return one('',[exactPart('Find the area.',ans(e),step('Integrate.',`\\(${k===1?'':k}e^{x}\\gt 0\\), and an antiderivative of \\(e^{x}\\) is \\(e^{x}\\).`,`A=\\int_{0}^{1}${k===1?'':k}e^{x}\\,dx=${k===1?'':k}\\left[e^{x}\\right]_{0}^{1}=${etex(e)}`))],
+  {engine:'area',family:'exp_log_under',tier,id:`eunit-${k}`,context:'Find the area of the region between the curve and the x-axis on the interval.',formulas:[`y=${k===1?'':k}e^{x},\\qquad 0\\le x\\le 1`],data:{sub}});
+}
+function famExpLogBetween(tier){
+ const sub=pick(['exp_pair','recip_line','recip_line','exp_line']);
+ if(sub==='recip_line'){ // y = k/x and y = c - x meet at x = p and x = q (p q = k, p + q = c)
+  const [p,q]=pick([[1,2],[1,3],[1,4],[2,3]]),k=p*q,c=p+q,f=recipFn(k);
+  const lineF=fnc({tex:v=>`${c}-${v}`,key:v=>`${c}-${v}`,f:t=>c-t}),e=eadd(ex(Q(c*(q-p)*2-(q*q-p*p),2)),lnE(-k,q,p));
+  const T=[C.term(C.F1,bq(p),bq(q),'x',fnc({tex:v=>`${c}-${v}-\\frac{${k}}{${v}}`,key:()=>'',f:t=>c-t-k/t}))];
+  const cross=step('Find where the curves meet.',`\\(\\frac{${k}}{x}=${c}-x\\) gives \\(x^{2}-${c}x+${k}=(x-${p})(x-${q})=0\\), so \\(x=${p}\\) and \\(x=${q}\\). Between them the line is above the curve (at \\(x=${(p+q)/2}\\): \\(${c-(p+q)/2}\\gt ${U5.qtex(Q(2*k,p+q))}\\)).`);
+  const work=step('Integrate.',`An antiderivative of \\(${c}-x-\\frac{${k}}{x}\\) is \\(${c}x-\\frac{x^{2}}{2}-${k===1?'':k}\\ln x\\).`,`A=\\int_{${p}}^{${q}}\\left(${c}-x-\\frac{${k}}{x}\\right)dx=\\left[${c}x-\\frac{x^{2}}{2}-${k===1?'':k}\\ln x\\right]_{${p}}^{${q}}=${etexN(e)}`);
+  const parts=tier==='challenging'?[integralPart('Write an integral expression for the area of the region enclosed by the curves.',T,cross+step('Set up.','Top minus bottom: the line minus the curve.',`A=\\int_{${p}}^{${q}}\\left(${c}-x-\\frac{${k}}{x}\\right)dx`),{help:'Any correct setup is accepted.'}),exactPart('Find the area.',ans(e),work)]
+   :tier==='intermediate'?[listPart('Find the x-coordinates of the points where the curves intersect.',[p,q],[String(p),String(q)],cross),exactPart('Find the area of the region enclosed by the curves.',ans(e),work)]
+   :[exactPart('Find the area of the region enclosed by the curves.',ans(e),cross+work)];
+  return one('Answer each part.',parts,{engine:'area',family:'exp_log_between',tier,id:`rl-${p}-${q}-${parts.length}`,context:'Find the area of the region enclosed by the curves.',formulas:[`y=${f.tex('x')}`,`y=${lineF.tex('x')}`],data:{sub}});
+ }
+ if(sub==='exp_pair'){ // y = e^x and y = e^{-x} from x = 0 (where they meet) to x = ln c
+  const c=pick([2,3,4,5]),val=Q(c*c+1-2*c,c);
+  const work=step('Find where the curves meet and which is on top.',`\\(e^{x}=e^{-x}\\) at \\(x=0\\); for \\(x\\gt 0\\), \\(e^{x}\\gt 1\\gt e^{-x}\\).`,`A=\\int_{0}^{\\ln ${c}}\\left(e^{x}-e^{-x}\\right)dx`)
+   +step('Evaluate.',`An antiderivative is \\(e^{x}+e^{-x}\\); \\(e^{\\ln ${c}}=${c}\\) and \\(e^{-\\ln ${c}}=\\frac{1}{${c}}\\).`,`A=\\left(${c}+\\frac{1}{${c}}\\right)-(1+1)=${U5.qtex(val)}`);
+  return one('',[exactPart('Find the area.',ans(ex(val)),work)],{engine:'area',family:'exp_log_between',tier,id:`ep-${c}`,context:`Find the area of the region bounded by \\(y=e^{x}\\), \\(y=e^{-x}\\) and the line \\(x=\\ln ${c}\\).`,formulas:['y=e^{x}','y=e^{-x}',`x=\\ln ${c}`],data:{sub}});
+ }
+ // y = e^x and y = x + 1 on [0, b]... b = 1: e - 5/2; or y = e^x and y = 1 on [0, ln c]: c - 1 - ln c
+ if(pick([true,false])){const e=eadd(ex(1,K.e),ex(Q(-5,2)));
+  return one('',[exactPart('Find the area.',ans(e),step('Decide which is on top.','The tangent line \\(y=x+1\\) lies below \\(y=e^{x}\\) (they touch at \\(x=0\\)).',`A=\\int_{0}^{1}\\left(e^{x}-(x+1)\\right)dx=\\left[e^{x}-\\frac{x^{2}}{2}-x\\right]_{0}^{1}=\\left(e-\\frac{3}{2}\\right)-1=${etexN(e)}`))],
+   {engine:'area',family:'exp_log_between',tier,id:'el-1',context:'Find the area of the region between the curves from \\(x=0\\) to \\(x=1\\).',formulas:['y=e^{x}','y=x+1'],data:{sub}});}
+ const c=pick([2,3,4]),e=eadd(ex(c-1),lnE(-1,c));
+ return one('',[exactPart('Find the area.',ans(e),step('Set up.',`\\(e^{x}=1\\) at \\(x=0\\), and \\(e^{x}\\gt 1\\) for \\(x\\gt 0\\).`,`A=\\int_{0}^{\\ln ${c}}\\left(e^{x}-1\\right)dx=\\left[e^{x}-x\\right]_{0}^{\\ln ${c}}=(${c}-\\ln ${c})-1=${etexN(e)}`))],
+  {engine:'area',family:'exp_log_between',tier,id:`e1-${c}`,context:`Find the area of the region bounded by \\(y=e^{x}\\), \\(y=1\\) and the line \\(x=\\ln ${c}\\).`,formulas:['y=e^{x}','y=1',`x=\\ln ${c}`],data:{sub}});
+}
+// a negative rational part goes last (e - 5/2, 3 - ln 3)
+function etexN(e){const r=e.get('1');return etex(e,r&&r.q.n<0&&e.size>1?{lead:'last'}:{});}
 const AREA={
  axis_basic:{weight:15,tiers:['foundational','intermediate'],make:famAxis,calculator:false},
  axis_sign:{weight:15,tiers:['foundational','intermediate'],make:famSign,calculator:false},
@@ -215,10 +273,12 @@ const AREA={
  between_switch:{weight:12,tiers:['intermediate','challenging'],make:famSwitch,calculator:false},
  multi_boundary:{weight:12,tiers:['intermediate','challenging'],make:famMulti,calculator:false},
  trig_area:{weight:10,tiers:['intermediate'],make:famTrig,calculator:false},
+ exp_log_under:{weight:8,tiers:['foundational','intermediate'],make:famExpLogUnder,calculator:false},
+ exp_log_between:{weight:8,tiers:T3,make:famExpLogBetween,calculator:false},
  calc_given:{weight:8,tiers:['foundational','intermediate'],make:famCalcGiven,calculator:true},
  calc_find:{weight:12,tiers:['intermediate','challenging'],make:famCalcFind,calculator:true},
 };
-const AREA_MODES={under_curve:{families:{axis_basic:true,axis_sign:true,calc_given:true}},between:{families:{between_enclosed:true,between_switch:true,multi_boundary:true,trig_area:true,calc_find:true}}};
+const AREA_MODES={under_curve:{families:{axis_basic:true,axis_sign:true,exp_log_under:true,calc_given:true}},between:{families:{between_enclosed:true,between_switch:true,multi_boundary:true,trig_area:true,exp_log_between:true,calc_find:true}}};
 
 // ---------------- Finding Area in Terms of y ----------------
 function famYGiven(tier){ // v10.6 families, now typed
@@ -238,7 +298,7 @@ function famYBetween(tier){
  if(sub==='two_sideways'){ // x = A - y^2 and x = (y - h)^2 (notes: -y^2 + 10 and (y - 2)^2)
   const [h,r1,r2]=pick([[2,-1,3],[1,-1,2],[3,0,3],[2,0,2],[4,1,3]]),A=(r1*r1+(r1-h)**2),Lf=fp(ppow(padd(pm(1,1),pc(-h)),2)),Rf=fp(padd(pc(A),pm(-1,2)));
   if(Math.abs(Rf.f(r2)-Lf.f(r2))>1e-9)return famYBetween(tier);
-  R=region({ys:[{a:bq(r1),b:bq(r2),right:Rf,left:Lf}],eqs:[`x=${Rf.tex('y')}`,`x=\\left(y-${h}\\right)^{2}`],bounds:`Set them equal: \\(${A}-y^{2}=(y-${h})^{2}\\) gives \\(2y^{2}-${2*h}y+${h*h-A}=0\\), so \\(y=${r1}\\) and \\(y=${r2}\\).`,
+  R=region({ys:[{a:bq(r1),b:bq(r2),right:Rf,left:Lf}],eqs:[`x=${Rf.tex('y')}`,`x=\\left(y-${h}\\right)^{2}`],bounds:`Set them equal: \\(${A}-y^{2}=(y-${h})^{2}\\) gives \\(2y^{2}-${2*h}y${h*h-A?(h*h-A<0?'-':'+')+Math.abs(h*h-A):''}=0\\), so \\(y=${r1}\\) and \\(y=${r2}\\).`,
    view:{xmin:-1,xmax:A+1,ymin:r1-2,ymax:r2+2},draw:[{g:Rf.f,tex:`x=${Rf.tex('y')}`},{g:Lf.f,tex:`x=(y-${h})^{2}`}]});
  }else R=RG.build(sub);
  const T=areaTerms(R,'y'),e=exactValue(T),ys=sub==='sidewaysCubic'?[0,R.yb[1]]:[R.ys[0].a.v,R.ys[R.ys.length-1].b.v];

@@ -31,7 +31,7 @@ const PAGES=[
  ['unit6-comprehensive-review','non-calculator',['mixed','frq_region','frq_graph','short']],['unit6-comprehensive-review','calculator',['mixed','frq_region','short']],
 ];
 const modeOk={perp_x:p=>p.unit5Meta.dir==='x',perp_y:p=>p.unit5Meta.dir==='y',disks_washers:p=>(p.unit5Meta.shown||p.unit5Meta.method)!=='shell',shells:p=>(p.unit5Meta.shown||p.unit5Meta.method)==='shell',
- under_curve:p=>['axis_basic','axis_sign','calc_given'].includes(p.unit5Meta.family),between:p=>!['axis_basic','axis_sign','calc_given'].includes(p.unit5Meta.family),
+ under_curve:p=>['axis_basic','axis_sign','exp_log_under','calc_given'].includes(p.unit5Meta.family),between:p=>!['axis_basic','axis_sign','exp_log_under','calc_given'].includes(p.unit5Meta.family),
  frq_region:p=>p.unit6Review.reviewTopic==='frq_region',frq_graph:p=>p.unit6Review.reviewTopic==='frq_graph',short:p=>!/^frq_/.test(p.unit6Review.reviewTopic)};
 const badSign=/(?:^|[^\^])--|\+\s*-(?!\s*\d*\s*\\infty)/;
 let made=0,partsSeen=0;const fams={};

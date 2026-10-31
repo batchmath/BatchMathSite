@@ -30,7 +30,7 @@ function pair(){
  const L=inversePow(ct,et),Rr=inversePow(cb,eb);
  return region({name:'R',xs:[{a:bq(0),b:bq(s),top,bot}],ys:L&&Rr?[{a:bq(0),b:bq(nice(Y)),right:Rr,left:L}]:null,
   eqs:[`y=${top.tex('x')}`,`y=${bot.tex('x')}`],text:`the region enclosed by \\(y=${top.tex('x')}\\) and \\(y=${bot.tex('x')}\\)`,
-  bounds:`Set ${top.tex('x')}=${bot.tex('x')}: the curves meet at \\(x=0\\) and \\(x=${s}\\) (where \\(y=${nice(Y)}\\)).`,
+  bounds:`Set \\(${top.tex('x')}=${bot.tex('x')}\\): the curves meet at \\(x=0\\) and \\(x=${s}\\) (where \\(y=${nice(Y)}\\)).`,
   boundsTex:[`x=0`,`x=${s}`],xb:[0,s],yb:[0,nice(Y)],
   view:{xmin:-1,xmax:s+1,ymin:-1,ymax:Math.ceil(Y)+1},draw:[{f:top.f,tex:`y=${top.tex('x')}`,dom:[0,s+1]},{f:bot.f,tex:`y=${bot.tex('x')}`,dom:[0,s+1]}],
   data:{kind:'pair',touchesOrigin:true}});
@@ -59,23 +59,23 @@ function underPower(){
   bounds:`The curve meets the x-axis at \\(x=0\\); at \\(x=${n}\\), \\(y=${Y}\\). Solved for x, the curve is \\(x=${mono(1,Q(1,p)).tex('y')}\\).`,
   xb:[0,n],yb:[0,Y],view:{xmin:-1,xmax:n+1,ymin:-1,ymax:Y+1},draw:[{f:top.f,tex:`y=${top.tex('x')}`,dom:[0,n+0.4]},{g:()=>n,tex:`x=${n}`,dom:[-1,Y+1]}],data:{kind:'under_power'}});
 }
-// x = y^2 and x = y + k (assignment: x = y + 2, x = y^2): one dy integral, two dx integrals
+// x = y^2 and x = m y + k (assignment: x = y + 2, x = y^2): one dy integral, two dx integrals
 function sidewaysLine(){
- const [r1,r2]=pick([[-1,2],[-2,3],[-3,4]]),k=-r1*r2;
- const sq=mono(1,Q(1,2)),nsq=mono(-1,Q(1,2)),ln=line(1,-k);
- return region({xs:[{a:bq(0),b:bq(r1*r1),top:sq,bot:nsq},{a:bq(r1*r1),b:bq(r2*r2),top:sq,bot:ln}],ys:[{a:bq(r1),b:bq(r2),right:line(1,k),left:mono(1,2)}],
-  eqs:[`x=y^{2}`,`x=y+${k}`],text:`the region enclosed by \\(x=y^{2}\\) and \\(x=y+${k}\\)`,
-  bounds:`Set \\(y^{2}=y+${k}\\): \\(y^{2}-y-${k}=(y-${r2})(y+${-r1})=0\\), so \\(y=${r1}\\) and \\(y=${r2}\\) (the points \\((${r1*r1},${r1})\\) and \\((${r2*r2},${r2})\\)).`,
-  xb:[0,r2*r2],yb:[r1,r2],view:{xmin:-1,xmax:r2*r2+1,ymin:r1-1,ymax:r2+1},draw:[{g:y=>y*y,tex:'x=y^{2}',dom:[r1-0.8,r2+0.8]},{g:y=>y+k,tex:`x=y+${k}`,dom:[r1-1,r2+1]}],
+ const [m,r1,r2]=pick([[1,-1,2],[1,-2,3],[1,-3,4],[2,-1,3],[2,-2,4]]),k=-r1*r2;
+ const sq=mono(1,Q(1,2)),nsq=mono(-1,Q(1,2)),ln=line(Q(1,m),Q(-k,m)),xl=line(m,k);
+ return region({xs:[{a:bq(0),b:bq(r1*r1),top:sq,bot:nsq},{a:bq(r1*r1),b:bq(r2*r2),top:sq,bot:ln}],ys:[{a:bq(r1),b:bq(r2),right:xl,left:mono(1,2)}],
+  eqs:[`x=y^{2}`,`x=${xl.tex('y')}`],text:`the region enclosed by \\(x=y^{2}\\) and \\(x=${xl.tex('y')}\\)`,
+  bounds:`Set \\(y^{2}=${xl.tex('y')}\\): \\(y^{2}-${m===1?'':m}y-${k}=(y-${r2})(y+${-r1})=0\\), so \\(y=${r1}\\) and \\(y=${r2}\\) (the points \\((${r1*r1},${r1})\\) and \\((${r2*r2},${r2})\\)). Solved for y, the line is \\(y=${ln.tex('x')}\\).`,
+  xb:[0,r2*r2],yb:[r1,r2],view:{xmin:-1,xmax:r2*r2+1,ymin:r1-1,ymax:r2+1},draw:[{g:y=>y*y,tex:'x=y^{2}',dom:[r1-0.8,r2+0.8]},{g:y=>m*y+k,tex:`x=${xl.tex('y')}`,dom:[r1-1,r2+1]}],
   data:{kind:'sideways_line',dyBetter:true,splitX:r1*r1}});
 }
-// y = sqrt(x), y = x - k and the x-axis (notes): one dy integral, two dx integrals
+// y = c sqrt(x), y = x - k and the x-axis (notes: sqrt(x), x - 2): one dy integral, two dx integrals
 function rootLineAxis(){
- const s=pick([2,3,4]),k=s*s-s,sq=mono(1,Q(1,2));
- return region({xs:[{a:bq(0),b:bq(k),top:sq,bot:fconst(0)},{a:bq(k),b:bq(s*s),top:sq,bot:line(1,-k)}],ys:[{a:bq(0),b:bq(s),right:line(1,k),left:mono(1,2)}],
-  eqs:['y=\\sqrt{x}',`y=x-${k}`,'y=0'],text:`the region in the first quadrant bounded above by \\(y=\\sqrt{x}\\) and below by the x-axis and the line \\(y=x-${k}\\)`,
-  bounds:`\\(\\sqrt{x}=x-${k}\\) at \\(x=${s*s}\\) (then \\(y=${s}\\)); the line meets the x-axis at \\(x=${k}\\). In terms of y the boundaries are \\(x=y^{2}\\) (left) and \\(x=y+${k}\\) (right) for \\(0\\le y\\le ${s}\\).`,
-  xb:[0,s*s],yb:[0,s],view:{xmin:-1,xmax:s*s+1,ymin:-1,ymax:s+1},draw:[{f:x=>Math.sqrt(x),tex:'y=\\sqrt{x}',dom:[0,s*s+1]},{f:x=>x-k,tex:`y=x-${k}`,dom:[k-1,s*s+1]}],
+ const [c,t]=pick([[1,2],[1,3],[1,4],[2,3],[2,4]]),k=t*t-c*t,top=mono(c,Q(1,2)),Y=c*t;
+ return region({xs:[{a:bq(0),b:bq(k),top,bot:fconst(0)},{a:bq(k),b:bq(t*t),top,bot:line(1,-k)}],ys:[{a:bq(0),b:bq(Y),right:line(1,k),left:mono(Q(1,c*c),2)}],
+  eqs:[`y=${top.tex('x')}`,`y=x-${k}`,'y=0'],text:`the region in the first quadrant bounded above by \\(y=${top.tex('x')}\\) and below by the x-axis and the line \\(y=x-${k}\\)`,
+  bounds:`\\(${top.tex('x')}=x-${k}\\) at \\(x=${t*t}\\) (then \\(y=${Y}\\)); the line meets the x-axis at \\(x=${k}\\). In terms of y the boundaries are \\(x=${mono(Q(1,c*c),2).tex('y')}\\) (left) and \\(x=y+${k}\\) (right) for \\(0\\le y\\le ${Y}\\).`,
+  xb:[0,t*t],yb:[0,Y],view:{xmin:-1,xmax:t*t+1,ymin:-1,ymax:Y+1},draw:[{f:x=>c*Math.sqrt(x),tex:`y=${top.tex('x')}`,dom:[0,t*t+1]},{f:x=>x-k,tex:`y=x-${k}`,dom:[k-1,t*t+1]}],
   data:{kind:'root_line_axis',dyBetter:true,splitX:k}});
 }
 // y = c - k x^2 and the x-axis (assignments: 1 - x^2, 2 - x^2 with the x-axis); half: first quadrant
@@ -149,7 +149,7 @@ const EXACT={pair,underRoot,leftOfPower,underPower,sidewaysLine,rootLineAxis,cap
 const fx=(tex,key,f)=>fnc({tex:v=>tex.replace(/@/g,v),key:v=>key.replace(/@/g,v),f});
 // y = a ln(x+1), y = b - x and the x-axis (tests 2023-2026, calculator question 1)
 function logLine(){
- const [a,b]=pick([[2,3],[3,4],[2,4],[3,5],[4,5]]),g=x=>a*Math.log(x+1)-(b-x),xs=zeros(g,0,b);if(xs.length!==1)return null;const p=xs[0],Y=b-p;
+ const a=pick([1,2,3,4]),b=pick([2,3,4,5]),g=x=>a*Math.log(x+1)-(b-x) /* the curve rises from 0 and the line falls to 0: one crossing */,xs=zeros(g,0,b);if(xs.length!==1)return null;const p=xs[0],Y=b-p;
  const lg=fx(`${a}\\ln\\left(@+1\\right)`,`${a}*ln(@+1)`,x=>a*Math.log(x+1)),ln=fx(`${b}-@`,`${b}-@`,x=>b-x);
  return region({xs:[{a:bq(0),b:bn(p),top:lg,bot:fconst(0)},{a:bn(p),b:bq(b),top:ln,bot:fconst(0)}],
   ys:[{a:bq(0),b:bn(Y),right:fx(`${b}-@`,`${b}-@`,y=>b-y),left:fx(`e^{\\frac{@}{${a}}}-1`,`e^(@/${a})-1`,y=>Math.exp(y/a)-1)}],
@@ -159,7 +159,7 @@ function logLine(){
 }
 // y = 1 + ln x and y = x^2 - 1 (tests, calculator questions 2-5)
 function logParabola(){
- const [c,d]=pick([[1,1],[2,2],[1,2]]),f=x=>c+Math.log(x),g=x=>x*x-d,r=zeros(x=>f(x)-g(x),0.02,4);if(r.length!==2)return null;const [p,q]=r;
+ const c=pick([1,2]),d=pick([1,2,3]),f=x=>c+Math.log(x) /* f - g is c + d > 0 at x = 1 and tends to -infinity at both ends: two crossings */,g=x=>x*x-d,r=zeros(x=>f(x)-g(x),0.02,4);if(r.length!==2)return null;const [p,q]=r;
  const F=fx(`${c}+\\ln @`,`${c}+ln(@)`,f),G=fx(`@^{2}-${d}`,`@^2-${d}`,g),y0=g(p),y1=g(q);
  // horizontal slices: left x = e^{y-c}, right x = sqrt(y+d)
  return region({xs:[{a:bn(p),b:bn(q),top:F,bot:G}],ys:[{a:bn(y0),b:bn(y1),right:fx(`\\sqrt{@+${d}}`,`sqrt(@+${d})`,y=>Math.sqrt(y+d)),left:fx(`e^{@-${c}}`,`e^(@-${c})`,y=>Math.exp(y-c))}],
@@ -177,15 +177,15 @@ function expAxes(){
 }
 // y = cos x and y = x^2 (or a x^2)
 function cosParabola(){
- const a=pick([1,2]),f=x=>Math.cos(x),g=x=>a*x*x,r=zeros(x=>f(x)-g(x),0,2);if(r.length!==1)return null;const p=r[0];
- const F=fx('\\cos @','cos(@)',f),G=fx(`${a===1?'':a}@^{2}`,`${a}*@^2`,g);
- return region({xs:[{a:bn(-p),b:bn(p),top:F,bot:G}],ys:null,eqs:['y=\\cos x',`y=${G.tex('x')}`],text:`the region enclosed by \\(y=\\cos x\\) and \\(y=${G.tex('x')}\\)`,
-  bounds:`With a calculator, \\(\\cos x=${G.tex('x')}\\) at \\(x\\approx\\pm${fixed(p,4)}\\).`,xb:[-p,p],yb:[0,1],
-  view:{xmin:-2,xmax:2,ymin:-1,ymax:2},draw:[{f,tex:'y=\\cos x',dom:[-2,2]},{f:g,tex:`y=${G.tex('x')}`,dom:[-1.4,1.4]}],data:{kind:'cos_parabola',p}});
+ const a=pick([1,2,3]),k=pick([1,2]),f=x=>k*Math.cos(x),g=x=>a*x*x,r=zeros(x=>f(x)-g(x),0,2);if(r.length!==1)return null;const p=r[0];
+ const ct=`${k===1?'':k}\\cos x`,F=fx(`${k===1?'':k}\\cos @`,`${k}*cos(@)`,f),G=fx(`${a===1?'':a}@^{2}`,`${a}*@^2`,g);
+ return region({xs:[{a:bn(-p),b:bn(p),top:F,bot:G}],ys:null,eqs:[`y=${ct}`,`y=${G.tex('x')}`],text:`the region enclosed by \\(y=${ct}\\) and \\(y=${G.tex('x')}\\)`,
+  bounds:`With a calculator, \\(${ct}=${G.tex('x')}\\) at \\(x\\approx\\pm${fixed(p,4)}\\).`,xb:[-p,p],yb:[0,k],
+  view:{xmin:-2,xmax:2,ymin:-1,ymax:k+1},draw:[{f,tex:`y=${ct}`,dom:[-2,2]},{f:g,tex:`y=${G.tex('x')}`,dom:[-1.4,1.4]}],data:{kind:'cos_parabola',p}});
 }
 // y = e^{x/2} and y = 4 - x^2 (enclosed, both intersections from the calculator)
 function expParabola(){
- const c=pick([4,5]),f=x=>Math.exp(x/2),g=x=>c-x*x,r=zeros(x=>g(x)-f(x),-3,3);if(r.length!==2)return null;const [p,q]=r;
+ const c=pick([3,4,5,6]),f=x=>Math.exp(x/2),g=x=>c-x*x,r=zeros(x=>g(x)-f(x),-3,3);if(r.length!==2)return null;const [p,q]=r;
  return region({xs:[{a:bn(p),b:bn(q),top:fx(`${c}-@^{2}`,`${c}-@^2`,g),bot:fx('e^{\\frac{@}{2}}','e^(@/2)',f)}],ys:null,eqs:[`y=${c}-x^{2}`,'y=e^{x/2}'],
   text:`the region enclosed by \\(y=${c}-x^{2}\\) and \\(y=e^{x/2}\\)`,bounds:`With a calculator, the curves meet at \\(x\\approx${fixed(p,4)}\\) and \\(x\\approx${fixed(q,4)}\\).`,xb:[p,q],
   view:{xmin:-3,xmax:3,ymin:-1,ymax:c+1},draw:[{f:g,tex:`y=${c}-x^{2}`,dom:[-2.6,2.6]},{f,tex:'y=e^{x/2}',dom:[-3,2.8]}],data:{kind:'exp_parabola',p,q}});

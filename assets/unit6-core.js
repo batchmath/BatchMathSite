@@ -167,7 +167,8 @@ function evalSteps(t){
 
 // ---------- regions ----------
 // R = {xs:[{a,b,top,bot}], ys:[{a,b,right,left}], eqs:[TeX], view:{xmin,xmax,ymin,ymax}, draw:[{f|g, dom, tex}]}
-function region(o){return Object.freeze({xs:o.xs||null,ys:o.ys||null,eqs:o.eqs||[],text:o.text||'',view:o.view,draw:o.draw||[],marks:o.marks||[],name:o.name||'R',data:o.data||{}});}
+// bounds: how the limits are found (for the explanation); xb, yb: the region's x and y extent (for choosing axes)
+function region(o){return Object.freeze({xs:o.xs||null,ys:o.ys||null,eqs:o.eqs||[],text:o.text||'',bounds:o.bounds||'',xb:o.xb||null,yb:o.yb||null,view:o.view,draw:o.draw||[],marks:o.marks||[],name:o.name||'R',data:o.data||{}});}
 // area
 function areaTerms(R,v){
  const ps=v==='x'?R.xs:R.ys,hi=v==='x'?'top':'right',lo=v==='x'?'bot':'left';
@@ -266,7 +267,11 @@ function checkIntegral(rows,spec){
   if(![A,B,C].every(Number.isFinite))return{valid:false,message:`Check the limits${which}; one of them is undefined.`};
   const probe=[0.1,0.3,0.5,0.7,0.9].map(t=>g.f(A+(B-A)*t));
   if(probe.some(z=>!Number.isFinite(z)))return{valid:true,ok:false,note:`The integrand${which} is undefined on part of its interval of integration. Check the limits and the expression.`};
-  if(new Set(probe.map(z=>z.toFixed(9))).size>1)depends=true;
+  // the integrand must depend on the variable as written (x(2/x) is fine), or be a constant where the model integrand is
+  // one on the same interval (2 pi times the integral of 2 for shells under y = 2/x); a bare number elsewhere, such as the
+  // answer itself over [0, 1], is not a setup
+  if(new Set(probe.map(z=>z.toFixed(9))).size>1||new RegExp(`(?<![a-z])${r.v}(?![a-z])`).test(String(r.integrand).replace(/exp|max/g,''))
+   ||(spec.constLimits||[]).some(([p,q])=>Math.abs(p-A)<1e-9&&Math.abs(q-B)<1e-9))depends=true;
   vars.add(r.v);
   total+=C*quad(g.f,A,B,1e-10);
   if(spec.decimals)for(const [txt,at,inward] of [[r.lower,A,B],[r.upper,B,A]]){const pl=placesOf(txt);if(pl===null)continue;if(pl<3){coarse=true;continue;}
@@ -317,7 +322,8 @@ function integralPart(prompt,terms,explanation,extra={}){
  for(const w of wrongValues(terms))if(closeRel(w,value,1e-5))throw Error('a common wrong setup has the same value');
  // rows: the model setup, one row per integral (TeX), kept for the review lab's typed-entry tests
  return{prompt,control:'u6-integral',answer:{kind:'u6-integral',value,variable:extra.variable||null,notes:extra.notes||[],methodNote:extra.methodNote,
-  rows:terms.map(t=>({coef:factorTex(t.k),lower:t.a.tex,upper:t.b.tex,integrand:t.tex,v:t.v}))},answerTex:setupTex(terms),explanation,maxIntegrals:extra.max||3,help:extra.help};
+  rows:terms.map(t=>({coef:factorTex(t.k),lower:t.a.tex,upper:t.b.tex,integrand:t.tex,v:t.v})),
+  constLimits:terms.filter(t=>new Set([0.13,0.41,0.77].map(z=>t.g.f(t.a.v+(t.b.v-t.a.v)*z).toFixed(9))).size===1).map(t=>[t.a.v,t.b.v])},answerTex:setupTex(terms),explanation,maxIntegrals:extra.max||3,help:extra.help};
 }
 function exprPart(prompt,label,fn,v,domain,explanation,extra={}){
  return{prompt,control:'u6-expr',prefix:label,answer:{kind:'u6-expr',expr:fn,variable:v,domain,notes:extra.notes||[]},answerTex:`${label}${fn.tex(v)}`,explanation,keypadMode:'unit6-integral',placeholder:`Expression in ${v}`};
