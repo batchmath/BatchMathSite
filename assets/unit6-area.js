@@ -36,7 +36,7 @@ const ans=e=>exactAnswer(e);
 // k times an expression: k\left(...\right), or the expression alone when k is 1 (x = 4 - y^2, not x = (4 - y^2))
 const cwrap=(k,inner)=>k===1?inner:`${k}\\left(${inner}\\right)`;
 const sumE=list=>list.reduce((a,b)=>a?eadd(a,b):b,null);
-const one=(prompt0,parts,o)=>{const prompt=parts.length>1?prompt0:(o.calc?'Use your calculator.':'');return problem(o.calc?{...o,calculator:true,questionHtml:question({context:o.context,prompt,formulas:o.formulas,calculator:true,extra:o.extra||''}),parts}:{...o,questionHtml:question({context:o.context,prompt,formulas:o.formulas,calculator:false,extra:o.extra||''}),parts});};
+const one=(prompt0,parts,o)=>{const prompt=parts.length>1?prompt0:''; /* a calculator problem already shows the Calculator active badge */return problem(o.calc?{...o,calculator:true,questionHtml:question({context:o.context,prompt,formulas:o.formulas,calculator:true,extra:o.extra||''}),parts}:{...o,questionHtml:question({context:o.context,prompt,formulas:o.formulas,calculator:false,extra:o.extra||''}),parts});};
 const ROUND=x=>Math.round(x*1e9)/1e9;
 // signed pieces of a polynomial between consecutive zeros on [a, b]: [{a,b,sign}]
 function signPieces(Pp,a,b,roots){
@@ -200,7 +200,7 @@ const OLD=[
 ];
 function famCalcGiven(tier){
  const o=pick(OLD)(),v=quad(x=>o.f(x)-o.g(x),0,o.T);
- return one('Use your calculator.',[numPart(`Find the area of the region between the curves on \\([0,${o.T}]\\).`,v,step('Set up.',o.why,`A=\\int_{0}^{${o.T}}\\left(\\text{top}-\\text{bottom}\\right)dx\\approx ${fixed(v,3)}`))],
+ return one('',[numPart(`Find the area of the region between the curves on \\([0,${o.T}]\\).`,v,step('Set up.',o.why,`A=\\int_{0}^{${o.T}}\\left(\\text{top}-\\text{bottom}\\right)dx\\approx ${fixed(v,3)}`))],
   {engine:'area',family:'calc_given',tier,id:o.id,calc:true,context:'Find the area of the region between the curves on the interval.',formulas:o.tex});
 }
 function famCalcFind(tier){
@@ -210,7 +210,7 @@ function famCalcFind(tier){
  const listP={prompt:`${ask} Give each value correct to three decimal places.`,control:'input',answer:{kind:'list',values:pts,places:3},answerTex:pts.map(x=>fixed(x,3)).join(',\\ '),explanation:W.boundsStep(R,'Use the calculator.'),keypadMode:'unit6-list-dec',placeholder:'Decimal values separated by commas'};
  const parts=tier==='challenging'?[integralPart('Write an integral expression (or a sum of integrals) for the area of \\(R\\). You may use decimal limits.',T,W.boundsStep(R)+W.areaWork(R,'x',T),{help:'Use the stored intersection values (at least four decimals) as limits.'}),numPart('Find the area of \\(R\\).',v,W.calcWork(T,'A'))]
   :[listP,numPart('Find the area of \\(R\\).',v,W.areaWork(R,'x',T)+W.calcWork(T,'A'))];
- return one('Use your calculator. Answer each part.',parts,{engine:'area',family:'calc_find',tier,id:`cf-${sub}-${R.eqs.join('|')}`,calc:true,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:figure(R,{label:'Region R'}),data:{sub}});
+ return one('Answer each part.',parts,{engine:'area',family:'calc_find',tier,id:`cf-${sub}-${R.eqs.join('|')}`,calc:true,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:figure(R,{label:'Region R'}),data:{sub}});
 }
 const T3=['foundational','intermediate','challenging'];
 // ---------- exponential and logarithmic boundaries (non-calculator; antiderivatives e^{mx}/m and k ln x) ----------

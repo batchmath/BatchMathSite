@@ -22,7 +22,7 @@ if(!C||!RG){console.error('unit6-volume: load unit6-core.js and unit6-regions.js
 const {U5,Q,qv,K,ex,eadd,etex,P,pc,pm,fp,fnc,fconst,bq,bn,region,sectionTerms,washerTerms,shellTerms,SHAPES,rectShape,setupTex,numValue,exactValue,exactAnswer,
  step,m,question,problem,figure,quad,fixed,exactPart,numPart,integralPart,exprPart,choicePart,factorTex}=C;
 const {pick,ri}=U5,W=RG.work;
-const one=(prompt0,parts,o)=>{const prompt=parts.length>1?prompt0:(o.calc?'Use your calculator.':'');return problem({...o,calculator:!!o.calc,questionHtml:question({context:o.context,prompt,formulas:o.formulas,calculator:!!o.calc,extra:o.extra||''}),parts});};
+const one=(prompt0,parts,o)=>{const prompt=parts.length>1?prompt0:''; /* a calculator problem already shows the Calculator active badge */return problem({...o,calculator:!!o.calc,questionHtml:question({context:o.context,prompt,formulas:o.formulas,calculator:!!o.calc,extra:o.extra||''}),parts});};
 const SH=['square','square','semicircle_d','quarter','equilateral','iso_leg','iso_hyp','rect2','rect3','semicircle_r'];
 const shapeOf=n=>n==='rect2'?rectShape(2):n==='rect3'?rectShape(3):SHAPES[n];
 const EXACT_CS=['cap','halfCap','semicircle','disk','triangle','pair','underRoot','underPower','leftOfPower'];
@@ -69,7 +69,7 @@ function famCsCalc(tier){
  const v=sub==='logLine'?pick(['x','y']):sub==='expAxes'?pick(['x','y']):'x',shape=shapeOf(sub==='logLine'?(v==='y'?pick(['iso_leg','square','equilateral']):pick(['rect2','semicircle_d','square'])):pick(SH)),T=sectionTerms(R,v,shape),val=numValue(T);
  const parts=tier==='challenging'?[integralPart('Write an integral expression for the volume of the solid. You may use decimal limits.',T,W.boundsStep(R)+W.sectionWork(R,v,shape,T),{variable:v,help:'Use stored values (at least four decimals) for limits found with the calculator.'}),numPart('Find the volume of the solid.',val,W.calcWork(T))]
   :[numPart('Find the volume of the solid.',val,W.boundsStep(R)+W.sectionWork(R,v,shape,T)+W.calcWork(T))];
- return one('Use your calculator. Answer each part.',parts,{engine:'cross_sections',family:'cs_calc',tier,id:`csc-${R.eqs.join('|')}-${v}-${shape.name}`,calc:true,context:csContext(R,v,shape),formulas:R.eqs,extra:figure(R,{label:'The base of the solid'}),data:{dir:v,shape:shape.name,region:R.data.kind}});
+ return one('Answer each part.',parts,{engine:'cross_sections',family:'cs_calc',tier,id:`csc-${R.eqs.join('|')}-${v}-${shape.name}`,calc:true,context:csContext(R,v,shape),formulas:R.eqs,extra:figure(R,{label:'The base of the solid'}),data:{dir:v,shape:shape.name,region:R.data.kind}});
 }
 const CS={
  cs_basic:{weight:45,tiers:['foundational','intermediate'],make:famCsBasic,calculator:false},
@@ -170,7 +170,7 @@ function famSolidCalc(tier){
   const free=tier!=='challenging';
   const parts=tier==='challenging'?[integralPart(`Write an integral expression for the volume of the solid${R.ys?'':' (use washers or disks)'}. You may use decimal limits.`,T,W.boundsStep(R)+workFor(R,method,axis,T),{help:'Any correct method is accepted; use stored values (at least four decimals) for calculator limits.'}),numPart('Find the volume of the solid.',val,W.calcWork(T))]
    :[numPart('Find the volume of the solid.',val,W.boundsStep(R)+workFor(R,method,axis,T)+W.calcWork(T))];
-  return one('Use your calculator. Answer each part.',parts,{engine:'solids',family:'solid_calc',tier,id:`sc-${R.eqs.join('|')}-${axis.type}${axis.c}-${method}`,calc:true,context:solidContext(R,axis),formulas:R.eqs,extra:figure(R,{axis,label:'Region R and the axis of rotation'}),data:{method:free?'any':method,shown:method,axis:`${axis.type}=${axis.c}`,region:R.data.kind}});
+  return one('Answer each part.',parts,{engine:'solids',family:'solid_calc',tier,id:`sc-${R.eqs.join('|')}-${axis.type}${axis.c}-${method}`,calc:true,context:solidContext(R,axis),formulas:R.eqs,extra:figure(R,{axis,label:'Region R and the axis of rotation'}),data:{method:free?'any':method,shown:method,axis:`${axis.type}=${axis.c}`,region:R.data.kind}});
  }
  throw Error('solid_calc failed');
 }

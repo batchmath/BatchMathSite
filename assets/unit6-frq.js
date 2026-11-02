@@ -128,7 +128,7 @@ function famCalc(tier){
   if(!opts.length)continue;
   const all=[...parts,...pick(opts)()].slice(0,four?4:3);
   if(all.length<3)continue;
-  return frq(all,{engine:'frq',family:'frq_calc',tier,calc:true,id:`calc-${R.eqs.join('|')}-${all.map(p=>p.answerTex).join('|')}`,prompt:'Use your calculator. Answer each part.',
+  return frq(all,{engine:'frq',family:'frq_calc',tier,calc:true,id:`calc-${R.eqs.join('|')}-${all.map(p=>p.answerTex).join('|')}`,
    context:`Let \\(S\\) be ${R.text}, as shown in the figure.`,formulas:R.eqs,extra:figure(R,{label:'Region S'}),data:{frq:'region',region:kind}});
  }
  throw Error('frq_calc failed');
