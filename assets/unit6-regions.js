@@ -149,13 +149,13 @@ const EXACT={pair,underRoot,leftOfPower,underPower,sidewaysLine,rootLineAxis,cap
 const fx=(tex,key,f)=>fnc({tex:v=>tex.replace(/@/g,v),key:v=>key.replace(/@/g,v),f});
 // y = a ln(x+1), y = b - x and the x-axis (tests 2023-2026, calculator question 1)
 function logLine(){
- const a=pick([1,2,3,4]),b=pick([2,3,4,5]),g=x=>a*Math.log(x+1)-(b-x) /* the curve rises from 0 and the line falls to 0: one crossing */,xs=zeros(g,0,b);if(xs.length!==1)return null;const p=xs[0],Y=b-p;
- const lg=fx(`${a}\\ln\\left(@+1\\right)`,`${a}*ln(@+1)`,x=>a*Math.log(x+1)),ln=fx(`${b}-@`,`${b}-@`,x=>b-x);
+ const a=pick([1,2,3,4]),b=pick([2,3,4,5]),g=x=>a*Math.log(x+1)-(b-x) /* the curve rises from 0 and the line falls to 0: one crossing */,xs=zeros(g,0,b);if(xs.length!==1)return null;const p=xs[0],Y=b-p,aL=a===1?'':a,ey=v=>a===1?`e^{${v}}`:`e^{\\frac{${v}}{${a}}}`; // a ln(x + 1) and its inverse, without a written 1
+ const lg=fx(`${aL}\\ln\\left(@+1\\right)`,`${a}*ln(@+1)`,x=>a*Math.log(x+1)),ln=fx(`${b}-@`,`${b}-@`,x=>b-x);
  return region({xs:[{a:bq(0),b:bn(p),top:lg,bot:fconst(0)},{a:bn(p),b:bq(b),top:ln,bot:fconst(0)}],
-  ys:[{a:bq(0),b:bn(Y),right:fx(`${b}-@`,`${b}-@`,y=>b-y),left:fx(`e^{\\frac{@}{${a}}}-1`,`e^(@/${a})-1`,y=>Math.exp(y/a)-1)}],
-  eqs:['y=0',`y=${a}\\ln(x+1)`,`y=-x+${b}`],text:`the region enclosed by \\(y=0\\), \\(y=${a}\\ln(x+1)\\) and \\(y=-x+${b}\\)`,
-  bounds:`The curve meets the x-axis at \\(x=0\\) and the line at \\(x=b\\approx${fixed(p,4)}\\) (calculator), where \\(y\\approx${fixed(Y,4)}\\); the line meets the x-axis at \\(x=${b}\\). Solved for x: \\(x=e^{\\frac{y}{${a}}}-1\\) and \\(x=${b}-y\\).`,
-  xb:[0,b],yb:[0,Y],view:{xmin:-1,xmax:b+1,ymin:-1,ymax:Math.ceil(Y)+1},draw:[{f:lg.f,tex:`y=${a}\\ln(x+1)`,dom:[-0.6,b+1]},{f:ln.f,tex:`y=-x+${b}`,dom:[-1,b+1]}],data:{kind:'log_line',p}});
+  ys:[{a:bq(0),b:bn(Y),right:fx(`${b}-@`,`${b}-@`,y=>b-y),left:fx(`${ey('@')}-1`,`e^(@/${a})-1`,y=>Math.exp(y/a)-1)}],
+  eqs:['y=0',`y=${aL}\\ln(x+1)`,`y=-x+${b}`],text:`the region enclosed by \\(y=0\\), \\(y=${aL}\\ln(x+1)\\) and \\(y=-x+${b}\\)`,
+  bounds:`The curve meets the x-axis at \\(x=0\\) and the line at \\(x=b\\approx${fixed(p,4)}\\) (calculator), where \\(y\\approx${fixed(Y,4)}\\); the line meets the x-axis at \\(x=${b}\\). Solved for x: \\(x=${ey('y')}-1\\) and \\(x=${b}-y\\).`,
+  xb:[0,b],yb:[0,Y],view:{xmin:-1,xmax:b+1,ymin:-1,ymax:Math.ceil(Y)+1},draw:[{f:lg.f,tex:`y=${aL}\\ln(x+1)`,dom:[-0.6,b+1]},{f:ln.f,tex:`y=-x+${b}`,dom:[-1,b+1]}],data:{kind:'log_line',p}});
 }
 // y = 1 + ln x and y = x^2 - 1 (tests, calculator questions 2-5)
 function logParabola(){

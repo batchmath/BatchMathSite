@@ -86,7 +86,7 @@ function famCapLine(tier){
  const eA=A==='1'?eadd(ex(Q(k,2),K.pi),ex(Q(-k))):A==='sqrt3'?eadd(ex(Q(2*k,3),K.pi),ex(Q(-k,2),K.sqrt3)):eadd(ex(Q(k,3),K.pi),ex(Q(-k,2),K.sqrt3));
  const cross=step('Find where the curve meets the line.',`\\(\\frac{${k}}{1+x^{2}}=${c}\\) gives \\(1+x^{2}=${qtex(Q(k,c))}\\), so \\(x^{2}=${qtex(Q(k-c,c))}\\) and \\(x=\\pm ${aTex}\\).`);
  const areaW=cross+step('Set up and evaluate the area.',`On \\(\\left[-${aTex},${aTex}\\right]\\) the curve is above the line. An antiderivative of \\(\\frac{${k}}{1+x^{2}}\\) is \\(${k}\\tan^{-1}x\\).`,
-  `A=\\int_{-${aTex}}^{${aTex}}\\left(\\frac{${k}}{1+x^{2}}-${c}\\right)dx`,`=\\left[${k}\\tan^{-1}x-${c}x\\right]_{-${aTex}}^{${aTex}}`,`=2\\left(${k}\\cdot${ang}-${c}\\cdot ${aTex}\\right)=${etexN(eA)}`);
+  `A=\\int_{-${aTex}}^{${aTex}}\\left(\\frac{${k}}{1+x^{2}}-${c}\\right)dx`,`=\\left[${k}\\tan^{-1}x-${c===1?'':c}x\\right]_{-${aTex}}^{${aTex}}`,`=2\\left(${k}\\cdot${ang}-${c}\\cdot ${aTex}\\right)=${etexN(eA)}`);
  const parts=[exactPart('Find the area of \\(R\\).',ans(eA),areaW)];
  // a washer setup about a horizontal line above or below the region (not cutting it)
  const d=pick([pick([k,k+1,k+2]),pick([c-1,0,-1,-2].filter(t=>t<c))]),axis={type:'y',c:d},T=washerTerms(R,axis);
