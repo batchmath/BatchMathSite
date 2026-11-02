@@ -3,6 +3,7 @@
 // no coefficient, a piecewise branch x or x^2, a calculator problem); its question, answers and explanations are put
 // in the page and typeset by MathJax. Reported per case: MathJax errors, raw TeX left visible, the matched text, and
 // that no "Use your calculator" line is shown. Screenshots of the rendered cases go to $REVIEW_HOME/out/unit6/render.
+// v12.9.B checkpoint 5 adds signed-area explanations (the combined arithmetic before the final answer).
 // Usage: node tools/review-lab/unit6/render-check.mjs
 import {serve,browser,context,open,outDir,randomPort} from '../lib/browser.mjs';
 const T='ap-calculus/unit-6-applications-integration/topics';
@@ -12,6 +13,9 @@ const CASES=[
  {name:'calculator log region: ln(x + 1), not 1 ln(x + 1)',page:`${T}/area-below-and-between-curves/calculator-practice`,slug:'area-below-and-between-curves',opts:{calc:'calculator',mode:'between'},want:'y=\\ln(x+1)',bad:/1\\ln/},
  {name:'cross sections over the log region (calculator)',page:`${T}/volume-by-cross-sections/calculator-practice`,slug:'volume-by-cross-sections',opts:{calc:'calculator'},want:'y=\\ln(x+1)',bad:/1\\ln/},
  {name:'piecewise review problem: a branch x or x^2',page:`${T}/comprehensive-review/non-calculator-practice`,slug:'integrals-on-piecewise-defined-functions',opts:{},want:/\\\\x(\^2)?(\+1)?,&|cases\}x(\^2)?(\+\d)?,&/,bad:/(^|[^0-9])1x/},
+ {name:'signed area in x: three intervals, the middle one below the axis',page:`${T}/area-below-and-between-curves/non-calculator-practice`,slug:'area-below-and-between-curves',opts:{calc:'non-calculator',mode:'under_curve'},want:/A=\\frac\{\d+\}\{\d+\} - \\left\(-[^=]*\+ /,bad:/\+ -\\int|\+ -\\left/},
+ {name:'signed area in x: first interval below the axis',page:`${T}/area-below-and-between-curves/non-calculator-practice`,slug:'area-below-and-between-curves',opts:{calc:'non-calculator',mode:'under_curve'},want:/A=-\\left\(-\\frac/,bad:/\+ -\\left/},
+ {name:'signed area in y: a piece left of the y-axis',page:`${T}/finding-area-in-terms-of-y/practice`,slug:'finding-area-in-terms-of-y',opts:{},want:/A=[^=]*\\left\(-[^=]*=/,bad:/\+ -\\left/},
  {name:'calculator solid: no "Use your calculator"',page:`${T}/solids-of-revolution/calculator-practice`,slug:'solids-of-revolution',opts:{calc:'calculator'},want:'Calculator active',bad:/Use your calculator/},
  {name:'calculator free response: no "Use your calculator"',page:`${T}/comprehensive-review/calculator-practice`,slug:'unit6-comprehensive-review',opts:{calc:'calculator',mode:'frq_region'},want:'Answer each part.',bad:/Use your calculator/},
 ];
