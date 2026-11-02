@@ -51,7 +51,7 @@
   },
   "quotient": {
     "samples": 900,
-    "preexistingDisplayDisagreements": 23,
+    "preexistingDisplayDisagreements": 0,
     "families": [
       "qb-poly",
       "qa5",
