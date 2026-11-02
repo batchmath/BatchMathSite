@@ -58,7 +58,7 @@ function mountUnit3Keypad(inputs,box,mode='unit3',onCheck=null){
  let active=list[0];for(const input of list)input.addEventListener('focus',()=>active=input);
  const pad=document.createElement('div');pad.className='u3-keypad';pad.setAttribute('aria-label','Math answer keypad');
  const keys=[['7','7'],['8','8'],['9','9'],['−','-'],['x','x'],['y','y'],['4','4'],['5','5'],['6','6'],['+','+'],['π','pi'],['e','e'],['1','1'],['2','2'],['3','3'],['×','*'],['ln','ln('],['√','sqrt('],['0','0'],['.','.'],['a/b','/'],['(','('],[')',')'],['x =','x='],['y =','y='],['c =','c='],[',',','],['[','['],[']',']'],['∞','infinity'],['−∞','-infinity'],['∪','U'],['Under','underestimate'],['Over','overestimate'],['^','^'],['⌫','backspace'],['Clear','clear']];
- for(const [label,token] of keys){const b=document.createElement('button');b.type='button';b.className='u3-key';b.textContent=label;b.addEventListener('click',()=>insertAtCursor(active,token));pad.appendChild(b);}standardizeU3Keypad(pad);box.appendChild(pad);
+ for(const [label,token] of keys){const b=document.createElement('button');b.type='button';b.className='u3-key';if(label==='∞'||label==='−∞')b.classList.add('math-infinity-key');b.textContent=label;b.addEventListener('click',()=>insertAtCursor(active,token));pad.appendChild(b);}standardizeU3Keypad(pad);box.appendChild(pad);
 }
 function keypadModeFor(answerType,fallback){
  if(current?.keypadMode)return current.keypadMode;
