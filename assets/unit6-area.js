@@ -33,6 +33,8 @@ const fromRoots=(k,rs,v=lin)=>rs.reduce((acc,r)=>pmul(acc,v(1,typeof r==='number
 const qx=r=>typeof r==='number'?Q(r):r;
 const tq=r=>U5.qtex(qx(r));
 const ans=e=>exactAnswer(e);
+// k times an expression: k\left(...\right), or the expression alone when k is 1 (x = 4 - y^2, not x = (4 - y^2))
+const cwrap=(k,inner)=>k===1?inner:`${k}\\left(${inner}\\right)`;
 const sumE=list=>list.reduce((a,b)=>a?eadd(a,b):b,null);
 const one=(prompt0,parts,o)=>{const prompt=parts.length>1?prompt0:(o.calc?'Use your calculator.':'');return problem(o.calc?{...o,calculator:true,questionHtml:question({context:o.context,prompt,formulas:o.formulas,calculator:true,extra:o.extra||''}),parts}:{...o,questionHtml:question({context:o.context,prompt,formulas:o.formulas,calculator:false,extra:o.extra||''}),parts});};
 const ROUND=x=>Math.round(x*1e9)/1e9;
@@ -229,7 +231,7 @@ function famExpLogUnder(tier){
  if(sub==='recip'){ // y = k/x from a to r a
   const k=pick([1,2,3,4,6]),a=pick([1,2,3]),r=pick([2,3]),b=a*r,e=lnE(k,b,a),f=recipFn(k);
   const work=step('Set up the area.',`\\(${f.tex('x')}\\gt 0\\) for \\(x\\gt 0\\).`,`A=\\int_{${a}}^{${b}}${f.tex('x')}\\,dx`)
-   +step('Evaluate.',`An antiderivative of \\(\\frac{1}{x}\\) is \\(\\ln|x|\\).`,`A=${k===1?'':k}\\left[\\ln x\\right]_{${a}}^{${b}}=${k===1?'':k}\\left(\\ln ${b}-\\ln ${a}\\right)=${k===1?'':k}\\ln ${r}`);
+   +step('Evaluate.',`An antiderivative of \\(\\frac{1}{x}\\) is \\(\\ln|x|\\).`,`A=${k===1?'':k}\\left[\\ln x\\right]_{${a}}^{${b}}=${cwrap(k,`\\ln ${b}-\\ln ${a}`)}=${k===1?'':k}\\ln ${r}`);
   return one('',[exactPart('Find the area.',ans(e),work,{wrong:[{value:k*(1/a-1/b),note:'The antiderivative of 1/x is ln|x|, not a power of x.'}]})],{engine:'area',family:'exp_log_under',tier,id:`recip-${k}-${a}-${b}`,context:'Find the area of the region between the curve and the x-axis on the interval.',formulas:[`y=${f.tex('x')},\\qquad ${a}\\le x\\le ${b}`],data:{sub}});
  }
  // y = k e^x on [0, 1]: k(e - 1)
@@ -286,8 +288,8 @@ function famYGiven(tier){ // v10.6 families, now typed
  const y=(c,e)=>fp(pm(typeof c==='number'?Q(c):c,typeof e==='number'?Q(e):e));
  if(sub==='sideways'){const h=ri(1,4),k=ri(1,3);R=region({ys:[{a:bq(-h),b:bq(h),right:fconst(k*h*h),left:y(k,2)}],eqs:[`x=${k===1?'':k}y^{2}`,`x=${k*h*h}`]});ctx=`Find the area of the region between the curves for \\(-${h}\\le y\\le ${h}\\).`;}
  else if(sub==='line'){const kk=ri(2,5),c=ri(1,3);R=region({ys:[{a:bq(0),b:bq(kk),right:y(c*kk,1),left:y(c,2)}],eqs:[`x=${c===1?'':c}y^{2}`,`x=${c*kk}y`]});ctx='Find the area of the region enclosed by the curves.';}
- else if(sub==='two'){const r=ri(1,3),k=ri(1,3);R=region({ys:[{a:bq(-r),b:bq(r),right:fp(padd(pc(k*r*r),pm(-k,2))),left:fp(padd(pm(k,2),pc(-k*r*r)))}],eqs:[`x=${k===1?'':k}\\left(${r*r}-y^{2}\\right)`,`x=${k===1?'':k}\\left(y^{2}-${r*r}\\right)`]});ctx='Find the area of the region enclosed by the curves.';}
- else if(sub==='triangle'){const h=ri(2,5),c=ri(1,3);R=region({ys:[{a:bq(0),b:bq(h),right:fp(padd(pc(c*h),pm(-c,1))),left:fconst(0)}],eqs:['x=0',`x=${c===1?'':c}(${h}-y)`]});ctx=`Find the area of the region between the curves for \\(0\\le y\\le ${h}\\).`;}
+ else if(sub==='two'){const r=ri(1,3),k=ri(1,3);R=region({ys:[{a:bq(-r),b:bq(r),right:fp(padd(pc(k*r*r),pm(-k,2))),left:fp(padd(pm(k,2),pc(-k*r*r)))}],eqs:[`x=${cwrap(k,`${r*r}-y^{2}`)}`,`x=${cwrap(k,`y^{2}-${r*r}`)}`]});ctx='Find the area of the region enclosed by the curves.';}
+ else if(sub==='triangle'){const h=ri(2,5),c=ri(1,3);R=region({ys:[{a:bq(0),b:bq(h),right:fp(padd(pc(c*h),pm(-c,1))),left:fconst(0)}],eqs:['x=0',`x=${cwrap(c,`${h}-y`)}`]});ctx=`Find the area of the region between the curves for \\(0\\le y\\le ${h}\\).`;}
  else if(sub==='cubic'){const a=ri(1,3),k=ri(1,2);R=region({ys:[{a:bq(0),b:bq(a),right:fconst(k*a**3),left:y(k,3)}],eqs:[`x=${k===1?'':k}y^{3}`,`x=${k*a**3}`]});ctx=`Find the area of the region between the curves for \\(0\\le y\\le ${a}\\).`;}
  else{const h=ri(-2,2),a=ri(1,3),k=ri(1,2),u=padd(pm(1,1),pc(-h));R=region({ys:[{a:bq(h-a),b:bq(h+a),right:fconst(k*a*a),left:fp(pscale(ppow(u,2),k))}],eqs:[`x=${k*a*a}`,`x=${k===1?'':k}${h===0?'y^{2}':`\\left(y${h>0?'-':'+'}${Math.abs(h)}\\right)^{2}`}`]});ctx='Find the area of the region enclosed by the curves.';}
  const T=areaTerms(R,'y'),e=exactValue(T);
