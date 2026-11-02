@@ -134,7 +134,7 @@ function famEnclosed(tier){
  if(tier==='challenging')parts=[integralPart('Write an integral expression (or a sum of integrals) for the area of the region enclosed by the curves.',T,W.boundsStep(R,'Find where the curves meet.')+W.areaWork(R,'x',T),{help:'You may integrate with respect to x or y.'}),exactPart('Evaluate the area.',ans(e),W.evalWork(T))];
  else parts=[listPart('Find the x-coordinates of all points where the curves intersect.',xs,xs.map(String),W.boundsStep(R,'Find where the curves meet.')),exactPart('Find the area.',ans(e),W.areaWork(R,'x',T)+W.evalWork(T))];
  if(tier==='foundational')parts=[exactPart('Find the area.',ans(e),work)];
- return one(parts.length>1?'Answer each part.':'',parts,{engine:'area',family:'between_enclosed',tier,id:`enc-${sub}-${R.eqs.join('|')}`,context:ctx,formulas:R.eqs,extra:tier!=='foundational'&&pick([true,false])?figure(R,{label:'The two curves'}):'',data:{sub}});
+ return one(parts.length>1?'Answer each part.':'',parts,{engine:'area',family:'between_enclosed',tier,id:`enc-${sub}-${R.eqs.join('|')}`,context:ctx,formulas:R.eqs,extra:tier!=='foundational'&&pick([true,false])?figure(R,{compact:true,label:'The two curves'}):'',data:{sub}});
 }
 function famSwitch(tier){
  if(pick([true,false])){ // sin x and cos x
@@ -170,7 +170,7 @@ function famMulti(tier){
  const both=step('Two ways to slice.',`With vertical slices the top or bottom boundary changes, so you need ${Tx.length} integrals in x; with horizontal slices you need ${Ty.length===1?'only one integral':`${Ty.length} integrals`} in y.`,`A=${setupTex(Tx)}`,`A=${setupTex(Ty)}`);
  const better=Ty.length<Tx.length?Ty:Tx;
  const parts=[integralPart(`Write an integral expression (or a sum of integrals) for the area of \\(R\\).`,better,W.boundsStep(R)+both,{help:'Use dx or dy; choose whichever needs fewer integrals.'}),exactPart('Find the area of \\(R\\).',ans(e),W.evalWork(better))];
- return one('Answer each part.',parts,{engine:'area',family:'multi_boundary',tier,id:`multi-${sub}-${R.eqs.join('|')}`,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:figure(R,{label:'Region R'}),data:{sub}});
+ return one('Answer each part.',parts,{engine:'area',family:'multi_boundary',tier,id:`multi-${sub}-${R.eqs.join('|')}`,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:figure(R,{compact:true,label:'Region R'}),data:{sub}});
 }
 const SIN_PI={2:[ex(1)],3:[ex(Q(1,2),K.sqrt3)],4:[ex(Q(1,2),K.sqrt2)],6:[ex(Q(1,2))]};
 function famTrig(tier){
@@ -213,7 +213,7 @@ function famCalcFind(tier){
  const listP={prompt:`${ask} Give each value correct to three decimal places.`,control:'input',answer:{kind:'list',values:pts,places:3},answerTex:pts.map(x=>fixed(x,3)).join(',\\ '),explanation:W.boundsStep(R,'Use the calculator.'),keypadMode:'unit6-list-dec',placeholder:'Decimal values separated by commas'};
  const parts=tier==='challenging'?[integralPart('Write an integral expression (or a sum of integrals) for the area of \\(R\\). You may use decimal limits.',T,W.boundsStep(R)+W.areaWork(R,'x',T),{help:'Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.'}),numPart('Find the area of \\(R\\).',v,W.calcWork(T,'A'))]
   :[listP,numPart('Find the area of \\(R\\).',v,W.areaWork(R,'x',T)+W.calcWork(T,'A'))];
- return one('Answer each part.',parts,{engine:'area',family:'calc_find',tier,id:`cf-${sub}-${R.eqs.join('|')}`,calc:true,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:figure(R,{label:'Region R'}),data:{sub}});
+ return one('Answer each part.',parts,{engine:'area',family:'calc_find',tier,id:`cf-${sub}-${R.eqs.join('|')}`,calc:true,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:figure(R,{compact:true,label:'Region R'}),data:{sub}});
 }
 const T3=['foundational','intermediate','challenging'];
 // ---------- exponential and logarithmic boundaries (non-calculator; antiderivatives e^{mx}/m and k ln x) ----------

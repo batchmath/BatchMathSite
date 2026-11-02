@@ -370,7 +370,10 @@ function figure(R,opt={}){
  if(opt.axis){const a=opt.axis;parts.push(a.type==='y'?`<line x1="0" y1="${Y(a.c)}" x2="${W}" y2="${Y(a.c)}" class="u6-rot"/>`:`<line x1="${X(a.c)}" y1="0" x2="${X(a.c)}" y2="${hmax}" class="u6-rot"/>`);}
  for(const mk of R.marks||[])parts.push(`<circle cx="${X(mk[0])}" cy="${Y(mk[1])}" r="3" class="u6-mark"/>`);
  const legend=R.draw.map(c=>`<span class="u6-key"><span class="u6-swatch" style="background:${c.color}"></span>\\(${c.tex}\\)</span>`).join('')+(opt.axis?`<span class="u6-key"><span class="u6-swatch u6-swatch-rot"></span>axis of rotation \\(${opt.axis.type}=${opt.axis.tex??opt.axis.c}\\)</span>`:'');
- return `<figure class="u6-figure"><svg viewBox="0 0 ${W} ${hmax}" role="img" aria-label="${opt.label||'Graph of the region'}" class="u6-svg">${parts.join('')}${lab.join('')}</svg>${legend?`<figcaption class="u6-legend">${legend}</figcaption>`:''}</figure>`;
+ // compact (Area Below and Between Curves): at most 340px wide and about 265px tall on screen, same drawing and
+ // proportions; tick labels keep their on-screen size (--u6-tick) and lines their width as the figure scales down
+ const cw=Math.min(340,Math.round(265*W/hmax)),fig=opt.compact?`<figure class="u6-figure u6-figure-compact" style="max-width:min(100%,${cw}px);--u6-tick:${(11.5*W/cw).toFixed(1)}px">`:'<figure class="u6-figure">';
+ return `${fig}<svg viewBox="0 0 ${W} ${hmax}" role="img" aria-label="${opt.label||'Graph of the region'}" class="u6-svg">${parts.join('')}${lab.join('')}</svg>${legend?`<figcaption class="u6-legend">${legend}</figcaption>`:''}</figure>`;
 }
 
 // keypad profiles: exact values; expressions and integrands in x or y; lists of exact values
