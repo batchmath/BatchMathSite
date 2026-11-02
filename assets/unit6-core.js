@@ -288,7 +288,7 @@ function checkIntegral(rows,spec){
  if(closeRel(total,-T,2e-6))return{valid:true,ok:false,note:'Your integral has the opposite sign. Check the order of the limits and of the subtraction.'};
  if(closeRel(total*Math.PI,T,2e-6))return{valid:true,ok:false,note:'Your integral is missing the factor \\(\\pi\\).'};
  if(closeRel(total*2*Math.PI,T,2e-6))return{valid:true,ok:false,note:'Your integral is missing the factor \\(2\\pi\\).'};
- if(coarse&&closeRel(total,T,2e-2))return{valid:true,ok:false,note:'Close: keep at least three decimal places (better, the stored calculator values) in limits found with the calculator.'};
+ if(coarse&&closeRel(total,T,2e-2))return{valid:true,ok:false,note:'Close, but your limits were rounded too much. Do not round intermediate values: keep calculator intersections at full precision (at least three decimal places).'};
  return{valid:true,ok:false};
 }
 // an expression in v that must equal spec.expr (a fn) on spec.domain [lo, hi]

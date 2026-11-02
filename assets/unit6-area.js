@@ -208,7 +208,7 @@ function famCalcFind(tier){
  const pts=sub==='logLine'?[R.data.p]:sub==='cosParabola'?[-R.data.p,R.data.p]:[R.data.p,R.data.q];
  const ask=sub==='logLine'?'Find the x-coordinate of the point where the curve and the line intersect.':'Find the x-coordinates of the points where the curves intersect.';
  const listP={prompt:`${ask} Give each value correct to three decimal places.`,control:'input',answer:{kind:'list',values:pts,places:3},answerTex:pts.map(x=>fixed(x,3)).join(',\\ '),explanation:W.boundsStep(R,'Use the calculator.'),keypadMode:'unit6-list-dec',placeholder:'Decimal values separated by commas'};
- const parts=tier==='challenging'?[integralPart('Write an integral expression (or a sum of integrals) for the area of \\(R\\). You may use decimal limits.',T,W.boundsStep(R)+W.areaWork(R,'x',T),{help:'Use the stored intersection values (at least four decimals) as limits.'}),numPart('Find the area of \\(R\\).',v,W.calcWork(T,'A'))]
+ const parts=tier==='challenging'?[integralPart('Write an integral expression (or a sum of integrals) for the area of \\(R\\). You may use decimal limits.',T,W.boundsStep(R)+W.areaWork(R,'x',T),{help:'Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.'}),numPart('Find the area of \\(R\\).',v,W.calcWork(T,'A'))]
   :[listP,numPart('Find the area of \\(R\\).',v,W.areaWork(R,'x',T)+W.calcWork(T,'A'))];
  return one('Answer each part.',parts,{engine:'area',family:'calc_find',tier,id:`cf-${sub}-${R.eqs.join('|')}`,calc:true,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:figure(R,{label:'Region R'}),data:{sub}});
 }

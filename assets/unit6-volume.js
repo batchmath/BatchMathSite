@@ -67,7 +67,7 @@ function famCsSetup(tier){
 function famCsCalc(tier){
  const sub=pick(['logLine','logLine','logParabola','cosParabola','expAxes']),R=RG.build(sub);
  const v=sub==='logLine'?pick(['x','y']):sub==='expAxes'?pick(['x','y']):'x',shape=shapeOf(sub==='logLine'?(v==='y'?pick(['iso_leg','square','equilateral']):pick(['rect2','semicircle_d','square'])):pick(SH)),T=sectionTerms(R,v,shape),val=numValue(T);
- const parts=tier==='challenging'?[integralPart('Write an integral expression for the volume of the solid. You may use decimal limits.',T,W.boundsStep(R)+W.sectionWork(R,v,shape,T),{variable:v,help:'Use stored values (at least four decimals) for limits found with the calculator.'}),numPart('Find the volume of the solid.',val,W.calcWork(T))]
+ const parts=tier==='challenging'?[integralPart('Write an integral expression for the volume of the solid. You may use decimal limits.',T,W.boundsStep(R)+W.sectionWork(R,v,shape,T),{variable:v,help:'Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.'}),numPart('Find the volume of the solid.',val,W.calcWork(T))]
   :[numPart('Find the volume of the solid.',val,W.boundsStep(R)+W.sectionWork(R,v,shape,T)+W.calcWork(T))];
  return one('Answer each part.',parts,{engine:'cross_sections',family:'cs_calc',tier,id:`csc-${R.eqs.join('|')}-${v}-${shape.name}`,calc:true,context:csContext(R,v,shape),formulas:R.eqs,extra:figure(R,{label:'The base of the solid'}),data:{dir:v,shape:shape.name,region:R.data.kind}});
 }
@@ -168,7 +168,7 @@ function famSolidCalc(tier){
  for(let i=0;i<40;i++){
   const R=RG.build(pick(CALC_S)),axis=pick(axesFor(R,R.ys?['y','x']:['y'])),method=pick(['washer','shell']),T=termsFor(R,method,axis);if(!T)continue;const val=numValue(T);
   const free=tier!=='challenging';
-  const parts=tier==='challenging'?[integralPart(`Write an integral expression for the volume of the solid${R.ys?'':' (use washers or disks)'}. You may use decimal limits.`,T,W.boundsStep(R)+workFor(R,method,axis,T),{help:'Any correct method is accepted; use stored values (at least four decimals) for calculator limits.'}),numPart('Find the volume of the solid.',val,W.calcWork(T))]
+  const parts=tier==='challenging'?[integralPart(`Write an integral expression for the volume of the solid${R.ys?'':' (use washers or disks)'}. You may use decimal limits.`,T,W.boundsStep(R)+workFor(R,method,axis,T),{help:'Any correct method is accepted. Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.'}),numPart('Find the volume of the solid.',val,W.calcWork(T))]
    :[numPart('Find the volume of the solid.',val,W.boundsStep(R)+workFor(R,method,axis,T)+W.calcWork(T))];
   return one('Answer each part.',parts,{engine:'solids',family:'solid_calc',tier,id:`sc-${R.eqs.join('|')}-${axis.type}${axis.c}-${method}`,calc:true,context:solidContext(R,axis),formulas:R.eqs,extra:figure(R,{axis,label:'Region R and the axis of rotation'}),data:{method:free?'any':method,shown:method,axis:`${axis.type}=${axis.c}`,region:R.data.kind}});
  }

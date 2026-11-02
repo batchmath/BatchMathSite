@@ -118,7 +118,7 @@ function famCalc(tier){
   const v=R.ys&&pick([true,false])?'y':'x',shape=V().shapeOf(pick(V().SH)),TC=sectionTerms(R,v,shape);
   const csPart=()=>numPart(`The region is the base of a solid. Cross sections perpendicular to the ${v}-axis are ${shape.name}. Find the volume of the solid.`,numValue(TC),W.sectionWork(R,v,shape,TC)+W.calcWork(TC));
   const h=calcAxis(R,'y'),vt=calcAxis(R,'x');
-  const vol=(s,setup)=>{const words=rotWords(s.axis);if(setup)return[integralPart(`Write an integral expression for the volume of the solid generated when the region is revolved about ${words}. You may use decimal limits.`,s.T,V().workFor(R,s.method,s.axis,s.T),{help:'Any correct method is accepted; use stored values (at least four decimals) for limits found with the calculator.'}),numPart('Find the volume of that solid.',numValue(s.T),W.calcWork(s.T))];
+  const vol=(s,setup)=>{const words=rotWords(s.axis);if(setup)return[integralPart(`Write an integral expression for the volume of the solid generated when the region is revolved about ${words}. You may use decimal limits.`,s.T,V().workFor(R,s.method,s.axis,s.T),{help:'Any correct method is accepted. Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.'}),numPart('Find the volume of that solid.',numValue(s.T),W.calcWork(s.T))];
    return[numPart(`Find the volume of the solid generated when the region is revolved about ${words}.`,numValue(s.T),V().workFor(R,s.method,s.axis,s.T)+W.calcWork(s.T))];};
   const opts=[];
   if(h)opts.push(()=>[csPart(),...vol(h,false)]);

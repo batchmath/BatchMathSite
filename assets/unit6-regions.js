@@ -232,7 +232,7 @@ function evalWork(terms,heading='Evaluate.'){
  const total=exactValue(terms);
  return step(heading,terms.length>1?'Evaluate each integral and add the results.':'Expand the integrand, find an antiderivative and evaluate it at the limits.',...eqs,...(terms.length>1?[`\\text{Total}=${etex(total)}`]:[]));
 }
-function calcWork(terms,label='V'){return step('Evaluate with the calculator.','Use the numerical integration feature; store intersection values instead of retyping rounded ones.',`${label}=${setupTex(terms)}\\approx ${fixed(numValue(terms),3)}`);}
+function calcWork(terms,label='V'){return step('Evaluate with the calculator.','Use the numerical integration feature with the intersection values at full precision.',`${label}=${setupTex(terms)}\\approx ${fixed(numValue(terms),3)}`);}
 
 window.BatchMathUnit6Regions=Object.freeze({EXACT,CALC,build,mono,line,fx,work:Object.freeze({axisTex,sliceText,boundsStep,areaWork,washerWork,shellWork,sectionWork,evalWork,calcWork})});
 })();
