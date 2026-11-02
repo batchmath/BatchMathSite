@@ -1,4 +1,4 @@
-> Batch 1 update: Product Rule is now converted and family-tested; Quotient remains legacy because of a reproduced checker/display inconsistency. See [checkpoint](../mathlive-batch1/CHECKPOINT.md). Original sitewide coverage figures below describe the historical partial audit.
+> Batch 1 update: Product and Quotient Rule are converted and family-tested; the Quotient qa8 inconsistency was corrected in a separate, authorized mathematical commit. See [checkpoint](../mathlive-batch1/CHECKPOINT.md). Original sitewide coverage figures below describe the historical partial audit.
 
 # Keypad evidence and coverage boundaries
 

@@ -1,0 +1,35 @@
+{
+  "mathFixCommit": "d05fdb14bb591d85a17068e6fb1eb37dca3c8e43",
+  "nodeTests": {
+    "passed": 71,
+    "executed": 71,
+    "skipped": 0
+  },
+  "browserRuns": [
+    {
+      "report": "product-browser.json",
+      "passed": 48,
+      "gradingPairs": 90
+    },
+    {
+      "report": "quotient-browser.json",
+      "passed": 77,
+      "gradingPairs": 148
+    },
+    {
+      "report": "quotient-current-profile-browser.json",
+      "passed": 6,
+      "gradingPairs": 6
+    },
+    {
+      "report": "mathlive-power-rule",
+      "passed": 38
+    },
+    {
+      "report": "mathlive-derivatives-pilot",
+      "passed": 27
+    }
+  ],
+  "qa8ParameterCombinations": 80,
+  "remainingDisplayedAnswerDisagreements": 0
+}

@@ -4,7 +4,7 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 import {spawn} from 'node:child_process';
 import {root,target as targetFor,instrument,representatives as findReps} from './engine.mjs';
-const target=targetFor('product');
+const rule=process.env.RULE||'product',target=targetFor(rule);
 import {parseInput,batchmathToLatex} from '../../assets/mathlive/answer-adapter.mjs';
 import {enterWithKeypad} from '../mathlive-power-rule/keypad-entry.mjs';
 const {chromium}=createRequire(import.meta.url)('playwright');
@@ -40,13 +40,20 @@ async function parity(p,legacy,problem,latex,raw,expected){
  if(mathjaxFixture){fs.mkdirSync(root+'work',{recursive:true});fixtureDir=fs.mkdtempSync(root+'work/batch1-render-');for(const folder of ['mathjax','mathjax-newcm'])fs.cpSync(path.join(mathjaxFixture,folder),path.join(fixtureDir,folder),{recursive:true});fixtureBase=base+'/work/'+path.basename(fixtureDir);}
  server=spawn('python3',['-m','http.server',new URL(base).port,'--bind','127.0.0.1'],{cwd:root,stdio:'ignore'});for(let i=0;i<50;i++){try{if((await fetch(base)).ok)break;}catch{}await new Promise(r=>setTimeout(r,100));}
  browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});
- const p=await page(),legacy=await page({mode:'legacy'});await ready(p);const reps=findReps('product');
+ const p=await page(),legacy=await page({mode:'legacy'});await ready(p);const reps=findReps(rule);
  for(const [family,problem]of (process.env.INTERACTIONS_ONLY?[]:reps))await test(family+': actual correct/wrong grading matches legacy',async()=>{
   await parity(p,legacy,problem,batchmathToLatex(problem.answerExpr).latex,problem.answerExpr,'Correct.');
   await parity(p,legacy,problem,batchmathToLatex(problem.answerExpr+'+12345').latex,problem.answerExpr+'+12345','Not quite.');
  });
+ if(rule==='quotient')await test('qa8 displayed answer and wrong squared-exponent denominator through actual editors',async()=>{
+  const problem=reps.get('qa8'),[,a,b,k]=problem.id.split('-');
+  const expected=`(${a}/(${a}*x+${b})-${k}*ln(${a}*x+${b}))*e^(-${k}*x)`;
+  await parity(p,legacy,problem,problem.answerTex,expected,'Correct.');
+  const wrong=`(${a}/(${a}*x+${b})-${k}*ln(${a}*x+${b}))/e^((${k}*x)^2-${k}*x)`;
+  await parity(p,legacy,problem,batchmathToLatex(wrong).latex,wrong,'Not quite.');
+ });
  await test('basic simplification gate, advanced equivalence and incomplete answer policy',async()=>{
-  for(const problem of [reps.get('pb1'),reps.get('pa1')]){const raw=`(${problem.answerExpr})+0`;await parity(p,legacy,problem,batchmathToLatex(raw).latex,raw,problem.id.startsWith('pb')?'Equivalent, but distribute and combine like terms to simplify completely.':'Correct.');await parity(p,legacy,problem,'\\frac{1}{}','(1)/()','Not quite.');}
+  for(const problem of [reps.get(rule==='product'?'pb1':'qb-poly'),reps.get(rule==='product'?'pa1':'qa1')]){const raw=`(${problem.answerExpr})+0`;await parity(p,legacy,problem,batchmathToLatex(raw).latex,raw,problem.id.startsWith('pb')?'Equivalent, but distribute and combine like terms to simplify completely.':'Correct.');await parity(p,legacy,problem,'\\frac{1}{}','(1)/()','Not quite.');}
  });
  await test('every required function button is editable and serialized',async()=>{
   await p.evaluate(()=>ruleQA.makeProblem());await legacy.evaluate(()=>ruleQA.makeProblem());
@@ -56,10 +63,10 @@ async function parity(p,legacy,problem,latex,raw,expected){
  await test('physical input, nested fractions, cursor deletion, undo/redo, Enter and reset',async()=>{
   await p.evaluate(()=>ruleQA.makeProblem());await p.keyboard.type('3/4');await p.keyboard.press('ArrowRight');await p.keyboard.type('+x');assert.ok((await state(p)).raw.includes('4'));
   await p.keyboard.press('Control+z');await p.keyboard.press('Control+Shift+z');await set(p,'\\frac{x^{-2}}{\\frac{1}{x+1}}');const raw=(await state(p)).raw;assert.ok(raw.includes('x+1'));await p.keyboard.press('Control+a');await p.keyboard.press('Backspace');assert.equal((await state(p)).raw,'');
-  const problem=reps.get('pa1');await load(p,problem);await set(p,batchmathToLatex(problem.answerExpr).latex);const before=(await state(p)).attempts;await p.keyboard.press('Enter');assert.equal((await state(p)).status,'Correct.');assert.equal((await state(p)).attempts,before+1);await p.keyboard.press('Enter');assert.equal((await state(p)).raw,'');await p.keyboard.press('Control+z');assert.equal((await state(p)).raw,'');
+  const problem=reps.get(rule==='product'?'pa1':'qa1');await load(p,problem);await set(p,batchmathToLatex(problem.answerExpr).latex);const before=(await state(p)).attempts;await p.keyboard.press('Enter');assert.equal((await state(p)).status,'Correct.');assert.equal((await state(p)).attempts,before+1);await p.keyboard.press('Enter');assert.equal((await state(p)).raw,'');await p.keyboard.press('Control+z');assert.equal((await state(p)).raw,'');
  });
  await test('narrow layout and current answer survive runtime failure',async()=>{
-  await p.setViewportSize({width:375,height:1000});await set(p,'\\arcsin(x)+\\frac{x^2}{1+x}');assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await p.screenshot({path:output+'product-375.png',fullPage:true});const raw=(await state(p)).raw;await p.evaluate(()=>document.querySelector('math-field').executeCommand=()=>{throw Error('Injected');});await key(p,'←');assert.equal(await p.locator('math-field').count(),0);assert.equal((await state(p)).raw,raw);
+  await p.setViewportSize({width:375,height:1000});await set(p,'\\arcsin(x)+\\frac{x^2}{1+x}');assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await p.screenshot({path:output+rule+'-375.png',fullPage:true});const raw=(await state(p)).raw;await p.evaluate(()=>document.querySelector('math-field').executeCommand=()=>{throw Error('Injected');});await key(p,'←');assert.equal(await p.locator('math-field').count(),0);assert.equal((await state(p)).raw,raw);
  });
  await test('uninstrumented default and missing runtime fallback',async()=>{
   const q=await page({instrumented:false});await ready(q);await q.keyboard.type('12345');await q.keyboard.press('Enter');assert.equal(await q.locator('#feedback .status').textContent(),'Not quite.');await q.close();
@@ -67,6 +74,6 @@ async function parity(p,legacy,problem,latex,raw,expected){
  });
  await p.close();await legacy.close();
 }finally{
- fs.writeFileSync(output+(process.env.INTERACTIONS_ONLY?'current-profile-browser.json':'browser.json'),JSON.stringify({browser:browser?.version(),results,pageErrors:errors,gradingPairs},null,2));await browser?.close();server?.kill();if(fixtureDir)fs.rmSync(fixtureDir,{recursive:true,force:true});
+ fs.writeFileSync(output+(process.env.INTERACTIONS_ONLY?rule+'-current-profile-browser.json':rule+'-browser.json'),JSON.stringify({browser:browser?.version(),results,pageErrors:errors,gradingPairs},null,2));await browser?.close();server?.kill();if(fixtureDir)fs.rmSync(fixtureDir,{recursive:true,force:true});
 }
 console.log(`${results.filter(x=>x.passed).length}/${results.length}; ${gradingPairs} pairs; ${errors.length} page errors`);if(results.some(x=>!x.passed)||errors.length)process.exitCode=1;
