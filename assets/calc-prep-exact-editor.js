@@ -271,7 +271,7 @@ function mount(opts){
    ['0','0'],['.','.','math'],[',',',','math'],['°','°','math'],['↑',null,'action','up'],['↓',null,'action','down'],
    ['←',null,'action','left'],['→',null,'action','right'],['Del',null,'action','del'],['Check',null,'check','check']
   ];
-  defs.forEach(([label,key,cls,action])=>{
+  defs.filter(([label])=>opts.allowList!==false||label!==',').forEach(([label,key,cls,action])=>{
    const b=document.createElement('button');b.type='button';b.className='key'+(cls?' '+cls:'')+(label==='Undefined'?' double':'');b.textContent=label;
    b.addEventListener('pointerdown',e=>e.preventDefault());
    b.addEventListener('click',()=>{if(key!=null)add(key);else if(action==='back')backspace();else if(action==='del')del();else if(action==='clear')clear();else if(action==='frac')startFraction();else if(action==='left')move(-1);else if(action==='right')move(1);else if(action==='up')moveVertical(-1);else if(action==='down')moveVertical(1);else if(action==='check')opts.onCheck?.()});
