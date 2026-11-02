@@ -1,0 +1,40 @@
+# User-authorized custom Test 3 download; same read-only artifact mechanism
+# explicitly approved for Test 2 in this chat. Public tested source only.
+# No release publication, production workflow change, or deployment.
+name: MathLive Test 3 download artifact
+on:
+  push:
+    branches: [migration/mathlive-batch1-derivatives]
+    paths: [.github/workflows/mathlive-test3-artifact.yml]
+permissions:
+  contents: read
+jobs:
+  package:
+    if: github.ref == 'refs/heads/migration/mathlive-batch1-derivatives' && github.event.head_commit.message == 'Build requested MathLive Test 3 download artifact'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fe349841a0c3789e6e24a9032d531fd88eada42d
+      - name: Prepare tested website with short root
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = fe349841a0c3789e6e24a9032d531fd88eada42d
+          mkdir package
+          git archive --format=zip --prefix=BM-ML3/ HEAD -o short-root.zip
+          python3 - <<'PY'
+          import zipfile
+          with zipfile.ZipFile("short-root.zip") as z:
+              assert z.testzip() is None
+              assert {n.split('/')[0] for n in z.namelist()} == {'BM-ML3'}
+              assert 'BM-ML3/index.html' in z.namelist()
+              assert len([n for n in z.namelist() if not n.endswith('/')]) == 950
+              z.extractall('package')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BatchMath MathLive Test 3
+          path: package/
+          include-hidden-files: true
+          compression-level: 6
+          retention-days: 14
