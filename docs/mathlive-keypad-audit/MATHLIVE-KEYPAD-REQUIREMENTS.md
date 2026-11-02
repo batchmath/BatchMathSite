@@ -1,3 +1,5 @@
+> Small correction update: the IM1 numeric multipart division gap and Unit Circle comma are fixed; infinity-button appearance is standardized. See [focused checkpoint](../keypad-corrections/CHECKPOINT.md). Historical findings below are retained as evidence. The separate Unit 1 common-log gap is outside this correction scope.
+
 > Batch 1 update: Product and Quotient Rule are converted and family-tested; the Quotient qa8 inconsistency was corrected in a separate, authorized mathematical commit. See [checkpoint](../mathlive-batch1/CHECKPOINT.md). Original sitewide coverage figures below describe the historical partial audit.
 
 # Mathematical keypad requirements audit
