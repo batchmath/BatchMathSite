@@ -1,0 +1,199 @@
+{
+  "browser": "154.0.8037.57",
+  "results": [
+    {
+      "name": "pb3: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "pb2: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "pb1: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "pa5: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "pa3: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:csc/exp: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:acos/ln: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "pa2: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:cot/cuberoot: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "pa4: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "pa1: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:sec/ln: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:atan/logbase: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:acot/polynomial: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:logbase/polynomial: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "pa7: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:polynomial/polynomial: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:cuberoot/sin: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:cuberoot/polynomial: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "pa6: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:ln/polynomial: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "pa8: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:fractional/sin: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:baseexp/polynomial: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:asin/exp: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:atan/baseexp: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:reciprocal/exp: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:sin/cos: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:baseexp/sin: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:asin/polynomial: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:acsc/exp: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:acos/sin: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:polynomial/radical: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:tan/polynomial: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:atan/polynomial: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:asec/sin: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:fractional/polynomial: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:cot/radical: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:polynomial/reciprocal: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:logbase/cos: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:exp/ln: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:exp/polynomial: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "wide:ln/sin: actual correct/wrong grading matches legacy",
+      "passed": true
+    },
+    {
+      "name": "basic simplification gate, advanced equivalence and incomplete answer policy",
+      "passed": true
+    },
+    {
+      "name": "every required function button is editable and serialized",
+      "passed": true
+    },
+    {
+      "name": "physical input, nested fractions, cursor deletion, undo/redo, Enter and reset",
+      "passed": true
+    },
+    {
+      "name": "narrow layout and current answer survive runtime failure",
+      "passed": true
+    },
+    {
+      "name": "uninstrumented default and missing runtime fallback",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "gradingPairs": 90
+}

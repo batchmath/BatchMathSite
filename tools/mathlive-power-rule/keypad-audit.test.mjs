@@ -9,7 +9,7 @@ import {parseInput} from '../../assets/mathlive/answer-adapter.mjs';
 test('the shared keypad implementation and unrelated profiles are unchanged from the successful pilot',()=>{
   const before=execFileSync('git',['show','1fdbcbec2550d08dc900aacbc83529389e942e7f:assets/calculus-keypad.js'],{cwd:root,encoding:'utf8'});
   const current=fs.readFileSync(root+'assets/calculus-keypad.js','utf8');
-  const withoutPilots=s=>s.replace(/^.*"derivative-(?:power|chain)":.*$/gm,'');
+  const withoutPilots=s=>s.split('\n').filter(line=>!/^.*"derivative-(?:power|chain|product)":/.test(line)).join('\n');
   assert.equal(withoutPilots(current),withoutPilots(before));
 });
 

@@ -81,7 +81,7 @@ function lex(source, format) {
   return out;
 }
 
-export function parseInput(source,format='batchmath') {
+export function parseInput(source,format='batchmath',{logBases=false}={}) {
   try {
     const tokens=lex(source,format);let at=0,depth=0,plainBar=0;
     const peek=()=>tokens[at]?.kind,take=()=>tokens[at++];
@@ -171,8 +171,8 @@ export function parseInput(source,format='batchmath') {
           return{type:'call',name:index?'root':'sqrt',args:index?[index,argument()]:[argument()]};
         }
         if(tok.kind==='fn') {
-          const name=tok.value;let exp=null;
-          if(match('_'))fail('Logarithms with a base subscript require an adapter outside this experiment.');
+          const name=tok.value;let exp=null,base=null;
+          if(match('_')){if(name!=='log'||!logBases)fail('Logarithms with a base subscript require an adapter outside this experiment.');base=argument();}
           if(match('^'))exp=exponent();
           let arg;
           if(peek()==='{')arg=requiredGroup();
@@ -186,7 +186,7 @@ export function parseInput(source,format='batchmath') {
           }
           else arg=empty();
           const args=arg.type==='list'?arg.items:[arg];
-          let call={type:'call',name,args};
+          let call=base?{type:'fraction',numerator:{type:'call',name:'ln',args},denominator:{type:'call',name:'ln',args:[base]}}:{type:'call',name,args};
           if(exp) {
             if(exp.type==='unary'&&exp.op==='-'&&exp.value.type==='num'&&exp.value.raw==='1'&&['sin','cos','tan','sec','csc','cot'].includes(name))call={type:'call',name:'a'+name,args};
             else call={type:'binary',op:'^',left:call,right:exp};
@@ -306,15 +306,16 @@ export function batchmathToLatex(source) {
 // and no root() identifier. Lower nth-root
 // notation to the same fractional-power notation used by its generators.
 // This is structural translation only: retain the index, arithmetic and slots.
-export function translateDerivative(source) {
+export function translateDerivative(source,{inverseTrig=false}={}) {
   // The existing normalizer intentionally checks only the text after the last
   // equals sign (e.g. f'(x)=...). Preserve that policy without parsing/solving
   // the label on the left. Retain '=' so an empty RHS stays nonempty invalid.
   const raw=String(source),equalAt=raw.lastIndexOf('=');
-  const parsed=parseInput(equalAt<0?raw:raw.slice(equalAt+1),'latex');
+  const parsed=parseInput(equalAt<0?raw:raw.slice(equalAt+1),'latex',{logBases:inverseTrig});
   if(!String(source).trim())return {...parsed,input:''};
   if(!parsed.tree)return {...parsed,input:null};
   const allowed=new Set(['sin','cos','tan','sec','csc','cot','sqrt','ln','log','abs','exp']);
+  if(inverseTrig)for(const name of ['asin','acos','atan','acot','asec','acsc'])allowed.add(name);
   function lower(n) {
     if(n.type==='sym'&&!['x','y','e','pi'].includes(n.name))fail(`The derivative checker does not support ${n.name}.`);
     if(n.type==='list'||n.type==='binary'&&!['+','-','*','/','^'].includes(n.op))fail('This answer requires an expression.');

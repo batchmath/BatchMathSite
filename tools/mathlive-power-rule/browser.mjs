@@ -234,9 +234,9 @@ try {
     const original=(await state(q)).latex;await q.evaluate(()=>window.dispatchEvent(new ErrorEvent('error',{message:'Injected library failure',filename:location.origin+'/assets/mathlive/vendor/mathlive/mathlive.min.mjs'})));
     assert.equal(await q.locator('.bm-mathlive-recovery').inputValue(),original);assert.equal((await state(q)).raw,original);await q.close();
   });
-  await test('unrelated Product Rule page loads only its existing editor and shared keypad',async()=>{
+  await test('unrelated Quotient Rule page loads only its existing editor and shared keypad',async()=>{
     const q=await browser.newPage({serviceWorkers:'block'});await q.route('https://**/*',r=>r.abort());const requests=[];q.on('request',r=>requests.push(r.url()));
-    await q.goto(base+'/ap-calculus/unit-2-derivatives/topics/the-product-rule/practice/?editor=mathlive');await q.waitForSelector('.bm-calc-editor');assert.equal(await q.locator('math-field').count(),0);assert.equal(requests.some(url=>url.includes('/assets/mathlive/')),false);await q.close();
+    await q.goto(base+'/ap-calculus/unit-2-derivatives/topics/the-quotient-rule/practice/?editor=mathlive');await q.waitForSelector('.bm-calc-editor');assert.equal(await q.locator('math-field').count(),0);assert.equal(requests.some(url=>url.includes('/assets/mathlive/')),false);await q.close();
   });
 } finally {
   fs.writeFileSync(output+'browser-results.json',JSON.stringify({browser:browser?.version(),mathjax:mathjaxFixture?'Real cached MathJax 4.1.3 + NewCM; CDN transport substituted':'External CDN blocked; engine load-event fallback',results,pageErrors},null,2)+'\n');

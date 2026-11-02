@@ -916,6 +916,7 @@
       "derivative-algebra":{fraction:true,exponent:true,radical:true,variables:["x"],arithmetic:true,parentheses:true},
       "derivative-at-point-basic":{fraction:true,radical:true,constants:["pi"],arithmetic:true,parentheses:true},
       "derivative-trig":{fraction:true,exponent:true,variables:["x"],constants:["pi"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "derivative-product":{fraction:true,radical:true,decimal:true,exponent:true,logarithm:true,constants:['e','pi'],variables:['x'],arithmetic:true,parentheses:true,functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['sin⁻¹','asin'],['cos⁻¹','acos'],['tan⁻¹','atan'],['cot⁻¹','acot'],['sec⁻¹','asec'],['csc⁻¹','acsc'],['log','log'],['|u|','abs']]},
       "derivative-chain":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x"],constants:["e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
       "derivative-exponential":{fraction:true,logarithm:true,exponent:true,variables:["x"],constants:["e"],arithmetic:true,parentheses:true},
       "derivative-implicit":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x","y"],constants:["pi","e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"]],arithmetic:true,parentheses:true},
