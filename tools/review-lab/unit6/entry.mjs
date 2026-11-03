@@ -5,7 +5,8 @@
 // the correct choice; the review's piecewise problems (multiple choice) click the correct button. Also records scroll
 // boxes inside the practice card, page overflow, raw TeX, MathJax errors and console errors, and screenshots problem 1.
 // Usage: node tools/review-lab/unit6/entry.mjs <page-path> [count=8] [width=1366] [height=768] [mobile]
-//   BM_MODE=<practice type value> selects a Practice Type.
+//   BM_MODE=<practice type value> selects a Practice Type. BM_GRAPH_AFTER=1 checks that the graph appears only in Part A's
+//   explanation after it is graded (calculator cross sections).
 import {serve,browser,context,open,outDir,randomPort} from '../lib/browser.mjs';
 import {keypadForm,parse,keypad,strokes} from '../lib/keypad.mjs';
 const [page,count='8',W='1366',H='768',mob='']=process.argv.slice(2);
@@ -30,6 +31,9 @@ for(let i=0;i<+count;i++){
  const info=await p.evaluate(()=>{const q=window.BatchMathUnit5Last;return{id:q.id,variant:q.variant,staged:q.answerType==='unit5-staged',correctIndex:q.correctIndex,tier:q.unit5Meta?.tier,
   parts:(q.parts||[]).map(t=>({control:t.control||'input',answerTex:t.answerTex,answer:t.answer?{kind:t.answer.kind,rows:t.answer.rows}:null,correctIndex:t.correctIndex}))};});
  const row=[];
+ // BM_GRAPH_AFTER=1 (v12.9.B, calculator cross sections): no graph and no graph button before Part A is graded
+ if(process.env.BM_GRAPH_AFTER){const pre=await p.evaluate(()=>({svg:document.querySelectorAll('.practice-shell svg.u6-svg').length,btn:[...document.querySelectorAll('.practice-shell button')].filter(b=>/graph/i.test(b.textContent)).length}));
+  if(pre.svg||pre.btn)out.failures.push(`${info.id}: before answering, ${pre.svg} graph(s) and ${pre.btn} graph button(s) shown`);}
  if(!info.staged){ // the old multiple-choice piecewise problems in the review
   await p.locator('#choices .choice').nth(info.correctIndex).click();await p.waitForTimeout(250);
   const fb=await p.$eval('#feedback',e=>e.innerText.trim()).catch(()=>'');out.parts++;
@@ -63,6 +67,11 @@ for(let i=0;i<+count;i++){
   const res=await p.evaluate(s=>{const f=document.querySelector(`${s} .staged-feedback .result`);return f?f.textContent.trim():(document.querySelector(`${s} .staged-input-message`)?.textContent.trim()||'(no feedback)');},scope);
   out.parts++;
   if(!/is correct\.|^Correct\./.test(res))out.failures.push(`${info.id} part ${k+1} [${part.answer?.kind||part.control}]: ${res} | answer ${part.answerTex} | entered ${row[row.length-1]}`);
+  if(process.env.BM_GRAPH_AFTER){const g=await p.evaluate(({scope,k,n})=>({here:document.querySelectorAll(`${scope} svg.u6-svg`).length,shade:document.querySelectorAll(`${scope} svg.u6-svg .u6-shade`).length,later:[...Array(n).keys()].filter(j=>j>k).reduce((a,j)=>a+document.querySelectorAll(`#choices .unit5-part-${j+1} svg.u6-svg`).length,0)}),{scope,k,n:info.parts.length});
+   if(k===0&&(g.here!==1||!g.shade))out.failures.push(`${info.id}: Part A explanation has ${g.here} graph(s), ${g.shade} shaded region(s)`);
+   if(k>0&&g.here)out.failures.push(`${info.id}: part ${k+1} repeats the graph`);
+   if(g.later)out.failures.push(`${info.id}: an unanswered part shows a graph`);
+   out.graphChecks=(out.graphChecks||0)+1;}
   if(k<info.parts.length-1){const cont=p.locator(`${scope} .staged-continue`);if(await cont.count())await cont.click();await p.waitForTimeout(300);}
  }
  await p.evaluate(()=>window.MathJax?.typesetPromise?.()).catch(()=>{});await p.waitForTimeout(200);

@@ -67,9 +67,11 @@ function famCsSetup(tier){
 function famCsCalc(tier){
  const sub=pick(['logLine','logLine','logParabola','cosParabola','expAxes']),R=RG.build(sub);
  const v=sub==='logLine'?pick(['x','y']):sub==='expAxes'?pick(['x','y']):'x',shape=shapeOf(sub==='logLine'?(v==='y'?pick(['iso_leg','square','equilateral']):pick(['rect2','semicircle_d','square'])):pick(SH)),T=sectionTerms(R,v,shape),val=numValue(T);
- const parts=tier==='challenging'?[integralPart('Write an integral expression for the volume of the solid. You may use decimal limits.',T,W.boundsStep(R)+W.sectionWork(R,v,shape,T),{variable:v,help:'Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.'}),numPart('Find the volume of the solid.',val,W.calcWork(T))]
-  :[numPart('Find the volume of the solid.',val,W.boundsStep(R)+W.sectionWork(R,v,shape,T)+W.calcWork(T))];
- return one('Answer each part.',parts,{engine:'cross_sections',family:'cs_calc',tier,id:`csc-${R.eqs.join('|')}-${v}-${shape.name}`,calc:true,context:csContext(R,v,shape),formulas:R.eqs,extra:figure(R,{label:'The base of the solid'}),data:{dir:v,shape:shape.name,region:R.data.kind}});
+ // students graph the region on their calculators: the figure appears only in the first part's explanation, after it is graded
+ const graph=step('The base of the solid.','Compare it with the region on your calculator graph.')+figure(R,{label:'The base of the solid'});
+ const parts=tier==='challenging'?[integralPart('Write an integral expression for the volume of the solid. You may use decimal limits.',T,graph+W.boundsStep(R)+W.sectionWork(R,v,shape,T),{variable:v,help:'Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.'}),numPart('Find the volume of the solid.',val,W.calcWork(T))]
+  :[numPart('Find the volume of the solid.',val,graph+W.boundsStep(R)+W.sectionWork(R,v,shape,T)+W.calcWork(T))];
+ return one('Answer each part.',parts,{engine:'cross_sections',family:'cs_calc',tier,id:`csc-${R.eqs.join('|')}-${v}-${shape.name}`,calc:true,context:csContext(R,v,shape),formulas:R.eqs,data:{dir:v,shape:shape.name,region:R.data.kind}});
 }
 const CS={
  cs_basic:{weight:45,tiers:['foundational','intermediate'],make:famCsBasic,calculator:false},
