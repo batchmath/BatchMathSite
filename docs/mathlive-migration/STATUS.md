@@ -8,7 +8,8 @@ Branch: `migration/mathlive-sitewide`. Verified starting remote head: `migration
 - `54a428f`: Batch 1B integration completed and tested. Batch 2 follows below.
 
 - Batch 2: 1c95ed904133521320ede2b03ca27bda8a1f7a51, completed and tested.
-- Batch 3: tested Unit 3 integration in this checkpoint commit; next is Unit 1.
+- Batch 3: ca2fe0e4628f688f1023fd054473d03e15e49e6e; tested Unit 3 integration.
+- Before Batch 4: separate Unit 1 unary-minus/exponent precedence correction; see MATH-CORRECTIONS.md. Unit 1 editors are not yet converted.
 
 ## Completion inventory
 

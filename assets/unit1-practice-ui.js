@@ -16,9 +16,9 @@ function exactNumberExpression(source){
   if(name[0]==='root'&&second!==null&&Number.isInteger(first)&&first>=2){if(second<0&&first%2===0)return NaN;return second<0?-Math.pow(-second,1/first):Math.pow(second,1/first);}
   fail();
  }
- function unary(){if(take('+'))return unary();if(take('-'))return-unary();return primary();}
- function power(){const left=unary();return take('^')?Math.pow(left,power()):left;}
- function product(){let v=power();while(peek()==='*'||peek()==='/'||peek()==='('||/[a-z]/.test(peek()||'')){const explicit=peek()==='*'||peek()==='/',op=explicit?s[i++]:'*',r=power();v=op==='*'?v*r:v/r;}return v;}
+ function unary(){if(take('+'))return unary();if(take('-'))return-unary();return power();}
+ function power(){const left=primary();return take('^')?Math.pow(left,unary()):left;}
+ function product(){let v=unary();while(peek()==='*'||peek()==='/'||peek()==='('||/[a-z]/.test(peek()||'')){const explicit=peek()==='*'||peek()==='/',op=explicit?s[i++]:'*',r=unary();v=op==='*'?v*r:v/r;}return v;}
  function sum(){let v=product();while(peek()==='+'||peek()==='-'){const op=s[i++],r=product();v=op==='+'?v+r:v-r;}return v;}
  try{const value=sum();return i===s.length&&Number.isFinite(value)?value:null;}catch{return null;}
 }
