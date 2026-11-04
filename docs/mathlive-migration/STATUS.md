@@ -5,7 +5,7 @@ Branch: `migration/mathlive-sitewide`. Verified starting remote head: `migration
 ## Stable checkpoints
 
 - `3c88dac`: separately tested legacy mathematical corrections (inverse-factor evaluator and exponential point-solution display). See [MATH-CORRECTIONS.md](MATH-CORRECTIONS.md).
-- Batch 1B integration: completed and tested in this checkpoint commit. No subsequent batch has begun implementation.
+- `54a428f`: Batch 1B integration completed and tested. No subsequent batch has begun implementation.
 
 ## Completion inventory
 
@@ -18,7 +18,7 @@ Difference Quotient and conceptual review retain multiple choice. All graphing, 
 ## Validation
 
 - 21/21 new mathematical/Unit 2 Node tests and 19/19 keypad/source-isolation tests pass. Deterministic mode/family counts, checker pairs and displayed-answer comparisons are in `tools/mathlive-sitewide/artifacts/unit2-node.json`.
-- New Chromium harness: 18/18 routes, 144 paired submissions, zero page errors; final run also replays real MathJax from same-origin test fixtures. Default, legacy, physical entry, buttons, nested structures, Enter/Next, undo/redo, narrow layout and missing-runtime fallback.
+- New Chromium harness: 18/18 routes, 144 paired submissions plus 24 focused control pairs, zero page errors; final run also replays real MathJax from same-origin test fixtures. Default, legacy, physical entry, buttons, nested structures, Enter/Next, undo/redo, narrow layout and missing-runtime fallback.
 - 69/69 original Power/Chain/Product/Quotient Node tests; 10/10 focused FTC/Separable tests pass. Power browser 38/38; Chain 27/27 (69 paired submissions); Product 5/5 and Quotient 6/6 focused interaction checks (4 and 6 pairs), all with zero page errors.
 - Local pinned MathLive 0.111.1/fonts retained. No external editor CDN. Linux Chromium only; no physical-device or assistive-technology certification.
 - The earlier bounded preflight for Trig/Exponential/Log is recorded in `docs/mathlive-batch1/NEXT-BATCH-PREFLIGHT.md`; its no-defect finding applies only to that sample. Later inverse-cumulative and point-display defects are recorded separately.
