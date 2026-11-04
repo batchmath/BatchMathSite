@@ -1,0 +1,92 @@
+[
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html",
+    "contract": "value",
+    "profile": "migration-derivative-value"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html",
+    "contract": "expression",
+    "profile": "migration-derivative-trig"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html",
+    "contract": "value",
+    "profile": "migration-derivative-value"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html",
+    "contract": "value",
+    "profile": "migration-derivative-value"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html",
+    "contract": "expression",
+    "profile": "existing contextual profile"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html",
+    "contract": "value",
+    "profile": "migration-derivative-value"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html",
+    "contract": "expression",
+    "profile": "existing contextual profile"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html",
+    "contract": "value",
+    "profile": "migration-derivative-value"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html",
+    "contract": "nested",
+    "profile": "existing contextual profile"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html",
+    "contract": "value",
+    "profile": "migration-derivative-value"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html",
+    "contract": "expression",
+    "profile": "migration-derivative-implicit"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html",
+    "contract": "value",
+    "profile": "migration-derivative-value"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html",
+    "contract": "expression",
+    "profile": "migration-derivative-exp"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html",
+    "contract": "value",
+    "profile": "migration-derivative-value"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html",
+    "contract": "expression",
+    "profile": "migration-derivative-log"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html",
+    "contract": "value",
+    "profile": "migration-derivative-value"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html",
+    "contract": "expression",
+    "profile": "existing contextual profile"
+  },
+  {
+    "path": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html",
+    "contract": "value",
+    "profile": "migration-derivative-value"
+  }
+]

@@ -420,8 +420,8 @@ const generators={basic,product,quotient,trig,chain,exponential,implicit,log:log
 const mixedWeights=["basic",...Array(2).fill("product"),...Array(2).fill("quotient"),...Array(2).fill("trig"),...Array(3).fill("chain"),...Array(2).fill("exponential"),...Array(3).fill("implicit"),...Array(2).fill("log"),...Array(2).fill("logdiff"),...Array(2).fill("invtrig"),...Array(2).fill("inverse"),...Array(2).fill("point")];
 
 // Safe expression parser/evaluator used only for mathematical equivalence checking.
-const FUNCS=new Set(["sin","cos","tan","sec","csc","cot","sqrt","ln","log","abs","exp"]);
-const IDS=["sqrt","sin","cos","tan","sec","csc","cot","ln","log","abs","exp","pi","x","y","e"];
+const FUNCS=new Set(["asin","acos","atan","acot","asec","acsc","sin","cos","tan","sec","csc","cot","sqrt","ln","log","abs","exp"]);
+const IDS=["asin","acos","atan","acot","asec","acsc","sqrt","sin","cos","tan","sec","csc","cot","ln","log","abs","exp","pi","x","y","e"];
 function normalizeInput(raw){
  raw=window.BatchMathAnswers?.normalizeFractionSigns(raw) ?? raw;
  let s=String(raw||"").trim().toLowerCase()
@@ -568,7 +568,7 @@ function evalTree(n,scope){
  if(n.k==="num")return n.v;if(n.k==="id"){if(n.v==="pi")return Math.PI;if(n.v==="e")return Math.E;if(n.v in scope)return scope[n.v];throw Error("variable")}
  if(n.k==="un"){const a=evalTree(n.a,scope);return n.op==="-"?-a:a}
  if(n.k==="op"){const a=evalTree(n.a,scope),b=evalTree(n.b,scope);if(n.op==="+")return a+b;if(n.op==="-")return a-b;if(n.op==="*")return a*b;if(n.op==="/")return a/b;if(n.op==="^")return Math.pow(a,b)}
- const a=evalTree(n.a,scope);if(n.f==="sin")return Math.sin(a);if(n.f==="cos")return Math.cos(a);if(n.f==="tan")return Math.tan(a);if(n.f==="sec")return 1/Math.cos(a);if(n.f==="csc")return 1/Math.sin(a);if(n.f==="cot")return 1/Math.tan(a);if(n.f==="sqrt")return Math.sqrt(a);if(n.f==="ln")return Math.log(a);if(n.f==="log")return Math.log10(a);if(n.f==="abs")return Math.abs(a);if(n.f==="exp")return Math.exp(a);throw Error("function")
+ const a=evalTree(n.a,scope);if(n.f==="asin")return Math.asin(a);if(n.f==="acos")return Math.acos(a);if(n.f==="atan")return Math.atan(a);if(n.f==="acot")return Math.PI/2-Math.atan(a);if(n.f==="asec")return Math.acos(1/a);if(n.f==="acsc")return Math.asin(1/a);if(n.f==="sin")return Math.sin(a);if(n.f==="cos")return Math.cos(a);if(n.f==="tan")return Math.tan(a);if(n.f==="sec")return 1/Math.cos(a);if(n.f==="csc")return 1/Math.sin(a);if(n.f==="cot")return 1/Math.tan(a);if(n.f==="sqrt")return Math.sqrt(a);if(n.f==="ln")return Math.log(a);if(n.f==="log")return Math.log10(a);if(n.f==="abs")return Math.abs(a);if(n.f==="exp")return Math.exp(a);throw Error("function")
 }
 function closeEnough(a,b){return Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=1e-7*Math.max(1,Math.abs(a),Math.abs(b))}
 function equivalent(student,expected,vars){
