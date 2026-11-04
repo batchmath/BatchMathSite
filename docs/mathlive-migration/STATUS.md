@@ -12,7 +12,9 @@ Branch: `migration/mathlive-sitewide`. Verified starting remote head: `migration
 - 0f4f54e93911253becef67f9cb77a431e64dce0a: separate Unit 1 unary-minus/exponent precedence correction; see MATH-CORRECTIONS.md.
 - 517ffee72bec8b9c540bcc3549b00c27a880cfbf: Batch 4 Unit 1 topic integration, tested and pushed.
 - Batch 5: 4fe3861d41302ff82d5cba90c5928b6a7c020720, tested and pushed IM1 Units 1/2 topic integration.
-- Batch 6: tested IM1 Unit 3 topic integration in this checkpoint commit.
+- Batch 6: efd452620760f7f900b57f97fd703c71ca027f4e, tested and pushed IM1 Unit 3 topic integration.
+- 1c4a17a1c799caea45fa102a06e92e1ce9d1bb02 and 96cdfd422c283a4cda9ef79e5d072c573e4fdb51: separately tested/pushed Prep mathematical corrections.
+- Batch 7: tested Calculus Prep integration in this checkpoint commit.
 
 ## Completion inventory
 
@@ -29,6 +31,8 @@ Batch 4: seven Unit 1 typed topic routes complete; three choice-only routes reta
 Batch 5: 12 IM1 U1/U2 topic mathematical routes complete; classification, distributive/inequality and coordinate/graph choices retained. See [BATCH-5.md](BATCH-5.md). Reviews remain pending.
 
 Batch 6: 17 IM1 Unit 3 typed topic routes complete, with dynamic number/initial/recursive/formula/line keypads and preserved Yes/No/graph displays. See [BATCH-6.md](BATCH-6.md). Five section/comprehensive reviews remain Batch 8.
+
+Batch 7: all six typed Calculus Prep engines complete; five selection-only engines retained. See [BATCH-7.md](BATCH-7.md).
 
 Difference Quotient and conceptual review retain multiple choice. All graphing, matching, drawing and other specialized controls remain unchanged. Their eventual full route audit is still pending.
 
@@ -50,6 +54,8 @@ Difference Quotient and conceptual review retain multiple choice. All graphing, 
 
 - Batch 6: 6,800 deterministic questions / 11,086 typed parts / 69,316 checker pairs. 17/17 Chromium routes / 252 pairs, four recovery groups, zero page errors. Shared-bridge AP regressions: four routes / 33 pairs. See BATCH-6.md. No generator/grader changes.
 
+- Batch 7: 4,425 questions / 21,541 checker pairs; final six-route touch Chromium / 321 pairs plus recovery and missing-runtime checks pass, zero page errors. Nineteen combined Node/guard tests pass. Separately committed evaluator/form fixes; see BATCH-7.md.
+
 ## Remaining work and exact resume order
 
 1. Verify this checkpoint/remote head before editing another batch.
@@ -57,10 +63,10 @@ Difference Quotient and conceptual review retain multiple choice. All graphing, 
 3. Batch 3 topic fields complete; two comprehensive-review variants remain Batch 8.
 4. Batch 4 topic fields complete; comprehensive review remains Batch 8.
 5. Batches 5 and 6 complete for topic routes; reviews remain Batch 8. No video/notes/topic-content edits.
-6. Batch 7: Calculus Prep, including form-sensitive factor/quotient/list contracts and Undefined tokens.
+6. Batch 7 complete; verify its remote checkpoint before Batch 8.
 7. Batch 8: symbolic Unit 2 review, remaining reviews/assignments/mixed practice, dynamic profile verification and final reachable-route audit.
 
-[ROUTES.csv](ROUTES.csv) lists 126 practice pages found under the three course trees, excluding Unit 6. Pending rows still need field inspection; some will correctly retain specialized controls. The 215-row keypad matrix remains the more detailed field-level starting inventory. Neither count is a completion claim.
+[ROUTES.csv](ROUTES.csv) lists 137 routes: the original 126 practice pages plus 11 top-level Calculus Prep engine pages, excluding Unit 6. Pending rows still need field inspection; some will correctly retain specialized controls. The keypad matrix (215 original records plus the verified Prep coordinate-pair record) remains the more detailed field-level inventory. Neither count is a completion claim.
 
 ## Isolation and later reconciliation
 

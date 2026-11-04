@@ -44,7 +44,8 @@ export function bridgeKeypad(originalPad,{active,onCheck,onChange,onUnsupported,
       else if(functionLatex[label])mf.insert(`\\${functionLatex[label]}(#?)`);
       else if(literals[label])mf.insert(literals[label]);
       else if(/^[0-9a-zA-Z.()\[\],=+\-]$/.test(label))mf.insert(label);
-      else if(['DNE','None','Does not apply','No Solution','Infinite Solutions'].includes(label))mf.insert(`\\text{${label}}`);
+      else if(label==='°')mf.insert('^{\\circ}');
+      else if(['DNE','None','Undefined','Does not apply','No Solution','Infinite Solutions'].includes(label))mf.insert(`\\text{${label}}`);
       else {onUnsupported(`No experimental command mapping for ${label}.`);return;}
       onChange();
     }catch(error){onError(error);}

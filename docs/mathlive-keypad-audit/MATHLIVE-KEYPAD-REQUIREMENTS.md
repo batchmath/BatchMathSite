@@ -377,3 +377,7 @@ Twelve IM1 Units 1/2 typed routes converted; four specialized topic interfaces r
 ## Sitewide migration Batch 6 verified update
 
 Seventeen IM1 Unit 3 typed topic routes now use verified per-field MathLive profiles; Collinearity remains Yes/No. 31 matching matrix records updated. Numeric/fraction, initial-term, recursive-rule, explicit-formula and line contracts preserve original checkers. See [BATCH-6.md](../mathlive-migration/BATCH-6.md), generator/checker evidence and real Chromium artifacts. Section/comprehensive review records remain unresolved until Batch 8; arbitrary alternative identities and physical-device certification are not claimed.
+
+## Sitewide migration Batch 7 verified update
+
+Six Calculus Prep typed engines converted; five specialized selection engines retained. 17 existing matrix rows verified/updated; a separate coordinate-pair record added for the previously omitted Trig Angle Skills field type. See [BATCH-7.md](../mathlive-migration/BATCH-7.md) for actual contracts, dynamic keypad distinctions, two separately committed source corrections and retained deterministic/browser evidence. Unit Circle remains comma-free; equation/list engines retain needed comma. No arbitrary-identity or physical-device certification claim.
