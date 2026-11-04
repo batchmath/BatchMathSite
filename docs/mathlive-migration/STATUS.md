@@ -9,7 +9,8 @@ Branch: `migration/mathlive-sitewide`. Verified starting remote head: `migration
 
 - Batch 2: 1c95ed904133521320ede2b03ca27bda8a1f7a51, completed and tested.
 - Batch 3: ca2fe0e4628f688f1023fd054473d03e15e49e6e; tested Unit 3 integration.
-- Before Batch 4: separate Unit 1 unary-minus/exponent precedence correction; see MATH-CORRECTIONS.md. Unit 1 editors are not yet converted.
+- 0f4f54e93911253becef67f9cb77a431e64dce0a: separate Unit 1 unary-minus/exponent precedence correction; see MATH-CORRECTIONS.md.
+- Batch 4: tested Unit 1 topic integration in this checkpoint commit.
 
 ## Completion inventory
 
@@ -20,6 +21,8 @@ Batch 1B: 18 additional Unit 2 routes, covering Trig, Exponential, Log, Implicit
 Batch 2: 15 further routes cover all remaining Unit 4/5 topic typed fields, including calculator/non-calculator pages. See [BATCH-2.md](BATCH-2.md). Navigation pages, qualitative selections, graph drawing and slope-field manipulation stay specialized.
 
 Batch 3: 19 Unit 3 topic routes, including calculator/non-calculator, equations, lists, pairs, intervals, exact/rounded and multipart fields. See [BATCH-3.md](BATCH-3.md).
+
+Batch 4: seven Unit 1 typed topic routes complete; three choice-only routes retained. See [BATCH-4.md](BATCH-4.md). Unit 1 comprehensive review remains pending.
 
 Difference Quotient and conceptual review retain multiple choice. All graphing, matching, drawing and other specialized controls remain unchanged. Their eventual full route audit is still pending.
 
@@ -35,12 +38,14 @@ Difference Quotient and conceptual review retain multiple choice. All graphing, 
 
 - Batch 3: 22,800 deterministic questions / 110,260 checker pairs; all 19 Chromium routes pass, plus controls, Enter, progression, precision and recovery tests. Unit 3 generators/graders unchanged.
 
+- Batch 4: 4,360 questions/sets; 24,180 UI checker pairs plus 220 location comparisons; seven Chromium routes / 421 pairs pass. Profile/focus/recovery checks and original Power/Quotient/Basic browser regressions pass. Separate precedence fix recorded above.
+
 ## Remaining work and exact resume order
 
 1. Verify this checkpoint/remote head before editing another batch.
 2. Batch 2 is complete for topic pages; comprehensive reviews/assignments remain Batch 8 work.
 3. Batch 3 topic fields complete; two comprehensive-review variants remain Batch 8.
-4. Batch 4: Unit 1 local/shared fields and result tokens; conceptual controls retained.
+4. Batch 4 topic fields complete; comprehensive review remains Batch 8.
 5. Batches 5/6: IM1 U1/U2 then U3 with form/fraction/sequence/multipart restrictions; no video/notes/topic-content edits.
 6. Batch 7: Calculus Prep, including form-sensitive factor/quotient/list contracts and Undefined tokens.
 7. Batch 8: symbolic Unit 2 review, remaining reviews/assignments/mixed practice, dynamic profile verification and final reachable-route audit.

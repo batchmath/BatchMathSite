@@ -1,9 +1,10 @@
 import {batchmathToLatex} from './answer-adapter.mjs';
 import {bridgeKeypad,focusMathfield} from './keypad-bridge.mjs';
+import {resetMathfield} from './runtime.mjs';
 
 // A source-input adapter, not an engine: the caller retains generation,
 // submission, scoring and progression. Legacy remains mounted for recovery.
-export async function mountMathLiveAnswer({source,legacy,submit,translate,label='Derivative'}) {
+export async function mountMathLiveAnswer({source,legacy,submit,translate,label='Derivative',visibility}) {
   const oldEditor=source.previousElementSibling;
   const oldPad=source.closest('.answer-row').nextElementSibling;
   if(!oldEditor?.classList.contains('bm-calc-editor')||!oldPad?.classList.contains('bm-calc-keypad'))throw Error('Legacy editor is not ready.');
@@ -71,6 +72,7 @@ export async function mountMathLiveAnswer({source,legacy,submit,translate,label=
   }
   const guard=fn=>(...args)=>{if(!active)return;try{return fn(...args);}catch(error){recover(error);}};
   const reflect=()=>{
+    if(visibility){mf.hidden=!visibility();pad.hidden=!visibility();}
     mf.readOnly=source.disabled;
     mf.setAttribute('aria-disabled',String(source.disabled));
     for(const button of pad.querySelectorAll('button'))button.disabled=source.disabled;
@@ -79,17 +81,15 @@ export async function mountMathLiveAnswer({source,legacy,submit,translate,label=
   const reset=()=>{
     const converted=batchmathToLatex(source.value);
     if(converted.latex===null)throw Error('Cannot import the current legacy answer.');
-    mf.resetUndo();
     // Seed a fresh undo baseline *after* clearing history. The trailing TeX
     // space renders nothing and avoids setValue's identical-value early return
     // when both questions are blank. Otherwise the first new character cannot
     // be undone back to the empty field.
-    mf.setValue((source.value.trim()?converted.latex:'')+' ',{silenceNotifications:true});
     // 0.111.1 resetUndo() does not clear inline-shortcut snapshots. Without a
     // selection command, typing x after a prior question ending in x can apply
     // the native xx -> times shortcut and restore that previous expression.
     // This public command flushes the buffer and establishes the expected caret.
-    mf.executeCommand('moveToMathfieldEnd');
+    resetMathfield(mf,source.value.trim()?converted.latex:'');
     lastLatex=mf.value;delete source.dataset.mathliveStatus;
   };
   pad=bridgeKeypad(oldPad,{
@@ -99,13 +99,13 @@ export async function mountMathLiveAnswer({source,legacy,submit,translate,label=
   });
   oldPad.after(pad);
   const observer=new MutationObserver(guard(reflect));
-  observer.observe(source,{attributes:true,attributeFilter:['disabled']});
+  observer.observe(source,{attributes:true,attributeFilter:visibility?['disabled','hidden']:['disabled']});
   try{reset();reflect();}catch(error){
     // Initial import can refuse legacy syntax. At this point source is still
     // authoritative: do not overwrite it with an empty staging math-field.
     observer.disconnect();mf.remove();pad.remove();throw error;
   }
-  oldEditor.hidden=true;oldPad.hidden=true;mf.hidden=false;
+  oldEditor.hidden=true;oldPad.hidden=true;mf.hidden=visibility?!visibility():false;
   source.dataset.editor='mathlive';
   legacy.reset=guard(()=>{original.reset();reset();});
   legacy.focus=guard(()=>{reflect();if(!source.disabled)focusMathfield(mf);});

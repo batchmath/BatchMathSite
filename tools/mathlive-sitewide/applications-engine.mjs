@@ -1,6 +1,6 @@
 import fs from 'node:fs';import vm from 'node:vm';import {root,rng} from './unit2-engine.mjs';import {instrument} from '../mathlive-advanced-pilot/engine.mjs';export {root,rng};
 export const routes=fs.readdirSync(root+'ap-calculus/unit-3-applications-derivative/topics',{withFileTypes:true}).filter(x=>x.isDirectory()&&x.name!=='comprehensive-review').flatMap(x=>fs.readdirSync(root+'ap-calculus/unit-3-applications-derivative/topics/'+x.name,{withFileTypes:true}).filter(v=>v.isDirectory()&&v.name.endsWith('practice')).map(v=>({path:'ap-calculus/unit-3-applications-derivative/topics/'+x.name+'/'+v.name+'/index.html',slug:x.name,mode:v.name==='calculator-practice'||x.name==='using-your-graphing-calculator'||x.name.startsWith('newton-')?'calculator':'noncalculator'})));
-class Node{
+export class Node{
  constructor(tag='div'){this.tagName=tag.toUpperCase();this.children=[];this.style={};this.dataset={};this.listeners={};this.attributes={};this.value='';this.className='';this.disabled=false;this.hidden=false;this._html='';}
  get innerHTML(){return this._html}set innerHTML(s){this._html=s;this.children=[];}
  get classList(){const node=this;return{contains:v=>node.className.split(/\s+/).includes(v),add:(...v)=>node.className=[...new Set([...node.className.split(/\s+/),...v])].filter(Boolean).join(' '),remove:(...v)=>node.className=node.className.split(/\s+/).filter(x=>!v.includes(x)).join(' '),toggle(v,b){b??=!this.contains(v);b?this.add(v):this.remove(v);}}}

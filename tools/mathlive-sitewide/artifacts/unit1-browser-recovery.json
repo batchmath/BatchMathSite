@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/index.html",
+      "passed": true,
+      "recovery": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/practice/index.html",
+      "passed": true,
+      "recovery": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/course-practice/index.html",
+      "passed": true,
+      "recovery": true
+    }
+  ],
+  "errors": [],
+  "keypads": {},
+  "checkerPairs": 0,
+  "realMathJax": true,
+  "browser": "154.0.8037.57"
+}

@@ -876,6 +876,8 @@
      * only control which existing buttons are mounted around it.
      */
     const contextualUnit3={
+      "migration-limit-finite":{fraction:true,decimal:true,radical:true,cubeRoot:true,nthRoot:true,exponent:true,logarithm:true,functions:[["log","log"]],constants:["pi","e"],arithmetic:true,parentheses:true},
+      "migration-limit-signed":{fraction:true,decimal:true,radical:true,cubeRoot:true,nthRoot:true,exponent:true,logarithm:true,functions:[["log","log"]],constants:["pi","e"],arithmetic:true,parentheses:true,infinity:true,dne:true},
       "unit3-rounded":{decimal:true},
       "unit3-number":{fraction:true,decimal:true,arithmetic:true,parentheses:true},
       "unit3-exact":{fraction:true,radical:true,exponent:true,constants:["pi","e"],logarithm:true,arithmetic:true,parentheses:true},
@@ -1337,5 +1339,5 @@
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
   else init();
 
-  window.BatchMathCalculusKeypad={init,mountInputs,registerProfile:(name,spec)=>{customProfiles[name]=spec;},reset,focus,setRaw:(v)=>{const stacks=historyStacks();stacks.undo.length=0;stacks.redo.length=0;setRaw(v,String(v||"").length,{record:false});},move,moveVertical,backspace,del,undo,redo,get raw(){return serializeRange()},get cursor(){return state.cursor},get selection(){return selectionRange();},setCursor:(v)=>{collapseSelection(Number(v)||0);render();}};
+  window.BatchMathCalculusKeypad={init,mountInputs,createPad:buildPad,registerProfile:(name,spec)=>{customProfiles[name]=spec;},reset,focus,setRaw:(v)=>{const stacks=historyStacks();stacks.undo.length=0;stacks.redo.length=0;setRaw(v,String(v||"").length,{record:false});},move,moveVertical,backspace,del,undo,redo,get raw(){return serializeRange()},get cursor(){return state.cursor},get selection(){return selectionRange();},setCursor:(v)=>{collapseSelection(Number(v)||0);render();}};
 })();

@@ -365,3 +365,7 @@ Remaining Unit 4/5 topic fields use separate expression, rounded, list and inter
 ## Sitewide migration — verified Batch 3
 
 Nineteen Unit 3 topic routes now use field-specific MathLive contracts. 19 matching matrix records updated. See [BATCH-3.md](../mathlive-migration/BATCH-3.md) for verification and retained specialized controls. Reviews remain pending. No generator, renderer or grader changed.
+
+## Sitewide migration — verified Batch 4
+
+Seven Unit 1 mathematical routes converted; three choice-only routes retained. 10 matching matrix records updated. [BATCH-4.md](../mathlive-migration/BATCH-4.md) records controls, bounded generator evidence, browser tests and the separately committed precedence correction. Comprehensive review remains pending.

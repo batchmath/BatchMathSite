@@ -21,6 +21,7 @@ export function bridgeKeypad(originalPad,{active,onCheck,onChange,onUnsupported,
       const mf=active();if(!mf)return;focusMathfield(mf);
       if(label==='Check'){onCheck();return;}
       if(aria==='Insert approach arrow')mf.insert('\\to ');
+      else if(label==='Clear'){mf.setValue(' ',{mode:'math'});mf.executeCommand('moveToMathfieldEnd');mf.mode='math';}
       else if(commands[label])mf.executeCommand(commands[label]);
       else if(aria.startsWith('Insert limit as n'))insertTemplate(mf,'limit');
       else if(aria.startsWith('Insert summation from k'))insertTemplate(mf,'sum');

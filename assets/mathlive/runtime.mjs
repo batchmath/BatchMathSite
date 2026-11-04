@@ -21,7 +21,9 @@ export async function verifyFonts(alive){
   throw Error('MathLive fonts did not become available.');
 }
 export function resetMathfield(field,latex){
-  field.resetUndo();field.setValue(latex+' ',{silenceNotifications:true});
+  field.mode='math';
+  field.resetUndo();field.setValue(latex+' ',{silenceNotifications:true,mode:'math'});
   // Public selection command flushes 0.111.1's inline-shortcut snapshots.
   field.executeCommand('moveToMathfieldEnd');
+  field.mode='math';
 }
