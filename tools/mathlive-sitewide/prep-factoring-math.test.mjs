@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import vm from 'node:vm';
+const source=fs.readFileSync(new URL('../../assets/calc-prep-factoring.js',import.meta.url),'utf8'),definition=source.slice(source.indexOf('function looksFactored('),source.indexOf('function coeffList(')),b={};vm.createContext(b);vm.runInContext(definition,b);
+test('numeric-only parentheses do not satisfy required polynomial factor groups',()=>{for(const raw of ['(x^2-4)/(1)','(x^3-8)*(1)','(x^4-16)/(-1)*(-1)'])assert.equal(b.looksFactored(raw,{minGroups:2}),false,raw);});
+test('actual binomial/quadratic factors and numerical coefficients retain acceptance',()=>{for(const raw of ['(x-2)(x+2)','(x-2)(x+2)/1','(x/2-1)(2x+4)','(2)(x-1)(x+1)','2x(x-2)(x+2)','(x-2)(x^2+2x+4)'])assert.equal(b.looksFactored(raw,{minGroups:2}),true,raw);assert.equal(b.looksFactored('(x-2)^4',{minGroups:1}),true);});
