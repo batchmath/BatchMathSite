@@ -6,9 +6,15 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const topicRoot = '/im1/unit-2-algebraic-operations-equations-inequalities/topics/';
-const comparison = topicRoot + 'solving-linear-equations/';
-const expected = {
+const courses = ['ap-calculus', 'im1', 'calculus-prep'];
+function walk(dir) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(path.join(dir, e.name)) : [path.join(dir, e.name)]);
+}
+const html = courses.flatMap(course => walk(path.join(root, course))).filter(p => p.endsWith('.html'));
+const pages = html.filter(p => /youtube\.com\/embed|data-video-id=/.test(fs.readFileSync(p, 'utf8'))).map(p => path.relative(root, p).replaceAll(path.sep, '/'));
+const standardPages = pages.filter(p => fs.readFileSync(path.join(root, p), 'utf8').includes('data-bm-videos'));
+const im1Root = '/im1/unit-2-algebraic-operations-equations-inequalities/topics/';
+const approved = {
   'solving-linear-equations': [
     ['rLTzuyGUl1I', 'Solving Linear Equations Using Addition and Subtraction'],
     ['fggYnVaqV-4', 'Solving Linear Equations Using Multiplication and Division'],
@@ -17,17 +23,13 @@ const expected = {
     ['Ad43JwhtAFY', 'Solving Linear Equations when the Variable is Being Subtracted']
   ],
   'graphing-inequalities-interval-notation': [
-    ['lTUmdsLb0cc', 'Graphing Linear Inequalities on a Number Line'],
-    ['He4DtkI0EMw', 'Interval Notation']
+    ['lTUmdsLb0cc', 'Graphing Linear Inequalities on a Number Line'], ['He4DtkI0EMw', 'Interval Notation']
   ],
   'coordinate-system-nine-key-features': [
     ['xalP_Y75UaM', 'Domain'], ['BrU_7ThMrpY', 'Range'],
-    ['jwuWyvokBmY', 'Increasing, Decreasing, and Constant Intervals'],
-    ['MJu2qdXJeGY', 'Finding x and y Intercepts from a Graph']
+    ['jwuWyvokBmY', 'Increasing, Decreasing, and Constant Intervals'], ['MJu2qdXJeGY', 'Finding x and y Intercepts from a Graph']
   ]
 };
-
-// A temporary static server makes this check independent of a running dev server.
 const server = http.createServer((req, res) => {
   let target = path.resolve(root, '.' + decodeURIComponent(new URL(req.url, 'http://localhost').pathname));
   if (!target.startsWith(root + path.sep) && target !== root) { res.writeHead(403).end(); return; }
@@ -39,162 +41,169 @@ const server = http.createServer((req, res) => {
 });
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const base = `http://127.0.0.1:${server.address().port}`;
-let browser;
 const errors = [];
-const counters = { previewPages: 0, playerSelections: 0, ordinaryPages: 0 };
-
+const report = { htmlPagesAudited: html.length, videoPages: pages.length, standardPages: standardPages.length, collections: {}, modalPages: [], pageLoads: 0, selections: 0, specializedChecks: 0 };
+let browser;
 try {
   browser = await chromium.launch({ headless: true, ...(process.env.BM_CHROMIUM_EXECUTABLE ? { executablePath: process.env.BM_CHROMIUM_EXECUTABLE } : {}) });
   const context = await browser.newContext({ serviceWorkers: 'block', reducedMotion: 'reduce' });
-  // Deterministic UI checks do not claim to verify external YouTube playback.
+  // Verify UI behavior deterministically, independently of YouTube availability.
   await context.route('**/*', route => {
     const url = new URL(route.request().url());
     if (url.origin === base) return route.continue();
     if (url.hostname === 'i.ytimg.com') return route.fulfill({ contentType: 'image/svg+xml', body: '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360"><rect width="100%" height="100%" fill="#171717"/></svg>' });
-    if (url.hostname === 'www.youtube.com') return route.fulfill({ contentType: 'text/html', body: '<title>Simulated YouTube player</title><button>Player control</button>' });
+    if (url.hostname.includes('youtube')) return route.fulfill({ contentType: 'text/html', body: '<title>Simulated player</title><button>Player control</button>' });
     return route.abort();
   });
   const page = await context.newPage();
-  page.on('pageerror', error => errors.push(error.message));
-  const gallerySizes = new Map();
-  const layout = () => page.evaluate(() => {
-    const rect = el => { const r = el.getBoundingClientRect(); return { w: r.width, h: r.height, x: r.x, y: r.y }; };
-    return {
-      overflow: document.documentElement.scrollWidth > innerWidth,
-      grid: rect(document.querySelector('.video-grid')),
-      cards: [...document.querySelectorAll('.video-item')].map(rect),
-      thumbs: [...document.querySelectorAll('.video-embed')].map(rect),
-      buttons: [...document.querySelectorAll('.video-play')].map(rect)
-    };
-  });
-  async function checkPlayer(id, title) {
-    assert.equal(await page.locator('iframe').count(), 1, 'only one active player');
-    const frame = page.locator('.bm-video-player iframe');
-    const url = new URL(await frame.getAttribute('src'));
-    assert.equal(url.pathname, `/embed/${id}`);
-    assert.deepEqual([...url.searchParams.keys()], ['rel', 'playsinline', 'autoplay']);
-    assert.equal(await frame.getAttribute('title'), title);
-    assert.equal(await page.locator('.bm-video-player-header h3').innerText(), title);
-    const size = await page.locator('.bm-video-player-frame').boundingBox();
-    assert.ok(Math.abs(size.width / size.height - 16 / 9) < 0.04, 'expanded player is 16:9');
-    assert.ok(size.width > (await page.locator('.video-embed').first().boundingBox()).width, 'expanded player is larger than the thumbnail');
-    const close = await page.getByRole('button', { name: 'Close video' }).boundingBox();
-    assert.ok(close.x >= 0 && close.y >= 0 && close.x + close.width <= page.viewportSize().width && close.y + close.height <= page.viewportSize().height, 'close button fits viewport');
-    assert.equal((await layout()).overflow, false);
-    counters.playerSelections++;
+  page.on('pageerror', error => errors.push({ url: page.url(), error: error.message }));
+  async function checkFrame(frame, box) {
+    const src = await box.getAttribute('data-video-src');
+    const id = await box.getAttribute('data-video-id');
+    const expected = new URL(src || `https://www.youtube.com/embed/${id}?rel=0&playsinline=1`);
+    expected.searchParams.set('autoplay', '1');
+    assert.equal(await frame.getAttribute('src'), expected.href);
+    assert.equal(await frame.getAttribute('title'), await box.getAttribute('data-player-title'));
+    report.selections++;
   }
   for (const width of [375, 768, 1280]) {
-    for (const mode of ['modal', 'inline']) {
-      await page.setViewportSize({ width, height: 900 });
-      await page.goto(base + comparison + '?videoPreview=' + mode);
-      assert.equal(await page.locator('.video-play').count(), 5);
-      assert.equal(await page.locator('iframe').count(), 0, 'no iframe before selection');
-      assert.equal(await page.locator('.bm-video-mode-switcher').count(), 1);
-      assert.deepEqual(await page.locator('[data-video-id]').evaluateAll(nodes => nodes.map(n => n.dataset.videoId)), expected['solving-linear-equations'].map(v => v[0]));
-      assert.deepEqual(await page.locator('.video-title').allTextContents(), expected['solving-linear-equations'].map(v => v[1]));
-      const initial = await layout();
-      assert.equal(initial.overflow, false);
-      const columns = initial.cards.filter(c => Math.abs(c.y - initial.cards[0].y) < 1).length;
-      assert.equal(columns, width >= 980 ? 3 : width >= 600 ? 2 : 1);
-      for (const thumb of initial.thumbs) assert.ok(Math.abs(thumb.w / thumb.h - 16 / 9) < 0.04);
-      for (const button of initial.buttons) assert.ok(button.w >= 44 && button.h >= 44);
-      const dimensions = { grid: [initial.grid.w, initial.grid.h], cards: initial.cards.map(c => [c.w, c.h]) };
-      if (mode === 'modal') gallerySizes.set(width, dimensions);
-      else assert.deepEqual(dimensions, gallerySizes.get(width), 'both modes use identical gallery dimensions');
-      let previousFrame;
-      for (const [index, [id, title]] of expected['solving-linear-equations'].entries()) {
-        const button = page.locator('.video-play').nth(index);
-        assert.equal(await button.getAttribute('aria-label'), 'Play ' + title);
-        if (index === 0) { await button.focus(); await page.keyboard.press('Enter'); }
-        else await button.click();
-        await page.locator('.bm-video-player iframe').waitFor();
-        if (previousFrame) { assert.equal(await previousFrame.evaluate(node => node.isConnected), false, 'old player removed when switching'); await previousFrame.dispose(); }
-        await checkPlayer(id, title);
-        if (mode === 'modal') {
-          assert.equal(await page.locator('dialog').evaluate(d => d.open), true);
-          assert.equal(await page.evaluate(() => document.documentElement.style.overflow), 'hidden');
-          const scrollY = await page.evaluate(() => window.scrollY);
-          await page.mouse.move(2, 2);
-          await page.mouse.wheel(0, 350);
-          await page.waitForTimeout(80);
-          assert.equal(await page.evaluate(() => window.scrollY), scrollY, 'background cannot scroll behind the dialog');
-          if (index === 0) {
-            // Native modal focus containment includes an embedded player's controls.
-            await page.keyboard.press('Tab');
-            assert.equal(await page.evaluate(() => document.querySelector('dialog').contains(document.activeElement)), true);
-            await page.getByRole('button', { name: 'Close video' }).focus();
-            await page.keyboard.press('Escape');
-          } else if (index === 1) await page.mouse.click(2, 2);
-          else await page.getByRole('button', { name: 'Close video' }).click();
-          await page.waitForFunction(() => !document.querySelector('dialog').open && !document.querySelector('iframe'));
-          assert.equal(await button.evaluate(b => document.activeElement === b), true, 'focus returns to selected thumbnail');
-          assert.equal(await page.evaluate(() => document.documentElement.style.overflow), '');
-          assert.equal(await page.evaluate(() => document.body.style.overflow), '');
-        } else {
-          assert.equal(await page.locator('dialog').count(), 0);
-          assert.equal(await page.locator('.video-play').count(), 5, 'gallery remains available');
-          previousFrame = await page.locator('.bm-video-player iframe').elementHandle();
+    await page.setViewportSize({ width, height: 900 });
+    for (const file of pages) {
+      assert.equal((await page.goto(base + '/' + file.replace(/index.html$/, ''))).status(), 200);
+      assert.equal(await page.locator('.bm-video-mode-switcher, .bm-video-inline').count(), 0);
+      const grids = page.locator('[data-bm-videos]');
+      if (!await grids.count()) { report.pageLoads++; continue; }
+      const hasGallery = await grids.evaluateAll(nodes => nodes.some(g => g.children.length >= 3));
+      assert.equal(await page.locator('dialog').count(), hasGallery ? 1 : 0, 'one shared modal per page');
+      for (const grid of await grids.all()) {
+        const cards = grid.locator(':scope > .video-item');
+        const count = await cards.count();
+        const layout = count >= 3 ? 'gallery' : count === 2 ? 'pair' : 'large';
+        assert.equal(await grid.getAttribute('data-video-layout'), layout);
+        assert.equal(await grid.locator('iframe').count(), 0, 'no initial player or autoplay');
+        if (width === 375) {
+          report.collections[count] = (report.collections[count] || 0) + 1;
+          if (count >= 3 && !report.modalPages.includes(file)) report.modalPages.push(file);
+        }
+        const dimensions = await cards.evaluateAll(nodes => nodes.map(node => {
+          const card = node.getBoundingClientRect();
+          const thumb = node.querySelector('.video-embed').getBoundingClientRect();
+          const button = node.querySelector('button').getBoundingClientRect();
+          const title = node.querySelector('.video-title');
+          return { x: card.x, y: card.y, w: card.width, tw: thumb.width, th: thumb.height, bw: button.width, bh: button.height, titleClipped: title.scrollHeight > title.clientHeight + 1 };
+        }));
+        const columns = dimensions.filter(d => Math.abs(d.y - dimensions[0].y) < 1).length;
+        assert.equal(columns, count >= 3 ? width >= 980 ? 3 : width >= 600 ? 2 : 1 : count === 2 && width > 760 ? 2 : 1, `${file}: columns for ${count} videos at ${width}`);
+        for (const d of dimensions) {
+          assert.ok(Math.abs(d.tw / d.th - 16 / 9) < .04);
+          assert.ok(d.bw >= 44 && d.bh >= 44);
+          assert.equal(d.titleClipped, false);
+        }
+        for (let index = 0; index < count; index++) {
+          const card = cards.nth(index), box = card.locator('.video-embed'), button = card.getByRole('button');
+          if (index === 0 && count >= 3) { await button.focus(); await page.keyboard.press('Enter'); }
+          else await button.click();
+          if (layout === 'gallery') {
+            const dialog = page.locator('dialog');
+            assert.equal(await dialog.evaluate(d => d.open), true);
+            assert.equal(await dialog.locator('iframe').count(), 1);
+            await checkFrame(dialog.locator('iframe'), box);
+            const panel = await dialog.boundingBox(), frame = await dialog.locator('.bm-video-player-frame').boundingBox();
+            const close = page.getByRole('button', { name: 'Close video' });
+            const closeRect = await close.boundingBox();
+            assert.ok(panel.x >= 0 && panel.y >= 0 && panel.x + panel.width <= width + 1 && panel.y + panel.height <= 901);
+            assert.ok(frame.y + frame.height <= 901 && closeRect.y >= 0 && closeRect.y + closeRect.height <= 900);
+            assert.ok(Math.abs(frame.width / frame.height - 16 / 9) < .04);
+            assert.ok(frame.width > (await box.boundingBox()).width);
+            await dialog.locator('h2').click();
+            assert.equal(await dialog.evaluate(d => d.open), true, 'clicking inside does not close the player');
+            await dialog.locator('iframe').click();
+            assert.equal(await dialog.evaluate(d => d.open), true, 'clicking the player does not close the dialog');
+            assert.equal(await page.evaluate(() => document.documentElement.style.overflow), 'hidden');
+            if (index === 0) {
+              const scrollY = await page.evaluate(() => window.scrollY);
+              await page.mouse.move(2, 2); await page.mouse.wheel(0, 300); await page.waitForTimeout(80);
+              assert.equal(await page.evaluate(() => window.scrollY), scrollY, 'background stays locked');
+              await close.focus(); await page.keyboard.press('Tab');
+              assert.equal(await dialog.evaluate(d => d.contains(document.activeElement)), true);
+              await close.focus(); await page.keyboard.press('Escape');
+            } else if (index === 1) await page.mouse.click(2, 2);
+            else await close.click();
+            await page.waitForFunction(() => !document.querySelector('dialog').open && !document.querySelector('dialog iframe'));
+            assert.equal(await button.evaluate(b => document.activeElement === b), true);
+            assert.equal(await page.evaluate(() => document.documentElement.style.overflow), '');
+            assert.equal(await page.evaluate(() => document.body.style.overflow), '');
+            assert.equal(await grid.locator('iframe').count(), 0);
+          } else {
+            await checkFrame(box.locator('iframe'), box);
+            assert.equal(await box.locator('.video-cover').count(), 0);
+            assert.equal(await page.locator('dialog[open]').count(), 0);
+          }
         }
       }
-      if (mode === 'inline') {
-        await page.getByRole('button', { name: 'Close video' }).click();
-        assert.equal(await page.locator('iframe').count(), 0);
-        assert.equal(await page.locator('.bm-video-inline').isHidden(), true);
-        assert.equal(await page.locator('.video-play').last().evaluate(b => document.activeElement === b), true);
-        assert.equal(await previousFrame.evaluate(node => node.isConnected), false);
-        await previousFrame.dispose();
-      }
-      // Switching modes is ordinary static navigation and stops any active player.
-      await page.locator('.video-play').first().click();
-      const oldFrame = await page.locator('.bm-video-player iframe').elementHandle();
-      if (mode === 'modal') await page.getByRole('button', { name: 'Close video' }).click();
-      await page.locator('.bm-video-mode-switcher a').nth(mode === 'modal' ? 1 : 0).click();
-      await page.waitForURL('**videoPreview=' + (mode === 'modal' ? 'inline' : 'modal'));
-      assert.equal(await page.locator('iframe').count(), 0);
-      await oldFrame.dispose();
-      counters.previewPages++;
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, file + ': horizontal overflow');
+      report.pageLoads++;
     }
+    console.log(`Checked ${pages.length} video pages at ${width}px.`);
   }
-  // Check exact titles, ordinary behavior and ignored preview parameters elsewhere.
-  for (const slug of ['solving-linear-equations', 'graphing-inequalities-interval-notation', 'coordinate-system-nine-key-features', 'equivalent-expressions-combining-like-terms', 'distributive-property']) {
-    await page.goto(base + topicRoot + slug + '/' + (slug === 'solving-linear-equations' ? '' : '?videoPreview=modal'));
-    assert.equal(await page.locator('.bm-video-mode-switcher').count(), 0);
-    assert.equal(await page.locator('[data-video-preview-active]').count(), 0);
-    if (slug === 'solving-linear-equations') {
-      assert.ok(gallerySizes.get(1280).grid[1] < (await layout()).grid.h * 0.75, 'compact desktop gallery uses substantially less vertical space');
-    }
-    if (expected[slug]) {
-      assert.deepEqual(await page.locator('.video-item').evaluateAll(cards => cards.map(card => [
-        card.querySelector('[data-video-id]').dataset.videoId,
-        card.querySelector('.video-title').textContent,
-        card.querySelector('.video-play').getAttribute('aria-label')
-      ])), expected[slug].map(([id, title]) => [id, title, 'Play ' + title]));
-    }
-    await page.locator('.video-play').first().click();
-    assert.equal(await page.locator('.video-embed iframe').count(), 1, 'ordinary inline replacement unchanged');
+  for (const [slug, entries] of Object.entries(approved)) {
+    await page.goto(base + im1Root + slug + '/');
+    assert.deepEqual(await page.locator('[data-bm-videos] .video-item').evaluateAll(cards => cards.map(c => [c.querySelector('[data-video-id]').dataset.videoId, c.querySelector('.video-title').textContent])), entries);
+  }
+  const im1Ids = html.filter(p => p.includes(path.sep + 'im1' + path.sep)).flatMap(p => [...fs.readFileSync(p, 'utf8').matchAll(/data-video-id="([^"]+)"/g)].map(m => m[1]));
+  assert.equal(im1Ids.length, 13); assert.equal(new Set(im1Ids).size, 13);
+  for (const query of ['modal', 'inline']) {
+    await page.goto(base + im1Root + 'solving-linear-equations/?videoPreview=' + query);
+    assert.equal(await page.locator('[data-video-layout="gallery"]').count(), 1);
+    assert.equal(await page.locator('.bm-video-mode-switcher, .bm-video-inline').count(), 0);
+  }
+  const specialized = [
+    '/ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/',
+    '/ap-calculus/unit-2-derivatives/topics/the-chain-rule/',
+    '/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/'
+  ];
+  for (const route of specialized) {
+    await page.goto(base + route);
+    const button = page.locator('.hw-video-button').first();
+    await button.click(); assert.equal(await button.getAttribute('aria-expanded'), 'true');
+    await button.click(); assert.equal(await button.getAttribute('aria-expanded'), 'false'); report.specializedChecks++;
+  }
+  for (const slug of ['derivatives-with-the-power-rule', 'the-chain-rule', 'the-product-rule', 'the-quotient-rule']) {
+    await page.goto(base + '/ap-calculus/unit-2-derivatives/topics/' + slug + '/');
+    // Several separate lesson/example/proof videos must not become one collection.
     assert.equal(await page.locator('dialog').count(), 0);
-    assert.equal(await page.locator('.video-cover').count(), await page.locator('.video-item').count() - 1);
-    for (const link of await page.locator('[data-bm-resource="assignment"], [data-bm-resource="answer-key"], [data-bm-resource="practice"]').all()) {
-      const url = new URL(await link.getAttribute('href'), page.url()).href;
-      assert.equal((await context.request.get(url)).status(), 200);
-    }
-    counters.ordinaryPages++;
+    const proof = page.locator('.proof-card, .proof-section').first();
+    await proof.locator('.video-play').click();
+    assert.ok((await proof.locator('iframe').getAttribute('src')).includes('autoplay=1')); report.specializedChecks++;
   }
-  await page.goto(base + comparison + '?videoPreview=unknown');
-  assert.equal(await page.locator('.bm-video-mode-switcher').count(), 0);
-  assert.equal(await page.locator('[data-video-preview-active]').count(), 0);
+  await page.goto(base + '/ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/');
+  const review = page.locator('.review-video-button').first();
+  await review.click(); assert.equal(await review.getAttribute('aria-expanded'), 'true');
+  await review.click(); assert.equal(await review.getAttribute('aria-expanded'), 'false'); report.specializedChecks++;
+  // Future older recordings may carry intentional offsets: preserve them on activation.
+  await page.goto(base + '/ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/');
+  await page.locator('[data-video-id]').first().evaluate(box => { const u = new URL(box.dataset.videoSrc); u.searchParams.set('start', '42'); u.searchParams.set('end', '120'); box.dataset.videoSrc = u.href; });
+  await page.locator('[data-bm-videos] .video-play').first().click();
+  const timestamp = new URL(await page.locator('[data-bm-videos] iframe').getAttribute('src'));
+  assert.equal(timestamp.searchParams.get('start'), '42'); assert.equal(timestamp.searchParams.get('end'), '120');
+  // Narrow-height and orientation-change coverage for the largest approved IM1 title.
   for (const viewport of [{ width: 375, height: 667 }, { width: 812, height: 375 }]) {
-    await page.setViewportSize(viewport);
-    await page.goto(base + comparison + '?videoPreview=modal');
+    await page.setViewportSize(viewport); await page.goto(base + im1Root + 'solving-linear-equations/');
     await page.locator('.video-play').last().click();
-    await checkPlayer(...expected['solving-linear-equations'][4]);
+    const dialog = page.locator('dialog'), screen = await dialog.locator('.bm-video-player-frame').boundingBox();
+    assert.ok(screen.x >= 0 && screen.y >= 0 && screen.x + screen.width <= viewport.width + 1 && screen.y + screen.height <= viewport.height + 1);
+    await page.setViewportSize({ width: viewport.height, height: viewport.width });
+    await page.waitForFunction(() => { const r = document.querySelector('dialog').getBoundingClientRect(); return r.right <= innerWidth + 1 && r.bottom <= innerHeight + 1; });
     await page.getByRole('button', { name: 'Close video' }).click();
-    await page.waitForFunction(() => !document.querySelector('iframe'));
   }
-  assert.deepEqual(errors, [], 'no JavaScript errors');
-  console.log('PASS: IM1 video titles/order, preview URLs, identical responsive galleries, both expanded players, keyboard, focus, close/stop/switch, scroll restoration, ordinary behavior and resource links.');
-  console.log(JSON.stringify(counters));
-  console.log('YouTube responses simulated for UI tests; these checks do not verify external playback.');
+  await page.goto(base + '/calculus-prep/');
+  assert.equal(await page.locator('[data-bm-videos], dialog').count(), 0);
+  assert.deepEqual(errors, []);
+  fs.mkdirSync(path.join(root, 'qa-results'), { recursive: true });
+  fs.writeFileSync(path.join(root, 'qa-results/video-presentation-qa.json'), JSON.stringify({ ok: true, ...report, externalPlaybackVerified: false, errors }, null, 2) + '\n');
+  console.log('PASS: permanent video standard, every collection/card, approved titles/order, keyboard/focus, modal close/stop, responsive sizing, intentional offsets, and specialized controls.');
+  console.log(JSON.stringify(report, null, 2));
+  console.log('YouTube responses simulated for UI checks. External network playback is not verified.');
 } finally {
   await browser?.close();
   await new Promise(resolve => server.close(resolve));
