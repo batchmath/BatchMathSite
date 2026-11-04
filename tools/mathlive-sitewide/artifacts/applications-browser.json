@@ -1,0 +1,282 @@
+{
+  "browser": "154.0.8037.57",
+  "realMathJax": true,
+  "results": [
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/practice/index.html",
+      "passed": true,
+      "types": [
+        "exact-expression|0||||one",
+        "value-list|0||||one",
+        "choice|0||||one"
+      ],
+      "typedCases": 2,
+      "retainedChoices": 1,
+      "multipartCases": 0,
+      "profiles": [
+        "ml-unit3-exact",
+        "ml-unit3-list"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html",
+      "passed": true,
+      "types": [
+        "line-equation|0||||one"
+      ],
+      "typedCases": 1,
+      "retainedChoices": 0,
+      "multipartCases": 0,
+      "profiles": [
+        "unit3-equation"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/practice/index.html",
+      "passed": true,
+      "types": [
+        "line-equation|0|y|||one",
+        "line-equation|0|x|||one"
+      ],
+      "typedCases": 2,
+      "retainedChoices": 0,
+      "multipartCases": 0,
+      "profiles": [
+        "unit3-equation"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/calculator-practice/index.html",
+      "passed": true,
+      "types": [
+        "rounded-line-fields|1||||one",
+        "rounded-line-fields|2||||one"
+      ],
+      "typedCases": 2,
+      "retainedChoices": 0,
+      "multipartCases": 1,
+      "profiles": [
+        "unit3-rounded-line"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/practice/index.html",
+      "passed": true,
+      "types": [
+        "line-equation|0|x|||one",
+        "value-list|0||||one",
+        "line-equation|0|y|||one"
+      ],
+      "typedCases": 3,
+      "retainedChoices": 0,
+      "multipartCases": 0,
+      "profiles": [
+        "unit3-equation",
+        "ml-unit3-list"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
+      "passed": true,
+      "types": [
+        "numeric|0||||one",
+        "interval-answer|0||||one",
+        "interval-answer|0||||union"
+      ],
+      "typedCases": 3,
+      "retainedChoices": 0,
+      "multipartCases": 0,
+      "profiles": [
+        "unit3-rounded",
+        "ml-unit3-rounded-interval"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html",
+      "passed": true,
+      "types": [
+        "ordered-pair|0||||one",
+        "interval-answer|0||||union",
+        "interval-answer|0||||one",
+        "extremum-fields|0||||one"
+      ],
+      "typedCases": 4,
+      "retainedChoices": 0,
+      "multipartCases": 1,
+      "profiles": [
+        "ml-unit3-pair",
+        "ml-unit3-interval",
+        "ml-unit3-coordinate"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/practice/index.html",
+      "passed": true,
+      "types": [
+        "staged-calculus|0||choice|exact|one",
+        "staged-calculus|0||choice||one"
+      ],
+      "typedCases": 1,
+      "retainedChoices": 2,
+      "multipartCases": 0,
+      "profiles": [
+        "ml-unit3-limit"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html",
+      "passed": true,
+      "types": [
+        "exact-expression|0||||one"
+      ],
+      "typedCases": 1,
+      "retainedChoices": 0,
+      "multipartCases": 0,
+      "profiles": [
+        "ml-unit3-algebraic-exact"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/motion/calculator-practice/index.html",
+      "passed": true,
+      "types": [
+        "numeric|0||||one"
+      ],
+      "typedCases": 1,
+      "retainedChoices": 0,
+      "multipartCases": 0,
+      "profiles": [
+        "unit3-rounded"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/motion/practice/index.html",
+      "passed": true,
+      "types": [
+        "exact-expression|0||||one",
+        "value-list|0||||one"
+      ],
+      "typedCases": 2,
+      "retainedChoices": 0,
+      "multipartCases": 0,
+      "profiles": [
+        "ml-unit3-exact",
+        "ml-unit3-list"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/practice/index.html",
+      "passed": true,
+      "types": [
+        "numeric|0||||one"
+      ],
+      "typedCases": 1,
+      "retainedChoices": 0,
+      "multipartCases": 0,
+      "profiles": [
+        "unit3-rounded"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/optimization/calculator-practice/index.html",
+      "passed": true,
+      "types": [
+        "numeric|0||||one",
+        "calculus-fields|2||||one"
+      ],
+      "typedCases": 2,
+      "retainedChoices": 0,
+      "multipartCases": 1,
+      "profiles": [
+        "unit3-rounded"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html",
+      "passed": true,
+      "types": [
+        "exact-expression|0||||one",
+        "calculus-fields|2||||one",
+        "calculus-fields|3||||one"
+      ],
+      "typedCases": 3,
+      "retainedChoices": 0,
+      "multipartCases": 2,
+      "profiles": [
+        "ml-unit3-geometry-exact"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/related-rates/calculator-practice/index.html",
+      "passed": true,
+      "types": [
+        "numeric|0||||one",
+        "calculus-fields|2||||one",
+        "calculus-fields|3||||one"
+      ],
+      "typedCases": 3,
+      "retainedChoices": 0,
+      "multipartCases": 2,
+      "profiles": [
+        "unit3-rounded"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/related-rates/practice/index.html",
+      "passed": true,
+      "types": [
+        "exact-expression|0||||one",
+        "calculus-fields|2||||one",
+        "calculus-fields|3||||one"
+      ],
+      "typedCases": 3,
+      "retainedChoices": 0,
+      "multipartCases": 2,
+      "profiles": [
+        "ml-unit3-geometry-exact"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/practice/index.html",
+      "passed": true,
+      "types": [
+        "staged-calculus|0||choice|exact-list|one",
+        "staged-calculus|0||choice||one"
+      ],
+      "typedCases": 1,
+      "retainedChoices": 2,
+      "multipartCases": 0,
+      "profiles": [
+        "ml-unit3-theorem"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/practice/index.html",
+      "passed": true,
+      "types": [
+        "staged-calculus|0||exact|choice|one"
+      ],
+      "typedCases": 1,
+      "retainedChoices": 0,
+      "multipartCases": 0,
+      "profiles": [
+        "ml-unit3-approximation"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/practice/index.html",
+      "passed": true,
+      "types": [
+        "numeric|0||||one"
+      ],
+      "typedCases": 1,
+      "retainedChoices": 0,
+      "multipartCases": 0,
+      "profiles": [
+        "unit3-rounded"
+      ]
+    }
+  ],
+  "errors": [],
+  "checkerPairs": 185
+}

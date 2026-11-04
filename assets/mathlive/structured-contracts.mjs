@@ -5,7 +5,7 @@ const none=/^(?:none|never|no\s*(?:times?|values?|solutions?|intervals?)|∅|\{\
 const dna=/^(?:does\s*not\s*apply|dna|none)$/i;
 // Preserve punctuation and spelling; unchanged checkers own set equality,
 // duplicates, exactness, rounding and whether an empty set is correct.
-export function exactList(source,{doesNotApply=false,rounded=false}={}){
+export function exactList(source,{doesNotApply=false,rounded=false,itemTranslate=translateAdvancedExpression}={}){
  const text=plain(source);if(!text)return{status:'complete',input:''};
  if((doesNotApply?dna:none).test(text))return{status:'complete',input:text};
  let normalized=String(source).replace(/\\(?:left|right)/g,'').replace(/\\(?:lbrace|\{)/g,'{').replace(/\\(?:rbrace|\})/g,'}').replace(/\\(?:text|operatorname)\{and\}|\band\b/gi,',');
@@ -24,7 +24,7 @@ export function exactList(source,{doesNotApply=false,rounded=false}={}){
    const input=result.input.replace(/\+Q\*/g,'±');
    return input.includes('Q')?{status:'unsupported',input:null,message:'Complete the ± expression.'}:{...result,input};
   }
-  return(rounded?roundedNumber:translateAdvancedExpression)(item);
+  return(rounded?roundedNumber:itemTranslate)(item);
  };
  const converted=segments.map(convert),bad=converted.find(x=>x.input===null);if(bad)return bad;
  return{status:converted.every(x=>x.status==='complete')?'complete':'incomplete',input:converted.map(x=>x.input).join(',')};

@@ -499,3 +499,7 @@ Run `python3 tools/mathlive-keypad-audit/report.py` from a Git checkout at this 
 ## Sitewide migration — verified Batch 2
 
 Remaining Unit 4/5 topic fields use separate expression, rounded, list and interval contracts. Source/checker-based corrections and the 15-route checklist are in [BATCH-2.md](../mathlive-migration/BATCH-2.md). Matching matrix rows are updated; review/assignment and unrelated provisional rows stay pending. No grader or generator changed.
+
+## Sitewide migration — verified Batch 3
+
+Nineteen Unit 3 topic routes now use field-specific MathLive contracts. 19 matching matrix records updated. See [BATCH-3.md](../mathlive-migration/BATCH-3.md) for verification and retained specialized controls. Reviews remain pending. No generator, renderer or grader changed.

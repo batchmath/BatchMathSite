@@ -7,7 +7,8 @@ Branch: `migration/mathlive-sitewide`. Verified starting remote head: `migration
 - `3c88dac`: separately tested legacy mathematical corrections (inverse-factor evaluator and exponential point-solution display). See [MATH-CORRECTIONS.md](MATH-CORRECTIONS.md).
 - `54a428f`: Batch 1B integration completed and tested. Batch 2 follows below.
 
-- Batch 2: tested integration in this checkpoint commit; next is Unit 3.
+- Batch 2: 1c95ed904133521320ede2b03ca27bda8a1f7a51, completed and tested.
+- Batch 3: tested Unit 3 integration in this checkpoint commit; next is Unit 1.
 
 ## Completion inventory
 
@@ -16,6 +17,8 @@ Inherited: Power, Chain, Product, Quotient, Basic Integrals, FTC/Integral Rules,
 Batch 1B: 18 additional Unit 2 routes, covering Trig, Exponential, Log, Implicit, Logarithmic Differentiation, Inverse Trig, Inverse Function derivatives, Nested Chain, nine topic point-derivative pages and the comprehensive point-derivative page. Exact field/profile/family details and limits: [BATCH-1B.md](BATCH-1B.md). The engine/field checklist remains separate from sitewide completion.
 
 Batch 2: 15 further routes cover all remaining Unit 4/5 topic typed fields, including calculator/non-calculator pages. See [BATCH-2.md](BATCH-2.md). Navigation pages, qualitative selections, graph drawing and slope-field manipulation stay specialized.
+
+Batch 3: 19 Unit 3 topic routes, including calculator/non-calculator, equations, lists, pairs, intervals, exact/rounded and multipart fields. See [BATCH-3.md](BATCH-3.md).
 
 Difference Quotient and conceptual review retain multiple choice. All graphing, matching, drawing and other specialized controls remain unchanged. Their eventual full route audit is still pending.
 
@@ -29,11 +32,13 @@ Difference Quotient and conceptual review retain multiple choice. All graphing, 
 
 - Batch 2: 17/17 Node tests; 4,860 questions / 5,506 parts / 23,028 checker pairs. 15/15 browser routes pass across full/targeted runs, including controls, Enter and narrow fields. Existing Basic Integrals browser 22/22 and derivative keypad guards 21/21 pass.
 
+- Batch 3: 22,800 deterministic questions / 110,260 checker pairs; all 19 Chromium routes pass, plus controls, Enter, progression, precision and recovery tests. Unit 3 generators/graders unchanged.
+
 ## Remaining work and exact resume order
 
 1. Verify this checkpoint/remote head before editing another batch.
 2. Batch 2 is complete for topic pages; comprehensive reviews/assignments remain Batch 8 work.
-3. Batch 3: Unit 3 equation, interval/list/pair, exact and rounded contracts; calculator distinctions.
+3. Batch 3 topic fields complete; two comprehensive-review variants remain Batch 8.
 4. Batch 4: Unit 1 local/shared fields and result tokens; conceptual controls retained.
 5. Batches 5/6: IM1 U1/U2 then U3 with form/fraction/sequence/multipart restrictions; no video/notes/topic-content edits.
 6. Batch 7: Calculus Prep, including form-sensitive factor/quotient/list contracts and Undefined tokens.

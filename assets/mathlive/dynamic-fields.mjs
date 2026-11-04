@@ -9,7 +9,8 @@ export function installDynamicFields({profiles,label}){
   const api=window.BatchMathCalculusKeypad,originalMount=api.mountInputs,originalFocus=api.focus;
   const groups=new Set();let latest=null;
   api.mountInputs=function(inputs,host,options={}){
-    const contract=profiles[options.mode];
+    const definition=profiles[options.mode];
+    const contract=typeof definition==='function'?definition({inputs,options}):definition;
     const mount=originalMount.call(api,inputs,host,contract?.keypad?{...options,mode:contract.keypad}:options);
     latest={mount,adapter:null};
     if(mount&&contract){const record=latest;record.adapter=attach(mount,host,options,contract,()=>latest===record,label);groups.add(record.adapter);}
@@ -101,7 +102,7 @@ export function installDynamicFields({profiles,label}){
         }),true);
         watch.observe(r.input,{attributes:true,attributeFilter:['disabled','class']});
       });
-      listen(host,'click',guard(e=>{if(e.target.closest('button')?.classList.contains('staged-check'))sync();}),true);
+      listen(host,'click',guard(e=>{if(e.target.closest('button')?.matches(contract.submitSelector||'.staged-check'))sync();}),true);
       listen(host,'keydown',e=>{if(e.key==='Enter'&&e.repeat){e.preventDefault();e.stopImmediatePropagation();}},true);
       listen(window,'error',e=>{if(e.filename?.includes('/mathlive/vendor/mathlive/'))fallback(e.error||Error(e.message));});
       watch.observe(pad,{attributes:true,attributeFilter:['hidden']});pad.style.display='none';ready=true;reflect();

@@ -1,12 +1,12 @@
 import {translateAdvancedExpression,batchmathToLatex} from './answer-adapter.mjs';
 // Only interval punctuation is handled here; endpoints use the restricted
 // expression translator. The original checker owns order, brackets and domain.
-function convert(source,latex){
+function convert(source,latex,translateEndpoint=translateAdvancedExpression,formatEndpoint=batchmathToLatex){
  let s=String(source).trim();if(!s)return '';
  s=s.replace(/\\(?:left|right|displaystyle)/g,'').replace(/\\(?:,|;|!| )/g,'').replace(/\\(?:leq|le)(?![A-Za-z])/g,'<=').replace(/\\(?:geq|ge)(?![A-Za-z])/g,'>=').replace(/\\theta(?![A-Za-z])/g,'θ').replace(/[−–]/g,'-');
  const endpoint=value=>{
   if(!value.trim())throw Error('Complete both endpoints.');
-  const r=latex?translateAdvancedExpression(value):batchmathToLatex(value);
+  const r=latex?translateEndpoint(value):formatEndpoint(value);
   if(r.status!=='complete')throw Error(r.message||'Complete the endpoint.');
   return latex?r.input:r.latex;
  };
@@ -23,11 +23,11 @@ function convert(source,latex){
   throw Error('Use interval or supported inequality notation.');
  }).join(latex?'∪':'\\cup ');
 }
-export function translateInterval(source){
- try{return {status:'complete',input:convert(source,true)};}
+export function translateInterval(source,{translateEndpoint=translateAdvancedExpression}={}){
+ try{return {status:'complete',input:convert(source,true,translateEndpoint)};}
  catch(error){return {status:'unsupported',input:null,message:error.message};}
 }
-export function intervalToLatex(source){
- try{return {status:'complete',latex:convert(source,false)};}
+export function intervalToLatex(source,{formatEndpoint=batchmathToLatex}={}){
+ try{return {status:'complete',latex:convert(source,false,translateAdvancedExpression,formatEndpoint)};}
  catch(error){return {status:'unsupported',latex:null,message:error.message};}
 }
