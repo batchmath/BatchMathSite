@@ -373,3 +373,7 @@ Seven Unit 1 mathematical routes converted; three choice-only routes retained. 1
 ## Sitewide migration — verified Batch 5
 
 Twelve IM1 Units 1/2 typed routes converted; four specialized topic interfaces retained. 18 matrix records updated. [BATCH-5.md](../mathlive-migration/BATCH-5.md) records original form gates, profiles, 9,300 questions / 58,378 comparisons, browser/recovery evidence and the legacy MathJax speech limitation. Video/notes/headings/navigation are unchanged. Reviews remain pending.
+
+## Sitewide migration Batch 6 verified update
+
+Seventeen IM1 Unit 3 typed topic routes now use verified per-field MathLive profiles; Collinearity remains Yes/No. 31 matching matrix records updated. Numeric/fraction, initial-term, recursive-rule, explicit-formula and line contracts preserve original checkers. See [BATCH-6.md](../mathlive-migration/BATCH-6.md), generator/checker evidence and real Chromium artifacts. Section/comprehensive review records remain unresolved until Batch 8; arbitrary alternative identities and physical-device certification are not claimed.

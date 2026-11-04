@@ -1,0 +1,14 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {engine,fields,answer,root,rng,routes} from './im1-unit3-engine.mjs';import {unit3Contract} from '../../assets/mathlive/im1-unit3-contracts.mjs';
+const b=engine(),qa=b.BatchMathIM1Unit3PracticeQA,records=[];
+for(const route of routes)test(route,()=>{const slug=route.split('/').at(-3),gen=b.BatchMathIM1Unit3Generators.get(slug),families=new Set(),record={route,questions:0,parts:0,pairs:0};
+ for(let seed=1;seed<=400;seed++){b.BatchMathRNG={random:rng(seed*719)};const q=gen();families.add(q.variant+(q.kind==='arithmetic-identification'?'-'+q.arithmetic:''));record.questions++;
+ for(const f of fields(q)){const raw=answer(f),contract=unit3Contract({id:'answer-'+f.id,dataset:{bmStructuredKind:f.check}});const result=qa.fieldResult(raw,f);assert.equal(result.ok,true,q.id+': '+raw+' '+JSON.stringify(result));record.parts++;
+ const display=f.answerText||(q.kind==='formula'?q.answerText:null);if(display?.startsWith('\\(')&&display.endsWith('\\)')){const shown=contract.translate(f.check==='number'?display.slice(2,-2).replace(/^[a-z]\s*=\s*/i,''):display.slice(2,-2));assert.equal(qa.fieldResult(shown.input??'?',f).ok,true,q.id+': displayed '+display+' -> '+shown.input);}
+
+ const variants=[raw,'1234567','','1/()',raw+'+0'];if(f.check==='line'&&display)variants.push(contract.translate(display.slice(2,-2)).input);
+ if(f.check==='formula')variants.push('y='+f.formula.d+'n+'+(f.formula.a-f.formula.d),'f(n)='+f.formula.a+'+'+f.formula.d+'*(n-1)',raw.split('=').reverse().join('='));
+ if(f.check==='number'||f.check==='initial-term'){variants.push(f.answer+'/1');if(f.check==='initial-term')variants.push('a_1='+f.answer,'a₁='+f.answer);}
+ for(const v of variants){const t=contract.toLatex(v);if(t.latex===null)continue;const translated=contract.translate(t.latex).input??(v?'?':'');const a=qa.fieldResult(v,f),c=qa.fieldResult(translated,f);assert.equal(c.ok===true,a.ok===true,q.id+': '+v+' -> '+translated+' '+JSON.stringify(c));assert.equal(!!c.error,!!a.error,q.id+': error '+v+' -> '+translated);record.pairs++;}
+ }}record.families=[...families];records.push(record);});
+test('literal fractional initial and recursive values preserve original checks',()=>{for(const f of [{check:'initial-term',answer:'3/2'},{check:'recursive-rule',recursive:{d:1.5}}]){const c=unit3Contract({id:'answer-'+f.id,dataset:{bmStructuredKind:f.check}});for(const raw of f.check==='initial-term'?['3/2','a_1=3/2','a₁=6/4']:['a_n=a_{n-1}+3/2','a_n=a_{n-1}+6/4','a_n=a_{n-1}+(3/2)']){const tex=c.toLatex(raw);assert.equal(c.translate(tex.latex).input===null,false);assert.equal(qa.fieldResult(c.translate(tex.latex).input,f).ok,qa.fieldResult(raw,f).ok,raw);}}});
+process.on('exit',()=>fs.writeFileSync(root+'tools/mathlive-sitewide/artifacts/im1-batch6-node.json',JSON.stringify(records,null,2)+'\n'));

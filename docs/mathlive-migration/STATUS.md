@@ -11,7 +11,8 @@ Branch: `migration/mathlive-sitewide`. Verified starting remote head: `migration
 - Batch 3: ca2fe0e4628f688f1023fd054473d03e15e49e6e; tested Unit 3 integration.
 - 0f4f54e93911253becef67f9cb77a431e64dce0a: separate Unit 1 unary-minus/exponent precedence correction; see MATH-CORRECTIONS.md.
 - 517ffee72bec8b9c540bcc3549b00c27a880cfbf: Batch 4 Unit 1 topic integration, tested and pushed.
-- Batch 5: tested IM1 Units 1/2 topic integration in this checkpoint commit.
+- Batch 5: 4fe3861d41302ff82d5cba90c5928b6a7c020720, tested and pushed IM1 Units 1/2 topic integration.
+- Batch 6: tested IM1 Unit 3 topic integration in this checkpoint commit.
 
 ## Completion inventory
 
@@ -26,6 +27,8 @@ Batch 3: 19 Unit 3 topic routes, including calculator/non-calculator, equations,
 Batch 4: seven Unit 1 typed topic routes complete; three choice-only routes retained. See [BATCH-4.md](BATCH-4.md). Unit 1 comprehensive review remains pending.
 
 Batch 5: 12 IM1 U1/U2 topic mathematical routes complete; classification, distributive/inequality and coordinate/graph choices retained. See [BATCH-5.md](BATCH-5.md). Reviews remain pending.
+
+Batch 6: 17 IM1 Unit 3 typed topic routes complete, with dynamic number/initial/recursive/formula/line keypads and preserved Yes/No/graph displays. See [BATCH-6.md](BATCH-6.md). Five section/comprehensive reviews remain Batch 8.
 
 Difference Quotient and conceptual review retain multiple choice. All graphing, matching, drawing and other specialized controls remain unchanged. Their eventual full route audit is still pending.
 
@@ -45,13 +48,15 @@ Difference Quotient and conceptual review retain multiple choice. All graphing, 
 
 - Batch 5: 9,300 generated questions / 58,378 checker pairs; 39 combined Node tests pass. 12/12 Chromium routes / 370 pairs pass with zero unexpected page errors. Two matching preexisting MathJax speech-explorer errors are isolated by a legacy-only reproduction; see BATCH-5.md. Recovery, touch and Unit 1 native regressions pass.
 
+- Batch 6: 6,800 deterministic questions / 11,086 typed parts / 69,316 checker pairs. 17/17 Chromium routes / 252 pairs, four recovery groups, zero page errors. Shared-bridge AP regressions: four routes / 33 pairs. See BATCH-6.md. No generator/grader changes.
+
 ## Remaining work and exact resume order
 
 1. Verify this checkpoint/remote head before editing another batch.
 2. Batch 2 is complete for topic pages; comprehensive reviews/assignments remain Batch 8 work.
 3. Batch 3 topic fields complete; two comprehensive-review variants remain Batch 8.
 4. Batch 4 topic fields complete; comprehensive review remains Batch 8.
-5. Batch 5 complete for topic routes. Next: Batch 6 IM1 U3 sequence/formula/equation/multipart fields; no video/notes/topic-content edits.
+5. Batches 5 and 6 complete for topic routes; reviews remain Batch 8. No video/notes/topic-content edits.
 6. Batch 7: Calculus Prep, including form-sensitive factor/quotient/list contracts and Undefined tokens.
 7. Batch 8: symbolic Unit 2 review, remaining reviews/assignments/mixed practice, dynamic profile verification and final reachable-route audit.
 

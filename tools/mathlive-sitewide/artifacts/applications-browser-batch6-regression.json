@@ -1,0 +1,125 @@
+{
+  "browser": "154.0.8037.57",
+  "realMathJax": true,
+  "results": [
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/practice/index.html",
+      "passed": true,
+      "types": [
+        "exact-expression|0||||one",
+        "value-list|0||||one",
+        "choice|0||||one"
+      ],
+      "typedCases": 2,
+      "retainedChoices": 1,
+      "multipartCases": 0,
+      "profiles": [
+        "ml-unit3-exact",
+        "ml-unit3-list"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/practice/index.html",
+      "passed": true,
+      "types": [
+        "numeric|0||||one"
+      ],
+      "typedCases": 1,
+      "retainedChoices": 0,
+      "multipartCases": 0,
+      "profiles": [
+        "unit3-rounded"
+      ]
+    }
+  ],
+  "errors": [],
+  "checkerPairs": 15,
+  "keypads": {
+    "ml-unit3-exact": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      "(",
+      ")",
+      "+",
+      "·",
+      "ab",
+      "√",
+      "ln",
+      "sin",
+      "cos",
+      "xⁿ",
+      "π",
+      "e",
+      "←",
+      "→",
+      "↑",
+      "↓",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ],
+    "ml-unit3-list": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      ".",
+      "(",
+      ")",
+      "+",
+      "·",
+      ",",
+      "ab",
+      "√",
+      "xⁿ",
+      "←",
+      "→",
+      "↑",
+      "↓",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ],
+    "unit3-rounded": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      ".",
+      "←",
+      "→",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ]
+  },
+  "enter": true,
+  "controls": true,
+  "recovery": false
+}

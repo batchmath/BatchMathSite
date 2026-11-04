@@ -1,0 +1,31 @@
+{
+  "browser": "154.0.8037.57",
+  "realMathJax": true,
+  "results": [
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/integrals-resulting-in-natural-log-and-inverse-trigonometric-functions/practice/index.html",
+      "passed": true,
+      "correctFields": 8,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit4-log-indef",
+        "unit4-log-def"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/slope-fields/practice/index.html",
+      "passed": true,
+      "correctFields": 4,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit5-slope-list",
+        "unit5-slope-line",
+        "unit5-slope-exact",
+        "unit5-slope-interval"
+      ]
+    }
+  ],
+  "errors": [],
+  "checkerPairs": 18,
+  "controlProfiles": {}
+}

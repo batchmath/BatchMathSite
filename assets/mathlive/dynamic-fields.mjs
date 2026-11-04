@@ -18,7 +18,7 @@ export function installDynamicFields({profiles,label}){
   };
   api.focus=()=>{if(latest?.adapter?.ready)latest.adapter.focus();else originalFocus();};
   const observer=new MutationObserver(()=>{for(const group of groups)if(!group.connected){group.dispose();groups.delete(group);}});
-  observer.observe(document.getElementById('choices'),{childList:true,subtree:true});
+  observer.observe(document.getElementById('choices')||document.body,{childList:true,subtree:true});
   // Existing stage renderers focus their new section after typesetting. Route
   // that established focus to its enabled field without affecting feedback.
   document.addEventListener('focusin',event=>{
@@ -28,13 +28,13 @@ export function installDynamicFields({profiles,label}){
   });
 
   function attach(mount,host,options,contract,isLatest,label){
-    const records=mount.bindings.map(binding=>({binding,input:binding.input,editor:binding.editor,field:null,latex:'',display:binding.editor.style.display}));
+    const records=mount.bindings.map(binding=>({binding,input:binding.input,spec:contract.fieldContract?.(binding.input)||contract,editor:binding.editor,field:null,latex:'',display:binding.editor.style.display}));
     const pad=mount.pad,display=pad.style.display,removers=[];let clone,active=0,ready=false,disposed=false,unsupported;
     const alive=()=>!disposed&&host.isConnected&&records.every(r=>r.input.isConnected);
     const listen=(node,event,fn,capture=false)=>{node.addEventListener(event,fn,capture);removers.push(()=>node.removeEventListener(event,fn,capture));};
     function focus(){const r=records[active];if(r&&!r.input.disabled&&alive())focusMathfield(r.field);}
     function read(r){
-      r.latex=r.field.value;const result=contract.translate(r.latex);
+      r.latex=r.field.value;const result=r.spec.translate(r.latex);
       r.input.value=result.input??(r.latex.trim()?'?':'');r.input.dataset.mathliveStatus=result.status;
       if(unsupported)unsupported.hidden=result.status!=='unsupported';
       return result;
@@ -54,7 +54,7 @@ export function installDynamicFields({profiles,label}){
       const saved=records.map(r=>{
         if(!r.field||!ready)return {r,raw:r.input.value,latex:''};
         try{r.latex=r.field.value;}catch{/* retain the last input snapshot */}
-        const parsed=contract.translate(r.latex);return {r,raw:parsed.input??r.latex,latex:parsed.input===null?r.latex:''};
+        const parsed=r.spec.translate(r.latex);return {r,raw:parsed.input??r.latex,latex:parsed.input===null?r.latex:''};
       });
       dispose();pad.style.display=display;
       for(const {r,raw} of saved){r.editor.style.display=r.display;r.binding.raw=raw;r.input.value=raw;r.input.dataset.editor='legacy';delete r.input.dataset.mathliveStatus;}
@@ -74,20 +74,27 @@ export function installDynamicFields({profiles,label}){
       const {MathfieldElement}=await loadMathLive();if(!alive())return;
       if(getComputedStyle(document.documentElement).getPropertyValue('--bm-mathlive-pilot-ready').trim()!=='1')throw Error('MathLive styling is unavailable.');
       for(const r of records){
-        const field=new MathfieldElement();r.field=field;field.className='bm-mathlive-answer bm-mathlive-dynamic';field.hidden=true;field.setAttribute('aria-label',r.input.getAttribute('aria-label')||'Answer');field.mathVirtualKeyboardPolicy='manual';field.smartSuperscript=false;field.smartFence=false;field.removeExtraneousParentheses=false;field.defaultMode='math';r.editor.after(field);
+        const field=new MathfieldElement();r.field=field;field.className='bm-mathlive-answer bm-mathlive-dynamic';field.hidden=true;field.setAttribute('aria-label',r.input.getAttribute('aria-label')||r.input.labels?.[0]?.textContent||'Answer');if(r.input.getAttribute('aria-describedby'))field.setAttribute('aria-describedby',r.input.getAttribute('aria-describedby'));field.mathVirtualKeyboardPolicy='manual';field.smartSuperscript=false;field.smartFence=false;field.removeExtraneousParentheses=false;field.defaultMode='math';r.editor.after(field);
       }
       await verifyFonts(alive);if(!alive())return;
       for(const r of records){
-        const converted=(contract.toLatex||batchmathToLatex)(r.input.value);if(converted.latex===null)throw Error('Cannot import this legacy answer.');
+        const converted=(r.spec.toLatex||batchmathToLatex)(r.input.value);if(converted.latex===null)throw Error('Cannot import this legacy answer.');
         resetMathfield(r.field,r.input.value.trim()?converted.latex:'');r.latex=r.field.value;
       }
-      clone=bridgeKeypad(pad,{active:()=>records[active].input.disabled?null:records[active].field,onCheck:guard(()=>{sync();options.onCheck?.();}),onChange:guard(sync),onUnsupported:message=>fallback(Error(message)),onError:fallback});pad.after(clone);
+      let shownProfile;
+      function selectPad(){
+        const profile=records[active].spec.keypad;
+        if(clone&&shownProfile===profile)return;
+        const next=bridgeKeypad(profile?api.createPad(profile):pad,{active:()=>records[active].input.disabled?null:records[active].field,onCheck:guard(()=>{sync();options.onCheck?.();}),onChange:guard(sync),onUnsupported:message=>fallback(Error(message)),onError:fallback});
+        if(clone)clone.replaceWith(next);else pad.after(next);clone=next;shownProfile=profile;
+      }
+      selectPad();
       unsupported=document.createElement('button');unsupported.type='button';unsupported.className='bm-mathlive-notice';unsupported.textContent='Use the standard editor for this notation';unsupported.hidden=true;listen(unsupported,'click',()=>fallback(Error('Requested standard editor.')));host.append(unsupported);
       records.forEach((r,index)=>{
         r.editor.style.display='none';r.field.hidden=false;r.input.dataset.editor='mathlive';
-        listen(r.field,'focusin',()=>{active=index;reflect();});
+        listen(r.field,'focusin',guard(()=>{active=index;selectPad();reflect();}));
         listen(r.field,'pointerdown',guard(()=>{active=index;focus();}),true);
-        listen(r.input,'focus',guard(e=>{e.stopImmediatePropagation();active=index;focus();}),true);
+        listen(r.input,'focus',guard(e=>{e.stopImmediatePropagation();active=index;selectPad();focus();}),true);
         listen(r.field,'input',guard(()=>read(r)));
         listen(r.field,'keydown',guard(e=>{
           if(e.key==='Enter'){e.preventDefault();e.stopImmediatePropagation();if(!e.repeat&&!r.input.disabled){sync();options.onCheck?.();}}
@@ -97,7 +104,7 @@ export function installDynamicFields({profiles,label}){
         listen(r.field,'paste',guard(e=>{
           const custom=e.clipboardData?.getData('application/x-batchmath-expression');if(!custom)return;
           const raw=JSON.parse(custom).raw.replace(/\uE000/g,'(').replace(/\uE001/g,')/(').replace(/\uE002/g,')');
-          const converted=(contract.toLatex||batchmathToLatex)(raw);if(converted.latex===null)throw Error('Structured paste is unsupported.');
+          const converted=(r.spec.toLatex||batchmathToLatex)(raw);if(converted.latex===null)throw Error('Structured paste is unsupported.');
           e.preventDefault();e.stopImmediatePropagation();r.field.insert(converted.latex);read(r);
         }),true);
         watch.observe(r.input,{attributes:true,attributeFilter:['disabled','class']});
