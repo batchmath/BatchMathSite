@@ -46,3 +46,11 @@ The symbolic Unit 2 comprehensive review generates quadratic, radical and recipr
 Small correction: add h to this review's existing identifier list, and populate it from varied nonzero values in the already established sample scopes only when the generated question declares h. Expression grammar, sampling thresholds, tolerances, generators, displayed solutions and simplification gates are unchanged. Other derivative engines are not changed.
 
 Regression: node --test tools/mathlive-sitewide/review-h.test.mjs fails before the correction and passes afterward. It checks 180 actual deterministic questions covering all four difference-quotient families, correct/stored and +0 forms, incorrect +h answers and removal of h from nonlinear answers. The qa8 regression also passes. This mathematical correction is separately committed before editor activation.
+
+## Batch 8 runtime repair: Unit 4 assignment review omitted checker dependencies
+
+The Unit 4 assignment review loads current typed generators, but its original HTML omitted derivative-expression-checker.js, unit4-exact-answers.js and the shared calculus editor. Before conversion, a real legacy-browser submission for reachable geometry question u4N-geometry-quarter_circle-9d3cda33f9ed7941 (correct signed area -16pi) threw Cannot read properties of undefined (reading 'check'). The page had no Unit4Answers checker at all.
+
+Repair confined to that HTML: load the existing local checker dependencies and calculus keypad assets, matching the topic/review architecture. No generator or mathematical checking code changes. The legacy browser now credits -16pi and rejects -16pi+1, with zero page errors. No MathLive module is activated in this repair commit.
+
+Evidence: tools/mathlive-sitewide/review-dependencies-browser.mjs, with review-dependencies-before.json and review-dependencies-after.json. The browser assertion fails before the dependency repair and passes afterward.
