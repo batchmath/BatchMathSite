@@ -1,0 +1,19 @@
+import fs from 'node:fs';import vm from 'node:vm';import {Node,root,rng} from './applications-engine.mjs';export {root,rng};
+export const routes=JSON.parse(fs.readFileSync(root+'tools/mathlive-sitewide/im1-batch5-routes.json'));
+export function instrumentIM1(source,slug){
+ const multiply=slug==='multiplication',show=multiply?'showCurrentQuestion':/function showQuestion\(/.test(source)?'showQuestion':'show',start=/function startPractice\(/.test(source)?'startPractice':'start',submit=multiply?'submitAnswer':'submit',pool=multiply?'questionPool':'pool';
+ const reset=multiply?'currentIndex=0;acceptingAnswer=true;sessionFinished=false;score=0;answeredCount=0;':'idx=0;accepting=true;finished=false;score=0;answered=0;';
+ return source+'\nwindow.im1QA={start:'+start+',get index(){return '+(multiply?'currentIndex':'idx')+';},get finished(){return '+(multiply?'sessionFinished':'finished')+';},get pool(){return '+pool+';},load:q=>{clearTimeout(advanceId);'+pool+'=[q,q];'+reset+"document.getElementById('practiceCard').classList.remove('hidden');document.getElementById('resultsCard').classList.add('hidden');document.getElementById('nextBtn')?.classList.add('hidden');"+show+'();},check:'+submit+'};';
+}
+export function valueEngine(route){
+ const html=fs.readFileSync(root+route.path,'utf8'),els={},checked=[],el=id=>els[id]??=Object.assign(new Node(),{id,textContent:''});
+ const b={console,Math:Object.create(Math),setTimeout(){return 1},clearTimeout(){},setInterval(){return 1},clearInterval(){},Date,Promise,URLSearchParams,NodeFilter:{SHOW_TEXT:4},location:{search:'',protocol:'http:'},BatchMathRNG:{random:rng(1)},MathJax:{typesetPromise:()=>Promise.resolve(),typesetClear(){}},BMAnalytics:{practiceStarted(){},problemGenerated(){},answerChecked:(q,ok)=>checked.push(ok),solutionRevealed(){}},document:{body:new Node(),scripts:[],createElement:t=>new Node(t),getElementById:el,querySelector(){return null},querySelectorAll(){return[]},addEventListener(){}}};b.window=b;b.Math.random=()=>b.BatchMathRNG.random();vm.createContext(b);
+ for(const select of html.matchAll(/<select\b[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/select>/g)){const opts=[...select[2].matchAll(/<option\b([^>]*)value="([^"]*)"([^>]*)>/g)];el(select[1]).value=(opts.find(m=>(m[1]+m[3]).includes('selected'))||opts[0])?.[2]||'';}
+ for(const name of ['answer-normalization','im1-display-math'])vm.runInContext(fs.readFileSync(root+'assets/'+name+'.js','utf8'),b,{filename:name});
+ const code=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>/function submit(?:Answer)?\(/.test(s));
+ if(!code)throw Error('Missing IM1 controller '+route.path);
+ vm.runInContext(instrumentIM1(code,route.slug),b,{filename:route.path});
+ return{b,el,html,checked,generate(seed,mode,questionCount){if(questionCount)el('questionSelect').value=String(questionCount);b.BatchMathRNG={random:rng(seed)};if(mode)el('categorySelect').value=mode;b.im1QA.start();return b.im1QA.pool;},check(q,raw){checked.length=0;b.im1QA.load(q);el('answer').value=raw;el('feedback').innerHTML='';el('feedback').textContent='';b.im1QA.check();return{ok:checked.at(-1),disabled:el('answer').disabled,feedback:el('feedback').innerHTML,text:el('feedback').textContent,className:el('feedback').className};}};
+}
+export function algebraEngine(){const b={window:{BatchMathRNG:{random:rng(1)}},document:{addEventListener(){}}};b.window.document=b.document;b.window.window=b.window;vm.createContext(b);for(const file of ['answer-normalization','im1-unit2-generators','im1-algebra-input','im1-equation-input','im1-interval-input'])vm.runInContext(fs.readFileSync(root+'assets/'+file+'.js','utf8'),b,{filename:file});return b.window;}
+export function answer(q){return typeof q.answer==='object'?q.answer.d===1?String(q.answer.n):q.answer.n+'/'+q.answer.d:String(q.answer);}

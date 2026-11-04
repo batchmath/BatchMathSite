@@ -1008,6 +1008,7 @@
     g.className="bm-calc-main-grid";
     if(contextualUnit3){
       const rows=[["7","7"],["8","8"],["9","9"],["4","4"],["5","5"],["6","6"],["1","1"],["2","2"],["3","3"],["0","0"],["−","-"]];
+      if(contextualUnit3.signed===false)rows.pop();
       if(contextualUnit3.decimal)rows.push([".","."]);
       if(contextualUnit3.parentheses)rows.push(["(","("],[")",")"]);
       if(contextualUnit3.arithmetic)rows.push(["+","+"],["·","*"]);

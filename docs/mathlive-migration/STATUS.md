@@ -10,7 +10,8 @@ Branch: `migration/mathlive-sitewide`. Verified starting remote head: `migration
 - Batch 2: 1c95ed904133521320ede2b03ca27bda8a1f7a51, completed and tested.
 - Batch 3: ca2fe0e4628f688f1023fd054473d03e15e49e6e; tested Unit 3 integration.
 - 0f4f54e93911253becef67f9cb77a431e64dce0a: separate Unit 1 unary-minus/exponent precedence correction; see MATH-CORRECTIONS.md.
-- Batch 4: tested Unit 1 topic integration in this checkpoint commit.
+- 517ffee72bec8b9c540bcc3549b00c27a880cfbf: Batch 4 Unit 1 topic integration, tested and pushed.
+- Batch 5: tested IM1 Units 1/2 topic integration in this checkpoint commit.
 
 ## Completion inventory
 
@@ -23,6 +24,8 @@ Batch 2: 15 further routes cover all remaining Unit 4/5 topic typed fields, incl
 Batch 3: 19 Unit 3 topic routes, including calculator/non-calculator, equations, lists, pairs, intervals, exact/rounded and multipart fields. See [BATCH-3.md](BATCH-3.md).
 
 Batch 4: seven Unit 1 typed topic routes complete; three choice-only routes retained. See [BATCH-4.md](BATCH-4.md). Unit 1 comprehensive review remains pending.
+
+Batch 5: 12 IM1 U1/U2 topic mathematical routes complete; classification, distributive/inequality and coordinate/graph choices retained. See [BATCH-5.md](BATCH-5.md). Reviews remain pending.
 
 Difference Quotient and conceptual review retain multiple choice. All graphing, matching, drawing and other specialized controls remain unchanged. Their eventual full route audit is still pending.
 
@@ -40,13 +43,15 @@ Difference Quotient and conceptual review retain multiple choice. All graphing, 
 
 - Batch 4: 4,360 questions/sets; 24,180 UI checker pairs plus 220 location comparisons; seven Chromium routes / 421 pairs pass. Profile/focus/recovery checks and original Power/Quotient/Basic browser regressions pass. Separate precedence fix recorded above.
 
+- Batch 5: 9,300 generated questions / 58,378 checker pairs; 39 combined Node tests pass. 12/12 Chromium routes / 370 pairs pass with zero unexpected page errors. Two matching preexisting MathJax speech-explorer errors are isolated by a legacy-only reproduction; see BATCH-5.md. Recovery, touch and Unit 1 native regressions pass.
+
 ## Remaining work and exact resume order
 
 1. Verify this checkpoint/remote head before editing another batch.
 2. Batch 2 is complete for topic pages; comprehensive reviews/assignments remain Batch 8 work.
 3. Batch 3 topic fields complete; two comprehensive-review variants remain Batch 8.
 4. Batch 4 topic fields complete; comprehensive review remains Batch 8.
-5. Batches 5/6: IM1 U1/U2 then U3 with form/fraction/sequence/multipart restrictions; no video/notes/topic-content edits.
+5. Batch 5 complete for topic routes. Next: Batch 6 IM1 U3 sequence/formula/equation/multipart fields; no video/notes/topic-content edits.
 6. Batch 7: Calculus Prep, including form-sensitive factor/quotient/list contracts and Undefined tokens.
 7. Batch 8: symbolic Unit 2 review, remaining reviews/assignments/mixed practice, dynamic profile verification and final reachable-route audit.
 

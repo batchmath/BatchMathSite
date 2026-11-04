@@ -21,6 +21,11 @@ export function bridgeKeypad(originalPad,{active,onCheck,onChange,onUnsupported,
       const mf=active();if(!mf)return;focusMathfield(mf);
       if(label==='Check'){onCheck();return;}
       if(aria==='Insert approach arrow')mf.insert('\\to ');
+      else if(aria==='Toggle negative sign'){const value=mf.value.trim();mf.setValue(value.startsWith('-')?value.slice(1):'-'+value,{mode:'math'});mf.executeCommand('moveToMathfieldEnd');mf.mode='math';}
+      else if(aria==='Decimal point in a literal number'){
+        const value=mf.value.replace(/\\placeholder\{\}/g,'').trim();
+        if(!value.includes('.')){if(!value||value==='-'){mf.setValue((value==='-'?'-':'')+'0.',{mode:'math'});mf.executeCommand('moveToMathfieldEnd');}else mf.insert('.');}
+      }
       else if(label==='Clear'){mf.setValue(' ',{mode:'math'});mf.executeCommand('moveToMathfieldEnd');mf.mode='math';}
       else if(commands[label])mf.executeCommand(commands[label]);
       else if(aria.startsWith('Insert limit as n'))insertTemplate(mf,'limit');

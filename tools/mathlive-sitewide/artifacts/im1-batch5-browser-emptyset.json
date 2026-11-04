@@ -1,0 +1,56 @@
+{
+  "results": [
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html",
+      "passed": true,
+      "typedCases": 1,
+      "retainedChoices": 0,
+      "cases": [
+        "equation|both_sides",
+        "equation|distribution",
+        "equation|identity",
+        "equation|contradiction",
+        "equation|both_distribute_unique",
+        "equation|fraction_linear",
+        "equation|one_step",
+        "equation|two_step",
+        "equation|fraction_x",
+        "equation|fraction_expression",
+        "equation|fraction_coefficient"
+      ]
+    }
+  ],
+  "errors": [],
+  "keypads": {
+    "equation-x": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      ".",
+      "No Solution",
+      "Infinite Solutions",
+      "ab",
+      "←",
+      "→",
+      "↑",
+      "↓",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ]
+  },
+  "checkerPairs": 6,
+  "realMathJax": true,
+  "browser": "154.0.8037.57",
+  "documentedBaselineErrors": 0,
+  "unexpectedErrors": 0
+}
