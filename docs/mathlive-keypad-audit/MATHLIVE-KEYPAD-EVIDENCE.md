@@ -494,3 +494,8 @@ Run `python3 tools/mathlive-keypad-audit/report.py` from a Git checkout at this 
 ## Sitewide migration — verified Batch 1B
 
 18 Unit 2 typed-answer routes now use MathLive by default. The route/field/profile checklist, actual generator families, keypad corrections and verification limits are recorded in [BATCH-1B.md](../mathlive-migration/BATCH-1B.md). Matching matrix records are updated; unrelated provisional records remain provisional. Legacy grading fixes were committed separately as `3c88dac`; see [MATH-CORRECTIONS.md](../mathlive-migration/MATH-CORRECTIONS.md).
+
+
+## Sitewide migration — verified Batch 2
+
+Remaining Unit 4/5 topic fields use separate expression, rounded, list and interval contracts. Source/checker-based corrections and the 15-route checklist are in [BATCH-2.md](../mathlive-migration/BATCH-2.md). Matching matrix rows are updated; review/assignment and unrelated provisional rows stay pending. No grader or generator changed.

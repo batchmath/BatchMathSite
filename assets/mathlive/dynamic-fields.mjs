@@ -9,8 +9,9 @@ export function installDynamicFields({profiles,label}){
   const api=window.BatchMathCalculusKeypad,originalMount=api.mountInputs,originalFocus=api.focus;
   const groups=new Set();let latest=null;
   api.mountInputs=function(inputs,host,options={}){
-    const mount=originalMount.call(api,inputs,host,options);
-    const contract=profiles[options.mode];latest={mount,adapter:null};
+    const contract=profiles[options.mode];
+    const mount=originalMount.call(api,inputs,host,contract?.keypad?{...options,mode:contract.keypad}:options);
+    latest={mount,adapter:null};
     if(mount&&contract){const record=latest;record.adapter=attach(mount,host,options,contract,()=>latest===record,label);groups.add(record.adapter);}
     return mount;
   };

@@ -1,0 +1,30 @@
+{
+  "browser": "154.0.8037.57",
+  "realMathJax": true,
+  "results": [
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/integrals-using-geometry/practice/index.html",
+      "passed": true,
+      "correctFields": 7,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit4-geometry"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/exponential-growth-and-decay-interest-newton-s-law-of-cooling/practice/index.html",
+      "passed": true,
+      "correctFields": 10,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit5-number",
+        "unit5-growth-exact",
+        "unit5-growth-formula",
+        "unit5-money"
+      ]
+    }
+  ],
+  "errors": [],
+  "checkerPairs": 23,
+  "controlProfiles": {}
+}

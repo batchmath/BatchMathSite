@@ -1011,9 +1011,10 @@
       if(contextualUnit3.arithmetic)rows.push(["+","+"],["·","*"]);
       else if(contextualUnit3.plus)rows.push(["+","+"]);
       if(contextualUnit3.equality)rows.push(["=","="]);
+      (contextualUnit3.operators||[]).forEach(pair=>rows.push(pair));
       (contextualUnit3.variables||[]).forEach(name=>rows.push([name,name]));
       if(contextualUnit3.list||contextualUnit3.pair)rows.push([",",","]);
-      rows.forEach(([lab,raw])=>addInsert(g,lab,raw,/[+−·()=,]/.test(lab)?"symbol":""));
+      rows.forEach(([lab,raw])=>addInsert(g,lab,raw,/[+−·()=,±]/.test(lab)?"symbol":""));
     }else if(mode==="unit3"){
       [["7","7"],["8","8"],["9","9"],["(","("],[")",")"],
        ["4","4"],["5","5"],["6","6"],["+","+"],["−","-"],

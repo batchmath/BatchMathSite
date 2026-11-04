@@ -1,0 +1,151 @@
+{
+  "browser": "154.0.8037.57",
+  "realMathJax": true,
+  "results": [
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/integrals-resulting-in-natural-log-and-inverse-trigonometric-functions/practice/index.html",
+      "passed": true,
+      "correctFields": 8,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit4-log-indef",
+        "unit4-log-def"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/integrals-using-geometry/practice/index.html",
+      "passed": true,
+      "correctFields": 7,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit4-geometry"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/introduction-to-sigma-notation/practice/index.html",
+      "passed": true,
+      "correctFields": 1,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit4-sigma"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/mean-value-theorem-for-integrals/practice/index.html",
+      "passed": true,
+      "correctFields": 7,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit4-mvt-avg",
+        "unit4-mvt-c"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/rectangular-approximations/practice/index.html",
+      "passed": true,
+      "correctFields": 1,
+      "retainedChoices": 1,
+      "profiles": [
+        "unit4-exact"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/trapezoidal-approximations/practice/index.html",
+      "passed": true,
+      "correctFields": 1,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit4-exact"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/u-substitution-integrals/practice/index.html",
+      "passed": true,
+      "correctFields": 11,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit4-usub-x",
+        "unit4-usub-def"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/calculator-practice/index.html",
+      "passed": true,
+      "correctFields": 1,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit5-number"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/non-calculator-practice/index.html",
+      "passed": true,
+      "correctFields": 8,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit5-basic-x",
+        "unit5-interval-basic",
+        "unit5-basic-x-c"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/exponential-growth-and-decay-interest-newton-s-law-of-cooling/practice/index.html",
+      "passed": true,
+      "correctFields": 6,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit5-number"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/motion-problems/calculator-practice/index.html",
+      "passed": true,
+      "correctFields": 4,
+      "retainedChoices": 1,
+      "profiles": [
+        "unit5-number",
+        "unit5-motion-intervals-dec"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/motion-problems/non-calculator-practice/index.html",
+      "passed": true,
+      "correctFields": 6,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit5-motion-value",
+        "unit5-motion-intervals",
+        "unit5-motion-t"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/rate-problems/calculator-practice/index.html",
+      "passed": true,
+      "correctFields": 7,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit5-number"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/rate-problems/non-calculator-practice/index.html",
+      "passed": true,
+      "correctFields": 7,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit5-rate-exact"
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/slope-fields/practice/index.html",
+      "passed": true,
+      "correctFields": 1,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit5-slope-list"
+      ]
+    }
+  ],
+  "errors": [],
+  "checkerPairs": 121
+}

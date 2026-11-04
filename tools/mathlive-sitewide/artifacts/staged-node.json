@@ -1,0 +1,1056 @@
+[
+  {
+    "unit": 4,
+    "key": "usub",
+    "questions": 770,
+    "parts": 770,
+    "pairs": 3625,
+    "families": {
+      "linear_inner_trig_exp": 70,
+      "linear_inner_power_root": 70,
+      "polynomial_inner_constant_adjust": 70,
+      "shifted_quadratic_power": 70,
+      "trig_power_chain": 70,
+      "composite_exponential_log": 70,
+      "back_substitution": 70,
+      "definite_linear_inner": 70,
+      "definite_polynomial_trig_inner": 70,
+      "definite_back_substitution": 70,
+      "odd_trig_powers": 70
+    },
+    "profiles": {
+      "unit4-usub-x": {
+        "kinds": [
+          "antiderivative"
+        ],
+        "functions": [
+          "tan",
+          "sin",
+          "cos",
+          "csc",
+          "sec",
+          "cot",
+          "sqrt",
+          "ln"
+        ],
+        "symbols": [
+          "x",
+          "C",
+          "e"
+        ]
+      },
+      "unit4-usub-t": {
+        "kinds": [
+          "antiderivative"
+        ],
+        "functions": [
+          "sec",
+          "sin",
+          "cos",
+          "sqrt",
+          "tan"
+        ],
+        "symbols": [
+          "t",
+          "C"
+        ]
+      },
+      "unit4-usub-theta": {
+        "kinds": [
+          "antiderivative"
+        ],
+        "functions": [
+          "csc",
+          "sin",
+          "cot",
+          "cos",
+          "tan",
+          "sec"
+        ],
+        "symbols": [
+          "θ",
+          "C"
+        ]
+      },
+      "unit4-usub-r": {
+        "kinds": [
+          "antiderivative"
+        ],
+        "functions": [
+          "sqrt"
+        ],
+        "symbols": [
+          "r",
+          "C"
+        ]
+      },
+      "unit4-usub-def": {
+        "kinds": [
+          "exact-number"
+        ],
+        "functions": [
+          "sqrt"
+        ],
+        "symbols": [
+          "e"
+        ]
+      }
+    },
+    "axes": {},
+    "subtypes": [
+      "linear_inner_power_root:cube_root",
+      "linear_inner_power_root:three_halves",
+      "linear_inner_power_root:reciprocal_fourth_root",
+      "linear_inner_power_root:power",
+      "linear_inner_power_root:reciprocal_sqrt",
+      "linear_inner_power_root:sqrt",
+      "linear_inner_power_root:reciprocal_cube_root",
+      "linear_inner_power_root:negative_power",
+      "polynomial_inner_constant_adjust:trig",
+      "polynomial_inner_constant_adjust:root",
+      "polynomial_inner_constant_adjust:reciprocal_root",
+      "polynomial_inner_constant_adjust:power",
+      "polynomial_inner_constant_adjust:exp",
+      "trig_power_chain:sqrt_tan",
+      "trig_power_chain:sec_power",
+      "trig_power_chain:sin_power_cos",
+      "trig_power_chain:double_angle_over",
+      "trig_power_chain:tan_power",
+      "trig_power_chain:cos_power_sin",
+      "trig_power_chain:sin_over_cos",
+      "trig_power_chain:cos_over_sin",
+      "composite_exponential_log:exp_tan",
+      "composite_exponential_log:exp_reciprocal",
+      "composite_exponential_log:exp_sqrt",
+      "composite_exponential_log:ln_power",
+      "composite_exponential_log:exp_cos",
+      "composite_exponential_log:exp_sin",
+      "composite_exponential_log:exp_power",
+      "composite_exponential_log:exp_root",
+      "back_substitution:cubic_root",
+      "back_substitution:linear_times",
+      "back_substitution:square_times",
+      "back_substitution:fifth_root",
+      "definite_linear_inner:root",
+      "definite_linear_inner:trig",
+      "definite_linear_inner:power",
+      "definite_linear_inner:exp_ln",
+      "definite_linear_inner:reciprocal_power",
+      "definite_linear_inner:exp",
+      "definite_polynomial_trig_inner:ln_power",
+      "definite_polynomial_trig_inner:poly_root",
+      "definite_polynomial_trig_inner:x2_cubic",
+      "definite_polynomial_trig_inner:sin_power_cos",
+      "definite_polynomial_trig_inner:x_exp_square",
+      "definite_polynomial_trig_inner:poly_power",
+      "definite_polynomial_trig_inner:cos_power_sin",
+      "definite_polynomial_trig_inner:exp_trig",
+      "definite_polynomial_trig_inner:reciprocal_square_trig",
+      "definite_polynomial_trig_inner:tan_sec2",
+      "definite_back_substitution:linear_sqrt",
+      "definite_back_substitution:linear_cube_root",
+      "definite_back_substitution:cubic_sqrt",
+      "definite_back_substitution:linear_reciprocal_sqrt",
+      "definite_back_substitution:square_sqrt",
+      "odd_trig_powers:sin5_cos2",
+      "odd_trig_powers:sin5_cos0",
+      "odd_trig_powers:cos3_sin2",
+      "odd_trig_powers:sin3_cos4",
+      "odd_trig_powers:cos3_sin0",
+      "odd_trig_powers:sin3_cos2",
+      "odd_trig_powers:cos5_sin2",
+      "odd_trig_powers:cos5_sin0",
+      "odd_trig_powers:sin3_cos0",
+      "odd_trig_powers:cos3_sin4"
+    ],
+    "methods": [
+      "indefinite",
+      "definite"
+    ]
+  },
+  {
+    "unit": 4,
+    "key": "log",
+    "questions": 560,
+    "parts": 560,
+    "pairs": 2730,
+    "families": {
+      "linear_denominator": 70,
+      "derivative_over_function": 70,
+      "tan_cot_composite": 70,
+      "division_to_log": 70,
+      "inverse_tangent": 70,
+      "inverse_sine": 70,
+      "definite_log": 70,
+      "log_or_not": 70
+    },
+    "profiles": {
+      "unit4-log-indef": {
+        "kinds": [
+          "antiderivative"
+        ],
+        "functions": [
+          "ln",
+          "abs",
+          "cos",
+          "sin",
+          "tan",
+          "sec",
+          "csc",
+          "atan",
+          "asin",
+          "sqrt"
+        ],
+        "symbols": [
+          "x",
+          "C",
+          "e"
+        ]
+      },
+      "unit4-log-def": {
+        "kinds": [
+          "exact-number"
+        ],
+        "functions": [
+          "ln"
+        ],
+        "symbols": []
+      }
+    },
+    "axes": {},
+    "subtypes": [
+      "linear_denominator:monomial",
+      "linear_denominator:reversed",
+      "linear_denominator:monic",
+      "linear_denominator:scaled",
+      "linear_denominator:sum",
+      "derivative_over_function:ln_x",
+      "derivative_over_function:power_inner",
+      "derivative_over_function:quadratic",
+      "derivative_over_function:trig_cos",
+      "derivative_over_function:exp_minus_x",
+      "derivative_over_function:trig_sin",
+      "derivative_over_function:trig_tan",
+      "derivative_over_function:exp",
+      "tan_cot_composite:tan",
+      "tan_cot_composite:cot",
+      "tan_cot_composite:x_tan_square",
+      "tan_cot_composite:reciprocal",
+      "tan_cot_composite:with_terms",
+      "tan_cot_composite:quotient",
+      "division_to_log:quadratic_divisor",
+      "division_to_log:quadratic",
+      "division_to_log:nonmonic",
+      "division_to_log:cubic",
+      "division_to_log:quartic",
+      "inverse_tangent:exp",
+      "inverse_tangent:standard",
+      "inverse_tangent:scaled",
+      "inverse_sine:exp",
+      "inverse_sine:scaled",
+      "inverse_sine:standard",
+      "definite_log:exp",
+      "definite_log:tan_cot",
+      "definite_log:derivative_over",
+      "definite_log:reciprocal_x",
+      "definite_log:plus_power",
+      "definite_log:linear",
+      "definite_log:linear_negative",
+      "definite_log:division",
+      "log_or_not:ln_of_ln",
+      "log_or_not:exp_power",
+      "log_or_not:divide_no_log",
+      "log_or_not:sqrt_not_asin",
+      "log_or_not:divide_simple",
+      "log_or_not:arctan_not_log",
+      "log_or_not:ln_power_over_x",
+      "log_or_not:power_of_quadratic",
+      "log_or_not:log_of_quadratic",
+      "log_or_not:arctan_squared"
+    ],
+    "methods": [
+      "indefinite",
+      "definite"
+    ]
+  },
+  {
+    "unit": 4,
+    "key": "mvt",
+    "questions": 350,
+    "parts": 490,
+    "pairs": 1960,
+    "families": {
+      "average_polynomial": 70,
+      "average_substitution_trig_exp_log": 70,
+      "average_piecewise": 70,
+      "find_c_single": 70,
+      "find_c_piecewise": 70
+    },
+    "profiles": {
+      "unit4-mvt-avg": {
+        "kinds": [
+          "exact-number"
+        ],
+        "functions": [
+          "ln",
+          "sqrt"
+        ],
+        "symbols": [
+          "e",
+          "pi"
+        ]
+      },
+      "unit4-mvt-c-trig": {
+        "kinds": [
+          "exact-list"
+        ],
+        "functions": [
+          "asin",
+          "acos"
+        ],
+        "symbols": [
+          "pi"
+        ]
+      },
+      "unit4-mvt-c": {
+        "kinds": [
+          "exact-list"
+        ],
+        "functions": [
+          "root",
+          "ln",
+          "sqrt"
+        ],
+        "symbols": [
+          "e",
+          "Does not apply"
+        ]
+      }
+    },
+    "axes": {},
+    "subtypes": [
+      "average_polynomial:degree_3",
+      "average_polynomial:degree_2",
+      "average_polynomial:degree_4",
+      "average_polynomial:degree_1",
+      "average_substitution_trig_exp_log:negative_powers",
+      "average_substitution_trig_exp_log:exp",
+      "average_substitution_trig_exp_log:tan_cot",
+      "average_substitution_trig_exp_log:division",
+      "average_substitution_trig_exp_log:linear_power",
+      "average_substitution_trig_exp_log:trig",
+      "average_substitution_trig_exp_log:arctan",
+      "average_substitution_trig_exp_log:sin_cos",
+      "average_substitution_trig_exp_log:reciprocal_linear",
+      "average_substitution_trig_exp_log:sqrt_linear",
+      "average_substitution_trig_exp_log:x_sqrt",
+      "average_piecewise:poly",
+      "average_piecewise:exp_recip",
+      "average_piecewise:poly_exp",
+      "average_piecewise:sqrt_poly",
+      "average_piecewise:poly_recip",
+      "find_c_single:trig_sin",
+      "find_c_single:sqrt",
+      "find_c_single:cubic",
+      "find_c_single:trig_cos",
+      "find_c_single:reciprocal",
+      "find_c_single:quadratic",
+      "find_c_single:symmetric",
+      "find_c_single:reciprocal_square",
+      "find_c_single:exp",
+      "find_c_piecewise:mixed_discontinuous",
+      "find_c_piecewise:poly_discontinuous",
+      "find_c_piecewise:exp_continuous",
+      "find_c_piecewise:poly_continuous"
+    ],
+    "methods": [
+      "mvt"
+    ]
+  },
+  {
+    "unit": 4,
+    "key": "sigma",
+    "questions": 220,
+    "parts": 220,
+    "pairs": 880,
+    "families": {
+      "identities": 94,
+      "numerical": 30,
+      "riemann": 96
+    },
+    "profiles": {
+      "unit4-sigma": {
+        "kinds": [
+          "n-expression"
+        ],
+        "functions": [],
+        "symbols": [
+          "n"
+        ]
+      },
+      "unit4-exact": {
+        "kinds": [
+          "scalar"
+        ],
+        "functions": [],
+        "symbols": []
+      }
+    },
+    "axes": {},
+    "subtypes": [
+      "identities:square",
+      "identities:linear",
+      "numerical:quadratic",
+      "identities:combination",
+      "numerical:combination",
+      "riemann:linear",
+      "riemann:constant",
+      "identities:constant",
+      "numerical:linear",
+      "riemann:substituted",
+      "numerical:constant",
+      "riemann:quadratic"
+    ],
+    "methods": []
+  },
+  {
+    "unit": 4,
+    "key": "rect",
+    "questions": 220,
+    "parts": 220,
+    "pairs": 880,
+    "families": {
+      "rational": 12,
+      "radical": 8,
+      "table": 115,
+      "linear": 8,
+      "quadratic": 12,
+      "trigonometric": 16,
+      "exponential": 17,
+      "higher-degree": 13,
+      "cubic": 12,
+      "logarithmic": 7
+    },
+    "profiles": {
+      "unit4-exact": {
+        "kinds": [
+          "scalar"
+        ],
+        "functions": [
+          "sqrt",
+          "ln"
+        ],
+        "symbols": [
+          "pi",
+          "e"
+        ]
+      }
+    },
+    "axes": {},
+    "subtypes": [],
+    "methods": [
+      "left",
+      "midpoint",
+      "right"
+    ]
+  },
+  {
+    "unit": 4,
+    "key": "trap",
+    "questions": 220,
+    "parts": 220,
+    "pairs": 880,
+    "families": {
+      "rational": 10,
+      "exponential": 16,
+      "table": 115,
+      "logarithmic": 5,
+      "trigonometric": 25,
+      "higher-degree": 15,
+      "quadratic": 12,
+      "linear": 7,
+      "radical": 6,
+      "cubic": 9
+    },
+    "profiles": {
+      "unit4-exact": {
+        "kinds": [
+          "scalar"
+        ],
+        "functions": [
+          "ln",
+          "sqrt"
+        ],
+        "symbols": [
+          "pi",
+          "e"
+        ]
+      }
+    },
+    "axes": {},
+    "subtypes": [],
+    "methods": [
+      "trapezoid"
+    ]
+  },
+  {
+    "unit": 4,
+    "key": "geometry",
+    "questions": 490,
+    "parts": 490,
+    "pairs": 1960,
+    "families": {
+      "rectangle_circle": 103,
+      "linear_triangle": 51,
+      "semicircle": 75,
+      "linear_trapezoid": 120,
+      "cross_axis_line": 45,
+      "absolute_value": 51,
+      "quarter_circle": 45
+    },
+    "profiles": {
+      "unit4-geometry": {
+        "kinds": [
+          "scalar"
+        ],
+        "functions": [],
+        "symbols": [
+          "pi"
+        ]
+      }
+    },
+    "axes": {},
+    "subtypes": [],
+    "methods": []
+  },
+  {
+    "unit": 5,
+    "key": "basic",
+    "questions": 420,
+    "parts": 615,
+    "pairs": 2530,
+    "families": {
+      "poly_power": 70,
+      "trig": 70,
+      "exp_composition": 70,
+      "log_domain": 70,
+      "calc_value": 70,
+      "general_solution": 70
+    },
+    "profiles": {
+      "unit5-basic-x": {
+        "kinds": [
+          "ivp"
+        ],
+        "functions": [
+          "sqrt",
+          "csc",
+          "cot",
+          "atan",
+          "asin",
+          "cos",
+          "sec",
+          "tan",
+          "sin",
+          "ln",
+          "abs"
+        ],
+        "symbols": [
+          "x",
+          "pi",
+          "e"
+        ]
+      },
+      "unit5-interval-basic": {
+        "kinds": [
+          "interval"
+        ],
+        "functions": [],
+        "symbols": [
+          "infinity",
+          "pi"
+        ]
+      },
+      "unit5-basic-t": {
+        "kinds": [
+          "ivp"
+        ],
+        "functions": [
+          "sqrt",
+          "cos",
+          "tan",
+          "sec",
+          "asin",
+          "sin",
+          "csc",
+          "atan",
+          "ln",
+          "abs"
+        ],
+        "symbols": [
+          "t",
+          "pi",
+          "e"
+        ]
+      },
+      "unit5-number": {
+        "kinds": [
+          "numeric"
+        ],
+        "functions": [],
+        "symbols": []
+      },
+      "unit5-basic-x-c": {
+        "kinds": [
+          "general"
+        ],
+        "functions": [
+          "atan",
+          "cos",
+          "sin",
+          "tan"
+        ],
+        "symbols": [
+          "e",
+          "x",
+          "C"
+        ]
+      },
+      "unit5-basic-t-c": {
+        "kinds": [
+          "general"
+        ],
+        "functions": [
+          "cos",
+          "sin",
+          "tan",
+          "atan"
+        ],
+        "symbols": [
+          "t",
+          "C",
+          "e"
+        ]
+      }
+    },
+    "axes": {
+      "poly_power": [
+        "intermediate:false",
+        "challenging:false",
+        "foundational:false"
+      ],
+      "trig": [
+        "intermediate:false",
+        "challenging:false",
+        "foundational:false"
+      ],
+      "exp_composition": [
+        "challenging:false",
+        "foundational:false",
+        "intermediate:false"
+      ],
+      "log_domain": [
+        "challenging:false",
+        "intermediate:false"
+      ],
+      "calc_value": [
+        "intermediate:true",
+        "challenging:true",
+        "foundational:true"
+      ],
+      "general_solution": [
+        "intermediate:false",
+        "foundational:false"
+      ]
+    },
+    "subtypes": [],
+    "methods": []
+  },
+  {
+    "unit": 5,
+    "key": "growth",
+    "questions": 420,
+    "parts": 541,
+    "pairs": 2063,
+    "families": {
+      "growth": 70,
+      "decay": 70,
+      "cooling": 70,
+      "heating": 70,
+      "interest": 70,
+      "reverse": 70
+    },
+    "profiles": {
+      "unit5-growth-formula": {
+        "kinds": [
+          "function"
+        ],
+        "functions": [
+          "ln"
+        ],
+        "symbols": [
+          "e",
+          "t"
+        ]
+      },
+      "unit5-number": {
+        "kinds": [
+          "numeric"
+        ],
+        "functions": [],
+        "symbols": []
+      },
+      "unit5-growth-exact": {
+        "kinds": [
+          "exact"
+        ],
+        "functions": [
+          "ln"
+        ],
+        "symbols": []
+      },
+      "unit5-money": {
+        "kinds": [
+          "numeric"
+        ],
+        "functions": [],
+        "symbols": []
+      }
+    },
+    "axes": {
+      "growth": [
+        "foundational:true",
+        "challenging:true",
+        "intermediate:true"
+      ],
+      "decay": [
+        "challenging:true",
+        "intermediate:true",
+        "foundational:true"
+      ],
+      "cooling": [
+        "intermediate:true",
+        "foundational:true",
+        "challenging:true"
+      ],
+      "heating": [
+        "intermediate:true",
+        "foundational:true",
+        "challenging:true"
+      ],
+      "interest": [
+        "foundational:true",
+        "challenging:true",
+        "intermediate:true"
+      ],
+      "reverse": [
+        "intermediate:true",
+        "foundational:true",
+        "challenging:true"
+      ]
+    },
+    "subtypes": [],
+    "methods": []
+  },
+  {
+    "unit": 5,
+    "key": "motion",
+    "questions": 560,
+    "parts": 840,
+    "pairs": 3360,
+    "families": {
+      "recover": 70,
+      "displacement_distance": 70,
+      "direction_speed": 70,
+      "calc_position": 70,
+      "calc_distance": 70,
+      "calc_speed": 70,
+      "calc_direction": 70,
+      "multipart": 70
+    },
+    "profiles": {
+      "unit5-motion-value": {
+        "kinds": [
+          "exact"
+        ],
+        "functions": [],
+        "symbols": []
+      },
+      "unit5-motion-value-r": {
+        "kinds": [
+          "exact"
+        ],
+        "functions": [
+          "sqrt"
+        ],
+        "symbols": []
+      },
+      "unit5-motion-t": {
+        "kinds": [
+          "ivp"
+        ],
+        "functions": [],
+        "symbols": [
+          "t"
+        ]
+      },
+      "unit5-motion-value-e": {
+        "kinds": [
+          "exact"
+        ],
+        "functions": [],
+        "symbols": [
+          "e"
+        ]
+      },
+      "unit5-motion-intervals": {
+        "kinds": [
+          "interval"
+        ],
+        "functions": [],
+        "symbols": []
+      },
+      "unit5-motion-list": {
+        "kinds": [
+          "list"
+        ],
+        "functions": [],
+        "symbols": [
+          "t"
+        ]
+      },
+      "unit5-number": {
+        "kinds": [
+          "numeric"
+        ],
+        "functions": [],
+        "symbols": []
+      },
+      "unit5-motion-list-dec": {
+        "kinds": [
+          "list"
+        ],
+        "functions": [],
+        "symbols": [
+          "t"
+        ]
+      },
+      "unit5-motion-intervals-dec": {
+        "kinds": [
+          "interval"
+        ],
+        "functions": [],
+        "symbols": []
+      }
+    },
+    "axes": {
+      "recover": [
+        "intermediate:false",
+        "foundational:false",
+        "challenging:false"
+      ],
+      "displacement_distance": [
+        "intermediate:false",
+        "challenging:false",
+        "foundational:false"
+      ],
+      "direction_speed": [
+        "challenging:false",
+        "foundational:false",
+        "intermediate:false"
+      ],
+      "calc_position": [
+        "challenging:true",
+        "intermediate:true",
+        "foundational:true"
+      ],
+      "calc_distance": [
+        "challenging:true",
+        "intermediate:true",
+        "foundational:true"
+      ],
+      "calc_speed": [
+        "intermediate:true",
+        "challenging:true",
+        "foundational:true"
+      ],
+      "calc_direction": [
+        "foundational:true",
+        "challenging:true",
+        "intermediate:true"
+      ],
+      "multipart": [
+        "challenging:false",
+        "intermediate:false",
+        "foundational:false"
+      ]
+    },
+    "subtypes": [],
+    "methods": []
+  },
+  {
+    "unit": 5,
+    "key": "rate",
+    "questions": 350,
+    "parts": 470,
+    "pairs": 1880,
+    "families": {
+      "one_rate": 70,
+      "initial_change": 70,
+      "in_out": 70,
+      "delayed_piecewise": 70,
+      "multipart": 70
+    },
+    "profiles": {
+      "unit5-number": {
+        "kinds": [
+          "numeric"
+        ],
+        "functions": [],
+        "symbols": []
+      },
+      "unit5-rate-exact-pi": {
+        "kinds": [
+          "exact"
+        ],
+        "functions": [],
+        "symbols": [
+          "pi"
+        ]
+      },
+      "unit5-rate-exact-ln": {
+        "kinds": [
+          "exact"
+        ],
+        "functions": [
+          "ln"
+        ],
+        "symbols": []
+      },
+      "unit5-rate-exact": {
+        "kinds": [
+          "exact"
+        ],
+        "functions": [],
+        "symbols": []
+      }
+    },
+    "axes": {
+      "one_rate": [
+        "foundational:true",
+        "challenging:false",
+        "foundational:false",
+        "intermediate:true",
+        "challenging:true",
+        "intermediate:false"
+      ],
+      "initial_change": [
+        "foundational:true",
+        "challenging:false",
+        "intermediate:false",
+        "challenging:true",
+        "foundational:false",
+        "intermediate:true"
+      ],
+      "in_out": [
+        "foundational:true",
+        "challenging:true",
+        "intermediate:true",
+        "intermediate:false",
+        "foundational:false",
+        "challenging:false"
+      ],
+      "delayed_piecewise": [
+        "foundational:true",
+        "intermediate:false",
+        "foundational:false",
+        "challenging:false",
+        "intermediate:true",
+        "challenging:true"
+      ],
+      "multipart": [
+        "challenging:true",
+        "intermediate:true",
+        "foundational:true",
+        "intermediate:false",
+        "challenging:false",
+        "foundational:false"
+      ]
+    },
+    "subtypes": [],
+    "methods": []
+  },
+  {
+    "unit": 5,
+    "key": "slope",
+    "questions": 280,
+    "parts": 70,
+    "pairs": 280,
+    "families": {
+      "draw_segments": 70,
+      "draw_curve": 70,
+      "match": 70,
+      "analyze": 70
+    },
+    "profiles": {
+      "unit5-slope-list": {
+        "kinds": [
+          "list"
+        ],
+        "functions": [],
+        "symbols": [
+          "y"
+        ]
+      },
+      "unit5-slope-exact": {
+        "kinds": [
+          "exact"
+        ],
+        "functions": [],
+        "symbols": []
+      },
+      "unit5-slope-interval": {
+        "kinds": [
+          "interval"
+        ],
+        "functions": [],
+        "symbols": [
+          "infinity"
+        ]
+      },
+      "unit5-slope-line": {
+        "kinds": [
+          "function"
+        ],
+        "functions": [],
+        "symbols": [
+          "x"
+        ]
+      }
+    },
+    "axes": {
+      "draw_segments": [
+        "challenging:false",
+        "intermediate:false",
+        "foundational:false"
+      ],
+      "draw_curve": [
+        "intermediate:false",
+        "challenging:false",
+        "foundational:false"
+      ],
+      "match": [
+        "challenging:false",
+        "intermediate:false",
+        "foundational:false"
+      ],
+      "analyze": [
+        "intermediate:false",
+        "foundational:false",
+        "challenging:false"
+      ]
+    },
+    "subtypes": [],
+    "methods": []
+  }
+]
