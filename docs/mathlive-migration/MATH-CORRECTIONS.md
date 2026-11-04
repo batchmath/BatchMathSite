@@ -30,3 +30,11 @@ Confirmed independently of MathLive: looksFactored('(x^2-4)/(1)', {minGroups:2})
 Small correction confined to the existing looksFactored form gate: omit parentheses containing only a signed numeric literal when counting polynomial factor groups. No generator, expression-equivalence logic, global normalizer, tolerance or MathLive translation change in this correction. True binomial/quadratic factors, grouped numeric coefficients alongside actual factors, fractional coefficients and perfect powers remain accepted. This is a correction to the confirmed loophole, not a comprehensive redesign/certification of the existing factoring heuristic.
 
 Regression: node --test tools/mathlive-sitewide/prep-factoring-math.test.mjs. The numeric-parenthesis negative test fails before the correction and passes afterward; the valid-alternative test passes on both versions. The complete bounded six-engine Prep generator/checker comparison also passes after this correction. MathLive factoring serialization is verified separately and does not manufacture factor parentheses around both operands of a fraction.
+
+## Batch 8 precondition: duplicated qa8 defect in symbolic derivative review
+
+The symbolic Unit 2 comprehensive review has an independent qa8 generator copy. Its stored denominator e^(k*x)^2 still meant the exponential of the squared exponent to that page's unchanged parser, while the displayed solution correctly uses e^(2*k*x). The previously fixed Quotient topic engine did not update this review copy.
+
+Small correction: only that review qa8 answerExpr denominator now stores e^((2*k)*x). Generated questions, difficulty, displayed correct solution, explanations, parser/equivalence checks and simplification policies remain unchanged.
+
+Regression: node --test tools/mathlive-sitewide/review-qa8.test.mjs. It fails on the c2d6b9f legacy source and passes after correction. The unchanged legacy check() is exercised over 1,600 deterministic generations: at least 25 reachable qa8 questions and 20 distinct a/b/k tuples, checking the analytic derivative, displayed solution, stored expression and incorrect +1 response. This correction is committed separately before the review editor conversion.
