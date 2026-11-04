@@ -286,6 +286,7 @@ export function toLatex(n) {
       if(n.name==='root')return`\\sqrt[${toLatex(n.args[0]||empty())}]{${toLatex(n.args[1]||empty())}}`;
       if(n.name==='sqrt'||n.name==='cbrt')return`\\sqrt${n.name==='cbrt'?'[3]':''}{${toLatex(n.args[0]||empty())}}`;
       if(n.name==='abs')return`\\left|${toLatex(n.args[0])}\\right|`;
+      if(['f','g','fp','gp'].includes(n.name))return `${n.name[0]}${n.name.endsWith('p')?"'":''}\\left(${n.args.map(toLatex).join(',')}\\right)`;
       const name={asin:'arcsin',acos:'arccos',atan:'arctan',acot:'arccot',asec:'arcsec',acsc:'arccsc'}[n.name]||n.name;
       return`\\${name}\\left(${n.args.map(toLatex).join(',')}\\right)`;
     }
@@ -306,16 +307,17 @@ export function batchmathToLatex(source) {
 // and no root() identifier. Lower nth-root
 // notation to the same fractional-power notation used by its generators.
 // This is structural translation only: retain the index, arithmetic and slots.
-export function translateDerivative(source,{inverseTrig=false}={}) {
+export function translateDerivative(source,{inverseTrig=false,symbolicFunctions=false}={}) {
   // The existing normalizer intentionally checks only the text after the last
   // equals sign (e.g. f'(x)=...). Preserve that policy without parsing/solving
   // the label on the left. Retain '=' so an empty RHS stays nonempty invalid.
-  const raw=String(source),equalAt=raw.lastIndexOf('=');
+  const raw=symbolicFunctions?String(source).replace(/([fg])(?:\^\{\\prime\}|\\prime|')/g,'$1p'):String(source),equalAt=raw.lastIndexOf('=');
   const parsed=parseInput(equalAt<0?raw:raw.slice(equalAt+1),'latex',{logBases:inverseTrig});
   if(!String(source).trim())return {...parsed,input:''};
   if(!parsed.tree)return {...parsed,input:null};
   const allowed=new Set(['sin','cos','tan','sec','csc','cot','sqrt','ln','log','abs','exp']);
   if(inverseTrig)for(const name of ['asin','acos','atan','acot','asec','acsc'])allowed.add(name);
+  if(symbolicFunctions)for(const name of ['f','g','fp','gp'])allowed.add(name);
   function lower(n) {
     if(n.type==='sym'&&!['x','y','e','pi'].includes(n.name))fail(`The derivative checker does not support ${n.name}.`);
     if(n.type==='list'||n.type==='binary'&&!['+','-','*','/','^'].includes(n.op))fail('This answer requires an expression.');

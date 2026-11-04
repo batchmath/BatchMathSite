@@ -19,5 +19,14 @@ export function modes(e){if(e.type==='topic-point')return e.b.BatchMathTopicAtPo
  if(e.type==='nested')return ['mixed',...e.b.BatchMathNestedChainQA.groups].map(x=>({'practice-type':x}));
  if(e.type==='point')return ['mixed',...Object.keys(e.b.BatchMathAtPointQA.generators),'composite'].map(x=>({'practice-type':x}));
  const fields=['ruleMode','practice-scope'].filter(id=>e.html.includes('id="'+id+'"'));let out=[{}];for(const id of fields){const part=e.html.match(new RegExp('<select[^>]*id="'+id+'"[^>]*>([\\s\\S]*?)<\\/select>'))[1],values=[...part.matchAll(/<option[^>]*value="([^"]+)"/g)].map(x=>x[1]);out=out.flatMap(p=>values.map(v=>({...p,[id]:v})));}return out;}
-export function signature(p){if(p.factorKinds)return p.cat+':'+p.factorKinds.join('/');if(p.group)return p.group+':'+p.id.replace(/-?\d.*$/,'');return p.cat+':'+p.id.replace(/-?\d.*$/,'');}
+export function signature(p){
+ if(p.factorKinds)return p.cat+':'+p.factorKinds.join('/');if(p.family)return p.group+':'+p.family;
+ if(p.group)return p.group+':'+p.id.replace(/-?\d.*$/,'');
+ const a=p.id.split('-');let family=a[0];
+ if(a[0]==='imp')family=p.id.replace(/-[-\d].*$/,'');
+ if(a[0]==='ld')family=a[1]==='var'?`ld-var-${a[2]}-${p.id.match(/-e[1-7]-/)?.[0].slice(1,-1)}`:a.slice(0,3).join('-');
+ if(a[0]==='lg'||a[0]==='tnc'||a[0]==='eadv'||a[0]==='vadv'||a[0]==='iv'&&['exp','log'].includes(a[1]))family=a.slice(0,a[0]==='lg'&&a[1]==='base'?3:2).join('-');
+ if(a[0]==='tcj'&&['cube','poly'].includes(a[1]))family=a.slice(0,3).join('-');
+ return p.cat+':'+family;
+}
 export function samples(route,count=120){const e=engine(route),reps=new Map();for(const mode of modes(e)){for(const[k,v]of Object.entries(mode))e.el(k).value=v;for(let i=1;i<=count;i++){e.b.BatchMathRNG.random=rng(i*719+JSON.stringify(mode).length);e.qa.makeProblem();const p=JSON.parse(JSON.stringify(e.qa.current)),sig=JSON.stringify(mode)+':'+signature(p);if(!reps.has(sig))reps.set(sig,p);}}return {e,reps};}

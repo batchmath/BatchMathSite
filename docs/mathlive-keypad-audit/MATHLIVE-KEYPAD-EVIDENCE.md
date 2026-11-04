@@ -489,3 +489,8 @@ Unit 6 is deliberately excluded. The route ledger may include navigation/landing
 ## Reproduce
 
 Run `python3 tools/mathlive-keypad-audit/report.py` from a Git checkout at this audit snapshot. It executes only focused VM sampling and writes this audit directory. The page scanner uses static HTML/config inspection, not a browser. No claim is made that every select-option family or calculator variant was exercised.
+
+
+## Sitewide migration — verified Batch 1B
+
+18 Unit 2 typed-answer routes now use MathLive by default. The route/field/profile checklist, actual generator families, keypad corrections and verification limits are recorded in [BATCH-1B.md](../mathlive-migration/BATCH-1B.md). Matching matrix records are updated; unrelated provisional records remain provisional. Legacy grading fixes were committed separately as `3c88dac`; see [MATH-CORRECTIONS.md](../mathlive-migration/MATH-CORRECTIONS.md).

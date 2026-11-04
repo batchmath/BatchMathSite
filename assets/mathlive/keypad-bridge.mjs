@@ -33,6 +33,7 @@ export function bridgeKeypad(originalPad,{active,onCheck,onChange,onUnsupported,
       else if(label==='∛')mf.insert('\\sqrt[3]{#?}');
       else if(label==='ⁿ√')mf.insert('\\sqrt[#?]{#?}');
       else if(label==='|u|')mf.insert('\\left|#?\\right|');
+      else if(button.classList.contains('function')&&['f','g','f′','g′'].includes(label))mf.insert(label[0]+(label.includes('′')?"'":'')+'(#?)');
       else if(label==='f(x)')mf.insert('f(x)');
       else if(functionLatex[label])mf.insert(`\\${functionLatex[label]}(#?)`);
       else if(literals[label])mf.insert(literals[label]);

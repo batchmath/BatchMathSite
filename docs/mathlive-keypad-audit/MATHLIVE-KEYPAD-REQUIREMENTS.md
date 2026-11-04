@@ -351,3 +351,8 @@ Row numbers identify CSV records, excluding its header. Exact named controls and
 | Row | Engine / field | Current profile | Audit state |
 | --- | --- | --- | --- |
 | 215 | Unit Circle Exact Values — exact trig value / Undefined  | BMExactEditor | Verified comma rejection in both finite/Undefined branches; full profile closure unresolved |
+
+
+## Sitewide migration — verified Batch 1B
+
+18 Unit 2 typed-answer routes now use MathLive by default. The route/field/profile checklist, actual generator families, keypad corrections and verification limits are recorded in [BATCH-1B.md](../mathlive-migration/BATCH-1B.md). Matching matrix records are updated; unrelated provisional records remain provisional. Legacy grading fixes were committed separately as `3c88dac`; see [MATH-CORRECTIONS.md](../mathlive-migration/MATH-CORRECTIONS.md).
