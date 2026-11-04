@@ -76,3 +76,5 @@ Batch 8 checkpoint A1: Unit 1 and Unit 2 comprehensive reviews converted, includ
 ## Isolation and later reconciliation
 
 No merge, deployment, ZIP, main change, Unit 6 change or separate IM1 content-branch change. Only this branch is pushed. Later combine the tested migration branch through normal review, then reconcile Unit 6 and the independent IM1 content branch in separate integration work. Preserve this branch's checker regressions and the legacy fallback while resolving any mathematical-editor conflicts.
+
+Batch 8 A1 follow-up: explicit question-reset history clearing verified on both comprehensive reviews, including empty-to-empty resets. See BATCH-8.md and history regression artifacts. Remaining Batch 8 work is still in progress.

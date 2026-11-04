@@ -22,3 +22,7 @@ Chromium: both routes, 28 Unit 1 and 48 Unit 2 signatures, 350 paired submission
 Finish the six remaining actual AP Unit 3/4/5 review engines (the seventh listed AP URL is the handled redirect), then the seven IM1 reviews. Preserve the nine original AP URLs and all seven IM1 directory paths. Rebuild the full reachable-route/field inventory, reconcile keypad evidence, run shared regressions, and write FINAL-AUDIT.md before claiming sitewide completion.
 
 No main/Unit 6/content-branch changes, merge, deployment, release or ZIP.
+
+### A1 editor reset regression
+
+A focused browser test reproduced old answer text returning through Undo after the student cleared a field and changed questions. The review reset now explicitly resets MathLive history even when both old and new source values are empty. Both comprehensive reviews pass the failing-before/passing-after test (zero page errors); legacy behavior and grading are unchanged. Evidence: `reviews-static-browser-history-before.json` and `reviews-static-browser-history-after.json`. The native bridge's reset event is opt-in, so unrelated controllers are unaffected.

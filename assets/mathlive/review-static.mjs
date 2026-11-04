@@ -6,6 +6,7 @@ for(const [name,spec]of Object.entries(unit1Profiles))api.registerProfile(name,s
 api.registerProfile('ml-review-difference',{fraction:true,radical:true,exponent:true,variables:['x','h'],arithmetic:true,parentheses:true});
 const source=document.getElementById('answer');
 if(new URLSearchParams(location.search).get('editor')!=='legacy'){
+ const reset=api.reset;api.reset=()=>{reset();source.dispatchEvent(new Event('batchmath:mathlive-reset'));};
  const focus=api.focus;api.focus=()=>{if(source.dataset.editor==='mathlive'&&!source.hidden)source.dispatchEvent(new FocusEvent('focus'));else focus();};
  document.addEventListener('keydown',event=>{if(event.key==='Enter'&&event.repeat&&(event.target.matches?.('math-field,#answer,#submit,#next')||event.target.closest?.('#u1-options'))){event.preventDefault();event.stopImmediatePropagation();}},true);
  const derivative={translate:s=>translateDerivative(s,{inverseTrig:true,variables:document.getElementById('question').dataset.mathliveFamily==='difference'?['x','h']:['x','y']}),toLatex:batchmathToLatex};
