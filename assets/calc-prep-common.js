@@ -344,6 +344,9 @@ BM.safeExactEval=function(raw){
 };
 BM.prepareXExpr=function(raw){
  let s=String(raw||'').trim().toLowerCase().replace(/[−–—]/g,'-').replace(/·/g,'*').replace(/\s+/g,'');
+ // JavaScript rejects -x**n. Spell its omitted coefficient explicitly while
+ // retaining exponent precedence and the student's mathematical expression.
+ s=s.replace(/(^|[+\-*/(])-x(?=\^)/g,'$1-1*x');
  s=s.replace(/\^/g,'**');
  if(/[^0-9x+\-*/().*]/.test(s))throw Error('bad chars');
  s=s.replace(/(\d|x|\))(?=x|\()/g,'$1*');
