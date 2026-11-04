@@ -38,3 +38,11 @@ The symbolic Unit 2 comprehensive review has an independent qa8 generator copy. 
 Small correction: only that review qa8 answerExpr denominator now stores e^((2*k)*x). Generated questions, difficulty, displayed correct solution, explanations, parser/equivalence checks and simplification policies remain unchanged.
 
 Regression: node --test tools/mathlive-sitewide/review-qa8.test.mjs. It fails on the c2d6b9f legacy source and passes after correction. The unchanged legacy check() is exercised over 1,600 deterministic generations: at least 25 reachable qa8 questions and 20 distinct a/b/k tuples, checking the analytic derivative, displayed solution, stored expression and incorrect +1 response. This correction is committed separately before the review editor conversion.
+
+## Batch 8 precondition: Difference Quotient review omitted h
+
+The symbolic Unit 2 comprehensive review generates quadratic, radical and reciprocal difference-quotient answers depending on x and h, with vars=['x','h']. Its local identifier list omitted h, and its numerical sample scopes populated only x (or x/y). Correct stored answers such as dqmix-r-4 therefore received Not quite even in the unchanged legacy checking path.
+
+Small correction: add h to this review's existing identifier list, and populate it from varied nonzero values in the already established sample scopes only when the generated question declares h. Expression grammar, sampling thresholds, tolerances, generators, displayed solutions and simplification gates are unchanged. Other derivative engines are not changed.
+
+Regression: node --test tools/mathlive-sitewide/review-h.test.mjs fails before the correction and passes afterward. It checks 180 actual deterministic questions covering all four difference-quotient families, correct/stored and +0 forms, incorrect +h answers and removal of h from nonlinear answers. The qa8 regression also passes. This mathematical correction is separately committed before editor activation.
