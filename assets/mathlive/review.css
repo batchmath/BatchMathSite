@@ -1,0 +1,3 @@
+/* Unit 1's legacy custom-answer rule hides the static calculus pad. Keep the
+   new custom numerical-part keypad visible inside its own original host. */
+.u1-custom-answer #u1-options .bm-calc-keypad[data-experimental-bridge="true"]:not([hidden]){display:block!important}

@@ -381,3 +381,7 @@ Seventeen IM1 Unit 3 typed topic routes now use verified per-field MathLive prof
 ## Sitewide migration Batch 7 verified update
 
 Six Calculus Prep typed engines converted; five specialized selection engines retained. 17 existing matrix rows verified/updated; a separate coordinate-pair record added for the previously omitted Trig Angle Skills field type. See [BATCH-7.md](../mathlive-migration/BATCH-7.md) for actual contracts, dynamic keypad distinctions, two separately committed source corrections and retained deterministic/browser evidence. Unit Circle remains comma-free; equation/list engines retain needed comma. No arbitrary-identity or physical-device certification claim.
+
+## Batch 8 checkpoint A1
+
+Unit 1/2 comprehensive review numerical, multipart/location and symbolic fields verified with per-category/part profiles; 2 original matrix rows updated. Difference Quotient requires h (separate source correction and opt-in adapter). See [BATCH-8.md](../mathlive-migration/BATCH-8.md). Other review records and final field-level reconciliation remain pending.

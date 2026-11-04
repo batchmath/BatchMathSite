@@ -14,7 +14,10 @@ Branch: `migration/mathlive-sitewide`. Verified starting remote head: `migration
 - Batch 5: 4fe3861d41302ff82d5cba90c5928b6a7c020720, tested and pushed IM1 Units 1/2 topic integration.
 - Batch 6: efd452620760f7f900b57f97fd703c71ca027f4e, tested and pushed IM1 Unit 3 topic integration.
 - 1c4a17a1c799caea45fa102a06e92e1ce9d1bb02 and 96cdfd422c283a4cda9ef79e5d072c573e4fdb51: separately tested/pushed Prep mathematical corrections.
-- Batch 7: tested Calculus Prep integration in this checkpoint commit.
+- Batch 7: c2d6b9f9bc309e96787d390244e17c663b568d90, tested and pushed.
+- 19ab475: separate duplicated review qa8 denominator correction.
+- 2764b4a3feffa89358fffc32db4f2034b2fcebc7: separate review h identifier/sample-scope correction.
+- Batch 8 checkpoint A1: Unit 1 and Unit 2 comprehensive typed reviews, 350 Chromium pairs / zero errors and 14,080 checker comparisons, tested in this checkpoint commit.
 
 ## Completion inventory
 
@@ -55,6 +58,8 @@ Difference Quotient and conceptual review retain multiple choice. All graphing, 
 - Batch 6: 6,800 deterministic questions / 11,086 typed parts / 69,316 checker pairs. 17/17 Chromium routes / 252 pairs, four recovery groups, zero page errors. Shared-bridge AP regressions: four routes / 33 pairs. See BATCH-6.md. No generator/grader changes.
 
 - Batch 7: 4,425 questions / 21,541 checker pairs; final six-route touch Chromium / 321 pairs plus recovery and missing-runtime checks pass, zero page errors. Nineteen combined Node/guard tests pass. Separately committed evaluator/form fixes; see BATCH-7.md.
+
+Batch 8 checkpoint A1: Unit 1 and Unit 2 comprehensive reviews converted, including parameters/discontinuity locations and difference-quotient h. Old Unit 5 assignment URL is explicitly verified as a redirect. See BATCH-8.md. The other review routes and final sitewide audit remain pending.
 
 ## Remaining work and exact resume order
 
