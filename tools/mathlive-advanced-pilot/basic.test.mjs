@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
-import {engine,root,baseline,rng,slugs} from './engine.mjs';
+import {engine,root,rng,slugs} from './engine.mjs';
 import {translateAdvancedExpression,batchmathToLatex} from '../../assets/mathlive/answer-adapter.mjs';
 const w=engine(),weights=w.BatchMathUnit4FinalFour.W.basic;
 const families=Array.isArray(weights)?weights.map(x=>x[0]):Object.keys(weights);
@@ -34,9 +34,11 @@ test('advanced translation preserves constants, precision, roots and unsupported
   assert.equal(translateAdvancedExpression('y=x+C').input,'y=x+C');
   assert.notEqual(translateAdvancedExpression('y=x=2').input,'2');
 });
-test('production generators, graders and UI renderer are unchanged',()=>{
+// Preserve the approved Batch 1B–7 mathematical corrections when checking Batch 8.
+test('production generators, graders and UI renderer match the verified Batch 7 checkpoint',()=>{
+  const baseline='c2d6b9f9bc309e96787d390244e17c663b568d90';
   for(const name of ['ap-topic-generators.js','unit4-exact-answers.js','derivative-expression-checker.js','ap-topic-practice.js','unit5-separable.js','unit5-answers.js','unit5-ui.js','unit5-core.js','calculus-keypad.js']){
     const old=execFileSync('git',['show',baseline+':assets/'+name],{cwd:root,encoding:'utf8',maxBuffer:8000000});assert.equal(fs.readFileSync(root+'assets/'+name,'utf8'),old,name);
   }
-  fs.mkdirSync(root+'tools/mathlive-advanced-pilot/artifacts',{recursive:true});fs.writeFileSync(root+'tools/mathlive-advanced-pilot/artifacts/basic-math.json',JSON.stringify({families:results},null,2)+'\n');
+  if(results.length){fs.mkdirSync(root+'tools/mathlive-advanced-pilot/artifacts',{recursive:true});fs.writeFileSync(root+'tools/mathlive-advanced-pilot/artifacts/basic-math.json',JSON.stringify({families:results},null,2)+'\n');}
 });

@@ -17,7 +17,7 @@ export function installNativeFields({hostSelector,inputSelector,padSelector,cont
   let active=0,clone,notice,ready=false,disposed=false;const removes=[];
   const alive=()=>host.isConnected&&inputs.every(i=>i.isConnected);
   const listen=(node,event,fn,capture=false)=>{node.addEventListener(event,fn,capture);removes.push(()=>node.removeEventListener(event,fn,capture));};
-  function read(r){r.latex=r.field.value;const result=r.spec.translate(r.latex);r.last=r.input.value=result.input??(r.latex.trim()?'?':'');if(notice)notice.hidden=result.status!=='unsupported';return result;}
+  function read(r){r.latex=r.field.value;const result=r.spec.translate(r.latex);const previous=r.input.value;r.last=r.input.value=result.input??(r.latex.trim()?'?':'');if(r.input.value!==previous)r.spec.onInput?.(r.input,result);if(notice)notice.hidden=result.status!=='unsupported';return result;}
   function sync(){records.forEach(read);}
   function syncForCheck(){sync();window.BatchMathAnswers?.normalizeAnswerInputs?.(document);records.forEach(r=>r.last=r.input.value);}
   function importSource(r,force=false){if(!force&&r.input.value===r.last)return;const converted=(r.spec.toLatex||batchmathToLatex)(r.input.value);if(converted.latex===null)throw Error('Cannot import the current answer.');resetMathfield(r.field,r.input.value.trim()?converted.latex:'');r.latex=r.field.value;r.last=r.input.value;}

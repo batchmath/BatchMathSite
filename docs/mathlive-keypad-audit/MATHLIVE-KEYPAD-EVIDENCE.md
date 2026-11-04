@@ -523,3 +523,9 @@ Six Calculus Prep typed engines converted; five specialized selection engines re
 ## Batch 8 checkpoint A1
 
 Unit 1/2 comprehensive review numerical, multipart/location and symbolic fields verified with per-category/part profiles; 2 original matrix rows updated. Difference Quotient requires h (separate source correction and opt-in adapter). See [BATCH-8.md](../mathlive-migration/BATCH-8.md). Other review records and final field-level reconciliation remain pending.
+
+## Batch 8 AP review verification
+
+Review profile selection is by actual generated part, using `review-contracts.mjs`, rather than a whole-review integral/derivative pad. Unit 3 calculator literals remain separate from exact equations/lists/intervals; Unit 4 Newton construction retains structural sum/limit controls, while value/sigma-result fields use numerical or n-expression profiles; C remains part-specific. Unit 5 retains its exact/rounded/function/list/interval dispatch. `reviews-dynamic-node.json` records 9,060 questions, 10,085 typed parts and 42,258 checker comparisons. See BATCH-8.md for browser evidence and limits.
+
+The slope-field board's optional typed-entry paths are separately inventoried: fractions/decimals/Undefined for slopes; decimals for curve y-values (the original Number-based parser rejects fraction expressions). Their existing input listeners and graphical graders are retained. The shared native bridge has an optional source-input notification for these paths; it does not evaluate expressions or alter unrelated contracts.
