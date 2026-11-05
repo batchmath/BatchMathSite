@@ -1,0 +1,15 @@
+{
+  "before": {
+    "passed": 1,
+    "failed": 1,
+    "reachableQuestion": "u3-v122-mvt-xlnx",
+    "latex": "{e}^{\\frac{1}{e-1}}"
+  },
+  "after": {
+    "combinedNodeTests": 11,
+    "passed": 11,
+    "browserPairs": 4,
+    "pageErrors": 0,
+    "graderChanges": false
+  }
+}

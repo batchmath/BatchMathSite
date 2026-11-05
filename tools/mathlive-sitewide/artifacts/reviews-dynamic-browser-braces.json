@@ -1,0 +1,60 @@
+{
+  "results": [
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+      "passed": true,
+      "typedParts": 1,
+      "specialized": 0,
+      "signatures": [
+        "rolle-s-theorem-and-the-mean-value-theorem||mvt_product_logarithm_applies|choice/unit3-theorem"
+      ],
+      "negativeContracts": [
+        "unit3-theorem"
+      ]
+    }
+  ],
+  "errors": [],
+  "keypads": {
+    "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html|ml-unit3-theorem": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      "(",
+      ")",
+      "+",
+      "·",
+      ",",
+      "ab",
+      "√",
+      "ln",
+      "sin",
+      "cos",
+      "tan",
+      "sec",
+      "sin⁻¹",
+      "cos⁻¹",
+      "tan⁻¹",
+      "xⁿ",
+      "π",
+      "e",
+      "←",
+      "→",
+      "↑",
+      "↓",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ]
+  },
+  "checkerPairs": 4,
+  "realMathJax": true
+}

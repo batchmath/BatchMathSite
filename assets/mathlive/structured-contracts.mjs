@@ -9,7 +9,9 @@ export function exactList(source,{doesNotApply=false,rounded=false,itemTranslate
  const text=plain(source);if(!text)return{status:'complete',input:''};
  if((doesNotApply?dna:none).test(text))return{status:'complete',input:text};
  let normalized=String(source).replace(/\\(?:left|right)/g,'').replace(/\\(?:lbrace|\{)/g,'{').replace(/\\(?:rbrace|\})/g,'}').replace(/\\(?:text|operatorname)\{and\}|\band\b/gi,',');
- if(normalized[0]==='{'&&normalized.at(-1)==='}')normalized=normalized.slice(1,-1);
+ // Strip a set wrapper only when its opening brace encloses the whole list.
+ // MathLive also emits adjacent braced bases/exponents: {e}^{...}.
+ if(normalized[0]==='{'){let level=0,close=-1;for(let i=0;i<normalized.length;i++){if(normalized[i]==='{')level++;else if(normalized[i]==='}'&&!--level){close=i;break;}}if(close===normalized.length-1)normalized=normalized.slice(1,-1);}
  const segments=[];let depth=0,start=0;
  for(let i=0;i<normalized.length;i++){if('({['.includes(normalized[i]))depth++;else if(')}]'.includes(normalized[i]))depth--;else if(!depth&&',;'.includes(normalized[i])){segments.push(normalized.slice(start,i));start=i+1;}}
  segments.push(normalized.slice(start));
