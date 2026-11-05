@@ -1,0 +1,25 @@
+{
+  "result": {
+    "route": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/continuity-parameters/index.html",
+    "families": [
+      "two_piece_removable_rational|1",
+      "quadratic_parameter|1",
+      "three_piece_middle_system|2",
+      "three_piece_log_singleton|2",
+      "three_piece_split_parameters|2",
+      "piecewise_value|1",
+      "three_piece_system|2",
+      "piecewise_parameter|1",
+      "two_piece_branch_matching|1",
+      "two_piece_removable_trig|1",
+      "removable_fill|1"
+    ],
+    "resetHistory": true,
+    "recovery": true,
+    "missingRuntime": true,
+    "passed": true
+  },
+  "errors": [],
+  "checkerPairs": 55,
+  "realMathJax": true
+}
