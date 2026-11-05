@@ -7,7 +7,7 @@
 .u6-graph-figure{max-width:520px}
 /* compact figures (Area Below and Between Curves): the width cap is set per figure so the height stays near 265px */
 .u6-figure-compact .u6-tick{font-size:inherit} /* the compact svg sets the size that keeps ticks about 11.5px on screen */
-.u6-figure-compact .u6-curve,.u6-figure-compact .u6-axis,.u6-figure-compact .u6-grid,.u6-figure-compact .u6-rot,.u6-figure-compact .u6-slice{vector-effect:non-scaling-stroke}
+.u6-figure-compact .u6-curve,.u6-figure-compact .u6-axis,.u6-figure-compact .u6-grid,.u6-figure-compact .u6-rot,.u6-figure-compact .u6-slice,.u6-figure-compact .u6-radius-r{vector-effect:non-scaling-stroke}
 .u6-svg{display:block;width:100%;height:auto;background:#050505;border:1px solid #303030;border-radius:10px}
 .u6-grid{stroke:#1f1f1f;stroke-width:1}
 .u6-axis{stroke:#8a8a8a;stroke-width:1.4}
@@ -32,6 +32,14 @@
 .u6-cs-svg{display:block;width:100%;height:auto;background:#050505;border:1px solid #303030;border-radius:10px}
 .u6-cs-shape{fill:rgba(79,179,255,.2);stroke:#4fb3ff;stroke-width:2;stroke-linejoin:round}
 .u6-cs-center{fill:#f4f4f4}
+/* solids: the radius R (yellow, as the slice) and r (white) from the axis, the shell drawing */
+.u6-radius-r{stroke:#fff;stroke-width:2.6;stroke-linecap:round}
+.u6-radius-end{fill:#fff}
+.u6-axis-pt{fill:#ff8f93}
+.u6-swatch-r{background:#fff}
+.u6-slice-label{fill:#fff;font-family:"Times New Roman",Times,serif;font-style:italic;font-weight:700;paint-order:stroke;stroke:#050505;stroke-width:3px;stroke-linejoin:round}
+.u6-cs-axis{stroke:#ff8f93;stroke-width:1.6;stroke-dasharray:7 5}
+.u6-cs-hidden{fill:none;stroke:#4fb3ff;stroke-width:1.4;stroke-dasharray:4 4;opacity:.8}
 .u6-cs-mark{fill:none;stroke:#bdbdbd;stroke-width:1.4}
 .u6-cs-label{fill:#f4f4f4;font-family:"Times New Roman",Times,serif;font-style:italic;font-size:17px}
 .u6-fig-row{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;align-items:flex-start;margin:4px 0}

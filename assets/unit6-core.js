@@ -414,7 +414,8 @@ const COLORS=['#4aa3ff','#ff6b6b','#7bd389','#f7b955','#c58cff'];
 function figure(R,opt={}){
  // the axis of rotation is always inside the frame (with a margin), never only named in the legend
  let V={...R.view};
- if(opt.axis){const c=opt.axis.c,m=0.6;if(opt.axis.type==='y'){V.ymin=Math.min(V.ymin,Math.floor(c-m));V.ymax=Math.max(V.ymax,Math.ceil(c+m));}else{V.xmin=Math.min(V.xmin,Math.floor(c-m));V.xmax=Math.max(V.xmax,Math.ceil(c+m));}}
+ const axes=opt.axes||(opt.axis?[opt.axis]:[]); // v12.9.B: several axes (the same region about two lines)
+ for(const a of axes){const c=a.c,m=0.6;if(a.type==='y'){V.ymin=Math.min(V.ymin,Math.floor(c-m));V.ymax=Math.max(V.ymax,Math.ceil(c+m));}else{V.xmin=Math.min(V.xmin,Math.floor(c-m));V.xmax=Math.max(V.xmax,Math.ceil(c+m));}}
  // uniform: one scale for both axes (circles stay round, distances are true); a very tall or very flat frame gets extra
  // empty space on the short side instead of a distorted scale
  if(opt.uniform){const xr=V.xmax-V.xmin,yr=V.ymax-V.ymin;if(yr/xr>1.5){const e=(yr/1.5-xr)/2;V.xmin-=e;V.xmax+=e;}else if(yr/xr<0.45){const e=(0.45*xr-yr)/2;V.ymin-=e;V.ymax+=e;}}
@@ -438,20 +439,38 @@ function figure(R,opt={}){
   const flush=()=>{if(seg.length>1)pts.push(`<polyline points="${seg.join(' ')}" class="u6-curve" stroke="${col}"/>`);seg=[];};
   for(let k=0;k<=240;k++){const t=lo+(hi-lo)*k/240;const xy=c.g?[c.g(t),t]:[t,c.f(t)];if(!xy.every(Number.isFinite)||xy[1]<V.ymin-0.5*(V.ymax-V.ymin)||xy[1]>V.ymax+0.5*(V.ymax-V.ymin)||xy[0]<V.xmin-1||xy[0]>V.xmax+1){flush();continue;}seg.push(`${X(xy[0])},${Y(xy[1])}`);}
   flush();parts.push(...pts);c.color=col;});
- if(opt.axis){const a=opt.axis;parts.push(a.type==='y'?`<line x1="0" y1="${Y(a.c)}" x2="${W}" y2="${Y(a.c)}" class="u6-rot"/>`:`<line x1="${X(a.c)}" y1="0" x2="${X(a.c)}" y2="${hmax}" class="u6-rot"/>`);}
+ for(const a of axes)parts.push(a.type==='y'?`<line x1="0" y1="${Y(a.c)}" x2="${W}" y2="${Y(a.c)}" class="u6-rot"/>`:`<line x1="${X(a.c)}" y1="0" x2="${X(a.c)}" y2="${hmax}" class="u6-rot"/>`);
  for(const mk of R.marks||[])parts.push(`<circle cx="${X(mk[0])}" cy="${Y(mk[1])}" r="3" class="u6-mark"/>`);
- // v12.9.B: a representative slice, opt.slice={v, at}: the segment across the region at x = at (v x: bottom to top)
- // or y = at (v y: left to right), where a cross section stands
- let sliced=null;
- if(opt.slice){const sl=opt.slice,seg=sliceSegment(R,sl.v,sl.at);
-  if(seg){const [x1,y1,x2,y2]=seg;parts.push(`<line x1="${X(x1)}" y1="${Y(y1)}" x2="${X(x2)}" y2="${Y(y2)}" class="u6-slice"/>`,`<circle cx="${X(x1)}" cy="${Y(y1)}" r="3.2" class="u6-slice-end"/>`,`<circle cx="${X(x2)}" cy="${Y(y2)}" r="3.2" class="u6-slice-end"/>`);sliced=sl;}}
- const legend=R.draw.map(c=>`<span class="u6-key"><span class="u6-swatch" style="background:${c.color}"></span>\\(${c.tex}\\)</span>`).join('')+(opt.axis?`<span class="u6-key"><span class="u6-swatch u6-swatch-rot"></span>axis of rotation \\(${opt.axis.type}=${opt.axis.tex??opt.axis.c}\\)</span>`:'')
-  +(sliced?`<span class="u6-key"><span class="u6-swatch u6-swatch-slice"></span>${sliced.legend||`one slice (length \\(s\\))`}</span>`:'');
+ // compact: the size on screen (see below); fsz is the svg font-size that keeps text at its usual size on screen
+ const cw=Math.min(opt.maxW||340,Math.round((opt.maxH||265)*W/hmax)),fsz=opt.compact?11.5*W/cw:11;
+ // v12.9.B: a representative slice, opt.slice={v, at, kind, axis}, at x = at (v x: a vertical slice, bottom to top) or
+ // y = at (v y: horizontal, left to right). kind cs (default): the slice a cross section stands on. disk / washer: the
+ // slice perpendicular to the axis, with the radius R from the axis to the farther end and r to the nearer end.
+ // shell: the slice parallel to the axis (its length is the height h) and the radius r from the axis to the slice.
+ let keys=[];
+ if(opt.slice){const sl=opt.slice,seg=sliceSegment(R,sl.v,sl.at),kind=sl.kind||'cs';
+  if(seg){const [x1,y1,x2,y2]=seg,vert=sl.v==='x',off=0.7*fsz,big=(1.3*fsz).toFixed(1);
+   const ln=(a,b,c,d,cls)=>`<line x1="${X(a)}" y1="${Y(b)}" x2="${X(c)}" y2="${Y(d)}" class="${cls}"/>`,dot=(a,b,cls='u6-slice-end')=>`<circle cx="${X(a)}" cy="${Y(b)}" r="3.2" class="${cls}"/>`;
+   // a label beside the middle of a segment: right of a vertical one, above a horizontal one (or left / below)
+   const lab=(a,b,c,d,t,flip=false)=>{const mx=(+X(a)+ +X(c))/2,my=(+Y(b)+ +Y(d))/2,v2=Math.abs(+X(a)-+X(c))<1;
+    const x=v2?mx+(flip?-off:off):mx,y=v2?my+0.35*fsz:my+(flip?1.25*fsz:-off*0.8);return `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" class="u6-slice-label" style="font-size:${big}px" text-anchor="${v2?(flip?'end':'start'):'middle'}">${t}</text>`;};
+   if(kind==='cs'){parts.push(ln(x1,y1,x2,y2,'u6-slice'),dot(x1,y1),dot(x2,y2));keys=[['slice',sl.legend||'one slice (length \\(s\\))']];}
+   else if(kind==='shell'){const c=sl.axis.c,m=vert?(y1+y2)/2:(x1+x2)/2,[ra,rb,rc,rd]=vert?[c,m,sl.at,m]:[m,c,m,sl.at];
+    parts.push(ln(x1,y1,x2,y2,'u6-slice'),dot(x1,y1),dot(x2,y2),ln(ra,rb,rc,rd,'u6-radius-r'),dot(ra,rb,'u6-axis-pt'),lab(x1,y1,x2,y2,'h'),lab(ra,rb,rc,rd,'r',true));
+    keys=[['slice','shell height \\(h\\)'],['r','shell radius \\(r\\)']];}
+   else{const c=sl.axis.c,[ax,ay]=vert?[sl.at,c]:[c,sl.at],d=q=>vert?Math.abs(q[1]-c):Math.abs(q[0]-c),[o,i]=d([x1,y1])>=d([x2,y2])?[[x1,y1],[x2,y2]]:[[x2,y2],[x1,y1]],disk=d(i)<1e-6;
+    parts.push(ln(ax,ay,o[0],o[1],'u6-slice'),dot(o[0],o[1]));
+    if(disk){parts.push(dot(ax,ay,'u6-axis-pt'),lab(ax,ay,o[0],o[1],'R'));keys=[['slice','radius \\(R\\)']];}
+    else{parts.push(ln(ax,ay,i[0],i[1],'u6-radius-r'),dot(i[0],i[1],'u6-radius-end'),dot(ax,ay,'u6-axis-pt'),lab(i[0],i[1],o[0],o[1],'R'),lab(ax,ay,i[0],i[1],'r',true));keys=[['slice','outer radius \\(R\\)'],['r','inner radius \\(r\\)']];}}
+  }}
+ const legend=R.draw.map(c=>`<span class="u6-key"><span class="u6-swatch" style="background:${c.color}"></span>\\(${c.tex}\\)</span>`).join('')
+  +axes.map(a=>`<span class="u6-key"><span class="u6-swatch u6-swatch-rot"></span>${a.name||'axis of rotation'} \\(${a.type}=${a.tex??a.c}\\)</span>`).join('')
+  +keys.map(([k,t])=>`<span class="u6-key"><span class="u6-swatch u6-swatch-${k}"></span>${t}</span>`).join('');
  // compact (Area Below and Between Curves): at most 340px wide and about 265px tall on screen, same drawing and
  // proportions; tick labels keep their on-screen size (the svg's font-size, inherited by the ticks) and lines their
  // width as the figure scales down
- const cw=Math.min(opt.maxW||340,Math.round((opt.maxH||265)*W/hmax)),fig=opt.compact?`<figure class="u6-figure u6-figure-compact" style="max-width:min(100%,${cw}px)">`:'<figure class="u6-figure">';
- return `${fig}<svg viewBox="0 0 ${W} ${hmax}" role="img" aria-label="${opt.label||'Graph of the region'}" class="u6-svg"${opt.compact?` style="font-size:${(11.5*W/cw).toFixed(1)}px"`:''}>${parts.join('')}${lab.join('')}</svg>${legend?`<figcaption class="u6-legend">${legend}</figcaption>`:''}</figure>`;
+ const fig=opt.compact?`<figure class="u6-figure u6-figure-compact" style="max-width:min(100%,${cw}px)">`:'<figure class="u6-figure">';
+ return `${fig}<svg viewBox="0 0 ${W} ${hmax}" role="img" aria-label="${opt.label||'Graph of the region'}" class="u6-svg"${opt.compact?` style="font-size:${fsz.toFixed(1)}px"`:''}>${parts.join('')}${lab.join('')}</svg>${legend?`<figcaption class="u6-legend">${legend}</figcaption>`:''}</figure>`;
 }
 
 // the slice of R at x = at (v x) or y = at (v y): its end points [x1, y1, x2, y2], or null outside the region
@@ -480,6 +499,16 @@ function sectionPicture(shape){
  const name=id==='rect'?`a rectangle with base \\(s\\) and height \\(${shape.mult===1?'':shape.mult}s\\)`:CS_NAMES[id];
  return `<figure class="u6-figure u6-cs-figure"><svg viewBox="0 0 220 146" role="img" aria-label="One cross section: ${name.replace(/\\\(|\\\)/g,'')}" class="u6-cs-svg">${body}</svg><figcaption class="u6-legend"><span>One cross section: ${name}; \\(A=${shape.area('s')}\\)</span></figcaption></figure>`;
 }
+// v12.9.B: one disk or washer seen face on (its radii from the axis), or one cylindrical shell around its axis (radius r,
+// height h); a shell about a horizontal axis lies on its side. Colors match the slice on the region graph.
+function solidPicture(kind,horizontal=false){
+ const lab=(x,y,t,a='middle')=>`<text x="${x}" y="${y}" class="u6-cs-label" text-anchor="${a}">${t}</text>`,pt=(x,y,c='u6-axis-pt')=>`<circle cx="${x}" cy="${y}" r="3.2" class="${c}"/>`;let body,cap;
+ if(kind==='disk'){body=`<circle cx="110" cy="73" r="56" class="u6-cs-shape"/><line x1="110" y1="73" x2="166" y2="73" class="u6-slice"/>`+pt(110,73)+lab(138,66,'R');cap='One disk, face on: area \\(\\pi R^{2}\\)';}
+ else if(kind==='washer'){body=`<path d="M54 73a56 56 0 1 0 112 0a56 56 0 1 0-112 0ZM84 73a26 26 0 1 0 52 0a26 26 0 1 0-52 0Z" fill-rule="evenodd" class="u6-cs-shape"/><line x1="110" y1="73" x2="155.9" y2="40.9" class="u6-slice"/><line x1="110" y1="73" x2="131.3" y2="87.9" class="u6-radius-r"/>`+pt(131.3,87.9,'u6-radius-end')+pt(110,73)+lab(126,47,'R','end')+lab(126,106,'r','end');cap='One washer, face on: area \\(\\pi\\left(R^{2}-r^{2}\\right)\\)';}
+ else if(!horizontal){body=`<line x1="110" y1="6" x2="110" y2="140" class="u6-cs-axis"/><path d="M50 30V116A60 13 0 0 0 170 116V30" class="u6-cs-shape"/><path d="M50 116A60 13 0 0 1 170 116" class="u6-cs-hidden"/><ellipse cx="110" cy="30" rx="60" ry="13" class="u6-cs-shape"/><line x1="110" y1="30" x2="170" y2="30" class="u6-radius-r"/><line x1="170" y1="30" x2="170" y2="116" class="u6-slice"/>`+pt(110,30)+lab(140,22,'r')+lab(178,78,'h','start');cap='One shell: volume \\(2\\pi r h\\) times its thickness';}
+ else{body=`<line x1="6" y1="73" x2="214" y2="73" class="u6-cs-axis"/><path d="M40 21H180A13 52 0 0 1 180 125H40" class="u6-cs-shape"/><path d="M180 21A13 52 0 0 0 180 125" class="u6-cs-hidden"/><ellipse cx="40" cy="73" rx="13" ry="52" class="u6-cs-shape"/><line x1="40" y1="73" x2="40" y2="21" class="u6-radius-r"/><line x1="40" y1="21" x2="180" y2="21" class="u6-slice"/>`+pt(40,73)+lab(26,50,'r','end')+lab(110,14,'h');cap='One shell, on its side: volume \\(2\\pi r h\\) times its thickness';}
+ return `<figure class="u6-figure u6-cs-figure"><svg viewBox="0 0 220 146" role="img" aria-label="${cap.replace(/\\\(.*$/,'').replace(/[:,]\s*$/,'')}" class="u6-cs-svg">${body}</svg><figcaption class="u6-legend"><span>${cap}</span></figcaption></figure>`;
+}
 // v12.9.B: a graph the student may open in the question (closed at first): Show Graph / Hide Graph
 function graphToggle(inner){return `<details class="u6-graph-toggle"><summary class="u6-graph-btn"><span class="u6-when-closed">Show Graph</span><span class="u6-when-open">Hide Graph</span></summary>${inner}</details>`;}
 // a region built only from its slices (no frame or curves given): the frame around the slices and one curve per
@@ -507,5 +536,5 @@ U5.profile('unit6-list',{fraction:true,radical:true,constants:['pi'],arithmetic:
 window.BatchMathUnit6Core=Object.freeze({U5,Q,qv,K,E,ex,eadd,escale,etex,evalE,P,pc,pm,pv,padd,psub,pmul,pscale,ppow,pint,pval,pdef,ptex,pkey,qpow,
  fp,fnc,fconst,fsub,fmul,dist,sqTex,parTex,topSum,simpleTex,quad,quadUsed:()=>quadUsed,zeros,bq,bn,fixed,F1,FPI,F2PI,factorTex,term,setupTex,numValue,exactValue,exactAnswer,evalSteps,
  region,areaTerms,areaTex,washerTerms,shellTerms,sectionTerms,SHAPES,rectShape,side,readExpr,checkIntegral,checkExpr,sameSetup,modelOf,densityOf,
- exactPart,numPart,integralPart,exprPart,choicePart,listPart,problem,figure,withPicture,regionStep,sliceSegment,sliceAt,sectionPicture,graphToggle,step,m,question,hash});
+ exactPart,numPart,integralPart,exprPart,choicePart,listPart,problem,figure,withPicture,regionStep,sliceSegment,sliceAt,sectionPicture,solidPicture,graphToggle,step,m,question,hash});
 })();
