@@ -1,0 +1,16 @@
+[
+  {
+    "suite": "power",
+    "script": "tools/mathlive-power-rule/browser.mjs",
+    "environment": {},
+    "exitCode": 0,
+    "evidence": "docs/audits/evidence/keypad-focus-regressions/power/browser-results.json"
+  },
+  {
+    "suite": "chain",
+    "script": "tools/mathlive-derivatives-pilot/browser.mjs",
+    "environment": {},
+    "exitCode": 0,
+    "evidence": "docs/audits/evidence/keypad-focus-regressions/chain/browser-results.json"
+  }
+]

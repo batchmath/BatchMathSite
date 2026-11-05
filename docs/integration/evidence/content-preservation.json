@@ -31,7 +31,7 @@
       "executableScriptsEqualMathLive": true,
       "inputContractsEqualMathLive": true,
       "linksAndHeadingsEqualContent": true,
-      "sha256": "6dbe8e6a627b6528e6ede8f638c6c0770e0957c8dd350cc4d230cdc7c6a51978"
+      "sha256": "5a17149cba5de21e0487739f084408142b48e014639e7a4962ec1752783deadf"
     },
     {
       "path": "im1/unit-1-review/topics/multiplying-and-dividing-negative-numbers/practice/index.html",
@@ -364,5 +364,12 @@
   "studentNotesLinks": 0,
   "pdfsUnchanged": true,
   "unit6TreeUnchanged": true,
+  "approvedEditorViewportChanges": [
+    "assets/mathlive/answer-field.mjs",
+    "assets/mathlive/dynamic-fields.mjs",
+    "assets/mathlive/keypad-bridge.mjs",
+    "assets/mathlive/native-fields.mjs",
+    "assets/mathlive/pilot.css"
+  ],
   "unit6Tree": "f50ff9c7c56ca6b02c93d8f8bb88299b37ef2c11"
 }

@@ -5,11 +5,12 @@ import vm from 'node:vm';
 import {execFileSync} from 'node:child_process';
 import {engine,rng,root} from './engine.mjs';
 import {parseInput} from '../../assets/mathlive/answer-adapter.mjs';
+import {withoutHiddenInputFocusRoutes} from '../integration/editor-source-guards.mjs';
 
 test('the shared keypad implementation and unrelated profiles are unchanged from the successful pilot',()=>{
   const before=execFileSync('git',['show','adae2a2b00580f29befba88f593f4f627e2850c5:assets/calculus-keypad.js'],{cwd:root,encoding:'utf8'});
   const current=fs.readFileSync(root+'assets/calculus-keypad.js','utf8');
-  const withoutPilots=s=>s.replace('createPad:buildPad,','').split('\n').filter(line=>!line.includes('"migration-derivative-')&&!line.includes('"migration-limit-')&&!line.includes('(contextualUnit3.operators||[]).forEach')&&!line.includes('if(contextualUnit3.signed===false)')).join('\n').replace('/[+−·()=,±]/','/[+−·()=,]/');
+  const withoutPilots=s=>withoutHiddenInputFocusRoutes(s).replace('createPad:buildPad,','').split('\n').filter(line=>!line.includes('"migration-derivative-')&&!line.includes('"migration-limit-')&&!line.includes('(contextualUnit3.operators||[]).forEach')&&!line.includes('if(contextualUnit3.signed===false)')).join('\n').replace('/[+−·()=,±]/','/[+−·()=,]/');
   assert.equal(withoutPilots(current),withoutPilots(before));
 });
 

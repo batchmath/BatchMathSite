@@ -1,6 +1,6 @@
 import {loadMathLive,verifyFonts,resetMathfield} from './runtime.mjs';
 import {batchmathToLatex} from './answer-adapter.mjs';
-import {bridgeKeypad,focusMathfield} from './keypad-bridge.mjs';
+import {bridgeKeypad,focusMathfield,redirectInputFocus} from './keypad-bridge.mjs';
 
 // Opt-in bridge for native/local inputs. Keep their original listeners, pads,
 // checks and reset lifecycle available for legacy comparison and recovery.
@@ -70,6 +70,7 @@ export function installNativeFields({hostSelector,inputSelector,padSelector,cont
     listen(r.input,'input',guard(reflect));
     listen(r.input,'batchmath:mathlive-reset',guard(()=>importSource(r,true)));
     listen(r.input,'focus',guard(e=>{e.stopImmediatePropagation();active=index;focus();}),true);
+    removes.push(redirectInputFocus(r.input,guard(()=>{active=index;focus();}),()=>ready&&!disposed&&!r.input.disabled));
     listen(r.field,'pointerdown',guard(()=>{active=index;focus();}),true);
     listen(r.field,'keydown',guard(e=>{if(e.key==='Enter'){e.preventDefault();e.stopImmediatePropagation();if(!e.repeat&&!r.input.disabled){if(onSubmit)submit();else{sync();r.input.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',cancelable:true}));}}}else if(r.spec.onKey?.(e,r.field)){e.preventDefault();e.stopImmediatePropagation();read(r);}else if(e.shiftKey&&e.code==='Digit6'&&e.key!=='^'){e.preventDefault();e.stopImmediatePropagation();r.field.executeCommand('moveToSuperscript');read(r);}}),true);
     listen(r.field,'beforeinput',e=>{if(e.inputType==='insertLineBreak')e.preventDefault();});

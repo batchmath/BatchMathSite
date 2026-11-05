@@ -4,11 +4,36 @@ const commands={'←':'moveToPreviousChar','→':'moveToNextChar','↑':'moveUp'
 const literals={'±':'\\pm ','−':'-','·':'\\cdot ','π':'\\pi ','θ':'\\theta ','∞':'\\infty ','−∞':'-\\infty ','∪':'\\cup ','a₁':'a_{1}','aₙ':'a_{n}','aₙ₋₁':'a_{n-1}'};
 
 export function focusMathfield(mf) {
-  mf.focus();
   // Version-pinned DOM focus bridge. keyboard-sink is an officially exposed part.
-  // 0.111.1 defers its focus by 60ms, which can send the first key to an old field
-  // (or another comparison frame). Keep all actual key/edit handling in MathLive.
-  mf.shadowRoot?.querySelector('[part~="keyboard-sink"]')?.focus({preventScroll:true});
+  // MathfieldElement.focus() in 0.111.1 discards FocusOptions and unconditionally
+  // calls scrollIntoView(). Refocusing it for each keypad key therefore moves
+  // the page when the student has scrolled the answer above the visible keypad.
+  // Native focus on the exposed sink dispatches MathLive's normal focus events,
+  // preserves selection/physical typing, and avoids that forced viewport move.
+  const sink=mf.shadowRoot?.querySelector('[part~="keyboard-sink"]');
+  if(sink)sink.focus({preventScroll:true});
+  else mf.focus(); // Retain initialization compatibility before its DOM exists.
+}
+
+export function redirectInputFocus(input,focus,enabled) {
+  // A focus event is too late: focusing a clipped mirror can already scroll its
+  // ancestor. Route the established programmatic call to the visible field.
+  const own=Object.getOwnPropertyDescriptor(input,'focus'),original=input.focus;
+  input.focus=function(...args){if(enabled())return focus();return original.apply(this,args);};
+  return()=>{if(own)Object.defineProperty(input,'focus',own);else delete input.focus;};
+}
+
+function stableKeypadAction(mf,action) {
+  // Cursor/delete commands also request host scrolling. Suppress only that
+  // page-level request during this synchronous keypad action, using MathLive's
+  // public callback. Its internal caret scrolling still runs. Physical typing,
+  // direct focus, user scrolling and later question progression keep their
+  // original policy; no viewport position is saved or forcibly restored.
+  const previous=mf.onScrollIntoView;
+  mf.onScrollIntoView=()=>{};
+  // Its option copier turns null into {}, so remove the optional callback with
+  // undefined when restoring the default; retain an existing function exactly.
+  try{return action();}finally{mf.onScrollIntoView=previous??undefined;}
 }
 
 export function bridgeKeypad(originalPad,{active,onCheck,onChange,onUnsupported,onError}) {
@@ -18,7 +43,9 @@ export function bridgeKeypad(originalPad,{active,onCheck,onChange,onUnsupported,
     const label=button.textContent.trim();const aria=button.getAttribute('aria-label')||'';
     button.addEventListener('pointerdown',e=>e.preventDefault());
     button.addEventListener('click',()=>{try{
-      const mf=active();if(!mf)return;focusMathfield(mf);
+      const mf=active();if(!mf)return;
+      stableKeypadAction(mf,()=>{
+      focusMathfield(mf);
       if(label==='Check'){onCheck();return;}
       if(aria==='Insert approach arrow')mf.insert('\\to ');
       else if(aria==='Toggle negative sign'){const value=mf.value.trim();mf.setValue(value.startsWith('-')?value.slice(1):'-'+value,{mode:'math'});mf.executeCommand('moveToMathfieldEnd');mf.mode='math';}
@@ -48,6 +75,7 @@ export function bridgeKeypad(originalPad,{active,onCheck,onChange,onUnsupported,
       else if(['DNE','None','Undefined','Does not apply','No Solution','Infinite Solutions'].includes(label))mf.insert(`\\text{${label}}`);
       else {onUnsupported(`No experimental command mapping for ${label}.`);return;}
       onChange();
+      });
     }catch(error){onError(error);}
     });
   }

@@ -1,0 +1,186 @@
+[
+  {
+    "route": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html",
+    "controller": "unit1.mjs",
+    "course": "ap-calculus",
+    "fields": "exact scalar / discontinuity location / continuity parameter parts; current route-specific contract",
+    "wideCoverage": true
+  },
+  {
+    "route": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/practice/index.html",
+    "controller": "review-static.mjs",
+    "course": "ap-calculus",
+    "fields": "scalar, k/a/b multipart parameters and discontinuity-location stages",
+    "wideCoverage": true
+  },
+  {
+    "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html",
+    "controller": "unit2.mjs",
+    "course": "ap-calculus",
+    "fields": "exact derivative value",
+    "wideCoverage": true
+  },
+  {
+    "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+    "controller": "power-rule.mjs",
+    "course": "ap-calculus",
+    "fields": "#answer: symbolic derivative; original simplified-form gate",
+    "wideCoverage": true
+  },
+  {
+    "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html",
+    "controller": "chain-rule.mjs",
+    "course": "ap-calculus",
+    "fields": "#answer: symbolic derivative; original simplified-form gate",
+    "wideCoverage": true
+  },
+  {
+    "route": "ap-calculus/unit-2-derivatives/topics/the-product-rule/practice/index.html",
+    "controller": "rule-derivative.mjs",
+    "course": "ap-calculus",
+    "fields": "#answer: symbolic derivative; original simplified-form gate",
+    "wideCoverage": true
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/practice/index.html",
+    "controller": "applications.mjs",
+    "course": "ap-calculus",
+    "fields": "unit3-exact; unit3-list",
+    "wideCoverage": true
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+    "controller": "reviews-dynamic.mjs",
+    "course": "ap-calculus",
+    "fields": "unit3-equation; unit3-list; unit3-exact; unit3-pair; unit3-interval; unit3-coordinate; unit3-approximation; unit3-theorem; unit3-limit; unit3-geometry-exact",
+    "wideCoverage": true
+  },
+  {
+    "route": "ap-calculus/unit-4-integrals/topics/basic-integrals/practice/index.html",
+    "controller": "basic-integrals.mjs",
+    "course": "ap-calculus",
+    "fields": "antiderivative in x with student-entered C; exact definite scalar",
+    "wideCoverage": true
+  },
+  {
+    "route": "ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/practice/index.html",
+    "controller": "newton.mjs",
+    "course": "ap-calculus",
+    "fields": "editable sum/limit construction in k/n; exact value part",
+    "wideCoverage": true
+  },
+  {
+    "route": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/integral-rules-practice/index.html",
+    "controller": "ftc-rules.mjs",
+    "course": "ap-calculus",
+    "fields": "exact integral-rule scalar / symbolic FTC function",
+    "wideCoverage": true
+  },
+  {
+    "route": "ap-calculus/unit-4-integrals/topics/integrals-resulting-in-natural-log-and-inverse-trigonometric-functions/practice/index.html",
+    "controller": "staged-units.mjs",
+    "course": "ap-calculus",
+    "fields": "unit4-log-indef; unit4-log-def",
+    "wideCoverage": true
+  },
+  {
+    "route": "ap-calculus/unit-5-differential-equations/topics/separable-differential-equations/practice/index.html",
+    "controller": "separable.mjs",
+    "course": "ap-calculus",
+    "fields": "IVP functions in x/t/theta; validity interval",
+    "wideCoverage": true
+  },
+  {
+    "route": "calculus-prep/calculus-algebra/index.html",
+    "controller": "prep.mjs",
+    "course": "calculus-prep",
+    "fields": "freeAnswer: form-sensitive polynomial expression",
+    "wideCoverage": true,
+    "legacyRoute": "calculus-prep/unit-circle-values/index.html",
+    "legacyNote": "The algebra legacy route uses a native text box without an on-screen keypad. Use the retained exact editor/keypad for the legacy comparison."
+  },
+  {
+    "route": "im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/practice/index.html",
+    "controller": "im1.mjs",
+    "course": "im1",
+    "fields": "#answer: literal numeric/decimal/fraction; original reduction and decimal rules",
+    "wideCoverage": true
+  },
+  {
+    "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/practice/index.html",
+    "controller": "im1-unit3.mjs",
+    "course": "im1",
+    "fields": "model:formula; final:number",
+    "wideCoverage": true
+  },
+  {
+    "route": "im1/unit-1-review/topics/multiplication/practice/index.html",
+    "controller": "im1.mjs",
+    "course": "im1",
+    "fields": "#answer: literal numeric/decimal/fraction; original reduction and decimal rules",
+    "wideCoverage": false
+  },
+  {
+    "route": "im1/unit-1-review/topics/fractions/practice/index.html",
+    "controller": "im1.mjs",
+    "course": "im1",
+    "fields": "#answer: literal numeric/decimal/fraction; original reduction and decimal rules",
+    "wideCoverage": false
+  },
+  {
+    "route": "im1/unit-1-review/topics/decimals/practice/index.html",
+    "controller": "im1.mjs",
+    "course": "im1",
+    "fields": "#answer: literal numeric/decimal/fraction; original reduction and decimal rules",
+    "wideCoverage": false
+  },
+  {
+    "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html",
+    "controller": "im1.mjs",
+    "course": "im1",
+    "fields": "simplified integer polynomial; literal equation solution; integer-endpoint interval (as generated)",
+    "wideCoverage": false
+  },
+  {
+    "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+    "controller": "im1.mjs",
+    "course": "im1",
+    "fields": "simplified integer polynomial; literal equation solution; integer-endpoint interval (as generated)",
+    "wideCoverage": false
+  },
+  {
+    "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/equivalent-expressions-combining-like-terms/practice/index.html",
+    "controller": "im1.mjs",
+    "course": "im1",
+    "fields": "simplified integer polynomial; literal equation solution; integer-endpoint interval (as generated)",
+    "wideCoverage": false
+  },
+  {
+    "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/practice/index.html",
+    "controller": "im1-unit3.mjs",
+    "course": "im1",
+    "fields": "initial:number; change:number; term-1:number; term-2:number; term-3:number; term-4:number; term-5:number; term-6:number; difference:number",
+    "wideCoverage": false
+  },
+  {
+    "route": "im1/unit-3-linear-equation/topics/comprehensive-review/practice/index.html",
+    "controller": "im1-unit3.mjs",
+    "course": "im1",
+    "fields": "answer:number; difference:number; next-1:number; next-2:number; next-3:number; model:formula; final:number; model:line; amount:number; formula:formula; equation:line; term-1:number; term-2:number; term-3:number; term-4:number; term-5:number; term-6:number; initial:initial-term; recursive:recursive-rule; initial:number; change:number; slope:number; intercept:number",
+    "wideCoverage": false
+  },
+  {
+    "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/calculator-practice/index.html",
+    "controller": "reviews-dynamic.mjs",
+    "course": "ap-calculus",
+    "fields": "unit5-number; unit5-motion-list-dec; unit5-growth-exact; unit5-motion-intervals-dec; unit5-money; optional typed slope fractions/Undefined and decimal curve y-values",
+    "wideCoverage": false
+  },
+  {
+    "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/non-calculator-practice/index.html",
+    "controller": "reviews-dynamic.mjs",
+    "course": "ap-calculus",
+    "fields": "unit5-basic-x; unit5-interval-basic; unit5-motion-list; unit5-basic-t; unit5-motion-intervals; unit5-motion-value; unit5-slope-exact; unit5-sep-x; unit5-sep-interval; unit5-rate-exact; unit5-rate-exact-ln; unit5-motion-t; unit5-motion-value-e; unit5-rate-exact-pi; unit5-motion-value-r; unit5-slope-interval; unit5-slope-list; unit5-sep-t; unit5-basic-t-c; unit5-basic-x-c; unit5-slope-line; unit5-sep-theta; optional typed slope fractions/Undefined and decimal curve y-values",
+    "wideCoverage": false
+  }
+]
