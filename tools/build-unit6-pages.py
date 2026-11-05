@@ -150,9 +150,12 @@ def wire(cfg):
             text = text.replace('<script>window.MathJax=', tag(src) + '<script>window.MathJax=', 1)
     text = re.sub(r'<script src="/assets/unit[56]-[a-z0-9-]+\.js"></script>', '', text)
     body = ''.join(tag(s) for s in COMMON_BODY + cfg['scripts'])
+    # v12.9.C: the practice driver is deferred (as on the MathLive Unit 4 and 5 pages), so the deferred MathLive module
+    # in the head installs its answer fields before the first question is drawn
+    text = text.replace('<script defer src="/assets/ap-topic-practice.js"></script>', '<script src="/assets/ap-topic-practice.js"></script>')
     if text.count('<script src="/assets/ap-topic-practice.js"></script>') != 1:
         raise SystemExit(f'{path}: practice driver not found')
-    text = text.replace('<script src="/assets/ap-topic-practice.js"></script>', body + '<script src="/assets/ap-topic-practice.js"></script>', 1)
+    text = text.replace('<script src="/assets/ap-topic-practice.js"></script>', body + '<script defer src="/assets/ap-topic-practice.js"></script>', 1)
     # analytics: engine id and generator version
     text = re.sub(r'(BM_ANALYTICS_CONFIG=\{[^}]*engineId:")[^"]*(")', lambda m: m.group(1) + cfg['engine_id'] + m.group(2), text, count=1)
     text = re.sub(r'(BM_ANALYTICS_CONFIG=\{[^}]*generatorVersion:")[^"]*(")', rf'\g<1>{VERSION}\g<2>', text)
@@ -180,6 +183,13 @@ def wire(cfg):
         text = text.replace('<div class="stats">', '<div class="calculator-active-note"><strong>Calculator Active</strong> — use your graphing calculator for intersections and numerical integration.</div><div class="stats">', 1)
     if cfg.get('label'):
         text = set_identity(text, cfg)
+    # v12.9.C: MathLive answer fields (the integration's runtime, adapters and keypad bridge) for every typed Unit 6
+    # answer, including the single blank integral-setup field
+    ml = '<link rel="stylesheet" href="/assets/mathlive/pilot.css"><script type="module" src="/assets/mathlive/unit6.mjs"></script>'
+    if ml not in text:
+        if text.count('</head>') != 1:
+            raise SystemExit(f'{path}: head not found')
+        text = text.replace('</head>', ml + '</head>', 1)
     path.write_text(text, encoding='utf-8')
     return path
 

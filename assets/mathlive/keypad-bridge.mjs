@@ -46,6 +46,9 @@ export function bridgeKeypad(originalPad,{active,onCheck,onChange,onUnsupported,
       else if(/^[0-9a-zA-Z.()\[\],=+\-]$/.test(label))mf.insert(label);
       else if(label==='°')mf.insert('^{\\circ}');
       else if(['DNE','None','Undefined','Does not apply','No Solution','Infinite Solutions'].includes(label))mf.insert(`\\text{${label}}`);
+      // Unit 6 integral setups (v12.9.C): an editable definite integral, and its differential
+      else if(aria==='Insert definite integral')mf.insert('\\int_{#?}^{#?}#?');
+      else if(button.dataset.u6Key==='dx'||button.dataset.u6Key==='dy')mf.insert('\\,'+button.dataset.u6Key);
       else {onUnsupported(`No experimental command mapping for ${label}.`);return;}
       onChange();
     }catch(error){onError(error);}

@@ -108,16 +108,34 @@ def verify():
     # video markup (verified above by the video audit). Nothing else in the Unit 6 tree differs from that source.
     unit6_changed = set(git('diff', '--name-only', UNIT6_APPROVED, '--', UNIT6).splitlines())
     unit6_video = {UNIT6 + 'topics/' + t + '/index.html' for t in ['area-below-and-between-curves', 'finding-area-in-terms-of-y', 'integrals-on-piecewise-defined-functions', 'solids-of-revolution', 'volume-by-cross-sections']}
-    assert unit6_changed <= unit6_video, sorted(unit6_changed - unit6_video)
+    # the Unit 6 practice pages load the MathLive fields (head) and defer the practice driver; nothing else changes
+    # apart from the build version
+    ml_head = '<link rel="stylesheet" href="/assets/mathlive/pilot.css"><script type="module" src="/assets/mathlive/unit6.mjs"></script>'
+    def unwired(t):
+        t = t.replace(ml_head, '').replace('<script defer src="/assets/ap-topic-practice.js">', '<script src="/assets/ap-topic-practice.js">')
+        return re.sub(r'generatorVersion(":|:")"12\.9\.[A-Z]"', r'generatorVersion\1"V"', t)
+    unit6_practice = set()
+    for name in sorted(unit6_changed - unit6_video):
+        final = (ROOT / name).read_text()
+        assert '/practice/index.html' in name or '-practice/index.html' in name, name
+        assert ml_head in final and unwired(final) == unwired(source(UNIT6_APPROVED, name)), name + ': changed beyond the MathLive wiring'
+        unit6_practice.add(name)
     assert git('diff', MATHLIVE, '--', '*.pdf') == '', 'Underlying PDFs changed'
-    assert git('diff', MATHLIVE, '--', 'assets/mathlive', 'assets/im1-*.js') == '', 'MathLive/IM1 code assets changed'
+    # MathLive/IM1 code is as on the MathLive source, except the Unit 6 integration (v12.9.C): two new modules for the
+    # Unit 6 fields (unit6.mjs, integral-setup.mjs) and lines added, none removed or changed, in the keypad bridge
+    # (the integral, dx and dy keys)
+    assert git('diff', MATHLIVE, '--', 'assets/im1-*.js') == '', 'IM1 code assets changed'
+    ml = {line.split('\t')[2]: line.split('\t')[:2] for line in git('diff', '--numstat', MATHLIVE, '--', 'assets/mathlive').splitlines()}
+    assert set(ml) <= {'assets/mathlive/unit6.mjs', 'assets/mathlive/integral-setup.mjs', 'assets/mathlive/keypad-bridge.mjs'}, sorted(ml)
+    assert ml.get('assets/mathlive/keypad-bridge.mjs', ['0', '0'])[1] == '0', 'keypad bridge lines removed or changed'
+    assert git('ls-tree', MATHLIVE, '--', 'assets/mathlive/unit6.mjs', 'assets/mathlive/integral-setup.mjs') == '', 'Unit 6 modules not new'
     report = {'ok': True, 'mathliveSource': MATHLIVE, 'contentSource': CONTENT,
               'commonAncestor': ancestor, 'overlapsReconciled': len(overlaps),
               'overlaps': records, 'nonoverlapContentHtmlExact': exact_content,
               'authorizedVideoLayoutHtml': authorized_video,
               'approvedNonoverlapContentHtmlVerified': len(exact_content) + len(authorized_video),
               'im1PagesChecked': len(im1_pages), 'studentNotesLinks': 0,
-              'pdfsUnchanged': True, 'unit6Source': UNIT6_APPROVED, 'unit6VideoPagesAdopted': len(unit6_video)}
+              'pdfsUnchanged': True, 'unit6Source': UNIT6_APPROVED, 'unit6VideoPagesAdopted': len(unit6_video), 'unit6PracticePagesWiredForMathLive': len(unit6_practice)}
     return report
 
 

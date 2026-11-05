@@ -179,7 +179,7 @@ for(const calc of ['non-calculator','calculator']){const count={},tiers={};const
 
 // ---------- 7. pages ----------
 const U6='ap-calculus/unit-6-applications-integration/topics/';
-const scriptsOf=h=>[...h.matchAll(/<script src="([^"]+)"/g)].map(m=>m[1]);
+const scriptsOf=h=>[...h.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map(m=>m[1]);
 const BASE=['/assets/unit5-core.js','/assets/unit5-answers.js','/assets/unit5-ui.js','/assets/unit6-core.js','/assets/unit6-ui.js','/assets/unit6-regions.js'];
 const WIRED=[['area-below-and-between-curves/non-calculator-practice','area-below-and-between-curves','non-calculator',['unit6-area.js'],['mixed','under_curve','between','choose']],
  ['area-below-and-between-curves/calculator-practice','area-below-and-between-curves','calculator',['unit6-area.js'],['mixed','under_curve','between']],
@@ -197,6 +197,9 @@ for(const [page,slug,calc,eng,modes] of WIRED){const f=`${U6}${page}/index.html`
  if(at<0||JSON.stringify(s.slice(at,at+want.length))!==JSON.stringify(want))fail(`${page}: engine scripts ${JSON.stringify(s.slice(at,at+want.length))}`);
  for(const head of ['/assets/derivative-expression-checker.js','/assets/unit4-exact-answers.js','/assets/calculus-keypad.js','/assets/ap-topic-generators.js'])if(!s.includes(head)||s.indexOf(head)>s.indexOf('/assets/unit5-core.js'))fail(`${page}: ${head} missing or after the engines`);
  for(const css of ['/assets/calculus-keypad.css','/assets/unit5.css','/assets/unit6.css'])if(!h.includes(`<link rel="stylesheet" href="${css}">`))fail(`${page}: ${css} missing`);
+ // v12.9.C: MathLive answer fields, installed before the (deferred) practice driver draws the first question
+ if(!h.includes('<link rel="stylesheet" href="/assets/mathlive/pilot.css"><script type="module" src="/assets/mathlive/unit6.mjs"></script></head>'))fail(`${page}: MathLive module missing`);
+ if(!h.includes('<script defer src="/assets/ap-topic-practice.js"></script>'))fail(`${page}: practice driver not deferred`);
  const conf=JSON.parse(h.match(/window\.BM_TOPIC_PRACTICE=(\{.*?\});/)[1]);
  if(conf.slug!==slug||(conf.calculator||null)!==calc||conf.generatorVersion!=='12.9.B')fail(`${page}: page config ${JSON.stringify(conf)}`);
  const opts=[...(h.match(/<select id="u6Mode"[^>]*>(.*?)<\/select>/)||[,''])[1].matchAll(/value="([^"]+)"/g)].map(m=>m[1]);

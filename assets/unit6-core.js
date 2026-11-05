@@ -1,4 +1,4 @@
-/* BatchMath v12.9.B — Unit 6 (Applications of Integration) core.
+/* BatchMath v12.9.C — Unit 6 (Applications of Integration) core.
    Builds on the Unit 5 core (rationals, exact constants, engines, page registration, worked-step HTML) without
    changing it. Adds:
    - P: polynomials with rational exponents in one variable (x or y), so areas and volumes of algebraic regions are
@@ -283,6 +283,55 @@ const modelOf=terms=>terms.map(t=>({k:qv(t.k.q)*(t.k.atom?t.k.atom.val:1),a:t.a.
 // decimals (calculator problems): a limit typed as a decimal with at least three places stands for a stored calculator
 // value, so the integral may differ from the exact value by what that rounding can change: |coefficient times the
 // integrand at the limit| times half a unit in the last place typed. Exact limits get no such allowance.
+// v12.9.C: a whole integral setup typed as one expression. The MathLive field (assets/mathlive/integral-setup.mjs)
+// writes it in this linear form, which can also be typed in the standard editor:
+//   [coefficient*]int(lower,upper,integrand,x) ± [coefficient*]int(...) ...
+// parseSetup returns the rows checkIntegral grades ({coef, lower, upper, integrand, v}, limits kept as typed so the
+// decimal places of calculator limits are known), or {error} with what to fix. "?" marks a piece the field could not
+// read; an empty piece is missing.
+function parseSetup(raw){
+ const s=String(raw??'').trim();
+ if(!s)return{error:'Enter an integral before checking.'};
+ if(s==='?')return{error:'Part of this entry could not be read. Use the keypad symbols, and finish every fraction, power and root.'};
+ // split into terms at + and - outside parentheses (a sign right after an operator or "(" belongs to a number)
+ const terms=[];let depth=0,start=0,sign='+';
+ for(let i=0;i<s.length;i++){const ch=s[i];
+  if(ch==='('){depth++;continue;}if(ch===')'){depth--;if(depth<0)return{error:'Check the parentheses: one closes before it opens.'};continue;}
+  if(depth===0&&(ch==='+'||ch==='-')){const prev=s.slice(0,i).trimEnd().slice(-1);
+   if(!prev){sign=ch==='-'?(sign==='-'?'+':'-'):sign;start=i+1;continue;}
+   if('*/^,('.includes(prev))continue;
+   terms.push({sign,text:s.slice(start,i)});sign=ch;start=i+1;}}
+ if(depth!==0)return{error:'Check the parentheses: one is not closed.'};
+ terms.push({sign,text:s.slice(start)});
+ if(!/int\(/.test(s))return{error:'Write the setup as a definite integral: press ∫, enter the lower and upper limits and the integrand, then dx or dy.'};
+ const rows=[];
+ for(const [n,t] of terms.entries()){
+  const text=t.text.trim(),which=terms.length>1?` (integral ${n+1})`:'';
+  const at=text.search(/int\(/);
+  if(at<0)return{error:terms.length>1?'Every term must be an integral: add integrals with + or −, and put any number in front of an integral.':'Write the setup as a definite integral: press ∫, enter the lower and upper limits and the integrand, then dx or dy.'};
+  // the matching parenthesis of int( ... )
+  let d=0,end=-1;for(let i=at+3;i<text.length;i++){if(text[i]==='(')d++;else if(text[i]===')'){d--;if(d===0){end=i;break;}}}
+  if(end<0)return{error:`Finish the integral${which}.`};
+  const after=text.slice(end+1).trim();
+  if(after)return{error:`Put any number that multiplies an integral in front of it${which}, and write nothing after dx or dy except + or − and another integral.`};
+  if(/int\(/.test(text.slice(at+4,end)))return{error:'Write integrals side by side with + or −, not one inside another.'};
+  const args=[];d=0;let from=at+4;for(let i=at+4;i<end;i++){const ch=text[i];if(ch==='(')d++;else if(ch===')')d--;else if(ch===','&&d===0){args.push(text.slice(from,i).trim());from=i+1;}}
+  args.push(text.slice(from,end).trim());
+  if(args.length!==4)return{error:`Each integral needs a lower limit, an upper limit, an integrand and dx or dy${which}.`};
+  const [lower,upper,integrand,dv]=args,v=dv.replace(/^d/,'');
+  if(lower==='?'||upper==='?')return{error:`Finish both limits of integration${which}.`};
+  if(!lower||!upper)return{error:`Enter both the lower and the upper limit${which}.`};
+  if(integrand==='?')return{error:`Finish the integrand${which}: complete every fraction, power and root.`};
+  if(!integrand)return{error:`Enter the integrand${which}, between the integral sign and dx or dy.`};
+  if(!v)return{error:`Write dx or dy at the end of each integral${which}.`};
+  if(v!=='x'&&v!=='y')return{error:`Integrate with respect to x or y: end each integral with dx or dy${which}.`};
+  let coef=text.slice(0,at).trim().replace(/\*\s*$/,'').trim();
+  if(coef==='?')return{error:`Finish the number in front of the integral${which}.`};
+  if(t.sign==='-')coef=coef?`-(${coef})`:'-1';
+  rows.push({coef,lower,upper,integrand,v});
+ }
+ return{rows};
+}
 function checkIntegral(rows,spec){
  const used=rows.filter(r=>[r.coef,r.lower,r.upper,r.integrand].some(t=>String(t||'').trim()));
  if(!used.length)return{valid:false,message:'Enter an integral before checking.'};
@@ -561,10 +610,14 @@ function regionStep(R,label='Region R',opt={}){return step('The region.',opt.tex
 const fnKeys=[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['tan⁻¹','atan'],['|u|','abs']];
 U5.profile('unit6-exact',{fraction:true,radical:true,exponent:true,logarithm:true,constants:['pi','e'],arithmetic:true,parentheses:true});
 U5.profile('unit6-integral',{fraction:true,radical:true,exponent:true,logarithm:true,constants:['pi','e'],variables:['x','y'],functions:fnKeys,arithmetic:true,parentheses:true});
+// v12.9.C integral setups: the standard editor's keys (MathLive pages use ml-unit6-setup with the integral key instead);
+// a comma separates the parts of int(lower,upper,integrand,x) when typed in the standard editor
+const setupKeys={fraction:true,radical:true,exponent:true,logarithm:true,constants:['pi','e'],variables:['x','y'],functions:[['sin','sin'],['cos','cos']],arithmetic:true,parentheses:true,list:true};
+U5.profile('unit6-setup',setupKeys);U5.profile('unit6-setup-calc',{...setupKeys,decimal:true});
 U5.profile('unit6-list',{fraction:true,radical:true,constants:['pi'],arithmetic:true,parentheses:true,list:true});
 
 window.BatchMathUnit6Core=Object.freeze({U5,Q,qv,K,E,ex,eadd,escale,etex,evalE,P,pc,pm,pv,padd,psub,pmul,pscale,ppow,pint,pval,pdef,ptex,pkey,qpow,
  fp,fnc,fconst,fsub,fmul,dist,sqTex,parTex,topSum,simpleTex,quad,quadUsed:()=>quadUsed,zeros,bq,bn,fixed,F1,FPI,F2PI,factorTex,term,setupTex,numValue,exactValue,exactAnswer,evalSteps,
- region,areaTerms,areaTex,washerTerms,shellTerms,sectionTerms,SHAPES,rectShape,side,readExpr,checkIntegral,checkExpr,sameSetup,modelOf,densityOf,
+ region,areaTerms,areaTex,washerTerms,shellTerms,sectionTerms,SHAPES,rectShape,side,readExpr,parseSetup,checkIntegral,checkExpr,sameSetup,modelOf,densityOf,
  exactPart,numPart,integralPart,exprPart,choicePart,listPart,problem,figure,withPicture,regionStep,sliceSegment,sliceAt,sectionPicture,solidPicture,graphToggle,step,m,question,hash});
 })();
