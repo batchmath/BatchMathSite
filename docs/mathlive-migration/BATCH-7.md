@@ -1,3 +1,5 @@
+> Final status: this is historical checkpoint evidence. Remaining reviews and the full approved-scope inventory are completed in [Batch 8](BATCH-8.md) and [FINAL-AUDIT.md](FINAL-AUDIT.md).
+
 # Batch 7 — Calculus Prep
 
 Six typed engines default to MathLive. Five selection-only engines retain specialized controls. All original generators remain unchanged. Two confirmed grading defects were corrected in separate commits before the integration checkpoint; see MATH-CORRECTIONS.md.

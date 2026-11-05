@@ -1,6 +1,8 @@
+> Final status: this is historical checkpoint evidence. Remaining reviews and the full approved-scope inventory are completed in [Batch 8](BATCH-8.md) and [FINAL-AUDIT.md](FINAL-AUDIT.md).
+
 # Batch 2 — remaining Integrals and Differential Equations
 
-15 additional practice routes default to local MathLive, retaining ?editor=legacy. Seven Unit 4 topics and eight Unit 5 calculator/non-calculator/topic pages are covered. Three Unit 5 practice-navigation pages stay unchanged. Reviews/assignments remain Batch 8 work.
+15 additional practice routes default to local MathLive, retaining ?editor=legacy. Seven Unit 4 topics and eight Unit 5 calculator/non-calculator/topic pages are covered. Three Unit 5 practice-navigation pages stay unchanged. Reviews/assignments were subsequently completed in Batch 8.
 
 ## Engine and field checklist
 

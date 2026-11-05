@@ -1,0 +1,115 @@
+{
+  "suites": [
+    {
+      "suite": "power",
+      "checks": 38,
+      "passed": 38,
+      "explicitlyCountedPairs": null,
+      "pageErrors": 0,
+      "evidence": "tools/mathlive-sitewide/artifacts/final-regressions/power/browser-results.json"
+    },
+    {
+      "suite": "chain",
+      "checks": 27,
+      "passed": 27,
+      "explicitlyCountedPairs": 69,
+      "pageErrors": 0,
+      "evidence": "tools/mathlive-sitewide/artifacts/final-regressions/chain/browser-results.json"
+    },
+    {
+      "suite": "product",
+      "checks": 5,
+      "passed": 5,
+      "explicitlyCountedPairs": 4,
+      "pageErrors": 0,
+      "evidence": "tools/mathlive-sitewide/artifacts/final-regressions/product/product-current-profile-browser.json"
+    },
+    {
+      "suite": "quotient",
+      "checks": 6,
+      "passed": 6,
+      "explicitlyCountedPairs": 6,
+      "pageErrors": 0,
+      "evidence": "tools/mathlive-sitewide/artifacts/final-regressions/quotient/quotient-current-profile-browser.json"
+    },
+    {
+      "suite": "basic",
+      "checks": 22,
+      "passed": 22,
+      "explicitlyCountedPairs": null,
+      "pageErrors": 0,
+      "evidence": "tools/mathlive-sitewide/artifacts/final-regressions/basic/basic-browser.json"
+    },
+    {
+      "suite": "limits",
+      "checks": 3,
+      "passed": 3,
+      "explicitlyCountedPairs": 18,
+      "pageErrors": 0,
+      "evidence": "tools/mathlive-sitewide/artifacts/final-regressions/limits/unit1-browser-final-regression.json"
+    },
+    {
+      "suite": "applications",
+      "checks": 3,
+      "passed": 3,
+      "explicitlyCountedPairs": 25,
+      "pageErrors": 0,
+      "evidence": "tools/mathlive-sitewide/artifacts/final-regressions/applications/applications-browser-final-regression.json"
+    },
+    {
+      "suite": "integrals-de",
+      "checks": 4,
+      "passed": 4,
+      "explicitlyCountedPairs": 52,
+      "pageErrors": 0,
+      "evidence": "tools/mathlive-sitewide/artifacts/final-regressions/integrals-de/staged-browser-final-regression.json"
+    },
+    {
+      "suite": "im1-values",
+      "checks": 11,
+      "passed": 11,
+      "explicitlyCountedPairs": 28,
+      "pageErrors": 0,
+      "evidence": "tools/mathlive-sitewide/artifacts/final-regressions/im1-values/im1-batch5-browser-final-regression.json"
+    },
+    {
+      "suite": "im1-structured",
+      "checks": 8,
+      "passed": 8,
+      "explicitlyCountedPairs": 60,
+      "pageErrors": 0,
+      "evidence": "tools/mathlive-sitewide/artifacts/final-regressions/im1-structured/im1-batch6-browser-final-regression.json"
+    },
+    {
+      "suite": "prep",
+      "checks": 5,
+      "passed": 5,
+      "explicitlyCountedPairs": 281,
+      "pageErrors": 0,
+      "evidence": "tools/mathlive-sitewide/artifacts/final-regressions/prep/prep-browser-final-regression.json"
+    }
+  ],
+  "totalChecks": 132,
+  "passed": 132,
+  "unexpectedPageErrors": 0,
+  "explicitlyCountedPairs": 543,
+  "note": "Power/Basic functional checks have no aggregate paired-submission counter; excluded from explicitlyCountedPairs.",
+  "nativeBridgeRerunAfterHistoryCorrection": {
+    "implementation": "cfefbe5ad6e18f5086cc221505e065a41e24b0db",
+    "suites": [
+      "limits",
+      "im1-values",
+      "im1-structured",
+      "prep"
+    ],
+    "checks": 27,
+    "pairedSubmissions": 387,
+    "pageErrors": 0
+  },
+  "additionalHistoryCases": {
+    "checks": 3,
+    "passed": 3,
+    "pageErrors": 0,
+    "evidence": "tools/mathlive-sitewide/artifacts/history-browser.json"
+  }
+}

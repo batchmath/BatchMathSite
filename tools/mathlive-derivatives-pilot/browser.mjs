@@ -160,8 +160,9 @@ try{
   await test('unsupported MathLive input is retained exactly in a recovery copy on runtime failure',async()=>{
     const q=await page();await ready(q);await set(q,'\\int x');const latex=(await state(q)).latex;await q.evaluate(()=>window.dispatchEvent(new ErrorEvent('error',{filename:location.origin+'/assets/mathlive/vendor/mathlive/mathlive.min.mjs',message:'Injected error'})));assert.equal(await q.locator('.bm-mathlive-recovery').inputValue(),latex);await q.close();
   });
-  await test('deferred symbolic comprehensive review keeps its existing editor with the pilot parameter',async()=>{
-    const q=await browser.newPage({serviceWorkers:'block'});const requests=[];q.on('request',r=>requests.push(r.url()));await q.route('https://**/*',r=>r.abort());await q.goto(base+'/ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/?editor=mathlive');await q.waitForSelector('.bm-calc-editor');assert.equal(await q.locator('math-field').count(),0);assert.equal(requests.some(x=>x.includes('/assets/mathlive/')),false);await q.close();
+  await test('converted symbolic comprehensive review defaults to MathLive and retains legacy',async()=>{
+    const q=await browser.newPage({serviceWorkers:'block'});const requests=[];q.on('request',r=>requests.push(r.url()));await q.route('https://**/*',r=>r.abort());await q.goto(base+'/ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/?editor=mathlive');await q.waitForSelector('math-field:visible');assert.equal(await q.locator('.bm-calc-editor:visible').count(),0);assert.equal(requests.some(x=>x.includes('/assets/mathlive/review-static.mjs')),true);await q.close();
+    const legacy=await browser.newPage({serviceWorkers:'block'});await legacy.route('https://**/*',r=>r.abort());await legacy.goto(base+'/ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/?editor=legacy');await legacy.waitForSelector('.bm-calc-editor:visible');assert.equal(await legacy.locator('math-field').count(),0);await legacy.close();
   });
 }finally{
   fs.writeFileSync(output+'browser-results.json',JSON.stringify({browser:browser?.version(),mathjax:!!mathjaxFixture,gradingPairs,results,pageErrors:errors},null,2)+'\n');

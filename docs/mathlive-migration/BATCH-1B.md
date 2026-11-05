@@ -1,3 +1,5 @@
+> Final status: this is historical checkpoint evidence. Remaining reviews and the full approved-scope inventory are completed in [Batch 8](BATCH-8.md) and [FINAL-AUDIT.md](FINAL-AUDIT.md).
+
 # Batch 1B — Unit 2 typed derivatives
 
 Baseline `adae2a2`; separate mathematical fixes `3c88dac`. New routes: **18**. Original eight engine groups remain integrated. This document records bounded deterministic verification, not an exhaustive equivalence proof.
@@ -43,4 +45,4 @@ Baseline `adae2a2`; separate mathematical fixes `3c88dac`. New routes: **18**. O
 
 ## Deliberate exclusions
 
-Difference Quotient and conceptual review keep their choices. The symbolic comprehensive review and assignment routing remain Batch 8 work; the separate derivative-at-a-point review is completed here using the same numeric contract. No Unit 6 route is touched.
+Difference Quotient and conceptual review keep their choices. The symbolic comprehensive review and assignment routing were subsequently resolved in Batch 8; the separate derivative-at-a-point review is completed here using the same numeric contract. No Unit 6 route is touched.

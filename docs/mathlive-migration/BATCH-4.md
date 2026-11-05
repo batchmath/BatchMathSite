@@ -1,6 +1,8 @@
+> Final status: this is historical checkpoint evidence. Remaining reviews and the full approved-scope inventory are completed in [Batch 8](BATCH-8.md) and [FINAL-AUDIT.md](FINAL-AUDIT.md).
+
 # Batch 4 — AP Calculus Unit 1
 
-Seven typed-answer topic routes now default to MathLive. Existing native/shared editors remain available with ?editor=legacy. Unit 1 comprehensive review remains Batch 8.
+Seven typed-answer topic routes now default to MathLive. Existing native/shared editors remain available with ?editor=legacy. Unit 1 comprehensive review was subsequently completed in Batch 8.
 
 | Route | Deterministic questions | Observed families | Comparisons |
 |---|---:|---:|---:|
@@ -52,4 +54,4 @@ A real browser regression found MathLive retaining text mode after DNE. Shared r
 
 Commit 0f4f54e93911253becef67f9cb77a431e64dce0a corrected Unit 1 unary-minus/exponent precedence before migration. See MATH-CORRECTIONS.md. No other grading policy changed.
 
-Browser evidence is Linux Chromium, desktop and 375px. Physical devices and assistive technology are not certified. Unit 1 comprehensive/mixed practice remains pending Batch 8. Next: IM1 Units 1 and 2, then IM1 Unit 3, Calculus Prep and comprehensive/assignment audit.
+Browser evidence is Linux Chromium, desktop and 375px. Physical devices and assistive technology are not certified. Subsequent batches completed Unit 1 comprehensive/mixed practice, IM1 and Calculus Prep; see FINAL-AUDIT.md.

@@ -1,0 +1,4015 @@
+{
+  "results": [
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/intermediate-value-theorem/practice/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 5,
+      "choices": 6,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/continuity-parameters/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Value of a",
+        "Value of b"
+      ],
+      "fallback": false,
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/continuity-parameters/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Value of a",
+        "Value of b"
+      ],
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/continuity-parameters/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Value of a",
+        "Value of b"
+      ],
+      "fallback": true,
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "location"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "location"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "location"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-limits/practice/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 5,
+      "choices": 6,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/sin-one-over-x/practice/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 5,
+      "choices": 5,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/course-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/course-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/course-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/conceptual-practice/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 5,
+      "choices": 5,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/difference-quotient/practice/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 5,
+      "choices": 5,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-product-rule/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-product-rule/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-product-rule/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Maximum or minimum value",
+        "Location of maximum or minimum"
+      ],
+      "fallback": false,
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Maximum or minimum value",
+        "Location of maximum or minimum"
+      ],
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Maximum or minimum value",
+        "Location of maximum or minimum"
+      ],
+      "fallback": true,
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "line-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "line-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "line-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Line 1: y equals, rounded to three decimals",
+        "Line 2: y equals, rounded to three decimals"
+      ],
+      "fallback": false,
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Line 1: y equals, rounded to three decimals",
+        "Line 2: y equals, rounded to three decimals"
+      ],
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Enter all x-values"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Enter all x-values"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Line 1: y equals, rounded to three decimals",
+        "Line 2: y equals, rounded to three decimals"
+      ],
+      "fallback": true,
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "line-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Enter all x-values"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "line-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "line-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Interval notation answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Interval notation answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Interval notation answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Interval notation answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Interval notation answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Interval notation answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Enter the limit"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Enter the limit"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Enter the limit"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/motion/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/motion/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/motion/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/motion/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/motion/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/motion/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/optimization/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/optimization/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/optimization/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/related-rates/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/related-rates/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/related-rates/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Rate of change of the water height:"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/related-rates/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/related-rates/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Rate of change of the water height:"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/related-rates/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Rate of change of the water height:"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Enter all exact c-values"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Enter all exact c-values"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Enter the exact approximation"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Enter the exact approximation"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Enter all exact c-values"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Enter the exact approximation"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/basic-integrals/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Antiderivative"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/basic-integrals/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Antiderivative"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/basic-integrals/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Antiderivative"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Right-endpoint limit and summation"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Right-endpoint limit and summation"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/integral-rules-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Right-endpoint limit and summation"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/integral-rules-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/integral-rules-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/integrals-resulting-in-natural-log-and-inverse-trigonometric-functions/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Antiderivative"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/integrals-resulting-in-natural-log-and-inverse-trigonometric-functions/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Antiderivative"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/integrals-using-geometry/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/integrals-resulting-in-natural-log-and-inverse-trigonometric-functions/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Antiderivative"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/integrals-using-geometry/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/introduction-to-sigma-notation/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/integrals-using-geometry/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/introduction-to-sigma-notation/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/introduction-to-sigma-notation/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/mean-value-theorem-for-integrals/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Average value"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/mean-value-theorem-for-integrals/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Average value"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/rectangular-approximations/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/mean-value-theorem-for-integrals/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Average value"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/rectangular-approximations/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/rectangular-approximations/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/trapezoidal-approximations/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/trapezoidal-approximations/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/u-substitution-integrals/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Antiderivative"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/u-substitution-integrals/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Antiderivative"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/trapezoidal-approximations/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/u-substitution-integrals/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Antiderivative"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/non-calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Enter y in terms of x"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/non-calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Enter y in terms of x"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "specialized",
+      "kind": "navigation/specialized",
+      "links": 0,
+      "choices": 0,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/practice/index.html",
+      "mode": "specialized",
+      "kind": "navigation/specialized",
+      "links": 0,
+      "choices": 5,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/non-calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Enter y in terms of x"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/non-calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "e.g. (0,2)\u222a(5,7)"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/non-calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "e.g. (0,2)\u222a(5,7)"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/exponential-growth-and-decay-interest-newton-s-law-of-cooling/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/non-calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "e.g. (0,2)\u222a(5,7)"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/exponential-growth-and-decay-interest-newton-s-law-of-cooling/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/motion-problems/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/motion-problems/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/exponential-growth-and-decay-interest-newton-s-law-of-cooling/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/motion-problems/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/motion-problems/non-calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact value"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/motion-problems/non-calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact value"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/motion-problems/practice/index.html",
+      "mode": "specialized",
+      "kind": "navigation/specialized",
+      "links": 1,
+      "choices": 0,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/rate-problems/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/motion-problems/non-calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact value"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/rate-problems/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/rate-problems/non-calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact value"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/rate-problems/non-calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact value"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/rate-problems/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/rate-problems/practice/index.html",
+      "mode": "specialized",
+      "kind": "navigation/specialized",
+      "links": 10,
+      "choices": 3,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/rate-problems/non-calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact value"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/separable-differential-equations/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Enter y in terms of x"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/separable-differential-equations/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Enter y in terms of x"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/separable-differential-equations/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Enter y in terms of x"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/slope-fields/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Estimated y-value of the solution at x = -2.5",
+        "Estimated y-value of the solution at x = -2",
+        "Estimated y-value of the solution at x = -1.5",
+        "Estimated y-value of the solution at x = -1",
+        "Estimated y-value of the solution at x = -0.5",
+        "Estimated y-value of the solution at x = 0.5",
+        "Estimated y-value of the solution at x = 1",
+        "Estimated y-value of the solution at x = 1.5",
+        "Estimated y-value of the solution at x = 2"
+      ],
+      "fallback": false,
+      "activeMathFields": 9,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/slope-fields/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Estimated y-value of the solution at x = -2.5",
+        "Estimated y-value of the solution at x = -2",
+        "Estimated y-value of the solution at x = -1.5",
+        "Estimated y-value of the solution at x = -1",
+        "Estimated y-value of the solution at x = -0.5",
+        "Estimated y-value of the solution at x = 0.5",
+        "Estimated y-value of the solution at x = 1",
+        "Estimated y-value of the solution at x = 1.5",
+        "Estimated y-value of the solution at x = 2"
+      ],
+      "activeMathFields": 9,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/slope-fields/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Estimated y-value of the solution at x = -2.5",
+        "Estimated y-value of the solution at x = -2",
+        "Estimated y-value of the solution at x = -1.5",
+        "Estimated y-value of the solution at x = -1",
+        "Estimated y-value of the solution at x = -0.5",
+        "Estimated y-value of the solution at x = 0.5",
+        "Estimated y-value of the solution at x = 1",
+        "Estimated y-value of the solution at x = 1.5",
+        "Estimated y-value of the solution at x = 2"
+      ],
+      "fallback": true,
+      "activeMathFields": 9,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/calculus-algebra/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "freeAnswer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/calculus-algebra/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "freeAnswer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/domains/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 3,
+      "choices": 7,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/function-graphs/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 3,
+      "choices": 8,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/log-rules/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 3,
+      "choices": 7,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/rational-functions/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 3,
+      "choices": 7,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/calculus-algebra/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "freeAnswer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/special-factoring/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "factorAnswer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/special-factoring/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "factorAnswer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/special-factoring/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "factorAnswer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/synthetic-division/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "rrtAnswer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/synthetic-division/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "rrtAnswer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answerRaw"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/synthetic-division/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "rrtAnswer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answerRaw"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/trig-equations/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answerRaw"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/trig-equations/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answerRaw"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answerRaw"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/trig-identities/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 3,
+      "choices": 8,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/trig-equations/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answerRaw"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/unit-circle-values/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answerRaw"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/unit-circle-values/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answerRaw"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/unit-circle-values/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answerRaw"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/practice/index.html",
+      "mode": "specialized",
+      "kind": "navigation/specialized",
+      "links": 14,
+      "choices": 0,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/classifying-numbers/practice/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 5,
+      "choices": 11,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/decimals/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/decimals/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/decimals/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/fractions/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/fractions/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/fractions/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/multiplication/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/multiplication/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/multiplication/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/multiplying-and-dividing-negative-numbers/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/multiplying-and-dividing-negative-numbers/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/multiplying-and-dividing-negative-numbers/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/order-of-operations/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/order-of-operations/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/percents/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/percents/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/order-of-operations/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/reducing-fractions/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/percents/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/reducing-fractions/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/square-roots-and-exponents/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/square-roots-and-exponents/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/reducing-fractions/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "equation-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "equation-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/square-roots-and-exponents/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/practice/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 5,
+      "choices": 7,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/distributive-property/practice/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 5,
+      "choices": 6,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "equation-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/equivalent-expressions-combining-like-terms/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "algebra-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/equivalent-expressions-combining-like-terms/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "algebra-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/equivalent-expressions-combining-like-terms/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "algebra-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "interval-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "interval-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "equation-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "interval-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "equation-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-inequalities/practice/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 5,
+      "choices": 6,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "equation-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer-model",
+        "answer-final"
+      ],
+      "fallback": false,
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer-model",
+        "answer-final"
+      ],
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer-difference",
+        "answer-next-1",
+        "answer-next-2",
+        "answer-next-3"
+      ],
+      "fallback": false,
+      "activeMathFields": 4,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer-model",
+        "answer-final"
+      ],
+      "fallback": true,
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer-difference",
+        "answer-next-1",
+        "answer-next-2",
+        "answer-next-3"
+      ],
+      "activeMathFields": 4,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer-difference",
+        "answer-next-1",
+        "answer-next-2",
+        "answer-next-3"
+      ],
+      "fallback": true,
+      "activeMathFields": 4,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer-formula"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer-formula"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer-formula"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer-formula"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer-formula"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/collinearity-and-slope/practice/index.html",
+      "mode": "specialized",
+      "kind": "specialized",
+      "links": 6,
+      "choices": 4,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer-formula"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/section-b-review/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/section-b-review/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/section-b-review/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer-equation"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer-equation"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer-model",
+        "answer-amount"
+      ],
+      "fallback": false,
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer-equation"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer-model",
+        "answer-amount"
+      ],
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/section-c-review/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer-equation"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/section-c-review/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer-equation"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer-model",
+        "answer-amount"
+      ],
+      "fallback": true,
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer-equation"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/section-c-review/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer-equation"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer-equation"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer-equation"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer-equation"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer-equation"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/comprehensive-review/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/comprehensive-review/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer-equation"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/comprehensive-review/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer-difference",
+        "answer-initial",
+        "answer-recursive"
+      ],
+      "fallback": false,
+      "activeMathFields": 3,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer-difference",
+        "answer-initial",
+        "answer-recursive"
+      ],
+      "activeMathFields": 3,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer-difference",
+        "answer-initial",
+        "answer-recursive"
+      ],
+      "fallback": true,
+      "activeMathFields": 3,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer-term-1",
+        "answer-term-2",
+        "answer-term-3",
+        "answer-term-4",
+        "answer-term-5",
+        "answer-term-6"
+      ],
+      "fallback": false,
+      "activeMathFields": 6,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer-term-1",
+        "answer-term-2",
+        "answer-term-3",
+        "answer-term-4",
+        "answer-term-5",
+        "answer-term-6"
+      ],
+      "activeMathFields": 6,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer-term-1",
+        "answer-term-2",
+        "answer-term-3",
+        "answer-term-4",
+        "answer-term-5",
+        "answer-term-6"
+      ],
+      "fallback": true,
+      "activeMathFields": 6,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer-formula"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer-formula"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "answer-formula"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer-formula"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "answer-formula"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "answer-formula"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "knownMathJaxErrors": 0,
+  "unexpectedErrors": 0,
+  "realMathJax": true,
+  "testedImplementation": "cfefbe5ad6e18f5086cc221505e065a41e24b0db",
+  "provenance": "Fresh full route/mode sweep after review-startup and native-field history corrections. Initial failures remain in route-sweep-initial.json; subset startup rerun remains in route-sweep-startup.json."
+}

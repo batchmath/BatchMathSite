@@ -1,3 +1,5 @@
+> Final status: this is historical checkpoint evidence. Remaining reviews and the full approved-scope inventory are completed in [Batch 8](BATCH-8.md) and [FINAL-AUDIT.md](FINAL-AUDIT.md).
+
 # Batch 5 — Integrated Math 1 Units 1 and 2
 
 Twelve mathematical topic routes now default to MathLive. Original inputs, local editors, keypads and ?editor=legacy remain available. Main, Unit 6 and the separate IM1 content branch are not modified.
@@ -58,4 +60,4 @@ A trial resource cleanup did not eliminate the error and was reverted. Productio
 
 No mathematical source correction was needed in Batch 5. Sampling covers the declared families and modes, not every coefficient or arbitrary equivalent identity. Physical-device/assistive-technology certification is not claimed.
 
-IM1 Unit 1 hub/review and Unit 2 comprehensive review remain Batch 8. Next: Batch 6 IM1 Unit 3, with sequence subscripts, recursive/explicit formulas, equations and multipart active-field behavior. Then Calculus Prep and comprehensive/mixed-route coverage.
+Subsequent batches completed IM1 Unit 3, Calculus Prep and all reviews; the Unit 1 hub was verified navigation-only. See BATCH-8.md and FINAL-AUDIT.md.

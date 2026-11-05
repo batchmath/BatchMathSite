@@ -1,6 +1,8 @@
+> Final status: this is historical checkpoint evidence. Remaining reviews and the full approved-scope inventory are completed in [Batch 8](BATCH-8.md) and [FINAL-AUDIT.md](FINAL-AUDIT.md).
+
 # Batch 6 — Integrated Math 1 Unit 3
 
-Seventeen typed topic routes default to MathLive; their original local or shared editors remain available through ?editor=legacy and runtime recovery. All existing generator/controller files and original practice content remain unchanged. Section reviews and comprehensive review stay pending Batch 8.
+Seventeen typed topic routes default to MathLive; their original local or shared editors remain available through ?editor=legacy and runtime recovery. All existing generator/controller files and original practice content remain unchanged. Section reviews and comprehensive review were subsequently completed in Batch 8.
 
 ## Engine / field checklist
 

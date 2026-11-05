@@ -1,0 +1,10 @@
+{
+  "command": "node --test --test-concurrency=2 tools/mathlive-sitewide/*.test.mjs tools/mathlive-power-rule/*.test.mjs tools/mathlive-derivatives-pilot/chain.test.mjs tools/mathlive-batch1/*.test.mjs tools/mathlive-advanced-pilot/*.test.mjs",
+  "tests": 273,
+  "passed": 273,
+  "failed": 0,
+  "durationMs": 319886.527497,
+  "scope": "Final shared rerun after native-field history isolation; original pilots, every completed sitewide batch, AP/IM1 reviews, discovered continuity route, startup order, mathematical fixes and contract/source guards. Broader original 1200-seed application evidence retained; default 360-seed rerun archived separately.",
+  "totalPassingAcrossSharedAndFocusedRuns": 273,
+  "testedImplementation": "cfefbe5ad6e18f5086cc221505e065a41e24b0db"
+}

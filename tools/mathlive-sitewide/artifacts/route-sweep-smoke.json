@@ -1,0 +1,43 @@
+{
+  "results": [
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/continuity-parameters/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Value of a",
+        "Value of b"
+      ],
+      "fallback": false,
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/continuity-parameters/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Value of a",
+        "Value of b"
+      ],
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/continuity-parameters/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Value of a",
+        "Value of b"
+      ],
+      "fallback": true,
+      "activeMathFields": 2,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "knownMathJaxErrors": 0,
+  "unexpectedErrors": 0,
+  "realMathJax": true
+}

@@ -1,0 +1,2732 @@
+{
+  "mathliveVersion": "0.111.1",
+  "conditionalAugmentations": {
+    "interval": "brackets and union default on with interval=true unless explicitly disabled; see calculus-keypad.js",
+    "symbolicFunctions": "f/g and prime buttons depend on the existing data-bm-symbolic-functions flag",
+    "newton": "newton-controls.mjs adds established editable structures, infinity, subscript and approach-arrow commands to construction only",
+    "literalNumbers": "IM1 integer sign toggle and decimal spelling retain per-field semantics",
+    "prep": "Existing P/U/Escape shortcuts retained; on-screen Undefined remains Unit Circle-specific"
+  },
+  "sources": [
+    "assets/calculus-keypad.js",
+    "assets/unit5-*.js through original registry",
+    "assets/mathlive/*-profiles.mjs",
+    "assets/mathlive/im1-unit3-contracts.mjs",
+    "assets/mathlive/prep-contracts.mjs",
+    "assets/mathlive/review-contracts.mjs",
+    "assets/mathlive/slope-entry.mjs"
+  ],
+  "note": "Actual registered definitions. Profiles are selected by active question/field, not combined into a universal pad. Legacy builtins retained; only profiles referenced by route/field inventory are used. Browser button labels and insertion checks are retained in batch artifacts. Dynamic IM1 polynomial variables come from the question; the pattern entry documents the actual constructor.",
+  "profiles": {
+    "unit5-number": {
+      "decimal": true
+    },
+    "unit5-money": {
+      "decimal": true
+    },
+    "unit5-basic-x": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "variables": [
+        "x"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ],
+        [
+          "|u|",
+          "abs"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit5-basic-x-c": {
+      "fraction": true,
+      "exponent": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "x",
+        "C"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit5-basic-t": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "variables": [
+        "t"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ],
+        [
+          "|u|",
+          "abs"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit5-basic-t-c": {
+      "fraction": true,
+      "exponent": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "t",
+        "C"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit5-interval-basic": {
+      "fraction": true,
+      "constants": [
+        "pi"
+      ],
+      "parentheses": true,
+      "list": true,
+      "interval": true,
+      "union": false,
+      "infinity": true
+    },
+    "unit5-growth-exact": {
+      "fraction": true,
+      "logarithm": true,
+      "parentheses": true,
+      "decimal": true
+    },
+    "unit5-growth-formula": {
+      "fraction": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "t"
+      ],
+      "parentheses": true,
+      "decimal": true
+    },
+    "unit5-motion-value": {
+      "fraction": true,
+      "parentheses": true
+    },
+    "unit5-motion-value-e": {
+      "exponent": true,
+      "constants": [
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit5-motion-value-r": {
+      "fraction": true,
+      "radical": true,
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit5-motion-t": {
+      "fraction": true,
+      "exponent": true,
+      "variables": [
+        "t"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit5-motion-list": {
+      "list": true
+    },
+    "unit5-motion-list-dec": {
+      "list": true,
+      "decimal": true
+    },
+    "unit5-motion-intervals": {
+      "parentheses": true,
+      "list": true,
+      "interval": true,
+      "brackets": false
+    },
+    "unit5-motion-intervals-dec": {
+      "decimal": true,
+      "parentheses": true,
+      "list": true,
+      "interval": true,
+      "brackets": false
+    },
+    "unit5-rate-exact": {
+      "parentheses": true
+    },
+    "unit5-rate-exact-pi": {
+      "fraction": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "constants": [
+        "pi"
+      ]
+    },
+    "unit5-rate-exact-ln": {
+      "fraction": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "logarithm": true
+    },
+    "unit5-slope-exact": {
+      "fraction": true,
+      "parentheses": true
+    },
+    "unit5-slope-line": {
+      "fraction": true,
+      "exponent": true,
+      "variables": [
+        "x"
+      ],
+      "parentheses": true
+    },
+    "unit5-slope-list": {
+      "list": true
+    },
+    "unit5-slope-interval": {
+      "parentheses": true,
+      "list": true,
+      "interval": true,
+      "union": true,
+      "infinity": true
+    },
+    "unit4-exact": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "logarithm": true,
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-newton": {
+      "riemann": true,
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "k",
+        "n"
+      ],
+      "logarithm": true,
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-newton-value": {
+      "fraction": true
+    },
+    "unit4-geometry": {
+      "fraction": true,
+      "constants": [
+        "pi"
+      ],
+      "plus": true
+    },
+    "unit4-ftc": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "variables": [
+        "x"
+      ],
+      "logarithm": true,
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-sigma": {
+      "fraction": true,
+      "exponent": true,
+      "variables": [
+        "n"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-basic-indef": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "x",
+        "C"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "|u|",
+          "abs"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-basic-def": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-usub-x": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "x",
+        "C"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-usub-t": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "t",
+        "C"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-usub-theta": {
+      "fraction": true,
+      "exponent": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "θ",
+        "C"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-usub-r": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "variables": [
+        "r",
+        "C"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-usub-def": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "constants": [
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-log-indef": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "x",
+        "C"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ],
+        [
+          "|u|",
+          "abs"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-log-def": {
+      "fraction": true,
+      "logarithm": true,
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-mvt-avg": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit4-mvt-c": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "list": true,
+      "dna": true
+    },
+    "unit4-mvt-c-trig": {
+      "fraction": true,
+      "constants": [
+        "pi"
+      ],
+      "functions": [
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "cos⁻¹",
+          "acos"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "list": true
+    },
+    "unit5-sep-x": {
+      "fraction": true,
+      "radical": true,
+      "cubeRoot": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "x"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "cos⁻¹",
+          "acos"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ],
+        [
+          "|u|",
+          "abs"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit5-sep-t": {
+      "fraction": true,
+      "radical": true,
+      "cubeRoot": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "t"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "cos⁻¹",
+          "acos"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ],
+        [
+          "|u|",
+          "abs"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit5-sep-theta": {
+      "fraction": true,
+      "logarithm": true,
+      "variables": [
+        "θ"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit5-sep-interval": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "functions": [
+        [
+          "sin⁻¹",
+          "asin"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "list": true,
+      "interval": true,
+      "brackets": true,
+      "union": true,
+      "infinity": true
+    },
+    "migration-limit-finite": {
+      "fraction": true,
+      "decimal": true,
+      "radical": true,
+      "cubeRoot": true,
+      "nthRoot": true,
+      "exponent": true,
+      "logarithm": true,
+      "functions": [
+        [
+          "log",
+          "log"
+        ]
+      ],
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "migration-limit-signed": {
+      "fraction": true,
+      "decimal": true,
+      "radical": true,
+      "cubeRoot": true,
+      "nthRoot": true,
+      "exponent": true,
+      "logarithm": true,
+      "functions": [
+        [
+          "log",
+          "log"
+        ]
+      ],
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "infinity": true,
+      "dne": true
+    },
+    "unit3-rounded": {
+      "decimal": true
+    },
+    "unit3-number": {
+      "fraction": true,
+      "decimal": true,
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit3-exact": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "logarithm": true,
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit3-geometry-exact": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "constants": [
+        "pi"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit3-formula": {
+      "fraction": true,
+      "exponent": true,
+      "sequence": true,
+      "variables": [
+        "n"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "equality": true
+    },
+    "unit3-equation": {
+      "fraction": true,
+      "exponent": true,
+      "equation": true,
+      "variables": [
+        "x",
+        "y"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "equality": true
+    },
+    "unit3-recursive": {
+      "fraction": true,
+      "recursive": true,
+      "variables": [
+        "n"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "equality": true
+    },
+    "unit3-approximation": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "classification": true
+    },
+    "unit3-theorem": {
+      "fraction": true,
+      "radical": true,
+      "logarithm": true,
+      "exponent": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "list": true
+    },
+    "unit3-limit": {
+      "fraction": true,
+      "radical": true,
+      "logarithm": true,
+      "exponent": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "dne": true,
+      "infinity": true
+    },
+    "unit3-list": {
+      "fraction": true,
+      "radical": true,
+      "constants": [
+        "pi"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "list": true
+    },
+    "unit3-interval": {
+      "fraction": true,
+      "radical": true,
+      "constants": [
+        "pi"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "interval": true,
+      "infinity": true
+    },
+    "unit3-pair": {
+      "fraction": true,
+      "radical": true,
+      "constants": [
+        "pi"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "pair": true
+    },
+    "unit3-coordinate": {
+      "fraction": true,
+      "radical": true,
+      "constants": [
+        "pi"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "unit3-rounded-line": {
+      "decimal": true,
+      "equality": true,
+      "variables": [
+        "x",
+        "y"
+      ]
+    },
+    "limits-finite": {
+      "fraction": true,
+      "radical": true,
+      "cubeRoot": true,
+      "nthRoot": true,
+      "logarithm": true,
+      "exponent": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "limits-no-infinity": {
+      "fraction": true,
+      "radical": true,
+      "cubeRoot": true,
+      "nthRoot": true,
+      "logarithm": true,
+      "exponent": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "dne": true
+    },
+    "derivative-power": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "variables": [
+        "x"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "derivative-algebra": {
+      "fraction": true,
+      "exponent": true,
+      "radical": true,
+      "variables": [
+        "x"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "derivative-at-point-basic": {
+      "fraction": true,
+      "radical": true,
+      "constants": [
+        "pi"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "derivative-trig": {
+      "fraction": true,
+      "exponent": true,
+      "variables": [
+        "x"
+      ],
+      "constants": [
+        "pi"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "migration-derivative-inverse": {
+      "fraction": true,
+      "radical": true,
+      "logarithm": true,
+      "exponent": true,
+      "variables": [
+        "x",
+        "y"
+      ],
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "functions": [
+        [
+          "log",
+          "log"
+        ],
+        [
+          "|u|",
+          "abs"
+        ],
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "cos⁻¹",
+          "acos"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ],
+        [
+          "cot⁻¹",
+          "acot"
+        ],
+        [
+          "sec⁻¹",
+          "asec"
+        ],
+        [
+          "csc⁻¹",
+          "acsc"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "migration-derivative-rational": {
+      "fraction": true,
+      "decimal": true,
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "migration-derivative-algebraic-value": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "decimal": true,
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "migration-derivative-trig": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "decimal": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "variables": [
+        "x"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "log",
+          "log"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "migration-derivative-exp": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "decimal": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "variables": [
+        "x"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "log",
+          "log"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "migration-derivative-log": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "decimal": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "variables": [
+        "x",
+        "y"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "log",
+          "log"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "migration-derivative-implicit": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "decimal": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "variables": [
+        "x",
+        "y"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "log",
+          "log"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "migration-derivative-value": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "decimal": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "variables": [],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "log",
+          "log"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "migration-derivative-comprehensive-value": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "decimal": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "variables": [],
+      "functions": [
+        [
+          "tan⁻¹",
+          "atan"
+        ],
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "log",
+          "log"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "derivative-product": {
+      "fraction": true,
+      "radical": true,
+      "decimal": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "e",
+        "pi"
+      ],
+      "variables": [
+        "x"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "cos⁻¹",
+          "acos"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ],
+        [
+          "cot⁻¹",
+          "acot"
+        ],
+        [
+          "sec⁻¹",
+          "asec"
+        ],
+        [
+          "csc⁻¹",
+          "acsc"
+        ],
+        [
+          "log",
+          "log"
+        ],
+        [
+          "|u|",
+          "abs"
+        ]
+      ]
+    },
+    "derivative-chain": {
+      "fraction": true,
+      "radical": true,
+      "logarithm": true,
+      "exponent": true,
+      "variables": [
+        "x"
+      ],
+      "constants": [
+        "e"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "derivative-exponential": {
+      "fraction": true,
+      "logarithm": true,
+      "exponent": true,
+      "variables": [
+        "x"
+      ],
+      "constants": [
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "derivative-implicit": {
+      "fraction": true,
+      "radical": true,
+      "logarithm": true,
+      "exponent": true,
+      "variables": [
+        "x",
+        "y"
+      ],
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "derivative-log": {
+      "fraction": true,
+      "radical": true,
+      "logarithm": true,
+      "exponent": true,
+      "variables": [
+        "x",
+        "y"
+      ],
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "derivative-inverse-trig": {
+      "fraction": true,
+      "radical": true,
+      "logarithm": true,
+      "exponent": true,
+      "variables": [
+        "x"
+      ],
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "cos⁻¹",
+          "acos"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ],
+        [
+          "cot⁻¹",
+          "acot"
+        ],
+        [
+          "sec⁻¹",
+          "asec"
+        ],
+        [
+          "csc⁻¹",
+          "acsc"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "ml-unit1-trig-value": {
+      "fraction": true,
+      "decimal": true,
+      "radical": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "ml-unit1-rational-value": {
+      "fraction": true,
+      "decimal": true,
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "ml-im1-digits": {
+      "signed": false
+    },
+    "ml-im1-integer": {},
+    "ml-im1-decimal": {
+      "decimal": true
+    },
+    "ml-im1-fraction": {
+      "fraction": true
+    },
+    "ml-im1-equation-value": {
+      "fraction": true,
+      "decimal": true,
+      "operators": [
+        [
+          "No Solution",
+          "No Solution"
+        ],
+        [
+          "Infinite Solutions",
+          "Infinite Solutions"
+        ]
+      ]
+    },
+    "ml-im1-interval": {
+      "parentheses": true,
+      "interval": true,
+      "infinity": true,
+      "list": true,
+      "brackets": true,
+      "union": false
+    },
+    "ml-im1-u3-number": {
+      "fraction": true,
+      "decimal": true
+    },
+    "ml-im1-u3-initial-term": {
+      "fraction": true,
+      "decimal": true,
+      "operators": [
+        [
+          "a₁",
+          "a₁"
+        ]
+      ],
+      "equality": true
+    },
+    "ml-im1-u3-formula": {
+      "fraction": true,
+      "decimal": true,
+      "exponent": true,
+      "operators": [
+        [
+          "aₙ",
+          "aₙ"
+        ],
+        [
+          "f(n)",
+          "f(n)"
+        ]
+      ],
+      "variables": [
+        "n",
+        "y"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "equality": true
+    },
+    "ml-im1-u3-recursive-rule": {
+      "fraction": true,
+      "decimal": true,
+      "operators": [
+        [
+          "aₙ",
+          "aₙ"
+        ],
+        [
+          "aₙ₋₁",
+          "aₙ₋₁"
+        ]
+      ],
+      "arithmetic": true,
+      "equality": true
+    },
+    "ml-im1-u3-recursive": {
+      "fraction": true,
+      "decimal": true,
+      "recursive": true,
+      "arithmetic": true,
+      "equality": true
+    },
+    "ml-im1-u3-line-function": {
+      "fraction": true,
+      "decimal": true,
+      "equation": true,
+      "variables": [
+        "x",
+        "y"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "equality": true
+    },
+    "ml-im1-u3-line": {
+      "fraction": true,
+      "decimal": true,
+      "variables": [
+        "x",
+        "y"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "equality": true
+    },
+    "ml-prep-value": {
+      "fraction": true,
+      "decimal": true,
+      "radical": true,
+      "parentheses": true,
+      "arithmetic": true,
+      "operators": [
+        [
+          "Undefined",
+          "undefined"
+        ]
+      ]
+    },
+    "ml-prep-coordinates": {
+      "fraction": true,
+      "decimal": true,
+      "radical": true,
+      "parentheses": true,
+      "arithmetic": true,
+      "list": true
+    },
+    "ml-prep-radians": {
+      "fraction": true,
+      "decimal": true,
+      "parentheses": true,
+      "arithmetic": true,
+      "constants": [
+        "pi"
+      ]
+    },
+    "ml-prep-degrees": {
+      "fraction": true,
+      "decimal": true,
+      "parentheses": true,
+      "arithmetic": true,
+      "operators": [
+        [
+          "°",
+          "°"
+        ]
+      ]
+    },
+    "ml-prep-solutions": {
+      "fraction": true,
+      "decimal": true,
+      "parentheses": true,
+      "arithmetic": true,
+      "constants": [
+        "pi"
+      ],
+      "list": true
+    },
+    "ml-prep-factor": {
+      "fraction": true,
+      "decimal": true,
+      "parentheses": true,
+      "arithmetic": true,
+      "exponent": true,
+      "variables": [
+        "x"
+      ]
+    },
+    "ml-prep-algebra": {
+      "decimal": true,
+      "parentheses": true,
+      "arithmetic": true,
+      "variables": [
+        "x"
+      ]
+    },
+    "ml-prep-coefficients": {
+      "decimal": true,
+      "list": true
+    },
+    "ml-prep-rrt": {
+      "fraction": true,
+      "decimal": true,
+      "list": true,
+      "operators": [
+        [
+          "±",
+          "±"
+        ]
+      ]
+    },
+    "ml-prep-quotient": {
+      "fraction": true,
+      "decimal": true,
+      "parentheses": true,
+      "arithmetic": true,
+      "exponent": true,
+      "variables": [
+        "x"
+      ]
+    },
+    "ml-prep-remainder": {
+      "decimal": true
+    },
+    "ml-unit3-equation": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "decimal": true,
+      "equation": true,
+      "variables": [
+        "x",
+        "y"
+      ],
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "equality": true
+    },
+    "ml-unit3-exact": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ]
+      ]
+    },
+    "ml-unit3-algebraic-exact": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "constants": [
+        "pi"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "ml-unit3-geometry-exact": {
+      "fraction": true,
+      "radical": true,
+      "nthRoot": true,
+      "exponent": true,
+      "constants": [
+        "pi"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "ml-unit3-coordinate": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "decimal": true,
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "cos⁻¹",
+          "acos"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ]
+      ]
+    },
+    "ml-unit3-pair": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "decimal": true,
+      "pair": true,
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "cos⁻¹",
+          "acos"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ]
+      ]
+    },
+    "ml-unit3-list": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "decimal": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "list": true
+    },
+    "ml-unit3-theorem": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "list": true,
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "cos⁻¹",
+          "acos"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ]
+      ]
+    },
+    "ml-unit3-interval": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "list": true,
+      "interval": true,
+      "infinity": true,
+      "functions": [
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "cos⁻¹",
+          "acos"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ]
+      ]
+    },
+    "ml-unit3-rounded-interval": {
+      "decimal": true,
+      "parentheses": true,
+      "list": true,
+      "interval": true,
+      "infinity": true
+    },
+    "ml-unit3-approximation": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ]
+      ]
+    },
+    "ml-unit3-limit": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "csc",
+          "csc"
+        ]
+      ]
+    },
+    "ml-unit5-basic-x-c": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "x",
+        "C"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "ml-unit5-basic-t-c": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "t",
+        "C"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "ml-unit4-mvt-c": {
+      "fraction": true,
+      "radical": true,
+      "nthRoot": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "list": true,
+      "dna": true,
+      "operators": [
+        [
+          "±",
+          "±"
+        ]
+      ]
+    },
+    "ml-unit4-geometry": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "constants": [
+        "pi"
+      ]
+    },
+    "ml-unit4-usub-def": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "radical": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ]
+      ]
+    },
+    "ml-unit4-log-def": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "radical": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "|u|",
+          "abs"
+        ]
+      ]
+    },
+    "ml-unit4-mvt-avg": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "radical": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ]
+      ]
+    },
+    "ml-unit4-approx-exact": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "radical": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ]
+      ]
+    },
+    "ml-unit4-sigma-value": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "ml-unit5-growth-formula": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "logarithm": true,
+      "decimal": true,
+      "constants": [
+        "e"
+      ],
+      "variables": [
+        "t"
+      ]
+    },
+    "ml-unit5-motion-value": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "decimal": true
+    },
+    "ml-unit5-motion-value-e": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "constants": [
+        "e"
+      ],
+      "decimal": true
+    },
+    "ml-unit5-motion-value-r": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "radical": true,
+      "decimal": true
+    },
+    "ml-unit5-motion-list": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "radical": true,
+      "list": true,
+      "decimal": true
+    },
+    "ml-unit5-motion-intervals": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "radical": true,
+      "list": true,
+      "interval": true,
+      "brackets": false,
+      "decimal": true
+    },
+    "ml-unit5-rate-exact": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "radical": true,
+      "decimal": true
+    },
+    "ml-unit5-rate-exact-pi": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "constants": [
+        "pi"
+      ],
+      "decimal": true
+    },
+    "ml-unit5-slope-exact": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "decimal": true
+    },
+    "ml-unit5-slope-line": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "variables": [
+        "x"
+      ],
+      "decimal": true
+    },
+    "ml-unit5-basic-x": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "decimal": true,
+      "radical": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "variables": [
+        "x"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ],
+        [
+          "|u|",
+          "abs"
+        ]
+      ]
+    },
+    "ml-unit5-basic-t": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "decimal": true,
+      "radical": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "variables": [
+        "t"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "sin⁻¹",
+          "asin"
+        ],
+        [
+          "tan⁻¹",
+          "atan"
+        ],
+        [
+          "|u|",
+          "abs"
+        ]
+      ]
+    },
+    "ml-unit5-motion-t": {
+      "fraction": true,
+      "exponent": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "decimal": true,
+      "variables": [
+        "t"
+      ]
+    },
+    "ml-unit5-interval-basic": {
+      "fraction": true,
+      "decimal": true,
+      "constants": [
+        "pi"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "list": true,
+      "interval": true,
+      "union": false,
+      "infinity": true
+    },
+    "ml-unit5-slope-interval": {
+      "fraction": true,
+      "decimal": true,
+      "arithmetic": true,
+      "parentheses": true,
+      "list": true,
+      "interval": true,
+      "union": true,
+      "infinity": true
+    },
+    "ml-review-difference": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "variables": [
+        "x",
+        "h"
+      ],
+      "arithmetic": true,
+      "parentheses": true
+    },
+    "ml-slope-entry": {
+      "fraction": true,
+      "decimal": true,
+      "operators": [
+        [
+          "Undefined",
+          "undefined"
+        ]
+      ]
+    },
+    "ml-curve-point": {
+      "decimal": true
+    },
+    "ml-im1-polynomial-(actual variables)": {
+      "variables": "actual generated p.variables only",
+      "exponent": true,
+      "arithmetic": true
+    }
+  }
+}

@@ -1,6 +1,8 @@
+> Final status: this is historical checkpoint evidence. Remaining reviews and the full approved-scope inventory are completed in [Batch 8](BATCH-8.md) and [FINAL-AUDIT.md](FINAL-AUDIT.md).
+
 # Batch 3 — AP Calculus Unit 3 topic fields
 
-Implemented on migration/mathlive-sitewide after Batch 2 commit 1c95ed904133521320ede2b03ca27bda8a1f7a51. All 19 topic routes default to MathLive; ?editor=legacy remains. Comprehensive reviews remain Batch 8.
+Implemented on migration/mathlive-sitewide after Batch 2 commit 1c95ed904133521320ede2b03ca27bda8a1f7a51. All 19 topic routes default to MathLive; ?editor=legacy remains. Comprehensive reviews were subsequently completed in Batch 8.
 
 ## Engine/field checklist
 
@@ -56,4 +58,4 @@ Nth roots use structural fractional powers where the old Unit 3 parser lacks roo
 - Chromium 154, real local MathLive and same-origin real MathJax: 19/19 routes, 185 paired submissions, no page errors. Supplementary browser reports cover keypad controls, Enter, next-question progression, multipart focus, 375px layout and runtime recovery.
 - Theorem/applicability/classification choices, selectors and graphical context remain specialized. Current topic registries do not reach older mixed text/classification renderer paths.
 - This covers enumerated source templates and sampled coefficients, not arbitrary equivalent identities or physical-device/accessibility certification. Legacy checker decisions are preserved. No new mathematical defect confirmed.
-- Reviews/assignments remain pending. The sitewide migration is not complete. Next: Unit 1, IM1, Calculus Prep, mixed routes.
+- Subsequent batches completed Unit 1, IM1, Calculus Prep and mixed/review routes; see FINAL-AUDIT.md.
