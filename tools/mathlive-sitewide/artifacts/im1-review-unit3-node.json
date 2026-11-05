@@ -1,0 +1,206 @@
+[
+  {
+    "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/practice/index.html",
+    "questions": 1680,
+    "parts": 2705,
+    "pairs": 17346,
+    "modes": [
+      "mixed",
+      "identifying-arithmetic-sequences",
+      "common-difference-next-terms",
+      "explicit-formulas-arithmetic-sequences",
+      "finding-a-specific-term",
+      "finding-the-term-number",
+      "arithmetic-sequence-word-problems"
+    ],
+    "profiles": [
+      "ml-im1-u3-number",
+      "ml-im1-u3-formula"
+    ],
+    "families": [
+      "mixed|specific_term",
+      "mixed|identify-false",
+      "mixed|next_terms",
+      "mixed|from_sequence",
+      "mixed|term_number",
+      "mixed|identify-true",
+      "mixed|from_values",
+      "mixed|model",
+      "identifying-arithmetic-sequences|identify-true",
+      "identifying-arithmetic-sequences|identify-false",
+      "common-difference-next-terms|next_terms",
+      "explicit-formulas-arithmetic-sequences|from_sequence",
+      "explicit-formulas-arithmetic-sequences|from_values",
+      "finding-a-specific-term|specific_term",
+      "finding-the-term-number|term_number",
+      "arithmetic-sequence-word-problems|model"
+    ]
+  },
+  {
+    "route": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/section-b-review/practice/index.html",
+    "questions": 1440,
+    "parts": 1151,
+    "pairs": 6906,
+    "modes": [
+      "mixed",
+      "evaluating-functions",
+      "solving-function-equations",
+      "slope-from-two-points",
+      "collinearity-and-slope",
+      "slope-from-graphs"
+    ],
+    "profiles": [
+      "ml-im1-u3-number"
+    ],
+    "families": [
+      "mixed|two_points",
+      "mixed|linear",
+      "mixed|quadratic",
+      "mixed|solve",
+      "mixed|graph",
+      "mixed|collinearity",
+      "evaluating-functions|quadratic",
+      "evaluating-functions|linear",
+      "solving-function-equations|solve",
+      "slope-from-two-points|two_points",
+      "collinearity-and-slope|collinearity",
+      "slope-from-graphs|graph"
+    ]
+  },
+  {
+    "route": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/section-c-review/practice/index.html",
+    "questions": 1200,
+    "parts": 1654,
+    "pairs": 9924,
+    "modes": [
+      "mixed",
+      "slope-intercept-form",
+      "writing-equations-of-lines",
+      "converting-point-slope-to-slope-intercept",
+      "linear-function-word-problems"
+    ],
+    "profiles": [
+      "ml-im1-u3-line",
+      "ml-im1-u3-number",
+      "ml-im1-u3-line-function"
+    ],
+    "families": [
+      "mixed|convert",
+      "mixed|identify",
+      "mixed|point_slope_given",
+      "mixed|point_slope_points",
+      "mixed|model",
+      "mixed|slope_intercept_points",
+      "mixed|write",
+      "slope-intercept-form|identify",
+      "slope-intercept-form|write",
+      "writing-equations-of-lines|point_slope_given",
+      "writing-equations-of-lines|slope_intercept_points",
+      "writing-equations-of-lines|point_slope_points",
+      "converting-point-slope-to-slope-intercept|convert",
+      "linear-function-word-problems|model"
+    ]
+  },
+  {
+    "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/index.html",
+    "questions": 960,
+    "parts": 2770,
+    "pairs": 17585,
+    "modes": [
+      "mixed",
+      "recursive-formulas-from-sequences",
+      "recursive-to-explicit-formulas",
+      "common-difference-recursive-formulas"
+    ],
+    "profiles": [
+      "ml-im1-u3-formula",
+      "ml-im1-u3-number",
+      "ml-im1-u3-initial-term",
+      "ml-im1-u3-recursive-rule"
+    ],
+    "families": [
+      "mixed|convert",
+      "mixed|difference",
+      "mixed|write",
+      "mixed|missing_difference",
+      "mixed|terms",
+      "recursive-formulas-from-sequences|write",
+      "recursive-formulas-from-sequences|terms",
+      "recursive-formulas-from-sequences|difference",
+      "recursive-to-explicit-formulas|convert",
+      "common-difference-recursive-formulas|missing_difference"
+    ]
+  },
+  {
+    "route": "im1/unit-3-linear-equation/topics/comprehensive-review/practice/index.html",
+    "questions": 1200,
+    "parts": 1973,
+    "pairs": 12326,
+    "modes": [
+      "mixed",
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "profiles": [
+      "ml-im1-u3-number",
+      "ml-im1-u3-formula",
+      "ml-im1-u3-line-function",
+      "ml-im1-u3-line",
+      "ml-im1-u3-initial-term",
+      "ml-im1-u3-recursive-rule"
+    ],
+    "families": [
+      "mixed|collinearity",
+      "mixed|identify-false",
+      "mixed|specific_term",
+      "mixed|solve",
+      "mixed|next_terms",
+      "mixed|model",
+      "mixed|linear",
+      "mixed|graph",
+      "mixed|from_values",
+      "mixed|convert",
+      "mixed|write",
+      "mixed|point_slope_given",
+      "mixed|two_points",
+      "mixed|terms",
+      "mixed|from_sequence",
+      "mixed|missing_difference",
+      "mixed|identify-true",
+      "mixed|point_slope_points",
+      "mixed|term_number",
+      "mixed|identify",
+      "mixed|difference",
+      "mixed|quadratic",
+      "mixed|slope_intercept_points",
+      "a|specific_term",
+      "a|identify-false",
+      "a|next_terms",
+      "a|from_sequence",
+      "a|term_number",
+      "a|identify-true",
+      "a|from_values",
+      "a|model",
+      "b|two_points",
+      "b|linear",
+      "b|quadratic",
+      "b|solve",
+      "b|graph",
+      "b|collinearity",
+      "c|convert",
+      "c|identify",
+      "c|point_slope_given",
+      "c|point_slope_points",
+      "c|model",
+      "c|slope_intercept_points",
+      "c|write",
+      "d|convert",
+      "d|difference",
+      "d|write",
+      "d|missing_difference",
+      "d|terms"
+    ]
+  }
+]

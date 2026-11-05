@@ -1,0 +1,2547 @@
+{
+  "baseline": "535527a172b4a2e4c26d9cf970a6d061e7802849",
+  "videoPagesAudited": 66,
+  "pagesChanged": 15,
+  "deferredUnit6VideoPages": [
+    "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/index.html"
+  ],
+  "pages": [
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 2,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 2,
+            "layout": "pair"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 2,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 2,
+            "layout": "pair"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 4,
+        "specializedReviewVideos": 7,
+        "collections": []
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 4,
+        "specializedReviewVideos": 7,
+        "collections": []
+      },
+      "changed": false,
+      "requiredPresentation": "Retain specialized homework/review controls",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/delta-epsilon-proofs/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/intermediate-value-theorem/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-limits/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 2,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 2,
+            "layout": "pair"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 2,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 2,
+            "layout": "pair"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/sin-one-over-x/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 4,
+        "specializedReviewVideos": 0,
+        "collections": []
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 4,
+        "specializedReviewVideos": 0,
+        "collections": []
+      },
+      "changed": false,
+      "requiredPresentation": "Retain specialized homework/review controls",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 1,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 1,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 1,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 2,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/difference-quotient/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/exponential-functions/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 1,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 4,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 4,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 1,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 1,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 2,
+        "proofVideos": 1,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 6,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 2,
+            "layout": "pair"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 2,
+        "proofVideos": 1,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 6,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 3,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/the-product-rule/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 1,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 1,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 2,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 1,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 3,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 1,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 3,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 2,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 2,
+        "homeworkWalkthroughs": 3,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 2,
+            "layout": "pair"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 2,
+        "homeworkWalkthroughs": 3,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 2,
+            "layout": "pair"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 4,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 4,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 4,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 4,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/graphing-functions/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/graphing-the-derivative/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 1,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 1,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/motion/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 2,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 2,
+            "layout": "pair"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 2,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 2,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/optimization/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/related-rates/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 1,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/semester-1-review/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 5,
+        "specializedReviewVideos": 0,
+        "collections": []
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 5,
+        "specializedReviewVideos": 0,
+        "collections": []
+      },
+      "changed": false,
+      "requiredPresentation": "Retain specialized homework/review controls",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/basic-integrals/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/comprehensive-review/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 4,
+        "specializedReviewVideos": 0,
+        "collections": []
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 4,
+        "specializedReviewVideos": 0,
+        "collections": []
+      },
+      "changed": false,
+      "requiredPresentation": "Retain specialized homework/review controls",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/converting-a-rectangular-approximation-into-exact-area/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 1,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/integrals-resulting-in-natural-log-and-inverse-trigonometric-functions/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/integrals-using-geometry/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/introduction-to-sigma-notation/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/mean-value-theorem-for-integrals/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 1,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "lecture",
+            "count": 1,
+            "layout": "large"
+          },
+          {
+            "role": "supporting",
+            "count": 1,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": true,
+      "requiredPresentation": "Lecture group uses count rule; unified supporting gallery always opens modal",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/rectangular-approximations/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/trapezoidal-approximations/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/u-substitution-integrals/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 3,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 3,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": []
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": []
+      },
+      "changed": false,
+      "requiredPresentation": "Retain specialized homework/review controls",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/exponential-growth-and-decay-interest-newton-s-law-of-cooling/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/motion-problems/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/rate-problems/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/separable-differential-equations/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 2,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/slope-fields/index.html",
+      "before": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 1,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 0,
+        "homeworkWalkthroughs": 1,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 4,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 4,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 4,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 4,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/distributive-property/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/equivalent-expressions-combining-like-terms/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 1,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 1,
+            "layout": "large"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 2,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 2,
+            "layout": "pair"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 2,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 2,
+            "layout": "pair"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    },
+    {
+      "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/index.html",
+      "before": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 5,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 5,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "after": {
+        "lectureVideos": 0,
+        "exampleVideos": 0,
+        "proofVideos": 0,
+        "collectionVideosWithoutDesignatedPrimary": 5,
+        "homeworkWalkthroughs": 0,
+        "specializedReviewVideos": 0,
+        "collections": [
+          {
+            "role": "collection",
+            "count": 5,
+            "layout": "gallery"
+          }
+        ]
+      },
+      "changed": false,
+      "requiredPresentation": "Existing collection count rule",
+      "approvedVideoMetadataPreserved": true,
+      "resourceLinksAndSpecializedWorkflowsPreserved": true
+    }
+  ]
+}

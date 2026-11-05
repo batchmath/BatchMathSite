@@ -1,0 +1,24 @@
+{
+  "route": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/continuity-parameters/index.html",
+  "questions": 1000,
+  "parts": 1500,
+  "pairs": 5000,
+  "families": [
+    "two_piece_removable_rational",
+    "quadratic_parameter",
+    "three_piece_middle_system",
+    "three_piece_log_singleton",
+    "three_piece_split_parameters",
+    "piecewise_value",
+    "three_piece_system",
+    "piecewise_parameter",
+    "two_piece_branch_matching",
+    "two_piece_removable_trig",
+    "removable_fill"
+  ],
+  "fields": [
+    "k",
+    "a",
+    "b"
+  ]
+}

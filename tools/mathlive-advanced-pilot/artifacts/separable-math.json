@@ -1,0 +1,113 @@
+{
+  "families": [
+    {
+      "family": "product",
+      "samples": 500,
+      "gradingPairs": 2500,
+      "tiers": [
+        "challenging",
+        "foundational",
+        "intermediate"
+      ]
+    },
+    {
+      "family": "powers_y",
+      "samples": 500,
+      "gradingPairs": 2500,
+      "tiers": [
+        "challenging",
+        "foundational",
+        "intermediate"
+      ]
+    },
+    {
+      "family": "log_rational",
+      "samples": 500,
+      "gradingPairs": 2500,
+      "tiers": [
+        "challenging",
+        "intermediate"
+      ]
+    },
+    {
+      "family": "trig",
+      "samples": 500,
+      "gradingPairs": 2500,
+      "tiers": [
+        "challenging",
+        "foundational",
+        "intermediate"
+      ]
+    },
+    {
+      "family": "exp_y",
+      "samples": 500,
+      "gradingPairs": 2500,
+      "tiers": [
+        "challenging",
+        "intermediate"
+      ]
+    },
+    {
+      "family": "radical_branch",
+      "samples": 500,
+      "gradingPairs": 2500,
+      "tiers": [
+        "challenging",
+        "intermediate"
+      ]
+    }
+  ],
+  "subtypes": [
+    "cbrt",
+    "circ",
+    "cos2",
+    "cosesin",
+    "cosxy",
+    "exmy",
+    "expsq",
+    "eyt",
+    "kxy",
+    "kxyq",
+    "lin",
+    "lnxy",
+    "quad",
+    "shift",
+    "sqrty",
+    "tany",
+    "xey",
+    "xlnx",
+    "xpb",
+    "xsin",
+    "xy",
+    "y2",
+    "y2sin",
+    "y2x",
+    "y3",
+    "yx"
+  ],
+  "variables": [
+    "t",
+    "theta",
+    "x"
+  ],
+  "functions": [
+    "abs",
+    "acos",
+    "asin",
+    "atan",
+    "cbrt",
+    "cos",
+    "ln",
+    "sin",
+    "sqrt"
+  ],
+  "weights": {
+    "product": 20,
+    "powers_y": 20,
+    "log_rational": 15,
+    "trig": 15,
+    "exp_y": 15,
+    "radical_branch": 15
+  }
+}

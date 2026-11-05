@@ -131,6 +131,8 @@
       const ch=part[i];
       if (ch==='('||ch==='['||ch==='{') depth++;
       else if (ch===')'||ch===']'||ch==='}') depth=Math.max(0,depth-1);
+      // A list separator ends this answer; never move a sign across it.
+      else if (depth===0 && (ch===','||ch===';')) return true;
       else if ((ch==='+'||ch==='-') && depth===0 && i>0 && part[i-1]!=='^' && !/[+-]/.test(part[i-1])) return true;
     }
     return false;

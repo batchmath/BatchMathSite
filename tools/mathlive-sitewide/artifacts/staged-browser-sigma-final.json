@@ -1,0 +1,75 @@
+{
+  "browser": "154.0.8037.57",
+  "realMathJax": true,
+  "results": [
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/introduction-to-sigma-notation/practice/index.html",
+      "passed": true,
+      "correctFields": 2,
+      "retainedChoices": 0,
+      "profiles": [
+        "unit4-sigma",
+        "unit4-exact"
+      ]
+    }
+  ],
+  "errors": [],
+  "checkerPairs": 5,
+  "controlProfiles": {
+    "unit4-sigma": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      "(",
+      ")",
+      "+",
+      "·",
+      "n",
+      "ab",
+      "xⁿ",
+      "←",
+      "→",
+      "↑",
+      "↓",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ],
+    "ml-unit4-sigma-value": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      "(",
+      ")",
+      "+",
+      "·",
+      "ab",
+      "xⁿ",
+      "←",
+      "→",
+      "↑",
+      "↓",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ]
+  }
+}

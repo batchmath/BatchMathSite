@@ -72,7 +72,7 @@ a{color:inherit}.topbar{min-height:82px;border-bottom:1px solid #181818;display:
 <meta name="twitter:image" content="https://batchmath.net/assets/batchmath-social-card-v1.png">
 <meta name="twitter:image:alt" content="BatchMath — math resources for Integrated Math 1, Calculus Prep, and AP Calculus AB">
 <script type="application/ld+json" data-batchmath-structured-data="11">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://batchmath.net/ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/#page","name":"Derivatives Practice | AP Calculus AB | BatchMath","url":"https://batchmath.net/ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/","description":"AP Calculus AB: Practice derivative rules by topic or choose Mixed Derivative Practice for a broad review.","isPartOf":{"@id":"https://batchmath.net/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://batchmath.net/"},{"@type":"ListItem","position":2,"name":"AP Calculus AB","item":"https://batchmath.net/ap-calculus/"},{"@type":"ListItem","position":3,"name":"Unit 2 - Derivatives","item":"https://batchmath.net/ap-calculus/unit-2-derivatives/"},{"@type":"ListItem","position":4,"name":"Comprehensive Review","item":"https://batchmath.net/ap-calculus/unit-2-derivatives/topics/comprehensive-review/"},{"@type":"ListItem","position":5,"name":"Derivatives Practice","item":"https://batchmath.net/ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/"}]}]}</script>
-</head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
+<link rel="stylesheet" href="/assets/mathlive/pilot.css"><script type="module" src="/assets/mathlive/review-static.mjs"></script></head><body><a class="skip-link" href="#main-content">Skip to main content</a><header class="topbar">
 <img class="corner" src="../../../../../assets/batchmath-portrait.jpg" alt="">
 <a class="logo" href="../../../../../">BatchMath<span class="tm-mark">™</span></a>
 <div class="profile"><img src="../../../../../assets/batchmath-portrait.jpg" alt="BatchMath"><button class="menu-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="course-menu" aria-label="Open course menu">COURSES ▼</button>
@@ -237,7 +237,7 @@ function quotient(){
  if(type===5){const a=ri(1,4),b=ri(1,5),k=ri(2,6);const num=poly2Tex(a,0,b),ne=poly2Expr(a,0,b);return mk("quotient",`qa5-${a}-${b}-${k}`,"Find the derivative.",`f(x)=\\frac{${num}}{\\sin(${k}x)}`,`(2*${a}*x*sin(${k}*x)-(${ne})*${k}*cos(${k}*x))/(sin(${k}*x)^2)`,`\\frac{${2*a}x\\sin(${k}x)-${k}(${num})\\cos(${k}x)}{\\sin^2(${k}x)}`,`Use the quotient rule and the chain rule in the sine denominator.`)}
  if(type===6){const k=ri(2,5),a=ri(1,5);return mk("quotient",`qa6-${k}-${a}`,"Find the derivative.",`f(x)=\\frac{e^{\\sin(${k}x)}}{x+${a}}`,`(e^(sin(${k}*x))*cos(${k}*x)*${k}*(x+${a})-e^(sin(${k}*x)))/(x+${a})^2`,`\\frac{${k}(x+${a})e^{\\sin(${k}x)}\\cos(${k}x)-e^{\\sin(${k}x)}}{(x+${a})^2}`,`Use the quotient rule and multiple chain-rule layers in the exponential numerator.`)}
  if(type===7){const k=ri(2,5),a=ri(1,5),inner=`x^2+${a}`;return mk("quotient",`qa7-${k}-${a}`,"Find the derivative.",`f(x)=\\frac{\\tan(${k}x)}{\\sqrt{${inner}}}`,`(${k}*sec(${k}*x)^2*sqrt(${inner})-tan(${k}*x)*(x/sqrt(${inner})))/(${inner})`,`\\frac{${k}(${inner})\\sec^2(${k}x)-x\\tan(${k}x)}{(${inner})^{\\frac{3}{2}}}`,`Use the quotient rule and chain rule in both pieces.`)}
- const a=ri(2,5),b=ri(1,5),k=ri(2,5);return mk("quotient",`qa8-${a}-${b}-${k}`,"Find the derivative.",`f(x)=\\frac{\\ln(${a}x+${b})}{e^{${k}x}}`,`((${a}/(${a}*x+${b}))*e^(${k}*x)-ln(${a}*x+${b})*${k}*e^(${k}*x))/(e^(${k}*x)^2)`,`\\frac{\\frac{${a}e^{${k}x}}{${a}x+${b}}-${k}e^{${k}x}\\ln(${a}x+${b})}{e^{${2*k}x}}`,`Use the quotient rule and chain rule in both numerator and denominator.`)
+ const a=ri(2,5),b=ri(1,5),k=ri(2,5);return mk("quotient",`qa8-${a}-${b}-${k}`,"Find the derivative.",`f(x)=\\frac{\\ln(${a}x+${b})}{e^{${k}x}}`,`((${a}/(${a}*x+${b}))*e^(${k}*x)-ln(${a}*x+${b})*${k}*e^(${k}*x))/(e^(${2*k}*x))`,`\\frac{\\frac{${a}e^{${k}x}}{${a}x+${b}}-${k}e^{${k}x}\\ln(${a}x+${b})}{e^{${2*k}x}}`,`Use the quotient rule and chain rule in both numerator and denominator.`)
 }
 const trigRules={
  sin:{tex:"\\sin x",dtex:"\\cos x",expr:"sin(x)",dexpr:"cos(x)"},
@@ -460,7 +460,7 @@ const mixedWeights=["difference","basic","product","quotient","trig","chain","ex
 
 // Safe expression parser/evaluator used only for mathematical equivalence checking.
 const FUNCS=new Set(["asin","acos","atan","acot","asec","acsc","sin","cos","tan","sec","csc","cot","sqrt","ln","log","abs","exp"]);
-const IDS=["asin","acos","atan","acot","asec","acsc","sqrt","sin","cos","tan","sec","csc","cot","ln","log","abs","exp","pi","x","y","e"];
+const IDS=["asin","acos","atan","acot","asec","acsc","sqrt","sin","cos","tan","sec","csc","cot","ln","log","abs","exp","pi","x","y","h","e"];
 function normalizeInput(raw){
  raw=window.BatchMathAnswers?.normalizeFractionSigns(raw) ?? raw;
  let s=String(raw||"").trim().toLowerCase()
@@ -619,6 +619,8 @@ function equivalent(student,expected,vars){
  const scopes=[];
  if(vars.includes("y")){for(let j=0;j<xvals.length;j++)scopes.push({x:xvals[j],y:yvals[j%yvals.length]});for(let j=0;j<30;j++)scopes.push({x:-4+8*BatchMathRNG.random(),y:-4+8*BatchMathRNG.random()})}
  else{for(const x of xvals)scopes.push({x});for(let j=0;j<35;j++)scopes.push({x:-5+10*BatchMathRNG.random()})}
+ // Difference quotients declare h; use varied nonzero increments in the existing sample scopes.
+ if(vars.includes("h"))scopes.forEach((sc,i)=>{sc.h=yvals[(3*i+1)%yvals.length];});
  for(const sc of scopes){let a,b;try{a=evalTree(A,sc);b=evalTree(B,sc)}catch(e){continue}if(!Number.isFinite(a)||!Number.isFinite(b)||Math.abs(a)>1e14||Math.abs(b)>1e14)continue;if(!closeEnough(a,b))return false;if(++good>=14)return true}
  return good>=6;
 }
@@ -627,7 +629,7 @@ function typeset(nodes){if(window.MathJax&&MathJax.typesetPromise)MathJax.typese
 function makeProblem(){
  const selected=$("category").value;let p=null;
  for(let tries=0;tries<120;tries++){const cat=selected==="mixed"?pick(mixedWeights):selected;p=generators[cat]();if(!seen.has(p.id)){seen.add(p.id);break}if(seen.size>900)seen.clear()}
- current=p;current.answered=false;window.BMAnalytics?.ensurePracticeStarted({practice_mode:$("category").value});window.BMAnalytics?.problemGenerated(current,{practice_mode:$("category").value});$("question").innerHTML=p.q;$("answer").value="";window.BatchMathCalculusKeypad?.reset?.();$("answer").disabled=false;$("submit").disabled=false;$("next").style.display="none";$("feedback").className="feedback";$("feedback").innerHTML="";$("topic-name").textContent=$("category").selectedOptions[0].textContent;typeset([$("question")]);if(window.BatchMathCalculusKeypad)BatchMathCalculusKeypad.focus();else $("answer").focus();
+ current=p;current.answered=false;window.BMAnalytics?.ensurePracticeStarted({practice_mode:$("category").value});window.BMAnalytics?.problemGenerated(current,{practice_mode:$("category").value});$("question").dataset.mathliveFamily=p.cat;$("question").innerHTML=p.q;$("answer").value="";window.BatchMathCalculusKeypad?.reset?.();$("answer").disabled=false;$("submit").disabled=false;$("next").style.display="none";$("feedback").className="feedback";$("feedback").innerHTML="";$("topic-name").textContent=$("category").selectedOptions[0].textContent;typeset([$("question")]);if(window.BatchMathCalculusKeypad)BatchMathCalculusKeypad.focus();else $("answer").focus();
 }
 function expandedPolynomial(raw){
  const t=normalizeInput(raw).replace(/\s+/g,'');

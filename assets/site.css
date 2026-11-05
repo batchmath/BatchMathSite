@@ -827,3 +827,6 @@ body .topic-pager-slot{display:block}
   .bm-breadcrumbs{margin-bottom:14px;font-size:.73rem}
   .bm-seo-context{font-size:.84rem;line-height:1.45}
 }
+
+/* Existing infinity controls share mathematical glyphs; geometry stays engine-owned. */
+button.math-infinity-key{font-family:"Cambria Math","STIX Two Math","DejaVu Math TeX Gyre","Times New Roman",serif;font-weight:400;font-style:normal;font-size:1.08rem}

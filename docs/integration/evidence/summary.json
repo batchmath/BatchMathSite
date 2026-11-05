@@ -1,0 +1,87 @@
+{
+  "branch": "integration/mathlive-im1-videos-content",
+  "testedImplementationCheckpoint": "904641f8d06a15c138957b26cb3631c64584c775",
+  "node": {
+    "passed": 273,
+    "total": 273,
+    "failed": 0,
+    "skipped": 0
+  },
+  "routeSweep": {
+    "passed": 374,
+    "total": 374,
+    "routes": 138,
+    "unexpectedErrors": 0,
+    "knownMathJaxErrors": 0
+  },
+  "overlapResponsive": {
+    "passed": 101,
+    "total": 102,
+    "physicalTypingAndFocus": 102,
+    "pageErrors": 0,
+    "knownPreexistingFailures": 1
+  },
+  "focusedBrowser": {
+    "passed": 132,
+    "total": 132,
+    "explicitCheckerPairs": 543,
+    "pageErrors": 0
+  },
+  "im1ComprehensiveReview": {
+    "passed": 1,
+    "total": 1,
+    "checkerPairs": 462,
+    "signatures": 81,
+    "pageErrors": 0
+  },
+  "apUnit5DynamicReview": {
+    "passed": 1,
+    "total": 1,
+    "checkerPairs": 161,
+    "signatures": 63,
+    "pageErrors": 0
+  },
+  "video": {
+    "ok": true,
+    "htmlPagesAudited": 257,
+    "deferredUnit6HtmlPages": 13,
+    "deferredUnit6VideoPages": [
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/index.html",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/index.html",
+      "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/index.html",
+      "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/index.html",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/index.html",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/index.html"
+    ],
+    "videoPages": 66,
+    "standardPages": 61,
+    "collections": {
+      "1": 67,
+      "2": 6,
+      "4": 2,
+      "5": 1
+    },
+    "modalPages": [
+      "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/index.html"
+    ],
+    "pageLoads": 198,
+    "selections": 276,
+    "specializedChecks": 7,
+    "externalPlaybackVerified": false,
+    "errors": []
+  },
+  "static": {
+    "errors": 0,
+    "warnings": 0,
+    "brokenInternalReferences": 0,
+    "htmlPages": 280,
+    "pdfFiles": 290
+  },
+  "historicalResultsReused": false,
+  "newConfirmedIntegrationRegressions": 0,
+  "allResponsiveChecksPassed": false,
+  "unit6Unchanged": true,
+  "deploymentPerformed": false
+}

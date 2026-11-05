@@ -1,0 +1,101 @@
+{
+  "results": [
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/practice/index.html",
+      "passed": true,
+      "signatures": [
+        "write",
+        "terms",
+        "difference"
+      ]
+    },
+    {
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/practice/index.html",
+      "passed": true,
+      "signatures": [
+        "missing_difference"
+      ]
+    }
+  ],
+  "errors": [],
+  "keypads": {
+    "ml-im1-u3-number": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      ".",
+      "ab",
+      "←",
+      "→",
+      "↑",
+      "↓",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ],
+    "ml-im1-u3-initial-term": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      ".",
+      "=",
+      "a₁",
+      "ab",
+      "←",
+      "→",
+      "↑",
+      "↓",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ],
+    "ml-im1-u3-recursive-rule": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      ".",
+      "+",
+      "·",
+      "=",
+      "aₙ",
+      "aₙ₋₁",
+      "ab",
+      "←",
+      "→",
+      "↑",
+      "↓",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ]
+  },
+  "checkerPairs": 24,
+  "realMathJax": true
+}

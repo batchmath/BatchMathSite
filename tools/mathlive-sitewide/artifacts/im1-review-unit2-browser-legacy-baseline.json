@@ -1,0 +1,189 @@
+{
+  "results": [
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "passed": true,
+      "legacyBaseline": true,
+      "mathjaxProbe": true,
+      "choices": 150
+    }
+  ],
+  "errors": [
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at FocusIn (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:958582)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "legacy": true,
+      "error": "Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'length')\n    at addSpeech (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966952)\n    at setCurrent (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:966142)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:975297)\n    at <anonymous> (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:953113)\n    at ox (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:952861)\n    at Start (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:974836)\n    at Click (https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js:1:959772)"
+    }
+  ],
+  "keypads": {},
+  "checkerPairs": 0,
+  "realMathJax": true,
+  "browser": "154.0.8037.57",
+  "documentedBaselineErrors": 0,
+  "unexpectedErrors": 34
+}

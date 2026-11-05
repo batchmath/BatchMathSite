@@ -1,0 +1,415 @@
+{
+  "baseline": "c2d6b9f9bc309e96787d390244e17c663b568d90",
+  "testedImplementation": "cfefbe5ad6e18f5086cc221505e065a41e24b0db",
+  "classicalAssetsChecked": 66,
+  "changedClassicalAssets": [
+    "assets/answer-normalization.js"
+  ],
+  "justification": "Only the separately committed exact-list fraction-normalization boundary correction. Generator, mathematical-checker and renderer assets are otherwise identical to the verified starting branch.",
+  "inlineReviewCorrections": [
+    "19ab475 duplicated qa8 answer representation",
+    "2764b4a declared h identifier/scopes"
+  ],
+  "unit6PathsChanged": [],
+  "files": [
+    {
+      "path": "assets/answer-normalization.js",
+      "sha256": "e8a3382ea51069236cc8b1588d7fc67a5bc8135f6af09834f773326e86e4d9de",
+      "baselineSHA256": "45908e55a4e4eb9e3536a108fb299e6b1754c042537ea515b96ba6abc1a6de19",
+      "unchanged": false
+    },
+    {
+      "path": "assets/ap-topic-generators.js",
+      "sha256": "07867a8941fa58af3e499951dde72419a420efe04311995de3a3735469cae026",
+      "baselineSHA256": "07867a8941fa58af3e499951dde72419a420efe04311995de3a3735469cae026",
+      "unchanged": true
+    },
+    {
+      "path": "assets/ap-topic-practice.js",
+      "sha256": "7c0a541f064adb6a088796c3c86b8ef4ac0a2300739b48b21b82c4004e40238a",
+      "baselineSHA256": "7c0a541f064adb6a088796c3c86b8ef4ac0a2300739b48b21b82c4004e40238a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/archive-running-document.js",
+      "sha256": "a3a8d05fa470ec0538f73d544c86315ffafd87f0d982307428522b2019a27a9c",
+      "baselineSHA256": "a3a8d05fa470ec0538f73d544c86315ffafd87f0d982307428522b2019a27a9c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/batchmath-storage.js",
+      "sha256": "9e9688c4ca5324ed6ed9d898a47be10900b570b474306ac95dccea10358bc48d",
+      "baselineSHA256": "9e9688c4ca5324ed6ed9d898a47be10900b570b474306ac95dccea10358bc48d",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calc-prep-algebra.js",
+      "sha256": "65dc8d85a85f7ffdfcb84b961aa992937ea90ee41ace94a21b5777eeac40c3d7",
+      "baselineSHA256": "65dc8d85a85f7ffdfcb84b961aa992937ea90ee41ace94a21b5777eeac40c3d7",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calc-prep-angle-skills.js",
+      "sha256": "a0a65cfe2a47ba1a9fe511398d82a7bc8ddc85dc8f9f3baaa70695cbd7f24cfc",
+      "baselineSHA256": "a0a65cfe2a47ba1a9fe511398d82a7bc8ddc85dc8f9f3baaa70695cbd7f24cfc",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calc-prep-common.js",
+      "sha256": "8dee8645834a4ef17bf3a14888c2c7ce39569035ea9267f6fcefe65c49e96685",
+      "baselineSHA256": "8dee8645834a4ef17bf3a14888c2c7ce39569035ea9267f6fcefe65c49e96685",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calc-prep-domains.js",
+      "sha256": "7242d6035e55caef3ff4646ff363603b0c1747ac5ac727a82d9e1fe8520ab0f5",
+      "baselineSHA256": "7242d6035e55caef3ff4646ff363603b0c1747ac5ac727a82d9e1fe8520ab0f5",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calc-prep-exact-editor.js",
+      "sha256": "1273318315eae6534b32ae9dded4c3357c47ada5d6846775182daa89d14dc0fe",
+      "baselineSHA256": "1273318315eae6534b32ae9dded4c3357c47ada5d6846775182daa89d14dc0fe",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calc-prep-factoring.js",
+      "sha256": "81732b4d5a72422eb19ae33f45e851ad97d874bd16e9ec4ab8f0db900fddeacd",
+      "baselineSHA256": "81732b4d5a72422eb19ae33f45e851ad97d874bd16e9ec4ab8f0db900fddeacd",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calc-prep-graphs.js",
+      "sha256": "d426d730aed5432b2590830ed6e377c9930e1eeb7bcf3476b73af776dc1d9be5",
+      "baselineSHA256": "d426d730aed5432b2590830ed6e377c9930e1eeb7bcf3476b73af776dc1d9be5",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calc-prep-identities.js",
+      "sha256": "8c5b739ff12079835e105541e3e9c1cafa2b1857e55110169f68bd0eb29d989c",
+      "baselineSHA256": "8c5b739ff12079835e105541e3e9c1cafa2b1857e55110169f68bd0eb29d989c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calc-prep-logs.js",
+      "sha256": "92be46740107d48477eac29117af4ef299cf27fae8fbbc049958f3dc583866f0",
+      "baselineSHA256": "92be46740107d48477eac29117af4ef299cf27fae8fbbc049958f3dc583866f0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calc-prep-rational.js",
+      "sha256": "1d874b9bb80e5acf693e322a1243eb48d39d891625598d3379dab238f5bd6f34",
+      "baselineSHA256": "1d874b9bb80e5acf693e322a1243eb48d39d891625598d3379dab238f5bd6f34",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calc-prep-synthetic.js",
+      "sha256": "21583fd6b38fee5d37702f79721f55d4feb90844914993ed428c8c5a3736152a",
+      "baselineSHA256": "21583fd6b38fee5d37702f79721f55d4feb90844914993ed428c8c5a3736152a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calc-prep-trig-equations.js",
+      "sha256": "ff67a436e556c5314199542a4bda54b7908d61d6138034da9f4893a38784c777",
+      "baselineSHA256": "ff67a436e556c5314199542a4bda54b7908d61d6138034da9f4893a38784c777",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calc-prep-unit-circle.js",
+      "sha256": "d8ad7328aba4707a189b7d2186a9a8946ea087f4ed828076640903decdfacf1a",
+      "baselineSHA256": "d8ad7328aba4707a189b7d2186a9a8946ea087f4ed828076640903decdfacf1a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/calculus-keypad.js",
+      "sha256": "e46d3c881aa94bc9d7c45c21161aa4b9931ab7031c2d4e2798472227c0ecebf2",
+      "baselineSHA256": "e46d3c881aa94bc9d7c45c21161aa4b9931ab7031c2d4e2798472227c0ecebf2",
+      "unchanged": true
+    },
+    {
+      "path": "assets/derivative-at-point-practice.js",
+      "sha256": "e4f05699d5e00bd986c5040d2a08480351528827e91dae5ba9c89ce745c9072d",
+      "baselineSHA256": "e4f05699d5e00bd986c5040d2a08480351528827e91dae5ba9c89ce745c9072d",
+      "unchanged": true
+    },
+    {
+      "path": "assets/derivative-expression-checker.js",
+      "sha256": "894e5f67c9f34f3381a368753abb056b39361dc4ec6d43c112d8c57d373431ba",
+      "baselineSHA256": "894e5f67c9f34f3381a368753abb056b39361dc4ec6d43c112d8c57d373431ba",
+      "unchanged": true
+    },
+    {
+      "path": "assets/derivative-focused-review.js",
+      "sha256": "f9740fceb8ad41aaa6b9a3d2498a8fcab91631221c11355f989c9a4e4c04da84",
+      "baselineSHA256": "f9740fceb8ad41aaa6b9a3d2498a8fcab91631221c11355f989c9a4e4c04da84",
+      "unchanged": true
+    },
+    {
+      "path": "assets/derivative-rule-factors.js",
+      "sha256": "27b5b89f28b87a8fdb2092d9f5f4427c31f8e2990209cc0d534125cf22da861b",
+      "baselineSHA256": "27b5b89f28b87a8fdb2092d9f5f4427c31f8e2990209cc0d534125cf22da861b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/im1-algebra-input.js",
+      "sha256": "bd838ff746fe0ba750021dd828c6e8d925fb55b09e5c97827c9429437682aedb",
+      "baselineSHA256": "bd838ff746fe0ba750021dd828c6e8d925fb55b09e5c97827c9429437682aedb",
+      "unchanged": true
+    },
+    {
+      "path": "assets/im1-display-math.js",
+      "sha256": "23f502a3564eec2b999535322625a8c495c9c12f14ff09a6544289ac88acb88f",
+      "baselineSHA256": "23f502a3564eec2b999535322625a8c495c9c12f14ff09a6544289ac88acb88f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/im1-equation-input.js",
+      "sha256": "714accba756df5d77f82717b3ea8691a583dad14b7e881356a0922d8eaefcb5b",
+      "baselineSHA256": "714accba756df5d77f82717b3ea8691a583dad14b7e881356a0922d8eaefcb5b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/im1-interval-input.js",
+      "sha256": "40942d5481f35d73a081e6a6a9ae11c7c1100601c088944b3d4f7d03dc430dd7",
+      "baselineSHA256": "40942d5481f35d73a081e6a6a9ae11c7c1100601c088944b3d4f7d03dc430dd7",
+      "unchanged": true
+    },
+    {
+      "path": "assets/im1-keypad.js",
+      "sha256": "7a596eefe82d72ac06b8278f3b27501a052bc075193d05e210b5a43c70282ad5",
+      "baselineSHA256": "7a596eefe82d72ac06b8278f3b27501a052bc075193d05e210b5a43c70282ad5",
+      "unchanged": true
+    },
+    {
+      "path": "assets/im1-unit2-generators.js",
+      "sha256": "c6e2fae0ba15f24f4a95d0ab18e4f172b85cb40553854ebbb67d0dd6a0d96b80",
+      "baselineSHA256": "c6e2fae0ba15f24f4a95d0ab18e4f172b85cb40553854ebbb67d0dd6a0d96b80",
+      "unchanged": true
+    },
+    {
+      "path": "assets/im1-unit2-practice.js",
+      "sha256": "2abad70f506f51a71abc2cc233a03e9d01fa5503460eda62c3ee0a1ecb0cae61",
+      "baselineSHA256": "2abad70f506f51a71abc2cc233a03e9d01fa5503460eda62c3ee0a1ecb0cae61",
+      "unchanged": true
+    },
+    {
+      "path": "assets/im1-unit3-generators.js",
+      "sha256": "8fe7bb287d90b1fc9f301972b22b7c76d9abbee07655a3a3e097311e8e4508a8",
+      "baselineSHA256": "8fe7bb287d90b1fc9f301972b22b7c76d9abbee07655a3a3e097311e8e4508a8",
+      "unchanged": true
+    },
+    {
+      "path": "assets/im1-unit3-nav.js",
+      "sha256": "45541dfb8af7bac00f7ab6a101e5621914efed41fca8d8583d20305d30545999",
+      "baselineSHA256": "45541dfb8af7bac00f7ab6a101e5621914efed41fca8d8583d20305d30545999",
+      "unchanged": true
+    },
+    {
+      "path": "assets/im1-unit3-practice.js",
+      "sha256": "d5a73155b09e05454eea0082010a0ee0b725d4847bcc6ec22b864baded489aa9",
+      "baselineSHA256": "d5a73155b09e05454eea0082010a0ee0b725d4847bcc6ec22b864baded489aa9",
+      "unchanged": true
+    },
+    {
+      "path": "assets/line-equation-checker.js",
+      "sha256": "558526d42a284d15a3beefd1d5ad75ad773378924562df0d249a95e9cf44a641",
+      "baselineSHA256": "558526d42a284d15a3beefd1d5ad75ad773378924562df0d249a95e9cf44a641",
+      "unchanged": true
+    },
+    {
+      "path": "assets/nested-chain-rule-practice.js",
+      "sha256": "bc9a117f3c1f9edf108ddbafdd0811ce16a7cd2bbdf3fed5f92f805c85116f39",
+      "baselineSHA256": "bc9a117f3c1f9edf108ddbafdd0811ce16a7cd2bbdf3fed5f92f805c85116f39",
+      "unchanged": true
+    },
+    {
+      "path": "assets/problem-tracking.js",
+      "sha256": "391d502198563fe3f19b550060cce5176384e7b9ecc4a7b0213b80993edfe8f4",
+      "baselineSHA256": "391d502198563fe3f19b550060cce5176384e7b9ecc4a7b0213b80993edfe8f4",
+      "unchanged": true
+    },
+    {
+      "path": "assets/pwa.js",
+      "sha256": "91bced4fa4d02571fba3356a875d8611a4d83ff0f71b9a12d3f6593dbbc8b9fe",
+      "baselineSHA256": "91bced4fa4d02571fba3356a875d8611a4d83ff0f71b9a12d3f6593dbbc8b9fe",
+      "unchanged": true
+    },
+    {
+      "path": "assets/reproducible-rng.js",
+      "sha256": "179f636b7d6dee43587f6626913c287a0ff88947920d6723fe0944adcaf6ea8b",
+      "baselineSHA256": "179f636b7d6dee43587f6626913c287a0ff88947920d6723fe0944adcaf6ea8b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/topic-derivative-at-point-practice.js",
+      "sha256": "57f5cd607c9293191d81bd9266ad67e6db7b1ece15511ebdf0f5c96f49b34be8",
+      "baselineSHA256": "57f5cd607c9293191d81bd9266ad67e6db7b1ece15511ebdf0f5c96f49b34be8",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-advanced-trig-all.js",
+      "sha256": "33ddaa327f92711d23a70e5dc279f703883cb8d07cba6f1248d3468e43082d24",
+      "baselineSHA256": "33ddaa327f92711d23a70e5dc279f703883cb8d07cba6f1248d3468e43082d24",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-advanced-trig-shared.js",
+      "sha256": "79add070b808c6525611c9434e139cc85b595eac91c23e2ebdded270dcabb94b",
+      "baselineSHA256": "79add070b808c6525611c9434e139cc85b595eac91c23e2ebdded270dcabb94b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-basic-techniques.js",
+      "sha256": "4347bca55fba31c74031b7519e61fa2ea322693676a9e4d451b56e3196d400de",
+      "baselineSHA256": "4347bca55fba31c74031b7519e61fa2ea322693676a9e4d451b56e3196d400de",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-comprehensive-review.js",
+      "sha256": "205c56f60a5ab0d326f6a312cfd75770632716dee3a888724b43aef32ca7faa5",
+      "baselineSHA256": "205c56f60a5ab0d326f6a312cfd75770632716dee3a888724b43aef32ca7faa5",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-continuity-parameters.js",
+      "sha256": "4f6e29e1955ff0a1f18d0e392e0a48a2266bab757ac93cf52cfe03639a913167",
+      "baselineSHA256": "4f6e29e1955ff0a1f18d0e392e0a48a2266bab757ac93cf52cfe03639a913167",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-core-expansions.js",
+      "sha256": "ce6b8e561020c7686b41e939835a60e6a86202f37119c8a1d55bf10a4df4d1ab",
+      "baselineSHA256": "ce6b8e561020c7686b41e939835a60e6a86202f37119c8a1d55bf10a4df4d1ab",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-course-trig.js",
+      "sha256": "9e4b1d3e5508b41d7dbb27799e4d0299d6dd71e4e8e68f40337b9c9b1d5e468b",
+      "baselineSHA256": "9e4b1d3e5508b41d7dbb27799e4d0299d6dd71e4e8e68f40337b9c9b1d5e468b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-discontinuities.js",
+      "sha256": "efab99a388ccd0e1f8420c68cfa2f80799a4554061cef2e7695482f983dd137b",
+      "baselineSHA256": "efab99a388ccd0e1f8420c68cfa2f80799a4554061cef2e7695482f983dd137b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-infinity-expansions.js",
+      "sha256": "b879b6c07c33cd8c242881dddcf0a11022ac7123de27594a1a25d5c51ff9fbbb",
+      "baselineSHA256": "b879b6c07c33cd8c242881dddcf0a11022ac7123de27594a1a25d5c51ff9fbbb",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-infinity-legacy.js",
+      "sha256": "3559bc91d5aa986c935288ce03c5f07d3b0d564ee53b148a24d87fce063d699f",
+      "baselineSHA256": "3559bc91d5aa986c935288ce03c5f07d3b0d564ee53b148a24d87fce063d699f",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-ivt-expansions.js",
+      "sha256": "436973fe310f8adef4da2be2773e28535e392c8da6bff4f9e9fd7e3e2662438b",
+      "baselineSHA256": "436973fe310f8adef4da2be2773e28535e392c8da6bff4f9e9fd7e3e2662438b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-one-sided.js",
+      "sha256": "b91070d630d3fa04111f3c784c6b85af47809909afe6c83109efe6b036c7ba77",
+      "baselineSHA256": "b91070d630d3fa04111f3c784c6b85af47809909afe6c83109efe6b036c7ba77",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-practice-ui.js",
+      "sha256": "d537d3577e5eb9840a9da53c6713c3ac70e14de254d7b1c78cdbb1dd31333cd7",
+      "baselineSHA256": "d537d3577e5eb9840a9da53c6713c3ac70e14de254d7b1c78cdbb1dd31333cd7",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit1-representations.js",
+      "sha256": "7ca4c7aceb59f300803c888b9d5feb3e4ac4c71a8559461fdd452923771c5f1a",
+      "baselineSHA256": "7ca4c7aceb59f300803c888b9d5feb3e4ac4c71a8559461fdd452923771c5f1a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit3-applications-generators.js",
+      "sha256": "b25578f57d6a8fd005a3862311202ef2f1f08ff3d599ac6956d0fe4e0f9d4d23",
+      "baselineSHA256": "b25578f57d6a8fd005a3862311202ef2f1f08ff3d599ac6956d0fe4e0f9d4d23",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit3-optimization-related-rates.js",
+      "sha256": "1999be32c567a3e2bb5422a1974817e7b6390241cdb418ca0622542f5f3bef9e",
+      "baselineSHA256": "1999be32c567a3e2bb5422a1974817e7b6390241cdb418ca0622542f5f3bef9e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit4-exact-answers.js",
+      "sha256": "29e0c317209b3a8f7dff8dd179dac03b0cb2d4b72ffe222f3ef549f9721babf2",
+      "baselineSHA256": "29e0c317209b3a8f7dff8dd179dac03b0cb2d4b72ffe222f3ef549f9721babf2",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit5-answers.js",
+      "sha256": "762142d245d41fefdfb204439afb07a464ec5b81f70c5e541f32e60e998e61c8",
+      "baselineSHA256": "762142d245d41fefdfb204439afb07a464ec5b81f70c5e541f32e60e998e61c8",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit5-basic.js",
+      "sha256": "5958b7a819e1552054588f1076c15ac872702fb827fcae412e6354549bf6e7eb",
+      "baselineSHA256": "5958b7a819e1552054588f1076c15ac872702fb827fcae412e6354549bf6e7eb",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit5-core.js",
+      "sha256": "067c813d8d55d313bca7679f923d11874a4a4e57b139bece06913a483c886003",
+      "baselineSHA256": "067c813d8d55d313bca7679f923d11874a4a4e57b139bece06913a483c886003",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit5-growth.js",
+      "sha256": "79fdb2dc6ac6769b02763fc06943d820241f83d3b635341c78306a0db78f9255",
+      "baselineSHA256": "79fdb2dc6ac6769b02763fc06943d820241f83d3b635341c78306a0db78f9255",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit5-motion.js",
+      "sha256": "02440ffde548490d651df2cc665f864bf0521c45aacc5a3b1938cb94c151ae5b",
+      "baselineSHA256": "02440ffde548490d651df2cc665f864bf0521c45aacc5a3b1938cb94c151ae5b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit5-rate.js",
+      "sha256": "d3c3ecdbe49525518abebad17523e9d51dfe2c655ba2d3bbdbed266b05ca9277",
+      "baselineSHA256": "d3c3ecdbe49525518abebad17523e9d51dfe2c655ba2d3bbdbed266b05ca9277",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit5-review.js",
+      "sha256": "418ce3397de93d34eca87cfcfcff89764a738cc6efacb6179cd662f824a2b236",
+      "baselineSHA256": "418ce3397de93d34eca87cfcfcff89764a738cc6efacb6179cd662f824a2b236",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit5-separable.js",
+      "sha256": "fb6f863c5e8644e12912b9e978981a566a6c31e5023e1015fd55fd06990d1e7e",
+      "baselineSHA256": "fb6f863c5e8644e12912b9e978981a566a6c31e5023e1015fd55fd06990d1e7e",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit5-slope-fields.js",
+      "sha256": "a4625691665651c0e7ff568381cfb3e948bbeb64bb655ac4af6b637c5f577730",
+      "baselineSHA256": "a4625691665651c0e7ff568381cfb3e948bbeb64bb655ac4af6b637c5f577730",
+      "unchanged": true
+    },
+    {
+      "path": "assets/unit5-ui.js",
+      "sha256": "b320075440afcc9c17a8cbac5a7456c92c7af357ed13c7c1ef794d02cf031d11",
+      "baselineSHA256": "b320075440afcc9c17a8cbac5a7456c92c7af357ed13c7c1ef794d02cf031d11",
+      "unchanged": true
+    }
+  ],
+  "editorOnlyCorrections": [
+    "cfefbe5 reused native-field problem-counter history reset; no generator/checker/source-input changes"
+  ]
+}

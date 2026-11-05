@@ -1,0 +1,60 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import http from 'node:http';import {createRequire} from 'node:module';
+import {root,engine,u4,u5,api5,families,generate,parts} from './staged-engine.mjs';import {instrument} from '../mathlive-advanced-pilot/engine.mjs';
+const {chromium}=createRequire(import.meta.url)('playwright'),fixtures=process.env.MATHJAX_FIXTURE_ROOT,base=process.env.STAGED_URL||'http://127.0.0.1:8166',out=root+'tools/mathlive-sitewide/artifacts/';
+const routes=JSON.parse(fs.readFileSync(root+'tools/mathlive-sitewide/staged-routes.json')),e=engine(),results=[],errors=[];let pairs=0;const controlProfiles={};
+const mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.woff2':'font/woff2'};
+const server=http.createServer((req,res)=>{const name=decodeURIComponent(new URL(req.url,base).pathname),file=name.startsWith('/__mathjax/')&&fixtures?path.join(fixtures,name.slice(11)):path.join(root,name);try{const p=fs.statSync(file).isDirectory()?path.join(file,'index.html'):file;res.setHeader('content-type',mime[path.extname(p)]||'application/octet-stream');res.end(fs.readFileSync(p));}catch{res.writeHead(404);res.end();}});await new Promise(r=>server.listen(Number(new URL(base).port),'127.0.0.1',r));
+const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});
+async function open(route,legacy=false,missing=false){const p=await browser.newPage({viewport:{width:1440,height:1100},serviceWorkers:'block'});p.setDefaultTimeout(10000);p.on('pageerror',x=>errors.push({route:route.path,error:x.message}));await p.route('https://**/*',r=>r.abort());
+ if(fixtures)await p.route('https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js',r=>r.fulfill({contentType:'text/javascript',body:"MathJax.loader={paths:{mathjax:'"+base+"/__mathjax/mathjax','mathjax-newcm':'"+base+"/__mathjax/mathjax-newcm'}};MathJax.chtml=Object.assign({},MathJax.chtml,{fontURL:'"+base+"/__mathjax/mathjax-newcm/chtml/woff2'});MathJax.output={font:'mathjax-newcm'};\n"+fs.readFileSync(fixtures+'/mathjax/tex-chtml.js','utf8')}));
+ await p.route('**/assets/ap-topic-practice.js',r=>r.fulfill({contentType:'text/javascript',body:instrument(fs.readFileSync(root+'assets/ap-topic-practice.js','utf8'))}));if(missing)await p.route('**/vendor/mathlive/mathlive.min.mjs',async r=>{await new Promise(x=>setTimeout(x,600));await r.abort();});await p.goto(base+'/'+route.path+'?bm_seed=sitewide-staged'+(legacy?'&editor=legacy':''));await p.waitForFunction(()=>window.advancedQA?.current);return p;
+}
+async function force(p,req){await p.evaluate(req=>{let s=req.seed;window.BatchMathRNG={random:()=>{s=(s+0x6D2B79F5)>>>0;let t=s;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296;}};const problem=BatchMathAPTopicGenerators.get(BM_TOPIC_PRACTICE.slug)({family:req.family,mode:'mixed',...(req.calc?{calc:req.calc}:{})});advancedQA.load(problem);},req);}
+const panel=p=>p.locator('.staged-part:not(.staged-completed)').first(),field=p=>panel(p).locator('math-field:visible').first();
+async function info(p){return p.evaluate(async()=>{const q=advancedQA.current,panel=document.querySelector('.staged-part:not(.staged-completed)'),part=q.parts?q.parts[Number(panel.dataset.part)]:panel.classList.contains('staged-part-two')?q.stage2:q.stage1;
+ const spec=part.answer||part.unit4Answer;if(!spec)return{choice:part.type==='choice'||/choice/.test(part.control),special:part.control,correctIndex:part.correctIndex};
+ const tex=(part.answerTex||'').replace(/^.*?=/,'').replace(/\{,\}/g,'').replace(/\\(?:begin|end)\{gathered\}/g,'').replace(/\\\\(?:\[[^\]]*\])?/g,'').replace(/\\text\{([^{}]*)\}/g,(m,t)=>/does\s*not\s*apply|none/i.test(t)?m:'');
+ const {profiles:stagedProfiles}=await import('/assets/mathlive/staged-units.mjs');const contract=stagedProfiles[part.keypadMode||'unit5-number'];return{tex,raw:contract.translate(tex).input,mode:part.keypadMode||'unit5-number',profile:contract.keypad||part.keypadMode||'unit5-number',kind:spec.kind};});}
+async function set(p,answer,legacy){if(legacy)await p.evaluate(raw=>BatchMathCalculusKeypad.setRaw(raw),answer);else await field(p).evaluate((mf,tex)=>{mf.setValue(tex,{silenceNotifications:true});mf.dispatchEvent(new Event('input',{bubbles:true}));},answer);}
+async function state(p){await p.waitForTimeout(60);return panel(p).evaluate(x=>({raw:x.querySelector('input.staged-exact-input')?.value,disabled:x.querySelector('input.staged-exact-input')?.disabled,result:x.querySelector('.staged-feedback .result')?.className,invalid:x.querySelector('.staged-input-message')?.textContent}));}
+async function pair(p,l,a,raw,expected){await set(p,a,false);await set(l,raw,true);if(process.env.ENTER){await p.bringToFront();await field(p).click();await p.keyboard.press('Enter');await panel(l).locator('.staged-check:enabled').click();}else for(const q of [p,l])await panel(q).locator('.staged-check:enabled').click();const x=await state(p),y=await state(l);for(const k of ['disabled','result','invalid'])assert.equal(x[k],y[k],k+': '+x.raw);if(expected)assert.match(x.result||'',/good/);pairs++;return x;}
+async function controls(p,mode,profile=mode){
+ if(controlProfiles[profile])return;
+ await p.bringToFront();await field(p).waitFor();await p.waitForTimeout(80);
+ const pad=panel(p).locator('.bm-calc-keypad:visible'),labels=(await pad.locator('button').allTextContents()).map(x=>x.trim());controlProfiles[profile]=labels;
+ const key=label=>pad.locator('button').filter({hasText:new RegExp('^'+label.replace(/[.*+?^{}()|[\]\\]/g,'\\$&')+'$')}).click();
+ await key('Clear');await p.keyboard.type(mode.includes('interval')?'(3/4':'3/4');await p.keyboard.press('ArrowRight');if(mode.includes('interval'))await p.keyboard.type(',2)');assert.ok((await state(p)).raw.includes('4'));await p.keyboard.press('Control+a');await p.keyboard.press('Backspace');assert.equal((await state(p)).raw,'');
+ for(const label of ['+','.','ⁿ√','±','C','∞','√','Does not apply']){
+  if(!labels.includes(label)||mode.includes('interval')&&label!=='∞')continue;await key('Clear');
+  if(label==='+'){await key('2');await key('+');await key('3');assert.equal((await state(p)).raw,'2+3');}
+  if(label==='.'){await key('1');await key('.');await key('2');assert.equal((await state(p)).raw,'1.2');}
+  if(label==='ⁿ√'){await key(label);await p.keyboard.type('3');await p.keyboard.press('ArrowRight');await p.keyboard.type('8');await p.keyboard.press('ArrowRight');assert.ok((await state(p)).raw.includes('root(3,8)'),(await state(p)).raw);}
+  if(label==='Does not apply'){await key(label);assert.equal((await state(p)).raw,'Does not apply');}
+  if(label==='±'){await key(label);await key('2');assert.equal((await state(p)).raw,'±2');}
+  if(label==='C'){await key(['x','t','θ','r'].find(v=>labels.includes(v)));await key('+');await key('C');assert.ok((await state(p)).raw.endsWith('+C'));}
+  if(label==='∞'){await key('(');await key('−∞');await key(',');await key('1');await key(')');assert.equal((await state(p)).raw,'(-infinity,1)');}
+  if(label==='√'){await key(label);await key('2');await p.keyboard.press('ArrowRight');assert.ok((await state(p)).raw.includes('sqrt(2)'));}
+ }
+ await key('Clear');
+}
+function requests(route){const key=Object.entries(route.unit===4?u4:u5).find(x=>x[1]===route.slug)[0],reqs=[],seen=new Set();for(const family of families(e,route.unit,key)){let first=true;for(let seed=1;seed<=70;seed++){try{const p=generate(e,route.unit,key,family,seed*719,{...(route.calc?{calc:route.calc}:{})}),modes=parts(p).filter(x=>(x.answer||x.unit4Answer)&&(!x.control||x.control==='input')).map(x=>x.keypadMode||'unit5-number');if(modes.length&&(first||modes.some(m=>!seen.has(m)))){reqs.push({family,seed:seed*719,calc:route.calc});modes.forEach(m=>seen.add(m));first=false;}}catch{break;}}}return reqs.length?reqs:[{family:null,seed:719,calc:route.calc}];}
+try{for(const [index,route]of routes.entries()){if(process.env.ROUTE_INDEX&&!process.env.ROUTE_INDEX.split(',').map(Number).includes(index))continue;let p,l;try{p=await open(route);l=await open(route,true);let fields=0,choices=0;const modes=new Set();const reqs=requests(route);if(process.env.SPECIALIZED&&route.slug==='slope-fields')for(const family of families(e,5,'slope'))if(!reqs.some(r=>r.family===family))reqs.push({family,seed:719,calc:''});
+ for(const req of reqs){for(const q of [p,l])await force(q,req);let turn=0;
+ while(turn++<12){const part=await info(p);if(part.special&&!part.choice){assert.equal(await panel(p).locator('math-field').count(),0);assert.ok(await panel(p).locator('svg').count()>0);assert.ok(await panel(p).locator('button').count()>0);break;}
+  if(part.choice){for(const q of [p,l])await panel(q).locator('.staged-choice').nth(part.correctIndex).click();choices++;}
+  else{await field(p).waitFor();assert.equal(await panel(p).locator('.bm-calc-editor:visible').count(),0);assert.equal(await panel(l).locator('math-field').count(),0);assert.ok(part.raw!==null,part.tex);modes.add(part.mode);if(process.env.CONTROLS)await controls(p,part.mode,part.profile);await pair(p,l,part.tex,part.raw,true);fields++;}
+  const next=panel(p).locator('.staged-continue:visible:enabled');if(await next.count()){for(const q of [p,l])await panel(q).locator('.staged-continue:visible:enabled').click();}else break;
+ }
+ }
+ // Wrong, blank and incomplete entry on the first reachable typed field.
+ const req=reqs.find(r=>true);for(const raw of ['1234567','', '\\frac{1}{}']){for(const q of [p,l])await force(q,req);let part=await info(p);
+ while(part.choice){for(const q of [p,l])await panel(q).locator('.staged-choice').nth(part.correctIndex).click();for(const q of [p,l])await panel(q).locator('.staged-continue:visible:enabled').click();part=await info(p);}
+ if(!part.special){await field(p).waitFor();await pair(p,l,raw,raw==='\\frac{1}{}'?'(1)/()':raw,false);}
+ }
+ if(process.env.RECOVERY){await force(p,reqs[0]);let a=await info(p);while(a.choice){await panel(p).locator('.staged-choice').nth(a.correctIndex).click();await panel(p).locator('.staged-continue:visible:enabled').click();a=await info(p);}if(!a.special){await field(p).waitFor();await set(p,a.tex,false);const saved=(await state(p)).raw;await field(p).evaluate(m=>{m.executeCommand=()=>{throw Error('Injected runtime failure');};});await panel(p).locator('.bm-calc-keypad:visible button').filter({hasText:'←'}).click();assert.equal(await panel(p).locator('math-field').count(),0);assert.equal((await state(p)).raw,saved);assert.equal(await panel(p).locator('.bm-calc-editor:visible').count(),1);await panel(p).locator('.staged-check:enabled').click();assert.match((await state(p)).result,/good/);}}
+ await p.setViewportSize({width:375,height:950});const f=field(p);if(await f.count()){await set(p,'\\frac{3}{4}',false);const box=await f.boundingBox();assert.ok(box.x>=0&&box.x+box.width<=376,JSON.stringify(box));await p.screenshot({path:out+'staged-'+index+'-375.png',fullPage:true});}
+ results.push({route:route.path,passed:true,correctFields:fields,retainedChoices:choices,profiles:[...modes]});console.log('PASS',route.path,fields,'fields',choices,'choices');
+ }catch(x){results.push({route:route.path,passed:false,error:x.stack});console.log('FAIL',route.path,x.message);}finally{await p?.close();await l?.close();}}
+ if(process.env.RECOVERY){const f=await open(routes[9],false,true);await panel(f).locator('.bm-calc-editor:visible').click();await f.keyboard.type('123.45');await f.waitForSelector('.bm-mathlive-notice');assert.equal((await state(f)).raw,'123.45');assert.equal(await f.locator('math-field').count(),0);await f.close();}
+}finally{await browser.close();server.close();fs.writeFileSync(out+'staged-browser'+(process.env.REPORT_SUFFIX||'')+'.json',JSON.stringify({browser:browser.version(),realMathJax:!!fixtures,results,errors,checkerPairs:pairs,controlProfiles},null,2)+'\n');}
+console.log(results.filter(x=>x.passed).length+'/'+results.length,pairs,'pairs',errors.length,'errors');if(results.some(x=>!x.passed)||errors.length)process.exitCode=1;

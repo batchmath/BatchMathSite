@@ -255,7 +255,7 @@ function createSharedKeypad(inputs,keypadMode){
  const numberEntries=[
   ['7',''],['8',''],['9',''],['−','symbol','minus'],['⌫','utility','back'],
   ['4',''],['5',''],['6',''],['0',''],['Clear','utility','clear'],
-  ['1',''],['2',''],['3',''],['.','symbol'],['Check','check-key','check']
+  ['1',''],['2',''],['3',''],['.','symbol'],['a⁄b','symbol','insert','/'],['Check','check-key','check']
  ];
  const recursiveEntries=[
   ['7',''],['8',''],['9',''],['a₁=','symbol','insert','a₁='],['⌫','utility','back'],

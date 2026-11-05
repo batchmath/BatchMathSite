@@ -1,0 +1,43 @@
+{
+  "cause": "Classic practice driver rendered first question before deferred MathLive module attached",
+  "observedUninstrumentedFailures": [
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "missing"
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "mathlive"
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "missing"
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "mathlive"
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "missing"
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "mathlive"
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html",
+      "mode": "missing"
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html",
+      "mode": "mathlive"
+    }
+  ],
+  "correction": "Only defer driver on the six AP review pages",
+  "afterEvidence": "route-sweep-startup.json",
+  "nodeOrderAndIsolationTest": {
+    "passed": 1,
+    "failed": 0
+  }
+}

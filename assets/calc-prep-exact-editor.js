@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-const E={};
+const E={bindings:new WeakMap()};
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function mount(opts){
  const input=typeof opts.input==='string'?document.querySelector(opts.input):opts.input;
@@ -271,7 +271,7 @@ function mount(opts){
    ['0','0'],['.','.','math'],[',',',','math'],['°','°','math'],['↑',null,'action','up'],['↓',null,'action','down'],
    ['←',null,'action','left'],['→',null,'action','right'],['Del',null,'action','del'],['Check',null,'check','check']
   ];
-  defs.forEach(([label,key,cls,action])=>{
+  defs.filter(([label])=>opts.allowList!==false||label!==',').forEach(([label,key,cls,action])=>{
    const b=document.createElement('button');b.type='button';b.className='key'+(cls?' '+cls:'')+(label==='Undefined'?' double':'');b.textContent=label;
    b.addEventListener('pointerdown',e=>e.preventDefault());
    b.addEventListener('click',()=>{if(key!=null)add(key);else if(action==='back')backspace();else if(action==='del')del();else if(action==='clear')clear();else if(action==='frac')startFraction();else if(action==='left')move(-1);else if(action==='right')move(1);else if(action==='up')moveVertical(-1);else if(action==='down')moveVertical(1);else if(action==='check')opts.onCheck?.()});
@@ -305,7 +305,9 @@ function mount(opts){
  }
  build();editor.tabIndex=0;editor.setAttribute('role','textbox');editor.setAttribute('aria-label',editor.getAttribute('aria-label')||'Exact answer');
  editor.addEventListener('pointerdown',pointerDown);editor.addEventListener('pointermove',pointerMove);editor.addEventListener('pointerup',pointerUp);editor.addEventListener('pointercancel',pointerUp);editor.addEventListener('keydown',onKey);editor.addEventListener('copy',e=>copySelection(e,false));editor.addEventListener('cut',e=>copySelection(e,true));editor.addEventListener('paste',pasteSelection);render();
- return {get raw(){return raw},get cursor(){return cursor},get selection(){return selectionRange()},set(v){setRaw(v)},clear,lock(v=true){locked=v;keypad.style.opacity=v?'.55':'1'},focus(){editor.focus()},move,moveVertical,setCursor(v){collapseSelection(Number(v)||0);render()}};
+ const api={get raw(){return raw},get cursor(){return cursor},get selection(){return selectionRange()},set(v){setRaw(v)},clear,lock(v=true){locked=v;keypad.style.opacity=v?'.55':'1'},focus(){editor.focus()},move,moveVertical,setCursor(v){collapseSelection(Number(v)||0);render()}};
+ E.bindings.set(input,{api,onCheck:opts.onCheck,get locked(){return locked}});
+ return api;
 }
 E.mount=mount;window.BMExactEditor=E;
 })();

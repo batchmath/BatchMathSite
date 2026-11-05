@@ -1,0 +1,323 @@
+[
+  {
+    "route": "im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/practice/index.html",
+    "questions": 200,
+    "pairs": 1400,
+    "modes": [
+      "default"
+    ],
+    "families": [
+      "subtraction_of_negative",
+      "addition_mixed_sign",
+      "positive_minus_larger_positive",
+      "negative_minus_positive",
+      "addition_two_negative"
+    ],
+    "kindFamilies": [],
+    "questionCounts": [
+      20
+    ]
+  },
+  {
+    "route": "im1/unit-1-review/topics/decimals/practice/index.html",
+    "questions": 800,
+    "pairs": 5600,
+    "modes": [
+      "mixed",
+      "addsub",
+      "multiply",
+      "divide"
+    ],
+    "families": [
+      "decimal_multiplication",
+      "decimal_division",
+      "decimal_subtraction",
+      "decimal_addition"
+    ],
+    "kindFamilies": [
+      "multiply",
+      "divide",
+      "addsub"
+    ],
+    "questionCounts": [
+      20
+    ]
+  },
+  {
+    "route": "im1/unit-1-review/topics/fractions/practice/index.html",
+    "questions": 1200,
+    "pairs": 10800,
+    "modes": [
+      "mixed",
+      "common",
+      "unlike",
+      "muldiv",
+      "of",
+      "powers"
+    ],
+    "families": [
+      "fraction_multiplication",
+      "fraction_division",
+      "fraction_add_subtract_common_denominator",
+      "fraction_power",
+      "fraction_of_number",
+      "fraction_add_subtract_unlike_denominator",
+      "fraction_square_root"
+    ],
+    "kindFamilies": [
+      "muldiv",
+      "common",
+      "powers",
+      "of",
+      "unlike"
+    ],
+    "questionCounts": [
+      20
+    ]
+  },
+  {
+    "route": "im1/unit-1-review/topics/multiplication/practice/index.html",
+    "questions": 1100,
+    "pairs": 7700,
+    "modes": [
+      "default"
+    ],
+    "families": [
+      "facts_3_5_medium",
+      "facts_6_9_12_hard_11",
+      "squares_13_20",
+      "facts_2_10_easy_11",
+      "facts_0_1_rare"
+    ],
+    "kindFamilies": [],
+    "questionCounts": [
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      100
+    ]
+  },
+  {
+    "route": "im1/unit-1-review/topics/multiplying-and-dividing-negative-numbers/practice/index.html",
+    "questions": 600,
+    "pairs": 4200,
+    "modes": [
+      "mixed",
+      "multiply",
+      "divide"
+    ],
+    "families": [
+      "divide_opposite_sign",
+      "multiply_same_sign",
+      "divide_same_sign",
+      "multiply_opposite_sign"
+    ],
+    "kindFamilies": [
+      "divide",
+      "multiply"
+    ],
+    "questionCounts": [
+      20
+    ]
+  },
+  {
+    "route": "im1/unit-1-review/topics/order-of-operations/practice/index.html",
+    "questions": 200,
+    "pairs": 1400,
+    "modes": [
+      "default"
+    ],
+    "families": [
+      7,
+      9,
+      5,
+      4,
+      1,
+      10,
+      8,
+      12,
+      6,
+      11,
+      3,
+      2
+    ],
+    "kindFamilies": [],
+    "questionCounts": [
+      20
+    ]
+  },
+  {
+    "route": "im1/unit-1-review/topics/percents/practice/index.html",
+    "questions": 1200,
+    "pairs": 8400,
+    "modes": [
+      "mixed",
+      "percent",
+      "original",
+      "discount",
+      "tax",
+      "successive"
+    ],
+    "families": [
+      "percent_discount",
+      "discount_then_tax",
+      "percent_of_number",
+      "percent_markup",
+      "percent_over_100",
+      "successive_downdown",
+      "successive_upup",
+      "successive_upthenloss",
+      "successive_updown"
+    ],
+    "kindFamilies": [
+      "discount",
+      "tax",
+      "percent",
+      "original",
+      "successive"
+    ],
+    "questionCounts": [
+      20
+    ]
+  },
+  {
+    "route": "im1/unit-1-review/topics/reducing-fractions/practice/index.html",
+    "questions": 200,
+    "pairs": 1800,
+    "modes": [
+      "default"
+    ],
+    "families": [
+      "reduce"
+    ],
+    "kindFamilies": [
+      "reduce"
+    ],
+    "questionCounts": [
+      20
+    ]
+  },
+  {
+    "route": "im1/unit-1-review/topics/square-roots-and-exponents/practice/index.html",
+    "questions": 200,
+    "pairs": 1400,
+    "modes": [
+      "default"
+    ],
+    "families": [
+      "sqrt",
+      "pow"
+    ],
+    "kindFamilies": [],
+    "questionCounts": [
+      20
+    ]
+  },
+  {
+    "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/equivalent-expressions-combining-like-terms/practice/index.html",
+    "questions": 1200,
+    "pairs": 6138,
+    "families": [
+      "two_variables",
+      "combine",
+      "constants",
+      "multi",
+      "mixed_products",
+      "three_groups",
+      "like_terms"
+    ],
+    "typedFamilies": [
+      "two_variables",
+      "combine",
+      "constants",
+      "multi",
+      "mixed_products",
+      "three_groups"
+    ],
+    "retainedChoices": 177,
+    "templates": [
+      "two_variables",
+      "combine",
+      "constants",
+      "multi",
+      "mixed_products",
+      "three_groups"
+    ]
+  },
+  {
+    "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+    "questions": 1200,
+    "pairs": 2340,
+    "families": [
+      "solve_then_interval",
+      "ineq_to_interval",
+      "union",
+      "interval_result",
+      "graph_to_interval",
+      "ineq_to_graph",
+      "interval_to_ineq"
+    ],
+    "typedFamilies": [
+      "solve_then_interval"
+    ],
+    "retainedChoices": 420,
+    "templates": [
+      "distribution",
+      "both_sides",
+      "combine",
+      "constant_first",
+      "linear"
+    ]
+  },
+  {
+    "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html",
+    "questions": 1200,
+    "pairs": 7200,
+    "families": [
+      "both_sides",
+      "distribution",
+      "identity",
+      "contradiction",
+      "both_distribute_unique",
+      "fraction_linear",
+      "one_step",
+      "two_step",
+      "fraction_x",
+      "fraction_expression",
+      "fraction_coefficient"
+    ],
+    "typedFamilies": [
+      "both_sides",
+      "distribution",
+      "identity",
+      "contradiction",
+      "both_distribute_unique",
+      "fraction_linear",
+      "one_step",
+      "two_step",
+      "fraction_x",
+      "fraction_expression",
+      "fraction_coefficient"
+    ],
+    "retainedChoices": 0,
+    "templates": [
+      "both_sides",
+      "distribution",
+      "identity",
+      "contradiction",
+      "both_distribute_unique",
+      "fraction_linear",
+      "one_step",
+      "two_step",
+      "fraction_x",
+      "fraction_expression",
+      "fraction_coefficient"
+    ]
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "result": {
+    "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html",
+    "legacy": true,
+    "dependencies": {
+      "checker": false,
+      "expression": false,
+      "keypad": false
+    },
+    "problem": {
+      "id": "u4N-geometry-quarter_circle-9d3cda33f9ed7941",
+      "tex": "-16\\pi",
+      "spec": {
+        "kind": "scalar",
+        "value": {
+          "": [
+            0,
+            1
+          ],
+          "pi": [
+            -16,
+            1
+          ]
+        }
+      },
+      "raw": "-16pi"
+    },
+    "feedback": "Check Answer789−xy456+πe123×ln√0.a/b()x =y =c =,[]∞−∞∪UnderOver^⌫Clear",
+    "passed": false
+  },
+  "errors": [
+    "Cannot read properties of undefined (reading 'check')"
+  ]
+}

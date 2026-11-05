@@ -1,0 +1,91 @@
+{
+  "focusedCases": [
+    {
+      "input": "2xsec(x^6)",
+      "result": {
+        "valid": true,
+        "ok": true
+      }
+    },
+    {
+      "input": "2*x*sec(x^6)",
+      "result": {
+        "valid": true,
+        "ok": true
+      }
+    },
+    {
+      "input": "sec(x^6)",
+      "result": {
+        "valid": true,
+        "ok": false
+      }
+    },
+    {
+      "input": "2xsec(x)^6",
+      "result": {
+        "valid": true,
+        "ok": false
+      }
+    },
+    {
+      "latex": "2x\\sec(x^6)",
+      "translated": {
+        "status": "complete",
+        "tree": {
+          "type": "binary",
+          "op": "*",
+          "implicit": true,
+          "left": {
+            "type": "binary",
+            "op": "*",
+            "implicit": true,
+            "left": {
+              "type": "num",
+              "raw": "2"
+            },
+            "right": {
+              "type": "sym",
+              "name": "x"
+            }
+          },
+          "right": {
+            "type": "call",
+            "name": "sec",
+            "args": [
+              {
+                "type": "binary",
+                "op": "^",
+                "left": {
+                  "type": "sym",
+                  "name": "x"
+                },
+                "right": {
+                  "type": "num",
+                  "raw": "6"
+                }
+              }
+            ]
+          }
+        },
+        "message": "",
+        "input": "2xsec(x^6)"
+      },
+      "result": {
+        "valid": true,
+        "ok": true
+      }
+    },
+    {
+      "input": "2xsec(x^6)",
+      "expected": "2*x*sec(x^6)^2",
+      "result": {
+        "valid": true,
+        "ok": false
+      }
+    }
+  ],
+  "generatedQuestions": 20,
+  "generatedCheckerCalls": 40,
+  "conclusion": "Matching-context format accepted; original rejected question unavailable. No checker change justified."
+}

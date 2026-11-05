@@ -13,7 +13,11 @@ if(pdfs.length!==46)fail(`expected 46 Unit 3 PDFs, found ${pdfs.length}`);
 if(files.some(f=>/\.docx$/i.test(f)))fail('Unit 3 contains a DOCX file');
 if(files.some(f=>/(?:^|\/)tests?(?:\/|$)/i.test(f)))fail('Unit 3 contains a Tests folder/file');
 const unitHtml=fs.readFileSync(path.join(unit,'index.html'),'utf8');
-if(!unitHtml.includes('>A. Arithmetic Sequences</a>'))fail('category A does not use the exact requested title');
+for(const [index,title] of ['Arithmetic Sequences','Functions, Function Notation, and Slope','Slope-Intercept Form and Point-Slope Form','Recursive Formulas for Linear Relationships'].entries()){
+ if(!unitHtml.includes(`>Section ${index+1}: ${title}</a>`))fail(`section ${index+1} does not use its numbered title`);
+}
+const partB=fs.readFileSync(path.join(unit,'topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/index.html'),'utf8');
+if(!partB.includes('>Unit 3 — Section 1, Part B: Common Difference and Next Terms</h1>'))fail('common difference must remain Section 1, Part B');
 for(const file of practices){
  const page=fs.readFileSync(file,'utf8'),rel=path.relative(root,file);
  for(const asset of ['im1-unit3-generators.js','im1-unit3-practice.js','im1-keypad.js','im1-keypad.css','answer-normalization.js'])if(!page.includes(asset))fail(`${rel}: missing ${asset}`);

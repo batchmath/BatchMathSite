@@ -876,6 +876,8 @@
      * only control which existing buttons are mounted around it.
      */
     const contextualUnit3={
+      "migration-limit-finite":{fraction:true,decimal:true,radical:true,cubeRoot:true,nthRoot:true,exponent:true,logarithm:true,functions:[["log","log"]],constants:["pi","e"],arithmetic:true,parentheses:true},
+      "migration-limit-signed":{fraction:true,decimal:true,radical:true,cubeRoot:true,nthRoot:true,exponent:true,logarithm:true,functions:[["log","log"]],constants:["pi","e"],arithmetic:true,parentheses:true,infinity:true,dne:true},
       "unit3-rounded":{decimal:true},
       "unit3-number":{fraction:true,decimal:true,arithmetic:true,parentheses:true},
       "unit3-exact":{fraction:true,radical:true,exponent:true,constants:["pi","e"],logarithm:true,arithmetic:true,parentheses:true},
@@ -912,11 +914,21 @@
       "unit3-rounded-line":{decimal:true,equality:true,variables:["x","y"]},
       "limits-finite":{fraction:true,radical:true,cubeRoot:true,nthRoot:true,logarithm:true,exponent:true,constants:["pi","e"],arithmetic:true,parentheses:true},
       "limits-no-infinity":{fraction:true,radical:true,cubeRoot:true,nthRoot:true,logarithm:true,exponent:true,constants:["pi","e"],arithmetic:true,parentheses:true,dne:true},
-      "derivative-power":{fraction:true,exponent:true,variables:["x"],arithmetic:true,parentheses:true},
+      "derivative-power":{fraction:true,radical:true,exponent:true,constants:["pi","e"],variables:["x"],arithmetic:true,parentheses:true},
       "derivative-algebra":{fraction:true,exponent:true,radical:true,variables:["x"],arithmetic:true,parentheses:true},
       "derivative-at-point-basic":{fraction:true,radical:true,constants:["pi"],arithmetic:true,parentheses:true},
       "derivative-trig":{fraction:true,exponent:true,variables:["x"],constants:["pi"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
-      "derivative-chain":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x"],constants:["pi","e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "migration-derivative-inverse":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x","y"],constants:["pi","e"],functions:[["log","log"],["|u|","abs"],["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"],["sin⁻¹","asin"],["cos⁻¹","acos"],["tan⁻¹","atan"],["cot⁻¹","acot"],["sec⁻¹","asec"],["csc⁻¹","acsc"]],arithmetic:true,parentheses:true} ,
+      "migration-derivative-rational":{fraction:true,decimal:true,arithmetic:true,parentheses:true},
+      "migration-derivative-algebraic-value":{fraction:true,radical:true,exponent:true,decimal:true,arithmetic:true,parentheses:true},
+      "migration-derivative-trig":{fraction:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:['x'],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
+      "migration-derivative-exp":{fraction:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:['x'],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
+      "migration-derivative-log":{fraction:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:['x','y'],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
+      "migration-derivative-implicit":{fraction:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:['x','y'],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
+      "migration-derivative-value":{fraction:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:[],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
+      "migration-derivative-comprehensive-value":{fraction:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:[],functions:[['tan⁻¹','atan'],['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
+      "derivative-product":{fraction:true,radical:true,decimal:true,exponent:true,logarithm:true,constants:['e','pi'],variables:['x'],arithmetic:true,parentheses:true,functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['sin⁻¹','asin'],['cos⁻¹','acos'],['tan⁻¹','atan'],['cot⁻¹','acot'],['sec⁻¹','asec'],['csc⁻¹','acsc'],['log','log'],['|u|','abs']]},
+      "derivative-chain":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x"],constants:["e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
       "derivative-exponential":{fraction:true,logarithm:true,exponent:true,variables:["x"],constants:["e"],arithmetic:true,parentheses:true},
       "derivative-implicit":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x","y"],constants:["pi","e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"]],arithmetic:true,parentheses:true},
       "derivative-log":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x","y"],constants:["pi","e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"]],arithmetic:true,parentheses:true},
@@ -996,14 +1008,16 @@
     g.className="bm-calc-main-grid";
     if(contextualUnit3){
       const rows=[["7","7"],["8","8"],["9","9"],["4","4"],["5","5"],["6","6"],["1","1"],["2","2"],["3","3"],["0","0"],["−","-"]];
+      if(contextualUnit3.signed===false)rows.pop();
       if(contextualUnit3.decimal)rows.push([".","."]);
       if(contextualUnit3.parentheses)rows.push(["(","("],[")",")"]);
       if(contextualUnit3.arithmetic)rows.push(["+","+"],["·","*"]);
       else if(contextualUnit3.plus)rows.push(["+","+"]);
       if(contextualUnit3.equality)rows.push(["=","="]);
+      (contextualUnit3.operators||[]).forEach(pair=>rows.push(pair));
       (contextualUnit3.variables||[]).forEach(name=>rows.push([name,name]));
       if(contextualUnit3.list||contextualUnit3.pair)rows.push([",",","]);
-      rows.forEach(([lab,raw])=>addInsert(g,lab,raw,/[+−·()=,]/.test(lab)?"symbol":""));
+      rows.forEach(([lab,raw])=>addInsert(g,lab,raw,/[+−·()=,±]/.test(lab)?"symbol":""));
     }else if(mode==="unit3"){
       [["7","7"],["8","8"],["9","9"],["(","("],[")",")"],
        ["4","4"],["5","5"],["6","6"],["+","+"],["−","-"],
@@ -1326,5 +1340,5 @@
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
   else init();
 
-  window.BatchMathCalculusKeypad={init,mountInputs,registerProfile:(name,spec)=>{customProfiles[name]=spec;},reset,focus,setRaw:(v)=>{const stacks=historyStacks();stacks.undo.length=0;stacks.redo.length=0;setRaw(v,String(v||"").length,{record:false});},move,moveVertical,backspace,del,undo,redo,get raw(){return serializeRange()},get cursor(){return state.cursor},get selection(){return selectionRange();},setCursor:(v)=>{collapseSelection(Number(v)||0);render();}};
+  window.BatchMathCalculusKeypad={init,mountInputs,createPad:buildPad,registerProfile:(name,spec)=>{customProfiles[name]=spec;},reset,focus,setRaw:(v)=>{const stacks=historyStacks();stacks.undo.length=0;stacks.redo.length=0;setRaw(v,String(v||"").length,{record:false});},move,moveVertical,backspace,del,undo,redo,get raw(){return serializeRange()},get cursor(){return state.cursor},get selection(){return selectionRange();},setCursor:(v)=>{collapseSelection(Number(v)||0);render();}};
 })();

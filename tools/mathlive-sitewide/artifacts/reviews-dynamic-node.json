@@ -1,0 +1,1659 @@
+[
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+    "unit": 3,
+    "questions": 2160,
+    "parts": 2154,
+    "pairs": 10250,
+    "retained": 110,
+    "plans": [
+      {
+        "slug": "equations-of-tangent-and-normal-lines",
+        "options": {}
+      },
+      {
+        "slug": "horizontal-and-vertical-tangent-lines",
+        "options": {}
+      },
+      {
+        "slug": "horizontal-and-vertical-tangent-lines-implicitly",
+        "options": {}
+      },
+      {
+        "slug": "motion",
+        "options": {}
+      },
+      {
+        "slug": "absolute-and-local-extrema-and-the-extreme-value-theorem",
+        "options": {}
+      },
+      {
+        "slug": "increasing-decreasing-intervals-concavity-and-extrema",
+        "options": {}
+      },
+      {
+        "slug": "linearization-and-differentials",
+        "options": {}
+      },
+      {
+        "slug": "tangent-and-secant-line-approximations",
+        "options": {}
+      },
+      {
+        "slug": "rolle-s-theorem-and-the-mean-value-theorem",
+        "options": {}
+      },
+      {
+        "slug": "l-hopital-s-rule",
+        "options": {}
+      },
+      {
+        "slug": "optimization",
+        "options": {}
+      },
+      {
+        "slug": "related-rates",
+        "options": {}
+      }
+    ],
+    "families": [
+      "equations-of-tangent-and-normal-lines:polynomial_cubic_normal",
+      "equations-of-tangent-and-normal-lines:implicit_power_sum_normal",
+      "equations-of-tangent-and-normal-lines:exponential_chain_normal",
+      "equations-of-tangent-and-normal-lines:sine_chain_tangent",
+      "equations-of-tangent-and-normal-lines:tangent_function_tangent",
+      "equations-of-tangent-and-normal-lines:logarithmic_normal",
+      "equations-of-tangent-and-normal-lines:cosine_special_angle_normal",
+      "equations-of-tangent-and-normal-lines:expanded_quartic_normal",
+      "equations-of-tangent-and-normal-lines:implicit_shifted_conic_tangent",
+      "equations-of-tangent-and-normal-lines:implicit_exponential_product_normal",
+      "equations-of-tangent-and-normal-lines:implicit_reciprocal_normal",
+      "equations-of-tangent-and-normal-lines:implicit_exponential_normal",
+      "equations-of-tangent-and-normal-lines:reciprocal_shift_normal",
+      "equations-of-tangent-and-normal-lines:inverse_trigonometric_normal",
+      "equations-of-tangent-and-normal-lines:rational_quotient_tangent",
+      "equations-of-tangent-and-normal-lines:implicit_trigonometric_tangent",
+      "equations-of-tangent-and-normal-lines:polynomial_quadratic_tangent",
+      "equations-of-tangent-and-normal-lines:expanded_quartic_tangent",
+      "equations-of-tangent-and-normal-lines:radical_chain_normal",
+      "equations-of-tangent-and-normal-lines:product_trigonometric_normal",
+      "equations-of-tangent-and-normal-lines:polynomial_quadratic_normal",
+      "equations-of-tangent-and-normal-lines:implicit_trigonometric_product_normal",
+      "equations-of-tangent-and-normal-lines:sine_chain_normal",
+      "equations-of-tangent-and-normal-lines:implicit_cubic_square_linear_normal",
+      "equations-of-tangent-and-normal-lines:logarithmic_tangent",
+      "equations-of-tangent-and-normal-lines:cosine_special_angle_tangent",
+      "equations-of-tangent-and-normal-lines:product_trigonometric_tangent",
+      "equations-of-tangent-and-normal-lines:product_exponential_tangent",
+      "equations-of-tangent-and-normal-lines:implicit_quartic_kampyle_tangent",
+      "equations-of-tangent-and-normal-lines:implicit_power_sum_tangent",
+      "equations-of-tangent-and-normal-lines:inverse_trigonometric_tangent",
+      "equations-of-tangent-and-normal-lines:polynomial_cubic_tangent",
+      "equations-of-tangent-and-normal-lines:radical_chain_tangent",
+      "equations-of-tangent-and-normal-lines:fractional_power_normal",
+      "equations-of-tangent-and-normal-lines:fractional_power_tangent",
+      "equations-of-tangent-and-normal-lines:rational_quotient_normal",
+      "equations-of-tangent-and-normal-lines:implicit_assignment_style_tangent",
+      "equations-of-tangent-and-normal-lines:tangent_function_normal",
+      "equations-of-tangent-and-normal-lines:implicit_mixed_quadratic_tangent",
+      "equations-of-tangent-and-normal-lines:implicit_exponential_product_tangent",
+      "equations-of-tangent-and-normal-lines:product_exponential_normal",
+      "equations-of-tangent-and-normal-lines:exponential_chain_tangent",
+      "equations-of-tangent-and-normal-lines:implicit_cubic_square_linear_tangent",
+      "equations-of-tangent-and-normal-lines:reciprocal_shift_tangent",
+      "equations-of-tangent-and-normal-lines:implicit_product_cubic_tangent",
+      "equations-of-tangent-and-normal-lines:implicit_quartic_kampyle_normal",
+      "equations-of-tangent-and-normal-lines:implicit_sine_sum_normal",
+      "equations-of-tangent-and-normal-lines:implicit_product_cubic_normal",
+      "equations-of-tangent-and-normal-lines:implicit_higher_product_tangent",
+      "equations-of-tangent-and-normal-lines:implicit_trigonometric_normal",
+      "equations-of-tangent-and-normal-lines:implicit_higher_product_normal",
+      "equations-of-tangent-and-normal-lines:implicit_trigonometric_product_tangent",
+      "horizontal-and-vertical-tangent-lines:horizontal_tangent_combination",
+      "horizontal-and-vertical-tangent-lines:horizontal_logarithmic",
+      "horizontal-and-vertical-tangent-lines:vertical_inverse_trigonometric",
+      "horizontal-and-vertical-tangent-lines:vertical_square_root_endpoint",
+      "horizontal-and-vertical-tangent-lines:horizontal_exponential_product",
+      "horizontal-and-vertical-tangent-lines:vertical_two_thirds",
+      "horizontal-and-vertical-tangent-lines:horizontal_polynomial_factoring_by_grouping",
+      "horizontal-and-vertical-tangent-lines:horizontal_polynomial_variable_substitution",
+      "horizontal-and-vertical-tangent-lines:horizontal_polynomial_quadratic_derivative",
+      "horizontal-and-vertical-tangent-lines:horizontal_rational",
+      "horizontal-and-vertical-tangent-lines:horizontal_sine",
+      "horizontal-and-vertical-tangent-lines:horizontal_cubic_positive_critical",
+      "horizontal-and-vertical-tangent-lines:horizontal_radical",
+      "horizontal-and-vertical-tangent-lines:vertical_four_fifths",
+      "horizontal-and-vertical-tangent-lines:horizontal_cosine",
+      "horizontal-and-vertical-tangent-lines:vertical_cube_root_plus_linear",
+      "horizontal-and-vertical-tangent-lines:vertical_cube_root",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_higher_powers_vertical",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_mixed_quadratic_vertical",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_circle_vertical",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_all_horizontal_coordinates_substitution",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_cross_quadratic_horizontal",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_all_vertical_coordinates_substitution",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_mixed_quadratic_horizontal",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_circle_horizontal",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_cubic_sum_horizontal",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_cross_quadratic_vertical",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_all_horizontal_coordinates_grouping",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_all_vertical_coordinates_quadratic",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_all_horizontal_coordinates_quadratic",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_all_vertical_coordinates_grouping",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_ellipse_horizontal",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_product_cubic_horizontal",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_higher_powers_horizontal",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_cubic_sum_vertical",
+      "horizontal-and-vertical-tangent-lines-implicitly:implicit_ellipse_vertical",
+      "motion:motion_position_direction_change_exponential",
+      "motion:motion_position_acceleration_logarithmic",
+      "motion:motion_velocity_when_position_known",
+      "motion:motion_acceleration_when_velocity_logarithmic",
+      "motion:motion_velocity_speed_exponential",
+      "motion:motion_acceleration_when_position_known",
+      "motion:motion_acceleration_when_position_exponential",
+      "motion:motion_acceleration_when_velocity_known",
+      "motion:motion_position_velocity_exponential",
+      "motion:motion_position_speed_polynomial",
+      "motion:motion_position_velocity_logarithmic",
+      "motion:motion_velocity_acceleration_trigonometric",
+      "motion:motion_position_acceleration_radical",
+      "motion:motion_acceleration_first_direction_change",
+      "motion:motion_velocity_speed_trigonometric",
+      "motion:motion_position_velocity_radical",
+      "motion:motion_velocity_acceleration_exponential",
+      "motion:motion_position_velocity_trigonometric",
+      "motion:motion_position_acceleration_exponential",
+      "motion:motion_position_direction_change_trigonometric",
+      "motion:motion_position_direction_change_polynomial",
+      "motion:motion_position_acceleration_trigonometric",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_local_rational_location",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_local_quartic_location",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_absolute_radical_location",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_absolute_radical_value",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_local_rational_value",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_absolute_trig_location",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_absolute_trig_value",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_absolute_polynomial_locations",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_local_cubic_value",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:evt_exponential_denominator",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:evt_radical_domain_expanded",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_local_log_location",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_local_cubic_location",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_local_quartic_value",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_absolute_polynomial_value",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_local_log_value",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:evt_polynomial_closed_interval",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:evt_radical_denominator",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_absolute_radical_locations",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:extrema_local_quartic_locations",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:evt_logarithmic_domain_expanded",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:evt_expanded_rational_domain",
+      "absolute-and-local-extrema-and-the-extreme-value-theorem:evt_logarithmic_denominator",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_inflection_point_coordinates_cubic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_f_rational",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_f_radical_product",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_f_concavity_polynomial",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_f_cubic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_inflection_point_coordinates_exponential",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_local_extremum_fields_exponential",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_inflection_point_coordinates_trigonometric",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_local_extremum_fields_trigonometric",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_f_logarithmic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_inflection_point_coordinates_quartic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_local_extremum_fields_cubic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_f_exponential_product",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_first_derivative_quadratic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_f_quadratic_formula",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_local_extremum_fields_rational",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_second_derivative_quadratic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_f_quartic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_second_derivative_cubic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_local_extremum_fields_quartic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_first_derivative_grouping",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_first_derivative_cubic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_local_extremum_fields_radical",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_f_trigonometric",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_from_first_derivative_variable_substitution",
+      "linearization-and-differentials:differentials_rectangle_two_variables",
+      "linearization-and-differentials:differentials_reverse_circle_radius",
+      "linearization-and-differentials:differentials_cone_two_variables",
+      "linearization-and-differentials:differentials_rectangular_prism",
+      "linearization-and-differentials:differentials_sphere_surface_area",
+      "linearization-and-differentials:differentials_circle_circumference",
+      "linearization-and-differentials:differentials_triangle_two_variables",
+      "linearization-and-differentials:differentials_reverse_rectangle_length",
+      "linearization-and-differentials:linearization_cube_root",
+      "linearization-and-differentials:differentials_reverse_cylinder_height",
+      "linearization-and-differentials:linearization_square_root",
+      "linearization-and-differentials:differentials_cylinder_two_variables",
+      "linearization-and-differentials:differentials_right_triangle_hypotenuse",
+      "linearization-and-differentials:differentials_triangle_included_angle",
+      "linearization-and-differentials:differentials_reverse_sphere_radius",
+      "linearization-and-differentials:differentials_trapezoid_area",
+      "linearization-and-differentials:differentials_circle_area",
+      "linearization-and-differentials:differentials_equilateral_triangle",
+      "linearization-and-differentials:differentials_cylinder_surface_area",
+      "linearization-and-differentials:differentials_sphere_volume",
+      "tangent-and-secant-line-approximations:secant_cubic",
+      "tangent-and-secant-line-approximations:tangent_radical_composition",
+      "tangent-and-secant-line-approximations:secant_rational_linear",
+      "tangent-and-secant-line-approximations:secant_log_composition",
+      "tangent-and-secant-line-approximations:tangent_reciprocal_power_2",
+      "tangent-and-secant-line-approximations:secant_scaled_reciprocal_composition",
+      "tangent-and-secant-line-approximations:secant_sine_composition",
+      "tangent-and-secant-line-approximations:secant_square_root",
+      "tangent-and-secant-line-approximations:tangent_quadratic",
+      "tangent-and-secant-line-approximations:tangent_sine_composition",
+      "tangent-and-secant-line-approximations:tangent_scaled_reciprocal_composition",
+      "tangent-and-secant-line-approximations:secant_product_logarithm",
+      "tangent-and-secant-line-approximations:secant_product_exponential",
+      "tangent-and-secant-line-approximations:tangent_rational_linear",
+      "tangent-and-secant-line-approximations:tangent_cubic",
+      "tangent-and-secant-line-approximations:tangent_square_root",
+      "tangent-and-secant-line-approximations:secant_inverse_tangent",
+      "tangent-and-secant-line-approximations:tangent_inverse_tangent",
+      "tangent-and-secant-line-approximations:tangent_inverse_sine_composition",
+      "tangent-and-secant-line-approximations:secant_negative_square_root",
+      "tangent-and-secant-line-approximations:secant_exponential_composition",
+      "tangent-and-secant-line-approximations:tangent_cosine_composition",
+      "tangent-and-secant-line-approximations:tangent_reciprocal_power_1",
+      "tangent-and-secant-line-approximations:tangent_product_logarithm",
+      "tangent-and-secant-line-approximations:tangent_logarithm",
+      "tangent-and-secant-line-approximations:secant_inverse_sine",
+      "tangent-and-secant-line-approximations:tangent_log_composition",
+      "tangent-and-secant-line-approximations:secant_quadratic",
+      "tangent-and-secant-line-approximations:tangent_product_exponential",
+      "tangent-and-secant-line-approximations:tangent_exponential",
+      "tangent-and-secant-line-approximations:secant_reciprocal",
+      "tangent-and-secant-line-approximations:secant_shifted_radical",
+      "tangent-and-secant-line-approximations:tangent_exponential_composition",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_trigonometric_composition_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_rational_product_quotient_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_exponential_combination_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_radical_quotient_pole_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_logarithm_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_absolute_value_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_trigonometric_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_removable_rational_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_mixed_exponential_product_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_quadratic_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_radical_composition_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_logarithmic_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_trigonometric_composition_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_removable_rational_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_absolute_value_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_radical_product_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_inverse_trigonometric_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_rational_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_logarithmic_composition_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_exponential_product_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_cubic_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_radical_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_trigonometric_fails_endpoints",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_rational_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_logarithmic_product_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_cubic_plus_linear_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_exponential_combination_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_logarithmic_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_cosine_composition_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_cusp_fails_differentiability",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_shifted_reciprocal_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_exponential_composition_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_radical_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_rational_product_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_secant_pole_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_radical_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_exponential_fails_endpoints",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_product_logarithm_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_quadratic_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_trigonometric_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_inverse_trigonometric_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_logarithmic_composition_hole_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_inverse_trigonometric_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_exponential_rational_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_inverse_trigonometric_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_cubic_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_rational_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_logarithmic_composition_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_secant_pole_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_radical_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_rational_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_logarithmic_fails",
+      "rolle-s-theorem-and-the-mean-value-theorem:mvt_exponential_applies",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_polynomial_fails_endpoints",
+      "rolle-s-theorem-and-the-mean-value-theorem:rolle_trigonometric_cosine_applies",
+      "l-hopital-s-rule:lhopital_zero_radical_composition",
+      "l-hopital-s-rule:lhopital_zero_exponential",
+      "l-hopital-s-rule:lhopital_zero_logarithm",
+      "l-hopital-s-rule:lhopital_zero_cosine",
+      "l-hopital-s-rule:lhopital_zero_trig_remainder",
+      "l-hopital-s-rule:lhopital_zero_shifted_logarithm",
+      "l-hopital-s-rule:lhopital_zero_trig_difference",
+      "l-hopital-s-rule:lhopital_infinity_radical_linear",
+      "l-hopital-s-rule:lhopital_not_indeterminate_nonzero_over_zero",
+      "l-hopital-s-rule:lhopital_not_indeterminate_trigonometric",
+      "l-hopital-s-rule:lhopital_not_indeterminate_zero",
+      "l-hopital-s-rule:lhopital_zero_trig_quotient",
+      "l-hopital-s-rule:lhopital_product_radical_exponential",
+      "l-hopital-s-rule:lhopital_product_logarithmic_trig",
+      "l-hopital-s-rule:lhopital_zero_exponential_trig_composition",
+      "l-hopital-s-rule:lhopital_zero_logarithmic_trig_difference",
+      "l-hopital-s-rule:lhopital_zero_polynomial",
+      "l-hopital-s-rule:lhopital_zero_inverse_tangent",
+      "l-hopital-s-rule:lhopital_product_trigonometric",
+      "l-hopital-s-rule:lhopital_product_exponential_decay",
+      "l-hopital-s-rule:lhopital_zero_repeated_exponential",
+      "l-hopital-s-rule:lhopital_zero_radical",
+      "l-hopital-s-rule:lhopital_infinity_linear_logarithmic_mix",
+      "l-hopital-s-rule:lhopital_not_indeterminate_finite",
+      "l-hopital-s-rule:lhopital_zero_log_trig_composition",
+      "l-hopital-s-rule:lhopital_not_indeterminate_reciprocal",
+      "l-hopital-s-rule:lhopital_zero_sine",
+      "l-hopital-s-rule:lhopital_infinity_linear_trigonometric_mix",
+      "l-hopital-s-rule:lhopital_infinity_polynomial_exponential",
+      "l-hopital-s-rule:lhopital_product_shifted_log",
+      "l-hopital-s-rule:lhopital_infinity_exponential_composition",
+      "l-hopital-s-rule:lhopital_infinity_exponential_polynomial_mix",
+      "l-hopital-s-rule:lhopital_infinity_logarithmic_radical_composition",
+      "l-hopital-s-rule:lhopital_infinity_radical_ratio",
+      "l-hopital-s-rule:lhopital_infinity_log_power",
+      "l-hopital-s-rule:lhopital_infinity_exponential_ratio",
+      "l-hopital-s-rule:lhopital_product_endpoint_logarithm",
+      "optimization:optimization_barn_three_sides",
+      "optimization:optimization_open_cylinder_fixed_volume",
+      "optimization:optimization_open_top_square_cardboard",
+      "optimization:optimization_cone_from_right_triangle",
+      "optimization:optimization_capsule_unequal_material_costs_dimensions",
+      "optimization:optimization_shortest_ladder_over_fence",
+      "optimization:optimization_two_poles_minimum_cable",
+      "optimization:optimization_closed_cylinder_fixed_volume",
+      "optimization:optimization_two_positive_numbers",
+      "optimization:optimization_open_box_dimensions_and_maximum_volume",
+      "optimization:optimization_square_base_open_box_fixed_material",
+      "optimization:optimization_rectangle_different_fence_costs",
+      "optimization:optimization_minimum_distance_moving_objects",
+      "optimization:optimization_cylinder_different_material_costs",
+      "optimization:optimization_wire_split_two_shapes",
+      "optimization:optimization_rectangle_fixed_fencing",
+      "optimization:optimization_closest_point_parabola",
+      "optimization:optimization_rectangle_equilateral_triangle_window",
+      "optimization:optimization_line_minimum_axis_triangle",
+      "optimization:optimization_hotel_revenue",
+      "optimization:optimization_rectangle_inscribed_circle",
+      "optimization:optimization_page_printed_area",
+      "optimization:optimization_closest_point_square_root",
+      "optimization:optimization_discrete_orchard_yield",
+      "optimization:optimization_square_pyramid_fixed_volume_dimensions",
+      "optimization:optimization_symmetric_rectangle_mixed",
+      "optimization:optimization_closest_point_radical",
+      "optimization:optimization_rectangle_inscribed_semicircle",
+      "optimization:optimization_symmetric_rectangle_quadratic",
+      "optimization:optimization_open_top_rectangular_cardboard",
+      "optimization:optimization_closest_point_power",
+      "optimization:optimization_wholesale_revenue",
+      "optimization:optimization_symmetric_rectangle_quartic",
+      "related-rates:related_rates_sphere_volume_to_radius",
+      "related-rates:related_rates_sliding_ladder_wall_angle",
+      "related-rates:related_rates_rotating_spotlight",
+      "related-rates:related_rates_cylindrical_tank_gallons",
+      "related-rates:related_rates_semicircle_moving_point_triangle_area",
+      "related-rates:related_rates_conical_pile",
+      "related-rates:related_rates_semicircle_area",
+      "related-rates:related_rates_circular_spill_radius",
+      "related-rates:related_rates_hemispherical_ice_layer",
+      "related-rates:related_rates_multi_part_conical_tank",
+      "related-rates:related_rates_multi_part_shadow",
+      "related-rates:related_rates_multi_part_ladder",
+      "related-rates:related_rates_sliding_ladder_area",
+      "related-rates:related_rates_delayed_start_bicycles",
+      "related-rates:related_rates_angle_of_elevation",
+      "related-rates:related_rates_trapezoidal_trough",
+      "related-rates:related_rates_right_triangle_area",
+      "related-rates:related_rates_conical_tank_radius_from_volume",
+      "related-rates:related_rates_sphere_surface_to_volume",
+      "related-rates:related_rates_circular_wave_circumference",
+      "related-rates:related_rates_lamppost_shadow_tip",
+      "related-rates:related_rates_implicit_equation",
+      "related-rates:related_rates_square_area",
+      "related-rates:related_rates_cylindrical_tank",
+      "related-rates:related_rates_triangular_trough",
+      "related-rates:related_rates_isosceles_triangle_area",
+      "related-rates:related_rates_conical_tank_height_from_volume",
+      "related-rates:related_rates_circular_pool_area",
+      "related-rates:related_rates_lamppost_shadow_length",
+      "related-rates:related_rates_sliding_ladder_ground_angle",
+      "related-rates:related_rates_rectangle_area",
+      "related-rates:related_rates_rope_spool_balloon",
+      "related-rates:related_rates_sliding_ladder_top",
+      "related-rates:related_rates_softball_diamond",
+      "related-rates:related_rates_circle_area",
+      "related-rates:related_rates_conical_tank_volume_from_height",
+      "related-rates:related_rates_equilateral_area",
+      "related-rates:related_rates_balloon_bicycle_distance",
+      "related-rates:related_rates_sphere_diameter_to_volume"
+    ],
+    "profiles": {
+      "unit3-equation": {
+        "kinds": [
+          "line-equation"
+        ],
+        "examples": [
+          "u3-tn-cubic-normal-1-1-2--3--1",
+          "u3-tn-ipower-normal-3-2-4-2-3-1",
+          "u3-tn-exp-normal-2--2-4"
+        ]
+      },
+      "unit3-list": {
+        "kinds": [
+          "value-list"
+        ],
+        "examples": [
+          "u3-ihv-coordsub-true-2-5--1",
+          "u3-ihv-coordsub-true-1-3-2",
+          "u3-ihv-coordsub-true-2-3-6"
+        ]
+      },
+      "unit3-exact": {
+        "kinds": [
+          "exact-expression"
+        ],
+        "examples": [
+          "u3-motion-direxp-1-2",
+          "u3-motion-poslog-4-2-4--5-4-acceleration",
+          "u3-motion-v-at-position--1-2-2"
+        ]
+      },
+      "unit3-pair": {
+        "kinds": [
+          "ordered-pair"
+        ],
+        "examples": [
+          "u3-analysis-poi-v117-cubic--1-1",
+          "u3-analysis-poi-v117-cubic-4--5",
+          "u3-analysis-poi-v117-exp"
+        ]
+      },
+      "unit3-interval": {
+        "kinds": [
+          "interval-answer"
+        ],
+        "examples": [
+          "u3-analysis-f-rational-2-decreasing",
+          "u3-analysis-f-radical-12-increasing",
+          "u3-analysis-f-concavity--1-1-up"
+        ]
+      },
+      "unit3-coordinate": {
+        "kinds": [
+          "extremum-fields"
+        ],
+        "examples": [
+          "u3-analysis-ext-v117-exp-maximum",
+          "u3-analysis-ext-v117-trig-6-4-minimum",
+          "u3-analysis-ext-v117-exp-maximum"
+        ]
+      },
+      "unit3-approximation": {
+        "kinds": [
+          "staged-calculus"
+        ],
+        "examples": [
+          "u3-ts-v122-scubic-1--1-3-2-6-2-5",
+          "u3-ts-t-rootcomp--1",
+          "u3-ts-v122-ratlin-3-5"
+        ]
+      },
+      "unit3-theorem": {
+        "kinds": [
+          "staged-calculus"
+        ],
+        "examples": [
+          "u3-v122-rolle-sin2",
+          "u3-v124-rolle-rational-product",
+          "u3-mvt-exp-combo"
+        ]
+      },
+      "unit3-limit": {
+        "kinds": [
+          "staged-calculus"
+        ],
+        "examples": [
+          "u3-v122-lh-root-linear-4",
+          "u3-lh-zero-exp-3",
+          "u3-lh-zero-log-6"
+        ]
+      },
+      "unit3-geometry-exact": {
+        "kinds": [
+          "exact-expression",
+          "calculus-fields"
+        ],
+        "examples": [
+          "u3-v127-opt-fence-barn-noncalculator-84",
+          "u3-v127-opt-cylinder-open-noncalculator-512",
+          "u3-v127-opt-square-noncalculator-42"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
+    "unit": 3,
+    "questions": 1260,
+    "parts": 1367,
+    "pairs": 6300,
+    "retained": 0,
+    "plans": [
+      {
+        "slug": "horizontal-and-vertical-tangent-lines-implicitly",
+        "options": {}
+      },
+      {
+        "slug": "using-your-graphing-calculator",
+        "options": {}
+      },
+      {
+        "slug": "motion",
+        "options": {}
+      },
+      {
+        "slug": "increasing-decreasing-intervals-concavity-and-extrema",
+        "options": {}
+      },
+      {
+        "slug": "newton-s-method-for-approximating-roots-of-a-function",
+        "options": {}
+      },
+      {
+        "slug": "optimization",
+        "options": {}
+      },
+      {
+        "slug": "related-rates",
+        "options": {}
+      }
+    ],
+    "families": [
+      "horizontal-and-vertical-tangent-lines-implicitly:calculator_trigonometric_horizontal",
+      "horizontal-and-vertical-tangent-lines-implicitly:calculator_polynomial_product_horizontal",
+      "horizontal-and-vertical-tangent-lines-implicitly:calculator_log_product_vertical",
+      "horizontal-and-vertical-tangent-lines-implicitly:calculator_polynomial_multiple_horizontal",
+      "horizontal-and-vertical-tangent-lines-implicitly:calculator_weighted_log_horizontal",
+      "horizontal-and-vertical-tangent-lines-implicitly:calculator_polynomial_multiple_vertical",
+      "horizontal-and-vertical-tangent-lines-implicitly:calculator_log_square_vertical",
+      "horizontal-and-vertical-tangent-lines-implicitly:calculator_weighted_log_vertical",
+      "horizontal-and-vertical-tangent-lines-implicitly:calculator_exponential_vertical",
+      "horizontal-and-vertical-tangent-lines-implicitly:calculator_trigonometric_vertical",
+      "horizontal-and-vertical-tangent-lines-implicitly:calculator_exponential_horizontal",
+      "using-your-graphing-calculator:calculator_derivative_at_point",
+      "using-your-graphing-calculator:calculator_x_intercept_logarithmic",
+      "using-your-graphing-calculator:calculator_normal_slope",
+      "using-your-graphing-calculator:calculator_minimum_location",
+      "using-your-graphing-calculator:calculator_slope_at_x_intercept",
+      "using-your-graphing-calculator:calculator_x_intercept_trigonometric",
+      "using-your-graphing-calculator:calculator_x_intercept_polynomial",
+      "using-your-graphing-calculator:calculator_maximum_location",
+      "using-your-graphing-calculator:test_slope_at_x_intercept",
+      "using-your-graphing-calculator:calculator_tangent_slope",
+      "motion:motion_calculator_direction_change_exponential",
+      "motion:motion_calculator_position_acceleration_exponential",
+      "motion:motion_calculator_velocity_when_position_known",
+      "motion:motion_calculator_acceleration_when_velocity_known",
+      "motion:motion_calculator_velocity_speed_rational",
+      "motion:motion_calculator_acceleration_when_position_known",
+      "motion:motion_calculator_acceleration_log_trig",
+      "motion:motion_calculator_position_velocity_exponential",
+      "motion:test_motion_speed_rational_exponential",
+      "motion:motion_calculator_velocity_acceleration_rational",
+      "motion:motion_calculator_speed_radical_trig",
+      "motion:motion_calculator_acceleration_first_direction_change",
+      "motion:motion_calculator_velocity_speed_log_trig",
+      "motion:motion_calculator_direction_change_trigonometric",
+      "motion:motion_calculator_velocity_acceleration_log_trig",
+      "motion:motion_calculator_speed_composite",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_poi_logarithmic-linear-cosine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_poi_inverse-trig-cosine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_logarithmic-polynomial-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_polynomial-exponential-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_quartic-sine-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_logarithmic-cosine-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_logarithmic-linear-cosine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_logarithmic-polynomial-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_poi_cubic-sine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_polynomial-exponential_minimum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_quotient-cosine-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_poi_logarithmic-quadratic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_polynomial-exponential",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_exponential-rational-linear_maximum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_rational-sine-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_inverse-trig-cosine_minimum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_quintic-cosine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_poi_exponential-rational-linear",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_quintic-cosine_minimum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_poi_exponential-linear-sine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_poi_polynomial-exponential",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_cubic-sine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_polynomial-exponential_maximum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_rational-linear-sine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_polynomial-exponential-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_cubic-sine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_rational-linear-sine_maximum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_inverse-trig-cosine_maximum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_composed-sine-linear_minimum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_logarithmic-quadratic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_rational-linear-sine_minimum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_exponential-rational-linear",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_logarithmic-quadratic",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_logarithmic-linear-cosine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_damped-exponential-sine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_logarithmic-linear-cosine_maximum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_rational-sine-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_logarithmic-quadratic_maximum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_exponential-linear-sine_minimum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_quartic-sine-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_rational-linear-sine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_inverse-trig-cosine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_logarithmic-linear-cosine_minimum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_poi_quintic-cosine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_exponential-rational-linear",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_composed-sine-linear",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_quintic-cosine_maximum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_logarithmic-quadratic_minimum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_damped-exponential-sine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_exponential-linear-sine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_cubic-sine_maximum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_quintic-cosine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_inverse-trig-cosine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_exponential-sine-polynomial",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_cubic-cosine-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_logarithmic-cosine-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_quotient-cosine-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_exponential-linear-sine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_concavity_cubic-cosine-mix",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_poi_composed-sine-linear",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_incdec_exponential-sine-polynomial",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_cubic-sine_minimum",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_poi_rational-linear-sine",
+      "increasing-decreasing-intervals-concavity-and-extrema:analysis_calculator_validated_extrema_exponential-linear-sine_maximum",
+      "newton-s-method-for-approximating-roots-of-a-function:newton_function_trigonometric",
+      "newton-s-method-for-approximating-roots-of-a-function:newton_function_cubic",
+      "newton-s-method-for-approximating-roots-of-a-function:newton_function_exponential",
+      "newton-s-method-for-approximating-roots-of-a-function:newton_function_logarithmic",
+      "newton-s-method-for-approximating-roots-of-a-function:newton_nth_root",
+      "optimization:optimization_page_printed_area",
+      "optimization:optimization_cylinder_different_material_costs",
+      "optimization:optimization_rigid_four_piece_barn_pen",
+      "optimization:optimization_shortest_ladder_over_fence",
+      "optimization:optimization_capsule_unequal_material_costs",
+      "optimization:optimization_open_top_rectangular_cardboard",
+      "optimization:optimization_two_poles_minimum_cable",
+      "optimization:optimization_closest_point_parabola",
+      "optimization:optimization_symmetric_rectangle_trig_dimensions",
+      "optimization:optimization_symmetric_rectangle_semicircle_dimensions",
+      "optimization:optimization_closest_point_power",
+      "optimization:optimization_symmetric_rectangle_ellipse_width",
+      "optimization:optimization_closest_point_rational",
+      "optimization:optimization_symmetric_rectangle_quartic_dimensions",
+      "optimization:optimization_closest_point_cubic",
+      "optimization:optimization_symmetric_rectangle_mixed_area",
+      "optimization:optimization_closest_point_radical",
+      "optimization:optimization_symmetric_rectangle_trig_area",
+      "optimization:optimization_symmetric_rectangle_semicircle_area",
+      "optimization:optimization_symmetric_rectangle_ellipse_dimensions",
+      "optimization:optimization_symmetric_rectangle_quartic_width",
+      "optimization:optimization_symmetric_rectangle_quartic_area",
+      "optimization:optimization_symmetric_rectangle_mixed_width",
+      "optimization:optimization_symmetric_rectangle_semicircle_width",
+      "optimization:optimization_symmetric_rectangle_mixed_dimensions",
+      "optimization:optimization_symmetric_rectangle_ellipse_area",
+      "related-rates:related_rates_sphere_volume_to_radius",
+      "related-rates:related_rates_sliding_ladder_wall_angle",
+      "related-rates:related_rates_rotating_spotlight",
+      "related-rates:related_rates_cylindrical_tank_gallons",
+      "related-rates:related_rates_semicircle_moving_point_triangle_area",
+      "related-rates:related_rates_conical_pile",
+      "related-rates:related_rates_semicircle_area",
+      "related-rates:related_rates_circular_spill_radius",
+      "related-rates:related_rates_hemispherical_ice_layer",
+      "related-rates:related_rates_multi_part_conical_tank",
+      "related-rates:related_rates_multi_part_shadow",
+      "related-rates:related_rates_multi_part_ladder",
+      "related-rates:related_rates_sliding_ladder_area",
+      "related-rates:related_rates_delayed_start_bicycles",
+      "related-rates:related_rates_angle_of_elevation",
+      "related-rates:related_rates_trapezoidal_trough",
+      "related-rates:related_rates_right_triangle_area",
+      "related-rates:related_rates_conical_tank_radius_from_volume",
+      "related-rates:related_rates_sphere_surface_to_volume",
+      "related-rates:related_rates_circular_wave_circumference",
+      "related-rates:related_rates_lamppost_shadow_tip",
+      "related-rates:related_rates_implicit_equation",
+      "related-rates:related_rates_square_area",
+      "related-rates:related_rates_cylindrical_tank",
+      "related-rates:related_rates_triangular_trough",
+      "related-rates:related_rates_isosceles_triangle_area",
+      "related-rates:related_rates_conical_tank_height_from_volume",
+      "related-rates:related_rates_circular_pool_area",
+      "related-rates:related_rates_lamppost_shadow_length",
+      "related-rates:related_rates_sliding_ladder_ground_angle",
+      "related-rates:related_rates_rectangle_area",
+      "related-rates:related_rates_rope_spool_balloon",
+      "related-rates:related_rates_sliding_ladder_top",
+      "related-rates:related_rates_softball_diamond",
+      "related-rates:related_rates_circle_area",
+      "related-rates:related_rates_conical_tank_volume_from_height",
+      "related-rates:related_rates_equilateral_area",
+      "related-rates:related_rates_balloon_bicycle_distance",
+      "related-rates:related_rates_sphere_diameter_to_volume"
+    ],
+    "profiles": {
+      "unit3-rounded-line": {
+        "kinds": [
+          "rounded-line-fields"
+        ],
+        "examples": [
+          "u3-ihv-calc-trigh--4",
+          "u3-ihv-calc-product-1",
+          "u3-ihv-calc-logxy-3"
+        ]
+      },
+      "unit3-rounded": {
+        "kinds": [
+          "numeric",
+          "calculus-fields"
+        ],
+        "examples": [
+          "u3-calc-derivative-point-1",
+          "u3-calc-xint-log-2",
+          "u3-calc-normal-slope-4-3"
+        ]
+      },
+      "unit3-interval": {
+        "kinds": [
+          "interval-answer"
+        ],
+        "examples": [
+          "u3-analysis-validated-incdec-logarithmic-polynomial-mix-4.1-0.4-1.9-2.4-increasing-n",
+          "u3-analysis-validated-incdec-polynomial-exponential-mix-2.2-0.5-0.6-1.8-decreasing-r",
+          "u3-analysis-validated-concavity-quartic-sine-mix-3.2-1.1-2--3.1-down-n"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html",
+    "unit": 4,
+    "questions": 1080,
+    "parts": 1226,
+    "pairs": 4904,
+    "retained": 189,
+    "plans": [
+      {
+        "slug": "rectangular-approximations",
+        "options": {}
+      },
+      {
+        "slug": "trapezoidal-approximations",
+        "options": {}
+      },
+      {
+        "slug": "introduction-to-sigma-notation",
+        "options": {}
+      },
+      {
+        "slug": "evaluating-definite-integrals-with-a-limit-and-summation",
+        "options": {}
+      },
+      {
+        "slug": "integrals-using-geometry",
+        "options": {}
+      },
+      {
+        "slug": "fundamental-theorem-of-calculus-and-integral-rules",
+        "options": {}
+      }
+    ],
+    "families": [
+      "rectangular-approximations:rational",
+      "rectangular-approximations:radical",
+      "rectangular-approximations:table",
+      "rectangular-approximations:linear",
+      "rectangular-approximations:quadratic",
+      "rectangular-approximations:trigonometric",
+      "rectangular-approximations:exponential",
+      "rectangular-approximations:higher-degree",
+      "rectangular-approximations:cubic",
+      "rectangular-approximations:logarithmic",
+      "trapezoidal-approximations:rational",
+      "trapezoidal-approximations:exponential",
+      "trapezoidal-approximations:table",
+      "trapezoidal-approximations:logarithmic",
+      "trapezoidal-approximations:trigonometric",
+      "trapezoidal-approximations:higher-degree",
+      "trapezoidal-approximations:quadratic",
+      "trapezoidal-approximations:linear",
+      "trapezoidal-approximations:radical",
+      "trapezoidal-approximations:cubic",
+      "introduction-to-sigma-notation:identities",
+      "introduction-to-sigma-notation:numerical",
+      "introduction-to-sigma-notation:riemann",
+      "evaluating-definite-integrals-with-a-limit-and-summation:quadratic_monomial",
+      "evaluating-definite-integrals-with-a-limit-and-summation:linear_construction",
+      "evaluating-definite-integrals-with-a-limit-and-summation:quadratic_combination",
+      "evaluating-definite-integrals-with-a-limit-and-summation:nonpolynomial_representation",
+      "integrals-using-geometry:absolute_value",
+      "integrals-using-geometry:linear_triangle",
+      "integrals-using-geometry:linear_trapezoid",
+      "integrals-using-geometry:cross_axis_line",
+      "integrals-using-geometry:semicircle",
+      "integrals-using-geometry:rectangle_circle",
+      "integrals-using-geometry:quarter_circle",
+      "fundamental-theorem-of-calculus-and-integral-rules:upper_power",
+      "fundamental-theorem-of-calculus-and-integral-rules:upper_identity",
+      "fundamental-theorem-of-calculus-and-integral-rules:upper_linear",
+      "fundamental-theorem-of-calculus-and-integral-rules:lower_identity",
+      "fundamental-theorem-of-calculus-and-integral-rules:both_algebraic",
+      "fundamental-theorem-of-calculus-and-integral-rules:lower_power",
+      "fundamental-theorem-of-calculus-and-integral-rules:upper_trig",
+      "fundamental-theorem-of-calculus-and-integral-rules:both_transcendental"
+    ],
+    "profiles": {
+      "unit4-exact": {
+        "kinds": [
+          "scalar"
+        ],
+        "examples": [
+          "u4K-rectangular-function_right-64eab3a6b81ff532",
+          "u4K-rectangular-function_left-71d674c9cda357d5",
+          "u4K-rectangular-table_midpoint-7b0b198e91e05b6a"
+        ]
+      },
+      "unit4-sigma": {
+        "kinds": [
+          "n-expression"
+        ],
+        "examples": [
+          "u4K-sigma-identities-square-f4a0da6629eae33e",
+          "u4K-sigma-identities-linear-87bc78808ea327bc",
+          "u4K-sigma-identities-combination-03f6ff5078194f4c"
+        ]
+      },
+      "unit4-newton": {
+        "kinds": [
+          "newton-expression"
+        ],
+        "examples": [
+          "u4N-newton-quadratic_monomial-8ea93849770c59e",
+          "u4N-newton-quadratic_monomial-7502d08bc6c33647",
+          "u4N-newton-linear_construction-18318674c11e45a"
+        ]
+      },
+      "unit4-newton-value": {
+        "kinds": [
+          "scalar"
+        ],
+        "examples": [
+          "u4N-newton-quadratic_monomial-8ea93849770c59e",
+          "u4N-newton-quadratic_monomial-7502d08bc6c33647",
+          "u4N-newton-linear_construction-18318674c11e45a"
+        ]
+      },
+      "unit4-geometry": {
+        "kinds": [
+          "scalar"
+        ],
+        "examples": [
+          "u4N-geometry-absolute_value-aad8fc66dbc1f72",
+          "u4N-geometry-absolute_value-9f3b187c4a085f8a",
+          "u4N-geometry-linear_triangle-7191e252fc4b523c"
+        ]
+      },
+      "unit4-ftc": {
+        "kinds": [
+          "function-expression"
+        ],
+        "examples": [
+          "u4N-ftc-upper_power-66367ded38920903",
+          "u4N-ftc-upper_power-5ad5a5e9f8608d07",
+          "u4N-ftc-upper_identity-77115c91ba84b359"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html",
+    "unit": 4,
+    "questions": 2160,
+    "parts": 2381,
+    "pairs": 9965,
+    "retained": 209,
+    "plans": [
+      {
+        "slug": "unit-4-comprehensive",
+        "options": {
+          "unit4Mode": "mixed",
+          "mode": "mixed"
+        }
+      },
+      {
+        "slug": "unit-4-comprehensive",
+        "options": {
+          "unit4Mode": "rect",
+          "mode": "rect"
+        }
+      },
+      {
+        "slug": "unit-4-comprehensive",
+        "options": {
+          "unit4Mode": "trap",
+          "mode": "trap"
+        }
+      },
+      {
+        "slug": "unit-4-comprehensive",
+        "options": {
+          "unit4Mode": "sigma",
+          "mode": "sigma"
+        }
+      },
+      {
+        "slug": "unit-4-comprehensive",
+        "options": {
+          "unit4Mode": "riemann",
+          "mode": "riemann"
+        }
+      },
+      {
+        "slug": "unit-4-comprehensive",
+        "options": {
+          "unit4Mode": "geometry",
+          "mode": "geometry"
+        }
+      },
+      {
+        "slug": "unit-4-comprehensive",
+        "options": {
+          "unit4Mode": "ftc",
+          "mode": "ftc"
+        }
+      },
+      {
+        "slug": "unit-4-comprehensive",
+        "options": {
+          "unit4Mode": "rules",
+          "mode": "rules"
+        }
+      },
+      {
+        "slug": "unit-4-comprehensive",
+        "options": {
+          "unit4Mode": "basic",
+          "mode": "basic"
+        }
+      },
+      {
+        "slug": "unit-4-comprehensive",
+        "options": {
+          "unit4Mode": "usub",
+          "mode": "usub"
+        }
+      },
+      {
+        "slug": "unit-4-comprehensive",
+        "options": {
+          "unit4Mode": "log",
+          "mode": "log"
+        }
+      },
+      {
+        "slug": "unit-4-comprehensive",
+        "options": {
+          "unit4Mode": "mvt",
+          "mode": "mvt"
+        }
+      }
+    ],
+    "families": [
+      "unit-4-comprehensive:upper_power",
+      "unit-4-comprehensive:linearity",
+      "unit-4-comprehensive:cubic",
+      "unit-4-comprehensive:riemann",
+      "unit-4-comprehensive:cross_axis_line",
+      "unit-4-comprehensive:rational",
+      "unit-4-comprehensive:nonpolynomial_representation",
+      "unit-4-comprehensive:linear_inner_trig_exp",
+      "unit-4-comprehensive:linear_trapezoid",
+      "unit-4-comprehensive:reverse_limits",
+      "unit-4-comprehensive:table",
+      "unit-4-comprehensive:definite_log",
+      "unit-4-comprehensive:odd_trig_powers",
+      "unit-4-comprehensive:polynomial_inner_constant_adjust",
+      "unit-4-comprehensive:definite_linear_inner",
+      "unit-4-comprehensive:trig_identity_rewrite",
+      "unit-4-comprehensive:average_substitution_trig_exp_log",
+      "unit-4-comprehensive:basic_trig_exponential",
+      "unit-4-comprehensive:both_algebraic",
+      "unit-4-comprehensive:higher-degree",
+      "unit-4-comprehensive:divide_each_term",
+      "unit-4-comprehensive:upper_identity",
+      "unit-4-comprehensive:identities",
+      "unit-4-comprehensive:find_c_single",
+      "unit-4-comprehensive:definite_power_root",
+      "unit-4-comprehensive:definite_polynomial_trig_inner",
+      "unit-4-comprehensive:composite_exponential_log",
+      "unit-4-comprehensive:interval_decomposition",
+      "unit-4-comprehensive:semicircle",
+      "unit-4-comprehensive:definite_trig_exponential",
+      "unit-4-comprehensive:linear_construction",
+      "unit-4-comprehensive:average_piecewise",
+      "unit-4-comprehensive:quadratic_combination",
+      "unit-4-comprehensive:combined_rules",
+      "unit-4-comprehensive:find_c_piecewise",
+      "unit-4-comprehensive:division_to_log",
+      "unit-4-comprehensive:quadratic_monomial",
+      "unit-4-comprehensive:upper_trig",
+      "unit-4-comprehensive:log_or_not",
+      "unit-4-comprehensive:lower_identity",
+      "unit-4-comprehensive:trig_power_chain",
+      "unit-4-comprehensive:reversed_combination",
+      "unit-4-comprehensive:numerical",
+      "unit-4-comprehensive:tan_cot_composite",
+      "unit-4-comprehensive:quadratic",
+      "unit-4-comprehensive:absolute_value",
+      "unit-4-comprehensive:linear",
+      "unit-4-comprehensive:inverse_tangent",
+      "unit-4-comprehensive:radical",
+      "unit-4-comprehensive:zero_width",
+      "unit-4-comprehensive:rectangle_circle",
+      "unit-4-comprehensive:expand_first",
+      "unit-4-comprehensive:average_polynomial",
+      "unit-4-comprehensive:logarithmic",
+      "unit-4-comprehensive:radicals_negative_powers",
+      "unit-4-comprehensive:back_substitution",
+      "unit-4-comprehensive:divide_each_term_ln",
+      "unit-4-comprehensive:definite_back_substitution",
+      "unit-4-comprehensive:quarter_circle",
+      "unit-4-comprehensive:trigonometric",
+      "unit-4-comprehensive:lower_power",
+      "unit-4-comprehensive:exponential_base_a",
+      "unit-4-comprehensive:upper_linear",
+      "unit-4-comprehensive:linear_inner_power_root",
+      "unit-4-comprehensive:exponential",
+      "unit-4-comprehensive:linear_triangle",
+      "unit-4-comprehensive:both_transcendental",
+      "unit-4-comprehensive:polynomial_power_rule",
+      "unit-4-comprehensive:power_reduction",
+      "unit-4-comprehensive:shifted_quadratic_power",
+      "unit-4-comprehensive:linear_denominator",
+      "unit-4-comprehensive:derivative_over_function",
+      "unit-4-comprehensive:inverse_sine"
+    ],
+    "profiles": {
+      "unit4-ftc": {
+        "kinds": [
+          "function-expression"
+        ],
+        "examples": [
+          "u4N-ftc-upper_power-d6bea79da9f8c757",
+          "u4N-ftc-both_algebraic-493479e9b1ce3db3",
+          "u4N-ftc-upper_identity-c6333763a98f1381"
+        ]
+      },
+      "unit4-exact": {
+        "kinds": [
+          "scalar"
+        ],
+        "examples": [
+          "u4N-rules-linearity-46ec46079da51459",
+          "u4K-rectangular-function_right-e8c4a433b19d1b43",
+          "u4K-rectangular-function_right-3eb0ab7664bb04e6"
+        ]
+      },
+      "unit4-sigma": {
+        "kinds": [
+          "n-expression"
+        ],
+        "examples": [
+          "u4K-sigma-riemann-quadratic-7be0033ccdc71af0",
+          "u4K-sigma-identities-square-f4a0da6629eae33e",
+          "u4K-sigma-riemann-quadratic-4200359fd0035c83"
+        ]
+      },
+      "unit4-geometry": {
+        "kinds": [
+          "scalar"
+        ],
+        "examples": [
+          "u4N-geometry-cross_axis_line-e21574aaa4ad49b4",
+          "u4N-geometry-linear_trapezoid-1036f9eef66df2c8",
+          "u4N-geometry-cross_axis_line-184cbbfc39259d76"
+        ]
+      },
+      "unit4-newton": {
+        "kinds": [
+          "newton-expression"
+        ],
+        "examples": [
+          "u4N-newton-nonpolynomial_representation-65fbc96e3a5bbe9c",
+          "u4N-newton-nonpolynomial_representation-b88ec9726d28acf8",
+          "u4N-newton-linear_construction-23d3c49742833bed"
+        ]
+      },
+      "unit4-usub-t": {
+        "kinds": [
+          "antiderivative"
+        ],
+        "examples": [
+          "u4U-usub-linear_inner_trig_exp-6db1322cea79fd26",
+          "u4U-usub-polynomial_inner_constant_adjust-8e5a172a996042ba",
+          "u4U-usub-shifted_quadratic_power-a2f6d459cc159225"
+        ]
+      },
+      "unit4-log-def": {
+        "kinds": [
+          "exact-number"
+        ],
+        "examples": [
+          "u4U-log-definite_log-6b231c8a76a5b4ae",
+          "u4U-log-definite_log-b8cf1691c90ff5a1",
+          "u4U-log-definite_log-2961bfac3f359a8c"
+        ]
+      },
+      "unit4-usub-theta": {
+        "kinds": [
+          "antiderivative"
+        ],
+        "examples": [
+          "u4U-usub-odd_trig_powers-b4ec9af0ed3f104",
+          "u4U-usub-trig_power_chain-ec99a46e22869f4a",
+          "u4U-usub-trig_power_chain-7a95ef7b15802bd"
+        ]
+      },
+      "unit4-usub-def": {
+        "kinds": [
+          "exact-number"
+        ],
+        "examples": [
+          "u4U-usub-definite_linear_inner-c287c7028ed03600",
+          "u4U-usub-definite_polynomial_trig_inner-ce5a1a44b44e889e",
+          "u4U-usub-definite_polynomial_trig_inner-e8209cf1333eb0bb"
+        ]
+      },
+      "unit4-basic-indef": {
+        "kinds": [
+          "antiderivative"
+        ],
+        "examples": [
+          "u4U-basic-trig_identity_rewrite-cf89aa11797b18f",
+          "u4U-basic-basic_trig_exponential-1cb862888f5a2b16",
+          "u4U-basic-basic_trig_exponential-2fc005e82b94f18"
+        ]
+      },
+      "unit4-mvt-avg": {
+        "kinds": [
+          "exact-number"
+        ],
+        "examples": [
+          "u4U-mvt-average_substitution_trig_exp_log-7c82bf4f4c5875b5",
+          "u4U-mvt-find_c_single-4e05fdeb43de411d",
+          "u4U-mvt-average_substitution_trig_exp_log-a6d59452e1af5e1a"
+        ]
+      },
+      "unit4-mvt-c-trig": {
+        "kinds": [
+          "exact-list"
+        ],
+        "examples": [
+          "u4U-mvt-find_c_single-4e05fdeb43de411d",
+          "u4U-mvt-find_c_single-caa8d739483f6a7f",
+          "u4U-mvt-find_c_single-4456d0d12b0bdc3f"
+        ]
+      },
+      "unit4-basic-def": {
+        "kinds": [
+          "exact-number"
+        ],
+        "examples": [
+          "u4U-basic-definite_power_root-c96fe29aec35652c",
+          "u4U-basic-definite_trig_exponential-ab79fecd62da3107",
+          "u4U-basic-definite_trig_exponential-5c0551e7ca1ce5c1"
+        ]
+      },
+      "unit4-usub-x": {
+        "kinds": [
+          "antiderivative"
+        ],
+        "examples": [
+          "u4U-usub-composite_exponential_log-dc437d2378ff8469",
+          "u4U-usub-odd_trig_powers-bf8b9eda9bf5e12c",
+          "u4U-usub-odd_trig_powers-faf8c4ce61a2e384"
+        ]
+      },
+      "unit4-newton-value": {
+        "kinds": [
+          "scalar"
+        ],
+        "examples": [
+          "u4N-newton-linear_construction-23d3c49742833bed",
+          "u4N-newton-quadratic_combination-41d840308b2069ca",
+          "u4N-newton-quadratic_monomial-5e1eb72a3304eb8"
+        ]
+      },
+      "unit4-mvt-c": {
+        "kinds": [
+          "exact-list"
+        ],
+        "examples": [
+          "u4U-mvt-find_c_piecewise-4f5989b414c6ad86",
+          "u4U-mvt-find_c_piecewise-c31edf83742a75cb",
+          "u4U-mvt-find_c_single-693b342555e0f50b"
+        ]
+      },
+      "unit4-log-indef": {
+        "kinds": [
+          "antiderivative"
+        ],
+        "examples": [
+          "u4U-log-division_to_log-a6bb80dc61a57aac",
+          "u4U-log-log_or_not-af309f7fb9337",
+          "u4U-log-tan_cot_composite-ab9a00d16375ac45"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/calculator-practice/index.html",
+    "unit": 5,
+    "questions": 1200,
+    "parts": 1410,
+    "pairs": 5509,
+    "retained": 62,
+    "plans": [
+      {
+        "slug": "unit5-comprehensive-review",
+        "options": {
+          "u5Mode": "mixed",
+          "mode": "mixed"
+        }
+      },
+      {
+        "slug": "unit5-comprehensive-review",
+        "options": {
+          "u5Mode": "foundational",
+          "mode": "foundational"
+        }
+      },
+      {
+        "slug": "unit5-comprehensive-review",
+        "options": {
+          "u5Mode": "intermediate",
+          "mode": "intermediate"
+        }
+      },
+      {
+        "slug": "unit5-comprehensive-review",
+        "options": {
+          "u5Mode": "challenging",
+          "mode": "challenging"
+        }
+      }
+    ],
+    "families": [
+      "motion:calc_position",
+      "basic:calc_value",
+      "motion:calc_speed",
+      "motion:calc_direction",
+      "growth:cooling",
+      "motion:calc_distance",
+      "growth:reverse",
+      "growth:heating",
+      "rate:one_rate",
+      "growth:growth",
+      "rate:in_out",
+      "rate:multipart",
+      "rate:initial_change",
+      "growth:decay",
+      "growth:interest",
+      "rate:delayed_piecewise"
+    ],
+    "profiles": {
+      "unit5-number": {
+        "kinds": [
+          "numeric"
+        ],
+        "examples": [
+          "u5-motion-cposk-6-4-4-1-1g8wxwx",
+          "u5-motion-cpos-3-6-2-jw9cts",
+          "u5-basic-cval--3/2-0/2-1-kb7584"
+        ]
+      },
+      "unit5-motion-list-dec": {
+        "kinds": [
+          "list"
+        ],
+        "examples": [
+          "u5-motion-cdir-3-1-cjixd8",
+          "u5-motion-cdir-3-1-14ve90s",
+          "u5-motion-cdir-6-2-1bdtc45"
+        ]
+      },
+      "unit5-growth-exact": {
+        "kinds": [
+          "exact"
+        ],
+        "examples": [
+          "u5-growth-cooling-200-68-15-2_3-1llxilb",
+          "u5-growth-grow-fruitflies-40-3_2-4-girnni",
+          "u5-growth-cooling-600-80-15-7_8-10h3rv1"
+        ]
+      },
+      "unit5-motion-intervals-dec": {
+        "kinds": [
+          "interval"
+        ],
+        "examples": [
+          "u5-motion-cdir-10-1-6ut491",
+          "u5-motion-cdir-6-1-1iqo2bf",
+          "u5-motion-cdir-6-2-1bdtc45"
+        ]
+      },
+      "unit5-money": {
+        "kinds": [
+          "numeric"
+        ],
+        "examples": [
+          "u5-growth-intc-800-3.6-4-2-sfhfw4",
+          "u5-growth-intc-800-3.6-4-2-sfhfw4",
+          "u5-growth-intc-1200-3.05-4-12-166i9ro"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/non-calculator-practice/index.html",
+    "unit": 5,
+    "questions": 1200,
+    "parts": 1547,
+    "pairs": 5330,
+    "retained": 244,
+    "plans": [
+      {
+        "slug": "unit5-comprehensive-review",
+        "options": {
+          "u5Mode": "mixed",
+          "mode": "mixed"
+        }
+      },
+      {
+        "slug": "unit5-comprehensive-review",
+        "options": {
+          "u5Mode": "foundational",
+          "mode": "foundational"
+        }
+      },
+      {
+        "slug": "unit5-comprehensive-review",
+        "options": {
+          "u5Mode": "intermediate",
+          "mode": "intermediate"
+        }
+      },
+      {
+        "slug": "unit5-comprehensive-review",
+        "options": {
+          "u5Mode": "challenging",
+          "mode": "challenging"
+        }
+      }
+    ],
+    "families": [
+      "slope:draw_segments",
+      "basic:trig",
+      "basic:exp_composition",
+      "motion:direction_speed",
+      "motion:recover",
+      "slope:analyze",
+      "separable:powers_y",
+      "slope:draw_curve",
+      "separable:radical_branch",
+      "separable:trig",
+      "slope:match",
+      "rate:one_rate",
+      "basic:poly_power",
+      "separable:product",
+      "basic:log_domain",
+      "rate:multipart",
+      "separable:log_rational",
+      "motion:multipart",
+      "motion:displacement_distance",
+      "rate:initial_change",
+      "rate:in_out",
+      "basic:general_solution",
+      "separable:exp_y",
+      "rate:delayed_piecewise"
+    ],
+    "profiles": {
+      "unit5-basic-x": {
+        "kinds": [
+          "ivp"
+        ],
+        "examples": [
+          "u5-basic-trig-csccot2_none-fracpi8-8-nzuh21",
+          "u5-basic-exp_composition-esin-pi-4-ovgebm",
+          "u5-basic-trig-sectan1_trig-fracpi3--2-abm8w9"
+        ]
+      },
+      "unit5-interval-basic": {
+        "kinds": [
+          "interval"
+        ],
+        "examples": [
+          "u5-basic-trig-csccot2_none-fracpi8-8-nzuh21",
+          "u5-basic-exp_composition-esin-pi-4-ovgebm",
+          "u5-basic-trig-asin3-0--2-1no7dok"
+        ]
+      },
+      "unit5-motion-list": {
+        "kinds": [
+          "list"
+        ],
+        "examples": [
+          "u5-motion-rest-3-3-6-61rasq",
+          "u5-motion-rest--3--3-1-1et5yvr",
+          "u5-motion-chg-2-3-4-drtmss"
+        ]
+      },
+      "unit5-basic-t": {
+        "kinds": [
+          "ivp"
+        ],
+        "examples": [
+          "u5-basic-trig-asin3-0--2-1no7dok",
+          "u5-basic-log_domain-r2_3--frac12-7-1ijujjs",
+          "u5-basic-trig-sectan1_none-0-8-u5fymt"
+        ]
+      },
+      "unit5-motion-intervals": {
+        "kinds": [
+          "interval"
+        ],
+        "examples": [
+          "u5-motion-dir--3-1-5-8-left-18avk2p",
+          "u5-motion-dir--3-2-6-8-left-aahs5b",
+          "u5-motion-dir-3-2-5-7-right-1pjrdeq"
+        ]
+      },
+      "unit5-motion-value": {
+        "kinds": [
+          "exact"
+        ],
+        "examples": [
+          "u5-motion-two-3_-18-3-1-1-1-4-dfrol7",
+          "u5-motion-speed-2-0-3-2-zcyivv",
+          "u5-motion-speed-2-0-3-2-zcyivv"
+        ]
+      },
+      "unit5-slope-exact": {
+        "kinds": [
+          "exact"
+        ],
+        "examples": [
+          "u5-slope-slope-xy--1-2-20qyqq",
+          "u5-slope-slope-x2y-0--2-j4qb30",
+          "u5-slope-d2-x2-y--1-0-7l2gb2"
+        ]
+      },
+      "unit5-sep-x": {
+        "kinds": [
+          "ivp"
+        ],
+        "examples": [
+          "u5-separable-y2--3-0-1_2-1u5x859",
+          "u5-separable-expsq-3-1h284jm",
+          "u5-separable-circ-0-2-wq934l"
+        ]
+      },
+      "unit5-sep-interval": {
+        "kinds": [
+          "interval"
+        ],
+        "examples": [
+          "u5-separable-y2--3-0-1_2-1u5x859",
+          "u5-separable-expsq-3-1h284jm",
+          "u5-separable-circ-0-2-wq934l"
+        ]
+      },
+      "unit5-rate-exact": {
+        "kinds": [
+          "exact"
+        ],
+        "examples": [
+          "u5-rate-one-ex-V-poly-0-8-qhblix",
+          "u5-rate-one-ex-K-poly-0-30-1twmb06",
+          "u5-rate-one-ex-G-poly-1-2-v31uow"
+        ]
+      },
+      "unit5-rate-exact-ln": {
+        "kinds": [
+          "exact"
+        ],
+        "examples": [
+          "u5-rate-multi-ex-PR-900-20-2-1-1k7n5yo",
+          "u5-rate-multi-ex-PR-900-20-2-1-1k7n5yo",
+          "u5-rate-multi-ex-PR-900-20-2-1-1k7n5yo"
+        ]
+      },
+      "unit5-motion-t": {
+        "kinds": [
+          "ivp"
+        ],
+        "examples": [
+          "u5-motion-multi-1-1-3-0-3-displacement-a7dawm",
+          "u5-motion-multi-1-1-3-0-3-displacement-a7dawm",
+          "u5-motion-multi-2-2-5-1-0-displacement-rxcg4w"
+        ]
+      },
+      "unit5-motion-value-e": {
+        "kinds": [
+          "exact"
+        ],
+        "examples": [
+          "u5-motion-logs-4-4--3-1-1w4vx4m",
+          "u5-motion-logs-3-2-8-2-z6qjvp",
+          "u5-motion-logs-4-6-8-2-cj25eb"
+        ]
+      },
+      "unit5-rate-exact-pi": {
+        "kinds": [
+          "exact"
+        ],
+        "examples": [
+          "u5-rate-onea-ex-G-trig-3-11mr8hh",
+          "u5-rate-io-ex-JQ-trigpoly-4500-3-1aggqhy",
+          "u5-rate-io-ex-PD-trigpoly-2500-4-77mh56"
+        ]
+      },
+      "unit5-motion-value-r": {
+        "kinds": [
+          "exact"
+        ],
+        "examples": [
+          "u5-motion-trig2-1-1--2-1-1_1-17wvhnb",
+          "u5-motion-sec--1-4-0_1-18n8bh1",
+          "u5-motion-trig2--1-3--3--3-1_3-7mm1ya"
+        ]
+      },
+      "unit5-slope-interval": {
+        "kinds": [
+          "interval"
+        ],
+        "examples": [
+          "u5-slope-up-y-1-e9ppvr",
+          "u5-slope-up-1-y-dabyaa",
+          "u5-slope-up-y-1y2-esgelh"
+        ]
+      },
+      "unit5-slope-list": {
+        "kinds": [
+          "list"
+        ],
+        "examples": [
+          "u5-slope-eq-1-y-1hahk2p",
+          "u5-slope-eq-y-izkyjh",
+          "u5-slope-eq-y2-y-pvzy4f"
+        ]
+      },
+      "unit5-sep-t": {
+        "kinds": [
+          "ivp"
+        ],
+        "examples": [
+          "u5-separable-y2-0_-4-0--1_2-pfcwj4",
+          "u5-separable-quad-4-2-1rql502",
+          "u5-separable-lnxy-2-17tgfql"
+        ]
+      },
+      "unit5-basic-t-c": {
+        "kinds": [
+          "general"
+        ],
+        "examples": [
+          "u5-basic-gen-exp-pow-4_3-xx3ay9",
+          "u5-basic-gen-trig-pow--1_6-z5lt9s",
+          "u5-basic-gen-pow-exp--3_-3-79prqz"
+        ]
+      },
+      "unit5-basic-x-c": {
+        "kinds": [
+          "general"
+        ],
+        "examples": [
+          "u5-basic-gen-trig-4-2o1usx",
+          "u5-basic-gen-pow-exp--6_-3-1afi5as",
+          "u5-basic-gen-pow-exp--3_2-14lb3kv"
+        ]
+      },
+      "unit5-slope-line": {
+        "kinds": [
+          "function"
+        ],
+        "examples": [
+          "u5-slope-zero-2x-y-z72y7w",
+          "u5-slope-zero-y-x-lftbpt",
+          "u5-slope-zero-2x-y-z72y7w"
+        ]
+      },
+      "unit5-sep-theta": {
+        "kinds": [
+          "ivp"
+        ],
+        "examples": [
+          "u5-separable-y2x-theta-1-1--1_2-1yvkjhw",
+          "u5-separable-y2x-theta-1-1-2_1-ubh80y",
+          "u5-separable-y2x-theta-1-1--1_2-1yvkjhw"
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "result": {
+    "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+    "legacy": true,
+    "intervalModule": true,
+    "problem": {
+      "id": "u2-int-solve-distribution-4(2x + 3)-<--52",
+      "answer": "(-∞, -8)",
+      "seed": 10
+    },
+    "passed": true
+  },
+  "errors": []
+}

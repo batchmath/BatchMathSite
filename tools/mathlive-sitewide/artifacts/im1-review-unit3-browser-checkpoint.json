@@ -1,0 +1,11 @@
+{
+  "routes": 5,
+  "selectorOptions": 27,
+  "signatures": 168,
+  "checkerPairs": 960,
+  "injectedRecoveryGroups": 5,
+  "unexpectedPageErrors": 0,
+  "mainEvidence": "im1-review-unit3-browser-complete.json",
+  "missingRuntimeEvidence": "im1-review-unit3-browser-missing.json",
+  "initialHarnessLimitation": "Initial missing-runtime assertion assumed the shared legacy editor, but the numeric path uses its original fraction editor. Focused rerun forces a structured fixture, checks the correct legacy branch and grades the answer. No product change."
+}

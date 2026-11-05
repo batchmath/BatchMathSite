@@ -1,0 +1,13 @@
+{
+  "results": [
+    {
+      "route": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/practice/index.html",
+      "passed": true,
+      "missingRuntime": true
+    }
+  ],
+  "errors": [],
+  "keypads": {},
+  "checkerPairs": 0,
+  "realMathJax": true
+}

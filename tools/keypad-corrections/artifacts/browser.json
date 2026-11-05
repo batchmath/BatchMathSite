@@ -1,0 +1,33 @@
+{
+  "results": [
+    {
+      "name": "Newton mathlive infinity styling/insertion at 1400px",
+      "passed": true
+    },
+    {
+      "name": "Newton mathlive infinity styling/insertion at 375px",
+      "passed": true
+    },
+    {
+      "name": "Newton legacy infinity styling/insertion at 1400px",
+      "passed": true
+    },
+    {
+      "name": "Newton legacy infinity styling/insertion at 375px",
+      "passed": true
+    },
+    {
+      "name": "shared calculus and separate Unit 1 / IM1 interval infinity paths share font",
+      "passed": true
+    },
+    {
+      "name": "IM1 actual numeric multipart fraction control accepts 18/2 and preserves active field",
+      "passed": true
+    },
+    {
+      "name": "Unit Circle comma suppressed; actual exact/Undefined grading preserved; Trig Equations comma retained",
+      "passed": true
+    }
+  ],
+  "pageErrors": []
+}

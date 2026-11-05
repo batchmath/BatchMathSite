@@ -1,0 +1,203 @@
+{
+  "results": [
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Maximum or minimum value",
+        "Location of maximum or minimum"
+      ],
+      "fallback": false,
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Maximum or minimum value",
+        "Location of maximum or minimum"
+      ],
+      "fallback": true,
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Maximum or minimum value",
+        "Location of maximum or minimum"
+      ],
+      "activeMathFields": 2,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "numeric-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Decimal answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/non-calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "e.g. (0,2)∪(5,7)"
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/non-calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "e.g. (0,2)∪(5,7)"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/non-calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "e.g. (0,2)∪(5,7)"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "knownMathJaxErrors": 0,
+  "unexpectedErrors": 0,
+  "realMathJax": true
+}

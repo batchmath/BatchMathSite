@@ -1,0 +1,30 @@
+[
+  {
+    "engine": "ftc",
+    "samples": 4000,
+    "gradingPairs": 16000,
+    "families": [
+      "both_algebraic",
+      "both_transcendental",
+      "lower_identity",
+      "lower_power",
+      "upper_identity",
+      "upper_linear",
+      "upper_power",
+      "upper_trig"
+    ]
+  },
+  {
+    "engine": "rules",
+    "samples": 4000,
+    "gradingPairs": 16000,
+    "families": [
+      "combined_rules",
+      "interval_decomposition",
+      "linearity",
+      "reverse_limits",
+      "reversed_combination",
+      "zero_width"
+    ]
+  }
+]

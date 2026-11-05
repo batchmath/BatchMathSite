@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "name": "prep",
+      "route": "calculus-prep/unit-circle-values/index.html",
+      "select": "#mode",
+      "option": "cos",
+      "source": "#answerRaw",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: Undo must remain empty\n\n'12' !== ''\n\n    at file:///workspace/work/mathlive-sitewide/tools/mathlive-sitewide/history-browser.mjs:17:344\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:502:9)"
+    },
+    {
+      "name": "limits",
+      "route": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/index.html",
+      "select": "#focus",
+      "option": "standard",
+      "source": "#answer",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: Undo must remain empty\n\n'12' !== ''\n\n    at file:///workspace/work/mathlive-sitewide/tools/mathlive-sitewide/history-browser.mjs:17:344"
+    }
+  ],
+  "errors": [],
+  "realMathJax": true
+}

@@ -1,0 +1,59 @@
+{
+  "families": [
+    {
+      "family": "polynomial_power_rule",
+      "samples": 200,
+      "gradingPairs": 800
+    },
+    {
+      "family": "radicals_negative_powers",
+      "samples": 200,
+      "gradingPairs": 800
+    },
+    {
+      "family": "expand_first",
+      "samples": 200,
+      "gradingPairs": 800
+    },
+    {
+      "family": "divide_each_term",
+      "samples": 200,
+      "gradingPairs": 800
+    },
+    {
+      "family": "divide_each_term_ln",
+      "samples": 200,
+      "gradingPairs": 800
+    },
+    {
+      "family": "basic_trig_exponential",
+      "samples": 200,
+      "gradingPairs": 800
+    },
+    {
+      "family": "trig_identity_rewrite",
+      "samples": 200,
+      "gradingPairs": 800
+    },
+    {
+      "family": "definite_power_root",
+      "samples": 200,
+      "gradingPairs": 800
+    },
+    {
+      "family": "definite_trig_exponential",
+      "samples": 200,
+      "gradingPairs": 800
+    },
+    {
+      "family": "power_reduction",
+      "samples": 200,
+      "gradingPairs": 800
+    },
+    {
+      "family": "exponential_base_a",
+      "samples": 200,
+      "gradingPairs": 800
+    }
+  ]
+}

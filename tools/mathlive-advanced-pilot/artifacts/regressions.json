@@ -1,0 +1,170 @@
+{
+  "baselineMain": "26ec4f15185c37f9e8843e96a09d583b47babcdf",
+  "derivativesCheckpoint": "58d98cda663ff21b0a7e9f434bf0e5ca504ae03b",
+  "focusedTests": {
+    "executed": 93,
+    "passed": 93,
+    "skipped": 0
+  },
+  "newGeneratedQuestions": 17200,
+  "newCheckerPairs": 71800,
+  "browserChecks": {
+    "executed": 178,
+    "passed": 178,
+    "pageErrors": 0
+  },
+  "existingChecks": [
+    {
+      "suite": "power-rule-family-qa",
+      "outcome": "pass",
+      "count": 34500,
+      "unit": "samples"
+    },
+    {
+      "suite": "calculus-keypad-structure-qa",
+      "outcome": "pass",
+      "count": 139,
+      "unit": "cases"
+    },
+    {
+      "suite": "keyboard-regression-qa",
+      "outcome": "pass",
+      "count": 46,
+      "unit": "cases"
+    },
+    {
+      "suite": "derivative-topic-enhancements-qa",
+      "outcome": "pass",
+      "count": 102000,
+      "unit": "samples"
+    },
+    {
+      "suite": "new-derivative-engines-unit-qa",
+      "outcome": "pass",
+      "count": 9148,
+      "unit": "checks"
+    },
+    {
+      "suite": "ftc-checker-regression-qa",
+      "outcome": "pass",
+      "count": 9047,
+      "unit": "checks"
+    },
+    {
+      "suite": "unit4-final-four-qa",
+      "outcome": "pass",
+      "samplesPerEngine": 12000,
+      "independentlyVerifiedAnswers": 51650
+    },
+    {
+      "suite": "q-newton-explanations-qa",
+      "outcome": "pass",
+      "questions": 3000,
+      "withEvaluation": 2336
+    }
+  ],
+  "baselineIssues": [
+    {
+      "suite": "fraction-sign-equivalence-qa",
+      "outcome": "same preexisting failure",
+      "advancedFindings": [
+        "- assets/unit3-applications-generators.js: generated TeX keeps a negative sign inside a fraction numerator"
+      ],
+      "baselineFindings": [
+        "- assets/unit3-applications-generators.js: generated TeX keeps a negative sign inside a fraction numerator"
+      ],
+      "identical": true
+    },
+    {
+      "suite": "sitewide-fractional-exponent-qa",
+      "outcome": "same preexisting failure",
+      "advancedFindings": [
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{1/3}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/ap-topic-generators.js: ^{x/${Math.abs(ek)}}",
+        "assets/ap-topic-generators.js: ^{x/${Math.abs(ek)}}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{2/3}",
+        "assets/unit3-applications-generators.js: ^{2/3}"
+      ],
+      "baselineFindings": [
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{1/3}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/unit3-optimization-related-rates.js: ^{3/2}",
+        "assets/ap-topic-generators.js: ^{x/${Math.abs(ek)}}",
+        "assets/ap-topic-generators.js: ^{x/${Math.abs(ek)}}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{3/2}",
+        "assets/unit3-applications-generators.js: ^{2/3}",
+        "assets/unit3-applications-generators.js: ^{2/3}"
+      ],
+      "identical": true
+    },
+    {
+      "suite": "newton-sums-revision-qa",
+      "outcome": "same preexisting failure",
+      "finding": "Other factory changed: basic-integrals",
+      "baseline": "561ca3e1a20ded8a0443bed73d07b3a00d1ccf70",
+      "sampleLoopReached": false,
+      "diagnosticWithDerivativesBaseline": "Stopped at stale summand explanation marker; not counted as pass"
+    }
+  ],
+  "unit5": {
+    "outcome": "pass",
+    "groupsExecuted": 23,
+    "groupsPassed": 23,
+    "groupResults": [
+      "PASS  Basic generation and answers: parts 2323 fails 0",
+      "PASS  Motion generation and answers: parts 2400 fails 0",
+      "PASS  Slope Fields generation and answers: parts 1500 fails 0",
+      "PASS  Separable generation and answers: parts 3000 fails 0",
+      "PASS  Growth generation and answers: parts 1975 fails 0",
+      "PASS  Rate generation and answers: parts 1749 fails 0",
+      "PASS  Slope-field grading cases",
+      "PASS  Rate independent recomputation: problems 800 integral terms rechecked 803 equations 803 numeric answers matched to explanation 685 issues 0",
+      "PASS  Rate semantic recomputation and content scan (v12.8.X): problems 1500; parts recomputed 1730; forbidden-content problems 0; disagreements 0",
+      "PASS  Rate non-calculator recomputation (v12.8.X): problems 1500 (non-calculator); parts recomputed 1730; forbidden-content problems 0; disagreements 0",
+      "PASS  Motion independent recomputation: problems 400; parts checked independently 657; parts not interpreted 0; distance explanations checked 129; calculator speed-integral explanations checked 20; disagreements 0",
+      "PASS  Motion calculator independent recomputation (v12.8.X): problems 1500; parts checked independently 2155; parts not interpreted 0; distance explanations checked 0; calculator speed-integral explanations checked 510; disagreements 0",
+      "PASS  Growth independent recomputation: problems 1500; parts recomputed independently 1975; parts not read 0; disagreements 0; physical-sense issues 0",
+      "PASS  Slope Fields independent recomputation: problems 600; items checked independently 1756; disagreements 0 | {\"segment targets\":1446,\"matching (distinctness checked in the engine)\":108,\"increasing y-intervals\":19,\"reference curves\":151,\"no displayed equation (figure-only matching)\":45,\"slope at a point\":51,\"horizontal-segment curve\":22,\"second derivative\":39,\"equilibrium solutions\":14,\"undefined-slope line\":14}",
+      "PASS  Calculator Review audit (v12.8.X): topics (target 33.3/33.3/16.7/16.7): basic 33.1%, motion 34.3%, growth 15.8%, rate 16.8% | difficulty (target 40/40/20): foundational 39.3%, intermediate 39.6%, challenging 21.1% | independence: chi-square 4.37 on 6 degrees of freedom (95% critical value 12.59) | per-topic difficulty split: basic 40/40/20; motion 40/39/22; growth 38/39/23; rate 38/41/21",
+      "PASS  Non-Calculator Review audit (v12.8.X): topics (target 22.2/22.2/22.2/22.2/11.1): basic 22.0%, motion 22.2%, slope 23.2%, separable 21.3%, rate 11.3% | difficulty (target 40/40/20): foundational 39.3%, intermediate 39.6%, challenging 21.1% | independence: chi-square 4.64 on 8 degrees of freedom (95% critical value 15.51) | per-topic difficulty split: basic 41/39/20; motion 38/40/21; slope 41/38/21; separable 38/39/22; rate 37/42/21",
+      "PASS  Keypad coverage audit: No answer needs a key its keypad lacks.",
+      "PASS  Rounding matrix (v12.8.X): generated rounded parts checked: 933 | rounding matrix: 4767 passed, 0 failed",
+      "PASS  Calculator / non-calculator eligibility (v12.8.X): pages 11 (redirects without an engine 4); Practice Type options 39; problems 800 per option; failures 0",
+      "PASS  Basic calculator independent recomputation (v12.8.X): problems 1500; parts checked independently 1500; disagreements 0",
+      "PASS  Separable exponentiation chains (v12.8.X): problems with logarithmic exponentiation 603; chains evaluated 1448; branch lines 242; disagreements 0",
+      "PASS  Pages and Practice Type menus (v12.8.Y): pages 11; redirects 4; problems 600 per choice; failures 0",
+      "PASS  Basic Calculator: one family, fraction coefficients (v12.8.Y): compared with X 0; fraction-bearing 597; template \u00d7 coefficient combinations 30/30; failures 0"
+    ]
+  }
+}

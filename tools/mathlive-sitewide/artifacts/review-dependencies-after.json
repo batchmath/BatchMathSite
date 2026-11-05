@@ -1,0 +1,33 @@
+{
+  "result": {
+    "route": "ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html",
+    "legacy": true,
+    "dependencies": {
+      "checker": true,
+      "expression": true,
+      "keypad": true
+    },
+    "problem": {
+      "id": "u4N-geometry-quarter_circle-9d3cda33f9ed7941",
+      "tex": "-16\\pi",
+      "spec": {
+        "kind": "scalar",
+        "value": {
+          "": [
+            0,
+            1
+          ],
+          "pi": [
+            -16,
+            1
+          ]
+        }
+      },
+      "raw": "-16pi"
+    },
+    "feedback": "Enter answerCheck Answer7894561230−+abπ←→↑↓⌫DelClearCheckCorrect.Signed regions for the given integralThe curve uses equal horizontal and vertical unit scales. R labels match the regions in the explanation. Shading shows the area between the curve and the x-axis; a dashed horizontal line marks a nonzero circle-center height.R1-44xyRegion R1 lies between the curve and the x-axis from \\(x=-4\\) to \\(x=4\\). The underlying circle has center \\((4,0)\\) and radius \\(8\\).The quarter-circle area is\\(\\displaystyle A_{\\rm circle}=\\frac{1}{4}\\pi(8)^2=16\\pi\\)\\(\\displaystyle A_{R1}=16\\pi\\)R1 is entirely below the x-axis (possibly touching it), so its signed contribution is negative.\\(\\displaystyle I_{R1}=-\\left(16\\pi\\right)=-16\\pi\\)Thus the signed area gives\\(\\displaystyle \\int_{-4}^{4}-\\sqrt{64-\\left(x-4\\right)^2}\\,dx=-16\\pi\\)",
+    "passed": true,
+    "wrongFeedback": "Not correct."
+  },
+  "errors": []
+}

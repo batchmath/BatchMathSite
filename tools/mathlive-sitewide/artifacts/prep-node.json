@@ -1,0 +1,130 @@
+[
+  {
+    "slug": "calculus-algebra",
+    "questions": 60,
+    "parts": 18,
+    "pairs": 90,
+    "choices": 42,
+    "signatures": [
+      "mixed|choice",
+      "mixed|free",
+      "rationalize|choice",
+      "complex|choice",
+      "rational|free"
+    ]
+  },
+  {
+    "slug": "special-factoring",
+    "questions": 270,
+    "parts": 270,
+    "pairs": 2092,
+    "choices": 0,
+    "signatures": [
+      "dos|factor",
+      "cubes|factor",
+      "perfect|factor",
+      "higher|factor",
+      "grouping|factor",
+      "substitution|factor",
+      "pascal|pascal",
+      "gcf|factor",
+      "mixed|factor",
+      "mixed|pascal"
+    ]
+  },
+  {
+    "slug": "synthetic-division",
+    "questions": 180,
+    "parts": 192,
+    "pairs": 690,
+    "choices": 54,
+    "signatures": [
+      "rrt|rrt",
+      "division|division",
+      "factor|factor",
+      "mixed|division",
+      "mixed|rrt",
+      "mixed|factor"
+    ]
+  },
+  {
+    "slug": "trig-angle-skills",
+    "questions": 1800,
+    "parts": 1545,
+    "pairs": 8010,
+    "choices": 255,
+    "signatures": [
+      "coordinates|coord",
+      "d2r|exact",
+      "r2d|exact",
+      "conversion|exact",
+      "reference|exact",
+      "coterminal|exact",
+      "quadrant|choice",
+      "mixed|exact",
+      "mixed|coord",
+      "mixed|choice"
+    ]
+  },
+  {
+    "slug": "trig-equations",
+    "questions": 90,
+    "parts": 90,
+    "pairs": 450,
+    "choices": 0,
+    "signatures": [
+      "mixed|fac2",
+      "mixed|fac1",
+      "mixed|basic",
+      "mixed|id0",
+      "mixed|q0",
+      "mixed|id4",
+      "mixed|q7",
+      "basic|basic",
+      "multiple|basic",
+      "factoring|fac2",
+      "factoring|fac0",
+      "factoring|fac1",
+      "factoring|fac3",
+      "quadratic|q4",
+      "quadratic|q0",
+      "quadratic|q1",
+      "quadratic|q3",
+      "quadratic|q2",
+      "quadratic|q6",
+      "quadratic|q5",
+      "identity|id2",
+      "identity|id0",
+      "identity|id1",
+      "identity|id4",
+      "identity|id3"
+    ]
+  },
+  {
+    "slug": "unit-circle-values",
+    "questions": 2025,
+    "parts": 2025,
+    "pairs": 10209,
+    "choices": 0,
+    "signatures": [
+      "sin|sin",
+      "cos|cos",
+      "tan|tan",
+      "csc|csc",
+      "sec|sec",
+      "cot|cot",
+      "sct|cos",
+      "sct|sin",
+      "sct|tan",
+      "recip|sec",
+      "recip|csc",
+      "recip|cot",
+      "all|csc",
+      "all|cos",
+      "all|sec",
+      "all|cot",
+      "all|tan",
+      "all|sin"
+    ]
+  }
+]

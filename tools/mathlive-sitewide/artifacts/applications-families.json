@@ -1,0 +1,578 @@
+[
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
+    "selectors": [
+      {
+        "analysisFocus": "mixed"
+      },
+      {
+        "analysisFocus": "incdec"
+      },
+      {
+        "analysisFocus": "concavity"
+      },
+      {
+        "analysisFocus": "poi"
+      },
+      {
+        "analysisFocus": "extrema"
+      }
+    ],
+    "seedsPerSelector": 40
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html",
+    "selectors": [
+      {
+        "analysisFocus": "mixed"
+      },
+      {
+        "analysisFocus": "incdec"
+      },
+      {
+        "analysisFocus": "concavity"
+      },
+      {
+        "analysisFocus": "poi"
+      },
+      {
+        "analysisFocus": "extrema"
+      }
+    ],
+    "seedsPerSelector": 40
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/practice/index.html",
+    "selectors": [
+      {
+        "mvtMode": "both"
+      },
+      {
+        "mvtMode": "mvt"
+      },
+      {
+        "mvtMode": "rolle"
+      }
+    ],
+    "seedsPerSelector": 40
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/practice/index.html",
+    "selectors": [
+      {
+        "approximationType": "mixed"
+      },
+      {
+        "approximationType": "secant"
+      },
+      {
+        "approximationType": "tangent"
+      }
+    ],
+    "seedsPerSelector": 40
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/optimization/calculator-practice/index.html",
+    "mode": "calculator",
+    "descriptors": [
+      {
+        "family": "open_top_rectangular_cardboard",
+        "source": "assignment"
+      },
+      {
+        "family": "cylinder_different_material_costs",
+        "source": "assignment"
+      },
+      {
+        "family": "capsule_unequal_material_costs",
+        "source": "assignment"
+      },
+      {
+        "family": "rectangle_under_trig_arch",
+        "source": "assignment"
+      },
+      {
+        "family": "page_printed_area",
+        "source": "assignment"
+      },
+      {
+        "family": "closest_point_power_curve",
+        "source": "assignment"
+      },
+      {
+        "family": "two_poles_minimum_cable",
+        "source": "assignment"
+      },
+      {
+        "family": "shortest_ladder_over_fence",
+        "source": "assignment"
+      },
+      {
+        "family": "test_rectangular_box_numerical",
+        "source": "test"
+      },
+      {
+        "family": "test_rigid_barn_pen",
+        "source": "test"
+      },
+      {
+        "family": "extension_closest_power_curve",
+        "source": "extension"
+      },
+      {
+        "family": "extension_trigonometric_arch",
+        "source": "extension"
+      },
+      {
+        "family": "extension_rigid_pen",
+        "source": "extension"
+      }
+    ],
+    "seedsPerDescriptor": 5
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html",
+    "mode": "noncalculator",
+    "descriptors": [
+      {
+        "family": "open_top_square_cardboard",
+        "source": "assignment"
+      },
+      {
+        "family": "open_top_rectangular_cardboard",
+        "source": "assignment"
+      },
+      {
+        "family": "open_box_dimensions_and_volume",
+        "source": "assignment"
+      },
+      {
+        "family": "square_base_box_fixed_material",
+        "source": "assignment"
+      },
+      {
+        "family": "closed_cylinder_fixed_volume",
+        "source": "assignment"
+      },
+      {
+        "family": "open_cylinder_fixed_volume",
+        "source": "assignment"
+      },
+      {
+        "family": "cylinder_different_material_costs",
+        "source": "assignment"
+      },
+      {
+        "family": "capsule_unequal_material_costs",
+        "source": "assignment"
+      },
+      {
+        "family": "square_pyramid_fixed_volume",
+        "source": "assignment"
+      },
+      {
+        "family": "rectangular_fixed_perimeter_fencing",
+        "source": "assignment"
+      },
+      {
+        "family": "three_side_barn_fencing",
+        "source": "assignment"
+      },
+      {
+        "family": "hotel_room_revenue",
+        "source": "assignment"
+      },
+      {
+        "family": "wholesale_order_revenue",
+        "source": "assignment"
+      },
+      {
+        "family": "discrete_revenue_or_yield",
+        "source": "assignment"
+      },
+      {
+        "family": "orchard_yield",
+        "source": "assignment"
+      },
+      {
+        "family": "equilateral_triangle_window",
+        "source": "assignment"
+      },
+      {
+        "family": "rectangle_in_semicircle",
+        "source": "assignment"
+      },
+      {
+        "family": "page_printed_area",
+        "source": "assignment"
+      },
+      {
+        "family": "closest_point_square_root",
+        "source": "assignment"
+      },
+      {
+        "family": "closest_point_polynomial",
+        "source": "assignment"
+      },
+      {
+        "family": "two_poles_minimum_cable",
+        "source": "assignment"
+      },
+      {
+        "family": "shortest_ladder_over_fence",
+        "source": "assignment"
+      },
+      {
+        "family": "maximum_cone_from_right_triangle",
+        "source": "assignment"
+      },
+      {
+        "family": "minimum_distance_moving_ships",
+        "source": "assignment"
+      },
+      {
+        "family": "rectangle_under_parabola",
+        "source": "assignment"
+      },
+      {
+        "family": "test_square_base_box",
+        "source": "test"
+      },
+      {
+        "family": "test_cylinder_cost",
+        "source": "test"
+      },
+      {
+        "family": "test_open_top_box",
+        "source": "test"
+      },
+      {
+        "family": "test_rigid_barn_pen",
+        "source": "test"
+      },
+      {
+        "family": "two_number_product",
+        "source": "extension"
+      },
+      {
+        "family": "wire_split_circle_square",
+        "source": "extension"
+      },
+      {
+        "family": "minimum_axis_intercept_triangle",
+        "source": "extension"
+      },
+      {
+        "family": "rectangle_in_circle",
+        "source": "extension"
+      },
+      {
+        "family": "different_cost_rectangle_fencing",
+        "source": "extension"
+      }
+    ],
+    "seedsPerDescriptor": 5
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/related-rates/calculator-practice/index.html",
+    "mode": "calculator",
+    "descriptors": [
+      {
+        "family": "sphere_volume_to_radius",
+        "source": "assignment"
+      },
+      {
+        "family": "sphere_diameter_to_volume",
+        "source": "assignment"
+      },
+      {
+        "family": "circular_area_from_radius",
+        "source": "assignment"
+      },
+      {
+        "family": "circular_radius_from_area",
+        "source": "assignment"
+      },
+      {
+        "family": "circular_wave_circumference",
+        "source": "assignment"
+      },
+      {
+        "family": "ladder_top",
+        "source": "assignment"
+      },
+      {
+        "family": "ladder_bottom",
+        "source": "assignment"
+      },
+      {
+        "family": "ladder_area",
+        "source": "assignment"
+      },
+      {
+        "family": "ladder_angle",
+        "source": "assignment"
+      },
+      {
+        "family": "ladder_wall_angle",
+        "source": "assignment"
+      },
+      {
+        "family": "lamppost_shadow_length",
+        "source": "assignment"
+      },
+      {
+        "family": "lamppost_shadow_tip",
+        "source": "assignment"
+      },
+      {
+        "family": "conical_pile",
+        "source": "assignment"
+      },
+      {
+        "family": "inverted_conical_tank",
+        "source": "assignment"
+      },
+      {
+        "family": "conical_tank_height_from_volume",
+        "source": "assignment"
+      },
+      {
+        "family": "conical_tank_radius_from_volume",
+        "source": "assignment"
+      },
+      {
+        "family": "conical_tank_volume_from_height",
+        "source": "assignment"
+      },
+      {
+        "family": "triangular_trough",
+        "source": "assignment"
+      },
+      {
+        "family": "trapezoidal_trough",
+        "source": "assignment"
+      },
+      {
+        "family": "cylindrical_tank_gallon_conversion",
+        "source": "assignment"
+      },
+      {
+        "family": "equilateral_triangle_area",
+        "source": "assignment"
+      },
+      {
+        "family": "semicircle_moving_point_area",
+        "source": "assignment"
+      },
+      {
+        "family": "balloon_bicycle_distance",
+        "source": "assignment"
+      },
+      {
+        "family": "softball_diamond",
+        "source": "assignment"
+      },
+      {
+        "family": "rope_spool_balloon",
+        "source": "assignment"
+      },
+      {
+        "family": "hemispherical_ice_layer",
+        "source": "assignment"
+      },
+      {
+        "family": "test_rotating_spotlight",
+        "source": "test"
+      },
+      {
+        "family": "test_conical_pile",
+        "source": "test"
+      },
+      {
+        "family": "test_reverse_conical_tank",
+        "source": "test"
+      },
+      {
+        "family": "test_ladder_area",
+        "source": "test"
+      },
+      {
+        "family": "sphere_surface_area_to_volume",
+        "source": "extension"
+      },
+      {
+        "family": "cylindrical_tank",
+        "source": "extension"
+      },
+      {
+        "family": "square_area",
+        "source": "extension"
+      },
+      {
+        "family": "angle_of_elevation",
+        "source": "extension"
+      },
+      {
+        "family": "implicit_equation_rates",
+        "source": "extension"
+      },
+      {
+        "family": "delayed_start_perpendicular_motion",
+        "source": "extension"
+      }
+    ],
+    "seedsPerDescriptor": 5
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/related-rates/practice/index.html",
+    "mode": "noncalculator",
+    "descriptors": [
+      {
+        "family": "sphere_volume_to_radius",
+        "source": "assignment"
+      },
+      {
+        "family": "sphere_diameter_to_volume",
+        "source": "assignment"
+      },
+      {
+        "family": "circular_area_from_radius",
+        "source": "assignment"
+      },
+      {
+        "family": "circular_radius_from_area",
+        "source": "assignment"
+      },
+      {
+        "family": "circular_wave_circumference",
+        "source": "assignment"
+      },
+      {
+        "family": "ladder_top",
+        "source": "assignment"
+      },
+      {
+        "family": "ladder_bottom",
+        "source": "assignment"
+      },
+      {
+        "family": "ladder_area",
+        "source": "assignment"
+      },
+      {
+        "family": "ladder_angle",
+        "source": "assignment"
+      },
+      {
+        "family": "ladder_wall_angle",
+        "source": "assignment"
+      },
+      {
+        "family": "lamppost_shadow_length",
+        "source": "assignment"
+      },
+      {
+        "family": "lamppost_shadow_tip",
+        "source": "assignment"
+      },
+      {
+        "family": "conical_pile",
+        "source": "assignment"
+      },
+      {
+        "family": "inverted_conical_tank",
+        "source": "assignment"
+      },
+      {
+        "family": "conical_tank_height_from_volume",
+        "source": "assignment"
+      },
+      {
+        "family": "conical_tank_radius_from_volume",
+        "source": "assignment"
+      },
+      {
+        "family": "conical_tank_volume_from_height",
+        "source": "assignment"
+      },
+      {
+        "family": "triangular_trough",
+        "source": "assignment"
+      },
+      {
+        "family": "trapezoidal_trough",
+        "source": "assignment"
+      },
+      {
+        "family": "cylindrical_tank_gallon_conversion",
+        "source": "assignment"
+      },
+      {
+        "family": "equilateral_triangle_area",
+        "source": "assignment"
+      },
+      {
+        "family": "semicircle_moving_point_area",
+        "source": "assignment"
+      },
+      {
+        "family": "balloon_bicycle_distance",
+        "source": "assignment"
+      },
+      {
+        "family": "softball_diamond",
+        "source": "assignment"
+      },
+      {
+        "family": "rope_spool_balloon",
+        "source": "assignment"
+      },
+      {
+        "family": "hemispherical_ice_layer",
+        "source": "assignment"
+      },
+      {
+        "family": "test_rotating_spotlight",
+        "source": "test"
+      },
+      {
+        "family": "test_conical_pile",
+        "source": "test"
+      },
+      {
+        "family": "test_reverse_conical_tank",
+        "source": "test"
+      },
+      {
+        "family": "test_ladder_area",
+        "source": "test"
+      },
+      {
+        "family": "sphere_surface_area_to_volume",
+        "source": "extension"
+      },
+      {
+        "family": "cylindrical_tank",
+        "source": "extension"
+      },
+      {
+        "family": "square_area",
+        "source": "extension"
+      },
+      {
+        "family": "angle_of_elevation",
+        "source": "extension"
+      },
+      {
+        "family": "implicit_equation_rates",
+        "source": "extension"
+      },
+      {
+        "family": "delayed_start_perpendicular_motion",
+        "source": "extension"
+      }
+    ],
+    "seedsPerDescriptor": 5
+  }
+]

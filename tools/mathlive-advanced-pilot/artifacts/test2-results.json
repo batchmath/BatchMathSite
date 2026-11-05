@@ -1,0 +1,54 @@
+{
+  "focusedTests": {
+    "executed": 100,
+    "passed": 100,
+    "skipped": 0
+  },
+  "intervalQuestions": 2400,
+  "intervalCheckerPairs": 14400,
+  "browserReports": [
+    {
+      "file": "tools/mathlive-power-rule/artifacts/browser-results.json",
+      "checks": 38,
+      "passed": 38,
+      "pageErrors": 0
+    },
+    {
+      "file": "tools/mathlive-derivatives-pilot/artifacts/browser-results.json",
+      "checks": 27,
+      "passed": 27,
+      "pageErrors": 0
+    },
+    {
+      "file": "tools/mathlive-advanced-pilot/artifacts/basic-browser.json",
+      "checks": 22,
+      "passed": 22,
+      "pageErrors": 0
+    },
+    {
+      "file": "tools/mathlive-advanced-pilot/artifacts/ftc-browser.json",
+      "checks": 22,
+      "passed": 22,
+      "pageErrors": 0
+    },
+    {
+      "file": "tools/mathlive-advanced-pilot/artifacts/newton-browser.json",
+      "checks": 27,
+      "passed": 27,
+      "pageErrors": 0
+    },
+    {
+      "file": "tools/mathlive-advanced-pilot/artifacts/separable-browser.json",
+      "checks": 42,
+      "passed": 42,
+      "pageErrors": 0
+    },
+    {
+      "file": "tools/mathlive-advanced-pilot/artifacts/corrections-browser.json",
+      "checks": 5,
+      "passed": 5,
+      "pageErrors": 0
+    }
+  ],
+  "previousCheckpoint": "63d7005d4aeea026c3325004bf150b54788e1910"
+}

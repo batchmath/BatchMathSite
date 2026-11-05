@@ -17,7 +17,7 @@
   const help=document.createElement('div');help.className='algebra-help';help.textContent='Use parentheses for infinity; a bracket includes a finite endpoint.';form.appendChild(help);
   const pad=document.createElement('div');pad.className='algebra-keypad';pad.setAttribute('aria-label','Interval notation keypad');form.appendChild(pad);
   function insert(value){if(input.disabled)return;const a=input.selectionStart??input.value.length,b=input.selectionEnd??a;input.value=input.value.slice(0,a)+value+input.value.slice(b);input.focus({preventScroll:true});input.setSelectionRange(a+value.length,a+value.length);}
-  function key(text,action){const b=global.BatchMathKeypad.button(text,/^\d$/.test(text)?'':'utility',action,text);pad.appendChild(b);}
+  function key(text,action){const b=global.BatchMathKeypad.button(text,/^\d$/.test(text)?'':'utility',action,text);if(text==='∞'||text==='−∞')b.classList.add('math-infinity-key');pad.appendChild(b);}
   for(const digit of ['7','8','9','4','5','6','1','2','3','0'])key(digit,()=>insert(digit));
   for(const sym of ['(',')','[',']',',','−','∞'])key(sym,()=>insert(sym==='−'?'-':sym));
   key('←',()=>{const i=Math.max(0,input.selectionStart-1);input.focus({preventScroll:true});input.setSelectionRange(i,i);});
