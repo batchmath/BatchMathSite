@@ -1,4 +1,5 @@
-/* BatchMath v12.9.A — Unit 6 practice styles: region and graph figures, and the integral-setup answer control.
+/* BatchMath v12.9.B — Unit 6 practice styles: region and graph figures, slices and cross-section pictures, the Show Graph
+   toggle, and the integral-setup answer control.
    Loaded after unit5.css (the staged multi-part answers, calculator badge and review tag come from there).
    Figures scale with the column; nothing here creates a nested scroll box. */
 /* ---------- figures ---------- */
@@ -6,7 +7,7 @@
 .u6-graph-figure{max-width:520px}
 /* compact figures (Area Below and Between Curves): the width cap is set per figure so the height stays near 265px */
 .u6-figure-compact .u6-tick{font-size:inherit} /* the compact svg sets the size that keeps ticks about 11.5px on screen */
-.u6-figure-compact .u6-curve,.u6-figure-compact .u6-axis,.u6-figure-compact .u6-grid,.u6-figure-compact .u6-rot{vector-effect:non-scaling-stroke}
+.u6-figure-compact .u6-curve,.u6-figure-compact .u6-axis,.u6-figure-compact .u6-grid,.u6-figure-compact .u6-rot,.u6-figure-compact .u6-slice{vector-effect:non-scaling-stroke}
 .u6-svg{display:block;width:100%;height:auto;background:#050505;border:1px solid #303030;border-radius:10px}
 .u6-grid{stroke:#1f1f1f;stroke-width:1}
 .u6-axis{stroke:#8a8a8a;stroke-width:1.4}
@@ -22,6 +23,26 @@
 .u6-swatch{display:inline-block;width:22px;height:4px;border-radius:2px;background:#4fb3ff}
 .u6-swatch-rot{height:0;background:none;border-radius:0;border-top:3px dashed #ff8f93}
 .u6-swatch-f{background:#4fb3ff}
+
+/* v12.9.B: a representative slice on a region graph, one cross section drawn flat, figures side by side */
+.u6-slice{stroke:#ffd400;stroke-width:3.4;stroke-linecap:round}
+.u6-slice-end{fill:#ffd400}
+.u6-swatch-slice{background:#ffd400}
+.u6-cs-figure{max-width:230px}
+.u6-cs-svg{display:block;width:100%;height:auto;background:#050505;border:1px solid #303030;border-radius:10px}
+.u6-cs-shape{fill:rgba(79,179,255,.2);stroke:#4fb3ff;stroke-width:2;stroke-linejoin:round}
+.u6-cs-center{fill:#f4f4f4}
+.u6-cs-mark{fill:none;stroke:#bdbdbd;stroke-width:1.4}
+.u6-cs-label{fill:#f4f4f4;font-family:"Times New Roman",Times,serif;font-style:italic;font-size:17px}
+.u6-fig-row{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;align-items:flex-start;margin:4px 0}
+.u6-fig-row>.u6-figure{flex:1 1 200px;width:auto;margin:6px 0}
+/* the optional graph in a question: closed at first, opened and closed by the student */
+.u6-graph-toggle{width:100%;margin-top:12px;text-align:center}
+.u6-graph-toggle>summary{list-style:none}
+.u6-graph-toggle>summary::-webkit-details-marker{display:none}
+.u6-graph-btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 18px;border:1px solid #454545;border-radius:9px;background:#111;color:#f4f4f4;font-weight:800;font-size:1rem;cursor:pointer}
+.u6-graph-btn:hover,.u6-graph-btn:focus-visible{border-color:var(--yellow);color:var(--yellow)}
+.u6-graph-toggle[open] .u6-when-closed,.u6-graph-toggle:not([open]) .u6-when-open{display:none}
 
 /* ---------- integral setup: [number] ∫ from [a] to [b] of [integrand] dx | dy ---------- */
 .u6-integrals{display:flex;flex-direction:column;gap:10px;width:100%}

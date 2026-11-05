@@ -212,15 +212,15 @@ function shellTerms(R,axis){
 }
 // cross sections: shape factor applied to the side length s (top-bottom or right-left)
 const SHAPES={
- square:{k:F1,sq:true,name:'squares',area:s=>sqTex(s),rule:'A square with side \\(s\\) has area \\(s^{2}\\).'},
- semicircle_d:{k:{q:Q(1,8),atom:K.pi},sq:true,name:'semicircles whose diameter lies across the region',area:s=>`\\frac{\\pi}{8}${sqTex(s)}`,rule:'A semicircle with diameter \\(s\\) has radius \\(\\frac{s}{2}\\), so its area is \\(\\frac{1}{2}\\pi\\left(\\frac{s}{2}\\right)^{2}=\\frac{\\pi}{8}s^{2}\\).'},
- semicircle_r:{k:{q:Q(1,2),atom:K.pi},sq:true,name:'semicircles whose radius lies across the region',area:s=>`\\frac{\\pi}{2}${sqTex(s)}`,rule:'A semicircle with radius \\(s\\) has area \\(\\frac{1}{2}\\pi s^{2}\\).'},
- quarter:{k:{q:Q(1,4),atom:K.pi},sq:true,name:'quarter circles whose radius lies across the region',area:s=>`\\frac{\\pi}{4}${sqTex(s)}`,rule:'A quarter circle with radius \\(s\\) has area \\(\\frac{1}{4}\\pi s^{2}\\).'},
- equilateral:{k:{q:Q(1,4),atom:K.sqrt3},sq:true,name:'equilateral triangles with one side across the region',area:s=>`\\frac{\\sqrt{3}}{4}${sqTex(s)}`,rule:'An equilateral triangle with side \\(s\\) has height \\(\\frac{\\sqrt{3}}{2}s\\), so its area is \\(\\frac{1}{2}s\\cdot\\frac{\\sqrt{3}}{2}s=\\frac{\\sqrt{3}}{4}s^{2}\\).'},
- iso_leg:{k:{q:Q(1,2),atom:null},sq:true,name:'isosceles right triangles with one leg across the region',area:s=>`\\frac{1}{2}${sqTex(s)}`,rule:'An isosceles right triangle with legs \\(s\\) has area \\(\\frac{1}{2}s^{2}\\).'},
- iso_hyp:{k:{q:Q(1,4),atom:null},sq:true,name:'isosceles right triangles with the hypotenuse across the region',area:s=>`\\frac{1}{4}${sqTex(s)}`,rule:'With hypotenuse \\(s\\), each leg is \\(\\frac{s}{\\sqrt{2}}\\), so the area is \\(\\frac{1}{2}\\left(\\frac{s}{\\sqrt{2}}\\right)^{2}=\\frac{1}{4}s^{2}\\).'},
+ square:{id:'square',k:F1,sq:true,name:'squares',area:s=>sqTex(s),rule:'A square with side \\(s\\) has area \\(s^{2}\\).'},
+ semicircle_d:{id:'semicircle_d',k:{q:Q(1,8),atom:K.pi},sq:true,name:'semicircles whose diameter lies across the region',area:s=>`\\frac{\\pi}{8}${sqTex(s)}`,rule:'A semicircle with diameter \\(s\\) has radius \\(\\frac{s}{2}\\), so its area is \\(\\frac{1}{2}\\pi\\left(\\frac{s}{2}\\right)^{2}=\\frac{\\pi}{8}s^{2}\\).'},
+ semicircle_r:{id:'semicircle_r',k:{q:Q(1,2),atom:K.pi},sq:true,name:'semicircles whose radius lies across the region',area:s=>`\\frac{\\pi}{2}${sqTex(s)}`,rule:'A semicircle with radius \\(s\\) has area \\(\\frac{1}{2}\\pi s^{2}\\).'},
+ quarter:{id:'quarter',k:{q:Q(1,4),atom:K.pi},sq:true,name:'quarter circles whose radius lies across the region',area:s=>`\\frac{\\pi}{4}${sqTex(s)}`,rule:'A quarter circle with radius \\(s\\) has area \\(\\frac{1}{4}\\pi s^{2}\\).'},
+ equilateral:{id:'equilateral',k:{q:Q(1,4),atom:K.sqrt3},sq:true,name:'equilateral triangles with one side across the region',area:s=>`\\frac{\\sqrt{3}}{4}${sqTex(s)}`,rule:'An equilateral triangle with side \\(s\\) has height \\(\\frac{\\sqrt{3}}{2}s\\), so its area is \\(\\frac{1}{2}s\\cdot\\frac{\\sqrt{3}}{2}s=\\frac{\\sqrt{3}}{4}s^{2}\\).'},
+ iso_leg:{id:'iso_leg',k:{q:Q(1,2),atom:null},sq:true,name:'isosceles right triangles with one leg across the region',area:s=>`\\frac{1}{2}${sqTex(s)}`,rule:'An isosceles right triangle with legs \\(s\\) has area \\(\\frac{1}{2}s^{2}\\).'},
+ iso_hyp:{id:'iso_hyp',k:{q:Q(1,4),atom:null},sq:true,name:'isosceles right triangles with the hypotenuse across the region',area:s=>`\\frac{1}{4}${sqTex(s)}`,rule:'With hypotenuse \\(s\\), each leg is \\(\\frac{s}{\\sqrt{2}}\\), so the area is \\(\\frac{1}{2}\\left(\\frac{s}{\\sqrt{2}}\\right)^{2}=\\frac{1}{4}s^{2}\\).'},
 };
-function rectShape(mult){return{k:{q:Q(mult),atom:null},sq:true,name:`rectangles whose height is ${mult===1?'equal to':`${['','','twice','three times','four times'][mult]}`} the base across the region`,area:s=>`${mult===1?'':mult}${sqTex(s)}`,rule:`The base is \\(s\\) and the height is \\(${mult===1?'s':`${mult}s`}\\), so the area is \\(${mult===1?'':mult}s^{2}\\).`};}
+function rectShape(mult){return{id:'rect',mult,k:{q:Q(mult),atom:null},sq:true,name:`rectangles whose height is ${mult===1?'equal to':`${['','','twice','three times','four times'][mult]}`} the base across the region`,area:s=>`${mult===1?'':mult}${sqTex(s)}`,rule:`The base is \\(s\\) and the height is \\(${mult===1?'s':`${mult}s`}\\), so the area is \\(${mult===1?'':mult}s^{2}\\).`};}
 function sectionTerms(R,v,shape){
  const pieces=v==='x'?R.xs:R.ys,hi=v==='x'?'top':'right',lo=v==='x'?'bot':'left';
  return pieces.map(p=>{const s=p.w||fsub(p[hi],p[lo]),stex=p.w?p.w.tex(v):areaTex(p[hi],p[lo],v);
@@ -440,7 +440,13 @@ function figure(R,opt={}){
   flush();parts.push(...pts);c.color=col;});
  if(opt.axis){const a=opt.axis;parts.push(a.type==='y'?`<line x1="0" y1="${Y(a.c)}" x2="${W}" y2="${Y(a.c)}" class="u6-rot"/>`:`<line x1="${X(a.c)}" y1="0" x2="${X(a.c)}" y2="${hmax}" class="u6-rot"/>`);}
  for(const mk of R.marks||[])parts.push(`<circle cx="${X(mk[0])}" cy="${Y(mk[1])}" r="3" class="u6-mark"/>`);
- const legend=R.draw.map(c=>`<span class="u6-key"><span class="u6-swatch" style="background:${c.color}"></span>\\(${c.tex}\\)</span>`).join('')+(opt.axis?`<span class="u6-key"><span class="u6-swatch u6-swatch-rot"></span>axis of rotation \\(${opt.axis.type}=${opt.axis.tex??opt.axis.c}\\)</span>`:'');
+ // v12.9.B: a representative slice, opt.slice={v, at}: the segment across the region at x = at (v x: bottom to top)
+ // or y = at (v y: left to right), where a cross section stands
+ let sliced=null;
+ if(opt.slice){const sl=opt.slice,seg=sliceSegment(R,sl.v,sl.at);
+  if(seg){const [x1,y1,x2,y2]=seg;parts.push(`<line x1="${X(x1)}" y1="${Y(y1)}" x2="${X(x2)}" y2="${Y(y2)}" class="u6-slice"/>`,`<circle cx="${X(x1)}" cy="${Y(y1)}" r="3.2" class="u6-slice-end"/>`,`<circle cx="${X(x2)}" cy="${Y(y2)}" r="3.2" class="u6-slice-end"/>`);sliced=sl;}}
+ const legend=R.draw.map(c=>`<span class="u6-key"><span class="u6-swatch" style="background:${c.color}"></span>\\(${c.tex}\\)</span>`).join('')+(opt.axis?`<span class="u6-key"><span class="u6-swatch u6-swatch-rot"></span>axis of rotation \\(${opt.axis.type}=${opt.axis.tex??opt.axis.c}\\)</span>`:'')
+  +(sliced?`<span class="u6-key"><span class="u6-swatch u6-swatch-slice"></span>${sliced.legend||`one slice (length \\(s\\))`}</span>`:'');
  // compact (Area Below and Between Curves): at most 340px wide and about 265px tall on screen, same drawing and
  // proportions; tick labels keep their on-screen size (the svg's font-size, inherited by the ticks) and lines their
  // width as the figure scales down
@@ -448,6 +454,34 @@ function figure(R,opt={}){
  return `${fig}<svg viewBox="0 0 ${W} ${hmax}" role="img" aria-label="${opt.label||'Graph of the region'}" class="u6-svg"${opt.compact?` style="font-size:${(11.5*W/cw).toFixed(1)}px"`:''}>${parts.join('')}${lab.join('')}</svg>${legend?`<figcaption class="u6-legend">${legend}</figcaption>`:''}</figure>`;
 }
 
+// the slice of R at x = at (v x) or y = at (v y): its end points [x1, y1, x2, y2], or null outside the region
+function sliceSegment(R,v,at){
+ const ps=v==='x'?R.xs:R.ys,p=(ps||[]).find(q=>at>=Math.min(q.a.v,q.b.v)-1e-9&&at<=Math.max(q.a.v,q.b.v)+1e-9);if(!p)return null;
+ const seg=v==='x'?[at,p.bot.f(at),at,p.top.f(at)]:[p.left.f(at),at,p.right.f(at),at];return seg.every(Number.isFinite)?seg:null;
+}
+// where to draw a representative slice: inside the widest piece, a little left of (below) its middle
+function sliceAt(R,v){const ps=(v==='x'?R.xs:R.ys)||[];if(!ps.length)return null;const p=ps.reduce((a,b)=>Math.abs(b.b.v-b.a.v)>Math.abs(a.b.v-a.a.v)?b:a);return p.a.v+0.42*(p.b.v-p.a.v);}
+// v12.9.B: one cross section standing on its slice, drawn flat (as seen looking along the axis): the slice (length s,
+// highlighted like the slice on the base graph) and the shape built on it, with the shape's area formula
+const CS_NAMES={square:'a square with side \\(s\\)',semicircle_d:'a semicircle with diameter \\(s\\)',semicircle_r:'a semicircle with radius \\(s\\)',quarter:'a quarter circle with radius \\(s\\)',
+ equilateral:'an equilateral triangle with side \\(s\\)',iso_leg:'an isosceles right triangle with leg \\(s\\)',iso_hyp:'an isosceles right triangle with hypotenuse \\(s\\)'};
+function sectionPicture(shape){
+ const id=shape.id,B=120,lab=(x,y,t,a='middle')=>`<text x="${x}" y="${y}" class="u6-cs-label" text-anchor="${a}">${t}</text>`;let body='',L,x0;
+ const base=(a,b)=>`<line x1="${a}" y1="${B}" x2="${b}" y2="${B}" class="u6-slice"/>`;
+ if(id==='square'){L=96;x0=110-L/2;body=`<rect x="${x0}" y="${B-L}" width="${L}" height="${L}" class="u6-cs-shape"/>`+base(x0,x0+L)+lab(110,B+18,'s')+lab(x0+L+8,B-L/2+5,'s','start');}
+ else if(id==='rect'){const m=shape.mult;L=Math.min(120,100/m);x0=110-L/2;body=`<rect x="${x0}" y="${B-m*L}" width="${L}" height="${m*L}" class="u6-cs-shape"/>`+base(x0,x0+L)+lab(110,B+18,'s')+lab(x0+L+8,B-m*L/2+5,`${m===1?'':m}s`,'start');}
+ else if(id==='semicircle_d'){L=150;x0=110-L/2;body=`<path d="M${x0} ${B} A${L/2} ${L/2} 0 0 1 ${x0+L} ${B} Z" class="u6-cs-shape"/>`+base(x0,x0+L)+lab(110,B+18,'s');}
+ else if(id==='semicircle_r'){L=82;x0=110;body=`<path d="M${x0-L} ${B} A${L} ${L} 0 0 1 ${x0+L} ${B} Z" class="u6-cs-shape"/>`+base(x0,x0+L)+`<circle cx="${x0}" cy="${B}" r="3.2" class="u6-cs-center"/>`+lab(x0+L/2,B+18,'s');}
+ else if(id==='quarter'){L=100;x0=110-L/2;body=`<path d="M${x0} ${B} L${x0+L} ${B} A${L} ${L} 0 0 0 ${x0} ${B-L} Z" class="u6-cs-shape"/>`+base(x0,x0+L)+lab(110,B+18,'s')+lab(x0-8,B-L/2+5,'s','end');}
+ else if(id==='equilateral'){L=118;x0=110-L/2;const h=L*Math.sqrt(3)/2;body=`<path d="M${x0} ${B} L${x0+L} ${B} L110 ${(B-h).toFixed(1)} Z" class="u6-cs-shape"/>`+base(x0,x0+L)+lab(110,B+18,'s')+lab(x0+L/4-8,B-h/2,'s','end')+lab(x0+3*L/4+8,B-h/2,'s','start');}
+ else if(id==='iso_leg'){L=98;x0=110-L/2;body=`<path d="M${x0} ${B} L${x0+L} ${B} L${x0} ${B-L} Z" class="u6-cs-shape"/><path d="M${x0} ${B-11} H${x0+11} V${B}" class="u6-cs-mark"/>`+base(x0,x0+L)+lab(110,B+18,'s')+lab(x0-8,B-L/2+5,'s','end');}
+ else if(id==='iso_hyp'){L=150;x0=110-L/2;const t=110,ty=B-L/2,d=9;body=`<path d="M${x0} ${B} L${x0+L} ${B} L${t} ${ty} Z" class="u6-cs-shape"/><path d="M${t-d} ${ty+d} L${t} ${ty+2*d} L${t+d} ${ty+d}" class="u6-cs-mark"/>`+base(x0,x0+L)+lab(110,B+18,'s');}
+ else return '';
+ const name=id==='rect'?`a rectangle with base \\(s\\) and height \\(${shape.mult===1?'':shape.mult}s\\)`:CS_NAMES[id];
+ return `<figure class="u6-figure u6-cs-figure"><svg viewBox="0 0 220 146" role="img" aria-label="One cross section: ${name.replace(/\\\(|\\\)/g,'')}" class="u6-cs-svg">${body}</svg><figcaption class="u6-legend"><span>One cross section: ${name}; \\(A=${shape.area('s')}\\)</span></figcaption></figure>`;
+}
+// v12.9.B: a graph the student may open in the question (closed at first): Show Graph / Hide Graph
+function graphToggle(inner){return `<details class="u6-graph-toggle"><summary class="u6-graph-btn"><span class="u6-when-closed">Show Graph</span><span class="u6-when-open">Hide Graph</span></summary>${inner}</details>`;}
 // a region built only from its slices (no frame or curves given): the frame around the slices and one curve per
 // distinct boundary, so it can be drawn like the others
 function withPicture(R){
@@ -473,5 +507,5 @@ U5.profile('unit6-list',{fraction:true,radical:true,constants:['pi'],arithmetic:
 window.BatchMathUnit6Core=Object.freeze({U5,Q,qv,K,E,ex,eadd,escale,etex,evalE,P,pc,pm,pv,padd,psub,pmul,pscale,ppow,pint,pval,pdef,ptex,pkey,qpow,
  fp,fnc,fconst,fsub,fmul,dist,sqTex,parTex,topSum,simpleTex,quad,quadUsed:()=>quadUsed,zeros,bq,bn,fixed,F1,FPI,F2PI,factorTex,term,setupTex,numValue,exactValue,exactAnswer,evalSteps,
  region,areaTerms,areaTex,washerTerms,shellTerms,sectionTerms,SHAPES,rectShape,side,readExpr,checkIntegral,checkExpr,sameSetup,modelOf,densityOf,
- exactPart,numPart,integralPart,exprPart,choicePart,listPart,problem,figure,withPicture,regionStep,step,m,question,hash});
+ exactPart,numPart,integralPart,exprPart,choicePart,listPart,problem,figure,withPicture,regionStep,sliceSegment,sliceAt,sectionPicture,graphToggle,step,m,question,hash});
 })();

@@ -20,7 +20,7 @@
 const C=window.BatchMathUnit6Core,RG=window.BatchMathUnit6Regions;
 if(!C||!RG){console.error('unit6-volume: load unit6-core.js and unit6-regions.js first');return;}
 const {U5,Q,qv,K,ex,eadd,etex,P,pc,pm,fp,fnc,fconst,bq,bn,region,sectionTerms,washerTerms,shellTerms,SHAPES,rectShape,setupTex,numValue,exactValue,exactAnswer,
- step,m,question,problem,figure,quad,fixed,exactPart,numPart,integralPart,exprPart,choicePart,factorTex}=C;
+ step,m,question,problem,figure,quad,fixed,exactPart,numPart,integralPart,exprPart,choicePart,factorTex,sliceAt,sectionPicture,graphToggle}=C;
 const {pick,ri}=U5,W=RG.work;
 const one=(prompt0,parts,o)=>{const prompt=parts.length>1?prompt0:''; /* a calculator problem already shows the Calculator active badge */return problem({...o,calculator:!!o.calc,questionHtml:question({context:o.context,prompt,formulas:o.formulas,calculator:!!o.calc,extra:o.extra||''}),parts});};
 const SH=['square','square','semicircle_d','quarter','equilateral','iso_leg','iso_hyp','rect2','rect3','semicircle_r'];
@@ -34,16 +34,24 @@ function csPick(exact=true){
 }
 const where=v=>v==='x'?'perpendicular to the x-axis':'perpendicular to the y-axis';
 function csContext(R,v,shape){return `The base of a solid is ${R.text}. Cross sections ${where(v)} are ${shape.name}.`;}
+// v12.9.B: the base with one slice highlighted, and the cross section standing on that slice drawn flat beside it
+// (the first part's explanation; on calculator problems it is also the first look at the graph)
+function csPicture(R,v,shape,lead=''){
+ const text=`${lead}The highlighted segment is one slice of the base, ${where(v)}; its length across the region is \\(s\\). A cross section stands on every such slice; the second picture shows one of them, drawn flat.`;
+ return step(lead?'The base of the solid.':'The base and one cross section.',text)+`<div class="u6-fig-row">${figure(R,{compact:true,maxH:250,maxW:300,label:'The base of the solid with one slice',slice:{v,at:sliceAt(R,v)}})}${sectionPicture(shape)}</div>`;
+}
+// the base in a non-calculator question: closed until the student opens it
+const baseToggle=R=>graphToggle(figure(R,{label:'The base of the solid'}));
 // the cross-sectional area as a function, for typed A(x) / A(y) answers
 function areaFn(T,shape,v){const t=T[0],k=C.U5?shape.k:shape.k,kv=qv(k.q)*(k.atom?k.atom.val:1);
  return fnc({tex:()=>shape.area(t.stex),key:()=>'',f:z=>kv*t.g.f(z)});}
 
 function famCsBasic(tier){
  const {R,v}=csPick(),shape=shapeOf(pick(SH)),T=sectionTerms(R,v,shape),e=exactValue(T);if(!e)throw Error('not exact');
- const work=W.boundsStep(R)+W.sectionWork(R,v,shape,T)+W.evalWork(T);
+ const pic=csPicture(R,v,shape),work=pic+W.boundsStep(R)+W.sectionWork(R,v,shape,T)+W.evalWork(T);
  const parts=tier==='foundational'||T.length>1?[exactPart('Find the volume of the solid.',exactAnswer(e),work)]
-  :[exprPart(`Write the area of a cross section as a function of ${v}.`,`A(${v})=`,areaFn(T,shape,v),v,[T[0].a.v,T[0].b.v],W.boundsStep(R)+W.sectionWork(R,v,shape,T).split('Set up the volume.')[0].replace(/<div class="u4-work-step"><strong>$/,'')),exactPart('Find the volume of the solid.',exactAnswer(e),W.sectionWork(R,v,shape,T)+W.evalWork(T))];
- return one('Answer each part.',parts,{engine:'cross_sections',family:'cs_basic',tier,id:`csb-${R.eqs.join('|')}-${v}-${shape.name}`,context:csContext(R,v,shape),formulas:R.eqs,extra:tier!=='foundational'&&pick([true,false])?figure(R,{label:'The base of the solid'}):'',data:{dir:v,shape:shape.name,region:R.data.kind}});
+  :[exprPart(`Write the area of a cross section as a function of ${v}.`,`A(${v})=`,areaFn(T,shape,v),v,[T[0].a.v,T[0].b.v],pic+W.boundsStep(R)+W.sectionWork(R,v,shape,T).split('Set up the volume.')[0].replace(/<div class="u4-work-step"><strong>$/,'')),exactPart('Find the volume of the solid.',exactAnswer(e),W.sectionWork(R,v,shape,T)+W.evalWork(T))];
+ return one('Answer each part.',parts,{engine:'cross_sections',family:'cs_basic',tier,id:`csb-${R.eqs.join('|')}-${v}-${shape.name}`,context:csContext(R,v,shape),formulas:R.eqs,extra:baseToggle(R),data:{dir:v,shape:shape.name,region:R.data.kind,graph:'toggle'}});
 }
 // y = e^x, y = 1 and x = s (tests: setups in both directions)
 function expBase(){
@@ -60,15 +68,16 @@ function famCsSetup(tier){
  else if(sub==='two_piece'){R=RG.build(pick(['rootLineAxis','wedge']));v=R.data.kind==='wedge'?'y':'x';}
  else({R,v}=csPick());
  const shape=shapeOf(pick(SH)),T=sectionTerms(R,v,shape),e=exactValue(T);
- const setup=integralPart(`Write, but do not evaluate, an integral expression${T.length>1?' (or a sum of integrals)':''} for the volume of the solid.`,T,W.boundsStep(R)+W.sectionWork(R,v,shape,T),{variable:v,methodNote:`That has the right value, but cross sections ${where(v)} are integrated with respect to ${v}.`});
+ const setup=integralPart(`Write, but do not evaluate, an integral expression${T.length>1?' (or a sum of integrals)':''} for the volume of the solid.`,T,csPicture(R,v,shape)+W.boundsStep(R)+W.sectionWork(R,v,shape,T),{variable:v,methodNote:`That has the right value, but cross sections ${where(v)} are integrated with respect to ${v}.`});
  const parts=e&&tier==='challenging'&&pick([true,false])?[setup,exactPart('Evaluate the volume.',exactAnswer(e),W.evalWork(T))]:[setup];
- return one('Answer each part.',parts,{engine:'cross_sections',family:'cs_setup',tier,id:`css-${R.eqs.join('|')}-${v}-${shape.name}`,context:csContext(R,v,shape),formulas:R.eqs,extra:figure(R,{label:'The base of the solid'}),data:{dir:v,shape:shape.name,region:R.data.kind}});
+ return one('Answer each part.',parts,{engine:'cross_sections',family:'cs_setup',tier,id:`css-${R.eqs.join('|')}-${v}-${shape.name}`,context:csContext(R,v,shape),formulas:R.eqs,extra:baseToggle(R),data:{dir:v,shape:shape.name,region:R.data.kind,graph:'toggle'}});
 }
 function famCsCalc(tier){
- const sub=pick(['logLine','logLine','logParabola','cosParabola','expAxes']),R=RG.build(sub);
- const v=sub==='logLine'?pick(['x','y']):sub==='expAxes'?pick(['x','y']):'x',shape=shapeOf(sub==='logLine'?(v==='y'?pick(['iso_leg','square','equilateral']):pick(['rect2','semicircle_d','square'])):pick(SH)),T=sectionTerms(R,v,shape),val=numValue(T);
+ // v12.9.B: the direction first (about half perpendicular to the y-axis), then a region that can be sliced that way
+ const v=pick(['x','y']),sub=v==='y'?pick(['logLine','logLine','expAxes']):pick(['logLine','logLine','logParabola','cosParabola','expAxes']),R=RG.build(sub);
+ const shape=shapeOf(sub==='logLine'?(v==='y'?pick(['iso_leg','square','equilateral']):pick(['rect2','semicircle_d','square'])):pick(SH)),T=sectionTerms(R,v,shape),val=numValue(T);
  // students graph the region on their calculators: the figure appears only in the first part's explanation, after it is graded
- const graph=step('The base of the solid.','Compare it with the region on your calculator graph.')+figure(R,{label:'The base of the solid'});
+ const graph=csPicture(R,v,shape,'Compare it with the region on your calculator graph. ');
  const parts=tier==='challenging'?[integralPart('Write an integral expression for the volume of the solid. You may use decimal limits.',T,graph+W.boundsStep(R)+W.sectionWork(R,v,shape,T),{variable:v,help:'Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.'}),numPart('Find the volume of the solid.',val,W.calcWork(T))]
   :[numPart('Find the volume of the solid.',val,graph+W.boundsStep(R)+W.sectionWork(R,v,shape,T)+W.calcWork(T))];
  return one('Answer each part.',parts,{engine:'cross_sections',family:'cs_calc',tier,id:`csc-${R.eqs.join('|')}-${v}-${shape.name}`,calc:true,context:csContext(R,v,shape),formulas:R.eqs,data:{dir:v,shape:shape.name,region:R.data.kind}});
