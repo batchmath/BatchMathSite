@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "name": "prep",
+      "route": "calculus-prep/unit-circle-values/index.html",
+      "select": "#mode",
+      "option": "cos",
+      "source": "#answerRaw",
+      "passed": true
+    },
+    {
+      "name": "limits",
+      "route": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/index.html",
+      "select": "#focus",
+      "option": "standard",
+      "source": "#answer",
+      "passed": true
+    },
+    {
+      "name": "im1-practice-restart",
+      "route": "im1/unit-1-review/topics/decimals/practice/index.html",
+      "source": "#answer",
+      "restart": true,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "realMathJax": true
+}

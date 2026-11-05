@@ -14,14 +14,18 @@ export function installNativeFields({hostSelector,inputSelector,padSelector,cont
   if(!check)return;
   const oldPads=[],padState=[];
   const records=inputs.map(input=>({input,spec:spec.fieldContract?.(input)||spec,field:null,latex:'',display:input.style.display,clipped:input.classList.contains('bm-calc-source'),tab:input.getAttribute('tabindex'),aria:input.getAttribute('aria-hidden'),last:input.value}));
-  let active=0,clone,notice,ready=false,disposed=false;const removes=[];
+  let active=0,clone,notice,ready=false,disposed=false,question=window.BatchMathRepro?.problemCount;const removes=[];
   const alive=()=>host.isConnected&&inputs.every(i=>i.isConnected);
   const listen=(node,event,fn,capture=false)=>{node.addEventListener(event,fn,capture);removes.push(()=>node.removeEventListener(event,fn,capture));};
   function read(r){r.latex=r.field.value;const result=r.spec.translate(r.latex);const previous=r.input.value;r.last=r.input.value=result.input??(r.latex.trim()?'?':'');if(r.input.value!==previous)r.spec.onInput?.(r.input,result);if(notice)notice.hidden=result.status!=='unsupported';return result;}
   function sync(){records.forEach(read);}
   function syncForCheck(){sync();window.BatchMathAnswers?.normalizeAnswerInputs?.(document);records.forEach(r=>r.last=r.input.value);}
   function importSource(r,force=false){if(!force&&r.input.value===r.last)return;const converted=(r.spec.toLatex||batchmathToLatex)(r.input.value);if(converted.latex===null)throw Error('Cannot import the current answer.');resetMathfield(r.field,r.input.value.trim()?converted.latex:'');r.latex=r.field.value;r.last=r.input.value;}
-  function reflect(){if(!ready)return;for(const r of records){if(!r.input.disabled)importSource(r);if(r.spec.visible){const visible=!!r.spec.visible(r.input);if(r.field.hidden===visible)r.field.hidden=!visible;}r.field.readOnly=r.input.disabled;r.field.setAttribute('aria-disabled',String(r.input.disabled));r.field.classList.toggle('wrong',r.input.classList.contains('wrong'));}const visible=records.filter(r=>r.field.getClientRects().length);if(whenVisible&&visible.length&&!visible.includes(records[active]))active=records.indexOf(visible[0]);selectPad();const hide=Boolean(whenVisible&&!visible.length||records[active].spec.hideWhenDisabled&&records.every(r=>r.input.disabled));if(clone.hidden!==hide)clone.hidden=hide;if(whenVisible)for(const[pad,display]of padState)if(pad===check)pad.style.display=visible.length?'none':display;for(const b of clone.querySelectorAll('button'))b.disabled=records[active].input.disabled;}
+  function reflect(){if(!ready)return;const currentQuestion=window.BatchMathRepro?.problemCount,changed=currentQuestion!==question;question=currentQuestion;for(const r of records){
+   // Reused empty inputs do not change value when a new problem starts. Clear
+   // their old Undo/inline-shortcut snapshots without serializing or editing the answer.
+   if(changed)resetMathfield(r.field,r.field.value);
+   if(!r.input.disabled)importSource(r);if(r.spec.visible){const visible=!!r.spec.visible(r.input);if(r.field.hidden===visible)r.field.hidden=!visible;}r.field.readOnly=r.input.disabled;r.field.setAttribute('aria-disabled',String(r.input.disabled));r.field.classList.toggle('wrong',r.input.classList.contains('wrong'));}const visible=records.filter(r=>r.field.getClientRects().length);if(whenVisible&&visible.length&&!visible.includes(records[active]))active=records.indexOf(visible[0]);selectPad();const hide=Boolean(whenVisible&&!visible.length||records[active].spec.hideWhenDisabled&&records.every(r=>r.input.disabled));if(clone.hidden!==hide)clone.hidden=hide;if(whenVisible)for(const[pad,display]of padState)if(pad===check)pad.style.display=visible.length?'none':display;for(const b of clone.querySelectorAll('button'))b.disabled=records[active].input.disabled;}
   function focus(){if(ready&&!records[active].input.disabled){reflect();focusMathfield(records[active].field);}}
   function dispose(){disposed=true;ready=false;removes.forEach(fn=>fn());watch.disconnect();records.forEach(r=>r.field?.remove());clone?.remove();notice?.remove();}
   function fallback(error){
