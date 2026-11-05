@@ -1,5 +1,11 @@
 # BatchMath automated QA
 
+## Instructional video presentation
+
+Future video additions must follow [the permanent video presentation standard](docs/VIDEO-PRESENTATION-STANDARD.md).
+Run `node tools/video-presentation-qa.mjs` to check the per-collection layouts,
+modal behavior, approved titles, and preserved specialized video interactions.
+
 ## Corrective Limits display patch
 - Fixed a sign-cleanup bug that could change the displayed mathematics when a fraction denominator was a multi-term expression beginning with a negative coefficient.
 - Example regression: the intended `(2x+3)/(-4x-5)` could display incorrectly as `-(2x+3)/(4x-5)`, while the stored answer still corresponded to the intended expression.
