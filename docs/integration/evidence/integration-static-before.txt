@@ -1,0 +1,38 @@
+
+> batchmath-site-qa@12.8.Y qa:static
+> node tools/release-qa.mjs
+
+BatchMath 12.8.Y automated release QA
+Result: FAIL
+
+htmlPages: 280
+standaloneJs: 71
+gaTagged: 274
+inlineJs: 1077
+images: 628
+internalReferences: 8355
+brokenInternalReferences: 0
+indexablePages: 273
+sitemapUrls: 272
+noindexPages: 7
+version: 12.8.Y
+practiceEngines: 139
+mathjaxRefs: 131
+frqRows: 228
+frqExamSets: 38
+frqVideos: 216
+pdfFiles: 290
+docxFiles: 0
+identifyingStringHits: 0
+seededRngUnitTest: pass
+
+Warnings: 0
+
+Errors: 7
+- experiments/mathlive-advanced-notation/index.html: missing GA4 tag on indexable page
+- experiments/mathlive-advanced-notation/index.html: missing meta description
+- experiments/mathlive-advanced-notation/index.html: missing canonical
+- experiments/mathlive-advanced-notation/index.html: missing og:title
+- experiments/mathlive-advanced-notation/index.html: missing og:description
+- experiments/mathlive-advanced-notation/index.html: missing og:url
+- sitemap missing https://batchmath.net/experiments/mathlive-advanced-notation/

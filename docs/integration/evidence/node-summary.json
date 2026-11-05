@@ -1,0 +1,12 @@
+{
+  "tests": 273,
+  "pass": 273,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "todo": 0,
+  "durationMs": 784159.130013,
+  "testedIntegrationCheckpoint": "5b9b9fb488ea8d60ddadf082a36449355695c709",
+  "command": "node --test --test-reporter=tap --test-concurrency=2 tools/mathlive-sitewide/*.test.mjs tools/mathlive-power-rule/*.test.mjs tools/mathlive-derivatives-pilot/chain.test.mjs tools/mathlive-batch1/*.test.mjs tools/mathlive-advanced-pilot/*.test.mjs",
+  "historicalResultsReused": false
+}

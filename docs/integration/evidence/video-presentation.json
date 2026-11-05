@@ -1,0 +1,31 @@
+{
+  "ok": true,
+  "htmlPagesAudited": 257,
+  "deferredUnit6HtmlPages": 13,
+  "deferredUnit6VideoPages": [
+    "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/index.html"
+  ],
+  "videoPages": 66,
+  "standardPages": 61,
+  "collections": {
+    "1": 67,
+    "2": 6,
+    "4": 2,
+    "5": 1
+  },
+  "modalPages": [
+    "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/index.html",
+    "im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/index.html",
+    "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/index.html"
+  ],
+  "pageLoads": 198,
+  "selections": 276,
+  "specializedChecks": 7,
+  "externalPlaybackVerified": false,
+  "errors": []
+}

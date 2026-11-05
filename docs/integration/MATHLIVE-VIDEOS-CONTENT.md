@@ -57,3 +57,26 @@ and final results will be recorded below before delivery.
   mathematical behavior was changed to repair this preexisting metadata defect.
 - Focused browser output can now be saved to a separate integration evidence
   directory, preserving the historical source-branch reports.
+
+### Stage C — verified progress checkpoint
+
+Fresh integration runs pass 273/273 shared Node tests and 132/132 focused browser
+checks, including 543 explicitly counted paired grading submissions and zero
+page errors. Video QA passes 198 visits, 276 card activations, and seven
+specialized checks. Content preservation and static QA pass again.
+
+The strengthened overlap suite verifies physical typing and MathLive focus on
+all 102 route/width combinations, with zero page errors. Overall it passes
+101/102: multiplication at 375px has a Check-button overflow that reproduces
+identically on the unchanged MathLive source (458px document width). This
+preexisting source defect is retained under the resume instruction to fix only
+integration regressions. Its failure is not suppressed or marked passing.
+
+The fixed-delay Power Rule fixture race was corrected with controlled transport
+release, preserving all assertions; the full suite subsequently passes 38/38.
+All protected remote refs still match their before-integration values.
+
+Remaining before final delivery: collect the full 138-route sweep rerun, IM1
+Unit 3 comprehensive-review grading run, and representative AP Unit 5 dynamic
+review run; finish the final audit; push the final evidence; package and verify
+the complete static-site ZIP. These three browser runs are still in progress.

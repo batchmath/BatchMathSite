@@ -1,0 +1,52 @@
+{
+  "refs/heads/claude/new-session-2hxnhy": {
+    "before": "b9fb2142e13ca2cabb988cd186730c533ff8dd86",
+    "after": "b9fb2142e13ca2cabb988cd186730c533ff8dd86",
+    "unchanged": true
+  },
+  "refs/heads/claude/v12.8v-integrals-polish-ftc-checker": {
+    "before": "33265ac7dde15cad14c5a3c5c9d25520a365fafb",
+    "after": "33265ac7dde15cad14c5a3c5c9d25520a365fafb",
+    "unchanged": true
+  },
+  "refs/heads/claude/v12.8w-unit5-differential-equations-rebuild": {
+    "before": "3f9e088bf77605f36fa5772a04f601bc9b3fb277",
+    "after": "3f9e088bf77605f36fa5772a04f601bc9b3fb277",
+    "unchanged": true
+  },
+  "refs/heads/claude/v12.8x-unit5-calculator-rounding-polish": {
+    "before": "ffe7d7cfe4ec4475f790a4bca537a33c723fd471",
+    "after": "ffe7d7cfe4ec4475f790a4bca537a33c723fd471",
+    "unchanged": true
+  },
+  "refs/heads/claude/v12.8y-unit5-targeted-menu-cleanup": {
+    "before": "26ec4f15185c37f9e8843e96a09d583b47babcdf",
+    "after": "26ec4f15185c37f9e8843e96a09d583b47babcdf",
+    "unchanged": true
+  },
+  "refs/heads/claude/v12.9a-unit6-curriculum-alignment": {
+    "before": "dccdd153f1522b9e72c94e97279b528483749c87",
+    "after": "dccdd153f1522b9e72c94e97279b528483749c87",
+    "unchanged": true
+  },
+  "refs/heads/claude/v12.9b-unit6-display-checkpoint": {
+    "before": "0d4dfbaad4e98176ba75c7ce56a2b742f0f8d363",
+    "after": "0d4dfbaad4e98176ba75c7ce56a2b742f0f8d363",
+    "unchanged": true
+  },
+  "refs/heads/content/im1-video-notes-cleanup": {
+    "before": "bba32f929d6630d096bc4510ceafd586ab8c4a53",
+    "after": "bba32f929d6630d096bc4510ceafd586ab8c4a53",
+    "unchanged": true
+  },
+  "refs/heads/main": {
+    "before": "26ec4f15185c37f9e8843e96a09d583b47babcdf",
+    "after": "26ec4f15185c37f9e8843e96a09d583b47babcdf",
+    "unchanged": true
+  },
+  "refs/heads/migration/mathlive-sitewide": {
+    "before": "919ca1806f07e3cd2af552142926e7ca2b78e8d5",
+    "after": "919ca1806f07e3cd2af552142926e7ca2b78e8d5",
+    "unchanged": true
+  }
+}

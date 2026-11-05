@@ -1,0 +1,21 @@
+{
+  "route": "im1/unit-1-review/topics/multiplication/practice/index.html",
+  "width": 375,
+  "integrationCheckpoint": "5b9b9fb488ea8d60ddadf082a36449355695c709",
+  "mathliveSource": "919ca1806f07e3cd2af552142926e7ca2b78e8d5",
+  "integration": {
+    "scrollWidth": 458,
+    "buttonLeft": 277.796875,
+    "buttonRight": 457.796875,
+    "buttonWidth": 180
+  },
+  "unchangedMathliveSource": {
+    "scrollWidth": 458,
+    "buttonLeft": 277.796875,
+    "buttonRight": 457.796875,
+    "buttonWidth": 180
+  },
+  "cause": "Existing multiplication page button min-width applies to the MathLive Check button. Keypad container fits, but its Check button extends beyond the 375px viewport.",
+  "classification": "preexisting source defect, not introduced by integration",
+  "disposition": "Preserved and documented under the resume instruction: Fix genuine integration regressions only."
+}

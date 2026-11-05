@@ -32,20 +32,26 @@ try{
    assert.equal((await page.goto(base+'/'+route+'?bm_seed=final-route-sweep',{waitUntil:'domcontentloaded'})).status(),200);
    for(let turn=0;turn<35;turn++){await page.waitForTimeout(150);if(await page.locator('math-field:visible').count())break;await advance(page);}
    await page.locator('math-field:visible').first().waitFor();
+   await page.evaluate(async()=>{await window.MathJax?.startup?.promise;await document.fonts.ready;});
    const observed=await page.evaluate(()=>{
     const inputs=[...document.querySelectorAll('main input')].filter(i=>!i.disabled&&!i.readOnly&&!['checkbox','radio','button','submit'].includes(i.type)&&!i.closest('[hidden],.hidden,.staged-completed')&&(i.getClientRects().length||i.id==='answerRaw'));
     const fields=[...document.querySelectorAll('math-field')].filter(m=>m.getClientRects().length&&!m.readOnly);
     return {inputs:inputs.map(i=>({id:i.id,editor:i.dataset.editor})),fields:fields.length,overflow:document.documentElement.scrollWidth>innerWidth};
    });
    assert.ok(observed.fields>0);assert.equal(observed.fields,observed.inputs.length);assert.ok(observed.inputs.every(i=>i.editor==='mathlive'));
-   assert.equal(observed.overflow,false,'horizontal page overflow');
+   Object.assign(result,observed);
    await page.locator('math-field:visible').first().click();
+   await page.waitForFunction(()=>document.activeElement?.tagName==='MATH-FIELD');
+   await page.keyboard.type('7');
+   await page.waitForFunction(()=>document.activeElement?.value?.includes('7'));
+   result.focusAndPhysicalTyping=true;
    assert.equal(await page.locator('.bm-calc-editor:visible,#exactEditor:visible,.bm-fraction-editor:visible,.algebra-keypad:visible').count(),0);
    for(const element of await page.locator('math-field:visible,.bm-calc-keypad:visible').all()){
     const box=await element.boundingBox();assert.ok(box.width>0&&box.height>0&&box.x>=0&&box.x+box.width<=width+1,JSON.stringify(box));
    }
    const sources=await page.locator('script[src]').evaluateAll(s=>s.map(x=>x.getAttribute('src')).filter(x=>x.includes('/mathlive/')||x.includes('calculus-keypad')));
    assert.equal(new Set(sources).size,sources.length,'duplicate editor scripts');
+   assert.equal(observed.overflow,false,'horizontal page overflow');
    Object.assign(result,{passed:true,...observed});
    if(route.includes('recursive-to-explicit-formulas')&&width===375)await page.screenshot({path:evidence+'/im1-recursive-375.png',fullPage:true});
   }catch(e){Object.assign(result,{passed:false,error:e.stack});console.log('FAIL',route,width,e.message);}
