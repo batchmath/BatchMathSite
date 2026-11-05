@@ -175,12 +175,12 @@ simulated responses do not establish that a recording is reachable or playable.
 On `integration/mathlive-im1-videos-content`, the permanent standard applies to
 the approved AP Calculus Units 1–5 and IM1 content. The entire AP Calculus Unit 6
 directory remains exactly at MathLive source commit
-`919ca1806f07e3cd2af552142926e7ca2b78e8d5`. Its five video-bearing topic pages
-have **not** adopted the integrated rollout. Unit 6 video adoption and MathLive
+`919ca1806f07e3cd2af552142926e7ca2b78e8d5`. Its five topic pages awaiting the shared player and its specialized comprehensive
+review video page remain deferred; **none** is counted in this integrated rollout. Unit 6 video adoption and MathLive
 compatibility verification are deferred until the separate Claude work is ready.
 The browser suite reports those pages as deferred, rather than passing them.
 
-The integration has 67 in-scope video pages, 61 with standard collections:
+The integration has 66 in-scope video pages, 61 with standard collections:
 67 one-video, six two-video, and three gallery collections. The three galleries
 are Tangent/Normal Additional Examples, IM1 Key Features, and IM1 Equations.
 The original content-branch audit below is retained as historical source evidence;

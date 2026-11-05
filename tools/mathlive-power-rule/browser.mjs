@@ -211,8 +211,16 @@ try {
     await q.locator('.bm-calc-editor').click();await q.keyboard.type('5x');assert.equal((await state(q)).raw,'5x');assert.equal(await q.locator('math-field').count(),0);await q.close();
   });
   await test('successful delayed initialization imports an answer typed into legacy during loading',async()=>{
-    const q=await page({routes:[['**/vendor/mathlive/mathlive.min.mjs',async r=>{await new Promise(resolve=>setTimeout(resolve,800));await r.continue();}]]});
-    await q.locator('.bm-calc-editor').click();await q.keyboard.type('6x');await ready(q);assert.equal((await state(q)).latex.replace(/\s/g,''),'6x');assert.equal((await state(q)).raw,'6x');await q.close();
+    // Hold transport until the physical legacy entry is complete. A fixed 800ms
+    // delay raced page rendering on busy CI and sometimes hid the editor first.
+    let releaseRuntime;const runtimeGate=new Promise(resolve=>{releaseRuntime=resolve;});
+    let q;
+    try{
+      q=await page({routes:[['**/vendor/mathlive/mathlive.min.mjs',async r=>{await runtimeGate;await r.continue();}]]});
+      await q.locator('.bm-calc-editor').click();await q.keyboard.type('6x');
+      assert.equal((await state(q)).raw,'6x');releaseRuntime();
+      await ready(q);assert.equal((await state(q)).latex.replace(/\s/g,''),'6x');assert.equal((await state(q)).raw,'6x');
+    }finally{releaseRuntime();await q?.close();}
   });
   await test('unsupported legacy syntax during startup is retained when import refuses it',async()=>{
     const q=await page({routes:[['**/vendor/mathlive/mathlive.min.mjs',async r=>{await new Promise(resolve=>setTimeout(resolve,800));await r.continue();}]]});
