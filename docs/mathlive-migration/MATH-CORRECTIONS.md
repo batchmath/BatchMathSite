@@ -54,3 +54,9 @@ The Unit 4 assignment review loads current typed generators, but its original HT
 Repair confined to that HTML: load the existing local checker dependencies and calculus keypad assets, matching the topic/review architecture. No generator or mathematical checking code changes. The legacy browser now credits -16pi and rejects -16pi+1, with zero page errors. No MathLive module is activated in this repair commit.
 
 Evidence: tools/mathlive-sitewide/review-dependencies-browser.mjs, with review-dependencies-before.json and review-dependencies-after.json. The browser assertion fails before the dependency repair and passes afterward.
+
+## Final regression: fraction normalization crossed an exact-list boundary
+
+Extended legacy/MathLive comparisons reproduced `u3-mvt-cubic-9`: the correct MVT list `-((9)/(sqrt(3))),(9)/(sqrt(3))` was changed by the original pre-submit sign normalizer into `-(((9)/(sqrt(3))),(9))/sqrt(3)`, then rejected by the original legacy UI. This is normalization changing the mathematical structure, not a permissive MathLive grader.
+
+Minimal repair: a top-level comma or semicolon prevents moving a sign across the numerator. Existing standalone fraction sign rules and nested function arguments are unchanged. Two failing-before/passing-after Node regressions cover reachable MVT cubic cases r=3,6,9, correct/incorrect lists and standalone signs. The focused real legacy/MathLive browser rerun passes four paired submissions with zero page errors (`reviews-dynamic-browser-normalization.json`); the broader failing legacy reproduction is preserved in `reviews-dynamic-browser-families-before.json`. No question, derivative, tolerance, list ordering or simplification rule changed.

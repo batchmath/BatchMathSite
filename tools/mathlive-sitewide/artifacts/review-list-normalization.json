@@ -1,0 +1,20 @@
+{
+  "before": {
+    "nodeTests": 2,
+    "failed": 2,
+    "legacyExample": "u3-mvt-cubic-9",
+    "input": "-((9)/(sqrt(3))),(9)/(sqrt(3))",
+    "normalized": "-(((9)/(sqrt(3))),(9))/sqrt(3)"
+  },
+  "after": {
+    "nodeTests": 2,
+    "passed": 2,
+    "reachableCubicParameters": [
+      3,
+      6,
+      9
+    ],
+    "browserPairs": 4,
+    "pageErrors": 0
+  }
+}

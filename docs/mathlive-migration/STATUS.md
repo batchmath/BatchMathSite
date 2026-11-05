@@ -80,3 +80,5 @@ No merge, deployment, ZIP, main change, Unit 6 change or separate IM1 content-br
 Batch 8 A1 follow-up: explicit question-reset history clearing verified on both comprehensive reviews, including empty-to-empty resets. See BATCH-8.md and history regression artifacts. Remaining Batch 8 work is still in progress.
 
 Batch 8 A2: all six remaining actual AP Unit 3–5 review engines completed. 9,060 questions / 10,085 typed parts / 42,258 Node checker comparisons; six Chromium routes / 632 paired submissions / zero page errors. Optional typed slope/curve fields also converted on the slope-field topic and both reviews: three routes / 12 correct/incorrect comparisons, narrow layout, Enter, undo/redo, recovery and missing runtime pass with zero page errors. The seven listed IM1 URLs and final inventory/audit remain next. See BATCH-8.md.
+
+Final regression correction: the original fraction-sign normalizer crossed an exact-list separator on a reachable MVT cubic answer. A two-line boundary guard, separate regression tests and four paired Chromium submissions pass. See MATH-CORRECTIONS.md. IM1 review implementation continues from the existing AP checkpoint.
