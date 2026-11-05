@@ -1,0 +1,11 @@
+✔ reachable review difference quotients accept h and reject incorrect h dependence (82.286417ms)
+✔ all reachable review selectors retain authored task instructions and identical mathematics (15168.550816ms)
+✔ reachable symbolic review qa8 stores the square of the exponential denominator (120.575389ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15619.228803

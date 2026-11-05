@@ -82,12 +82,46 @@ Evidence: [legacy IM1](evidence/keypad-stability-legacy-im1.json),
 [focus suites](evidence/keypad-focus-regressions/pilots-summary.json).
 The full corrected matrix and broad 138-route sweep will be rerun at D.
 
-## Remaining checkpoints
+## Checkpoint C — review instructions
 
-1. Restore Mixed Derivatives' authored instructions; finish the generated-family
-   ledger, deterministic prompt/answer tests and browser transition checks.
-2. Run final Node, 138-route, focus, stability, instruction, video, static and
-   preservation checks; record exact results and deliver the full-site archive.
+[The instruction audit](COMPREHENSIVE-REVIEW-INSTRUCTIONS.md) accounts for
+99 engines/route contexts, 144,100 actual generated questions and 5,352
+family/selector/contract records. Its machine ledger includes each sampled
+family, selector, original/intended task, before/after instruction, answer
+contract and no-change decision. Reviews in AP Units 1–5, IM1 Units 1–3 and
+all eleven Calculus Prep mixed engines are covered. Public selectors are
+enumerated; parameter sampling is finite and structural wrapper comparisons
+protect tasks beyond the sampled coefficients.
+
+Mixed Derivatives now retains its authored prompts: four difference-quotient
+simplification families, higher derivative orders, domain assumptions, implicit
+differentiation and complete polynomial simplification. Its 22 selectors yield
+610 family/instruction records; 93 selector-specific records (47 distinct
+family/instruction combinations) change wording. Some notation/inverse wording
+was equivalent already and is preserved by the same simple policy.
+No genuine derivative-by-limit family is reachable; this curriculum-coverage
+gap is documented without changing an existing quotient's answer or adding an
+unjustified new generator. Standalone topic instructions are unchanged.
+
+Validation passes three focused Node regressions and 416 real-browser checks
+with zero page errors. The tests compare all 26,400 paired generated IDs,
+answers, solutions and variables with the video checkpoint, accept correct
+answers, reject incorrect answers and preserve the original polynomial-form
+rejection. Every changed record is rendered/graded in MathLive and legacy,
+and all 44 actual editor/selector transitions pass. The permanent regression
+fails against the old prompt helper on a radical difference quotient;
+[before evidence](evidence/review-instructions-before.tap) and
+[after evidence](evidence/review-instructions-node.tap) are retained.
+Prep semantic QA separately passes 5,500 questions across eleven engines.
+Static QA reports zero errors, warnings or broken references; the strict
+content/source guard permits only the exact authored-prompt helper change.
+
+## Remaining checkpoint D
+
+Run final shared Node, 138-route/default/legacy/missing-runtime, focused browser,
+full stability, video, static and preservation checks on the completed B/C
+source. Record exact results, verify protected branches/Unit 6, push the tested
+final checkpoint and deliver the complete test archive.
 
 Unit 6 remains byte-identical to MathLive source
 `919ca1806f07e3cd2af552142926e7ca2b78e8d5`. No Claude branch is fetched or merged,

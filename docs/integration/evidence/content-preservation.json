@@ -371,5 +371,7 @@
     "assets/mathlive/native-fields.mjs",
     "assets/mathlive/pilot.css"
   ],
+  "approvedReviewInstructionChange": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+  "reviewGeneratorsAnswersAndGradersUnchanged": true,
   "unit6Tree": "f50ff9c7c56ca6b02c93d8f8bb88299b37ef2c11"
 }

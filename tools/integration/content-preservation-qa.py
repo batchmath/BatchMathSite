@@ -112,6 +112,12 @@ def verify():
     original = source(MATHLIVE, name)
     current = (ROOT / name).read_text().replace('\n      input.focus=()=>{if(!input.disabled)activateBinding(binding,true);};', '').replace('\n    input.focus=()=>{if(!input.disabled)editor.focus({preventScroll:true});};', '')
     assert current == original, 'Legacy keypad parsing/editing/serialization changed'
+    review_path = 'ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html'
+    before = source('9c395be1b765366b9459bd8db7af6d5d70468b9d', review_path)
+    start = before.index('  let neutralPrompt=')
+    end = before.index('  return {cat,id,q:', start)
+    expected = (before[:start] + '  const taskPrompt=String(prompt||"Find the derivative.");\n' + before[end:]).replace('${neutralPrompt}', '${taskPrompt}')
+    assert (ROOT / review_path).read_text() == expected, 'Review change extends beyond authored prompt handling'
     editor_changes = git('diff', '--name-only', MATHLIVE, '--', 'assets/mathlive').splitlines()
     assert set(editor_changes) <= {'assets/mathlive/keypad-bridge.mjs', 'assets/mathlive/pilot.css', 'assets/mathlive/answer-field.mjs', 'assets/mathlive/native-fields.mjs', 'assets/mathlive/dynamic-fields.mjs'}, editor_changes
     focus_routes = {
@@ -145,6 +151,8 @@ def verify():
               'im1PagesChecked': len(im1_pages), 'studentNotesLinks': 0,
               'pdfsUnchanged': True, 'unit6TreeUnchanged': True,
               'approvedEditorViewportChanges': editor_changes,
+              'approvedReviewInstructionChange': review_path,
+              'reviewGeneratorsAnswersAndGradersUnchanged': True,
               'unit6Tree': git('rev-parse', MATHLIVE + ':' + UNIT6.rstrip('/')).strip()}
     return report
 
