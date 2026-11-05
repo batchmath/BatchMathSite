@@ -95,7 +95,7 @@ for(let i=0;i<+count;i++){
    if(!hidden)out.failures.push(`${info.id} part ${k+1}: nothing reached the answer from ${latex}`);
   }
   else if(LEGACY&&part.control==='u6-integral'){out.integrals++;
-   const text=linearSetup(part.answer.rows);await p.locator(`${scope} .bm-calc-editor`).first().click();await p.keyboard.type(text);
+   const text=linearSetup(part.answer.rows);await p.locator(`${scope} .bm-calc-editor`).first().click();await typeStrokes(text,scope); // "^" and "/" open slots; the strokes leave them with →
    if(submit==='Enter')await p.keyboard.press('Enter');else await p.locator(`${scope} .staged-check`).click();row.push(`integral legacy/${submit}: ${text}`);}
   else if(part.control==='input'||part.control==='u6-expr'){
    const text=typedForm(part);await enter(p.locator(`${scope} .bm-calc-editor`).first(),text,scope,how);

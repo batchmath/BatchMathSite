@@ -113,7 +113,7 @@ def verify():
     ml_head = '<link rel="stylesheet" href="/assets/mathlive/pilot.css"><script type="module" src="/assets/mathlive/unit6.mjs"></script>'
     def unwired(t):
         t = t.replace(ml_head, '').replace('<script defer src="/assets/ap-topic-practice.js">', '<script src="/assets/ap-topic-practice.js">')
-        return re.sub(r'generatorVersion(":|:")"12\.9\.[A-Z]"', r'generatorVersion\1"V"', t)
+        return re.sub(r'generatorVersion("?:)"12\.9\.[A-Z]"', r'generatorVersion\1"V"', t)
     unit6_practice = set()
     for name in sorted(unit6_changed - unit6_video):
         final = (ROOT / name).read_text()

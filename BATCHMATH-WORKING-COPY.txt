@@ -1,7 +1,7 @@
 BatchMath cumulative working copy
-Current full release: 12.9.B (review build)
-Archive: batchmath-site-v12.9.B.zip
-Baseline: v12.9.A (review build, prerelease v12.9.A), on v12.8.Y (origin/main 26ec4f1, the deployed release).
-Changes: v12.9.B makes the Unit 6 teacher-testing corrections to v12.9.A: explanation formatting (no redundant parentheses or written coefficients of 1, signed-area arithmetic shown, rounding only at the end), compact area graphs; area setups in dx, in dy, in either variable or both, with graphs in explanations and a new Choosing dx or dy Practice Type; area in terms of y with mixed equation forms and no supplied bounds the curves already define; typed exact answers for piecewise integrals; cross sections with a Show Graph toggle and slice pictures; solids with graphs half the time, the axis always in the frame, radius and shell pictures, more calculator axes and a two-axis calculator problem; integral setups graded by their structure, not only their value; the review's multipart groups renamed Area & Volume — Multi-Part Practice and Graph Analysis & Accumulation — Multi-Part Practice. Everything else is as in v12.9.A.
+Current build: 12.9.C integration test (review build, not production)
+Archive: batchmath-site-v12.9.C-integration-test.zip
+Sources: the Unit 6 v12.9.B corrections (claude/v12.9b-unit6-teacher-corrections, bfabb6c) with the Unit 6 graph fix (claude/unit6-final-graph-corrections, e265804), merged with the approved MathLive, IM1 video and content work (integration/mathlive-im1-videos-content, 9c395be); main is v12.8.Y (26ec4f1).
+Changes beyond the sources: Unit 6 graphs keep every shaded region, intersection and extreme inside the frame; every Unit 6 integral setup is one blank MathLive field graded by the structural checker; every Unit 6 typed answer uses MathLive; Unit 6 topic pages use the approved video presentation.
 No deployment performed.
-Current update: see docs/v12.9.B-revisions.md (changes, QA, teacher checklist), docs/v12.9.B-progress.md (commits, checks) and docs/v12.9.B-unit6-mathlive-handoff.md (Unit 6 entry formats for the separate MathLive migration). Tests: npm run qa:unit6.
+Current update: see docs/v12.9.C-integration-test.md and docs/v12.9.C-integration-test-progress.md. Tests: npm run qa:unit6; MathLive Node suite (docs/integration/MATHLIVE-VIDEOS-CONTENT.md).
