@@ -13,6 +13,11 @@ body [data-bm-videos] .video-play::before{content:""}
 body [data-bm-videos] .video-play::after{content:"";position:absolute;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:17px solid #fff;margin-left:5px}
 body [data-bm-videos] .video-play:focus-visible{outline:3px solid #f5c400!important;outline-offset:-6px!important;border-radius:12px}
 body [data-bm-videos][data-video-layout="gallery"]{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px!important}
+body [data-bm-videos][data-video-layout="gallery"][data-video-count="1"]{grid-template-columns:minmax(0,1fr);max-width:280px!important}
+body [data-bm-videos][data-video-layout="gallery"][data-video-count="2"]{grid-template-columns:repeat(2,minmax(0,1fr));max-width:580px!important}
+body [data-bm-videos] .bm-video-kind{color:#f5c400;font-size:.78rem;font-weight:800;margin:0 0 6px}
+body [data-bm-videos] .proof-note{font-size:.8rem;line-height:1.45;color:#d6d6d6;margin:8px 0 0}
+body [data-bm-videos][data-video-role="supporting"] [data-video-kind="proof"]{border-color:#665500!important;background:#0d0b03!important}
 body [data-bm-videos][data-video-layout="gallery"] .video-item{padding:10px!important;border:1px solid #4d1719!important;border-radius:12px;background:#090909!important}
 body [data-bm-videos][data-video-layout="gallery"] .video-embed{order:-1;flex:none;margin:0 0 10px;border-radius:9px!important}
 body [data-bm-videos][data-video-layout="gallery"] .video-cover{border-radius:7px!important}
@@ -33,6 +38,7 @@ body [data-bm-videos][data-video-layout="gallery"] .video-play::after{border-top
 @media(max-width:760px){body [data-bm-videos][data-video-layout="pair"]{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:599px){
   body [data-bm-videos][data-video-layout="gallery"]{grid-template-columns:minmax(0,1fr);max-width:280px!important}
+  body [data-bm-videos][data-video-layout="gallery"][data-video-count="2"]{grid-template-columns:minmax(0,1fr);max-width:280px!important}
   .bm-video-player{padding:10px}
   .bm-video-player-header{gap:8px}
   .bm-video-player-header h2{font-size:.95rem}

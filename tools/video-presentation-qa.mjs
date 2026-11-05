@@ -51,7 +51,7 @@ const server = http.createServer((req, res) => {
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const base = `http://127.0.0.1:${server.address().port}`;
 const errors = [];
-const report = { htmlPagesAudited: inScopeHtml.length, deferredUnit6HtmlPages: html.length - inScopeHtml.length, deferredUnit6VideoPages: deferredPages, videoPages: pages.length, standardPages: standardPages.length, collections: {}, modalPages: [], pageLoads: 0, selections: 0, specializedChecks: 0 };
+const report = { htmlPagesAudited: inScopeHtml.length, deferredUnit6HtmlPages: html.length - inScopeHtml.length, deferredUnit6VideoPages: deferredPages, videoPages: pages.length, standardPages: standardPages.length, collections: {}, layoutCollections: {}, supportingCollections: 0, modalPages: [], pageLoads: 0, selections: 0, specializedChecks: 0, migratedProofChecks: 0 };
 let browser;
 try {
   browser = await chromium.launch({ headless: true, ...(process.env.BM_CHROMIUM_EXECUTABLE ? { executablePath: process.env.BM_CHROMIUM_EXECUTABLE } : {}) });
@@ -82,17 +82,20 @@ try {
       assert.equal(await page.locator('.bm-video-mode-switcher, .bm-video-inline').count(), 0);
       const grids = page.locator('[data-bm-videos]');
       if (!await grids.count()) { report.pageLoads++; continue; }
-      const hasGallery = await grids.evaluateAll(nodes => nodes.some(g => g.children.length >= 3));
+      const hasGallery = await grids.evaluateAll(nodes => nodes.some(g => g.dataset.videoRole === 'supporting' || g.children.length >= 3));
       assert.equal(await page.locator('dialog').count(), hasGallery ? 1 : 0, 'one shared modal per page');
       for (const grid of await grids.all()) {
         const cards = grid.locator(':scope > .video-item');
         const count = await cards.count();
-        const layout = count >= 3 ? 'gallery' : count === 2 ? 'pair' : 'large';
+        const supporting = await grid.getAttribute('data-video-role') === 'supporting';
+        const layout = supporting || count >= 3 ? 'gallery' : count === 2 ? 'pair' : 'large';
         assert.equal(await grid.getAttribute('data-video-layout'), layout);
         assert.equal(await grid.locator('iframe').count(), 0, 'no initial player or autoplay');
         if (width === 375) {
           report.collections[count] = (report.collections[count] || 0) + 1;
-          if (count >= 3 && !report.modalPages.includes(file)) report.modalPages.push(file);
+          report.layoutCollections[layout] = (report.layoutCollections[layout] || 0) + 1;
+          if (supporting) report.supportingCollections++;
+          if (layout === 'gallery' && !report.modalPages.includes(file)) report.modalPages.push(file);
         }
         const dimensions = await cards.evaluateAll(nodes => nodes.map(node => {
           const card = node.getBoundingClientRect();
@@ -102,7 +105,7 @@ try {
           return { x: card.x, y: card.y, w: card.width, tw: thumb.width, th: thumb.height, bw: button.width, bh: button.height, titleClipped: title.scrollHeight > title.clientHeight + 1 };
         }));
         const columns = dimensions.filter(d => Math.abs(d.y - dimensions[0].y) < 1).length;
-        assert.equal(columns, count >= 3 ? width >= 980 ? 3 : width >= 600 ? 2 : 1 : count === 2 && width > 760 ? 2 : 1, `${file}: columns for ${count} videos at ${width}`);
+        assert.equal(columns, layout === 'gallery' ? Math.min(count, width >= 980 ? 3 : width >= 600 ? 2 : 1) : count === 2 && width > 760 ? 2 : 1, `${file}: columns for ${count} videos at ${width}`);
         for (const d of dimensions) {
           assert.ok(Math.abs(d.tw / d.th - 16 / 9) < .04);
           assert.ok(d.bw >= 44 && d.bh >= 44);
@@ -110,7 +113,7 @@ try {
         }
         for (let index = 0; index < count; index++) {
           const card = cards.nth(index), box = card.locator('.video-embed'), button = card.getByRole('button');
-          if (index === 0 && count >= 3) { await button.focus(); await page.keyboard.press('Enter'); }
+          if (index === 0 && layout === 'gallery') { await button.focus(); await page.keyboard.press('Enter'); }
           else await button.click();
           if (layout === 'gallery') {
             const dialog = page.locator('dialog');
@@ -186,12 +189,23 @@ try {
   }
   for (const slug of ['derivatives-with-the-power-rule', 'the-chain-rule', 'the-product-rule', 'the-quotient-rule']) {
     await page.goto(base + '/ap-calculus/unit-2-derivatives/topics/' + slug + '/');
-    // Several separate lesson/example/proof videos must not become one collection.
-    assert.equal(await page.locator('dialog').count(), 0);
-    const proof = page.locator('.proof-card, .proof-section').first();
+    assert.equal(await page.locator('[data-video-role="lecture"][data-video-layout="large"]').count(), 1);
+    assert.equal(await page.locator('[data-video-role="supporting"][data-video-layout="gallery"]').count(), 1);
+    assert.equal(await page.locator('dialog').count(), 1);
+    const proof = page.locator('[data-video-kind="proof"]').first();
+    assert.equal(await proof.locator('.bm-video-kind').textContent(), 'Proof');
+    assert.ok((await proof.locator('.proof-note').textContent()).includes('Optional:'));
     await proof.locator('.video-play').click();
-    assert.ok((await proof.locator('iframe').getAttribute('src')).includes('autoplay=1')); report.specializedChecks++;
+    assert.ok((await page.locator('dialog iframe').getAttribute('src')).includes('autoplay=1'));
+    assert.equal(await proof.locator('iframe').count(), 0);
+    await page.getByRole('button', { name: 'Close video' }).click();
+    await page.waitForFunction(() => !document.querySelector('dialog').open && !document.querySelector('dialog iframe'));
+    assert.equal(await page.locator('dialog iframe').count(), 0); report.migratedProofChecks++;
   }
+  await page.goto(base + '/ap-calculus/unit-2-derivatives/topics/the-chain-rule/');
+  assert.deepEqual(await page.locator('[data-video-role="lecture"] [data-video-id]').evaluateAll(xs => xs.map(x => x.dataset.videoId)), ['73RKQ9ybsDc']);
+  assert.deepEqual(await page.locator('[data-video-role="supporting"] [data-video-id]').evaluateAll(xs => xs.map(x => x.dataset.videoId)), ['RhxU25eA1a8', 'uDWcP2R8UMo', 'JbPkKwquxm0']);
+  assert.equal(await page.locator('.hw-video-button').count(), 6);
   await page.goto(base + '/ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/');
   const review = page.locator('.review-video-button').first();
   await review.click(); assert.equal(await review.getAttribute('aria-expanded'), 'true');

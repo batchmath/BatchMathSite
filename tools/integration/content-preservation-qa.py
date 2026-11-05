@@ -3,6 +3,8 @@ import hashlib
 import json
 import re
 import subprocess
+import runpy
+import sys
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -57,6 +59,13 @@ def executable(text):
 
 
 def verify():
+    # Approved hierarchy edits may change instructional markup only. The video
+    # audit independently verifies every recording and the complete untouched
+    # remainder of each page against the tested integration checkpoint.
+    sys.path.insert(0, str(ROOT / 'tools'))
+    video_audit = runpy.run_path(str(ROOT / 'tools/video-hierarchy-audit.py'))
+    video_result = video_audit['audit']()
+    video_changes = {r['path'] for r in video_result['pages'] if r['changed']}
     ancestor = git('merge-base', MATHLIVE, CONTENT).strip()
     changed_math = set(git('diff', '--name-only', ancestor, MATHLIVE).splitlines())
     changed_content = set(git('diff', '--name-only', ancestor, CONTENT).splitlines())
@@ -74,11 +83,19 @@ def verify():
                         'inputContractsEqualMathLive': True, 'linksAndHeadingsEqualContent': True,
                         'sha256': hashlib.sha256(final.encode()).hexdigest()})
     exact_content = []
+    authorized_video = []
     for name in sorted(changed_content - set(overlaps)):
         if name.startswith(UNIT6) or not name.endswith('.html'):
             continue
-        assert (ROOT / name).read_bytes() == subprocess.check_output(['git', 'show', CONTENT + ':' + name], cwd=ROOT), name
-        exact_content.append(name)
+        final = (ROOT / name).read_text()
+        expected = source(CONTENT, name)
+        if name in video_changes:
+            outside = video_audit['outside_instructional_sections']
+            assert outside(final) == outside(expected), name + ': non-video content changed'
+            authorized_video.append(name)
+        else:
+            assert final == expected, name
+            exact_content.append(name)
     im1_pages = sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / 'im1').rglob('*.html'))
     for name in im1_pages:
         expected, final = Markup(source(CONTENT, name)), Markup((ROOT / name).read_text())
@@ -91,6 +108,8 @@ def verify():
     report = {'ok': True, 'mathliveSource': MATHLIVE, 'contentSource': CONTENT,
               'commonAncestor': ancestor, 'overlapsReconciled': len(overlaps),
               'overlaps': records, 'nonoverlapContentHtmlExact': exact_content,
+              'authorizedVideoLayoutHtml': authorized_video,
+              'approvedNonoverlapContentHtmlVerified': len(exact_content) + len(authorized_video),
               'im1PagesChecked': len(im1_pages), 'studentNotesLinks': 0,
               'pdfsUnchanged': True, 'unit6TreeUnchanged': True,
               'unit6Tree': git('rev-parse', MATHLIVE + ':' + UNIT6.rstrip('/')).strip()}
@@ -103,4 +122,5 @@ if __name__ == '__main__':
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(result, indent=2) + '\n')
     print(f"PASS: {result['overlapsReconciled']} reconciled overlaps, {result['im1PagesChecked']} IM1 pages, "
-          f"{len(result['nonoverlapContentHtmlExact'])} exact content HTML pages; PDFs, code assets and Unit 6 preserved.")
+          f"{len(result['nonoverlapContentHtmlExact'])} exact content HTML pages + "
+          f"{len(result['authorizedVideoLayoutHtml'])} metadata-preserved video layouts; PDFs, code assets and Unit 6 preserved.")

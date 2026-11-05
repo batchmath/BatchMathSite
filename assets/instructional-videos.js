@@ -16,9 +16,10 @@
     const frame = document.createElement('iframe');
     frame.src = url.href;
     frame.title = box.dataset.playerTitle || box.closest('.video-item').querySelector('.video-title').textContent;
-    frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    frame.allow = box.dataset.playerAllow || 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
     frame.allowFullscreen = true;
-    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.referrerPolicy = box.dataset.playerReferrerpolicy || 'strict-origin-when-cross-origin';
+    if (box.dataset.playerLoading) frame.loading = box.dataset.playerLoading;
     return frame;
   }
 
@@ -92,8 +93,11 @@
 
   document.querySelectorAll('[data-bm-videos]').forEach(grid => {
     const cards = [...grid.children].filter(child => child.classList.contains('video-item'));
-    const layout = cards.length >= 3 ? 'gallery' : cards.length === 2 ? 'pair' : 'large';
+    // A designated supporting collection always uses the modal, independently
+    // of its size. Unmarked collections and lecture groups retain the count rule.
+    const layout = grid.dataset.videoRole === 'supporting' || cards.length >= 3 ? 'gallery' : cards.length === 2 ? 'pair' : 'large';
     grid.dataset.videoLayout = layout;
+    grid.dataset.videoCount = String(cards.length);
     if (layout === 'gallery') {
       ensureModal();
       for (const button of grid.querySelectorAll('.video-play')) {

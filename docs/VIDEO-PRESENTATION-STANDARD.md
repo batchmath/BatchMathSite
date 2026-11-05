@@ -5,7 +5,33 @@ AP Calculus AB, Integrated Math 1, and Calculus Prep. Use a different presentati
 only when explicitly requested by the site owner, or when preserving one of the
 specialized workflows documented below.
 
-## Choose the layout per collection
+## Primary lectures and supporting recordings
+
+When a topic explicitly designates a primary lecture and separate examples or
+proofs, keep the lecture large and directly playable. Mark its collection with
+`data-video-role="lecture"`. Multiple designated lectures retain their sequence
+and the normal collection-count rule below; do not infer a primary merely from
+the first recording.
+
+Combine the supporting recordings into one compact collection marked
+`data-video-role="supporting"`. **Every supporting collection opens the shared
+large modal, including collections of one or two videos.** Keep titles visible,
+label proof cards as Proof and example cards as Additional Example, and retain
+optional proof explanations. Cards are independently selectable; no viewing
+order is enforced. Use up to three desktop columns, two on tablets, and one on
+mobile, limited to the number of cards. Single supporting cards stay compact.
+
+For example, Chain Rule has the large lecture `73RKQ9ybsDc` and one supporting
+gallery containing proof `RhxU25eA1a8` followed by examples `uDWcP2R8UMo` and
+`JbPkKwquxm0`. Its six assignment walkthrough buttons remain attached to their
+assignments. Never move homework walkthroughs into the supporting collection.
+
+Converted proof cards retain their title, accessible Play label, thumbnail,
+original embed URL/offsets, player accessibility/configuration and optional note.
+Their covers carry `data-bm-standard-cover`, so legacy listeners do not also
+activate them. No iframe exists in their initial HTML.
+
+## Collections without a designated primary
 
 | Videos in one instructional collection | Presentation |
 | --- | --- |
@@ -13,9 +39,11 @@ specialized workflows documented below.
 | 2 | Two medium, directly playable 16:9 players; stack on narrow screens |
 | 3 or more | Compact thumbnails opening one large modal player |
 
-Count the direct `.video-item` children of **each** `[data-bm-videos]` grid.
-Lecture videos and a separate Additional Examples collection on the same page
-have independent counts. Do not combine them with homework or proof videos.
+Count the direct `.video-item` children of each `[data-bm-videos]` grid. The table
+applies to unmarked collections and designated lecture groups. The explicit
+supporting role overrides the count rule and always selects the modal gallery.
+IM1's approved instructional collections have no designated primary and retain
+their established presentation, titles and ordering.
 
 The shared script computes `data-video-layout="large"`, `"pair"`, or `"gallery"`
 on every load. No query parameter or student-facing comparison switcher is used.
@@ -95,8 +123,10 @@ offsets, and their approved titles and order must remain unchanged.
 - All thumbnails and players use a 16:9 aspect ratio.
 - Single videos fill the comfortable instructional width, up to 760px.
 - Pairs use two equal columns above 760px and stack at 760px and below.
-- Galleries use three columns at 980px and above, two at 600–979px, and one below
-  600px. Narrow-screen cards are centered at a maximum width of 280px.
+- Galleries use up to three columns at 980px and above, up to two at 600–979px,
+  and one below 600px, never exceeding their card count. One-card galleries have
+  a maximum width of 280px; two-card galleries 580px. Narrow cards are centered
+  at a maximum width of 280px.
 - Titles wrap naturally without truncation. Play controls have at least a 44px
   touch target. Do not force extra columns at the expense of legibility.
 - Shared rules are scoped to the marked collection and its player. Do not change
@@ -129,11 +159,13 @@ These existing workflows remain outside `[data-bm-videos]` and retain their
 page-specific handlers and markup:
 
 - Homework Walkthrough Video buttons and `.hw-video-slot` sections.
-- Proof cards/sections, including Power, Product, Quotient, and Chain Rule proofs.
 - Unit 1 comprehensive-review `.review-video-button` / `.review-video-slot`
   collapsible videos.
 
-The exceptions preserve the context and controls of the original educational
+Power, Product, Quotient and Chain Rule proofs now use the supporting gallery,
+with their Proof labels and optional context retained. They are not exceptions.
+
+The remaining exceptions preserve the context and controls of the original educational
 workflow. Their hidden iframes and existing playback configuration are not
 rewritten by the standard module. Do not put them into a new grid just to change
 their count. Adopt the shared presentation only after verifying that the specific
@@ -158,7 +190,7 @@ Chromium, select it without modifying site code:
 BM_CHROMIUM_EXECUTABLE=/usr/bin/chromium node tools/video-presentation-qa.mjs
 ```
 
-The suite audits all course HTML and tests every existing video page at 375,
+The suite audits in-scope course HTML and tests every in-scope video page at 375,
 768, and 1280px, including each standard card, collection counts, title wrapping,
 16:9 frames, modal focus/close/stop behavior, approved IM1 mappings, intentional
 offset preservation, short viewports, orientation changes, and specialized controls.
@@ -180,9 +212,12 @@ review video page remain deferred; **none** is counted in this integrated rollou
 compatibility verification are deferred until the separate Claude work is ready.
 The browser suite reports those pages as deferred, rather than passing them.
 
-The integration has 66 in-scope video pages, 61 with standard collections:
-67 one-video, six two-video, and three gallery collections. The three galleries
-are Tangent/Normal Additional Examples, IM1 Key Features, and IM1 Equations.
+The integration has 66 in-scope video pages, 61 with standard collections.
+The lecture/supporting correction audits all 66 and changes 15 explicitly
+designated lecture-plus-supporting pages. There are 55 large, four pair, and
+17 gallery collections, including 15 supporting galleries. The IM1 Key Features
+and Equations galleries retain their existing collection behavior.
+See [the complete hierarchy inventory](audits/VIDEO-HIERARCHY.md).
 The original content-branch audit below is retained as historical source evidence;
 its Unit 6 coverage is not a claim about this integration.
 

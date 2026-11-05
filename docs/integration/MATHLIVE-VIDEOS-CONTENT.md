@@ -1,5 +1,10 @@
 # MathLive, videos, and content integration
 
+This records the integration audit through checkpoint
+`535527a172b4a2e4c26d9cf970a6d061e7802849`. The subsequently authorized video,
+keypad and instruction corrections are tracked in the
+[current correction audit](../audits/VIDEO-KEYPAD-REVIEW-CORRECTIONS.md).
+
 ## Source checkpoints and scope
 
 - Integration branch: `integration/mathlive-im1-videos-content`.
