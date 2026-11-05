@@ -1,0 +1,15 @@
+{
+  "result": {
+    "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+    "legacy": true,
+    "intervalModule": false,
+    "problem": {
+      "id": "u2-int-solve-distribution-4(2x + 3)-<--52",
+      "answer": "(-∞, -8)",
+      "seed": 10
+    },
+    "passed": false,
+    "failure": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'mount')\n    at render (http://127.0.0.1:8186/assets/im1-unit2-practice.js:13:16)\n    at Object.load (http://127.0.0.1:8186/assets/im1-unit2-practice.js:56:28)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:11)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /workspace/work/mathlive-sitewide/tools/mathlive-sitewide/im1-review-dependencies-browser.mjs:7:10"
+  },
+  "errors": []
+}
