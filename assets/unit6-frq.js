@@ -1,4 +1,4 @@
-/* BatchMath v12.9.A — Unit 6 free-response problems (used by the Unit 6 Comprehensive Review pages).
+/* BatchMath v12.9.B — Unit 6 free-response problems (used by the Unit 6 Comprehensive Review pages).
    Region free-response problems: one region, two to four parts, in the style of the first question of each test.
      frq_region     non-calculator: an algebraic region (sqrt(x) and x^2, x = y^2 and x = y + 2, caps, wedges, triangles...):
                     the area, then cross sections, washers and shells (written setups and exact volumes)
@@ -38,11 +38,17 @@ function solidOf(R,type,method){ // an axis of the given direction that gives an
  return null;
 }
 const rotWords=a=>V().axisWords(a);
+// v12.9.B: an unnamed volume setup accepts the other method when it applies to this region and axis, and says so
+// only then; otherwise the help names the method the region needs
+function methodChoice(R,method,axis,T,extra=''){
+ const other=method==='shell'?'washer':'shell',Talt=V().termsFor(R,other,axis),name=method==='shell'?'cylindrical shells':T[0].r?'washers':'disks';
+ return Talt?{alt:[Talt],help:`Washers or shells: either method is accepted.${extra}`}:{help:`Use ${name} (slices ${method==='shell'?'parallel':'perpendicular'} to the axis).${extra}`};
+}
 function setupPart(R,method,s,named){
  const T=s.T,v=V().methodVar(method,s.axis),name=method==='shell'?'cylindrical shells':T[0].r?'washers':'disks';
  const prompt=named?`Using ${method==='shell'?'cylindrical shells':'the washer method'}, write, but do not evaluate, an integral expression for the volume of the solid generated when \\(R\\) is rotated about ${rotWords(s.axis)}.`
   :`Write, but do not evaluate, an integral expression for the volume of the solid generated when \\(R\\) is rotated about ${rotWords(s.axis)}.`;
- return integralPart(prompt,T,V().workFor(R,method,s.axis,T),named?{variable:v,methodNote:`That integral has the right value, but with ${name} about this axis you integrate with respect to ${v}.`}:{help:'Any correct method is accepted.'});
+ return integralPart(prompt,T,V().workFor(R,method,s.axis,T),named?{variable:v,methodNote:`That integral has the right value, but with ${name} about this axis you integrate with respect to ${v}.`}:methodChoice(R,method,s.axis,T));
 }
 function famRegion(tier){
  for(let i=0;i<80;i++){
@@ -90,7 +96,7 @@ function famCapLine(tier){
  const parts=[exactPart('Find the area of \\(R\\).',ans(eA),areaW)];
  // a washer setup about a horizontal line above or below the region (not cutting it)
  const d=pick([pick([k,k+1,k+2]),pick([c-1,0,-1,-2].filter(t=>t<c))]),axis={type:'y',c:d},T=washerTerms(R,axis);
- parts.push(integralPart(`Write, but do not evaluate, an integral expression for the volume of the solid generated when \\(R\\) is rotated about ${d===0?'the x-axis':`the horizontal line \\(y=${d}\\)`}.`,T,W.washerWork(R,axis,T),{help:'Any correct method is accepted.'}));
+ parts.push(integralPart(`Write, but do not evaluate, an integral expression for the volume of the solid generated when \\(R\\) is rotated about ${d===0?'the x-axis':`the horizontal line \\(y=${d}\\)`}.`,T,W.washerWork(R,axis,T),methodChoice(R,'washer',axis,T)));
  // h(x) = vertical distance from (x, f(x)) to the line; h'(x0)
  const x0=pick(A==='1'?[-3,-2,2,3,Q(1,2),Q(-1,2)]:A==='sqrt3'?[-2,2,3,1,-1]:[-2,-1,1,2]),xq=typeof x0==='number'?Q(x0):x0,xv=qv(xq);
  const inside=Math.abs(xv)<a,den=qmul(qadd(Q(1),qmul(xq,xq)),qadd(Q(1),qmul(xq,xq))),fp0=U5.qdiv(qmul(Q(-2*k),xq),den),hp=inside?fp0:qmul(fp0,Q(-1));
@@ -118,7 +124,7 @@ function famCalc(tier){
   const v=R.ys&&pick([true,false])?'y':'x',shape=V().shapeOf(pick(V().SH)),TC=sectionTerms(R,v,shape);
   const csPart=()=>numPart(`The region is the base of a solid. Cross sections perpendicular to the ${v}-axis are ${shape.name}. Find the volume of the solid.`,numValue(TC),W.sectionWork(R,v,shape,TC)+W.calcWork(TC));
   const h=calcAxis(R,'y'),vt=calcAxis(R,'x');
-  const vol=(s,setup)=>{const words=rotWords(s.axis);if(setup)return[integralPart(`Write an integral expression for the volume of the solid generated when the region is revolved about ${words}. You may use decimal limits.`,s.T,V().workFor(R,s.method,s.axis,s.T),{help:'Any correct method is accepted. Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.'}),numPart('Find the volume of that solid.',numValue(s.T),W.calcWork(s.T))];
+  const vol=(s,setup)=>{const words=rotWords(s.axis);if(setup)return[integralPart(`Write an integral expression for the volume of the solid generated when the region is revolved about ${words}. You may use decimal limits.`,s.T,V().workFor(R,s.method,s.axis,s.T),methodChoice(R,s.method,s.axis,s.T,' Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.')),numPart('Find the volume of that solid.',numValue(s.T),W.calcWork(s.T))];
    return[numPart(`Find the volume of the solid generated when the region is revolved about ${words}.`,numValue(s.T),V().workFor(R,s.method,s.axis,s.T)+W.calcWork(s.T))];};
   const opts=[];
   if(h)opts.push(()=>[csPart(),...vol(h,false)]);

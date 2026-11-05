@@ -1,8 +1,9 @@
-/* BatchMath v12.9.A — Unit 6 answer controls for the staged (multi-part) problems drawn by unit5-ui.js.
+/* BatchMath v12.9.B — Unit 6 answer controls for the staged (multi-part) problems drawn by unit5-ui.js.
    unit5-ui.js renders every part and asks window.BatchMathUnit5SlopeUI.controls for any control it does not draw
    itself; Unit 6 pages do not load the slope-field engine, so Unit 6 registers its two controls there:
    - 'u6-integral': an integral setup typed as one to three integrals, each [number] ∫ from [a] to [b] of [integrand]
-     d(x or y). It is graded by its value (unit6-core checkIntegral), so any correct setup is accepted;
+     d(x or y). unit6-core checkIntegral grades the setup itself, not only its value: it must match the problem's
+     setup or a listed alternative (another method or variable where the problem allows it);
    - 'u6-expr': one expression in x or y, such as a radius or a cross-sectional area A(y).
    Both use the shared math keypad (one keypad for all fields of a part), Enter to check, and the same feedback
    flow as every other part. */

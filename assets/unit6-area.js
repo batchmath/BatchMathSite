@@ -315,9 +315,11 @@ function famExpLogBetween(tier){
   const [p,q]=pick([[1,2],[1,3],[1,4],[2,3]]),k=p*q,c=p+q,f=recipFn(k);
   const lineF=fnc({tex:v=>`${c}-${v}`,key:v=>`${c}-${v}`,f:t=>c-t}),e=eadd(ex(Q(c*(q-p)*2-(q*q-p*p),2)),lnE(-k,q,p));
   const T=[C.term(C.F1,bq(p),bq(q),'x',fnc({tex:v=>`${c}-${v}-\\frac{${k}}{${v}}`,key:()=>'',f:t=>c-t-k/t}))];
+  // in y the region is the same shape (x = k/y and x = c - y, y from p to q): the dy setup is accepted too
+  const Ty=[C.term(C.F1,bq(p),bq(q),'y',fnc({tex:v=>`${c}-${v}-\\frac{${k}}{${v}}`,key:()=>'',f:t=>c-t-k/t}))];
   const cross=step('Find where the curves meet.',`\\(\\frac{${k}}{x}=${c}-x\\) gives \\(x^{2}-${c}x+${k}=(x-${p})(x-${q})=0\\), so \\(x=${p}\\) and \\(x=${q}\\). Between them the line is above the curve (at \\(x=${(p+q)/2}\\): \\(${c-(p+q)/2}\\gt ${U5.qtex(Q(2*k,p+q))}\\)).`);
   const work=step('Integrate.',`An antiderivative of \\(${c}-x-\\frac{${k}}{x}\\) is \\(${c}x-\\frac{x^{2}}{2}-${k===1?'':k}\\ln x\\).`,`A=\\int_{${p}}^{${q}}\\left(${c}-x-\\frac{${k}}{x}\\right)dx=\\left[${c}x-\\frac{x^{2}}{2}-${k===1?'':k}\\ln x\\right]_{${p}}^{${q}}=${etexN(e)}`);
-  const parts=tier==='challenging'?[integralPart('Write an integral expression for the area of the region enclosed by the curves.',T,cross+step('Set up.','Top minus bottom: the line minus the curve.',`A=\\int_{${p}}^{${q}}\\left(${c}-x-\\frac{${k}}{x}\\right)dx`),{help:'Any correct setup is accepted.'}),exactPart('Find the area.',ans(e),work)]
+  const parts=tier==='challenging'?[integralPart('Write an integral expression for the area of the region enclosed by the curves.',T,cross+step('Set up.','Top minus bottom: the line minus the curve.',`A=\\int_{${p}}^{${q}}\\left(${c}-x-\\frac{${k}}{x}\\right)dx`),{alt:[Ty],help:'Integrate with respect to x or y: both are accepted.'}),exactPart('Find the area.',ans(e),work)]
    :tier==='intermediate'?[listPart('Find the x-coordinates of the points where the curves intersect.',[p,q],[String(p),String(q)],cross),exactPart('Find the area of the region enclosed by the curves.',ans(e),work)]
    :[exactPart('Find the area of the region enclosed by the curves.',ans(e),cross+work)];
   return one('Answer each part.',parts,{engine:'area',family:'exp_log_between',tier,id:`rl-${p}-${q}-${parts.length}`,context:'Find the area of the region enclosed by the curves.',formulas:[`y=${f.tex('x')}`,`y=${lineF.tex('x')}`],data:{sub}});

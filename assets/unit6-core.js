@@ -1,4 +1,4 @@
-/* BatchMath v12.9.A — Unit 6 (Applications of Integration) core.
+/* BatchMath v12.9.B — Unit 6 (Applications of Integration) core.
    Builds on the Unit 5 core (rationals, exact constants, engines, page registration, worked-step HTML) without
    changing it. Adds:
    - P: polynomials with rational exponents in one variable (x or y), so areas and volumes of algebraic regions are
@@ -7,8 +7,11 @@
    - regions described both by vertical slices (dx: top/bottom) and horizontal slices (dy: right/left);
    - setups for area, cross sections, washers/disks and shells as lists of integral terms, each with an exact value
      when possible and always a numeric value;
-   - checking a typed integral setup by its value (any correct setup is accepted, including another method or
-     correctly transformed bounds), plus expressions in x or y;
+   - checking a typed integral setup by its structure (v12.9.B): the typed integrals must describe the same signed
+     integrand in each variable as a model setup (sampled pointwise between the limits), so a different setup that
+     only happens to have the same value is refused. Models are the expected setup, any alternatives the problem
+     lists (the other method or variable where it applies) and halves of symmetric regions doubled; setups the
+     question excludes, and common mistakes, get their own notes. Expressions in x or y are checked by value;
    - SVG figures of regions (shaded, with the axis of rotation dashed). */
 (function(){
 'use strict';
