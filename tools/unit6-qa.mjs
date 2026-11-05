@@ -15,7 +15,7 @@ import fs from 'node:fs';import path from 'node:path';import vm from 'node:vm';i
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),A=f=>path.join(ROOT,'assets',f),read=f=>fs.readFileSync(path.join(ROOT,f),'utf8');
 function rng(seed){let s=seed>>>0;return()=>{s=(s+0x6D2B79F5)|0;let t=Math.imul(s^(s>>>15),1|s);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296;};}
 const ctx={window:{},console:{...console,warn(){}},document:{addEventListener(){}},Math};vm.createContext(ctx);ctx.window.BatchMathRNG={random:rng(1)};
-for(const f of ['derivative-expression-checker.js','unit4-exact-answers.js','ap-topic-generators.js','unit5-core.js','unit5-answers.js','unit6-core.js','unit6-regions.js','unit6-area.js','unit6-volume.js','unit6-frq.js','unit6-review.js'])vm.runInContext(fs.readFileSync(A(f),'utf8'),ctx,{filename:f});
+for(const f of ['derivative-expression-checker.js','unit4-exact-answers.js','ap-topic-generators.js','unit5-core.js','unit5-answers.js','unit6-core.js','unit6-regions.js','unit6-area.js','unit6-volume.js','unit6-frq.js','unit6-piecewise.js','unit6-review.js'])vm.runInContext(fs.readFileSync(A(f),'utf8'),ctx,{filename:f});
 const W=ctx.window,C=W.BatchMathUnit6Core,G=W.BatchMathAPTopicGenerators,RG=W.BatchMathUnit6Regions,FRQ=W.BatchMathUnit6FRQ,REV=W.BatchMathUnit6Review,A5=W.BatchMathUnit5Answers;
 const seed=s=>{W.BatchMathRNG={random:rng(s)};};
 const errors=[],stats={};const fail=m=>{if(errors.length<200)errors.push(m);};
@@ -25,7 +25,7 @@ const N=+(process.env.U6_N||40);
 // ---------- 1. pages and Practice Types ----------
 const PAGES=[
  ['area-below-and-between-curves','non-calculator',['mixed','under_curve','between','choose']],['area-below-and-between-curves','calculator',['mixed','under_curve','between']],
- ['finding-area-in-terms-of-y',null,['mixed']],
+ ['finding-area-in-terms-of-y',null,['mixed']],['integrals-on-piecewise-defined-functions',null,['mixed']],
  ['volume-by-cross-sections','non-calculator',['mixed','perp_x','perp_y']],['volume-by-cross-sections','calculator',['mixed','perp_x','perp_y']],
  ['solids-of-revolution','non-calculator',['mixed','disks_washers','shells']],['solids-of-revolution','calculator',['mixed','disks_washers','shells']],
  ['unit6-comprehensive-review','non-calculator',['mixed','frq_region','frq_graph','short']],['unit6-comprehensive-review','calculator',['mixed','frq_region','short']],
@@ -160,12 +160,13 @@ const BASE=['/assets/unit5-core.js','/assets/unit5-answers.js','/assets/unit5-ui
 const WIRED=[['area-below-and-between-curves/non-calculator-practice','area-below-and-between-curves','non-calculator',['unit6-area.js'],['mixed','under_curve','between','choose']],
  ['area-below-and-between-curves/calculator-practice','area-below-and-between-curves','calculator',['unit6-area.js'],['mixed','under_curve','between']],
  ['finding-area-in-terms-of-y/practice','finding-area-in-terms-of-y',null,['unit6-area.js'],null],
+ ['integrals-on-piecewise-defined-functions/practice','integrals-on-piecewise-defined-functions',null,['unit6-piecewise.js'],null],
  ['volume-by-cross-sections/non-calculator-practice','volume-by-cross-sections','non-calculator',['unit6-volume.js'],['mixed','perp_x','perp_y']],
  ['volume-by-cross-sections/calculator-practice','volume-by-cross-sections','calculator',['unit6-volume.js'],['mixed','perp_x','perp_y']],
  ['solids-of-revolution/non-calculator-practice','solids-of-revolution','non-calculator',['unit6-volume.js'],['mixed','disks_washers','shells']],
  ['solids-of-revolution/calculator-practice','solids-of-revolution','calculator',['unit6-volume.js'],['mixed','disks_washers','shells']],
- ['comprehensive-review/non-calculator-practice','unit6-comprehensive-review','non-calculator',['unit6-area.js','unit6-volume.js','unit6-frq.js','unit6-review.js'],['mixed','frq_region','frq_graph','short']],
- ['comprehensive-review/calculator-practice','unit6-comprehensive-review','calculator',['unit6-area.js','unit6-volume.js','unit6-frq.js','unit6-review.js'],['mixed','frq_region','short']]];
+ ['comprehensive-review/non-calculator-practice','unit6-comprehensive-review','non-calculator',['unit6-area.js','unit6-volume.js','unit6-frq.js','unit6-piecewise.js','unit6-review.js'],['mixed','frq_region','frq_graph','short']],
+ ['comprehensive-review/calculator-practice','unit6-comprehensive-review','calculator',['unit6-area.js','unit6-volume.js','unit6-frq.js','unit6-piecewise.js','unit6-review.js'],['mixed','frq_region','short']]];
 const sitemap=read('sitemap.xml');
 for(const [page,slug,calc,eng,modes] of WIRED){const f=`${U6}${page}/index.html`;if(!fs.existsSync(path.join(ROOT,f))){fail(`${f}: missing`);continue;}const h=read(f),s=scriptsOf(h);
  const want=[...BASE,...eng.map(e=>`/assets/${e}`),'/assets/ap-topic-practice.js'],at=s.indexOf(want[0]);

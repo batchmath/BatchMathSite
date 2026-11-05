@@ -5,7 +5,7 @@ Area Below and Between Curves, Volume by Cross Sections and Solids of Revolution
 Calculator Practice pages (created from the topic's practice/ page, which becomes a redirect to the topic page);
 the Comprehensive Review gets a Non-Calculator Review and a Calculator Review (from assignment-practice/, which
 becomes a redirect). Finding Area in Terms of y keeps its single practice/ page (non-calculator problems only).
-Integrals on Piecewise Defined Functions is unchanged. Each wired page loads the Unit 4 checker and keypad, the Unit 5
+Integrals on Piecewise Defined Functions keeps its single practice/ page (typed exact answers since v12.9.B). Each wired page loads the Unit 4 checker and keypad, the Unit 5
 core, answers and multi-part UI (as libraries), the Unit 6 core, controls and regions, and its engines.
 Run from the repository root: python3 tools/build-unit6-pages.py
 """
@@ -22,7 +22,8 @@ COMMON_BODY = ['/assets/unit5-core.js', '/assets/unit5-answers.js', '/assets/uni
 STYLES = ['/assets/calculus-keypad.css', '/assets/unit5.css', '/assets/unit6.css']
 AREA = ['/assets/unit6-area.js']
 VOLUME = ['/assets/unit6-volume.js']
-REVIEW = ['/assets/unit6-area.js', '/assets/unit6-volume.js', '/assets/unit6-frq.js', '/assets/unit6-review.js']
+PIECEWISE = ['/assets/unit6-piecewise.js']
+REVIEW = ['/assets/unit6-area.js', '/assets/unit6-volume.js', '/assets/unit6-frq.js', '/assets/unit6-piecewise.js', '/assets/unit6-review.js']
 
 AREA_MODES = [('mixed', 'All Problems'), ('under_curve', 'Area Under a Curve'), ('between', 'Area Between Curves')]
 # v12.9.B: Choosing dx or dy (typed single integrals in the better direction) on the non-calculator page
@@ -55,6 +56,10 @@ PAGES = [
     dict(topic='finding-area-in-terms-of-y', page='practice', slug='finding-area-in-terms-of-y', title='Finding Area in Terms of y', engine_id='ap_topic_finding_area_in_terms_of_y',
          scripts=AREA, modes=None,
          description='No calculator. Use horizontal slices: right minus left, with bounds in y. Rewrite curves as x in terms of y, split the region when the right or left boundary changes, and decide when integrating in y is the better choice.'),
+    # v12.9.B: typed exact answers (the six families of the former multiple-choice generator)
+    dict(topic='integrals-on-piecewise-defined-functions', page='practice', slug='integrals-on-piecewise-defined-functions', title='Integrals on Piecewise Defined Functions',
+         engine_id='ap_topic_integrals_on_piecewise_defined_functions', scripts=PIECEWISE, modes=None,
+         description='No calculator. Split the integral wherever the formula changes, integrate each branch only on its own interval, and add. Branches are linear, quadratic, constant, reciprocal and trigonometric; type the exact value with the math keypad.'),
     dict(topic='comprehensive-review', page='non-calculator-practice', source='assignment-practice', calc='non-calculator', slug='unit6-comprehensive-review',
          analytics_slug='unit6_assignment_review_noncalculator', title='Applications of Integration', label='Non-Calculator Review', engine_id='ap_unit6_assignment_review_noncalculator',
          scripts=REVIEW, modes=REVIEW_NONCALC,

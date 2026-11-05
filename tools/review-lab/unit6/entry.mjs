@@ -2,7 +2,7 @@
 // submitted, and the result must be correct. Typed parts alternate between the physical keyboard and the on-screen
 // keypad, and between Enter and Check. Integral setups fill every row of the integral control (number in front,
 // upper and lower limits, integrand), add rows with "+ Add another integral" and choose dx or dy. Choice parts click
-// the correct choice; the review's piecewise problems (multiple choice) click the correct button. Also records scroll
+// the correct choice; a multiple-choice problem (none in Unit 6 since v12.9.B) clicks the correct button. Also records scroll
 // boxes inside the practice card, page overflow, raw TeX, MathJax errors and console errors, and screenshots problem 1.
 // Usage: node tools/review-lab/unit6/entry.mjs <page-path> [count=8] [width=1366] [height=768] [mobile]
 //   BM_MODE=<practice type value> selects a Practice Type. BM_GRAPH_AFTER=1 checks that the graph appears only in Part A's
@@ -34,7 +34,7 @@ for(let i=0;i<+count;i++){
  // BM_GRAPH_AFTER=1 (v12.9.B, calculator cross sections): no graph and no graph button before Part A is graded
  if(process.env.BM_GRAPH_AFTER){const pre=await p.evaluate(()=>({svg:document.querySelectorAll('.practice-shell svg.u6-svg').length,btn:[...document.querySelectorAll('.practice-shell button')].filter(b=>/graph/i.test(b.textContent)).length}));
   if(pre.svg||pre.btn)out.failures.push(`${info.id}: before answering, ${pre.svg} graph(s) and ${pre.btn} graph button(s) shown`);}
- if(!info.staged){ // the old multiple-choice piecewise problems in the review
+ if(!info.staged){ // a multiple-choice problem (the review's piecewise problems before v12.9.B)
   await p.locator('#choices .choice').nth(info.correctIndex).click();await p.waitForTimeout(250);
   const fb=await p.$eval('#feedback',e=>e.innerText.trim()).catch(()=>'');out.parts++;
   if(!/correct/i.test(fb)||/incorrect|not correct/i.test(fb))out.failures.push(`${info.id}: multiple choice feedback "${fb.slice(0,60)}"`);

@@ -5,7 +5,7 @@
 .u6-figure{margin:10px auto 4px;width:100%;max-width:460px}
 .u6-graph-figure{max-width:520px}
 /* compact figures (Area Below and Between Curves): the width cap is set per figure so the height stays near 265px */
-.u6-figure-compact .u6-tick{font-size:var(--u6-tick,11px)}
+.u6-figure-compact .u6-tick{font-size:inherit} /* the compact svg sets the size that keeps ticks about 11.5px on screen */
 .u6-figure-compact .u6-curve,.u6-figure-compact .u6-axis,.u6-figure-compact .u6-grid,.u6-figure-compact .u6-rot{vector-effect:non-scaling-stroke}
 .u6-svg{display:block;width:100%;height:auto;background:#050505;border:1px solid #303030;border-radius:10px}
 .u6-grid{stroke:#1f1f1f;stroke-width:1}

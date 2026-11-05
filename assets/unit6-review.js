@@ -1,4 +1,4 @@
-/* BatchMath v12.9.A — Unit 6 Comprehensive Review (Calculator Review and Non-Calculator Review pages).
+/* BatchMath v12.9.B — Unit 6 Comprehensive Review (Calculator Review and Non-Calculator Review pages).
    Each problem comes from a topic's own engine with its usual answer entry, checking and explanations:
    Non-Calculator Review — Area Between Curves 14, Area in Terms of y 10, Volume by Cross Sections 12, Disks and
      Washers 12, Shells 9, Area and Volume Free Response 18, Graph Free Response 20, Piecewise Integrals 5;
@@ -7,29 +7,14 @@
    The topic is chosen first; the difficulty is chosen separately (foundational 40, intermediate 40, challenging 20,
    renormalized over the tiers the topic has: free-response problems are intermediate or challenging).
    Practice Types: all review problems, Area and Volume Free Response, Graph Free Response (non-calculator only) and
-   Shorter Problems (every topic except the free-response problems). */
+   Shorter Problems (every topic except the free-response problems).
+   v12.9.B: Piecewise Integrals come from the typed engine (unit6-piecewise.js) at every tier it offers. */
 (function(){
 'use strict';
 const U=window.BatchMathUnit5Core;
 if(!U)return;
-const A=()=>window.BatchMathUnit6Area,Vol=()=>window.BatchMathUnit6Volume,F=()=>window.BatchMathUnit6FRQ;
+const A=()=>window.BatchMathUnit6Area,Vol=()=>window.BatchMathUnit6Volume,F=()=>window.BatchMathUnit6FRQ,Pw=()=>window.BatchMathUnit6Piecewise;
 const ALL=['foundational','intermediate','challenging'];
-// the old Integrals on Piecewise Defined Functions generator (multiple choice); a problem with two choices of equal
-// value is skipped (its trig variant can repeat the correct value as "(c - 1) + 1")
-function texValue(t){
- let s=String(t).replace(/\\left|\\right/g,'').replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g,'(($1)/($2))').replace(/\\pi/g,'pi').replace(/\\ln\s*/g,'ln').replace(/\\sqrt\{([^{}]*)\}/g,'sqrt($1)').replace(/[{}]/g,'').replace(/\\cdot/g,'*').replace(/\s+/g,'');
- s=s.replace(/ln(\d+)/g,'ln($1)').replace(/(\d)(pi|ln|sqrt|\()/g,'$1*$2').replace(/\)(\(|pi|ln|\d)/g,')*$1');
- try{const I=window.BatchMathUnit4Integrals,v=I.evaluate(I.parseInput(s,null),{});return Number.isFinite(v)?v:null;}catch(_){return null;}
-}
-function piecewise(){
- const gen=window.BatchMathAPTopicGenerators.get('integrals-on-piecewise-defined-functions');
- for(let i=0;i<30;i++){
-  const p=gen(),vals=(p.choices||[]).map(texValue);
-  if(vals.some((v,j)=>v!==null&&vals.some((w,k)=>k!==j&&w!==null&&Math.abs(v-w)<1e-9)))continue;
-  return p;
- }
- throw Error('unit6-review: no piecewise problem with distinct choices');
-}
 // src: the engine's families and, for a Practice Type of that engine, the families it uses
 const TOPICS=[
  {key:'area',label:'Area Between Curves',w:{noncalculator:14,calculator:20},group:'short',src:()=>[A().FAMILIES],make:(tier,calc)=>A().make({tier,calc})},
@@ -40,7 +25,7 @@ const TOPICS=[
  {key:'solids',label:'Solids of Revolution',w:{calculator:27},group:'short',src:()=>[Vol().FAMILIES_SOLID],make:(tier,calc)=>Vol().makeSolid({tier,calc})},
  {key:'frq_region',label:'Area and Volume Free Response',w:{noncalculator:18,calculator:35},group:'frq_region',src:()=>[F().FAMILIES,F().MODES.region.families],make:(tier,calc)=>F().make({tier,calc,mode:'region'})},
  {key:'frq_graph',label:'Graph Free Response',w:{noncalculator:20},group:'frq_graph',src:()=>[F().FAMILIES,F().MODES.graph.families],make:(tier,calc)=>F().make({tier,calc,mode:'graph'})},
- {key:'piecewise',label:'Integrals on Piecewise Defined Functions',w:{noncalculator:5},group:'short',tiers:()=>['foundational'],make:()=>piecewise()},
+ {key:'piecewise',label:'Integrals on Piecewise Defined Functions',w:{noncalculator:5},group:'short',src:()=>[Pw().FAMILIES],make:(tier,calc)=>Pw().make({tier,calc})},
 ];
 const kindTiers=f=>f.calc||(f.calculator?{calculator:f.tiers,noncalculator:[]}:{calculator:[],noncalculator:f.tiers});
 // the tiers a topic offers on a calculator or non-calculator review
@@ -69,7 +54,7 @@ function make(opts={}){
  const tiers=tiersOf(topic,kind),tier=opts.tier&&tiers.includes(opts.tier)?opts.tier:U.weighted(Object.fromEntries(tiers.map(t=>[t,TIER_WEIGHTS[t]])));
  const p=topic.make(tier,calc);
  if(p.answerType==='unit5-staged'&&p.calculatorActive!==(calc==='calculator'))throw Error(`unit6-review: ${topic.label} gave the wrong calculator kind`);
- const tag=`<div class="u5-review-tag">${topic.label}${topic.key==='piecewise'?'':` · ${TIER_LABEL[tier]}`}</div>`,html=p.questionHtml;
+ const tag=`<div class="u5-review-tag">${topic.label} · ${TIER_LABEL[tier]}</div>`,html=p.questionHtml;
  p.questionHtml=html.replace(/^<div class="[^"]*\bu5-question\b[^"]*">/,open=>open+tag);
  if(p.questionHtml===html)p.questionHtml=tag+html;
  p.variant=`${topic.key}/${p.variant}`;
@@ -77,6 +62,6 @@ function make(opts={}){
  if(p.unit5Meta)p.unit5Meta=meta;p.unit6Review=meta;
  return p;
 }
-window.BatchMathUnit6Review=Object.freeze({make,TOPICS,TIER_WEIGHTS,topicsFor,tiersOf,texValue});
+window.BatchMathUnit6Review=Object.freeze({make,TOPICS,TIER_WEIGHTS,topicsFor,tiersOf});
 U.register('unit6-comprehensive-review',o=>make(o||{}));
 })();

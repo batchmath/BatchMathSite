@@ -9,9 +9,9 @@ import fs from 'node:fs';import vm from 'node:vm';import path from 'node:path';
 import {ROOT,rng} from './lib.mjs';
 const N=+(process.argv[2]||60),OTHER=process.argv[3];
 function engines(root){const ctx={window:{},console:{...console,warn(){}},document:{addEventListener(){}},Math};vm.createContext(ctx);ctx.window.BatchMathRNG={random:rng(1)};
- for(const f of ['derivative-expression-checker.js','unit4-exact-answers.js','ap-topic-generators.js','unit5-core.js','unit5-answers.js','unit6-core.js','unit6-regions.js','unit6-area.js','unit6-volume.js','unit6-frq.js','unit6-review.js'])vm.runInContext(fs.readFileSync(path.join(root,'assets',f),'utf8'),ctx,{filename:f});
+ for(const f of ['derivative-expression-checker.js','unit4-exact-answers.js','ap-topic-generators.js','unit5-core.js','unit5-answers.js','unit6-core.js','unit6-regions.js','unit6-area.js','unit6-volume.js','unit6-frq.js','unit6-piecewise.js','unit6-review.js'].filter(f=>fs.existsSync(path.join(root,'assets',f))))vm.runInContext(fs.readFileSync(path.join(root,'assets',f),'utf8'),ctx,{filename:f});
  return{G:ctx.window.BatchMathAPTopicGenerators,seed:s=>{ctx.window.BatchMathRNG={random:rng(s)};}};}
-const PAGES=[['area-below-and-between-curves','non-calculator',['mixed','under_curve','between']],['area-below-and-between-curves','calculator',['mixed','under_curve','between']],['finding-area-in-terms-of-y',null,['mixed']],
+const PAGES=[['area-below-and-between-curves','non-calculator',['mixed','under_curve','between','choose']],['area-below-and-between-curves','calculator',['mixed','under_curve','between']],['finding-area-in-terms-of-y',null,['mixed']],['integrals-on-piecewise-defined-functions',null,['mixed']],
  ['volume-by-cross-sections','non-calculator',['mixed','perp_x','perp_y']],['volume-by-cross-sections','calculator',['mixed','perp_x','perp_y']],['solids-of-revolution','non-calculator',['mixed','disks_washers','shells']],['solids-of-revolution','calculator',['mixed','disks_washers','shells']],
  ['unit6-comprehensive-review','non-calculator',['mixed','frq_region','frq_graph','short']],['unit6-comprehensive-review','calculator',['mixed','frq_region','short']]];
 const mathOf=t=>[...String(t||'').matchAll(/\\\(([\s\S]*?)\\\)|\\\[([\s\S]*?)\\\]/g)].map(m=>m[1]??m[2]);
