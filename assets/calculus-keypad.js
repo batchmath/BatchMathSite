@@ -1241,6 +1241,7 @@
       editor.addEventListener("cut",e=>{activateBinding(binding);copySelection(e,true);});
       editor.addEventListener("paste",e=>{activateBinding(binding);pasteSelection(e);});
       input.addEventListener("focus",()=>activateBinding(binding,true));
+      input.focus=()=>{if(!input.disabled)activateBinding(binding,true);};
       new MutationObserver(()=>{
         editor.classList.toggle("is-disabled",!!input.disabled);
         if(state.binding===binding)render();
@@ -1319,6 +1320,7 @@
         try{editor.focus({preventScroll:true});}catch(_){editor.focus();}
       }
     }));
+    input.focus=()=>{if(!input.disabled)editor.focus({preventScroll:true});};
 
     const row=input.closest(".answer-row");
     if(row)row.classList.add("bm-calc-answer-row");

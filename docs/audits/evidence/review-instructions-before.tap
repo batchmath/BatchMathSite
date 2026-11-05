@@ -1,0 +1,27 @@
+✖ all reachable review selectors retain authored task instructions and identical mathematics (15287.181209ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15378.482036
+
+✖ failing tests:
+
+test at tools/mathlive-sitewide/review-instructions.test.mjs:5:1
+✖ all reachable review selectors retain authored task instructions and identical mathematics (15287.181209ms)
+  AssertionError [ERR_ASSERTION]: dqmix-r-4: <div class="question-prompt">Find the derivative.</div><div>\(f(x)=\sqrt{x+4},\quad \frac{f(x+h)-f(x)}h\)</div>
+      at TestContext.<anonymous> (file:///workspace/BatchMathSite/tools/mathlive-sitewide/review-instructions.test.mjs:8:80)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,0 +1,1240 @@
+[
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 293,
+    "pairs": 1465,
+    "retainedChoices": 67,
+    "variants": [
+      "extrema_local_rational_location",
+      "extrema_local_quartic_location",
+      "extrema_absolute_radical_location",
+      "extrema_absolute_radical_value",
+      "extrema_local_rational_value",
+      "extrema_absolute_trig_location",
+      "extrema_absolute_trig_value",
+      "extrema_absolute_polynomial_locations",
+      "extrema_local_cubic_value",
+      "evt_exponential_denominator",
+      "evt_radical_domain_expanded",
+      "extrema_local_log_location",
+      "extrema_local_cubic_location",
+      "extrema_local_quartic_value",
+      "extrema_absolute_polynomial_value",
+      "extrema_local_log_value",
+      "evt_polynomial_closed_interval",
+      "evt_radical_denominator",
+      "extrema_absolute_radical_locations",
+      "extrema_local_quartic_locations",
+      "evt_logarithmic_domain_expanded",
+      "evt_expanded_rational_domain",
+      "evt_logarithmic_denominator"
+    ],
+    "modes": {
+      "unit3-exact": {
+        "answerTypes": [
+          "exact-expression"
+        ],
+        "fields": [],
+        "functions": [
+          "sqrt",
+          "ln"
+        ],
+        "symbols": [
+          "pi"
+        ],
+        "operators": [
+          "/",
+          "*",
+          "-"
+        ],
+        "nthRoot": false,
+        "questionFunctions": [
+          "sin",
+          "ln"
+        ]
+      },
+      "unit3-list": {
+        "answerTypes": [
+          "value-list"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [],
+        "operators": [],
+        "nthRoot": false,
+        "questionFunctions": []
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "polynomial_cubic_normal",
+      "implicit_power_sum_normal",
+      "exponential_chain_normal",
+      "sine_chain_tangent",
+      "tangent_function_tangent",
+      "logarithmic_normal",
+      "cosine_special_angle_normal",
+      "expanded_quartic_normal",
+      "implicit_shifted_conic_tangent",
+      "implicit_exponential_product_normal",
+      "implicit_reciprocal_normal",
+      "implicit_exponential_normal",
+      "reciprocal_shift_normal",
+      "inverse_trigonometric_normal",
+      "rational_quotient_tangent",
+      "implicit_trigonometric_tangent",
+      "polynomial_quadratic_tangent",
+      "expanded_quartic_tangent",
+      "radical_chain_normal",
+      "product_trigonometric_normal",
+      "polynomial_quadratic_normal",
+      "implicit_trigonometric_product_normal",
+      "sine_chain_normal",
+      "implicit_cubic_square_linear_normal",
+      "logarithmic_tangent",
+      "cosine_special_angle_tangent",
+      "product_trigonometric_tangent",
+      "product_exponential_tangent",
+      "implicit_quartic_kampyle_tangent",
+      "implicit_power_sum_tangent",
+      "inverse_trigonometric_tangent",
+      "polynomial_cubic_tangent",
+      "radical_chain_tangent",
+      "fractional_power_normal",
+      "fractional_power_tangent",
+      "rational_quotient_normal",
+      "implicit_assignment_style_tangent",
+      "tangent_function_normal",
+      "implicit_mixed_quadratic_tangent",
+      "implicit_exponential_product_tangent",
+      "product_exponential_normal",
+      "exponential_chain_tangent",
+      "implicit_cubic_square_linear_tangent",
+      "reciprocal_shift_tangent",
+      "implicit_product_cubic_tangent",
+      "implicit_quartic_kampyle_normal",
+      "implicit_sine_sum_normal",
+      "implicit_product_cubic_normal",
+      "implicit_higher_product_tangent",
+      "implicit_trigonometric_normal",
+      "implicit_higher_product_normal",
+      "implicit_trigonometric_product_tangent",
+      "implicit_radical_tangent",
+      "implicit_sine_sum_tangent",
+      "implicit_shifted_conic_normal",
+      "implicit_mixed_quadratic_normal",
+      "implicit_reciprocal_tangent",
+      "implicit_assignment_style_normal",
+      "implicit_logarithmic_normal"
+    ],
+    "modes": {
+      "unit3-equation": {
+        "answerTypes": [
+          "line-equation"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [
+          "x",
+          "pi"
+        ],
+        "operators": [
+          "+",
+          "*",
+          "/",
+          "-"
+        ],
+        "nthRoot": false,
+        "questionFunctions": [
+          "sin",
+          "tan",
+          "ln",
+          "cos"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "horizontal_tangent_combination",
+      "horizontal_logarithmic",
+      "vertical_inverse_trigonometric",
+      "vertical_square_root_endpoint",
+      "horizontal_exponential_product",
+      "vertical_two_thirds",
+      "horizontal_polynomial_factoring_by_grouping",
+      "horizontal_polynomial_variable_substitution",
+      "horizontal_polynomial_quadratic_derivative",
+      "horizontal_rational",
+      "horizontal_sine",
+      "horizontal_cubic_positive_critical",
+      "horizontal_radical",
+      "vertical_four_fifths",
+      "horizontal_cosine",
+      "vertical_cube_root_plus_linear",
+      "vertical_cube_root"
+    ],
+    "modes": {
+      "unit3-equation": {
+        "answerTypes": [
+          "line-equation"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [
+          "e"
+        ],
+        "operators": [
+          "/"
+        ],
+        "nthRoot": false,
+        "questionFunctions": [
+          "tan",
+          "ln",
+          "cos",
+          "sin"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/calculator-practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "calculator_trigonometric_horizontal",
+      "calculator_polynomial_product_horizontal",
+      "calculator_log_product_vertical",
+      "calculator_polynomial_multiple_horizontal",
+      "calculator_weighted_log_horizontal",
+      "calculator_polynomial_multiple_vertical",
+      "calculator_log_square_vertical",
+      "calculator_weighted_log_vertical",
+      "calculator_exponential_vertical",
+      "calculator_trigonometric_vertical",
+      "calculator_exponential_horizontal"
+    ],
+    "modes": {
+      "unit3-rounded-line": {
+        "answerTypes": [
+          "rounded-line-fields"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [],
+        "operators": [],
+        "nthRoot": false,
+        "questionFunctions": [
+          "sin",
+          "ln"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "implicit_higher_powers_vertical",
+      "implicit_mixed_quadratic_vertical",
+      "implicit_circle_vertical",
+      "implicit_all_horizontal_coordinates_substitution",
+      "implicit_cross_quadratic_horizontal",
+      "implicit_all_vertical_coordinates_substitution",
+      "implicit_mixed_quadratic_horizontal",
+      "implicit_circle_horizontal",
+      "implicit_cubic_sum_horizontal",
+      "implicit_cross_quadratic_vertical",
+      "implicit_all_horizontal_coordinates_grouping",
+      "implicit_all_vertical_coordinates_quadratic",
+      "implicit_all_horizontal_coordinates_quadratic",
+      "implicit_all_vertical_coordinates_grouping",
+      "implicit_ellipse_horizontal",
+      "implicit_product_cubic_horizontal",
+      "implicit_higher_powers_horizontal",
+      "implicit_cubic_sum_vertical",
+      "implicit_ellipse_vertical"
+    ],
+    "modes": {
+      "unit3-equation": {
+        "answerTypes": [
+          "line-equation"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [],
+        "operators": [],
+        "nthRoot": false,
+        "questionFunctions": []
+      },
+      "unit3-list": {
+        "answerTypes": [
+          "value-list"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [],
+        "operators": [],
+        "nthRoot": false,
+        "questionFunctions": []
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "analysis_calculator_validated_poi_logarithmic-linear-cosine",
+      "analysis_calculator_validated_poi_inverse-trig-cosine",
+      "analysis_calculator_validated_incdec_logarithmic-polynomial-mix",
+      "analysis_calculator_validated_incdec_polynomial-exponential-mix",
+      "analysis_calculator_validated_concavity_quartic-sine-mix",
+      "analysis_calculator_validated_incdec_logarithmic-cosine-mix",
+      "analysis_calculator_validated_concavity_logarithmic-linear-cosine",
+      "analysis_calculator_validated_concavity_logarithmic-polynomial-mix",
+      "analysis_calculator_validated_poi_cubic-sine",
+      "analysis_calculator_validated_extrema_polynomial-exponential_minimum",
+      "analysis_calculator_validated_concavity_quotient-cosine-mix",
+      "analysis_calculator_validated_poi_logarithmic-quadratic",
+      "analysis_calculator_validated_incdec_polynomial-exponential",
+      "analysis_calculator_validated_extrema_exponential-rational-linear_maximum",
+      "analysis_calculator_validated_incdec_rational-sine-mix",
+      "analysis_calculator_validated_extrema_inverse-trig-cosine_minimum",
+      "analysis_calculator_validated_concavity_quintic-cosine",
+      "analysis_calculator_validated_poi_exponential-rational-linear",
+      "analysis_calculator_validated_extrema_quintic-cosine_minimum",
+      "analysis_calculator_validated_poi_exponential-linear-sine",
+      "analysis_calculator_validated_poi_polynomial-exponential",
+      "analysis_calculator_validated_concavity_cubic-sine",
+      "analysis_calculator_validated_extrema_polynomial-exponential_maximum",
+      "analysis_calculator_validated_incdec_rational-linear-sine",
+      "analysis_calculator_validated_concavity_polynomial-exponential-mix",
+      "analysis_calculator_validated_incdec_cubic-sine",
+      "analysis_calculator_validated_extrema_rational-linear-sine_maximum",
+      "analysis_calculator_validated_extrema_inverse-trig-cosine_maximum",
+      "analysis_calculator_validated_extrema_composed-sine-linear_minimum",
+      "analysis_calculator_validated_incdec_logarithmic-quadratic",
+      "analysis_calculator_validated_extrema_rational-linear-sine_minimum",
+      "analysis_calculator_validated_incdec_exponential-rational-linear",
+      "analysis_calculator_validated_concavity_logarithmic-quadratic",
+      "analysis_calculator_validated_incdec_logarithmic-linear-cosine",
+      "analysis_calculator_validated_concavity_damped-exponential-sine",
+      "analysis_calculator_validated_extrema_logarithmic-linear-cosine_maximum",
+      "analysis_calculator_validated_concavity_rational-sine-mix",
+      "analysis_calculator_validated_extrema_logarithmic-quadratic_maximum",
+      "analysis_calculator_validated_extrema_exponential-linear-sine_minimum",
+      "analysis_calculator_validated_incdec_quartic-sine-mix",
+      "analysis_calculator_validated_concavity_rational-linear-sine",
+      "analysis_calculator_validated_incdec_inverse-trig-cosine",
+      "analysis_calculator_validated_extrema_logarithmic-linear-cosine_minimum",
+      "analysis_calculator_validated_poi_quintic-cosine",
+      "analysis_calculator_validated_concavity_exponential-rational-linear",
+      "analysis_calculator_validated_concavity_composed-sine-linear",
+      "analysis_calculator_validated_extrema_quintic-cosine_maximum",
+      "analysis_calculator_validated_extrema_logarithmic-quadratic_minimum",
+      "analysis_calculator_validated_incdec_damped-exponential-sine",
+      "analysis_calculator_validated_incdec_exponential-linear-sine",
+      "analysis_calculator_validated_extrema_cubic-sine_maximum",
+      "analysis_calculator_validated_incdec_quintic-cosine",
+      "analysis_calculator_validated_concavity_inverse-trig-cosine",
+      "analysis_calculator_validated_concavity_exponential-sine-polynomial",
+      "analysis_calculator_validated_incdec_cubic-cosine-mix",
+      "analysis_calculator_validated_concavity_logarithmic-cosine-mix",
+      "analysis_calculator_validated_incdec_quotient-cosine-mix",
+      "analysis_calculator_validated_concavity_exponential-linear-sine",
+      "analysis_calculator_validated_concavity_cubic-cosine-mix",
+      "analysis_calculator_validated_poi_composed-sine-linear",
+      "analysis_calculator_validated_incdec_exponential-sine-polynomial",
+      "analysis_calculator_validated_extrema_cubic-sine_minimum",
+      "analysis_calculator_validated_poi_rational-linear-sine",
+      "analysis_calculator_validated_extrema_exponential-linear-sine_maximum",
+      "analysis_calculator_validated_extrema_exponential-rational-linear_minimum",
+      "analysis_calculator_validated_concavity_polynomial-exponential",
+      "analysis_calculator_validated_incdec_composed-sine-linear",
+      "analysis_calculator_validated_extrema_composed-sine-linear_maximum"
+    ],
+    "modes": {
+      "unit3-rounded": {
+        "answerTypes": [
+          "numeric"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [],
+        "operators": [],
+        "nthRoot": false,
+        "questionFunctions": [
+          "cos",
+          "ln",
+          "tan",
+          "sin"
+        ]
+      },
+      "unit3-interval": {
+        "answerTypes": [
+          "interval-answer"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [],
+        "operators": [
+          "U"
+        ],
+        "nthRoot": false,
+        "questionFunctions": [
+          "ln",
+          "sin",
+          "cos",
+          "tan"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "analysis_inflection_point_coordinates_cubic",
+      "analysis_from_f_rational",
+      "analysis_from_f_radical_product",
+      "analysis_from_f_concavity_polynomial",
+      "analysis_from_f_cubic",
+      "analysis_inflection_point_coordinates_exponential",
+      "analysis_local_extremum_fields_exponential",
+      "analysis_inflection_point_coordinates_trigonometric",
+      "analysis_local_extremum_fields_trigonometric",
+      "analysis_from_f_logarithmic",
+      "analysis_inflection_point_coordinates_quartic",
+      "analysis_local_extremum_fields_cubic",
+      "analysis_from_f_exponential_product",
+      "analysis_from_first_derivative_quadratic",
+      "analysis_from_f_quadratic_formula",
+      "analysis_local_extremum_fields_rational",
+      "analysis_from_second_derivative_quadratic",
+      "analysis_from_f_quartic",
+      "analysis_from_second_derivative_cubic",
+      "analysis_local_extremum_fields_quartic",
+      "analysis_from_first_derivative_grouping",
+      "analysis_from_first_derivative_cubic",
+      "analysis_local_extremum_fields_radical",
+      "analysis_from_f_trigonometric",
+      "analysis_from_first_derivative_variable_substitution",
+      "analysis_local_extremum_fields_logarithmic"
+    ],
+    "modes": {
+      "unit3-pair": {
+        "answerTypes": [
+          "ordered-pair"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [
+          "e",
+          "pi"
+        ],
+        "operators": [
+          "/",
+          "^"
+        ],
+        "nthRoot": false,
+        "questionFunctions": [
+          "sin"
+        ]
+      },
+      "unit3-interval": {
+        "answerTypes": [
+          "interval-answer"
+        ],
+        "fields": [],
+        "functions": [
+          "sqrt"
+        ],
+        "symbols": [
+          "infinity",
+          "pi"
+        ],
+        "operators": [
+          "U",
+          "-",
+          "+",
+          "/",
+          "*"
+        ],
+        "nthRoot": false,
+        "questionFunctions": [
+          "ln",
+          "sin"
+        ]
+      },
+      "unit3-coordinate": {
+        "answerTypes": [
+          "extremum-fields"
+        ],
+        "fields": [],
+        "functions": [
+          "sqrt",
+          "ln"
+        ],
+        "symbols": [
+          "e",
+          "pi"
+        ],
+        "operators": [
+          "/",
+          "*",
+          "-"
+        ],
+        "nthRoot": false,
+        "questionFunctions": [
+          "sin",
+          "ln"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 293,
+    "pairs": 1465,
+    "retainedChoices": 67,
+    "variants": [
+      "lhopital_zero_radical_composition",
+      "lhopital_zero_exponential",
+      "lhopital_zero_logarithm",
+      "lhopital_zero_cosine",
+      "lhopital_zero_trig_remainder",
+      "lhopital_zero_shifted_logarithm",
+      "lhopital_zero_trig_difference",
+      "lhopital_infinity_radical_linear",
+      "lhopital_not_indeterminate_nonzero_over_zero",
+      "lhopital_not_indeterminate_trigonometric",
+      "lhopital_not_indeterminate_zero",
+      "lhopital_zero_trig_quotient",
+      "lhopital_product_radical_exponential",
+      "lhopital_product_logarithmic_trig",
+      "lhopital_zero_exponential_trig_composition",
+      "lhopital_zero_logarithmic_trig_difference",
+      "lhopital_zero_polynomial",
+      "lhopital_zero_inverse_tangent",
+      "lhopital_product_trigonometric",
+      "lhopital_product_exponential_decay",
+      "lhopital_zero_repeated_exponential",
+      "lhopital_zero_radical",
+      "lhopital_infinity_linear_logarithmic_mix",
+      "lhopital_not_indeterminate_finite",
+      "lhopital_zero_log_trig_composition",
+      "lhopital_not_indeterminate_reciprocal",
+      "lhopital_zero_sine",
+      "lhopital_infinity_linear_trigonometric_mix",
+      "lhopital_infinity_polynomial_exponential",
+      "lhopital_product_shifted_log",
+      "lhopital_infinity_exponential_composition",
+      "lhopital_infinity_exponential_polynomial_mix",
+      "lhopital_infinity_logarithmic_radical_composition",
+      "lhopital_infinity_radical_ratio",
+      "lhopital_infinity_log_power",
+      "lhopital_infinity_exponential_ratio",
+      "lhopital_product_endpoint_logarithm",
+      "lhopital_product_power_log",
+      "lhopital_infinity_log_ratio",
+      "lhopital_infinity_logarithmic_polynomial"
+    ],
+    "modes": {
+      "unit3-limit": {
+        "answerTypes": [
+          "staged-calculus"
+        ],
+        "fields": [],
+        "functions": [
+          "sqrt"
+        ],
+        "symbols": [],
+        "operators": [
+          "/"
+        ],
+        "nthRoot": false,
+        "questionFunctions": [
+          "ln",
+          "cos",
+          "sin",
+          "tan",
+          "cot"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "differentials_rectangle_two_variables",
+      "differentials_reverse_circle_radius",
+      "differentials_cone_two_variables",
+      "differentials_rectangular_prism",
+      "differentials_sphere_surface_area",
+      "differentials_circle_circumference",
+      "differentials_triangle_two_variables",
+      "differentials_reverse_rectangle_length",
+      "linearization_cube_root",
+      "differentials_reverse_cylinder_height",
+      "linearization_square_root",
+      "differentials_cylinder_two_variables",
+      "differentials_right_triangle_hypotenuse",
+      "differentials_triangle_included_angle",
+      "differentials_reverse_sphere_radius",
+      "differentials_trapezoid_area",
+      "differentials_circle_area",
+      "differentials_equilateral_triangle",
+      "differentials_cylinder_surface_area",
+      "differentials_sphere_volume"
+    ],
+    "modes": {
+      "unit3-exact": {
+        "answerTypes": [
+          "exact-expression"
+        ],
+        "fields": [],
+        "functions": [
+          "sqrt"
+        ],
+        "symbols": [
+          "pi"
+        ],
+        "operators": [
+          "/",
+          "*"
+        ],
+        "nthRoot": false,
+        "questionFunctions": []
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/motion/calculator-practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "motion_calculator_direction_change_exponential",
+      "motion_calculator_position_acceleration_exponential",
+      "motion_calculator_velocity_when_position_known",
+      "motion_calculator_acceleration_when_velocity_known",
+      "motion_calculator_velocity_speed_rational",
+      "motion_calculator_acceleration_when_position_known",
+      "motion_calculator_acceleration_log_trig",
+      "motion_calculator_position_velocity_exponential",
+      "test_motion_speed_rational_exponential",
+      "motion_calculator_velocity_acceleration_rational",
+      "motion_calculator_speed_radical_trig",
+      "motion_calculator_acceleration_first_direction_change",
+      "motion_calculator_velocity_speed_log_trig",
+      "motion_calculator_direction_change_trigonometric",
+      "motion_calculator_velocity_acceleration_log_trig",
+      "motion_calculator_speed_composite"
+    ],
+    "modes": {
+      "unit3-rounded": {
+        "answerTypes": [
+          "numeric"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [],
+        "operators": [],
+        "nthRoot": false,
+        "questionFunctions": [
+          "sin",
+          "ln",
+          "cos"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/motion/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "motion_position_direction_change_exponential",
+      "motion_position_acceleration_logarithmic",
+      "motion_velocity_when_position_known",
+      "motion_acceleration_when_velocity_logarithmic",
+      "motion_velocity_speed_exponential",
+      "motion_acceleration_when_position_known",
+      "motion_acceleration_when_position_exponential",
+      "motion_acceleration_when_velocity_known",
+      "motion_position_velocity_exponential",
+      "motion_position_speed_polynomial",
+      "motion_position_velocity_logarithmic",
+      "motion_velocity_acceleration_trigonometric",
+      "motion_position_acceleration_radical",
+      "motion_acceleration_first_direction_change",
+      "motion_velocity_speed_trigonometric",
+      "motion_position_velocity_radical",
+      "motion_velocity_acceleration_exponential",
+      "motion_position_velocity_trigonometric",
+      "motion_position_acceleration_exponential",
+      "motion_position_direction_change_trigonometric",
+      "motion_position_direction_change_polynomial",
+      "motion_position_acceleration_trigonometric",
+      "motion_position_acceleration_polynomial"
+    ],
+    "modes": {
+      "unit3-exact": {
+        "answerTypes": [
+          "exact-expression"
+        ],
+        "fields": [],
+        "functions": [
+          "ln",
+          "sqrt"
+        ],
+        "symbols": [
+          "pi"
+        ],
+        "operators": [
+          "/",
+          "*",
+          "+",
+          "-"
+        ],
+        "nthRoot": false,
+        "questionFunctions": [
+          "ln",
+          "cos",
+          "sin"
+        ]
+      },
+      "unit3-list": {
+        "answerTypes": [
+          "value-list"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [],
+        "operators": [],
+        "nthRoot": false,
+        "questionFunctions": []
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "newton_function_trigonometric",
+      "newton_function_cubic",
+      "newton_function_exponential",
+      "newton_function_logarithmic",
+      "newton_nth_root"
+    ],
+    "modes": {
+      "unit3-rounded": {
+        "answerTypes": [
+          "numeric"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [],
+        "operators": [],
+        "nthRoot": false,
+        "questionFunctions": [
+          "cos",
+          "ln"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/optimization/calculator-practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "optimization_page_printed_area",
+      "optimization_capsule_unequal_material_costs",
+      "optimization_rigid_four_piece_barn_pen",
+      "optimization_shortest_ladder_over_fence",
+      "optimization_symmetric_rectangle_quartic_width",
+      "optimization_two_poles_minimum_cable",
+      "optimization_closest_point_parabola",
+      "optimization_open_top_rectangular_cardboard",
+      "optimization_cylinder_different_material_costs",
+      "optimization_symmetric_rectangle_semicircle_area",
+      "optimization_closest_point_power",
+      "optimization_closest_point_rational",
+      "optimization_symmetric_rectangle_mixed_dimensions",
+      "optimization_closest_point_cubic",
+      "optimization_symmetric_rectangle_trig_area",
+      "optimization_closest_point_radical",
+      "optimization_symmetric_rectangle_ellipse_area",
+      "optimization_symmetric_rectangle_quartic_area",
+      "optimization_symmetric_rectangle_semicircle_width",
+      "optimization_symmetric_rectangle_mixed_area",
+      "optimization_symmetric_rectangle_trig_width",
+      "optimization_symmetric_rectangle_ellipse_dimensions",
+      "optimization_symmetric_rectangle_semicircle_dimensions",
+      "optimization_symmetric_rectangle_trig_dimensions",
+      "optimization_symmetric_rectangle_quartic_dimensions",
+      "optimization_symmetric_rectangle_mixed_width"
+    ],
+    "modes": {
+      "unit3-rounded": {
+        "answerTypes": [
+          "numeric",
+          "calculus-fields"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [],
+        "operators": [],
+        "nthRoot": false,
+        "questionFunctions": [
+          "cos"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "optimization_hotel_revenue",
+      "optimization_open_cylinder_fixed_volume",
+      "optimization_barn_three_sides",
+      "optimization_cone_from_right_triangle",
+      "optimization_capsule_unequal_material_costs_dimensions",
+      "optimization_cylinder_different_material_costs",
+      "optimization_shortest_ladder_over_fence",
+      "optimization_two_poles_minimum_cable",
+      "optimization_square_base_open_box_fixed_material",
+      "optimization_two_positive_numbers",
+      "optimization_open_box_dimensions_and_maximum_volume",
+      "optimization_open_top_square_cardboard",
+      "optimization_rectangle_different_fence_costs",
+      "optimization_minimum_distance_moving_objects",
+      "optimization_wire_split_two_shapes",
+      "optimization_rectangle_fixed_fencing",
+      "optimization_page_printed_area",
+      "optimization_rectangle_equilateral_triangle_window",
+      "optimization_line_minimum_axis_triangle",
+      "optimization_wholesale_revenue",
+      "optimization_rectangle_inscribed_circle",
+      "optimization_closed_cylinder_fixed_volume",
+      "optimization_closest_point_square_root",
+      "optimization_discrete_orchard_yield",
+      "optimization_square_pyramid_fixed_volume_dimensions",
+      "optimization_symmetric_rectangle_mixed",
+      "optimization_closest_point_radical",
+      "optimization_rectangle_inscribed_semicircle",
+      "optimization_symmetric_rectangle_quadratic",
+      "optimization_open_top_rectangular_cardboard",
+      "optimization_closest_point_parabola",
+      "optimization_orchard_yield",
+      "optimization_closest_point_power",
+      "optimization_symmetric_rectangle_quartic",
+      "optimization_symmetric_rectangle_semicircle",
+      "optimization_discrete_hotel_revenue"
+    ],
+    "modes": {
+      "unit3-geometry-exact": {
+        "answerTypes": [
+          "exact-expression",
+          "calculus-fields"
+        ],
+        "fields": [],
+        "functions": [
+          "sqrt"
+        ],
+        "symbols": [
+          "pi"
+        ],
+        "operators": [
+          "*",
+          "/",
+          "+",
+          "-"
+        ],
+        "nthRoot": false,
+        "questionFunctions": []
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/related-rates/calculator-practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "related_rates_sphere_volume_to_radius",
+      "related_rates_sliding_ladder_wall_angle",
+      "related_rates_rotating_spotlight",
+      "related_rates_cylindrical_tank_gallons",
+      "related_rates_semicircle_moving_point_triangle_area",
+      "related_rates_conical_pile",
+      "related_rates_semicircle_area",
+      "related_rates_circular_spill_radius",
+      "related_rates_hemispherical_ice_layer",
+      "related_rates_multi_part_shadow",
+      "related_rates_multi_part_ladder",
+      "related_rates_multi_part_conical_tank",
+      "related_rates_sliding_ladder_area",
+      "related_rates_delayed_start_bicycles",
+      "related_rates_angle_of_elevation",
+      "related_rates_trapezoidal_trough",
+      "related_rates_right_triangle_area",
+      "related_rates_conical_tank_radius_from_volume",
+      "related_rates_sphere_surface_to_volume",
+      "related_rates_circular_wave_circumference",
+      "related_rates_lamppost_shadow_tip",
+      "related_rates_implicit_equation",
+      "related_rates_square_area",
+      "related_rates_cylindrical_tank",
+      "related_rates_triangular_trough",
+      "related_rates_isosceles_triangle_area",
+      "related_rates_conical_tank_height_from_volume",
+      "related_rates_circular_pool_area",
+      "related_rates_lamppost_shadow_length",
+      "related_rates_sliding_ladder_ground_angle",
+      "related_rates_rectangle_area",
+      "related_rates_rope_spool_balloon",
+      "related_rates_sliding_ladder_top",
+      "related_rates_softball_diamond",
+      "related_rates_circle_area",
+      "related_rates_conical_tank_volume_from_height",
+      "related_rates_equilateral_area",
+      "related_rates_balloon_bicycle_distance",
+      "related_rates_sphere_diameter_to_volume",
+      "related_rates_sliding_ladder_bottom",
+      "related_rates_inverted_conical_tank"
+    ],
+    "modes": {
+      "unit3-rounded": {
+        "answerTypes": [
+          "numeric",
+          "calculus-fields"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [],
+        "operators": [],
+        "nthRoot": false,
+        "questionFunctions": []
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/related-rates/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "related_rates_sphere_volume_to_radius",
+      "related_rates_sliding_ladder_wall_angle",
+      "related_rates_rotating_spotlight",
+      "related_rates_cylindrical_tank_gallons",
+      "related_rates_semicircle_moving_point_triangle_area",
+      "related_rates_conical_pile",
+      "related_rates_semicircle_area",
+      "related_rates_circular_spill_radius",
+      "related_rates_hemispherical_ice_layer",
+      "related_rates_multi_part_shadow",
+      "related_rates_multi_part_ladder",
+      "related_rates_multi_part_conical_tank",
+      "related_rates_sliding_ladder_area",
+      "related_rates_delayed_start_bicycles",
+      "related_rates_angle_of_elevation",
+      "related_rates_trapezoidal_trough",
+      "related_rates_right_triangle_area",
+      "related_rates_conical_tank_radius_from_volume",
+      "related_rates_sphere_surface_to_volume",
+      "related_rates_circular_wave_circumference",
+      "related_rates_lamppost_shadow_tip",
+      "related_rates_implicit_equation",
+      "related_rates_square_area",
+      "related_rates_cylindrical_tank",
+      "related_rates_triangular_trough",
+      "related_rates_isosceles_triangle_area",
+      "related_rates_conical_tank_height_from_volume",
+      "related_rates_circular_pool_area",
+      "related_rates_lamppost_shadow_length",
+      "related_rates_sliding_ladder_ground_angle",
+      "related_rates_rectangle_area",
+      "related_rates_rope_spool_balloon",
+      "related_rates_sliding_ladder_top",
+      "related_rates_softball_diamond",
+      "related_rates_circle_area",
+      "related_rates_conical_tank_volume_from_height",
+      "related_rates_equilateral_area",
+      "related_rates_balloon_bicycle_distance",
+      "related_rates_sphere_diameter_to_volume",
+      "related_rates_sliding_ladder_bottom",
+      "related_rates_inverted_conical_tank"
+    ],
+    "modes": {
+      "unit3-geometry-exact": {
+        "answerTypes": [
+          "exact-expression",
+          "calculus-fields"
+        ],
+        "fields": [],
+        "functions": [
+          "sqrt"
+        ],
+        "symbols": [
+          "pi"
+        ],
+        "operators": [
+          "/",
+          "*"
+        ],
+        "nthRoot": false,
+        "questionFunctions": []
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 263,
+    "pairs": 1315,
+    "retainedChoices": 97,
+    "variants": [
+      "rolle_trigonometric_composition_applies",
+      "rolle_exponential_combination_applies",
+      "mvt_cubic_plus_linear_applies",
+      "mvt_radical_quotient_pole_fails",
+      "mvt_product_logarithm_applies",
+      "mvt_absolute_value_fails",
+      "mvt_rational_fails",
+      "mvt_trigonometric_fails",
+      "rolle_quadratic_applies",
+      "rolle_radical_product_applies",
+      "mvt_exponential_composition_applies",
+      "rolle_logarithmic_applies",
+      "mvt_shifted_reciprocal_applies",
+      "rolle_trigonometric_fails_endpoints",
+      "rolle_cusp_fails_differentiability",
+      "mvt_radical_composition_applies",
+      "rolle_exponential_product_applies",
+      "mvt_inverse_trigonometric_applies",
+      "rolle_rational_applies",
+      "rolle_logarithmic_composition_applies",
+      "mvt_exponential_applies",
+      "rolle_cubic_applies",
+      "rolle_rational_fails",
+      "mvt_secant_pole_fails",
+      "rolle_logarithmic_product_applies",
+      "mvt_quadratic_applies",
+      "rolle_absolute_value_fails",
+      "rolle_rational_product_quotient_applies",
+      "mvt_logarithm_applies",
+      "mvt_trigonometric_composition_applies",
+      "mvt_radical_applies",
+      "mvt_exponential_combination_applies",
+      "mvt_rational_product_applies",
+      "rolle_radical_fails",
+      "mvt_cubic_applies",
+      "rolle_exponential_fails_endpoints",
+      "rolle_cosine_composition_applies",
+      "mvt_trigonometric_applies",
+      "rolle_inverse_trigonometric_applies",
+      "mvt_removable_rational_fails",
+      "mvt_logarithmic_composition_hole_fails",
+      "mvt_inverse_trigonometric_fails",
+      "mvt_exponential_rational_fails",
+      "rolle_logarithmic_fails",
+      "rolle_inverse_trigonometric_fails",
+      "mvt_logarithmic_composition_applies",
+      "rolle_secant_pole_fails",
+      "mvt_radical_fails",
+      "mvt_rational_applies",
+      "mvt_logarithmic_fails",
+      "rolle_radical_applies",
+      "rolle_polynomial_fails_endpoints",
+      "rolle_trigonometric_cosine_applies",
+      "rolle_removable_rational_fails",
+      "rolle_trigonometric_sine_applies",
+      "rolle_mixed_exponential_product_applies",
+      "rolle_quartic_applies",
+      "rolle_logarithmic_composition_endpoint_fails",
+      "mvt_radical_fails_differentiability"
+    ],
+    "modes": {
+      "unit3-theorem": {
+        "answerTypes": [
+          "staged-calculus"
+        ],
+        "fields": [],
+        "functions": [
+          "sqrt",
+          "ln"
+        ],
+        "symbols": [
+          "pi",
+          "e"
+        ],
+        "operators": [
+          "/",
+          "*",
+          "^",
+          "-",
+          "+"
+        ],
+        "nthRoot": false,
+        "questionFunctions": [
+          "sin",
+          "ln",
+          "tan",
+          "cos"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "secant_cubic",
+      "tangent_radical_composition",
+      "secant_rational_linear",
+      "secant_log_composition",
+      "tangent_reciprocal_power_2",
+      "secant_scaled_reciprocal_composition",
+      "secant_sine_composition",
+      "secant_square_root",
+      "tangent_quadratic",
+      "tangent_sine_composition",
+      "tangent_scaled_reciprocal_composition",
+      "secant_product_logarithm",
+      "secant_product_exponential",
+      "tangent_rational_linear",
+      "tangent_cubic",
+      "tangent_square_root",
+      "secant_inverse_tangent",
+      "tangent_inverse_tangent",
+      "tangent_inverse_sine_composition",
+      "secant_negative_square_root",
+      "secant_exponential_composition",
+      "tangent_cosine_composition",
+      "tangent_reciprocal_power_1",
+      "tangent_product_logarithm",
+      "tangent_logarithm",
+      "secant_inverse_sine",
+      "tangent_log_composition",
+      "secant_quadratic",
+      "tangent_product_exponential",
+      "tangent_exponential",
+      "secant_reciprocal",
+      "secant_shifted_radical",
+      "tangent_exponential_composition"
+    ],
+    "modes": {
+      "unit3-approximation": {
+        "answerTypes": [
+          "staged-calculus"
+        ],
+        "fields": [],
+        "functions": [
+          "ln",
+          "sqrt"
+        ],
+        "symbols": [
+          "pi",
+          "e"
+        ],
+        "operators": [
+          "/",
+          "+",
+          "*",
+          "-"
+        ],
+        "nthRoot": false,
+        "questionFunctions": [
+          "ln",
+          "sin",
+          "tan",
+          "cos"
+        ]
+      }
+    }
+  },
+  {
+    "route": "ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/practice/index.html",
+    "questions": 360,
+    "mathQuestions": 360,
+    "pairs": 1800,
+    "retainedChoices": 0,
+    "variants": [
+      "calculator_derivative_at_point",
+      "calculator_x_intercept_logarithmic",
+      "calculator_normal_slope",
+      "calculator_minimum_location",
+      "calculator_slope_at_x_intercept",
+      "calculator_x_intercept_trigonometric",
+      "calculator_x_intercept_polynomial",
+      "calculator_maximum_location",
+      "test_slope_at_x_intercept",
+      "calculator_tangent_slope"
+    ],
+    "modes": {
+      "unit3-rounded": {
+        "answerTypes": [
+          "numeric"
+        ],
+        "fields": [],
+        "functions": [],
+        "symbols": [],
+        "operators": [],
+        "nthRoot": false,
+        "questionFunctions": [
+          "sin",
+          "ln",
+          "cos"
+        ]
+      }
+    }
+  }
+]

@@ -121,21 +121,66 @@ def verify():
         assert ml_head in final and unwired(final) == unwired(source(UNIT6_APPROVED, name)), name + ': changed beyond the MathLive wiring'
         unit6_practice.add(name)
     assert git('diff', MATHLIVE, '--', '*.pdf') == '', 'Underlying PDFs changed'
-    # MathLive/IM1 code is as on the MathLive source, except the Unit 6 integration (v12.9.C): two new modules for the
-    # Unit 6 fields (unit6.mjs, integral-setup.mjs) and lines added, none removed or changed, in the keypad bridge
-    # (the integral, dx and dy keys)
-    assert git('diff', MATHLIVE, '--', 'assets/im1-*.js') == '', 'IM1 code assets changed'
-    ml = {line.split('\t')[2]: line.split('\t')[:2] for line in git('diff', '--numstat', MATHLIVE, '--', 'assets/mathlive').splitlines()}
-    assert set(ml) <= {'assets/mathlive/unit6.mjs', 'assets/mathlive/integral-setup.mjs', 'assets/mathlive/keypad-bridge.mjs'}, sorted(ml)
-    assert ml.get('assets/mathlive/keypad-bridge.mjs', ['0', '0'])[1] == '0', 'keypad bridge lines removed or changed'
-    assert git('ls-tree', MATHLIVE, '--', 'assets/mathlive/unit6.mjs', 'assets/mathlive/integral-setup.mjs') == '', 'Unit 6 modules not new'
+    assert git('diff', MATHLIVE, '--', 'assets/im1-*.js') == '', 'IM1 generator/checker assets changed'
+    name = 'assets/im1-keypad.css'
+    expected = source(MATHLIVE, name).replace('grid-auto-rows:32px;', 'grid-auto-rows:minmax(32px,auto);').replace('grid-auto-rows:48px;', 'grid-auto-rows:minmax(48px,auto);') + '\n/* Keep a legacy answer above positioned MathJax overflow from the question. */\ninput.bm-keypad-input{position:relative}\n/* Exercise panels are form containers, not navigation cards. Ancestor :active\n   otherwise scales the entire question/keypad while a descendant key is held. */\nsection.card:has(.bm-keypad-input):hover,\nsection.card:has(.bm-keypad-input):active{transform:none}\n'
+    assert (ROOT / name).read_text() == expected, 'Unapproved IM1 editor styling change'
+    name = 'assets/calculus-keypad.js'
+    original = source(MATHLIVE, name)
+    current = (ROOT / name).read_text().replace('\n      input.focus=()=>{if(!input.disabled)activateBinding(binding,true);};', '').replace('\n    input.focus=()=>{if(!input.disabled)editor.focus({preventScroll:true});};', '')
+    assert current == original, 'Legacy keypad parsing/editing/serialization changed'
+    review_path = 'ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html'
+    before = source('9c395be1b765366b9459bd8db7af6d5d70468b9d', review_path)
+    start = before.index('  let neutralPrompt=')
+    end = before.index('  return {cat,id,q:', start)
+    expected = (before[:start] + '  const taskPrompt=String(prompt||"Find the derivative.");\n' + before[end:]).replace('${neutralPrompt}', '${taskPrompt}')
+    assert (ROOT / review_path).read_text() == expected, 'Review change extends beyond authored prompt handling'
+    editor_changes = git('diff', '--name-only', MATHLIVE, '--', 'assets/mathlive').splitlines()
+    # v12.9.C Unit 6 integration: two new modules for the Unit 6 fields; they must not exist on the MathLive source
+    unit6_modules = {'assets/mathlive/unit6.mjs', 'assets/mathlive/integral-setup.mjs'}
+    assert git('ls-tree', MATHLIVE, '--', *sorted(unit6_modules)) == '', 'Unit 6 modules not new'
+    editor_changes = [n for n in editor_changes if n not in unit6_modules]
+    assert set(editor_changes) <= {'assets/mathlive/keypad-bridge.mjs', 'assets/mathlive/pilot.css', 'assets/mathlive/answer-field.mjs', 'assets/mathlive/native-fields.mjs', 'assets/mathlive/dynamic-fields.mjs'}, editor_changes
+    focus_routes = {
+        'assets/mathlive/answer-field.mjs': '  dispose.push(redirectInputFocus(source,()=>legacy.focus(),()=>active&&!source.disabled));\n',
+        'assets/mathlive/native-fields.mjs': '    removes.push(redirectInputFocus(r.input,guard(()=>{active=index;focus();}),()=>ready&&!disposed&&!r.input.disabled));\n',
+        'assets/mathlive/dynamic-fields.mjs': '        removers.push(redirectInputFocus(r.input,guard(()=>{active=index;selectPad();focus();}),()=>ready&&alive()&&!r.input.disabled));\n'
+    }
+    for name, added in focus_routes.items():
+        current = (ROOT / name).read_text().replace(',redirectInputFocus', '').replace(added, '')
+        assert current == source(MATHLIVE, name), name + ': non-focus contract changed'
+    if 'assets/mathlive/pilot.css' in editor_changes:
+        name = 'assets/mathlive/pilot.css'
+        expected = source(MATHLIVE, name).replace('min-height:56px;padding:8px', 'min-height:64px;padding:8px').replace('min-height:50px;padding:7px', 'min-height:56px;padding:7px')
+        assert (ROOT / name).read_text() == expected, 'Unapproved MathLive styling change'
+    if 'assets/mathlive/keypad-bridge.mjs' in editor_changes:
+        name = 'assets/mathlive/keypad-bridge.mjs'
+        before, final = source(MATHLIVE, name), (ROOT / name).read_text()
+        # Only focus/viewport policy is authorized here. Every command mapping,
+        # inserted token, change/check callback and error path stays exact.
+        marker = 'export function bridgeKeypad'
+        body = final[final.index(marker):]
+        body = body.replace('const mf=active();if(!mf)return;\n      stableKeypadAction(mf,()=>{\n      focusMathfield(mf);', 'const mf=active();if(!mf)return;focusMathfield(mf);')
+        body = body.replace('onChange();\n      });', 'onChange();')
+        # v12.9.C Unit 6: the integral, dx and dy keys, exactly these two added mappings
+        unit6_keys = ("      // Unit 6 integral setups (v12.9.C): an editable definite integral, and its differential\n"
+                      "      else if(aria==='Insert definite integral')mf.insert('\\\\int_{#?}^{#?}#?');\n"
+                      "      else if(button.dataset.u6Key==='dx'||button.dataset.u6Key==='dy')mf.insert('\\\\,'+button.dataset.u6Key);\n")
+        assert body.count(unit6_keys) == 1, 'Unit 6 keypad mappings missing or changed'
+        body = body.replace(unit6_keys, '')
+        assert body == before[before.index(marker):], 'Keypad dispatch or checker callbacks changed'
+        assert final.split('export function focusMathfield')[0] == before.split('export function focusMathfield')[0], 'Keypad token/command definitions changed'
     report = {'ok': True, 'mathliveSource': MATHLIVE, 'contentSource': CONTENT,
               'commonAncestor': ancestor, 'overlapsReconciled': len(overlaps),
               'overlaps': records, 'nonoverlapContentHtmlExact': exact_content,
               'authorizedVideoLayoutHtml': authorized_video,
               'approvedNonoverlapContentHtmlVerified': len(exact_content) + len(authorized_video),
               'im1PagesChecked': len(im1_pages), 'studentNotesLinks': 0,
-              'pdfsUnchanged': True, 'unit6Source': UNIT6_APPROVED, 'unit6VideoPagesAdopted': len(unit6_video), 'unit6PracticePagesWiredForMathLive': len(unit6_practice)}
+              'pdfsUnchanged': True, 'unit6Source': UNIT6_APPROVED, 'unit6VideoPagesAdopted': len(unit6_video),
+              'unit6PracticePagesWiredForMathLive': len(unit6_practice), 'unit6MathLiveModules': sorted(unit6_modules),
+              'approvedEditorViewportChanges': editor_changes,
+              'approvedReviewInstructionChange': review_path,
+              'reviewGeneratorsAnswersAndGradersUnchanged': True}
     return report
 
 
@@ -146,4 +191,4 @@ if __name__ == '__main__':
     target.write_text(json.dumps(result, indent=2) + '\n')
     print(f"PASS: {result['overlapsReconciled']} reconciled overlaps, {result['im1PagesChecked']} IM1 pages, "
           f"{len(result['nonoverlapContentHtmlExact'])} exact content HTML pages + "
-          f"{len(result['authorizedVideoLayoutHtml'])} metadata-preserved video layouts; PDFs, code assets and Unit 6 preserved.")
+          f"{len(result['authorizedVideoLayoutHtml'])} metadata-preserved video layouts; PDFs, mathematical contracts and Unit 6 preserved.")

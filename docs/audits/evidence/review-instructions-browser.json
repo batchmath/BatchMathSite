@@ -1,0 +1,2875 @@
+{
+  "results": [
+    {
+      "mode": "mathlive",
+      "key": "mixed|difference:dqmix-r|Simplify the difference quotient.",
+      "id": "dqmix-r-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|difference:dqmix-r|Simplify the difference quotient.",
+      "id": "dqmix-r-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-poly-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-poly-3-5,1-2,-2-9",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-poly-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-poly-3-5,1-2,-2-9",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-hard2|Find dy/dx.",
+      "id": "imp-hard2-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-hard2|Find dy/dx.",
+      "id": "imp-hard2-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|logdiff:ld-simple-xkx|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xkx-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|logdiff:ld-simple-xkx|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xkx-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-mixed|Find dy/dx by implicit differentiation.",
+      "id": "imp-mixed-3-3-9",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-mixed|Find dy/dx by implicit differentiation.",
+      "id": "imp-mixed-3-3-9",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-neg-1|Find \\(f'(x)\\).",
+      "id": "pr-neg-1--5_1_-4,-3_2_-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-neg-1|Find \\(f'(x)\\).",
+      "id": "pr-neg-1--5_1_-4,-3_2_-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|difference:dqmix-l|Simplify the difference quotient.",
+      "id": "dqmix-l--2-0",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|difference:dqmix-l|Simplify the difference quotient.",
+      "id": "dqmix-l--2-0",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|logdiff:ld-simple-xsine|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xsine-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|logdiff:ld-simple-xsine|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xsine-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-sin-sum|Find dy/dx.",
+      "id": "imp-sin-sum",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-sin-sum|Find dy/dx.",
+      "id": "imp-sin-sum",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|inverse:iv2|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv2-2--1--1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|inverse:iv2|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv2-2--1--1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-poly-1|Find \\(f'(x)\\).",
+      "id": "pr-poly-1-7,5,1--4,1,6-8",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-poly-1|Find \\(f'(x)\\).",
+      "id": "pr-poly-1-7,5,1--4,1,6-8",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-poly-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-poly-4-6,5,2-1,2,-2-",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-poly-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-poly-4-6,5,2-1,2,-2-",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-second-circle|Find the second derivative d²y/dx².",
+      "id": "imp-second-circle-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-second-circle|Find the second derivative d²y/dx².",
+      "id": "imp-second-circle-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|difference:dqmix-q|Simplify the difference quotient.",
+      "id": "dqmix-q--3-5--1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|difference:dqmix-q|Simplify the difference quotient.",
+      "id": "dqmix-q--3-5--1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|inverse:iv-log|Find the indicated derivative.",
+      "id": "iv-log-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|inverse:iv-log|Find the indicated derivative.",
+      "id": "iv-log-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-sin-xy|Find dy/dx.",
+      "id": "imp-sin-xy",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-sin-xy|Find dy/dx.",
+      "id": "imp-sin-xy",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-higher|Find dy/dx.",
+      "id": "imp-higher-3-3-7",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-higher|Find dy/dx.",
+      "id": "imp-higher-3-3-7",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-hard3|Find dy/dx.",
+      "id": "imp-hard3-1-1-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-hard3|Find dy/dx.",
+      "id": "imp-hard3-1-1-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|inverse:iv-exp|Find the indicated derivative.",
+      "id": "iv-exp-3-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|inverse:iv-exp|Find the indicated derivative.",
+      "id": "iv-exp-3-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|difference:dqmix-rec|Simplify the difference quotient.",
+      "id": "dqmix-rec--1-8",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|difference:dqmix-rec|Simplify the difference quotient.",
+      "id": "dqmix-rec--1-8",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|logdiff:ld-simple-sin|Find the derivative. Assume \\(\\sin x>0\\).",
+      "id": "ld-simple-sin-cos",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|logdiff:ld-simple-sin|Find the derivative. Assume \\(\\sin x>0\\).",
+      "id": "ld-simple-sin-cos",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-sin-quadratic|Find dy/dx.",
+      "id": "imp-sin-quadratic-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-sin-quadratic|Find dy/dx.",
+      "id": "imp-sin-quadratic-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|product:pb3|Find the derivative and simplify completely.",
+      "id": "pb3--4--4-4-3-3-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|product:pb3|Find the derivative and simplify completely.",
+      "id": "pb3--4--4-4-3-3-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-irr-1|Find \\(f'(x)\\). Assume \\(x>0\\).",
+      "id": "pr-irr-1-pi--4-1-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-irr-1|Find \\(f'(x)\\). Assume \\(x>0\\).",
+      "id": "pr-irr-1-pi--4-1-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|product:pb1|Find the derivative and simplify completely.",
+      "id": "pb1--3--6-3-4-1-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|product:pb1|Find the derivative and simplify completely.",
+      "id": "pb1--3--6-3-4-1-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-frac-1|Find \\(f'(x)\\).",
+      "id": "pr-frac-1-5_1_5_4,2_2_4_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-frac-1|Find \\(f'(x)\\).",
+      "id": "pr-frac-1-5_1_5_4,2_2_4_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-mixed-1|Find \\(f'(x)\\).",
+      "id": "pr-mixed-1--4_1_5_1,3_1_-3_1,1_1_-4_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-mixed-1|Find \\(f'(x)\\).",
+      "id": "pr-mixed-1--4_1_5_1,3_1_-3_1,1_1_-4_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-cubic-curve|Find dy/dx.",
+      "id": "imp-cubic-curve",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-cubic-curve|Find dy/dx.",
+      "id": "imp-cubic-curve",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|inverse:iv1|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv1-2-2-0",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|inverse:iv1|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv1-2-2-0",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-xy|Find dy/dx by implicit differentiation.",
+      "id": "imp-xy-10",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-xy|Find dy/dx by implicit differentiation.",
+      "id": "imp-xy-10",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-exp-xy|Find dy/dx.",
+      "id": "imp-exp-xy",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-exp-xy|Find dy/dx.",
+      "id": "imp-exp-xy",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-mixed-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-mixed-2-1_1_3_1,-1_2_-1_1,3_1_-1_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-mixed-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-mixed-2-1_1_3_1,-1_2_-1_1,3_1_-1_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-sin-y|Find dy/dx.",
+      "id": "imp-sin-y-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-sin-y|Find dy/dx.",
+      "id": "imp-sin-y-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-circle|Find dy/dx by implicit differentiation.",
+      "id": "imp-circle-5",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-circle|Find dy/dx by implicit differentiation.",
+      "id": "imp-circle-5",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-frac-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-frac-2--2_1_1_2,3_1_2_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-frac-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-frac-2--2_1_1_2,3_1_2_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|product:pb2|Find the derivative and simplify completely.",
+      "id": "pb2-2-4-4-5-2-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|product:pb2|Find the derivative and simplify completely.",
+      "id": "pb2-2-4-4-5-2-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-sin-y-squared|Find dy/dx.",
+      "id": "imp-sin-y-squared",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-sin-y-squared|Find dy/dx.",
+      "id": "imp-sin-y-squared",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-frac-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-frac-4--1_2_1_3,-1_3_-1_2,-1_2_-1_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-frac-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-frac-4--1_2_1_3,-1_3_-1_2,-1_2_-1_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-second-xy|Find the second derivative d²y/dx².",
+      "id": "imp-second-xy-6",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-second-xy|Find the second derivative d²y/dx².",
+      "id": "imp-second-xy-6",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-poly-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-poly-2-4,3,2-2,2,-3-",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-poly-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-poly-2-4,3,2-2,2,-3-",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-hard1|Find dy/dx.",
+      "id": "imp-hard1-1-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|implicit:imp-hard1|Find dy/dx.",
+      "id": "imp-hard1-1-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-mixed-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-mixed-4-2_1_5_1,2_1_-1_1,-3_1_3_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-mixed-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-mixed-4-2_1_5_1,2_1_-1_1,-3_1_3_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-neg-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-neg-4--1_1_-1,-4_1_-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-neg-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-neg-4--1_1_-1,-4_1_-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-frac-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-frac-3-1_3_2_3,2_1_-1_3,3_3_-1_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-frac-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-frac-3-1_3_2_3,2_1_-1_3,3_3_-1_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-mixed-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-mixed-3--1_1_4_1,1_2_-2_1,3_1_3_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-mixed-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-mixed-3--1_1_4_1,1_2_-2_1,3_1_3_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-neg-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-neg-3-1_2_-1,-4_1_-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "mixed|basic:pr-neg-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-neg-3-1_2_-1,-4_1_-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "difference|difference:dqmix-l|Simplify the difference quotient.",
+      "id": "dqmix-l--2-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "difference|difference:dqmix-l|Simplify the difference quotient.",
+      "id": "dqmix-l--2-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "difference|difference:dqmix-rec|Simplify the difference quotient.",
+      "id": "dqmix-rec--3-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "difference|difference:dqmix-rec|Simplify the difference quotient.",
+      "id": "dqmix-rec--3-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "difference|difference:dqmix-q|Simplify the difference quotient.",
+      "id": "dqmix-q-4-2--6",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "difference|difference:dqmix-q|Simplify the difference quotient.",
+      "id": "dqmix-q-4-2--6",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "difference|difference:dqmix-r|Simplify the difference quotient.",
+      "id": "dqmix-r-9",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "difference|difference:dqmix-r|Simplify the difference quotient.",
+      "id": "dqmix-r-9",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-frac-1|Find \\(f'(x)\\).",
+      "id": "pr-frac-1--1_2_-2_3,1_3_4_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-frac-1|Find \\(f'(x)\\).",
+      "id": "pr-frac-1--1_2_-2_3,1_3_4_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-neg-1|Find \\(f'(x)\\).",
+      "id": "pr-neg-1-1_1_-4,4_2_-1,5_2_-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-neg-1|Find \\(f'(x)\\).",
+      "id": "pr-neg-1-1_1_-4,4_2_-1,5_2_-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-irr-1|Find \\(f'(x)\\). Assume \\(x>0\\).",
+      "id": "pr-irr-1-sqrt3-2-3-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-irr-1|Find \\(f'(x)\\). Assume \\(x>0\\).",
+      "id": "pr-irr-1-sqrt3-2-3-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-mixed-1|Find \\(f'(x)\\).",
+      "id": "pr-mixed-1--1_1_2_1,-3_2_-3_1,-5_1_4_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-mixed-1|Find \\(f'(x)\\).",
+      "id": "pr-mixed-1--1_1_2_1,-3_2_-3_1,-5_1_4_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-frac-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-frac-2-2_3_-1_2,1_1_-5_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-frac-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-frac-2-2_3_-1_2,1_1_-5_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-poly-1|Find \\(f'(x)\\).",
+      "id": "pr-poly-1-6,4,3,1-4,1,-4,-1-",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-poly-1|Find \\(f'(x)\\).",
+      "id": "pr-poly-1-6,4,3,1-4,1,-4,-1-",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-mixed-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-mixed-4-2_1_5_1,2_2_-1_1,-2_1_4_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-mixed-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-mixed-4-2_1_5_1,2_2_-1_1,-2_1_4_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-frac-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-frac-4-3_3_1_2,-3_2_-1_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-frac-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-frac-4-3_3_1_2,-3_2_-1_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-poly-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-poly-3-5,4,3,1--3,2,1,1-",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-poly-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-poly-3-5,4,3,1--3,2,1,1-",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-mixed-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-mixed-3-1_1_4_1,-4_1_-1_1,-2_1_3_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-mixed-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-mixed-3-1_1_4_1,-4_1_-1_1,-2_1_3_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-poly-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-poly-2-2-3-",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-poly-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-poly-2-2-3-",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-frac-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-frac-3--3_1_-1_4,2_1_1_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-frac-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-frac-3--3_1_-1_4,2_1_1_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-poly-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-poly-4-4,3,2-3,-1,1-",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-poly-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-poly-4-4,3,2-3,-1,1-",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-neg-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-neg-3-3_1_-1,-2_1_-2,2_2_-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-neg-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-neg-3-3_1_-1,-2_1_-2,2_2_-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-neg-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-neg-4--2_3_-1,-3_1_-4,-1_2_-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-neg-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-neg-4--2_3_-1,-3_1_-4,-1_2_-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-neg-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-neg-2-1_1_-3,-3_1_-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-neg-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-neg-2-1_1_-3,-3_1_-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-mixed-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-mixed-2--1_1_3_1,-3_2_-2_1,1_2_-1_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "basic|basic:pr-mixed-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-mixed-2--1_1_3_1,-3_2_-2_1,1_2_-1_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "product|product:pb3|Find the derivative and simplify completely.",
+      "id": "pb3--1-2--2-5-3-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "product|product:pb3|Find the derivative and simplify completely.",
+      "id": "pb3--1-2--2-5-3-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "product|product:pb2|Find the derivative and simplify completely.",
+      "id": "pb2--1-6-3-0-2-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "product|product:pb2|Find the derivative and simplify completely.",
+      "id": "pb2--1-6-3-0-2-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "product|product:pb1|Find the derivative and simplify completely.",
+      "id": "pb1--1-0--4--3-1-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "product|product:pb1|Find the derivative and simplify completely.",
+      "id": "pb1--1-0--4--3-1-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-exp-xy|Find dy/dx.",
+      "id": "imp-exp-xy",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-exp-xy|Find dy/dx.",
+      "id": "imp-exp-xy",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-hard3|Find dy/dx.",
+      "id": "imp-hard3-1-3-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-hard3|Find dy/dx.",
+      "id": "imp-hard3-1-3-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-circle|Find dy/dx by implicit differentiation.",
+      "id": "imp-circle-5",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-circle|Find dy/dx by implicit differentiation.",
+      "id": "imp-circle-5",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-hard1|Find dy/dx.",
+      "id": "imp-hard1-4-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-hard1|Find dy/dx.",
+      "id": "imp-hard1-4-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-second-xy|Find the second derivative d²y/dx².",
+      "id": "imp-second-xy-6",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-second-xy|Find the second derivative d²y/dx².",
+      "id": "imp-second-xy-6",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-xy|Find dy/dx by implicit differentiation.",
+      "id": "imp-xy-10",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-xy|Find dy/dx by implicit differentiation.",
+      "id": "imp-xy-10",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-second-circle|Find the second derivative d²y/dx².",
+      "id": "imp-second-circle-8",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-second-circle|Find the second derivative d²y/dx².",
+      "id": "imp-second-circle-8",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-hard2|Find dy/dx.",
+      "id": "imp-hard2-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-hard2|Find dy/dx.",
+      "id": "imp-hard2-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-sin-xy|Find dy/dx.",
+      "id": "imp-sin-xy",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-sin-xy|Find dy/dx.",
+      "id": "imp-sin-xy",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-sin-sum|Find dy/dx.",
+      "id": "imp-sin-sum",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-sin-sum|Find dy/dx.",
+      "id": "imp-sin-sum",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-sin-y-squared|Find dy/dx.",
+      "id": "imp-sin-y-squared",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-sin-y-squared|Find dy/dx.",
+      "id": "imp-sin-y-squared",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-sin-y|Find dy/dx.",
+      "id": "imp-sin-y-5",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-sin-y|Find dy/dx.",
+      "id": "imp-sin-y-5",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-higher|Find dy/dx.",
+      "id": "imp-higher-5-4-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-higher|Find dy/dx.",
+      "id": "imp-higher-5-4-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-sin-quadratic|Find dy/dx.",
+      "id": "imp-sin-quadratic-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-sin-quadratic|Find dy/dx.",
+      "id": "imp-sin-quadratic-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-cubic-curve|Find dy/dx.",
+      "id": "imp-cubic-curve",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-cubic-curve|Find dy/dx.",
+      "id": "imp-cubic-curve",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-mixed|Find dy/dx by implicit differentiation.",
+      "id": "imp-mixed-2-4-10",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "implicit|implicit:imp-mixed|Find dy/dx by implicit differentiation.",
+      "id": "imp-mixed-2-4-10",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "logdiff|logdiff:ld-simple-xsine|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xsine-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "logdiff|logdiff:ld-simple-xsine|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xsine-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "logdiff|logdiff:ld-simple-xkx|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xkx-5",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "logdiff|logdiff:ld-simple-xkx|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xkx-5",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "logdiff|logdiff:ld-simple-sin|Find the derivative. Assume \\(\\sin x>0\\).",
+      "id": "ld-simple-sin-cos",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "logdiff|logdiff:ld-simple-sin|Find the derivative. Assume \\(\\sin x>0\\).",
+      "id": "ld-simple-sin-cos",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "inverse|inverse:iv-exp|Find the indicated derivative.",
+      "id": "iv-exp-4-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "inverse|inverse:iv-exp|Find the indicated derivative.",
+      "id": "iv-exp-4-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "inverse|inverse:iv1|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv1-4--1-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "inverse|inverse:iv1|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv1-4--1-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "inverse|inverse:iv2|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv2-6-2--1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "inverse|inverse:iv2|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv2-6-2--1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "inverse|inverse:iv-log|Find the indicated derivative.",
+      "id": "iv-log-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "key": "inverse|inverse:iv-log|Find the indicated derivative.",
+      "id": "iv-log-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "mixed",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "difference",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "basic",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "product",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "quotient",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "trig",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "chain",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "exponential",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "implicit",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "log",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "logdiff",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "invtrig",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "inverse",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "review_chain_power",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "review_chain_radical",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "review_chain_reciprocal",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "review_chain_trig",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "review_chain_exponential",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "review_chain_logarithmic",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "review_chain_inverse_trig",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "review_product_all",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "mathlive",
+      "selector": "review_quotient_all",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|difference:dqmix-r|Simplify the difference quotient.",
+      "id": "dqmix-r-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|difference:dqmix-r|Simplify the difference quotient.",
+      "id": "dqmix-r-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-poly-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-poly-3-5,1-2,-2-9",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-poly-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-poly-3-5,1-2,-2-9",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-hard2|Find dy/dx.",
+      "id": "imp-hard2-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-hard2|Find dy/dx.",
+      "id": "imp-hard2-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|logdiff:ld-simple-xkx|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xkx-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|logdiff:ld-simple-xkx|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xkx-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-mixed|Find dy/dx by implicit differentiation.",
+      "id": "imp-mixed-3-3-9",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-mixed|Find dy/dx by implicit differentiation.",
+      "id": "imp-mixed-3-3-9",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-neg-1|Find \\(f'(x)\\).",
+      "id": "pr-neg-1--5_1_-4,-3_2_-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-neg-1|Find \\(f'(x)\\).",
+      "id": "pr-neg-1--5_1_-4,-3_2_-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|difference:dqmix-l|Simplify the difference quotient.",
+      "id": "dqmix-l--2-0",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|difference:dqmix-l|Simplify the difference quotient.",
+      "id": "dqmix-l--2-0",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|logdiff:ld-simple-xsine|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xsine-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|logdiff:ld-simple-xsine|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xsine-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-sin-sum|Find dy/dx.",
+      "id": "imp-sin-sum",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-sin-sum|Find dy/dx.",
+      "id": "imp-sin-sum",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|inverse:iv2|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv2-2--1--1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|inverse:iv2|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv2-2--1--1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-poly-1|Find \\(f'(x)\\).",
+      "id": "pr-poly-1-7,5,1--4,1,6-8",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-poly-1|Find \\(f'(x)\\).",
+      "id": "pr-poly-1-7,5,1--4,1,6-8",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-poly-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-poly-4-6,5,2-1,2,-2-",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-poly-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-poly-4-6,5,2-1,2,-2-",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-second-circle|Find the second derivative d²y/dx².",
+      "id": "imp-second-circle-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-second-circle|Find the second derivative d²y/dx².",
+      "id": "imp-second-circle-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|difference:dqmix-q|Simplify the difference quotient.",
+      "id": "dqmix-q--3-5--1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|difference:dqmix-q|Simplify the difference quotient.",
+      "id": "dqmix-q--3-5--1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|inverse:iv-log|Find the indicated derivative.",
+      "id": "iv-log-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|inverse:iv-log|Find the indicated derivative.",
+      "id": "iv-log-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-sin-xy|Find dy/dx.",
+      "id": "imp-sin-xy",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-sin-xy|Find dy/dx.",
+      "id": "imp-sin-xy",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-higher|Find dy/dx.",
+      "id": "imp-higher-3-3-7",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-higher|Find dy/dx.",
+      "id": "imp-higher-3-3-7",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-hard3|Find dy/dx.",
+      "id": "imp-hard3-1-1-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-hard3|Find dy/dx.",
+      "id": "imp-hard3-1-1-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|inverse:iv-exp|Find the indicated derivative.",
+      "id": "iv-exp-3-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|inverse:iv-exp|Find the indicated derivative.",
+      "id": "iv-exp-3-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|difference:dqmix-rec|Simplify the difference quotient.",
+      "id": "dqmix-rec--1-8",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|difference:dqmix-rec|Simplify the difference quotient.",
+      "id": "dqmix-rec--1-8",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|logdiff:ld-simple-sin|Find the derivative. Assume \\(\\sin x>0\\).",
+      "id": "ld-simple-sin-cos",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|logdiff:ld-simple-sin|Find the derivative. Assume \\(\\sin x>0\\).",
+      "id": "ld-simple-sin-cos",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-sin-quadratic|Find dy/dx.",
+      "id": "imp-sin-quadratic-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-sin-quadratic|Find dy/dx.",
+      "id": "imp-sin-quadratic-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|product:pb3|Find the derivative and simplify completely.",
+      "id": "pb3--4--4-4-3-3-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|product:pb3|Find the derivative and simplify completely.",
+      "id": "pb3--4--4-4-3-3-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-irr-1|Find \\(f'(x)\\). Assume \\(x>0\\).",
+      "id": "pr-irr-1-pi--4-1-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-irr-1|Find \\(f'(x)\\). Assume \\(x>0\\).",
+      "id": "pr-irr-1-pi--4-1-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|product:pb1|Find the derivative and simplify completely.",
+      "id": "pb1--3--6-3-4-1-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|product:pb1|Find the derivative and simplify completely.",
+      "id": "pb1--3--6-3-4-1-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-frac-1|Find \\(f'(x)\\).",
+      "id": "pr-frac-1-5_1_5_4,2_2_4_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-frac-1|Find \\(f'(x)\\).",
+      "id": "pr-frac-1-5_1_5_4,2_2_4_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-mixed-1|Find \\(f'(x)\\).",
+      "id": "pr-mixed-1--4_1_5_1,3_1_-3_1,1_1_-4_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-mixed-1|Find \\(f'(x)\\).",
+      "id": "pr-mixed-1--4_1_5_1,3_1_-3_1,1_1_-4_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-cubic-curve|Find dy/dx.",
+      "id": "imp-cubic-curve",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-cubic-curve|Find dy/dx.",
+      "id": "imp-cubic-curve",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|inverse:iv1|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv1-2-2-0",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|inverse:iv1|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv1-2-2-0",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-xy|Find dy/dx by implicit differentiation.",
+      "id": "imp-xy-10",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-xy|Find dy/dx by implicit differentiation.",
+      "id": "imp-xy-10",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-exp-xy|Find dy/dx.",
+      "id": "imp-exp-xy",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-exp-xy|Find dy/dx.",
+      "id": "imp-exp-xy",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-mixed-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-mixed-2-1_1_3_1,-1_2_-1_1,3_1_-1_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-mixed-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-mixed-2-1_1_3_1,-1_2_-1_1,3_1_-1_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-sin-y|Find dy/dx.",
+      "id": "imp-sin-y-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-sin-y|Find dy/dx.",
+      "id": "imp-sin-y-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-circle|Find dy/dx by implicit differentiation.",
+      "id": "imp-circle-5",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-circle|Find dy/dx by implicit differentiation.",
+      "id": "imp-circle-5",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-frac-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-frac-2--2_1_1_2,3_1_2_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-frac-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-frac-2--2_1_1_2,3_1_2_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|product:pb2|Find the derivative and simplify completely.",
+      "id": "pb2-2-4-4-5-2-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|product:pb2|Find the derivative and simplify completely.",
+      "id": "pb2-2-4-4-5-2-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-sin-y-squared|Find dy/dx.",
+      "id": "imp-sin-y-squared",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-sin-y-squared|Find dy/dx.",
+      "id": "imp-sin-y-squared",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-frac-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-frac-4--1_2_1_3,-1_3_-1_2,-1_2_-1_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-frac-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-frac-4--1_2_1_3,-1_3_-1_2,-1_2_-1_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-second-xy|Find the second derivative d²y/dx².",
+      "id": "imp-second-xy-6",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-second-xy|Find the second derivative d²y/dx².",
+      "id": "imp-second-xy-6",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-poly-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-poly-2-4,3,2-2,2,-3-",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-poly-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-poly-2-4,3,2-2,2,-3-",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-hard1|Find dy/dx.",
+      "id": "imp-hard1-1-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|implicit:imp-hard1|Find dy/dx.",
+      "id": "imp-hard1-1-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-mixed-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-mixed-4-2_1_5_1,2_1_-1_1,-3_1_3_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-mixed-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-mixed-4-2_1_5_1,2_1_-1_1,-3_1_3_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-neg-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-neg-4--1_1_-1,-4_1_-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-neg-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-neg-4--1_1_-1,-4_1_-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-frac-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-frac-3-1_3_2_3,2_1_-1_3,3_3_-1_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-frac-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-frac-3-1_3_2_3,2_1_-1_3,3_3_-1_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-mixed-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-mixed-3--1_1_4_1,1_2_-2_1,3_1_3_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-mixed-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-mixed-3--1_1_4_1,1_2_-2_1,3_1_3_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-neg-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-neg-3-1_2_-1,-4_1_-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "mixed|basic:pr-neg-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-neg-3-1_2_-1,-4_1_-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "difference|difference:dqmix-l|Simplify the difference quotient.",
+      "id": "dqmix-l--2-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "difference|difference:dqmix-l|Simplify the difference quotient.",
+      "id": "dqmix-l--2-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "difference|difference:dqmix-rec|Simplify the difference quotient.",
+      "id": "dqmix-rec--3-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "difference|difference:dqmix-rec|Simplify the difference quotient.",
+      "id": "dqmix-rec--3-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "difference|difference:dqmix-q|Simplify the difference quotient.",
+      "id": "dqmix-q-4-2--6",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "difference|difference:dqmix-q|Simplify the difference quotient.",
+      "id": "dqmix-q-4-2--6",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "difference|difference:dqmix-r|Simplify the difference quotient.",
+      "id": "dqmix-r-9",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "difference|difference:dqmix-r|Simplify the difference quotient.",
+      "id": "dqmix-r-9",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-frac-1|Find \\(f'(x)\\).",
+      "id": "pr-frac-1--1_2_-2_3,1_3_4_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-frac-1|Find \\(f'(x)\\).",
+      "id": "pr-frac-1--1_2_-2_3,1_3_4_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-neg-1|Find \\(f'(x)\\).",
+      "id": "pr-neg-1-1_1_-4,4_2_-1,5_2_-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-neg-1|Find \\(f'(x)\\).",
+      "id": "pr-neg-1-1_1_-4,4_2_-1,5_2_-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-irr-1|Find \\(f'(x)\\). Assume \\(x>0\\).",
+      "id": "pr-irr-1-sqrt3-2-3-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-irr-1|Find \\(f'(x)\\). Assume \\(x>0\\).",
+      "id": "pr-irr-1-sqrt3-2-3-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-mixed-1|Find \\(f'(x)\\).",
+      "id": "pr-mixed-1--1_1_2_1,-3_2_-3_1,-5_1_4_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-mixed-1|Find \\(f'(x)\\).",
+      "id": "pr-mixed-1--1_1_2_1,-3_2_-3_1,-5_1_4_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-frac-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-frac-2-2_3_-1_2,1_1_-5_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-frac-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-frac-2-2_3_-1_2,1_1_-5_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-poly-1|Find \\(f'(x)\\).",
+      "id": "pr-poly-1-6,4,3,1-4,1,-4,-1-",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-poly-1|Find \\(f'(x)\\).",
+      "id": "pr-poly-1-6,4,3,1-4,1,-4,-1-",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-mixed-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-mixed-4-2_1_5_1,2_2_-1_1,-2_1_4_3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-mixed-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-mixed-4-2_1_5_1,2_2_-1_1,-2_1_4_3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-frac-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-frac-4-3_3_1_2,-3_2_-1_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-frac-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-frac-4-3_3_1_2,-3_2_-1_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-poly-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-poly-3-5,4,3,1--3,2,1,1-",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-poly-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-poly-3-5,4,3,1--3,2,1,1-",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-mixed-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-mixed-3-1_1_4_1,-4_1_-1_1,-2_1_3_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-mixed-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-mixed-3-1_1_4_1,-4_1_-1_1,-2_1_3_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-poly-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-poly-2-2-3-",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-poly-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-poly-2-2-3-",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-frac-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-frac-3--3_1_-1_4,2_1_1_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-frac-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-frac-3--3_1_-1_4,2_1_1_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-poly-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-poly-4-4,3,2-3,-1,1-",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-poly-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-poly-4-4,3,2-3,-1,1-",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-neg-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-neg-3-3_1_-1,-2_1_-2,2_2_-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-neg-3|Find the third derivative, \\(f^{(3)}(x)\\).",
+      "id": "pr-neg-3-3_1_-1,-2_1_-2,2_2_-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-neg-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-neg-4--2_3_-1,-3_1_-4,-1_2_-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-neg-4|Find the fourth derivative, \\(f^{(4)}(x)\\).",
+      "id": "pr-neg-4--2_3_-1,-3_1_-4,-1_2_-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-neg-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-neg-2-1_1_-3,-3_1_-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-neg-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-neg-2-1_1_-3,-3_1_-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-mixed-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-mixed-2--1_1_3_1,-3_2_-2_1,1_2_-1_2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "basic|basic:pr-mixed-2|Find the second derivative, \\(f^{(2)}(x)\\).",
+      "id": "pr-mixed-2--1_1_3_1,-3_2_-2_1,1_2_-1_2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "product|product:pb3|Find the derivative and simplify completely.",
+      "id": "pb3--1-2--2-5-3-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "product|product:pb3|Find the derivative and simplify completely.",
+      "id": "pb3--1-2--2-5-3-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "product|product:pb2|Find the derivative and simplify completely.",
+      "id": "pb2--1-6-3-0-2-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "product|product:pb2|Find the derivative and simplify completely.",
+      "id": "pb2--1-6-3-0-2-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "product|product:pb1|Find the derivative and simplify completely.",
+      "id": "pb1--1-0--4--3-1-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "product|product:pb1|Find the derivative and simplify completely.",
+      "id": "pb1--1-0--4--3-1-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-exp-xy|Find dy/dx.",
+      "id": "imp-exp-xy",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-exp-xy|Find dy/dx.",
+      "id": "imp-exp-xy",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-hard3|Find dy/dx.",
+      "id": "imp-hard3-1-3-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-hard3|Find dy/dx.",
+      "id": "imp-hard3-1-3-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-circle|Find dy/dx by implicit differentiation.",
+      "id": "imp-circle-5",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-circle|Find dy/dx by implicit differentiation.",
+      "id": "imp-circle-5",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-hard1|Find dy/dx.",
+      "id": "imp-hard1-4-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-hard1|Find dy/dx.",
+      "id": "imp-hard1-4-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-second-xy|Find the second derivative d²y/dx².",
+      "id": "imp-second-xy-6",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-second-xy|Find the second derivative d²y/dx².",
+      "id": "imp-second-xy-6",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-xy|Find dy/dx by implicit differentiation.",
+      "id": "imp-xy-10",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-xy|Find dy/dx by implicit differentiation.",
+      "id": "imp-xy-10",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-second-circle|Find the second derivative d²y/dx².",
+      "id": "imp-second-circle-8",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-second-circle|Find the second derivative d²y/dx².",
+      "id": "imp-second-circle-8",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-hard2|Find dy/dx.",
+      "id": "imp-hard2-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-hard2|Find dy/dx.",
+      "id": "imp-hard2-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-sin-xy|Find dy/dx.",
+      "id": "imp-sin-xy",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-sin-xy|Find dy/dx.",
+      "id": "imp-sin-xy",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-sin-sum|Find dy/dx.",
+      "id": "imp-sin-sum",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-sin-sum|Find dy/dx.",
+      "id": "imp-sin-sum",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-sin-y-squared|Find dy/dx.",
+      "id": "imp-sin-y-squared",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-sin-y-squared|Find dy/dx.",
+      "id": "imp-sin-y-squared",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-sin-y|Find dy/dx.",
+      "id": "imp-sin-y-5",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-sin-y|Find dy/dx.",
+      "id": "imp-sin-y-5",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-higher|Find dy/dx.",
+      "id": "imp-higher-5-4-2",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-higher|Find dy/dx.",
+      "id": "imp-higher-5-4-2",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-sin-quadratic|Find dy/dx.",
+      "id": "imp-sin-quadratic-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-sin-quadratic|Find dy/dx.",
+      "id": "imp-sin-quadratic-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-cubic-curve|Find dy/dx.",
+      "id": "imp-cubic-curve",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-cubic-curve|Find dy/dx.",
+      "id": "imp-cubic-curve",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-mixed|Find dy/dx by implicit differentiation.",
+      "id": "imp-mixed-2-4-10",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "implicit|implicit:imp-mixed|Find dy/dx by implicit differentiation.",
+      "id": "imp-mixed-2-4-10",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "logdiff|logdiff:ld-simple-xsine|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xsine-4",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "logdiff|logdiff:ld-simple-xsine|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xsine-4",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "logdiff|logdiff:ld-simple-xkx|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xkx-5",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "logdiff|logdiff:ld-simple-xkx|Find the derivative. Assume \\(x>0\\).",
+      "id": "ld-simple-xkx-5",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "logdiff|logdiff:ld-simple-sin|Find the derivative. Assume \\(\\sin x>0\\).",
+      "id": "ld-simple-sin-cos",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "logdiff|logdiff:ld-simple-sin|Find the derivative. Assume \\(\\sin x>0\\).",
+      "id": "ld-simple-sin-cos",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "inverse|inverse:iv-exp|Find the indicated derivative.",
+      "id": "iv-exp-4-3",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "inverse|inverse:iv-exp|Find the indicated derivative.",
+      "id": "iv-exp-4-3",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "inverse|inverse:iv1|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv1-4--1-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "inverse|inverse:iv1|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv1-4--1-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "inverse|inverse:iv2|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv2-6-2--1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "inverse|inverse:iv2|Let g be the inverse of f. Find the indicated derivative.",
+      "id": "iv2-6-2--1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "inverse|inverse:iv-log|Find the indicated derivative.",
+      "id": "iv-log-1",
+      "correct": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "key": "inverse|inverse:iv-log|Find the indicated derivative.",
+      "id": "iv-log-1",
+      "correct": false,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "mixed",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "difference",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "basic",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "product",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "quotient",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "trig",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "chain",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "exponential",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "implicit",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "log",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "logdiff",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "invtrig",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "inverse",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "review_chain_power",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "review_chain_radical",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "review_chain_reciprocal",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "review_chain_trig",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "review_chain_exponential",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "review_chain_logarithmic",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "review_chain_inverse_trig",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "review_product_all",
+      "transition": true,
+      "passed": true
+    },
+    {
+      "mode": "legacy",
+      "selector": "review_quotient_all",
+      "transition": true,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "changedInstructionGroups": 93,
+  "realMathJax": true
+}

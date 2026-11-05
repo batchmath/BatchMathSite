@@ -131,13 +131,8 @@ const explicitQuotientSteps=(id,result)=>{
  return `Let \\(u\\) be the numerator and \\(v\\) the denominator. Differentiate each: \\(u'=${du}\\) and \\(v'=${dv}\\). Substitute into \\(f'=\\frac{u'v-uv'}{v^2}\\) to obtain \\(f'(x)=${result}\\).`;
 };
 const mk=(cat,id,prompt,math,answerExpr,answerTex,solution,vars=["x"])=>{
-  let neutralPrompt="Find the derivative.";
-  if(cat==="inverse")neutralPrompt="The functions \\(f\\) and \\(g\\) are inverses. Find the indicated derivative.";
-  else if(/second derivative/i.test(prompt))neutralPrompt="Find the second derivative.";
-  else if(/dy\/dx/i.test(prompt))neutralPrompt="Find \\(\\frac{dy}{dx}\\).";
-  else if(/indicated point|slope of the tangent/i.test(prompt))neutralPrompt="Find the derivative at the indicated point.";
-  else if(/inverse of f|indicated derivative/i.test(prompt))neutralPrompt="Find the indicated derivative.";
-  return {cat,id,q:`<div class="question-prompt">${neutralPrompt}</div><div>\\(${cleanMath(math)}\\)</div>`,answerExpr,answerTex:cleanMath(answerTex),solution:explicitQuotientSteps(id,answerTex)||solution,vars};
+  const taskPrompt=String(prompt||"Find the derivative.");
+  return {cat,id,q:`<div class="question-prompt">${taskPrompt}</div><div>\\(${cleanMath(math)}\\)</div>`,answerExpr,answerTex:cleanMath(answerTex),solution:explicitQuotientSteps(id,answerTex)||solution,vars};
 };
 
 function difference(){

@@ -75,7 +75,7 @@ html.bm-practice-active .batch-back{
   html.bm-practice-active #practiceCard .question.word{font-size:1rem;line-height:1.22;margin:2px auto 6px;max-width:760px}
   html.bm-practice-active #practiceCard .instruction{margin:0 auto 5px;font-size:.78rem;line-height:1.18}
   html.bm-practice-active #answer.bm-keypad-input{width:min(235px,100%);padding:5px 8px;font-size:1.12rem;line-height:1.05;border-radius:6px}
-  html.bm-practice-active .bm-keypad{width:min(285px,100%);grid-auto-rows:32px;gap:3px;margin-top:4px}
+  html.bm-practice-active .bm-keypad{width:min(285px,100%);grid-auto-rows:minmax(32px,auto);gap:3px;margin-top:4px}
   html.bm-practice-active .bm-key{min-height:32px;padding:2px;font-size:.88rem;border-radius:6px}
   html.bm-practice-active .bm-key.utility,
   html.bm-practice-active .bm-key.check-key{font-size:.72rem}
@@ -87,7 +87,7 @@ html.bm-practice-active .batch-back{
 @media(max-width:720px){
   /* On phones, let the keypad use more vertical space instead of compressing
      every key into a shallow strip at the top of the practice area. */
-  .bm-keypad{width:min(330px,100%);grid-auto-rows:48px;gap:7px;margin-top:8px}
+  .bm-keypad{width:min(330px,100%);grid-auto-rows:minmax(48px,auto);gap:7px;margin-top:8px}
   .bm-key{min-height:48px;padding:5px 2px;font-size:1rem;border-radius:7px}
   .bm-key.utility,.bm-key.check-key{font-size:.78rem}
   .bm-key.symbol{font-size:1.12rem}
@@ -153,3 +153,10 @@ html.bm-practice-active .batch-back{
 .bm-keypad.bm-unit2-keypad{width:min(360px,100%);grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
 .bm-unit2-keypad .bm-key{min-width:0;min-height:44px;white-space:normal;overflow-wrap:normal;line-height:1.2;padding:7px 4px}
 .bm-unit2-keypad .bm-key[aria-pressed="true"]{background:#f5c400;color:#030303}
+
+/* Keep a legacy answer above positioned MathJax overflow from the question. */
+input.bm-keypad-input{position:relative}
+/* Exercise panels are form containers, not navigation cards. Ancestor :active
+   otherwise scales the entire question/keypad while a descendant key is held. */
+section.card:has(.bm-keypad-input):hover,
+section.card:has(.bm-keypad-input):active{transform:none}

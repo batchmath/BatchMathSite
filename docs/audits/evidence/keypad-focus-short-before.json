@@ -1,0 +1,6114 @@
+{
+  "results": [
+    {
+      "name": "multiply",
+      "route": "im1/unit-1-review/topics/multiplication/practice/index.html",
+      "mode": "mathlive",
+      "actions": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 486,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -38.296875,
+              "width": 305,
+              "height": 50.453125,
+              "docX": 35,
+              "docY": 447.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 22.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 508.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -156.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 329.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 118.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 604.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 448,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -2.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 59.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -120.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 155.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 448,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -2.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 59.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -120.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 155.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 61.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 157.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 61.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 157.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 61.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 157.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 61.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 157.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 61.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 157.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 61.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 157.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 61.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 157.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 61.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 157.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 50.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 60.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 506.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 156.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 602.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 50.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 60.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 506.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 156.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 602.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 61.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 157.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "4",
+          "before": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 61.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 157.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 61.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 157.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 51.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 61.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 507.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 157.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 35,
+              "y": -0.296875,
+              "width": 305,
+              "height": 50.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 60.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 506.15625
+            },
+            "question": {
+              "x": 35,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 156.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 602.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Check",
+          "before": {
+            "x": 83,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": -48,
+              "y": -0.296875,
+              "width": 305,
+              "height": 50.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": -48,
+              "y": 60.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 506.15625
+            },
+            "question": {
+              "x": -48,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 194.796875,
+              "y": 157.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 603.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 35,
+            "y": 446,
+            "documentWidth": 458,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 0,
+              "y": -0.296875,
+              "width": 305,
+              "height": 50.453125,
+              "docX": 35,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 0,
+              "y": 60.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 506.15625
+            },
+            "question": {
+              "x": 0,
+              "y": -118.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 242.796875,
+              "y": 156.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 602.15625
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        }
+      ],
+      "maxScrollXDelta": 48,
+      "maxScrollDelta": 38,
+      "maxPadDelta": 37
+    },
+    {
+      "name": "multiply",
+      "route": "im1/unit-1-review/topics/multiplication/practice/index.html",
+      "mode": "legacy",
+      "actions": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -71.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 447.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 22.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 541.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -189.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 329.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 132.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 651.296875
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "4",
+          "before": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "Check",
+          "before": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 131.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 650.296875
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 519,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 47.5,
+              "y": -73.296875,
+              "width": 280,
+              "height": 85.59375,
+              "docX": 47.5,
+              "docY": 445.703125
+            },
+            "pad": {
+              "x": 35,
+              "y": 20.296875,
+              "width": 305,
+              "height": 213,
+              "docX": 35,
+              "docY": 539.296875
+            },
+            "question": {
+              "x": 35,
+              "y": -191.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 269,
+              "y": 130.296875,
+              "width": 71,
+              "height": 48,
+              "docX": 269,
+              "docY": 649.296875
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        }
+      ],
+      "maxScrollXDelta": 0,
+      "maxScrollDelta": 0,
+      "maxPadDelta": 2
+    },
+    {
+      "name": "power",
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+      "mode": "mathlive",
+      "actions": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1046,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -100.453125,
+              "width": 309,
+              "height": 50.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 13.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -251.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 204.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 50.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 113.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 304.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 50.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 113.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 304.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "4",
+          "before": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 51.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 114.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1060.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 50.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 113.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 304.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Check",
+          "before": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 50.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 113.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 305.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 946,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -0.453125,
+              "width": 309,
+              "height": 50.453125,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 113.796875,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.796875
+            },
+            "question": {
+              "x": 33,
+              "y": -151.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 304.796875,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.796875
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        }
+      ],
+      "maxScrollXDelta": 0,
+      "maxScrollDelta": 100,
+      "maxPadDelta": 101
+    },
+    {
+      "name": "power",
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+      "mode": "legacy",
+      "actions": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "after": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "after": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "after": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "after": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "after": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "after": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "after": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "4",
+          "before": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "after": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "after": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "Check",
+          "before": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 212.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1251.34375
+            },
+            "focus": "DIV"
+          },
+          "after": {
+            "x": 0,
+            "y": 1039,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 33,
+              "y": -93.453125,
+              "width": 309,
+              "height": 50,
+              "docX": 33,
+              "docY": 945.546875
+            },
+            "pad": {
+              "x": 33,
+              "y": 20.34375,
+              "width": 309,
+              "height": 231,
+              "docX": 33,
+              "docY": 1059.34375
+            },
+            "question": {
+              "x": 33,
+              "y": -244.453125,
+              "width": 309,
+              "height": 135,
+              "docX": 33,
+              "docY": 794.546875
+            },
+            "check": {
+              "x": 219,
+              "y": 211.34375,
+              "width": 57,
+              "height": 34,
+              "docX": 219,
+              "docY": 1250.34375
+            },
+            "focus": "DIV"
+          },
+          "scrollCalls": []
+        }
+      ],
+      "maxScrollXDelta": 0,
+      "maxScrollDelta": 0,
+      "maxPadDelta": 0
+    },
+    {
+      "name": "sequence",
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/practice/index.html",
+      "mode": "mathlive",
+      "actions": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1055,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -318.609375,
+              "width": 138.5,
+              "height": 50.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1074
+            },
+            "question": {
+              "x": 28,
+              "y": -396.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 173,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1228
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 768,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -31.609375,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 307,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -109.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 461,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 736,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": 0.390625,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 339,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -77.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 493,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 1043,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -306.609375,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 32,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -384.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 186,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 1081,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -344.609375,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": -6,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -422.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 148,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 775,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -38.609375,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 300,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -116.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 454,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 736,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": 0.390625,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 339,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -77.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 493,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 1093,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -356.609375,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": -18,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -434.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 136,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 1155,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -418.609375,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": -80,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -496.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 74,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 798,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -61.609375,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 277,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -139.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 431,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 736,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": 0.390625,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 339,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -77.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 493,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 1117,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -380.609375,
+              "width": 138.5,
+              "height": 50.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": -43,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1074
+            },
+            "question": {
+              "x": 28,
+              "y": -458.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 111,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1228
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1080,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -343.609375,
+              "width": 138.5,
+              "height": 50.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": -6,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1074
+            },
+            "question": {
+              "x": 28,
+              "y": -421.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 148,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1228
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 775,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -38.609375,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 300,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -116.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 454,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "4",
+          "before": {
+            "x": 0,
+            "y": 736,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": 0.390625,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 339,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -77.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 493,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 1068,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -331.609375,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 7,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -409.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 161,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 1118,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -381.609375,
+              "width": 138.5,
+              "height": 51.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": -43,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1075
+            },
+            "question": {
+              "x": 28,
+              "y": -459.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 111,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 786,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -49.609375,
+              "width": 138.5,
+              "height": 50.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 288,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1074
+            },
+            "question": {
+              "x": 28,
+              "y": -127.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 442,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1228
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            },
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at Fh (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:2983:9216)",
+                "    at t.executeCommand (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29192)"
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Check",
+          "before": {
+            "x": 0,
+            "y": 1198,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -461.609375,
+              "width": 138.5,
+              "height": 50.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": -124,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1074
+            },
+            "question": {
+              "x": 28,
+              "y": -539.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 31,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1229
+            },
+            "focus": "MATH-FIELD"
+          },
+          "after": {
+            "x": 0,
+            "y": 796,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -59.609375,
+              "width": 138.5,
+              "height": 50.453125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 278,
+              "width": 319,
+              "height": 194,
+              "docX": 28,
+              "docY": 1074
+            },
+            "question": {
+              "x": 28,
+              "y": -137.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 34,
+              "y": 432,
+              "width": 59,
+              "height": 34,
+              "docX": 34,
+              "docY": 1228
+            },
+            "focus": "MATH-FIELD"
+          },
+          "scrollCalls": [
+            {
+              "tag": "MATH-FIELD",
+              "cls": "bm-mathlive-answer bm-mathlive-dynamic",
+              "options": {
+                "block": "nearest",
+                "inline": "nearest"
+              },
+              "stack": [
+                "    at Element.scrollIntoView (eval at evaluate (:311:30), <anonymous>:5:236)",
+                "    at t.scrollIntoView (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:29867)",
+                "    at t.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3222:33557)",
+                "    at ce.focus (http://127.0.0.1:40609/assets/mathlive/vendor/mathlive/mathlive.min.mjs:3223:16597)"
+              ]
+            }
+          ]
+        }
+      ],
+      "maxScrollXDelta": 0,
+      "maxScrollDelta": 402,
+      "maxPadDelta": 402
+    },
+    {
+      "name": "sequence",
+      "route": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/practice/index.html",
+      "mode": "legacy",
+      "actions": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "4",
+          "before": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "INPUT"
+          },
+          "scrollCalls": []
+        },
+        {
+          "label": "Check",
+          "before": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 146.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1146.578125
+            },
+            "focus": "INPUT"
+          },
+          "after": {
+            "x": 0,
+            "y": 1000,
+            "documentWidth": 375,
+            "viewport": {
+              "width": 375,
+              "height": 480,
+              "x": 0,
+              "y": 0,
+              "visualWidth": 375,
+              "visualHeight": 480
+            },
+            "field": {
+              "x": 36,
+              "y": -263.609375,
+              "width": 138.5,
+              "height": 37.3125,
+              "docX": 36,
+              "docY": 736.390625
+            },
+            "pad": {
+              "x": 28,
+              "y": 19.578125,
+              "width": 319,
+              "height": 164,
+              "docX": 28,
+              "docY": 1019.578125
+            },
+            "question": {
+              "x": 28,
+              "y": -341.6875,
+              "width": 319,
+              "height": 38.734375,
+              "docX": 28,
+              "docY": 658.3125
+            },
+            "check": {
+              "x": 270.25,
+              "y": 145.578125,
+              "width": 76.75,
+              "height": 38,
+              "docX": 270.25,
+              "docY": 1145.578125
+            },
+            "focus": "BODY"
+          },
+          "scrollCalls": []
+        }
+      ],
+      "maxScrollXDelta": 0,
+      "maxScrollDelta": 0,
+      "maxPadDelta": 0
+    }
+  ]
+}

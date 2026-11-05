@@ -1,0 +1,155 @@
+{
+  "implementationCheckpoint": "96309582a69ea7c8b38d51156ae75ea47baf65b2",
+  "siteCodeUnchangedDuringFinalQA": true,
+  "node": {
+    "tests": 274,
+    "pass": 274,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0
+  },
+  "routes": {
+    "visits": 374,
+    "routes": 138,
+    "modes": {
+      "mathlive": 118,
+      "legacy": 118,
+      "missing": 118,
+      "specialized": 20
+    },
+    "pageErrors": 0,
+    "knownMathJaxErrors": 0,
+    "unexpectedErrors": 0,
+    "keypadRoutes": 118,
+    "ordinaryKeyActivations": 708
+  },
+  "stability": {
+    "cases": 130,
+    "controllers": 16,
+    "routes": 27,
+    "actions": 3232,
+    "ordinarySampleMaximaPx": {
+      "scrollX": 0,
+      "scrollY": 0,
+      "keypadDocY": 0.0
+    },
+    "pageErrors": 0,
+    "baselineCasesExpectedToFail": 4
+  },
+  "focused": {
+    "checks": 132,
+    "countedPairs": 543,
+    "suites": [
+      {
+        "suite": "power",
+        "checks": 38,
+        "countedPairs": 0,
+        "evidence": "docs/audits/evidence/final-focused-regressions/power/browser-results.json"
+      },
+      {
+        "suite": "chain",
+        "checks": 27,
+        "countedPairs": 69,
+        "evidence": "docs/audits/evidence/final-focused-regressions/chain/browser-results.json"
+      },
+      {
+        "suite": "product",
+        "checks": 5,
+        "countedPairs": 4,
+        "evidence": "docs/audits/evidence/final-focused-regressions/product/product-current-profile-browser.json"
+      },
+      {
+        "suite": "quotient",
+        "checks": 6,
+        "countedPairs": 6,
+        "evidence": "docs/audits/evidence/final-focused-regressions/quotient/quotient-current-profile-browser.json"
+      },
+      {
+        "suite": "basic",
+        "checks": 22,
+        "countedPairs": 0,
+        "evidence": "docs/audits/evidence/final-focused-regressions/basic/basic-browser.json"
+      },
+      {
+        "suite": "limits",
+        "checks": 3,
+        "countedPairs": 18,
+        "evidence": "docs/audits/evidence/final-focused-regressions/limits/unit1-browser-final-regression.json"
+      },
+      {
+        "suite": "applications",
+        "checks": 3,
+        "countedPairs": 25,
+        "evidence": "docs/audits/evidence/final-focused-regressions/applications/applications-browser-final-regression.json"
+      },
+      {
+        "suite": "integrals-de",
+        "checks": 4,
+        "countedPairs": 52,
+        "evidence": "docs/audits/evidence/final-focused-regressions/integrals-de/staged-browser-final-regression.json"
+      },
+      {
+        "suite": "im1-values",
+        "checks": 11,
+        "countedPairs": 28,
+        "evidence": "docs/audits/evidence/final-focused-regressions/im1-values/im1-batch5-browser-final-regression.json"
+      },
+      {
+        "suite": "im1-structured",
+        "checks": 8,
+        "countedPairs": 60,
+        "evidence": "docs/audits/evidence/final-focused-regressions/im1-structured/im1-batch6-browser-final-regression.json"
+      },
+      {
+        "suite": "prep",
+        "checks": 5,
+        "countedPairs": 281,
+        "evidence": "docs/audits/evidence/final-focused-regressions/prep/prep-browser-final-regression.json"
+      }
+    ]
+  },
+  "overlap": {
+    "visits": 102,
+    "typingAndFocusPass": 102,
+    "pageErrors": 0
+  },
+  "video": {
+    "pages": 66,
+    "changedPages": 15,
+    "visits": 198,
+    "activations": 288,
+    "supportingGalleries": 15,
+    "pageErrors": 0,
+    "externalPlaybackVerified": false
+  },
+  "instructions": {
+    "engines": 99,
+    "generations": 144100,
+    "familySelectorContractGroups": 5352,
+    "changedInstructionRecords": 93,
+    "distinctChangedFamilyInstructionCombinations": 47,
+    "browserChecks": 416,
+    "pageErrors": 0
+  },
+  "content": {
+    "overlaps": 34,
+    "im1Pages": 90,
+    "exactNonoverlapHtml": 96,
+    "guardedVideoLayoutHtml": 15,
+    "pdfsUnchanged": true,
+    "unit6Unchanged": true
+  },
+  "static": {
+    "ok": true,
+    "errors": 0,
+    "warnings": 0
+  },
+  "limitations": [
+    "Chromium desktop and touch emulation; CSS zoom emulated; no universal physical-device or browser-engine claim",
+    "YouTube transport simulated; availability/audio not verified",
+    "Finite numerical parameter sampling, supplemented by exact shared-wrapper/source/answer comparisons",
+    "No reachable derivative-by-limit family in the existing review; curriculum coverage gap documented, no invented generator"
+  ],
+  "mainMerged": false,
+  "deployed": false
+}

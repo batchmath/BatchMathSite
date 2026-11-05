@@ -1,6 +1,6 @@
 import {loadMathLive,verifyFonts,resetMathfield} from './runtime.mjs';
 import {batchmathToLatex} from './answer-adapter.mjs';
-import {bridgeKeypad,focusMathfield} from './keypad-bridge.mjs';
+import {bridgeKeypad,focusMathfield,redirectInputFocus} from './keypad-bridge.mjs';
 
 // Page-opt-in adapter for the existing public mountInputs contract. It owns no
 // questions, scores, checks, Continue/Next policy or field-type inference.
@@ -95,6 +95,7 @@ export function installDynamicFields({profiles,label}){
         listen(r.field,'focusin',guard(()=>{active=index;selectPad();reflect();}));
         listen(r.field,'pointerdown',guard(()=>{active=index;focus();}),true);
         listen(r.input,'focus',guard(e=>{e.stopImmediatePropagation();active=index;selectPad();focus();}),true);
+        removers.push(redirectInputFocus(r.input,guard(()=>{active=index;selectPad();focus();}),()=>ready&&alive()&&!r.input.disabled));
         listen(r.field,'input',guard(()=>read(r)));
         listen(r.field,'keydown',guard(e=>{
           if(e.key==='Enter'){e.preventDefault();e.stopImmediatePropagation();if(!e.repeat&&!r.input.disabled){sync();options.onCheck?.();}}

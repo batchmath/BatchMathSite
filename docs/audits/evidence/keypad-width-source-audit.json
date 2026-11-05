@@ -1,0 +1,7 @@
+[
+  {
+    "path": "im1/unit-1-review/topics/multiplication/practice/index.html",
+    "selector": "#checkBtn.check",
+    "style": "display: block;\n      min-width: 180px;\n      margin: 16px auto 0;"
+  }
+]

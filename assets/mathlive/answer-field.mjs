@@ -1,5 +1,5 @@
 import {batchmathToLatex} from './answer-adapter.mjs';
-import {bridgeKeypad,focusMathfield} from './keypad-bridge.mjs';
+import {bridgeKeypad,focusMathfield,redirectInputFocus} from './keypad-bridge.mjs';
 import {resetMathfield} from './runtime.mjs';
 
 // A source-input adapter, not an engine: the caller retains generation,
@@ -109,6 +109,7 @@ export async function mountMathLiveAnswer({source,legacy,submit,translate,label=
   source.dataset.editor='mathlive';
   legacy.reset=guard(()=>{original.reset();reset();});
   legacy.focus=guard(()=>{reflect();if(!source.disabled)focusMathfield(mf);});
+  dispose.push(redirectInputFocus(source,()=>legacy.focus(),()=>active&&!source.disabled));
   listen(source,'focus',guard(event=>{event.stopImmediatePropagation();legacy.focus();}),true);
   listen(mf,'pointerdown',guard(()=>{if(!source.disabled)focusMathfield(mf);}),true);
   listen(mf,'input',guard(()=>{read();source.dispatchEvent(new Event('input',{bubbles:true}));}));

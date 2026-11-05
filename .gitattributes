@@ -1,12 +1,9 @@
-# Developer-only review tooling is kept out of the site package (git archive / the review ZIP).
-tools/review-lab export-ignore
-.gitattributes export-ignore
-# QA evidence and generated test artifacts (screenshots, run reports) stay in Git, not in the site package.
-docs/audits/evidence export-ignore
+# Ship the complete static site without developer tooling or machine QA evidence.
+# GitHub commit ZIPs use the same export policy as the local test package.
+tools export-ignore
+.github export-ignore
 docs/integration/evidence export-ignore
-tools/keypad-corrections/artifacts export-ignore
-tools/mathlive-advanced-pilot/artifacts export-ignore
-tools/mathlive-batch1/artifacts export-ignore
-tools/mathlive-derivatives-pilot/artifacts export-ignore
-tools/mathlive-power-rule/artifacts export-ignore
-tools/mathlive-sitewide/artifacts export-ignore
+docs/audits/evidence export-ignore
+docs/audits/COMPREHENSIVE-REVIEW-INSTRUCTIONS.json export-ignore
+docs/audits/VIDEO-HIERARCHY.json export-ignore
+.gitattributes export-ignore
