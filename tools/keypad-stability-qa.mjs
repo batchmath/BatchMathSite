@@ -13,7 +13,7 @@ const padSelector='.bm-calc-keypad,.bm-keypad,.bm-u3-shared-keypad,.algebra-keyp
 const fieldSelector='math-field,.bm-calc-editor,.bm-fraction-editor,#exactEditor,main input:not([type=checkbox]):not([type=radio]):not([type=hidden]),main [role=textbox]';
 const results=[],errors=[];
 const baselineRef=process.env.STABILITY_BASE_REF;
-const baselineFiles=new Set(['assets/mathlive/keypad-bridge.mjs','assets/mathlive/pilot.css','assets/im1-keypad.css','im1/unit-1-review/topics/multiplication/practice/index.html']);
+const baselineFiles=new Set(['assets/calculus-keypad.js','assets/mathlive/answer-field.mjs','assets/mathlive/native-fields.mjs','assets/mathlive/dynamic-fields.mjs','assets/mathlive/keypad-bridge.mjs','assets/mathlive/pilot.css','assets/im1-keypad.css','im1/unit-1-review/topics/multiplication/practice/index.html']);
 const baselineCache=new Map();
 const mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.woff2':'font/woff2'};
 const server=http.createServer((req,res)=>{try{const n=decodeURIComponent(new URL(req.url,'http://localhost').pathname);let f=n.startsWith('/__mathjax/')?path.join(fixtures,n.slice(11)):path.join(root,n);if(fs.statSync(f).isDirectory())f=path.join(f,'index.html');res.setHeader('content-type',mime[path.extname(f)]||'application/octet-stream');const relative=path.relative(root,f);if(baselineRef&&baselineFiles.has(relative)){if(!baselineCache.has(relative))baselineCache.set(relative,execFileSync('git',['show',baselineRef+':'+relative],{cwd:root,maxBuffer:8000000}));res.end(baselineCache.get(relative));}else res.end(fs.readFileSync(f));}catch{res.writeHead(404).end();}});

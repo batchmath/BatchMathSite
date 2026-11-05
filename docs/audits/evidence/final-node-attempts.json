@@ -1,0 +1,19 @@
+{
+  "initialFullRun": {
+    "tests": 274,
+    "pass": 273,
+    "fail": 1,
+    "failure": "production generators, graders and UI renderer match the verified Batch 7 checkpoint",
+    "classification": "Historical source guard rejected the two authorized hidden-input focus routes; no mathematical/grading failure",
+    "correction": "Reuse withoutHiddenInputFocusRoutes only for calculus-keypad.js. All other files and every remaining source byte still compare exactly. Full 274-test rerun follows."
+  },
+  "finalFullRun": {
+    "tests": 274,
+    "pass": 274,
+    "fail": 0,
+    "skip": 0,
+    "cancel": 0,
+    "durationMs": 181968.337045,
+    "evidence": "final-node.tap"
+  }
+}

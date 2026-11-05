@@ -63,7 +63,7 @@ The cache contains `mathjax/tex-chtml.js` (4.1.3) and `mathjax-newcm/` font file
 `STABILITY_FILTER` (comma-separated substrings), `STABILITY_MODE`,
 `STABILITY_WIDTH`, `STABILITY_REPEATS` and `REPORT_SUFFIX`
 select focused cases without overwriting the full report.
-`STABILITY_BASE_REF=9c395be` serves the four relevant baseline files for a
+`STABILITY_BASE_REF=9c395be` serves the eight relevant baseline files for a
 before/after positive control; this is intended for the multiplication baseline.
 
 Final checkpoint measurements and exact totals are recorded in the correction

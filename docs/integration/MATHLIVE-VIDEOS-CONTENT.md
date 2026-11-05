@@ -1,4 +1,70 @@
-# MathLive, videos, and content integration
+# MathLive, video and review corrections — final tested state
+
+The current correction audit supersedes the historical integration results
+below. Checkpoints A, B and C are complete and pushed; D verifies their combined
+behavior. The previous multiplication overflow is fixed, and the current IM1
+responsive result is **102/102**. All implementation files match tested source
+`96309582a69ea7c8b38d51156ae75ea47baf65b2`; the delivery URL is pinned to the
+final pushed audit commit. Nothing has been merged into main or deployed.
+
+| Final verification | Result |
+|---|---|
+| MathLive Node | **274/274** |
+| Routes / default, legacy, missing runtime | **374/374 visits, 138 routes** |
+| Broad ordinary-key stability | **118 typed routes, 708 activations** |
+| Detailed responsive/focus stability | **130/130, 16 controllers, 27 URLs** |
+| Focused mathematical browsers | **132/132, 543 counted grader pairs** |
+| IM1 overlapping content pages | **102/102 widths and typing/focus** |
+| Review instructions | **416/416 browser checks; 144,100 generated questions, 99 contexts** |
+| Video | **66 pages, 198 visits, 288 simulated activations** |
+| Preservation | **34 overlaps, all 90 IM1 pages, 96 exact HTML + 15 guarded video layouts, all PDFs** |
+| Static/reference checks | **Zero errors, warnings or broken references** |
+| Unit 6 | Exact tree from `919ca1806f07e3cd2af552142926e7ca2b78e8d5` |
+
+Video checkpoint A is intact: one designated lecture remains large and inline;
+multiple designated lectures follow the established collection count rule.
+Supporting examples/proofs form one subordinate gallery and always open the
+shared modal, even for one or two cards. Proof context, assignment-specific
+walkthroughs and all 13 IM1 recordings remain preserved. Pages without a
+primary lecture retain the one-large/two-medium/three-plus-gallery rule.
+The [66-page ledger](../audits/VIDEO-HIERARCHY.md) lists all 15 changed pages.
+
+Keypad fixes address MathLive host scrolling, hidden-source focus, IM1 card
+transforms, intrinsic field height, the broad multiplication Check minimum
+width, legacy input stacking and clipped continuation rows. Shared policy covers
+16 controllers; original failures were directly reproduced on multiplication,
+Power Rule, sequence formulas, basic integrals and legacy IM1 equation/interval
+inputs. No grader, translator, token mapping or answer-history contract changes.
+See [causes and measurements](../audits/KEYPAD-STABILITY.md).
+
+Mixed Derivatives retains authored quotient-simplification, derivative-order,
+implicit-differentiation, domain and complete-simplification instructions.
+The audit records 5,352 family/selector/contract groups; 93 changed records
+represent 47 distinct family/instruction combinations. All original question
+IDs, answers, solutions, variables and distributions are preserved. There is
+no genuine derivative-by-limit family in the existing review; that curriculum
+coverage gap is documented without manufacturing an answer/method mismatch.
+Standalone deliberately simplified directions are unchanged.
+See [the instruction ledger](../audits/COMPREHENSIVE-REVIEW-INSTRUCTIONS.md).
+
+[Full final audit and limitations](../audits/VIDEO-KEYPAD-REVIEW-CORRECTIONS.md)
+and [machine results](../audits/evidence/FINAL-QA.json) provide exact evidence,
+including the initial historical-source guard failure and its fresh all-pass
+rerun. YouTube responses are simulated; actual external availability/audio and
+universal physical-device/browser behavior are not claimed. Unit 6 and observed
+source/main refs are unchanged.
+
+Download the commit-specific ZIP linked in the final delivery response. Extract
+it, open a terminal beside `index.html`, run `py -m http.server 8000`, and open
+`http://localhost:8000/`. The local package contains all site pages/resources and
+pinned MathLive files. Normal MathJax CDN and YouTube use require internet.
+
+---
+
+The following material is retained for traceability. Its older 101/102 layout
+result and preserved-overflow limitation do not describe the corrected build.
+
+# Historical integration audit through 535527a
 
 This records the integration audit through checkpoint
 `535527a172b4a2e4c26d9cf970a6d061e7802849`. The subsequently authorized video,

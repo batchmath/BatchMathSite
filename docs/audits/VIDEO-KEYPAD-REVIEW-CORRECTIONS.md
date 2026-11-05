@@ -116,12 +116,74 @@ Prep semantic QA separately passes 5,500 questions across eleven engines.
 Static QA reports zero errors, warnings or broken references; the strict
 content/source guard permits only the exact authored-prompt helper change.
 
-## Remaining checkpoint D
+## Checkpoint D — final integration QA complete
 
-Run final shared Node, 138-route/default/legacy/missing-runtime, focused browser,
-full stability, video, static and preservation checks on the completed B/C
-source. Record exact results, verify protected branches/Unit 6, push the tested
-final checkpoint and deliver the complete test archive.
+Site implementation: `96309582a69ea7c8b38d51156ae75ea47baf65b2`.
+The final audit commit changes only documentation, evidence and test harnesses;
+all website/runtime/style files remain identical to that tested implementation.
+The delivery is pinned to the final pushed audit commit and is independently
+checked against every included Git blob.
+
+| Verification | Final result |
+|---|---|
+| Shared MathLive Node suites | **274/274**, zero failures/skips/cancellations |
+| Complete route sweep | **374/374 visits across 138 routes**: 118 default, 118 legacy, 118 missing-runtime and 20 specialized |
+| Broad keypad viewport probe | **118 editable default routes**, 708 actual ordinary-key activations |
+| Detailed stability | **130/130 cases**, 16 controllers, 27 URLs, 3,232 measured activations, zero page errors |
+| Focused functional browser suites | **132/132 checks**, 543 counted grader pairs, zero page errors |
+| All 34 IM1 overlap pages at 375/768/1280px | **102/102** layout and physical typing/focus checks, zero page errors |
+| Review instruction browser checks | **416/416**, all 93 changed records plus every actual selector transition, zero page errors |
+| Generated instruction audit | **144,100 questions / 99 engine contexts / 5,352 family-selector-contract records** |
+| Video presentation | **198 visits / 288 activations / 66 pages**, zero page errors |
+| Content preservation | **34 overlaps / 90 IM1 pages / 96 exact HTML + 15 guarded video changes**; PDFs unchanged |
+| Static/reference QA | **Zero errors, warnings and broken references**; 280 HTML pages, 290 PDFs |
+| Unit 6 and protected branches | Exact original tree `f50ff9c7c56ca6b02c93d8f8bb88299b37ef2c11`; all observed protected source/main refs unchanged |
+
+Ordinary-key maximum sampled movements are
+`scrollX=0px`,
+`scrollY=0px`, and
+`keypad document Y=0.0px`.
+Structural field reflow and intentional grading/validation are measured separately.
+The original multiplication source still fails all four regression controls for
+real movement/overflow, with no import or page errors. Its previously reported
+375→458px overflow is resolved: 375px now stays 375px. Requested widths,
+touch, desktop resizing and CSS zoom all pass. The previous integration's
+101/102 responsive result is historical; the current result is 102/102.
+
+The first final Node run passed 273/274: one historical Batch 7 source guard
+rejected the two authorized legacy focus routes. That guard now uses the same
+exact two-line normalization as the other preservation checks, only for
+`calculus-keypad.js`; all remaining source bytes and functional assertions are
+retained. A fresh complete rerun passes 274/274. Initial stability findings and
+all focused corrections remain traceable in the B evidence; final results are
+fresh runs, not relabeled earlier failures.
+
+Evidence: [machine summary](evidence/FINAL-QA.json),
+[Node run and attempt history](evidence/final-node-attempts.json),
+[route sweep](evidence/route-sweep-final-d.json),
+[full stability measurements](evidence/keypad-stability.json),
+[focused browser suites](evidence/final-focused-regressions/contracts-summary.json),
+[all overlap widths](evidence/final-overlap/overlap-responsive.json),
+[final video QA](evidence/video-final-d.json),
+[protected refs](evidence/protected-refs-final.json).
+
+No confirmed functional, layout or instruction-loss defect remains in the
+covered scope. The existing review has no genuine derivative-by-limit family;
+that curriculum gap is documented, with no invented question or changed answer.
+Chromium/touch and CSS-zoom emulation do not establish universal physical-device
+or browser coverage. YouTube transport is simulated: actual recording
+availability/audio is not verified. Numerical parameter sampling is finite,
+supplemented by exact wrapper/source/answer preservation comparisons.
+
+The complete `batchmath-mathlive-video-qa-corrections.zip` is created outside Git,
+with all site content, 280 HTML pages, 290 PDFs and the pinned MathLive runtime/
+fonts. QA tools, temporary artifacts and caches are excluded. The archive export policy
+also excludes developer tooling and machine QA evidence from GitHub commit ZIPs,
+while retaining every website page, resource and pinned runtime dependency. If direct file
+delivery is unavailable, the final response supplies a GitHub ZIP URL pinned to
+the exact tested final commit. Extract the site folder, open a terminal beside
+`index.html`, run `py -m http.server 8000`, then open `http://localhost:8000/`.
+Normal MathJax CDN/YouTube use requires internet.
 
 Unit 6 remains byte-identical to MathLive source
 `919ca1806f07e3cd2af552142926e7ca2b78e8d5`. No Claude branch is fetched or merged,

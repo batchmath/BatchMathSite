@@ -1,0 +1,4453 @@
+{
+  "results": [
+    {
+      "route": "im1/unit-1-review/topics/multiplication/practice/index.html",
+      "controller": "im1.mjs",
+      "course": "im1",
+      "fields": "#answer: literal numeric/decimal/fraction; original reduction and decimal rules",
+      "wideCoverage": false,
+      "width": 375,
+      "height": 480,
+      "mode": "mathlive",
+      "repeat": 1,
+      "actions": [
+        {
+          "label": "7",
+          "structural": false,
+          "before": {
+            "x": 0,
+            "y": 486,
+            "width": 375,
+            "height": 480,
+            "documentWidth": 458,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 480,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 35,
+                  "y": -40.296875,
+                  "width": 305,
+                  "height": 50.453125,
+                  "docX": 35,
+                  "docY": 445.703125
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 50.453125,
+            "pad": {
+              "x": 35,
+              "y": 20.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 506.15625
+            },
+            "padId": 1,
+            "question": {
+              "x": 35,
+              "y": -158.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 116.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 602.15625
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 486,
+              "width": 375,
+              "height": 480,
+              "documentWidth": 454,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 480,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 37.17173385620117,
+                    "y": -37.87554931640625,
+                    "width": 300.6565246582031,
+                    "height": 49.734649658203125,
+                    "docX": 37.17173385620117,
+                    "docY": 448.12445068359375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 49.734649658203125,
+              "pad": {
+                "x": 37.17173385620117,
+                "y": 21.7166748046875,
+                "width": 300.6565246582031,
+                "height": 170.536376953125,
+                "docX": 37.17173385620117,
+                "docY": 507.7166748046875
+              },
+              "padId": 1,
+              "question": {
+                "x": 37.17173385620117,
+                "y": -154.4261474609375,
+                "width": 300.6565246582031,
+                "height": 88.9493408203125,
+                "docX": 37.17173385620117,
+                "docY": 331.5738525390625
+              },
+              "check": {
+                "x": 276.510986328125,
+                "y": 116.34954833984375,
+                "width": 177.4366455078125,
+                "height": 33.51580810546875,
+                "docX": 276.510986328125,
+                "docY": 602.3495483398438
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 482,
+              "width": 375,
+              "height": 480,
+              "documentWidth": 457,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 480,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 35.7022590637207,
+                    "y": -35.511627197265625,
+                    "width": 303.5954895019531,
+                    "height": 51.2161865234375,
+                    "docX": 35.7022590637207,
+                    "docY": 446.4883728027344
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.2161865234375,
+              "pad": {
+                "x": 35.7022590637207,
+                "y": 25.65850830078125,
+                "width": 303.5954895019531,
+                "height": 172.203369140625,
+                "docX": 35.7022590637207,
+                "docY": 507.65850830078125
+              },
+              "padId": 1,
+              "question": {
+                "x": 35.7022590637207,
+                "y": -153.2015380859375,
+                "width": 303.5954895019531,
+                "height": 89.81884765625,
+                "docX": 35.7022590637207,
+                "docY": 328.7984619140625
+              },
+              "check": {
+                "x": 277.3810729980469,
+                "y": 121.2164306640625,
+                "width": 179.17111206054688,
+                "height": 33.84344482421875,
+                "docX": 277.3810729980469,
+                "docY": 603.2164306640625
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 448,
+              "width": 375,
+              "height": 480,
+              "documentWidth": 458,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 480,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 35.016963958740234,
+                    "y": -2.277923583984375,
+                    "width": 304.966064453125,
+                    "height": 51.447418212890625,
+                    "docX": 35.016963958740234,
+                    "docY": 445.7220764160156
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.447418212890625,
+              "pad": {
+                "x": 35.016963958740234,
+                "y": 59.168365478515625,
+                "width": 304.966064453125,
+                "height": 172.98080444335938,
+                "docX": 35.016963958740234,
+                "docY": 507.1683654785156
+              },
+              "padId": 1,
+              "question": {
+                "x": 35.016963958740234,
+                "y": -120.4991455078125,
+                "width": 304.966064453125,
+                "height": 90.224365234375,
+                "docX": 35.016963958740234,
+                "docY": 327.5008544921875
+              },
+              "check": {
+                "x": 277.7868347167969,
+                "y": 155.15771484375,
+                "width": 179.97998046875,
+                "height": 33.9962158203125,
+                "docX": 277.7868347167969,
+                "docY": 603.15771484375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 448,
+              "width": 375,
+              "height": 480,
+              "documentWidth": 458,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 480,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 35,
+                    "y": -2.296875,
+                    "width": 305,
+                    "height": 51.453125,
+                    "docX": 35,
+                    "docY": 445.703125
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 35,
+                "y": 59.15625,
+                "width": 305,
+                "height": 173,
+                "docX": 35,
+                "docY": 507.15625
+              },
+              "padId": 1,
+              "question": {
+                "x": 35,
+                "y": -120.53125,
+                "width": 305,
+                "height": 90.234375,
+                "docX": 35,
+                "docY": 327.46875
+              },
+              "check": {
+                "x": 277.796875,
+                "y": 155.15625,
+                "width": 180,
+                "height": 34,
+                "docX": 277.796875,
+                "docY": 603.15625
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        }
+      ],
+      "heldPointerTested": true,
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: question moved in document\n    at checkMovement (file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:66:45)\n    at press (file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:95:23)\n    at async run (file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:107:92)\n    at async file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:147:506\n    at async Promise.all (index 0)\n    at async file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:147:18"
+    },
+    {
+      "route": "im1/unit-1-review/topics/multiplication/practice/index.html",
+      "controller": "im1.mjs",
+      "course": "im1",
+      "fields": "#answer: literal numeric/decimal/fraction; original reduction and decimal rules",
+      "wideCoverage": false,
+      "width": 375,
+      "height": 667,
+      "mode": "mathlive",
+      "repeat": 1,
+      "actions": [
+        {
+          "label": "7",
+          "structural": false,
+          "before": {
+            "x": 0,
+            "y": 402,
+            "width": 375,
+            "height": 667,
+            "documentWidth": 458,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 35,
+                  "y": 43.703125,
+                  "width": 305,
+                  "height": 50.453125,
+                  "docX": 35,
+                  "docY": 445.703125
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 50.453125,
+            "pad": {
+              "x": 35,
+              "y": 104.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 506.15625
+            },
+            "padId": 1,
+            "question": {
+              "x": 35,
+              "y": -74.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 200.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 602.15625
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 402,
+              "width": 375,
+              "height": 667,
+              "documentWidth": 454,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 37.23232650756836,
+                    "y": 46.192047119140625,
+                    "width": 300.5353088378906,
+                    "height": 49.714569091796875,
+                    "docX": 37.23232650756836,
+                    "docY": 448.1920471191406
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 49.714569091796875,
+              "pad": {
+                "x": 37.23232650756836,
+                "y": 105.76025390625,
+                "width": 300.5353088378906,
+                "height": 170.467529296875,
+                "docX": 37.23232650756836,
+                "docY": 507.76025390625
+              },
+              "padId": 1,
+              "question": {
+                "x": 37.23232650756836,
+                "y": -70.31158447265625,
+                "width": 300.5353088378906,
+                "height": 88.91351318359375,
+                "docX": 37.23232650756836,
+                "docY": 331.68841552734375
+              },
+              "check": {
+                "x": 276.47509765625,
+                "y": 200.35498046875,
+                "width": 177.3651123046875,
+                "height": 33.5023193359375,
+                "docX": 276.47509765625,
+                "docY": 602.35498046875
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 402,
+              "width": 375,
+              "height": 667,
+              "documentWidth": 458,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 35.0477180480957,
+                    "y": 43.756500244140625,
+                    "width": 304.904541015625,
+                    "height": 51.43701171875,
+                    "docX": 35.0477180480957,
+                    "docY": 445.7565002441406
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.43701171875,
+              "pad": {
+                "x": 35.0477180480957,
+                "y": 105.19036865234375,
+                "width": 304.904541015625,
+                "height": 172.94586181640625,
+                "docX": 35.0477180480957,
+                "docY": 507.19036865234375
+              },
+              "padId": 1,
+              "question": {
+                "x": 35.0477180480957,
+                "y": -74.44088745117188,
+                "width": 304.904541015625,
+                "height": 90.20614624023438,
+                "docX": 35.0477180480957,
+                "docY": 327.5591125488281
+              },
+              "check": {
+                "x": 277.76861572265625,
+                "y": 201.16033935546875,
+                "width": 179.94366455078125,
+                "height": 33.98931884765625,
+                "docX": 277.76861572265625,
+                "docY": 603.1603393554688
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 402,
+              "width": 375,
+              "height": 667,
+              "documentWidth": 458,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 35,
+                    "y": 43.703125,
+                    "width": 305,
+                    "height": 51.453125,
+                    "docX": 35,
+                    "docY": 445.703125
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 35,
+                "y": 105.15625,
+                "width": 305,
+                "height": 173,
+                "docX": 35,
+                "docY": 507.15625
+              },
+              "padId": 1,
+              "question": {
+                "x": 35,
+                "y": -74.53125,
+                "width": 305,
+                "height": 90.234375,
+                "docX": 35,
+                "docY": 327.46875
+              },
+              "check": {
+                "x": 277.796875,
+                "y": 201.15625,
+                "width": 180,
+                "height": 34,
+                "docX": 277.796875,
+                "docY": 603.15625
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 402,
+              "width": 375,
+              "height": 667,
+              "documentWidth": 458,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 35,
+                    "y": 43.703125,
+                    "width": 305,
+                    "height": 51.453125,
+                    "docX": 35,
+                    "docY": 445.703125
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 35,
+                "y": 105.15625,
+                "width": 305,
+                "height": 173,
+                "docX": 35,
+                "docY": 507.15625
+              },
+              "padId": 1,
+              "question": {
+                "x": 35,
+                "y": -74.53125,
+                "width": 305,
+                "height": 90.234375,
+                "docX": 35,
+                "docY": 327.46875
+              },
+              "check": {
+                "x": 277.796875,
+                "y": 201.15625,
+                "width": 180,
+                "height": 34,
+                "docX": 277.796875,
+                "docY": 603.15625
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        }
+      ],
+      "heldPointerTested": true,
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: question moved in document\n    at checkMovement (file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:66:45)\n    at press (file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:95:23)\n    at async run (file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:107:92)\n    at async file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:147:506\n    at async Promise.all (index 1)\n    at async file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:147:18"
+    },
+    {
+      "route": "im1/unit-1-review/topics/multiplication/practice/index.html",
+      "controller": "im1.mjs",
+      "course": "im1",
+      "fields": "#answer: literal numeric/decimal/fraction; original reduction and decimal rules",
+      "wideCoverage": false,
+      "width": 375,
+      "height": 667,
+      "resizeFrom": 1280,
+      "mode": "mathlive",
+      "repeat": 1,
+      "actions": [
+        {
+          "label": "7",
+          "structural": false,
+          "before": {
+            "x": 0,
+            "y": 402,
+            "width": 375,
+            "height": 667,
+            "documentWidth": 458,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 35,
+                  "y": 43.703125,
+                  "width": 305,
+                  "height": 50.453125,
+                  "docX": 35,
+                  "docY": 445.703125
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 50.453125,
+            "pad": {
+              "x": 35,
+              "y": 104.15625,
+              "width": 305,
+              "height": 173,
+              "docX": 35,
+              "docY": 506.15625
+            },
+            "padId": 1,
+            "question": {
+              "x": 35,
+              "y": -74.53125,
+              "width": 305,
+              "height": 90.234375,
+              "docX": 35,
+              "docY": 327.46875
+            },
+            "check": {
+              "x": 277.796875,
+              "y": 200.15625,
+              "width": 180,
+              "height": 34,
+              "docX": 277.796875,
+              "docY": 602.15625
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 402,
+              "width": 375,
+              "height": 667,
+              "documentWidth": 454,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 37.23231506347656,
+                    "y": 46.1920166015625,
+                    "width": 300.535400390625,
+                    "height": 49.714569091796875,
+                    "docX": 37.23231506347656,
+                    "docY": 448.1920166015625
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 49.714569091796875,
+              "pad": {
+                "x": 37.23231506347656,
+                "y": 105.76022338867188,
+                "width": 300.535400390625,
+                "height": 170.46755981445312,
+                "docX": 37.23231506347656,
+                "docY": 507.7602233886719
+              },
+              "padId": 1,
+              "question": {
+                "x": 37.23231506347656,
+                "y": -70.3116455078125,
+                "width": 300.535400390625,
+                "height": 88.91351318359375,
+                "docX": 37.23231506347656,
+                "docY": 331.6883544921875
+              },
+              "check": {
+                "x": 276.47509765625,
+                "y": 200.35498046875,
+                "width": 177.36514282226562,
+                "height": 33.5023193359375,
+                "docX": 276.47509765625,
+                "docY": 602.35498046875
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 402,
+              "width": 375,
+              "height": 667,
+              "documentWidth": 457,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 35.37683868408203,
+                    "y": 44.12451171875,
+                    "width": 304.246337890625,
+                    "height": 51.325958251953125,
+                    "docX": 35.37683868408203,
+                    "docY": 446.12451171875
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.325958251953125,
+              "pad": {
+                "x": 35.37683868408203,
+                "y": 105.42578125,
+                "width": 304.246337890625,
+                "height": 172.572509765625,
+                "docX": 35.37683868408203,
+                "docY": 507.42578125
+              },
+              "padId": 1,
+              "question": {
+                "x": 35.37683868408203,
+                "y": -73.81771850585938,
+                "width": 304.246337890625,
+                "height": 90.01141357421875,
+                "docX": 35.37683868408203,
+                "docY": 328.1822814941406
+              },
+              "check": {
+                "x": 277.57373046875,
+                "y": 201.1885986328125,
+                "width": 179.55523681640625,
+                "height": 33.91595458984375,
+                "docX": 277.57373046875,
+                "docY": 603.1885986328125
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 402,
+              "width": 375,
+              "height": 667,
+              "documentWidth": 458,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 35,
+                    "y": 43.703125,
+                    "width": 305,
+                    "height": 51.453125,
+                    "docX": 35,
+                    "docY": 445.703125
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 35,
+                "y": 105.15625,
+                "width": 305,
+                "height": 173,
+                "docX": 35,
+                "docY": 507.15625
+              },
+              "padId": 1,
+              "question": {
+                "x": 35,
+                "y": -74.53125,
+                "width": 305,
+                "height": 90.234375,
+                "docX": 35,
+                "docY": 327.46875
+              },
+              "check": {
+                "x": 277.796875,
+                "y": 201.15625,
+                "width": 180,
+                "height": 34,
+                "docX": 277.796875,
+                "docY": 603.15625
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 402,
+              "width": 375,
+              "height": 667,
+              "documentWidth": 458,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 35,
+                    "y": 43.703125,
+                    "width": 305,
+                    "height": 51.453125,
+                    "docX": 35,
+                    "docY": 445.703125
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 35,
+                "y": 105.15625,
+                "width": 305,
+                "height": 173,
+                "docX": 35,
+                "docY": 507.15625
+              },
+              "padId": 1,
+              "question": {
+                "x": 35,
+                "y": -74.53125,
+                "width": 305,
+                "height": 90.234375,
+                "docX": 35,
+                "docY": 327.46875
+              },
+              "check": {
+                "x": 277.796875,
+                "y": 201.15625,
+                "width": 180,
+                "height": 34,
+                "docX": 277.796875,
+                "docY": 603.15625
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        }
+      ],
+      "heldPointerTested": true,
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: question moved in document\n    at checkMovement (file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:66:45)\n    at press (file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:95:23)\n    at async run (file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:107:92)\n    at async file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:147:506\n    at async Promise.all (index 1)\n    at async file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:147:18"
+    },
+    {
+      "route": "im1/unit-1-review/topics/multiplication/practice/index.html",
+      "controller": "im1.mjs",
+      "course": "im1",
+      "fields": "#answer: literal numeric/decimal/fraction; original reduction and decimal rules",
+      "wideCoverage": false,
+      "width": 375,
+      "height": 667,
+      "mode": "mathlive",
+      "touch": true,
+      "repeat": 1,
+      "actions": [
+        {
+          "label": "7",
+          "structural": false,
+          "before": {
+            "x": 0,
+            "y": 0,
+            "width": 455,
+            "height": 810,
+            "documentWidth": 455,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 40,
+                  "y": 160.984375,
+                  "width": 295,
+                  "height": 50.453125,
+                  "docX": 40,
+                  "docY": 160.984375
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 50.453125,
+            "pad": {
+              "x": 40,
+              "y": 221.4375,
+              "width": 295,
+              "height": 173,
+              "docX": 40,
+              "docY": 221.4375
+            },
+            "padId": 1,
+            "question": {
+              "x": 40,
+              "y": 133.40625,
+              "width": 295,
+              "height": 24.578125,
+              "docX": 40,
+              "docY": 133.40625
+            },
+            "check": {
+              "x": 274.796875,
+              "y": 317.4375,
+              "width": 180,
+              "height": 34,
+              "docX": 274.796875,
+              "docY": 317.4375
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        },
+        {
+          "label": "8",
+          "structural": false,
+          "before": {
+            "x": 0,
+            "y": 0,
+            "width": 455,
+            "height": 810,
+            "documentWidth": 455,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 40,
+                  "y": 160.984375,
+                  "width": 295,
+                  "height": 51.453125,
+                  "docX": 40,
+                  "docY": 160.984375
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 51.453125,
+            "pad": {
+              "x": 40,
+              "y": 222.4375,
+              "width": 295,
+              "height": 173,
+              "docX": 40,
+              "docY": 222.4375
+            },
+            "padId": 1,
+            "question": {
+              "x": 40,
+              "y": 133.40625,
+              "width": 295,
+              "height": 24.578125,
+              "docX": 40,
+              "docY": 133.40625
+            },
+            "check": {
+              "x": 274.796875,
+              "y": 318.4375,
+              "width": 180,
+              "height": 34,
+              "docX": 274.796875,
+              "docY": 318.4375
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        },
+        {
+          "label": "←",
+          "structural": false,
+          "before": {
+            "x": 0,
+            "y": 0,
+            "width": 455,
+            "height": 810,
+            "documentWidth": 455,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 40,
+                  "y": 160.984375,
+                  "width": 295,
+                  "height": 51.453125,
+                  "docX": 40,
+                  "docY": 160.984375
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 51.453125,
+            "pad": {
+              "x": 40,
+              "y": 222.4375,
+              "width": 295,
+              "height": 173,
+              "docX": 40,
+              "docY": 222.4375
+            },
+            "padId": 1,
+            "question": {
+              "x": 40,
+              "y": 133.40625,
+              "width": 295,
+              "height": 24.578125,
+              "docX": 40,
+              "docY": 133.40625
+            },
+            "check": {
+              "x": 274.796875,
+              "y": 318.4375,
+              "width": 180,
+              "height": 34,
+              "docX": 274.796875,
+              "docY": 318.4375
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        },
+        {
+          "label": "→",
+          "structural": false,
+          "before": {
+            "x": 0,
+            "y": 0,
+            "width": 455,
+            "height": 810,
+            "documentWidth": 455,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 40,
+                  "y": 160.984375,
+                  "width": 295,
+                  "height": 51.453125,
+                  "docX": 40,
+                  "docY": 160.984375
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 51.453125,
+            "pad": {
+              "x": 40,
+              "y": 222.4375,
+              "width": 295,
+              "height": 173,
+              "docX": 40,
+              "docY": 222.4375
+            },
+            "padId": 1,
+            "question": {
+              "x": 40,
+              "y": 133.40625,
+              "width": 295,
+              "height": 24.578125,
+              "docX": 40,
+              "docY": 133.40625
+            },
+            "check": {
+              "x": 274.796875,
+              "y": 318.4375,
+              "width": 180,
+              "height": 34,
+              "docX": 274.796875,
+              "docY": 318.4375
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        },
+        {
+          "label": "⌫",
+          "structural": false,
+          "before": {
+            "x": 0,
+            "y": 0,
+            "width": 455,
+            "height": 810,
+            "documentWidth": 455,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 40,
+                  "y": 160.984375,
+                  "width": 295,
+                  "height": 51.453125,
+                  "docX": 40,
+                  "docY": 160.984375
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 51.453125,
+            "pad": {
+              "x": 40,
+              "y": 222.4375,
+              "width": 295,
+              "height": 173,
+              "docX": 40,
+              "docY": 222.4375
+            },
+            "padId": 1,
+            "question": {
+              "x": 40,
+              "y": 133.40625,
+              "width": 295,
+              "height": 24.578125,
+              "docX": 40,
+              "docY": 133.40625
+            },
+            "check": {
+              "x": 274.796875,
+              "y": 318.4375,
+              "width": 180,
+              "height": 34,
+              "docX": 274.796875,
+              "docY": 318.4375
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        },
+        {
+          "label": "Clear",
+          "structural": true,
+          "before": {
+            "x": 0,
+            "y": 0,
+            "width": 455,
+            "height": 810,
+            "documentWidth": 455,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 40,
+                  "y": 160.984375,
+                  "width": 295,
+                  "height": 51.453125,
+                  "docX": 40,
+                  "docY": 160.984375
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 51.453125,
+            "pad": {
+              "x": 40,
+              "y": 222.4375,
+              "width": 295,
+              "height": 173,
+              "docX": 40,
+              "docY": 222.4375
+            },
+            "padId": 1,
+            "question": {
+              "x": 40,
+              "y": 133.40625,
+              "width": 295,
+              "height": 24.578125,
+              "docX": 40,
+              "docY": 133.40625
+            },
+            "check": {
+              "x": 274.796875,
+              "y": 318.4375,
+              "width": 180,
+              "height": 34,
+              "docX": 274.796875,
+              "docY": 318.4375
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 50.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 50.453125,
+              "pad": {
+                "x": 40,
+                "y": 221.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 221.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 317.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 317.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 50.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 50.453125,
+              "pad": {
+                "x": 40,
+                "y": 221.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 221.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 317.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 317.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 50.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 50.453125,
+              "pad": {
+                "x": 40,
+                "y": 221.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 221.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 317.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 317.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        },
+        {
+          "label": "7",
+          "structural": false,
+          "before": {
+            "x": 0,
+            "y": 0,
+            "width": 455,
+            "height": 810,
+            "documentWidth": 455,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 40,
+                  "y": 160.984375,
+                  "width": 295,
+                  "height": 50.453125,
+                  "docX": 40,
+                  "docY": 160.984375
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 50.453125,
+            "pad": {
+              "x": 40,
+              "y": 221.4375,
+              "width": 295,
+              "height": 173,
+              "docX": 40,
+              "docY": 221.4375
+            },
+            "padId": 1,
+            "question": {
+              "x": 40,
+              "y": 133.40625,
+              "width": 295,
+              "height": 24.578125,
+              "docX": 40,
+              "docY": 133.40625
+            },
+            "check": {
+              "x": 274.796875,
+              "y": 317.4375,
+              "width": 180,
+              "height": 34,
+              "docX": 274.796875,
+              "docY": 317.4375
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        },
+        {
+          "label": "8",
+          "structural": false,
+          "before": {
+            "x": 0,
+            "y": 0,
+            "width": 455,
+            "height": 810,
+            "documentWidth": 455,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 40,
+                  "y": 160.984375,
+                  "width": 295,
+                  "height": 51.453125,
+                  "docX": 40,
+                  "docY": 160.984375
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 51.453125,
+            "pad": {
+              "x": 40,
+              "y": 222.4375,
+              "width": 295,
+              "height": 173,
+              "docX": 40,
+              "docY": 222.4375
+            },
+            "padId": 1,
+            "question": {
+              "x": 40,
+              "y": 133.40625,
+              "width": 295,
+              "height": 24.578125,
+              "docX": 40,
+              "docY": 133.40625
+            },
+            "check": {
+              "x": 274.796875,
+              "y": 318.4375,
+              "width": 180,
+              "height": 34,
+              "docX": 274.796875,
+              "docY": 318.4375
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        },
+        {
+          "label": "←",
+          "structural": false,
+          "before": {
+            "x": 0,
+            "y": 0,
+            "width": 455,
+            "height": 810,
+            "documentWidth": 455,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 40,
+                  "y": 160.984375,
+                  "width": 295,
+                  "height": 51.453125,
+                  "docX": 40,
+                  "docY": 160.984375
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 51.453125,
+            "pad": {
+              "x": 40,
+              "y": 222.4375,
+              "width": 295,
+              "height": 173,
+              "docX": 40,
+              "docY": 222.4375
+            },
+            "padId": 1,
+            "question": {
+              "x": 40,
+              "y": 133.40625,
+              "width": 295,
+              "height": 24.578125,
+              "docX": 40,
+              "docY": 133.40625
+            },
+            "check": {
+              "x": 274.796875,
+              "y": 318.4375,
+              "width": 180,
+              "height": 34,
+              "docX": 274.796875,
+              "docY": 318.4375
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        },
+        {
+          "label": "→",
+          "structural": false,
+          "before": {
+            "x": 0,
+            "y": 0,
+            "width": 455,
+            "height": 810,
+            "documentWidth": 455,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 40,
+                  "y": 160.984375,
+                  "width": 295,
+                  "height": 51.453125,
+                  "docX": 40,
+                  "docY": 160.984375
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 51.453125,
+            "pad": {
+              "x": 40,
+              "y": 222.4375,
+              "width": 295,
+              "height": 173,
+              "docX": 40,
+              "docY": 222.4375
+            },
+            "padId": 1,
+            "question": {
+              "x": 40,
+              "y": 133.40625,
+              "width": 295,
+              "height": 24.578125,
+              "docX": 40,
+              "docY": 133.40625
+            },
+            "check": {
+              "x": 274.796875,
+              "y": 318.4375,
+              "width": 180,
+              "height": 34,
+              "docX": 274.796875,
+              "docY": 318.4375
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        },
+        {
+          "label": "⌫",
+          "structural": false,
+          "before": {
+            "x": 0,
+            "y": 0,
+            "width": 455,
+            "height": 810,
+            "documentWidth": 455,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 40,
+                  "y": 160.984375,
+                  "width": 295,
+                  "height": 51.453125,
+                  "docX": 40,
+                  "docY": 160.984375
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 51.453125,
+            "pad": {
+              "x": 40,
+              "y": 222.4375,
+              "width": 295,
+              "height": 173,
+              "docX": 40,
+              "docY": 222.4375
+            },
+            "padId": 1,
+            "question": {
+              "x": 40,
+              "y": 133.40625,
+              "width": 295,
+              "height": 24.578125,
+              "docX": 40,
+              "docY": 133.40625
+            },
+            "check": {
+              "x": 274.796875,
+              "y": 318.4375,
+              "width": 180,
+              "height": 34,
+              "docX": 274.796875,
+              "docY": 318.4375
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 51.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 51.453125,
+              "pad": {
+                "x": 40,
+                "y": 222.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 222.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 318.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 318.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        },
+        {
+          "label": "Clear",
+          "structural": true,
+          "before": {
+            "x": 0,
+            "y": 0,
+            "width": 455,
+            "height": 810,
+            "documentWidth": 455,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 40,
+                  "y": 160.984375,
+                  "width": 295,
+                  "height": 51.453125,
+                  "docX": 40,
+                  "docY": 160.984375
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 51.453125,
+            "pad": {
+              "x": 40,
+              "y": 222.4375,
+              "width": 295,
+              "height": 173,
+              "docX": 40,
+              "docY": 222.4375
+            },
+            "padId": 1,
+            "question": {
+              "x": 40,
+              "y": 133.40625,
+              "width": 295,
+              "height": 24.578125,
+              "docX": 40,
+              "docY": 133.40625
+            },
+            "check": {
+              "x": 274.796875,
+              "y": 318.4375,
+              "width": 180,
+              "height": 34,
+              "docX": 274.796875,
+              "docY": 318.4375
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 50.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 50.453125,
+              "pad": {
+                "x": 40,
+                "y": 221.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 221.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 317.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 317.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 50.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 50.453125,
+              "pad": {
+                "x": 40,
+                "y": 221.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 221.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 317.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 317.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 160.984375,
+                    "width": 295,
+                    "height": 50.453125,
+                    "docX": 40,
+                    "docY": 160.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 50.453125,
+              "pad": {
+                "x": 40,
+                "y": 221.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 221.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 133.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 133.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 317.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 317.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        },
+        {
+          "label": "Clear",
+          "structural": true,
+          "before": {
+            "x": 0,
+            "y": 0,
+            "width": 455,
+            "height": 810,
+            "documentWidth": 455,
+            "visualViewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 667,
+              "scale": 1
+            },
+            "fields": [
+              {
+                "tag": "MATH-FIELD",
+                "id": "",
+                "box": {
+                  "x": 40,
+                  "y": 158.984375,
+                  "width": 295,
+                  "height": 51.453125,
+                  "docX": 40,
+                  "docY": 158.984375
+                },
+                "readOnly": false
+              }
+            ],
+            "fieldHeight": 51.453125,
+            "pad": {
+              "x": 40,
+              "y": 220.4375,
+              "width": 295,
+              "height": 173,
+              "docX": 40,
+              "docY": 220.4375
+            },
+            "padId": 1,
+            "question": {
+              "x": 40,
+              "y": 131.40625,
+              "width": 295,
+              "height": 24.578125,
+              "docX": 40,
+              "docY": 131.40625
+            },
+            "check": {
+              "x": 274.796875,
+              "y": 316.4375,
+              "width": 180,
+              "height": 34,
+              "docX": 274.796875,
+              "docY": 316.4375
+            },
+            "focus": "MATH-FIELD",
+            "focusId": "",
+            "feedback": "",
+            "validationHeight": 0,
+            "validationContainerHeight": 0,
+            "nextAvailable": false,
+            "hookRestored": true
+          },
+          "dom": {
+            "addedPads": 0,
+            "removedPads": 0
+          },
+          "samples": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 158.984375,
+                    "width": 295,
+                    "height": 50.453125,
+                    "docX": 40,
+                    "docY": 158.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 50.453125,
+              "pad": {
+                "x": 40,
+                "y": 219.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 219.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 131.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 131.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 315.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 315.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 158.984375,
+                    "width": 295,
+                    "height": 50.453125,
+                    "docX": 40,
+                    "docY": 158.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 50.453125,
+              "pad": {
+                "x": 40,
+                "y": 219.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 219.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 131.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 131.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 315.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 315.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "width": 455,
+              "height": 810,
+              "documentWidth": 455,
+              "visualViewport": {
+                "x": 0,
+                "y": 0,
+                "width": 375,
+                "height": 667,
+                "scale": 1
+              },
+              "fields": [
+                {
+                  "tag": "MATH-FIELD",
+                  "id": "",
+                  "box": {
+                    "x": 40,
+                    "y": 158.984375,
+                    "width": 295,
+                    "height": 50.453125,
+                    "docX": 40,
+                    "docY": 158.984375
+                  },
+                  "readOnly": false
+                }
+              ],
+              "fieldHeight": 50.453125,
+              "pad": {
+                "x": 40,
+                "y": 219.4375,
+                "width": 295,
+                "height": 173,
+                "docX": 40,
+                "docY": 219.4375
+              },
+              "padId": 1,
+              "question": {
+                "x": 40,
+                "y": 131.40625,
+                "width": 295,
+                "height": 24.578125,
+                "docX": 40,
+                "docY": 131.40625
+              },
+              "check": {
+                "x": 274.796875,
+                "y": 315.4375,
+                "width": 180,
+                "height": 34,
+                "docX": 274.796875,
+                "docY": 315.4375
+              },
+              "focus": "MATH-FIELD",
+              "focusId": "",
+              "feedback": "",
+              "validationHeight": 0,
+              "validationContainerHeight": 0,
+              "nextAvailable": false,
+              "hookRestored": true
+            }
+          ]
+        }
+      ],
+      "physicalTyping": true,
+      "final": {
+        "x": 0,
+        "y": 0,
+        "width": 455,
+        "height": 810,
+        "documentWidth": 455,
+        "visualViewport": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 667,
+          "scale": 1
+        },
+        "fields": [
+          {
+            "tag": "MATH-FIELD",
+            "id": "",
+            "box": {
+              "x": 40,
+              "y": 158.984375,
+              "width": 295,
+              "height": 50.453125,
+              "docX": 40,
+              "docY": 158.984375
+            },
+            "readOnly": false
+          }
+        ],
+        "fieldHeight": 50.453125,
+        "pad": {
+          "x": 40,
+          "y": 219.4375,
+          "width": 295,
+          "height": 173,
+          "docX": 40,
+          "docY": 219.4375
+        },
+        "padId": 1,
+        "question": {
+          "x": 40,
+          "y": 131.40625,
+          "width": 295,
+          "height": 24.578125,
+          "docX": 40,
+          "docY": 131.40625
+        },
+        "check": {
+          "x": 274.796875,
+          "y": 315.4375,
+          "width": 180,
+          "height": 34,
+          "docX": 274.796875,
+          "docY": 315.4375
+        },
+        "focus": "MATH-FIELD",
+        "focusId": "",
+        "feedback": "",
+        "validationHeight": 0,
+        "validationContainerHeight": 0,
+        "nextAvailable": false,
+        "hookRestored": true
+      },
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: [{\"text\":\"Check\",\"left\":274.796875,\"right\":454.796875}]\n    at run (file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:129:10)\n    at async file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:147:506\n    at async Promise.all (index 0)\n    at async file:///workspace/BatchMathSite/tools/keypad-stability-qa.mjs:147:18"
+    }
+  ],
+  "errors": [],
+  "baselineRef": "9c395be",
+  "realMathJax": true,
+  "controllerCount": 1,
+  "routeCount": 1,
+  "actions": 16,
+  "note": "Viewport and document geometry sampled after actual pointer/touch activation. <=2px covers subpixel rounding/empty glyph metrics; structural changes allow only measured local field-height reflow, not unrelated movement. Root CSS zoom 125/150/200% and resizing are emulated Chromium checks."
+}

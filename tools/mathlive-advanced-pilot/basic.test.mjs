@@ -1,3 +1,4 @@
+import {withoutHiddenInputFocusRoutes} from '../integration/editor-source-guards.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -38,7 +39,7 @@ test('advanced translation preserves constants, precision, roots and unsupported
 test('production generators, graders and UI renderer match the verified Batch 7 checkpoint',()=>{
   const baseline='c2d6b9f9bc309e96787d390244e17c663b568d90';
   for(const name of ['ap-topic-generators.js','unit4-exact-answers.js','derivative-expression-checker.js','ap-topic-practice.js','unit5-separable.js','unit5-answers.js','unit5-ui.js','unit5-core.js','calculus-keypad.js']){
-    const old=execFileSync('git',['show',baseline+':assets/'+name],{cwd:root,encoding:'utf8',maxBuffer:8000000});assert.equal(fs.readFileSync(root+'assets/'+name,'utf8'),old,name);
+    const old=execFileSync('git',['show',baseline+':assets/'+name],{cwd:root,encoding:'utf8',maxBuffer:8000000});const current=fs.readFileSync(root+'assets/'+name,'utf8');assert.equal(name==='calculus-keypad.js'?withoutHiddenInputFocusRoutes(current):current,old,name);
   }
   if(results.length){fs.mkdirSync(root+'tools/mathlive-advanced-pilot/artifacts',{recursive:true});fs.writeFileSync(root+'tools/mathlive-advanced-pilot/artifacts/basic-math.json',JSON.stringify({families:results},null,2)+'\n');}
 });
