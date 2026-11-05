@@ -13,13 +13,14 @@
 .u6-axis{stroke:#8a8a8a;stroke-width:1.4}
 .u6-tick{fill:#bdbdbd;font-size:11px;font-family:inherit;text-anchor:middle}
 .u6-tick-y{text-anchor:end}
+.u6-tick-start{text-anchor:start} /* y labels when the y-axis is at or past the frame's left edge (v12.9.C) */
 .u6-shade{fill:rgba(255,212,0,.2);stroke:none}
 .u6-curve{fill:none;stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
 .u6-graph-f{stroke:#4fb3ff;stroke-width:2.6}
 .u6-rot{stroke:#ff8f93;stroke-width:2;stroke-dasharray:7 5}
 .u6-mark{fill:#f4f4f4}
 .u6-legend{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:.86rem;color:#ddd;margin-top:6px}
-.u6-key{display:inline-flex;align-items:center;gap:6px}
+.u6-key{display:inline-flex;align-items:center;gap:6px;white-space:nowrap} /* one legend entry never wraps inside itself (v12.9.C) */
 .u6-swatch{display:inline-block;width:22px;height:4px;border-radius:2px;background:#4fb3ff}
 .u6-swatch-rot{height:0;background:none;border-radius:0;border-top:3px dashed #ff8f93}
 .u6-swatch-f{background:#4fb3ff}

@@ -414,9 +414,34 @@ function problem({engine,family,tier,id,questionHtml,parts,calculator=false,data
 // ---------- figures ----------
 // A region figure: grid, axes, the region shaded, boundary curves, optional axis of rotation (dashed) and marks.
 const COLORS=['#4aa3ff','#ff6b6b','#7bd389','#f7b955','#c58cff'];
+// v12.9.C: the extent of a region's shaded pieces: each boundary is sampled on its piece and every local extreme is
+// refined (golden section), so a peak or trough between samples is not missed; marked points count too
+function regionExtent(R){
+ let x0=Infinity,x1=-Infinity,y0=Infinity,y1=-Infinity;
+ const see=(x,y)=>{if(Number.isFinite(x)&&Number.isFinite(y)){x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y);}};
+ const peak=(f,lo,hi,sgn)=>{const g=(Math.sqrt(5)-1)/2;let a=lo,b=hi;for(let k=0;k<60;k++){const c=b-g*(b-a),d=a+g*(b-a);if(sgn*f(c)>sgn*f(d))b=d;else a=c;}return (a+b)/2;};
+ // one boundary u = fn(t) for t in [a, b]; at(t, u) records the point in (x, y)
+ const scan=(fn,a,b,at)=>{const n=240,v=[];for(let i=0;i<=n;i++){const t=a+(b-a)*i/n,u=fn(t);v.push(u);at(t,u);}
+  for(let i=1;i<n;i++){const t0=a+(b-a)*(i-1)/n,t1=a+(b-a)*(i+1)/n;
+   if(v[i]>=v[i-1]&&v[i]>=v[i+1]){const t=peak(fn,t0,t1,1);at(t,fn(t));}
+   if(v[i]<=v[i-1]&&v[i]<=v[i+1]){const t=peak(fn,t0,t1,-1);at(t,fn(t));}}};
+ for(const p of R.xs||[]){const a=Math.min(p.a.v,p.b.v),b=Math.max(p.a.v,p.b.v);for(const fn of [p.top,p.bot])scan(fn.f,a,b,(t,u)=>see(t,u));}
+ if(!R.xs)for(const p of R.ys||[]){const a=Math.min(p.a.v,p.b.v),b=Math.max(p.a.v,p.b.v);for(const fn of [p.right,p.left])scan(fn.f,a,b,(t,u)=>see(u,t));}
+ for(const mk of R.marks||[])see(mk[0],mk[1]);
+ return x0<=x1&&y0<=y1?{x0,x1,y0,y1}:null;
+}
+// a nice grid step for a span (at most about 12 lines)
+const niceStep=span=>[1,2,5,10,20,50,100,200].find(t=>span/t<=12)||500;
 function figure(R,opt={}){
- // the axis of rotation is always inside the frame (with a margin), never only named in the legend
+ // v12.9.C: the frame holds every shaded piece (with its intersections and the extremes of its boundaries) with a
+ // modest padding, whatever fixed view the generator gave; a view that already holds it is kept as it is. The edge
+ // moves out to the next half grid step.
  let V={...R.view};
+ const G=regionExtent(R);
+ if(G){const fit=(lo,hi,vlo,vhi)=>{const span=Math.max(hi-lo,1e-9),pad=Math.max(0.25,0.06*span),inc=niceStep(Math.max(vhi,hi+pad)-Math.min(vlo,lo-pad))/2;
+   return[Math.min(vlo,Math.floor((lo-pad)/inc)*inc),Math.max(vhi,Math.ceil((hi+pad)/inc)*inc)];};
+  [V.xmin,V.xmax]=fit(G.x0,G.x1,V.xmin,V.xmax);[V.ymin,V.ymax]=fit(G.y0,G.y1,V.ymin,V.ymax);}
+ // the axis of rotation is always inside the frame (with a margin), never only named in the legend
  const axes=opt.axes||(opt.axis?[opt.axis]:[]); // v12.9.B: several axes (the same region about two lines)
  for(const a of axes){const c=a.c,m=0.6;if(a.type==='y'){V.ymin=Math.min(V.ymin,Math.floor(c-m));V.ymax=Math.max(V.ymax,Math.ceil(c+m));}else{V.xmin=Math.min(V.xmin,Math.floor(c-m));V.xmax=Math.max(V.xmax,Math.ceil(c+m));}}
  // uniform: one scale for both axes (circles stay round, distances are true); a very tall or very flat frame gets extra
@@ -432,8 +457,10 @@ function figure(R,opt={}){
  if(V.ymin<0&&V.ymax>0)parts.push(`<line x1="0" y1="${Y(0)}" x2="${W}" y2="${Y(0)}" class="u6-axis"/>`);
  if(V.xmin<0&&V.xmax>0)parts.push(`<line x1="${X(0)}" y1="0" x2="${X(0)}" y2="${hmax}" class="u6-axis"/>`);
  const lab=[],inside=(t,lo,hi)=>t>lo+0.3*step0&&t<hi-0.3*step0; // no label on the frame's edges
- for(let x=Math.ceil(V.xmin/step0)*step0;x<=V.xmax;x+=step0)if(x!==0&&inside(x,V.xmin,V.xmax))lab.push(`<text x="${X(x)}" y="${Math.min(hmax-3,+Y(0)+13)}" class="u6-tick">${x}</text>`);
- for(let y=Math.ceil(V.ymin/ystep)*ystep;y<=V.ymax;y+=ystep)if(y!==0&&y>V.ymin+0.3*ystep&&y<V.ymax-0.3*ystep)lab.push(`<text x="${Math.max(3,+X(0)-5)}" y="${+Y(y)+4}" class="u6-tick u6-tick-y">${y}</text>`);
+ // tick labels beside the axes; when an axis lies off the frame, its labels stay on the frame's nearer edge (v12.9.C)
+ const xLabY=Math.min(hmax-3,Math.max(13,+Y(0)+13)),yLabX=+X(0)-5,yLabStart=yLabX<22,yLabEnd=yLabX>W-3;
+ for(let x=Math.ceil(V.xmin/step0)*step0;x<=V.xmax;x+=step0)if(x!==0&&inside(x,V.xmin,V.xmax))lab.push(`<text x="${X(x)}" y="${xLabY.toFixed(1)}" class="u6-tick">${x}</text>`);
+ for(let y=Math.ceil(V.ymin/ystep)*ystep;y<=V.ymax;y+=ystep)if(y!==0&&y>V.ymin+0.3*ystep&&y<V.ymax-0.3*ystep)lab.push(yLabStart?`<text x="${Math.max(4,+X(0)+5).toFixed(1)}" y="${+Y(y)+4}" class="u6-tick u6-tick-start">${y}</text>`:`<text x="${yLabEnd?W-3:yLabX}" y="${+Y(y)+4}" class="u6-tick u6-tick-y">${y}</text>`);
  // shading
  if(R.xs&&!opt.noShade)for(const p of R.xs){const pts=[];for(let i=0;i<=60;i++){const t=p.a.v+(p.b.v-p.a.v)*i/60;pts.push(`${X(t)},${Y(p.top.f(t))}`);}for(let i=60;i>=0;i--){const t=p.a.v+(p.b.v-p.a.v)*i/60;pts.push(`${X(t)},${Y(p.bot.f(t))}`);}parts.push(`<polygon points="${pts.join(' ')}" class="u6-shade"/>`);}
  else if(R.ys&&!opt.noShade)for(const p of R.ys){const pts=[];for(let i=0;i<=60;i++){const t=p.a.v+(p.b.v-p.a.v)*i/60;pts.push(`${X(p.right.f(t))},${Y(t)}`);}for(let i=60;i>=0;i--){const t=p.a.v+(p.b.v-p.a.v)*i/60;pts.push(`${X(p.left.f(t))},${Y(t)}`);}parts.push(`<polygon points="${pts.join(' ')}" class="u6-shade"/>`);}

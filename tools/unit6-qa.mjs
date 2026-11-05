@@ -145,6 +145,30 @@ for(const fam of ['graph_derivative','graph_accum'])for(const tier of ['intermed
 }
 stats.graphProblems=graphs;
 
+// ---------- 5b. graph fit (v12.9.C) ----------
+// every figure of every family keeps its shaded region, marked points, slice and radius end points, axes of rotation
+// and the graph of f inside the frame with a margin; no tick reads 0
+{const fams=[[W.BatchMathUnit6Area,'make','FAMILIES'],[W.BatchMathUnit6Area,'makeY','FAMILIES_Y'],[W.BatchMathUnit6Volume,'makeCS','FAMILIES_CS'],[W.BatchMathUnit6Volume,'makeSolid','FAMILIES_SOLID'],[FRQ,'make','FAMILIES']];
+ const kt=f=>f.calc||(f.calculator?{calculator:f.tiers,noncalculator:[]}:{calculator:[],noncalculator:f.tiers});let figs=0;
+ for(const [E,mk,FK] of fams)for(const [fam,f] of Object.entries(E[FK]))for(const kind of ['calculator','non-calculator'])for(const tier of kt(f)[kind==='calculator'?'calculator':'noncalculator'])for(let i=0;i<8;i++){
+  seed(i*977+fam.length*13+tier.length);let p;try{p=E[mk]({family:fam,tier,calc:kind});}catch(e){continue;}
+  for(const html of [p.questionHtml,...p.parts.map(q=>q.explanation)])for(const m of String(html).matchAll(/<svg viewBox="0 0 ([\d.]+) ([\d.]+)"[^>]*class="u6-svg"[^>]*>([\s\S]*?)<\/svg>/g)){figs++;
+   const Wd=+m[1],Hd=+m[2],b=m[3],mx=0.02*Wd,my=0.02*Hd,pts=[];
+   for(const g of b.matchAll(/<polygon points="([^"]+)" class="u6-shade"\/>/g))for(const pt of g[1].trim().split(/\s+/))pts.push(pt.split(',').map(Number));
+   for(const g of b.matchAll(/<circle cx="([-\d.]+)" cy="([-\d.]+)" r="[\d.]+" class="u6-(?:mark|slice-end|axis-pt|radius-end)"\/>/g))pts.push([+g[1],+g[2]]);
+   for(const g of b.matchAll(/<path d="([^"]+)" class="u6-curve u6-graph-f"\/>/g)){const v=(g[1].match(/-?\d+(?:\.\d+)?/g)||[]).map(Number);for(let k=0;k+1<v.length;k+=2)pts.push([v[k],v[k+1]]);}
+   for(const g of b.matchAll(/<line x1="([-\d.]+)" y1="([-\d.]+)" x2="([-\d.]+)" y2="([-\d.]+)" class="u6-rot"\/>/g))if(g[2]===g[4])pts.push([Wd/2,+g[2]]);else pts.push([+g[1],Hd/2]);
+   const out=pts.find(([x,y])=>!(x>=mx&&x<=Wd-mx&&y>=my&&y<=Hd-my));
+   if(out)fail(`${p.id}: graph cut off at (${out[0]}, ${out[1]}) in a ${Wd}x${Hd} frame`);
+   if(/class="u6-tick[^"]*">0</.test(b))fail(`${p.id}: a tick labelled 0`);}}
+ // the reported case (teacher testing of v12.9.B): y = x^3 - 4x + 3 and y = -x^3 + 4x + 3, lobes reaching 3 ± 3.079
+ let cubic=null;for(let s=1;s<20000&&!cubic;s++){seed(s);const p=W.BatchMathUnit6Area.make({family:'between_enclosed',tier:'intermediate',calc:'non-calculator'});if(p.id.includes('y=x^{3} - 4x + 3|y=-x^{3} + 4x + 3'))cubic=p;}
+ if(!cubic)fail('graph fit: the reported cubic case was not generated');
+ else{const m=[cubic.questionHtml,...cubic.parts.map(q=>q.explanation)].join('').match(/<svg viewBox="0 0 ([\d.]+) ([\d.]+)"[^>]*class="u6-svg"[^>]*>([\s\S]*?)<\/svg>/);
+  const Hd=m?+m[2]:0,ys=m?[...m[3].matchAll(/<polygon points="([^"]+)" class="u6-shade"\/>/g)].flatMap(g=>g[1].trim().split(/\s+/).map(pt=>+pt.split(',')[1])):[];
+  if(!ys.length||Math.min(...ys)<0.02*Hd||Math.max(...ys)>0.98*Hd)fail(`graph fit: the reported cubic case is cut off (${Math.min(...ys)}..${Math.max(...ys)} of ${Hd})`);}
+ stats.graphFit=figs;}
+
 // ---------- 6. review distributions ----------
 const want={'non-calculator':{area:14,area_y:10,cross_sections:12,washers:12,shells:9,frq_region:18,frq_graph:20,piecewise:5},calculator:{area:20,cross_sections:18,solids:27,frq_region:35}};
 for(const calc of ['non-calculator','calculator']){const count={},tiers={};const n=1200;
