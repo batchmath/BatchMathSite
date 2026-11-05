@@ -11,13 +11,12 @@ function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(path.join(dir, e.name)) : [path.join(dir, e.name)]);
 }
 const html = courses.flatMap(course => walk(path.join(root, course))).filter(p => p.endsWith('.html'));
-// Integration scope: keep Unit 6 byte-for-byte at the MathLive source checkpoint.
-// Report deferred pages explicitly; their legacy UI is not a standard rollout pass.
-const unit6Prefix = 'ap-calculus/unit-6-applications-integration/';
+// Unit 6 was deferred until its independent corrections were ready. In the Unit 6 / MathLive / video integration
+// test branch its five topic pages adopt the approved content-source video markup, so every course page is in scope.
 const relative = p => path.relative(root, p).replaceAll(path.sep, '/');
 const hasVideo = p => /youtube\.com\/embed|data-video-id=/.test(fs.readFileSync(p, 'utf8'));
-const deferredPages = html.filter(p => relative(p).startsWith(unit6Prefix) && hasVideo(p)).map(relative);
-const inScopeHtml = html.filter(p => !relative(p).startsWith(unit6Prefix));
+const deferredPages = [];
+const inScopeHtml = html;
 const pages = inScopeHtml.filter(hasVideo).map(relative);
 const standardPages = pages.filter(p => fs.readFileSync(path.join(root, p), 'utf8').includes('data-bm-videos'));
 const im1Root = '/im1/unit-2-algebraic-operations-equations-inequalities/topics/';
@@ -206,6 +205,15 @@ try {
   assert.deepEqual(await page.locator('[data-video-role="lecture"] [data-video-id]').evaluateAll(xs => xs.map(x => x.dataset.videoId)), ['73RKQ9ybsDc']);
   assert.deepEqual(await page.locator('[data-video-role="supporting"] [data-video-id]').evaluateAll(xs => xs.map(x => x.dataset.videoId)), ['RhxU25eA1a8', 'uDWcP2R8UMo', 'JbPkKwquxm0']);
   assert.equal(await page.locator('.hw-video-button').count(), 6);
+  // Unit 6 (integrated): lecture videos stay prominent; each Additional Example joins the supporting gallery.
+  for (const [topic, lecture, supporting] of [['area-below-and-between-curves', ['96SD-qmkfbo'], ['sUXZa-abzPk']], ['volume-by-cross-sections', ['fhoEYkbq8Mo'], ['Pi8982b2TpA']]]) {
+    await page.goto(base + '/ap-calculus/unit-6-applications-integration/topics/' + topic + '/');
+    assert.deepEqual(await page.locator('[data-video-role="lecture"] [data-video-id]').evaluateAll(xs => xs.map(x => x.dataset.videoId)), lecture);
+    assert.deepEqual(await page.locator('[data-video-role="supporting"] [data-video-id]').evaluateAll(xs => xs.map(x => x.dataset.videoId)), supporting);
+    report.unit6Checks = (report.unit6Checks || 0) + 1;
+  }
+  await page.goto(base + '/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/');
+  assert.deepEqual(await page.locator('[data-bm-videos] [data-video-id]').evaluateAll(xs => xs.map(x => x.dataset.videoId)), ['9QYUomuXLpw', 'Rxt7cIOK6mc', 'XvxqMcRx7-8']);
   await page.goto(base + '/ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/');
   const review = page.locator('.review-video-button').first();
   await review.click(); assert.equal(await review.getAttribute('aria-expanded'), 'true');
@@ -234,7 +242,7 @@ try {
   console.log('PASS: permanent video standard, every collection/card, approved titles/order, keyboard/focus, modal close/stop, responsive sizing, intentional offsets, and specialized controls.');
   console.log(JSON.stringify(report, null, 2));
   console.log('YouTube responses simulated for UI checks. External network playback is not verified.');
-  console.log(`Deferred Unit 6: ${deferredPages.length} video pages; no integrated rollout coverage claimed.`);
+  console.log('Unit 6: integrated; its video pages are audited with every other page.');
 } finally {
   await browser?.close();
   await new Promise(resolve => server.close(resolve));

@@ -1,5 +1,9 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import fs from 'node:fs';
 import {exactList,intervalsWithNone,roundedNumber} from '../../assets/mathlive/structured-contracts.mjs';import {engine,root} from './staged-engine.mjs';import {stagedProfiles,stagedKeypads} from '../../assets/mathlive/staged-profiles.mjs';
+// ap-topic-generators.js carries one approved Unit 6 display change (v12.9.B checkpoint 2, 0c348c8: x, not 1x, in the
+// piecewise generator); it is otherwise the MathLive baseline. Every other file is compared with its own baseline.
+const UNIT5_RELABELS={'ap-calculus/unit-5-differential-equations/topics/exponential-growth-and-decay-interest-newton-s-law-of-cooling/practice/index.html':'e966397'};
+const UNIT6_GENERATORS='0c348c88860efd5b4c9e368fe4a1269140172331';
 const e=engine(),a4=e.b.BatchMathUnit4Answers,a5=e.b.BatchMathUnit5Answers;
 test('lists retain exactness, order, duplicates, separators, labels and plus/minus without solving',()=>{const spec={kind:'exact-list',values:['1-sqrt(2)','1+sqrt(2)']};
  for(const tex of ['1\\pm\\sqrt{2}','1-\\sqrt{2};1+\\sqrt{2}','\\left\\lbrace1-\\sqrt{2},1+\\sqrt{2}\\right\\rbrace'])assert.equal(a4.check(exactList(tex,{doesNotApply:true}).input,spec).ok,true,tex);
@@ -31,4 +35,10 @@ test('new profile controls cover generated grammar and accepted evaluation forms
  assert.equal(a5.check('0.5',{kind:'exact',value:.5}).ok,true);
  assert.equal(a5.check('0.5*x^2+C',{kind:'general',expression:'x^2/2'}).ok,false);
 });
-test('Batch 2 changes no generators, graders, selectors or renderer code',()=>{for(const f of ['ap-topic-generators','ap-topic-practice','unit4-exact-answers','unit5-core','unit5-answers','unit5-ui','unit5-basic','unit5-growth','unit5-motion','unit5-rate','unit5-slope-fields'])assert.equal(fs.readFileSync(root+'assets/'+f+'.js','utf8'),execFileSync('git',['show','a3c8c3d:assets/'+f+'.js'],{cwd:root,encoding:'utf8',maxBuffer:8000000}));const routes=JSON.parse(fs.readFileSync(root+'tools/mathlive-sitewide/staged-routes.json'));for(const r of routes){const before=execFileSync('git',['show','a3c8c3d:'+r.path],{cwd:root,encoding:'utf8'}),after=fs.readFileSync(root+r.path,'utf8');const inline=s=>[...s.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(m=>!m[1].includes('src=')).map(x=>x[2]);assert.deepEqual(inline(after),inline(before));}});
+test('Batch 2 changes no generators, graders, selectors or renderer code',()=>{for(const f of ['ap-topic-generators','ap-topic-practice','unit4-exact-answers','unit5-core','unit5-answers','unit5-ui','unit5-basic','unit5-growth','unit5-motion','unit5-rate','unit5-slope-fields'])assert.equal(fs.readFileSync(root+'assets/'+f+'.js','utf8'),execFileSync('git',['show',(f==='ap-topic-generators'?UNIT6_GENERATORS:'a3c8c3d')+':assets/'+f+'.js'],{cwd:root,encoding:'utf8',maxBuffer:8000000}));const routes=JSON.parse(fs.readFileSync(root+'tools/mathlive-sitewide/staged-routes.json'));for(const r of routes){const before=execFileSync('git',['show','a3c8c3d:'+r.path],{cwd:root,encoding:'utf8'}),after=fs.readFileSync(root+r.path,'utf8');const inline=s=>[...s.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(m=>!m[1].includes('src=')).map(x=>x[2]);
+ // An approved non-MathLive relabel (v12.9.A, e966397: Growth and Decay "Calculator Practice") changed this page's
+ // structured data. A script MathLive left as on main must equal that approved version; a script MathLive changed
+ // must equal the MathLive baseline. Every other route is compared exactly as before.
+ let expected=inline(before);const relabel=UNIT5_RELABELS[r.path];
+ if(relabel){const main=inline(execFileSync('git',['show','26ec4f15185c37f9e8843e96a09d583b47babcdf:'+r.path],{cwd:root,encoding:'utf8'})),approved=inline(execFileSync('git',['show',relabel+':'+r.path],{cwd:root,encoding:'utf8'}));expected=expected.map((x,i)=>x===main[i]?approved[i]:x);}
+ assert.deepEqual(inline(after),expected);}});

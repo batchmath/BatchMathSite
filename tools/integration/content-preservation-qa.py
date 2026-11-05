@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 MATHLIVE = '919ca1806f07e3cd2af552142926e7ca2b78e8d5'
 CONTENT = 'bba32f929d6630d096bc4510ceafd586ab8c4a53'
 UNIT6 = 'ap-calculus/unit-6-applications-integration/'
+UNIT6_APPROVED = 'e265804f440b2e521de00ecff0f6bc33118a12f1'  # Unit 6 corrections (v12.9.B and the graph fix)
 
 
 def git(*args):
@@ -94,7 +95,8 @@ def verify():
             assert outside(final) == outside(expected), name + ': non-video content changed'
             authorized_video.append(name)
         else:
-            assert final == expected, name
+            # exact, apart from an approved v12.9.A/B practice launch-row relabel (Unit 5 Growth: Calculator Practice)
+            assert final == video_audit['approved_launch_rows'](expected, name), name
             exact_content.append(name)
     im1_pages = sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / 'im1').rglob('*.html'))
     for name in im1_pages:
@@ -102,7 +104,11 @@ def verify():
         assert final.links == expected.links, name + ': resource or navigation href differs'
         assert final.headings == expected.headings, name + ': content heading differs'
         assert not any(link and re.search(r'(?:^|[/_-])notes?(?:[/_.-]|$)', link, re.I) for link in final.links), name + ': notes link restored'
-    assert git('diff', MATHLIVE, '--', UNIT6) == '', 'Unit 6 differs from exact MathLive base'
+    # Unit 6 comes from the approved Unit 6 corrections; only its five topic video pages adopt the content source's
+    # video markup (verified above by the video audit). Nothing else in the Unit 6 tree differs from that source.
+    unit6_changed = set(git('diff', '--name-only', UNIT6_APPROVED, '--', UNIT6).splitlines())
+    unit6_video = {UNIT6 + 'topics/' + t + '/index.html' for t in ['area-below-and-between-curves', 'finding-area-in-terms-of-y', 'integrals-on-piecewise-defined-functions', 'solids-of-revolution', 'volume-by-cross-sections']}
+    assert unit6_changed <= unit6_video, sorted(unit6_changed - unit6_video)
     assert git('diff', MATHLIVE, '--', '*.pdf') == '', 'Underlying PDFs changed'
     assert git('diff', MATHLIVE, '--', 'assets/mathlive', 'assets/im1-*.js') == '', 'MathLive/IM1 code assets changed'
     report = {'ok': True, 'mathliveSource': MATHLIVE, 'contentSource': CONTENT,
@@ -111,8 +117,7 @@ def verify():
               'authorizedVideoLayoutHtml': authorized_video,
               'approvedNonoverlapContentHtmlVerified': len(exact_content) + len(authorized_video),
               'im1PagesChecked': len(im1_pages), 'studentNotesLinks': 0,
-              'pdfsUnchanged': True, 'unit6TreeUnchanged': True,
-              'unit6Tree': git('rev-parse', MATHLIVE + ':' + UNIT6.rstrip('/')).strip()}
+              'pdfsUnchanged': True, 'unit6Source': UNIT6_APPROVED, 'unit6VideoPagesAdopted': len(unit6_video)}
     return report
 
 

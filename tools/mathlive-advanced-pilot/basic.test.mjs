@@ -4,6 +4,9 @@ import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {engine,root,rng,slugs} from './engine.mjs';
 import {translateAdvancedExpression,batchmathToLatex} from '../../assets/mathlive/answer-adapter.mjs';
+// ap-topic-generators.js carries one approved Unit 6 display change (v12.9.B checkpoint 2, 0c348c8: x, not 1x, in the
+// piecewise generator); it is otherwise the MathLive baseline. Every other file is compared with its own baseline.
+const UNIT6_GENERATORS='0c348c88860efd5b4c9e368fe4a1269140172331';
 const w=engine(),weights=w.BatchMathUnit4FinalFour.W.basic;
 const families=Array.isArray(weights)?weights.map(x=>x[0]):Object.keys(weights);
 export {families};
@@ -38,7 +41,7 @@ test('advanced translation preserves constants, precision, roots and unsupported
 test('production generators, graders and UI renderer match the verified Batch 7 checkpoint',()=>{
   const baseline='c2d6b9f9bc309e96787d390244e17c663b568d90';
   for(const name of ['ap-topic-generators.js','unit4-exact-answers.js','derivative-expression-checker.js','ap-topic-practice.js','unit5-separable.js','unit5-answers.js','unit5-ui.js','unit5-core.js','calculus-keypad.js']){
-    const old=execFileSync('git',['show',baseline+':assets/'+name],{cwd:root,encoding:'utf8',maxBuffer:8000000});assert.equal(fs.readFileSync(root+'assets/'+name,'utf8'),old,name);
+    const old=execFileSync('git',['show',(name==='ap-topic-generators.js'?UNIT6_GENERATORS:baseline)+':assets/'+name],{cwd:root,encoding:'utf8',maxBuffer:8000000});assert.equal(fs.readFileSync(root+'assets/'+name,'utf8'),old,name);
   }
   if(results.length){fs.mkdirSync(root+'tools/mathlive-advanced-pilot/artifacts',{recursive:true});fs.writeFileSync(root+'tools/mathlive-advanced-pilot/artifacts/basic-math.json',JSON.stringify({families:results},null,2)+'\n');}
 });
