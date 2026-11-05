@@ -174,10 +174,10 @@ for(const [page,slug,calc,eng,modes] of WIRED){const f=`${U6}${page}/index.html`
  for(const head of ['/assets/derivative-expression-checker.js','/assets/unit4-exact-answers.js','/assets/calculus-keypad.js','/assets/ap-topic-generators.js'])if(!s.includes(head)||s.indexOf(head)>s.indexOf('/assets/unit5-core.js'))fail(`${page}: ${head} missing or after the engines`);
  for(const css of ['/assets/calculus-keypad.css','/assets/unit5.css','/assets/unit6.css'])if(!h.includes(`<link rel="stylesheet" href="${css}">`))fail(`${page}: ${css} missing`);
  const conf=JSON.parse(h.match(/window\.BM_TOPIC_PRACTICE=(\{.*?\});/)[1]);
- if(conf.slug!==slug||(conf.calculator||null)!==calc||conf.generatorVersion!=='12.9.A')fail(`${page}: page config ${JSON.stringify(conf)}`);
+ if(conf.slug!==slug||(conf.calculator||null)!==calc||conf.generatorVersion!=='12.9.B')fail(`${page}: page config ${JSON.stringify(conf)}`);
  const opts=[...(h.match(/<select id="u6Mode"[^>]*>(.*?)<\/select>/)||[,''])[1].matchAll(/value="([^"]+)"/g)].map(m=>m[1]);
  if(JSON.stringify(modes?opts:null)!==JSON.stringify(modes||(opts.length?opts:null)))fail(`${page}: Practice Types ${opts} (expected ${modes})`);
- if(!/generatorVersion:"12\.9\.A"/.test(h))fail(`${page}: analytics generator version`);
+ if(!/generatorVersion:"12\.9\.B"/.test(h))fail(`${page}: analytics generator version`);
  if(calc&&!sitemap.includes(`/${U6}${page}/`))fail(`${page}: not in the sitemap`);
  if(calc==='calculator'&&!h.includes('calculator-active-note'))fail(`${page}: no calculator note`);if(calc!=='calculator'&&h.includes('calculator-active-note'))fail(`${page}: calculator note on a non-calculator page`);}
 for(const page of ['area-below-and-between-curves/practice','volume-by-cross-sections/practice','solids-of-revolution/practice','comprehensive-review/assignment-practice']){

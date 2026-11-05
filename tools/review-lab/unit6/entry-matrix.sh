@@ -5,9 +5,10 @@
 N="${1:-6}"; OUT="${2:-$REVIEW_HOME/out/unit6/entry}"; mkdir -p "$OUT"; cd "$REPO"
 T=ap-calculus/unit-6-applications-integration/topics
 runs=(
- "$T/area-below-and-between-curves/non-calculator-practice:mixed under_curve between"
+ "$T/area-below-and-between-curves/non-calculator-practice:mixed under_curve between choose"
  "$T/area-below-and-between-curves/calculator-practice:mixed under_curve between"
  "$T/finding-area-in-terms-of-y/practice:"
+ "$T/integrals-on-piecewise-defined-functions/practice:"
  "$T/volume-by-cross-sections/non-calculator-practice:mixed perp_x perp_y"
  "$T/volume-by-cross-sections/calculator-practice:mixed perp_x perp_y"
  "$T/solids-of-revolution/non-calculator-practice:mixed disks_washers shells"

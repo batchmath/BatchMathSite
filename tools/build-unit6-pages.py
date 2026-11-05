@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parent.parent
 UNIT = 'unit-6-applications-integration'
 U6 = ROOT / 'ap-calculus' / UNIT / 'topics'
 SITE = 'https://batchmath.net'
-VERSION = '12.9.A'
+VERSION = '12.9.B'
 COMMON_HEAD = ['/assets/derivative-expression-checker.js', '/assets/unit4-exact-answers.js', '/assets/calculus-keypad.js']
 COMMON_BODY = ['/assets/unit5-core.js', '/assets/unit5-answers.js', '/assets/unit5-ui.js', '/assets/unit6-core.js', '/assets/unit6-ui.js', '/assets/unit6-regions.js']
 STYLES = ['/assets/calculus-keypad.css', '/assets/unit5.css', '/assets/unit6.css']
@@ -30,8 +30,9 @@ AREA_MODES = [('mixed', 'All Problems'), ('under_curve', 'Area Under a Curve'), 
 AREA_MODES_NONCALC = AREA_MODES + [('choose', 'Choosing dx or dy')]
 CS_MODES = [('mixed', 'All Problems'), ('perp_x', 'Perpendicular to the x-axis'), ('perp_y', 'Perpendicular to the y-axis')]
 SOLID_MODES = [('mixed', 'All Problems'), ('disks_washers', 'Disks and Washers'), ('shells', 'Cylindrical Shells')]
-REVIEW_NONCALC = [('mixed', 'All Review Problems'), ('frq_region', 'Area and Volume Free Response'), ('frq_graph', 'Graph Free Response'), ('short', 'Shorter Problems')]
-REVIEW_CALC = [('mixed', 'All Review Problems'), ('frq_region', 'Area and Volume Free Response'), ('short', 'Shorter Problems')]
+# v12.9.B: the multipart groups renamed (labels only; the values frq_region and frq_graph are unchanged)
+REVIEW_NONCALC = [('mixed', 'All Review Problems'), ('frq_region', 'Area & Volume — Multi-Part Practice'), ('frq_graph', 'Graph Analysis & Accumulation — Multi-Part Practice'), ('short', 'Shorter Problems')]
+REVIEW_CALC = [('mixed', 'All Review Problems'), ('frq_region', 'Area & Volume — Multi-Part Practice'), ('short', 'Shorter Problems')]
 
 def two(topic, title, scripts, modes, noncalc, calc, seo=None, noncalc_modes=None):
     base = topic.replace('-', '_')
@@ -63,11 +64,11 @@ PAGES = [
     dict(topic='comprehensive-review', page='non-calculator-practice', source='assignment-practice', calc='non-calculator', slug='unit6-comprehensive-review',
          analytics_slug='unit6_assignment_review_noncalculator', title='Applications of Integration', label='Non-Calculator Review', engine_id='ap_unit6_assignment_review_noncalculator',
          scripts=REVIEW, modes=REVIEW_NONCALC,
-         description='No calculator. A review of Unit 6: area in terms of x and of y, cross sections, disks and washers, shells, multipart area and volume free-response problems, graph free-response problems (functions defined by integrals of graphs made of segments and circles) and piecewise integrals, from short skills to a share of challenging problems.'),
+         description='No calculator. A review of Unit 6: area in terms of x and of y, cross sections, disks and washers, shells, area and volume multi-part problems, graph analysis and accumulation multi-part problems (functions defined by integrals of graphs made of segments and circles) and piecewise integrals, from short skills to a share of challenging problems.'),
     dict(topic='comprehensive-review', page='calculator-practice', source='assignment-practice', calc='calculator', slug='unit6-comprehensive-review',
          analytics_slug='unit6_assignment_review_calculator', title='Applications of Integration', label='Calculator Review', engine_id='ap_unit6_assignment_review_calculator',
          scripts=REVIEW, modes=REVIEW_CALC,
-         description='Calculator active. A review of the calculator topics: area, cross sections and solids of revolution with intersections from the calculator, and multipart area and volume free-response problems. Round to three decimal places.'),
+         description='Calculator active. A review of the calculator topics: area, cross sections and solids of revolution with intersections from the calculator, and area and volume multi-part problems. Round to three decimal places.'),
 ]
 
 # the retired combined pages: each URL keeps working as a redirect to its topic page
