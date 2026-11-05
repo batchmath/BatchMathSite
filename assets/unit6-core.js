@@ -244,14 +244,46 @@ function readExpr(raw,v){
 const closeRel=(a,b,r)=>Math.abs(a-b)<=r*Math.max(1,Math.abs(a),Math.abs(b));
 // decimal places of a limit typed as a plain decimal (0.138 -> 3), or null
 const placesOf=t=>{const m=String(t??'').trim().match(/^[-−]?\d*\.(\d+)$/);return m?m[1].length:null;};
-// rows: [{coef, lower, upper, integrand, v}] as typed; spec: {value, variable?, notes?:[{value,note}], methodNote?, decimals?}
+// ---------- integral setups: checked against verified models, not only by their value ----------
+// A model is a list of terms {k, a, b, v, f}: k times the integral of f(v) from a to b. Two setups are the same when,
+// for each variable, their signed integrands agree as functions: at t, the sum of k f(t) over the integrals whose
+// interval contains t (with a minus sign when the limits are reversed). That accepts a sum split at any points, one
+// integral for several, reversed limits with the opposite sign, a constant inside or outside, and any algebraically
+// equivalent integrand, and rejects an integrand that only happens to give the same number.
+function densityOf(terms,w){const ts=terms.filter(t=>t.v===w);
+ return x=>{let s=0;for(const t of ts){const lo=Math.min(t.a,t.b),hi=Math.max(t.a,t.b);if(x>lo&&x<hi)s+=(t.b>t.a?1:-1)*t.k*t.f(x);}return s;};}
+// compare two setups at sample points of every variable either one uses, away from all limits (tol: how far a typed
+// rounded limit may be from the exact one); ratio: compare S with c times M instead
+function sameSetup(S,M,tol=1e-9,c=1){
+ const vars=new Set([...S,...M].map(t=>t.v));if(!vars.size)return false;
+ for(const w of vars){
+  const ends=[...S,...M].filter(t=>t.v===w).flatMap(t=>[t.a,t.b]),L=Math.min(...ends),H=Math.max(...ends),span=(H-L)||1,eps=Math.max(tol*1.01,1e-9*span);
+  const ds=densityOf(S,w),dm=densityOf(M,w);let n=0;
+  for(let j=0;j<67;j++){const x=L-0.03*span+1.06*span*(j+0.381966)/67;if(ends.some(e=>Math.abs(x-e)<=eps))continue;
+   const a=ds(x),b=c*dm(x);if(!Number.isFinite(a)||!Number.isFinite(b))return false;if(Math.abs(a-b)>1e-7*Math.max(1,Math.abs(a),Math.abs(b)))return false;n++;}
+  if(n<24)return false;
+ }
+ return true;
+}
+// a model for one variable whose integrand is symmetric about the middle of its interval may also be written as twice
+// the integral over either half
+function symmetricForms(M){
+ const vs=[...new Set(M.map(t=>t.v))];if(vs.length!==1)return[];
+ const w=vs[0],L=Math.min(...M.flatMap(t=>[t.a,t.b])),H=Math.max(...M.flatMap(t=>[t.a,t.b])),c=(L+H)/2,d=densityOf(M,w);
+ for(let j=1;j<12;j++){const u=(H-c)*j/12.37,a=d(c+u),b=d(c-u);if(!Number.isFinite(a)||Math.abs(a-b)>1e-9*Math.max(1,Math.abs(a)))return[];}
+ return[[{k:2,a:c,b:H,v:w,f:d}],[{k:2,a:L,b:c,v:w,f:d}]];
+}
+const modelOf=terms=>terms.map(t=>({k:qv(t.k.q)*(t.k.atom?t.k.atom.val:1),a:t.a.v,b:t.b.v,v:t.v,f:t.g.f}));
+// rows: [{coef, lower, upper, integrand, v}] as typed; spec (integralPart): {value, variable?, models, others?, wrong?,
+// methodNote?, decimals?}. models: the accepted setups (with their symmetric forms); others: correct setups by a method
+// the question does not ask for (they get methodNote); wrong: common mistakes with their notes.
 // decimals (calculator problems): a limit typed as a decimal with at least three places stands for a stored calculator
 // value, so the integral may differ from the exact value by what that rounding can change: |coefficient times the
 // integrand at the limit| times half a unit in the last place typed. Exact limits get no such allowance.
 function checkIntegral(rows,spec){
  const used=rows.filter(r=>[r.coef,r.lower,r.upper,r.integrand].some(t=>String(t||'').trim()));
  if(!used.length)return{valid:false,message:'Enter an integral before checking.'};
- let total=0,depends=false,vars=new Set(),slack=0,coarse=false;
+ let total=0,depends=false,vars=new Set(),slack=0,coarse=false,tol=1e-9;const S=[];
  for(const [i,r] of used.entries()){
   const which=used.length>1?` in integral ${i+1}`:'';
   if(!r.v)return{valid:false,message:`Choose dx or dy${which}.`};
@@ -267,20 +299,36 @@ function checkIntegral(rows,spec){
   if(![A,B,C].every(Number.isFinite))return{valid:false,message:`Check the limits${which}; one of them is undefined.`};
   const probe=[0.1,0.3,0.5,0.7,0.9].map(t=>g.f(A+(B-A)*t));
   if(probe.some(z=>!Number.isFinite(z)))return{valid:true,ok:false,note:`The integrand${which} is undefined on part of its interval of integration. Check the limits and the expression.`};
-  // the integrand must depend on the variable as written (x(2/x) is fine), or be a constant where the model integrand is
-  // one on the same interval (2 pi times the integral of 2 for shells under y = 2/x); a bare number elsewhere, such as the
-  // answer itself over [0, 1], is not a setup
   if(new Set(probe.map(z=>z.toFixed(9))).size>1||new RegExp(`(?<![a-z])${r.v}(?![a-z])`).test(String(r.integrand).replace(/exp|max/g,''))
    ||(spec.constLimits||[]).some(([p,q])=>Math.abs(p-A)<1e-9&&Math.abs(q-B)<1e-9))depends=true;
-  vars.add(r.v);
+  vars.add(r.v);S.push({k:C,a:A,b:B,v:r.v,f:g.f});
   total+=C*quad(g.f,A,B,1e-10);
   if(spec.decimals)for(const [txt,at,inward] of [[r.lower,A,B],[r.upper,B,A]]){const pl=placesOf(txt);if(pl===null)continue;if(pl<3){coarse=true;continue;}
-   let y=g.f(at);if(!Number.isFinite(y))y=g.f(at+(inward-at)*1e-6);if(Number.isFinite(y))slack+=Math.abs(C*y)*0.6*10**-pl;}
+   tol=Math.max(tol,0.6*10**-pl);let y=g.f(at);if(!Number.isFinite(y))y=g.f(at+(inward-at)*1e-6);if(Number.isFinite(y))slack+=Math.abs(C*y)*0.6*10**-pl;}
  }
- if(!depends)return{valid:true,ok:false,note:'Write the integral itself: the integrand should be an expression in x or y, not a single number.'};
  if(!Number.isFinite(total))return{valid:true,ok:false,note:'Your integral could not be evaluated. Check the limits and the expression.'};
- const T=spec.value;
- if(closeRel(total,T,2e-6)||Math.abs(total-T)<=slack){
+ const T=spec.value,valueOk=closeRel(total,T,2e-6)||Math.abs(total-T)<=slack;
+ if(spec.models){
+  const match=list=>(list||[]).find(M=>sameSetup(S,M,tol));
+  if(valueOk&&match(spec.models)){
+   if(spec.variable&&[...vars].some(w=>w!==spec.variable))return{valid:true,ok:false,note:spec.methodNote||`That integral is correct, but this question asks you to integrate with respect to ${spec.variable}.`};
+   return{valid:true,ok:true};
+  }
+  const other=(spec.others||[]).find(o=>sameSetup(S,o.terms,tol));
+  if(other&&valueOk)return{valid:true,ok:false,note:other.note||spec.methodNote||'That integral is correct, but it is not the method this question asks for.'};
+  for(const w of spec.wrong||[])if(sameSetup(S,w.terms,tol))return{valid:true,ok:false,note:w.note};
+  const ratioOf=c=>spec.models.some(M=>sameSetup(S,M,tol,c));
+  if(ratioOf(-1))return{valid:true,ok:false,note:'Your integral has the opposite sign. Check the order of the limits and of the subtraction.'};
+  if(ratioOf(1/Math.PI))return{valid:true,ok:false,note:'Your integral is missing the factor \\(\\pi\\).'};
+  if(ratioOf(1/(2*Math.PI)))return{valid:true,ok:false,note:'Your integral is missing the factor \\(2\\pi\\).'};
+  if(!depends)return{valid:true,ok:false,note:'Write the integral itself: the integrand should be an expression in x or y, not a single number.'};
+  if(valueOk)return{valid:true,ok:false,note:'Your integral has the right value, but it is not a setup for this region: check the integrand (the boundary difference, radius or height) and the limits.'};
+  if(coarse&&closeRel(total,T,2e-2))return{valid:true,ok:false,note:'Close, but your limits were rounded too much. Do not round intermediate values: keep calculator intersections at full precision.'};
+  return{valid:true,ok:false};
+ }
+ // a spec without models (none are built that way since v12.9.B): graded by value only
+ if(!depends)return{valid:true,ok:false,note:'Write the integral itself: the integrand should be an expression in x or y, not a single number.'};
+ if(valueOk){
   if(spec.variable&&[...vars].some(w=>w!==spec.variable))return{valid:true,ok:false,note:spec.methodNote||`That integral has the right value, but this question asks for the method that integrates with respect to ${spec.variable}.`};
   return{valid:true,ok:true};
  }
@@ -317,12 +365,29 @@ function wrongValues(terms){
  if(terms.every(t=>t.rad&&t.h))out.push(sum((t,z)=>t.h.f(z)));
  return out;
 }
+// common mistakes as models with notes: a width or radius not squared, (R - r)^2 for a washer, a shell without its radius
+function wrongModels(terms){
+ const out=[],k=t=>qv(t.k.q)*(t.k.atom?t.k.atom.val:1),mk=(g,note)=>out.push({terms:terms.map(t=>({k:k(t),a:t.a.v,b:t.b.v,v:t.v,f:z=>g(t,z)})),note});
+ if(terms.every(t=>t.s))mk((t,z)=>t.s.f(z),'Square the width: the area of each cross section uses the side length squared.');
+ if(terms.every(t=>t.R)){if(terms.some(t=>t.r)){mk((t,z)=>(t.R.f(z)-(t.r?t.r.f(z):0))**2,'Square each radius before subtracting: use \\(R^{2}-r^{2}\\), not \\((R-r)^{2}\\).');mk((t,z)=>t.R.f(z)-(t.r?t.r.f(z):0),'Each washer has area \\(\\pi\\left(R^{2}-r^{2}\\right)\\): square both radii.');}
+  else mk((t,z)=>t.R.f(z),'Each disk has area \\(\\pi R^{2}\\): square the radius.');}
+ if(terms.every(t=>t.rad&&t.h))mk((t,z)=>t.h.f(z),'A shell has volume \\(2\\pi\\,r\\,h\\) times its thickness: include the radius.');
+ return out;
+}
+// an integral setup. terms: the model that the explanation shows. extra.alt: other accepted setups (the other
+// variable, the other method); extra.others: [{terms, note}] correct setups the question does not accept (a fixed
+// method or variable); extra.variable: the required variable, if any.
 function integralPart(prompt,terms,explanation,extra={}){
  const value=numValue(terms);
  for(const w of wrongValues(terms))if(closeRel(w,value,1e-5))throw Error('a common wrong setup has the same value');
+ const models=[terms,...(extra.alt||[])].filter(Boolean).map(modelOf);
+ for(const M of [...models])for(const f of symmetricForms(M))models.push(f);
+ const others=(extra.others||[]).filter(o=>o&&o.terms).map(o=>({terms:modelOf(o.terms),note:o.note}));
  // rows: the model setup, one row per integral (TeX), kept for the review lab's typed-entry tests
- return{prompt,control:'u6-integral',answer:{kind:'u6-integral',value,variable:extra.variable||null,notes:extra.notes||[],methodNote:extra.methodNote,
+ return{prompt,control:'u6-integral',answer:{kind:'u6-integral',value,variable:extra.variable||null,notes:extra.notes||[],methodNote:extra.methodNote,models,others,wrong:wrongModels(terms),
   rows:terms.map(t=>({coef:factorTex(t.k),lower:t.a.tex,upper:t.b.tex,integrand:t.tex,v:t.v})),
+  altRows:(extra.alt||[]).filter(Boolean).map(T=>T.map(t=>({coef:factorTex(t.k),lower:t.a.tex,upper:t.b.tex,integrand:t.tex,v:t.v}))),
+  otherRows:(extra.others||[]).filter(o=>o&&o.terms).map(o=>o.terms.map(t=>({coef:factorTex(t.k),lower:t.a.tex,upper:t.b.tex,integrand:t.tex,v:t.v}))),
   constLimits:terms.filter(t=>new Set([0.13,0.41,0.77].map(z=>t.g.f(t.a.v+(t.b.v-t.a.v)*z).toFixed(9))).size===1).map(t=>[t.a.v,t.b.v])},answerTex:setupTex(terms),explanation,maxIntegrals:extra.max||3,help:extra.help};
 }
 function exprPart(prompt,label,fn,v,domain,explanation,extra={}){
@@ -347,18 +412,24 @@ function problem({engine,family,tier,id,questionHtml,parts,calculator=false,data
 // A region figure: grid, axes, the region shaded, boundary curves, optional axis of rotation (dashed) and marks.
 const COLORS=['#4aa3ff','#ff6b6b','#7bd389','#f7b955','#c58cff'];
 function figure(R,opt={}){
- const V=R.view,W=opt.width||360,H=Math.round(W*(V.ymax-V.ymin)/(V.xmax-V.xmin)*(opt.aspect||1));
- const hmax=Math.min(Math.max(H,180),420),sx=W/(V.xmax-V.xmin),sy=hmax/(V.ymax-V.ymin);
+ // the axis of rotation is always inside the frame (with a margin), never only named in the legend
+ let V={...R.view};
+ if(opt.axis){const c=opt.axis.c,m=0.6;if(opt.axis.type==='y'){V.ymin=Math.min(V.ymin,Math.floor(c-m));V.ymax=Math.max(V.ymax,Math.ceil(c+m));}else{V.xmin=Math.min(V.xmin,Math.floor(c-m));V.xmax=Math.max(V.xmax,Math.ceil(c+m));}}
+ // uniform: one scale for both axes (circles stay round, distances are true); a very tall or very flat frame gets extra
+ // empty space on the short side instead of a distorted scale
+ if(opt.uniform){const xr=V.xmax-V.xmin,yr=V.ymax-V.ymin;if(yr/xr>1.5){const e=(yr/1.5-xr)/2;V.xmin-=e;V.xmax+=e;}else if(yr/xr<0.45){const e=(0.45*xr-yr)/2;V.ymin-=e;V.ymax+=e;}}
+ const W=opt.width||360,H=Math.round(W*(V.ymax-V.ymin)/(V.xmax-V.xmin)*(opt.aspect||1));
+ const hmax=opt.uniform?H:Math.min(Math.max(H,180),420),sx=W/(V.xmax-V.xmin),sy=hmax/(V.ymax-V.ymin);
  const X=x=>((x-V.xmin)*sx).toFixed(1),Y=y=>((V.ymax-y)*sy).toFixed(1);
  const parts=[];
- const step0=opt.grid||((V.xmax-V.xmin)>12?2:1);
+ const step0=opt.grid||((V.xmax-V.xmin)>12?2:1),ystep=Math.max(step0,[1,2,5,10,20,50,100,200].find(t=>(V.ymax-V.ymin)/t<=12)||500); // y labels at most about 12
  for(let x=Math.ceil(V.xmin/step0)*step0;x<=V.xmax;x+=step0)parts.push(`<line x1="${X(x)}" y1="0" x2="${X(x)}" y2="${hmax}" class="u6-grid"/>`);
- for(let y=Math.ceil(V.ymin/step0)*step0;y<=V.ymax;y+=step0)parts.push(`<line x1="0" y1="${Y(y)}" x2="${W}" y2="${Y(y)}" class="u6-grid"/>`);
+ for(let y=Math.ceil(V.ymin/ystep)*ystep;y<=V.ymax;y+=ystep)parts.push(`<line x1="0" y1="${Y(y)}" x2="${W}" y2="${Y(y)}" class="u6-grid"/>`);
  if(V.ymin<0&&V.ymax>0)parts.push(`<line x1="0" y1="${Y(0)}" x2="${W}" y2="${Y(0)}" class="u6-axis"/>`);
  if(V.xmin<0&&V.xmax>0)parts.push(`<line x1="${X(0)}" y1="0" x2="${X(0)}" y2="${hmax}" class="u6-axis"/>`);
  const lab=[],inside=(t,lo,hi)=>t>lo+0.3*step0&&t<hi-0.3*step0; // no label on the frame's edges
  for(let x=Math.ceil(V.xmin/step0)*step0;x<=V.xmax;x+=step0)if(x!==0&&inside(x,V.xmin,V.xmax))lab.push(`<text x="${X(x)}" y="${Math.min(hmax-3,+Y(0)+13)}" class="u6-tick">${x}</text>`);
- for(let y=Math.ceil(V.ymin/step0)*step0;y<=V.ymax;y+=step0)if(y!==0&&inside(y,V.ymin,V.ymax))lab.push(`<text x="${Math.max(3,+X(0)-5)}" y="${+Y(y)+4}" class="u6-tick u6-tick-y">${y}</text>`);
+ for(let y=Math.ceil(V.ymin/ystep)*ystep;y<=V.ymax;y+=ystep)if(y!==0&&y>V.ymin+0.3*ystep&&y<V.ymax-0.3*ystep)lab.push(`<text x="${Math.max(3,+X(0)-5)}" y="${+Y(y)+4}" class="u6-tick u6-tick-y">${y}</text>`);
  // shading
  if(R.xs&&!opt.noShade)for(const p of R.xs){const pts=[];for(let i=0;i<=60;i++){const t=p.a.v+(p.b.v-p.a.v)*i/60;pts.push(`${X(t)},${Y(p.top.f(t))}`);}for(let i=60;i>=0;i--){const t=p.a.v+(p.b.v-p.a.v)*i/60;pts.push(`${X(t)},${Y(p.bot.f(t))}`);}parts.push(`<polygon points="${pts.join(' ')}" class="u6-shade"/>`);}
  else if(R.ys&&!opt.noShade)for(const p of R.ys){const pts=[];for(let i=0;i<=60;i++){const t=p.a.v+(p.b.v-p.a.v)*i/60;pts.push(`${X(p.right.f(t))},${Y(t)}`);}for(let i=60;i>=0;i--){const t=p.a.v+(p.b.v-p.a.v)*i/60;pts.push(`${X(p.left.f(t))},${Y(t)}`);}parts.push(`<polygon points="${pts.join(' ')}" class="u6-shade"/>`);}
@@ -372,9 +443,25 @@ function figure(R,opt={}){
  const legend=R.draw.map(c=>`<span class="u6-key"><span class="u6-swatch" style="background:${c.color}"></span>\\(${c.tex}\\)</span>`).join('')+(opt.axis?`<span class="u6-key"><span class="u6-swatch u6-swatch-rot"></span>axis of rotation \\(${opt.axis.type}=${opt.axis.tex??opt.axis.c}\\)</span>`:'');
  // compact (Area Below and Between Curves): at most 340px wide and about 265px tall on screen, same drawing and
  // proportions; tick labels keep their on-screen size (--u6-tick) and lines their width as the figure scales down
- const cw=Math.min(340,Math.round(265*W/hmax)),fig=opt.compact?`<figure class="u6-figure u6-figure-compact" style="max-width:min(100%,${cw}px);--u6-tick:${(11.5*W/cw).toFixed(1)}px">`:'<figure class="u6-figure">';
+ const cw=Math.min(opt.maxW||340,Math.round((opt.maxH||265)*W/hmax)),fig=opt.compact?`<figure class="u6-figure u6-figure-compact" style="max-width:min(100%,${cw}px);--u6-tick:${(11.5*W/cw).toFixed(1)}px">`:'<figure class="u6-figure">';
  return `${fig}<svg viewBox="0 0 ${W} ${hmax}" role="img" aria-label="${opt.label||'Graph of the region'}" class="u6-svg">${parts.join('')}${lab.join('')}</svg>${legend?`<figcaption class="u6-legend">${legend}</figcaption>`:''}</figure>`;
 }
+
+// a region built only from its slices (no frame or curves given): the frame around the slices and one curve per
+// distinct boundary, so it can be drawn like the others
+function withPicture(R){
+ if(R.view&&R.draw&&R.draw.length)return R;
+ let x0=Infinity,x1=-Infinity,y0=Infinity,y1=-Infinity;const draw=[],seen=new Map();
+ const see=(x,y)=>{if(Number.isFinite(x)&&Number.isFinite(y)){x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y);}};
+ const curve=(fn,lo,hi,isY)=>{const tex=isY?`x=${fn.tex('y')}`:`y=${fn.tex('x')}`,d=seen.get(tex);if(d){d.dom=[Math.min(d.dom[0],lo),Math.max(d.dom[1],hi)];return;}const c=isY?{g:fn.f,tex,dom:[lo,hi]}:{f:fn.f,tex,dom:[lo,hi]};seen.set(tex,c);draw.push(c);};
+ for(const p of R.xs||[]){for(let i=0;i<=40;i++){const t=p.a.v+(p.b.v-p.a.v)*i/40;see(t,p.top.f(t));see(t,p.bot.f(t));}curve(p.top,p.a.v,p.b.v,false);curve(p.bot,p.a.v,p.b.v,false);}
+ if(!R.xs)for(const p of R.ys||[]){for(let i=0;i<=40;i++){const t=p.a.v+(p.b.v-p.a.v)*i/40;see(p.right.f(t),t);see(p.left.f(t),t);}curve(p.right,p.a.v,p.b.v,true);curve(p.left,p.a.v,p.b.v,true);}
+ for(const c of draw){const w=c.dom[1]-c.dom[0];c.dom=[c.dom[0]-Math.max(0.4,0.15*w),c.dom[1]+Math.max(0.4,0.15*w)];}
+ const view=R.view||{xmin:Math.floor(Math.min(x0,0))-1,xmax:Math.ceil(Math.max(x1,0))+1,ymin:Math.floor(Math.min(y0,0))-1,ymax:Math.ceil(Math.max(y1,0))+1};
+ return region({...R,view,draw:R.draw&&R.draw.length?R.draw:draw.filter(c=>!/^[xy]=0$/.test(c.tex))});
+}
+// the region at the start of an explanation (when the question did not show it)
+function regionStep(R,label='Region R',opt={}){return step('The region.',opt.text||'')+figure(withPicture(R),{compact:true,label,...opt});}
 
 // keypad profiles: exact values; expressions and integrands in x or y; lists of exact values
 const fnKeys=[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['tan⁻¹','atan'],['|u|','abs']];
@@ -384,6 +471,6 @@ U5.profile('unit6-list',{fraction:true,radical:true,constants:['pi'],arithmetic:
 
 window.BatchMathUnit6Core=Object.freeze({U5,Q,qv,K,E,ex,eadd,escale,etex,evalE,P,pc,pm,pv,padd,psub,pmul,pscale,ppow,pint,pval,pdef,ptex,pkey,qpow,
  fp,fnc,fconst,fsub,fmul,dist,sqTex,parTex,topSum,simpleTex,quad,quadUsed:()=>quadUsed,zeros,bq,bn,fixed,F1,FPI,F2PI,factorTex,term,setupTex,numValue,exactValue,exactAnswer,evalSteps,
- region,areaTerms,areaTex,washerTerms,shellTerms,sectionTerms,SHAPES,rectShape,side,readExpr,checkIntegral,checkExpr,
- exactPart,numPart,integralPart,exprPart,choicePart,listPart,problem,figure,step,m,question,hash});
+ region,areaTerms,areaTex,washerTerms,shellTerms,sectionTerms,SHAPES,rectShape,side,readExpr,checkIntegral,checkExpr,sameSetup,modelOf,densityOf,
+ exactPart,numPart,integralPart,exprPart,choicePart,listPart,problem,figure,withPicture,regionStep,step,m,question,hash});
 })();

@@ -25,16 +25,18 @@ VOLUME = ['/assets/unit6-volume.js']
 REVIEW = ['/assets/unit6-area.js', '/assets/unit6-volume.js', '/assets/unit6-frq.js', '/assets/unit6-review.js']
 
 AREA_MODES = [('mixed', 'All Problems'), ('under_curve', 'Area Under a Curve'), ('between', 'Area Between Curves')]
+# v12.9.B: Choosing dx or dy (typed single integrals in the better direction) on the non-calculator page
+AREA_MODES_NONCALC = AREA_MODES + [('choose', 'Choosing dx or dy')]
 CS_MODES = [('mixed', 'All Problems'), ('perp_x', 'Perpendicular to the x-axis'), ('perp_y', 'Perpendicular to the y-axis')]
 SOLID_MODES = [('mixed', 'All Problems'), ('disks_washers', 'Disks and Washers'), ('shells', 'Cylindrical Shells')]
 REVIEW_NONCALC = [('mixed', 'All Review Problems'), ('frq_region', 'Area and Volume Free Response'), ('frq_graph', 'Graph Free Response'), ('short', 'Shorter Problems')]
 REVIEW_CALC = [('mixed', 'All Review Problems'), ('frq_region', 'Area and Volume Free Response'), ('short', 'Shorter Problems')]
 
-def two(topic, title, scripts, modes, noncalc, calc, seo=None):
+def two(topic, title, scripts, modes, noncalc, calc, seo=None, noncalc_modes=None):
     base = topic.replace('-', '_')
     return [dict(topic=topic, page='non-calculator-practice', source='practice', calc='non-calculator', slug=topic, analytics_slug=f'{topic}_noncalculator',
                  title=title, seo_title=seo or title, label='Non-Calculator Practice', engine_id=f'ap_topic_{base}_noncalculator', scripts=scripts,
-                 description=noncalc, modes=modes),
+                 description=noncalc, modes=noncalc_modes or modes),
             dict(topic=topic, page='calculator-practice', source='practice', calc='calculator', slug=topic, analytics_slug=f'{topic}_calculator',
                  title=title, seo_title=seo or title, label='Calculator Practice', engine_id=f'ap_topic_{base}_calculator', scripts=scripts,
                  description=calc, modes=modes)]
@@ -42,7 +44,8 @@ def two(topic, title, scripts, modes, noncalc, calc, seo=None):
 PAGES = [
     *two('area-below-and-between-curves', 'Area Below and Between Curves', AREA, AREA_MODES,
          'No calculator. Find areas under a curve and between curves with exact values: find the intersections yourself, split the region where the curves switch or where a curve crosses the axis, and work with polynomial, radical, exponential, logarithmic and trigonometric boundaries. Enter answers with the math keypad; integral setups are typed as integrals.',
-         'Calculator active. Find the intersections with your calculator and store them, set up the area integral, and evaluate it numerically. Round to three decimal places as each question directs.'),
+         'Calculator active. Find the intersections with your calculator and store them, set up the area integral, and evaluate it numerically. Round to three decimal places as each question directs.',
+         noncalc_modes=AREA_MODES_NONCALC),
     *two('volume-by-cross-sections', 'Volume by Cross Sections', VOLUME, CS_MODES,
          'No calculator. Cross sections perpendicular to the x-axis or the y-axis: squares, rectangles, semicircles, quarter circles, equilateral triangles and isosceles right triangles. Find the area of a cross section, write integral setups (including "write, but do not evaluate"), and find exact volumes.',
          'Calculator active. Cross sections over regions whose intersections need the calculator. Set up the volume integral and evaluate it numerically; round to three decimal places.'),

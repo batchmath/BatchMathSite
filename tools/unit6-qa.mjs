@@ -24,7 +24,7 @@ const N=+(process.env.U6_N||40);
 
 // ---------- 1. pages and Practice Types ----------
 const PAGES=[
- ['area-below-and-between-curves','non-calculator',['mixed','under_curve','between']],['area-below-and-between-curves','calculator',['mixed','under_curve','between']],
+ ['area-below-and-between-curves','non-calculator',['mixed','under_curve','between','choose']],['area-below-and-between-curves','calculator',['mixed','under_curve','between']],
  ['finding-area-in-terms-of-y',null,['mixed']],
  ['volume-by-cross-sections','non-calculator',['mixed','perp_x','perp_y']],['volume-by-cross-sections','calculator',['mixed','perp_x','perp_y']],
  ['solids-of-revolution','non-calculator',['mixed','disks_washers','shells']],['solids-of-revolution','calculator',['mixed','disks_washers','shells']],
@@ -32,7 +32,7 @@ const PAGES=[
 ];
 const modeOk={perp_x:p=>p.unit5Meta.dir==='x',perp_y:p=>p.unit5Meta.dir==='y',disks_washers:p=>(p.unit5Meta.shown||p.unit5Meta.method)!=='shell',shells:p=>(p.unit5Meta.shown||p.unit5Meta.method)==='shell',
  under_curve:p=>['axis_basic','axis_sign','exp_log_under','calc_given'].includes(p.unit5Meta.family),between:p=>!['axis_basic','axis_sign','exp_log_under','calc_given'].includes(p.unit5Meta.family),
- frq_region:p=>p.unit6Review.reviewTopic==='frq_region',frq_graph:p=>p.unit6Review.reviewTopic==='frq_graph',short:p=>!/^frq_/.test(p.unit6Review.reviewTopic)};
+ choose:p=>p.unit5Meta.family==='choose_dx_dy',frq_region:p=>p.unit6Review.reviewTopic==='frq_region',frq_graph:p=>p.unit6Review.reviewTopic==='frq_graph',short:p=>!/^frq_/.test(p.unit6Review.reviewTopic)};
 const badSign=/(?:^|[^\^])--|\+\s*-(?!\s*\d*\s*\\infty)/;
 let made=0,partsSeen=0;const fams={};
 for(const [slug,calc,modes] of PAGES)for(const mode of modes)for(let i=0;i<N;i++){
@@ -157,7 +157,7 @@ for(const calc of ['non-calculator','calculator']){const count={},tiers={};const
 const U6='ap-calculus/unit-6-applications-integration/topics/';
 const scriptsOf=h=>[...h.matchAll(/<script src="([^"]+)"/g)].map(m=>m[1]);
 const BASE=['/assets/unit5-core.js','/assets/unit5-answers.js','/assets/unit5-ui.js','/assets/unit6-core.js','/assets/unit6-ui.js','/assets/unit6-regions.js'];
-const WIRED=[['area-below-and-between-curves/non-calculator-practice','area-below-and-between-curves','non-calculator',['unit6-area.js'],['mixed','under_curve','between']],
+const WIRED=[['area-below-and-between-curves/non-calculator-practice','area-below-and-between-curves','non-calculator',['unit6-area.js'],['mixed','under_curve','between','choose']],
  ['area-below-and-between-curves/calculator-practice','area-below-and-between-curves','calculator',['unit6-area.js'],['mixed','under_curve','between']],
  ['finding-area-in-terms-of-y/practice','finding-area-in-terms-of-y',null,['unit6-area.js'],null],
  ['volume-by-cross-sections/non-calculator-practice','volume-by-cross-sections','non-calculator',['unit6-volume.js'],['mixed','perp_x','perp_y']],
