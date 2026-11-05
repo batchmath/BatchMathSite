@@ -1,3 +1,12 @@
 # Developer-only review tooling is kept out of the site package (git archive / the review ZIP).
 tools/review-lab export-ignore
 .gitattributes export-ignore
+# QA evidence and generated test artifacts (screenshots, run reports) stay in Git, not in the site package.
+docs/audits/evidence export-ignore
+docs/integration/evidence export-ignore
+tools/keypad-corrections/artifacts export-ignore
+tools/mathlive-advanced-pilot/artifacts export-ignore
+tools/mathlive-batch1/artifacts export-ignore
+tools/mathlive-derivatives-pilot/artifacts export-ignore
+tools/mathlive-power-rule/artifacts export-ignore
+tools/mathlive-sitewide/artifacts export-ignore
