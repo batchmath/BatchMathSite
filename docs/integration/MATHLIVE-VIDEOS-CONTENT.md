@@ -30,3 +30,30 @@ route checks, video/browser checks, and content preservation verification follow
 The initial static check found seven metadata/indexing errors on the preexisting
 `experiments/mathlive-advanced-notation/index.html`; source-baseline verification
 and final results will be recorded below before delivery.
+
+### Stage B — combined behavior and test scope
+
+- `tools/integration/content-preservation-qa.py` verifies all 34 overlaps:
+  executable script bodies/import order and input/selector contracts exactly
+  match MathLive; links and headings match the approved content source.
+- All 90 IM1 HTML pages retain content-source headings and link destinations,
+  with zero notes links. All 111 changed, nonoverlapping in-scope content HTML
+  files exactly match their content-source blobs. PDFs and IM1/MathLive code
+  assets remain unchanged.
+- Video QA covers all 13 approved videos, now including explicit title, order,
+  player title, thumbnail, accessible play label, and 0:00 assertions for all
+  five IM1 collections. Unit 6's five video pages are explicitly deferred.
+- Two historical IM1 Node assertions compared entire HTML files against a
+  premigration checkpoint. They correctly rejected the newly authorized content
+  edits. They now compare every executable script/import, style block, and
+  input/selector tag against the completed MathLive source; original shared
+  generator/checker equality and all grading assertions remain intact. The
+  independent content audit checks the authorized headings, links, and notes
+  removal against the other source, rather than ignoring their changes.
+- The seven scratchpad static failures reproduce on the untouched MathLive
+  source. The scratchpad now declares `noindex, nofollow`, as appropriate for
+  the existing development experiment. Static QA subsequently passes with zero
+  errors, zero warnings, and zero broken internal references. No curriculum or
+  mathematical behavior was changed to repair this preexisting metadata defect.
+- Focused browser output can now be saved to a separate integration evidence
+  directory, preserving the historical source-branch reports.

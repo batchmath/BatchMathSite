@@ -11,10 +11,19 @@ function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(path.join(dir, e.name)) : [path.join(dir, e.name)]);
 }
 const html = courses.flatMap(course => walk(path.join(root, course))).filter(p => p.endsWith('.html'));
-const pages = html.filter(p => /youtube\.com\/embed|data-video-id=/.test(fs.readFileSync(p, 'utf8'))).map(p => path.relative(root, p).replaceAll(path.sep, '/'));
+// Integration scope: keep Unit 6 byte-for-byte at the MathLive source checkpoint.
+// Report deferred pages explicitly; their legacy UI is not a standard rollout pass.
+const unit6Prefix = 'ap-calculus/unit-6-applications-integration/';
+const relative = p => path.relative(root, p).replaceAll(path.sep, '/');
+const hasVideo = p => /youtube\.com\/embed|data-video-id=/.test(fs.readFileSync(p, 'utf8'));
+const deferredPages = html.filter(p => relative(p).startsWith(unit6Prefix) && hasVideo(p)).map(relative);
+const inScopeHtml = html.filter(p => !relative(p).startsWith(unit6Prefix));
+const pages = inScopeHtml.filter(hasVideo).map(relative);
 const standardPages = pages.filter(p => fs.readFileSync(path.join(root, p), 'utf8').includes('data-bm-videos'));
 const im1Root = '/im1/unit-2-algebraic-operations-equations-inequalities/topics/';
 const approved = {
+  'distributive-property': [['2FyZO5iTPYI', 'Distributive Property']],
+  'equivalent-expressions-combining-like-terms': [['EgVS-qqYKVs', 'Combining Like Terms']],
   'solving-linear-equations': [
     ['rLTzuyGUl1I', 'Solving Linear Equations Using Addition and Subtraction'],
     ['fggYnVaqV-4', 'Solving Linear Equations Using Multiplication and Division'],
@@ -42,7 +51,7 @@ const server = http.createServer((req, res) => {
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const base = `http://127.0.0.1:${server.address().port}`;
 const errors = [];
-const report = { htmlPagesAudited: html.length, videoPages: pages.length, standardPages: standardPages.length, collections: {}, modalPages: [], pageLoads: 0, selections: 0, specializedChecks: 0 };
+const report = { htmlPagesAudited: inScopeHtml.length, deferredUnit6HtmlPages: html.length - inScopeHtml.length, deferredUnit6VideoPages: deferredPages, videoPages: pages.length, standardPages: standardPages.length, collections: {}, modalPages: [], pageLoads: 0, selections: 0, specializedChecks: 0 };
 let browser;
 try {
   browser = await chromium.launch({ headless: true, ...(process.env.BM_CHROMIUM_EXECUTABLE ? { executablePath: process.env.BM_CHROMIUM_EXECUTABLE } : {}) });
@@ -149,6 +158,14 @@ try {
   for (const [slug, entries] of Object.entries(approved)) {
     await page.goto(base + im1Root + slug + '/');
     assert.deepEqual(await page.locator('[data-bm-videos] .video-item').evaluateAll(cards => cards.map(c => [c.querySelector('[data-video-id]').dataset.videoId, c.querySelector('.video-title').textContent])), entries);
+    for (const card of await page.locator('[data-bm-videos] .video-item').all()) {
+      const box = card.locator('[data-video-id]'), id = await box.getAttribute('data-video-id');
+      const title = await card.locator('.video-title').textContent();
+      assert.equal(await box.getAttribute('data-player-title'), title);
+      assert.equal(await card.getByRole('button').getAttribute('aria-label'), 'Play ' + title);
+      assert.equal(await card.locator('img').getAttribute('src'), `https://i.ytimg.com/vi/${id}/hqdefault.jpg`);
+      assert.equal(await box.getAttribute('data-video-src'), null, 'new IM1 videos start at 0:00');
+    }
   }
   const im1Ids = html.filter(p => p.includes(path.sep + 'im1' + path.sep)).flatMap(p => [...fs.readFileSync(p, 'utf8').matchAll(/data-video-id="([^"]+)"/g)].map(m => m[1]));
   assert.equal(im1Ids.length, 13); assert.equal(new Set(im1Ids).size, 13);
@@ -159,8 +176,7 @@ try {
   }
   const specialized = [
     '/ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/',
-    '/ap-calculus/unit-2-derivatives/topics/the-chain-rule/',
-    '/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/'
+    '/ap-calculus/unit-2-derivatives/topics/the-chain-rule/'
   ];
   for (const route of specialized) {
     await page.goto(base + route);
@@ -204,6 +220,7 @@ try {
   console.log('PASS: permanent video standard, every collection/card, approved titles/order, keyboard/focus, modal close/stop, responsive sizing, intentional offsets, and specialized controls.');
   console.log(JSON.stringify(report, null, 2));
   console.log('YouTube responses simulated for UI checks. External network playback is not verified.');
+  console.log(`Deferred Unit 6: ${deferredPages.length} video pages; no integrated rollout coverage claimed.`);
 } finally {
   await browser?.close();
   await new Promise(resolve => server.close(resolve));

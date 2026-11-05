@@ -170,7 +170,23 @@ Inspect protected specialized sections and preserve their content and parameters
 Report iframe/UI test results separately from actual external YouTube playback;
 simulated responses do not establish that a recording is reachable or playable.
 
-## Adoption audit — November 4, 2026
+## Integration scope — Unit 6 temporarily deferred
+
+On `integration/mathlive-im1-videos-content`, the permanent standard applies to
+the approved AP Calculus Units 1–5 and IM1 content. The entire AP Calculus Unit 6
+directory remains exactly at MathLive source commit
+`919ca1806f07e3cd2af552142926e7ca2b78e8d5`. Its five video-bearing topic pages
+have **not** adopted the integrated rollout. Unit 6 video adoption and MathLive
+compatibility verification are deferred until the separate Claude work is ready.
+The browser suite reports those pages as deferred, rather than passing them.
+
+The integration has 67 in-scope video pages, 61 with standard collections:
+67 one-video, six two-video, and three gallery collections. The three galleries
+are Tangent/Normal Additional Examples, IM1 Key Features, and IM1 Equations.
+The original content-branch audit below is retained as historical source evidence;
+its Unit 6 coverage is not a claim about this integration.
+
+## Source-branch adoption audit — November 4, 2026
 
 All 270 HTML pages in the three course directories were inspected. There are 72
 video-bearing pages, of which 66 contain standard collections. No applicable

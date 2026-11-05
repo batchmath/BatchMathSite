@@ -22,11 +22,19 @@ test('interval profiles retain integer endpoint restrictions and keep unions out
  for(const value of ['(-infinity,2]','[-infinity,2]','(-infinity,2.0]','(-infinity,4/2]','(-infinity,2] U [3,infinity)']){const preview=im1IntervalContract.toLatex(value).latex;if(preview===null)continue;const out=im1IntervalContract.translate(preview).input??'?',a=c(value,'(-infinity,2]'),b=c(out,'(-infinity,2]');assert.equal(b.ok,a.ok);assert.equal(!!b.error,!!a.error);}
  assert.equal(im1Profiles['ml-im1-interval'].union,false);assert.equal(im1Profiles['ml-im1-interval'].decimal,undefined);assert.equal(im1Profiles['ml-im1-digits'].signed,false);
 });
-test('IM1 mathematical sources and all non-editor HTML content remain unchanged',()=>{
+// Integration deliberately changes headings, metadata and resource links. Guard
+// every executable script/import in order, style and input/selector contract instead.
+const mathliveSource='919ca1806f07e3cd2af552142926e7ca2b78e8d5';
+const mathematicalMarkup=html=>({
+ scripts:[...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(m=>!m[1].includes('application/ld+json')).map(m=>[m[1],m[2]]),
+ styles:[...html.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)].map(m=>m[1]),
+ controls:[...html.matchAll(/<(?:input|select)\b[^>]*>|<option\b[^>]*>/gi)].map(m=>m[0])
+});
+test('IM1 mathematical sources, editor initialization and input contracts remain unchanged',()=>{
  for(const name of ['im1-keypad','im1-display-math','im1-unit2-practice','im1-unit2-generators','im1-algebra-input','im1-equation-input','im1-interval-input'])assert.equal(fs.readFileSync(root+'assets/'+name+'.js','utf8'),execFileSync('git',['show','517ffee:assets/'+name+'.js'],{cwd:root,encoding:'utf8',maxBuffer:8000000}));
- for(const r of routes){const before=execFileSync('git',['show','517ffee:'+r.path],{cwd:root,encoding:'utf8'}),after=fs.readFileSync(root+r.path,'utf8').replace(/ data-mathlive-im1="unit[12]"/,'').replace('<link rel="stylesheet" href="/assets/calculus-keypad.css"><script defer src="/assets/calculus-keypad.js"></script><link rel="stylesheet" href="/assets/mathlive/pilot.css"><script type="module" src="/assets/mathlive/im1.mjs"></script>','');assert.equal(after,before,r.path);}
+ for(const r of routes){const before=execFileSync('git',['show',mathliveSource+':'+r.path],{cwd:root,encoding:'utf8'}),after=fs.readFileSync(root+r.path,'utf8');assert.deepEqual(mathematicalMarkup(after),mathematicalMarkup(before),r.path);}
 });
 test('unconverted Unit 1 classification and three Unit 2 topics retain only specialized choices',()=>{
  const b=algebraEngine();for(const slug of ['distributive-property','solving-linear-inequalities','coordinate-system-nine-key-features'])for(let seed=1;seed<=200;seed++){b.BatchMathRNG={random:rng(seed*719)};const q=b.BatchMathIM1Unit2Generators.get(slug)();assert.ok(q.choices?.length);assert.ok(!q.kind);if(q.part2){assert.ok(q.part2.choices?.length);assert.ok(!q.part2.kind);}}
- const p='im1/unit-1-review/topics/classifying-numbers/practice/index.html';assert.equal(fs.readFileSync(root+p,'utf8'),execFileSync('git',['show','517ffee:'+p],{cwd:root,encoding:'utf8'}));
+ const p='im1/unit-1-review/topics/classifying-numbers/practice/index.html';assert.deepEqual(mathematicalMarkup(fs.readFileSync(root+p,'utf8')),mathematicalMarkup(execFileSync('git',['show',mathliveSource+':'+p],{cwd:root,encoding:'utf8'})));
 });

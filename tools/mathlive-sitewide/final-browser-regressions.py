@@ -1,7 +1,7 @@
 """Run existing focused browser suites; archive evidence without replacing broader historical artifacts."""
 import os,sys,subprocess,json
 from pathlib import Path
-root=Path(__file__).resolve().parents[2];out=root/'tools/mathlive-sitewide/artifacts/final-regressions';out.mkdir(exist_ok=True)
+root=Path(__file__).resolve().parents[2];out=Path(os.environ.get('MATHLIVE_REGRESSION_OUT',str(root/'tools/mathlive-sitewide/artifacts/final-regressions')));out.mkdir(parents=True,exist_ok=True)
 fixtures=os.environ.get('MATHJAX_FIXTURE_ROOT','/workspace/work/math-entry-comparison/experiments/math-entry/vendor')
 groups={
 'pilots':[
