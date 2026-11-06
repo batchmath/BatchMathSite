@@ -1,0 +1,433 @@
+{
+  "results": [
+    {
+      "prior": "reference",
+      "question": "𝜃 =210∘",
+      "profile": "ml-prep-radians",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ],
+      "prompt": "Find the reference angle.",
+      "html": "<span class=\"bm-math\"><mjx-container class=\"MathJax\" jax=\"CHTML\" overflow=\"overflow\" tabindex=\"0\" data-semantic-locale=\"en\" data-semantic-domain=\"clearspeak\" data-semantic-style=\"default\" data-semantic-domain2style=\"mathspeak:default,clearspeak:default\" data-semantic-collapsible=\"collapsible\" data-semantic-expandable=\"expandable\" data-semantic-level=\"Level\" data-semantic-speech-none=\"theta equals 210 raised to the composed with power\" data-semantic-speech=\"&lt;mark name=&quot;0&quot;/&gt; theta ",
+      "tex": [
+        "\\theta = 210^{\\circ}"
+      ],
+      "error": "locator.evaluate: Error: MISSING CONTROL ° for 30°\n    at click (eval at evaluate (:311:30), <anonymous>:4:146)\n    at emit (eval at evaluate (:311:30), <anonymous>:8:321)\n    at eval (eval at evaluate (:311:30), <anonymous>:17:17)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    },
+    {
+      "prior": "coterminal",
+      "question": "𝜃 =210∘",
+      "profile": "ml-prep-radians",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ],
+      "prompt": "Find the reference angle.",
+      "html": "<span class=\"bm-math\"><mjx-container class=\"MathJax\" jax=\"CHTML\" overflow=\"overflow\" tabindex=\"0\" data-semantic-locale=\"en\" data-semantic-domain=\"clearspeak\" data-semantic-style=\"default\" data-semantic-domain2style=\"mathspeak:default,clearspeak:default\" data-semantic-collapsible=\"collapsible\" data-semantic-expandable=\"expandable\" data-semantic-level=\"Level\" data-semantic-speech-none=\"theta equals 210 raised to the composed with power\" data-semantic-speech=\"&lt;mark name=&quot;0&quot;/&gt; theta ",
+      "tex": [
+        "\\theta = 210^{\\circ}"
+      ],
+      "error": "locator.evaluate: Error: MISSING CONTROL ° for 30°\n    at click (eval at evaluate (:311:30), <anonymous>:4:146)\n    at emit (eval at evaluate (:311:30), <anonymous>:8:321)\n    at eval (eval at evaluate (:311:30), <anonymous>:17:17)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    },
+    {
+      "prior": "coordinates",
+      "question": "𝜃 =210∘",
+      "profile": "ml-prep-radians",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ],
+      "prompt": "Find the reference angle.",
+      "html": "<span class=\"bm-math\"><mjx-container class=\"MathJax\" jax=\"CHTML\" overflow=\"overflow\" tabindex=\"0\" data-semantic-locale=\"en\" data-semantic-domain=\"clearspeak\" data-semantic-style=\"default\" data-semantic-domain2style=\"mathspeak:default,clearspeak:default\" data-semantic-collapsible=\"collapsible\" data-semantic-expandable=\"expandable\" data-semantic-level=\"Level\" data-semantic-speech-none=\"theta equals 210 raised to the composed with power\" data-semantic-speech=\"&lt;mark name=&quot;0&quot;/&gt; theta ",
+      "tex": [
+        "\\theta = 210^{\\circ}"
+      ],
+      "error": "locator.evaluate: Error: MISSING CONTROL ° for 30°\n    at click (eval at evaluate (:311:30), <anonymous>:4:146)\n    at emit (eval at evaluate (:311:30), <anonymous>:8:321)\n    at eval (eval at evaluate (:311:30), <anonymous>:17:17)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    }
+  ]
+}

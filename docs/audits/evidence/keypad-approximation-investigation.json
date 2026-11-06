@@ -1,0 +1,456 @@
+{
+  "route": "ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/practice/index.html",
+  "contracts": [
+    "staged-calculus|exact|unit3-approximation|true|choice"
+  ],
+  "question": {
+    "id": "u3-ts-root-2-1",
+    "variant": "tangent_square_root",
+    "answerType": "staged-calculus",
+    "stagedFamily": "tangent-secant",
+    "approximationMethod": "tangent",
+    "concavity": "down",
+    "functionFamily": "tangent_square_root",
+    "secantTargetFraction": null,
+    "secantTargetIsMidpoint": false,
+    "questionHtml": "<div class=\"u3-staged-question\"><div class=\"question-prompt\">Use the tangent line to \\(f\\) at \\(x=4\\) to approximate \\(f(5)\\).</div><div>\\(f(x)=\\sqrt{x}\\)</div></div>",
+    "stage1": {
+      "type": "exact",
+      "prompt": "Part 1: Find the approximation.",
+      "numericAnswer": 2.25,
+      "acceptedExpressions": null,
+      "answerTex": "\\frac{9}{4}",
+      "requireExact": true,
+      "tolerance": 1e-7,
+      "placeholder": "Enter the exact approximation",
+      "checkLabel": "Check Part 1",
+      "keypadMode": "unit3-approximation",
+      "explainOnCorrect": false,
+      "correctFeedback": "The exact approximation is correct.",
+      "incorrectFeedback": "The approximation is not correct.",
+      "explanation": "<div class=\"worked-method\"><div class=\"worked-steps\"><p><strong>Step 1:</strong> \\(f(4)=2\\).</p><p><strong>Step 2:</strong> \\(f'(x)=\\frac{1}{2\\sqrt{x}}\\), so \\(f'(4)=\\frac{1}{4}\\).</p><p><strong>Step 3:</strong> Write the actual tangent line: \\(L(x)=2+\\frac{1}{4}\\left(x-4\\right)\\).</p><p><strong>Step 4:</strong> Evaluate it: \\(L(5)=2+\\frac{1}{4}\\left(5-4\\right)=\\frac{9}{4}\\).</p></div></div>"
+    },
+    "stage2": {
+      "type": "choice",
+      "prompt": "Part 2: On the actual interval \\([4,5]\\), is this an overestimate or underestimate, and why?",
+      "choices": [
+        "Overestimate because the function is concave up on the interval",
+        "Overestimate because the function is concave down on the interval",
+        "Underestimate because the function is concave up on the interval",
+        "Underestimate because the function is concave down on the interval"
+      ],
+      "correctIndex": 1,
+      "answerTex": "Overestimate because the function is concave down on the interval",
+      "answerIsText": true,
+      "correctFeedback": "The classification and concavity reason are correct.",
+      "incorrectFeedback": "That classification or concavity reason is not correct.",
+      "explanation": "<div class=\"worked-method\"><div class=\"worked-steps\"><p><strong>Step 1:</strong> Differentiate again: \\(f''(x)=-\\frac{1}{4x^{3/2}}\\). On \\([4,5]\\), this is negative, so \\(f\\) is concave down.</p><p><strong>Step 2:</strong> For a concave down function, the tangent line lies above the graph. Therefore the tangent-line approximation is an overestimate.</p></div></div>"
+    },
+    "answerTex": "\\frac{9}{4}",
+    "fullWidthChoices": true,
+    "unit3V11": true,
+    "topicSlug": "tangent-and-secant-line-approximations",
+    "calculatorActive": false,
+    "sourceKind": "assignment",
+    "sourceWeight": 85,
+    "familyId": "tangent_square_root",
+    "data": {
+      "unit": "ap_calc_unit_3",
+      "mode": "noncalculator",
+      "sourceKind": "assignment",
+      "family": "tangent_square_root"
+    },
+    "__reviewRequest": {
+      "slug": "tangent-and-secant-line-approximations",
+      "seed": 12942,
+      "options": {
+        "approximationType": "mixed",
+        "mode": "mixed"
+      },
+      "history": {
+        "theorem": {
+          "families": [],
+          "outers": [],
+          "patterns": [],
+          "templates": []
+        },
+        "applications": {
+          "recentConcepts": {},
+          "recentTemplates": {},
+          "lastGeneratedFamily": {}
+        }
+      }
+    }
+  },
+  "results": [
+    {
+      "width": 375,
+      "id": "u3-ts-root-2-1",
+      "firstQuestion": "u3-ts-t-cos3-1",
+      "profile": "ml-unit3-approximation",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "sin",
+          "aria": "Insert sin",
+          "disabled": false
+        },
+        {
+          "label": "cos",
+          "aria": "Insert cos",
+          "disabled": false
+        },
+        {
+          "label": "tan",
+          "aria": "Insert tan",
+          "disabled": false
+        },
+        {
+          "label": "sec",
+          "aria": "Insert sec",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ],
+      "enteredLatex": "\\frac94",
+      "requiredAnswer": "\\frac{9}{4}",
+      "numericalValue": 2.25,
+      "classificationChoices": [
+        "Overestimate because the function is concave up on the interval",
+        "Overestimate because the function is concave down on the interval",
+        "Underestimate because the function is concave up on the interval",
+        "Underestimate because the function is concave down on the interval"
+      ],
+      "classificationMathFields": 0,
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "id": "u3-ts-root-2-1",
+      "firstQuestion": "u3-ts-t-cos3-1",
+      "profile": "ml-unit3-approximation",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "sin",
+          "aria": "Insert sin",
+          "disabled": false
+        },
+        {
+          "label": "cos",
+          "aria": "Insert cos",
+          "disabled": false
+        },
+        {
+          "label": "tan",
+          "aria": "Insert tan",
+          "disabled": false
+        },
+        {
+          "label": "sec",
+          "aria": "Insert sec",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ],
+      "enteredLatex": "\\frac94",
+      "requiredAnswer": "\\frac{9}{4}",
+      "numericalValue": 2.25,
+      "classificationChoices": [
+        "Overestimate because the function is concave up on the interval",
+        "Overestimate because the function is concave down on the interval",
+        "Underestimate because the function is concave up on the interval",
+        "Underestimate because the function is concave down on the interval"
+      ],
+      "classificationMathFields": 0,
+      "passed": true
+    }
+  ],
+  "errors": []
+}
