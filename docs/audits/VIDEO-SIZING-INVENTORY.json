@@ -1,13 +1,13 @@
 {
-  "baseline": "63ef79b1271974072daa2f1f99a968671a45f2c7",
-  "videoPages": 66,
-  "players": 198,
+  "baseline": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+  "videoPages": 72,
+  "players": 215,
   "systems": {
     "shared-pair": 8,
-    "homework": 95,
+    "homework": 103,
     "review": 7,
-    "shared-large": 55,
-    "shared-gallery": 33
+    "shared-large": 59,
+    "shared-gallery": 38
   },
   "pages": [
     {
@@ -2960,6 +2960,267 @@
       ]
     },
     {
+      "path": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/96SD-qmkfbo?rel=0&playsinline=1",
+          "title": "Applications of Integration Lecture 1 - Area Below and Between Curves",
+          "id": "96SD-qmkfbo"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/sUXZa-abzPk?rel=0&playsinline=1",
+          "title": "Basic Area Under a Curve",
+          "id": "sUXZa-abzPk"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/zzMavnhlSpQ?rel=0&playsinline=1",
+          "title": "Area Homework Walkthrough",
+          "id": "zzMavnhlSpQ",
+          "iframe": 0,
+          "slotId": "hw-video-zzMavnhlSpQ",
+          "resource": "Area",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/zzMavnhlSpQ?rel=0&playsinline=1",
+            "title": "Area Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/ny1Y4rpylHI?rel=0&playsinline=1",
+          "title": "Finding the Area Between Curves Homework Walkthrough",
+          "id": "ny1Y4rpylHI",
+          "iframe": 1,
+          "slotId": "hw-video-ny1Y4rpylHI",
+          "resource": "Finding the Area Between Curves",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ny1Y4rpylHI?rel=0&playsinline=1",
+            "title": "Finding the Area Between Curves Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/index.html",
+      "sharedAsset": false,
+      "players": [
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/ulWQwxmh-HI?rel=0&playsinline=1",
+          "title": "Extra Area Practice Homework Walkthrough",
+          "id": "ulWQwxmh-HI",
+          "iframe": 0,
+          "slotId": "hw-video-ulWQwxmh-HI",
+          "resource": "Extra Area Practice",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ulWQwxmh-HI?rel=0&playsinline=1",
+            "title": "Extra Area Practice Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/esz8P76v5E8?rel=0&playsinline=1",
+          "title": "Extra Area and Volume Homework Walkthrough",
+          "id": "esz8P76v5E8",
+          "iframe": 1,
+          "slotId": "hw-video-esz8P76v5E8",
+          "resource": "Extra Area and Volume Problems",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/esz8P76v5E8?rel=0&playsinline=1",
+            "title": "Extra Area and Volume Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/Hgmh6lXWU08?rel=0&playsinline=1",
+          "title": "Applications of Integration Lecture 2 - Finding Area in Terms of y",
+          "id": "Hgmh6lXWU08"
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/u36IL4AA0I0?rel=0&playsinline=1",
+          "title": "Applications of Integration Lecture 3 - Integrals on Piecewise Defined Functions",
+          "id": "u36IL4AA0I0"
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-gallery",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/9QYUomuXLpw?rel=0&playsinline=1",
+          "title": "Applications of Integration Lecture 5 - Finding the Volume of Solids of Revolution Part 1",
+          "id": "9QYUomuXLpw"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "collection",
+          "grid": 0,
+          "card": 1,
+          "src": "https://www.youtube.com/embed/Rxt7cIOK6mc?rel=0&playsinline=1",
+          "title": "Applications of Integration Lecture 6 - Finding the Volume of Solids of Revolution Part 2",
+          "id": "Rxt7cIOK6mc"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "collection",
+          "grid": 0,
+          "card": 2,
+          "src": "https://www.youtube.com/embed/XvxqMcRx7-8?rel=0&playsinline=1",
+          "title": "Applications of Integration Lecture 7 - Finding the Volume of Solids of Revolution Using Shells",
+          "id": "XvxqMcRx7-8"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/wt_Ulrd53RY?rel=0&playsinline=1",
+          "title": "Simple Solids of Revolution Homework Walkthrough",
+          "id": "wt_Ulrd53RY",
+          "iframe": 0,
+          "slotId": "hw-video-wt_Ulrd53RY",
+          "resource": "Simple Solids of Revolution",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/wt_Ulrd53RY?rel=0&playsinline=1",
+            "title": "Simple Solids of Revolution Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/XERXWODBUP8?rel=0&playsinline=1",
+          "title": "More Difficult Solids of Revolution Homework Walkthrough",
+          "id": "XERXWODBUP8",
+          "iframe": 1,
+          "slotId": "hw-video-XERXWODBUP8",
+          "resource": "More Difficult Solids of Revolution",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/XERXWODBUP8?rel=0&playsinline=1",
+            "title": "More Difficult Solids of Revolution Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/ExHmRWK3J0o?rel=0&playsinline=1",
+          "title": "Volume Using Shells Homework Walkthrough",
+          "id": "ExHmRWK3J0o",
+          "iframe": 2,
+          "slotId": "hw-video-ExHmRWK3J0o",
+          "resource": "Volume Using Shells",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ExHmRWK3J0o?rel=0&playsinline=1",
+            "title": "Volume Using Shells Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/fhoEYkbq8Mo?rel=0&playsinline=1",
+          "title": "Applications of Integration Lecture 4 - Volume by Cross Sections",
+          "id": "fhoEYkbq8Mo"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/Pi8982b2TpA?rel=0&playsinline=1",
+          "title": "Volume of Solids Using Cross Sections",
+          "id": "Pi8982b2TpA"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/BkHbyCMiliQ?rel=0&playsinline=1",
+          "title": "Volume by Cross Sections Homework Walkthrough",
+          "id": "BkHbyCMiliQ",
+          "iframe": 0,
+          "slotId": "hw-video-BkHbyCMiliQ",
+          "resource": "Volume by Cross Sections",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/BkHbyCMiliQ?rel=0&playsinline=1",
+            "title": "Volume by Cross Sections Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
       "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/index.html",
       "sharedAsset": true,
       "players": [
@@ -3108,14 +3369,7 @@
     }
   ],
   "unrelatedIframes": [],
-  "deferredUnit6": [
-    "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/index.html",
-    "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/index.html",
-    "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/index.html",
-    "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/index.html",
-    "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/index.html",
-    "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/index.html"
-  ],
+  "deferredUnit6": [],
   "specialSizingRules": [
     {
       "path": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/index.html",

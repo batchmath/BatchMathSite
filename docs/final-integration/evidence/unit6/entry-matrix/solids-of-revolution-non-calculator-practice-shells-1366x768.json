@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "shells",
+ "checked": 6,
+ "parts": 12,
+ "integrals": 6,
+ "mathliveFields": 12,
+ "blankAtStart": 12,
+ "locked": 12,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "shells/intermediate: integral keyboard/Enter: 1 integral(s): (2pi)*int(0,3,(y(9-y^2)),y) | input keypad/Enter: (81)/(2)pi",
+  "shells/challenging: integral keypad/Enter: 1 integral(s): (2pi)*int(0,1,((1-x)(-2x^2+2)),x) | input keyboard/Check: (5)/(3)pi",
+  "shells/challenging: integral keyboard/Check: 1 integral(s): (2pi)*int(0,2,(y(-((y)/(2))+1)),y) | input keypad/Enter: (4)/(3)pi",
+  "shells/challenging: integral keypad/Enter: 2 integral(s): (2pi)*int(0,(1)/(2),(y(4-2)),y)+(2pi)*int((1)/(2),1,(y((2)/(y)-2)),y) | input keyboard/Enter: pi",
+  "shells/challenging: integral keyboard/Enter: 1 integral(s): (2pi)*int(0,3,(y(-y^3+3y^2)),y) | input keypad/Check: (243)/(10)pi",
+  "shells/challenging: integral keypad/Check: 1 integral(s): (2pi)*int(0,1,((2-x)(x-x^3)),x) | input keyboard/Enter: (11)/(15)pi"
+ ]
+}

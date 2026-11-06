@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+ "viewport": "390x844 mobile",
+ "editor": "mathlive",
+ "mode": "frq_region",
+ "checked": 6,
+ "parts": 19,
+ "integrals": 8,
+ "mathliveFields": 19,
+ "blankAtStart": 19,
+ "locked": 19,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "frq_region/frq_region/intermediate: input keyboard/Enter: 16 | integral keypad/Enter: 1 integral(s): (pi)*int(0,4,(8^2-(8-3sqrt(x))^2),x) | input keyboard/Check: 184pi",
+  "frq_region/frq_region/intermediate: input keypad/Enter: (343)/(6) | input keyboard/Check: (7411)/(240)pi | integral keypad/Enter: 2 integral(s): (2pi)*int(0,9,(x(sqrt(x)-(-sqrt(x)))),x)+(2pi)*int(9,16,(x(sqrt(x)-(x-12))),x)",
+  "frq_region/frq_region/intermediate: input keyboard/Check: (243)/(4) | input keypad/Enter: (19683)/(56)pi | integral keyboard/Enter: 1 integral(s): (pi)*int(0,3,(29^2-(2+x^3)^2),x)",
+  "frq_region/frq_region/intermediate: input keypad/Enter: 18 | input keyboard/Enter: (81)/(5)pi | integral keypad/Check: 1 integral(s): (2pi)*int(0,9,(xsqrt(x)),x)",
+  "frq_region/frq_region/challenging: input keyboard/Enter: 12 | integral keypad/Check: 1 integral(s): ((sqrt(3))/(4))*int(0,8,((root(3,y))^2),y) | integral keyboard/Enter: 1 integral(s): (pi)*int(0,2,(9^2-(1+x^3)^2),x) | integral keypad/Enter: 1 integral(s): (2pi)*int(0,2,((3+x)(8-x^3)),x)",
+  "frq_region/frq_region/intermediate: input keypad/Check: (81)/(4) | input keyboard/Enter: (2187)/(56)pi | integral keypad/Enter: 1 integral(s): (2pi)*int(0,3,((1+x)x^3),x)"
+ ]
+}

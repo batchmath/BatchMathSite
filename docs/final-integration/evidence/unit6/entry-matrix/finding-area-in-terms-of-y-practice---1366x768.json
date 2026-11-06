@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "mixed",
+ "checked": 6,
+ "parts": 8,
+ "integrals": 1,
+ "mathliveFields": 8,
+ "blankAtStart": 8,
+ "locked": 8,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "y_between/challenging: input keyboard/Enter: 0,2 | input keypad/Enter: (4)/(3)",
+  "y_given/intermediate: input keypad/Enter: 108",
+  "y_mixed/intermediate: integral keyboard/Check: 1 integral(s): int(0,8,(y+8-(y^2)/(4)),y) | input keypad/Enter: (160)/(3)",
+  "y_axis_cross/intermediate: input keypad/Enter: (8)/(3)",
+  "y_given/foundational: input keyboard/Enter: 24",
+  "y_given/foundational: input keypad/Check: (125)/(6)"
+ ]
+}

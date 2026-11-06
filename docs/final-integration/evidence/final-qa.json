@@ -1,0 +1,388 @@
+{
+  "scope": "Actual A+B merged site; source ledgers remain historical and separately labeled.",
+  "node": {
+    "tests": 281,
+    "pass": 281,
+    "fail": 0
+  },
+  "sourceABlockedKeypadForms": 119,
+  "routes": {
+    "visits": 404,
+    "distinctRoutes": 148,
+    "mathematicalRoutes": 128,
+    "specializedOrNavigation": 20,
+    "errors": 0
+  },
+  "stability": {
+    "distinctScenarios": 164,
+    "actions": 4295,
+    "postCubeRootUnit6Rechecks": 34,
+    "recheckActions": 1063,
+    "errors": 0
+  },
+  "im1ResponsiveChecks": 102,
+  "focusedBrowsers": {
+    "suites": 11,
+    "checks": 132,
+    "topLevelCheckerPairs": 464,
+    "pilotGradingPairs": 79,
+    "totalGraderPairs": 543,
+    "errors": 0
+  },
+  "videos": {
+    "inventoryPages": 72,
+    "players": 215,
+    "sizingVisits": 370,
+    "playerMeasurements": 1141,
+    "presentation": {
+      "htmlPagesAudited": 278,
+      "deferredUnit6HtmlPages": 0,
+      "deferredUnit6VideoPages": [],
+      "videoPages": 72,
+      "standardPages": 66,
+      "collections": {
+        "1": 70,
+        "2": 8,
+        "3": 2,
+        "4": 2,
+        "5": 1
+      },
+      "layoutCollections": {
+        "pair": 4,
+        "large": 59,
+        "gallery": 20
+      },
+      "supportingCollections": 17,
+      "modalPages": [
+        "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/index.html",
+        "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/index.html",
+        "ap-calculus/unit-2-derivatives/topics/exponential-functions/index.html",
+        "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/index.html",
+        "ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/index.html",
+        "ap-calculus/unit-2-derivatives/topics/the-chain-rule/index.html",
+        "ap-calculus/unit-2-derivatives/topics/the-product-rule/index.html",
+        "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/index.html",
+        "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/index.html",
+        "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/index.html",
+        "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/index.html",
+        "ap-calculus/unit-3-applications-derivative/topics/motion/index.html",
+        "ap-calculus/unit-3-applications-derivative/topics/related-rates/index.html",
+        "ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/index.html",
+        "ap-calculus/unit-4-integrals/topics/mean-value-theorem-for-integrals/index.html",
+        "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/index.html",
+        "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/index.html",
+        "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/index.html",
+        "im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/index.html",
+        "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/index.html"
+      ],
+      "pageLoads": 216,
+      "selections": 315,
+      "specializedChecks": 3,
+      "migratedProofChecks": 4,
+      "unit6Checks": 2
+    },
+    "externalPlaybackVerified": false
+  },
+  "unit6SourceMatrix": {
+    "checked": 336,
+    "parts": 627,
+    "integrals": 159,
+    "mathliveFields": 613,
+    "blankAtStart": 613,
+    "locked": 613,
+    "graphChecks": 0,
+    "runs": 56,
+    "inputPolicy": "Original mixed keyboard/keypad; complex pieces may be pasted. Not a keypad-only claim."
+  },
+  "unit6Legacy": {
+    "checked": 50,
+    "parts": 106,
+    "integrals": 43,
+    "mathliveFields": 0,
+    "blankAtStart": 0,
+    "locked": 0,
+    "graphChecks": 0,
+    "runs": 10
+  },
+  "unit6GraphAfterEntry": {
+    "checked": 24,
+    "parts": 36,
+    "integrals": 12,
+    "mathliveFields": 36,
+    "blankAtStart": 36,
+    "locked": 36,
+    "graphChecks": 36,
+    "runs": 4
+  },
+  "unit6KeypadOnly": {
+    "teacherAndStructuralCases": 16,
+    "canonicalCubeRootCases": 32,
+    "legacyCubeRootCases": 4
+  },
+  "unit6ModelControlInventory": {
+    "samplesPerFamilyTierKind": 25,
+    "problems": 1725,
+    "typedParts": 3175,
+    "setupParts": 800,
+    "listedAlternativeSetups": 176,
+    "missingControls": [],
+    "parseIssues": [],
+    "browserEvidence": false
+  },
+  "unit6PiecewiseFit": {
+    "steps": 171,
+    "widths": {
+      "360": {
+        "braces": 136,
+        "lines": 100,
+        "overflowBraces": 0,
+        "overflowLines": 0,
+        "raw": false,
+        "merror": 0,
+        "examples": [],
+        "errors": 0
+      },
+      "375": {
+        "braces": 136,
+        "lines": 100,
+        "overflowBraces": 0,
+        "overflowLines": 0,
+        "raw": false,
+        "merror": 0,
+        "examples": [],
+        "errors": 0
+      },
+      "390": {
+        "braces": 136,
+        "lines": 100,
+        "overflowBraces": 0,
+        "overflowLines": 0,
+        "raw": false,
+        "merror": 0,
+        "examples": [],
+        "errors": 0
+      },
+      "1366": {
+        "braces": 136,
+        "lines": 100,
+        "overflowBraces": 0,
+        "overflowLines": 0,
+        "raw": false,
+        "merror": 0,
+        "examples": [],
+        "errors": 0
+      }
+    }
+  },
+  "unit6SplitAudit": {
+    "problems": 6900,
+    "sums": 2662,
+    "reasons": 2662,
+    "byFamily": {
+      "area/axis_basic/non-calculator": {
+        "problems": 200,
+        "sums": 0,
+        "explained": 0
+      },
+      "area/axis_sign/non-calculator": {
+        "problems": 200,
+        "sums": 200,
+        "explained": 200
+      },
+      "area/between_enclosed/non-calculator": {
+        "problems": 300,
+        "sums": 62,
+        "explained": 62
+      },
+      "area/between_switch/non-calculator": {
+        "problems": 200,
+        "sums": 256,
+        "explained": 256
+      },
+      "area/area_directions/non-calculator": {
+        "problems": 200,
+        "sums": 39,
+        "explained": 39
+      },
+      "area/choose_dx_dy/non-calculator": {
+        "problems": 200,
+        "sums": 300,
+        "explained": 300
+      },
+      "area/trig_area/non-calculator": {
+        "problems": 100,
+        "sums": 0,
+        "explained": 0
+      },
+      "area/exp_log_under/non-calculator": {
+        "problems": 200,
+        "sums": 0,
+        "explained": 0
+      },
+      "area/exp_log_between/non-calculator": {
+        "problems": 300,
+        "sums": 0,
+        "explained": 0
+      },
+      "area/calc_given/calculator": {
+        "problems": 200,
+        "sums": 0,
+        "explained": 0
+      },
+      "area/calc_find/calculator": {
+        "problems": 200,
+        "sums": 104,
+        "explained": 104
+      },
+      "area/calc_directions/calculator": {
+        "problems": 200,
+        "sums": 75,
+        "explained": 75
+      },
+      "area_y/y_given/non-calculator": {
+        "problems": 200,
+        "sums": 0,
+        "explained": 0
+      },
+      "area_y/y_between/non-calculator": {
+        "problems": 200,
+        "sums": 0,
+        "explained": 0
+      },
+      "area_y/y_axis_cross/non-calculator": {
+        "problems": 100,
+        "sums": 80,
+        "explained": 80
+      },
+      "area_y/y_mixed/non-calculator": {
+        "problems": 200,
+        "sums": 0,
+        "explained": 0
+      },
+      "cs/cs_basic/non-calculator": {
+        "problems": 200,
+        "sums": 0,
+        "explained": 0
+      },
+      "cs/cs_setup/non-calculator": {
+        "problems": 200,
+        "sums": 56,
+        "explained": 56
+      },
+      "cs/cs_calc/calculator": {
+        "problems": 200,
+        "sums": 156,
+        "explained": 156
+      },
+      "solids/disk_basic/non-calculator": {
+        "problems": 200,
+        "sums": 0,
+        "explained": 0
+      },
+      "solids/washer/non-calculator": {
+        "problems": 200,
+        "sums": 18,
+        "explained": 18
+      },
+      "solids/shells/non-calculator": {
+        "problems": 200,
+        "sums": 18,
+        "explained": 18
+      },
+      "solids/two_axes/non-calculator": {
+        "problems": 100,
+        "sums": 0,
+        "explained": 0
+      },
+      "solids/trig_solid/non-calculator": {
+        "problems": 200,
+        "sums": 0,
+        "explained": 0
+      },
+      "solids/solid_calc/calculator": {
+        "problems": 300,
+        "sums": 84,
+        "explained": 84
+      },
+      "solids/calc_two_axes/calculator": {
+        "problems": 200,
+        "sums": 152,
+        "explained": 152
+      },
+      "frq/frq_region/non-calculator": {
+        "problems": 200,
+        "sums": 68,
+        "explained": 68
+      },
+      "frq/frq_cap_line/non-calculator": {
+        "problems": 200,
+        "sums": 0,
+        "explained": 0
+      },
+      "frq/graph_derivative/non-calculator": {
+        "problems": 200,
+        "sums": 0,
+        "explained": 0
+      },
+      "frq/graph_accum/non-calculator": {
+        "problems": 200,
+        "sums": 0,
+        "explained": 0
+      },
+      "frq/frq_calc/calculator": {
+        "problems": 200,
+        "sums": 294,
+        "explained": 294
+      },
+      "piecewise/two_linear/non-calculator": {
+        "problems": 100,
+        "sums": 100,
+        "explained": 100
+      },
+      "piecewise/mixed_constant_quad/non-calculator": {
+        "problems": 100,
+        "sums": 100,
+        "explained": 100
+      },
+      "piecewise/three_poly/non-calculator": {
+        "problems": 100,
+        "sums": 100,
+        "explained": 100
+      },
+      "piecewise/reciprocal_log/non-calculator": {
+        "problems": 100,
+        "sums": 100,
+        "explained": 100
+      },
+      "piecewise/trig_piece/non-calculator": {
+        "problems": 100,
+        "sums": 100,
+        "explained": 100
+      },
+      "piecewise/four_piece/non-calculator": {
+        "problems": 200,
+        "sums": 200,
+        "explained": 200
+      }
+    },
+    "equations": 1085,
+    "equationsFalse": 0,
+    "singleNotes": 240,
+    "singleNotesFalse": 0,
+    "optionalSplits": 0,
+    "failures": [],
+    "notesInProblems": 125
+  },
+  "siteSuite": {
+    "scripts": 48,
+    "initialPass": 35,
+    "initialAssertionFailureGroups": 11,
+    "initialWrapperTimeouts": 2,
+    "completeUnchangedMathRerunsPass": 2,
+    "staleKeypadAssertionReconciled": 1,
+    "finalEffectivePass": 38,
+    "remainingInheritedGroups": 10,
+    "allComparedWithBothSources": true,
+    "failureComparison": "site-suite/failure-comparison.json"
+  }
+}

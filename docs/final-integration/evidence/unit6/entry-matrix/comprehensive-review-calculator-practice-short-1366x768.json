@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "short",
+ "checked": 6,
+ "parts": 9,
+ "integrals": 3,
+ "mathliveFields": 9,
+ "blankAtStart": 9,
+ "locked": 9,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "cross_sections/cs_calc/challenging: integral keyboard/Enter: 2 integral(s): ((sqrt(3))/(4))*int(0,1,(1^2),y)+((sqrt(3))/(4))*int(1,e,((1-ln(y))^2),y) | input keypad/Enter: 0.622",
+  "area/calc_given/foundational: input keypad/Enter: 5.605",
+  "solids/solid_calc/foundational: input keyboard/Check: 58.984",
+  "solids/solid_calc/foundational: input keypad/Enter: 73.970",
+  "cross_sections/cs_calc/challenging: integral keyboard/Enter: 1 integral(s): ((pi)/(8))*int(0.050,1.910,((1+ln(x)-(x^2-2))^2),x) | input keypad/Check: 1.918",
+  "area/calc_find/challenging: integral keypad/Check: 1 integral(s): int(0.138,1.564,(1+ln(x)-(x^2-1)),x) | input keyboard/Enter: 1.124"
+ ]
+}

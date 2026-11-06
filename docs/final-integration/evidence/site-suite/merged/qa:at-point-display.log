@@ -1,0 +1,7 @@
+BatchMath v10.9.L derivative-at-point display QA
+Result: PASS
+Checks: 794418
+Natural argument styles: expanded-linear, expanded-polynomial, exponential, log, polynomial, prior, sqrt, trig, trig-of-log-linear, trig-of-log-quadratic
+Polynomial quotient focuses: linear-linear, linear-polynomial, polynomial-linear, polynomial-polynomial
+Comprehensive trig samples: scaled=5855, quadratic=3145
+Errors: 0

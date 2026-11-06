@@ -1,0 +1,446 @@
+[
+  {
+    "tree": "merged",
+    "script": "qa:static",
+    "exitCode": 0,
+    "seconds": 5.59
+  },
+  {
+    "tree": "merged",
+    "script": "qa:seo",
+    "exitCode": 1,
+    "seconds": 1.87
+  },
+  {
+    "tree": "merged",
+    "script": "qa:display",
+    "exitCode": 0,
+    "seconds": 1.42
+  },
+  {
+    "tree": "merged",
+    "script": "qa:semantic",
+    "exitCode": 0,
+    "seconds": 25.97
+  },
+  {
+    "tree": "merged",
+    "script": "qa:prep",
+    "exitCode": 0,
+    "seconds": 2.69
+  },
+  {
+    "tree": "merged",
+    "script": "qa:analytics",
+    "exitCode": 0,
+    "seconds": 1.9
+  },
+  {
+    "tree": "merged",
+    "script": "qa:pwa",
+    "exitCode": 0,
+    "seconds": 1.3
+  },
+  {
+    "tree": "merged",
+    "script": "qa:math",
+    "exitCode": 0,
+    "seconds": 516.3
+  },
+  {
+    "tree": "merged",
+    "script": "qa:limits",
+    "exitCode": 0,
+    "seconds": 12.2
+  },
+  {
+    "tree": "merged",
+    "script": "qa:topics",
+    "exitCode": 0,
+    "seconds": 249.03
+  },
+  {
+    "tree": "merged",
+    "script": "qa:deep",
+    "exitCode": 124,
+    "seconds": 900.16
+  },
+  {
+    "tree": "merged",
+    "script": "qa:newcalc",
+    "exitCode": 0,
+    "seconds": 15.61
+  },
+  {
+    "tree": "merged",
+    "script": "qa:derivative-topics",
+    "exitCode": 1,
+    "seconds": 21.46
+  },
+  {
+    "tree": "merged",
+    "script": "qa:product-quotient-variety",
+    "exitCode": 0,
+    "seconds": 21.74
+  },
+  {
+    "tree": "merged",
+    "script": "qa:power-rule",
+    "exitCode": 0,
+    "seconds": 21.61
+  },
+  {
+    "tree": "merged",
+    "script": "qa:topic-at-point",
+    "exitCode": 1,
+    "seconds": 85.08
+  },
+  {
+    "tree": "merged",
+    "script": "qa:at-point-display",
+    "exitCode": 0,
+    "seconds": 35.74
+  },
+  {
+    "tree": "merged",
+    "script": "qa:at-point-refinement",
+    "exitCode": 0,
+    "seconds": 31.06
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit1-ivt",
+    "exitCode": 0,
+    "seconds": 6.01
+  },
+  {
+    "tree": "merged",
+    "script": "qa:infinity-variety",
+    "exitCode": 0,
+    "seconds": 6.0
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit1-infinity-update",
+    "exitCode": 0,
+    "seconds": 2.92
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit1-comprehensive-review",
+    "exitCode": 0,
+    "seconds": 13.1
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit3",
+    "exitCode": 1,
+    "seconds": 764.67
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit4",
+    "exitCode": 0,
+    "seconds": 77.04
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit5",
+    "exitCode": 124,
+    "seconds": 900.11
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit6",
+    "exitCode": 0,
+    "seconds": 289.89
+  },
+  {
+    "tree": "merged",
+    "script": "qa:ftc-checker",
+    "exitCode": 0,
+    "seconds": 86.18
+  },
+  {
+    "tree": "merged",
+    "script": "qa:fidelity",
+    "exitCode": 0,
+    "seconds": 122.48
+  },
+  {
+    "tree": "merged",
+    "script": "qa:im1-unit2",
+    "exitCode": 0,
+    "seconds": 13.55
+  },
+  {
+    "tree": "merged",
+    "script": "qa:im1-unit3",
+    "exitCode": 0,
+    "seconds": 1.27
+  },
+  {
+    "tree": "merged",
+    "script": "qa:fractions",
+    "exitCode": 1,
+    "seconds": 4.87
+  },
+  {
+    "tree": "merged",
+    "script": "qa:browser-infra",
+    "exitCode": 0,
+    "seconds": 2.9
+  },
+  {
+    "tree": "merged",
+    "script": "qa:advanced-trig-hints",
+    "exitCode": 0,
+    "seconds": 1.4
+  },
+  {
+    "tree": "merged",
+    "script": "qa:keypad-structure",
+    "exitCode": 1,
+    "seconds": 1.02
+  },
+  {
+    "tree": "merged",
+    "script": "qa:clipboard",
+    "exitCode": 1,
+    "seconds": 0.86
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit1-explanations",
+    "exitCode": 0,
+    "seconds": 3.35
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit1-approved",
+    "exitCode": 0,
+    "seconds": 2.15
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit1-v",
+    "exitCode": 0,
+    "seconds": 11.4
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit1-oscillation-one-sided",
+    "exitCode": 0,
+    "seconds": 8.52
+  },
+  {
+    "tree": "merged",
+    "script": "qa:im1-like-terms",
+    "exitCode": 1,
+    "seconds": 11.79
+  },
+  {
+    "tree": "merged",
+    "script": "qa:im1-equations-update",
+    "exitCode": 1,
+    "seconds": 13.6
+  },
+  {
+    "tree": "merged",
+    "script": "qa:coordinate-variety",
+    "exitCode": 0,
+    "seconds": 14.12
+  },
+  {
+    "tree": "merged",
+    "script": "qa:derivative-charts",
+    "exitCode": 0,
+    "seconds": 2.82
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit1-sections-8-10",
+    "exitCode": 0,
+    "seconds": 10.64
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit1-sections-11-12",
+    "exitCode": 0,
+    "seconds": 21.04
+  },
+  {
+    "tree": "merged",
+    "script": "qa:fractional-exponent-display",
+    "exitCode": 1,
+    "seconds": 2.19
+  },
+  {
+    "tree": "merged",
+    "script": "qa:practice-selects",
+    "exitCode": 1,
+    "seconds": 0.97
+  },
+  {
+    "tree": "merged",
+    "script": "qa:unit1-v108-five-fixes",
+    "exitCode": 0,
+    "seconds": 46.42
+  },
+  {
+    "tree": "source-a",
+    "script": "qa:seo",
+    "exitCode": 1,
+    "seconds": 4.89
+  },
+  {
+    "tree": "source-a",
+    "script": "qa:deep",
+    "exitCode": 0,
+    "seconds": 229.0
+  },
+  {
+    "tree": "source-a",
+    "script": "qa:derivative-topics",
+    "exitCode": 1,
+    "seconds": 9.03
+  },
+  {
+    "tree": "source-a",
+    "script": "qa:topic-at-point",
+    "exitCode": 1,
+    "seconds": 20.68
+  },
+  {
+    "tree": "source-a",
+    "script": "qa:unit3",
+    "exitCode": 1,
+    "seconds": 418.31
+  },
+  {
+    "tree": "source-a",
+    "script": "qa:unit5",
+    "exitCode": 0,
+    "seconds": 686.07
+  },
+  {
+    "tree": "source-a",
+    "script": "qa:fractions",
+    "exitCode": 1,
+    "seconds": 2.45
+  },
+  {
+    "tree": "source-a",
+    "script": "qa:keypad-structure",
+    "exitCode": 1,
+    "seconds": 0.37
+  },
+  {
+    "tree": "source-a",
+    "script": "qa:clipboard",
+    "exitCode": 1,
+    "seconds": 0.59
+  },
+  {
+    "tree": "source-a",
+    "script": "qa:im1-like-terms",
+    "exitCode": 1,
+    "seconds": 3.98
+  },
+  {
+    "tree": "source-a",
+    "script": "qa:im1-equations-update",
+    "exitCode": 1,
+    "seconds": 4.7
+  },
+  {
+    "tree": "source-a",
+    "script": "qa:fractional-exponent-display",
+    "exitCode": 1,
+    "seconds": 0.52
+  },
+  {
+    "tree": "source-a",
+    "script": "qa:practice-selects",
+    "exitCode": 1,
+    "seconds": 0.39
+  },
+  {
+    "tree": "source-b",
+    "script": "qa:seo",
+    "exitCode": 1,
+    "seconds": 1.21
+  },
+  {
+    "tree": "source-b",
+    "script": "qa:deep",
+    "exitCode": 0,
+    "seconds": 252.29
+  },
+  {
+    "tree": "source-b",
+    "script": "qa:derivative-topics",
+    "exitCode": 1,
+    "seconds": 3.55
+  },
+  {
+    "tree": "source-b",
+    "script": "qa:topic-at-point",
+    "exitCode": 1,
+    "seconds": 13.14
+  },
+  {
+    "tree": "source-b",
+    "script": "qa:unit3",
+    "exitCode": 1,
+    "seconds": 261.15
+  },
+  {
+    "tree": "source-b",
+    "script": "qa:unit5",
+    "exitCode": 0,
+    "seconds": 346.89
+  },
+  {
+    "tree": "source-b",
+    "script": "qa:fractions",
+    "exitCode": 1,
+    "seconds": 1.19
+  },
+  {
+    "tree": "source-b",
+    "script": "qa:keypad-structure",
+    "exitCode": 0,
+    "seconds": 0.21
+  },
+  {
+    "tree": "source-b",
+    "script": "qa:clipboard",
+    "exitCode": 1,
+    "seconds": 0.28
+  },
+  {
+    "tree": "source-b",
+    "script": "qa:im1-like-terms",
+    "exitCode": 1,
+    "seconds": 1.86
+  },
+  {
+    "tree": "source-b",
+    "script": "qa:im1-equations-update",
+    "exitCode": 1,
+    "seconds": 2.6
+  },
+  {
+    "tree": "source-b",
+    "script": "qa:fractional-exponent-display",
+    "exitCode": 1,
+    "seconds": 0.26
+  },
+  {
+    "tree": "source-b",
+    "script": "qa:practice-selects",
+    "exitCode": 1,
+    "seconds": 0.31
+  }
+]

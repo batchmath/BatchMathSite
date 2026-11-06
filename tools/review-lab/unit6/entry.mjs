@@ -47,8 +47,7 @@ async function typePlain(scope,t,how){if(how==='keypad'){for(const ch of String(
 async function mlSetup(scope,rows,how){
  if(SETUP_KEYPAD_ONLY){
   const tree=raw=>{const parsed=parseInput(raw,'latex');if(parsed.status!=='complete')throw Error('Setup keypad driver cannot parse '+raw);return parsed.tree;};
-  await enterAnswer(p,mfIn(scope),'Unit 6 canonical integral setup',{tree:{type:'integral-setup',rows:rows.map(r=>({coefficient:r.coef&&r.coef!=='1'?tree(r.coef):null,lower:tree(r.lower),upper:tree(r.upper),integrand:tree(r.integrand),variable:r.v}))}});
-  return;
+  return enterAnswer(p,mfIn(scope),'Unit 6 canonical integral setup',{tree:{type:'integral-setup',rows:rows.map(r=>({coefficient:r.coef&&r.coef!=='1'?tree(r.coef):null,lower:tree(r.lower),upper:tree(r.upper),integrand:tree(r.integrand),variable:r.v}))}});
  }
  for(const [i,r] of rows.entries()){
   let coef=r.coef&&r.coef!=='1'?r.coef:'',neg=coef.startsWith('-');if(neg)coef=coef.slice(1);
@@ -73,16 +72,16 @@ async function enter(editor,text,scope,how){
 }
 const linearSetup=rows=>rows.map((r,i)=>{let c=r.coef&&r.coef!=='1'?r.coef:'',neg=c.startsWith('-');if(neg)c=c.slice(1);return (neg?'-':i?'+':'')+(c?`(${lin(c)})*`:'')+`int(${lin(r.lower)},${lin(r.upper)},${lin(r.integrand)},${r.v})`;}).join('');
 
-const out={page,viewport:`${W}x${H}${mob?' mobile':''}`,editor:LEGACY?'legacy':'mathlive',mode:process.env.BM_MODE||'mixed',setupKeypadOnly:SETUP_KEYPAD_ONLY,checked:0,parts:0,integrals:0,mathliveFields:0,blankAtStart:0,locked:0,failures:[],scrollBoxes:[],pageOverflow:0,errors:p._errs,entered:[]};
+const out={page,viewport:`${W}x${H}${mob?' mobile':''}`,editor:LEGACY?'legacy':'mathlive',mode:process.env.BM_MODE||'mixed',setupKeypadOnly:SETUP_KEYPAD_ONLY,checked:0,parts:0,integrals:0,mathliveFields:0,blankAtStart:0,locked:0,failures:[],scrollBoxes:[],pageOverflow:0,errors:p._errs,entered:[],questionIds:[],fieldEvidence:[]};
 for(let i=0;i<+count;i++){
  const info=await p.evaluate(()=>{const q=window.BatchMathUnit5Last;return{id:q.id,variant:q.variant,staged:q.answerType==='unit5-staged',correctIndex:q.correctIndex,tier:q.unit5Meta?.tier,
   parts:(q.parts||[]).map(t=>({control:t.control||'input',answerTex:t.answerTex,answer:t.answer?{kind:t.answer.kind,rows:t.answer.rows,altRows:t.answer.altRows}:null,correctIndex:t.correctIndex,max:t.maxIntegrals}))};});
- const row=[];
+ const row=[];out.questionIds.push(info.id);
  if(process.env.BM_GRAPH_AFTER){const pre=await p.evaluate(()=>({svg:document.querySelectorAll('.practice-shell svg.u6-svg').length,btn:[...document.querySelectorAll('.practice-shell button')].filter(b=>/graph/i.test(b.textContent)).length}));
   if(pre.svg||pre.btn)out.failures.push(`${info.id}: before answering, ${pre.svg} graph(s) and ${pre.btn} graph button(s) shown`);}
  if(!info.staged){await p.locator('#choices .choice').nth(info.correctIndex).click();await p.waitForTimeout(250);const fb=await p.$eval('#feedback',e=>e.innerText.trim()).catch(()=>'');out.parts++;if(!/correct/i.test(fb)||/incorrect|not correct/i.test(fb))out.failures.push(`${info.id}: multiple choice feedback "${fb.slice(0,60)}"`);row.push('multiple choice');}
  for(let k=0;k<info.parts.length;k++){
-  const part=info.parts[k],scope=`#choices .unit5-part-${k+1}`,how=(i+k)%2?'keypad':'keyboard',submit=(i+k)%3===2?'Check':'Enter';
+  const part=info.parts[k],scope=`#choices .unit5-part-${k+1}`,how=(i+k)%2?'keypad':'keyboard',submit=(i+k)%3===2?'Check':'Enter';let fieldRecord,setupProof;
   if(part.control==='choice'){await p.locator(`${scope} .staged-choice`).nth(part.correctIndex).click();row.push('choice');}
   else if(!LEGACY&&['input','u6-expr','u6-integral'].includes(part.control)){
    // the MathLive field: present, blank at the start, nothing pre-built
@@ -95,11 +94,12 @@ for(let i=0;i<+count;i++){
    out.mathliveFields++;
    if(part.control==='u6-integral'){out.integrals++;
     for(const kk of ['Insert definite integral','Insert dx','Insert dy'])if(!st.keys.includes(kk))out.failures.push(`${info.id} part ${k+1}: keypad lacks "${kk}"`);
-    await mfIn(scope).click();await mlSetup(scope,part.answer.rows,how);
+    await mfIn(scope).click();setupProof=await mlSetup(scope,part.answer.rows,how);
     row.push(`integral ${SETUP_KEYPAD_ONLY?'keypad-only':how}/${submit}: ${part.answer.rows.length} integral(s)`);}
    else{await mfIn(scope).click();await mlAnswer(scope,part,how);row.push(`${part.control} ${how}/${submit}`);}
    await p.waitForTimeout(80);
    const latex=await mlValue(scope),hidden=await p.$eval(`${scope} input.staged-exact-input, ${scope} input.practice-answer-input`,e=>e.value).catch(()=>'');
+   fieldRecord={questionId:info.id,part:k,control:part.control,expectedTex:part.answerTex,blankAtStart:blank(v0),enteredLatex:latex,serializedSource:hidden,inputMethod:part.control==='u6-integral'?(SETUP_KEYPAD_ONLY?'displayed-keypad-only':'mixed-setup-entry'):plain(stripLabel(part.answerTex))?how:'latex-insert',profile:setupProof?.profile||await p.locator(`${scope} .bm-calc-keypad:visible`).first().evaluate(pad=>[...pad.classList].find(c=>c.startsWith('bm-calc-mode-'))?.slice(13)||null),buttonsUsed:setupProof?.used||null};out.fieldEvidence.push(fieldRecord);
    row[row.length-1]+=`: ${hidden}`;
    if(submit==='Enter'){await mfIn(scope).click();await p.keyboard.press('End').catch(()=>{});await p.keyboard.press('Enter');}else await p.locator(`${scope} .staged-check`).click();
    if(!hidden)out.failures.push(`${info.id} part ${k+1}: nothing reached the answer from ${latex}`);
@@ -117,7 +117,8 @@ for(let i=0;i<+count;i++){
   const res=await p.evaluate(s=>{const f=document.querySelector(`${s} .staged-feedback .result`);return f?f.textContent.trim():(document.querySelector(`${s} .staged-input-message`)?.textContent.trim()||'(no feedback)');},scope);
   out.parts++;
   if(!/is correct\.|^Correct\./.test(res))out.failures.push(`${info.id} part ${k+1} [${part.answer?.kind||part.control}]: ${res} | answer ${part.answerTex} | entered ${row[row.length-1]}`);
-  if(!LEGACY&&part.control!=='choice'){const lockedNow=await mfIn(scope).evaluate(e=>e.getAttribute('aria-disabled')==='true'||e.readOnly).catch(()=>false);if(lockedNow)out.locked++;else out.failures.push(`${info.id} part ${k+1}: field not locked after grading`);}
+  if(fieldRecord)fieldRecord.correctAccepted=/is correct\.|^Correct\./.test(res);
+  if(!LEGACY&&part.control!=='choice'){const lockedNow=await mfIn(scope).evaluate(e=>e.getAttribute('aria-disabled')==='true'||e.readOnly).catch(()=>false);if(fieldRecord)fieldRecord.locked=lockedNow;if(lockedNow)out.locked++;else out.failures.push(`${info.id} part ${k+1}: field not locked after grading`);}
   if(process.env.BM_GRAPH_AFTER){const g=await p.evaluate(({scope,k,n})=>({here:document.querySelectorAll(`${scope} svg.u6-svg`).length,shade:document.querySelectorAll(`${scope} svg.u6-svg .u6-shade`).length,later:[...Array(n).keys()].filter(j=>j>k).reduce((a,j)=>a+document.querySelectorAll(`#choices .unit5-part-${j+1} svg.u6-svg`).length,0)}),{scope,k,n:info.parts.length});
    if(k===0&&(g.here!==1||!g.shade))out.failures.push(`${info.id}: Part A explanation has ${g.here} graph(s), ${g.shade} shaded region(s)`);
    if(k>0&&g.here)out.failures.push(`${info.id}: part ${k+1} repeats the graph`);

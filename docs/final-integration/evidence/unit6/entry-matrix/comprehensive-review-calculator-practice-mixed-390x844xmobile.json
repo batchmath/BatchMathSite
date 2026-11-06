@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice",
+ "viewport": "390x844 mobile",
+ "editor": "mathlive",
+ "mode": "mixed",
+ "checked": 6,
+ "parts": 13,
+ "integrals": 3,
+ "mathliveFields": 13,
+ "blankAtStart": 13,
+ "locked": 13,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "solids/solid_calc/intermediate: input keyboard/Enter: 82.240",
+  "area/calc_directions/intermediate: integral keypad/Enter: 1 integral(s): int(0,1,(e^(x)),x) | input keyboard/Check: 1.718",
+  "frq_region/frq_calc/challenging: input keyboard/Check: 2.701 | input keypad/Enter: 4.306 | integral keyboard/Enter: 1 integral(s): (pi)*int(-1.022,1.022,((2cos(x)+3)^2-(x^2+3)^2),x) | input keypad/Check: 67.947",
+  "area/calc_given/foundational: input keypad/Enter: 4.123",
+  "area/calc_find/challenging: integral keyboard/Enter: 2 integral(s): int(0,1.318,(2ln(x+1)),x)+int(1.318,3,(3-x),x) | input keypad/Check: 2.676",
+  "frq_region/frq_calc/intermediate: input keypad/Check: 1.892 | input keyboard/Enter: 1.187 | input keypad/Enter: 13.094"
+ ]
+}

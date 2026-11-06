@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "frq_region",
+ "checked": 6,
+ "parts": 20,
+ "integrals": 1,
+ "mathliveFields": 20,
+ "blankAtStart": 20,
+ "locked": 20,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "frq_region/frq_calc/challenging: input keyboard/Enter: 3.195 | input keypad/Enter: 0.950 | input keyboard/Check: 62.168",
+  "frq_region/frq_calc/intermediate: input keypad/Enter: 3.158 | input keyboard/Check: 13.686 | input keypad/Enter: 25.649",
+  "frq_region/frq_calc/challenging: input keyboard/Check: 0.050,1.910 | input keypad/Enter: 2.783 | input keyboard/Enter: 73.161 | input keypad/Check: 37.294",
+  "frq_region/frq_calc/intermediate: input keypad/Enter: -1.597,1.118 | input keyboard/Enter: 3.724 | input keypad/Check: 75.939",
+  "frq_region/frq_calc/intermediate: input keyboard/Enter: -0.711,0.711 | input keypad/Check: 1.892 | input keyboard/Enter: 6.047",
+  "frq_region/frq_calc/challenging: input keypad/Check: -2.387,1.861 | input keyboard/Enter: 14.341 | input keypad/Enter: 58.043 | integral keyboard/Check: 1 integral(s): (pi)*int(-2.387,1.861,((6-x^2)^2-(e^((x)/(2)))^2),x)"
+ ]
+}

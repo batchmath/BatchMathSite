@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice",
+ "viewport": "390x844 mobile",
+ "editor": "mathlive",
+ "mode": "disks_washers",
+ "checked": 6,
+ "parts": 13,
+ "integrals": 4,
+ "mathliveFields": 13,
+ "blankAtStart": 13,
+ "locked": 13,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "solid_calc/foundational: input keyboard/Enter: 73.970",
+  "calc_two_axes/challenging: input keypad/Enter: 15.167 | integral keyboard/Check: 1 integral(s): (pi)*int(0.050,1.910,((4-(x^2-1))^2-(4-(2+ln(x)))^2),x) | input keypad/Enter: 55.674",
+  "calc_two_axes/challenging: input keyboard/Check: 1.474 | integral keypad/Enter: 1 integral(s): (pi)*int(0,0.792,((2-y)^2-(e^(y)-1)^2),y) | input keyboard/Enter: 5.546",
+  "solid_calc/challenging: integral keypad/Enter: 1 integral(s): (pi)*int(0,1.503,((7-(e^(y)-1))^2-(7-(5-y))^2),y) | input keyboard/Enter: 120.043",
+  "calc_two_axes/challenging: input keyboard/Enter: 38.187 | integral keypad/Check: 1 integral(s): (pi)*int(-1.998,1.647,((4-e^(y-1))^2-(4-sqrt(y+2))^2),y) | input keyboard/Enter: 54.782",
+  "solid_calc/foundational: input keypad/Check: 30.533"
+ ]
+}

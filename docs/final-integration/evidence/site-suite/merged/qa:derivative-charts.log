@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "generated": 12000,
+  "chartRate": 0.743,
+  "simpleChartRate": 0.20614625392552713,
+  "families": {
+    "table_scaled_quotient_chain": 571,
+    "table_scaled_quotient": 480,
+    "nondifferentiability": 1023,
+    "table_square_chain": 569,
+    "table_two_scaled_quotient": 582,
+    "table_reverse_nested": 573,
+    "table_two_scaled_product": 592,
+    "table_comp_plus_monomial": 564,
+    "table_quotient": 465,
+    "table_scaled_product": 629,
+    "differentiability_continuity": 1010,
+    "table_product": 438,
+    "table_nested_scaled": 624,
+    "table_quotient_plus_monomial": 587,
+    "inverse_derivative_rule": 1051,
+    "table_scaled_plus_monomial": 597,
+    "table_nested_square": 589,
+    "table_comp": 455,
+    "table_scaled_chain": 601
+  },
+  "errors": []
+}

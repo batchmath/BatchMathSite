@@ -1,0 +1,24 @@
+PASS  Basic generation and answers: parts 2323 fails 0
+PASS  Motion generation and answers: parts 2400 fails 0
+PASS  Slope Fields generation and answers: parts 1500 fails 0
+PASS  Separable generation and answers: parts 3000 fails 0
+PASS  Growth generation and answers: parts 1975 fails 0
+PASS  Rate generation and answers: parts 1749 fails 0
+PASS  Slope-field grading cases
+PASS  Rate independent recomputation: problems 800 integral terms rechecked 803 equations 803 numeric answers matched to explanation 685 issues 0
+PASS  Rate semantic recomputation and content scan (v12.8.X): problems 1500; parts recomputed 1730; forbidden-content problems 0; disagreements 0
+PASS  Rate non-calculator recomputation (v12.8.X): problems 1500 (non-calculator); parts recomputed 1730; forbidden-content problems 0; disagreements 0
+PASS  Motion independent recomputation: problems 400; parts checked independently 657; parts not interpreted 0; distance explanations checked 129; calculator speed-integral explanations checked 20; disagreements 0
+PASS  Motion calculator independent recomputation (v12.8.X): problems 1500; parts checked independently 2155; parts not interpreted 0; distance explanations checked 0; calculator speed-integral explanations checked 510; disagreements 0
+PASS  Growth independent recomputation: problems 1500; parts recomputed independently 1975; parts not read 0; disagreements 0; physical-sense issues 0
+PASS  Slope Fields independent recomputation: problems 600; items checked independently 1756; disagreements 0 | {"segment targets":1446,"matching (distinctness checked in the engine)":108,"increasing y-intervals":19,"reference curves":151,"no displayed equation (figure-only matching)":45,"slope at a point":51,"horizontal-segment curve":22,"second derivative":39,"equilibrium solutions":14,"undefined-slope line":14}
+PASS  Calculator Review audit (v12.8.X): topics (target 33.3/33.3/16.7/16.7): basic 33.1%, motion 34.3%, growth 15.8%, rate 16.8% | difficulty (target 40/40/20): foundational 39.3%, intermediate 39.6%, challenging 21.1% | independence: chi-square 4.37 on 6 degrees of freedom (95% critical value 12.59) | per-topic difficulty split: basic 40/40/20; motion 40/39/22; growth 38/39/23; rate 38/41/21
+PASS  Non-Calculator Review audit (v12.8.X): topics (target 22.2/22.2/22.2/22.2/11.1): basic 22.0%, motion 22.2%, slope 23.2%, separable 21.3%, rate 11.3% | difficulty (target 40/40/20): foundational 39.3%, intermediate 39.6%, challenging 21.1% | independence: chi-square 4.64 on 8 degrees of freedom (95% critical value 15.51) | per-topic difficulty split: basic 41/39/20; motion 38/40/21; slope 41/38/21; separable 38/39/22; rate 37/42/21
+PASS  Keypad coverage audit: No answer needs a key its keypad lacks.
+PASS  Rounding matrix (v12.8.X): generated rounded parts checked: 933 | rounding matrix: 4767 passed, 0 failed
+PASS  Calculator / non-calculator eligibility (v12.8.X): pages 11 (redirects without an engine 4); Practice Type options 39; problems 800 per option; failures 0
+PASS  Basic calculator independent recomputation (v12.8.X): problems 1500; parts checked independently 1500; disagreements 0
+PASS  Separable exponentiation chains (v12.8.X): problems with logarithmic exponentiation 603; chains evaluated 1448; branch lines 242; disagreements 0
+PASS  Pages and Practice Type menus (v12.8.Y): pages 11; redirects 4; problems 600 per choice; failures 0
+PASS  Basic Calculator: one family, fraction coefficients (v12.8.Y): compared with X 0; fraction-bearing 597; template × coefficient combinations 30/30; failures 0
+All Unit 5 checks passed

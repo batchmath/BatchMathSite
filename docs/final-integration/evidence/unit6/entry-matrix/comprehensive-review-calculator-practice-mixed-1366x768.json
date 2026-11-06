@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "mixed",
+ "checked": 6,
+ "parts": 12,
+ "integrals": 3,
+ "mathliveFields": 12,
+ "blankAtStart": 12,
+ "locked": 12,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "solids/solid_calc/intermediate: input keyboard/Enter: 50.142",
+  "solids/solid_calc/challenging: integral keypad/Enter: 1 integral(s): (2pi)*int(0,1.403,(y(2-y-(e^((y)/(3))-1))),y) | input keyboard/Check: 4.271",
+  "solids/solid_calc/challenging: integral keyboard/Check: 1 integral(s): (2pi)*int(-1.998,1.647,((3-y)(sqrt(y+2)-e^(y-1))),y) | input keypad/Enter: 55.674",
+  "frq_region/frq_calc/intermediate: input keypad/Enter: 1.236 | input keyboard/Enter: 20.157 | input keypad/Check: 8.416",
+  "area/calc_given/foundational: input keyboard/Enter: 7.016",
+  "solids/calc_two_axes/challenging: input keypad/Check: 49.249 | integral keyboard/Enter: 1 integral(s): (2pi)*int(0.050,1.910,(x(2+ln(x)-(x^2-1))),x) | input keypad/Enter: 15.167"
+ ]
+}

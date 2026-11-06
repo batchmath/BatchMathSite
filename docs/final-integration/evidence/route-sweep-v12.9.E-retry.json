@@ -1,0 +1,408 @@
+{
+  "results": [
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "line-answer"
+      ],
+      "keypadStability": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 538,
+            "pad": {
+              "x": 29,
+              "y": 378.015625,
+              "docX": 29,
+              "docY": 916.015625,
+              "width": 317,
+              "height": 268
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 205.484375,
+                "docX": 29,
+                "docY": 743.484375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 538,
+            "pad": {
+              "x": 29,
+              "y": 378.015625,
+              "docX": 29,
+              "docY": 916.015625,
+              "width": 317,
+              "height": 268
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 205.484375,
+                "docX": 29,
+                "docY": 743.484375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 538,
+            "pad": {
+              "x": 29,
+              "y": 378.015625,
+              "docX": 29,
+              "docY": 916.015625,
+              "width": 317,
+              "height": 268
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 205.484375,
+                "docX": 29,
+                "docY": 743.484375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 538,
+            "pad": {
+              "x": 29,
+              "y": 378.015625,
+              "docX": 29,
+              "docY": 916.015625,
+              "width": 317,
+              "height": 268
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 205.484375,
+                "docX": 29,
+                "docY": 743.484375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 538,
+            "pad": {
+              "x": 29,
+              "y": 378.015625,
+              "docX": 29,
+              "docY": 916.015625,
+              "width": 317,
+              "height": 268
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 205.484375,
+                "docX": 29,
+                "docY": 743.484375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 538,
+            "pad": {
+              "x": 29,
+              "y": 378.015625,
+              "docX": 29,
+              "docY": 916.015625,
+              "width": 317,
+              "height": 268
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 205.484375,
+                "docX": 29,
+                "docY": 743.484375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 538,
+            "pad": {
+              "x": 29,
+              "y": 378.015625,
+              "docX": 29,
+              "docY": 916.015625,
+              "width": 317,
+              "height": 268
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 205.484375,
+                "docX": 29,
+                "docY": 743.484375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 538,
+            "pad": {
+              "x": 29,
+              "y": 378.015625,
+              "docX": 29,
+              "docY": 916.015625,
+              "width": 317,
+              "height": 268
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 205.484375,
+                "docX": 29,
+                "docY": 743.484375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 538,
+            "pad": {
+              "x": 29,
+              "y": 378.015625,
+              "docX": 29,
+              "docY": 916.015625,
+              "width": 317,
+              "height": 268
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 205.484375,
+                "docX": 29,
+                "docY": 743.484375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 538,
+            "pad": {
+              "x": 29,
+              "y": 378.015625,
+              "docX": 29,
+              "docY": 916.015625,
+              "width": 317,
+              "height": 268
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 205.484375,
+                "docX": 29,
+                "docY": 743.484375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 538,
+            "pad": {
+              "x": 29,
+              "y": 378.015625,
+              "docX": 29,
+              "docY": 916.015625,
+              "width": 317,
+              "height": 268
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 205.484375,
+                "docX": 29,
+                "docY": 743.484375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 538,
+            "pad": {
+              "x": 29,
+              "y": 378.015625,
+              "docX": 29,
+              "docY": 916.015625,
+              "width": 317,
+              "height": 268
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 205.484375,
+                "docX": 29,
+                "docY": 743.484375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        }
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "line-answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "line-answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "knownMathJaxErrors": 0,
+  "unexpectedErrors": 0,
+  "realMathJax": true
+}

@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice",
+ "viewport": "390x844 mobile",
+ "editor": "mathlive",
+ "mode": "perp_x",
+ "checked": 6,
+ "parts": 9,
+ "integrals": 3,
+ "mathliveFields": 9,
+ "blankAtStart": 9,
+ "locked": 9,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "cs_calc/challenging: integral keyboard/Enter: 1 integral(s): ((sqrt(3))/(4))*int(0.050,1.910,((2+ln(x)-(x^2-1))^2),x) | input keypad/Enter: 2.115",
+  "cs_calc/challenging: integral keypad/Enter: 1 integral(s): (3)*int(-0.824,0.824,((2cos(x)-2x^2)^2),x) | input keyboard/Check: 10.493",
+  "cs_calc/challenging: integral keyboard/Check: 1 integral(s): (3)*int(-0.635,0.635,((cos(x)-2x^2)^2),x) | input keypad/Enter: 2.027",
+  "cs_calc/intermediate: input keypad/Enter: 3.846",
+  "cs_calc/intermediate: input keyboard/Enter: 1.049",
+  "cs_calc/intermediate: input keypad/Check: 2.645"
+ ]
+}

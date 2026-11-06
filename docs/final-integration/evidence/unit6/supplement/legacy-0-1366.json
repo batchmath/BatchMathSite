@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+ "viewport": "1366x768",
+ "editor": "legacy",
+ "mode": "choose",
+ "setupKeypadOnly": false,
+ "checked": 5,
+ "parts": 13,
+ "integrals": 8,
+ "mathliveFields": 0,
+ "blankAtStart": 0,
+ "locked": 0,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "choose_dx_dy/intermediate: integral legacy/Enter: int(-2,4,2*y+8-y^(2),y) | input keypad/Enter: 36",
+  "choose_dx_dy/challenging: integral legacy/Enter: int(0,4,y+12-y^(2),y) | integral legacy/Check: int(0,12,sqrt(x),x)+int(12,16,sqrt(x)-(x-12),x) | input keypad/Enter: (104)/(3)",
+  "choose_dx_dy/challenging: integral legacy/Check: int(0,2,y+2-y^(2),y) | integral legacy/Enter: int(0,2,sqrt(x),x)+int(2,4,sqrt(x)-(x-2),x) | input keyboard/Enter: ((10))/(3)",
+  "choose_dx_dy/challenging: integral legacy/Enter: int(0,3,y+6-y^(2),y) | integral legacy/Enter: int(0,6,sqrt(x),x)+int(6,9,sqrt(x)-(x-6),x) | input keypad/Check: (27)/(2)",
+  "choose_dx_dy/intermediate: integral legacy/Enter: int(0,3,3*x-x,x) | input keypad/Check: 9"
+ ]
+}

@@ -1,0 +1,19 @@
+BatchMath fraction-sign equivalence QA
+Result: FAIL
+
+displayCases: 6
+explicitCases: 17
+wholeExpressionCases: 12
+numericStressCases: 237606
+generatedDisplaySourcesChecked: 338
+instrumentedEngines: 139
+staticAnswerInputs: 48
+directParserDefenseFiles: 11
+expressionParserDefenseFiles: 12
+productionParserExecutions: 36
+targetFactoringAcceptanceChecks: 58806
+
+Warnings: 0
+
+Errors: 1
+- assets/unit3-applications-generators.js: generated TeX keeps a negative sign inside a fraction numerator

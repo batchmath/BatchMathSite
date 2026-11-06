@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice",
+ "viewport": "390x844 mobile",
+ "editor": "mathlive",
+ "mode": "shells",
+ "checked": 6,
+ "parts": 7,
+ "integrals": 1,
+ "mathliveFields": 7,
+ "blankAtStart": 7,
+ "locked": 7,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "solid_calc/foundational: input keyboard/Enter: 42.405",
+  "solid_calc/challenging: integral keypad/Enter: 1 integral(s): (2pi)*int(0,3.563,(y(5-y-(e^((y)/(4))-1))),y) | input keyboard/Check: 70.795",
+  "solid_calc/foundational: input keyboard/Check: 73.172",
+  "solid_calc/intermediate: input keypad/Enter: 19.786",
+  "solid_calc/foundational: input keyboard/Enter: 90.429",
+  "solid_calc/intermediate: input keypad/Check: 6.894"
+ ]
+}

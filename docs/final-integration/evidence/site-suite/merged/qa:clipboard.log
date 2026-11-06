@@ -1,0 +1,39 @@
+{
+  "ok": true,
+  "generatedAt": "2026-11-06T15:43:19.217Z",
+  "customEditors": [
+    "assets/calc-prep-exact-editor.js",
+    "assets/calculus-keypad.js",
+    "assets/im1-keypad.js"
+  ],
+  "pageCounts": {
+    "calculus": 129,
+    "calcPrep": 3,
+    "im1": 36,
+    "native": 49
+  },
+  "guarantees": [
+    "Ctrl/Cmd+C, X, and V are handled in every custom math textbox",
+    "structured clipboard MIME preserves fractions, radicals, exponents, and functions",
+    "plain pasted LaTeX is normalized before insertion",
+    "ordinary input and textarea fields retain native browser clipboard behavior"
+  ],
+  "errors": []
+}
+im1-keypad.js:252
+    const previous=pad.querySelector(":scope > .bm-keypad-continuation");
+                       ^
+
+TypeError: pad.querySelector is not a function
+    at applyStandardLayout (im1-keypad.js:252:24)
+    at init (im1-keypad.js:382:5)
+    at Array.forEach (<anonymous>)
+    at initAll (im1-keypad.js:401:56)
+    at im1-keypad.js:405:8
+    at im1-keypad.js:413:3
+    at Script.runInContext (node:vm:149:12)
+    at Object.runInContext (node:vm:301:6)
+    at file:///workspace/BatchMathSite/tools/clipboard-editor-runtime-qa.mjs:78:6
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+
+Node.js v24.19.0

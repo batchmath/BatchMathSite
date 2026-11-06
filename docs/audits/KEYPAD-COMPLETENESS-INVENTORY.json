@@ -184230,6 +184230,15 @@
     "unresolved": 0,
     "evidence": "docs/audits/evidence/keypad-corrections-before-after.json"
   },
+  "historicalLedgerScope": "Source A final audit; retained original field rows and counts, not newly rerun v12.9.E fields.",
+  "finalIntegration": {
+    "version": "12.9.E",
+    "scopeRoutes": 148,
+    "mathematicalRoutes": 128,
+    "retainedRoutes": 20,
+    "unit6PracticeRoutes": 10,
+    "freshEvidence": "docs/final-integration/evidence/final-qa.json"
+  },
   "fields":[
 {"course":"AP Calculus","unit":2,"route":"ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html","family":"logarithmic:natural-radical","questionId":"natural-radical-3-9","selector":{"practice-type":"mixed"},"seed":719,"representation":"canonical","part":null,"field":"answer","runtimeProfile":"migration-derivative-comprehensive-value","requiredAnswer":"1/36","requiredRepresentation":"1/36","answerForms":"operator:/","enteredLatex":"\\frac{1}{36}","serializedSource":"(1)/(36)","buttonSet":"p166b1151b3","controlsUsed":["kdca3ba7ee4","kd81f2c7703","kc4384123e1","kab3dee7e9c","k6ae5aa5667","k352cc9e62c","kab3dee7e9c"],"requiredControlsUsed":["kd81f2c7703","kc4384123e1","k6ae5aa5667","k352cc9e62c"],"keypadEnterable":true,"originalCorrectAccepted":true,"wrongRejected":true,"retainedControl":false,"missingControl":null,"semanticCorrectAccepted":null,"meaningfulAlternatives":[],"error":null,"evidence":"docs/audits/evidence/keypad-completeness-unit2-final-d.json","resumedFrom":"docs/audits/evidence/keypad-completeness-unit2-final-d-resume-1.json","driverRetestEvidence":null,"evidencePhase":"final","profileEvidence":null},
 {"course":"AP Calculus","unit":2,"route":"ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html","family":"logarithmic:base-polynomial","questionId":"base-polynomial-2-5--1-20--2","selector":{"practice-type":"mixed"},"seed":1438,"representation":"canonical","part":null,"field":"answer","runtimeProfile":"migration-derivative-comprehensive-value","requiredAnswer":"9/(6*ln(2))","requiredRepresentation":"9/(6*ln(2))","answerForms":"call:ln,operator:*,operator:/","enteredLatex":"\\frac{9}{(6\\cdot\\ln(2))}","serializedSource":"(9)/((6*ln(2)))","buttonSet":"p166b1151b3","controlsUsed":["kdca3ba7ee4","kd81f2c7703","k9198e06d1b","kab3dee7e9c","kd8a2b1526c","k352cc9e62c","ka3f0dee01d","kb85706d837","kcdff31edc8","kab3dee7e9c","kef65325e87","kab3dee7e9c"],"requiredControlsUsed":["kd81f2c7703","k9198e06d1b","kd8a2b1526c","k352cc9e62c","ka3f0dee01d","kb85706d837","kcdff31edc8","kef65325e87"],"keypadEnterable":true,"originalCorrectAccepted":true,"wrongRejected":true,"retainedControl":false,"missingControl":null,"semanticCorrectAccepted":null,"meaningfulAlternatives":[],"error":null,"evidence":"docs/audits/evidence/keypad-completeness-unit2-final-d.json","resumedFrom":"docs/audits/evidence/keypad-completeness-unit2-final-d-resume-1.json","driverRetestEvidence":null,"evidencePhase":"final","profileEvidence":null},

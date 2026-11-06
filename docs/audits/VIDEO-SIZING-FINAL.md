@@ -1,5 +1,7 @@
 # Final instructional-video sizing audit
 
+Final v12.9.E scope: 72 video pages and 215 players, including six Unit 6 pages and 17 players. Fresh sizing: 370/370 visits, 1,141 player measurements, zero errors. The 66-page audit below records Source A history. Current evidence: `../final-integration/evidence/video-sizing-v12.9.E.json`.
+
 Starting checkpoint: `63ef79b1271974072daa2f1f99a968671a45f2c7` on
 `integration/mathlive-im1-videos-content`. The approved lecture/supporting
 hierarchy is preserved. Unit 6 remains excluded.

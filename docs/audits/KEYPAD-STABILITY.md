@@ -1,5 +1,7 @@
 # Keypad viewport and sizing audit
 
+Final v12.9.E scope: 17 controllers and 37 URLs including all ten Unit 6 practice routes. Fresh suite: 164/164 cases and 4,295 physical actions. After the Unit 6 cube-root correction, all 34 Unit 6 cases pass again (1,063 additional actions). Zero errors. The original Source A audit follows; its exclusions describe that earlier phase.
+
 Scope: all 16 shared MathLive controllers, 26 selected routes (27 distinct URLs, including the legacy Prep comparison) across
 AP Calculus Units 1–5, IM1 Units 1–3 and Calculus Prep. Unit 6 is excluded.
 The complete route/field inventory is in

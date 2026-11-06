@@ -1,0 +1,773 @@
+BatchMath Unit 3 Version 11.13 QA
+Result: FAIL
+Errors: 200
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-quotient-cosine-mix-1.7-0.4-4.2-1.5--0.2-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-linear-cosine-2.6-1.8-0.5-1.8-5.7-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-damped-exponential-sine-0.4-0.8-1.6-0.25-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-quotient-cosine-mix-2.6-0.9-4.2-2-0.8-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-quintic-cosine-2.7-0.65-1.8-2.6-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-cosine-mix-2.7-1-1.6-0.35-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-cubic-cosine-mix-2.4-1.05-1--0.6-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-cubic-sine-3.5-0.4-2-9.1-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-damped-exponential-sine-0.4-1.1-1.6-0.95-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-linear-sine-0.8-2.1-0.35-1--1.8-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-inverse-trig-cosine-2.1-0.8-0.45-1.5-6.2-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-polynomial-mix-4.1-0.4-0.8-1.7-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-quintic-cosine-2.1-0.65-1.4-2.6-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-cubic-sine-2.2-0.4-1--8.4-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-cosine-mix-2.7-1.3-1.1-0.35-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-2.7-1-2--0.2-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-linear-sine-0.6-2.1-0.5-1.5-3.4-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-inverse-trig-cosine-2.6-1.05-0.45-2-6.2-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-composed-sine-linear-4.3-0.5-1.9-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-exponential-rational-linear-0.7-1.9-0.45-4.6-6.7-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-polynomial-mix-4.1-0.4-0.8-1.7-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-sine-polynomial-0.55-0.65-1.7-0.28-0.6-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-polynomial-mix-2.8-0.25-1.3-1.1-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-polynomial-mix-2.8-0.25-1.3-2.4-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-inverse-trig-cosine-1.6-0.55-0.6-2--4.6-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-composed-sine-linear-4.3-0.5-3.6-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-2.4-0.9-0.6-4.4-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-polynomial-exponential-1.8-0.6-0.8-9.3-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-polynomial-mix-4.1-0.4-0.8-1.7-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-2.7-0.7-1.6-0.8-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-1.3-0.6-0.4-6.8-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-exponential-linear-sine-0.6-2.1-0.5-1.5-0.7-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-quartic-sine-mix-3.2-0.8-2--1.4-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-exponential-rational-linear-0.35-1.4-0.7-3.3-6.7-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-sine-polynomial-0.25-1.2-1.2-0.12-0.6-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-polynomial-mix-2.8-0.4-1.9-2.4-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-linear-sine-0.6-1.6-0.5-1.5--1.8-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-polynomial-exponential-1.8-0.9-0.8-4.4-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-quintic-cosine-3.4-0.85-1-2.6-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-quadratic-0.8-0.8-3.2-7.3-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-polynomial-mix-2.8-0.4-1.3-0.6-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-inverse-trig-cosine-2.1-0.55-0.6-2--2.1-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-linear-sine-0.6-1.6-0.65-1-5.1-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-damped-exponential-sine-0.4-0.8-1.2-0.95-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-3.3-0.7-2-0.35-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-polynomial-exponential-2.4-0.6-0.6-9.3-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-cosine-mix-3.3-1-1.6--0.2-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-quintic-cosine-2.1-0.65-1--3.7-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-polynomial-exponential-mix-2.2-1.1-0.6--0.4-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-3.3-1.3-1.6-0.35-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-quartic-sine-mix-4.4-0.8-1--3.1-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-quotient-cosine-mix-1.7-0.9-4.2-1.5--0.2-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-cubic-sine-2.2-0.8-1-5.3-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-quartic-sine-mix-3.2-0.8-2--1.4-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-1.3-1.2-0.4-9.3-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-rational-linear-sine-2.6-0.6-2.2-0.6-1.5-5.4-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-exponential-rational-linear-0.5-1.9-0.95-2.1-6.7-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-composed-sine-linear-3.7-0.5-7.1-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-rational-linear-sine-1.8-0.8-4.3-0.45-1-5.4-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-quadratic-0.8-1.1-1.8-2.8-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-cosine-mix-2.7-1.3-2-0.35-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-cubic-cosine-mix-4.5-1.05-1-0.4-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-cosine-mix-2.7-0.7-2-0.35-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-polynomial-mix-3.4-0.4-1.9-1.1-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-inverse-trig-cosine-2.1-1.05-0.45-1.5--4.6-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-mix-3.1-1.1-0.8--1.5-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-linear-sine-0.4-2.6-0.35-1-3.4-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-2.7-0.7-2-0.8-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-exponential-rational-linear-0.35-2.4-0.45-3.3-4.2-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-3.3-1-1.1-0.8-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-2.7-0.7-1.6-0.8-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-cubic-cosine-mix-3.3-1.05-1--0.6-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-polynomial-exponential-mix-3.1-0.5-0.4-1.8-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-mix-4.3-0.5-0.8--1.5-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-polynomial-mix-2.8-0.25-0.8-1.7-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-cubic-cosine-mix-3.3-0.7-1.5-0.4-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-exponential-rational-linear-0.7-2.4-0.45-4.6-4.2-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-polynomial-mix-2.8-0.25-1.9-0.6-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-cosine-mix-2.2-1-1.1-0.8-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-polynomial-exponential-mix-3.1-1.1-0.4-0.7-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-linear-sine-0.6-2.1-0.65-1--1.8-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-quartic-sine-mix-4.4-0.5-1--1.4-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-rational-linear-sine-2.6-0.8-4.3-0.45-1-0.9-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-sine-polynomial-0.55-1.2-1.2-0.2-0.6-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-rational-sine-mix-2.6-1-2.7-2.1-0.55-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-sine-polynomial-0.55-0.9-1.2-0.12-0.9-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-cosine-mix-2.7-0.7-1.1-0.35-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-linear-cosine-2.2-1.4-0.35-1.8--1.6-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-2.4-0.9-0.8-9.3-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-rational-linear-sine-1.8-1.1-4.3-0.3-2--2.7-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-quintic-cosine-2.1-0.85-1.4--6.3-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-composed-sine-linear-3.7-0.5-3.6-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-exponential-linear-sine-0.8-2.6-0.65-1.5-5.1-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-2.7-0.7-2-0.35-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-mix-4.3-1.1-0.6--1.5-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-quotient-cosine-mix-2.6-0.65-1.8-1--0.7-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-composed-sine-linear-3.2-0.4-5.2-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-quintic-cosine-2.7-0.45-1.8-4.6-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-quintic-cosine-2.7-0.45-1.8-4.6-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-polynomial-exponential-1.3-1.2-0.6-4.4-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-cubic-cosine-mix-3.3-0.7-1.5-0.4-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-cosine-mix-2.7-1.3-1.1--0.2-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-cubic-cosine-mix-4.5-1.05-1-0.4-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-mix-3.1-0.5-0.4-1.8-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-quadratic-0.8-1.1-1.8-4.9-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-mix-4.3-0.8-0.4-1.8-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-inverse-trig-cosine-2.6-0.55-0.6-1-3.7-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-rational-sine-mix-2-0.7-4.1-1.6-0.55-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-inverse-trig-cosine-1.6-0.8-0.3-1-1.3-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-3.3-0.7-2-0.35-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-linear-cosine-2.6-2.3-0.65-1.4-3.3-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-polynomial-mix-3.4-0.4-1.3-0.6-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-quartic-sine-mix-3.2-1.1-1--1.4-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-2.7-1-1.1--0.2-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-quadratic-1.7-0.8-2.4-2.8-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-damped-exponential-sine-0.6-0.8-1.2-0.95-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-polynomial-mix-3.4-0.4-1.9-2.4-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-inverse-trig-cosine-2.1-0.55-0.45-2--2.1-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-rational-linear-sine-1.8-0.8-2.2-0.6-1.5--2.7-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-quadratic-0.8-0.55-1.8-7.3-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-quotient-cosine-mix-1.7-0.4-4.2-1-0.8-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-exponential-linear-sine-0.4-2.6-0.35-2-0.7-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-linear-cosine-2.2-2.3-0.5-1.4-5.7-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-rational-linear-0.35-1.9-0.7-2.1-1.8-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-composed-sine-linear-4.3-0.5-3.6-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-inverse-trig-cosine-2.6-0.8-0.45-1-3.7-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-1.8-0.6-0.4-6.8-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-polynomial-mix-3.4-0.6-0.8-1.7-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-polynomial-exponential-mix-2.2-0.8-0.4--0.4-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-mix-4.3-1.1-0.8-0.7-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-quintic-cosine-2.1-0.85-1.4--3.7-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-inverse-trig-cosine-1.6-0.55-0.6-1.5-1.3-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-cubic-sine-2.2-0.4-1.5-9.1-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-linear-cosine-2.2-1.8-0.65-1.8-5.7-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-linear-cosine-2.6-1.8-0.65-1.8-8.1-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-cubic-cosine-mix-2.4-1.05-2--1.7-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-3.3-1.3-1.6-0.35-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-mix-3.1-0.8-0.6-1.8-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-rational-linear-sine-2.2-0.6-3.1-0.6-1-3.1-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-3.3-1.3-2--0.2-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-quadratic-1.7-1.1-3.2-4.9-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-2.4-1.2-0.6-9.3-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-exponential-sine-polynomial-0.25-0.65-1.2-0.12-1.2-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-polynomial-mix-3.4-0.4-1.9-1.1-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-polynomial-exponential-mix-4.3-1.1-0.8-0.7-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-quotient-cosine-mix-3.8-0.65-4.2-2--0.7-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-polynomial-exponential-1.3-0.9-0.4-4.4-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-quadratic-1.7-0.55-1.8-7.3-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-linear-cosine-2.2-1.8-0.5-1--1.6-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-3.3-1-1.1--0.2-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-quartic-sine-mix-5.6-1.1-2--1.4-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-mix-4.3-0.8-0.4-1.8-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-linear-cosine-2.2-2.3-0.65-1-5.7-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-inverse-trig-cosine-2.1-1.05-0.6-1.5-3.7-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-1.8-1.2-0.6-6.8-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-rational-linear-0.5-1.4-0.45-2.1-1.8-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-quadratic-1.7-0.8-3.2-2.8-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-quadratic-1.7-1.1-2.4-7.3-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-rational-linear-sine-2.6-0.8-4.3-0.45-2-3.1-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-rational-linear-0.7-1.9-0.45-2.1-9.4-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-rational-sine-mix-2-0.7-4.1-2.1-0.55-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-quadratic-0.8-0.55-2.4-7.3-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-cubic-sine-2.2-0.6-1-9.1-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-polynomial-exponential-mix-3.1-0.5-0.4-1.8-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-exponential-linear-sine-0.4-2.6-0.35-1-3.4-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-linear-cosine-3.1-1.8-0.5-1.8-8.1-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-3.3-1-1.6--0.2-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-polynomial-exponential-1.8-0.6-0.4-6.8-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-cubic-sine-2.8-0.6-1--4.7-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-rational-linear-sine-1.8-0.6-4.3-0.6-1.5-3.1-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-rational-linear-sine-2.6-0.8-2.2-0.45-2-3.1-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-cosine-mix-2.7-1-1.1--0.2-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-linear-sine-0.8-1.6-0.5-1.5-0.7-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-linear-cosine-3.1-1.8-0.35-1-3.3-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-quadratic-1.7-1.1-2.4-14.2-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-quadratic-0.8-0.8-3.2-7.3-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-damped-exponential-sine-0.4-0.8-1.6-0.95-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-linear-sine-0.6-1.6-0.5-2--1.8-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-composed-sine-linear-3.7-0.5-3.6-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-cosine-mix-2.2-1-1.6-0.8-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-rational-sine-mix-1.4-1-1.8-1.1-0.2-decreasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-quadratic-1.2-0.8-2.4-14.2-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-quotient-cosine-mix-3.8-0.65-1.8-2-0.35-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-rational-linear-0.5-1.9-0.95-2.1-6.7-increasing-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-quintic-cosine-2.7-0.85-1-7.4-up-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-linear-cosine-2.2-2.3-0.5-1.8-3.3-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-1.8-1.2-0.6-4.4-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-quartic-sine-mix-5.6-1.1-2--1.4-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-quartic-sine-mix-3.2-1.1-1--3.1-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-composed-sine-linear-3.2-0.4-5.2-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-composed-sine-linear-3.7-0.5-3.6-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-logarithmic-cosine-mix-2.7-1.3-2-0.35-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-exponential-rational-linear-0.35-2.4-0.7-4.6-4.2-increasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-incdec-quotient-cosine-mix-1.7-0.4-2.7-1.5--0.7-decreasing-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-polynomial-exponential-1.3-1.2-0.6-6.8-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-cosine-mix-2.2-0.7-2-1.25-down-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-exponential-sine-polynomial-0.25-0.9-1.2-0.2-0.35-up-r
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-composed-sine-linear-4.3-0.5-7.1-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-inverse-trig-cosine-1.6-0.8-0.6-1--4.6-down-n
+- derivative analysis calculator: graph-based sign work missing u3-analysis-validated-concavity-logarithmic-polynomial-mix-3.4-0.4-1.9-2.4-down-r
+Warnings: 0
+
+{
+  "equations-of-tangent-and-normal-lines:noncalculator": {
+    "testShare": 0.14833333333333334,
+    "families": [
+      "cosine_special_angle_normal",
+      "cosine_special_angle_tangent",
+      "expanded_quartic_normal",
+      "expanded_quartic_tangent",
+      "exponential_chain_normal",
+      "exponential_chain_tangent",
+      "fractional_power_normal",
+      "fractional_power_tangent",
+      "implicit_assignment_style_normal",
+      "implicit_assignment_style_tangent",
+      "implicit_cubic_square_linear_normal",
+      "implicit_cubic_square_linear_tangent",
+      "implicit_exponential_normal",
+      "implicit_exponential_product_normal",
+      "implicit_exponential_product_tangent",
+      "implicit_exponential_tangent",
+      "implicit_higher_product_normal",
+      "implicit_higher_product_tangent",
+      "implicit_logarithmic_normal",
+      "implicit_logarithmic_tangent",
+      "implicit_mixed_quadratic_normal",
+      "implicit_mixed_quadratic_tangent",
+      "implicit_power_sum_normal",
+      "implicit_power_sum_tangent",
+      "implicit_product_cubic_normal",
+      "implicit_product_cubic_tangent",
+      "implicit_quartic_kampyle_normal",
+      "implicit_quartic_kampyle_tangent",
+      "implicit_radical_normal",
+      "implicit_radical_tangent",
+      "implicit_reciprocal_normal",
+      "implicit_reciprocal_tangent",
+      "implicit_shifted_conic_normal",
+      "implicit_shifted_conic_tangent",
+      "implicit_sine_sum_normal",
+      "implicit_sine_sum_tangent",
+      "implicit_trigonometric_normal",
+      "implicit_trigonometric_product_normal",
+      "implicit_trigonometric_product_tangent",
+      "implicit_trigonometric_tangent",
+      "inverse_trigonometric_normal",
+      "inverse_trigonometric_tangent",
+      "logarithmic_normal",
+      "logarithmic_tangent",
+      "polynomial_cubic_normal",
+      "polynomial_cubic_tangent",
+      "polynomial_quadratic_normal",
+      "polynomial_quadratic_tangent",
+      "product_exponential_normal",
+      "product_exponential_tangent",
+      "product_trigonometric_normal",
+      "product_trigonometric_tangent",
+      "radical_chain_normal",
+      "radical_chain_tangent",
+      "rational_quotient_normal",
+      "rational_quotient_tangent",
+      "reciprocal_shift_normal",
+      "reciprocal_shift_tangent",
+      "sine_chain_normal",
+      "sine_chain_tangent",
+      "tangent_function_normal",
+      "tangent_function_tangent"
+    ],
+    "extensionShare": null
+  },
+  "horizontal-and-vertical-tangent-lines:noncalculator": {
+    "testShare": 0.14833333333333334,
+    "families": [
+      "horizontal_cosine",
+      "horizontal_cubic_positive_critical",
+      "horizontal_exponential_product",
+      "horizontal_logarithmic",
+      "horizontal_polynomial_factoring_by_grouping",
+      "horizontal_polynomial_quadratic_derivative",
+      "horizontal_polynomial_variable_substitution",
+      "horizontal_radical",
+      "horizontal_rational",
+      "horizontal_sine",
+      "horizontal_tangent_combination",
+      "vertical_cube_root",
+      "vertical_cube_root_plus_linear",
+      "vertical_four_fifths",
+      "vertical_inverse_trigonometric",
+      "vertical_square_root_endpoint",
+      "vertical_two_thirds"
+    ],
+    "extensionShare": null
+  },
+  "horizontal-and-vertical-tangent-lines-implicitly:noncalculator": {
+    "testShare": 0.152,
+    "families": [
+      "implicit_all_horizontal_coordinates_grouping",
+      "implicit_all_horizontal_coordinates_quadratic",
+      "implicit_all_horizontal_coordinates_substitution",
+      "implicit_all_vertical_coordinates_grouping",
+      "implicit_all_vertical_coordinates_quadratic",
+      "implicit_all_vertical_coordinates_substitution",
+      "implicit_circle_horizontal",
+      "implicit_circle_vertical",
+      "implicit_cross_quadratic_horizontal",
+      "implicit_cross_quadratic_vertical",
+      "implicit_cubic_sum_horizontal",
+      "implicit_cubic_sum_vertical",
+      "implicit_ellipse_horizontal",
+      "implicit_ellipse_vertical",
+      "implicit_higher_powers_horizontal",
+      "implicit_higher_powers_vertical",
+      "implicit_mixed_quadratic_horizontal",
+      "implicit_mixed_quadratic_vertical",
+      "implicit_product_cubic_horizontal"
+    ],
+    "extensionShare": null
+  },
+  "horizontal-and-vertical-tangent-lines-implicitly:calculator": {
+    "testShare": 0.147,
+    "families": [
+      "calculator_exponential_horizontal",
+      "calculator_exponential_vertical",
+      "calculator_log_product_vertical",
+      "calculator_log_square_vertical",
+      "calculator_polynomial_multiple_horizontal",
+      "calculator_polynomial_multiple_vertical",
+      "calculator_polynomial_product_horizontal",
+      "calculator_trigonometric_horizontal",
+      "calculator_trigonometric_vertical",
+      "calculator_weighted_log_horizontal",
+      "calculator_weighted_log_vertical"
+    ],
+    "extensionShare": null
+  },
+  "using-your-graphing-calculator:calculator": {
+    "testShare": 0.15216666666666667,
+    "families": [
+      "calculator_derivative_at_point",
+      "calculator_maximum_location",
+      "calculator_minimum_location",
+      "calculator_normal_slope",
+      "calculator_slope_at_x_intercept",
+      "calculator_tangent_slope",
+      "calculator_x_intercept_logarithmic",
+      "calculator_x_intercept_polynomial",
+      "calculator_x_intercept_trigonometric",
+      "test_slope_at_x_intercept"
+    ],
+    "extensionShare": null
+  },
+  "motion:noncalculator": {
+    "testShare": 0.1545,
+    "families": [
+      "motion_acceleration_first_direction_change",
+      "motion_acceleration_when_position_exponential",
+      "motion_acceleration_when_position_known",
+      "motion_acceleration_when_velocity_known",
+      "motion_acceleration_when_velocity_logarithmic",
+      "motion_position_acceleration_exponential",
+      "motion_position_acceleration_logarithmic",
+      "motion_position_acceleration_polynomial",
+      "motion_position_acceleration_radical",
+      "motion_position_acceleration_trigonometric",
+      "motion_position_direction_change_exponential",
+      "motion_position_direction_change_polynomial",
+      "motion_position_direction_change_trigonometric",
+      "motion_position_speed_polynomial",
+      "motion_position_velocity_exponential",
+      "motion_position_velocity_logarithmic",
+      "motion_position_velocity_polynomial",
+      "motion_position_velocity_radical",
+      "motion_position_velocity_trigonometric",
+      "motion_velocity_acceleration_exponential",
+      "motion_velocity_acceleration_trigonometric",
+      "motion_velocity_speed_exponential",
+      "motion_velocity_speed_trigonometric",
+      "motion_velocity_when_position_known"
+    ],
+    "extensionShare": null
+  },
+  "motion:calculator": {
+    "testShare": 0.15733333333333333,
+    "families": [
+      "motion_calculator_acceleration_first_direction_change",
+      "motion_calculator_acceleration_log_trig",
+      "motion_calculator_acceleration_when_position_known",
+      "motion_calculator_acceleration_when_velocity_known",
+      "motion_calculator_direction_change_exponential",
+      "motion_calculator_direction_change_trigonometric",
+      "motion_calculator_position_acceleration_exponential",
+      "motion_calculator_position_velocity_exponential",
+      "motion_calculator_speed_composite",
+      "motion_calculator_speed_radical_trig",
+      "motion_calculator_velocity_acceleration_log_trig",
+      "motion_calculator_velocity_acceleration_rational",
+      "motion_calculator_velocity_speed_log_trig",
+      "motion_calculator_velocity_speed_rational",
+      "motion_calculator_velocity_when_position_known",
+      "test_motion_speed_rational_exponential"
+    ],
+    "extensionShare": null
+  },
+  "absolute-and-local-extrema-and-the-extreme-value-theorem:noncalculator": {
+    "testShare": 0.15033333333333335,
+    "families": [
+      "evt_expanded_rational_domain",
+      "evt_exponential_denominator",
+      "evt_logarithmic_denominator",
+      "evt_logarithmic_domain_expanded",
+      "evt_polynomial_closed_interval",
+      "evt_radical_denominator",
+      "evt_radical_domain_expanded",
+      "extrema_absolute_polynomial_locations",
+      "extrema_absolute_polynomial_value",
+      "extrema_absolute_radical_location",
+      "extrema_absolute_radical_locations",
+      "extrema_absolute_radical_value",
+      "extrema_absolute_trig_location",
+      "extrema_absolute_trig_value",
+      "extrema_local_cubic_location",
+      "extrema_local_cubic_value",
+      "extrema_local_log_location",
+      "extrema_local_log_value",
+      "extrema_local_quartic_location",
+      "extrema_local_quartic_locations",
+      "extrema_local_quartic_value",
+      "extrema_local_rational_location",
+      "extrema_local_rational_value"
+    ],
+    "extensionShare": null
+  },
+  "increasing-decreasing-intervals-concavity-and-extrema:noncalculator": {
+    "testShare": 0.1545,
+    "families": [
+      "analysis_from_f_concavity_polynomial",
+      "analysis_from_f_cubic",
+      "analysis_from_f_exponential_product",
+      "analysis_from_f_logarithmic",
+      "analysis_from_f_quadratic_formula",
+      "analysis_from_f_quartic",
+      "analysis_from_f_radical_product",
+      "analysis_from_f_rational",
+      "analysis_from_f_trigonometric",
+      "analysis_from_first_derivative_cubic",
+      "analysis_from_first_derivative_grouping",
+      "analysis_from_first_derivative_quadratic",
+      "analysis_from_first_derivative_variable_substitution",
+      "analysis_from_second_derivative_cubic",
+      "analysis_from_second_derivative_quadratic",
+      "analysis_inflection_point_coordinates_cubic",
+      "analysis_inflection_point_coordinates_exponential",
+      "analysis_inflection_point_coordinates_quartic",
+      "analysis_inflection_point_coordinates_trigonometric",
+      "analysis_local_extremum_fields_cubic",
+      "analysis_local_extremum_fields_exponential",
+      "analysis_local_extremum_fields_logarithmic",
+      "analysis_local_extremum_fields_quartic",
+      "analysis_local_extremum_fields_radical",
+      "analysis_local_extremum_fields_rational",
+      "analysis_local_extremum_fields_trigonometric"
+    ],
+    "extensionShare": null
+  },
+  "increasing-decreasing-intervals-concavity-and-extrema:calculator": {
+    "testShare": 0.1595,
+    "families": [
+      "analysis_calculator_validated_concavity_composed-sine-linear",
+      "analysis_calculator_validated_concavity_cubic-cosine-mix",
+      "analysis_calculator_validated_concavity_cubic-sine",
+      "analysis_calculator_validated_concavity_damped-exponential-sine",
+      "analysis_calculator_validated_concavity_exponential-linear-sine",
+      "analysis_calculator_validated_concavity_exponential-rational-linear",
+      "analysis_calculator_validated_concavity_exponential-sine-polynomial",
+      "analysis_calculator_validated_concavity_inverse-trig-cosine",
+      "analysis_calculator_validated_concavity_logarithmic-cosine-mix",
+      "analysis_calculator_validated_concavity_logarithmic-linear-cosine",
+      "analysis_calculator_validated_concavity_logarithmic-polynomial-mix",
+      "analysis_calculator_validated_concavity_logarithmic-quadratic",
+      "analysis_calculator_validated_concavity_polynomial-exponential",
+      "analysis_calculator_validated_concavity_polynomial-exponential-mix",
+      "analysis_calculator_validated_concavity_quartic-sine-mix",
+      "analysis_calculator_validated_concavity_quintic-cosine",
+      "analysis_calculator_validated_concavity_quotient-cosine-mix",
+      "analysis_calculator_validated_concavity_rational-linear-sine",
+      "analysis_calculator_validated_concavity_rational-sine-mix",
+      "analysis_calculator_validated_extrema_composed-sine-linear_maximum",
+      "analysis_calculator_validated_extrema_composed-sine-linear_minimum",
+      "analysis_calculator_validated_extrema_cubic-sine_maximum",
+      "analysis_calculator_validated_extrema_cubic-sine_minimum",
+      "analysis_calculator_validated_extrema_exponential-linear-sine_maximum",
+      "analysis_calculator_validated_extrema_exponential-linear-sine_minimum",
+      "analysis_calculator_validated_extrema_exponential-rational-linear_maximum",
+      "analysis_calculator_validated_extrema_exponential-rational-linear_minimum",
+      "analysis_calculator_validated_extrema_inverse-trig-cosine_maximum",
+      "analysis_calculator_validated_extrema_inverse-trig-cosine_minimum",
+      "analysis_calculator_validated_extrema_logarithmic-linear-cosine_maximum",
+      "analysis_calculator_validated_extrema_logarithmic-linear-cosine_minimum",
+      "analysis_calculator_validated_extrema_logarithmic-quadratic_maximum",
+      "analysis_calculator_validated_extrema_logarithmic-quadratic_minimum",
+      "analysis_calculator_validated_extrema_polynomial-exponential_maximum",
+      "analysis_calculator_validated_extrema_polynomial-exponential_minimum",
+      "analysis_calculator_validated_extrema_quintic-cosine_maximum",
+      "analysis_calculator_validated_extrema_quintic-cosine_minimum",
+      "analysis_calculator_validated_extrema_rational-linear-sine_maximum",
+      "analysis_calculator_validated_extrema_rational-linear-sine_minimum",
+      "analysis_calculator_validated_incdec_composed-sine-linear",
+      "analysis_calculator_validated_incdec_cubic-cosine-mix",
+      "analysis_calculator_validated_incdec_cubic-sine",
+      "analysis_calculator_validated_incdec_damped-exponential-sine",
+      "analysis_calculator_validated_incdec_exponential-linear-sine",
+      "analysis_calculator_validated_incdec_exponential-rational-linear",
+      "analysis_calculator_validated_incdec_exponential-sine-polynomial",
+      "analysis_calculator_validated_incdec_inverse-trig-cosine",
+      "analysis_calculator_validated_incdec_logarithmic-cosine-mix",
+      "analysis_calculator_validated_incdec_logarithmic-linear-cosine",
+      "analysis_calculator_validated_incdec_logarithmic-polynomial-mix",
+      "analysis_calculator_validated_incdec_logarithmic-quadratic",
+      "analysis_calculator_validated_incdec_polynomial-exponential",
+      "analysis_calculator_validated_incdec_polynomial-exponential-mix",
+      "analysis_calculator_validated_incdec_quartic-sine-mix",
+      "analysis_calculator_validated_incdec_quintic-cosine",
+      "analysis_calculator_validated_incdec_quotient-cosine-mix",
+      "analysis_calculator_validated_incdec_rational-linear-sine",
+      "analysis_calculator_validated_incdec_rational-sine-mix",
+      "analysis_calculator_validated_poi_composed-sine-linear",
+      "analysis_calculator_validated_poi_cubic-sine",
+      "analysis_calculator_validated_poi_exponential-linear-sine",
+      "analysis_calculator_validated_poi_exponential-rational-linear",
+      "analysis_calculator_validated_poi_inverse-trig-cosine",
+      "analysis_calculator_validated_poi_logarithmic-linear-cosine",
+      "analysis_calculator_validated_poi_logarithmic-quadratic",
+      "analysis_calculator_validated_poi_polynomial-exponential",
+      "analysis_calculator_validated_poi_quintic-cosine",
+      "analysis_calculator_validated_poi_rational-linear-sine"
+    ],
+    "extensionShare": null
+  },
+  "linearization-and-differentials:noncalculator": {
+    "testShare": 0.16183333333333333,
+    "families": [
+      "differentials_circle_area",
+      "differentials_circle_circumference",
+      "differentials_cone_two_variables",
+      "differentials_cylinder_surface_area",
+      "differentials_cylinder_two_variables",
+      "differentials_equilateral_triangle",
+      "differentials_rectangle_two_variables",
+      "differentials_rectangular_prism",
+      "differentials_reverse_circle_radius",
+      "differentials_reverse_cylinder_height",
+      "differentials_reverse_rectangle_length",
+      "differentials_reverse_sphere_radius",
+      "differentials_right_triangle_hypotenuse",
+      "differentials_sphere_surface_area",
+      "differentials_sphere_volume",
+      "differentials_trapezoid_area",
+      "differentials_triangle_included_angle",
+      "differentials_triangle_two_variables",
+      "linearization_cube_root",
+      "linearization_square_root"
+    ],
+    "extensionShare": null
+  },
+  "newton-s-method-for-approximating-roots-of-a-function:calculator": {
+    "testShare": 0.15016666666666667,
+    "families": [
+      "newton_function_cubic",
+      "newton_function_exponential",
+      "newton_function_logarithmic",
+      "newton_function_trigonometric",
+      "newton_nth_root"
+    ],
+    "extensionShare": null
+  },
+  "tangent-and-secant-line-approximations:noncalculator": {
+    "testShare": 0.14966666666666667,
+    "families": [
+      "secant_cubic",
+      "secant_exponential_composition",
+      "secant_inverse_sine",
+      "secant_inverse_tangent",
+      "secant_log_composition",
+      "secant_negative_square_root",
+      "secant_product_exponential",
+      "secant_product_logarithm",
+      "secant_quadratic",
+      "secant_rational_linear",
+      "secant_reciprocal",
+      "secant_scaled_reciprocal_composition",
+      "secant_shifted_radical",
+      "secant_sine_composition",
+      "secant_square_root",
+      "tangent_cosine_composition",
+      "tangent_cubic",
+      "tangent_exponential",
+      "tangent_exponential_composition",
+      "tangent_inverse_sine_composition",
+      "tangent_inverse_tangent",
+      "tangent_log_composition",
+      "tangent_logarithm",
+      "tangent_product_exponential",
+      "tangent_product_logarithm",
+      "tangent_quadratic",
+      "tangent_radical_composition",
+      "tangent_rational_linear",
+      "tangent_reciprocal_power_1",
+      "tangent_reciprocal_power_2",
+      "tangent_scaled_reciprocal_composition",
+      "tangent_sine_composition",
+      "tangent_square_root"
+    ],
+    "extensionShare": null
+  },
+  "rolle-s-theorem-and-the-mean-value-theorem:noncalculator": {
+    "testShare": 0.14533333333333334,
+    "families": [
+      "mvt_absolute_value_fails",
+      "mvt_cubic_applies",
+      "mvt_cubic_plus_linear_applies",
+      "mvt_exponential_applies",
+      "mvt_exponential_combination_applies",
+      "mvt_exponential_composition_applies",
+      "mvt_exponential_rational_fails",
+      "mvt_inverse_trigonometric_applies",
+      "mvt_inverse_trigonometric_fails",
+      "mvt_logarithm_applies",
+      "mvt_logarithm_fails",
+      "mvt_logarithmic_composition_applies",
+      "mvt_logarithmic_composition_hole_fails",
+      "mvt_logarithmic_fails",
+      "mvt_product_logarithm_applies",
+      "mvt_quadratic_applies",
+      "mvt_radical_applies",
+      "mvt_radical_composition_applies",
+      "mvt_radical_fails",
+      "mvt_radical_fails_differentiability",
+      "mvt_radical_quotient_pole_fails",
+      "mvt_rational_applies",
+      "mvt_rational_fails",
+      "mvt_rational_product_applies",
+      "mvt_removable_rational_fails",
+      "mvt_secant_pole_fails",
+      "mvt_shifted_reciprocal_applies",
+      "mvt_trigonometric_applies",
+      "mvt_trigonometric_composition_applies",
+      "mvt_trigonometric_fails",
+      "rolle_absolute_value_fails",
+      "rolle_cosine_composition_applies",
+      "rolle_cubic_applies",
+      "rolle_cusp_fails_differentiability",
+      "rolle_exponential_combination_applies",
+      "rolle_exponential_fails_endpoints",
+      "rolle_exponential_product_applies",
+      "rolle_inverse_trigonometric_applies",
+      "rolle_inverse_trigonometric_fails",
+      "rolle_logarithmic_applies",
+      "rolle_logarithmic_composition_applies",
+      "rolle_logarithmic_composition_endpoint_fails",
+      "rolle_logarithmic_fails",
+      "rolle_logarithmic_product_applies",
+      "rolle_mixed_exponential_product_applies",
+      "rolle_polynomial_fails_endpoints",
+      "rolle_quadratic_applies",
+      "rolle_quartic_applies",
+      "rolle_radical_applies",
+      "rolle_radical_fails",
+      "rolle_radical_product_applies",
+      "rolle_rational_applies",
+      "rolle_rational_fails",
+      "rolle_rational_product_quotient_applies",
+      "rolle_removable_rational_fails",
+      "rolle_secant_pole_fails",
+      "rolle_trigonometric_composition_applies",
+      "rolle_trigonometric_cosine_applies",
+      "rolle_trigonometric_fails_endpoints",
+      "rolle_trigonometric_sine_applies"
+    ],
+    "extensionShare": null
+  },
+  "l-hopital-s-rule:noncalculator": {
+    "testShare": 0.1485,
+    "families": [
+      "lhopital_infinity_exponential_composition",
+      "lhopital_infinity_exponential_polynomial_mix",
+      "lhopital_infinity_exponential_ratio",
+      "lhopital_infinity_linear_logarithmic_mix",
+      "lhopital_infinity_linear_trigonometric_mix",
+      "lhopital_infinity_log_power",
+      "lhopital_infinity_log_ratio",
+      "lhopital_infinity_logarithmic_polynomial",
+      "lhopital_infinity_logarithmic_radical_composition",
+      "lhopital_infinity_polynomial",
+      "lhopital_infinity_polynomial_exponential",
+      "lhopital_infinity_radical_linear",
+      "lhopital_infinity_radical_ratio",
+      "lhopital_not_indeterminate_finite",
+      "lhopital_not_indeterminate_nonzero_over_zero",
+      "lhopital_not_indeterminate_reciprocal",
+      "lhopital_not_indeterminate_trigonometric",
+      "lhopital_not_indeterminate_zero",
+      "lhopital_product_endpoint_logarithm",
+      "lhopital_product_exponential_decay",
+      "lhopital_product_log_reciprocal",
+      "lhopital_product_logarithmic_trig",
+      "lhopital_product_power_log",
+      "lhopital_product_radical_exponential",
+      "lhopital_product_shifted_log",
+      "lhopital_product_trigonometric",
+      "lhopital_zero_cosine",
+      "lhopital_zero_exponential",
+      "lhopital_zero_exponential_trig_composition",
+      "lhopital_zero_inverse_tangent",
+      "lhopital_zero_log_trig_composition",
+      "lhopital_zero_logarithm",
+      "lhopital_zero_logarithmic_trig_difference",
+      "lhopital_zero_polynomial",
+      "lhopital_zero_radical",
+      "lhopital_zero_radical_composition",
+      "lhopital_zero_repeated_exponential",
+      "lhopital_zero_shifted_logarithm",
+      "lhopital_zero_sine",
+      "lhopital_zero_trig_difference",
+      "lhopital_zero_trig_quotient",
+      "lhopital_zero_trig_remainder"
+    ],
+    "extensionShare": null
+  },
+  "optimization:noncalculator": {
+    "testShare": 0.151,
+    "families": [
+      "course_closed_cylinder",
+      "course_open_top_box",
+      "course_rectangle_perimeter",
+      "extension_closest_point_parabola",
+      "test_open_top_box"
+    ],
+    "extensionShare": 0.23416666666666666
+  },
+  "optimization:calculator": {
+    "testShare": 0.158,
+    "families": [
+      "course_rectangle_under_cosine",
+      "extension_closest_point",
+      "test_closest_point_cubic"
+    ],
+    "extensionShare": 0.24916666666666668
+  },
+  "related-rates:noncalculator": {
+    "testShare": 0.1535,
+    "families": [
+      "course_ladder",
+      "course_shadow",
+      "course_sphere",
+      "extension_circular_wave",
+      "test_ladder_area"
+    ],
+    "extensionShare": 0.25133333333333335
+  },
+  "related-rates:calculator": {
+    "testShare": 0.15,
+    "families": [
+      "course_calculator_cone",
+      "extension_two_moving_objects",
+      "test_rotating_spotlight"
+    ],
+    "extensionShare": 0.2515
+  }
+}

@@ -1,0 +1,8 @@
+BatchMath Unit 1 IVT / Limits at Infinity QA
+Result: PASS
+IVT generated problems: 54000
+Mixed split: value 9970, root 10030
+Nonzero-target root share: 20.85%
+Unique root problem IDs: 485
+Root families: {"root_logarithmic_excluded_endpoint":1496,"target_nonzero_interior_hole":1490,"root_sine_familiar_angles":1490,"root_radical_continuous_interval":1467,"root_unfactored_cubic_yes":1498,"root_exponential_composition":1511,"root_unfactored_quadratic_yes":1465,"root_logarithmic_continuous_interval":1473,"target_nonzero_polynomial":1462,"root_rational_continuous_interval":1540,"root_trig_quotient_positive_interval":1444,"target_nonzero_trigonometric":1449,"root_rational_interior_pole":1512,"root_rational_times_root_intervals":1418,"root_cosine_familiar_angles":1507,"root_unfactored_polynomial_no_sign_change":1452,"root_radical_outside_domain":1436,"root_rational_interior_hole":1453,"target_nonzero_outside_endpoint_range":1437}
+Errors: 0

@@ -1,5 +1,7 @@
 # MathLive, videos and keypad completeness — final test build
 
+Final v12.9.E integration supersedes the Source A delivery described below. The combined site preserves A `98c9beb` and imports final Unit 6 B `049e8a4`. Fresh QA covers 148 routes / 404 visits, 164 stability scenarios, 102 IM1 responsive checks, all 119 blocked forms, and 72 video pages. The historical ledgers below retain their original phase and counts. See `../v12.9.E-final-integration.md` for complete results and the correctly named test ZIP.
+
 The final integration preserves video-sizing checkpoint `57a51aae`, findings checkpoint `961f54e`, and keypad corrections `db3fff9` plus the legacy-root precedence follow-up `f5d0a73`. All 119 previously blocked field rows now pass actual keypad entry and original correct/wrong grading. The final website code is identical to `f5d0a73a446e0fe55b285aab5c933cf1548911bf`; the delivery archive is pinned to the final pushed QA commit.
 
 | Fresh final verification | Result |

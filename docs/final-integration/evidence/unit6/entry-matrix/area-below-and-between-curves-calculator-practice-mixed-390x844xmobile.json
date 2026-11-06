@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice",
+ "viewport": "390x844 mobile",
+ "editor": "mathlive",
+ "mode": "mixed",
+ "checked": 6,
+ "parts": 10,
+ "integrals": 4,
+ "mathliveFields": 10,
+ "blankAtStart": 10,
+ "locked": 10,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "calc_find/challenging: integral keyboard/Enter: 1 integral(s): int(0.050,1.910,(1+ln(x)-(x^2-2)),x) | input keypad/Enter: 2.783",
+  "calc_given/foundational: input keypad/Enter: 4.123",
+  "calc_directions/challenging: integral keyboard/Check: 1 integral(s): int(0,2.612,(4-y-(e^((y)/(3))-1)),y) | input keypad/Enter: 5.483",
+  "calc_given/intermediate: input keypad/Enter: 7.003",
+  "calc_directions/intermediate: integral keyboard/Enter: 1 integral(s): int(0,0.792,(2-y-(e^(y)-1)),y) | input keypad/Check: 0.855",
+  "calc_directions/intermediate: integral keypad/Check: 1 integral(s): int(0,1.682,(3-y-(e^((y)/(2))-1)),y) | input keyboard/Enter: 2.676"
+ ]
+}

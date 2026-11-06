@@ -1,0 +1,5 @@
+BatchMath v12.8.V FTC / shared-parser checker regression
+Result: PASS
+Checks: 9047
+Generated FTC and Integral Rules answers typed in keypad form: 3000 (1079 with a factor directly before a function)
+Errors: 0

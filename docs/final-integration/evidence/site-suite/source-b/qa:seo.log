@@ -1,0 +1,53 @@
+BatchMath technical SEO QA
+Result: FAIL
+
+htmlPages: 288
+indexablePages: 276
+noindexUtilityPages: 12
+sitemapUrls: 276
+structuredDataPages: 274
+visibleBreadcrumbPages: 272
+practiceContextPages: 133
+uniqueTitles: 276
+uniqueDescriptions: 276
+internalTargetsChecked: 8873
+brokenInternalTargets: 0
+orphanPages: 0
+trackingQueryLinks: 0
+httpInternalLinks: 0
+
+Warnings: 0
+
+Errors: 32
+- ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/index.html: heading hierarchy skips from H1 to H3
+- ap-calculus/unit-1-limits-continuity/topics/delta-epsilon-proofs/index.html: heading hierarchy skips from H1 to H3
+- ap-calculus/unit-1-limits-continuity/topics/intermediate-value-theorem/index.html: heading hierarchy skips from H1 to H3
+- ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/index.html: heading hierarchy skips from H1 to H3
+- ap-calculus/unit-1-limits-continuity/topics/introduction-to-limits/index.html: heading hierarchy skips from H1 to H3
+- ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/index.html: heading hierarchy skips from H1 to H3
+- ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/index.html: heading hierarchy skips from H1 to H3
+- ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/index.html: heading hierarchy skips from H1 to H3
+- ap-calculus/unit-1-limits-continuity/topics/sin-one-over-x/index.html: heading hierarchy skips from H1 to H3
+- ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/index.html: heading hierarchy skips from H1 to H3
+- archive/problem-list/index.html: missing og:site_name
+- archive/problem-list/index.html: missing og:type
+- archive/problem-list/index.html: missing og:image
+- archive/problem-list/index.html: missing twitter:card
+- archive/problem-list/index.html: missing twitter:title
+- archive/problem-list/index.html: missing twitter:description
+- archive/problem-list/index.html: missing twitter:image
+- archive/problem-list/index.html: unexpected Twitter card type
+- archive/problem-list/index.html: expected one JSON-LD block, found 0
+- archive/problem-list/index.html: expected one visible breadcrumb
+- mogollon2026/index.html: expected one visible breadcrumb
+- mogollon2026/problem-list/index.html: missing og:site_name
+- mogollon2026/problem-list/index.html: missing og:type
+- mogollon2026/problem-list/index.html: missing og:image
+- mogollon2026/problem-list/index.html: missing twitter:card
+- mogollon2026/problem-list/index.html: missing twitter:title
+- mogollon2026/problem-list/index.html: missing twitter:description
+- mogollon2026/problem-list/index.html: missing twitter:image
+- mogollon2026/problem-list/index.html: unexpected Twitter card type
+- mogollon2026/problem-list/index.html: expected one JSON-LD block, found 0
+- mogollon2026/problem-list/index.html: expected one visible breadcrumb
+- experiments/mathlive-advanced-notation/index.html: unexpected noindex page remains

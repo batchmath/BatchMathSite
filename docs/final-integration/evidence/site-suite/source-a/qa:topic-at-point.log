@@ -1,0 +1,25 @@
+BatchMath v11 curriculum-aware derivative-at-point QA
+Result: FAIL
+Checks: 3781633
+power: 9665 distinct IDs; families fractional-powers, negative-powers, polynomial, radical-form, reciprocal-form
+product: 27126 distinct IDs; families fractional-product, polynomial-product, radical-product, reciprocal-product
+quotient: 26736 distinct IDs; families linear-linear-polynomial-quotient, linear-polynomial-polynomial-quotient, polynomial-linear-polynomial-quotient, polynomial-polynomial-polynomial-quotient
+trig: 15244 distinct IDs; families algebra-plus-trig, algebra-trig-product, direct-cos, direct-cot, direct-csc, direct-sec, direct-sin, direct-tan, trig-algebra-quotient, trig-chain-cos, trig-chain-cot, trig-chain-csc, trig-chain-sec, trig-chain-sin, trig-chain-tan
+chain: 17832 distinct IDs; families algebraic-composition, product-with-chain, quotient-with-chain, trig-composition-cos, trig-composition-cot, trig-composition-csc, trig-composition-sec, trig-composition-sin, trig-composition-tan
+exponential: 10786 distinct IDs; families base-exponential, exponential-chain, exponential-of-cos, exponential-of-sin, exponential-product, exponential-quotient, natural-exponential
+implicit: 192 distinct IDs; families ellipse, exponential-relation, mixed-quadratic, power-products, power-sum, trig-relation
+logarithmic: 6927 distinct IDs; families exp-log, log-chain, log-product, log-quotient, log-trig, natural-log, other-base-log, trig-of-log-cos-linear, trig-of-log-cos-quadratic, trig-of-log-cot-linear, trig-of-log-cot-quadratic, trig-of-log-csc-linear, trig-of-log-csc-quadratic, trig-of-log-sec-linear, trig-of-log-sec-quadratic, trig-of-log-sin-linear, trig-of-log-sin-quadratic, trig-of-log-tan-linear, trig-of-log-tan-quadratic
+inverse-trig: 7920 distinct IDs; families all-six-acos, all-six-acot, all-six-acsc, all-six-asec, all-six-asin, all-six-atan, exponential-acos, exponential-acot, exponential-asin, exponential-atan, inverse-trig-product, inverse-trig-quotient, log-acos, log-acot, log-asin, log-atan, polynomial-acos, polynomial-acot, polynomial-acsc, polynomial-asec, polynomial-asin, polynomial-atan, prior-acsc, prior-asec, sqrt-acos, sqrt-acot, sqrt-asin, sqrt-atan, trig-acos, trig-acot, trig-asin, trig-atan
+Direct trig coverage: cos, cot, csc, sec, sin, tan
+Inverse-trig coverage: acos, acot, acsc, asec, asin, atan
+Errors: 10
+- derivatives-with-the-power-rule: shared derivative keypad is missing
+- the-product-rule: shared derivative keypad is missing
+- the-quotient-rule: shared derivative keypad is missing
+- derivatives-of-trigonometric-functions: shared derivative keypad is missing
+- the-chain-rule: shared derivative keypad is missing
+- exponential-functions: shared derivative keypad is missing
+- implicit-differentiation: shared derivative keypad is missing
+- derivatives-of-logarithmic-functions: shared derivative keypad is missing
+- inverse-trigonometric-functions: shared derivative keypad is missing
+- Comprehensive Review derivative-at-point engine content was changed

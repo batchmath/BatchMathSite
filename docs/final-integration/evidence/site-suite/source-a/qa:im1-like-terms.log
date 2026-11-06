@@ -1,0 +1,17 @@
+evalmachine.<anonymous>:252
+    const previous=pad.querySelector(":scope > .bm-keypad-continuation");
+                       ^
+
+TypeError: pad.querySelector is not a function
+    at applyStandardLayout (evalmachine.<anonymous>:252:24)
+    at Object.layoutUnit2 (evalmachine.<anonymous>:410:5)
+    at Object.mount (evalmachine.<anonymous>:71:25)
+    at render (evalmachine.<anonymous>:13:16)
+    at newProblem (evalmachine.<anonymous>:25:2)
+    at evalmachine.<anonymous>:54:136
+    at file:///workspace/work/v12.9.E/source-a/tools/im1-like-terms-qa.mjs:74:111
+    at Array.forEach (<anonymous>)
+    at Element.click (file:///workspace/work/v12.9.E/source-a/tools/im1-like-terms-qa.mjs:74:100)
+    at file:///workspace/work/v12.9.E/source-a/tools/im1-like-terms-qa.mjs:84:48
+
+Node.js v24.19.0

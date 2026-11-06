@@ -1,0 +1,103 @@
+BatchMath Unit 4 rebuild QA
+Result: PASS
+Warnings: 0
+Errors: 0
+
+{
+  "rectangular-approximations": [
+    "function_left",
+    "function_midpoint",
+    "function_right",
+    "table_left",
+    "table_midpoint",
+    "table_right"
+  ],
+  "trapezoidal-approximations": [
+    "function_equal",
+    "function_relationship",
+    "table_equal",
+    "table_relationship",
+    "table_unequal"
+  ],
+  "introduction-to-sigma-notation": [
+    "sigma_identities",
+    "sigma_numerical",
+    "sigma_riemann"
+  ],
+  "integrals-using-geometry": [
+    "absolute_value",
+    "cross_axis_line",
+    "linear_trapezoid",
+    "linear_triangle",
+    "quarter_circle",
+    "rectangle_circle",
+    "semicircle"
+  ],
+  "basic-integrals": [
+    "basic_trig_exponential",
+    "definite_power_root",
+    "definite_trig_exponential",
+    "divide_each_term",
+    "divide_each_term_ln",
+    "expand_first",
+    "exponential_base_a",
+    "polynomial_power_rule",
+    "power_reduction",
+    "radicals_negative_powers",
+    "trig_identity_rewrite"
+  ],
+  "u-substitution-integrals": [
+    "back_substitution",
+    "composite_exponential_log",
+    "definite_back_substitution",
+    "definite_linear_inner",
+    "definite_polynomial_trig_inner",
+    "linear_inner_power_root",
+    "linear_inner_trig_exp",
+    "odd_trig_powers",
+    "polynomial_inner_constant_adjust",
+    "shifted_quadratic_power",
+    "trig_power_chain"
+  ],
+  "integrals-resulting-in-natural-log-and-inverse-trigonometric-functions": [
+    "definite_log",
+    "derivative_over_function",
+    "division_to_log",
+    "inverse_sine",
+    "inverse_tangent",
+    "linear_denominator",
+    "log_or_not",
+    "tan_cot_composite"
+  ],
+  "mean-value-theorem-for-integrals": [
+    "average_piecewise",
+    "average_polynomial",
+    "average_substitution_trig_exp_log",
+    "find_c_piecewise",
+    "find_c_single"
+  ],
+  "riemann": [
+    "linear_construction",
+    "nonpolynomial_representation",
+    "quadratic_combination",
+    "quadratic_monomial"
+  ],
+  "ftc_ftc": [
+    "both_algebraic",
+    "both_transcendental",
+    "lower_identity",
+    "lower_power",
+    "upper_identity",
+    "upper_linear",
+    "upper_power",
+    "upper_trig"
+  ],
+  "ftc_rules": [
+    "combined_rules",
+    "interval_decomposition",
+    "linearity",
+    "reverse_limits",
+    "reversed_combination",
+    "zero_width"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "between",
+ "checked": 6,
+ "parts": 14,
+ "integrals": 7,
+ "mathliveFields": 14,
+ "blankAtStart": 14,
+ "locked": 14,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "calc_find/challenging: integral keyboard/Enter: 2 integral(s): int(0,1.854,(3ln(x+1)),x)+int(1.854,5,(5-x),x) | input keypad/Enter: 8.366",
+  "calc_directions/intermediate: integral keypad/Enter: 1 integral(s): int(0,1.533,(2-y-(e^((y)/(4))-1)),y) | input keyboard/Check: 1.556",
+  "calc_find/intermediate: input keyboard/Check: 0.138,1.564 | input keypad/Enter: 1.124",
+  "calc_directions/challenging: integral keypad/Enter: 1 integral(s): int(0.138,1.564,(1+ln(x)-(x^2-1)),x) | integral keyboard/Enter: 1 integral(s): int(-0.981,1.448,(sqrt(y+1)-e^(y-1)),y) | input keypad/Check: 1.124",
+  "calc_find/challenging: integral keyboard/Enter: 1 integral(s): int(0.050,1.910,(2+ln(x)-(x^2-1)),x) | input keypad/Check: 2.783",
+  "calc_directions/challenging: integral keypad/Check: 2 integral(s): int(0,0.968,(3ln(x+1)),x)+int(0.968,3,(3-x),x) | integral keyboard/Enter: 1 integral(s): int(0,2.032,(3-y-(e^((y)/(3))-1)),y) | input keypad/Enter: 3.158"
+ ]
+}

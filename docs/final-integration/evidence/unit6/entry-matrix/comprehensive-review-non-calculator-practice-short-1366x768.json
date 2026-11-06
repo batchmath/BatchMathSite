@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "short",
+ "checked": 6,
+ "parts": 7,
+ "integrals": 1,
+ "mathliveFields": 7,
+ "blankAtStart": 7,
+ "locked": 7,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "cross_sections/cs_setup/challenging: integral keyboard/Enter: 2 integral(s): ((pi)/(8))*int(0,2,((y-(y)/(2))^2),y)+((pi)/(8))*int(2,4,((2-(y)/(2))^2),y) | input keypad/Enter: (1)/(6)pi",
+  "piecewise/two_linear/foundational: input keypad/Enter: 15",
+  "area/axis_basic/foundational: input keyboard/Check: 6pi",
+  "area_y/y_given/intermediate: input keypad/Enter: 12",
+  "washers/disk_basic/intermediate: input keyboard/Enter: (32)/(5)pi",
+  "area/axis_sign/foundational: input keypad/Check: (109)/(12)"
+ ]
+}

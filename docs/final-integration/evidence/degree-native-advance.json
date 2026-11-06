@@ -1,0 +1,611 @@
+{
+  "results": [
+    {
+      "format": "degrees",
+      "wrongQuestionId": "ref-420-false",
+      "correctQuestionId": "ref-1050-false",
+      "correctExpected": "30°",
+      "wrongEntry": {
+        "raw": "987654321°",
+        "latex": "987654321^{\\circ}",
+        "serializedSource": "987654321°",
+        "profile": "ml-prep-degrees",
+        "buttons": [
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": ".",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "°",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "°",
+            "aria": null
+          }
+        ]
+      },
+      "correctEntry": {
+        "raw": "30°",
+        "latex": "30^{\\circ}",
+        "serializedSource": "30°",
+        "profile": "ml-prep-degrees",
+        "buttons": [
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": ".",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "°",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "°",
+            "aria": null
+          }
+        ]
+      },
+      "wrongRejected": true,
+      "correctAccepted": true,
+      "nativeNext": true,
+      "nativeAutomaticAdvance": true,
+      "cleared": true,
+      "profile": "ml-prep-degrees",
+      "passed": true
+    },
+    {
+      "format": "radians",
+      "wrongQuestionId": "ref--600-true",
+      "correctQuestionId": "ref--675-true",
+      "correctExpected": "π/4",
+      "wrongEntry": {
+        "raw": "987654321",
+        "latex": "987654321",
+        "serializedSource": "987654321",
+        "profile": "ml-prep-radians",
+        "buttons": [
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": ".",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          }
+        ]
+      },
+      "correctEntry": {
+        "raw": "π/4",
+        "latex": "\\frac{\\pi}{4}",
+        "serializedSource": "(pi)/(4)",
+        "profile": "ml-prep-radians",
+        "buttons": [
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": ".",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          }
+        ]
+      },
+      "wrongRejected": true,
+      "correctAccepted": true,
+      "nativeNext": true,
+      "nativeAutomaticAdvance": true,
+      "cleared": true,
+      "profile": "ml-prep-radians",
+      "passed": true
+    }
+  ],
+  "note": "Native Next and the original 650ms automatic advance, with real unpinned generated questions. Correct and wrong assertions use separately recorded question IDs; these UI-flow checks are separate from same-question field-ledger counts."
+}

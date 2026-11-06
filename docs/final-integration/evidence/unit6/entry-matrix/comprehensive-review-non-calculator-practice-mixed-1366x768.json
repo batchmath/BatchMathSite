@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "mixed",
+ "checked": 6,
+ "parts": 16,
+ "integrals": 3,
+ "mathliveFields": 15,
+ "blankAtStart": 15,
+ "locked": 15,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "washers/washer/intermediate: u6-expr keyboard/Enter: 1+2y | u6-expr keypad/Enter: 1+y^2 | input keyboard/Check: (104)/(15)pi",
+  "shells/shells/challenging: integral keypad/Enter: 1 integral(s): (2pi)*int(0,1,((2+y)(-3y+3)),y) | input keyboard/Check: 7pi",
+  "frq_graph/graph_accum/intermediate: input keyboard/Check: (5)/(4) | input keypad/Enter: 0 | choice | input keypad/Check: (0,6) | input keyboard/Enter: (33)/(4)-(1)/(2)pi",
+  "shells/shells/intermediate: integral keypad/Enter: 1 integral(s): (2pi)*int(0,1,(x(sqrt(x)-x^2)),x) | input keyboard/Enter: (3)/(10)pi",
+  "cross_sections/cs_basic/intermediate: u6-expr keyboard/Enter: 3(2sqrt(1-y^2))^2 | input keypad/Check: 8",
+  "shells/shells/intermediate: integral keypad/Check: 1 integral(s): (2pi)*int(0,1,((2+y)(-3y+3)),y) | input keyboard/Enter: 7pi"
+ ]
+}

@@ -182,5 +182,55 @@
     "course": "ap-calculus",
     "fields": "unit5-basic-x; unit5-interval-basic; unit5-motion-list; unit5-basic-t; unit5-motion-intervals; unit5-motion-value; unit5-slope-exact; unit5-sep-x; unit5-sep-interval; unit5-rate-exact; unit5-rate-exact-ln; unit5-motion-t; unit5-motion-value-e; unit5-rate-exact-pi; unit5-motion-value-r; unit5-slope-interval; unit5-slope-list; unit5-sep-t; unit5-basic-t-c; unit5-basic-x-c; unit5-slope-line; unit5-sep-theta; optional typed slope fractions/Undefined and decimal curve y-values",
     "wideCoverage": false
+  },
+  {
+    "controller": "unit6.mjs",
+    "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+    "wideCoverage": true
+  },
+  {
+    "controller": "unit6.mjs",
+    "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
+    "wideCoverage": false
+  },
+  {
+    "controller": "unit6.mjs",
+    "route": "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/practice/index.html",
+    "wideCoverage": false
+  },
+  {
+    "controller": "unit6.mjs",
+    "route": "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/practice/index.html",
+    "wideCoverage": false
+  },
+  {
+    "controller": "unit6.mjs",
+    "route": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/index.html",
+    "wideCoverage": true
+  },
+  {
+    "controller": "unit6.mjs",
+    "route": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice/index.html",
+    "wideCoverage": false
+  },
+  {
+    "controller": "unit6.mjs",
+    "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+    "wideCoverage": false
+  },
+  {
+    "controller": "unit6.mjs",
+    "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice/index.html",
+    "wideCoverage": false
+  },
+  {
+    "controller": "unit6.mjs",
+    "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+    "wideCoverage": false
+  },
+  {
+    "controller": "unit6.mjs",
+    "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
+    "wideCoverage": false
   }
 ]

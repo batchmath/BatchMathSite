@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "disks_washers",
+ "checked": 6,
+ "parts": 8,
+ "integrals": 1,
+ "mathliveFields": 8,
+ "blankAtStart": 8,
+ "locked": 8,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "solid_calc/intermediate: input keyboard/Enter: 17.034",
+  "solid_calc/foundational: input keypad/Enter: 87.379",
+  "solid_calc/foundational: input keyboard/Check: 58.984",
+  "calc_two_axes/intermediate: input keypad/Enter: 21.157 | input keyboard/Enter: 82.853",
+  "solid_calc/intermediate: input keyboard/Enter: 5.595",
+  "solid_calc/challenging: integral keypad/Check: 1 integral(s): (pi)*int(0.050,1.910,((2+ln(x)+2)^2-(x^2-1+2)^2),x) | input keyboard/Enter: 49.249"
+ ]
+}

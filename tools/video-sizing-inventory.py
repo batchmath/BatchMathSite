@@ -5,16 +5,14 @@ import re,json,sys,collections,subprocess
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from integration.html_tree import Tree
 ROOT=Path(__file__).resolve().parents[1]
-BASE='63ef79b1271974072daa2f1f99a968671a45f2c7'
+BASE='98c9beb3c0eb58a952f6bb29e410e63aa280003e'
+UNIT6_SOURCE='049e8a49d22f3d5ff67f5a79a855ec0028452ab7'
 
 def inventory():
  pages=[];other=[];deferred=[];counts=collections.Counter();overrides=[]
  for course in ['ap-calculus','im1','calculus-prep']:
   for p in sorted((ROOT/course).rglob('*.html')):
    name=p.relative_to(ROOT).as_posix();s=p.read_text()
-   if '/unit-6-'in name:
-    if re.search(r'youtube|data-video-id',s):deferred.append(name)
-    continue
    if 'iframe'not in s and 'data-video-id'not in s:continue
    t=Tree(s);rows=[]
    for n in t.root.nodes():
@@ -42,7 +40,13 @@ def inventory():
 if __name__=='__main__':
  d=inventory();
  if '--verify'in sys.argv:
-  for entry in d['pages']:assert (ROOT/entry['path']).read_bytes()==subprocess.check_output(['git','show',BASE+':'+entry['path']],cwd=ROOT),entry['path']
-  assert not subprocess.check_output(['git','diff','919ca1806f07e3cd2af552142926e7ca2b78e8d5','--','ap-calculus/unit-6-applications-integration/'],cwd=ROOT)
-  print('PASS: all 66 video HTML sources exactly preserved; Unit 6 unchanged')
+  base=subprocess.check_output(['git','merge-base',BASE,UNIT6_SOURCE],cwd=ROOT,text=True).strip()
+  imported=set(subprocess.check_output(['git','diff','--name-only',base,UNIT6_SOURCE],cwd=ROOT,text=True).splitlines())
+  for entry in d['pages']:
+   name=entry['path'];ref=UNIT6_SOURCE if name in imported else BASE
+   actual=(ROOT/name).read_bytes();expected=subprocess.check_output(['git','show',ref+':'+name],cwd=ROOT)
+   normalize=lambda b:re.sub(rb'(generatorVersion["\s]*:["\s]*)12\.9\.[CE]',rb'\g<1>VERSION',b)
+   assert normalize(actual)==normalize(expected),name
+  assert not d['deferredUnit6']
+  print('PASS: all video HTML sources preserved against their approved A/B source; Unit 6 included')
  out=ROOT/'docs/audits/VIDEO-SIZING-INVENTORY.json';out.write_text(json.dumps(d,indent=2)+'\n');print(json.dumps({k:v for k,v in d.items()if k not in ['pages','specialSizingRules']},indent=2))

@@ -1,0 +1,6 @@
+BatchMath v10.9.L derivative-at-point refinement QA
+Result: PASS
+Checks: 464096
+Trig-of-log samples: 24984; kinds: cos, cot, csc, sec, sin, tan; styles: trig-of-log-linear, trig-of-log-quadratic
+Inverse-trig kinds: acos, acot, acsc, asec, asin, atan
+Errors: 0

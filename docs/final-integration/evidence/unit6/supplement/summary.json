@@ -1,0 +1,243 @@
+[
+  {
+    "name": "split-100",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/qa/split-audit.mjs",
+      "100"
+    ],
+    "options": {}
+  },
+  {
+    "name": "legacy-0-1366",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+      "5",
+      "1366",
+      "768"
+    ],
+    "options": {
+      "BM_EDITOR": "legacy",
+      "BM_MODE": "choose"
+    }
+  },
+  {
+    "name": "legacy-0-390",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+      "5",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "options": {
+      "BM_EDITOR": "legacy",
+      "BM_MODE": "choose"
+    }
+  },
+  {
+    "name": "legacy-1-1366",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice",
+      "5",
+      "1366",
+      "768"
+    ],
+    "options": {
+      "BM_EDITOR": "legacy",
+      "BM_MODE": ""
+    }
+  },
+  {
+    "name": "legacy-1-390",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice",
+      "5",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "options": {
+      "BM_EDITOR": "legacy",
+      "BM_MODE": ""
+    }
+  },
+  {
+    "name": "legacy-2-1366",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice",
+      "5",
+      "1366",
+      "768"
+    ],
+    "options": {
+      "BM_EDITOR": "legacy",
+      "BM_MODE": "shells"
+    }
+  },
+  {
+    "name": "legacy-2-390",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice",
+      "5",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "options": {
+      "BM_EDITOR": "legacy",
+      "BM_MODE": "shells"
+    }
+  },
+  {
+    "name": "legacy-3-1366",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+      "5",
+      "1366",
+      "768"
+    ],
+    "options": {
+      "BM_EDITOR": "legacy",
+      "BM_MODE": "frq_region"
+    }
+  },
+  {
+    "name": "legacy-3-390",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+      "5",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "options": {
+      "BM_EDITOR": "legacy",
+      "BM_MODE": "frq_region"
+    }
+  },
+  {
+    "name": "legacy-4-1366",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/practice",
+      "5",
+      "1366",
+      "768"
+    ],
+    "options": {
+      "BM_EDITOR": "legacy",
+      "BM_MODE": ""
+    }
+  },
+  {
+    "name": "legacy-4-390",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/practice",
+      "5",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "options": {
+      "BM_EDITOR": "legacy",
+      "BM_MODE": ""
+    }
+  },
+  {
+    "name": "graph-after-perp_x-1366",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "options": {
+      "BM_GRAPH_AFTER": "1",
+      "BM_MODE": "perp_x"
+    }
+  },
+  {
+    "name": "graph-after-perp_x-390",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "options": {
+      "BM_GRAPH_AFTER": "1",
+      "BM_MODE": "perp_x"
+    }
+  },
+  {
+    "name": "graph-after-perp_y-1366",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "options": {
+      "BM_GRAPH_AFTER": "1",
+      "BM_MODE": "perp_y"
+    }
+  },
+  {
+    "name": "graph-after-perp_y-390",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "options": {
+      "BM_GRAPH_AFTER": "1",
+      "BM_MODE": "perp_y"
+    }
+  }
+]

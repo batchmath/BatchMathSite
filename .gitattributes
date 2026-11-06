@@ -10,3 +10,9 @@ docs/audits/VIDEO-HIERARCHY.json export-ignore
 docs/audits/VIDEO-SIZING-INVENTORY.json export-ignore
 docs/audits/KEYPAD-COMPLETENESS-INVENTORY.json export-ignore
 docs/audits/KEYPAD-COMPLETENESS-MATRIX.csv export-ignore
+docs/final-integration/evidence export-ignore
+
+# The downloadable teacher test build contains website files and local testing instructions.
+# Historical developer reports remain available in Git, outside the student-facing ZIP.
+docs export-ignore
+QA.md export-ignore

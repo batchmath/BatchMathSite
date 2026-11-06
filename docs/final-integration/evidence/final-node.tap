@@ -1,0 +1,1696 @@
+TAP version 13
+# Subtest: explicit coefficient multiplication reaches the original structural checker
+ok 1 - explicit coefficient multiplication reaches the original structural checker
+  ---
+  duration_ms: 80.506352
+  type: 'test'
+  ...
+# Subtest: implicit coefficients and parenthesized coefficients retain their meaning
+ok 2 - implicit coefficients and parenthesized coefficients retain their meaning
+  ---
+  duration_ms: 9.379543
+  type: 'test'
+  ...
+# Subtest: missing pi and the retired radius-across area coefficient are still rejected
+ok 3 - missing pi and the retired radius-across area coefficient are still rejected
+  ---
+  duration_ms: 2.59467
+  type: 'test'
+  ...
+# Subtest: same-value wrong integrands remain structurally wrong
+ok 4 - same-value wrong integrands remain structurally wrong
+  ---
+  duration_ms: 3.162846
+  type: 'test'
+  ...
+# Subtest: wrong limits and variables remain rejected
+ok 5 - wrong limits and variables remain rejected
+  ---
+  duration_ms: 3.358211
+  type: 'test'
+  ...
+# Subtest: bare or doubled multiplication cannot become an implied coefficient of one
+ok 6 - bare or doubled multiplication cannot become an implied coefficient of one
+  ---
+  duration_ms: 0.910192
+  type: 'test'
+  ...
+# Subtest: multiplication after an integral remains outside the accepted setup grammar
+ok 7 - multiplication after an integral remains outside the accepted setup grammar
+  ---
+  duration_ms: 0.389416
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: polynomial_power_rule — 200 generated questions, actual checker parity
+ok 8 - Basic Integrals: polynomial_power_rule — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 4289.863814
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: radicals_negative_powers — 200 generated questions, actual checker parity
+ok 9 - Basic Integrals: radicals_negative_powers — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 3651.513036
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: expand_first — 200 generated questions, actual checker parity
+ok 10 - Basic Integrals: expand_first — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 5468.419837
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: divide_each_term — 200 generated questions, actual checker parity
+ok 11 - Basic Integrals: divide_each_term — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 7707.259583
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: divide_each_term_ln — 200 generated questions, actual checker parity
+ok 12 - Basic Integrals: divide_each_term_ln — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 10425.058257
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: basic_trig_exponential — 200 generated questions, actual checker parity
+ok 13 - Basic Integrals: basic_trig_exponential — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 7116.83189
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: trig_identity_rewrite — 200 generated questions, actual checker parity
+ok 14 - Basic Integrals: trig_identity_rewrite — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 4314.216236
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: definite_power_root — 200 generated questions, actual checker parity
+ok 15 - Basic Integrals: definite_power_root — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 502.546714
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: definite_trig_exponential — 200 generated questions, actual checker parity
+ok 16 - Basic Integrals: definite_trig_exponential — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 601.876026
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: power_reduction — 200 generated questions, actual checker parity
+ok 17 - Basic Integrals: power_reduction — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 2697.572036
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: exponential_base_a — 200 generated questions, actual checker parity
+ok 18 - Basic Integrals: exponential_base_a — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 3663.639234
+  type: 'test'
+  ...
+# Subtest: advanced translation preserves constants, precision, roots and unsupported content
+ok 19 - advanced translation preserves constants, precision, roots and unsupported content
+  ---
+  duration_ms: 12.493274
+  type: 'test'
+  ...
+# Subtest: production generators, graders and UI renderer match the verified Batch 7 checkpoint
+ok 20 - production generators, graders and UI renderer match the verified Batch 7 checkpoint
+  ---
+  duration_ms: 834.694744
+  type: 'test'
+  ...
+# Subtest: product: 400 actual intervals, unchanged grading and exact endpoint round trips
+ok 21 - product: 400 actual intervals, unchanged grading and exact endpoint round trips
+  ---
+  duration_ms: 10983.117464
+  type: 'test'
+  ...
+# Subtest: powers_y: 400 actual intervals, unchanged grading and exact endpoint round trips
+ok 22 - powers_y: 400 actual intervals, unchanged grading and exact endpoint round trips
+  ---
+  duration_ms: 14845.546987
+  type: 'test'
+  ...
+# Subtest: log_rational: 400 actual intervals, unchanged grading and exact endpoint round trips
+ok 23 - log_rational: 400 actual intervals, unchanged grading and exact endpoint round trips
+  ---
+  duration_ms: 16647.987639
+  type: 'test'
+  ...
+# Subtest: trig: 400 actual intervals, unchanged grading and exact endpoint round trips
+ok 24 - trig: 400 actual intervals, unchanged grading and exact endpoint round trips
+  ---
+  duration_ms: 13947.318978
+  type: 'test'
+  ...
+# Subtest: exp_y: 400 actual intervals, unchanged grading and exact endpoint round trips
+ok 25 - exp_y: 400 actual intervals, unchanged grading and exact endpoint round trips
+  ---
+  duration_ms: 11783.195328
+  type: 'test'
+  ...
+# Subtest: radical_branch: 400 actual intervals, unchanged grading and exact endpoint round trips
+ok 26 - radical_branch: 400 actual intervals, unchanged grading and exact endpoint round trips
+  ---
+  duration_ms: 13690.947866
+  type: 'test'
+  ...
+# Subtest: interval punctuation, inequalities, unions, incompleteness and infinity conventions
+ok 27 - interval punctuation, inequalities, unions, incompleteness and infinity conventions
+  ---
+  duration_ms: 12.289758
+  type: 'test'
+  ...
+# Subtest: ftc: 4000 actual generated questions, all families, exact checker parity
+ok 28 - ftc: 4000 actual generated questions, all families, exact checker parity
+  ---
+  duration_ms: 261447.324306
+  type: 'test'
+  ...
+# Subtest: rules: 4000 actual generated questions, all families, exact checker parity
+ok 29 - rules: 4000 actual generated questions, all families, exact checker parity
+  ---
+  duration_ms: 14190.979453
+  type: 'test'
+  ...
+# Subtest: 2x sec(x^6), nested powers and a missing factor retain actual FTC checker behavior
+ok 30 - 2x sec(x^6), nested powers and a missing factor retain actual FTC checker behavior
+  ---
+  duration_ms: 69.424025
+  type: 'test'
+  ...
+# Subtest: Newton: 4000 generated questions, all construction families/subtypes, both parts and wrong bounds
+ok 31 - Newton: 4000 generated questions, all construction families/subtypes, both parts and wrong bounds
+  ---
+  duration_ms: 187488.255976
+  type: 'test'
+  ...
+# Subtest: TeX argument canonicalization keeps unreduced fractions, bounds and missing slots
+ok 32 - TeX argument canonicalization keeps unreduced fractions, bounds and missing slots
+  ---
+  duration_ms: 2.025412
+  type: 'test'
+  ...
+# Subtest: unsupported integral, delta and indexed notation is retained, never evaluated or expanded
+ok 33 - unsupported integral, delta and indexed notation is retained, never evaluated or expanded
+  ---
+  duration_ms: 1.30787
+  type: 'test'
+  ...
+# Subtest: Separable product: 500 actual IVPs, particular-solution parity and native intervals
+ok 34 - Separable product: 500 actual IVPs, particular-solution parity and native intervals
+  ---
+  duration_ms: 12071.378366
+  type: 'test'
+  ...
+# Subtest: Separable powers_y: 500 actual IVPs, particular-solution parity and native intervals
+ok 35 - Separable powers_y: 500 actual IVPs, particular-solution parity and native intervals
+  ---
+  duration_ms: 12498.732913
+  type: 'test'
+  ...
+# Subtest: Separable log_rational: 500 actual IVPs, particular-solution parity and native intervals
+ok 36 - Separable log_rational: 500 actual IVPs, particular-solution parity and native intervals
+  ---
+  duration_ms: 13087.393952
+  type: 'test'
+  ...
+# Subtest: Separable trig: 500 actual IVPs, particular-solution parity and native intervals
+ok 37 - Separable trig: 500 actual IVPs, particular-solution parity and native intervals
+  ---
+  duration_ms: 11321.227427
+  type: 'test'
+  ...
+# Subtest: Separable exp_y: 500 actual IVPs, particular-solution parity and native intervals
+ok 38 - Separable exp_y: 500 actual IVPs, particular-solution parity and native intervals
+  ---
+  duration_ms: 14507.896329
+  type: 'test'
+  ...
+# Subtest: Separable radical_branch: 500 actual IVPs, particular-solution parity and native intervals
+ok 39 - Separable radical_branch: 500 actual IVPs, particular-solution parity and native intervals
+  ---
+  duration_ms: 23176.807572
+  type: 'test'
+  ...
+# Subtest: all six preserved families, every subtype and variable form are exercised
+ok 40 - all six preserved families, every subtype and variable form are exercised
+  ---
+  duration_ms: 0.884012
+  type: 'test'
+  ...
+# Subtest: qa8: all 80 a/b/k combinations agree with independent derivative; wrong denominators fail
+ok 41 - qa8: all 80 a/b/k combinations agree with independent derivative; wrong denominators fail
+  ---
+  duration_ms: 1774.612078
+  type: 'test'
+  ...
+# Subtest: product: reachable families, generated TeX, equivalent/wrong/incomplete actual check parity
+ok 42 - product: reachable families, generated TeX, equivalent/wrong/incomplete actual check parity
+  ---
+  duration_ms: 5550.610417
+  type: 'test'
+  ...
+# Subtest: quotient: reachable families, generated TeX, equivalent/wrong/incomplete actual check parity
+ok 43 - quotient: reachable families, generated TeX, equivalent/wrong/incomplete actual check parity
+  ---
+  duration_ms: 8110.121685
+  type: 'test'
+  ...
+# Subtest: inverse opt-in and grouping retain old derivative contract
+ok 44 - inverse opt-in and grouping retain old derivative contract
+  ---
+  duration_ms: 0.708748
+  type: 'test'
+  ...
+# Subtest: Chain Rule complete engine and grading grammar are unchanged
+ok 45 - Chain Rule complete engine and grading grammar are unchanged
+  ---
+  duration_ms: 99.429568
+  type: 'test'
+  ...
+# Subtest: Chain Rule simple: 3000 seeded questions, both structural representations and real grading parity
+ok 46 - Chain Rule simple: 3000 seeded questions, both structural representations and real grading parity
+  ---
+  duration_ms: 13063.418461
+  type: 'test'
+  ...
+# Subtest: Chain Rule multiple: 3000 seeded questions, both structural representations and real grading parity
+ok 47 - Chain Rule multiple: 3000 seeded questions, both structural representations and real grading parity
+  ---
+  duration_ms: 8613.443646
+  type: 'test'
+  ...
+# Subtest: Chain Rule other: 3000 seeded questions, both structural representations and real grading parity
+ok 48 - Chain Rule other: 3000 seeded questions, both structural representations and real grading parity
+  ---
+  duration_ms: 31090.506558
+  type: 'test'
+  ...
+# Subtest: Chain Rule all: 3000 seeded questions, both structural representations and real grading parity
+ok 49 - Chain Rule all: 3000 seeded questions, both structural representations and real grading parity
+  ---
+  duration_ms: 19233.736988
+  type: 'test'
+  ...
+# Subtest: Chain Rule keypad matches the actual generator and supported log/root notation
+ok 50 - Chain Rule keypad matches the actual generator and supported log/root notation
+  ---
+  duration_ms: 40.619067
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: 2x\\cos(x^2)
+ok 51 - Chain Rule structure: 2x\\cos(x^2)
+  ---
+  duration_ms: 10.98334
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: \\sin^2(x)
+ok 52 - Chain Rule structure: \\sin^2(x)
+  ---
+  duration_ms: 1.244956
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: \\sin(x^2)
+ok 53 - Chain Rule structure: \\sin(x^2)
+  ---
+  duration_ms: 24.608281
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: \\cos(\\sin(x^2))
+ok 54 - Chain Rule structure: \\cos(\\sin(x^2))
+  ---
+  duration_ms: 12.70845
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: e^{\\sin^2(3x)}
+ok 55 - Chain Rule structure: e^{\\sin^2(3x)}
+  ---
+  duration_ms: 1.580882
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: \\frac{2x}{3(x^2+4)^{\\frac23}}
+ok 56 - Chain Rule structure: \\frac{2x}{3(x^2+4)^{\\frac23}}
+  ---
+  duration_ms: 19.44823
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: \\frac{1}{\\frac{x}{e^x}}
+ok 57 - Chain Rule structure: \\frac{1}{\\frac{x}{e^x}}
+  ---
+  duration_ms: 16.406612
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: \\sec^2(\\sqrt{e^{3x}+2})
+ok 58 - Chain Rule structure: \\sec^2(\\sqrt{e^{3x}+2})
+  ---
+  duration_ms: 26.401229
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: -\\csc(2x)\\cot(2x)
+ok 59 - Chain Rule structure: -\\csc(2x)\\cot(2x)
+  ---
+  duration_ms: 46.085364
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: \\ln(\\sqrt{x^2+1})
+ok 60 - Chain Rule structure: \\ln(\\sqrt{x^2+1})
+  ---
+  duration_ms: 2.068107
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: \\log(x^2+1)
+ok 61 - Chain Rule structure: \\log(x^2+1)
+  ---
+  duration_ms: 9.023428
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: \\sqrt[3]{x^2+4}
+ok 62 - Chain Rule structure: \\sqrt[3]{x^2+4}
+  ---
+  duration_ms: 9.024638
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: -(x+1)^2
+ok 63 - Chain Rule structure: -(x+1)^2
+  ---
+  duration_ms: 1.69845
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: (-x+1)^2
+ok 64 - Chain Rule structure: (-x+1)^2
+  ---
+  duration_ms: 12.570272
+  type: 'test'
+  ...
+# Subtest: Chain Rule structure: \\frac{x+1}{x-1}\\cos x
+ok 65 - Chain Rule structure: \\frac{x+1}{x-1}\\cos x
+  ---
+  duration_ms: 13.275484
+  type: 'test'
+  ...
+# Subtest: trig power and argument power stay distinct; a missing chain factor stays wrong
+ok 66 - trig power and argument power stay distinct; a missing chain factor stays wrong
+  ---
+  duration_ms: 41.881851
+  type: 'test'
+  ...
+# Subtest: blank, malformed and unsupported keep the original Chain Rule outcomes
+ok 67 - blank, malformed and unsupported keep the original Chain Rule outcomes
+  ---
+  duration_ms: 35.038717
+  type: 'test'
+  ...
+# Subtest: all 24 pinned MathLive runtime, font and license files match the integrity manifest
+ok 68 - all 24 pinned MathLive runtime, font and license files match the integrity manifest
+  ---
+  duration_ms: 74.061392
+  type: 'test'
+  ...
+# Subtest: the complete engine script equals the verified main baseline
+ok 69 - the complete engine script equals the verified main baseline
+  ---
+  duration_ms: 32.886896
+  type: 'test'
+  ...
+# Subtest: actual first:mixed: 120 seeded correct/incorrect round trips and checker outcomes
+ok 70 - actual first:mixed: 120 seeded correct/incorrect round trips and checker outcomes
+  ---
+  duration_ms: 2790.592635
+  type: 'test'
+  ...
+# Subtest: actual first:polynomial: 120 seeded correct/incorrect round trips and checker outcomes
+ok 71 - actual first:polynomial: 120 seeded correct/incorrect round trips and checker outcomes
+  ---
+  duration_ms: 1419.941558
+  type: 'test'
+  ...
+# Subtest: actual first:negative: 120 seeded correct/incorrect round trips and checker outcomes
+ok 72 - actual first:negative: 120 seeded correct/incorrect round trips and checker outcomes
+  ---
+  duration_ms: 952.426161
+  type: 'test'
+  ...
+# Subtest: actual first:fractional: 120 seeded correct/incorrect round trips and checker outcomes
+ok 73 - actual first:fractional: 120 seeded correct/incorrect round trips and checker outcomes
+  ---
+  duration_ms: 1222.594746
+  type: 'test'
+  ...
+# Subtest: actual first:irrational: 120 seeded correct/incorrect round trips and checker outcomes
+ok 74 - actual first:irrational: 120 seeded correct/incorrect round trips and checker outcomes
+  ---
+  duration_ms: 1016.40588
+  type: 'test'
+  ...
+# Subtest: actual higher:mixed: 120 seeded correct/incorrect round trips and checker outcomes
+ok 75 - actual higher:mixed: 120 seeded correct/incorrect round trips and checker outcomes
+  ---
+  duration_ms: 1475.075064
+  type: 'test'
+  ...
+# Subtest: actual higher:polynomial: 120 seeded correct/incorrect round trips and checker outcomes
+ok 76 - actual higher:polynomial: 120 seeded correct/incorrect round trips and checker outcomes
+  ---
+  duration_ms: 824.050387
+  type: 'test'
+  ...
+# Subtest: actual higher:negative: 120 seeded correct/incorrect round trips and checker outcomes
+ok 77 - actual higher:negative: 120 seeded correct/incorrect round trips and checker outcomes
+  ---
+  duration_ms: 1543.935329
+  type: 'test'
+  ...
+# Subtest: actual higher:fractional: 120 seeded correct/incorrect round trips and checker outcomes
+ok 78 - actual higher:fractional: 120 seeded correct/incorrect round trips and checker outcomes
+  ---
+  duration_ms: 1247.243199
+  type: 'test'
+  ...
+# Subtest: grouping and structure: -x^{2}
+ok 79 - grouping and structure: -x^{2}
+  ---
+  duration_ms: 2.60824
+  type: 'test'
+  ...
+# Subtest: grouping and structure: (-x)^{2}
+ok 80 - grouping and structure: (-x)^{2}
+  ---
+  duration_ms: 40.207176
+  type: 'test'
+  ...
+# Subtest: grouping and structure: x^{-2}
+ok 81 - grouping and structure: x^{-2}
+  ---
+  duration_ms: 15.895453
+  type: 'test'
+  ...
+# Subtest: grouping and structure: x^{\\frac{2}{3}}
+ok 82 - grouping and structure: x^{\\frac{2}{3}}
+  ---
+  duration_ms: 12.203368
+  type: 'test'
+  ...
+# Subtest: grouping and structure: \\frac{1}{\\frac{2}{x}}
+ok 83 - grouping and structure: \\frac{1}{\\frac{2}{x}}
+  ---
+  duration_ms: 14.743706
+  type: 'test'
+  ...
+# Subtest: grouping and structure: \\sqrt{x}
+ok 84 - grouping and structure: \\sqrt{x}
+  ---
+  duration_ms: 7.092617
+  type: 'test'
+  ...
+# Subtest: grouping and structure: \\sqrt[3]{x}
+ok 85 - grouping and structure: \\sqrt[3]{x}
+  ---
+  duration_ms: 48.826715
+  type: 'test'
+  ...
+# Subtest: grouping and structure: \\sqrt[5]{x+1}
+ok 86 - grouping and structure: \\sqrt[5]{x+1}
+  ---
+  duration_ms: 1.394441
+  type: 'test'
+  ...
+# Subtest: grouping and structure: \\sin^{2}(x)+\\cos^{2}(x)
+ok 87 - grouping and structure: \\sin^{2}(x)+\\cos^{2}(x)
+  ---
+  duration_ms: 9.8217
+  type: 'test'
+  ...
+# Subtest: grouping and structure: \\ln(x)+\\log(x)+\\exp(x)
+ok 88 - grouping and structure: \\ln(x)+\\log(x)+\\exp(x)
+  ---
+  duration_ms: 1.932092
+  type: 'test'
+  ...
+# Subtest: grouping and structure: \\frac{-(x+1)}{x-2}
+ok 89 - grouping and structure: \\frac{-(x+1)}{x-2}
+  ---
+  duration_ms: 6.434285
+  type: 'test'
+  ...
+# Subtest: grouping and structure: 2(x+1)
+ok 90 - grouping and structure: 2(x+1)
+  ---
+  duration_ms: 1.067969
+  type: 'test'
+  ...
+# Subtest: grouping and structure: \\left|x\\right|
+ok 91 - grouping and structure: \\left|x\\right|
+  ---
+  duration_ms: 3.208915
+  type: 'test'
+  ...
+# Subtest: grouping and structure: 3x^{2}+2x-7
+ok 92 - grouping and structure: 3x^{2}+2x-7
+  ---
+  duration_ms: 6.584021
+  type: 'test'
+  ...
+# Subtest: grouping and structure: \\cos 3x
+ok 93 - grouping and structure: \\cos 3x
+  ---
+  duration_ms: 13.458179
+  type: 'test'
+  ...
+# Subtest: grouping and structure: \\sin x\\cos x
+ok 94 - grouping and structure: \\sin x\\cos x
+  ---
+  duration_ms: 19.277669
+  type: 'test'
+  ...
+# Subtest: grouping and structure: \\sin x\\sqrt{x}
+ok 95 - grouping and structure: \\sin x\\sqrt{x}
+  ---
+  duration_ms: 53.241157
+  type: 'test'
+  ...
+# Subtest: grouping and structure: \\sin x\\left|x\\right|
+ok 96 - grouping and structure: \\sin x\\left|x\\right|
+  ---
+  duration_ms: 11.001798
+  type: 'test'
+  ...
+# Subtest: incomplete remains ungradable: \\frac{1}{}
+ok 97 - incomplete remains ungradable: \\frac{1}{}
+  ---
+  duration_ms: 11.446639
+  type: 'test'
+  ...
+# Subtest: incomplete remains ungradable: x^{}
+ok 98 - incomplete remains ungradable: x^{}
+  ---
+  duration_ms: 1.055861
+  type: 'test'
+  ...
+# Subtest: incomplete remains ungradable: \\frac{\\placeholder{}}{x}
+ok 99 - incomplete remains ungradable: \\frac{\\placeholder{}}{x}
+  ---
+  duration_ms: 6.325832
+  type: 'test'
+  ...
+# Subtest: incomplete remains ungradable: \\sqrt[]{}
+ok 100 - incomplete remains ungradable: \\sqrt[]{}
+  ---
+  duration_ms: 54.641653
+  type: 'test'
+  ...
+# Subtest: incomplete remains ungradable: x+
+ok 101 - incomplete remains ungradable: x+
+  ---
+  duration_ms: 1.498378
+  type: 'test'
+  ...
+# Subtest: incomplete remains ungradable: (x+1
+ok 102 - incomplete remains ungradable: (x+1
+  ---
+  duration_ms: 14.90491
+  type: 'test'
+  ...
+# Subtest: unsupported is refused: \\int x
+ok 103 - unsupported is refused: \\int x
+  ---
+  duration_ms: 0.667306
+  type: 'test'
+  ...
+# Subtest: unsupported is refused: \\arcsin(x)
+ok 104 - unsupported is refused: \\arcsin(x)
+  ---
+  duration_ms: 0.269146
+  type: 'test'
+  ...
+# Subtest: unsupported is refused: \\log_2(x)
+ok 105 - unsupported is refused: \\log_2(x)
+  ---
+  duration_ms: 0.213141
+  type: 'test'
+  ...
+# Subtest: unsupported is refused: z+1
+ok 106 - unsupported is refused: z+1
+  ---
+  duration_ms: 0.140662
+  type: 'test'
+  ...
+# Subtest: answer labels before equals follow the existing checker policy
+ok 107 - answer labels before equals follow the existing checker policy
+  ---
+  duration_ms: 1.681674
+  type: 'test'
+  ...
+# Subtest: no simplification and existing formatting gate is preserved, including dormant pb gate
+ok 108 - no simplification and existing formatting gate is preserved, including dormant pb gate
+  ---
+  duration_ms: 23.5521
+  type: 'test'
+  ...
+# Subtest: blank is non-consuming; malformed nonempty answers consume an attempt in the actual baseline
+ok 109 - blank is non-consuming; malformed nonempty answers consume an attempt in the actual baseline
+  ---
+  duration_ms: 18.658135
+  type: 'test'
+  ...
+# Subtest: the shared keypad implementation and unrelated profiles are unchanged from the successful pilot
+ok 110 - the shared keypad implementation and unrelated profiles are unchanged from the successful pilot
+  ---
+  duration_ms: 107.393122
+  type: 'test'
+  ...
+# Subtest: Power Rule profile covers the actual generated answer grammar, including all irrational constants
+ok 111 - Power Rule profile covers the actual generated answer grammar, including all irrational constants
+  ---
+  duration_ms: 4514.086317
+  type: 'test'
+  ...
+# Subtest: numeric Number-first checkers cannot mistake MathLive multiplication by e for scientific notation
+ok 112 - numeric Number-first checkers cannot mistake MathLive multiplication by e for scientific notation
+  ---
+  duration_ms: 408.134348
+  type: 'test'
+  ...
+# Subtest: decimal spelling, approximation annotations and thousands separators retain original formatting policy
+ok 113 - decimal spelling, approximation annotations and thousands separators retain original formatting policy
+  ---
+  duration_ms: 81.610495
+  type: 'test'
+  ...
+# Subtest: equations stay equations, including required-left-side failures and unsimplified forms
+ok 114 - equations stay equations, including required-left-side failures and unsimplified forms
+  ---
+  duration_ms: 98.944043
+  type: 'test'
+  ...
+# Subtest: ordered pairs and intervals keep their distinct brackets, order and endpoint contracts
+ok 115 - ordered pairs and intervals keep their distinct brackets, order and endpoint contracts
+  ---
+  duration_ms: 10.651721
+  type: 'test'
+  ...
+# Subtest: visible Unit 3 practice selectors preserve actual checker results
+ok 116 - visible Unit 3 practice selectors preserve actual checker results
+  ---
+  duration_ms: 14087.473114
+  type: 'test'
+  ...
+# Subtest: every source descriptor optimization calculator
+ok 117 - every source descriptor optimization calculator
+  ---
+  duration_ms: 1026.110992
+  type: 'test'
+  ...
+# Subtest: every source descriptor optimization noncalculator
+ok 118 - every source descriptor optimization noncalculator
+  ---
+  duration_ms: 1394.629987
+  type: 'test'
+  ...
+# Subtest: every source descriptor related-rates calculator
+ok 119 - every source descriptor related-rates calculator
+  ---
+  duration_ms: 1123.66993
+  type: 'test'
+  ...
+# Subtest: every source descriptor related-rates noncalculator
+ok 120 - every source descriptor related-rates noncalculator
+  ---
+  duration_ms: 1479.066554
+  type: 'test'
+  ...
+# Subtest: all observed Unit 3 answer grammar has controls in its field-specific profile
+ok 121 - all observed Unit 3 answer grammar has controls in its field-specific profile
+  ---
+  duration_ms: 61.389911
+  type: 'test'
+  ...
+# Subtest: Unit 3 sources and inline configuration are unchanged
+ok 122 - Unit 3 sources and inline configuration are unchanged
+  ---
+  duration_ms: 882.481082
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/practice/index.html
+ok 123 - ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/practice/index.html
+  ---
+  duration_ms: 4633.646191
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html
+ok 124 - ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html
+  ---
+  duration_ms: 5807.953461
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/practice/index.html
+ok 125 - ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/practice/index.html
+  ---
+  duration_ms: 5953.401531
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/calculator-practice/index.html
+ok 126 - ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/calculator-practice/index.html
+  ---
+  duration_ms: 5240.943165
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/practice/index.html
+ok 127 - ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/practice/index.html
+  ---
+  duration_ms: 5679.944922
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html
+ok 128 - ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html
+  ---
+  duration_ms: 24809.442379
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html
+ok 129 - ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html
+  ---
+  duration_ms: 5426.059924
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/practice/index.html
+ok 130 - ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/practice/index.html
+  ---
+  duration_ms: 8780.457601
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html
+ok 131 - ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html
+  ---
+  duration_ms: 5581.828193
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/motion/calculator-practice/index.html
+ok 132 - ap-calculus/unit-3-applications-derivative/topics/motion/calculator-practice/index.html
+  ---
+  duration_ms: 3829.521486
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/motion/practice/index.html
+ok 133 - ap-calculus/unit-3-applications-derivative/topics/motion/practice/index.html
+  ---
+  duration_ms: 6707.136937
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/practice/index.html
+ok 134 - ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/practice/index.html
+  ---
+  duration_ms: 4795.168474
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/optimization/calculator-practice/index.html
+ok 135 - ap-calculus/unit-3-applications-derivative/topics/optimization/calculator-practice/index.html
+  ---
+  duration_ms: 7293.141857
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html
+ok 136 - ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html
+  ---
+  duration_ms: 8214.04382
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/related-rates/calculator-practice/index.html
+ok 137 - ap-calculus/unit-3-applications-derivative/topics/related-rates/calculator-practice/index.html
+  ---
+  duration_ms: 7344.127271
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/related-rates/practice/index.html
+ok 138 - ap-calculus/unit-3-applications-derivative/topics/related-rates/practice/index.html
+  ---
+  duration_ms: 3828.778708
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/practice/index.html
+ok 139 - ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/practice/index.html
+  ---
+  duration_ms: 3607.611137
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/practice/index.html
+ok 140 - ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/practice/index.html
+  ---
+  duration_ms: 2113.712597
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/practice/index.html
+ok 141 - ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/practice/index.html
+  ---
+  duration_ms: 903.297197
+  type: 'test'
+  ...
+# Subtest: continuity parameter route: every generated field preserves original exact numerical grading
+ok 142 - continuity parameter route: every generated field preserves original exact numerical grading
+  ---
+  duration_ms: 20729.452023
+  type: 'test'
+  ...
+# Subtest: lists retain exactness, order, duplicates, separators, labels and plus/minus without solving
+ok 143 - lists retain exactness, order, duplicates, separators, labels and plus/minus without solving
+  ---
+  duration_ms: 70.025769
+  type: 'test'
+  ...
+# Subtest: rounded decimals preserve spelling and precision; fractions and expressions never become evaluated numbers
+ok 144 - rounded decimals preserve spelling and precision; fractions and expressions never become evaluated numbers
+  ---
+  duration_ms: 11.471626
+  type: 'test'
+  ...
+# Subtest: intervals retain brackets, unions, None and fractional endpoints for the original checker
+ok 145 - intervals retain brackets, unions, None and fractional endpoints for the original checker
+  ---
+  duration_ms: 21.010991
+  type: 'test'
+  ...
+# Subtest: new profile controls cover generated grammar and accepted evaluation forms
+ok 146 - new profile controls cover generated grammar and accepted evaluation forms
+  ---
+  duration_ms: 49.272005
+  type: 'test'
+  ...
+# Subtest: Batch 2 changes no generators, graders, selectors or renderer code
+ok 147 - Batch 2 changes no generators, graders, selectors or renderer code
+  ---
+  duration_ms: 712.541662
+  type: 'test'
+  ...
+# Subtest: IM1 value adding-and-subtracting-negative-numbers
+ok 148 - IM1 value adding-and-subtracting-negative-numbers
+  ---
+  duration_ms: 1852.751303
+  type: 'test'
+  ...
+# Subtest: IM1 value decimals
+ok 149 - IM1 value decimals
+  ---
+  duration_ms: 4998.616698
+  type: 'test'
+  ...
+# Subtest: IM1 value fractions
+ok 150 - IM1 value fractions
+  ---
+  duration_ms: 9375.765941
+  type: 'test'
+  ...
+# Subtest: IM1 value multiplication
+ok 151 - IM1 value multiplication
+  ---
+  duration_ms: 8866.653619
+  type: 'test'
+  ...
+# Subtest: IM1 value multiplying-and-dividing-negative-numbers
+ok 152 - IM1 value multiplying-and-dividing-negative-numbers
+  ---
+  duration_ms: 2746.033363
+  type: 'test'
+  ...
+# Subtest: IM1 value order-of-operations
+ok 153 - IM1 value order-of-operations
+  ---
+  duration_ms: 900.591021
+  type: 'test'
+  ...
+# Subtest: IM1 value percents
+ok 154 - IM1 value percents
+  ---
+  duration_ms: 1866.221291
+  type: 'test'
+  ...
+# Subtest: IM1 value reducing-fractions
+ok 155 - IM1 value reducing-fractions
+  ---
+  duration_ms: 1340.216666
+  type: 'test'
+  ...
+# Subtest: IM1 value square-roots-and-exponents
+ok 156 - IM1 value square-roots-and-exponents
+  ---
+  duration_ms: 1059.038808
+  type: 'test'
+  ...
+# Subtest: IM1 algebra equivalent-expressions-combining-like-terms
+ok 157 - IM1 algebra equivalent-expressions-combining-like-terms
+  ---
+  duration_ms: 6536.829349
+  type: 'test'
+  ...
+# Subtest: IM1 algebra graphing-inequalities-interval-notation
+ok 158 - IM1 algebra graphing-inequalities-interval-notation
+  ---
+  duration_ms: 1259.09811
+  type: 'test'
+  ...
+# Subtest: IM1 algebra solving-linear-equations
+ok 159 - IM1 algebra solving-linear-equations
+  ---
+  duration_ms: 3520.769608
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/practice/index.html
+ok 160 - im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/practice/index.html
+  ---
+  duration_ms: 3024.391187
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/practice/index.html
+ok 161 - im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/practice/index.html
+  ---
+  duration_ms: 4420.571037
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/practice/index.html
+ok 162 - im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/practice/index.html
+  ---
+  duration_ms: 2466.163919
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/practice/index.html
+ok 163 - im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/practice/index.html
+  ---
+  duration_ms: 2232.311147
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/practice/index.html
+ok 164 - im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/practice/index.html
+  ---
+  duration_ms: 4487.825107
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/practice/index.html
+ok 165 - im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/practice/index.html
+  ---
+  duration_ms: 3215.330501
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/practice/index.html
+ok 166 - im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/practice/index.html
+  ---
+  duration_ms: 2759.683963
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/practice/index.html
+ok 167 - im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/practice/index.html
+  ---
+  duration_ms: 426.866669
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/practice/index.html
+ok 168 - im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/practice/index.html
+  ---
+  duration_ms: 2149.497764
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/practice/index.html
+ok 169 - im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/practice/index.html
+  ---
+  duration_ms: 2093.671786
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/practice/index.html
+ok 170 - im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/practice/index.html
+  ---
+  duration_ms: 306.101955
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/practice/index.html
+ok 171 - im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/practice/index.html
+  ---
+  duration_ms: 713.538269
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/practice/index.html
+ok 172 - im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/practice/index.html
+  ---
+  duration_ms: 93.683195
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/practice/index.html
+ok 173 - im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/practice/index.html
+  ---
+  duration_ms: 282.019905
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/practice/index.html
+ok 174 - im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/practice/index.html
+  ---
+  duration_ms: 316.023295
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/practice/index.html
+ok 175 - im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/practice/index.html
+  ---
+  duration_ms: 299.470502
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/practice/index.html
+ok 176 - im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/practice/index.html
+  ---
+  duration_ms: 221.416598
+  type: 'test'
+  ...
+# Subtest: literal fractional initial and recursive values preserve original checks
+ok 177 - literal fractional initial and recursive values preserve original checks
+  ---
+  duration_ms: 2.337592
+  type: 'test'
+  ...
+# Subtest: fractions retain unreduced numerators, denominators and form rejection
+ok 178 - fractions retain unreduced numerators, denominators and form rejection
+  ---
+  duration_ms: 18.697264
+  type: 'test'
+  ...
+# Subtest: equation solution fractions and special words obey their distinct checker
+ok 179 - equation solution fractions and special words obey their distinct checker
+  ---
+  duration_ms: 12.966649
+  type: 'test'
+  ...
+# Subtest: polynomial transport retains uncombined terms and repeated variable factors
+ok 180 - polynomial transport retains uncombined terms and repeated variable factors
+  ---
+  duration_ms: 8.267768
+  type: 'test'
+  ...
+# Subtest: interval profiles retain integer endpoint restrictions and keep unions outside the typed contract
+ok 181 - interval profiles retain integer endpoint restrictions and keep unions outside the typed contract
+  ---
+  duration_ms: 3.81587
+  type: 'test'
+  ...
+# Subtest: IM1 mathematical sources, editor initialization and input contracts remain unchanged
+ok 182 - IM1 mathematical sources, editor initialization and input contracts remain unchanged
+  ---
+  duration_ms: 186.393459
+  type: 'test'
+  ...
+# Subtest: unconverted Unit 1 classification and three Unit 2 topics retain only specialized choices
+ok 183 - unconverted Unit 1 classification and three Unit 2 topics retain only specialized choices
+  ---
+  duration_ms: 168.87359
+  type: 'test'
+  ...
+# Subtest: IM1 Unit 2 review reachable families and every typed primary/secondary answer
+ok 184 - IM1 Unit 2 review reachable families and every typed primary/secondary answer
+  ---
+  duration_ms: 2648.843412
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/practice/index.html
+ok 185 - im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/practice/index.html
+  ---
+  duration_ms: 3995.288241
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/section-b-review/practice/index.html
+ok 186 - im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/section-b-review/practice/index.html
+  ---
+  duration_ms: 604.054453
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/section-c-review/practice/index.html
+ok 187 - im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/section-c-review/practice/index.html
+  ---
+  duration_ms: 3204.431025
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/index.html
+ok 188 - im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/index.html
+  ---
+  duration_ms: 3187.475964
+  type: 'test'
+  ...
+# Subtest: im1/unit-3-linear-equation/topics/comprehensive-review/practice/index.html
+ok 189 - im1/unit-3-linear-equation/topics/comprehensive-review/practice/index.html
+  ---
+  duration_ms: 1783.399546
+  type: 'test'
+  ...
+# Subtest: literal fractional initial and recursive values preserve original checks
+ok 190 - literal fractional initial and recursive values preserve original checks
+  ---
+  duration_ms: 10.760854
+  type: 'test'
+  ...
+# Subtest: a braced exponent base is not mistaken for one enclosing answer set
+ok 191 - a braced exponent base is not mistaken for one enclosing answer set
+  ---
+  duration_ms: 28.628268
+  type: 'test'
+  ...
+# Subtest: a genuine enclosing answer set and incomplete input retain their contracts
+ok 192 - a genuine enclosing answer set and incomplete input retain their contracts
+  ---
+  duration_ms: 0.96249
+  type: 'test'
+  ...
+# Subtest: reachable cumulative inverse-trig factor answers are graded, not rejected by missing evaluator functions
+ok 193 - reachable cumulative inverse-trig factor answers are graded, not rejected by missing evaluator functions
+  ---
+  duration_ms: 690.432756
+  type: 'test'
+  ...
+# Subtest: base-polynomial point derivatives display multiplication without joining coefficient and base digits
+ok 194 - base-polynomial point derivatives display multiplication without joining coefficient and base digits
+  ---
+  duration_ms: 14.373849
+  type: 'test'
+  ...
+# Subtest: numeric-only parentheses do not satisfy required polynomial factor groups
+ok 195 - numeric-only parentheses do not satisfy required polynomial factor groups
+  ---
+  duration_ms: 41.864122
+  type: 'test'
+  ...
+# Subtest: actual binomial/quadratic factors and numerical coefficients retain acceptance
+ok 196 - actual binomial/quadratic factors and numerical coefficients retain acceptance
+  ---
+  duration_ms: 6.64944
+  type: 'test'
+  ...
+# Subtest: Prep unary negative monomial powers retain mathematical precedence
+ok 197 - Prep unary negative monomial powers retain mathematical precedence
+  ---
+  duration_ms: 11.902134
+  type: 'test'
+  ...
+# Subtest: Synthetic Division reported cubic quotient and incorrect answer
+ok 198 - Synthetic Division reported cubic quotient and incorrect answer
+  ---
+  duration_ms: 0.291789
+  type: 'test'
+  ...
+# Subtest: Prep calculus-algebra
+ok 199 - Prep calculus-algebra
+  ---
+  duration_ms: 101.948439
+  type: 'test'
+  ...
+# Subtest: Prep special-factoring
+ok 200 - Prep special-factoring
+  ---
+  duration_ms: 1288.454514
+  type: 'test'
+  ...
+# Subtest: Prep synthetic-division
+ok 201 - Prep synthetic-division
+  ---
+  duration_ms: 285.922908
+  type: 'test'
+  ...
+# Subtest: Prep trig-angle-skills
+ok 202 - Prep trig-angle-skills
+  ---
+  duration_ms: 2133.507705
+  type: 'test'
+  ...
+# Subtest: Prep trig-equations
+ok 203 - Prep trig-equations
+  ---
+  duration_ms: 834.719556
+  type: 'test'
+  ...
+# Subtest: Prep unit-circle-values
+ok 204 - Prep unit-circle-values
+  ---
+  duration_ms: 3045.26336
+  type: 'test'
+  ...
+# Subtest: factoring fraction structures do not invent extra factor groups
+ok 205 - factoring fraction structures do not invent extra factor groups
+  ---
+  duration_ms: 3.221615
+  type: 'test'
+  ...
+# Subtest: reachable review difference quotients accept h and reject incorrect h dependence
+ok 206 - reachable review difference quotients accept h and reject incorrect h dependence
+  ---
+  duration_ms: 160.497969
+  type: 'test'
+  ...
+# Subtest: all reachable review selectors retain authored task instructions and identical mathematics
+ok 207 - all reachable review selectors retain authored task instructions and identical mathematics
+  ---
+  duration_ms: 45094.934837
+  type: 'test'
+  ...
+# Subtest: reachable MVT cubic exact lists survive original pre-submit fraction normalization
+ok 208 - reachable MVT cubic exact lists survive original pre-submit fraction normalization
+  ---
+  duration_ms: 1160.886201
+  type: 'test'
+  ...
+# Subtest: separator guard retains standalone fraction normalization and nested function arguments
+ok 209 - separator guard retains standalone fraction normalization and nested function arguments
+  ---
+  duration_ms: 77.882465
+  type: 'test'
+  ...
+# Subtest: reachable symbolic review qa8 stores the square of the exponential denominator
+ok 210 - reachable symbolic review qa8 stores the square of the exponential denominator
+  ---
+  duration_ms: 624.706745
+  type: 'test'
+  ...
+# Subtest: all six AP reviews install MathLive before the first original question renderer
+ok 211 - all six AP reviews install MathLive before the first original question renderer
+  ---
+  duration_ms: 106.395016
+  type: 'test'
+  ...
+# Subtest: Review ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html
+ok 212 - Review ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html
+  ---
+  duration_ms: 11955.276659
+  type: 'test'
+  ...
+# Subtest: Review ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html
+ok 213 - Review ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html
+  ---
+  duration_ms: 10121.947675
+  type: 'test'
+  ...
+# Subtest: Review ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html
+ok 214 - Review ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html
+  ---
+  duration_ms: 11959.639489
+  type: 'test'
+  ...
+# Subtest: Review ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html
+ok 215 - Review ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html
+  ---
+  duration_ms: 19828.645996
+  type: 'test'
+  ...
+# Subtest: Review ap-calculus/unit-5-differential-equations/topics/comprehensive-review/calculator-practice/index.html
+ok 216 - Review ap-calculus/unit-5-differential-equations/topics/comprehensive-review/calculator-practice/index.html
+  ---
+  duration_ms: 5586.208684
+  type: 'test'
+  ...
+# Subtest: Review ap-calculus/unit-5-differential-equations/topics/comprehensive-review/non-calculator-practice/index.html
+ok 217 - Review ap-calculus/unit-5-differential-equations/topics/comprehensive-review/non-calculator-practice/index.html
+  ---
+  duration_ms: 18097.482606
+  type: 'test'
+  ...
+# Subtest: Unit1 comprehensive: every public category and numeric/parameter/location contract
+ok 218 - Unit1 comprehensive: every public category and numeric/parameter/location contract
+  ---
+  duration_ms: 4879.164688
+  type: 'test'
+  ...
+# Subtest: Unit2 symbolic comprehensive: all selectors and source family signatures
+ok 219 - Unit2 symbolic comprehensive: all selectors and source family signatures
+  ---
+  duration_ms: 26489.660116
+  type: 'test'
+  ...
+# Subtest: difference-quotient variable is an explicit opt-in, with existing derivative restrictions retained
+ok 220 - difference-quotient variable is an explicit opt-in, with existing derivative restrictions retained
+  ---
+  duration_ms: 0.416077
+  type: 'test'
+  ...
+# Subtest: staged contract 4:usub
+ok 221 - staged contract 4:usub
+  ---
+  duration_ms: 4768.330221
+  type: 'test'
+  ...
+# Subtest: staged contract 4:log
+ok 222 - staged contract 4:log
+  ---
+  duration_ms: 3834.283131
+  type: 'test'
+  ...
+# Subtest: staged contract 4:mvt
+ok 223 - staged contract 4:mvt
+  ---
+  duration_ms: 1483.556509
+  type: 'test'
+  ...
+# Subtest: staged contract 4:sigma
+ok 224 - staged contract 4:sigma
+  ---
+  duration_ms: 1024.353373
+  type: 'test'
+  ...
+# Subtest: staged contract 4:rect
+ok 225 - staged contract 4:rect
+  ---
+  duration_ms: 700.178167
+  type: 'test'
+  ...
+# Subtest: staged contract 4:trap
+ok 226 - staged contract 4:trap
+  ---
+  duration_ms: 949.108981
+  type: 'test'
+  ...
+# Subtest: staged contract 4:geometry
+ok 227 - staged contract 4:geometry
+  ---
+  duration_ms: 907.691152
+  type: 'test'
+  ...
+# Subtest: staged contract 5:basic
+ok 228 - staged contract 5:basic
+  ---
+  duration_ms: 3946.275662
+  type: 'test'
+  ...
+# Subtest: staged contract 5:growth
+ok 229 - staged contract 5:growth
+  ---
+  duration_ms: 1870.879974
+  type: 'test'
+  ...
+# Subtest: staged contract 5:motion
+ok 230 - staged contract 5:motion
+  ---
+  duration_ms: 8423.395419
+  type: 'test'
+  ...
+# Subtest: staged contract 5:rate
+ok 231 - staged contract 5:rate
+  ---
+  duration_ms: 1281.264017
+  type: 'test'
+  ...
+# Subtest: staged contract 5:slope
+ok 232 - staged contract 5:slope
+  ---
+  duration_ms: 11969.527103
+  type: 'test'
+  ...
+# Subtest: limit contracts preserve signed infinities, DNE, Undefined rejection and real roots
+ok 233 - limit contracts preserve signed infinities, DNE, Undefined rejection and real roots
+  ---
+  duration_ms: 33.765368
+  type: 'test'
+  ...
+# Subtest: Batch 4 leaves generators, graders and inline controllers unchanged after the separate precedence fix
+ok 234 - Batch 4 leaves generators, graders and inline controllers unchanged after the separate precedence fix
+  ---
+  duration_ms: 346.603685
+  type: 'test'
+  ...
+# Subtest: three conceptual Unit 1 routes remain choices in every declared generator mode
+ok 235 - three conceptual Unit 1 routes remain choices in every declared generator mode
+  ---
+  duration_ms: 267.691967
+  type: 'test'
+  ...
+# Subtest: Unit 1 numeric parser respects mathematical unary-minus and exponent precedence
+ok 236 - Unit 1 numeric parser respects mathematical unary-minus and exponent precedence
+  ---
+  duration_ms: 11.095429
+  type: 'test'
+  ...
+# Subtest: Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html
+ok 237 - Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html
+  ---
+  duration_ms: 3423.082692
+  type: 'test'
+  ...
+# Subtest: Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/practice/index.html
+ok 238 - Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/practice/index.html
+  ---
+  duration_ms: 371.045687
+  type: 'test'
+  ...
+# Subtest: Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html
+ok 239 - Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html
+  ---
+  duration_ms: 1279.240874
+  type: 'test'
+  ...
+# Subtest: Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/practice/index.html
+ok 240 - Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/practice/index.html
+  ---
+  duration_ms: 1592.504669
+  type: 'test'
+  ...
+# Subtest: Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/index.html
+ok 241 - Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/index.html
+  ---
+  duration_ms: 1316.479866
+  type: 'test'
+  ...
+# Subtest: Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/practice/index.html
+ok 242 - Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/practice/index.html
+  ---
+  duration_ms: 242.189124
+  type: 'test'
+  ...
+# Subtest: Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/course-practice/index.html
+ok 243 - Unit 1 checker ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/course-practice/index.html
+  ---
+  duration_ms: 3947.535393
+  type: 'test'
+  ...
+# Subtest: only opt-in profiles change the shared keypad; existing engines retain their layouts
+ok 244 - only opt-in profiles change the shared keypad; existing engines retain their layouts
+  ---
+  duration_ms: 71.607031
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html
+ok 245 - keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 3122.236672
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html
+ok 246 - keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html
+  ---
+  duration_ms: 4902.374998
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html
+ok 247 - keypad grammar ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 428.091292
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html
+ok 248 - keypad grammar ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 3083.351597
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html
+ok 249 - keypad grammar ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html
+  ---
+  duration_ms: 5411.250796
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html
+ok 250 - keypad grammar ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 447.341884
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html
+ok 251 - keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html
+  ---
+  duration_ms: 103.389135
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html
+ok 252 - keypad grammar ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 305.153255
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html
+ok 253 - keypad grammar ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html
+  ---
+  duration_ms: 691.862362
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html
+ok 254 - keypad grammar ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 9032.599212
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html
+ok 255 - keypad grammar ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html
+  ---
+  duration_ms: 2783.734107
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html
+ok 256 - keypad grammar ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 3710.347139
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html
+ok 257 - keypad grammar ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html
+  ---
+  duration_ms: 173.586677
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html
+ok 258 - keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 3418.828293
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html
+ok 259 - keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html
+  ---
+  duration_ms: 1872.92745
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html
+ok 260 - keypad grammar ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html
+  ---
+  duration_ms: 1218.994024
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html
+ok 261 - keypad grammar ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html
+  ---
+  duration_ms: 288.08673
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html
+ok 262 - keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 127.697044
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html
+ok 263 - ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 2048.309499
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html
+ok 264 - ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html
+  ---
+  duration_ms: 3074.658656
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html
+ok 265 - ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 330.435664
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html
+ok 266 - ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 3262.214081
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html
+ok 267 - ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html
+  ---
+  duration_ms: 6387.110133
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html
+ok 268 - ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 247.527107
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html
+ok 269 - ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html
+  ---
+  duration_ms: 70.351874
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html
+ok 270 - ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 492.823019
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html
+ok 271 - ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html
+  ---
+  duration_ms: 3611.853262
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html
+ok 272 - ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 6101.918229
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html
+ok 273 - ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html
+  ---
+  duration_ms: 4125.2954
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html
+ok 274 - ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 2988.55066
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html
+ok 275 - ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html
+  ---
+  duration_ms: 569.366378
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html
+ok 276 - ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 1938.184272
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html
+ok 277 - ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html
+  ---
+  duration_ms: 3161.438428
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html
+ok 278 - ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html
+  ---
+  duration_ms: 2113.606252
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html
+ok 279 - ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html
+  ---
+  duration_ms: 1178.387208
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html
+ok 280 - ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 141.630274
+  type: 'test'
+  ...
+# Subtest: only markup changed in converted engines; generator/checker source unchanged
+ok 281 - only markup changed in converted engines; generator/checker source unchanged
+  ---
+  duration_ms: 468.064485
+  type: 'test'
+  ...
+1..281
+# tests 281
+# suites 0
+# pass 281
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 692795.510761

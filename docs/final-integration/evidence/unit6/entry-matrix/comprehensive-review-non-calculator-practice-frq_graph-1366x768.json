@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "frq_graph",
+ "checked": 6,
+ "parts": 27,
+ "integrals": 0,
+ "mathliveFields": 21,
+ "blankAtStart": 21,
+ "locked": 21,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "frq_graph/graph_derivative/challenging: input keyboard/Enter: -((1)/(4))pi-5 | input keypad/Enter: -4,2 | choice | input keypad/Enter: -((1)/(4))pi-(25)/(2) | input keyboard/Enter: (1)/(2)",
+  "frq_graph/graph_accum/intermediate: input keypad/Enter: -((1)/(4))pi-2 | input keyboard/Check: 1 | choice | input keyboard/Enter: 1",
+  "frq_graph/graph_derivative/challenging: input keyboard/Check: (15)/(4) | input keypad/Enter: -4,0,2 | choice | input keypad/Check: 5 | input keyboard/Enter: 0",
+  "frq_graph/graph_accum/intermediate: input keypad/Enter: 7 | input keyboard/Enter: -4,-2 | choice | input keyboard/Enter: 7",
+  "frq_graph/graph_derivative/challenging: input keyboard/Enter: -pi-2 | input keypad/Check: 0,4 | choice | input keypad/Enter: -pi-2 | input keyboard/Check: -((1)/(2))",
+  "frq_graph/graph_derivative/intermediate: input keypad/Check: -6 | input keyboard/Enter: 0,3 | choice | input keyboard/Check: 4-(1)/(2)pi"
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+ "viewport": "390x844 mobile",
+ "editor": "mathlive",
+ "mode": "choose",
+ "checked": 6,
+ "parts": 16,
+ "integrals": 10,
+ "mathliveFields": 16,
+ "blankAtStart": 16,
+ "locked": 16,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "choose_dx_dy/intermediate: integral keyboard/Enter: 1 integral(s): int(0,2,(2x-x),x) | input keypad/Enter: 2",
+  "choose_dx_dy/intermediate: integral keypad/Enter: 1 integral(s): int(0,3,(3x-2x),x) | input keyboard/Check: (9)/(2)",
+  "choose_dx_dy/challenging: integral keyboard/Check: 1 integral(s): int(0,6,(y+3-(y^2)/(4)),y) | integral keypad/Enter: 2 integral(s): int(0,3,(2sqrt(x)),x)+int(3,9,(2sqrt(x)-(x-3)),x) | input keyboard/Enter: 18",
+  "choose_dx_dy/challenging: integral keypad/Enter: 1 integral(s): int(0,2,(y+2-y^2),y) | integral keyboard/Enter: 2 integral(s): int(0,2,(sqrt(x)),x)+int(2,4,(sqrt(x)-(x-2)),x) | input keypad/Check: (10)/(3)",
+  "choose_dx_dy/challenging: integral keyboard/Enter: 1 integral(s): int(0,1,(3x-2x),x) | integral keypad/Check: 2 integral(s): int(0,2,((y)/(2)-(y)/(3)),y)+int(2,3,(1-(y)/(3)),y) | input keyboard/Enter: (1)/(2)",
+  "choose_dx_dy/challenging: integral keypad/Check: 1 integral(s): int(0,3,(y+6-y^2),y) | integral keyboard/Enter: 2 integral(s): int(0,6,(sqrt(x)),x)+int(6,9,(sqrt(x)-(x-6)),x) | input keypad/Enter: (27)/(2)"
+ ]
+}

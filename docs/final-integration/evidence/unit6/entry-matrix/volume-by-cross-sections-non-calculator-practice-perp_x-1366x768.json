@@ -1,0 +1,24 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "perp_x",
+ "checked": 6,
+ "parts": 9,
+ "integrals": 3,
+ "mathliveFields": 9,
+ "blankAtStart": 9,
+ "locked": 9,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "cs_basic/intermediate: u6-expr keyboard/Enter: (pi)/(8)(x^3)^2 | input keypad/Enter: (1)/(56)pi",
+  "cs_basic/intermediate: u6-expr keypad/Enter: (sqrt(x))^2 | input keyboard/Check: 8",
+  "cs_setup/intermediate: integral keyboard/Check: 1 integral(s): (2)*int(0,1,((e^(x)-1)^2),x)",
+  "cs_basic/intermediate: u6-expr keypad/Enter: 3(sqrt(9-x^2))^2 | input keyboard/Enter: 108",
+  "cs_setup/intermediate: integral keyboard/Enter: 2 integral(s): int(0,12,((sqrt(x))^2),x)+int(12,16,((sqrt(x)-(x-12))^2),x)",
+  "cs_setup/intermediate: integral keypad/Check: 1 integral(s): ((1)/(2))*int(0,1,((3sqrt(x))^2),x)"
+ ]
+}

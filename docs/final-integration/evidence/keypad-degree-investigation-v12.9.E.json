@@ -1,0 +1,841 @@
+{
+  "results": [
+    {
+      "course": "Calculus Prep",
+      "unit": "Prep",
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "family": "reference-angle",
+      "questionId": "ref-210-false",
+      "field": "answerRaw",
+      "requiredAnswer": "30°",
+      "prior": "reference",
+      "question": "𝜃 =210∘",
+      "originalCheckerCorrectAccepted": true,
+      "originalCheckerBareValueAccepted": true,
+      "originalCheckerWrongRejected": true,
+      "profile": "ml-prep-degrees",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null
+        },
+        {
+          "label": "8",
+          "aria": null
+        },
+        {
+          "label": "9",
+          "aria": null
+        },
+        {
+          "label": "4",
+          "aria": null
+        },
+        {
+          "label": "5",
+          "aria": null
+        },
+        {
+          "label": "6",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "0",
+          "aria": null
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": ".",
+          "aria": null
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "°",
+          "aria": null
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left"
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator"
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator"
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace"
+        },
+        {
+          "label": "Del",
+          "aria": "Delete"
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer"
+        }
+      ],
+      "prompt": "Find the reference angle.",
+      "html": "<span class=\"bm-math\"><mjx-container class=\"MathJax\" jax=\"CHTML\" overflow=\"overflow\" tabindex=\"0\" data-semantic-locale=\"en\" data-semantic-domain=\"clearspeak\" data-semantic-style=\"default\" data-semantic-domain2style=\"mathspeak:default,clearspeak:default\" data-semantic-collapsible=\"collapsible\" data-semantic-expandable=\"expandable\" data-semantic-level=\"Level\" data-semantic-speech-none=\"theta equals 210 raised to the composed with power\" data-semantic-speech=\"&lt;mark name=&quot;0&quot;/&gt; theta ",
+      "tex": [
+        "\\theta = 210^{\\circ}"
+      ],
+      "wrongEntry": {
+        "raw": "31°",
+        "latex": "31^{\\circ}",
+        "serializedSource": "31°",
+        "profile": "ml-prep-degrees",
+        "buttons": [
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": ".",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "°",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "°",
+            "aria": null
+          }
+        ]
+      },
+      "wrongKeypadRejected": true,
+      "raw": "30°",
+      "latex": "30^{\\circ}",
+      "serializedSource": "30°",
+      "used": [
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "0",
+          "aria": null
+        },
+        {
+          "label": "°",
+          "aria": null
+        }
+      ],
+      "feedback": "feedback correct"
+    },
+    {
+      "course": "Calculus Prep",
+      "unit": "Prep",
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "family": "reference-angle",
+      "questionId": "ref-210-false",
+      "field": "answerRaw",
+      "requiredAnswer": "30°",
+      "prior": "coterminal",
+      "question": "𝜃 =210∘",
+      "originalCheckerCorrectAccepted": true,
+      "originalCheckerBareValueAccepted": true,
+      "originalCheckerWrongRejected": true,
+      "profile": "ml-prep-degrees",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null
+        },
+        {
+          "label": "8",
+          "aria": null
+        },
+        {
+          "label": "9",
+          "aria": null
+        },
+        {
+          "label": "4",
+          "aria": null
+        },
+        {
+          "label": "5",
+          "aria": null
+        },
+        {
+          "label": "6",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "0",
+          "aria": null
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": ".",
+          "aria": null
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "°",
+          "aria": null
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left"
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator"
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator"
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace"
+        },
+        {
+          "label": "Del",
+          "aria": "Delete"
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer"
+        }
+      ],
+      "prompt": "Find the reference angle.",
+      "html": "<span class=\"bm-math\"><mjx-container class=\"MathJax\" jax=\"CHTML\" overflow=\"overflow\" tabindex=\"0\" data-semantic-locale=\"en\" data-semantic-domain=\"clearspeak\" data-semantic-style=\"default\" data-semantic-domain2style=\"mathspeak:default,clearspeak:default\" data-semantic-collapsible=\"collapsible\" data-semantic-expandable=\"expandable\" data-semantic-level=\"Level\" data-semantic-speech-none=\"theta equals 210 raised to the composed with power\" data-semantic-speech=\"&lt;mark name=&quot;0&quot;/&gt; theta ",
+      "tex": [
+        "\\theta = 210^{\\circ}"
+      ],
+      "wrongEntry": {
+        "raw": "31°",
+        "latex": "31^{\\circ}",
+        "serializedSource": "31°",
+        "profile": "ml-prep-degrees",
+        "buttons": [
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": ".",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "°",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "°",
+            "aria": null
+          }
+        ]
+      },
+      "wrongKeypadRejected": true,
+      "raw": "30°",
+      "latex": "30^{\\circ}",
+      "serializedSource": "30°",
+      "used": [
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "0",
+          "aria": null
+        },
+        {
+          "label": "°",
+          "aria": null
+        }
+      ],
+      "feedback": "feedback correct"
+    },
+    {
+      "course": "Calculus Prep",
+      "unit": "Prep",
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "family": "reference-angle",
+      "questionId": "ref-210-false",
+      "field": "answerRaw",
+      "requiredAnswer": "30°",
+      "prior": "coordinates",
+      "question": "𝜃 =210∘",
+      "originalCheckerCorrectAccepted": true,
+      "originalCheckerBareValueAccepted": true,
+      "originalCheckerWrongRejected": true,
+      "profile": "ml-prep-degrees",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null
+        },
+        {
+          "label": "8",
+          "aria": null
+        },
+        {
+          "label": "9",
+          "aria": null
+        },
+        {
+          "label": "4",
+          "aria": null
+        },
+        {
+          "label": "5",
+          "aria": null
+        },
+        {
+          "label": "6",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "0",
+          "aria": null
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": ".",
+          "aria": null
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "°",
+          "aria": null
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left"
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator"
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator"
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace"
+        },
+        {
+          "label": "Del",
+          "aria": "Delete"
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer"
+        }
+      ],
+      "prompt": "Find the reference angle.",
+      "html": "<span class=\"bm-math\"><mjx-container class=\"MathJax\" jax=\"CHTML\" overflow=\"overflow\" tabindex=\"0\" data-semantic-locale=\"en\" data-semantic-domain=\"clearspeak\" data-semantic-style=\"default\" data-semantic-domain2style=\"mathspeak:default,clearspeak:default\" data-semantic-collapsible=\"collapsible\" data-semantic-expandable=\"expandable\" data-semantic-level=\"Level\" data-semantic-speech-none=\"theta equals 210 raised to the composed with power\" data-semantic-speech=\"&lt;mark name=&quot;0&quot;/&gt; theta ",
+      "tex": [
+        "\\theta = 210^{\\circ}"
+      ],
+      "wrongEntry": {
+        "raw": "31°",
+        "latex": "31^{\\circ}",
+        "serializedSource": "31°",
+        "profile": "ml-prep-degrees",
+        "buttons": [
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": ".",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "°",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "°",
+            "aria": null
+          }
+        ]
+      },
+      "wrongKeypadRejected": true,
+      "raw": "30°",
+      "latex": "30^{\\circ}",
+      "serializedSource": "30°",
+      "used": [
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "0",
+          "aria": null
+        },
+        {
+          "label": "°",
+          "aria": null
+        }
+      ],
+      "feedback": "feedback correct"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+evalmachine.<anonymous>:252
+    const previous=pad.querySelector(":scope > .bm-keypad-continuation");
+                       ^
+
+TypeError: pad.querySelector is not a function
+    at applyStandardLayout (evalmachine.<anonymous>:252:24)
+    at Object.layoutUnit2 (evalmachine.<anonymous>:410:5)
+    at Object.mount (evalmachine.<anonymous>:39:25)
+    at render (evalmachine.<anonymous>:13:16)
+    at newProblem (evalmachine.<anonymous>:25:2)
+    at evalmachine.<anonymous>:54:152
+    at file:///workspace/BatchMathSite/tools/im1-equations-update-qa.mjs:59:159
+    at Array.forEach (<anonymous>)
+    at UI (file:///workspace/BatchMathSite/tools/im1-equations-update-qa.mjs:59:148)
+    at file:///workspace/BatchMathSite/tools/im1-equations-update-qa.mjs:62:10
+
+Node.js v24.19.0

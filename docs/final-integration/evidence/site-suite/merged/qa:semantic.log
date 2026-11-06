@@ -1,0 +1,12 @@
+BatchMath 12.9.C semantic answer QA
+Result: PASS
+IM1 engines independently checked: 9
+IM1 generated/displayed problems checked: 12368
+Shared AP topic generators sampled: 40
+Shared AP topic problems generated: 40000
+Shared AP topic answers independently recomputed: 810
+
+Warnings: 1
+- Only 810 shared AP samples had independent semantic validators.
+
+Errors: 0

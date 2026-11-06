@@ -1,5 +1,7 @@
 # Sitewide keypad completeness — final verified audit
 
+Final v12.9.E scope: 148 routes (128 mathematical, 20 specialized/navigation). The 119 Source A blocked forms pass again on the actual merged site. Unit 6 adds a 3,175-part generated control inventory, 32 canonical cube-root browser checks, four legacy cube-root checks and 16 teacher/structural real-form checks, all passing. The historical Source A field ledger below is retained, not relabeled as newly executed combined-site evidence. See `../v12.9.E-final-integration.md` and `../final-integration/evidence/final-qa.json`.
+
 **Checkpoints A and B are preserved. Checkpoint C resolves all 119 blocked field rows, and Checkpoint D is complete. No confirmed control gap or unresolved driver failure remains.**
 
 The approved video work is preserved: 66 pages, 198 recordings, seven wider expandable review recordings and the narrow-heading correction. It has not been repeated or redesigned.
