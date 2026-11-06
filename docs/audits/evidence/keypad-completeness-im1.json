@@ -1,4 +1,75 @@
-{"results":[
+{
+  "errors": [
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    }
+  ],
+  "results":[
 {"course":"IM1","unit":1,"route":"im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/practice/index.html","family":"addition_mixed_sign","field":"answer","questionId":"int-add--13-11","question":{"id":"int-add--13-11","key":"int-add--13-11","text":"(-13) + 11 = ?","answer":-2,"explain":"The integers have different signs. Subtract the smaller absolute value from the larger and use the sign of the number with the larger absolute value: <strong>-2</strong>.","problemType":"addition_mixed_sign"},"requiredAnswer":"-2","wrongRejected":true,"raw":"-2","latex":"-2","profile":"ml-im1-integer","buttons":[{"label":"7","aria":null},{"label":"8","aria":null},{"label":"9","aria":null},{"label":"4","aria":null},{"label":"5","aria":null},{"label":"6","aria":null},{"label":"1","aria":null},{"label":"2","aria":null},{"label":"3","aria":null},{"label":"0","aria":null},{"label":"\u2212","aria":"Toggle negative sign"},{"label":"\u2190","aria":"Move cursor left"},{"label":"\u2192","aria":"Move cursor right"},{"label":"\u232b","aria":"Backspace"},{"label":"Del","aria":"Delete"},{"label":"Clear","aria":"Clear answer"},{"label":"Check","aria":"Check answer"}],"used":[{"label":"Clear","aria":"Clear answer"},{"label":"\u2212","aria":"Toggle negative sign"},{"label":"2","aria":null}],"passed":true},
 {"course":"IM1","unit":1,"route":"im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/practice/index.html","family":"negative_minus_positive","field":"answer","questionId":"int-sub--1-3","question":{"id":"int-sub--1-3","key":"int-sub--1-3","text":"(-1) - 3 = ?","answer":-4,"explain":"Rewrite subtraction as addition of the opposite: (-1) \u2212 3 = (-1) + (-3). Then combine the integers to get <strong>-4</strong>.","problemType":"negative_minus_positive"},"requiredAnswer":"-4","wrongRejected":true,"raw":"-4","latex":"-4","profile":"ml-im1-integer","buttons":[{"label":"7","aria":null},{"label":"8","aria":null},{"label":"9","aria":null},{"label":"4","aria":null},{"label":"5","aria":null},{"label":"6","aria":null},{"label":"1","aria":null},{"label":"2","aria":null},{"label":"3","aria":null},{"label":"0","aria":null},{"label":"\u2212","aria":"Toggle negative sign"},{"label":"\u2190","aria":"Move cursor left"},{"label":"\u2192","aria":"Move cursor right"},{"label":"\u232b","aria":"Backspace"},{"label":"Del","aria":"Delete"},{"label":"Clear","aria":"Clear answer"},{"label":"Check","aria":"Check answer"}],"used":[{"label":"Clear","aria":"Clear answer"},{"label":"\u2212","aria":"Toggle negative sign"},{"label":"4","aria":null}],"passed":true},
 {"course":"IM1","unit":1,"route":"im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/practice/index.html","family":"addition_two_negative","field":"answer","questionId":"int-add--8--6","question":{"id":"int-add--8--6","key":"int-add--8--6","text":"(-8) + (-6) = ?","answer":-14,"explain":"The integers have the same sign. Add their absolute values and keep that sign: <strong>-14</strong>.","problemType":"addition_two_negative"},"requiredAnswer":"-14","wrongRejected":true,"raw":"-14","latex":"-14","profile":"ml-im1-integer","buttons":[{"label":"7","aria":null},{"label":"8","aria":null},{"label":"9","aria":null},{"label":"4","aria":null},{"label":"5","aria":null},{"label":"6","aria":null},{"label":"1","aria":null},{"label":"2","aria":null},{"label":"3","aria":null},{"label":"0","aria":null},{"label":"\u2212","aria":"Toggle negative sign"},{"label":"\u2190","aria":"Move cursor left"},{"label":"\u2192","aria":"Move cursor right"},{"label":"\u232b","aria":"Backspace"},{"label":"Del","aria":"Delete"},{"label":"Clear","aria":"Clear answer"},{"label":"Check","aria":"Check answer"}],"used":[{"label":"Clear","aria":"Clear answer"},{"label":"\u2212","aria":"Toggle negative sign"},{"label":"1","aria":null},{"label":"4","aria":null}],"passed":true},
@@ -145,4 +216,5 @@
 {"course":"IM1","unit":2,"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html","family":"equation|fraction_expression","field":"answer","questionId":"u2-equation-fraction_expression-\\frac{5x - 19}{3}=7","question":{"id":"u2-equation-fraction_expression-\\frac{5x - 19}{3}=7","variant":"fraction_expression","kind":"equation","q":"Solve \\(\\frac{5x - 19}{3}=7\\).","answer":"8","answerTex":"\\(x=8\\)","hint":"Multiply both sides by 3 to clear the fraction. Then collect the variable terms and isolate x.","explain":"<ol><li>Multiply both sides by 3 to clear the denominator: \\(5x - 19=21\\)</li><li>Add 19 to both sides: \\(5x=40\\)</li><li>Divide both sides by 5: \\(x=8\\)</li></ol>","math":{"A":5,"B":-19,"C":0,"D":21,"scale":3,"solution":8},"variables":["x"]},"requiredAnswer":"8","wrongRejected":true,"raw":"8","latex":"8","profile":"ml-im1-equation-value","buttons":[{"label":"7","aria":null},{"label":"8","aria":null},{"label":"9","aria":null},{"label":"4","aria":null},{"label":"5","aria":null},{"label":"6","aria":null},{"label":"1","aria":null},{"label":"2","aria":null},{"label":"3","aria":null},{"label":"0","aria":null},{"label":"\u2212","aria":null},{"label":".","aria":null},{"label":"No Solution","aria":null},{"label":"Infinite Solutions","aria":null},{"label":"ab","aria":"Insert stacked fraction"},{"label":"\u2190","aria":"Move cursor left"},{"label":"\u2192","aria":"Move cursor right"},{"label":"\u2191","aria":"Move from denominator to numerator"},{"label":"\u2193","aria":"Move from numerator to denominator"},{"label":"\u232b","aria":"Backspace"},{"label":"Del","aria":"Delete"},{"label":"Clear","aria":"Clear answer"},{"label":"Check","aria":"Check answer"}],"used":[{"label":"Clear","aria":"Clear answer"},{"label":"8","aria":null}],"passed":true},
 {"course":"IM1","unit":2,"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html","family":"equation|fraction_coefficient","field":"answer","questionId":"u2-equation-fraction_coefficient-\\frac{2}{5}x - 5=-3","question":{"id":"u2-equation-fraction_coefficient-\\frac{2}{5}x - 5=-3","variant":"fraction_coefficient","kind":"equation","q":"Solve \\(\\frac{2}{5}x - 5=-3\\).","answer":"5","answerTex":"\\(x=5\\)","hint":"First add 5 to isolate \\(\\frac{2}{5}x\\). Then multiply both sides by \\(\\frac{5}{2}\\) to isolate x.","explain":"<ol><li>Multiply both sides by 5 to clear the denominator: \\(2x - 25=-15\\)</li><li>Add 25 to both sides: \\(2x=10\\)</li><li>Divide both sides by 2: \\(x=5\\)</li></ol>","math":{"A":2,"B":-25,"C":0,"D":-15,"scale":5,"solution":5},"variables":["x"]},"requiredAnswer":"5","wrongRejected":true,"raw":"5","latex":"5","profile":"ml-im1-equation-value","buttons":[{"label":"7","aria":null},{"label":"8","aria":null},{"label":"9","aria":null},{"label":"4","aria":null},{"label":"5","aria":null},{"label":"6","aria":null},{"label":"1","aria":null},{"label":"2","aria":null},{"label":"3","aria":null},{"label":"0","aria":null},{"label":"\u2212","aria":null},{"label":".","aria":null},{"label":"No Solution","aria":null},{"label":"Infinite Solutions","aria":null},{"label":"ab","aria":"Insert stacked fraction"},{"label":"\u2190","aria":"Move cursor left"},{"label":"\u2192","aria":"Move cursor right"},{"label":"\u2191","aria":"Move from denominator to numerator"},{"label":"\u2193","aria":"Move from numerator to denominator"},{"label":"\u232b","aria":"Backspace"},{"label":"Del","aria":"Delete"},{"label":"Clear","aria":"Clear answer"},{"label":"Check","aria":"Check answer"}],"used":[{"label":"Clear","aria":"Clear answer"},{"label":"5","aria":null}],"passed":true},
 {"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html","coverage":true,"familyControlContracts":11}
-],"errors":[{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"}]}
+  ]
+}

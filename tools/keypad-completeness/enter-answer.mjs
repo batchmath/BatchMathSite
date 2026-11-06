@@ -1,3 +1,4 @@
+import{verifyKeypadGeometry}from'./keypad-geometry.mjs';
 import {parseInput} from '../../assets/mathlive/answer-adapter.mjs';
 // The only mutations of a student answer are clicks on the displayed keypad.
 // Reading public MathLive selection/lastOffset lets the driver leave nested slots.
@@ -9,7 +10,7 @@ export async function enterAnswer(page,field,raw,{format='batchmath'}={}){
  if(source.endsWith('°'))parsed={status:'complete',tree:{type:'degree',value:parseInput(source.slice(0,-1)).tree}};
  if(source.includes('±'))parsed={status:'complete',tree:{type:'list',items:source.split(',').map(s=>s.trim()).map(s=>s.startsWith('±')?{type:'plusminus',value:parseInput(s.slice(1)).tree}:parseInput(s).tree)}};if(/infinit(?:e|ely)/i.test(source)&&/solutions/i.test(source))parsed={status:'complete',tree:{type:'sym',name:'Infinite Solutions'}};if(/^does not apply$/i.test(source))parsed={status:'complete',tree:{type:'sym',name:'Does not apply'}};if(/^no solution$/i.test(source))parsed={status:'complete',tree:{type:'sym',name:'No Solution'}};
  if(parsed.status!=='complete')throw Error('Audit expression parser: '+raw+' '+parsed.message);
- await field.waitFor();await field.evaluate(async mf=>{for(let n=0;n<400&&mf.readOnly;n++)await new Promise(r=>setTimeout(r,25));if(mf.readOnly)throw Error('Audit tried to enter a locked field');});await field.click();return field.evaluate(async(mf,{tree,raw})=>{
+ await field.waitFor();await field.evaluate(async mf=>{for(let n=0;n<400&&mf.readOnly;n++)await new Promise(r=>setTimeout(r,25));if(mf.readOnly)throw Error('Audit tried to enter a locked field');});await field.click();await verifyKeypadGeometry(page,field);return field.evaluate(async(mf,{tree,raw})=>{
  const pads=[...document.querySelectorAll('.bm-calc-keypad,.bm-keypad,.algebra-keypad,.bm-u3-shared-keypad')].filter(x=>x.getClientRects().length),pad=pads.find(x=>x.closest('.staged-part')===mf.closest('.staged-part'))||pads.at(-1);if(!pad)throw Error('No displayed keypad');
  const bs=[...pad.querySelectorAll('button')].filter(x=>x.getClientRects().length),used=[];
  function click(label,aria){if(label==='→'&&!aria)aria='Move cursor right';const b=bs.find(b=>!b.disabled&&(aria?b.getAttribute('aria-label')===aria:b.textContent.trim()===label));if(!b)throw Error('MISSING CONTROL '+(aria||label)+' for '+raw);used.push({label:b.textContent.trim(),aria:b.getAttribute('aria-label')});b.click();}
@@ -22,9 +23,9 @@ export async function enterAnswer(page,field,raw,{format='batchmath'}={}){
  if(n.type==='binary'){emit(n.left);if(n.op==='^'){let exponent=n.right;if(exponent.type==='group')exponent=exponent.value;template('xⁿ',exponent);}else{if(!(n.op==='*'&&n.implicit))click(({'+':'+','-':'−','*':'·','=':'='})[n.op]||n.op);emit(n.right);}return;}
  if(n.type==='list'){n.items.forEach((a,i)=>{if(i)click(',');emit(a);});return;}
  if(n.type==='call'){if(n.name==='f'&&has('f(n)')&&n.args[0]?.name==='n'){click('f(n)');return;}if(n.name==='f'&&has('f(x)')&&n.args[0]?.name==='x'){click('f(x)');return;}
- if(n.name==='exp'){click('e');template('xⁿ',n.args[0]);return;}if(n.name==='root'||n.name==='cbrt'){const tail=right();if(n.name==='cbrt'&&has('∛')){template('∛',n.args[0]);return;}click('ⁿ√');emit(n.name==='cbrt'?{type:'num',raw:'3'}:n.args[0]);click('→');emit(n.args[n.name==='cbrt'?0:1]);exit(tail);return;}
+ if(n.name==='exp'){click('e');template('xⁿ',n.args[0]);return;}if(n.name==='root'||n.name==='cbrt'){const tail=right();if((n.name==='cbrt'||n.name==='root'&&n.args[0]?.raw==='3')&&has('∛')){template('∛',n.args[n.name==='cbrt'?0:1]);return;}if(n.name==='root'&&n.args[0]?.raw==='2'&&has('√')){template('√',n.args[1]);return;}click('ⁿ√');emit(n.name==='cbrt'?{type:'num',raw:'3'}:n.args[0]);click('→');emit(n.args[n.name==='cbrt'?0:1]);exit(tail);return;}
  const label=({sqrt:'√',abs:'|u|',asin:'sin⁻¹',acos:'cos⁻¹',atan:'tan⁻¹',asec:'sec⁻¹',acsc:'csc⁻¹',acot:'cot⁻¹',fp:'f′',gp:'g′'})[n.name]||n.name;template(label,n.args[0]);return;}
  throw Error('Unsupported audit AST '+JSON.stringify(n));}
- click('Clear');emit(tree);return{raw,latex:mf.value,profile:pad.dataset.auditProfile||null,buttons:bs.map(b=>({label:b.textContent.trim(),aria:b.getAttribute('aria-label')})),used};
+ click('Clear');emit(tree);return{raw,latex:mf.value,profile:pad.dataset.auditProfile||[...pad.classList].find(c=>c.startsWith('bm-calc-mode-'))?.slice(13)||null,buttons:bs.map(b=>({label:b.textContent.trim(),aria:b.getAttribute('aria-label')})),used};
  },{tree:parsed.tree,raw:String(raw)});
 }

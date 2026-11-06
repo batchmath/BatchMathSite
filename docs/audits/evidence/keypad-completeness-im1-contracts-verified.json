@@ -1,4 +1,55 @@
-{"results":[
+{
+  "errors": [
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+      "message": "Cannot read properties of undefined (reading 'length')"
+    }
+  ],
+  "results":[
 {"course":"IM1","unit":2,"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","family":"choice|both_sides","field":"answer","questionId":"u2-ineq-both-5-5-3-3-<","question":{"id":"u2-ineq-both-5-5-3-3-<","variant":"both_sides","q":"Solve \\(5x + 5 < 3x + 3\\).","choices":["\\(x > -1\\)","\\(x < -1\\)","\\(x < -2\\)","\\(x < 0\\)"],"correctIndex":1,"answer":"\\(x < -1\\)","explain":"<ol><li>Move the \\(3x\\) term to the left: \\(2x + 5 < 3\\)</li><li>Subtract 5 from both sides: \\(2x < -2\\)</li><li>Divide by 2: \\(x < -1\\)</li></ol>"},"retainedChoice":true,"passed":true},
 {"course":"IM1","unit":2,"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","family":"choice|negative_flip","field":"answer","questionId":"u2-ineq-flip-2-3--15-<-3 - 2x","question":{"id":"u2-ineq-flip-2-3--15-<-3 - 2x","variant":"negative_flip","q":"Solve \\(3 - 2x < -15\\).","choices":["\\(x > 10\\)","\\(x < 9\\)","\\(x > 9\\)","\\(x > 8\\)"],"correctIndex":2,"answer":"\\(x > 9\\)","explain":"<ol><li>Subtract 3 from both sides: \\(-2x < -18\\)</li><li>Divide by -2 and reverse the inequality sign: \\(x > 9\\)</li></ol>"},"retainedChoice":true,"passed":true},
 {"course":"IM1","unit":2,"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","family":"polynomial|mn","field":"answer","questionId":"u2-like-input-mixed_products-[[9,\"mn\"],[9,\"m^{4}n\"],[-5,\"mn^{4}\"],[8,\"mn^{4}\"],[5,\"m^{4}n\"],[-2,\"mn\"]]","question":{"id":"u2-like-input-mixed_products-[[9,\"mn\"],[9,\"m^{4}n\"],[-5,\"mn^{4}\"],[8,\"mn^{4}\"],[5,\"m^{4}n\"],[-2,\"mn\"]]","variant":"mixed_products","kind":"polynomial","q":"Combine like terms: \\(9mn + 9m^{4}n - 5mn^{4} + 8mn^{4} + 5m^{4}n - 2mn\\).","answer":"3mn^{4} + 14m^{4}n + 7mn","answerTex":"\\(3mn^{4} + 14m^{4}n + 7mn\\)","terms":[[9,"mn"],[9,"m^{4}n"],[-5,"mn^{4}"],[8,"mn^{4}"],[5,"m^{4}n"],[-2,"mn"]],"variables":["m","n"],"explain":"<ol><li>For the \\(mn^{4}\\) terms, add the coefficients: \\((-5)+8=3\\). Keep the variable part \\(mn^{4}\\) unchanged.</li><li>For the \\(m^{4}n\\) terms, add the coefficients: \\(9+5=14\\). Keep the variable part \\(m^{4}n\\) unchanged.</li><li>For the \\(mn\\) terms, add the coefficients: \\(9+(-2)=7\\). Keep the variable part \\(mn\\) unchanged.</li></ol>So the simplified expression is \\(3mn^{4} + 14m^{4}n + 7mn\\)."},"requiredAnswer":"3mn^{4} + 14m^{4}n + 7mn","wrongRejected":true,"raw":"3mn^{4} + 14m^{4}n + 7mn","latex":"3mn^4+14m^4n+7mn","profile":"ml-im1-polynomial-mn","buttons":[{"label":"7","aria":null},{"label":"8","aria":null},{"label":"9","aria":null},{"label":"4","aria":null},{"label":"5","aria":null},{"label":"6","aria":null},{"label":"1","aria":null},{"label":"2","aria":null},{"label":"3","aria":null},{"label":"0","aria":null},{"label":"\u2212","aria":null},{"label":"+","aria":null},{"label":"\u00b7","aria":null},{"label":"m","aria":null},{"label":"n","aria":null},{"label":"x\u207f","aria":"Insert exponent"},{"label":"\u2190","aria":"Move cursor left"},{"label":"\u2192","aria":"Move cursor right"},{"label":"\u232b","aria":"Backspace"},{"label":"Del","aria":"Delete"},{"label":"Clear","aria":"Clear answer"},{"label":"Check","aria":"Check answer"}],"used":[{"label":"Clear","aria":"Clear answer"},{"label":"3","aria":null},{"label":"m","aria":null},{"label":"n","aria":null},{"label":"x\u207f","aria":"Insert exponent"},{"label":"4","aria":null},{"label":"\u2192","aria":"Move cursor right"},{"label":"+","aria":null},{"label":"1","aria":null},{"label":"4","aria":null},{"label":"m","aria":null},{"label":"x\u207f","aria":"Insert exponent"},{"label":"4","aria":null},{"label":"\u2192","aria":"Move cursor right"},{"label":"n","aria":null},{"label":"+","aria":null},{"label":"7","aria":null},{"label":"m","aria":null},{"label":"n","aria":null}],"passed":true},
@@ -62,4 +113,5 @@
 {"course":"IM1","unit":2,"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html","family":"choice|ineq_to_graph","field":"answer","questionId":"u2-int-i2g-3->=","question":{"id":"u2-int-i2g-3->=","variant":"ineq_to_graph","q":"Which number-line description represents \\(x \u2265 3\\)?","choices":["open circle at 3; shade left","closed circle at 3; shade right","Cannot be determined","open circle at 3; shade right"],"correctIndex":1,"answer":"closed circle at 3; shade right","explain":"At 3, draw a closed circle because equality is included; shade right for larger numbers."},"retainedChoice":true,"passed":true},
 {"course":"IM1","unit":2,"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html","family":"choice|interval_to_ineq","field":"answer","questionId":"u2-int-n2i--8-<=","question":{"id":"u2-int-n2i--8-<=","variant":"interval_to_ineq","q":"Which inequality matches the interval \\((-\u221e, -8]\\)?","choices":["\\(x = -8\\)","\\(x < -8\\)","\\(x > -8\\)","\\(x \u2264 -8\\)"],"correctIndex":3,"answer":"\\(x \u2264 -8\\)","explain":"The interval extends left toward negative infinity and includes -8. Therefore \\(x \u2264 -8\\)."},"retainedChoice":true,"passed":true},
 {"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html","coverage":true,"familyControlContracts":7}
-],"errors":[{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"},{"route":"im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html","message":"Cannot read properties of undefined (reading 'length')"}]}
+  ]
+}

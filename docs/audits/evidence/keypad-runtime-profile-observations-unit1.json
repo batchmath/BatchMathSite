@@ -1,0 +1,3129 @@
+{
+  "purpose": "Runtime naming and button-fingerprint observations; these are not additional answer-construction or checker passes.",
+  "observations": [
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html",
+      "selector": {
+        "category": "all"
+      },
+      "profile": "migration-limit-finite",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-finite bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html",
+      "selector": {
+        "category": "continuous"
+      },
+      "profile": "migration-limit-finite",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-finite bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html",
+      "selector": {
+        "category": "factoring"
+      },
+      "profile": "migration-limit-finite",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-finite bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html",
+      "selector": {
+        "category": "substitution"
+      },
+      "profile": "migration-limit-finite",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-finite bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html",
+      "selector": {
+        "category": "rationalizing"
+      },
+      "profile": "migration-limit-finite",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-finite bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html",
+      "selector": {
+        "category": "complex"
+      },
+      "profile": "migration-limit-finite",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-finite bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/practice/index.html",
+      "selector": {
+        "category": "mixed"
+      },
+      "profile": "migration-limit-signed",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-signed bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "DNE",
+          "aria": "Insert DNE",
+          "disabled": false
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "disabled": false
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/practice/index.html",
+      "selector": {
+        "category": "rational"
+      },
+      "profile": "migration-limit-signed",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-signed bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "DNE",
+          "aria": "Insert DNE",
+          "disabled": false
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "disabled": false
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/practice/index.html",
+      "selector": {
+        "category": "radicals"
+      },
+      "profile": "migration-limit-signed",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-signed bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "DNE",
+          "aria": "Insert DNE",
+          "disabled": false
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "disabled": false
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/practice/index.html",
+      "selector": {
+        "category": "explog"
+      },
+      "profile": "migration-limit-signed",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-signed bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "DNE",
+          "aria": "Insert DNE",
+          "disabled": false
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "disabled": false
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/practice/index.html",
+      "selector": {
+        "category": "growth"
+      },
+      "profile": "migration-limit-signed",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-signed bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "DNE",
+          "aria": "Insert DNE",
+          "disabled": false
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "disabled": false
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/practice/index.html",
+      "selector": {},
+      "profile": "migration-limit-finite",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-finite bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html",
+      "selector": {
+        "category": "oneSidedMixed"
+      },
+      "profile": "migration-limit-signed",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-signed bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "DNE",
+          "aria": "Insert DNE",
+          "disabled": false
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "disabled": false
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html",
+      "selector": {
+        "category": "oneSidedAbsolute"
+      },
+      "profile": "migration-limit-signed",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-signed bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "DNE",
+          "aria": "Insert DNE",
+          "disabled": false
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "disabled": false
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html",
+      "selector": {
+        "category": "oneSidedRational"
+      },
+      "profile": "migration-limit-signed",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-signed bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "DNE",
+          "aria": "Insert DNE",
+          "disabled": false
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "disabled": false
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html",
+      "selector": {
+        "category": "oneSidedPiecewise"
+      },
+      "profile": "migration-limit-signed",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-signed bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "DNE",
+          "aria": "Insert DNE",
+          "disabled": false
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "disabled": false
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "route": "ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html",
+      "selector": {
+        "category": "oneSidedEndpoint"
+      },
+      "profile": "migration-limit-signed",
+      "className": "bm-calc-keypad bm-calc-mode-migration-limit-signed bm-calc-keypad-standardized",
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "disabled": false
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "disabled": false
+        },
+        {
+          "label": "∛",
+          "aria": "Insert ∛",
+          "disabled": false
+        },
+        {
+          "label": "ⁿ√",
+          "aria": "Insert nth root; enter the index, then move right to enter the radicand",
+          "disabled": false
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "disabled": false
+        },
+        {
+          "label": "log",
+          "aria": "Insert log",
+          "disabled": false
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "disabled": false
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "disabled": false
+        },
+        {
+          "label": "DNE",
+          "aria": "Insert DNE",
+          "disabled": false
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "disabled": false
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "disabled": false
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "disabled": false
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "disabled": false
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "disabled": false
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "disabled": false
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "disabled": false
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "disabled": false
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "disabled": false
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "disabled": false
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

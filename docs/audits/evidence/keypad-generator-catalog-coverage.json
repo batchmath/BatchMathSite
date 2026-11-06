@@ -1,0 +1,279 @@
+{
+  "unit5": [
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/calculator-practice/index.html",
+      "calculatorKind": "calculator",
+      "expectedFiniteFamilies": [
+        "basic/calc_value"
+      ],
+      "observedFiniteFamilies": [
+        "basic/calc_value"
+      ],
+      "missing": [],
+      "featureCoverageEvidence": "docs/audits/evidence/keypad-completeness-dynamic-unit5-control-coverage-before.json"
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/non-calculator-practice/index.html",
+      "calculatorKind": "noncalculator",
+      "expectedFiniteFamilies": [
+        "basic/poly_power",
+        "basic/trig",
+        "basic/exp_composition",
+        "basic/log_domain",
+        "basic/general_solution"
+      ],
+      "observedFiniteFamilies": [
+        "basic/exp_composition",
+        "basic/poly_power",
+        "basic/trig",
+        "basic/log_domain",
+        "basic/general_solution"
+      ],
+      "missing": [],
+      "featureCoverageEvidence": "docs/audits/evidence/keypad-completeness-dynamic-unit5-control-coverage-before.json"
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/calculator-practice/index.html",
+      "calculatorKind": "calculator",
+      "expectedFiniteFamilies": [
+        "basic/calc_value",
+        "motion/calc_position",
+        "motion/calc_distance",
+        "motion/calc_speed",
+        "motion/calc_direction",
+        "growth/growth",
+        "growth/decay",
+        "growth/cooling",
+        "growth/heating",
+        "growth/interest",
+        "growth/reverse",
+        "rate/one_rate",
+        "rate/initial_change",
+        "rate/in_out",
+        "rate/delayed_piecewise",
+        "rate/multipart"
+      ],
+      "observedFiniteFamilies": [
+        "motion/calc_position",
+        "basic/calc_value",
+        "motion/calc_speed",
+        "motion/calc_direction",
+        "growth/cooling",
+        "motion/calc_distance",
+        "growth/reverse",
+        "growth/heating",
+        "rate/one_rate",
+        "growth/growth",
+        "rate/in_out",
+        "rate/multipart",
+        "rate/initial_change",
+        "growth/decay",
+        "growth/interest",
+        "rate/delayed_piecewise"
+      ],
+      "missing": [],
+      "featureCoverageEvidence": "docs/audits/evidence/keypad-completeness-dynamic-unit5-control-coverage-before.json"
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/non-calculator-practice/index.html",
+      "calculatorKind": "noncalculator",
+      "expectedFiniteFamilies": [
+        "basic/poly_power",
+        "basic/trig",
+        "basic/exp_composition",
+        "basic/log_domain",
+        "basic/general_solution",
+        "motion/recover",
+        "motion/displacement_distance",
+        "motion/direction_speed",
+        "motion/multipart",
+        "slope/draw_segments",
+        "slope/draw_curve",
+        "slope/match",
+        "slope/analyze",
+        "separable/product",
+        "separable/powers_y",
+        "separable/log_rational",
+        "separable/trig",
+        "separable/exp_y",
+        "separable/radical_branch",
+        "rate/one_rate",
+        "rate/initial_change",
+        "rate/in_out",
+        "rate/delayed_piecewise",
+        "rate/multipart"
+      ],
+      "observedFiniteFamilies": [
+        "slope/draw_segments",
+        "basic/trig",
+        "basic/exp_composition",
+        "motion/direction_speed",
+        "motion/recover",
+        "slope/analyze",
+        "separable/powers_y",
+        "slope/draw_curve",
+        "separable/radical_branch",
+        "separable/trig",
+        "slope/match",
+        "rate/one_rate",
+        "basic/poly_power",
+        "separable/product",
+        "basic/log_domain",
+        "rate/multipart",
+        "separable/log_rational",
+        "motion/multipart",
+        "motion/displacement_distance",
+        "rate/initial_change",
+        "rate/in_out",
+        "basic/general_solution",
+        "separable/exp_y",
+        "rate/delayed_piecewise"
+      ],
+      "missing": [],
+      "featureCoverageEvidence": "docs/audits/evidence/keypad-completeness-dynamic-unit5-control-coverage-before.json"
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/exponential-growth-and-decay-interest-newton-s-law-of-cooling/practice/index.html",
+      "calculatorKind": "mixed",
+      "expectedFiniteFamilies": [
+        "growth/growth",
+        "growth/decay",
+        "growth/cooling",
+        "growth/heating",
+        "growth/interest",
+        "growth/reverse"
+      ],
+      "observedFiniteFamilies": [
+        "growth/cooling",
+        "growth/growth",
+        "growth/decay",
+        "growth/interest",
+        "growth/heating",
+        "growth/reverse"
+      ],
+      "missing": [],
+      "featureCoverageEvidence": "docs/audits/evidence/keypad-completeness-dynamic-unit5-control-coverage-before.json"
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/motion-problems/calculator-practice/index.html",
+      "calculatorKind": "calculator",
+      "expectedFiniteFamilies": [
+        "motion/calc_position",
+        "motion/calc_distance",
+        "motion/calc_speed",
+        "motion/calc_direction"
+      ],
+      "observedFiniteFamilies": [
+        "motion/calc_distance",
+        "motion/calc_position",
+        "motion/calc_direction",
+        "motion/calc_speed"
+      ],
+      "missing": [],
+      "featureCoverageEvidence": "docs/audits/evidence/keypad-completeness-dynamic-unit5-control-coverage-before.json"
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/motion-problems/non-calculator-practice/index.html",
+      "calculatorKind": "noncalculator",
+      "expectedFiniteFamilies": [
+        "motion/recover",
+        "motion/displacement_distance",
+        "motion/direction_speed",
+        "motion/multipart"
+      ],
+      "observedFiniteFamilies": [
+        "motion/displacement_distance",
+        "motion/recover",
+        "motion/direction_speed",
+        "motion/multipart"
+      ],
+      "missing": [],
+      "featureCoverageEvidence": "docs/audits/evidence/keypad-completeness-dynamic-unit5-control-coverage-before.json"
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/rate-problems/calculator-practice/index.html",
+      "calculatorKind": "calculator",
+      "expectedFiniteFamilies": [
+        "rate/one_rate",
+        "rate/initial_change",
+        "rate/in_out",
+        "rate/delayed_piecewise",
+        "rate/multipart"
+      ],
+      "observedFiniteFamilies": [
+        "rate/in_out",
+        "rate/one_rate",
+        "rate/initial_change",
+        "rate/delayed_piecewise",
+        "rate/multipart"
+      ],
+      "missing": [],
+      "featureCoverageEvidence": "docs/audits/evidence/keypad-completeness-dynamic-unit5-control-coverage-before.json"
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/rate-problems/non-calculator-practice/index.html",
+      "calculatorKind": "noncalculator",
+      "expectedFiniteFamilies": [
+        "rate/one_rate",
+        "rate/initial_change",
+        "rate/in_out",
+        "rate/delayed_piecewise",
+        "rate/multipart"
+      ],
+      "observedFiniteFamilies": [
+        "rate/in_out",
+        "rate/one_rate",
+        "rate/initial_change",
+        "rate/delayed_piecewise",
+        "rate/multipart"
+      ],
+      "missing": [],
+      "featureCoverageEvidence": "docs/audits/evidence/keypad-completeness-dynamic-unit5-control-coverage-before.json"
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/separable-differential-equations/practice/index.html",
+      "calculatorKind": "mixed",
+      "expectedFiniteFamilies": [
+        "separable/product",
+        "separable/powers_y",
+        "separable/log_rational",
+        "separable/trig",
+        "separable/exp_y",
+        "separable/radical_branch"
+      ],
+      "observedFiniteFamilies": [
+        "separable/log_rational",
+        "separable/product",
+        "separable/powers_y",
+        "separable/trig",
+        "separable/exp_y",
+        "separable/radical_branch"
+      ],
+      "missing": [],
+      "featureCoverageEvidence": "docs/audits/evidence/keypad-completeness-dynamic-unit5-control-coverage-before.json"
+    },
+    {
+      "route": "ap-calculus/unit-5-differential-equations/topics/slope-fields/practice/index.html",
+      "calculatorKind": "mixed",
+      "expectedFiniteFamilies": [
+        "slope/draw_segments",
+        "slope/draw_curve",
+        "slope/match",
+        "slope/analyze"
+      ],
+      "observedFiniteFamilies": [
+        "slope/match",
+        "slope/draw_segments",
+        "slope/draw_curve",
+        "slope/analyze"
+      ],
+      "missing": [],
+      "featureCoverageEvidence": "docs/audits/evidence/keypad-completeness-dynamic-unit5-control-coverage-before.json"
+    }
+  ],
+  "inventoryRoutes": 138,
+  "mathematicalRoutes": 118,
+  "retainedRoutes": 20,
+  "registeredProfileNames": 150,
+  "note": "Finite Unit 5 family declarations are reconciled by calculator eligibility. Browser witnesses cover structural/control features within these family/field-contract groups. Other course families use their original generator metadata and public selectors; the existing semantic Node suites remain part of final verification."
+}

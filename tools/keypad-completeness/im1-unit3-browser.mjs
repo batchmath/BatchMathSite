@@ -7,3 +7,5 @@ try{for(const item of routes){let p;try{const slug=item.route.includes('/compreh
  results.push({route:item.route,coverage:true,generated:modes.length*400,selectors:modes,familyControlContracts:cases.size});console.log('DONE',item.route,cases.size);
  }catch(e){results.push({route:item.route,passed:false,error:e.stack});}finally{await p?.close();fs.writeFileSync(root+'docs/audits/evidence/keypad-completeness-im1-unit3'+(process.env.REPORT_SUFFIX||'')+'.json',JSON.stringify({results,errors},null,2)+'\n');}}
 }finally{await h.close();}console.log('TOTAL',results.filter(r=>r.passed).length,'pass',results.filter(r=>r.passed===false).length,'fail');
+
+if(process.env.REQUIRE_PASS==='1'&&(results.some(r=>r.passed===false)||errors.length))process.exitCode=1;
