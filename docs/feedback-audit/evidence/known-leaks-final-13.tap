@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: choose_dx_dy: no completed part supplies a future answer
+ok 1 - choose_dx_dy: no completed part supplies a future answer
+  ---
+  duration_ms: 48.141259
+  type: 'test'
+  ...
+# Subtest: washer: no completed part supplies a future answer
+ok 2 - washer: no completed part supplies a future answer
+  ---
+  duration_ms: 56.456885
+  type: 'test'
+  ...
+# Subtest: shells: no completed part supplies a future answer
+ok 3 - shells: no completed part supplies a future answer
+  ---
+  duration_ms: 20.496413
+  type: 'test'
+  ...
+# Subtest: graph_derivative: no completed part supplies a future answer
+ok 4 - graph_derivative: no completed part supplies a future answer
+  ---
+  duration_ms: 17.426657
+  type: 'test'
+  ...
+# Subtest: graph_accum: no completed part supplies a future answer
+ok 5 - graph_accum: no completed part supplies a future answer
+  ---
+  duration_ms: 12.217999
+  type: 'test'
+  ...
+# Subtest: choose_dy: no completed part supplies a future answer
+ok 6 - choose_dy: no completed part supplies a future answer
+  ---
+  duration_ms: 50.082571
+  type: 'test'
+  ...
+# Subtest: washer_vertical: no completed part supplies a future answer
+ok 7 - washer_vertical: no completed part supplies a future answer
+  ---
+  duration_ms: 18.751454
+  type: 'test'
+  ...
+# Subtest: washer_above: no completed part supplies a future answer
+ok 8 - washer_above: no completed part supplies a future answer
+  ---
+  duration_ms: 22.551559
+  type: 'test'
+  ...
+# Subtest: shells_vertical: no completed part supplies a future answer
+ok 9 - shells_vertical: no completed part supplies a future answer
+  ---
+  duration_ms: 48.053703
+  type: 'test'
+  ...
+# Subtest: graph_accum_minimum: no completed part supplies a future answer
+ok 10 - graph_accum_minimum: no completed part supplies a future answer
+  ---
+  duration_ms: 5.12993
+  type: 'test'
+  ...
+# Subtest: graph_accum_inflection: no completed part supplies a future answer
+ok 11 - graph_accum_inflection: no completed part supplies a future answer
+  ---
+  duration_ms: 6.998555
+  type: 'test'
+  ...
+# Subtest: area_both_directions: no completed part supplies a future answer
+ok 12 - area_both_directions: no completed part supplies a future answer
+  ---
+  duration_ms: 13.63156
+  type: 'test'
+  ...
+# Subtest: calculator_both_directions: no completed part supplies a future answer
+ok 13 - calculator_both_directions: no completed part supplies a future answer
+  ---
+  duration_ms: 30.838626
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 770.601414

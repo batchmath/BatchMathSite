@@ -14,7 +14,7 @@ try{
  for(const fixture of fixtures)for(const wrapped of (fixture.config.slug?[false,true]:[true]))for(const width of [1366,390])for(const wrong of [false,true]){
   const {config,seed}=fixture,topic={area:'area',solids:config.family==='shells'?'shells':'washers',frq:'frq_graph'}[config.engine],mode=config.engine==='frq'?'frq_graph':'short';
   const prefix=wrapped?model.reviewPlan(config,topic,mode):[];
-  const route='ap-calculus/unit-6-applications-integration/topics/'+(wrapped?'comprehensive-review/non-calculator-practice':config.slug+'/non-calculator-practice')+'/index.html';
+  const route='ap-calculus/unit-6-applications-integration/topics/'+(wrapped?'comprehensive-review/'+config.calc+'-practice':config.slug+'/'+config.calc+'-practice')+'/index.html';
   const page=await h.open(route,{width,height:width===390?844:900});page.on('pageerror',e=>errors.push({fixture:fixture.name,width,message:e.message}));
   const r={fixture:fixture.name,wrapped,width,wrong,route,source:ref||'current',parts:[],failures:[]};
   try{

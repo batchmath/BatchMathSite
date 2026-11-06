@@ -1,0 +1,31 @@
+
+> batchmath-site-qa@12.9.F qa:static
+> node tools/release-qa.mjs
+
+BatchMath 12.9.F automated release QA
+Result: PASS
+
+htmlPages: 288
+standaloneJs: 79
+gaTagged: 278
+inlineJs: 1093
+images: 636
+internalReferences: 8651
+brokenInternalReferences: 0
+indexablePages: 276
+sitemapUrls: 276
+noindexPages: 12
+version: 12.9.F
+practiceEngines: 143
+mathjaxRefs: 135
+frqRows: 228
+frqExamSets: 38
+frqVideos: 216
+pdfFiles: 290
+docxFiles: 0
+identifyingStringHits: 0
+seededRngUnitTest: pass
+
+Warnings: 0
+
+Errors: 0

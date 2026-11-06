@@ -12,6 +12,7 @@ for(const fixture of fixtures)test(fixture.name+': no completed part supplies a 
  assert.deepEqual(found,[],JSON.stringify({id:p.id,found}));
  if(fixture.name==='choose_dx_dy'){
   assert.equal(p.parts.length,3);
+  assert.doesNotMatch(plain(p.parts[0].explanation),/With horizontal slices the right boundary is/,'Opposite-direction boundary schedule belongs to Part B');
   assert.ok(h.C.checkIntegral(h.C.parseSetup('int(0,2,3*x-x,x)').rows,p.parts[0].answer).ok);
   assert.ok(h.C.checkIntegral(h.C.parseSetup('int(0,2,y-y/3,y)+int(2,6,2-y/3,y)').rows,p.parts[1].answer).ok);
   assert.match(plain(p.parts[1].explanation),/boundary|boundaries/);

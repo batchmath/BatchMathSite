@@ -1,7 +1,7 @@
-BatchMath v12.9.E — complete integration test build
+BatchMath v12.9.F — complete integration test build
 
-Extract batchmath-site-v12.9.E.zip.
-Open a terminal inside the single folder batchmath-site-v12.9.E.
+Extract batchmath-site-v12.9.F.zip.
+Open a terminal inside the single folder batchmath-site-v12.9.F.
 Run exactly:
 
 py -m http.server 8000

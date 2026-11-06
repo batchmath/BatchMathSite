@@ -1,0 +1,2622 @@
+{
+  "results": [
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds in x. At 𝑥 =0\n the slice endpoints meet: 3⁢𝑥 =𝑥\n. Use the intersection that bounds the stated region. The vertical boundary 𝑥 =2\n cuts off this end of the region.\n0 ≤𝑥 ≤2\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "x=0",
+            "3x=x",
+            "x=2",
+            "\\displaystyle 0\\le x\\le 2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\nFind the bounds in x. At 𝑥 =0\n the slice endpoints meet: 3⁢𝑥 =𝑥\n. Use the intersection that bounds the stated region. The vertical boundary 𝑥 =2\n cuts off this end of the region.\n0 ≤𝑥 ≤2\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "x=0",
+            "3x=x",
+            "x=2",
+            "\\displaystyle 0\\le x\\le 2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 4\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "4",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds in x. At 𝑥 =0\n the slice endpoints meet: 3⁢𝑥 =𝑥\n. Use the intersection that bounds the stated region. The vertical boundary 𝑥 =2\n cuts off this end of the region.\n0 ≤𝑥 ≤2\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "x=0",
+            "3x=x",
+            "x=2",
+            "\\displaystyle 0\\le x\\le 2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\nFind the bounds in x. At 𝑥 =0\n the slice endpoints meet: 3⁢𝑥 =𝑥\n. Use the intersection that bounds the stated region. The vertical boundary 𝑥 =2\n cuts off this end of the region.\n0 ≤𝑥 ≤2\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "x=0",
+            "3x=x",
+            "x=2",
+            "\\displaystyle 0\\le x\\le 2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 4\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "4",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds in x. At 𝑥 =0\n the slice endpoints meet: 3⁢𝑥 =𝑥\n. Use the intersection that bounds the stated region. The vertical boundary 𝑥 =2\n cuts off this end of the region.\n0 ≤𝑥 ≤2\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "x=0",
+            "3x=x",
+            "x=2",
+            "\\displaystyle 0\\le x\\le 2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\nFind the bounds in x. At 𝑥 =0\n the slice endpoints meet: 3⁢𝑥 =𝑥\n. Use the intersection that bounds the stated region. The vertical boundary 𝑥 =2\n cuts off this end of the region.\n0 ≤𝑥 ≤2\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "x=0",
+            "3x=x",
+            "x=2",
+            "\\displaystyle 0\\le x\\le 2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 4\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "4",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds in x. At 𝑥 =0\n the slice endpoints meet: 3⁢𝑥 =𝑥\n. Use the intersection that bounds the stated region. The vertical boundary 𝑥 =2\n cuts off this end of the region.\n0 ≤𝑥 ≤2\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "x=0",
+            "3x=x",
+            "x=2",
+            "\\displaystyle 0\\le x\\le 2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\nFind the bounds in x. At 𝑥 =0\n the slice endpoints meet: 3⁢𝑥 =𝑥\n. Use the intersection that bounds the stated region. The vertical boundary 𝑥 =2\n cuts off this end of the region.\n0 ≤𝑥 ≤2\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "x=0",
+            "3x=x",
+            "x=2",
+            "\\displaystyle 0\\le x\\le 2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 4\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "4",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds in y. The horizontal boundary 𝑦 =0\n cuts off this end of the region. At 𝑦 =2\n the slice endpoints meet: 𝑦 +2 =𝑦2\n. Use the intersection that bounds the stated region.\n0 ≤𝑦 ≤2\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "y=0",
+            "y=2",
+            "y + 2=y^{2}",
+            "\\displaystyle 0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds in y. The horizontal boundary 𝑦 =0\n cuts off this end of the region. At 𝑦 =2\n the slice endpoints meet: 𝑦 +2 =𝑦2\n. Use the intersection that bounds the stated region.\n0 ≤𝑦 ≤2\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "y=0",
+            "y=2",
+            "y + 2=y^{2}",
+            "\\displaystyle 0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n10\n3\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\frac{10}{3}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds in y. The horizontal boundary 𝑦 =0\n cuts off this end of the region. At 𝑦 =2\n the slice endpoints meet: 𝑦 +2 =𝑦2\n. Use the intersection that bounds the stated region.\n0 ≤𝑦 ≤2\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "y=0",
+            "y=2",
+            "y + 2=y^{2}",
+            "\\displaystyle 0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds in y. The horizontal boundary 𝑦 =0\n cuts off this end of the region. At 𝑦 =2\n the slice endpoints meet: 𝑦 +2 =𝑦2\n. Use the intersection that bounds the stated region.\n0 ≤𝑦 ≤2\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "y=0",
+            "y=2",
+            "y + 2=y^{2}",
+            "\\displaystyle 0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n10\n3\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\frac{10}{3}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds in y. The horizontal boundary 𝑦 =0\n cuts off this end of the region. At 𝑦 =2\n the slice endpoints meet: 𝑦 +2 =𝑦2\n. Use the intersection that bounds the stated region.\n0 ≤𝑦 ≤2\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "y=0",
+            "y=2",
+            "y + 2=y^{2}",
+            "\\displaystyle 0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds in y. The horizontal boundary 𝑦 =0\n cuts off this end of the region. At 𝑦 =2\n the slice endpoints meet: 𝑦 +2 =𝑦2\n. Use the intersection that bounds the stated region.\n0 ≤𝑦 ≤2\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "y=0",
+            "y=2",
+            "y + 2=y^{2}",
+            "\\displaystyle 0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n10\n3\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\frac{10}{3}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds in y. The horizontal boundary 𝑦 =0\n cuts off this end of the region. At 𝑦 =2\n the slice endpoints meet: 𝑦 +2 =𝑦2\n. Use the intersection that bounds the stated region.\n0 ≤𝑦 ≤2\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "y=0",
+            "y=2",
+            "y + 2=y^{2}",
+            "\\displaystyle 0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds in y. The horizontal boundary 𝑦 =0\n cuts off this end of the region. At 𝑦 =2\n the slice endpoints meet: 𝑦 +2 =𝑦2\n. Use the intersection that bounds the stated region.\n0 ≤𝑦 ≤2\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "y=0",
+            "y=2",
+            "y + 2=y^{2}",
+            "\\displaystyle 0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n10\n3\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\frac{10}{3}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds in x. The vertical boundary 𝑥 =0\n cuts off this end of the region. At 𝑥 =1\n the slice endpoints meet: −𝑥2 +1 =0\n. Use the intersection that bounds the stated region.\n0 ≤𝑥 ≤1\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "x=0",
+            "x=1",
+            "-x^{2} + 1=0",
+            "\\displaystyle 0\\le x\\le 1",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1\n0(−𝑥2+1) 𝑑𝑥\nFind the bounds in x. The vertical boundary 𝑥 =0\n cuts off this end of the region. At 𝑥 =1\n the slice endpoints meet: −𝑥2 +1 =0\n. Use the intersection that bounds the stated region.\n0 ≤𝑥 ≤1\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "x=0",
+            "x=1",
+            "-x^{2} + 1=0",
+            "\\displaystyle 0\\le x\\le 1",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1\n0√1−𝑦 𝑑𝑦\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{1}\\sqrt{1-y}\\,dy",
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n2\n3\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\frac{2}{3}",
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds in x. The vertical boundary 𝑥 =0\n cuts off this end of the region. At 𝑥 =1\n the slice endpoints meet: −𝑥2 +1 =0\n. Use the intersection that bounds the stated region.\n0 ≤𝑥 ≤1\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "x=0",
+            "x=1",
+            "-x^{2} + 1=0",
+            "\\displaystyle 0\\le x\\le 1",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1\n0(−𝑥2+1) 𝑑𝑥\nFind the bounds in x. The vertical boundary 𝑥 =0\n cuts off this end of the region. At 𝑥 =1\n the slice endpoints meet: −𝑥2 +1 =0\n. Use the intersection that bounds the stated region.\n0 ≤𝑥 ≤1\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "x=0",
+            "x=1",
+            "-x^{2} + 1=0",
+            "\\displaystyle 0\\le x\\le 1",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1\n0√1−𝑦 𝑑𝑦\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{1}\\sqrt{1-y}\\,dy",
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n2\n3\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\frac{2}{3}",
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds in x. The vertical boundary 𝑥 =0\n cuts off this end of the region. At 𝑥 =1\n the slice endpoints meet: −𝑥2 +1 =0\n. Use the intersection that bounds the stated region.\n0 ≤𝑥 ≤1\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "x=0",
+            "x=1",
+            "-x^{2} + 1=0",
+            "\\displaystyle 0\\le x\\le 1",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1\n0(−𝑥2+1) 𝑑𝑥\nFind the bounds in x. The vertical boundary 𝑥 =0\n cuts off this end of the region. At 𝑥 =1\n the slice endpoints meet: −𝑥2 +1 =0\n. Use the intersection that bounds the stated region.\n0 ≤𝑥 ≤1\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "x=0",
+            "x=1",
+            "-x^{2} + 1=0",
+            "\\displaystyle 0\\le x\\le 1",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1\n0√1−𝑦 𝑑𝑦\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{1}\\sqrt{1-y}\\,dy",
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n2\n3\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\frac{2}{3}",
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds in x. The vertical boundary 𝑥 =0\n cuts off this end of the region. At 𝑥 =1\n the slice endpoints meet: −𝑥2 +1 =0\n. Use the intersection that bounds the stated region.\n0 ≤𝑥 ≤1\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "x=0",
+            "x=1",
+            "-x^{2} + 1=0",
+            "\\displaystyle 0\\le x\\le 1",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1\n0(−𝑥2+1) 𝑑𝑥\nFind the bounds in x. The vertical boundary 𝑥 =0\n cuts off this end of the region. At 𝑥 =1\n the slice endpoints meet: −𝑥2 +1 =0\n. Use the intersection that bounds the stated region.\n0 ≤𝑥 ≤1\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "x=0",
+            "x=1",
+            "-x^{2} + 1=0",
+            "\\displaystyle 0\\le x\\le 1",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1\n0√1−𝑦 𝑑𝑦\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{1}\\sqrt{1-y}\\,dy",
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n2\n3\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\frac{2}{3}",
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds in x. At 𝑥 ≈0.138\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region. At 𝑥 ≈1.564\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region.\n0.138 ≤𝑥 ≤1.564\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "x\\approx 0.138",
+            "1+\\ln x=x^{2}-1",
+            "x\\approx 1.564",
+            "1+\\ln x=x^{2}-1",
+            "\\displaystyle 0.138\\le x\\le 1.564",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥\nFind the bounds in x. At 𝑥 ≈0.138\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region. At 𝑥 ≈1.564\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region.\n0.138 ≤𝑥 ≤1.564\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx",
+            "x\\approx 0.138",
+            "1+\\ln x=x^{2}-1",
+            "x\\approx 1.564",
+            "1+\\ln x=x^{2}-1",
+            "\\displaystyle 0.138\\le x\\le 1.564",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy",
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 1.124\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "1.124",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds in x. At 𝑥 ≈0.138\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region. At 𝑥 ≈1.564\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region.\n0.138 ≤𝑥 ≤1.564\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "x\\approx 0.138",
+            "1+\\ln x=x^{2}-1",
+            "x\\approx 1.564",
+            "1+\\ln x=x^{2}-1",
+            "\\displaystyle 0.138\\le x\\le 1.564",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥\nFind the bounds in x. At 𝑥 ≈0.138\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region. At 𝑥 ≈1.564\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region.\n0.138 ≤𝑥 ≤1.564\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx",
+            "x\\approx 0.138",
+            "1+\\ln x=x^{2}-1",
+            "x\\approx 1.564",
+            "1+\\ln x=x^{2}-1",
+            "\\displaystyle 0.138\\le x\\le 1.564",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy",
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 1.124\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "1.124",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds in x. At 𝑥 ≈0.138\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region. At 𝑥 ≈1.564\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region.\n0.138 ≤𝑥 ≤1.564\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "x\\approx 0.138",
+            "1+\\ln x=x^{2}-1",
+            "x\\approx 1.564",
+            "1+\\ln x=x^{2}-1",
+            "\\displaystyle 0.138\\le x\\le 1.564",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥\nFind the bounds in x. At 𝑥 ≈0.138\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region. At 𝑥 ≈1.564\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region.\n0.138 ≤𝑥 ≤1.564\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx",
+            "x\\approx 0.138",
+            "1+\\ln x=x^{2}-1",
+            "x\\approx 1.564",
+            "1+\\ln x=x^{2}-1",
+            "\\displaystyle 0.138\\le x\\le 1.564",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy",
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 1.124\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "1.124",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds in x. At 𝑥 ≈0.138\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region. At 𝑥 ≈1.564\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region.\n0.138 ≤𝑥 ≤1.564\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "x\\approx 0.138",
+            "1+\\ln x=x^{2}-1",
+            "x\\approx 1.564",
+            "1+\\ln x=x^{2}-1",
+            "\\displaystyle 0.138\\le x\\le 1.564",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥\nFind the bounds in x. At 𝑥 ≈0.138\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region. At 𝑥 ≈1.564\n the slice endpoints meet: 1 +ln⁡𝑥 =𝑥2 −1\n. Use the intersection that bounds the stated region.\n0.138 ≤𝑥 ≤1.564\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx",
+            "x\\approx 0.138",
+            "1+\\ln x=x^{2}-1",
+            "x\\approx 1.564",
+            "1+\\ln x=x^{2}-1",
+            "\\displaystyle 0.138\\le x\\le 1.564",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy",
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 1.124\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "1.124",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "expectedOriginalDisclosures": 0
+}

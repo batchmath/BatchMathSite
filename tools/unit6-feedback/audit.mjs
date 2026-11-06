@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {load,ROOT,plain,contract} from './model.mjs';
 import {disclosures} from './exposure.mjs';
 const h=load(process.env.FEEDBACK_REF||null),baseline=process.env.FEEDBACK_COMPARE?load(process.env.FEEDBACK_COMPARE):null;
@@ -20,6 +21,8 @@ for(const config of h.configurations){
   if(findings.candidates.length)numericCandidates.push({...config,seed,id:p.id,findings:findings.candidates});
   if(!catalog.has(key))catalog.set(key,{config,seed,id:p.id,meta:p.unit5Meta,question:plain(p.questionHtml),
    parts:p.parts.map(q=>({prompt:q.prompt,control:q.control,answerTex:q.answerTex,answerKind:q.answer?.kind,rows:q.answer?.rows,choices:q.choices,correctIndex:q.correctIndex,
+    answerContractSummary:q.answer?{kind:q.answer.kind,value:q.answer.value,variable:q.answer.variable,domain:q.answer.domain,values:q.answer.values,places:q.answer.places,parts:q.answer.parts,rows:q.answer.rows,acceptedAlternativeRows:q.answer.altRows,excludedRows:q.answer.otherRows,structuralModelCount:q.answer.models?.length}:undefined,
+    completeNonFeedbackContractSha256:createHash('sha256').update(JSON.stringify(contract({part:q}))).digest('hex'),
     explanation:plain(q.explanation),graderHints:(q.answer?.notes||[]).map(n=>({expression:n.expr.tex(q.answer.variable),note:n.note}))})),findings});
  }
  configurations.push({...stats,topologies:stats.topologies.size});

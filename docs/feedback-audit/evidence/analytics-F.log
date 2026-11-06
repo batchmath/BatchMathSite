@@ -1,0 +1,11 @@
+
+> batchmath-site-qa@12.9.F qa:analytics
+> node tools/analytics-qa.mjs
+
+BatchMath analytics instrumentation QA
+Result: PASS
+Instrumented engines: 143
+Unique engine IDs: 143
+answerChecked call sites audited: 47
+Warnings: 0
+Errors: 0

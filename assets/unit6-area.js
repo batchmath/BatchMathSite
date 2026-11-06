@@ -182,6 +182,14 @@ function cornerRegion(){ // y = x, y = 1/x^2, x = b and the x-axis (assignment)
   bounds:`\\(x=\\frac{1}{x^{2}}\\) at \\(x=1\\). Up to \\(x=1\\) the top is the line; from 1 to ${b} it is the curve.`,view:{xmin:-1,xmax:b+1,ymin:-1,ymax:2},
   draw:[{f:x=>x,tex:'y=x',dom:[-0.5,1.6]},{f:x=>1/(x*x),tex:'y=\\frac{1}{x^{2}}',dom:[0.6,b+1]},{g:()=>b,tex:`x=${b}`,dom:[-1,2]}],data:{kind:'corner'}});
 }
+function chosenAreaBounds(R,v,T){
+ const ps=v==='x'?R.xs:R.ys,ends=[T[0].a,T[T.length-1].b];
+ const at=b=>`${v}${/^-?\d+\.\d+$/.test(b.tex)?'\\approx ':'='}${b.tex}`;
+ const words=ends.map((b,i)=>{const p=i?ps[ps.length-1]:ps[0],hi=v==='x'?p.top:p.right,lo=v==='x'?p.bot:p.left;
+  return Math.abs(hi.f(b.v)-lo.f(b.v))<1e-8?`At \\(${at(b)}\\) the slice endpoints meet: \\(${hi.tex(v)}=${lo.tex(v)}\\). Use the intersection that bounds the stated region.`
+   :`The ${v==='x'?'vertical':'horizontal'} boundary \\(${at(b)}\\) cuts off this end of the region.`;});
+ return step(`Find the bounds in ${v}.`,words.join(' '),`${ends[0].tex}\\le ${v}\\le ${ends[1].tex}`);
+}
 function famChoose(tier){
  for(let i=0;i<40;i++){
   const sub=pick(['rootLineAxis','sidewaysLine','wedge','wedge']),R=RG.build(sub),Tx=areaTerms(R,'x'),Ty=areaTerms(R,'y');if(Tx.length===Ty.length)continue;
@@ -192,9 +200,9 @@ function famChoose(tier){
   const why=step('Choose the direction for one integral.',dyBetter?`The upper or lower boundary changes for vertical slices, so dx needs ${nw(Tx.length)} integrals. Horizontal slices always run from ${W.bname(R.ys[0].left,'y')} on the left to ${W.bname(R.ys[0].right,'y')} on the right, so dy needs only one.`
    :`The left or right boundary changes for horizontal slices, so dy needs ${nw(Ty.length)} integrals. Vertical slices always run from ${W.bname(R.xs[0].bot,'x')} up to ${W.bname(R.xs[0].top,'x')}, so dx needs only one.`);
   const comparison=step('Compare the completed setups.','Both directions describe the same region.',`A=${setupTex(Tx)}`,`A=${setupTex(Ty)}`);
-  const single=integralPart('Write the area of \\(R\\) as a single integral.',best,pic+W.boundsStep(R)+why+W.areaWork(R,vb,best,{note:false}),{max:1,variable:vb,methodNote:`With ${vo} the area needs more than one integral; a single integral uses ${vb}.`});
-  const parts=tier==='challenging'?[single,integralPart(`Now write the area of \\(R\\) as a sum of integrals with respect to ${vo}.`,other,W.areaWork(R,vo,other,{note:false}),{variable:vo}),exactPart('Find the exact area of \\(R\\).',ans(e),comparison+W.evalWork(best))]
-   :[single,exactPart('Find the exact area of \\(R\\).',ans(e),W.areaWork(R,vo,other,{note:false})+comparison+W.evalWork(best))];
+  const single=integralPart('Write the area of \\(R\\) as a single integral.',best,pic+chosenAreaBounds(R,vb,best)+why+W.areaWork(R,vb,best,{note:false}),{max:1,variable:vb,methodNote:`With ${vo} the area needs more than one integral; a single integral uses ${vb}.`});
+  const parts=tier==='challenging'?[single,integralPart(`Now write the area of \\(R\\) as a sum of integrals with respect to ${vo}.`,other,W.boundsStep(R)+W.areaWork(R,vo,other,{note:false}),{variable:vo}),exactPart('Find the exact area of \\(R\\).',ans(e),comparison+W.evalWork(best))]
+   :[single,exactPart('Find the exact area of \\(R\\).',ans(e),W.boundsStep(R)+W.areaWork(R,vo,other,{note:false})+comparison+W.evalWork(best))];
   return one('Answer each part.',parts,{engine:'area',family:'choose_dx_dy',tier,id:`choose-${sub}-${R.eqs.join('|')}-${parts.length}`,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:show?figure(R,{compact:true,label:'Region R'}):'',data:{sub,best:vb,graph:show}});
  }
  throw Error('choose_dx_dy failed');
@@ -212,8 +220,8 @@ function famDirections(tier){
   let setupOnly=pick(tier==='challenging'?[true,false]:[true,false,false]),parts;
   const value=v=>exactPart('Find the exact area of \\(R\\).',ans(e),W.evalWork(T[E[v]?v:o(v)]));
   if(task==='both'){
-   parts=[integralPart(`Write an integral expression${n(T.x)} with respect to x for the area of \\(R\\).`,T.x,pic+W.boundsStep(R)+W.areaWork(R,'x',T.x),{variable:'x'}),
-    integralPart(`Now write the area of \\(R\\) as an integral expression${n(T.y)} with respect to y.`,T.y,W.areaWork(R,'y',T.y),{variable:'y'})];
+   parts=[integralPart(`Write an integral expression${n(T.x)} with respect to x for the area of \\(R\\).`,T.x,pic+chosenAreaBounds(R,'x',T.x)+W.areaWork(R,'x',T.x),{variable:'x'}),
+    integralPart(`Now write the area of \\(R\\) as an integral expression${n(T.y)} with respect to y.`,T.y,W.boundsStep(R)+W.areaWork(R,'y',T.y),{variable:'y'})];
    if(!setupOnly)parts.push(value(E.x?'x':'y'));
   }else if(task==='either'){
    const d=fits('x')?'x':'y';
@@ -270,8 +278,8 @@ function famCalcDirections(tier){
   if((task==='x'||task==='y')&&T[task].length>T[o(task)].length)continue;
   const show=pick([true,false]),pic=show?'':regionStep(R,'Region R'),n=t=>t.length>1?' (or a sum of integrals)':'',help='Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.';
   const v0=numValue(T.x);let parts;
-  if(task==='both')parts=[integralPart(`Write an integral expression${n(T.x)} with respect to x for the area of \\(R\\).`,T.x,pic+W.boundsStep(R)+W.areaWork(R,'x',T.x),{variable:'x',help}),
-   integralPart(`Now write the area of \\(R\\) as an integral expression${n(T.y)} with respect to y.`,T.y,W.areaWork(R,'y',T.y),{variable:'y'}),numPart('Find the area of \\(R\\).',v0,W.calcWork(T.x,'A'))];
+  if(task==='both')parts=[integralPart(`Write an integral expression${n(T.x)} with respect to x for the area of \\(R\\).`,T.x,pic+chosenAreaBounds(R,'x',T.x)+W.areaWork(R,'x',T.x),{variable:'x',help}),
+   integralPart(`Now write the area of \\(R\\) as an integral expression${n(T.y)} with respect to y.`,T.y,W.boundsStep(R)+W.areaWork(R,'y',T.y),{variable:'y'}),numPart('Find the area of \\(R\\).',v0,W.calcWork(T.x,'A'))];
   else{const d=task==='either'?(T.x.length<=T.y.length?'x':'y'):task;
    parts=[integralPart(task==='either'?'Write an integral expression for the area of \\(R\\). You may integrate with respect to x or y.':`Write an integral expression${n(T[d])} with respect to ${d} for the area of \\(R\\).`,T[d],pic+W.boundsStep(R)+W.areaWork(R,d,T[d],{note:task!=='either'})+(task==='either'?altStep(R,o(d),T[o(d)]):''),
      task==='either'?{alt:[T[o(d)]],help}:{variable:d,help,others:[{terms:T[o(d)],note:`That integral is correct, but this question asks you to integrate with respect to ${d}.`}]}),numPart('Find the area of \\(R\\).',v0,W.calcWork(T[d],'A'))];}

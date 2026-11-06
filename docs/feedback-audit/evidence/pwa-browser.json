@@ -1,0 +1,111 @@
+{
+  "version": "12.9.F",
+  "oldCachesSeeded": 3,
+  "resources": [
+    {
+      "path": "assets/mathlive/keypad-bridge.mjs",
+      "expected": "66dc974a78d4d715d85b247214cfd9ab51138d561e5fcc4aece7131df2ee3fa8",
+      "online": {
+        "status": 200,
+        "bytes": 5833,
+        "sha256": "66dc974a78d4d715d85b247214cfd9ab51138d561e5fcc4aece7131df2ee3fa8"
+      },
+      "offline": {
+        "status": 200,
+        "bytes": 5833,
+        "sha256": "66dc974a78d4d715d85b247214cfd9ab51138d561e5fcc4aece7131df2ee3fa8"
+      }
+    },
+    {
+      "path": "assets/mathlive/integral-setup.mjs",
+      "expected": "5711cce5c209bb8bb6a3f3e83e3f65c4eac4bd3b050487e35f12e5939bd2c897",
+      "online": {
+        "status": 200,
+        "bytes": 8552,
+        "sha256": "5711cce5c209bb8bb6a3f3e83e3f65c4eac4bd3b050487e35f12e5939bd2c897"
+      },
+      "offline": {
+        "status": 200,
+        "bytes": 8552,
+        "sha256": "5711cce5c209bb8bb6a3f3e83e3f65c4eac4bd3b050487e35f12e5939bd2c897"
+      }
+    },
+    {
+      "path": "assets/mathlive/vendor/mathlive/mathlive.min.mjs",
+      "expected": "48a272a1c347c31eecefaf9baa0c317866f76fbcb83f9b2911a14e11c90e409f",
+      "online": {
+        "status": 200,
+        "bytes": 843079,
+        "sha256": "48a272a1c347c31eecefaf9baa0c317866f76fbcb83f9b2911a14e11c90e409f"
+      },
+      "offline": {
+        "status": 200,
+        "bytes": 843079,
+        "sha256": "48a272a1c347c31eecefaf9baa0c317866f76fbcb83f9b2911a14e11c90e409f"
+      }
+    },
+    {
+      "path": "assets/unit6-area.js",
+      "expected": "de5b4e9e7200d9154b26eacb7f8d1fe13744fa8312ec231dcbf710def55e6bc5",
+      "online": {
+        "status": 200,
+        "bytes": 55285,
+        "sha256": "de5b4e9e7200d9154b26eacb7f8d1fe13744fa8312ec231dcbf710def55e6bc5"
+      },
+      "offline": {
+        "status": 200,
+        "bytes": 55285,
+        "sha256": "de5b4e9e7200d9154b26eacb7f8d1fe13744fa8312ec231dcbf710def55e6bc5"
+      }
+    },
+    {
+      "path": "assets/unit6-volume.js",
+      "expected": "f39989b77088c710faf026ab854d948e415c21f92dbdc290d03a58391805c876",
+      "online": {
+        "status": 200,
+        "bytes": 33487,
+        "sha256": "f39989b77088c710faf026ab854d948e415c21f92dbdc290d03a58391805c876"
+      },
+      "offline": {
+        "status": 200,
+        "bytes": 33487,
+        "sha256": "f39989b77088c710faf026ab854d948e415c21f92dbdc290d03a58391805c876"
+      }
+    },
+    {
+      "path": "assets/unit6-frq.js",
+      "expected": "5c5542c2df323e8c46b56e46be8fac62cfbd764cf597b6cbf997acb667502cd2",
+      "online": {
+        "status": 200,
+        "bytes": 37910,
+        "sha256": "5c5542c2df323e8c46b56e46be8fac62cfbd764cf597b6cbf997acb667502cd2"
+      },
+      "offline": {
+        "status": 200,
+        "bytes": 37910,
+        "sha256": "5c5542c2df323e8c46b56e46be8fac62cfbd764cf597b6cbf997acb667502cd2"
+      }
+    },
+    {
+      "path": "assets/mathlive/vendor/mathlive/fonts/KaTeX_AMS-Regular.woff2",
+      "expected": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308",
+      "online": {
+        "status": 200,
+        "bytes": 28076,
+        "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+      },
+      "offline": {
+        "status": 200,
+        "bytes": 28076,
+        "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+      }
+    }
+  ],
+  "failures": [],
+  "activeWorkerVersion": "12.9.F",
+  "cacheKeysAfterActivation": [
+    "batchmath-shell-12.9.F",
+    "batchmath-mathjax-12.9.F"
+  ],
+  "passed": true
+}

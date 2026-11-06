@@ -1,0 +1,127 @@
+{
+  "baseline": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+  "version": "12.9.F",
+  "audit": {
+    "families": 37,
+    "eligibleConfigurations": 69,
+    "generatedProblems": 2760,
+    "parts": 5236,
+    "earlierLaterPairs": 4095,
+    "sourceEDisclosures": 373,
+    "correctedDisclosures": 0,
+    "affectedFamilies": 7,
+    "topicModeProblems": 1072,
+    "reviewWrapperProblems": 1088,
+    "mathematicalContractsAndRngPreserved": true
+  },
+  "explicitFixtures": {
+    "sourceEFails": 13,
+    "correctedPass": 13
+  },
+  "browser": {
+    "currentDistinctScenarios": 88,
+    "sourceEBrowserReproductions": 48,
+    "recordedOriginalVisibleDisclosures": 56,
+    "errors": 0
+  },
+  "mathliveNode": {
+    "tests": 294,
+    "pass": 294,
+    "fail": 0
+  },
+  "originalMathematicalSuites": [
+    {
+      "name": "main",
+      "command": [
+        "node",
+        "tools/unit6-qa.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "adversarial",
+      "command": [
+        "node",
+        "tools/review-lab/unit6/qa/checker-adversarial.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "setup-pipeline",
+      "command": [
+        "node",
+        "tools/review-lab/unit6/qa/setup-pipeline.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "integral-entry",
+      "command": [
+        "node",
+        "tools/review-lab/unit6/qa/integral-entry.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "graph-fit",
+      "command": [
+        "node",
+        "tools/review-lab/unit6/qa/graph-fit.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "display",
+      "command": [
+        "node",
+        "tools/review-lab/unit6/qa/display-scan.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "split-100",
+      "command": [
+        "node",
+        "tools/review-lab/unit6/qa/split-audit.mjs",
+        "100"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "distributions",
+      "command": [
+        "node",
+        "tools/review-lab/unit6/qa/distributions.mjs"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "legacy": {
+    "runs": 12,
+    "checked": 60,
+    "parts": 152,
+    "integrals": 43
+  },
+  "delayedGraphs": {
+    "runs": 4,
+    "checks": 36
+  },
+  "piecewiseLayout": {
+    "steps": 174,
+    "widths": [
+      "360",
+      "375",
+      "390",
+      "1366"
+    ],
+    "failures": 0
+  },
+  "longRadiusHeightLayout": {
+    "cases": 16,
+    "widths": 5,
+    "failures": 0
+  },
+  "unit6RouteVisits": 30,
+  "serviceWorkerOldCachesPurgedAndSevenResourcesMatch": true,
+  "historicalSiteSuite": "Ten inherited E site-suite failure groups remain documented separately; this is not a claim that all 48 historical scripts pass."
+}

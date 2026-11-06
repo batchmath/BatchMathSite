@@ -1,0 +1,67 @@
+[
+  {
+    "name": "main",
+    "command": [
+      "node",
+      "tools/unit6-qa.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "adversarial",
+    "command": [
+      "node",
+      "tools/review-lab/unit6/qa/checker-adversarial.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "setup-pipeline",
+    "command": [
+      "node",
+      "tools/review-lab/unit6/qa/setup-pipeline.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "integral-entry",
+    "command": [
+      "node",
+      "tools/review-lab/unit6/qa/integral-entry.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "graph-fit",
+    "command": [
+      "node",
+      "tools/review-lab/unit6/qa/graph-fit.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "display",
+    "command": [
+      "node",
+      "tools/review-lab/unit6/qa/display-scan.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "split-100",
+    "command": [
+      "node",
+      "tools/review-lab/unit6/qa/split-audit.mjs",
+      "100"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "distributions",
+    "command": [
+      "node",
+      "tools/review-lab/unit6/qa/distributions.mjs"
+    ],
+    "exitCode": 0
+  }
+]

@@ -1,0 +1,199 @@
+{
+ "problems": 6900,
+ "sums": 2762,
+ "reasons": 2762,
+ "byFamily": {
+  "area/axis_basic/non-calculator": {
+   "problems": 200,
+   "sums": 0,
+   "explained": 0
+  },
+  "area/axis_sign/non-calculator": {
+   "problems": 200,
+   "sums": 200,
+   "explained": 200
+  },
+  "area/between_enclosed/non-calculator": {
+   "problems": 300,
+   "sums": 62,
+   "explained": 62
+  },
+  "area/between_switch/non-calculator": {
+   "problems": 200,
+   "sums": 256,
+   "explained": 256
+  },
+  "area/area_directions/non-calculator": {
+   "problems": 200,
+   "sums": 39,
+   "explained": 39
+  },
+  "area/choose_dx_dy/non-calculator": {
+   "problems": 200,
+   "sums": 400,
+   "explained": 400
+  },
+  "area/trig_area/non-calculator": {
+   "problems": 100,
+   "sums": 0,
+   "explained": 0
+  },
+  "area/exp_log_under/non-calculator": {
+   "problems": 200,
+   "sums": 0,
+   "explained": 0
+  },
+  "area/exp_log_between/non-calculator": {
+   "problems": 300,
+   "sums": 0,
+   "explained": 0
+  },
+  "area/calc_given/calculator": {
+   "problems": 200,
+   "sums": 0,
+   "explained": 0
+  },
+  "area/calc_find/calculator": {
+   "problems": 200,
+   "sums": 104,
+   "explained": 104
+  },
+  "area/calc_directions/calculator": {
+   "problems": 200,
+   "sums": 75,
+   "explained": 75
+  },
+  "area_y/y_given/non-calculator": {
+   "problems": 200,
+   "sums": 0,
+   "explained": 0
+  },
+  "area_y/y_between/non-calculator": {
+   "problems": 200,
+   "sums": 0,
+   "explained": 0
+  },
+  "area_y/y_axis_cross/non-calculator": {
+   "problems": 100,
+   "sums": 80,
+   "explained": 80
+  },
+  "area_y/y_mixed/non-calculator": {
+   "problems": 200,
+   "sums": 0,
+   "explained": 0
+  },
+  "cs/cs_basic/non-calculator": {
+   "problems": 200,
+   "sums": 0,
+   "explained": 0
+  },
+  "cs/cs_setup/non-calculator": {
+   "problems": 200,
+   "sums": 56,
+   "explained": 56
+  },
+  "cs/cs_calc/calculator": {
+   "problems": 200,
+   "sums": 156,
+   "explained": 156
+  },
+  "solids/disk_basic/non-calculator": {
+   "problems": 200,
+   "sums": 0,
+   "explained": 0
+  },
+  "solids/washer/non-calculator": {
+   "problems": 200,
+   "sums": 18,
+   "explained": 18
+  },
+  "solids/shells/non-calculator": {
+   "problems": 200,
+   "sums": 18,
+   "explained": 18
+  },
+  "solids/two_axes/non-calculator": {
+   "problems": 100,
+   "sums": 0,
+   "explained": 0
+  },
+  "solids/trig_solid/non-calculator": {
+   "problems": 200,
+   "sums": 0,
+   "explained": 0
+  },
+  "solids/solid_calc/calculator": {
+   "problems": 300,
+   "sums": 84,
+   "explained": 84
+  },
+  "solids/calc_two_axes/calculator": {
+   "problems": 200,
+   "sums": 152,
+   "explained": 152
+  },
+  "frq/frq_region/non-calculator": {
+   "problems": 200,
+   "sums": 68,
+   "explained": 68
+  },
+  "frq/frq_cap_line/non-calculator": {
+   "problems": 200,
+   "sums": 0,
+   "explained": 0
+  },
+  "frq/graph_derivative/non-calculator": {
+   "problems": 200,
+   "sums": 0,
+   "explained": 0
+  },
+  "frq/graph_accum/non-calculator": {
+   "problems": 200,
+   "sums": 0,
+   "explained": 0
+  },
+  "frq/frq_calc/calculator": {
+   "problems": 200,
+   "sums": 294,
+   "explained": 294
+  },
+  "piecewise/two_linear/non-calculator": {
+   "problems": 100,
+   "sums": 100,
+   "explained": 100
+  },
+  "piecewise/mixed_constant_quad/non-calculator": {
+   "problems": 100,
+   "sums": 100,
+   "explained": 100
+  },
+  "piecewise/three_poly/non-calculator": {
+   "problems": 100,
+   "sums": 100,
+   "explained": 100
+  },
+  "piecewise/reciprocal_log/non-calculator": {
+   "problems": 100,
+   "sums": 100,
+   "explained": 100
+  },
+  "piecewise/trig_piece/non-calculator": {
+   "problems": 100,
+   "sums": 100,
+   "explained": 100
+  },
+  "piecewise/four_piece/non-calculator": {
+   "problems": 200,
+   "sums": 200,
+   "explained": 200
+  }
+ },
+ "equations": 1157,
+ "equationsFalse": 0,
+ "singleNotes": 240,
+ "singleNotesFalse": 0,
+ "optionalSplits": 0,
+ "failures": [],
+ "notesInProblems": 125
+}

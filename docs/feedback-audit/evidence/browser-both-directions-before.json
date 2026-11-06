@@ -1,0 +1,1222 @@
+{
+  "results": [
+    {
+      "fixture": "area_both_directions",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is correct. Find the bounds. −𝑥2 +1 =0 at 𝑥 =±1 ; the top of the region is 𝑦 =1 . Solved for x, 𝑥 =±√1−𝑦 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0 to 𝑥 =1 the top is 𝑦 =−𝑥2 +1 and the bottom is 𝑦 =0 . 𝐴 =∫1 0(−𝑥2+1) 𝑑𝑥 \\(-x^{2} + 1=0\\) \\(x=\\pm 1\\) \\(y=1\\) \\(x=\\pm\\sqrt{1-y}\\) \\(dx\\) \\(x=0\\) \\(x=1\\) \\(y=-x^{2} + 1\\) \\(y=0\\) \\(\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1\n0(−𝑥2+1) 𝑑𝑥\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is not correct. Correct answer: ∫1 0(−𝑥2+1) 𝑑𝑥 Find the bounds. −𝑥2 +1 =0 at 𝑥 =±1 ; the top of the region is 𝑦 =1 . Solved for x, 𝑥 =±√1−𝑦 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0 to 𝑥 =1 the top is 𝑦 =−𝑥2 +1 and the bottom is 𝑦 =0 . 𝐴 =∫1 0(−𝑥2+1) 𝑑𝑥 \\(\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx\\) \\(-x^{2} + 1=0\\) \\(x=\\pm 1\\) \\(y=1\\) \\(x=\\pm\\sqrt{1-y}\\) \\(dx\\) \\(x=0\\) \\(x=1\\) \\(y=-x^{2} + 1\\) \\(y=0\\) \\(\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1\n0√1−𝑦 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{1}\\sqrt{1-y}\\,dy",
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n2\n3\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\frac{2}{3}",
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is correct. Find the bounds. −𝑥2 +1 =0 at 𝑥 =±1 ; the top of the region is 𝑦 =1 . Solved for x, 𝑥 =±√1−𝑦 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0 to 𝑥 =1 the top is 𝑦 =−𝑥2 +1 and the bottom is 𝑦 =0 . 𝐴 =∫1 0(−𝑥2+1) 𝑑𝑥 \\(-x^{2} + 1=0\\) \\(x=\\pm 1\\) \\(y=1\\) \\(x=\\pm\\sqrt{1-y}\\) \\(dx\\) \\(x=0\\) \\(x=1\\) \\(y=-x^{2} + 1\\) \\(y=0\\) \\(\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1\n0(−𝑥2+1) 𝑑𝑥\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is not correct. Correct answer: ∫1 0(−𝑥2+1) 𝑑𝑥 Find the bounds. −𝑥2 +1 =0 at 𝑥 =±1 ; the top of the region is 𝑦 =1 . Solved for x, 𝑥 =±√1−𝑦 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0 to 𝑥 =1 the top is 𝑦 =−𝑥2 +1 and the bottom is 𝑦 =0 . 𝐴 =∫1 0(−𝑥2+1) 𝑑𝑥 \\(\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx\\) \\(-x^{2} + 1=0\\) \\(x=\\pm 1\\) \\(y=1\\) \\(x=\\pm\\sqrt{1-y}\\) \\(dx\\) \\(x=0\\) \\(x=1\\) \\(y=-x^{2} + 1\\) \\(y=0\\) \\(\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1\n0√1−𝑦 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{1}\\sqrt{1-y}\\,dy",
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n2\n3\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\frac{2}{3}",
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is correct. Find the bounds. −𝑥2 +1 =0 at 𝑥 =±1 ; the top of the region is 𝑦 =1 . Solved for x, 𝑥 =±√1−𝑦 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0 to 𝑥 =1 the top is 𝑦 =−𝑥2 +1 and the bottom is 𝑦 =0 . 𝐴 =∫1 0(−𝑥2+1) 𝑑𝑥 \\(-x^{2} + 1=0\\) \\(x=\\pm 1\\) \\(y=1\\) \\(x=\\pm\\sqrt{1-y}\\) \\(dx\\) \\(x=0\\) \\(x=1\\) \\(y=-x^{2} + 1\\) \\(y=0\\) \\(\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1\n0(−𝑥2+1) 𝑑𝑥\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is not correct. Correct answer: ∫1 0(−𝑥2+1) 𝑑𝑥 Find the bounds. −𝑥2 +1 =0 at 𝑥 =±1 ; the top of the region is 𝑦 =1 . Solved for x, 𝑥 =±√1−𝑦 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0 to 𝑥 =1 the top is 𝑦 =−𝑥2 +1 and the bottom is 𝑦 =0 . 𝐴 =∫1 0(−𝑥2+1) 𝑑𝑥 \\(\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx\\) \\(-x^{2} + 1=0\\) \\(x=\\pm 1\\) \\(y=1\\) \\(x=\\pm\\sqrt{1-y}\\) \\(dx\\) \\(x=0\\) \\(x=1\\) \\(y=-x^{2} + 1\\) \\(y=0\\) \\(\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1\n0√1−𝑦 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{1}\\sqrt{1-y}\\,dy",
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n2\n3\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\frac{2}{3}",
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is correct. Find the bounds. −𝑥2 +1 =0 at 𝑥 =±1 ; the top of the region is 𝑦 =1 . Solved for x, 𝑥 =±√1−𝑦 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0 to 𝑥 =1 the top is 𝑦 =−𝑥2 +1 and the bottom is 𝑦 =0 . 𝐴 =∫1 0(−𝑥2+1) 𝑑𝑥 \\(-x^{2} + 1=0\\) \\(x=\\pm 1\\) \\(y=1\\) \\(x=\\pm\\sqrt{1-y}\\) \\(dx\\) \\(x=0\\) \\(x=1\\) \\(y=-x^{2} + 1\\) \\(y=0\\) \\(\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "area_both_directions",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1\n0(−𝑥2+1) 𝑑𝑥\nFind the bounds. −𝑥2 +1 =0\n at 𝑥 =±1\n; the top of the region is 𝑦 =1\n. Solved for x, 𝑥 =±√1−𝑦\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =1\n the top is 𝑦 =−𝑥2 +1\n and the bottom is 𝑦 =0\n.\n𝐴 =∫1\n0(−𝑥2+1) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "-x^{2} + 1=0",
+            "x=\\pm 1",
+            "y=1",
+            "x=\\pm\\sqrt{1-y}",
+            "dx",
+            "x=0",
+            "x=1",
+            "y=-x^{2} + 1",
+            "y=0",
+            "\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is not correct. Correct answer: ∫1 0(−𝑥2+1) 𝑑𝑥 Find the bounds. −𝑥2 +1 =0 at 𝑥 =±1 ; the top of the region is 𝑦 =1 . Solved for x, 𝑥 =±√1−𝑦 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0 to 𝑥 =1 the top is 𝑦 =−𝑥2 +1 and the bottom is 𝑦 =0 . 𝐴 =∫1 0(−𝑥2+1) 𝑑𝑥 \\(\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx\\) \\(-x^{2} + 1=0\\) \\(x=\\pm 1\\) \\(y=1\\) \\(x=\\pm\\sqrt{1-y}\\) \\(dx\\) \\(x=0\\) \\(x=1\\) \\(y=-x^{2} + 1\\) \\(y=0\\) \\(\\displaystyle A=\\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1\n0√1−𝑦 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =1\n the right side is 𝑥 =√1−𝑦\n and the left side is 𝑥 =0\n.\n𝐴 =∫1\n0√1−𝑦 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{1}\\sqrt{1-y}\\,dy",
+            "dy",
+            "y=0",
+            "y=1",
+            "x=\\sqrt{1-y}",
+            "x=0",
+            "\\displaystyle A=\\int_{0}^{1}\\sqrt{1-y}\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n2\n3\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫1\n0(−𝑥2+1) 𝑑𝑥\n =[−\n𝑥3\n3\n+𝑥]1\n0\n =\n2\n3",
+          "renderedMath": [
+            "\\frac{2}{3}",
+            "\\displaystyle \\int_{0}^{1}\\left(-x^{2} + 1\\right)\\,dx",
+            "\\displaystyle =\\left[-\\frac{x^{3}}{3} + x\\right]_{0}^{1}",
+            "\\displaystyle =\\frac{2}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-dir-both-y=-x^{2} + 1|y=0-3-nxlxvw",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is correct. Find the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥) at 𝑥 =𝐴 ≈0.1379 and 𝑥 =𝐵 ≈1.5645 (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1 and 𝑥 =√𝑦+1 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0.138 to 𝑥 =1.564 the top is 𝑦 =1 +ln⁡𝑥 and the bottom is 𝑦 =𝑥2 −1 . 𝐴 =∫1.564 0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 \\(f(x)=g(x)\\) \\(x=A\\approx0.1379\\) \\(x=B\\approx1.5645\\) \\(x=e^{y-1}\\) \\(x=\\sqrt{y+1}\\) \\(dx\\) \\(x=0.138\\) \\(x=1.564\\) \\(y=1+\\ln x\\) \\(y=x^{2}-1\\) \\(\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx",
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is not correct. Correct answer: ∫1.564 0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 Find the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥) at 𝑥 =𝐴 ≈0.1379 and 𝑥 =𝐵 ≈1.5645 (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1 and 𝑥 =√𝑦+1 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0.138 to 𝑥 =1.564 the top is 𝑦 =1 +ln⁡𝑥 and the bottom is 𝑦 =𝑥2 −1 . 𝐴 =∫1.564 0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 \\(\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\) \\(f(x)=g(x)\\) \\(x=A\\approx0.1379\\) \\(x=B\\approx1.5645\\) \\(x=e^{y-1}\\) \\(x=\\sqrt{y+1}\\) \\(dx\\) \\(x=0.138\\) \\(x=1.564\\) \\(y=1+\\ln x\\) \\(y=x^{2}-1\\) \\(\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy",
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 1.124\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "1.124",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is correct. Find the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥) at 𝑥 =𝐴 ≈0.1379 and 𝑥 =𝐵 ≈1.5645 (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1 and 𝑥 =√𝑦+1 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0.138 to 𝑥 =1.564 the top is 𝑦 =1 +ln⁡𝑥 and the bottom is 𝑦 =𝑥2 −1 . 𝐴 =∫1.564 0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 \\(f(x)=g(x)\\) \\(x=A\\approx0.1379\\) \\(x=B\\approx1.5645\\) \\(x=e^{y-1}\\) \\(x=\\sqrt{y+1}\\) \\(dx\\) \\(x=0.138\\) \\(x=1.564\\) \\(y=1+\\ln x\\) \\(y=x^{2}-1\\) \\(\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx",
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is not correct. Correct answer: ∫1.564 0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 Find the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥) at 𝑥 =𝐴 ≈0.1379 and 𝑥 =𝐵 ≈1.5645 (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1 and 𝑥 =√𝑦+1 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0.138 to 𝑥 =1.564 the top is 𝑦 =1 +ln⁡𝑥 and the bottom is 𝑦 =𝑥2 −1 . 𝐴 =∫1.564 0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 \\(\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\) \\(f(x)=g(x)\\) \\(x=A\\approx0.1379\\) \\(x=B\\approx1.5645\\) \\(x=e^{y-1}\\) \\(x=\\sqrt{y+1}\\) \\(dx\\) \\(x=0.138\\) \\(x=1.564\\) \\(y=1+\\ln x\\) \\(y=x^{2}-1\\) \\(\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy",
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 1.124\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "1.124",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is correct. Find the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥) at 𝑥 =𝐴 ≈0.1379 and 𝑥 =𝐵 ≈1.5645 (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1 and 𝑥 =√𝑦+1 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0.138 to 𝑥 =1.564 the top is 𝑦 =1 +ln⁡𝑥 and the bottom is 𝑦 =𝑥2 −1 . 𝐴 =∫1.564 0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 \\(f(x)=g(x)\\) \\(x=A\\approx0.1379\\) \\(x=B\\approx1.5645\\) \\(x=e^{y-1}\\) \\(x=\\sqrt{y+1}\\) \\(dx\\) \\(x=0.138\\) \\(x=1.564\\) \\(y=1+\\ln x\\) \\(y=x^{2}-1\\) \\(\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx",
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is not correct. Correct answer: ∫1.564 0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 Find the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥) at 𝑥 =𝐴 ≈0.1379 and 𝑥 =𝐵 ≈1.5645 (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1 and 𝑥 =√𝑦+1 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0.138 to 𝑥 =1.564 the top is 𝑦 =1 +ln⁡𝑥 and the bottom is 𝑦 =𝑥2 −1 . 𝐴 =∫1.564 0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 \\(\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\) \\(f(x)=g(x)\\) \\(x=A\\approx0.1379\\) \\(x=B\\approx1.5645\\) \\(x=e^{y-1}\\) \\(x=\\sqrt{y+1}\\) \\(dx\\) \\(x=0.138\\) \\(x=1.564\\) \\(y=1+\\ln x\\) \\(y=x^{2}-1\\) \\(\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy",
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 1.124\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "1.124",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is correct. Find the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥) at 𝑥 =𝐴 ≈0.1379 and 𝑥 =𝐵 ≈1.5645 (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1 and 𝑥 =√𝑦+1 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0.138 to 𝑥 =1.564 the top is 𝑦 =1 +ln⁡𝑥 and the bottom is 𝑦 =𝑥2 −1 . 𝐴 =∫1.564 0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 \\(f(x)=g(x)\\) \\(x=A\\approx0.1379\\) \\(x=B\\approx1.5645\\) \\(x=e^{y-1}\\) \\(x=\\sqrt{y+1}\\) \\(dx\\) \\(x=0.138\\) \\(x=1.564\\) \\(y=1+\\ln x\\) \\(y=x^{2}-1\\) \\(\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "calculator_both_directions",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write an integral expression with respect to x for the area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥\nFind the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥)\n at 𝑥 =𝐴 ≈0.1379\n and 𝑥 =𝐵 ≈1.5645\n (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1\n and 𝑥 =√𝑦+1\n.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0.138\n to 𝑥 =1.564\n the top is 𝑦 =1 +ln⁡𝑥\n and the bottom is 𝑦 =𝑥2 −1\n.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx",
+            "f(x)=g(x)",
+            "x=A\\approx0.1379",
+            "x=B\\approx1.5645",
+            "x=e^{y-1}",
+            "x=\\sqrt{y+1}",
+            "dx",
+            "x=0.138",
+            "x=1.564",
+            "y=1+\\ln x",
+            "y=x^{2}-1",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": [
+            {
+              "earlier": 0,
+              "later": 1,
+              "kind": "future-opposite-boundary-rewrite",
+              "text": "Part A is not correct. Correct answer: ∫1.564 0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 Find the bounds. With a calculator, 𝑓⁡(𝑥) =𝑔⁡(𝑥) at 𝑥 =𝐴 ≈0.1379 and 𝑥 =𝐵 ≈1.5645 (y from -0.9810 to 1.4475). Solved for x: 𝑥 =𝑒𝑦−1 and 𝑥 =√𝑦+1 . Set up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥 : each has height top minus bottom. From 𝑥 =0.138 to 𝑥 =1.564 the top is 𝑦 =1 +ln⁡𝑥 and the bottom is 𝑦 =𝑥2 −1 . 𝐴 =∫1.564 0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 \\(\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\) \\(f(x)=g(x)\\) \\(x=A\\approx0.1379\\) \\(x=B\\approx1.5645\\) \\(x=e^{y-1}\\) \\(x=\\sqrt{y+1}\\) \\(dx\\) \\(x=0.138\\) \\(x=1.564\\) \\(y=1+\\ln x\\) \\(y=x^{2}-1\\) \\(\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\)"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as an integral expression with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =−0.981\n to 𝑦 =1.448\n the right side is 𝑥 =√𝑦+1\n and the left side is 𝑥 =𝑒𝑦−1\n.\n𝐴 =∫1.448\n−0.981(√𝑦+1−𝑒𝑦−1) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy",
+            "dy",
+            "y=-0.981",
+            "y=1.448",
+            "x=\\sqrt{y+1}",
+            "x=e^{y-1}",
+            "\\displaystyle A=\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the area of \\(R\\). Give your answer correct to three decimal places.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 1.124\nEvaluate with the calculator. Use the numerical integration feature with the intersection values at full precision.\n𝐴 =∫1.564\n0.138(1+ln⁡𝑥−(𝑥2−1)) 𝑑𝑥 ≈1.124",
+          "renderedMath": [
+            "1.124",
+            "\\displaystyle A=\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx\\approx 1.124"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-32nhsr",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "expectedOriginalDisclosures": 16
+}

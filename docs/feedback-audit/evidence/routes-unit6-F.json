@@ -1,0 +1,4008 @@
+{
+  "results": [
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "keypadStability": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1358,
+            "pad": {
+              "x": 29,
+              "y": 340.65625,
+              "docX": 29,
+              "docY": 1698.65625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.65625,
+                "docX": 29,
+                "docY": 1566.65625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1358,
+            "pad": {
+              "x": 29,
+              "y": 340.65625,
+              "docX": 29,
+              "docY": 1698.65625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.65625,
+                "docX": 29,
+                "docY": 1566.65625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 1358,
+            "pad": {
+              "x": 29,
+              "y": 340.65625,
+              "docX": 29,
+              "docY": 1698.65625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.65625,
+                "docX": 29,
+                "docY": 1566.65625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1358,
+            "pad": {
+              "x": 29,
+              "y": 340.65625,
+              "docX": 29,
+              "docY": 1698.65625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.65625,
+                "docX": 29,
+                "docY": 1566.65625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 1358,
+            "pad": {
+              "x": 29,
+              "y": 340.65625,
+              "docX": 29,
+              "docY": 1698.65625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.65625,
+                "docX": 29,
+                "docY": 1566.65625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1358,
+            "pad": {
+              "x": 29,
+              "y": 340.65625,
+              "docX": 29,
+              "docY": 1698.65625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.65625,
+                "docX": 29,
+                "docY": 1566.65625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 1358,
+            "pad": {
+              "x": 29,
+              "y": 340.65625,
+              "docX": 29,
+              "docY": 1698.65625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.65625,
+                "docX": 29,
+                "docY": 1566.65625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1358,
+            "pad": {
+              "x": 29,
+              "y": 340.65625,
+              "docX": 29,
+              "docY": 1698.65625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.65625,
+                "docX": 29,
+                "docY": 1566.65625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 1358,
+            "pad": {
+              "x": 29,
+              "y": 340.65625,
+              "docX": 29,
+              "docY": 1698.65625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.65625,
+                "docX": 29,
+                "docY": 1566.65625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1358,
+            "pad": {
+              "x": 29,
+              "y": 340.65625,
+              "docX": 29,
+              "docY": 1698.65625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.65625,
+                "docX": 29,
+                "docY": 1566.65625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 1358,
+            "pad": {
+              "x": 29,
+              "y": 340.65625,
+              "docX": 29,
+              "docY": 1698.65625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.65625,
+                "docX": 29,
+                "docY": 1566.65625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1358,
+            "pad": {
+              "x": 29,
+              "y": 340.65625,
+              "docX": 29,
+              "docY": 1698.65625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.65625,
+                "docX": 29,
+                "docY": 1566.65625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        }
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "keypadStability": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1417,
+            "pad": {
+              "x": 29,
+              "y": 341.265625,
+              "docX": 29,
+              "docY": 1758.265625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.265625,
+                "docX": 29,
+                "docY": 1626.265625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1417,
+            "pad": {
+              "x": 29,
+              "y": 341.265625,
+              "docX": 29,
+              "docY": 1758.265625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.265625,
+                "docX": 29,
+                "docY": 1626.265625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 1417,
+            "pad": {
+              "x": 29,
+              "y": 341.265625,
+              "docX": 29,
+              "docY": 1758.265625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.265625,
+                "docX": 29,
+                "docY": 1626.265625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1417,
+            "pad": {
+              "x": 29,
+              "y": 341.265625,
+              "docX": 29,
+              "docY": 1758.265625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.265625,
+                "docX": 29,
+                "docY": 1626.265625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 1417,
+            "pad": {
+              "x": 29,
+              "y": 341.265625,
+              "docX": 29,
+              "docY": 1758.265625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.265625,
+                "docX": 29,
+                "docY": 1626.265625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1417,
+            "pad": {
+              "x": 29,
+              "y": 341.265625,
+              "docX": 29,
+              "docY": 1758.265625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.265625,
+                "docX": 29,
+                "docY": 1626.265625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 1417,
+            "pad": {
+              "x": 29,
+              "y": 341.265625,
+              "docX": 29,
+              "docY": 1758.265625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.265625,
+                "docX": 29,
+                "docY": 1626.265625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1417,
+            "pad": {
+              "x": 29,
+              "y": 341.265625,
+              "docX": 29,
+              "docY": 1758.265625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.265625,
+                "docX": 29,
+                "docY": 1626.265625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 1417,
+            "pad": {
+              "x": 29,
+              "y": 341.265625,
+              "docX": 29,
+              "docY": 1758.265625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.265625,
+                "docX": 29,
+                "docY": 1626.265625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1417,
+            "pad": {
+              "x": 29,
+              "y": 341.265625,
+              "docX": 29,
+              "docY": 1758.265625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.265625,
+                "docX": 29,
+                "docY": 1626.265625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 1417,
+            "pad": {
+              "x": 29,
+              "y": 341.265625,
+              "docX": 29,
+              "docY": 1758.265625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.265625,
+                "docX": 29,
+                "docY": 1626.265625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1417,
+            "pad": {
+              "x": 29,
+              "y": 341.265625,
+              "docX": 29,
+              "docY": 1758.265625,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.265625,
+                "docX": 29,
+                "docY": 1626.265625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        }
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Values separated by commas, or None"
+      ],
+      "keypadStability": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 713,
+            "pad": {
+              "x": 29,
+              "y": 414.5625,
+              "docX": 29,
+              "docY": 1127.5625,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 282.5625,
+                "docX": 29,
+                "docY": 995.5625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 713,
+            "pad": {
+              "x": 29,
+              "y": 414.5625,
+              "docX": 29,
+              "docY": 1127.5625,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 282.5625,
+                "docX": 29,
+                "docY": 995.5625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 713,
+            "pad": {
+              "x": 29,
+              "y": 414.5625,
+              "docX": 29,
+              "docY": 1127.5625,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 282.5625,
+                "docX": 29,
+                "docY": 995.5625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 713,
+            "pad": {
+              "x": 29,
+              "y": 414.5625,
+              "docX": 29,
+              "docY": 1127.5625,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 282.5625,
+                "docX": 29,
+                "docY": 995.5625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 713,
+            "pad": {
+              "x": 29,
+              "y": 414.5625,
+              "docX": 29,
+              "docY": 1127.5625,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 282.5625,
+                "docX": 29,
+                "docY": 995.5625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 713,
+            "pad": {
+              "x": 29,
+              "y": 414.5625,
+              "docX": 29,
+              "docY": 1127.5625,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 282.5625,
+                "docX": 29,
+                "docY": 995.5625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 713,
+            "pad": {
+              "x": 29,
+              "y": 414.5625,
+              "docX": 29,
+              "docY": 1127.5625,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 282.5625,
+                "docX": 29,
+                "docY": 995.5625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 713,
+            "pad": {
+              "x": 29,
+              "y": 414.5625,
+              "docX": 29,
+              "docY": 1127.5625,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 282.5625,
+                "docX": 29,
+                "docY": 995.5625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 713,
+            "pad": {
+              "x": 29,
+              "y": 414.5625,
+              "docX": 29,
+              "docY": 1127.5625,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 282.5625,
+                "docX": 29,
+                "docY": 995.5625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 713,
+            "pad": {
+              "x": 29,
+              "y": 414.5625,
+              "docX": 29,
+              "docY": 1127.5625,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 282.5625,
+                "docX": 29,
+                "docY": 995.5625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 713,
+            "pad": {
+              "x": 29,
+              "y": 414.5625,
+              "docX": 29,
+              "docY": 1127.5625,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 282.5625,
+                "docX": 29,
+                "docY": 995.5625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 713,
+            "pad": {
+              "x": 29,
+              "y": 414.5625,
+              "docX": 29,
+              "docY": 1127.5625,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 282.5625,
+                "docX": 29,
+                "docY": 995.5625,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        }
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Values separated by commas, or None"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Values separated by commas, or None"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "keypadStability": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 657,
+            "pad": {
+              "x": 29,
+              "y": 415.09375,
+              "docX": 29,
+              "docY": 1072.09375,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 283.09375,
+                "docX": 29,
+                "docY": 940.09375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 657,
+            "pad": {
+              "x": 29,
+              "y": 415.09375,
+              "docX": 29,
+              "docY": 1072.09375,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 283.09375,
+                "docX": 29,
+                "docY": 940.09375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 657,
+            "pad": {
+              "x": 29,
+              "y": 415.09375,
+              "docX": 29,
+              "docY": 1072.09375,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 283.09375,
+                "docX": 29,
+                "docY": 940.09375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 657,
+            "pad": {
+              "x": 29,
+              "y": 415.09375,
+              "docX": 29,
+              "docY": 1072.09375,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 283.09375,
+                "docX": 29,
+                "docY": 940.09375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 657,
+            "pad": {
+              "x": 29,
+              "y": 415.09375,
+              "docX": 29,
+              "docY": 1072.09375,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 283.09375,
+                "docX": 29,
+                "docY": 940.09375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 657,
+            "pad": {
+              "x": 29,
+              "y": 415.09375,
+              "docX": 29,
+              "docY": 1072.09375,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 283.09375,
+                "docX": 29,
+                "docY": 940.09375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 657,
+            "pad": {
+              "x": 29,
+              "y": 415.09375,
+              "docX": 29,
+              "docY": 1072.09375,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 283.09375,
+                "docX": 29,
+                "docY": 940.09375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 657,
+            "pad": {
+              "x": 29,
+              "y": 415.09375,
+              "docX": 29,
+              "docY": 1072.09375,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 283.09375,
+                "docX": 29,
+                "docY": 940.09375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 657,
+            "pad": {
+              "x": 29,
+              "y": 415.09375,
+              "docX": 29,
+              "docY": 1072.09375,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 283.09375,
+                "docX": 29,
+                "docY": 940.09375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 657,
+            "pad": {
+              "x": 29,
+              "y": 415.09375,
+              "docX": 29,
+              "docY": 1072.09375,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 283.09375,
+                "docX": 29,
+                "docY": 940.09375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 657,
+            "pad": {
+              "x": 29,
+              "y": 415.09375,
+              "docX": 29,
+              "docY": 1072.09375,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 283.09375,
+                "docX": 29,
+                "docY": 940.09375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 657,
+            "pad": {
+              "x": 29,
+              "y": 415.09375,
+              "docX": 29,
+              "docY": 1072.09375,
+              "width": 317,
+              "height": 231
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 283.09375,
+                "docX": 29,
+                "docY": 940.09375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        }
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Exact answer"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Expression in y"
+      ],
+      "keypadStability": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1085,
+            "pad": {
+              "x": 29,
+              "y": 340.6875,
+              "docX": 29,
+              "docY": 1425.6875,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 99.546875,
+                "y": 208.6875,
+                "docX": 99.546875,
+                "docY": 1293.6875,
+                "width": 246.453125,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1085,
+            "pad": {
+              "x": 29,
+              "y": 340.6875,
+              "docX": 29,
+              "docY": 1425.6875,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 99.546875,
+                "y": 208.6875,
+                "docX": 99.546875,
+                "docY": 1293.6875,
+                "width": 246.453125,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 1085,
+            "pad": {
+              "x": 29,
+              "y": 340.6875,
+              "docX": 29,
+              "docY": 1425.6875,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 99.546875,
+                "y": 208.6875,
+                "docX": 99.546875,
+                "docY": 1293.6875,
+                "width": 246.453125,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1085,
+            "pad": {
+              "x": 29,
+              "y": 340.6875,
+              "docX": 29,
+              "docY": 1425.6875,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 99.546875,
+                "y": 208.6875,
+                "docX": 99.546875,
+                "docY": 1293.6875,
+                "width": 246.453125,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 1085,
+            "pad": {
+              "x": 29,
+              "y": 340.6875,
+              "docX": 29,
+              "docY": 1425.6875,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 99.546875,
+                "y": 208.6875,
+                "docX": 99.546875,
+                "docY": 1293.6875,
+                "width": 246.453125,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1085,
+            "pad": {
+              "x": 29,
+              "y": 340.6875,
+              "docX": 29,
+              "docY": 1425.6875,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 99.546875,
+                "y": 208.6875,
+                "docX": 99.546875,
+                "docY": 1293.6875,
+                "width": 246.453125,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 1085,
+            "pad": {
+              "x": 29,
+              "y": 340.6875,
+              "docX": 29,
+              "docY": 1425.6875,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 99.546875,
+                "y": 208.6875,
+                "docX": 99.546875,
+                "docY": 1293.6875,
+                "width": 246.453125,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1085,
+            "pad": {
+              "x": 29,
+              "y": 340.6875,
+              "docX": 29,
+              "docY": 1425.6875,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 99.546875,
+                "y": 208.6875,
+                "docX": 99.546875,
+                "docY": 1293.6875,
+                "width": 246.453125,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 1085,
+            "pad": {
+              "x": 29,
+              "y": 340.6875,
+              "docX": 29,
+              "docY": 1425.6875,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 99.546875,
+                "y": 208.6875,
+                "docX": 99.546875,
+                "docY": 1293.6875,
+                "width": 246.453125,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1085,
+            "pad": {
+              "x": 29,
+              "y": 340.6875,
+              "docX": 29,
+              "docY": 1425.6875,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 99.546875,
+                "y": 208.6875,
+                "docX": 99.546875,
+                "docY": 1293.6875,
+                "width": 246.453125,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 1085,
+            "pad": {
+              "x": 29,
+              "y": 340.6875,
+              "docX": 29,
+              "docY": 1425.6875,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 99.546875,
+                "y": 208.6875,
+                "docX": 99.546875,
+                "docY": 1293.6875,
+                "width": 246.453125,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1085,
+            "pad": {
+              "x": 29,
+              "y": 340.6875,
+              "docX": 29,
+              "docY": 1425.6875,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 99.546875,
+                "y": 208.6875,
+                "docX": 99.546875,
+                "docY": 1293.6875,
+                "width": 246.453125,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        }
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Expression in y"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Expression in y"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "keypadStability": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1177,
+            "pad": {
+              "x": 29,
+              "y": 341.234375,
+              "docX": 29,
+              "docY": 1518.234375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.234375,
+                "docX": 29,
+                "docY": 1386.234375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1177,
+            "pad": {
+              "x": 29,
+              "y": 341.234375,
+              "docX": 29,
+              "docY": 1518.234375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.234375,
+                "docX": 29,
+                "docY": 1386.234375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 1177,
+            "pad": {
+              "x": 29,
+              "y": 341.234375,
+              "docX": 29,
+              "docY": 1518.234375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.234375,
+                "docX": 29,
+                "docY": 1386.234375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1177,
+            "pad": {
+              "x": 29,
+              "y": 341.234375,
+              "docX": 29,
+              "docY": 1518.234375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.234375,
+                "docX": 29,
+                "docY": 1386.234375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 1177,
+            "pad": {
+              "x": 29,
+              "y": 341.234375,
+              "docX": 29,
+              "docY": 1518.234375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.234375,
+                "docX": 29,
+                "docY": 1386.234375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1177,
+            "pad": {
+              "x": 29,
+              "y": 341.234375,
+              "docX": 29,
+              "docY": 1518.234375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.234375,
+                "docX": 29,
+                "docY": 1386.234375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 1177,
+            "pad": {
+              "x": 29,
+              "y": 341.234375,
+              "docX": 29,
+              "docY": 1518.234375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.234375,
+                "docX": 29,
+                "docY": 1386.234375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1177,
+            "pad": {
+              "x": 29,
+              "y": 341.234375,
+              "docX": 29,
+              "docY": 1518.234375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.234375,
+                "docX": 29,
+                "docY": 1386.234375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 1177,
+            "pad": {
+              "x": 29,
+              "y": 341.234375,
+              "docX": 29,
+              "docY": 1518.234375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.234375,
+                "docX": 29,
+                "docY": 1386.234375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1177,
+            "pad": {
+              "x": 29,
+              "y": 341.234375,
+              "docX": 29,
+              "docY": 1518.234375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.234375,
+                "docX": 29,
+                "docY": 1386.234375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 1177,
+            "pad": {
+              "x": 29,
+              "y": 341.234375,
+              "docX": 29,
+              "docY": 1518.234375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.234375,
+                "docX": 29,
+                "docY": 1386.234375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1177,
+            "pad": {
+              "x": 29,
+              "y": 341.234375,
+              "docX": 29,
+              "docY": 1518.234375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 209.234375,
+                "docX": 29,
+                "docY": 1386.234375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        }
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Expression in x"
+      ],
+      "keypadStability": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1433,
+            "pad": {
+              "x": 29,
+              "y": 340.5,
+              "docX": 29,
+              "docY": 1773.5,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.5,
+                "docX": 101.40625,
+                "docY": 1641.5,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1433,
+            "pad": {
+              "x": 29,
+              "y": 340.5,
+              "docX": 29,
+              "docY": 1773.5,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.5,
+                "docX": 101.40625,
+                "docY": 1641.5,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 1433,
+            "pad": {
+              "x": 29,
+              "y": 340.5,
+              "docX": 29,
+              "docY": 1773.5,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.5,
+                "docX": 101.40625,
+                "docY": 1641.5,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1433,
+            "pad": {
+              "x": 29,
+              "y": 340.5,
+              "docX": 29,
+              "docY": 1773.5,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.5,
+                "docX": 101.40625,
+                "docY": 1641.5,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 1433,
+            "pad": {
+              "x": 29,
+              "y": 340.5,
+              "docX": 29,
+              "docY": 1773.5,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.5,
+                "docX": 101.40625,
+                "docY": 1641.5,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1433,
+            "pad": {
+              "x": 29,
+              "y": 340.5,
+              "docX": 29,
+              "docY": 1773.5,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.5,
+                "docX": 101.40625,
+                "docY": 1641.5,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 1433,
+            "pad": {
+              "x": 29,
+              "y": 340.5,
+              "docX": 29,
+              "docY": 1773.5,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.5,
+                "docX": 101.40625,
+                "docY": 1641.5,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1433,
+            "pad": {
+              "x": 29,
+              "y": 340.5,
+              "docX": 29,
+              "docY": 1773.5,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.5,
+                "docX": 101.40625,
+                "docY": 1641.5,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 1433,
+            "pad": {
+              "x": 29,
+              "y": 340.5,
+              "docX": 29,
+              "docY": 1773.5,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.5,
+                "docX": 101.40625,
+                "docY": 1641.5,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1433,
+            "pad": {
+              "x": 29,
+              "y": 340.5,
+              "docX": 29,
+              "docY": 1773.5,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.5,
+                "docX": 101.40625,
+                "docY": 1641.5,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 1433,
+            "pad": {
+              "x": 29,
+              "y": 340.5,
+              "docX": 29,
+              "docY": 1773.5,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.5,
+                "docX": 101.40625,
+                "docY": 1641.5,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1433,
+            "pad": {
+              "x": 29,
+              "y": 340.5,
+              "docX": 29,
+              "docY": 1773.5,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.5,
+                "docX": 101.40625,
+                "docY": 1641.5,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        }
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Expression in x"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Expression in x"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "keypadStability": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1176,
+            "pad": {
+              "x": 29,
+              "y": 340.8125,
+              "docX": 29,
+              "docY": 1516.8125,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.8125,
+                "docX": 29,
+                "docY": 1384.8125,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1176,
+            "pad": {
+              "x": 29,
+              "y": 340.8125,
+              "docX": 29,
+              "docY": 1516.8125,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.8125,
+                "docX": 29,
+                "docY": 1384.8125,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 1176,
+            "pad": {
+              "x": 29,
+              "y": 340.8125,
+              "docX": 29,
+              "docY": 1516.8125,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.8125,
+                "docX": 29,
+                "docY": 1384.8125,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1176,
+            "pad": {
+              "x": 29,
+              "y": 340.8125,
+              "docX": 29,
+              "docY": 1516.8125,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.8125,
+                "docX": 29,
+                "docY": 1384.8125,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 1176,
+            "pad": {
+              "x": 29,
+              "y": 340.8125,
+              "docX": 29,
+              "docY": 1516.8125,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.8125,
+                "docX": 29,
+                "docY": 1384.8125,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1176,
+            "pad": {
+              "x": 29,
+              "y": 340.8125,
+              "docX": 29,
+              "docY": 1516.8125,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.8125,
+                "docX": 29,
+                "docY": 1384.8125,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 1176,
+            "pad": {
+              "x": 29,
+              "y": 340.8125,
+              "docX": 29,
+              "docY": 1516.8125,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.8125,
+                "docX": 29,
+                "docY": 1384.8125,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1176,
+            "pad": {
+              "x": 29,
+              "y": 340.8125,
+              "docX": 29,
+              "docY": 1516.8125,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.8125,
+                "docX": 29,
+                "docY": 1384.8125,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 1176,
+            "pad": {
+              "x": 29,
+              "y": 340.8125,
+              "docX": 29,
+              "docY": 1516.8125,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.8125,
+                "docX": 29,
+                "docY": 1384.8125,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1176,
+            "pad": {
+              "x": 29,
+              "y": 340.8125,
+              "docX": 29,
+              "docY": 1516.8125,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.8125,
+                "docX": 29,
+                "docY": 1384.8125,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 1176,
+            "pad": {
+              "x": 29,
+              "y": 340.8125,
+              "docX": 29,
+              "docY": 1516.8125,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.8125,
+                "docX": 29,
+                "docY": 1384.8125,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1176,
+            "pad": {
+              "x": 29,
+              "y": 340.8125,
+              "docX": 29,
+              "docY": 1516.8125,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.8125,
+                "docX": 29,
+                "docY": 1384.8125,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        }
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Expression in x"
+      ],
+      "keypadStability": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1499,
+            "pad": {
+              "x": 29,
+              "y": 340.59375,
+              "docX": 29,
+              "docY": 1839.59375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.59375,
+                "docX": 101.40625,
+                "docY": 1707.59375,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1499,
+            "pad": {
+              "x": 29,
+              "y": 340.59375,
+              "docX": 29,
+              "docY": 1839.59375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.59375,
+                "docX": 101.40625,
+                "docY": 1707.59375,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 1499,
+            "pad": {
+              "x": 29,
+              "y": 340.59375,
+              "docX": 29,
+              "docY": 1839.59375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.59375,
+                "docX": 101.40625,
+                "docY": 1707.59375,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1499,
+            "pad": {
+              "x": 29,
+              "y": 340.59375,
+              "docX": 29,
+              "docY": 1839.59375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.59375,
+                "docX": 101.40625,
+                "docY": 1707.59375,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 1499,
+            "pad": {
+              "x": 29,
+              "y": 340.59375,
+              "docX": 29,
+              "docY": 1839.59375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.59375,
+                "docX": 101.40625,
+                "docY": 1707.59375,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1499,
+            "pad": {
+              "x": 29,
+              "y": 340.59375,
+              "docX": 29,
+              "docY": 1839.59375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.59375,
+                "docX": 101.40625,
+                "docY": 1707.59375,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 1499,
+            "pad": {
+              "x": 29,
+              "y": 340.59375,
+              "docX": 29,
+              "docY": 1839.59375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.59375,
+                "docX": 101.40625,
+                "docY": 1707.59375,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1499,
+            "pad": {
+              "x": 29,
+              "y": 340.59375,
+              "docX": 29,
+              "docY": 1839.59375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.59375,
+                "docX": 101.40625,
+                "docY": 1707.59375,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 1499,
+            "pad": {
+              "x": 29,
+              "y": 340.59375,
+              "docX": 29,
+              "docY": 1839.59375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.59375,
+                "docX": 101.40625,
+                "docY": 1707.59375,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1499,
+            "pad": {
+              "x": 29,
+              "y": 340.59375,
+              "docX": 29,
+              "docY": 1839.59375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.59375,
+                "docX": 101.40625,
+                "docY": 1707.59375,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 1499,
+            "pad": {
+              "x": 29,
+              "y": 340.59375,
+              "docX": 29,
+              "docY": 1839.59375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.59375,
+                "docX": 101.40625,
+                "docY": 1707.59375,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1499,
+            "pad": {
+              "x": 29,
+              "y": 340.59375,
+              "docX": 29,
+              "docY": 1839.59375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 101.40625,
+                "y": 208.59375,
+                "docX": 101.40625,
+                "docY": 1707.59375,
+                "width": 244.59375,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        }
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Expression in x"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Expression in x"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "mathlive",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "keypadStability": [
+        {
+          "label": "7",
+          "before": {
+            "x": 0,
+            "y": 1315,
+            "pad": {
+              "x": 29,
+              "y": 340.84375,
+              "docX": 29,
+              "docY": 1655.84375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.84375,
+                "docX": 29,
+                "docY": 1523.84375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1315,
+            "pad": {
+              "x": 29,
+              "y": 340.84375,
+              "docX": 29,
+              "docY": 1655.84375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.84375,
+                "docX": 29,
+                "docY": 1523.84375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "8",
+          "before": {
+            "x": 0,
+            "y": 1315,
+            "pad": {
+              "x": 29,
+              "y": 340.84375,
+              "docX": 29,
+              "docY": 1655.84375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.84375,
+                "docX": 29,
+                "docY": 1523.84375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1315,
+            "pad": {
+              "x": 29,
+              "y": 340.84375,
+              "docX": 29,
+              "docY": 1655.84375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.84375,
+                "docX": 29,
+                "docY": 1523.84375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "←",
+          "before": {
+            "x": 0,
+            "y": 1315,
+            "pad": {
+              "x": 29,
+              "y": 340.84375,
+              "docX": 29,
+              "docY": 1655.84375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.84375,
+                "docX": 29,
+                "docY": 1523.84375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1315,
+            "pad": {
+              "x": 29,
+              "y": 340.84375,
+              "docX": 29,
+              "docY": 1655.84375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.84375,
+                "docX": 29,
+                "docY": 1523.84375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "→",
+          "before": {
+            "x": 0,
+            "y": 1315,
+            "pad": {
+              "x": 29,
+              "y": 340.84375,
+              "docX": 29,
+              "docY": 1655.84375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.84375,
+                "docX": 29,
+                "docY": 1523.84375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1315,
+            "pad": {
+              "x": 29,
+              "y": 340.84375,
+              "docX": 29,
+              "docY": 1655.84375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.84375,
+                "docX": 29,
+                "docY": 1523.84375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "⌫",
+          "before": {
+            "x": 0,
+            "y": 1315,
+            "pad": {
+              "x": 29,
+              "y": 340.84375,
+              "docX": 29,
+              "docY": 1655.84375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.84375,
+                "docX": 29,
+                "docY": 1523.84375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1315,
+            "pad": {
+              "x": 29,
+              "y": 340.84375,
+              "docX": 29,
+              "docY": 1655.84375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.84375,
+                "docX": 29,
+                "docY": 1523.84375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        },
+        {
+          "label": "Clear",
+          "before": {
+            "x": 0,
+            "y": 1315,
+            "pad": {
+              "x": 29,
+              "y": 340.84375,
+              "docX": 29,
+              "docY": 1655.84375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.84375,
+                "docX": 29,
+                "docY": 1523.84375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          },
+          "after": {
+            "x": 0,
+            "y": 1315,
+            "pad": {
+              "x": 29,
+              "y": 340.84375,
+              "docX": 29,
+              "docY": 1655.84375,
+              "width": 317,
+              "height": 305
+            },
+            "fields": [
+              {
+                "x": 29,
+                "y": 208.84375,
+                "docX": 29,
+                "docY": 1523.84375,
+                "width": 317,
+                "height": 56
+              }
+            ],
+            "focus": "MATH-FIELD",
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 950
+            }
+          }
+        }
+      ],
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "legacy",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "fallback": false,
+      "activeMathFields": 1,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
+      "mode": "missing",
+      "kind": "mathematical",
+      "fields": [
+        "Integral setup: write the whole integral, with its limits, integrand and dx or dy"
+      ],
+      "fallback": true,
+      "activeMathFields": 1,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "knownMathJaxErrors": 0,
+  "unexpectedErrors": 0,
+  "realMathJax": true
+}

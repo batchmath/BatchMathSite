@@ -8,6 +8,12 @@ export function disclosures(p,C){
  const leaks=[],candidates=[];
  for(let earlier=0;earlier<p.parts.length;earlier++)for(let later=earlier+1;later<p.parts.length;later++){
   const a=p.parts[earlier],b=p.parts[later],text=plain(a.explanation),formulae=maths(a.explanation);
+  if(['choose_dx_dy','area_directions','calc_directions'].includes(p.unit5Meta?.family)&&a.control==='u6-integral'&&b.control==='u6-integral'&&a.answer.variable&&b.answer.variable!==a.answer.variable){
+   const other=b.answer.variable==='y'?'horizontal':'vertical';
+   if(new RegExp('With '+other+' slices the (?:right|left|upper|lower) boundary is.*(?:up to|above it|below it)').test(text))leaks.push({earlier,later,kind:'future-opposite-boundary-schedule',text});
+   const dependent=b.answer.variable==='y'?'x':'y';
+   if(new RegExp('Solved for '+dependent+'|solved for '+dependent+'|In terms of '+b.answer.variable+' the (?:left|right) boundary').test(text))leaks.push({earlier,later,kind:'future-opposite-boundary-rewrite',text});
+  }
   if(b.control==='u6-integral')for(const tex of formulae.filter(t=>t.includes('\\int'))){
    const expression=tex.replace(/^[A-Za-z](?:\([^)]*\))?\s*=/,'');
    try{const translated=translateIntegralSetup(expression);if(translated.input){const parsed=C.parseSetup(translated.input);if(!parsed.error&&C.checkIntegral(parsed.rows,b.answer).ok)leaks.push({earlier,later,kind:'complete-future-integral',formula:tex});}}catch{}

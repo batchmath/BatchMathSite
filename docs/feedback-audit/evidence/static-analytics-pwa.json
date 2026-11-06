@@ -1,0 +1,14 @@
+[
+  {
+    "script": "qa:static",
+    "exitCode": 0
+  },
+  {
+    "script": "qa:analytics",
+    "exitCode": 0
+  },
+  {
+    "script": "qa:pwa",
+    "exitCode": 0
+  }
+]

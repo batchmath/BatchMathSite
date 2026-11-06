@@ -1,0 +1,114 @@
+{
+ "draws": 1500,
+ "distributions": {
+  "area non-calculator: families": {
+   "area_directions": 14.5,
+   "axis_basic": 12.8,
+   "axis_sign": 12.2,
+   "between_enclosed": 16.1,
+   "between_switch": 11.5,
+   "choose_dx_dy": 10.8,
+   "exp_log_between": 6.1,
+   "exp_log_under": 7.4,
+   "trig_area": 8.7
+  },
+  "area non-calculator: direction tasks (area_directions / calc_directions)": {
+   "task both": 3.7,
+   "task either": 4.9,
+   "task x": 3.5,
+   "task y": 3.1
+  },
+  "area non-calculator: setup-only and graph in the question": {
+   "graph shown": 19.9,
+   "no graph": 80.1,
+   "setup only": 10.5
+  },
+  "area calculator: families": {
+   "calc_directions": 35,
+   "calc_find": 39.1,
+   "calc_given": 25.9
+  },
+  "area calculator: direction tasks (area_directions / calc_directions)": {
+   "task both": 7.8,
+   "task either": 8.3,
+   "task x": 9,
+   "task y": 13.3
+  },
+  "area calculator: setup-only and graph in the question": {
+   "graph shown": 55.7,
+   "no graph": 44.3
+  },
+  "area non-calculator: Choosing dx or dy": {
+   "0 choice parts": 100,
+   "better x": 49.1,
+   "better y": 50.9,
+   "graph shown": 50.3,
+   "no graph": 49.7
+  },
+  "area in y: families": {
+   "y_axis_cross": 15.6,
+   "y_between": 30.2,
+   "y_given": 24.1,
+   "y_mixed": 30.1
+  },
+  "cross sections non-calculator: direction": {
+   "perpendicular to x": 49.9,
+   "perpendicular to y": 50.1
+  },
+  "cross sections non-calculator: graph in the question": {
+   "Show Graph toggle": 100
+  },
+  "cross sections calculator: direction": {
+   "perpendicular to x": 49.7,
+   "perpendicular to y": 50.3
+  },
+  "cross sections calculator: graph in the question": {
+   "no graph": 100
+  },
+  "solids non-calculator: graph in the question": {
+   "graph shown": 48.3,
+   "no graph": 51.7
+  },
+  "solids calculator: graph in the question": {
+   "no graph": 100
+  },
+  "solids calculator: families": {
+   "calc_two_axes": 31.1,
+   "solid_calc": 68.9
+  },
+  "solids calculator: axis kinds (each rotation)": {
+   "above": 20.1,
+   "below": 20.6,
+   "boundary": 4.7,
+   "left": 20.1,
+   "right": 23.7,
+   "x_axis": 22.1,
+   "y_axis": 21.5
+  },
+  "piecewise: families": {
+   "four_piece": 17.2,
+   "mixed_constant_quad": 17.2,
+   "reciprocal_log": 16.6,
+   "three_poly": 16.1,
+   "trig_piece": 16.7,
+   "two_linear": 16.2
+  },
+  "review non-calculator: topics": {
+   "area": 13.4,
+   "area_y": 9.2,
+   "cross_sections": 12,
+   "frq_graph": 22.2,
+   "frq_region": 16.8,
+   "piecewise": 3.9,
+   "shells": 10.3,
+   "washers": 12.3
+  },
+  "review calculator: topics": {
+   "area": 21.3,
+   "cross_sections": 18.1,
+   "frq_region": 33,
+   "solids": 27.6
+  }
+ },
+ "failures": []
+}

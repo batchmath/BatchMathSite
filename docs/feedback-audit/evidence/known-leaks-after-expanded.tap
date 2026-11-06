@@ -2,67 +2,67 @@ TAP version 13
 # Subtest: choose_dx_dy: no completed part supplies a future answer
 ok 1 - choose_dx_dy: no completed part supplies a future answer
   ---
-  duration_ms: 28.844085
+  duration_ms: 25.761827
   type: 'test'
   ...
 # Subtest: washer: no completed part supplies a future answer
 ok 2 - washer: no completed part supplies a future answer
   ---
-  duration_ms: 33.152312
+  duration_ms: 8.026072
   type: 'test'
   ...
 # Subtest: shells: no completed part supplies a future answer
 ok 3 - shells: no completed part supplies a future answer
   ---
-  duration_ms: 14.2607
+  duration_ms: 8.798388
   type: 'test'
   ...
 # Subtest: graph_derivative: no completed part supplies a future answer
 ok 4 - graph_derivative: no completed part supplies a future answer
   ---
-  duration_ms: 6.972968
+  duration_ms: 6.304189
   type: 'test'
   ...
 # Subtest: graph_accum: no completed part supplies a future answer
 ok 5 - graph_accum: no completed part supplies a future answer
   ---
-  duration_ms: 5.262172
+  duration_ms: 3.271749
   type: 'test'
   ...
 # Subtest: choose_dy: no completed part supplies a future answer
 ok 6 - choose_dy: no completed part supplies a future answer
   ---
-  duration_ms: 28.841632
+  duration_ms: 11.214898
   type: 'test'
   ...
 # Subtest: washer_vertical: no completed part supplies a future answer
 ok 7 - washer_vertical: no completed part supplies a future answer
   ---
-  duration_ms: 54.853342
+  duration_ms: 7.217585
   type: 'test'
   ...
 # Subtest: washer_above: no completed part supplies a future answer
 ok 8 - washer_above: no completed part supplies a future answer
   ---
-  duration_ms: 29.812453
+  duration_ms: 9.502808
   type: 'test'
   ...
 # Subtest: shells_vertical: no completed part supplies a future answer
 ok 9 - shells_vertical: no completed part supplies a future answer
   ---
-  duration_ms: 18.319891
+  duration_ms: 8.010269
   type: 'test'
   ...
 # Subtest: graph_accum_minimum: no completed part supplies a future answer
 ok 10 - graph_accum_minimum: no completed part supplies a future answer
   ---
-  duration_ms: 40.502787
+  duration_ms: 2.673077
   type: 'test'
   ...
 # Subtest: graph_accum_inflection: no completed part supplies a future answer
 ok 11 - graph_accum_inflection: no completed part supplies a future answer
   ---
-  duration_ms: 6.706346
+  duration_ms: 1.996238
   type: 'test'
   ...
 1..11
@@ -73,4 +73,4 @@ ok 11 - graph_accum_inflection: no completed part supplies a future answer
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 498.566575
+# duration_ms 217.784781

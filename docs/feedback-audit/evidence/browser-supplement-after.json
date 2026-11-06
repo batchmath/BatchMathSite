@@ -1,0 +1,3436 @@
+{
+  "results": [
+    {
+      "fixture": "choose_dy",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n10\n3\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\frac{10}{3}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n10\n3\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\frac{10}{3}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n10\n3\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\frac{10}{3}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dy",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nThe region.\n1\n2\n3\n4\n1\n2\n𝑦 =√𝑥\n𝑦 =𝑥 −2\nFind the bounds. √𝑥 =𝑥 −2\n at 𝑥 =4\n (then 𝑦 =2\n); the line meets the x-axis at 𝑥 =2\n. In terms of y the left boundary is 𝑥 =𝑦2\n and the right boundary is 𝑥 =𝑦 +2\n, for 0 ≤𝑦 ≤2\n.\nChoose the direction for one integral. The upper or lower boundary changes for vertical slices, so dx needs two integrals. Horizontal slices always run from 𝑥 =𝑦2\n on the left to 𝑥 =𝑦 +2\n on the right, so dy needs only one.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left. From 𝑦 =0\n to 𝑦 =2\n the right side is 𝑥 =𝑦 +2\n and the left side is 𝑥 =𝑦2\n.\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "y=\\sqrt{x}",
+            "y=x-2",
+            "\\sqrt{x}=x-2",
+            "x=4",
+            "y=2",
+            "x=2",
+            "x=y^{2}",
+            "x=y+2",
+            "0\\le y\\le 2",
+            "x=y^{2}",
+            "x=y + 2",
+            "dy",
+            "y=0",
+            "y=2",
+            "x=y + 2",
+            "x=y^{2}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom.\nSplit the integral at 𝑥 =2\n. At 𝑥 =2\n, 𝑦 =𝑥 −2\n meets the x-axis, 𝑦 =0\n: 𝑥 −2 =0\n when 𝑥 =2\n. Before 𝑥 =2\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −2\n. The upper boundary, 𝑦 =√𝑥\n, is the same on both sides. Because the lower boundary changes, the height of a slice, ℎ⁡(𝑥)\n, has a different formula on each side of 𝑥 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =2\n, with one integral for each piece.\nℎ⁡(𝑥) ={√𝑥,\t0≤𝑥≤2\n√𝑥−(𝑥−2),\t2≤𝑥≤4\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "dx",
+            "x=2",
+            "x=2",
+            "y=x - 2",
+            "y=0",
+            "x - 2=0",
+            "x=2",
+            "x=2",
+            "y=0",
+            "y=x - 2",
+            "y=\\sqrt{x}",
+            "h(x)",
+            "x=2",
+            "x=2",
+            "\\displaystyle h(x)=\\begin{cases}\\sqrt{x}, & 0\\le x\\le 2\\\\\\sqrt{x}-\\left(x - 2\\right), & 2\\le x\\le 4\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n10\n3\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0√𝑥 𝑑𝑥 +∫4\n2(√𝑥−(𝑥−2)) 𝑑𝑥\n𝐴 =∫2\n0(𝑦+2−𝑦2) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n0(−𝑦2+𝑦+2) 𝑑𝑦\n =[−\n𝑦3\n3\n+\n𝑦2\n2\n+2⁢𝑦]2\n0\n =\n10\n3",
+          "renderedMath": [
+            "\\frac{10}{3}",
+            "\\displaystyle A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}\\left(-y^{2} + y + 2\\right)\\,dy",
+            "\\displaystyle =\\left[-\\frac{y^{3}}{3} + \\frac{y^{2}}{2} + 2y\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{10}{3}"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_vertical",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(y)\\), measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-2\n-1\n1\n2\n1\n2\n𝑥 =−𝑦3 +2⁢𝑦2\naxis of rotation\n𝑥 =−2\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑥 =−𝑦3 +2⁢𝑦2\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑦) =(−𝑦3+2⁢𝑦2) −(−2) =2 −𝑦3 +2⁢𝑦2",
+          "renderedMath": [
+            "R",
+            "r",
+            "x=-y^{3} + 2y^{2}",
+            "x=-2",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "x=-2",
+            "y",
+            "x=-y^{3} + 2y^{2}",
+            "\\displaystyle R(y)=\\left(-y^{3} + 2y^{2}\\right)-\\left(-2\\right)=2 - y^{3} + 2y^{2}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(y)\\).",
+          "correct": true,
+          "renderedText": "Part B is correct.\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, the y-axis, 𝑥 =0\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑦) =0 −(−2) =2",
+          "renderedMath": [
+            "x=-2",
+            "y",
+            "x=0",
+            "\\displaystyle r(y)=0-\\left(-2\\right)=2"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the slices. The axis 𝑥 =−2\n is vertical, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nMeasure the radii from the axis. The region lies to the right of the axis, so each radius is a boundary x-value minus −2\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑦) =2 −𝑦3 +2⁢𝑦2\n and 𝑟⁡(𝑦) =2\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫2\n0((2−𝑦3+2⁢𝑦2)2−22) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫2\n0(𝑦6−4⁢𝑦5+4⁢𝑦4−4⁢𝑦3+8⁢𝑦2) 𝑑𝑦\n =𝜋⁢[\n𝑦7\n7\n−\n2⁢𝑦6\n3\n+\n4⁢𝑦5\n5\n−𝑦4+\n8⁢𝑦3\n3\n]2\n0\n =\n688\n105\n⁢𝜋",
+          "renderedMath": [
+            "x=-2",
+            "dy",
+            "-2",
+            "R(y)=2 - y^{3} + 2y^{2}",
+            "r(y)=2",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{2}\\left(\\left(2 - y^{3} + 2y^{2}\\right)^{2}-2^{2}\\right)\\,dy",
+            "\\displaystyle \\pi\\int_{0}^{2}\\left(y^{6} - 4y^{5} + 4y^{4} - 4y^{3} + 8y^{2}\\right)\\,dy",
+            "\\displaystyle =\\pi\\left[\\frac{y^{7}}{7} - \\frac{2y^{6}}{3} + \\frac{4y^{5}}{5} - y^{4} + \\frac{8y^{3}}{3}\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{688}{105}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-x=-y^{3} + 2y^{2}|x=0-x-2-3-1tgk0n0",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_vertical",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(y)\\), measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the distance to the boundary farther from the axis; this part asks for the outer radius.\nCorrect answer: 𝑅⁡(𝑦) =2 −𝑦3 +2⁢𝑦2\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-2\n-1\n1\n2\n1\n2\n𝑥 =−𝑦3 +2⁢𝑦2\naxis of rotation\n𝑥 =−2\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑥 =−𝑦3 +2⁢𝑦2\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑦) =(−𝑦3+2⁢𝑦2) −(−2) =2 −𝑦3 +2⁢𝑦2",
+          "renderedMath": [
+            "R(y)=2 - y^{3} + 2y^{2}",
+            "R",
+            "r",
+            "x=-y^{3} + 2y^{2}",
+            "x=-2",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "x=-2",
+            "y",
+            "x=-y^{3} + 2y^{2}",
+            "\\displaystyle R(y)=\\left(-y^{3} + 2y^{2}\\right)-\\left(-2\\right)=2 - y^{3} + 2y^{2}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(y)\\).",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑟⁡(𝑦) =2\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, the y-axis, 𝑥 =0\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑦) =0 −(−2) =2",
+          "renderedMath": [
+            "r(y)=2",
+            "x=-2",
+            "y",
+            "x=0",
+            "\\displaystyle r(y)=0-\\left(-2\\right)=2"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n688\n105\n⁢𝜋\nChoose the slices. The axis 𝑥 =−2\n is vertical, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nMeasure the radii from the axis. The region lies to the right of the axis, so each radius is a boundary x-value minus −2\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑦) =2 −𝑦3 +2⁢𝑦2\n and 𝑟⁡(𝑦) =2\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫2\n0((2−𝑦3+2⁢𝑦2)2−22) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫2\n0(𝑦6−4⁢𝑦5+4⁢𝑦4−4⁢𝑦3+8⁢𝑦2) 𝑑𝑦\n =𝜋⁢[\n𝑦7\n7\n−\n2⁢𝑦6\n3\n+\n4⁢𝑦5\n5\n−𝑦4+\n8⁢𝑦3\n3\n]2\n0\n =\n688\n105\n⁢𝜋",
+          "renderedMath": [
+            "\\frac{688}{105}\\pi",
+            "x=-2",
+            "dy",
+            "-2",
+            "R(y)=2 - y^{3} + 2y^{2}",
+            "r(y)=2",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{2}\\left(\\left(2 - y^{3} + 2y^{2}\\right)^{2}-2^{2}\\right)\\,dy",
+            "\\displaystyle \\pi\\int_{0}^{2}\\left(y^{6} - 4y^{5} + 4y^{4} - 4y^{3} + 8y^{2}\\right)\\,dy",
+            "\\displaystyle =\\pi\\left[\\frac{y^{7}}{7} - \\frac{2y^{6}}{3} + \\frac{4y^{5}}{5} - y^{4} + \\frac{8y^{3}}{3}\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{688}{105}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-x=-y^{3} + 2y^{2}|x=0-x-2-3-1tgk0n0",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_vertical",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(y)\\), measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-2\n-1\n1\n2\n1\n2\n𝑥 =−𝑦3 +2⁢𝑦2\naxis of rotation\n𝑥 =−2\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑥 =−𝑦3 +2⁢𝑦2\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑦) =(−𝑦3+2⁢𝑦2) −(−2) =2 −𝑦3 +2⁢𝑦2",
+          "renderedMath": [
+            "R",
+            "r",
+            "x=-y^{3} + 2y^{2}",
+            "x=-2",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "x=-2",
+            "y",
+            "x=-y^{3} + 2y^{2}",
+            "\\displaystyle R(y)=\\left(-y^{3} + 2y^{2}\\right)-\\left(-2\\right)=2 - y^{3} + 2y^{2}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(y)\\).",
+          "correct": true,
+          "renderedText": "Part B is correct.\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, the y-axis, 𝑥 =0\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑦) =0 −(−2) =2",
+          "renderedMath": [
+            "x=-2",
+            "y",
+            "x=0",
+            "\\displaystyle r(y)=0-\\left(-2\\right)=2"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the slices. The axis 𝑥 =−2\n is vertical, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nMeasure the radii from the axis. The region lies to the right of the axis, so each radius is a boundary x-value minus −2\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑦) =2 −𝑦3 +2⁢𝑦2\n and 𝑟⁡(𝑦) =2\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫2\n0((2−𝑦3+2⁢𝑦2)2−22) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫2\n0(𝑦6−4⁢𝑦5+4⁢𝑦4−4⁢𝑦3+8⁢𝑦2) 𝑑𝑦\n =𝜋⁢[\n𝑦7\n7\n−\n2⁢𝑦6\n3\n+\n4⁢𝑦5\n5\n−𝑦4+\n8⁢𝑦3\n3\n]2\n0\n =\n688\n105\n⁢𝜋",
+          "renderedMath": [
+            "x=-2",
+            "dy",
+            "-2",
+            "R(y)=2 - y^{3} + 2y^{2}",
+            "r(y)=2",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{2}\\left(\\left(2 - y^{3} + 2y^{2}\\right)^{2}-2^{2}\\right)\\,dy",
+            "\\displaystyle \\pi\\int_{0}^{2}\\left(y^{6} - 4y^{5} + 4y^{4} - 4y^{3} + 8y^{2}\\right)\\,dy",
+            "\\displaystyle =\\pi\\left[\\frac{y^{7}}{7} - \\frac{2y^{6}}{3} + \\frac{4y^{5}}{5} - y^{4} + \\frac{8y^{3}}{3}\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{688}{105}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-x=-y^{3} + 2y^{2}|x=0-x-2-3-1tgk0n0",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_vertical",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(y)\\), measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the distance to the boundary farther from the axis; this part asks for the outer radius.\nCorrect answer: 𝑅⁡(𝑦) =2 −𝑦3 +2⁢𝑦2\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-2\n-1\n1\n2\n1\n2\n𝑥 =−𝑦3 +2⁢𝑦2\naxis of rotation\n𝑥 =−2\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑥 =−𝑦3 +2⁢𝑦2\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑦) =(−𝑦3+2⁢𝑦2) −(−2) =2 −𝑦3 +2⁢𝑦2",
+          "renderedMath": [
+            "R(y)=2 - y^{3} + 2y^{2}",
+            "R",
+            "r",
+            "x=-y^{3} + 2y^{2}",
+            "x=-2",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "x=-2",
+            "y",
+            "x=-y^{3} + 2y^{2}",
+            "\\displaystyle R(y)=\\left(-y^{3} + 2y^{2}\\right)-\\left(-2\\right)=2 - y^{3} + 2y^{2}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(y)\\).",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑟⁡(𝑦) =2\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, the y-axis, 𝑥 =0\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑦) =0 −(−2) =2",
+          "renderedMath": [
+            "r(y)=2",
+            "x=-2",
+            "y",
+            "x=0",
+            "\\displaystyle r(y)=0-\\left(-2\\right)=2"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n688\n105\n⁢𝜋\nChoose the slices. The axis 𝑥 =−2\n is vertical, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nMeasure the radii from the axis. The region lies to the right of the axis, so each radius is a boundary x-value minus −2\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑦) =2 −𝑦3 +2⁢𝑦2\n and 𝑟⁡(𝑦) =2\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫2\n0((2−𝑦3+2⁢𝑦2)2−22) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫2\n0(𝑦6−4⁢𝑦5+4⁢𝑦4−4⁢𝑦3+8⁢𝑦2) 𝑑𝑦\n =𝜋⁢[\n𝑦7\n7\n−\n2⁢𝑦6\n3\n+\n4⁢𝑦5\n5\n−𝑦4+\n8⁢𝑦3\n3\n]2\n0\n =\n688\n105\n⁢𝜋",
+          "renderedMath": [
+            "\\frac{688}{105}\\pi",
+            "x=-2",
+            "dy",
+            "-2",
+            "R(y)=2 - y^{3} + 2y^{2}",
+            "r(y)=2",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{2}\\left(\\left(2 - y^{3} + 2y^{2}\\right)^{2}-2^{2}\\right)\\,dy",
+            "\\displaystyle \\pi\\int_{0}^{2}\\left(y^{6} - 4y^{5} + 4y^{4} - 4y^{3} + 8y^{2}\\right)\\,dy",
+            "\\displaystyle =\\pi\\left[\\frac{y^{7}}{7} - \\frac{2y^{6}}{3} + \\frac{4y^{5}}{5} - y^{4} + \\frac{8y^{3}}{3}\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{688}{105}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-x=-y^{3} + 2y^{2}|x=0-x-2-3-1tgk0n0",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_vertical",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(y)\\), measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-2\n-1\n1\n2\n1\n2\n𝑥 =−𝑦3 +2⁢𝑦2\naxis of rotation\n𝑥 =−2\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑥 =−𝑦3 +2⁢𝑦2\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑦) =(−𝑦3+2⁢𝑦2) −(−2) =2 −𝑦3 +2⁢𝑦2",
+          "renderedMath": [
+            "R",
+            "r",
+            "x=-y^{3} + 2y^{2}",
+            "x=-2",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "x=-2",
+            "y",
+            "x=-y^{3} + 2y^{2}",
+            "\\displaystyle R(y)=\\left(-y^{3} + 2y^{2}\\right)-\\left(-2\\right)=2 - y^{3} + 2y^{2}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(y)\\).",
+          "correct": true,
+          "renderedText": "Part B is correct.\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, the y-axis, 𝑥 =0\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑦) =0 −(−2) =2",
+          "renderedMath": [
+            "x=-2",
+            "y",
+            "x=0",
+            "\\displaystyle r(y)=0-\\left(-2\\right)=2"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the slices. The axis 𝑥 =−2\n is vertical, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nMeasure the radii from the axis. The region lies to the right of the axis, so each radius is a boundary x-value minus −2\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑦) =2 −𝑦3 +2⁢𝑦2\n and 𝑟⁡(𝑦) =2\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫2\n0((2−𝑦3+2⁢𝑦2)2−22) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫2\n0(𝑦6−4⁢𝑦5+4⁢𝑦4−4⁢𝑦3+8⁢𝑦2) 𝑑𝑦\n =𝜋⁢[\n𝑦7\n7\n−\n2⁢𝑦6\n3\n+\n4⁢𝑦5\n5\n−𝑦4+\n8⁢𝑦3\n3\n]2\n0\n =\n688\n105\n⁢𝜋",
+          "renderedMath": [
+            "x=-2",
+            "dy",
+            "-2",
+            "R(y)=2 - y^{3} + 2y^{2}",
+            "r(y)=2",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{2}\\left(\\left(2 - y^{3} + 2y^{2}\\right)^{2}-2^{2}\\right)\\,dy",
+            "\\displaystyle \\pi\\int_{0}^{2}\\left(y^{6} - 4y^{5} + 4y^{4} - 4y^{3} + 8y^{2}\\right)\\,dy",
+            "\\displaystyle =\\pi\\left[\\frac{y^{7}}{7} - \\frac{2y^{6}}{3} + \\frac{4y^{5}}{5} - y^{4} + \\frac{8y^{3}}{3}\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{688}{105}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-x=-y^{3} + 2y^{2}|x=0-x-2-3-1tgk0n0",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_vertical",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(y)\\), measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the distance to the boundary farther from the axis; this part asks for the outer radius.\nCorrect answer: 𝑅⁡(𝑦) =2 −𝑦3 +2⁢𝑦2\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-2\n-1\n1\n2\n1\n2\n𝑥 =−𝑦3 +2⁢𝑦2\naxis of rotation\n𝑥 =−2\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑥 =−𝑦3 +2⁢𝑦2\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑦) =(−𝑦3+2⁢𝑦2) −(−2) =2 −𝑦3 +2⁢𝑦2",
+          "renderedMath": [
+            "R(y)=2 - y^{3} + 2y^{2}",
+            "R",
+            "r",
+            "x=-y^{3} + 2y^{2}",
+            "x=-2",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "x=-2",
+            "y",
+            "x=-y^{3} + 2y^{2}",
+            "\\displaystyle R(y)=\\left(-y^{3} + 2y^{2}\\right)-\\left(-2\\right)=2 - y^{3} + 2y^{2}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(y)\\).",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑟⁡(𝑦) =2\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, the y-axis, 𝑥 =0\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑦) =0 −(−2) =2",
+          "renderedMath": [
+            "r(y)=2",
+            "x=-2",
+            "y",
+            "x=0",
+            "\\displaystyle r(y)=0-\\left(-2\\right)=2"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n688\n105\n⁢𝜋\nChoose the slices. The axis 𝑥 =−2\n is vertical, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nMeasure the radii from the axis. The region lies to the right of the axis, so each radius is a boundary x-value minus −2\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑦) =2 −𝑦3 +2⁢𝑦2\n and 𝑟⁡(𝑦) =2\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫2\n0((2−𝑦3+2⁢𝑦2)2−22) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫2\n0(𝑦6−4⁢𝑦5+4⁢𝑦4−4⁢𝑦3+8⁢𝑦2) 𝑑𝑦\n =𝜋⁢[\n𝑦7\n7\n−\n2⁢𝑦6\n3\n+\n4⁢𝑦5\n5\n−𝑦4+\n8⁢𝑦3\n3\n]2\n0\n =\n688\n105\n⁢𝜋",
+          "renderedMath": [
+            "\\frac{688}{105}\\pi",
+            "x=-2",
+            "dy",
+            "-2",
+            "R(y)=2 - y^{3} + 2y^{2}",
+            "r(y)=2",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{2}\\left(\\left(2 - y^{3} + 2y^{2}\\right)^{2}-2^{2}\\right)\\,dy",
+            "\\displaystyle \\pi\\int_{0}^{2}\\left(y^{6} - 4y^{5} + 4y^{4} - 4y^{3} + 8y^{2}\\right)\\,dy",
+            "\\displaystyle =\\pi\\left[\\frac{y^{7}}{7} - \\frac{2y^{6}}{3} + \\frac{4y^{5}}{5} - y^{4} + \\frac{8y^{3}}{3}\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{688}{105}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-x=-y^{3} + 2y^{2}|x=0-x-2-3-1tgk0n0",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_vertical",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(y)\\), measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-2\n-1\n1\n2\n1\n2\n𝑥 =−𝑦3 +2⁢𝑦2\naxis of rotation\n𝑥 =−2\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑥 =−𝑦3 +2⁢𝑦2\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑦) =(−𝑦3+2⁢𝑦2) −(−2) =2 −𝑦3 +2⁢𝑦2",
+          "renderedMath": [
+            "R",
+            "r",
+            "x=-y^{3} + 2y^{2}",
+            "x=-2",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "x=-2",
+            "y",
+            "x=-y^{3} + 2y^{2}",
+            "\\displaystyle R(y)=\\left(-y^{3} + 2y^{2}\\right)-\\left(-2\\right)=2 - y^{3} + 2y^{2}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(y)\\).",
+          "correct": true,
+          "renderedText": "Part B is correct.\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, the y-axis, 𝑥 =0\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑦) =0 −(−2) =2",
+          "renderedMath": [
+            "x=-2",
+            "y",
+            "x=0",
+            "\\displaystyle r(y)=0-\\left(-2\\right)=2"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the slices. The axis 𝑥 =−2\n is vertical, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nMeasure the radii from the axis. The region lies to the right of the axis, so each radius is a boundary x-value minus −2\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑦) =2 −𝑦3 +2⁢𝑦2\n and 𝑟⁡(𝑦) =2\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫2\n0((2−𝑦3+2⁢𝑦2)2−22) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫2\n0(𝑦6−4⁢𝑦5+4⁢𝑦4−4⁢𝑦3+8⁢𝑦2) 𝑑𝑦\n =𝜋⁢[\n𝑦7\n7\n−\n2⁢𝑦6\n3\n+\n4⁢𝑦5\n5\n−𝑦4+\n8⁢𝑦3\n3\n]2\n0\n =\n688\n105\n⁢𝜋",
+          "renderedMath": [
+            "x=-2",
+            "dy",
+            "-2",
+            "R(y)=2 - y^{3} + 2y^{2}",
+            "r(y)=2",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{2}\\left(\\left(2 - y^{3} + 2y^{2}\\right)^{2}-2^{2}\\right)\\,dy",
+            "\\displaystyle \\pi\\int_{0}^{2}\\left(y^{6} - 4y^{5} + 4y^{4} - 4y^{3} + 8y^{2}\\right)\\,dy",
+            "\\displaystyle =\\pi\\left[\\frac{y^{7}}{7} - \\frac{2y^{6}}{3} + \\frac{4y^{5}}{5} - y^{4} + \\frac{8y^{3}}{3}\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{688}{105}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-x=-y^{3} + 2y^{2}|x=0-x-2-3-1tgk0n0",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_vertical",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(y)\\), measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the distance to the boundary farther from the axis; this part asks for the outer radius.\nCorrect answer: 𝑅⁡(𝑦) =2 −𝑦3 +2⁢𝑦2\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-2\n-1\n1\n2\n1\n2\n𝑥 =−𝑦3 +2⁢𝑦2\naxis of rotation\n𝑥 =−2\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑥 =−𝑦3 +2⁢𝑦2\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑦) =(−𝑦3+2⁢𝑦2) −(−2) =2 −𝑦3 +2⁢𝑦2",
+          "renderedMath": [
+            "R(y)=2 - y^{3} + 2y^{2}",
+            "R",
+            "r",
+            "x=-y^{3} + 2y^{2}",
+            "x=-2",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "x=-2",
+            "y",
+            "x=-y^{3} + 2y^{2}",
+            "\\displaystyle R(y)=\\left(-y^{3} + 2y^{2}\\right)-\\left(-2\\right)=2 - y^{3} + 2y^{2}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(y)\\).",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑟⁡(𝑦) =2\nChoose perpendicular slices. The axis 𝑥 =−2\n is vertical, so use horizontal slices and write the radius as a function of 𝑦\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, the y-axis, 𝑥 =0\n. This boundary lies to the right of the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑦) =0 −(−2) =2",
+          "renderedMath": [
+            "r(y)=2",
+            "x=-2",
+            "y",
+            "x=0",
+            "\\displaystyle r(y)=0-\\left(-2\\right)=2"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n688\n105\n⁢𝜋\nChoose the slices. The axis 𝑥 =−2\n is vertical, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nMeasure the radii from the axis. The region lies to the right of the axis, so each radius is a boundary x-value minus −2\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑦) =2 −𝑦3 +2⁢𝑦2\n and 𝑟⁡(𝑦) =2\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫2\n0((2−𝑦3+2⁢𝑦2)2−22) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫2\n0(𝑦6−4⁢𝑦5+4⁢𝑦4−4⁢𝑦3+8⁢𝑦2) 𝑑𝑦\n =𝜋⁢[\n𝑦7\n7\n−\n2⁢𝑦6\n3\n+\n4⁢𝑦5\n5\n−𝑦4+\n8⁢𝑦3\n3\n]2\n0\n =\n688\n105\n⁢𝜋",
+          "renderedMath": [
+            "\\frac{688}{105}\\pi",
+            "x=-2",
+            "dy",
+            "-2",
+            "R(y)=2 - y^{3} + 2y^{2}",
+            "r(y)=2",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{2}\\left(\\left(2 - y^{3} + 2y^{2}\\right)^{2}-2^{2}\\right)\\,dy",
+            "\\displaystyle \\pi\\int_{0}^{2}\\left(y^{6} - 4y^{5} + 4y^{4} - 4y^{3} + 8y^{2}\\right)\\,dy",
+            "\\displaystyle =\\pi\\left[\\frac{y^{7}}{7} - \\frac{2y^{6}}{3} + \\frac{4y^{5}}{5} - y^{4} + \\frac{8y^{3}}{3}\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{688}{105}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-x=-y^{3} + 2y^{2}|x=0-x-2-3-1tgk0n0",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_above",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n1\n2\n3\n4\n1\n2\n3\n𝑦 =−\n3⁢𝑥\n4\n +3\naxis of rotation\n𝑦 =3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, the x-axis, 𝑦 =0\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =3 −(0) =3",
+          "renderedMath": [
+            "R",
+            "r",
+            "y=-\\frac{3x}{4} + 3",
+            "y=3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=3",
+            "x",
+            "y=0",
+            "\\displaystyle R(x)=3-\\left(0\\right)=3"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": true,
+          "renderedText": "Part B is correct.\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =−\n3⁢𝑥\n4\n +3\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =3 −(−\n3⁢𝑥\n4\n+3) =\n3⁢𝑥\n4",
+          "renderedMath": [
+            "y=3",
+            "x",
+            "y=-\\frac{3x}{4} + 3",
+            "\\displaystyle r(x)=3-\\left(-\\frac{3x}{4} + 3\\right)=\\frac{3x}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the slices. The axis 𝑦 =3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies below the axis, so each radius is 3\n minus a boundary height. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3\n and 𝑟⁡(𝑥) =\n3⁢𝑥\n4\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫4\n0(32−(\n3⁢𝑥\n4\n)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫4\n0(−\n9⁢𝑥2\n16\n+9) 𝑑𝑥\n =𝜋⁢[−\n3⁢𝑥3\n16\n+9⁢𝑥]4\n0\n =24⁢𝜋",
+          "renderedMath": [
+            "y=3",
+            "dx",
+            "3",
+            "R(x)=3",
+            "r(x)=\\frac{3x}{4}",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{4}\\left(3^{2}-\\left(\\frac{3x}{4}\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{4}\\left(-\\frac{9x^{2}}{16} + 9\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[-\\frac{3x^{3}}{16} + 9x\\right]_{0}^{4}",
+            "\\displaystyle =24\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=-\\frac{3x}{4} + 3|x=0|y=0-y3-3-m6hqzk",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_above",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the distance to the boundary farther from the axis; this part asks for the outer radius.\nCorrect answer: 𝑅⁡(𝑥) =3\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n1\n2\n3\n4\n1\n2\n3\n𝑦 =−\n3⁢𝑥\n4\n +3\naxis of rotation\n𝑦 =3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, the x-axis, 𝑦 =0\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =3 −(0) =3",
+          "renderedMath": [
+            "R(x)=3",
+            "R",
+            "r",
+            "y=-\\frac{3x}{4} + 3",
+            "y=3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=3",
+            "x",
+            "y=0",
+            "\\displaystyle R(x)=3-\\left(0\\right)=3"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑟⁡(𝑥) =\n3⁢𝑥\n4\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =−\n3⁢𝑥\n4\n +3\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =3 −(−\n3⁢𝑥\n4\n+3) =\n3⁢𝑥\n4",
+          "renderedMath": [
+            "r(x)=\\frac{3x}{4}",
+            "y=3",
+            "x",
+            "y=-\\frac{3x}{4} + 3",
+            "\\displaystyle r(x)=3-\\left(-\\frac{3x}{4} + 3\\right)=\\frac{3x}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 24⁢𝜋\nChoose the slices. The axis 𝑦 =3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies below the axis, so each radius is 3\n minus a boundary height. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3\n and 𝑟⁡(𝑥) =\n3⁢𝑥\n4\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫4\n0(32−(\n3⁢𝑥\n4\n)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫4\n0(−\n9⁢𝑥2\n16\n+9) 𝑑𝑥\n =𝜋⁢[−\n3⁢𝑥3\n16\n+9⁢𝑥]4\n0\n =24⁢𝜋",
+          "renderedMath": [
+            "24\\pi",
+            "y=3",
+            "dx",
+            "3",
+            "R(x)=3",
+            "r(x)=\\frac{3x}{4}",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{4}\\left(3^{2}-\\left(\\frac{3x}{4}\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{4}\\left(-\\frac{9x^{2}}{16} + 9\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[-\\frac{3x^{3}}{16} + 9x\\right]_{0}^{4}",
+            "\\displaystyle =24\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=-\\frac{3x}{4} + 3|x=0|y=0-y3-3-m6hqzk",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_above",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n1\n2\n3\n4\n1\n2\n3\n𝑦 =−\n3⁢𝑥\n4\n +3\naxis of rotation\n𝑦 =3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, the x-axis, 𝑦 =0\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =3 −(0) =3",
+          "renderedMath": [
+            "R",
+            "r",
+            "y=-\\frac{3x}{4} + 3",
+            "y=3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=3",
+            "x",
+            "y=0",
+            "\\displaystyle R(x)=3-\\left(0\\right)=3"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": true,
+          "renderedText": "Part B is correct.\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =−\n3⁢𝑥\n4\n +3\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =3 −(−\n3⁢𝑥\n4\n+3) =\n3⁢𝑥\n4",
+          "renderedMath": [
+            "y=3",
+            "x",
+            "y=-\\frac{3x}{4} + 3",
+            "\\displaystyle r(x)=3-\\left(-\\frac{3x}{4} + 3\\right)=\\frac{3x}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the slices. The axis 𝑦 =3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies below the axis, so each radius is 3\n minus a boundary height. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3\n and 𝑟⁡(𝑥) =\n3⁢𝑥\n4\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫4\n0(32−(\n3⁢𝑥\n4\n)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫4\n0(−\n9⁢𝑥2\n16\n+9) 𝑑𝑥\n =𝜋⁢[−\n3⁢𝑥3\n16\n+9⁢𝑥]4\n0\n =24⁢𝜋",
+          "renderedMath": [
+            "y=3",
+            "dx",
+            "3",
+            "R(x)=3",
+            "r(x)=\\frac{3x}{4}",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{4}\\left(3^{2}-\\left(\\frac{3x}{4}\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{4}\\left(-\\frac{9x^{2}}{16} + 9\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[-\\frac{3x^{3}}{16} + 9x\\right]_{0}^{4}",
+            "\\displaystyle =24\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=-\\frac{3x}{4} + 3|x=0|y=0-y3-3-m6hqzk",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_above",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the distance to the boundary farther from the axis; this part asks for the outer radius.\nCorrect answer: 𝑅⁡(𝑥) =3\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n1\n2\n3\n4\n1\n2\n3\n𝑦 =−\n3⁢𝑥\n4\n +3\naxis of rotation\n𝑦 =3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, the x-axis, 𝑦 =0\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =3 −(0) =3",
+          "renderedMath": [
+            "R(x)=3",
+            "R",
+            "r",
+            "y=-\\frac{3x}{4} + 3",
+            "y=3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=3",
+            "x",
+            "y=0",
+            "\\displaystyle R(x)=3-\\left(0\\right)=3"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑟⁡(𝑥) =\n3⁢𝑥\n4\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =−\n3⁢𝑥\n4\n +3\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =3 −(−\n3⁢𝑥\n4\n+3) =\n3⁢𝑥\n4",
+          "renderedMath": [
+            "r(x)=\\frac{3x}{4}",
+            "y=3",
+            "x",
+            "y=-\\frac{3x}{4} + 3",
+            "\\displaystyle r(x)=3-\\left(-\\frac{3x}{4} + 3\\right)=\\frac{3x}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 24⁢𝜋\nChoose the slices. The axis 𝑦 =3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies below the axis, so each radius is 3\n minus a boundary height. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3\n and 𝑟⁡(𝑥) =\n3⁢𝑥\n4\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫4\n0(32−(\n3⁢𝑥\n4\n)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫4\n0(−\n9⁢𝑥2\n16\n+9) 𝑑𝑥\n =𝜋⁢[−\n3⁢𝑥3\n16\n+9⁢𝑥]4\n0\n =24⁢𝜋",
+          "renderedMath": [
+            "24\\pi",
+            "y=3",
+            "dx",
+            "3",
+            "R(x)=3",
+            "r(x)=\\frac{3x}{4}",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{4}\\left(3^{2}-\\left(\\frac{3x}{4}\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{4}\\left(-\\frac{9x^{2}}{16} + 9\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[-\\frac{3x^{3}}{16} + 9x\\right]_{0}^{4}",
+            "\\displaystyle =24\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=-\\frac{3x}{4} + 3|x=0|y=0-y3-3-m6hqzk",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_above",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n1\n2\n3\n4\n1\n2\n3\n𝑦 =−\n3⁢𝑥\n4\n +3\naxis of rotation\n𝑦 =3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, the x-axis, 𝑦 =0\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =3 −(0) =3",
+          "renderedMath": [
+            "R",
+            "r",
+            "y=-\\frac{3x}{4} + 3",
+            "y=3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=3",
+            "x",
+            "y=0",
+            "\\displaystyle R(x)=3-\\left(0\\right)=3"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": true,
+          "renderedText": "Part B is correct.\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =−\n3⁢𝑥\n4\n +3\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =3 −(−\n3⁢𝑥\n4\n+3) =\n3⁢𝑥\n4",
+          "renderedMath": [
+            "y=3",
+            "x",
+            "y=-\\frac{3x}{4} + 3",
+            "\\displaystyle r(x)=3-\\left(-\\frac{3x}{4} + 3\\right)=\\frac{3x}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the slices. The axis 𝑦 =3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies below the axis, so each radius is 3\n minus a boundary height. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3\n and 𝑟⁡(𝑥) =\n3⁢𝑥\n4\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫4\n0(32−(\n3⁢𝑥\n4\n)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫4\n0(−\n9⁢𝑥2\n16\n+9) 𝑑𝑥\n =𝜋⁢[−\n3⁢𝑥3\n16\n+9⁢𝑥]4\n0\n =24⁢𝜋",
+          "renderedMath": [
+            "y=3",
+            "dx",
+            "3",
+            "R(x)=3",
+            "r(x)=\\frac{3x}{4}",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{4}\\left(3^{2}-\\left(\\frac{3x}{4}\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{4}\\left(-\\frac{9x^{2}}{16} + 9\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[-\\frac{3x^{3}}{16} + 9x\\right]_{0}^{4}",
+            "\\displaystyle =24\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=-\\frac{3x}{4} + 3|x=0|y=0-y3-3-m6hqzk",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_above",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the distance to the boundary farther from the axis; this part asks for the outer radius.\nCorrect answer: 𝑅⁡(𝑥) =3\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n1\n2\n3\n4\n1\n2\n3\n𝑦 =−\n3⁢𝑥\n4\n +3\naxis of rotation\n𝑦 =3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, the x-axis, 𝑦 =0\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =3 −(0) =3",
+          "renderedMath": [
+            "R(x)=3",
+            "R",
+            "r",
+            "y=-\\frac{3x}{4} + 3",
+            "y=3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=3",
+            "x",
+            "y=0",
+            "\\displaystyle R(x)=3-\\left(0\\right)=3"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑟⁡(𝑥) =\n3⁢𝑥\n4\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =−\n3⁢𝑥\n4\n +3\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =3 −(−\n3⁢𝑥\n4\n+3) =\n3⁢𝑥\n4",
+          "renderedMath": [
+            "r(x)=\\frac{3x}{4}",
+            "y=3",
+            "x",
+            "y=-\\frac{3x}{4} + 3",
+            "\\displaystyle r(x)=3-\\left(-\\frac{3x}{4} + 3\\right)=\\frac{3x}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 24⁢𝜋\nChoose the slices. The axis 𝑦 =3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies below the axis, so each radius is 3\n minus a boundary height. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3\n and 𝑟⁡(𝑥) =\n3⁢𝑥\n4\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫4\n0(32−(\n3⁢𝑥\n4\n)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫4\n0(−\n9⁢𝑥2\n16\n+9) 𝑑𝑥\n =𝜋⁢[−\n3⁢𝑥3\n16\n+9⁢𝑥]4\n0\n =24⁢𝜋",
+          "renderedMath": [
+            "24\\pi",
+            "y=3",
+            "dx",
+            "3",
+            "R(x)=3",
+            "r(x)=\\frac{3x}{4}",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{4}\\left(3^{2}-\\left(\\frac{3x}{4}\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{4}\\left(-\\frac{9x^{2}}{16} + 9\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[-\\frac{3x^{3}}{16} + 9x\\right]_{0}^{4}",
+            "\\displaystyle =24\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=-\\frac{3x}{4} + 3|x=0|y=0-y3-3-m6hqzk",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_above",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n1\n2\n3\n4\n1\n2\n3\n𝑦 =−\n3⁢𝑥\n4\n +3\naxis of rotation\n𝑦 =3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, the x-axis, 𝑦 =0\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =3 −(0) =3",
+          "renderedMath": [
+            "R",
+            "r",
+            "y=-\\frac{3x}{4} + 3",
+            "y=3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=3",
+            "x",
+            "y=0",
+            "\\displaystyle R(x)=3-\\left(0\\right)=3"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": true,
+          "renderedText": "Part B is correct.\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =−\n3⁢𝑥\n4\n +3\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =3 −(−\n3⁢𝑥\n4\n+3) =\n3⁢𝑥\n4",
+          "renderedMath": [
+            "y=3",
+            "x",
+            "y=-\\frac{3x}{4} + 3",
+            "\\displaystyle r(x)=3-\\left(-\\frac{3x}{4} + 3\\right)=\\frac{3x}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the slices. The axis 𝑦 =3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies below the axis, so each radius is 3\n minus a boundary height. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3\n and 𝑟⁡(𝑥) =\n3⁢𝑥\n4\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫4\n0(32−(\n3⁢𝑥\n4\n)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫4\n0(−\n9⁢𝑥2\n16\n+9) 𝑑𝑥\n =𝜋⁢[−\n3⁢𝑥3\n16\n+9⁢𝑥]4\n0\n =24⁢𝜋",
+          "renderedMath": [
+            "y=3",
+            "dx",
+            "3",
+            "R(x)=3",
+            "r(x)=\\frac{3x}{4}",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{4}\\left(3^{2}-\\left(\\frac{3x}{4}\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{4}\\left(-\\frac{9x^{2}}{16} + 9\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[-\\frac{3x^{3}}{16} + 9x\\right]_{0}^{4}",
+            "\\displaystyle =24\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=-\\frac{3x}{4} + 3|x=0|y=0-y3-3-m6hqzk",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer_above",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the distance to the boundary farther from the axis; this part asks for the outer radius.\nCorrect answer: 𝑅⁡(𝑥) =3\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n1\n2\n3\n4\n1\n2\n3\n𝑦 =−\n3⁢𝑥\n4\n +3\naxis of rotation\n𝑦 =3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, the x-axis, 𝑦 =0\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =3 −(0) =3",
+          "renderedMath": [
+            "R(x)=3",
+            "R",
+            "r",
+            "y=-\\frac{3x}{4} + 3",
+            "y=3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=3",
+            "x",
+            "y=0",
+            "\\displaystyle R(x)=3-\\left(0\\right)=3"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑟⁡(𝑥) =\n3⁢𝑥\n4\nChoose perpendicular slices. The axis 𝑦 =3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =−\n3⁢𝑥\n4\n +3\n. This boundary lies below the axis. Subtract the boundary coordinate from the axis coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =3 −(−\n3⁢𝑥\n4\n+3) =\n3⁢𝑥\n4",
+          "renderedMath": [
+            "r(x)=\\frac{3x}{4}",
+            "y=3",
+            "x",
+            "y=-\\frac{3x}{4} + 3",
+            "\\displaystyle r(x)=3-\\left(-\\frac{3x}{4} + 3\\right)=\\frac{3x}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 24⁢𝜋\nChoose the slices. The axis 𝑦 =3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies below the axis, so each radius is 3\n minus a boundary height. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3\n and 𝑟⁡(𝑥) =\n3⁢𝑥\n4\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫4\n0(32−(\n3⁢𝑥\n4\n)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫4\n0(−\n9⁢𝑥2\n16\n+9) 𝑑𝑥\n =𝜋⁢[−\n3⁢𝑥3\n16\n+9⁢𝑥]4\n0\n =24⁢𝜋",
+          "renderedMath": [
+            "24\\pi",
+            "y=3",
+            "dx",
+            "3",
+            "R(x)=3",
+            "r(x)=\\frac{3x}{4}",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{4}\\left(3^{2}-\\left(\\frac{3x}{4}\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{4}\\left(-\\frac{9x^{2}}{16} + 9\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[-\\frac{3x^{3}}{16} + 9x\\right]_{0}^{4}",
+            "\\displaystyle =24\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=-\\frac{3x}{4} + 3|x=0|y=0-y3-3-m6hqzk",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells_vertical",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(x)\\) of a shell, measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\naxis of rotation\n𝑥 =2\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑥 =2\n is vertical, so a vertical slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑥 =2\n to the slice at 𝑥\n. Use a positive distance on the interval [0,2]\n.\n𝑟⁡(𝑥) =|𝑥−(2)| =2 −𝑥",
+          "renderedMath": [
+            "r",
+            "h",
+            "y=-x^{2} + 4",
+            "x=2",
+            "h",
+            "r",
+            "2\\pi r h",
+            "x=2",
+            "x=2",
+            "x",
+            "[0,2]",
+            "\\displaystyle r(x)=\\left|x-\\left(2\\right)\\right|=2 - x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(x)\\) of a shell.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nMeasure the shell height. The height is the length of the slice across the region, top minus bottom: subtract the x-axis, 𝑦 =0\n from 𝑦 =−𝑥2 +4\n.\nℎ⁡(𝑥) =−𝑥2 +4",
+          "renderedMath": [
+            "y=0",
+            "y=-x^{2} + 4",
+            "\\displaystyle h(x)=-x^{2} + 4"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the shells. The axis 𝑥 =2\n is vertical, so the shells are vertical: slice parallel to the axis with thickness 𝑑⁢𝑥\n.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑥) =2 −𝑥\n. The height is top minus bottom: ℎ⁡(𝑥) =−𝑥2 +4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫2\n0(2−𝑥)⁢(−𝑥2+4) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫2\n0(𝑥3−2⁢𝑥2−4⁢𝑥+8) 𝑑𝑥\n =2⁢𝜋⁢[\n𝑥4\n4\n−\n2⁢𝑥3\n3\n−2⁢𝑥2+8⁢𝑥]2\n0\n =\n40\n3\n⁢𝜋",
+          "renderedMath": [
+            "x=2",
+            "dx",
+            "r(x)=2 - x",
+            "h(x)=-x^{2} + 4",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{2}\\left(2 - x\\right)\\left(-x^{2} + 4\\right)\\,dx",
+            "\\displaystyle 2\\pi\\int_{0}^{2}\\left(x^{3} - 2x^{2} - 4x + 8\\right)\\,dx",
+            "\\displaystyle =2\\pi\\left[\\frac{x^{4}}{4} - \\frac{2x^{3}}{3} - 2x^{2} + 8x\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{40}{3}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=-x^{2} + 4|y=0-x2-escnfl",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells_vertical",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(x)\\) of a shell, measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the perpendicular distance from the axis to the slice; the radius is not the length across the region.\nCorrect answer: 𝑟⁡(𝑥) =2 −𝑥\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\naxis of rotation\n𝑥 =2\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑥 =2\n is vertical, so a vertical slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑥 =2\n to the slice at 𝑥\n. Use a positive distance on the interval [0,2]\n.\n𝑟⁡(𝑥) =|𝑥−(2)| =2 −𝑥",
+          "renderedMath": [
+            "r(x)=2 - x",
+            "r",
+            "h",
+            "y=-x^{2} + 4",
+            "x=2",
+            "h",
+            "r",
+            "2\\pi r h",
+            "x=2",
+            "x=2",
+            "x",
+            "[0,2]",
+            "\\displaystyle r(x)=\\left|x-\\left(2\\right)\\right|=2 - x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(x)\\) of a shell.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ℎ⁡(𝑥) =−𝑥2 +4\nMeasure the shell height. The height is the length of the slice across the region, top minus bottom: subtract the x-axis, 𝑦 =0\n from 𝑦 =−𝑥2 +4\n.\nℎ⁡(𝑥) =−𝑥2 +4",
+          "renderedMath": [
+            "h(x)=-x^{2} + 4",
+            "y=0",
+            "y=-x^{2} + 4",
+            "\\displaystyle h(x)=-x^{2} + 4"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n40\n3\n⁢𝜋\nChoose the shells. The axis 𝑥 =2\n is vertical, so the shells are vertical: slice parallel to the axis with thickness 𝑑⁢𝑥\n.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑥) =2 −𝑥\n. The height is top minus bottom: ℎ⁡(𝑥) =−𝑥2 +4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫2\n0(2−𝑥)⁢(−𝑥2+4) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫2\n0(𝑥3−2⁢𝑥2−4⁢𝑥+8) 𝑑𝑥\n =2⁢𝜋⁢[\n𝑥4\n4\n−\n2⁢𝑥3\n3\n−2⁢𝑥2+8⁢𝑥]2\n0\n =\n40\n3\n⁢𝜋",
+          "renderedMath": [
+            "\\frac{40}{3}\\pi",
+            "x=2",
+            "dx",
+            "r(x)=2 - x",
+            "h(x)=-x^{2} + 4",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{2}\\left(2 - x\\right)\\left(-x^{2} + 4\\right)\\,dx",
+            "\\displaystyle 2\\pi\\int_{0}^{2}\\left(x^{3} - 2x^{2} - 4x + 8\\right)\\,dx",
+            "\\displaystyle =2\\pi\\left[\\frac{x^{4}}{4} - \\frac{2x^{3}}{3} - 2x^{2} + 8x\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{40}{3}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=-x^{2} + 4|y=0-x2-escnfl",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells_vertical",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(x)\\) of a shell, measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\naxis of rotation\n𝑥 =2\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑥 =2\n is vertical, so a vertical slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑥 =2\n to the slice at 𝑥\n. Use a positive distance on the interval [0,2]\n.\n𝑟⁡(𝑥) =|𝑥−(2)| =2 −𝑥",
+          "renderedMath": [
+            "r",
+            "h",
+            "y=-x^{2} + 4",
+            "x=2",
+            "h",
+            "r",
+            "2\\pi r h",
+            "x=2",
+            "x=2",
+            "x",
+            "[0,2]",
+            "\\displaystyle r(x)=\\left|x-\\left(2\\right)\\right|=2 - x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(x)\\) of a shell.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nMeasure the shell height. The height is the length of the slice across the region, top minus bottom: subtract the x-axis, 𝑦 =0\n from 𝑦 =−𝑥2 +4\n.\nℎ⁡(𝑥) =−𝑥2 +4",
+          "renderedMath": [
+            "y=0",
+            "y=-x^{2} + 4",
+            "\\displaystyle h(x)=-x^{2} + 4"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the shells. The axis 𝑥 =2\n is vertical, so the shells are vertical: slice parallel to the axis with thickness 𝑑⁢𝑥\n.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑥) =2 −𝑥\n. The height is top minus bottom: ℎ⁡(𝑥) =−𝑥2 +4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫2\n0(2−𝑥)⁢(−𝑥2+4) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫2\n0(𝑥3−2⁢𝑥2−4⁢𝑥+8) 𝑑𝑥\n =2⁢𝜋⁢[\n𝑥4\n4\n−\n2⁢𝑥3\n3\n−2⁢𝑥2+8⁢𝑥]2\n0\n =\n40\n3\n⁢𝜋",
+          "renderedMath": [
+            "x=2",
+            "dx",
+            "r(x)=2 - x",
+            "h(x)=-x^{2} + 4",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{2}\\left(2 - x\\right)\\left(-x^{2} + 4\\right)\\,dx",
+            "\\displaystyle 2\\pi\\int_{0}^{2}\\left(x^{3} - 2x^{2} - 4x + 8\\right)\\,dx",
+            "\\displaystyle =2\\pi\\left[\\frac{x^{4}}{4} - \\frac{2x^{3}}{3} - 2x^{2} + 8x\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{40}{3}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=-x^{2} + 4|y=0-x2-escnfl",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells_vertical",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(x)\\) of a shell, measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the perpendicular distance from the axis to the slice; the radius is not the length across the region.\nCorrect answer: 𝑟⁡(𝑥) =2 −𝑥\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\naxis of rotation\n𝑥 =2\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑥 =2\n is vertical, so a vertical slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑥 =2\n to the slice at 𝑥\n. Use a positive distance on the interval [0,2]\n.\n𝑟⁡(𝑥) =|𝑥−(2)| =2 −𝑥",
+          "renderedMath": [
+            "r(x)=2 - x",
+            "r",
+            "h",
+            "y=-x^{2} + 4",
+            "x=2",
+            "h",
+            "r",
+            "2\\pi r h",
+            "x=2",
+            "x=2",
+            "x",
+            "[0,2]",
+            "\\displaystyle r(x)=\\left|x-\\left(2\\right)\\right|=2 - x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(x)\\) of a shell.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ℎ⁡(𝑥) =−𝑥2 +4\nMeasure the shell height. The height is the length of the slice across the region, top minus bottom: subtract the x-axis, 𝑦 =0\n from 𝑦 =−𝑥2 +4\n.\nℎ⁡(𝑥) =−𝑥2 +4",
+          "renderedMath": [
+            "h(x)=-x^{2} + 4",
+            "y=0",
+            "y=-x^{2} + 4",
+            "\\displaystyle h(x)=-x^{2} + 4"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n40\n3\n⁢𝜋\nChoose the shells. The axis 𝑥 =2\n is vertical, so the shells are vertical: slice parallel to the axis with thickness 𝑑⁢𝑥\n.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑥) =2 −𝑥\n. The height is top minus bottom: ℎ⁡(𝑥) =−𝑥2 +4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫2\n0(2−𝑥)⁢(−𝑥2+4) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫2\n0(𝑥3−2⁢𝑥2−4⁢𝑥+8) 𝑑𝑥\n =2⁢𝜋⁢[\n𝑥4\n4\n−\n2⁢𝑥3\n3\n−2⁢𝑥2+8⁢𝑥]2\n0\n =\n40\n3\n⁢𝜋",
+          "renderedMath": [
+            "\\frac{40}{3}\\pi",
+            "x=2",
+            "dx",
+            "r(x)=2 - x",
+            "h(x)=-x^{2} + 4",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{2}\\left(2 - x\\right)\\left(-x^{2} + 4\\right)\\,dx",
+            "\\displaystyle 2\\pi\\int_{0}^{2}\\left(x^{3} - 2x^{2} - 4x + 8\\right)\\,dx",
+            "\\displaystyle =2\\pi\\left[\\frac{x^{4}}{4} - \\frac{2x^{3}}{3} - 2x^{2} + 8x\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{40}{3}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=-x^{2} + 4|y=0-x2-escnfl",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells_vertical",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(x)\\) of a shell, measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\naxis of rotation\n𝑥 =2\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑥 =2\n is vertical, so a vertical slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑥 =2\n to the slice at 𝑥\n. Use a positive distance on the interval [0,2]\n.\n𝑟⁡(𝑥) =|𝑥−(2)| =2 −𝑥",
+          "renderedMath": [
+            "r",
+            "h",
+            "y=-x^{2} + 4",
+            "x=2",
+            "h",
+            "r",
+            "2\\pi r h",
+            "x=2",
+            "x=2",
+            "x",
+            "[0,2]",
+            "\\displaystyle r(x)=\\left|x-\\left(2\\right)\\right|=2 - x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(x)\\) of a shell.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nMeasure the shell height. The height is the length of the slice across the region, top minus bottom: subtract the x-axis, 𝑦 =0\n from 𝑦 =−𝑥2 +4\n.\nℎ⁡(𝑥) =−𝑥2 +4",
+          "renderedMath": [
+            "y=0",
+            "y=-x^{2} + 4",
+            "\\displaystyle h(x)=-x^{2} + 4"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the shells. The axis 𝑥 =2\n is vertical, so the shells are vertical: slice parallel to the axis with thickness 𝑑⁢𝑥\n.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑥) =2 −𝑥\n. The height is top minus bottom: ℎ⁡(𝑥) =−𝑥2 +4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫2\n0(2−𝑥)⁢(−𝑥2+4) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫2\n0(𝑥3−2⁢𝑥2−4⁢𝑥+8) 𝑑𝑥\n =2⁢𝜋⁢[\n𝑥4\n4\n−\n2⁢𝑥3\n3\n−2⁢𝑥2+8⁢𝑥]2\n0\n =\n40\n3\n⁢𝜋",
+          "renderedMath": [
+            "x=2",
+            "dx",
+            "r(x)=2 - x",
+            "h(x)=-x^{2} + 4",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{2}\\left(2 - x\\right)\\left(-x^{2} + 4\\right)\\,dx",
+            "\\displaystyle 2\\pi\\int_{0}^{2}\\left(x^{3} - 2x^{2} - 4x + 8\\right)\\,dx",
+            "\\displaystyle =2\\pi\\left[\\frac{x^{4}}{4} - \\frac{2x^{3}}{3} - 2x^{2} + 8x\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{40}{3}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=-x^{2} + 4|y=0-x2-escnfl",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells_vertical",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(x)\\) of a shell, measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the perpendicular distance from the axis to the slice; the radius is not the length across the region.\nCorrect answer: 𝑟⁡(𝑥) =2 −𝑥\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\naxis of rotation\n𝑥 =2\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑥 =2\n is vertical, so a vertical slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑥 =2\n to the slice at 𝑥\n. Use a positive distance on the interval [0,2]\n.\n𝑟⁡(𝑥) =|𝑥−(2)| =2 −𝑥",
+          "renderedMath": [
+            "r(x)=2 - x",
+            "r",
+            "h",
+            "y=-x^{2} + 4",
+            "x=2",
+            "h",
+            "r",
+            "2\\pi r h",
+            "x=2",
+            "x=2",
+            "x",
+            "[0,2]",
+            "\\displaystyle r(x)=\\left|x-\\left(2\\right)\\right|=2 - x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(x)\\) of a shell.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ℎ⁡(𝑥) =−𝑥2 +4\nMeasure the shell height. The height is the length of the slice across the region, top minus bottom: subtract the x-axis, 𝑦 =0\n from 𝑦 =−𝑥2 +4\n.\nℎ⁡(𝑥) =−𝑥2 +4",
+          "renderedMath": [
+            "h(x)=-x^{2} + 4",
+            "y=0",
+            "y=-x^{2} + 4",
+            "\\displaystyle h(x)=-x^{2} + 4"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n40\n3\n⁢𝜋\nChoose the shells. The axis 𝑥 =2\n is vertical, so the shells are vertical: slice parallel to the axis with thickness 𝑑⁢𝑥\n.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑥) =2 −𝑥\n. The height is top minus bottom: ℎ⁡(𝑥) =−𝑥2 +4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫2\n0(2−𝑥)⁢(−𝑥2+4) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫2\n0(𝑥3−2⁢𝑥2−4⁢𝑥+8) 𝑑𝑥\n =2⁢𝜋⁢[\n𝑥4\n4\n−\n2⁢𝑥3\n3\n−2⁢𝑥2+8⁢𝑥]2\n0\n =\n40\n3\n⁢𝜋",
+          "renderedMath": [
+            "\\frac{40}{3}\\pi",
+            "x=2",
+            "dx",
+            "r(x)=2 - x",
+            "h(x)=-x^{2} + 4",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{2}\\left(2 - x\\right)\\left(-x^{2} + 4\\right)\\,dx",
+            "\\displaystyle 2\\pi\\int_{0}^{2}\\left(x^{3} - 2x^{2} - 4x + 8\\right)\\,dx",
+            "\\displaystyle =2\\pi\\left[\\frac{x^{4}}{4} - \\frac{2x^{3}}{3} - 2x^{2} + 8x\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{40}{3}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=-x^{2} + 4|y=0-x2-escnfl",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells_vertical",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(x)\\) of a shell, measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\naxis of rotation\n𝑥 =2\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑥 =2\n is vertical, so a vertical slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑥 =2\n to the slice at 𝑥\n. Use a positive distance on the interval [0,2]\n.\n𝑟⁡(𝑥) =|𝑥−(2)| =2 −𝑥",
+          "renderedMath": [
+            "r",
+            "h",
+            "y=-x^{2} + 4",
+            "x=2",
+            "h",
+            "r",
+            "2\\pi r h",
+            "x=2",
+            "x=2",
+            "x",
+            "[0,2]",
+            "\\displaystyle r(x)=\\left|x-\\left(2\\right)\\right|=2 - x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(x)\\) of a shell.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nMeasure the shell height. The height is the length of the slice across the region, top minus bottom: subtract the x-axis, 𝑦 =0\n from 𝑦 =−𝑥2 +4\n.\nℎ⁡(𝑥) =−𝑥2 +4",
+          "renderedMath": [
+            "y=0",
+            "y=-x^{2} + 4",
+            "\\displaystyle h(x)=-x^{2} + 4"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the shells. The axis 𝑥 =2\n is vertical, so the shells are vertical: slice parallel to the axis with thickness 𝑑⁢𝑥\n.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑥) =2 −𝑥\n. The height is top minus bottom: ℎ⁡(𝑥) =−𝑥2 +4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫2\n0(2−𝑥)⁢(−𝑥2+4) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫2\n0(𝑥3−2⁢𝑥2−4⁢𝑥+8) 𝑑𝑥\n =2⁢𝜋⁢[\n𝑥4\n4\n−\n2⁢𝑥3\n3\n−2⁢𝑥2+8⁢𝑥]2\n0\n =\n40\n3\n⁢𝜋",
+          "renderedMath": [
+            "x=2",
+            "dx",
+            "r(x)=2 - x",
+            "h(x)=-x^{2} + 4",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{2}\\left(2 - x\\right)\\left(-x^{2} + 4\\right)\\,dx",
+            "\\displaystyle 2\\pi\\int_{0}^{2}\\left(x^{3} - 2x^{2} - 4x + 8\\right)\\,dx",
+            "\\displaystyle =2\\pi\\left[\\frac{x^{4}}{4} - \\frac{2x^{3}}{3} - 2x^{2} + 8x\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{40}{3}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=-x^{2} + 4|y=0-x2-escnfl",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells_vertical",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(x)\\) of a shell, measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the perpendicular distance from the axis to the slice; the radius is not the length across the region.\nCorrect answer: 𝑟⁡(𝑥) =2 −𝑥\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\naxis of rotation\n𝑥 =2\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑥 =2\n is vertical, so a vertical slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑥 =2\n to the slice at 𝑥\n. Use a positive distance on the interval [0,2]\n.\n𝑟⁡(𝑥) =|𝑥−(2)| =2 −𝑥",
+          "renderedMath": [
+            "r(x)=2 - x",
+            "r",
+            "h",
+            "y=-x^{2} + 4",
+            "x=2",
+            "h",
+            "r",
+            "2\\pi r h",
+            "x=2",
+            "x=2",
+            "x",
+            "[0,2]",
+            "\\displaystyle r(x)=\\left|x-\\left(2\\right)\\right|=2 - x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(x)\\) of a shell.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ℎ⁡(𝑥) =−𝑥2 +4\nMeasure the shell height. The height is the length of the slice across the region, top minus bottom: subtract the x-axis, 𝑦 =0\n from 𝑦 =−𝑥2 +4\n.\nℎ⁡(𝑥) =−𝑥2 +4",
+          "renderedMath": [
+            "h(x)=-x^{2} + 4",
+            "y=0",
+            "y=-x^{2} + 4",
+            "\\displaystyle h(x)=-x^{2} + 4"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n40\n3\n⁢𝜋\nChoose the shells. The axis 𝑥 =2\n is vertical, so the shells are vertical: slice parallel to the axis with thickness 𝑑⁢𝑥\n.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑥) =2 −𝑥\n. The height is top minus bottom: ℎ⁡(𝑥) =−𝑥2 +4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫2\n0(2−𝑥)⁢(−𝑥2+4) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫2\n0(𝑥3−2⁢𝑥2−4⁢𝑥+8) 𝑑𝑥\n =2⁢𝜋⁢[\n𝑥4\n4\n−\n2⁢𝑥3\n3\n−2⁢𝑥2+8⁢𝑥]2\n0\n =\n40\n3\n⁢𝜋",
+          "renderedMath": [
+            "\\frac{40}{3}\\pi",
+            "x=2",
+            "dx",
+            "r(x)=2 - x",
+            "h(x)=-x^{2} + 4",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{2}\\left(2 - x\\right)\\left(-x^{2} + 4\\right)\\,dx",
+            "\\displaystyle 2\\pi\\int_{0}^{2}\\left(x^{3} - 2x^{2} - 4x + 8\\right)\\,dx",
+            "\\displaystyle =2\\pi\\left[\\frac{x^{4}}{4} - \\frac{2x^{3}}{3} - 2x^{2} + 8x\\right]_{0}^{2}",
+            "\\displaystyle =\\frac{40}{3}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=-x^{2} + 4|y=0-x2-escnfl",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_accum_minimum",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(-6)\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nUse the graph of f. 𝑔⁡(−6) =∫−6\n1𝑓⁡(𝑡) 𝑑𝑡\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative. Because −6 <1\n, ∫−6\n1𝑓 =−∫1\n−6𝑓\n.\nAdd the signed areas. Split [−6,1]\n at 𝑥 =−4\n and 𝑥 =−1\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫−4\n−6𝑓⁡(𝑥) 𝑑𝑥 =−5\n (trapezoid below the x-axis); ∫−1\n−4𝑓⁡(𝑥) 𝑑𝑥 =−\n9\n2\n (triangle below the x-axis); ∫1\n−1𝑓⁡(𝑥) 𝑑𝑥 =𝜋\n (quarter circle above the x-axis (area \n𝜋⁢𝑟2\n4\n with 𝑟 =2\n)).\n∫1\n−6𝑓⁡(𝑥) 𝑑𝑥 =𝜋 −\n19\n2\n𝑔⁡(−6) =−(𝜋−\n19\n2\n) =\n19\n2\n −𝜋",
+          "renderedMath": [
+            "g(-6)=\\int_{1}^{-6}f(t)\\,dt",
+            "f",
+            "-6<1",
+            "\\int_{1}^{-6}f=-\\int_{-6}^{1}f",
+            "[-6,1]",
+            "x=-4",
+            "x=-1",
+            "f",
+            "f",
+            "\\int_{-6}^{-4}f(x)\\,dx=-5",
+            "\\int_{-4}^{-1}f(x)\\,dx=-\\frac{9}{2}",
+            "\\int_{-1}^{1}f(x)\\,dx=\\pi",
+            "\\frac{\\pi r^{2}}{4}",
+            "r=2",
+            "\\displaystyle \\int_{-6}^{1}f(x)\\,dx=\\pi - \\frac{19}{2}",
+            "\\displaystyle g(-6)=-\\left(\\pi - \\frac{19}{2}\\right)=\\frac{19}{2} - \\pi"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a local minimum of \\(g\\)?",
+          "correct": true,
+          "renderedText": "Part B is correct.\nReason. The extrema of 𝑔\n come from sign changes of 𝑔′ =𝑓\n. Changes in the direction of 𝑓\n give points of inflection of 𝑔\n, not extrema.",
+          "renderedMath": [
+            "g",
+            "g'=f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-6,8)\\) does \\(g\\) have a local minimum? Enter every value, separated by commas.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nUse the sign of g'. 𝑔′ =𝑓\n. 𝑔\n has a local minimum where 𝑔′\n changes from negative to positive: the graph of 𝑓\n crosses the x-axis going up at 𝑥 =−1\n. At 𝑥 =3\n 𝑓 =0\n but does not change sign, so there is no extremum there.\nA complete written answer. 𝑔\n has a local minimum at 𝑥 =−1\n because 𝑔′ =𝑓\n changes from negative to positive there.",
+          "renderedMath": [
+            "g'=f",
+            "g",
+            "g'",
+            "f",
+            "x=-1",
+            "x=3",
+            "f=0",
+            "g",
+            "x=-1",
+            "g'=f"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute maximum value of \\(g\\) on the interval \\([-6,8]\\).",
+          "correct": true,
+          "renderedText": "Part D is correct.\nCandidates Test. An absolute maximum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =−1\n and 𝑥 =3\n; the endpoints are 𝑥 =−6\n and 𝑥 =8\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =∫𝑥\n1𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−6) =\n19\n2\n −𝜋 ≈6.36\n𝑔⁡(−1) =−𝜋 ≈−3.14\n𝑔⁡(3) =𝜋 ≈3.14\n𝑔⁡(8) =9 +𝜋 ≈12.14\nA complete written answer. The absolute maximum of 𝑔\n on [−6,8]\n is 9 +𝜋\n, at 𝑥 =8\n, the largest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "g'=f=0",
+            "x=-1",
+            "x=3",
+            "x=-6",
+            "x=8",
+            "g(x)=\\int_{1}^{x}f(t)\\,dt",
+            "\\displaystyle g(-6)=\\frac{19}{2} - \\pi\\approx 6.36",
+            "\\displaystyle g(-1)=-\\pi\\approx -3.14",
+            "\\displaystyle g(3)=\\pi\\approx 3.14",
+            "\\displaystyle g(8)=9 + \\pi\\approx 12.14",
+            "g",
+            "[-6,8]",
+            "9 + \\pi",
+            "x=8",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-ga-seg-6-2-3seg-4-30semi-10011seg303seg531-1--6-7-4-py8a1v",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_accum_minimum",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(-6)\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: \n19\n2\n −𝜋\nUse the graph of f. 𝑔⁡(−6) =∫−6\n1𝑓⁡(𝑡) 𝑑𝑡\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative. Because −6 <1\n, ∫−6\n1𝑓 =−∫1\n−6𝑓\n.\nAdd the signed areas. Split [−6,1]\n at 𝑥 =−4\n and 𝑥 =−1\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫−4\n−6𝑓⁡(𝑥) 𝑑𝑥 =−5\n (trapezoid below the x-axis); ∫−1\n−4𝑓⁡(𝑥) 𝑑𝑥 =−\n9\n2\n (triangle below the x-axis); ∫1\n−1𝑓⁡(𝑥) 𝑑𝑥 =𝜋\n (quarter circle above the x-axis (area \n𝜋⁢𝑟2\n4\n with 𝑟 =2\n)).\n∫1\n−6𝑓⁡(𝑥) 𝑑𝑥 =𝜋 −\n19\n2\n𝑔⁡(−6) =−(𝜋−\n19\n2\n) =\n19\n2\n −𝜋",
+          "renderedMath": [
+            "\\frac{19}{2} - \\pi",
+            "g(-6)=\\int_{1}^{-6}f(t)\\,dt",
+            "f",
+            "-6<1",
+            "\\int_{1}^{-6}f=-\\int_{-6}^{1}f",
+            "[-6,1]",
+            "x=-4",
+            "x=-1",
+            "f",
+            "f",
+            "\\int_{-6}^{-4}f(x)\\,dx=-5",
+            "\\int_{-4}^{-1}f(x)\\,dx=-\\frac{9}{2}",
+            "\\int_{-1}^{1}f(x)\\,dx=\\pi",
+            "\\frac{\\pi r^{2}}{4}",
+            "r=2",
+            "\\displaystyle \\int_{-6}^{1}f(x)\\,dx=\\pi - \\frac{19}{2}",
+            "\\displaystyle g(-6)=-\\left(\\pi - \\frac{19}{2}\\right)=\\frac{19}{2} - \\pi"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a local minimum of \\(g\\)?",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑔′ =𝑓\n changes from negative to positive there.\nReason. The extrema of 𝑔\n come from sign changes of 𝑔′ =𝑓\n. Changes in the direction of 𝑓\n give points of inflection of 𝑔\n, not extrema.",
+          "renderedMath": [
+            "g'=f",
+            "g",
+            "g'=f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-6,8)\\) does \\(g\\) have a local minimum? Enter every value, separated by commas.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: −1\nUse the sign of g'. 𝑔′ =𝑓\n. 𝑔\n has a local minimum where 𝑔′\n changes from negative to positive: the graph of 𝑓\n crosses the x-axis going up at 𝑥 =−1\n. At 𝑥 =3\n 𝑓 =0\n but does not change sign, so there is no extremum there.\nA complete written answer. 𝑔\n has a local minimum at 𝑥 =−1\n because 𝑔′ =𝑓\n changes from negative to positive there.",
+          "renderedMath": [
+            "-1",
+            "g'=f",
+            "g",
+            "g'",
+            "f",
+            "x=-1",
+            "x=3",
+            "f=0",
+            "g",
+            "x=-1",
+            "g'=f"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute maximum value of \\(g\\) on the interval \\([-6,8]\\).",
+          "correct": false,
+          "renderedText": "Part D is not correct.\nCorrect answer: 9 +𝜋\nCandidates Test. An absolute maximum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =−1\n and 𝑥 =3\n; the endpoints are 𝑥 =−6\n and 𝑥 =8\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =∫𝑥\n1𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−6) =\n19\n2\n −𝜋 ≈6.36\n𝑔⁡(−1) =−𝜋 ≈−3.14\n𝑔⁡(3) =𝜋 ≈3.14\n𝑔⁡(8) =9 +𝜋 ≈12.14\nA complete written answer. The absolute maximum of 𝑔\n on [−6,8]\n is 9 +𝜋\n, at 𝑥 =8\n, the largest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "9 + \\pi",
+            "g'=f=0",
+            "x=-1",
+            "x=3",
+            "x=-6",
+            "x=8",
+            "g(x)=\\int_{1}^{x}f(t)\\,dt",
+            "\\displaystyle g(-6)=\\frac{19}{2} - \\pi\\approx 6.36",
+            "\\displaystyle g(-1)=-\\pi\\approx -3.14",
+            "\\displaystyle g(3)=\\pi\\approx 3.14",
+            "\\displaystyle g(8)=9 + \\pi\\approx 12.14",
+            "g",
+            "[-6,8]",
+            "9 + \\pi",
+            "x=8",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-ga-seg-6-2-3seg-4-30semi-10011seg303seg531-1--6-7-4-py8a1v",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_accum_minimum",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(-6)\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nUse the graph of f. 𝑔⁡(−6) =∫−6\n1𝑓⁡(𝑡) 𝑑𝑡\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative. Because −6 <1\n, ∫−6\n1𝑓 =−∫1\n−6𝑓\n.\nAdd the signed areas. Split [−6,1]\n at 𝑥 =−4\n and 𝑥 =−1\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫−4\n−6𝑓⁡(𝑥) 𝑑𝑥 =−5\n (trapezoid below the x-axis); ∫−1\n−4𝑓⁡(𝑥) 𝑑𝑥 =−\n9\n2\n (triangle below the x-axis); ∫1\n−1𝑓⁡(𝑥) 𝑑𝑥 =𝜋\n (quarter circle above the x-axis (area \n𝜋⁢𝑟2\n4\n with 𝑟 =2\n)).\n∫1\n−6𝑓⁡(𝑥) 𝑑𝑥 =𝜋 −\n19\n2\n𝑔⁡(−6) =−(𝜋−\n19\n2\n) =\n19\n2\n −𝜋",
+          "renderedMath": [
+            "g(-6)=\\int_{1}^{-6}f(t)\\,dt",
+            "f",
+            "-6<1",
+            "\\int_{1}^{-6}f=-\\int_{-6}^{1}f",
+            "[-6,1]",
+            "x=-4",
+            "x=-1",
+            "f",
+            "f",
+            "\\int_{-6}^{-4}f(x)\\,dx=-5",
+            "\\int_{-4}^{-1}f(x)\\,dx=-\\frac{9}{2}",
+            "\\int_{-1}^{1}f(x)\\,dx=\\pi",
+            "\\frac{\\pi r^{2}}{4}",
+            "r=2",
+            "\\displaystyle \\int_{-6}^{1}f(x)\\,dx=\\pi - \\frac{19}{2}",
+            "\\displaystyle g(-6)=-\\left(\\pi - \\frac{19}{2}\\right)=\\frac{19}{2} - \\pi"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a local minimum of \\(g\\)?",
+          "correct": true,
+          "renderedText": "Part B is correct.\nReason. The extrema of 𝑔\n come from sign changes of 𝑔′ =𝑓\n. Changes in the direction of 𝑓\n give points of inflection of 𝑔\n, not extrema.",
+          "renderedMath": [
+            "g",
+            "g'=f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-6,8)\\) does \\(g\\) have a local minimum? Enter every value, separated by commas.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nUse the sign of g'. 𝑔′ =𝑓\n. 𝑔\n has a local minimum where 𝑔′\n changes from negative to positive: the graph of 𝑓\n crosses the x-axis going up at 𝑥 =−1\n. At 𝑥 =3\n 𝑓 =0\n but does not change sign, so there is no extremum there.\nA complete written answer. 𝑔\n has a local minimum at 𝑥 =−1\n because 𝑔′ =𝑓\n changes from negative to positive there.",
+          "renderedMath": [
+            "g'=f",
+            "g",
+            "g'",
+            "f",
+            "x=-1",
+            "x=3",
+            "f=0",
+            "g",
+            "x=-1",
+            "g'=f"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute maximum value of \\(g\\) on the interval \\([-6,8]\\).",
+          "correct": true,
+          "renderedText": "Part D is correct.\nCandidates Test. An absolute maximum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =−1\n and 𝑥 =3\n; the endpoints are 𝑥 =−6\n and 𝑥 =8\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =∫𝑥\n1𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−6) =\n19\n2\n −𝜋 ≈6.36\n𝑔⁡(−1) =−𝜋 ≈−3.14\n𝑔⁡(3) =𝜋 ≈3.14\n𝑔⁡(8) =9 +𝜋 ≈12.14\nA complete written answer. The absolute maximum of 𝑔\n on [−6,8]\n is 9 +𝜋\n, at 𝑥 =8\n, the largest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "g'=f=0",
+            "x=-1",
+            "x=3",
+            "x=-6",
+            "x=8",
+            "g(x)=\\int_{1}^{x}f(t)\\,dt",
+            "\\displaystyle g(-6)=\\frac{19}{2} - \\pi\\approx 6.36",
+            "\\displaystyle g(-1)=-\\pi\\approx -3.14",
+            "\\displaystyle g(3)=\\pi\\approx 3.14",
+            "\\displaystyle g(8)=9 + \\pi\\approx 12.14",
+            "g",
+            "[-6,8]",
+            "9 + \\pi",
+            "x=8",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-ga-seg-6-2-3seg-4-30semi-10011seg303seg531-1--6-7-4-py8a1v",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_accum_minimum",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(-6)\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: \n19\n2\n −𝜋\nUse the graph of f. 𝑔⁡(−6) =∫−6\n1𝑓⁡(𝑡) 𝑑𝑡\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative. Because −6 <1\n, ∫−6\n1𝑓 =−∫1\n−6𝑓\n.\nAdd the signed areas. Split [−6,1]\n at 𝑥 =−4\n and 𝑥 =−1\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫−4\n−6𝑓⁡(𝑥) 𝑑𝑥 =−5\n (trapezoid below the x-axis); ∫−1\n−4𝑓⁡(𝑥) 𝑑𝑥 =−\n9\n2\n (triangle below the x-axis); ∫1\n−1𝑓⁡(𝑥) 𝑑𝑥 =𝜋\n (quarter circle above the x-axis (area \n𝜋⁢𝑟2\n4\n with 𝑟 =2\n)).\n∫1\n−6𝑓⁡(𝑥) 𝑑𝑥 =𝜋 −\n19\n2\n𝑔⁡(−6) =−(𝜋−\n19\n2\n) =\n19\n2\n −𝜋",
+          "renderedMath": [
+            "\\frac{19}{2} - \\pi",
+            "g(-6)=\\int_{1}^{-6}f(t)\\,dt",
+            "f",
+            "-6<1",
+            "\\int_{1}^{-6}f=-\\int_{-6}^{1}f",
+            "[-6,1]",
+            "x=-4",
+            "x=-1",
+            "f",
+            "f",
+            "\\int_{-6}^{-4}f(x)\\,dx=-5",
+            "\\int_{-4}^{-1}f(x)\\,dx=-\\frac{9}{2}",
+            "\\int_{-1}^{1}f(x)\\,dx=\\pi",
+            "\\frac{\\pi r^{2}}{4}",
+            "r=2",
+            "\\displaystyle \\int_{-6}^{1}f(x)\\,dx=\\pi - \\frac{19}{2}",
+            "\\displaystyle g(-6)=-\\left(\\pi - \\frac{19}{2}\\right)=\\frac{19}{2} - \\pi"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a local minimum of \\(g\\)?",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑔′ =𝑓\n changes from negative to positive there.\nReason. The extrema of 𝑔\n come from sign changes of 𝑔′ =𝑓\n. Changes in the direction of 𝑓\n give points of inflection of 𝑔\n, not extrema.",
+          "renderedMath": [
+            "g'=f",
+            "g",
+            "g'=f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-6,8)\\) does \\(g\\) have a local minimum? Enter every value, separated by commas.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: −1\nUse the sign of g'. 𝑔′ =𝑓\n. 𝑔\n has a local minimum where 𝑔′\n changes from negative to positive: the graph of 𝑓\n crosses the x-axis going up at 𝑥 =−1\n. At 𝑥 =3\n 𝑓 =0\n but does not change sign, so there is no extremum there.\nA complete written answer. 𝑔\n has a local minimum at 𝑥 =−1\n because 𝑔′ =𝑓\n changes from negative to positive there.",
+          "renderedMath": [
+            "-1",
+            "g'=f",
+            "g",
+            "g'",
+            "f",
+            "x=-1",
+            "x=3",
+            "f=0",
+            "g",
+            "x=-1",
+            "g'=f"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute maximum value of \\(g\\) on the interval \\([-6,8]\\).",
+          "correct": false,
+          "renderedText": "Part D is not correct.\nCorrect answer: 9 +𝜋\nCandidates Test. An absolute maximum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =−1\n and 𝑥 =3\n; the endpoints are 𝑥 =−6\n and 𝑥 =8\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =∫𝑥\n1𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−6) =\n19\n2\n −𝜋 ≈6.36\n𝑔⁡(−1) =−𝜋 ≈−3.14\n𝑔⁡(3) =𝜋 ≈3.14\n𝑔⁡(8) =9 +𝜋 ≈12.14\nA complete written answer. The absolute maximum of 𝑔\n on [−6,8]\n is 9 +𝜋\n, at 𝑥 =8\n, the largest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "9 + \\pi",
+            "g'=f=0",
+            "x=-1",
+            "x=3",
+            "x=-6",
+            "x=8",
+            "g(x)=\\int_{1}^{x}f(t)\\,dt",
+            "\\displaystyle g(-6)=\\frac{19}{2} - \\pi\\approx 6.36",
+            "\\displaystyle g(-1)=-\\pi\\approx -3.14",
+            "\\displaystyle g(3)=\\pi\\approx 3.14",
+            "\\displaystyle g(8)=9 + \\pi\\approx 12.14",
+            "g",
+            "[-6,8]",
+            "9 + \\pi",
+            "x=8",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-ga-seg-6-2-3seg-4-30semi-10011seg303seg531-1--6-7-4-py8a1v",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_accum_inflection",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(-5)\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nUse the graph of f. 𝑔⁡(−5) =∫−5\n1𝑓⁡(𝑡) 𝑑𝑡\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative. Because −5 <1\n, ∫−5\n1𝑓 =−∫1\n−5𝑓\n.\nAdd the signed areas. Split [−5,1]\n at 𝑥 =−3\n, 𝑥 =−1\n and 𝑥 =0\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫−3\n−5𝑓⁡(𝑥) 𝑑𝑥 =\n16\n3\n (trapezoid above the x-axis); ∫−1\n−3𝑓⁡(𝑥) 𝑑𝑥 =3\n (triangle above the x-axis); ∫0\n−1𝑓⁡(𝑥) 𝑑𝑥 =−\n1\n4\n⁢𝜋\n (quarter circle below the x-axis (area \n𝜋⁢𝑟2\n4\n with 𝑟 =1\n)); ∫1\n0𝑓⁡(𝑥) 𝑑𝑥 =\n1\n4\n⁢𝜋 −1\n (rectangle of height 1\n minus a quarter disk of radius 1\n).\n∫1\n−5𝑓⁡(𝑥) 𝑑𝑥 =\n22\n3\n𝑔⁡(−5) =−(\n22\n3\n) =−\n22\n3",
+          "renderedMath": [
+            "g(-5)=\\int_{1}^{-5}f(t)\\,dt",
+            "f",
+            "-5<1",
+            "\\int_{1}^{-5}f=-\\int_{-5}^{1}f",
+            "[-5,1]",
+            "x=-3",
+            "x=-1",
+            "x=0",
+            "f",
+            "f",
+            "\\int_{-5}^{-3}f(x)\\,dx=\\frac{16}{3}",
+            "\\int_{-3}^{-1}f(x)\\,dx=3",
+            "\\int_{-1}^{0}f(x)\\,dx=-\\frac{1}{4}\\pi",
+            "\\frac{\\pi r^{2}}{4}",
+            "r=1",
+            "\\int_{0}^{1}f(x)\\,dx=\\frac{1}{4}\\pi - 1",
+            "1",
+            "1",
+            "\\displaystyle \\int_{-5}^{1}f(x)\\,dx=\\frac{22}{3}",
+            "\\displaystyle g(-5)=-\\left(\\frac{22}{3}\\right)=-\\frac{22}{3}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a point of inflection of \\(g\\)?",
+          "correct": true,
+          "renderedText": "Part B is correct.\nReason. A point of inflection of 𝑔\n needs 𝑔″\n to change sign. Because 𝑔″ =𝑓′\n, that happens where 𝑓\n changes direction. Sign changes of 𝑓\n itself give the local maxima and minima of 𝑔\n instead.",
+          "renderedMath": [
+            "g",
+            "g''",
+            "g''=f'",
+            "f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-6,4)\\) does \\(g\\) have a point of inflection? Enter every value, separated by commas.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nConnect g to the graph of f. Since 𝑔′ =𝑓\n, 𝑔″ =𝑓′\n. The graph of 𝑔\n has a point of inflection where 𝑔″\n changes sign, that is, where 𝑓\n changes from increasing to decreasing or from decreasing to increasing.\nRead the graph. At 𝑥 =−3\n 𝑓\n changes from increasing to decreasing; at 𝑥 =0\n 𝑓\n changes from decreasing to increasing; at 𝑥 =1\n 𝑓\n changes from increasing to decreasing. At 𝑥 =−1\n the graph of 𝑓\n has a corner but keeps the same direction, so 𝑔″\n does not change sign there. A zero of 𝑓\n is not a point of inflection by itself.\nA complete written answer. 𝑔\n has points of inflection at 𝑥 =−3\n, 𝑥 =0\n and 𝑥 =1\n because 𝑔′ =𝑓\n changes from increasing to decreasing or from decreasing to increasing there, so 𝑔″\n changes sign.",
+          "renderedMath": [
+            "g'=f",
+            "g''=f'",
+            "g",
+            "g''",
+            "f",
+            "x=-3",
+            "f",
+            "x=0",
+            "f",
+            "x=1",
+            "f",
+            "x=-1",
+            "f",
+            "g''",
+            "f",
+            "g",
+            "x=-3",
+            "x=0",
+            "x=1",
+            "g'=f",
+            "g''"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute minimum value of \\(g\\) on the interval \\([-6,4]\\).",
+          "correct": true,
+          "renderedText": "Part D is correct.\nCandidates Test. An absolute minimum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =−1\n and 𝑥 =1\n; the endpoints are 𝑥 =−6\n and 𝑥 =4\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =∫𝑥\n1𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−6) =−\n19\n2\n ≈−9.50\n𝑔⁡(−1) =1\n𝑔⁡(1) =0\n𝑔⁡(4) =−\n3\n2\n ≈−1.50\nA complete written answer. The absolute minimum of 𝑔\n on [−6,4]\n is −\n19\n2\n, at 𝑥 =−6\n, the smallest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "g'=f=0",
+            "x=-1",
+            "x=1",
+            "x=-6",
+            "x=4",
+            "g(x)=\\int_{1}^{x}f(t)\\,dt",
+            "\\displaystyle g(-6)=-\\frac{19}{2}\\approx -9.50",
+            "\\displaystyle g(-1)=1",
+            "\\displaystyle g(1)=0",
+            "\\displaystyle g(4)=-\\frac{3}{2}\\approx -1.50",
+            "g",
+            "[-6,4]",
+            "-\\frac{19}{2}",
+            "x=-6",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-ga-seg-623seg-330quarter-10-1-10quarter0-1011seg10-1-1--5-2-4-ijince",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_accum_inflection",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(-5)\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: −\n22\n3\nUse the graph of f. 𝑔⁡(−5) =∫−5\n1𝑓⁡(𝑡) 𝑑𝑡\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative. Because −5 <1\n, ∫−5\n1𝑓 =−∫1\n−5𝑓\n.\nAdd the signed areas. Split [−5,1]\n at 𝑥 =−3\n, 𝑥 =−1\n and 𝑥 =0\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫−3\n−5𝑓⁡(𝑥) 𝑑𝑥 =\n16\n3\n (trapezoid above the x-axis); ∫−1\n−3𝑓⁡(𝑥) 𝑑𝑥 =3\n (triangle above the x-axis); ∫0\n−1𝑓⁡(𝑥) 𝑑𝑥 =−\n1\n4\n⁢𝜋\n (quarter circle below the x-axis (area \n𝜋⁢𝑟2\n4\n with 𝑟 =1\n)); ∫1\n0𝑓⁡(𝑥) 𝑑𝑥 =\n1\n4\n⁢𝜋 −1\n (rectangle of height 1\n minus a quarter disk of radius 1\n).\n∫1\n−5𝑓⁡(𝑥) 𝑑𝑥 =\n22\n3\n𝑔⁡(−5) =−(\n22\n3\n) =−\n22\n3",
+          "renderedMath": [
+            "-\\frac{22}{3}",
+            "g(-5)=\\int_{1}^{-5}f(t)\\,dt",
+            "f",
+            "-5<1",
+            "\\int_{1}^{-5}f=-\\int_{-5}^{1}f",
+            "[-5,1]",
+            "x=-3",
+            "x=-1",
+            "x=0",
+            "f",
+            "f",
+            "\\int_{-5}^{-3}f(x)\\,dx=\\frac{16}{3}",
+            "\\int_{-3}^{-1}f(x)\\,dx=3",
+            "\\int_{-1}^{0}f(x)\\,dx=-\\frac{1}{4}\\pi",
+            "\\frac{\\pi r^{2}}{4}",
+            "r=1",
+            "\\int_{0}^{1}f(x)\\,dx=\\frac{1}{4}\\pi - 1",
+            "1",
+            "1",
+            "\\displaystyle \\int_{-5}^{1}f(x)\\,dx=\\frac{22}{3}",
+            "\\displaystyle g(-5)=-\\left(\\frac{22}{3}\\right)=-\\frac{22}{3}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a point of inflection of \\(g\\)?",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑔″ =𝑓′\n changes sign there: 𝑓\n changes from increasing to decreasing or from decreasing to increasing.\nReason. A point of inflection of 𝑔\n needs 𝑔″\n to change sign. Because 𝑔″ =𝑓′\n, that happens where 𝑓\n changes direction. Sign changes of 𝑓\n itself give the local maxima and minima of 𝑔\n instead.",
+          "renderedMath": [
+            "g''=f'",
+            "f",
+            "g",
+            "g''",
+            "g''=f'",
+            "f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-6,4)\\) does \\(g\\) have a point of inflection? Enter every value, separated by commas.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: −3, 0, 1\nConnect g to the graph of f. Since 𝑔′ =𝑓\n, 𝑔″ =𝑓′\n. The graph of 𝑔\n has a point of inflection where 𝑔″\n changes sign, that is, where 𝑓\n changes from increasing to decreasing or from decreasing to increasing.\nRead the graph. At 𝑥 =−3\n 𝑓\n changes from increasing to decreasing; at 𝑥 =0\n 𝑓\n changes from decreasing to increasing; at 𝑥 =1\n 𝑓\n changes from increasing to decreasing. At 𝑥 =−1\n the graph of 𝑓\n has a corner but keeps the same direction, so 𝑔″\n does not change sign there. A zero of 𝑓\n is not a point of inflection by itself.\nA complete written answer. 𝑔\n has points of inflection at 𝑥 =−3\n, 𝑥 =0\n and 𝑥 =1\n because 𝑔′ =𝑓\n changes from increasing to decreasing or from decreasing to increasing there, so 𝑔″\n changes sign.",
+          "renderedMath": [
+            "-3,\\ 0,\\ 1",
+            "g'=f",
+            "g''=f'",
+            "g",
+            "g''",
+            "f",
+            "x=-3",
+            "f",
+            "x=0",
+            "f",
+            "x=1",
+            "f",
+            "x=-1",
+            "f",
+            "g''",
+            "f",
+            "g",
+            "x=-3",
+            "x=0",
+            "x=1",
+            "g'=f",
+            "g''"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute minimum value of \\(g\\) on the interval \\([-6,4]\\).",
+          "correct": false,
+          "renderedText": "Part D is not correct.\nCorrect answer: −\n19\n2\nCandidates Test. An absolute minimum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =−1\n and 𝑥 =1\n; the endpoints are 𝑥 =−6\n and 𝑥 =4\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =∫𝑥\n1𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−6) =−\n19\n2\n ≈−9.50\n𝑔⁡(−1) =1\n𝑔⁡(1) =0\n𝑔⁡(4) =−\n3\n2\n ≈−1.50\nA complete written answer. The absolute minimum of 𝑔\n on [−6,4]\n is −\n19\n2\n, at 𝑥 =−6\n, the smallest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "-\\frac{19}{2}",
+            "g'=f=0",
+            "x=-1",
+            "x=1",
+            "x=-6",
+            "x=4",
+            "g(x)=\\int_{1}^{x}f(t)\\,dt",
+            "\\displaystyle g(-6)=-\\frac{19}{2}\\approx -9.50",
+            "\\displaystyle g(-1)=1",
+            "\\displaystyle g(1)=0",
+            "\\displaystyle g(4)=-\\frac{3}{2}\\approx -1.50",
+            "g",
+            "[-6,4]",
+            "-\\frac{19}{2}",
+            "x=-6",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-ga-seg-623seg-330quarter-10-1-10quarter0-1011seg10-1-1--5-2-4-ijince",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_accum_inflection",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(-5)\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nUse the graph of f. 𝑔⁡(−5) =∫−5\n1𝑓⁡(𝑡) 𝑑𝑡\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative. Because −5 <1\n, ∫−5\n1𝑓 =−∫1\n−5𝑓\n.\nAdd the signed areas. Split [−5,1]\n at 𝑥 =−3\n, 𝑥 =−1\n and 𝑥 =0\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫−3\n−5𝑓⁡(𝑥) 𝑑𝑥 =\n16\n3\n (trapezoid above the x-axis); ∫−1\n−3𝑓⁡(𝑥) 𝑑𝑥 =3\n (triangle above the x-axis); ∫0\n−1𝑓⁡(𝑥) 𝑑𝑥 =−\n1\n4\n⁢𝜋\n (quarter circle below the x-axis (area \n𝜋⁢𝑟2\n4\n with 𝑟 =1\n)); ∫1\n0𝑓⁡(𝑥) 𝑑𝑥 =\n1\n4\n⁢𝜋 −1\n (rectangle of height 1\n minus a quarter disk of radius 1\n).\n∫1\n−5𝑓⁡(𝑥) 𝑑𝑥 =\n22\n3\n𝑔⁡(−5) =−(\n22\n3\n) =−\n22\n3",
+          "renderedMath": [
+            "g(-5)=\\int_{1}^{-5}f(t)\\,dt",
+            "f",
+            "-5<1",
+            "\\int_{1}^{-5}f=-\\int_{-5}^{1}f",
+            "[-5,1]",
+            "x=-3",
+            "x=-1",
+            "x=0",
+            "f",
+            "f",
+            "\\int_{-5}^{-3}f(x)\\,dx=\\frac{16}{3}",
+            "\\int_{-3}^{-1}f(x)\\,dx=3",
+            "\\int_{-1}^{0}f(x)\\,dx=-\\frac{1}{4}\\pi",
+            "\\frac{\\pi r^{2}}{4}",
+            "r=1",
+            "\\int_{0}^{1}f(x)\\,dx=\\frac{1}{4}\\pi - 1",
+            "1",
+            "1",
+            "\\displaystyle \\int_{-5}^{1}f(x)\\,dx=\\frac{22}{3}",
+            "\\displaystyle g(-5)=-\\left(\\frac{22}{3}\\right)=-\\frac{22}{3}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a point of inflection of \\(g\\)?",
+          "correct": true,
+          "renderedText": "Part B is correct.\nReason. A point of inflection of 𝑔\n needs 𝑔″\n to change sign. Because 𝑔″ =𝑓′\n, that happens where 𝑓\n changes direction. Sign changes of 𝑓\n itself give the local maxima and minima of 𝑔\n instead.",
+          "renderedMath": [
+            "g",
+            "g''",
+            "g''=f'",
+            "f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-6,4)\\) does \\(g\\) have a point of inflection? Enter every value, separated by commas.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nConnect g to the graph of f. Since 𝑔′ =𝑓\n, 𝑔″ =𝑓′\n. The graph of 𝑔\n has a point of inflection where 𝑔″\n changes sign, that is, where 𝑓\n changes from increasing to decreasing or from decreasing to increasing.\nRead the graph. At 𝑥 =−3\n 𝑓\n changes from increasing to decreasing; at 𝑥 =0\n 𝑓\n changes from decreasing to increasing; at 𝑥 =1\n 𝑓\n changes from increasing to decreasing. At 𝑥 =−1\n the graph of 𝑓\n has a corner but keeps the same direction, so 𝑔″\n does not change sign there. A zero of 𝑓\n is not a point of inflection by itself.\nA complete written answer. 𝑔\n has points of inflection at 𝑥 =−3\n, 𝑥 =0\n and 𝑥 =1\n because 𝑔′ =𝑓\n changes from increasing to decreasing or from decreasing to increasing there, so 𝑔″\n changes sign.",
+          "renderedMath": [
+            "g'=f",
+            "g''=f'",
+            "g",
+            "g''",
+            "f",
+            "x=-3",
+            "f",
+            "x=0",
+            "f",
+            "x=1",
+            "f",
+            "x=-1",
+            "f",
+            "g''",
+            "f",
+            "g",
+            "x=-3",
+            "x=0",
+            "x=1",
+            "g'=f",
+            "g''"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute minimum value of \\(g\\) on the interval \\([-6,4]\\).",
+          "correct": true,
+          "renderedText": "Part D is correct.\nCandidates Test. An absolute minimum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =−1\n and 𝑥 =1\n; the endpoints are 𝑥 =−6\n and 𝑥 =4\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =∫𝑥\n1𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−6) =−\n19\n2\n ≈−9.50\n𝑔⁡(−1) =1\n𝑔⁡(1) =0\n𝑔⁡(4) =−\n3\n2\n ≈−1.50\nA complete written answer. The absolute minimum of 𝑔\n on [−6,4]\n is −\n19\n2\n, at 𝑥 =−6\n, the smallest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "g'=f=0",
+            "x=-1",
+            "x=1",
+            "x=-6",
+            "x=4",
+            "g(x)=\\int_{1}^{x}f(t)\\,dt",
+            "\\displaystyle g(-6)=-\\frac{19}{2}\\approx -9.50",
+            "\\displaystyle g(-1)=1",
+            "\\displaystyle g(1)=0",
+            "\\displaystyle g(4)=-\\frac{3}{2}\\approx -1.50",
+            "g",
+            "[-6,4]",
+            "-\\frac{19}{2}",
+            "x=-6",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-ga-seg-623seg-330quarter-10-1-10quarter0-1011seg10-1-1--5-2-4-ijince",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_accum_inflection",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(-5)\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: −\n22\n3\nUse the graph of f. 𝑔⁡(−5) =∫−5\n1𝑓⁡(𝑡) 𝑑𝑡\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative. Because −5 <1\n, ∫−5\n1𝑓 =−∫1\n−5𝑓\n.\nAdd the signed areas. Split [−5,1]\n at 𝑥 =−3\n, 𝑥 =−1\n and 𝑥 =0\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫−3\n−5𝑓⁡(𝑥) 𝑑𝑥 =\n16\n3\n (trapezoid above the x-axis); ∫−1\n−3𝑓⁡(𝑥) 𝑑𝑥 =3\n (triangle above the x-axis); ∫0\n−1𝑓⁡(𝑥) 𝑑𝑥 =−\n1\n4\n⁢𝜋\n (quarter circle below the x-axis (area \n𝜋⁢𝑟2\n4\n with 𝑟 =1\n)); ∫1\n0𝑓⁡(𝑥) 𝑑𝑥 =\n1\n4\n⁢𝜋 −1\n (rectangle of height 1\n minus a quarter disk of radius 1\n).\n∫1\n−5𝑓⁡(𝑥) 𝑑𝑥 =\n22\n3\n𝑔⁡(−5) =−(\n22\n3\n) =−\n22\n3",
+          "renderedMath": [
+            "-\\frac{22}{3}",
+            "g(-5)=\\int_{1}^{-5}f(t)\\,dt",
+            "f",
+            "-5<1",
+            "\\int_{1}^{-5}f=-\\int_{-5}^{1}f",
+            "[-5,1]",
+            "x=-3",
+            "x=-1",
+            "x=0",
+            "f",
+            "f",
+            "\\int_{-5}^{-3}f(x)\\,dx=\\frac{16}{3}",
+            "\\int_{-3}^{-1}f(x)\\,dx=3",
+            "\\int_{-1}^{0}f(x)\\,dx=-\\frac{1}{4}\\pi",
+            "\\frac{\\pi r^{2}}{4}",
+            "r=1",
+            "\\int_{0}^{1}f(x)\\,dx=\\frac{1}{4}\\pi - 1",
+            "1",
+            "1",
+            "\\displaystyle \\int_{-5}^{1}f(x)\\,dx=\\frac{22}{3}",
+            "\\displaystyle g(-5)=-\\left(\\frac{22}{3}\\right)=-\\frac{22}{3}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a point of inflection of \\(g\\)?",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑔″ =𝑓′\n changes sign there: 𝑓\n changes from increasing to decreasing or from decreasing to increasing.\nReason. A point of inflection of 𝑔\n needs 𝑔″\n to change sign. Because 𝑔″ =𝑓′\n, that happens where 𝑓\n changes direction. Sign changes of 𝑓\n itself give the local maxima and minima of 𝑔\n instead.",
+          "renderedMath": [
+            "g''=f'",
+            "f",
+            "g",
+            "g''",
+            "g''=f'",
+            "f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-6,4)\\) does \\(g\\) have a point of inflection? Enter every value, separated by commas.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: −3, 0, 1\nConnect g to the graph of f. Since 𝑔′ =𝑓\n, 𝑔″ =𝑓′\n. The graph of 𝑔\n has a point of inflection where 𝑔″\n changes sign, that is, where 𝑓\n changes from increasing to decreasing or from decreasing to increasing.\nRead the graph. At 𝑥 =−3\n 𝑓\n changes from increasing to decreasing; at 𝑥 =0\n 𝑓\n changes from decreasing to increasing; at 𝑥 =1\n 𝑓\n changes from increasing to decreasing. At 𝑥 =−1\n the graph of 𝑓\n has a corner but keeps the same direction, so 𝑔″\n does not change sign there. A zero of 𝑓\n is not a point of inflection by itself.\nA complete written answer. 𝑔\n has points of inflection at 𝑥 =−3\n, 𝑥 =0\n and 𝑥 =1\n because 𝑔′ =𝑓\n changes from increasing to decreasing or from decreasing to increasing there, so 𝑔″\n changes sign.",
+          "renderedMath": [
+            "-3,\\ 0,\\ 1",
+            "g'=f",
+            "g''=f'",
+            "g",
+            "g''",
+            "f",
+            "x=-3",
+            "f",
+            "x=0",
+            "f",
+            "x=1",
+            "f",
+            "x=-1",
+            "f",
+            "g''",
+            "f",
+            "g",
+            "x=-3",
+            "x=0",
+            "x=1",
+            "g'=f",
+            "g''"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute minimum value of \\(g\\) on the interval \\([-6,4]\\).",
+          "correct": false,
+          "renderedText": "Part D is not correct.\nCorrect answer: −\n19\n2\nCandidates Test. An absolute minimum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =−1\n and 𝑥 =1\n; the endpoints are 𝑥 =−6\n and 𝑥 =4\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =∫𝑥\n1𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−6) =−\n19\n2\n ≈−9.50\n𝑔⁡(−1) =1\n𝑔⁡(1) =0\n𝑔⁡(4) =−\n3\n2\n ≈−1.50\nA complete written answer. The absolute minimum of 𝑔\n on [−6,4]\n is −\n19\n2\n, at 𝑥 =−6\n, the smallest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "-\\frac{19}{2}",
+            "g'=f=0",
+            "x=-1",
+            "x=1",
+            "x=-6",
+            "x=4",
+            "g(x)=\\int_{1}^{x}f(t)\\,dt",
+            "\\displaystyle g(-6)=-\\frac{19}{2}\\approx -9.50",
+            "\\displaystyle g(-1)=1",
+            "\\displaystyle g(1)=0",
+            "\\displaystyle g(4)=-\\frac{3}{2}\\approx -1.50",
+            "g",
+            "[-6,4]",
+            "-\\frac{19}{2}",
+            "x=-6",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-ga-seg-623seg-330quarter-10-1-10quarter0-1011seg10-1-1--5-2-4-ijince",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "expectedOriginalDisclosures": 0
+}

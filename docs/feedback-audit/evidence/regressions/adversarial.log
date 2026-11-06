@@ -1,0 +1,16 @@
+PASS  washers                                          {"valid":true,"ok":true}
+PASS  washers expanded                                 {"valid":true,"ok":true}
+PASS  pi inside                                        {"valid":true,"ok":true}
+PASS  split at 1/3                                     {"valid":true,"ok":true}
+PASS  reversed limits, negated                         {"valid":true,"ok":true}
+PASS  shells (alt)                                     {"valid":true,"ok":true}
+PASS  shells when washers named                        {"valid":true,"ok":false,"note":"shells not asked"}
+PASS  (R-r)^2                                          {"valid":true,"ok":false,"note":"Square each radius before subtracting: use \\(R^{2}-r^{2}\\), not \\((R-r)^{2}\\)."}
+PASS  same value, wrong integrand (constant)           {"valid":true,"ok":false,"note":"Write the integral itself: the integrand should be an expression in x or y, not a single number."}
+PASS  same value, wrong integrand (scaled polynomial)  {"valid":true,"ok":false,"note":"Your integral has the right value, but it is not a setup for this region: check the integrand (the boundary
+PASS  same value, wrong limits                         {"valid":true,"ok":false,"note":"Your integral has the right value, but it is not a setup for this region: check the integrand (the boundary
+PASS  missing pi                                       {"valid":true,"ok":false,"note":"Your integral is missing the factor \\(\\pi\\)."}
+PASS  cap                                              {"valid":true,"ok":true}
+PASS  cap halved, doubled                              {"valid":true,"ok":true}
+PASS  cap wrong half                                   {"valid":true,"ok":false}
+All checker cases pass.
