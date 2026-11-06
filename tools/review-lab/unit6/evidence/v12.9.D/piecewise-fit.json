@@ -1,0 +1,45 @@
+{
+ "steps": 171,
+ "widths": {
+  "360": {
+   "braces": 136,
+   "lines": 100,
+   "overflowBraces": 0,
+   "overflowLines": 0,
+   "raw": false,
+   "merror": 0,
+   "examples": [],
+   "errors": 0
+  },
+  "375": {
+   "braces": 136,
+   "lines": 100,
+   "overflowBraces": 0,
+   "overflowLines": 0,
+   "raw": false,
+   "merror": 0,
+   "examples": [],
+   "errors": 0
+  },
+  "390": {
+   "braces": 136,
+   "lines": 100,
+   "overflowBraces": 0,
+   "overflowLines": 0,
+   "raw": false,
+   "merror": 0,
+   "examples": [],
+   "errors": 0
+  },
+  "1366": {
+   "braces": 136,
+   "lines": 100,
+   "overflowBraces": 0,
+   "overflowLines": 0,
+   "raw": false,
+   "merror": 0,
+   "examples": [],
+   "errors": 0
+  }
+ }
+}
