@@ -44,6 +44,7 @@ const cwrap=(k,inner)=>k===1?inner:`${k}\\left(${inner}\\right)`;
 const sumE=list=>list.reduce((a,b)=>a?eadd(a,b):b,null);
 const one=(prompt0,parts,o)=>{const prompt=parts.length>1?prompt0:''; /* a calculator problem already shows the Calculator active badge */return problem(o.calc?{...o,calculator:true,questionHtml:question({context:o.context,prompt,formulas:o.formulas,calculator:true,extra:o.extra||''}),parts}:{...o,questionHtml:question({context:o.context,prompt,formulas:o.formulas,calculator:false,extra:o.extra||''}),parts});};
 const ROUND=x=>Math.round(x*1e9)/1e9;
+const andTex=a=>{const t=a.map(x=>`\\(${x}\\)`);return t.length<2?t.join(''):`${t.slice(0,-1).join(', ')} and ${t[t.length-1]}`;};
 // signed pieces of a polynomial between consecutive zeros on [a, b]: [{a,b,sign}]
 function signPieces(Pp,a,b,roots){
  const cuts=[a,...roots.filter(r=>qv(r)>qv(a)+1e-12&&qv(r)<qv(b)-1e-12).sort((u,w)=>qv(u)-qv(w)),b];
@@ -104,7 +105,7 @@ function famSign(tier){
  const pieces=signPieces(Pp,a,b,roots),A=absArea(Pp,pieces),inside=roots.filter(r=>qv(r)>qv(a)&&qv(r)<qv(b));
  const ftex=ptex(Pp,'x'),e=ex(A.total);
  const work=step('Find where the curve crosses the x-axis.',`\\(${ftex}=0\\) at ${roots.map(r=>`\\(x=${tq(r)}\\)`).join(', ')}.`)
-  +step('Split the interval at the crossings.',`Areas below the axis come from integrals that are negative, so take their opposites: ${pieces.map(p=>`on \\([${tq(p.a)},${tq(p.b)}]\\) the curve is ${p.sign>0?'above':'below'} the axis`).join('; ')}.`,`A=${symSum(A.sym)}`)
+  +step(`Split the interval at ${andTex(pieces.slice(1).map(p=>`x=${tq(p.a)}`))}.`,`The area counts every region as positive, but \\(\\int f(x)\\,dx\\) is negative where the curve is below the x-axis, so one integral of \\(f\\) over the whole interval would subtract those regions instead of adding them. The curve changes sides of the axis at each crossing, and between crossings it stays on one side: ${pieces.map(p=>`on \\([${tq(p.a)},${tq(p.b)}]\\) the curve is ${p.sign>0?'above':'below'} the axis`).join('; ')}. Integrate \\(f\\) on each piece and take the opposite where it is below. (The area is \\(\\int|f(x)|\\,dx\\), a single integral, but evaluating it still means splitting at the crossings, where \\(|f(x)|\\) changes from \\(f(x)\\) to \\(-f(x)\\).)`,`A=${symSum(A.sym)}`)
   +step('Evaluate each integral.','',...A.lines,A.combo?`A=${A.combo}=${etex(e)}`:`A=${etex(e)}`);
  const ctx=qv(a)===qv(roots[0])&&qv(b)===qv(roots[roots.length-1])?'Find the total area of the regions enclosed by the graph and the x-axis.':`Find the total area of the regions between the graph and the x-axis from \\(x=${tq(a)}\\) to \\(x=${tq(b)}\\).`;
  // the graph with the regions between it and the x-axis, in the explanation of the first part
@@ -140,7 +141,7 @@ function famEnclosed(tier){
  const show=tier!=='foundational'&&pick([true,false]),pic=show?'':regionStep(R,'The two curves'),setupOnly=tier==='challenging'&&pick([true,false]);
  const ctx=sub==='cubic_lobes'?'Find the total area of the regions enclosed between the two curves.':'Find the area of the region enclosed by the two curves.';
  const setup=()=>integralPart(`${setupOnly?'Write, but do not evaluate,':'Write'} an integral expression${T.length>1?' (or a sum of integrals)':''} for the area of the region enclosed by the curves${alt?'':', integrating with respect to x'}.`,T,
-  pic+W.boundsStep(R,'Find where the curves meet.')+W.areaWork(R,'x',T)+(alt?altStep(R,'y',alt):''),alt?{alt:[alt],help:'You may integrate with respect to x or y.'}:{variable:'x'});
+  pic+W.boundsStep(R,'Find where the curves meet.')+W.areaWork(R,'x',T,{note:!alt})+(alt?altStep(R,'y',alt):''),alt?{alt:[alt],help:'You may integrate with respect to x or y.'}:{variable:'x'});
  const value=(x='')=>exactPart('Find the exact area.',ans(e),x+W.evalWork(T));
  let parts;
  if(tier==='foundational')parts=[exactPart('Find the area.',ans(e),pic+W.boundsStep(R,'Find where the curves meet.')+W.areaWork(R,'x',T)+W.evalWork(T))];
@@ -149,14 +150,15 @@ function famEnclosed(tier){
  return one(parts.length>1?'Answer each part.':'',parts,{engine:'area',family:'between_enclosed',tier,id:`enc-${sub}-${R.eqs.join('|')}-${parts.length}`,context:ctx,formulas:R.eqs,extra:show?figure(R,{compact:true,label:'The two curves'}):'',data:{sub,graph:show,setupOnly}});
 }
 // the other way to slice, for an explanation whose question allows either variable
-function altStep(R,v,T){return step('Another way.',`${v==='y'?'With horizontal slices (right minus left)':'With vertical slices (top minus bottom)'} the same area is`,`A=${setupTex(T)}`);}
+function altStep(R,v,T){const why=T.length>1?`, which needs ${['','one','two','three','four'][T.length]||T.length} integrals because ${W.changeSummary(R,v)},`:'';
+ return step('Another way.',`${v==='y'?'With horizontal slices (right minus left)':'With vertical slices (top minus bottom)'}${why} the same area is`,`A=${setupTex(T)}`);}
 function famSwitch(tier){
  if(pick([true,false])){ // sin x and cos x
   const full=pick([true,false]),bT=full?'\\pi':'\\frac{\\pi}{2}',e=full?ex(2,K.sqrt2):eadd(ex(2,K.sqrt2),ex(-2));
   const R=region({xs:[{a:bq(0),b:bn(Math.PI/4,'\\frac{\\pi}{4}'),top:fnc({tex:()=>'\\cos x',key:()=>'cos(x)',f:Math.cos}),bot:fnc({tex:()=>'\\sin x',key:()=>'sin(x)',f:Math.sin})},{a:bn(Math.PI/4,'\\frac{\\pi}{4}'),b:bn(full?Math.PI:Math.PI/2,bT),top:fnc({tex:()=>'\\sin x',key:()=>'sin(x)',f:Math.sin}),bot:fnc({tex:()=>'\\cos x',key:()=>'cos(x)',f:Math.cos})}],
    view:{xmin:-0.5,xmax:full?3.5:2,ymin:-1.5,ymax:1.5},draw:[{f:Math.sin,tex:'y=\\sin x',dom:[-0.3,full?3.4:1.9]},{f:Math.cos,tex:'y=\\cos x',dom:[-0.3,full?3.4:1.9]}]}),pic=regionStep(R,'The curves and the regions between them');
   const T=areaTerms(R,'x');
-  const work=step('Find where the curves cross.',`\\(\\sin x=\\cos x\\) at \\(x=\\frac{\\pi}{4}\\): cosine is on top before it and sine after it.`)+W.areaWork(R,'x',T)
+  const work=step('Find where the curves cross.',`\\(\\sin x=\\cos x\\) at \\(x=\\frac{\\pi}{4}\\), where \\(\\tan x=1\\).`)+W.areaWork(R,'x',T)
    +step('Evaluate.','',`\\int_{0}^{\\frac{\\pi}{4}}(\\cos x-\\sin x)\\,dx=\\left[\\sin x+\\cos x\\right]_{0}^{\\frac{\\pi}{4}}=\\sqrt{2}-1`,full?`\\int_{\\frac{\\pi}{4}}^{\\pi}(\\sin x-\\cos x)\\,dx=\\left[-\\cos x-\\sin x\\right]_{\\frac{\\pi}{4}}^{\\pi}=1+\\sqrt{2}`:`\\int_{\\frac{\\pi}{4}}^{\\frac{\\pi}{2}}(\\sin x-\\cos x)\\,dx=\\left[-\\cos x-\\sin x\\right]_{\\frac{\\pi}{4}}^{\\frac{\\pi}{2}}=\\sqrt{2}-1`,`A=${etex(e)}`);
   const parts=tier==='challenging'?[integralPart(`Write a sum of integrals with respect to x for the area between the curves on \\([0,${bT}]\\).`,T,pic+step('Find where the curves cross.','\\(\\sin x=\\cos x\\) at \\(x=\\frac{\\pi}{4}\\).')+W.areaWork(R,'x',T),{variable:'x'}),exactPart('Evaluate the area.',ans(e),work)]:[exactPart('Find the area.',ans(e),pic+work)];
   return one(parts.length>1?'Answer each part.':'',parts,{engine:'area',family:'between_switch',tier,id:`sincos-${full}`,context:`Find the area of the regions between the curves on \\(\\left[0,${bT}\\right]\\).`,formulas:['f(x)=\\sin x','g(x)=\\cos x'],data:{sub:'sin_cos'}});
@@ -185,9 +187,11 @@ function famChoose(tier){
   const sub=pick(['rootLineAxis','sidewaysLine','wedge','wedge']),R=RG.build(sub),Tx=areaTerms(R,'x'),Ty=areaTerms(R,'y');if(Tx.length===Ty.length)continue;
   const dyBetter=Ty.length<Tx.length,best=dyBetter?Ty:Tx,other=dyBetter?Tx:Ty,vb=dyBetter?'y':'x',vo=dyBetter?'x':'y',e=exactValue(best)||exactValue(other);if(!e)continue;
   const show=pick([true,false]),pic=show?'':regionStep(R,'Region R');
-  const why=step('Compare the two ways of slicing.',dyBetter?'With vertical slices the bottom (or top) boundary changes partway across, so dx needs two integrals; horizontal slices always run from the same left curve to the same right curve, so dy needs only one.':'With horizontal slices the right boundary changes partway up, so dy needs two integrals; vertical slices always run between the same two boundaries, so dx needs only one.',`A=${setupTex(Tx)}`,`A=${setupTex(Ty)}`);
-  const single=integralPart('Write the area of \\(R\\) as a single integral.',best,pic+W.boundsStep(R)+why+W.areaWork(R,vb,best),{max:1,variable:vb,methodNote:`With ${vo} the area needs more than one integral; a single integral uses ${vb}.`});
-  const parts=tier==='challenging'?[single,integralPart(`Now write the area of \\(R\\) as a sum of integrals with respect to ${vo}.`,other,W.areaWork(R,vo,other),{variable:vo}),exactPart('Find the exact area of \\(R\\).',ans(e),W.evalWork(best))]
+  const nw=n=>['','one','two','three','four'][n]||n;
+  const why=step('Compare the two ways of slicing.',dyBetter?`With vertical slices ${W.changeSummary(R,'x')}, so dx needs ${nw(Tx.length)} integrals. Horizontal slices always run from ${W.bname(R.ys[0].left,'y')} on the left to ${W.bname(R.ys[0].right,'y')} on the right, so dy needs only one.`
+   :`With horizontal slices ${W.changeSummary(R,'y')}, so dy needs ${nw(Ty.length)} integrals. Vertical slices always run from ${W.bname(R.xs[0].bot,'x')} up to ${W.bname(R.xs[0].top,'x')}, so dx needs only one.`,`A=${setupTex(Tx)}`,`A=${setupTex(Ty)}`);
+  const single=integralPart('Write the area of \\(R\\) as a single integral.',best,pic+W.boundsStep(R)+why+W.areaWork(R,vb,best,{note:false}),{max:1,variable:vb,methodNote:`With ${vo} the area needs more than one integral; a single integral uses ${vb}.`});
+  const parts=tier==='challenging'?[single,integralPart(`Now write the area of \\(R\\) as a sum of integrals with respect to ${vo}.`,other,W.areaWork(R,vo,other,{note:false}),{variable:vo}),exactPart('Find the exact area of \\(R\\).',ans(e),W.evalWork(best))]
    :[single,exactPart('Find the exact area of \\(R\\).',ans(e),W.evalWork(best))];
   return one('Answer each part.',parts,{engine:'area',family:'choose_dx_dy',tier,id:`choose-${sub}-${R.eqs.join('|')}-${parts.length}`,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:show?figure(R,{compact:true,label:'Region R'}):'',data:{sub,best:vb,graph:show}});
  }
@@ -211,7 +215,7 @@ function famDirections(tier){
    if(!setupOnly)parts.push(value(E.x?'x':'y'));
   }else if(task==='either'){
    const d=fits('x')?'x':'y';
-   parts=[integralPart(`${setupOnly?'Write, but do not evaluate,':'Write'} an integral expression for the area of \\(R\\). You may integrate with respect to x or y.`,T[d],pic+W.boundsStep(R)+W.areaWork(R,d,T[d])+altStep(R,o(d),T[o(d)]),{alt:[T[o(d)]],help:'Either variable is accepted, as one integral or a sum of integrals.'})];
+   parts=[integralPart(`${setupOnly?'Write, but do not evaluate,':'Write'} an integral expression for the area of \\(R\\). You may integrate with respect to x or y.`,T[d],pic+W.boundsStep(R)+W.areaWork(R,d,T[d],{note:false})+altStep(R,o(d),T[o(d)]),{alt:[T[o(d)]],help:'Either variable is accepted, as one integral or a sum of integrals.'})];
    if(!setupOnly)parts.push(value(d));
   }else{
    const d=task;if(!E[d])setupOnly=true;
@@ -267,7 +271,7 @@ function famCalcDirections(tier){
   if(task==='both')parts=[integralPart(`Write an integral expression${n(T.x)} with respect to x for the area of \\(R\\).`,T.x,pic+W.boundsStep(R)+W.areaWork(R,'x',T.x),{variable:'x',help}),
    integralPart(`Now write the area of \\(R\\) as an integral expression${n(T.y)} with respect to y.`,T.y,W.areaWork(R,'y',T.y),{variable:'y'}),numPart('Find the area of \\(R\\).',v0,W.calcWork(T.x,'A'))];
   else{const d=task==='either'?(T.x.length<=T.y.length?'x':'y'):task;
-   parts=[integralPart(task==='either'?'Write an integral expression for the area of \\(R\\). You may integrate with respect to x or y.':`Write an integral expression${n(T[d])} with respect to ${d} for the area of \\(R\\).`,T[d],pic+W.boundsStep(R)+W.areaWork(R,d,T[d])+(task==='either'?altStep(R,o(d),T[o(d)]):''),
+   parts=[integralPart(task==='either'?'Write an integral expression for the area of \\(R\\). You may integrate with respect to x or y.':`Write an integral expression${n(T[d])} with respect to ${d} for the area of \\(R\\).`,T[d],pic+W.boundsStep(R)+W.areaWork(R,d,T[d],{note:task!=='either'})+(task==='either'?altStep(R,o(d),T[o(d)]):''),
      task==='either'?{alt:[T[o(d)]],help}:{variable:d,help,others:[{terms:T[o(d)],note:`That integral is correct, but this question asks you to integrate with respect to ${d}.`}]}),numPart('Find the area of \\(R\\).',v0,W.calcWork(T[d],'A'))];}
   return one('Answer each part.',parts,{engine:'area',family:'calc_directions',tier,id:`cdir-${task}-${R.eqs.join('|')}`,calc:true,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:show?figure(R,{compact:true,label:'Region R'}):'',data:{dir:task,graph:show,region:R.data.kind}});
  }
@@ -278,7 +282,7 @@ function famCalcFind(tier){
  const pts=sub==='logLine'?[R.data.p]:sub==='cosParabola'?[-R.data.p,R.data.p]:[R.data.p,R.data.q];
  const ask=sub==='logLine'?'Find the x-coordinate of the point where the curve and the line intersect.':'Find the x-coordinates of the points where the curves intersect.';
  const listP={prompt:`${ask} Give each value correct to three decimal places.`,control:'input',answer:{kind:'list',values:pts,places:3},answerTex:pts.map(x=>fixed(x,3)).join(',\\ '),explanation:W.boundsStep(R,'Use the calculator.'),keypadMode:'unit6-list-dec',placeholder:'Decimal values separated by commas'};
- const parts=tier==='challenging'?[integralPart(`Write an integral expression (or a sum of integrals) for the area of \\(R\\)${R.ys?'':', integrating with respect to x'}. You may use decimal limits.`,T,W.boundsStep(R)+W.areaWork(R,'x',T)+(R.ys?altStep(R,'y',areaTerms(R,'y')):''),{...(R.ys?{alt:[areaTerms(R,'y')]}:{variable:'x'}),help:'Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.'}),numPart('Find the area of \\(R\\).',v,W.calcWork(T,'A'))]
+ const parts=tier==='challenging'?[integralPart(`Write an integral expression (or a sum of integrals) for the area of \\(R\\)${R.ys?'':', integrating with respect to x'}. You may use decimal limits.`,T,W.boundsStep(R)+W.areaWork(R,'x',T,{note:!R.ys})+(R.ys?altStep(R,'y',areaTerms(R,'y')):''),{...(R.ys?{alt:[areaTerms(R,'y')]}:{variable:'x'}),help:'Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.'}),numPart('Find the area of \\(R\\).',v,W.calcWork(T,'A'))]
   :[listP,numPart('Find the area of \\(R\\).',v,W.areaWork(R,'x',T)+W.calcWork(T,'A'))];
  return one('Answer each part.',parts,{engine:'area',family:'calc_find',tier,id:`cf-${sub}-${R.eqs.join('|')}`,calc:true,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:figure(R,{compact:true,label:'Region R'}),data:{sub}});
 }
@@ -391,7 +395,7 @@ function famYAxis(tier){ // x = k(y - r1)(y - r2) and the y-axis from y = a to y
  const r1=ri(-2,1),r2=r1+ri(2,3),k=pick([1,-1,2]),Pp=fromRoots(k,[r1,r2]),a=r1-pick([0,1]),b=r2+pick([0,1]);
  const pieces=signPieces(Pp,Q(a),Q(b),[Q(r1),Q(r2)]),A=absArea(Pp,pieces,'y'),e=ex(A.total),ftex=ptex(Pp,'y');
  const work=step('Find where the curve crosses the y-axis.',`\\(${ftex}=0\\) at \\(y=${r1}\\) and \\(y=${r2}\\).`)
-  +step('Split at the crossings.',`Where the curve is to the right of the y-axis the integral is the area; where it is to the left the integral is negative, so take its opposite: ${pieces.map(p=>`on \\([${tq(p.a)},${tq(p.b)}]\\) the curve is ${p.sign>0?'right':'left'} of the axis`).join('; ')}.`,`A=${symSum(A.sym)}`)
+  +step(`Split the interval at ${andTex(pieces.slice(1).map(p=>`y=${tq(p.a)}`))}.`,`Where the curve is to the right of the y-axis the integral of \\(x=${ftex}\\) is the area; where it is to the left the integral is negative, so one integral over the whole interval would subtract those regions. The curve changes sides of the axis at each crossing: ${pieces.map(p=>`on \\([${tq(p.a)},${tq(p.b)}]\\) the curve is ${p.sign>0?'right':'left'} of the axis`).join('; ')}. Integrate on each piece and take the opposite where the curve is to the left. (The area is \\(\\int|x(y)|\\,dy\\), a single integral, but evaluating it still means splitting at the crossings.)`,`A=${symSum(A.sym)}`)
   +step('Evaluate each integral.','',...A.lines,A.combo?`A=${A.combo}=${etex(e)}`:`A=${etex(e)}`);
  const gy=fp(Pp),zero=fconst(0),pic=regionStep(region({ys:pieces.map(pc0=>pc0.sign>0?{a:bq(pc0.a),b:bq(pc0.b),right:gy,left:zero}:{a:bq(pc0.a),b:bq(pc0.b),right:zero,left:gy}),draw:[{g:gy.f,tex:`x=${ftex}`,dom:[a-0.5,b+0.5]}]}),'The curve and the regions between it and the y-axis');
  return one('Integrate with respect to y.',[exactPart(`Find the total area of the regions between the curve and the y-axis from \\(y=${a}\\) to \\(y=${b}\\).`,ans(e),pic+work)],{engine:'area_y',family:'y_axis_cross',tier,id:`ya-${ftex}-${a}-${b}`,context:'A curve is given with x as a function of y.',formulas:[`x=${ftex}`]});

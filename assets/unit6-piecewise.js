@@ -28,7 +28,10 @@ function piecewiseProblem(family,tier,id,branches,wrong){
  const cases=branches.map((b,i)=>`${b.tex},&${b.lo}\\le x${i===branches.length-1?'\\le':'<'}${b.hi}`).join('\\\\');
  const total=branches.reduce((s,b)=>eadd(s,b.value),ex(0));
  const cuts=branches.slice(1).map(b=>`x=${b.lo}`);
- const split=step('Split the integral where the formula changes.',`The formula changes at ${cuts.map(c=>`\\(${c}\\)`).join(cuts.length>2?', ':' and ').replace(/, (?=[^,]*$)/,' and ')}, so integrate each branch only on its own interval.`,
+ const changes=branches.slice(1).map((b,i)=>`at \\(x=${b.lo}\\) the formula changes from \\(${branches[i].tex}\\) to \\(${b.tex}\\)`);
+ const where=cuts.map(c=>`\\(${c}\\)`).join(cuts.length>2?', ':' and ').replace(/, (?=[^,]*$)/,' and ');
+ // v12.9.D: where, what changes and why one integrand cannot be used across the breakpoints
+ const split=step(`Split the integral at ${where}.`,`${changes.join('; ').replace(/^./,c=>c.toUpperCase())}. Each formula describes \\(f\\) only on its own interval, so no single integrand can be used on the whole interval \\([${lo},${hi}]\\): split the integral at ${where} and integrate each branch only on its own interval.`,
   `\\int_{${lo}}^{${hi}}f(x)\\,dx=${branches.map(b=>`\\int_{${b.lo}}^{${b.hi}}${C.parTex(b.tex)}\\,dx`).join('+')}`);
  const evalStep=step('Evaluate each integral and add.','',...branches.map(b=>b.line),`\\int_{${lo}}^{${hi}}f(x)\\,dx=${branches.map(b=>{const t=etexN(b.value);return /^-/.test(t)?`\\left(${t}\\right)`:t;}).join('+')}=${etexN(total)}`);
  const part=exactPart(`Evaluate \\(\\displaystyle\\int_{${lo}}^{${hi}}f(x)\\,dx\\).`,ans(total),split+evalStep,{wrong:wrong?[{value:C.evalE(wrong),note:'Each formula applies only on its own interval: split the integral at every point where the formula changes.'}]:[]});

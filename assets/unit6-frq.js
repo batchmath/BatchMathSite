@@ -265,14 +265,14 @@ function areaLines(G,lo,hi){
   let what;
   if(p.type==='seg'){const fu=fAt(p,u),fw=fAt(p,w);what=`${fu===0||fw===0?'triangle':'trapezoid'} ${fu+fw>0?'above':'below'} the x-axis`;}
   else{const part=w-u===2*p.r?'semicircle':'quarter circle';what=p.cy===0?`${part} ${p.s>0?'above':'below'} the x-axis (area \\(\\frac{\\pi r^{2}}{${part==='semicircle'?2:4}}\\) with \\(r=${p.r}\\))`:`rectangle of height \\(${Math.abs(p.cy)}\\) ${p.s*p.cy>0?'plus':'minus'} a ${part==='semicircle'?'half':'quarter'} disk of radius \\(${p.r}\\)`;}
-  lines.push({tex:`\\int_{${u}}^{${w}}f(x)\\,dx=${qpTex(val)}`,what});}
+  lines.push({tex:`\\int_{${u}}^{${w}}f(x)\\,dx=${qpTex(val)}`,what,u,w});}
  return lines;
 }
 function valueWork(G,x,derivative){
  const g=gOf(G,x),lo=Math.min(x,G.c),hi=Math.max(x,G.c),lines=areaLines(G,lo,hi),I=qpAdd(cum(G,hi),qpNeg(cum(G,lo)));
  const ftc=derivative?`By the Fundamental Theorem of Calculus, \\(g(${x})=g(${G.c})+\\int_{${G.c}}^{${x}}f(x)\\,dx\\).`:`\\(g(${x})=\\int_{${G.c}}^{${x}}f(t)\\,dt\\).`;
  return step('Use the graph of f.',`${ftc} The integral is the signed area between the graph of \\(f\\) and the x-axis: regions above the axis count as positive, regions below as negative.${x<G.c?` Because \\(${x}<${G.c}\\), \\(\\int_{${G.c}}^{${x}}f=-\\int_{${x}}^{${G.c}}f\\).`:''}`)
-  +step('Add the signed areas.',lines.map(l=>`\\(${l.tex}\\) (${l.what})`).join('; ')+'.',`\\int_{${lo}}^{${hi}}f(x)\\,dx=${qpTex(I)}`,
+  +step('Add the signed areas.',`${lines.length>1?`Split \\([${lo},${hi}]\\) at ${list(lines.slice(1).map(l=>`\\(x=${l.u}\\)`))}, where the graph of \\(f\\) changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of \\(f\\). `:''}${lines.map(l=>`\\(${l.tex}\\) (${l.what})`).join('; ')}.`,`\\int_{${lo}}^{${hi}}f(x)\\,dx=${qpTex(I)}`,
    `g(${x})=${derivative?G.k:''}${x<G.c?'-':derivative?'+':''}\\left(${qpTex(I)}\\right)=${qpTex(g)}`);
 }
 const list=a=>a.length===1?`${a[0]}`:a.length===2?`${a[0]} and ${a[1]}`:`${a.slice(0,-1).join(', ')} and ${a[a.length-1]}`;

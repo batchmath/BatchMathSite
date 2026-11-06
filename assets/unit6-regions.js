@@ -201,30 +201,104 @@ function sliceText(R,v){
  return ps.map(p=>v==='x'?`from \\(x=${p.a.tex}\\) to \\(x=${p.b.tex}\\) the top is \\(y=${p.top.tex('x')}\\) and the bottom is \\(y=${p.bot.tex('x')}\\)`:`from \\(y=${p.a.tex}\\) to \\(y=${p.b.tex}\\) the right side is \\(x=${p.right.tex('y')}\\) and the left side is \\(x=${p.left.tex('y')}\\)`).join('; ');
 }
 function boundsStep(R,heading='Find the bounds.'){return step(heading,R.bounds||'');}
-function areaWork(R,v,terms){
+
+// ---------- v12.9.D: why a setup is split into several integrals ----------
+// The pieces of slices (R.xs or R.ys) meet at breakpoints. At each one, find where it is (the two boundaries that meet
+// there, as an equation), what changes (which boundary of the region, or the two curves changing places) and, for the
+// method at hand, which formula changes (the slice length, height, radius...). The step comes before the setup.
+const piecesOf=(R,v)=>(v==='x'?R.xs:R.ys)||[];
+const ROLES={x:[['top','upper'],['bot','lower']],y:[['right','right'],['left','left']]};
+const isAxis=(fn,v)=>fn.tex(v)==='0';
+function bname(fn,v){ // a boundary in words: "the x-axis, y = 0", "y = x - 8"
+ if(isAxis(fn,v))return v==='x'?'the x-axis, \\(y=0\\)':'the y-axis, \\(x=0\\)';
+ return v==='x'?`\\(y=${fn.tex('x')}\\)`:`\\(x=${fn.tex('y')}\\)`;
+}
+const approxB=b=>/^-?\d+\.\d+$/.test(b.tex); // a calculator value such as 1.234
+const atTex=(v,b)=>`${v}${approxB(b)?'\\approx ':'='}${b.tex}`;
+const sameFn=(f,g,v)=>f.tex(v)===g.tex(v);
+function breaks(R,v){
+ const ps=piecesOf(R,v),[[hi,hw],[lo,lw]]=ROLES[v];
+ return ps.slice(1).map((q,i)=>{const p=ps[i],ch=[[hi,hw],[lo,lw]].filter(([k])=>!sameFn(p[k],q[k],v));
+  return{b:p.b,at:atTex(v,p.b),p,q,ch,swap:ch.length===2&&sameFn(p[hi],q[lo],v)&&sameFn(p[lo],q[hi],v),hi,lo,hw,lw};});
+}
+// the equation that locates a breakpoint: the two boundaries are equal there (checked, not assumed). null when they do
+// not meet; '' when they meet but the equation would only repeat the breakpoint (x = y meeting x = 2 gives "y = 2")
+function meetEq(f,g,b,v){
+ const t=b.v,u=f.f(t),w=g.f(t);if(!(Number.isFinite(u)&&Number.isFinite(w))||Math.abs(u-w)>1e-6*Math.max(1,Math.abs(u)))return null;
+ const F=f.tex(v),G=g.tex(v),num=/^-?(?:\d+|\\frac\{\d+\}\{\d+\})$/;
+ if((F===v&&num.test(G))||(G===v&&num.test(F)))return '';
+ return `\\(${F}=${G}\\) when \\(${atTex(v,b)}\\)${approxB(b)?' (calculator)':''}`;
+}
+function breakText(B,v){
+ const {b,at,p,q,ch,swap,hi,lo,hw,lw}=B,t=`\\(${at}\\)`,[bw,aw]=v==='x'?['Before','after']:['Below','above'];
+ if(swap){const m=meetEq(p[hi],p[lo],b,v);
+  return `At ${t} the curves ${bname(p[hi],v)} and ${bname(p[lo],v)} cross${m?`: ${m}`:''}. ${bw} ${t}, ${bname(p[hi],v)} is the ${hw} boundary and ${bname(p[lo],v)} the ${lw} one; ${aw} it, they change places.`;}
+ if(!ch.length)return '';
+ const said=ch.map(([k,w])=>{const m=meetEq(q[k],p[k],b,v);
+  return `${m!==null?`At ${t}, ${bname(q[k],v)} meets ${bname(p[k],v)}${m?`: ${m}`:''}. `:''}${bw} ${t} the ${w} boundary of the region is ${bname(p[k],v)}; ${aw} it, the ${w} boundary is ${bname(q[k],v)}.`;});
+ const kept=[[hi,hw],[lo,lw]].filter(([k])=>!ch.some(c=>c[0]===k)).map(([k,w])=>`The ${w} boundary, ${bname(p[k],v)}, is the same on both sides.`);
+ return [...said,...kept].join(' ');
+}
+const andList=a=>a.length<2?a.join(''):`${a.slice(0,-1).join(', ')} and ${a[a.length-1]}`;
+// what changes, in a few words: "the lower boundary changes from the x-axis, y = 0, to y = x - 8 at x = 8"
+function changeSummary(R,v){
+ return andList(breaks(R,v).map(B=>B.swap?`the curves ${bname(B.p[B.hi],v)} and ${bname(B.p[B.lo],v)} change places at \\(${B.at}\\)`
+  :andList(B.ch.map(([k,w])=>`the ${w} boundary changes from ${bname(B.p[k],v)} to ${bname(B.q[k],v)} at \\(${B.at}\\)`))));
+}
+// quantities: [{label:'s(x)', what:'the slice length \\(s(x)\\)', texs:[one per piece]}]. Those whose formula
+// changes are shown piecewise; those that do not are stated once. Returns '' for a single piece.
+function splitStep(R,v,quantities){
+ const ps=piecesOf(R,v),Bs=breaks(R,v);if(Bs.length===0||quantities.some(qd=>qd.texs.length!==ps.length))return '';
+ const where=andList(Bs.map(B=>`\\(${B.at}\\)`)),geo=Bs.map(B=>breakText(B,v)).filter(Boolean);
+ const changing=quantities.filter(qd=>new Set(qd.texs).size>1),steady=quantities.filter(qd=>new Set(qd.texs).size===1);
+ const roles=[...new Set(Bs.flatMap(B=>B.swap?['swap']:B.ch.map(c=>c[1])))];
+ const cause=roles.length===1&&roles[0]==='swap'?'the curves change places':roles.length===1?`the ${roles[0]} boundary changes`:'the boundaries change';
+ if(!changing.length)return step(`Why there are ${Bs.length+1} integrals.`,`${geo.join(' ')} Here ${andList(quantities.map(qd=>`\\(${qd.label}=${qd.texs[0]}\\)`))} on every piece, so the integrals could be combined into one; they are kept separate only to follow the pieces of the region.`);
+ const same=steady.length?` ${andList(steady.map(qd=>`\\(${qd.label}=${qd.texs[0]}\\)`))} on the whole interval.`:'';
+ const why=`Because ${cause}, ${andList(changing.map(qd=>qd.what))} ${changing.length>1?'have':'has'} a different formula on each side of ${where}, so one integrand cannot be used on the whole interval: the integral must be split at ${where}, with one integral for each piece.${same}`;
+ const shown=changing.map(qd=>`${qd.label}=\\begin{cases}${qd.texs.map((t,i)=>`${t}, & ${ps[i].a.tex}\\le ${v}\\le ${ps[i].b.tex}`).join('\\\\')}\\end{cases}`);
+ return step(`Split the integral at ${where}.`,`${geo.join(' ')} ${why}`,...shown);
+}
+
+function areaWork(R,v,terms,{note=true}={}){
  const hv=v==='x'?'vertical slices of width \\(dx\\): each has height top minus bottom':'horizontal slices of height \\(dy\\): each has length right minus left';
- return step(`Set up the area with ${v==='x'?'vertical':'horizontal'} slices.`,`Use ${hv}. ${sliceText(R,v).replace(/^./,c=>c.toUpperCase())}${terms.length>1?'. The boundary changes, so the area needs one integral for each piece':''}.`,`A=${setupTex(terms)}`);
+ const head=`Set up the area with ${v==='x'?'vertical':'horizontal'} slices.`;
+ const split=terms.length>1?splitStep(R,v,[{label:v==='x'?'h(x)':'\\ell(y)',what:v==='x'?'the height of a slice, \\(h(x)\\),':'the length of a slice, \\(\\ell(y)\\),',texs:terms.map(t=>t.tex)}]):'';
+ if(!split)return step(head,`Use ${hv}. ${sliceText(R,v).replace(/^./,c=>c.toUpperCase())}${terms.length>1?'. The boundary changes, so the area needs one integral for each piece':''}.`,`A=${setupTex(terms)}`);
+ // with slices the other way the region may need only one integral: say so (the split here is not the only setup)
+ const ov=v==='x'?'y':'x',other=piecesOf(R,ov);
+ const alt=note&&other.length===1?` With ${ov==='y'?'horizontal':'vertical'} slices instead, the ${ov==='y'?'left and right':'upper and lower'} boundaries do not change, so the area could also be written as a single integral with respect to \\(${ov}\\).`:'';
+ return step(head,`Use ${hv}.`)+split+step('Write one integral for each piece.',`Add the areas of the pieces.${alt}`,`A=${setupTex(terms)}`);
 }
 function washerWork(R,axis,terms){
- const horiz=axis.type==='y',v=horiz?'x':'y';
- const words=horiz?`The axis \\(${axisTex(axis)}\\) is horizontal, so slice perpendicular to it: the slices are ${terms[0].r?'washers':'disks'} of thickness \\(dx\\).`:`The axis \\(${axisTex(axis)}\\) is vertical, so slice perpendicular to it: the slices are ${terms[0].r?'washers':'disks'} of thickness \\(dy\\), and every boundary is written as x in terms of y.`;
- const radii=terms.map(t=>`\\(R(${v})=${t.R.tex(v)}\\)${t.r?` and \\(r(${v})=${t.r.tex(v)}\\)`:''}${terms.length>1?` for \\(${t.a.tex}\\le ${v}\\le ${t.b.tex}\\)`:''}`).join('; ');
+ const horiz=axis.type==='y',v=horiz?'x':'y',kinds=[...new Set(terms.map(t=>t.r?'washers':'disks'))];
+ const kind=d=>kinds.length===1?`: the slices are ${kinds[0]} of thickness \\(${d}\\)`:` with thickness \\(${d}\\): the slices are disks where the region touches the axis and washers where it does not`;
+ const words=horiz?`The axis \\(${axisTex(axis)}\\) is horizontal, so slice perpendicular to it${kind('dx')}.`:`The axis \\(${axisTex(axis)}\\) is vertical, so slice perpendicular to it${kind('dy')}, and every boundary is written as x in terms of y.`;
+ const anyR=terms.some(t=>t.r),multi=terms.length>1;
+ const radii=terms.map(t=>`\\(R(${v})=${t.R.tex(v)}\\)${t.r?` and \\(r(${v})=${t.r.tex(v)}\\)`:''}${multi?` for \\(${t.a.tex}\\le ${v}\\le ${t.b.tex}\\)`:''}`).join('; ');
  const where=horiz?(terms[0].R&&R.xs&&R.xs[0].bot.f(R.xs[0].a.v+1e-6)>=axis.c-1e-9?'The region lies above the axis, so each radius is a boundary height minus':'The region lies below the axis, so each radius is')
   :(R.ys&&R.ys[0].left.f(R.ys[0].a.v+1e-6)>=axis.c-1e-9?'The region lies to the right of the axis, so each radius is a boundary x-value minus':'The region lies to the left of the axis, so each radius is');
  const tail=horiz?(where.endsWith('minus')?` \\(${axis.c}\\).`:` \\(${axis.c}\\) minus a boundary height.`):(where.endsWith('minus')?` \\(${axis.c}\\).`:` \\(${axis.c}\\) minus a boundary x-value.`);
- return step('Choose the slices.',words)+step('Measure the radii from the axis.',`${where}${tail} The outer radius R reaches the boundary farther from the axis${terms[0].r?'; the inner radius r reaches the nearer one':''}: ${radii}.`)+step('Set up the volume.',terms[0].r?'Each washer has area \\(\\pi\\left(R^{2}-r^{2}\\right)\\) (square each radius before subtracting).':'Each disk has area \\(\\pi R^{2}\\).',`V=${setupTex(terms)}`);
+ const split=multi?splitStep(R,v,[{label:`R(${v})`,what:`the outer radius \\(R(${v})\\)`,texs:terms.map(t=>t.R.tex(v))},...(anyR?[{label:`r(${v})`,what:`the inner radius \\(r(${v})\\)`,texs:terms.map(t=>t.r?t.r.tex(v):'0')}]:[])]):'';
+ const area=kinds.length>1?'Each slice has area \\(\\pi\\left(R^{2}-r^{2}\\right)\\) (square each radius before subtracting); a disk is the case \\(r=0\\).':anyR?'Each washer has area \\(\\pi\\left(R^{2}-r^{2}\\right)\\) (square each radius before subtracting).':'Each disk has area \\(\\pi R^{2}\\).';
+ return step('Choose the slices.',words)+step('Measure the radii from the axis.',`${where}${tail} The outer radius R reaches the boundary farther from the axis${anyR?'; the inner radius r reaches the nearer one':''}${split?'.':`: ${radii}.`}`)+split+step('Set up the volume.',`${area}${split?' Write one integral for each piece.':''}`,`V=${setupTex(terms)}`);
 }
 function shellWork(R,axis,terms){
  const vert=axis.type==='x',v=vert?'x':'y';
  const words=vert?`The axis \\(${axisTex(axis)}\\) is vertical, so the shells are vertical: slice parallel to the axis with thickness \\(dx\\).`:`The axis \\(${axisTex(axis)}\\) is horizontal, so the shells are horizontal: slice parallel to the axis with thickness \\(dy\\), and every boundary is written as x in terms of y.`;
- const t=terms[0];
- return step('Choose the shells.',words)+step('Find the radius and height.',`The radius is the distance from the axis to the shell: \\(r(${v})=${t.rad.tex(v)}\\). The height is ${vert?'top minus bottom':'right minus left'}: ${terms.map(q=>`\\(h(${v})=${q.htex}\\)${terms.length>1?` for \\(${q.a.tex}\\le ${v}\\le ${q.b.tex}\\)`:''}`).join('; ')}.`)+step('Set up the volume.','Each shell has volume \\(2\\pi\\,r\\,h\\) times its thickness.',`V=${setupTex(terms)}`);
+ const t=terms[0],split=terms.length>1?splitStep(R,v,[{label:`h(${v})`,what:`the shell height \\(h(${v})\\)`,texs:terms.map(q=>q.htex)},{label:`r(${v})`,what:`the radius \\(r(${v})\\)`,texs:terms.map(q=>q.rad.tex(v))}]):'';
+ return step('Choose the shells.',words)+step('Find the radius and height.',`The radius is the distance from the axis to the shell: \\(r(${v})=${t.rad.tex(v)}\\). The height is ${vert?'top minus bottom':'right minus left'}${split?', \\(h('+v+')\\).':`: ${terms.map(q=>`\\(h(${v})=${q.htex}\\)${terms.length>1?` for \\(${q.a.tex}\\le ${v}\\le ${q.b.tex}\\)`:''}`).join('; ')}.`}`)+split+step('Set up the volume.',`Each shell has volume \\(2\\pi\\,r\\,h\\) times its thickness.${split?' Write one integral for each piece.':''}`,`V=${setupTex(terms)}`);
 }
 function sectionWork(R,v,shape,terms){
- const t=terms[0];
- return step('Choose the slices.',`Cross sections are perpendicular to the ${v}-axis, so integrate with respect to \\(${v}\\). ${v==='x'?'Each slice is vertical; its length across the region is top minus bottom':'Each slice is horizontal; its length across the region is right minus left'}: ${terms.map(q=>`\\(s(${v})=${q.stex}\\)${terms.length>1?` for \\(${q.a.tex}\\le ${v}\\le ${q.b.tex}\\)`:''}`).join('; ')}.`)
+ const t=terms[0],slice=v==='x'?'Each slice is vertical; its length across the region is top minus bottom':'Each slice is horizontal; its length across the region is right minus left';
+ const split=terms.length>1?splitStep(R,v,[{label:`s(${v})`,what:`the slice length \\(s(${v})\\)`,texs:terms.map(q=>q.stex)}]):'';
+ if(!split)return step('Choose the slices.',`Cross sections are perpendicular to the ${v}-axis, so integrate with respect to \\(${v}\\). ${slice}: ${terms.map(q=>`\\(s(${v})=${q.stex}\\)${terms.length>1?` for \\(${q.a.tex}\\le ${v}\\le ${q.b.tex}\\)`:''}`).join('; ')}.`)
   +step('Find the area of one cross section.',`${shape.rule} So \\(A(${v})=${shape.area(t.stex)}\\).`)
   +step('Set up the volume.','Add the cross sections: integrate their area.',`V=${setupTex(terms)}`);
+ const ps=piecesOf(R,v);
+ return step('Choose the slices.',`Cross sections are perpendicular to the ${v}-axis, so integrate with respect to \\(${v}\\). ${slice}, \\(s(${v})\\).`)+split
+  +step('Find the area of one cross section.',`${shape.rule} With the slice length on each piece:`,`A(${v})=\\begin{cases}${terms.map((q,i)=>`${shape.area(q.stex)}, & ${ps[i].a.tex}\\le ${v}\\le ${ps[i].b.tex}`).join('\\\\')}\\end{cases}`)
+  +step('Set up the volume.','Integrate the cross-sectional area over each piece and add the results.',`V=${setupTex(terms)}`);
 }
 function evalWork(terms,heading='Evaluate.'){
  const parts=terms.map(evalSteps);if(!parts.every(Boolean))return '';
@@ -234,5 +308,5 @@ function evalWork(terms,heading='Evaluate.'){
 }
 function calcWork(terms,label='V'){return step('Evaluate with the calculator.','Use the numerical integration feature with the intersection values at full precision.',`${label}=${setupTex(terms)}\\approx ${fixed(numValue(terms),3)}`);}
 
-window.BatchMathUnit6Regions=Object.freeze({EXACT,CALC,build,mono,line,fx,work:Object.freeze({axisTex,sliceText,boundsStep,areaWork,washerWork,shellWork,sectionWork,evalWork,calcWork})});
+window.BatchMathUnit6Regions=Object.freeze({EXACT,CALC,build,mono,line,fx,work:Object.freeze({axisTex,sliceText,boundsStep,areaWork,washerWork,shellWork,sectionWork,evalWork,calcWork,splitStep,breaks,changeSummary,bname})});
 })();

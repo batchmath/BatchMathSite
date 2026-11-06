@@ -211,7 +211,9 @@ function shellTerms(R,axis){
  if(lo0<axis.c-1e-9&&hi0>axis.c+1e-9)return null;
  const s=lo0>=axis.c-1e-9?1:-1,rad=dist(fp(pv),axis.c,s);
  return pieces.map(p=>{const h=fsub(p[hi],p[lo]),htex=areaTex(p[hi],p[lo],v),rt=rad.tex(v);
-  return Object.assign(term(F2PI,p.a,p.b,v,fmul(rad,h),`${parTex(rt)}${parTex(htex)}`),{rad,h,htex});});
+  // a constant height goes first (2\pi\int y\,dy, 2\pi\int 3(1+x)\,dx), never after the radius ("y1")
+  const num=/^\d+(?:\.\d+)?$/.test(htex),tex=num?`${htex==='1'?'':htex}${parTex(rt)}`:`${parTex(rt)}${parTex(htex)}`;
+  return Object.assign(term(F2PI,p.a,p.b,v,fmul(rad,h),tex),{rad,h,htex});});
 }
 // cross sections: shape factor applied to the side length s (top-bottom or right-left)
 const SHAPES={
