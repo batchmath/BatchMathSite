@@ -24,7 +24,7 @@ try{
    assert.match(incomplete,/root\(/,'Incomplete root must remain an incomplete expression');
    await press('→');await press('x');await press('→');
    const source=await page.locator('#answer').inputValue();
-   assert.equal(source,`(x)^(1/(${index}))`);
+   assert.equal(source,`((x)^(1/(${index})))`);
    const visible=await page.locator('.bm-calc-editor:visible').getAttribute('aria-valuetext');
    assert.equal(visible,`root(${index},x)`,'Visible editor retains editable root slots');
    const equivalent=await page.evaluate(({source,index})=>__LEGACY_EQUIVALENT(source,`x^(1/${index})`,['x']),{source,index});

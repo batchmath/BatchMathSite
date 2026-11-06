@@ -51,7 +51,9 @@ test('Chain Rule keypad matches the actual generator and supported log/root nota
   for(const fn of functions)assert.ok(fn==='sqrt'?profile.radical:profile.functions.some(([,name])=>name===fn),fn);
   assert.ok(profile.constants.includes('e')&&profile.variables.includes('x'));
   assert.ok(profile.logarithm&&profile.fraction&&profile.exponent&&profile.parentheses&&profile.arithmetic);
-  assert.equal(profile.nthRoot,undefined);assert.ok(!profile.constants.includes('pi'));
+  // Editable indexed roots now serialize to the existing fractional-power
+  // grammar in both editors; complete generated answers have browser coverage.
+  assert.equal(profile.nthRoot,true);assert.ok(!profile.constants.includes('pi'));
   assert.equal(profile.functions.some(([,name])=>/^(?:asin|acos|atan)/.test(name)),false);
   fs.mkdirSync(root+'tools/mathlive-derivatives-pilot/artifacts',{recursive:true});
   fs.writeFileSync(root+'tools/mathlive-derivatives-pilot/artifacts/mathematical-results.json',JSON.stringify({samples:counts,families:coverage,gradingPairs,identifiers:[...symbols].sort(),functions:[...functions].sort()},null,2)+'\n');

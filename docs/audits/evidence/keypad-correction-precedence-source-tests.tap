@@ -1,0 +1,42 @@
+✔ Basic Integrals: polynomial_power_rule — 200 generated questions, actual checker parity (5469.976146ms)
+✔ Basic Integrals: radicals_negative_powers — 200 generated questions, actual checker parity (5193.571172ms)
+✔ Basic Integrals: expand_first — 200 generated questions, actual checker parity (3945.853147ms)
+✔ Basic Integrals: divide_each_term — 200 generated questions, actual checker parity (5151.330363ms)
+✔ Basic Integrals: divide_each_term_ln — 200 generated questions, actual checker parity (5019.16051ms)
+✔ Basic Integrals: basic_trig_exponential — 200 generated questions, actual checker parity (3631.353014ms)
+✔ Basic Integrals: trig_identity_rewrite — 200 generated questions, actual checker parity (1580.676255ms)
+✔ Basic Integrals: definite_power_root — 200 generated questions, actual checker parity (319.573919ms)
+✔ Basic Integrals: definite_trig_exponential — 200 generated questions, actual checker parity (1284.331653ms)
+✔ Basic Integrals: power_reduction — 200 generated questions, actual checker parity (1006.23809ms)
+✔ Basic Integrals: exponential_base_a — 200 generated questions, actual checker parity (907.305266ms)
+✔ advanced translation preserves constants, precision, roots and unsupported content (0.622138ms)
+✔ production generators, graders and UI renderer match the verified Batch 7 checkpoint (185.966986ms)
+✔ the shared keypad implementation and unrelated profiles are unchanged from the successful pilot (93.86867ms)
+✔ Power Rule profile covers the actual generated answer grammar, including all irrational constants (3180.199849ms)
+✔ only opt-in profiles change the shared keypad; existing engines retain their layouts (41.537933ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html (1902.757878ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html (5954.482056ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html (590.581389ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html (5552.809687ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html (7462.670303ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html (330.659192ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html (82.163227ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html (422.952261ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html (749.974608ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html (13234.758402ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html (4804.330092ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html (5119.907763ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html (472.860531ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html (4313.376462ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html (2191.740105ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html (2022.094983ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html (553.960643ms)
+✔ keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html (402.900624ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 60678.929774

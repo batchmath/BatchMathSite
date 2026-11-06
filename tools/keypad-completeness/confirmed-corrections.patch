@@ -13,7 +13,7 @@
 +      const root=derivativeRootModes.has(state.mode)?rootAt(state.raw,i,end):null;
 +      if(root){
 +        const index=serializeRange(root.indexStart,root.indexEnd),radicand=serializeRange(root.radStart,root.radEnd);
-+        out+=index.trim()&&radicand.trim()?`(${radicand})^(1/(${index}))`:state.raw.slice(i,root.end);
++        out+=index.trim()&&radicand.trim()?`((${radicand})^(1/(${index})))`:state.raw.slice(i,root.end);
 +        i=root.end;continue;
 +      }
        const f=fractionAt(state.raw,i,end);
