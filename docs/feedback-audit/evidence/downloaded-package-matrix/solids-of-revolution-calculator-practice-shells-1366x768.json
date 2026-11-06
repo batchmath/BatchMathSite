@@ -1,0 +1,678 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "shells",
+ "setupKeypadOnly": true,
+ "checked": 6,
+ "parts": 10,
+ "integrals": 3,
+ "mathliveFields": 10,
+ "blankAtStart": 10,
+ "locked": 10,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "solid_calc/intermediate: input keyboard/Enter: 12.721",
+  "solid_calc/challenging: integral keypad-only/Enter: 2 integral(s): (2pi)*int(0,1.883,(6-x)*2ln(x+1),x)+(2pi)*int(1.883,4,(6-x)(4-x),x) | input keyboard/Check: 118.589",
+  "solid_calc/intermediate: input keyboard/Check: 6.283",
+  "solid_calc/challenging: integral keypad-only/Enter: 2 integral(s): (2pi)*int(0,1,(5-y),y)+(2pi)*int(1,e,(5-y)(1-ln(y)),y) | input keyboard/Enter: 43.946",
+  "solid_calc/intermediate: input keyboard/Enter: 66.736",
+  "calc_two_axes/challenging: input keypad/Check: 49.249 | integral keypad-only/Enter: 1 integral(s): (2pi)*int(0.050,1.910,(3-x)(2+ln(x)-(x^2-1)),x) | input keypad/Enter: 37.294"
+ ],
+ "questionIds": [
+  "u6-solids-sc-f(x)=1+\\ln x|g(x)=x^{2}-1-y2-shell-1x2y8j2",
+  "u6-solids-sc-y=0|y=2\\ln(x+1)|y=-x+4-x6-shell-18zqi1w",
+  "u6-solids-sc-y=e^{x}|y=0|x=0|x=1-x0-shell-1wy03qi",
+  "u6-solids-sc-y=e^{x}|y=0|x=0|x=1-y5-shell-1am63tc",
+  "u6-solids-sc-f(x)=1+\\ln x|g(x)=x^{2}-2-y-4-shell-g9lh6i",
+  "u6-solids-sc2-f(x)=2+\\ln x|g(x)=x^{2}-1-y-2-shell-x3-shell-1dofp13"
+ ],
+ "fieldEvidence": [
+  {
+   "questionId": "u6-solids-sc-f(x)=1+\\ln x|g(x)=x^{2}-1-y2-shell-1x2y8j2",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "12.721",
+   "blankAtStart": true,
+   "enteredLatex": "12.721",
+   "serializedSource": "12.721",
+   "inputMethod": "keyboard",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc-y=0|y=2\\ln(x+1)|y=-x+4-x6-shell-18zqi1w",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "2\\pi\\int_{0}^{1.883}\\left(6 - x\\right)2\\ln\\left(x+1\\right)\\,dx + 2\\pi\\int_{1.883}^{4}\\left(6 - x\\right)\\left(4-x\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "2\\pi\\cdot\\int_0^{1.883}(6-x)2\\ln(x+1)\\,dx+2\\pi\\cdot\\int_{1.883}^4(6-x)(4-x)\\,dx",
+   "serializedSource": "(2pi)*int(0,1.883,(6-x)*2ln(x+1),x)+(2pi)*int(1.883,4,(6-x)(4-x),x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup-calc",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "8",
+     "aria": null
+    },
+    {
+     "label": "8",
+     "aria": null
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "6",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "ln",
+     "aria": "Insert ln"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "8",
+     "aria": null
+    },
+    {
+     "label": "8",
+     "aria": null
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "6",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc-y=0|y=2\\ln(x+1)|y=-x+4-x6-shell-18zqi1w",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "118.589",
+   "blankAtStart": true,
+   "enteredLatex": "118.589",
+   "serializedSource": "118.589",
+   "inputMethod": "keyboard",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc-y=e^{x}|y=0|x=0|x=1-x0-shell-1wy03qi",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "6.283",
+   "blankAtStart": true,
+   "enteredLatex": "6.283",
+   "serializedSource": "6.283",
+   "inputMethod": "keyboard",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc-y=e^{x}|y=0|x=0|x=1-y5-shell-1am63tc",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "2\\pi\\int_{0}^{1}\\left(5 - y\\right)\\,dy + 2\\pi\\int_{1}^{e}\\left(5 - y\\right)\\left(1-\\ln y\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "2\\pi\\cdot\\int_0^1(5-y)\\,dy+2\\pi\\cdot\\int_1^{e}(5-y)(1-\\ln(y))\\,dy",
+   "serializedSource": "(2pi)*int(0,1,(5-y),y)+(2pi)*int(1,e,(5-y)(1-ln(y)),y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup-calc",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "e",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "ln",
+     "aria": "Insert ln"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc-y=e^{x}|y=0|x=0|x=1-y5-shell-1am63tc",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "43.946",
+   "blankAtStart": true,
+   "enteredLatex": "43.946",
+   "serializedSource": "43.946",
+   "inputMethod": "keyboard",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc-f(x)=1+\\ln x|g(x)=x^{2}-2-y-4-shell-g9lh6i",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "66.736",
+   "blankAtStart": true,
+   "enteredLatex": "66.736",
+   "serializedSource": "66.736",
+   "inputMethod": "keyboard",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc2-f(x)=2+\\ln x|g(x)=x^{2}-1-y-2-shell-x3-shell-1dofp13",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "49.249",
+   "blankAtStart": true,
+   "enteredLatex": "49.249",
+   "serializedSource": "49.249",
+   "inputMethod": "keypad",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc2-f(x)=2+\\ln x|g(x)=x^{2}-1-y-2-shell-x3-shell-1dofp13",
+   "part": 1,
+   "control": "u6-integral",
+   "expectedTex": "2\\pi\\int_{0.050}^{1.910}\\left(3 - x\\right)\\left(2+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "2\\pi\\cdot\\int_{0.050}^{1.910}(3-x)(2+\\ln(x)-(x^2-1))\\,dx",
+   "serializedSource": "(2pi)*int(0.050,1.910,(3-x)(2+ln(x)-(x^2-1)),x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup-calc",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "9",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "ln",
+     "aria": "Insert ln"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc2-f(x)=2+\\ln x|g(x)=x^{2}-1-y-2-shell-x3-shell-1dofp13",
+   "part": 2,
+   "control": "input",
+   "expectedTex": "37.294",
+   "blankAtStart": true,
+   "enteredLatex": "37.294",
+   "serializedSource": "37.294",
+   "inputMethod": "keypad",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  }
+ ]
+}

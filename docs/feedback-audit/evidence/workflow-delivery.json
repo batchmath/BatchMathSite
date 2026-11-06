@@ -1,0 +1,124 @@
+{
+  "workflowRun": 42309433087,
+  "url": "https://github.com/batchmath/BatchMathSite/actions/runs/42309433087",
+  "event": "push",
+  "headBranch": "fix/v12.9f-unit6-feedback",
+  "headSha": "4a2a4a0a4904d0e64995f56987342f7672c6d833",
+  "status": "completed",
+  "conclusion": "success",
+  "createdAt": "2026-11-06T23:05:12Z",
+  "updatedAt": "2026-11-06T23:06:18Z",
+  "jobs": [
+    {
+      "id": 128206911594,
+      "name": "package",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 42309433087,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Verify the tested tree and both preserved histories",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Build and programmatically verify the exact complete website package",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Snapshot protected sources, tags, prereleases and latest status",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Publish only the authorized test prerelease",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Download the published ZIP and verify its bytes and complete site tree",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Recheck every protected source, tag, prerelease and latest status",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    }
+  ],
+  "release": {
+    "id": 437149712,
+    "tag": "v12.9.F",
+    "target": "0bf61ebd86ae0da06d9f9e4f580ab9b3d386a81a",
+    "prerelease": true,
+    "draft": false,
+    "url": "https://github.com/batchmath/BatchMathSite/releases/tag/v12.9.F",
+    "createdAt": "2026-11-06T23:04:36Z",
+    "publishedAt": "2026-11-06T23:05:58Z",
+    "assets": [
+      {
+        "id": 718875633,
+        "name": "batchmath-site-v12.9.F.sha256",
+        "state": "uploaded",
+        "bytes": 93,
+        "digest": "sha256:d508680bcc079d6a84e49f6793bdd08ae2134e6545047529434569c105038254",
+        "url": "https://github.com/batchmath/BatchMathSite/releases/download/v12.9.F/batchmath-site-v12.9.F.sha256"
+      },
+      {
+        "id": 718875628,
+        "name": "batchmath-site-v12.9.F.zip",
+        "state": "uploaded",
+        "bytes": 314255648,
+        "digest": "sha256:ded11f29464de73405a4dfaf2f046f2570f2e18b140a906582d85edf31b93fac",
+        "url": "https://github.com/batchmath/BatchMathSite/releases/download/v12.9.F/batchmath-site-v12.9.F.zip"
+      },
+      {
+        "id": 718875631,
+        "name": "delivery-manifest.json",
+        "state": "uploaded",
+        "bytes": 602,
+        "digest": "sha256:e0ddc47d380697783be8b45cda336b05eddba5bf98df71c29cb1f8ead4d902c3",
+        "url": "https://github.com/batchmath/BatchMathSite/releases/download/v12.9.F/delivery-manifest.json"
+      }
+    ]
+  },
+  "confirmedJobOutput": [
+    "2026-11-06T23:06:11.4827765Z Verified download: https://github.com/batchmath/BatchMathSite/releases/download/v12.9.F/batchmath-site-v12.9.F.zip",
+    "2026-11-06T23:06:15.4798796Z Protected sources, earlier tags/prereleases and latest status are unchanged."
+  ],
+  "preservation": "All 17 earlier tags and release records, and 30 other branches, compare equal in the independent before/after API snapshots. The workflow also independently compares protected refs/releases/latest before and after publication."
+}

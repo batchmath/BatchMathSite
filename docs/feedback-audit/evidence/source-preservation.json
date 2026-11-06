@@ -3,7 +3,7 @@
   "ok": true,
   "counts": {
     "approved-feedback-only": 3,
-    "qa-documentation": 92,
+    "qa-documentation": 160,
     "retained": 2031,
     "test-build-instructions": 2,
     "version-only": 16
@@ -130,6 +130,12 @@
       "category": "retained",
       "baselineBlob": "20cc3f616db445ed86245cd713948ed0c10d6a0b",
       "currentBlob": "20cc3f616db445ed86245cd713948ed0c10d6a0b"
+    },
+    {
+      "path": ".github/workflows/package-v12-9-f-feedback-test.yml",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "8a1ec2220cf998287d3989bb41f996beb5b8a119"
     },
     {
       "path": ".github/workflows/unit4-v128j-qa.yml",
@@ -4842,6 +4848,12 @@
       "currentBlob": "b7314e124d676986895231073c0fc51d8191d93e"
     },
     {
+      "path": "docs/feedback-audit/evidence/batchmath-site-v12.9.F.sha256",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "e4b534c14f8400546d18eb1292840eb85bb885ba"
+    },
+    {
       "path": "docs/feedback-audit/evidence/browser-after-readiness-driver-initial.json",
       "category": "qa-documentation",
       "baselineBlob": null,
@@ -5022,10 +5034,388 @@
       "currentBlob": "42a8b43a6f8213eabe330b0a0420165571ab2b8e"
     },
     {
+      "path": "docs/feedback-audit/evidence/delivery-manifest.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "904307a775982c41e25f45c6097256c4d9efc283"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/delivery-receipt.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "e174c916d402eb25a3a7144769806adc560ff3b8"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix-runs.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "cfd6d209c371ad533f3b4df0e3a06e2dccb12c57"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-calculator-practice-between-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "88e38a2f7d60dabadd39fa6fddab96ba9ea0af4e"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-calculator-practice-between-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "ff32bc778274ae3634191e94662a9d3b280c2336"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-calculator-practice-mixed-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "5174ff515e468bef48f94005cbbedb9d03ac4e64"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "bbfc0d04a37119ec224130b8a40deb20c7f1901f"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-calculator-practice-under_curve-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "6c772543a5aad3ceda40b5682befcfbcb2976863"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-calculator-practice-under_curve-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "ff64abbc51c3b4d635965275966c95c22d47c171"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-between-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "57952e126e2490218e8ca6c94b7256e9f00d2835"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-between-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "ccb2b3b931bcdbf44df34270aadf1937581baa3b"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-choose-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "51e5df94a3aaf9f98f9635706fe0b40c6106279a"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-choose-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "141ceb1e91b61ce497e9bdb81bc151df53b15887"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-mixed-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "6e97fca1183c00a1d3fcb289c862706bc9047a11"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "95e1c7fdf1fa5fc1050753ea5323636adcacbc98"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-under_curve-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "c41a04bb945a7296e41c4273d5ae1ba2268f0b32"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-under_curve-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "6efbc3c5be8826aa0820530f91f7b194d9ba3b5f"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-calculator-practice-frq_region-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "51014f0bf13a609f4dea3f7941dd7afa08ab3b64"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-calculator-practice-frq_region-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "b0919a22040beb0999791cc79884889614509777"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-calculator-practice-mixed-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "774e447b89b3d8b48d737a3b9e36d7d7f8cf0f89"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "640c463fc7502b7756f33bf8201de11269528aab"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-calculator-practice-short-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "a5b474ea7761bf44faed4393e8252c63c2fc93b1"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-calculator-practice-short-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "a8ecd3cb9d907731c2a4f78486e375bd999e91ae"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-frq_graph-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "206fed139dd1c41b44617374c10d70c9304527f7"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-frq_graph-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "71a247d91d2b0f802ddafab1c18842f08c91dcb0"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-frq_region-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "baa926bd1b30c2ed4e533fd225e4878c060f53b5"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-frq_region-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "1e97d31a7772203a9c33b3d620c1f2317e1981e3"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-mixed-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "6bef5b9b3b3ebf989f193669b73245a1160dd7f1"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "9488ebc7ee5ed1187f26366c315eb9388fe7dff3"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-short-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "6db47fbf0749f4bd8101842de8af36407f822aac"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-short-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "49a256fdc4ffa8339e5cad447495246d387be9eb"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/finding-area-in-terms-of-y-practice---1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "e8da09bf75886e6ad58298b7ad071c7034c1f228"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/finding-area-in-terms-of-y-practice---390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "f262af084e63c3e14ba1d03707fdc393a2a94523"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/integrals-on-piecewise-defined-functions-practice---1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "6918ac505d5c477b728e5e45c03cb63a9c59776e"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/integrals-on-piecewise-defined-functions-practice---390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "33ea05de9ecb83ae40f7b8c103282d189fd67c6f"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/solids-of-revolution-calculator-practice-disks_washers-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "31a44d562394d0e5eb1ef4286e463dea0b6f7676"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/solids-of-revolution-calculator-practice-disks_washers-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "1c7aed013eb8416443032d27c15df73859855a0d"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/solids-of-revolution-calculator-practice-mixed-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "158d9f8c254c680fcb5347f88ab6152a9c52037f"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/solids-of-revolution-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "56a39104371f5cec3985fbc272eb94579a630410"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/solids-of-revolution-calculator-practice-shells-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "9ac55f0d867448ba145bb3046abc6c987f13d294"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/solids-of-revolution-calculator-practice-shells-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "5c1105cb26ecf8aeee2db7be0553c0f0164eee2e"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/solids-of-revolution-non-calculator-practice-disks_washers-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "89a6d895eab66e76c60a0192496cdfe4acd7c0ec"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/solids-of-revolution-non-calculator-practice-disks_washers-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "6a8b38d92f52f697ec69cbfb0f8158c9247e67ad"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/solids-of-revolution-non-calculator-practice-mixed-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "7197d8a989996f953526aadb8bcb92dff8299bb9"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/solids-of-revolution-non-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "8f02b7487e1903002f1e5f27dd8c63f243e92fbd"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/solids-of-revolution-non-calculator-practice-shells-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "5c6c7bd8dfa3d56fda83e17e818b7ad065644f66"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/solids-of-revolution-non-calculator-practice-shells-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "6162cd17d2db654e47813f432e56d9a15254d36f"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/volume-by-cross-sections-calculator-practice-mixed-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "108157a2a528fe69d89ccd58409e8b6da436b861"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/volume-by-cross-sections-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "a2f99b7c0e739e6d65c33e84c9880d9e9d7517e4"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/volume-by-cross-sections-calculator-practice-perp_x-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "24c80e69f5d4bab1187afeb5fbd8ae7395d0610a"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/volume-by-cross-sections-calculator-practice-perp_x-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "27e4fea8b39db794a6435840c308629db4aa53d3"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/volume-by-cross-sections-calculator-practice-perp_y-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "408553f340bde62ef782e8fa9d4f3e3f2383e952"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/volume-by-cross-sections-calculator-practice-perp_y-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "bb2b66477e8af6036e251ee58ab5e78c4f24bd77"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/volume-by-cross-sections-non-calculator-practice-mixed-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "eeb9ad79669734f2d1a839e571a9403ca760ddef"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/volume-by-cross-sections-non-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "fb587a2360f0a101d6b772ebfadaa38439938e6a"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/volume-by-cross-sections-non-calculator-practice-perp_x-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "f5d0640da7b7648c2031ca58470e1d195d7a28eb"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/volume-by-cross-sections-non-calculator-practice-perp_x-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "ca82127044ea070a3ec514ba51d916969b5a9afa"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/volume-by-cross-sections-non-calculator-practice-perp_y-1366x768.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "23b1e4f7b25277c40082b0fdefce61675cfd6eff"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-matrix/volume-by-cross-sections-non-calculator-practice-perp_y-390x844xmobile.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "aa62081e6e0d4de0fe2edce0d251bb32afb5f80a"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-package-qa.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "6118dff3b79a3e0fad00a2b50d92b3669a8d16d1"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-static.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "bb8a6419d296317d42aa2c864b7e898c2540458d"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-unit6-fields.csv",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "69003f396e899ad8e2f6c6d0421cf64698e1bb4d"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/downloaded-zip-smoke/zip-smoke.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "e16338f93360e9da8166347b107859f87d31aefc"
+    },
+    {
       "path": "docs/feedback-audit/evidence/final-qa.json",
       "category": "qa-documentation",
       "baselineBlob": null,
-      "currentBlob": "2663ec62b3a440b999d6dc7268ff674e20b5fac7"
+      "currentBlob": "cc478256fb4c46f66597cf1a5256aca862d364b4"
     },
     {
       "path": "docs/feedback-audit/evidence/known-leaks-after-expanded.tap",
@@ -5106,6 +5496,12 @@
       "currentBlob": "fa493aa36adc1507e96d82dc7b85d12a3c68cc07"
     },
     {
+      "path": "docs/feedback-audit/evidence/protected-after-delivery.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "d5cd5503f92c67698682c89951a61b63f6e93d53"
+    },
+    {
       "path": "docs/feedback-audit/evidence/protected-before-delivery.json",
       "category": "qa-documentation",
       "baselineBlob": null,
@@ -5116,6 +5512,12 @@
       "category": "qa-documentation",
       "baselineBlob": null,
       "currentBlob": "6e83a5e0bab6fc4f60cf6f41191ce2236697d630"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/pwa-browser-downloaded.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "be9dd73d2e269bdb82a53ae192c4a3f028d5156a"
     },
     {
       "path": "docs/feedback-audit/evidence/pwa-browser.json",
@@ -5236,6 +5638,12 @@
       "category": "qa-documentation",
       "baselineBlob": null,
       "currentBlob": "1e514d6711b8df2594b03700468c656df024cdc5"
+    },
+    {
+      "path": "docs/feedback-audit/evidence/workflow-delivery.json",
+      "category": "qa-documentation",
+      "baselineBlob": null,
+      "currentBlob": "80138219aa3d7a93551424454543ecb30a39e63f"
     },
     {
       "path": "docs/final-integration/evidence/applications-node.json",
@@ -8121,7 +8529,7 @@
       "path": "docs/v12.9.F-feedback-audit.md",
       "category": "qa-documentation",
       "baselineBlob": null,
-      "currentBlob": "f87bde7595608b9b7dd1e4c66a3b34094f7017c6"
+      "currentBlob": "3c7c9227a97d93e6e9388a631153eecbe7cbc4a3"
     },
     {
       "path": "experiments/mathlive-advanced-notation/index.html",

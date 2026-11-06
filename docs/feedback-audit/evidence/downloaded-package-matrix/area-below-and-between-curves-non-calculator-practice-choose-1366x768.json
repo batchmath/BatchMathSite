@@ -1,0 +1,1125 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "choose",
+ "setupKeypadOnly": true,
+ "checked": 6,
+ "parts": 16,
+ "integrals": 10,
+ "mathliveFields": 16,
+ "blankAtStart": 16,
+ "locked": 16,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "choose_dx_dy/intermediate: integral keypad-only/Enter: 1 integral(s): int(-2,4,2y+8-y^2,y) | input keypad/Enter: 36",
+  "choose_dx_dy/challenging: integral keypad-only/Enter: 1 integral(s): int(0,4,y+12-y^2,y) | integral keypad-only/Check: 2 integral(s): int(0,12,sqrt(x),x)+int(12,16,sqrt(x)-(x-12),x) | input keypad/Enter: (104)/(3)",
+  "choose_dx_dy/challenging: integral keypad-only/Check: 1 integral(s): int(0,2,y+2-y^2,y) | integral keypad-only/Enter: 2 integral(s): int(0,2,sqrt(x),x)+int(2,4,sqrt(x)-(x-2),x) | input keyboard/Enter: (10)/(3)",
+  "choose_dx_dy/challenging: integral keypad-only/Enter: 1 integral(s): int(0,3,y+6-y^2,y) | integral keypad-only/Enter: 2 integral(s): int(0,6,sqrt(x),x)+int(6,9,sqrt(x)-(x-6),x) | input keypad/Check: (27)/(2)",
+  "choose_dx_dy/intermediate: integral keypad-only/Enter: 1 integral(s): int(0,3,3x-x,x) | input keypad/Check: 9",
+  "choose_dx_dy/challenging: integral keypad-only/Check: 1 integral(s): int(-1,3,2y+3-y^2,y) | integral keypad-only/Enter: 2 integral(s): int(0,1,sqrt(x)-(-sqrt(x)),x)+int(1,9,sqrt(x)-((x)/(2)-(3)/(2)),x) | input keypad/Enter: (32)/(3)"
+ ],
+ "questionIds": [
+  "u6-area-choose-sidewaysLine-x=y^{2}|x=2y + 8-2-19suwg4",
+  "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-12|y=0-3-xxx84d",
+  "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+  "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-6|y=0-3-d3qrvi",
+  "u6-area-choose-wedge-y=3x|y=x|x=3-2-1nm6skp",
+  "u6-area-choose-sidewaysLine-x=y^{2}|x=2y + 3-3-qmf1sm"
+ ],
+ "fieldEvidence": [
+  {
+   "questionId": "u6-area-choose-sidewaysLine-x=y^{2}|x=2y + 8-2-19suwg4",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{-2}^{4}\\left(2y + 8-y^{2}\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_{-2}^42y+8-y^2\\,dy",
+   "serializedSource": "int(-2,4,2y+8-y^2,y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "8",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-sidewaysLine-x=y^{2}|x=2y + 8-2-19suwg4",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "36",
+   "blankAtStart": true,
+   "enteredLatex": "36",
+   "serializedSource": "36",
+   "inputMethod": "keypad",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-12|y=0-3-xxx84d",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{4}\\left(y + 12-y^{2}\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^4y+12-y^2\\,dy",
+   "serializedSource": "int(0,4,y+12-y^2,y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-12|y=0-3-xxx84d",
+   "part": 1,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{12}\\sqrt{x}\\,dx + \\int_{12}^{16}\\left(\\sqrt{x}-\\left(x - 12\\right)\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^{12}\\sqrt{x}\\,dx+\\int_{12}^{16}\\sqrt{x}-(x-12)\\,dx",
+   "serializedSource": "int(0,12,sqrt(x),x)+int(12,16,sqrt(x)-(x-12),x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "√",
+     "aria": "Insert √"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "6",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "√",
+     "aria": "Insert √"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-12|y=0-3-xxx84d",
+   "part": 2,
+   "control": "input",
+   "expectedTex": "\\frac{104}{3}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{104}{3}",
+   "serializedSource": "(104)/(3)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^2y+2-y^2\\,dy",
+   "serializedSource": "int(0,2,y+2-y^2,y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+   "part": 1,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^2\\sqrt{x}\\,dx+\\int_2^4\\sqrt{x}-(x-2)\\,dx",
+   "serializedSource": "int(0,2,sqrt(x),x)+int(2,4,sqrt(x)-(x-2),x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "√",
+     "aria": "Insert √"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "√",
+     "aria": "Insert √"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+   "part": 2,
+   "control": "input",
+   "expectedTex": "\\frac{10}{3}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{10}{3}",
+   "serializedSource": "(10)/(3)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-6|y=0-3-d3qrvi",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{3}\\left(y + 6-y^{2}\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^3y+6-y^2\\,dy",
+   "serializedSource": "int(0,3,y+6-y^2,y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "6",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-6|y=0-3-d3qrvi",
+   "part": 1,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{6}\\sqrt{x}\\,dx + \\int_{6}^{9}\\left(\\sqrt{x}-\\left(x - 6\\right)\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^6\\sqrt{x}\\,dx+\\int_6^9\\sqrt{x}-(x-6)\\,dx",
+   "serializedSource": "int(0,6,sqrt(x),x)+int(6,9,sqrt(x)-(x-6),x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "6",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "√",
+     "aria": "Insert √"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "6",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "9",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "√",
+     "aria": "Insert √"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "6",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-6|y=0-3-d3qrvi",
+   "part": 2,
+   "control": "input",
+   "expectedTex": "\\frac{27}{2}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{27}{2}",
+   "serializedSource": "(27)/(2)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-wedge-y=3x|y=x|x=3-2-1nm6skp",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{3}\\left(3x-x\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^33x-x\\,dx",
+   "serializedSource": "int(0,3,3x-x,x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-wedge-y=3x|y=x|x=3-2-1nm6skp",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "9",
+   "blankAtStart": true,
+   "enteredLatex": "9",
+   "serializedSource": "9",
+   "inputMethod": "keypad",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-sidewaysLine-x=y^{2}|x=2y + 3-3-qmf1sm",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{-1}^{3}\\left(2y + 3-y^{2}\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_{-1}^32y+3-y^2\\,dy",
+   "serializedSource": "int(-1,3,2y+3-y^2,y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-sidewaysLine-x=y^{2}|x=2y + 3-3-qmf1sm",
+   "part": 1,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{1}\\left(\\sqrt{x}-\\left(-\\sqrt{x}\\right)\\right)\\,dx + \\int_{1}^{9}\\left(\\sqrt{x}-\\left(\\frac{x}{2} - \\frac{3}{2}\\right)\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^1\\sqrt{x}-(-\\sqrt{x})\\,dx+\\int_1^9\\sqrt{x}-(\\frac{x}{2}-\\frac32)\\,dx",
+   "serializedSource": "int(0,1,sqrt(x)-(-sqrt(x)),x)+int(1,9,sqrt(x)-((x)/(2)-(3)/(2)),x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "√",
+     "aria": "Insert √"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "√",
+     "aria": "Insert √"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "9",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "√",
+     "aria": "Insert √"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "ab",
+     "aria": "Insert stacked fraction"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "ab",
+     "aria": "Insert stacked fraction"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-sidewaysLine-x=y^{2}|x=2y + 3-3-qmf1sm",
+   "part": 2,
+   "control": "input",
+   "expectedTex": "\\frac{32}{3}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{32}{3}",
+   "serializedSource": "(32)/(3)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  }
+ ]
+}

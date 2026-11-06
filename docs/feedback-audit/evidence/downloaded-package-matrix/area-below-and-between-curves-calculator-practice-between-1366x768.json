@@ -1,0 +1,1046 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "between",
+ "setupKeypadOnly": true,
+ "checked": 6,
+ "parts": 14,
+ "integrals": 7,
+ "mathliveFields": 14,
+ "blankAtStart": 14,
+ "locked": 14,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "calc_find/challenging: integral keypad-only/Enter: 2 integral(s): int(0,1.854,3ln(x+1),x)+int(1.854,5,5-x,x) | input keypad/Enter: 8.366",
+  "calc_directions/intermediate: integral keypad-only/Enter: 1 integral(s): int(0,1.533,2-y-(e^((y)/(4))-1),y) | input keyboard/Check: 1.556",
+  "calc_find/intermediate: input keyboard/Check: 0.138,1.564 | input keypad/Enter: 1.124",
+  "calc_directions/challenging: integral keypad-only/Enter: 1 integral(s): int(0.138,1.564,1+ln(x)-(x^2-1),x) | integral keypad-only/Enter: 1 integral(s): int(-0.981,1.448,sqrt(y+1)-e^(y-1),y) | input keypad/Check: 1.124",
+  "calc_find/challenging: integral keypad-only/Enter: 1 integral(s): int(0.050,1.910,2+ln(x)-(x^2-1),x) | input keypad/Check: 2.783",
+  "calc_directions/challenging: integral keypad-only/Check: 2 integral(s): int(0,0.968,3ln(x+1),x)+int(0.968,3,3-x,x) | integral keypad-only/Enter: 1 integral(s): int(0,2.032,3-y-(e^((y)/(3))-1),y) | input keypad/Enter: 3.158"
+ ],
+ "questionIds": [
+  "u6-area-cf-logLine-y=0|y=3\\ln(x+1)|y=-x+5-1j4i1x8",
+  "u6-area-cdir-y-y=0|y=4\\ln(x+1)|y=-x+2-70ulmb",
+  "u6-area-cf-logParabola-f(x)=1+\\ln x|g(x)=x^{2}-1-y4cbxt",
+  "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-1ebwcl1",
+  "u6-area-cf-logParabola-f(x)=2+\\ln x|g(x)=x^{2}-1-1g9cvzy",
+  "u6-area-cdir-both-y=0|y=3\\ln(x+1)|y=-x+3-1imzndb"
+ ],
+ "fieldEvidence": [
+  {
+   "questionId": "u6-area-cf-logLine-y=0|y=3\\ln(x+1)|y=-x+5-1j4i1x8",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{1.854}3\\ln\\left(x+1\\right)\\,dx + \\int_{1.854}^{5}\\left(5-x\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^{1.854}3\\ln(x+1)\\,dx+\\int_{1.854}^55-x\\,dx",
+   "serializedSource": "int(0,1.854,3ln(x+1),x)+int(1.854,5,5-x,x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup-calc",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "8",
+     "aria": null
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "ln",
+     "aria": "Insert ln"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "8",
+     "aria": null
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cf-logLine-y=0|y=3\\ln(x+1)|y=-x+5-1j4i1x8",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "8.366",
+   "blankAtStart": true,
+   "enteredLatex": "8.366",
+   "serializedSource": "8.366",
+   "inputMethod": "keypad",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cdir-y-y=0|y=4\\ln(x+1)|y=-x+2-70ulmb",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{1.533}\\left(2-y-\\left(e^{\\frac{y}{4}}-1\\right)\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^{1.533}2-y-(e^{\\frac{y}{4}}-1)\\,dy",
+   "serializedSource": "int(0,1.533,2-y-(e^((y)/(4))-1),y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup-calc",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "e",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "ab",
+     "aria": "Insert stacked fraction"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cdir-y-y=0|y=4\\ln(x+1)|y=-x+2-70ulmb",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "1.556",
+   "blankAtStart": true,
+   "enteredLatex": "1.556",
+   "serializedSource": "1.556",
+   "inputMethod": "keyboard",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cf-logParabola-f(x)=1+\\ln x|g(x)=x^{2}-1-y4cbxt",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "0.138,\\ 1.564",
+   "blankAtStart": true,
+   "enteredLatex": "0.138,1.564",
+   "serializedSource": "0.138,1.564",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-list-dec",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cf-logParabola-f(x)=1+\\ln x|g(x)=x^{2}-1-y4cbxt",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "1.124",
+   "blankAtStart": true,
+   "enteredLatex": "1.124",
+   "serializedSource": "1.124",
+   "inputMethod": "keypad",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-1ebwcl1",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0.138}^{1.564}\\left(1+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_{0.138}^{1.564}1+\\ln(x)-(x^2-1)\\,dx",
+   "serializedSource": "int(0.138,1.564,1+ln(x)-(x^2-1),x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup-calc",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "8",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "6",
+     "aria": null
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "ln",
+     "aria": "Insert ln"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-1ebwcl1",
+   "part": 1,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{-0.981}^{1.448}\\left(\\sqrt{y+1}-e^{y-1}\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_{-0.981}^{1.448}\\sqrt{y+1}-e^{y-1}\\,dy",
+   "serializedSource": "int(-0.981,1.448,sqrt(y+1)-e^(y-1),y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup-calc",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "9",
+     "aria": null
+    },
+    {
+     "label": "8",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "8",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "√",
+     "aria": "Insert √"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "e",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cdir-both-f(x)=1+\\ln x|g(x)=x^{2}-1-1ebwcl1",
+   "part": 2,
+   "control": "input",
+   "expectedTex": "1.124",
+   "blankAtStart": true,
+   "enteredLatex": "1.124",
+   "serializedSource": "1.124",
+   "inputMethod": "keypad",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cf-logParabola-f(x)=2+\\ln x|g(x)=x^{2}-1-1g9cvzy",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0.050}^{1.910}\\left(2+\\ln x-\\left(x^{2}-1\\right)\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_{0.050}^{1.910}2+\\ln(x)-(x^2-1)\\,dx",
+   "serializedSource": "int(0.050,1.910,2+ln(x)-(x^2-1),x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup-calc",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "9",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "ln",
+     "aria": "Insert ln"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cf-logParabola-f(x)=2+\\ln x|g(x)=x^{2}-1-1g9cvzy",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "2.783",
+   "blankAtStart": true,
+   "enteredLatex": "2.783",
+   "serializedSource": "2.783",
+   "inputMethod": "keypad",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cdir-both-y=0|y=3\\ln(x+1)|y=-x+3-1imzndb",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{0.968}3\\ln\\left(x+1\\right)\\,dx + \\int_{0.968}^{3}\\left(3-x\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^{0.968}3\\ln(x+1)\\,dx+\\int_{0.968}^33-x\\,dx",
+   "serializedSource": "int(0,0.968,3ln(x+1),x)+int(0.968,3,3-x,x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup-calc",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "9",
+     "aria": null
+    },
+    {
+     "label": "6",
+     "aria": null
+    },
+    {
+     "label": "8",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "ln",
+     "aria": "Insert ln"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "9",
+     "aria": null
+    },
+    {
+     "label": "6",
+     "aria": null
+    },
+    {
+     "label": "8",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cdir-both-y=0|y=3\\ln(x+1)|y=-x+3-1imzndb",
+   "part": 1,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{2.032}\\left(3-y-\\left(e^{\\frac{y}{3}}-1\\right)\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^{2.032}3-y-(e^{\\frac{y}{3}}-1)\\,dy",
+   "serializedSource": "int(0,2.032,3-y-(e^((y)/(3))-1),y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup-calc",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "e",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "ab",
+     "aria": "Insert stacked fraction"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cdir-both-y=0|y=3\\ln(x+1)|y=-x+3-1imzndb",
+   "part": 2,
+   "control": "input",
+   "expectedTex": "3.158",
+   "blankAtStart": true,
+   "enteredLatex": "3.158",
+   "serializedSource": "3.158",
+   "inputMethod": "keypad",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  }
+ ]
+}
