@@ -3,7 +3,7 @@
      cs_basic    find the volume (exact); intermediate problems first ask for the cross-sectional area A(x) or A(y)
      cs_setup    "Write, but do not evaluate, an integral expression" (tests), including regions that need two integrals
      cs_calc     calculator: regions whose intersections need the calculator (tests: 2 ln(x+1), -x + 3, the x-axis)
-     Shapes: squares, rectangles (height a multiple of the base), semicircles (diameter or radius across the region),
+     Shapes: squares, rectangles (height a multiple of the base), semicircles (v12.9.D: always the diameter across the region),
      quarter circles, equilateral triangles, isosceles right triangles (leg or hypotenuse across the region).
    Solids of Revolution (the teacher's convention: disks/washers about a horizontal axis use dx, about a vertical axis
    dy; shells the other way round)
@@ -30,7 +30,9 @@ const {U5,Q,qv,K,ex,eadd,etex,P,pc,pm,fp,fnc,fconst,bq,bn,region,sectionTerms,wa
  step,m,question,problem,figure,quad,fixed,exactPart,numPart,integralPart,exprPart,choicePart,factorTex,sliceAt,sliceSegment,sectionPicture,solidPicture,graphToggle,withPicture}=C;
 const {pick,ri}=U5,W=RG.work;
 const one=(prompt0,parts,o)=>{const prompt=parts.length>1?prompt0:''; /* a calculator problem already shows the Calculator active badge */return problem({...o,calculator:!!o.calc,questionHtml:question({context:o.context,prompt,formulas:o.formulas,calculator:!!o.calc,extra:o.extra||''}),parts});};
-const SH=['square','square','semicircle_d','quarter','equilateral','iso_leg','iso_hyp','rect2','rect3','semicircle_r'];
+// v12.9.D: semicircles always have the diameter across the region (the former radius-across variant is replaced in
+// place, so every other shape keeps its share)
+const SH=['square','square','semicircle_d','quarter','equilateral','iso_leg','iso_hyp','rect2','rect3','semicircle_d'];
 const shapeOf=n=>n==='rect2'?rectShape(2):n==='rect3'?rectShape(3):SHAPES[n];
 const EXACT_CS=['cap','halfCap','semicircle','disk','triangle','pair','underRoot','underPower','leftOfPower'];
 // can the region be sliced in this direction with an exact volume?
@@ -43,8 +45,9 @@ const where=v=>v==='x'?'perpendicular to the x-axis':'perpendicular to the y-axi
 function csContext(R,v,shape){return `The base of a solid is ${R.text}. Cross sections ${where(v)} are ${shape.name}.`;}
 // v12.9.B: the base with one slice highlighted, and the cross section standing on that slice drawn flat beside it
 // (the first part's explanation; on calculator problems it is also the first look at the graph)
+const ON_SLICE={semicircle_d:' For a semicircle the whole slice is its diameter, so its radius is \\(\\frac{s}{2}\\).',quarter:' For a quarter circle the slice is one of its radii.'};
 function csPicture(R,v,shape,lead=''){
- const text=`${lead}The highlighted segment is one slice of the base, ${where(v)}; its length across the region is \\(s\\). A cross section stands on every such slice; the second picture shows one of them, drawn flat.`;
+ const text=`${lead}The highlighted segment is one slice of the base, ${where(v)}; its length across the region is \\(s\\). A cross section stands on every such slice; the second picture shows one of them, drawn flat.${ON_SLICE[shape.id]||''}`;
  return step(lead?'The base of the solid.':'The base and one cross section.',text)+`<div class="u6-fig-row">${figure(R,{compact:true,maxH:250,maxW:300,label:'The base of the solid with one slice',slice:{v,at:sliceAt(R,v)}})}${sectionPicture(shape)}</div>`;
 }
 // the base in a non-calculator question: closed until the student opens it

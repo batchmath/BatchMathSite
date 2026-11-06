@@ -56,4 +56,5 @@
 /* ---------- integral setup (v12.9.C): one blank field; the setup keypad adds the integral, dx and dy keys ---------- */
 .u6-setup-row{width:100%}
 .bm-u6-integral-key span{font-family:"Times New Roman",Times,serif;font-size:1.45em;line-height:1}
-
+/* v12.9.D: a piecewise brace in a split explanation cannot wrap; on narrow phones it is set a little smaller */
+@media (max-width:420px){.u6-piecewise{font-size:86%}}

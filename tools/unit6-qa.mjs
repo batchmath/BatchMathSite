@@ -169,6 +169,53 @@ stats.graphProblems=graphs;
   if(!ys.length||Math.min(...ys)<0.02*Hd||Math.max(...ys)>0.98*Hd)fail(`graph fit: the reported cubic case is cut off (${Math.min(...ys)}..${Math.max(...ys)} of ${Hd})`);}
  stats.graphFit=figs;}
 
+// ---------- 5c. cross-section shapes (v12.9.D) ----------
+// a semicircle always stands on its slice as its DIAMETER (d = s, r = s/2, A = pi s^2/8); a quarter circle has the slice
+// as a RADIUS (A = pi s^2/4). The former radius-across semicircle is gone from the shapes and from every generated
+// question, setup and explanation. The teacher's case: y = -x^2 + 4 and y = 0, semicircles perpendicular to the y-axis,
+// V = 4 pi (16 pi, the radius-across value, is refused, as value and as setup).
+{const V6=W.BatchMathUnit6Volume,SHAPES=C.SHAPES;let checked=0,semis=0,quarters=0,regions=0;
+ if(SHAPES.semicircle_r)fail('shapes: the radius-across semicircle still exists');
+ if(V6.SH.some(n=>/semicircle/.test(n)&&n!=='semicircle_d'))fail(`shapes: the shape pool still has ${V6.SH.filter(n=>/semicircle/.test(n)&&n!=='semicircle_d')}`);
+ // every region and direction: pi/8 and pi/4 times an independent integral of s^2 (Simpson on the slice length itself)
+ // (Simpson after z = a + (b - a)(3u^2 - 2u^3), which smooths endpoint behaviour such as y^(1/3) at 0)
+ const simpson=(f,a,b,n=4000)=>{const g=u=>f(a+(b-a)*(3*u*u-2*u*u*u))*(b-a)*6*u*(1-u),h=1/n;let s=g(0)+g(1);for(let i=1;i<n;i++)s+=(i%2?4:2)*g(i*h);return s*h/3;};
+ for(const name of [...Object.keys(RG.EXACT),...Object.keys(RG.CALC)])for(let i=0;i<8;i++){seed(500+i*17+name.length);let R;try{R=RG.build(name);}catch(e){continue;}
+  for(const v of ['x','y']){const ps=v==='x'?R.xs:R.ys;if(!ps)continue;regions++;
+   const s2=ps.reduce((t,p)=>t+simpson(z=>{const w=p.w?p.w.f(z):v==='x'?p.top.f(z)-p.bot.f(z):p.right.f(z)-p.left.f(z);return w*w;},p.a.v,p.b.v),0);
+   for(const [id,k] of [['semicircle_d',Math.PI/8],['quarter',Math.PI/4]]){const T=C.sectionTerms(R,v,SHAPES[id]),val=C.numValue(T),ex=C.exactValue(T);
+    if(!rel(val,k*s2,1e-6))fail(`${id} on ${name} (${v}): volume ${val}, expected ${k*s2}`);
+    if(ex&&!rel(C.evalE(ex),val,1e-7))fail(`${id} on ${name} (${v}): exact ${C.evalE(ex)} differs from numeric ${val}`);}}}
+ // generated problems: no radius-across semicircle anywhere; setups use pi/8 (semicircles) and pi/4 (quarter circles)
+ const kt=f=>f.calc||(f.calculator?{calculator:f.tiers,noncalculator:[]}:{calculator:[],noncalculator:f.tiers});
+ const look=p=>{checked++;const text=[p.questionHtml,...p.parts.flatMap(q=>[q.prompt,q.explanation,q.answerTex])].join(' ');
+  if(/semicircles? whose radius|semicircle with radius|radius lies across the region[^<]*semicircle/.test(text))fail(`${p.id}: a radius-across semicircle`);
+  const semi=/semicircles whose diameter lies across the region/.test(text),quarter=/quarter circles whose radius lies across the region/.test(text);
+  if(semi){semis++;if(!/d=s\\\)/.test(text)||!/>d = s</.test(text)&&/u6-cs-svg/.test(text))fail(`${p.id}: semicircle without the diameter d = s in its explanation or picture`);}
+  if(quarter)quarters++;
+  // a cross-section setup about semicircles: pi/8; about quarter circles: pi/4 (the problem's other parts may be washers)
+  for(const q of p.parts){const ask=`${p.questionHtml} ${q.prompt}`,cs=/semicircles whose diameter/.test(q.prompt)||(!/rotated|revolved/.test(q.prompt)&&/semicircles whose diameter/.test(p.questionHtml)&&!/quarter circles/.test(ask));
+   const qc=/quarter circles whose radius/.test(q.prompt)||(!/rotated|revolved/.test(q.prompt)&&/quarter circles whose radius/.test(p.questionHtml));
+   for(const r of (q.answer?.rows||[])){const c=String(r.coef||'');
+    if(cs&&!/\\frac\{\\pi\}\{8\}/.test(c))fail(`${p.id}: semicircle setup with coefficient ${c}`);
+    if(qc&&!/\\frac\{\\pi\}\{4\}/.test(c))fail(`${p.id}: quarter-circle setup with coefficient ${c}`);}}};
+ for(const [E,mk,FK] of [[V6,'makeCS','FAMILIES_CS'],[FRQ,'make','FAMILIES']])for(const [fam,f] of Object.entries(E[FK]))for(const kind of ['calculator','non-calculator'])for(const tier of kt(f)[kind==='calculator'?'calculator':'noncalculator'])for(let i=0;i<Math.max(N,40);i++){
+  seed(i*613+fam.length*7+tier.length+kind.length);let p;try{p=E[mk]({family:fam,tier,calc:kind});}catch(e){continue;}look(p);}
+ for(const calc of ['non-calculator','calculator'])for(let i=0;i<400;i++){seed(9000+i*7+calc.length);look(REV.make({calc}));}
+ if(semis<20||quarters<10)fail(`shapes: too few semicircle (${semis}) or quarter-circle (${quarters}) problems sampled`);
+ // the teacher's case, as a generated problem: the value 4 pi; 16 pi and the radius-across setup refused
+ let hit=null,setup=null;
+ for(let s=1;s<40000&&!(hit&&setup);s++){seed(s);if(!hit){const p=V6.makeCS({family:'cs_basic',tier:'foundational',calc:'non-calculator'});if(p.unit5Meta.region==='cap'&&p.id.includes('y=-x^{2} + 4|y=0-y-semicircles'))hit=p;}
+  if(!setup){seed(s);const p=V6.makeCS({family:'cs_setup',tier:'intermediate',calc:'non-calculator'});if(p.unit5Meta.region==='cap'&&p.id.includes('y=-x^{2} + 4|y=0-y-semicircles'))setup=p;}}
+ if(!hit)fail('shapes: the teacher case (y = -x^2 + 4, semicircles perpendicular to the y-axis) was not generated');
+ else{const a=hit.parts[0].answer;if(!rel(a.value,4*Math.PI))fail(`shapes: the teacher case has volume ${a.value}, not 4 pi`);
+  if(!A5.check('4pi',a).ok)fail('shapes: 4 pi refused for the teacher case');if(A5.check('16pi',a).ok)fail('shapes: 16 pi (radius across) accepted for the teacher case');}
+ if(!setup)fail('shapes: the teacher case setup was not generated');
+ else{const sp=setup.parts[0].answer;
+  const ok=C.checkIntegral([{coef:'pi/8',lower:'0',upper:'4',integrand:'(2sqrt(4-y))^2',v:'y'}],sp),old=C.checkIntegral([{coef:'pi/2',lower:'0',upper:'4',integrand:'(2sqrt(4-y))^2',v:'y'}],sp);
+  if(!(ok.valid&&ok.ok))fail(`shapes: the diameter setup is refused: ${JSON.stringify(ok)}`);if(old.ok)fail('shapes: the radius-across setup (pi/2) is accepted');}
+ stats.shapes={regionsChecked:regions,problems:checked,semicircles:semis,quarterCircles:quarters,teacherCase:hit?hit.parts[0].answerTex:null};}
+
 // ---------- 6. review distributions ----------
 const want={'non-calculator':{area:14,area_y:10,cross_sections:12,washers:12,shells:9,frq_region:18,frq_graph:20,piecewise:5},calculator:{area:20,cross_sections:18,solids:27,frq_region:35}};
 for(const calc of ['non-calculator','calculator']){const count={},tiers={};const n=1200;

@@ -218,9 +218,10 @@ function shellTerms(R,axis){
 // cross sections: shape factor applied to the side length s (top-bottom or right-left)
 const SHAPES={
  square:{id:'square',k:F1,sq:true,name:'squares',area:s=>sqTex(s),rule:'A square with side \\(s\\) has area \\(s^{2}\\).'},
- semicircle_d:{id:'semicircle_d',k:{q:Q(1,8),atom:K.pi},sq:true,name:'semicircles whose diameter lies across the region',area:s=>`\\frac{\\pi}{8}${sqTex(s)}`,rule:'A semicircle with diameter \\(s\\) has radius \\(\\frac{s}{2}\\), so its area is \\(\\frac{1}{2}\\pi\\left(\\frac{s}{2}\\right)^{2}=\\frac{\\pi}{8}s^{2}\\).'},
- semicircle_r:{id:'semicircle_r',k:{q:Q(1,2),atom:K.pi},sq:true,name:'semicircles whose radius lies across the region',area:s=>`\\frac{\\pi}{2}${sqTex(s)}`,rule:'A semicircle with radius \\(s\\) has area \\(\\frac{1}{2}\\pi s^{2}\\).'},
- quarter:{id:'quarter',k:{q:Q(1,4),atom:K.pi},sq:true,name:'quarter circles whose radius lies across the region',area:s=>`\\frac{\\pi}{4}${sqTex(s)}`,rule:'A quarter circle with radius \\(s\\) has area \\(\\frac{1}{4}\\pi s^{2}\\).'},
+ // v12.9.D: a semicircle always stands on its slice as its DIAMETER (d = s, r = s/2, A = pi s^2/8); the former variant
+ // with the radius across the region is gone. A quarter circle has the slice as a RADIUS (r = s, A = pi s^2/4).
+ semicircle_d:{id:'semicircle_d',k:{q:Q(1,8),atom:K.pi},sq:true,name:'semicircles whose diameter lies across the region',area:s=>`\\frac{\\pi}{8}${sqTex(s)}`,rule:'The slice across the region is the diameter of the semicircle: \\(d=s\\). So its radius is \\(r=\\frac{s}{2}\\), and its area is \\(\\frac{1}{2}\\pi r^{2}=\\frac{1}{2}\\pi\\left(\\frac{s}{2}\\right)^{2}=\\frac{\\pi}{8}s^{2}\\).'},
+ quarter:{id:'quarter',k:{q:Q(1,4),atom:K.pi},sq:true,name:'quarter circles whose radius lies across the region',area:s=>`\\frac{\\pi}{4}${sqTex(s)}`,rule:'The slice across the region is a radius of the quarter circle: \\(r=s\\). So its area is \\(\\frac{1}{4}\\pi r^{2}=\\frac{\\pi}{4}s^{2}\\).'},
  equilateral:{id:'equilateral',k:{q:Q(1,4),atom:K.sqrt3},sq:true,name:'equilateral triangles with one side across the region',area:s=>`\\frac{\\sqrt{3}}{4}${sqTex(s)}`,rule:'An equilateral triangle with side \\(s\\) has height \\(\\frac{\\sqrt{3}}{2}s\\), so its area is \\(\\frac{1}{2}s\\cdot\\frac{\\sqrt{3}}{2}s=\\frac{\\sqrt{3}}{4}s^{2}\\).'},
  iso_leg:{id:'iso_leg',k:{q:Q(1,2),atom:null},sq:true,name:'isosceles right triangles with one leg across the region',area:s=>`\\frac{1}{2}${sqTex(s)}`,rule:'An isosceles right triangle with legs \\(s\\) has area \\(\\frac{1}{2}s^{2}\\).'},
  iso_hyp:{id:'iso_hyp',k:{q:Q(1,4),atom:null},sq:true,name:'isosceles right triangles with the hypotenuse across the region',area:s=>`\\frac{1}{4}${sqTex(s)}`,rule:'With hypotenuse \\(s\\), each leg is \\(\\frac{s}{\\sqrt{2}}\\), so the area is \\(\\frac{1}{2}\\left(\\frac{s}{\\sqrt{2}}\\right)^{2}=\\frac{1}{4}s^{2}\\).'},
@@ -563,22 +564,23 @@ function sliceSegment(R,v,at){
 function sliceAt(R,v){const ps=(v==='x'?R.xs:R.ys)||[];if(!ps.length)return null;const p=ps.reduce((a,b)=>Math.abs(b.b.v-b.a.v)>Math.abs(a.b.v-a.a.v)?b:a);return p.a.v+0.42*(p.b.v-p.a.v);}
 // v12.9.B: one cross section standing on its slice, drawn flat (as seen looking along the axis): the slice (length s,
 // highlighted like the slice on the base graph) and the shape built on it, with the shape's area formula
-const CS_NAMES={square:'a square with side \\(s\\)',semicircle_d:'a semicircle with diameter \\(s\\)',semicircle_r:'a semicircle with radius \\(s\\)',quarter:'a quarter circle with radius \\(s\\)',
+const CS_NAMES={square:'a square with side \\(s\\)',semicircle_d:'a semicircle with diameter \\(s\\) (radius \\(\\frac{s}{2}\\))',quarter:'a quarter circle with radius \\(s\\)',
  equilateral:'an equilateral triangle with side \\(s\\)',iso_leg:'an isosceles right triangle with leg \\(s\\)',iso_hyp:'an isosceles right triangle with hypotenuse \\(s\\)'};
 function sectionPicture(shape){
  const id=shape.id,B=120,lab=(x,y,t,a='middle')=>`<text x="${x}" y="${y}" class="u6-cs-label" text-anchor="${a}">${t}</text>`;let body='',L,x0;
  const base=(a,b)=>`<line x1="${a}" y1="${B}" x2="${b}" y2="${B}" class="u6-slice"/>`;
  if(id==='square'){L=96;x0=110-L/2;body=`<rect x="${x0}" y="${B-L}" width="${L}" height="${L}" class="u6-cs-shape"/>`+base(x0,x0+L)+lab(110,B+18,'s')+lab(x0+L+8,B-L/2+5,'s','start');}
  else if(id==='rect'){const m=shape.mult;L=Math.min(120,100/m);x0=110-L/2;body=`<rect x="${x0}" y="${B-m*L}" width="${L}" height="${m*L}" class="u6-cs-shape"/>`+base(x0,x0+L)+lab(110,B+18,'s')+lab(x0+L+8,B-m*L/2+5,`${m===1?'':m}s`,'start');}
- else if(id==='semicircle_d'){L=150;x0=110-L/2;body=`<path d="M${x0} ${B} A${L/2} ${L/2} 0 0 1 ${x0+L} ${B} Z" class="u6-cs-shape"/>`+base(x0,x0+L)+lab(110,B+18,'s');}
- else if(id==='semicircle_r'){L=82;x0=110;body=`<path d="M${x0-L} ${B} A${L} ${L} 0 0 1 ${x0+L} ${B} Z" class="u6-cs-shape"/>`+base(x0,x0+L)+`<circle cx="${x0}" cy="${B}" r="3.2" class="u6-cs-center"/>`+lab(x0+L/2,B+18,'s');}
+ else if(id==='semicircle_d'){L=150;x0=110-L/2;const r=L/2,a=Math.PI*0.3,ex=(110+r*Math.cos(a)).toFixed(1),ey=(B-r*Math.sin(a)).toFixed(1);
+  body=`<path d="M${x0} ${B} A${r} ${r} 0 0 1 ${x0+L} ${B} Z" class="u6-cs-shape"/>`+base(x0,x0+L)+`<line x1="110" y1="${B}" x2="${ex}" y2="${ey}" class="u6-radius-r"/><circle cx="110" cy="${B}" r="3.2" class="u6-cs-center"/>`
+   +lab(110,B+18,'d = s')+lab(((110+ +ex)/2+10).toFixed(1),((B+ +ey)/2+4).toFixed(1),'s/2','start');}
  else if(id==='quarter'){L=100;x0=110-L/2;body=`<path d="M${x0} ${B} L${x0+L} ${B} A${L} ${L} 0 0 0 ${x0} ${B-L} Z" class="u6-cs-shape"/>`+base(x0,x0+L)+lab(110,B+18,'s')+lab(x0-8,B-L/2+5,'s','end');}
  else if(id==='equilateral'){L=118;x0=110-L/2;const h=L*Math.sqrt(3)/2;body=`<path d="M${x0} ${B} L${x0+L} ${B} L110 ${(B-h).toFixed(1)} Z" class="u6-cs-shape"/>`+base(x0,x0+L)+lab(110,B+18,'s')+lab(x0+L/4-8,B-h/2,'s','end')+lab(x0+3*L/4+8,B-h/2,'s','start');}
  else if(id==='iso_leg'){L=98;x0=110-L/2;body=`<path d="M${x0} ${B} L${x0+L} ${B} L${x0} ${B-L} Z" class="u6-cs-shape"/><path d="M${x0} ${B-11} H${x0+11} V${B}" class="u6-cs-mark"/>`+base(x0,x0+L)+lab(110,B+18,'s')+lab(x0-8,B-L/2+5,'s','end');}
  else if(id==='iso_hyp'){L=150;x0=110-L/2;const t=110,ty=B-L/2,d=9;body=`<path d="M${x0} ${B} L${x0+L} ${B} L${t} ${ty} Z" class="u6-cs-shape"/><path d="M${t-d} ${ty+d} L${t} ${ty+2*d} L${t+d} ${ty+d}" class="u6-cs-mark"/>`+base(x0,x0+L)+lab(110,B+18,'s');}
  else return '';
  const name=id==='rect'?`a rectangle with base \\(s\\) and height \\(${shape.mult===1?'':shape.mult}s\\)`:CS_NAMES[id];
- return `<figure class="u6-figure u6-cs-figure"><svg viewBox="0 0 220 146" role="img" aria-label="One cross section: ${name.replace(/\\\(|\\\)/g,'')}" class="u6-cs-svg">${body}</svg><figcaption class="u6-legend"><span>One cross section: ${name}; \\(A=${shape.area('s')}\\)</span></figcaption></figure>`;
+ return `<figure class="u6-figure u6-cs-figure"><svg viewBox="0 0 220 146" role="img" aria-label="One cross section: ${name.replace(/\\\(|\\\)/g,'').replace(/\\frac\{s\}\{2\}/g,'s/2')}" class="u6-cs-svg">${body}</svg><figcaption class="u6-legend"><span>One cross section: ${name}; \\(A=${shape.area('s')}\\)</span></figcaption></figure>`;
 }
 // v12.9.B: one disk or washer seen face on (its radii from the axis), or one cylindrical shell around its axis (radius r,
 // height h); a shell about a horizontal axis lies on its side. Colors match the slice on the region graph.

@@ -245,6 +245,18 @@ function changeSummary(R,v){
  return andList(breaks(R,v).map(B=>B.swap?`the curves ${bname(B.p[B.hi],v)} and ${bname(B.p[B.lo],v)} change places at \\(${B.at}\\)`
   :andList(B.ch.map(([k,w])=>`the ${w} boundary changes from ${bname(B.p[k],v)} to ${bname(B.q[k],v)} at \\(${B.at}\\)`))));
 }
+// a rough rendered width of TeX, in em, to keep a piecewise brace on a phone screen (rows of a cases block cannot wrap)
+function texEm(t){
+ let s=String(t).replace(/\\left|\\right|\\,|\\displaystyle/g,''),w=0;
+ for(let g=0;g<8&&/\\frac\{([^{}]*)\}\{([^{}]*)\}/.test(s);g++)s=s.replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g,(m,a,b)=>'F'.repeat(Math.ceil(Math.max(a.length,b.length)*0.7)));
+ s=s.replace(/\\sqrt\{([^{}]*)\}/g,'RR$1').replace(/\^\{([^{}]*)\}/g,(m,a)=>'^'.repeat(Math.ceil(a.length*0.6))).replace(/\\(ln|sin|cos|tan)/g,'LLL').replace(/\\(le|ge|approx)/g,'=').replace(/\\pi/g,'p').replace(/\\[a-zA-Z]+/g,'x').replace(/[{}]/g,'');
+ for(const ch of s)w+='+-=<>'.includes(ch)?1.05:'(),'.includes(ch)?0.4:ch==='^'?0.42:0.56;
+ return w;
+}
+// a brace up to this estimate fits the explanation on a 390px phone (measured: every brace up to 20.97 fits, every one
+// from 21.29 does not); unit6.css sets the brace at 86% on narrower screens, so 360px phones fit as well
+const PHONE_EM=19.5;
+const braceHtml=tex=>`<div class="u4-work-equation u4-definite-equation u6-piecewise">\\(\\displaystyle ${tex}\\)</div>`;
 // quantities: [{label:'s(x)', what:'the slice length \\(s(x)\\)', texs:[one per piece]}]. Those whose formula
 // changes are shown piecewise; those that do not are stated once. Returns '' for a single piece.
 function splitStep(R,v,quantities){
@@ -256,8 +268,13 @@ function splitStep(R,v,quantities){
  if(!changing.length)return step(`Why there are ${Bs.length+1} integrals.`,`${geo.join(' ')} Here ${andList(quantities.map(qd=>`\\(${qd.label}=${qd.texs[0]}\\)`))} on every piece, so the integrals could be combined into one; they are kept separate only to follow the pieces of the region.`);
  const same=steady.length?` ${andList(steady.map(qd=>`\\(${qd.label}=${qd.texs[0]}\\)`))} on the whole interval.`:'';
  const why=`Because ${cause}, ${andList(changing.map(qd=>qd.what))} ${changing.length>1?'have':'has'} a different formula on each side of ${where}, so one integrand cannot be used on the whole interval: the integral must be split at ${where}, with one integral for each piece.${same}`;
- const shown=changing.map(qd=>`${qd.label}=\\begin{cases}${qd.texs.map((t,i)=>`${t}, & ${ps[i].a.tex}\\le ${v}\\le ${ps[i].b.tex}`).join('\\\\')}\\end{cases}`);
- return step(`Split the integral at ${where}.`,`${geo.join(' ')} ${why}`,...shown);
+ // a piecewise brace when it fits a phone; otherwise one line per piece (a line can wrap, a row of a brace cannot)
+ const cond=i=>`${ps[i].a.tex}\\le ${v}\\le ${ps[i].b.tex}`;
+ let braces='';const lines=[];
+ for(const qd of changing){const wide=texEm(qd.label)+2+Math.max(...qd.texs.map((t,i)=>texEm(t)+1.2+texEm(cond(i))));
+  if(wide<=PHONE_EM)braces+=braceHtml(`${qd.label}=\\begin{cases}${qd.texs.map((t,i)=>`${t}, & ${cond(i)}`).join('\\\\')}\\end{cases}`);
+  else lines.push(...qd.texs.map((t,i)=>`${qd.label}=${t}\\quad\\text{for }${cond(i)}`));}
+ return step(`Split the integral at ${where}.`,`${geo.join(' ')} ${why}${braces}`,...lines);
 }
 
 function areaWork(R,v,terms,{note=true}={}){
@@ -295,9 +312,9 @@ function sectionWork(R,v,shape,terms){
  if(!split)return step('Choose the slices.',`Cross sections are perpendicular to the ${v}-axis, so integrate with respect to \\(${v}\\). ${slice}: ${terms.map(q=>`\\(s(${v})=${q.stex}\\)${terms.length>1?` for \\(${q.a.tex}\\le ${v}\\le ${q.b.tex}\\)`:''}`).join('; ')}.`)
   +step('Find the area of one cross section.',`${shape.rule} So \\(A(${v})=${shape.area(t.stex)}\\).`)
   +step('Set up the volume.','Add the cross sections: integrate their area.',`V=${setupTex(terms)}`);
- const ps=piecesOf(R,v);
+
  return step('Choose the slices.',`Cross sections are perpendicular to the ${v}-axis, so integrate with respect to \\(${v}\\). ${slice}, \\(s(${v})\\).`)+split
-  +step('Find the area of one cross section.',`${shape.rule} With the slice length on each piece:`,`A(${v})=\\begin{cases}${terms.map((q,i)=>`${shape.area(q.stex)}, & ${ps[i].a.tex}\\le ${v}\\le ${ps[i].b.tex}`).join('\\\\')}\\end{cases}`)
+  +step('Find the area of one cross section.',`${shape.rule} On each piece, \\(A(${v})=${shape.area(`s(${v})`)}\\), with the slice length \\(s(${v})\\) of that piece.`)
   +step('Set up the volume.','Integrate the cross-sectional area over each piece and add the results.',`V=${setupTex(terms)}`);
 }
 function evalWork(terms,heading='Evaluate.'){
