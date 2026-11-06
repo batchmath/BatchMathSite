@@ -1,0 +1,73 @@
+[
+  {
+    "suite": "limits",
+    "script": "tools/mathlive-sitewide/unit1-browser.mjs",
+    "environment": {
+      "ROUTE_INDEX": "0,2,4",
+      "INTERACTIONS_ONLY": "1",
+      "REPORT_SUFFIX": "-final-regression"
+    },
+    "exitCode": 0,
+    "evidence": "tools/mathlive-sitewide/artifacts/final-regressions-v12.9.C/limits/unit1-browser-final-regression.json"
+  },
+  {
+    "suite": "applications",
+    "script": "tools/mathlive-sitewide/applications-browser.mjs",
+    "environment": {
+      "ROUTE_INDEX": "1,5,16",
+      "CONTROLS": "1",
+      "ENTER": "1",
+      "RECOVERY": "1",
+      "REPORT_SUFFIX": "-final-regression"
+    },
+    "exitCode": 0,
+    "evidence": "tools/mathlive-sitewide/artifacts/final-regressions-v12.9.C/applications/applications-browser-final-regression.json"
+  },
+  {
+    "suite": "integrals-de",
+    "script": "tools/mathlive-sitewide/staged-browser.mjs",
+    "environment": {
+      "ROUTE_INDEX": "3,8,9,11",
+      "CONTROLS": "1",
+      "ENTER": "1",
+      "RECOVERY": "1",
+      "REPORT_SUFFIX": "-final-regression"
+    },
+    "exitCode": 0,
+    "evidence": "tools/mathlive-sitewide/artifacts/final-regressions-v12.9.C/integrals-de/staged-browser-final-regression.json"
+  },
+  {
+    "suite": "im1-values",
+    "script": "tools/mathlive-sitewide/im1-batch5-browser.mjs",
+    "environment": {
+      "ROUTE_INDEX": "1,2,9,10,11",
+      "INTERACTIONS_ONLY": "1",
+      "RECOVERY": "1",
+      "REPORT_SUFFIX": "-final-regression"
+    },
+    "exitCode": 0,
+    "evidence": "tools/mathlive-sitewide/artifacts/final-regressions-v12.9.C/im1-values/im1-batch5-browser-final-regression.json"
+  },
+  {
+    "suite": "im1-structured",
+    "script": "tools/mathlive-sitewide/im1-batch6-browser.mjs",
+    "environment": {
+      "ROUTE_INDEX": "0,5,8,11",
+      "RECOVERY": "1",
+      "REPORT_SUFFIX": "-final-regression"
+    },
+    "exitCode": 0,
+    "evidence": "tools/mathlive-sitewide/artifacts/final-regressions-v12.9.C/im1-structured/im1-batch6-browser-final-regression.json"
+  },
+  {
+    "suite": "prep",
+    "script": "tools/mathlive-sitewide/prep-browser.mjs",
+    "environment": {
+      "ROUTE_INDEX": "1,2,4,5",
+      "RECOVERY": "1",
+      "REPORT_SUFFIX": "-final-regression"
+    },
+    "exitCode": 0,
+    "evidence": "tools/mathlive-sitewide/artifacts/final-regressions-v12.9.C/prep/prep-browser-final-regression.json"
+  }
+]

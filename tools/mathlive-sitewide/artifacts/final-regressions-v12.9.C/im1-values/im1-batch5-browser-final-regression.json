@@ -1,0 +1,241 @@
+{
+  "results": [
+    {
+      "route": "im1/unit-1-review/topics/decimals/practice/index.html",
+      "passed": true,
+      "typedCases": 1,
+      "retainedChoices": 0,
+      "cases": [
+        "decimal_division",
+        "decimal_subtraction",
+        "decimal_multiplication",
+        "decimal_addition"
+      ]
+    },
+    {
+      "route": "im1/unit-1-review/topics/fractions/practice/index.html",
+      "passed": true,
+      "typedCases": 1,
+      "retainedChoices": 0,
+      "cases": [
+        "fraction_add_subtract_unlike_denominator",
+        "fraction_add_subtract_common_denominator",
+        "fraction_multiplication",
+        "fraction_square_root",
+        "fraction_of_number",
+        "fraction_power",
+        "fraction_division"
+      ]
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/equivalent-expressions-combining-like-terms/practice/index.html",
+      "passed": true,
+      "typedCases": 1,
+      "retainedChoices": 0,
+      "cases": [
+        "polynomial|pq",
+        "polynomial|ab",
+        "polynomial|r",
+        "polynomial|u",
+        "polynomial|mn",
+        "polynomial|x",
+        "polynomial|a",
+        "polynomial|xy",
+        "polynomial|m",
+        "choice|like_terms",
+        "polynomial|p",
+        "polynomial|rs",
+        "polynomial|uv"
+      ]
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+      "passed": true,
+      "typedCases": 1,
+      "retainedChoices": 0,
+      "cases": [
+        "interval|interval",
+        "choice|ineq_to_interval",
+        "choice|union",
+        "choice|interval_result",
+        "choice|graph_to_interval",
+        "choice|ineq_to_graph",
+        "choice|interval_to_ineq"
+      ]
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html",
+      "passed": true,
+      "typedCases": 1,
+      "retainedChoices": 0,
+      "cases": [
+        "equation|both_sides",
+        "equation|distribution",
+        "equation|identity",
+        "equation|contradiction",
+        "equation|both_distribute_unique",
+        "equation|fraction_linear",
+        "equation|one_step",
+        "equation|two_step",
+        "equation|fraction_x",
+        "equation|fraction_expression",
+        "equation|fraction_coefficient"
+      ]
+    },
+    {
+      "route": "im1/unit-1-review/topics/decimals/practice/index.html",
+      "passed": true,
+      "recovery": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/fractions/practice/index.html",
+      "passed": true,
+      "recovery": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/equivalent-expressions-combining-like-terms/practice/index.html",
+      "passed": true,
+      "recovery": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+      "passed": true,
+      "recovery": true
+    },
+    {
+      "route": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html",
+      "passed": true,
+      "recovery": true
+    },
+    {
+      "route": "im1/unit-1-review/topics/fractions/practice/index.html",
+      "passed": true,
+      "rawGetterRecovery": true
+    }
+  ],
+  "errors": [],
+  "keypads": {
+    "value-decimal": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      ".",
+      "←",
+      "→",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ],
+    "value-fraction": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      "ab",
+      "←",
+      "→",
+      "↑",
+      "↓",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ],
+    "polynomial-pq": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      "+",
+      "·",
+      "p",
+      "q",
+      "xⁿ",
+      "←",
+      "→",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ],
+    "interval-": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      "(",
+      ")",
+      ",",
+      "∞",
+      "−∞",
+      "[",
+      "]",
+      "←",
+      "→",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ],
+    "equation-x": [
+      "7",
+      "8",
+      "9",
+      "4",
+      "5",
+      "6",
+      "1",
+      "2",
+      "3",
+      "0",
+      "−",
+      ".",
+      "No Solution",
+      "Infinite Solutions",
+      "ab",
+      "←",
+      "→",
+      "↑",
+      "↓",
+      "⌫",
+      "Del",
+      "Clear",
+      "Check"
+    ]
+  },
+  "checkerPairs": 28,
+  "realMathJax": true,
+  "browser": "153.0.8010.12",
+  "documentedBaselineErrors": 0,
+  "unexpectedErrors": 0
+}
