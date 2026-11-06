@@ -191,6 +191,7 @@ stats.graphProblems=graphs;
  const look=p=>{checked++;const text=[p.questionHtml,...p.parts.flatMap(q=>[q.prompt,q.explanation,q.answerTex])].join(' ');
   if(/semicircles? whose radius|semicircle with radius|radius lies across the region[^<]*semicircle/.test(text))fail(`${p.id}: a radius-across semicircle`);
   const semi=/semicircles whose diameter lies across the region/.test(text),quarter=/quarter circles whose radius lies across the region/.test(text);
+  if(semi&&/u6-cs-svg/.test(text)&&!/aria-label="One cross section: a semicircle with diameter s \(radius s\/2\)"/.test(text))fail(`${p.id}: the cross-section picture is not the semicircle on its diameter`);
   if(semi){semis++;if(!/d=s\\\)/.test(text)||!/>d = s</.test(text)&&/u6-cs-svg/.test(text))fail(`${p.id}: semicircle without the diameter d = s in its explanation or picture`);}
   if(quarter)quarters++;
   // a cross-section setup about semicircles: pi/8; about quarter circles: pi/4 (the problem's other parts may be washers)
@@ -214,7 +215,39 @@ stats.graphProblems=graphs;
  else{const sp=setup.parts[0].answer;
   const ok=C.checkIntegral([{coef:'pi/8',lower:'0',upper:'4',integrand:'(2sqrt(4-y))^2',v:'y'}],sp),old=C.checkIntegral([{coef:'pi/2',lower:'0',upper:'4',integrand:'(2sqrt(4-y))^2',v:'y'}],sp);
   if(!(ok.valid&&ok.ok))fail(`shapes: the diameter setup is refused: ${JSON.stringify(ok)}`);if(old.ok)fail('shapes: the radius-across setup (pi/2) is accepted');}
- stats.shapes={regionsChecked:regions,problems:checked,semicircles:semis,quarterCircles:quarters,teacherCase:hit?hit.parts[0].answerTex:null};}
+ // the pictures of one cross section match the definitions: the highlighted slice (length s) is the diameter of the
+ // semicircle (arc radius s/2, a radius s/2 drawn from the center, labelled d = s), the radius of the quarter circle,
+ // the side of the square and of the equilateral triangle, the base of a rectangle of height m s, a leg of the isosceles
+ // right triangle, or its hypotenuse (legs s/sqrt 2, apex s/2 above it)
+ const pics=[['square',SHAPES.square],['rect2',C.rectShape(2)],['rect3',C.rectShape(3)],...['semicircle_d','quarter','equilateral','iso_leg','iso_hyp'].map(k=>[k,SHAPES[k]])];
+ for(const [k,sh] of pics){const svg=C.sectionPicture(sh),num=t=>+t,near=(a,b)=>Math.abs(a-b)<=0.6;
+  const base=svg.match(/<line x1="([\d.]+)" y1="([\d.]+)" x2="([\d.]+)" y2="([\d.]+)" class="u6-slice"\/>/);if(!base){fail(`picture ${k}: no highlighted slice`);continue;}
+  const [x0,B,x1]=[num(base[1]),num(base[2]),num(base[3])],s=x1-x0,body=svg.match(/<(?:path|rect) [^>]*class="u6-cs-shape"\/>/)[0];let ok=false;
+  if(k==='semicircle_d'){const a=body.match(/M([\d.]+) ([\d.]+) A([\d.]+) ([\d.]+) 0 0 1 ([\d.]+) ([\d.]+) Z/),r=svg.match(/<line x1="([\d.]+)" y1="([\d.]+)" x2="([\d.]+)" y2="([\d.]+)" class="u6-radius-r"\/>/);
+   ok=!!a&&near(num(a[1]),x0)&&near(num(a[5]),x1)&&near(num(a[3]),s/2)&&!!r&&near(Math.hypot(num(r[3])-num(r[1]),num(r[4])-num(r[2])),s/2)&&near(num(r[1]),(x0+x1)/2)&&/>d = s</.test(svg)&&/>s\/2</.test(svg)&&/diameter s \(radius s\/2\)/.test(svg);}
+  else if(k==='quarter'){const a=body.match(/M([\d.]+) ([\d.]+) L([\d.]+) ([\d.]+) A([\d.]+) ([\d.]+) 0 0 0 ([\d.]+) ([\d.]+) Z/);ok=!!a&&near(num(a[5]),s)&&near(num(a[2])-num(a[8]),s)&&/quarter circle with radius s/.test(svg);}
+  else if(k==='square'||k.startsWith('rect')){const r=body.match(/width="([\d.]+)" height="([\d.]+)"/),mlt=k==='square'?1:+k.slice(4);ok=!!r&&near(num(r[1]),s)&&near(num(r[2]),mlt*s);}
+  else{const v=[...body.matchAll(/[ML]([\d.]+) ([\d.]+)/g)].map(m=>[num(m[1]),num(m[2])]),d=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1]);
+   if(v.length===3){const [p,q,t]=v;ok=k==='equilateral'?near(d(p,q),s)&&near(d(q,t),s)&&near(d(t,p),s):k==='iso_leg'?near(d(p,q),s)&&near(d(p,t),s)&&near(d(q,t),s*Math.SQRT2):near(d(p,q),s)&&near(d(p,t),s/Math.SQRT2)&&near(d(q,t),s/Math.SQRT2);}}
+  if(!ok)fail(`picture ${k}: the drawing does not match the shape's definition`);}
+ stats.shapes={regionsChecked:regions,problems:checked,semicircles:semis,quarterCircles:quarters,pictures:pics.length,teacherCase:hit?hit.parts[0].answerTex:null};}
+
+// ---------- 5d. split integrals are explained (v12.9.D) ----------
+// every displayed sum of integrals (a setup split into pieces) comes after a reason that names each breakpoint where one
+// integral ends and the next begins (tools/review-lab/unit6/qa/split-audit.mjs checks this, and the locating equations,
+// at a larger scale)
+{const kt=f=>f.calc||(f.calculator?{calculator:f.tiers,noncalculator:[]}:{calculator:[],noncalculator:f.tiers});let sums=0;
+ const REASON=/<strong>(Split the integral at [\s\S]*?|Split the interval at [\s\S]*?|Compare the two ways of slicing\.|Why there are [\s\S]*?|Another way\.)<\/strong>([\s\S]*?)(?=<div class="u4-work-step">|$)/g;
+ for(const [E,mk,FK] of [[W.BatchMathUnit6Area,'make','FAMILIES'],[W.BatchMathUnit6Area,'makeY','FAMILIES_Y'],[W.BatchMathUnit6Volume,'makeCS','FAMILIES_CS'],[W.BatchMathUnit6Volume,'makeSolid','FAMILIES_SOLID'],[FRQ,'make','FAMILIES'],[W.BatchMathUnit6Piecewise,'make','FAMILIES']])
+  for(const [fam,f] of Object.entries(E[FK]))for(const kind of ['calculator','non-calculator'])for(const tier of kt(f)[kind==='calculator'?'calculator':'noncalculator'])for(let i=0;i<8;i++){
+   seed(i*389+fam.length*11+tier.length+kind.length);let p;try{p=E[mk]({family:fam,tier,calc:kind});}catch(e){continue;}
+   const html=p.parts.map(q=>q.explanation||'').join(''),reasons=[...html.matchAll(REASON)].map(m=>({at:m.index,t:m[1]+m[2]}));
+   for(const d of html.matchAll(/<div class="u4-work-equation[^"]*">\\\(\\displaystyle ([\s\S]*?)\\\)<\/div>/g)){const tex=d[1];if(!/^\s*(?:[AV]=|\\int_\{[^}]*\}\^\{[^}]*\}f\(x\))/.test(tex))continue;
+    const lim=[...tex.matchAll(/\\int_\{((?:[^{}]|\{[^{}]*\})*)\}\^\{((?:[^{}]|\{[^{}]*\})*)\}/g)].map(m=>[m[1],m[2]]),inner=[];for(let j=0;j+1<lim.length;j++)if(lim[j][1]===lim[j+1][0])inner.push(lim[j][1]);
+    if(!inner.length)continue;sums++;const before=reasons.filter(r=>r.at<d.index).map(r=>r.t).join(' ');
+    const miss=inner.filter(b=>![`=${b}\\)`,`\\approx ${b}\\)`,`=${b},`,`=${b}\\`].some(x=>before.includes(x)));
+    if(!before||miss.length)fail(`${p.id}: a sum of integrals with no reason naming ${miss.join(', ')||'its breakpoints'} before it`);}}
+ if(sums<100)fail(`split check: only ${sums} sums of integrals sampled`);stats.splitSums=sums;}
 
 // ---------- 6. review distributions ----------
 const want={'non-calculator':{area:14,area_y:10,cross_sections:12,washers:12,shells:9,frq_region:18,frq_graph:20,piecewise:5},calculator:{area:20,cross_sections:18,solids:27,frq_region:35}};
