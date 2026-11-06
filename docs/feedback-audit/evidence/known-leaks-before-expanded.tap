@@ -1,0 +1,503 @@
+TAP version 13
+# Subtest: choose_dx_dy: no completed part supplies a future answer
+not ok 1 - choose_dx_dy: no completed part supplies a future answer
+  ---
+  duration_ms: 28.304032
+  type: 'test'
+  location: '<repo>/tools/unit6-feedback/feedback.test.mjs:9:31'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"id":"u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g","found":[{"earlier":0,"later":1,"kind":"complete-future-integral","formula":"A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"}]}
+    + actual - expected
+
+    + [
+    +   {
+    +     earlier: 0,
+    +     formula: 'A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy',
+    +     kind: 'complete-future-integral',
+    +     later: 1
+    +   }
+    + ]
+    - []
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      earlier: 0
+      later: 1
+      kind: 'complete-future-integral'
+      formula: 'A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: washer: no completed part supplies a future answer
+not ok 2 - washer: no completed part supplies a future answer
+  ---
+  duration_ms: 8.588409
+  type: 'test'
+  location: '<repo>/tools/unit6-feedback/feedback.test.mjs:9:31'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"id":"u6-solids-wash-y=2x|y=x|x=3-y-3-3-f49nd7","found":[{"earlier":0,"later":1,"kind":"complete-future-expression","formula":"r(x)=3 + x"},{"earlier":0,"later":1,"kind":"wrong-feedback-confirms-future-expression","note":"That is the inner radius: the boundary nearer the axis."}]}
+    + actual - expected
+
+    + [
+    +   {
+    +     earlier: 0,
+    +     formula: 'r(x)=3 + x',
+    +     kind: 'complete-future-expression',
+    +     later: 1
+    +   },
+    +   {
+    +     earlier: 0,
+    +     kind: 'wrong-feedback-confirms-future-expression',
+    +     later: 1,
+    +     note: 'That is the inner radius: the boundary nearer the axis.'
+    +   }
+    + ]
+    - []
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      earlier: 0
+      later: 1
+      kind: 'complete-future-expression'
+      formula: 'r(x)=3 + x'
+    1:
+      earlier: 0
+      later: 1
+      kind: 'wrong-feedback-confirms-future-expression'
+      note: 'That is the inner radius: the boundary nearer the axis.'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: shells: no completed part supplies a future answer
+not ok 3 - shells: no completed part supplies a future answer
+  ---
+  duration_ms: 36.222373
+  type: 'test'
+  location: '<repo>/tools/unit6-feedback/feedback.test.mjs:9:31'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"id":"u6-solids-shell-y=4x|y=x^{3}-y0-160jdmd","found":[{"earlier":0,"later":1,"kind":"complete-future-expression","formula":"h(y)=\\sqrt[3]{y}-\\frac{y}{4}"},{"earlier":0,"later":1,"kind":"wrong-feedback-confirms-future-expression","note":"That is the height of the shell; the radius is the distance from the axis."}]}
+    + actual - expected
+
+    + [
+    +   {
+    +     earlier: 0,
+    +     formula: 'h(y)=\\sqrt[3]{y}-\\frac{y}{4}',
+    +     kind: 'complete-future-expression',
+    +     later: 1
+    +   },
+    +   {
+    +     earlier: 0,
+    +     kind: 'wrong-feedback-confirms-future-expression',
+    +     later: 1,
+    +     note: 'That is the height of the shell; the radius is the distance from the axis.'
+    +   }
+    + ]
+    - []
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      earlier: 0
+      later: 1
+      kind: 'complete-future-expression'
+      formula: 'h(y)=\\sqrt[3]{y}-\\frac{y}{4}'
+    1:
+      earlier: 0
+      later: 1
+      kind: 'wrong-feedback-confirms-future-expression'
+      note: 'That is the height of the shell; the radius is the distance from the axis.'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: graph_derivative: no completed part supplies a future answer
+not ok 4 - graph_derivative: no completed part supplies a future answer
+  ---
+  duration_ms: 7.686902
+  type: 'test'
+  location: '<repo>/tools/unit6-feedback/feedback.test.mjs:9:31'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"id":"u6-frq-gd-seg-521seg-313semi-233-10seg23-3seg4-30-0-4-6-4-1d2ry9p","found":[{"earlier":1,"later":2,"kind":"future-justification","correctChoice":"\\(g''=f'\\) changes sign there: \\(f\\) changes from increasing to decreasing or from decreasing to increasing."}]}
+    + actual - expected
+
+    + [
+    +   {
+    +     correctChoice: "\\(g''=f'\\) changes sign there: \\(f\\) changes from increasing to decreasing or from decreasing to increasing.",
+    +     earlier: 1,
+    +     kind: 'future-justification',
+    +     later: 2
+    +   }
+    + ]
+    - []
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      earlier: 1
+      later: 2
+      kind: 'future-justification'
+      correctChoice: "\\(g''=f'\\) changes sign there: \\(f\\) changes from increasing to decreasing or from decreasing to increasing."
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: graph_accum: no completed part supplies a future answer
+not ok 5 - graph_accum: no completed part supplies a future answer
+  ---
+  duration_ms: 8.62145
+  type: 'test'
+  location: '<repo>/tools/unit6-feedback/feedback.test.mjs:9:31'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"id":"u6-frq-ga-seg-521seg-313semi-233-10seg23-3seg4-30-5--5-6-4-1j6uw5p","found":[{"earlier":1,"later":2,"kind":"future-justification","correctChoice":"\\(g'=f\\) changes from positive to negative there."}]}
+    + actual - expected
+
+    + [
+    +   {
+    +     correctChoice: "\\(g'=f\\) changes from positive to negative there.",
+    +     earlier: 1,
+    +     kind: 'future-justification',
+    +     later: 2
+    +   }
+    + ]
+    - []
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      earlier: 1
+      later: 2
+      kind: 'future-justification'
+      correctChoice: "\\(g'=f\\) changes from positive to negative there."
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: choose_dy: no completed part supplies a future answer
+not ok 6 - choose_dy: no completed part supplies a future answer
+  ---
+  duration_ms: 24.832846
+  type: 'test'
+  location: '<repo>/tools/unit6-feedback/feedback.test.mjs:9:31'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"id":"u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z","found":[{"earlier":0,"later":1,"kind":"complete-future-integral","formula":"A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx"}]}
+    + actual - expected
+
+    + [
+    +   {
+    +     earlier: 0,
+    +     formula: 'A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx',
+    +     kind: 'complete-future-integral',
+    +     later: 1
+    +   }
+    + ]
+    - []
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      earlier: 0
+      later: 1
+      kind: 'complete-future-integral'
+      formula: 'A=\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: washer_vertical: no completed part supplies a future answer
+not ok 7 - washer_vertical: no completed part supplies a future answer
+  ---
+  duration_ms: 15.07102
+  type: 'test'
+  location: '<repo>/tools/unit6-feedback/feedback.test.mjs:9:31'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"id":"u6-solids-wash-x=-y^{3} + 2y^{2}|x=0-x-2-3-1tgk0n0","found":[{"earlier":0,"later":1,"kind":"complete-future-expression","formula":"r(y)=2"},{"earlier":0,"later":1,"kind":"wrong-feedback-confirms-future-expression","note":"That is the inner radius: the boundary nearer the axis."}]}
+    + actual - expected
+
+    + [
+    +   {
+    +     earlier: 0,
+    +     formula: 'r(y)=2',
+    +     kind: 'complete-future-expression',
+    +     later: 1
+    +   },
+    +   {
+    +     earlier: 0,
+    +     kind: 'wrong-feedback-confirms-future-expression',
+    +     later: 1,
+    +     note: 'That is the inner radius: the boundary nearer the axis.'
+    +   }
+    + ]
+    - []
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      earlier: 0
+      later: 1
+      kind: 'complete-future-expression'
+      formula: 'r(y)=2'
+    1:
+      earlier: 0
+      later: 1
+      kind: 'wrong-feedback-confirms-future-expression'
+      note: 'That is the inner radius: the boundary nearer the axis.'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: washer_above: no completed part supplies a future answer
+not ok 8 - washer_above: no completed part supplies a future answer
+  ---
+  duration_ms: 8.422541
+  type: 'test'
+  location: '<repo>/tools/unit6-feedback/feedback.test.mjs:9:31'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"id":"u6-solids-wash-y=-\\frac{3x}{4} + 3|x=0|y=0-y3-3-m6hqzk","found":[{"earlier":0,"later":1,"kind":"complete-future-expression","formula":"r(x)=\\frac{3x}{4}"},{"earlier":0,"later":1,"kind":"wrong-feedback-confirms-future-expression","note":"That is the inner radius: the boundary nearer the axis."}]}
+    + actual - expected
+
+    + [
+    +   {
+    +     earlier: 0,
+    +     formula: 'r(x)=\\frac{3x}{4}',
+    +     kind: 'complete-future-expression',
+    +     later: 1
+    +   },
+    +   {
+    +     earlier: 0,
+    +     kind: 'wrong-feedback-confirms-future-expression',
+    +     later: 1,
+    +     note: 'That is the inner radius: the boundary nearer the axis.'
+    +   }
+    + ]
+    - []
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      earlier: 0
+      later: 1
+      kind: 'complete-future-expression'
+      formula: 'r(x)=\\frac{3x}{4}'
+    1:
+      earlier: 0
+      later: 1
+      kind: 'wrong-feedback-confirms-future-expression'
+      note: 'That is the inner radius: the boundary nearer the axis.'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: shells_vertical: no completed part supplies a future answer
+not ok 9 - shells_vertical: no completed part supplies a future answer
+  ---
+  duration_ms: 4.577821
+  type: 'test'
+  location: '<repo>/tools/unit6-feedback/feedback.test.mjs:9:31'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"id":"u6-solids-shell-y=-x^{2} + 4|y=0-x2-escnfl","found":[{"earlier":0,"later":1,"kind":"complete-future-expression","formula":"h(x)=-x^{2} + 4"},{"earlier":0,"later":1,"kind":"wrong-feedback-confirms-future-expression","note":"That is the height of the shell; the radius is the distance from the axis."}]}
+    + actual - expected
+
+    + [
+    +   {
+    +     earlier: 0,
+    +     formula: 'h(x)=-x^{2} + 4',
+    +     kind: 'complete-future-expression',
+    +     later: 1
+    +   },
+    +   {
+    +     earlier: 0,
+    +     kind: 'wrong-feedback-confirms-future-expression',
+    +     later: 1,
+    +     note: 'That is the height of the shell; the radius is the distance from the axis.'
+    +   }
+    + ]
+    - []
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      earlier: 0
+      later: 1
+      kind: 'complete-future-expression'
+      formula: 'h(x)=-x^{2} + 4'
+    1:
+      earlier: 0
+      later: 1
+      kind: 'wrong-feedback-confirms-future-expression'
+      note: 'That is the height of the shell; the radius is the distance from the axis.'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: graph_accum_minimum: no completed part supplies a future answer
+not ok 10 - graph_accum_minimum: no completed part supplies a future answer
+  ---
+  duration_ms: 31.684452
+  type: 'test'
+  location: '<repo>/tools/unit6-feedback/feedback.test.mjs:9:31'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"id":"u6-frq-ga-seg-6-2-3seg-4-30semi-10011seg303seg531-1--6-7-4-1kbdbe7","found":[{"earlier":1,"later":2,"kind":"future-justification","correctChoice":"\\(g'=f\\) changes from negative to positive there."}]}
+    + actual - expected
+
+    + [
+    +   {
+    +     correctChoice: "\\(g'=f\\) changes from negative to positive there.",
+    +     earlier: 1,
+    +     kind: 'future-justification',
+    +     later: 2
+    +   }
+    + ]
+    - []
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      earlier: 1
+      later: 2
+      kind: 'future-justification'
+      correctChoice: "\\(g'=f\\) changes from negative to positive there."
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: graph_accum_inflection: no completed part supplies a future answer
+not ok 11 - graph_accum_inflection: no completed part supplies a future answer
+  ---
+  duration_ms: 7.066559
+  type: 'test'
+  location: '<repo>/tools/unit6-feedback/feedback.test.mjs:9:31'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"id":"u6-frq-ga-seg-623seg-330quarter-10-1-10quarter0-1011seg10-1-1--5-2-4-1b6y1xm","found":[{"earlier":1,"later":2,"kind":"future-justification","correctChoice":"\\(g''=f'\\) changes sign there: \\(f\\) changes from increasing to decreasing or from decreasing to increasing."}]}
+    + actual - expected
+
+    + [
+    +   {
+    +     correctChoice: "\\(g''=f'\\) changes sign there: \\(f\\) changes from increasing to decreasing or from decreasing to increasing.",
+    +     earlier: 1,
+    +     kind: 'future-justification',
+    +     later: 2
+    +   }
+    + ]
+    - []
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      earlier: 1
+      later: 2
+      kind: 'future-justification'
+      correctChoice: "\\(g''=f'\\) changes sign there: \\(f\\) changes from increasing to decreasing or from decreasing to increasing."
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 0
+# fail 11
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 384.639531

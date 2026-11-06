@@ -1,0 +1,175 @@
+✖ choose_dx_dy: no completed part supplies a future answer (23.772713ms)
+✖ washer: no completed part supplies a future answer (5.320935ms)
+✖ shells: no completed part supplies a future answer (6.238088ms)
+✖ graph_derivative: no completed part supplies a future answer (4.393158ms)
+✖ graph_accum: no completed part supplies a future answer (2.86077ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 177.94341
+
+✖ failing tests:
+
+test at tools/unit6-feedback/feedback.test.mjs:9:31
+✖ choose_dx_dy: no completed part supplies a future answer (23.772713ms)
+  AssertionError [ERR_ASSERTION]: {"id":"u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g","found":[{"earlier":0,"later":1,"kind":"complete-future-integral","formula":"A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"}]}
+  + actual - expected
+
+  + [
+  +   {
+  +     earlier: 0,
+  +     formula: 'A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy',
+  +     kind: 'complete-future-integral',
+  +     later: 1
+  +   }
+  + ]
+  - []
+
+      at TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { earlier: 0, later: 1, kind: 'complete-future-integral', formula: 'A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tools/unit6-feedback/feedback.test.mjs:9:31
+✖ washer: no completed part supplies a future answer (5.320935ms)
+  AssertionError [ERR_ASSERTION]: {"id":"u6-solids-wash-y=2x|y=x|x=3-y-3-3-f49nd7","found":[{"earlier":0,"later":1,"kind":"complete-future-expression","formula":"r(x)=3 + x"},{"earlier":0,"later":1,"kind":"wrong-feedback-confirms-future-expression","note":"That is the inner radius: the boundary nearer the axis."}]}
+  + actual - expected
+
+  + [
+  +   {
+  +     earlier: 0,
+  +     formula: 'r(x)=3 + x',
+  +     kind: 'complete-future-expression',
+  +     later: 1
+  +   },
+  +   {
+  +     earlier: 0,
+  +     kind: 'wrong-feedback-confirms-future-expression',
+  +     later: 1,
+  +     note: 'That is the inner radius: the boundary nearer the axis.'
+  +   }
+  + ]
+  - []
+
+      at TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { earlier: 0, later: 1, kind: 'complete-future-expression', formula: 'r(x)=3 + x' }, { earlier: 0, later: 1, kind: 'wrong-feedback-confirms-future-expression', note: 'That is the inner radius: the boundary nearer the axis.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tools/unit6-feedback/feedback.test.mjs:9:31
+✖ shells: no completed part supplies a future answer (6.238088ms)
+  AssertionError [ERR_ASSERTION]: {"id":"u6-solids-shell-y=4x|y=x^{3}-y0-160jdmd","found":[{"earlier":0,"later":1,"kind":"complete-future-expression","formula":"h(y)=\\sqrt[3]{y}-\\frac{y}{4}"},{"earlier":0,"later":1,"kind":"wrong-feedback-confirms-future-expression","note":"That is the height of the shell; the radius is the distance from the axis."}]}
+  + actual - expected
+
+  + [
+  +   {
+  +     earlier: 0,
+  +     formula: 'h(y)=\\sqrt[3]{y}-\\frac{y}{4}',
+  +     kind: 'complete-future-expression',
+  +     later: 1
+  +   },
+  +   {
+  +     earlier: 0,
+  +     kind: 'wrong-feedback-confirms-future-expression',
+  +     later: 1,
+  +     note: 'That is the height of the shell; the radius is the distance from the axis.'
+  +   }
+  + ]
+  - []
+
+      at TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { earlier: 0, later: 1, kind: 'complete-future-expression', formula: 'h(y)=\\sqrt[3]{y}-\\frac{y}{4}' }, { earlier: 0, later: 1, kind: 'wrong-feedback-confirms-future-expression', note: 'That is the height of the shell; the radius is the distance from the axis.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tools/unit6-feedback/feedback.test.mjs:9:31
+✖ graph_derivative: no completed part supplies a future answer (4.393158ms)
+  AssertionError [ERR_ASSERTION]: {"id":"u6-frq-gd-seg-521seg-313semi-233-10seg23-3seg4-30-0-4-6-4-1d2ry9p","found":[{"earlier":1,"later":2,"kind":"future-justification","correctChoice":"\\(g''=f'\\) changes sign there: \\(f\\) changes from increasing to decreasing or from decreasing to increasing."}]}
+  + actual - expected
+
+  + [
+  +   {
+  +     correctChoice: "\\(g''=f'\\) changes sign there: \\(f\\) changes from increasing to decreasing or from decreasing to increasing.",
+  +     earlier: 1,
+  +     kind: 'future-justification',
+  +     later: 2
+  +   }
+  + ]
+  - []
+
+      at TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { earlier: 1, later: 2, kind: 'future-justification', correctChoice: "\\(g''=f'\\) changes sign there: \\(f\\) changes from increasing to decreasing or from decreasing to increasing." } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tools/unit6-feedback/feedback.test.mjs:9:31
+✖ graph_accum: no completed part supplies a future answer (2.86077ms)
+  AssertionError [ERR_ASSERTION]: {"id":"u6-frq-ga-seg-521seg-313semi-233-10seg23-3seg4-30-5--5-6-4-1j6uw5p","found":[{"earlier":1,"later":2,"kind":"future-justification","correctChoice":"\\(g'=f\\) changes from positive to negative there."}]}
+  + actual - expected
+
+  + [
+  +   {
+  +     correctChoice: "\\(g'=f\\) changes from positive to negative there.",
+  +     earlier: 1,
+  +     kind: 'future-justification',
+  +     later: 2
+  +   }
+  + ]
+  - []
+
+      at TestContext.<anonymous> (file://<repo>/tools/unit6-feedback/feedback.test.mjs:12:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { earlier: 1, later: 2, kind: 'future-justification', correctChoice: "\\(g'=f\\) changes from positive to negative there." } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

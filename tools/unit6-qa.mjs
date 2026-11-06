@@ -21,6 +21,7 @@ const seed=s=>{W.BatchMathRNG={random:rng(s)};};
 const errors=[],stats={};const fail=m=>{if(errors.length<200)errors.push(m);};
 const rel=(a,b,r=1e-7)=>Math.abs(a-b)<=r*Math.max(1,Math.abs(a),Math.abs(b));
 const N=+(process.env.U6_N||40);
+const BUILD_VERSION=JSON.parse(read('assets/app-version.json')).version;
 
 // ---------- 1. pages and Practice Types ----------
 const PAGES=[
@@ -281,10 +282,10 @@ for(const [page,slug,calc,eng,modes] of WIRED){const f=`${U6}${page}/index.html`
  if(!h.includes('<link rel="stylesheet" href="/assets/mathlive/pilot.css"><script type="module" src="/assets/mathlive/unit6.mjs"></script></head>'))fail(`${page}: MathLive module missing`);
  if(!h.includes('<script defer src="/assets/ap-topic-practice.js"></script>'))fail(`${page}: practice driver not deferred`);
  const conf=JSON.parse(h.match(/window\.BM_TOPIC_PRACTICE=(\{.*?\});/)[1]);
- if(conf.slug!==slug||(conf.calculator||null)!==calc||conf.generatorVersion!=='12.9.C')fail(`${page}: page config ${JSON.stringify(conf)}`);
+ if(conf.slug!==slug||(conf.calculator||null)!==calc||conf.generatorVersion!==BUILD_VERSION)fail(`${page}: page config ${JSON.stringify(conf)}`);
  const opts=[...(h.match(/<select id="u6Mode"[^>]*>(.*?)<\/select>/)||[,''])[1].matchAll(/value="([^"]+)"/g)].map(m=>m[1]);
  if(JSON.stringify(modes?opts:null)!==JSON.stringify(modes||(opts.length?opts:null)))fail(`${page}: Practice Types ${opts} (expected ${modes})`);
- if(!/generatorVersion:"12\.9\.C"/.test(h))fail(`${page}: analytics generator version`);
+ if(!h.includes('generatorVersion:"'+BUILD_VERSION+'"'))fail(`${page}: analytics generator version`);
  if(calc&&!sitemap.includes(`/${U6}${page}/`))fail(`${page}: not in the sitemap`);
  if(calc==='calculator'&&!h.includes('calculator-active-note'))fail(`${page}: no calculator note`);if(calc!=='calculator'&&h.includes('calculator-active-note'))fail(`${page}: calculator note on a non-calculator page`);}
 for(const page of ['area-below-and-between-curves/practice','volume-by-cross-sections/practice','solids-of-revolution/practice','comprehensive-review/assignment-practice']){

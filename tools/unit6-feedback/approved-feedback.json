@@ -1,0 +1,18 @@
+{
+  "baseline": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+  "scope": "Explanation/feedback prose in three Unit 6 modules; only graph reason/location pair order and generic reason prompts are redesigned. Models, parameters, sampling/RNG, graders, geometry and MathLive are preserved.",
+  "assets": {
+    "assets/unit6-area.js": {
+      "before": "4e3d902de877de025479674b2858e4d55e69a7c1",
+      "after": "0463b033f8bdd616d8563511cdaa1e9ad0434d29"
+    },
+    "assets/unit6-volume.js": {
+      "before": "489e30849409d5eafdc6b23f0a2352829842db88",
+      "after": "1b4bf1428f3a0c4454311c0071d4701fa445279b"
+    },
+    "assets/unit6-frq.js": {
+      "before": "7cae7c4b157021637d8da2ab02bf73a4ee1b8698",
+      "after": "1726c0dfe4f67e4a176fe3255ce7e93425498d09"
+    }
+  }
+}

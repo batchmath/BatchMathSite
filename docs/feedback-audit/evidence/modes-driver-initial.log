@@ -1,0 +1,13 @@
+file://<repo>/tools/unit6-feedback/model.mjs:29
+  const ti=topics.findIndex(t=>t.key===topicKey);if(ti<0)throw Error('Review topic unavailable: '+topicKey);
+                                                               ^
+
+Error: Review topic unavailable: area
+    at reviewPlan (file://<repo>/tools/unit6-feedback/model.mjs:29:64)
+    at Object.makeReview (file://<repo>/tools/unit6-feedback/model.mjs:41:53)
+    at file://<repo>/tools/unit6-feedback/coverage.mjs:23:20
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0

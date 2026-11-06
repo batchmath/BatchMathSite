@@ -1,0 +1,431 @@
+{
+  "results": [
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [],
+      "failures": [
+        "page.waitForFunction: Timeout 12000ms exceeded.\n    at <repo>/tools/unit6-feedback/browser.mjs:21:15"
+      ],
+      "passed": false
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [],
+      "failures": [
+        "page.waitForFunction: Timeout 12000ms exceeded.\n    at <repo>/tools/unit6-feedback/browser.mjs:21:15"
+      ],
+      "passed": false
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [],
+      "failures": [
+        "page.waitForFunction: Timeout 12000ms exceeded.\n    at <repo>/tools/unit6-feedback/browser.mjs:21:15"
+      ],
+      "passed": false
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [],
+      "failures": [
+        "page.waitForFunction: Timeout 12000ms exceeded.\n    at <repo>/tools/unit6-feedback/browser.mjs:21:15"
+      ],
+      "passed": false
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 4\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "4",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 4\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "4",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [],
+      "failures": [
+        "page.waitForFunction: Timeout 12000ms exceeded.\n    at <repo>/tools/unit6-feedback/browser.mjs:21:15"
+      ],
+      "passed": false
+    },
+    {
+      "fixture": "washer",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [],
+      "failures": [
+        "page.waitForFunction: Timeout 12000ms exceeded.\n    at <repo>/tools/unit6-feedback/browser.mjs:21:15"
+      ],
+      "passed": false
+    },
+    {
+      "fixture": "washer",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [],
+      "failures": [
+        "page.waitForFunction: Target page, context or browser has been closed\n    at <repo>/tools/unit6-feedback/browser.mjs:21:15"
+      ],
+      "passed": false
+    }
+  ],
+  "errors": [],
+  "expectedOriginalDisclosures": 0
+}

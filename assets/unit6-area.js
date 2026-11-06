@@ -188,11 +188,13 @@ function famChoose(tier){
   const dyBetter=Ty.length<Tx.length,best=dyBetter?Ty:Tx,other=dyBetter?Tx:Ty,vb=dyBetter?'y':'x',vo=dyBetter?'x':'y',e=exactValue(best)||exactValue(other);if(!e)continue;
   const show=pick([true,false]),pic=show?'':regionStep(R,'Region R');
   const nw=n=>['','one','two','three','four'][n]||n;
-  const why=step('Compare the two ways of slicing.',dyBetter?`With vertical slices ${W.changeSummary(R,'x')}, so dx needs ${nw(Tx.length)} integrals. Horizontal slices always run from ${W.bname(R.ys[0].left,'y')} on the left to ${W.bname(R.ys[0].right,'y')} on the right, so dy needs only one.`
-   :`With horizontal slices ${W.changeSummary(R,'y')}, so dy needs ${nw(Ty.length)} integrals. Vertical slices always run from ${W.bname(R.xs[0].bot,'x')} up to ${W.bname(R.xs[0].top,'x')}, so dx needs only one.`,`A=${setupTex(Tx)}`,`A=${setupTex(Ty)}`);
+  // Explain this part's direction without supplying the opposite setup requested next.
+  const why=step('Choose the direction for one integral.',dyBetter?`The upper or lower boundary changes for vertical slices, so dx needs ${nw(Tx.length)} integrals. Horizontal slices always run from ${W.bname(R.ys[0].left,'y')} on the left to ${W.bname(R.ys[0].right,'y')} on the right, so dy needs only one.`
+   :`The left or right boundary changes for horizontal slices, so dy needs ${nw(Ty.length)} integrals. Vertical slices always run from ${W.bname(R.xs[0].bot,'x')} up to ${W.bname(R.xs[0].top,'x')}, so dx needs only one.`);
+  const comparison=step('Compare the completed setups.','Both directions describe the same region.',`A=${setupTex(Tx)}`,`A=${setupTex(Ty)}`);
   const single=integralPart('Write the area of \\(R\\) as a single integral.',best,pic+W.boundsStep(R)+why+W.areaWork(R,vb,best,{note:false}),{max:1,variable:vb,methodNote:`With ${vo} the area needs more than one integral; a single integral uses ${vb}.`});
-  const parts=tier==='challenging'?[single,integralPart(`Now write the area of \\(R\\) as a sum of integrals with respect to ${vo}.`,other,W.areaWork(R,vo,other,{note:false}),{variable:vo}),exactPart('Find the exact area of \\(R\\).',ans(e),W.evalWork(best))]
-   :[single,exactPart('Find the exact area of \\(R\\).',ans(e),W.evalWork(best))];
+  const parts=tier==='challenging'?[single,integralPart(`Now write the area of \\(R\\) as a sum of integrals with respect to ${vo}.`,other,W.areaWork(R,vo,other,{note:false}),{variable:vo}),exactPart('Find the exact area of \\(R\\).',ans(e),comparison+W.evalWork(best))]
+   :[single,exactPart('Find the exact area of \\(R\\).',ans(e),W.areaWork(R,vo,other,{note:false})+comparison+W.evalWork(best))];
   return one('Answer each part.',parts,{engine:'area',family:'choose_dx_dy',tier,id:`choose-${sub}-${R.eqs.join('|')}-${parts.length}`,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:show?figure(R,{compact:true,label:'Region R'}):'',data:{sub,best:vb,graph:show}});
  }
  throw Error('choose_dx_dy failed');

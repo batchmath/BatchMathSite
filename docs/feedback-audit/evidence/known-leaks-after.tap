@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: choose_dx_dy: no completed part supplies a future answer
+ok 1 - choose_dx_dy: no completed part supplies a future answer
+  ---
+  duration_ms: 20.948428
+  type: 'test'
+  ...
+# Subtest: washer: no completed part supplies a future answer
+ok 2 - washer: no completed part supplies a future answer
+  ---
+  duration_ms: 6.20551
+  type: 'test'
+  ...
+# Subtest: shells: no completed part supplies a future answer
+ok 3 - shells: no completed part supplies a future answer
+  ---
+  duration_ms: 10.007658
+  type: 'test'
+  ...
+# Subtest: graph_derivative: no completed part supplies a future answer
+ok 4 - graph_derivative: no completed part supplies a future answer
+  ---
+  duration_ms: 4.63896
+  type: 'test'
+  ...
+# Subtest: graph_accum: no completed part supplies a future answer
+ok 5 - graph_accum: no completed part supplies a future answer
+  ---
+  duration_ms: 2.565605
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 133.980627

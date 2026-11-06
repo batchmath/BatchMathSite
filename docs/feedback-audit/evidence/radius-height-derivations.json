@@ -1,0 +1,6 @@
+{
+  "problems": 400,
+  "displayedExpressionEqualitiesChecked": 488,
+  "passed": true,
+  "method": "Every displayed distance/subtraction and simplified formula is checked against the unchanged original expression grader over its full sampling domain."
+}

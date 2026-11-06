@@ -287,7 +287,7 @@ function poiParts(G){
  const order=shuffle([0,1,2,3]);
  return[listPart(`For what values of \\(x\\) on \\((${G.L},${G.R})\\) does \\(g\\) have a point of inflection? Enter every value, separated by commas.`,G.poi,G.poi.map(String),expl,{placeholder:'x-values separated by commas',
    answer:{kind:'list',values:G.poi,extraNote:'At least one of your values is not a point of inflection: check that f changes direction there, not just that it has a corner or a zero.'}}),
-  choicePart('Which statement explains why \\(g\\) has a point of inflection at each of these values?',order.map(i=>choices[i]),order.indexOf(0),step('Reason.','A point of inflection of \\(g\\) needs \\(g\'\'\\) to change sign. Because \\(g\'\'=f\'\\), that happens where \\(f\\) changes direction. Sign changes of \\(f\\) itself give the local maxima and minima of \\(g\\) instead.'))];
+  choicePart('Which condition on the graph of \\(f\\) identifies a point of inflection of \\(g\\)?',order.map(i=>choices[i]),order.indexOf(0),step('Reason.','A point of inflection of \\(g\\) needs \\(g\'\'\\) to change sign. Because \\(g\'\'=f\'\\), that happens where \\(f\\) changes direction. Sign changes of \\(f\\) itself give the local maxima and minima of \\(g\\) instead.'))];
 }
 function extremaParts(G,kind){
  const xs=kind==='max'?G.maxes:G.mins,other=kind==='max'?G.mins:G.maxes,word=kind==='max'?'maximum':'minimum',from=kind==='max'?'positive to negative':'negative to positive';
@@ -296,7 +296,7 @@ function extremaParts(G,kind){
  const choices=[`\\(g'=f\\) changes from ${from} there.`,`\\(g'=f\\) changes from ${kind==='max'?'negative to positive':'positive to negative'} there.`,`\\(f\\) changes from ${kind==='max'?'increasing to decreasing':'decreasing to increasing'} there.`,`\\(f\\) has a local ${word} there.`];
  const order=shuffle([0,1,2,3]);
  return[listPart(`For what values of \\(x\\) on \\((${G.L},${G.R})\\) does \\(g\\) have a local ${word}? Enter every value, separated by commas.`,xs,xs.map(String),expl,{placeholder:'x-values separated by commas',answer:{kind:'list',values:xs,extraNote:`At least one of your values is not a local ${word} of g.`}}),
-  choicePart(`Which statement explains why \\(g\\) has a local ${word} at each of these values?`,order.map(i=>choices[i]),order.indexOf(0),step('Reason.',`The extrema of \\(g\\) come from sign changes of \\(g'=f\\). Changes in the direction of \\(f\\) give points of inflection of \\(g\\), not extrema.`))];
+  choicePart(`Which condition on the graph of \\(f\\) identifies a local ${word} of \\(g\\)?`,order.map(i=>choices[i]),order.indexOf(0),step('Reason.',`The extrema of \\(g\\) come from sign changes of \\(g'=f\\). Changes in the direction of \\(f\\) give points of inflection of \\(g\\), not extrema.`))];
 }
 function absolutePart(G,kind,derivative){
  const cand=[...new Set([G.L,...G.crit,G.R])].sort((u,w)=>u-w),vals=cand.map(x=>({x,g:gOf(G,x)}));
@@ -341,7 +341,9 @@ function famGraphDerivative(tier){
  for(let i=0;i<40;i++){
   const G=buildGraph();G.c=G.points.includes(0)?0:pick(G.points.filter(x=>x>G.L&&x<G.R));G.k=ri(-3,4);
   const x1=pick([G.R,G.R,G.L,...G.points.filter(x=>x!==G.c)]),parts=[exactPart(`Find \\(g(${x1})\\).`,ans(toE(gOf(G,x1))),valueWork(G,x1,true))];
-  parts.push(...poiParts(G),absolutePart(G,pick(['max','min']),true));
+  // Choose the general criterion before locating points: a full location
+  // explanation would otherwise answer the following justification question.
+  parts.push(...poiParts(G).reverse(),absolutePart(G,pick(['max','min']),true));
   const last=tier==='challenging'?limitPart(G)||secondPart(G):pick([true,false])?secondPart(G):null;
   if(last)parts.push(last);
   return frq(parts,{engine:'frq',family:'graph_derivative',tier,id:`gd-${G.pieces.map(p=>`${p.type}${p.a}${p.ya}${p.yb}${p.s||''}${p.cx??''}`).join('')}-${G.c}-${G.k}-${x1}-${parts.length}`,
@@ -356,8 +358,8 @@ function famGraphAccum(tier){
   const x1=pick([G.L,...left]),x2=pick([G.R,...right]),parts=[exactPart(`Find \\(g(${x1})\\).`,ans(toE(gOf(G,x1))),valueWork(G,x1,false))];
   if(tier==='challenging')parts.push(exactPart(`Find \\(g(${x2})\\).`,ans(toE(gOf(G,x2))),valueWork(G,x2,false)));
   const ext=pick([...(G.maxes.length?['max']:[]),...(G.mins.length?['min']:[])]),inc=increasingPart(G);
-  if(tier==='challenging')parts.push(...poiParts(G),extremaParts(G,ext)[0]);
-  else parts.push(...(pick([true,false])?poiParts(G):extremaParts(G,ext)));
+  if(tier==='challenging')parts.push(...poiParts(G).reverse(),extremaParts(G,ext)[0]);
+  else parts.push(...(pick([true,false])?poiParts(G):extremaParts(G,ext)).reverse());
   if(tier!=='challenging'&&inc&&pick([true,false,false]))parts.push(inc);
   parts.push(absolutePart(G,ext==='max'?'min':'max',false));
   return frq(parts,{engine:'frq',family:'graph_accum',tier,id:`ga-${G.pieces.map(p=>`${p.type}${p.a}${p.ya}${p.yb}${p.s||''}${p.cx??''}`).join('')}-${G.c}-${x1}-${x2}-${parts.length}`,

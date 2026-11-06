@@ -1,0 +1,89 @@
+
+> batchmath-site-qa@12.9.E qa:unit6
+> node tools/unit6-qa.mjs
+
+{
+ "stats": {
+  "pagesAndModes": {
+   "problems": 1120,
+   "parts": 2104,
+   "variants": {
+    "area-below-and-between-curves/non-calculator": 9,
+    "area-below-and-between-curves/calculator": 3,
+    "finding-area-in-terms-of-y/page": 4,
+    "integrals-on-piecewise-defined-functions/page": 6,
+    "volume-by-cross-sections/non-calculator": 2,
+    "volume-by-cross-sections/calculator": 1,
+    "solids-of-revolution/non-calculator": 5,
+    "solids-of-revolution/calculator": 2,
+    "unit6-comprehensive-review/non-calculator": 20,
+    "unit6-comprehensive-review/calculator": 7
+   }
+  },
+  "courseResults": 14,
+  "checkerCases": 16,
+  "regions": 240,
+  "graphProblems": 80,
+  "graphFit": 506,
+  "shapes": {
+   "regionsChecked": 296,
+   "problems": 1440,
+   "semicircles": 98,
+   "quarterCircles": 52,
+   "pictures": 8,
+   "teacherCase": "4\\pi"
+  },
+  "splitSums": 213,
+  "review_non-calculator": {
+   "topics": {
+    "washers": 12.9,
+    "area": 12.9,
+    "piecewise": 6.1,
+    "area_y": 9.5,
+    "cross_sections": 10.8,
+    "frq_region": 17.8,
+    "frq_graph": 19.7,
+    "shells": 10.4
+   },
+   "tiers": {
+    "intermediate": 53.4,
+    "challenging": 25.7,
+    "foundational": 20.9
+   }
+  },
+  "review_calculator": {
+   "topics": {
+    "solids": 27.5,
+    "frq_region": 33.2,
+    "cross_sections": 18.4,
+    "area": 20.9
+   },
+   "tiers": {
+    "challenging": 25.9,
+    "intermediate": 56.3,
+    "foundational": 17.8
+   }
+  }
+ },
+ "errors": 20
+}
+area-below-and-between-curves/non-calculator-practice: page config {"slug":"area-below-and-between-curves","analyticsSlug":"area-below-and-between-curves_noncalculator","calculator":"non-calculator","title":"Area Below and Between Curves Non-Calculator Practice","generatorVersion":"12.9.E","modeSelectIds":["u6Mode"]}
+area-below-and-between-curves/non-calculator-practice: analytics generator version
+area-below-and-between-curves/calculator-practice: page config {"slug":"area-below-and-between-curves","analyticsSlug":"area-below-and-between-curves_calculator","calculator":"calculator","title":"Area Below and Between Curves Calculator Practice","generatorVersion":"12.9.E","modeSelectIds":["u6Mode"]}
+area-below-and-between-curves/calculator-practice: analytics generator version
+finding-area-in-terms-of-y/practice: page config {"slug":"finding-area-in-terms-of-y","title":"Finding Area in Terms of y","generatorVersion":"12.9.E","modeSelectIds":[]}
+finding-area-in-terms-of-y/practice: analytics generator version
+integrals-on-piecewise-defined-functions/practice: page config {"slug":"integrals-on-piecewise-defined-functions","title":"Integrals on Piecewise Defined Functions","generatorVersion":"12.9.E","modeSelectIds":[]}
+integrals-on-piecewise-defined-functions/practice: analytics generator version
+volume-by-cross-sections/non-calculator-practice: page config {"slug":"volume-by-cross-sections","analyticsSlug":"volume-by-cross-sections_noncalculator","calculator":"non-calculator","title":"Volume by Cross Sections Non-Calculator Practice","generatorVersion":"12.9.E","modeSelectIds":["u6Mode"]}
+volume-by-cross-sections/non-calculator-practice: analytics generator version
+volume-by-cross-sections/calculator-practice: page config {"slug":"volume-by-cross-sections","analyticsSlug":"volume-by-cross-sections_calculator","calculator":"calculator","title":"Volume by Cross Sections Calculator Practice","generatorVersion":"12.9.E","modeSelectIds":["u6Mode"]}
+volume-by-cross-sections/calculator-practice: analytics generator version
+solids-of-revolution/non-calculator-practice: page config {"slug":"solids-of-revolution","analyticsSlug":"solids-of-revolution_noncalculator","calculator":"non-calculator","title":"Solids of Revolution Non-Calculator Practice","generatorVersion":"12.9.E","modeSelectIds":["u6Mode"]}
+solids-of-revolution/non-calculator-practice: analytics generator version
+solids-of-revolution/calculator-practice: page config {"slug":"solids-of-revolution","analyticsSlug":"solids-of-revolution_calculator","calculator":"calculator","title":"Solids of Revolution Calculator Practice","generatorVersion":"12.9.E","modeSelectIds":["u6Mode"]}
+solids-of-revolution/calculator-practice: analytics generator version
+comprehensive-review/non-calculator-practice: page config {"slug":"unit6-comprehensive-review","analyticsSlug":"unit6_assignment_review_noncalculator","calculator":"non-calculator","title":"Applications of Integration Non-Calculator Review","generatorVersion":"12.9.E","modeSelectIds":["u6Mode"]}
+comprehensive-review/non-calculator-practice: analytics generator version
+comprehensive-review/calculator-practice: page config {"slug":"unit6-comprehensive-review","analyticsSlug":"unit6_assignment_review_calculator","calculator":"calculator","title":"Applications of Integration Calculator Review","generatorVersion":"12.9.E","modeSelectIds":["u6Mode"]}
+comprehensive-review/calculator-practice: analytics generator version

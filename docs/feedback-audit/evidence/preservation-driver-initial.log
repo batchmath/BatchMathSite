@@ -1,0 +1,130 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: axis_basic/foundational/1029: non-feedback contract changed
+
+{
+  answerTex: '108',
+  answerType: 'unit5-staged',
+  calculatorActive: false,
+  normalizedMathDisplay: true,
+  parts: [
+    {
+      answer: {
+        kind: 'exact',
+        value: 108,
+        wrongValues: []
+      },
+      answerTex: '108',
+      control: 'input',
+      keypadMode: 'unit6-exact',
+      placeholder: 'Exact answer',
+      prompt: 'Find the area.'
+    }
+  ],
+  questionHtml: '<div class="u4-unit4-question u4-revised-question u5-question"><div class="u5-calculator-badge is-inactive">No calculator</div><div class="question-prompt u5-context">Find the area of the region between the curve and the x-axis.</div><div class="u4-formula">\\(\\displaystyle y=27-3\\left(x+1\\right)^{2},\\qquad -4\\le x\\le 2\\)</div></div>',
+  unit5Meta: {
+    calculator: false,
+    engine: 'area',
+    family: 'axis_basic',
+    parts: 1,
+    sub: 'cap',
+    tier: 'foundational',
+    unit: 6
+  },
+  unit6Meta: {
+    calculator: false,
+    engine: 'area',
+    family: 'axis_basic',
+    parts: 1,
+    sub: 'cap',
+    tier: 'foundational',
+    unit: 6
+  },
+  variant: 'axis_basic'
+}
+
+    at file://<repo>/tools/unit6-feedback/audit.mjs:13:63
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: {
+    answerTex: '108',
+    answerType: 'unit5-staged',
+    calculatorActive: false,
+    normalizedMathDisplay: true,
+    parts: [
+      {
+        answer: { kind: 'exact', value: 108, wrongValues: [] },
+        answerTex: '108',
+        control: 'input',
+        keypadMode: 'unit6-exact',
+        placeholder: 'Exact answer',
+        prompt: 'Find the area.'
+      }
+    ],
+    questionHtml: '<div class="u4-unit4-question u4-revised-question u5-question"><div class="u5-calculator-badge is-inactive">No calculator</div><div class="question-prompt u5-context">Find the area of the region between the curve and the x-axis.</div><div class="u4-formula">\\(\\displaystyle y=27-3\\left(x+1\\right)^{2},\\qquad -4\\le x\\le 2\\)</div></div>',
+    unit5Meta: {
+      calculator: false,
+      engine: 'area',
+      family: 'axis_basic',
+      parts: 1,
+      sub: 'cap',
+      tier: 'foundational',
+      unit: 6
+    },
+    unit6Meta: {
+      calculator: false,
+      engine: 'area',
+      family: 'axis_basic',
+      parts: 1,
+      sub: 'cap',
+      tier: 'foundational',
+      unit: 6
+    },
+    variant: 'axis_basic'
+  },
+  expected: {
+    answerTex: '108',
+    answerType: 'unit5-staged',
+    calculatorActive: false,
+    normalizedMathDisplay: true,
+    parts: [
+      {
+        answer: { kind: 'exact', value: 108, wrongValues: [] },
+        answerTex: '108',
+        control: 'input',
+        keypadMode: 'unit6-exact',
+        placeholder: 'Exact answer',
+        prompt: 'Find the area.'
+      }
+    ],
+    questionHtml: '<div class="u4-unit4-question u4-revised-question u5-question"><div class="u5-calculator-badge is-inactive">No calculator</div><div class="question-prompt u5-context">Find the area of the region between the curve and the x-axis.</div><div class="u4-formula">\\(\\displaystyle y=27-3\\left(x+1\\right)^{2},\\qquad -4\\le x\\le 2\\)</div></div>',
+    unit5Meta: {
+      calculator: false,
+      engine: 'area',
+      family: 'axis_basic',
+      parts: 1,
+      sub: 'cap',
+      tier: 'foundational',
+      unit: 6
+    },
+    unit6Meta: {
+      calculator: false,
+      engine: 'area',
+      family: 'axis_basic',
+      parts: 1,
+      sub: 'cap',
+      tier: 'foundational',
+      unit: 6
+    },
+    variant: 'axis_basic'
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

@@ -1,0 +1,45 @@
+{
+  "results": [
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [],
+      "failures": [
+        "page.waitForFunction: Timeout 12000ms exceeded.\n    at <repo>/tools/unit6-feedback/browser.mjs:21:15"
+      ],
+      "passed": false
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [],
+      "failures": [
+        "page.waitForFunction: Timeout 12000ms exceeded.\n    at <repo>/tools/unit6-feedback/browser.mjs:21:15"
+      ],
+      "passed": false
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+      "parts": [],
+      "failures": [
+        "page.waitForFunction: Target page, context or browser has been closed\n    at <repo>/tools/unit6-feedback/browser.mjs:21:15"
+      ],
+      "passed": false
+    }
+  ],
+  "errors": [],
+  "expectedOriginalDisclosures": 0
+}

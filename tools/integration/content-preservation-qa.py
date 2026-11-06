@@ -166,9 +166,18 @@ def verify():
             assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==compatibility[name]['after'], name
         else:
             current, before = (ROOT / name).read_text(), source(final_b, name)
+            feedback_path=ROOT/'tools/unit6-feedback/approved-feedback.json'
+            if feedback_path.exists():
+                feedback=json.loads(feedback_path.read_text());entry=feedback['assets'].get(name)
+                if entry:
+                    raw=current.encode();blob=hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()
+                    assert blob==entry['after'], name+': unapproved feedback revision'
+                    assert git('rev-parse',feedback['baseline']+':'+name).strip()==entry['before']
+                    current=source(feedback['baseline'],name)
+
             # These four shared runtime files differ only by the final release label.
             if name in {'assets/app-version.json','assets/pwa.js','assets/problem-tracking.js','assets/reproducible-rng.js'}:
-                current = current.replace('12.9.E','12.9.C')
+                current = current.replace('12.9.E','12.9.C').replace('12.9.F','12.9.C')
             assert current == before, name + ': Unit 6 approved asset changed'
     unit6_modules = {'assets/mathlive/unit6.mjs', 'assets/mathlive/integral-setup.mjs'}
     assert git('ls-tree', MATHLIVE, '--', *sorted(unit6_modules)) == '', 'Unit 6 modules not new'

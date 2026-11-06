@@ -144,12 +144,32 @@ function famDisk(tier){
  return one('',[exactPart('Find the volume of the solid.',exactAnswer(e),solidStep(R,'washer',axis)+W.boundsStep(R)+W.washerWork(R,axis,T)+W.evalWork(T))],
   {engine:'solids',family:'disk_basic',tier,id:`disk-${R.eqs.join('|')}-${axis.type}${axis.c}`,context:solidContext(R,axis),formulas:R.eqs,extra:G.extra,data:{method:'washer',axis:`${axis.type}=${axis.c}`,region:R.data.kind,graph:G.graph}});
 }
+// A typed radius/height part explains only its own quantity. The original combined
+// washer/shell work remains with the final volume part, after both expressions.
+function washerRadiusWork(R,axis,t,v,inner=false){
+ const horizontal=axis.type==='y',ps=horizontal?R.xs:R.ys,p=ps[0],at=(t.a.v+t.b.v)/2;
+ const boundaries=horizontal?[p.top,p.bot]:[p.right,p.left];
+ boundaries.sort((a,b)=>Math.abs(a.f(at)-axis.c)-Math.abs(b.f(at)-axis.c));
+ const boundary=boundaries[inner?0:1],fn=inner?t.r:t.R,label=inner?'r':'R',name=inner?'inner':'outer',coord=horizontal?'y':'x';
+ const above=boundary.f(at)>=axis.c,delta=above?`${C.parTex(boundary.tex(v))}-\\left(${axis.c}\\right)`:`${axis.c}-\\left(${boundary.tex(v)}\\right)`;
+ return step('Choose perpendicular slices.',`The axis \\(${coord}=${axis.c}\\) is ${horizontal?'horizontal':'vertical'}, so use ${horizontal?'vertical':'horizontal'} slices and write the radius as a function of \\(${v}\\).`)
+  +step(`Measure the ${name} radius.`,`The ${name} radius reaches the ${inner?'nearer':'farther'} boundary, ${W.bname(boundary,v)}. This boundary lies ${horizontal?(above?'above':'below'):(above?'to the right of':'to the left of')} the axis. Subtract the ${above?'axis coordinate from the boundary coordinate':'boundary coordinate from the axis coordinate'} to obtain a positive distance.`,`${label}(${v})=${delta}=${fn.tex(v)}`);
+}
+function shellRadiusWork(axis,t,v){
+ const parallel=axis.type==='x'?'vertical':'horizontal';
+ return step('Choose parallel slices.',`The axis \\(${axis.type}=${axis.c}\\) is ${parallel}, so a ${parallel} slice sweeps out a cylindrical shell.`)
+  +step('Measure the shell radius.',`The radius is the perpendicular distance from the axis \\(${axis.type}=${axis.c}\\) to the slice at \\(${v}\\). Use a positive distance on the interval \\([${t.a.tex},${t.b.tex}]\\).`,`r(${v})=\\left|${v}-\\left(${axis.c}\\right)\\right|=${t.rad.tex(v)}`);
+}
+function shellHeightWork(R,t,v){
+ const p=(v==='x'?R.xs:R.ys)[0],hi=v==='x'?p.top:p.right,lo=v==='x'?p.bot:p.left;
+ return step('Measure the shell height.',`The height is the length of the slice across the region, ${v==='x'?'top minus bottom':'right minus left'}: subtract ${W.bname(lo,v)} from ${W.bname(hi,v)}.`, `h(${v})=${t.htex}`);
+}
 function famWasher(tier){
  const {R,axis,T,e}=solidPick('washer'),v=methodVar('washer',axis),work=W.washerWork(R,axis,T),pic=solidStep(R,'washer',axis),G=maybeFig(R,{axis});
  let parts;
  if(T.length===1&&T[0].r&&pick([true,false])){const t=T[0],dom=[t.a.v,t.b.v];
-  parts=[exprPart(`Find the outer radius \\(R(${v})\\), measured from the axis of rotation.`,`R(${v})=`,t.R,v,dom,pic+work.split('Set up the volume.')[0].replace(/<div class="u4-work-step"><strong>$/,''),{notes:[{expr:t.r,note:'That is the inner radius: the boundary nearer the axis.'}]}),
-   exprPart(`Find the inner radius \\(r(${v})\\).`,`r(${v})=`,t.r,v,dom,'',{notes:[{expr:t.R,note:'That is the outer radius: the boundary farther from the axis.'}]}),
+  parts=[exprPart(`Find the outer radius \\(R(${v})\\), measured from the axis of rotation.`,`R(${v})=`,t.R,v,dom,pic+washerRadiusWork(R,axis,t,v),{notes:[{expr:t.r,note:'Measure the distance to the boundary farther from the axis; this part asks for the outer radius.'}]}),
+   exprPart(`Find the inner radius \\(r(${v})\\).`,`r(${v})=`,t.r,v,dom,washerRadiusWork(R,axis,t,v,true),{notes:[{expr:t.R,note:'That is the outer radius: the boundary farther from the axis.'}]}),
    exactPart('Find the volume of the solid.',exactAnswer(e),work+W.evalWork(T))];
  }else parts=[integralPart(`Using ${methodName('washer',T)}, write an integral expression for the volume of the solid.`,T,pic+W.boundsStep(R)+work,{variable:v,methodNote:`That integral has the right value, but with ${methodName('washer',T)} about this axis you integrate with respect to ${v}.`}),exactPart('Find the volume of the solid.',exactAnswer(e),W.evalWork(T))];
  return one('Answer each part.',parts,{engine:'solids',family:'washer',tier,id:`wash-${R.eqs.join('|')}-${axis.type}${axis.c}-${parts.length}`,context:solidContext(R,axis),formulas:R.eqs,extra:G.extra,data:{method:'washer',axis:`${axis.type}=${axis.c}`,region:R.data.kind,graph:G.graph}});
@@ -158,8 +178,8 @@ function famShell(tier){
  const {R,axis,T,e}=solidPick('shell'),v=methodVar('shell',axis),work=solidStep(R,'shell',axis)+W.boundsStep(R)+W.shellWork(R,axis,T),G=maybeFig(R,{axis});
  // intermediate problems with one integral may ask for the radius and the height first (as the washer problems ask for R and r)
  const typed=tier==='intermediate'&&T.length===1&&pick([true,false]),t=T[0],dom=[t.a.v,t.b.v];
- const parts=typed?[exprPart(`Find the radius \\(r(${v})\\) of a shell, measured from the axis of rotation.`,`r(${v})=`,t.rad,v,dom,work.split('Set up the volume.')[0].replace(/<div class="u4-work-step"><strong>$/,''),{notes:[{expr:t.h,note:'That is the height of the shell; the radius is the distance from the axis.'}]}),
-   exprPart(`Find the height \\(h(${v})\\) of a shell.`,`h(${v})=`,t.h,v,dom,'',{notes:[{expr:t.rad,note:'That is the radius; the height is '+(v==='x'?'top minus bottom.':'right minus left.')}]}),
+ const parts=typed?[exprPart(`Find the radius \\(r(${v})\\) of a shell, measured from the axis of rotation.`,`r(${v})=`,t.rad,v,dom,solidStep(R,'shell',axis)+shellRadiusWork(axis,t,v),{notes:[{expr:t.h,note:'Measure the perpendicular distance from the axis to the slice; the radius is not the length across the region.'}]}),
+   exprPart(`Find the height \\(h(${v})\\) of a shell.`,`h(${v})=`,t.h,v,dom,shellHeightWork(R,t,v),{notes:[{expr:t.rad,note:'That is the radius; the height is '+(v==='x'?'top minus bottom.':'right minus left.')}]}),
    exactPart('Find the volume of the solid.',exactAnswer(e),W.shellWork(R,axis,T)+W.evalWork(T))]
   :[integralPart('Using cylindrical shells, write an integral expression for the volume of the solid.',T,work,{variable:v,methodNote:`That integral has the right value, but shells about this axis are integrated with respect to ${v}.`}),exactPart('Find the volume of the solid.',exactAnswer(e),W.evalWork(T))];
  return one('Answer each part.',parts,{engine:'solids',family:'shells',tier,id:`shell-${R.eqs.join('|')}-${axis.type}${axis.c}`,context:solidContext(R,axis),formulas:R.eqs,extra:G.extra,data:{method:'shell',axis:`${axis.type}=${axis.c}`,region:R.data.kind,graph:G.graph}});

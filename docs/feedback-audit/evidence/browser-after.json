@@ -1,0 +1,2812 @@
+{
+  "results": [
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 4\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "4",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 4\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "4",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 4\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "4",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": true,
+          "renderedText": "Part C is correct.\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "choose_dx_dy",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-integral",
+          "prompt": "Write the area of \\(R\\) as a single integral.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: ∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\nFind the bounds. The lines meet at the origin and reach 𝑥 =2\n at 𝑦 =2\n and 𝑦 =6\n. With horizontal slices the right boundary is 𝑥 =𝑦\n up to 𝑦 =2\n and 𝑥 =2\n above it.\nChoose the direction for one integral. The left or right boundary changes for horizontal slices, so dy needs two integrals. Vertical slices always run from 𝑦 =𝑥\n up to 𝑦 =3⁢𝑥\n, so dx needs only one.\nSet up the area with vertical slices. Use vertical slices of width 𝑑⁢𝑥\n: each has height top minus bottom. From 𝑥 =0\n to 𝑥 =2\n the top is 𝑦 =3⁢𝑥\n and the bottom is 𝑦 =𝑥\n.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "x=2",
+            "y=2",
+            "y=6",
+            "x=y",
+            "y=2",
+            "x=2",
+            "y=x",
+            "y=3x",
+            "dx",
+            "x=0",
+            "x=2",
+            "y=3x",
+            "y=x",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-integral",
+          "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nSet up the area with horizontal slices. Use horizontal slices of height 𝑑⁢𝑦\n: each has length right minus left.\nSplit the integral at 𝑦 =2\n. At 𝑦 =2\n, 𝑥 =2\n meets 𝑥 =𝑦\n. Below 𝑦 =2\n the right boundary of the region is 𝑥 =𝑦\n; above it, the right boundary is 𝑥 =2\n. The left boundary, 𝑥 =\n𝑦\n3\n, is the same on both sides. Because the right boundary changes, the length of a slice, ℓ⁡(𝑦)\n, has a different formula on each side of 𝑦 =2\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑦 =2\n, with one integral for each piece.\nℓ⁡(𝑦) ={𝑦−\n𝑦\n3\n,\t0≤𝑦≤2\n2−\n𝑦\n3\n,\t2≤𝑦≤6\nWrite one integral for each piece. Add the areas of the pieces.\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦",
+          "renderedMath": [
+            "\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "dy",
+            "y=2",
+            "y=2",
+            "x=2",
+            "x=y",
+            "y=2",
+            "x=y",
+            "x=2",
+            "x=\\frac{y}{3}",
+            "\\ell(y)",
+            "y=2",
+            "y=2",
+            "\\displaystyle \\ell(y)=\\begin{cases}y-\\frac{y}{3}, & 0\\le y\\le 2\\\\2-\\frac{y}{3}, & 2\\le y\\le 6\\end{cases}",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the exact area of \\(R\\).",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 4\nCompare the completed setups. Both directions describe the same region.\n𝐴 =∫2\n0(3⁢𝑥−𝑥) 𝑑𝑥\n𝐴 =∫2\n0(𝑦−\n𝑦\n3\n) 𝑑𝑦 +∫6\n2(2−\n𝑦\n3\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n∫2\n02⁢𝑥 𝑑𝑥\n =[𝑥2]2\n0\n =4",
+          "renderedMath": [
+            "4",
+            "\\displaystyle A=\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+            "\\displaystyle A=\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+            "\\displaystyle \\int_{0}^{2}2x\\,dx",
+            "\\displaystyle =\\left[x^{2}\\right]_{0}^{2}",
+            "\\displaystyle =4"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-1\n1\n2\n3\n4\n-3\n-2\n-1\n1\n2\n3\n4\n5\n6\n𝑦 =2⁢𝑥\n𝑦 =𝑥\n𝑥 =3\naxis of rotation\n𝑦 =−3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑦 =2⁢𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =2⁢𝑥 −(−3) =3 +2⁢𝑥",
+          "renderedMath": [
+            "R",
+            "r",
+            "y=2x",
+            "y=x",
+            "x=3",
+            "y=-3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=-3",
+            "x",
+            "y=2x",
+            "\\displaystyle R(x)=2x-\\left(-3\\right)=3 + 2x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": true,
+          "renderedText": "Part B is correct.\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =𝑥 −(−3) =3 +𝑥",
+          "renderedMath": [
+            "y=-3",
+            "x",
+            "y=x",
+            "\\displaystyle r(x)=x-\\left(-3\\right)=3 + x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the slices. The axis 𝑦 =−3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies above the axis, so each radius is a boundary height minus −3\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3 +2⁢𝑥\n and 𝑟⁡(𝑥) =3 +𝑥\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫3\n0((3+2⁢𝑥)2−(3+𝑥)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫3\n0(3⁢𝑥2+6⁢𝑥) 𝑑𝑥\n =𝜋⁢[𝑥3+3⁢𝑥2]3\n0\n =54⁢𝜋",
+          "renderedMath": [
+            "y=-3",
+            "dx",
+            "-3",
+            "R(x)=3 + 2x",
+            "r(x)=3 + x",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{3}\\left(\\left(3 + 2x\\right)^{2}-\\left(3 + x\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{3}\\left(3x^{2} + 6x\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[x^{3} + 3x^{2}\\right]_{0}^{3}",
+            "\\displaystyle =54\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=2x|y=x|x=3-y-3-3-f49nd7",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the distance to the boundary farther from the axis; this part asks for the outer radius.\nCorrect answer: 𝑅⁡(𝑥) =3 +2⁢𝑥\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-1\n1\n2\n3\n4\n-3\n-2\n-1\n1\n2\n3\n4\n5\n6\n𝑦 =2⁢𝑥\n𝑦 =𝑥\n𝑥 =3\naxis of rotation\n𝑦 =−3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑦 =2⁢𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =2⁢𝑥 −(−3) =3 +2⁢𝑥",
+          "renderedMath": [
+            "R(x)=3 + 2x",
+            "R",
+            "r",
+            "y=2x",
+            "y=x",
+            "x=3",
+            "y=-3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=-3",
+            "x",
+            "y=2x",
+            "\\displaystyle R(x)=2x-\\left(-3\\right)=3 + 2x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑟⁡(𝑥) =3 +𝑥\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =𝑥 −(−3) =3 +𝑥",
+          "renderedMath": [
+            "r(x)=3 + x",
+            "y=-3",
+            "x",
+            "y=x",
+            "\\displaystyle r(x)=x-\\left(-3\\right)=3 + x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 54⁢𝜋\nChoose the slices. The axis 𝑦 =−3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies above the axis, so each radius is a boundary height minus −3\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3 +2⁢𝑥\n and 𝑟⁡(𝑥) =3 +𝑥\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫3\n0((3+2⁢𝑥)2−(3+𝑥)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫3\n0(3⁢𝑥2+6⁢𝑥) 𝑑𝑥\n =𝜋⁢[𝑥3+3⁢𝑥2]3\n0\n =54⁢𝜋",
+          "renderedMath": [
+            "54\\pi",
+            "y=-3",
+            "dx",
+            "-3",
+            "R(x)=3 + 2x",
+            "r(x)=3 + x",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{3}\\left(\\left(3 + 2x\\right)^{2}-\\left(3 + x\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{3}\\left(3x^{2} + 6x\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[x^{3} + 3x^{2}\\right]_{0}^{3}",
+            "\\displaystyle =54\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=2x|y=x|x=3-y-3-3-f49nd7",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-1\n1\n2\n3\n4\n-3\n-2\n-1\n1\n2\n3\n4\n5\n6\n𝑦 =2⁢𝑥\n𝑦 =𝑥\n𝑥 =3\naxis of rotation\n𝑦 =−3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑦 =2⁢𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =2⁢𝑥 −(−3) =3 +2⁢𝑥",
+          "renderedMath": [
+            "R",
+            "r",
+            "y=2x",
+            "y=x",
+            "x=3",
+            "y=-3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=-3",
+            "x",
+            "y=2x",
+            "\\displaystyle R(x)=2x-\\left(-3\\right)=3 + 2x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": true,
+          "renderedText": "Part B is correct.\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =𝑥 −(−3) =3 +𝑥",
+          "renderedMath": [
+            "y=-3",
+            "x",
+            "y=x",
+            "\\displaystyle r(x)=x-\\left(-3\\right)=3 + x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the slices. The axis 𝑦 =−3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies above the axis, so each radius is a boundary height minus −3\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3 +2⁢𝑥\n and 𝑟⁡(𝑥) =3 +𝑥\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫3\n0((3+2⁢𝑥)2−(3+𝑥)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫3\n0(3⁢𝑥2+6⁢𝑥) 𝑑𝑥\n =𝜋⁢[𝑥3+3⁢𝑥2]3\n0\n =54⁢𝜋",
+          "renderedMath": [
+            "y=-3",
+            "dx",
+            "-3",
+            "R(x)=3 + 2x",
+            "r(x)=3 + x",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{3}\\left(\\left(3 + 2x\\right)^{2}-\\left(3 + x\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{3}\\left(3x^{2} + 6x\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[x^{3} + 3x^{2}\\right]_{0}^{3}",
+            "\\displaystyle =54\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=2x|y=x|x=3-y-3-3-f49nd7",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the distance to the boundary farther from the axis; this part asks for the outer radius.\nCorrect answer: 𝑅⁡(𝑥) =3 +2⁢𝑥\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-1\n1\n2\n3\n4\n-3\n-2\n-1\n1\n2\n3\n4\n5\n6\n𝑦 =2⁢𝑥\n𝑦 =𝑥\n𝑥 =3\naxis of rotation\n𝑦 =−3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑦 =2⁢𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =2⁢𝑥 −(−3) =3 +2⁢𝑥",
+          "renderedMath": [
+            "R(x)=3 + 2x",
+            "R",
+            "r",
+            "y=2x",
+            "y=x",
+            "x=3",
+            "y=-3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=-3",
+            "x",
+            "y=2x",
+            "\\displaystyle R(x)=2x-\\left(-3\\right)=3 + 2x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑟⁡(𝑥) =3 +𝑥\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =𝑥 −(−3) =3 +𝑥",
+          "renderedMath": [
+            "r(x)=3 + x",
+            "y=-3",
+            "x",
+            "y=x",
+            "\\displaystyle r(x)=x-\\left(-3\\right)=3 + x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 54⁢𝜋\nChoose the slices. The axis 𝑦 =−3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies above the axis, so each radius is a boundary height minus −3\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3 +2⁢𝑥\n and 𝑟⁡(𝑥) =3 +𝑥\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫3\n0((3+2⁢𝑥)2−(3+𝑥)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫3\n0(3⁢𝑥2+6⁢𝑥) 𝑑𝑥\n =𝜋⁢[𝑥3+3⁢𝑥2]3\n0\n =54⁢𝜋",
+          "renderedMath": [
+            "54\\pi",
+            "y=-3",
+            "dx",
+            "-3",
+            "R(x)=3 + 2x",
+            "r(x)=3 + x",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{3}\\left(\\left(3 + 2x\\right)^{2}-\\left(3 + x\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{3}\\left(3x^{2} + 6x\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[x^{3} + 3x^{2}\\right]_{0}^{3}",
+            "\\displaystyle =54\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=2x|y=x|x=3-y-3-3-f49nd7",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-1\n1\n2\n3\n4\n-3\n-2\n-1\n1\n2\n3\n4\n5\n6\n𝑦 =2⁢𝑥\n𝑦 =𝑥\n𝑥 =3\naxis of rotation\n𝑦 =−3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑦 =2⁢𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =2⁢𝑥 −(−3) =3 +2⁢𝑥",
+          "renderedMath": [
+            "R",
+            "r",
+            "y=2x",
+            "y=x",
+            "x=3",
+            "y=-3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=-3",
+            "x",
+            "y=2x",
+            "\\displaystyle R(x)=2x-\\left(-3\\right)=3 + 2x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": true,
+          "renderedText": "Part B is correct.\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =𝑥 −(−3) =3 +𝑥",
+          "renderedMath": [
+            "y=-3",
+            "x",
+            "y=x",
+            "\\displaystyle r(x)=x-\\left(-3\\right)=3 + x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the slices. The axis 𝑦 =−3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies above the axis, so each radius is a boundary height minus −3\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3 +2⁢𝑥\n and 𝑟⁡(𝑥) =3 +𝑥\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫3\n0((3+2⁢𝑥)2−(3+𝑥)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫3\n0(3⁢𝑥2+6⁢𝑥) 𝑑𝑥\n =𝜋⁢[𝑥3+3⁢𝑥2]3\n0\n =54⁢𝜋",
+          "renderedMath": [
+            "y=-3",
+            "dx",
+            "-3",
+            "R(x)=3 + 2x",
+            "r(x)=3 + x",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{3}\\left(\\left(3 + 2x\\right)^{2}-\\left(3 + x\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{3}\\left(3x^{2} + 6x\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[x^{3} + 3x^{2}\\right]_{0}^{3}",
+            "\\displaystyle =54\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=2x|y=x|x=3-y-3-3-f49nd7",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the distance to the boundary farther from the axis; this part asks for the outer radius.\nCorrect answer: 𝑅⁡(𝑥) =3 +2⁢𝑥\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-1\n1\n2\n3\n4\n-3\n-2\n-1\n1\n2\n3\n4\n5\n6\n𝑦 =2⁢𝑥\n𝑦 =𝑥\n𝑥 =3\naxis of rotation\n𝑦 =−3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑦 =2⁢𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =2⁢𝑥 −(−3) =3 +2⁢𝑥",
+          "renderedMath": [
+            "R(x)=3 + 2x",
+            "R",
+            "r",
+            "y=2x",
+            "y=x",
+            "x=3",
+            "y=-3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=-3",
+            "x",
+            "y=2x",
+            "\\displaystyle R(x)=2x-\\left(-3\\right)=3 + 2x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑟⁡(𝑥) =3 +𝑥\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =𝑥 −(−3) =3 +𝑥",
+          "renderedMath": [
+            "r(x)=3 + x",
+            "y=-3",
+            "x",
+            "y=x",
+            "\\displaystyle r(x)=x-\\left(-3\\right)=3 + x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 54⁢𝜋\nChoose the slices. The axis 𝑦 =−3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies above the axis, so each radius is a boundary height minus −3\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3 +2⁢𝑥\n and 𝑟⁡(𝑥) =3 +𝑥\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫3\n0((3+2⁢𝑥)2−(3+𝑥)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫3\n0(3⁢𝑥2+6⁢𝑥) 𝑑𝑥\n =𝜋⁢[𝑥3+3⁢𝑥2]3\n0\n =54⁢𝜋",
+          "renderedMath": [
+            "54\\pi",
+            "y=-3",
+            "dx",
+            "-3",
+            "R(x)=3 + 2x",
+            "r(x)=3 + x",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{3}\\left(\\left(3 + 2x\\right)^{2}-\\left(3 + x\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{3}\\left(3x^{2} + 6x\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[x^{3} + 3x^{2}\\right]_{0}^{3}",
+            "\\displaystyle =54\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=2x|y=x|x=3-y-3-3-f49nd7",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-1\n1\n2\n3\n4\n-3\n-2\n-1\n1\n2\n3\n4\n5\n6\n𝑦 =2⁢𝑥\n𝑦 =𝑥\n𝑥 =3\naxis of rotation\n𝑦 =−3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑦 =2⁢𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =2⁢𝑥 −(−3) =3 +2⁢𝑥",
+          "renderedMath": [
+            "R",
+            "r",
+            "y=2x",
+            "y=x",
+            "x=3",
+            "y=-3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=-3",
+            "x",
+            "y=2x",
+            "\\displaystyle R(x)=2x-\\left(-3\\right)=3 + 2x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": true,
+          "renderedText": "Part B is correct.\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =𝑥 −(−3) =3 +𝑥",
+          "renderedMath": [
+            "y=-3",
+            "x",
+            "y=x",
+            "\\displaystyle r(x)=x-\\left(-3\\right)=3 + x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the slices. The axis 𝑦 =−3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies above the axis, so each radius is a boundary height minus −3\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3 +2⁢𝑥\n and 𝑟⁡(𝑥) =3 +𝑥\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫3\n0((3+2⁢𝑥)2−(3+𝑥)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫3\n0(3⁢𝑥2+6⁢𝑥) 𝑑𝑥\n =𝜋⁢[𝑥3+3⁢𝑥2]3\n0\n =54⁢𝜋",
+          "renderedMath": [
+            "y=-3",
+            "dx",
+            "-3",
+            "R(x)=3 + 2x",
+            "r(x)=3 + x",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{3}\\left(\\left(3 + 2x\\right)^{2}-\\left(3 + x\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{3}\\left(3x^{2} + 6x\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[x^{3} + 3x^{2}\\right]_{0}^{3}",
+            "\\displaystyle =54\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=2x|y=x|x=3-y-3-3-f49nd7",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "washer",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the distance to the boundary farther from the axis; this part asks for the outer radius.\nCorrect answer: 𝑅⁡(𝑥) =3 +2⁢𝑥\nThe region, the axis and one slice. Each slice perpendicular to the axis sweeps out a washer: the outer radius 𝑅\n runs from the axis to the farther boundary, the inner radius 𝑟\n to the nearer one. One slice is drawn on the graph; the second picture shows what it sweeps out.\nR\nr\n-1\n1\n2\n3\n4\n-3\n-2\n-1\n1\n2\n3\n4\n5\n6\n𝑦 =2⁢𝑥\n𝑦 =𝑥\n𝑥 =3\naxis of rotation\n𝑦 =−3\nouter radius\n𝑅\ninner radius\n𝑟\nR\nr\nOne washer, face on: area 𝜋⁢(𝑅2−𝑟2)\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the outer radius. The outer radius reaches the farther boundary, 𝑦 =2⁢𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑅⁡(𝑥) =2⁢𝑥 −(−3) =3 +2⁢𝑥",
+          "renderedMath": [
+            "R(x)=3 + 2x",
+            "R",
+            "r",
+            "y=2x",
+            "y=x",
+            "x=3",
+            "y=-3",
+            "R",
+            "r",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "y=-3",
+            "x",
+            "y=2x",
+            "\\displaystyle R(x)=2x-\\left(-3\\right)=3 + 2x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the inner radius \\(r(x)\\).",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑟⁡(𝑥) =3 +𝑥\nChoose perpendicular slices. The axis 𝑦 =−3\n is horizontal, so use vertical slices and write the radius as a function of 𝑥\n.\nMeasure the inner radius. The inner radius reaches the nearer boundary, 𝑦 =𝑥\n. This boundary lies above the axis. Subtract the axis coordinate from the boundary coordinate to obtain a positive distance.\n𝑟⁡(𝑥) =𝑥 −(−3) =3 +𝑥",
+          "renderedMath": [
+            "r(x)=3 + x",
+            "y=-3",
+            "x",
+            "y=x",
+            "\\displaystyle r(x)=x-\\left(-3\\right)=3 + x"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 54⁢𝜋\nChoose the slices. The axis 𝑦 =−3\n is horizontal, so slice perpendicular to it: the slices are washers of thickness 𝑑⁢𝑥\n.\nMeasure the radii from the axis. The region lies above the axis, so each radius is a boundary height minus −3\n. The outer radius R reaches the boundary farther from the axis; the inner radius r reaches the nearer one: 𝑅⁡(𝑥) =3 +2⁢𝑥\n and 𝑟⁡(𝑥) =3 +𝑥\n.\nSet up the volume. Each washer has area 𝜋⁢(𝑅2−𝑟2)\n (square each radius before subtracting).\n𝑉 =𝜋⁢∫3\n0((3+2⁢𝑥)2−(3+𝑥)2) 𝑑𝑥\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n𝜋⁢∫3\n0(3⁢𝑥2+6⁢𝑥) 𝑑𝑥\n =𝜋⁢[𝑥3+3⁢𝑥2]3\n0\n =54⁢𝜋",
+          "renderedMath": [
+            "54\\pi",
+            "y=-3",
+            "dx",
+            "-3",
+            "R(x)=3 + 2x",
+            "r(x)=3 + x",
+            "\\pi\\left(R^{2}-r^{2}\\right)",
+            "\\displaystyle V=\\pi\\int_{0}^{3}\\left(\\left(3 + 2x\\right)^{2}-\\left(3 + x\\right)^{2}\\right)\\,dx",
+            "\\displaystyle \\pi\\int_{0}^{3}\\left(3x^{2} + 6x\\right)\\,dx",
+            "\\displaystyle =\\pi\\left[x^{3} + 3x^{2}\\right]_{0}^{3}",
+            "\\displaystyle =54\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-wash-y=2x|y=x|x=3-y-3-3-f49nd7",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(y)\\) of a shell, measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n3\n4\n1\n2\n3\n4\n5\n6\n7\n8\n𝑦 =4⁢𝑥\n𝑦 =𝑥3\naxis of rotation\n𝑦 =0\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell, on its side: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑦 =0\n is horizontal, so a horizontal slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑦 =0\n to the slice at 𝑦\n. Use a positive distance on the interval [0,8]\n.\n𝑟⁡(𝑦) =|𝑦−(0)| =𝑦",
+          "renderedMath": [
+            "r",
+            "h",
+            "y=4x",
+            "y=x^{3}",
+            "y=0",
+            "h",
+            "r",
+            "2\\pi r h",
+            "y=0",
+            "y=0",
+            "y",
+            "[0,8]",
+            "\\displaystyle r(y)=\\left|y-\\left(0\\right)\\right|=y"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(y)\\) of a shell.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nMeasure the shell height. The height is the length of the slice across the region, right minus left: subtract 𝑥 =\n𝑦\n4\n from 𝑥 =3√𝑦\n.\nℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4",
+          "renderedMath": [
+            "x=\\frac{y}{4}",
+            "x=\\sqrt[3]{y}",
+            "\\displaystyle h(y)=\\sqrt[3]{y}-\\frac{y}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the shells. The axis 𝑦 =0\n is horizontal, so the shells are horizontal: slice parallel to the axis with thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑦) =𝑦\n. The height is right minus left: ℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫8\n0𝑦⁢(3√𝑦−\n𝑦\n4\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫8\n0(−\n𝑦2\n4\n+𝑦\n4\n3\n) 𝑑𝑦\n =2⁢𝜋⁢[−\n𝑦3\n12\n+\n3⁢𝑦\n7\n3\n7\n]8\n0\n =\n512\n21\n⁢𝜋",
+          "renderedMath": [
+            "y=0",
+            "dy",
+            "r(y)=y",
+            "h(y)=\\sqrt[3]{y}-\\frac{y}{4}",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{8}y\\left(\\sqrt[3]{y}-\\frac{y}{4}\\right)\\,dy",
+            "\\displaystyle 2\\pi\\int_{0}^{8}\\left(-\\frac{y^{2}}{4} + y^{\\frac{4}{3}}\\right)\\,dy",
+            "\\displaystyle =2\\pi\\left[-\\frac{y^{3}}{12} + \\frac{3y^{\\frac{7}{3}}}{7}\\right]_{0}^{8}",
+            "\\displaystyle =\\frac{512}{21}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=4x|y=x^{3}-y0-160jdmd",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells",
+      "wrapped": false,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(y)\\) of a shell, measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the perpendicular distance from the axis to the slice; the radius is not the length across the region.\nCorrect answer: 𝑟⁡(𝑦) =𝑦\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n3\n4\n1\n2\n3\n4\n5\n6\n7\n8\n𝑦 =4⁢𝑥\n𝑦 =𝑥3\naxis of rotation\n𝑦 =0\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell, on its side: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑦 =0\n is horizontal, so a horizontal slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑦 =0\n to the slice at 𝑦\n. Use a positive distance on the interval [0,8]\n.\n𝑟⁡(𝑦) =|𝑦−(0)| =𝑦",
+          "renderedMath": [
+            "r(y)=y",
+            "r",
+            "h",
+            "y=4x",
+            "y=x^{3}",
+            "y=0",
+            "h",
+            "r",
+            "2\\pi r h",
+            "y=0",
+            "y=0",
+            "y",
+            "[0,8]",
+            "\\displaystyle r(y)=\\left|y-\\left(0\\right)\\right|=y"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(y)\\) of a shell.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ℎ⁡(𝑦) =−\n𝑦\n4\n +3√𝑦\nMeasure the shell height. The height is the length of the slice across the region, right minus left: subtract 𝑥 =\n𝑦\n4\n from 𝑥 =3√𝑦\n.\nℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4",
+          "renderedMath": [
+            "h(y)=-\\frac{y}{4} + \\sqrt[3]{y}",
+            "x=\\frac{y}{4}",
+            "x=\\sqrt[3]{y}",
+            "\\displaystyle h(y)=\\sqrt[3]{y}-\\frac{y}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n512\n21\n⁢𝜋\nChoose the shells. The axis 𝑦 =0\n is horizontal, so the shells are horizontal: slice parallel to the axis with thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑦) =𝑦\n. The height is right minus left: ℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫8\n0𝑦⁢(3√𝑦−\n𝑦\n4\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫8\n0(−\n𝑦2\n4\n+𝑦\n4\n3\n) 𝑑𝑦\n =2⁢𝜋⁢[−\n𝑦3\n12\n+\n3⁢𝑦\n7\n3\n7\n]8\n0\n =\n512\n21\n⁢𝜋",
+          "renderedMath": [
+            "\\frac{512}{21}\\pi",
+            "y=0",
+            "dy",
+            "r(y)=y",
+            "h(y)=\\sqrt[3]{y}-\\frac{y}{4}",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{8}y\\left(\\sqrt[3]{y}-\\frac{y}{4}\\right)\\,dy",
+            "\\displaystyle 2\\pi\\int_{0}^{8}\\left(-\\frac{y^{2}}{4} + y^{\\frac{4}{3}}\\right)\\,dy",
+            "\\displaystyle =2\\pi\\left[-\\frac{y^{3}}{12} + \\frac{3y^{\\frac{7}{3}}}{7}\\right]_{0}^{8}",
+            "\\displaystyle =\\frac{512}{21}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=4x|y=x^{3}-y0-160jdmd",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells",
+      "wrapped": false,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(y)\\) of a shell, measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n3\n4\n1\n2\n3\n4\n5\n6\n7\n8\n𝑦 =4⁢𝑥\n𝑦 =𝑥3\naxis of rotation\n𝑦 =0\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell, on its side: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑦 =0\n is horizontal, so a horizontal slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑦 =0\n to the slice at 𝑦\n. Use a positive distance on the interval [0,8]\n.\n𝑟⁡(𝑦) =|𝑦−(0)| =𝑦",
+          "renderedMath": [
+            "r",
+            "h",
+            "y=4x",
+            "y=x^{3}",
+            "y=0",
+            "h",
+            "r",
+            "2\\pi r h",
+            "y=0",
+            "y=0",
+            "y",
+            "[0,8]",
+            "\\displaystyle r(y)=\\left|y-\\left(0\\right)\\right|=y"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(y)\\) of a shell.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nMeasure the shell height. The height is the length of the slice across the region, right minus left: subtract 𝑥 =\n𝑦\n4\n from 𝑥 =3√𝑦\n.\nℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4",
+          "renderedMath": [
+            "x=\\frac{y}{4}",
+            "x=\\sqrt[3]{y}",
+            "\\displaystyle h(y)=\\sqrt[3]{y}-\\frac{y}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the shells. The axis 𝑦 =0\n is horizontal, so the shells are horizontal: slice parallel to the axis with thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑦) =𝑦\n. The height is right minus left: ℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫8\n0𝑦⁢(3√𝑦−\n𝑦\n4\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫8\n0(−\n𝑦2\n4\n+𝑦\n4\n3\n) 𝑑𝑦\n =2⁢𝜋⁢[−\n𝑦3\n12\n+\n3⁢𝑦\n7\n3\n7\n]8\n0\n =\n512\n21\n⁢𝜋",
+          "renderedMath": [
+            "y=0",
+            "dy",
+            "r(y)=y",
+            "h(y)=\\sqrt[3]{y}-\\frac{y}{4}",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{8}y\\left(\\sqrt[3]{y}-\\frac{y}{4}\\right)\\,dy",
+            "\\displaystyle 2\\pi\\int_{0}^{8}\\left(-\\frac{y^{2}}{4} + y^{\\frac{4}{3}}\\right)\\,dy",
+            "\\displaystyle =2\\pi\\left[-\\frac{y^{3}}{12} + \\frac{3y^{\\frac{7}{3}}}{7}\\right]_{0}^{8}",
+            "\\displaystyle =\\frac{512}{21}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=4x|y=x^{3}-y0-160jdmd",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells",
+      "wrapped": false,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(y)\\) of a shell, measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the perpendicular distance from the axis to the slice; the radius is not the length across the region.\nCorrect answer: 𝑟⁡(𝑦) =𝑦\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n3\n4\n1\n2\n3\n4\n5\n6\n7\n8\n𝑦 =4⁢𝑥\n𝑦 =𝑥3\naxis of rotation\n𝑦 =0\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell, on its side: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑦 =0\n is horizontal, so a horizontal slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑦 =0\n to the slice at 𝑦\n. Use a positive distance on the interval [0,8]\n.\n𝑟⁡(𝑦) =|𝑦−(0)| =𝑦",
+          "renderedMath": [
+            "r(y)=y",
+            "r",
+            "h",
+            "y=4x",
+            "y=x^{3}",
+            "y=0",
+            "h",
+            "r",
+            "2\\pi r h",
+            "y=0",
+            "y=0",
+            "y",
+            "[0,8]",
+            "\\displaystyle r(y)=\\left|y-\\left(0\\right)\\right|=y"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(y)\\) of a shell.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ℎ⁡(𝑦) =−\n𝑦\n4\n +3√𝑦\nMeasure the shell height. The height is the length of the slice across the region, right minus left: subtract 𝑥 =\n𝑦\n4\n from 𝑥 =3√𝑦\n.\nℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4",
+          "renderedMath": [
+            "h(y)=-\\frac{y}{4} + \\sqrt[3]{y}",
+            "x=\\frac{y}{4}",
+            "x=\\sqrt[3]{y}",
+            "\\displaystyle h(y)=\\sqrt[3]{y}-\\frac{y}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n512\n21\n⁢𝜋\nChoose the shells. The axis 𝑦 =0\n is horizontal, so the shells are horizontal: slice parallel to the axis with thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑦) =𝑦\n. The height is right minus left: ℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫8\n0𝑦⁢(3√𝑦−\n𝑦\n4\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫8\n0(−\n𝑦2\n4\n+𝑦\n4\n3\n) 𝑑𝑦\n =2⁢𝜋⁢[−\n𝑦3\n12\n+\n3⁢𝑦\n7\n3\n7\n]8\n0\n =\n512\n21\n⁢𝜋",
+          "renderedMath": [
+            "\\frac{512}{21}\\pi",
+            "y=0",
+            "dy",
+            "r(y)=y",
+            "h(y)=\\sqrt[3]{y}-\\frac{y}{4}",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{8}y\\left(\\sqrt[3]{y}-\\frac{y}{4}\\right)\\,dy",
+            "\\displaystyle 2\\pi\\int_{0}^{8}\\left(-\\frac{y^{2}}{4} + y^{\\frac{4}{3}}\\right)\\,dy",
+            "\\displaystyle =2\\pi\\left[-\\frac{y^{3}}{12} + \\frac{3y^{\\frac{7}{3}}}{7}\\right]_{0}^{8}",
+            "\\displaystyle =\\frac{512}{21}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=4x|y=x^{3}-y0-160jdmd",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(y)\\) of a shell, measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n3\n4\n1\n2\n3\n4\n5\n6\n7\n8\n𝑦 =4⁢𝑥\n𝑦 =𝑥3\naxis of rotation\n𝑦 =0\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell, on its side: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑦 =0\n is horizontal, so a horizontal slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑦 =0\n to the slice at 𝑦\n. Use a positive distance on the interval [0,8]\n.\n𝑟⁡(𝑦) =|𝑦−(0)| =𝑦",
+          "renderedMath": [
+            "r",
+            "h",
+            "y=4x",
+            "y=x^{3}",
+            "y=0",
+            "h",
+            "r",
+            "2\\pi r h",
+            "y=0",
+            "y=0",
+            "y",
+            "[0,8]",
+            "\\displaystyle r(y)=\\left|y-\\left(0\\right)\\right|=y"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(y)\\) of a shell.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nMeasure the shell height. The height is the length of the slice across the region, right minus left: subtract 𝑥 =\n𝑦\n4\n from 𝑥 =3√𝑦\n.\nℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4",
+          "renderedMath": [
+            "x=\\frac{y}{4}",
+            "x=\\sqrt[3]{y}",
+            "\\displaystyle h(y)=\\sqrt[3]{y}-\\frac{y}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the shells. The axis 𝑦 =0\n is horizontal, so the shells are horizontal: slice parallel to the axis with thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑦) =𝑦\n. The height is right minus left: ℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫8\n0𝑦⁢(3√𝑦−\n𝑦\n4\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫8\n0(−\n𝑦2\n4\n+𝑦\n4\n3\n) 𝑑𝑦\n =2⁢𝜋⁢[−\n𝑦3\n12\n+\n3⁢𝑦\n7\n3\n7\n]8\n0\n =\n512\n21\n⁢𝜋",
+          "renderedMath": [
+            "y=0",
+            "dy",
+            "r(y)=y",
+            "h(y)=\\sqrt[3]{y}-\\frac{y}{4}",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{8}y\\left(\\sqrt[3]{y}-\\frac{y}{4}\\right)\\,dy",
+            "\\displaystyle 2\\pi\\int_{0}^{8}\\left(-\\frac{y^{2}}{4} + y^{\\frac{4}{3}}\\right)\\,dy",
+            "\\displaystyle =2\\pi\\left[-\\frac{y^{3}}{12} + \\frac{3y^{\\frac{7}{3}}}{7}\\right]_{0}^{8}",
+            "\\displaystyle =\\frac{512}{21}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=4x|y=x^{3}-y0-160jdmd",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(y)\\) of a shell, measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the perpendicular distance from the axis to the slice; the radius is not the length across the region.\nCorrect answer: 𝑟⁡(𝑦) =𝑦\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n3\n4\n1\n2\n3\n4\n5\n6\n7\n8\n𝑦 =4⁢𝑥\n𝑦 =𝑥3\naxis of rotation\n𝑦 =0\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell, on its side: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑦 =0\n is horizontal, so a horizontal slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑦 =0\n to the slice at 𝑦\n. Use a positive distance on the interval [0,8]\n.\n𝑟⁡(𝑦) =|𝑦−(0)| =𝑦",
+          "renderedMath": [
+            "r(y)=y",
+            "r",
+            "h",
+            "y=4x",
+            "y=x^{3}",
+            "y=0",
+            "h",
+            "r",
+            "2\\pi r h",
+            "y=0",
+            "y=0",
+            "y",
+            "[0,8]",
+            "\\displaystyle r(y)=\\left|y-\\left(0\\right)\\right|=y"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(y)\\) of a shell.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ℎ⁡(𝑦) =−\n𝑦\n4\n +3√𝑦\nMeasure the shell height. The height is the length of the slice across the region, right minus left: subtract 𝑥 =\n𝑦\n4\n from 𝑥 =3√𝑦\n.\nℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4",
+          "renderedMath": [
+            "h(y)=-\\frac{y}{4} + \\sqrt[3]{y}",
+            "x=\\frac{y}{4}",
+            "x=\\sqrt[3]{y}",
+            "\\displaystyle h(y)=\\sqrt[3]{y}-\\frac{y}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n512\n21\n⁢𝜋\nChoose the shells. The axis 𝑦 =0\n is horizontal, so the shells are horizontal: slice parallel to the axis with thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑦) =𝑦\n. The height is right minus left: ℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫8\n0𝑦⁢(3√𝑦−\n𝑦\n4\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫8\n0(−\n𝑦2\n4\n+𝑦\n4\n3\n) 𝑑𝑦\n =2⁢𝜋⁢[−\n𝑦3\n12\n+\n3⁢𝑦\n7\n3\n7\n]8\n0\n =\n512\n21\n⁢𝜋",
+          "renderedMath": [
+            "\\frac{512}{21}\\pi",
+            "y=0",
+            "dy",
+            "r(y)=y",
+            "h(y)=\\sqrt[3]{y}-\\frac{y}{4}",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{8}y\\left(\\sqrt[3]{y}-\\frac{y}{4}\\right)\\,dy",
+            "\\displaystyle 2\\pi\\int_{0}^{8}\\left(-\\frac{y^{2}}{4} + y^{\\frac{4}{3}}\\right)\\,dy",
+            "\\displaystyle =2\\pi\\left[-\\frac{y^{3}}{12} + \\frac{3y^{\\frac{7}{3}}}{7}\\right]_{0}^{8}",
+            "\\displaystyle =\\frac{512}{21}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=4x|y=x^{3}-y0-160jdmd",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(y)\\) of a shell, measured from the axis of rotation.",
+          "correct": true,
+          "renderedText": "Part A is correct.\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n3\n4\n1\n2\n3\n4\n5\n6\n7\n8\n𝑦 =4⁢𝑥\n𝑦 =𝑥3\naxis of rotation\n𝑦 =0\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell, on its side: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑦 =0\n is horizontal, so a horizontal slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑦 =0\n to the slice at 𝑦\n. Use a positive distance on the interval [0,8]\n.\n𝑟⁡(𝑦) =|𝑦−(0)| =𝑦",
+          "renderedMath": [
+            "r",
+            "h",
+            "y=4x",
+            "y=x^{3}",
+            "y=0",
+            "h",
+            "r",
+            "2\\pi r h",
+            "y=0",
+            "y=0",
+            "y",
+            "[0,8]",
+            "\\displaystyle r(y)=\\left|y-\\left(0\\right)\\right|=y"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(y)\\) of a shell.",
+          "correct": true,
+          "renderedText": "Part B is correct.\nMeasure the shell height. The height is the length of the slice across the region, right minus left: subtract 𝑥 =\n𝑦\n4\n from 𝑥 =3√𝑦\n.\nℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4",
+          "renderedMath": [
+            "x=\\frac{y}{4}",
+            "x=\\sqrt[3]{y}",
+            "\\displaystyle h(y)=\\sqrt[3]{y}-\\frac{y}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nChoose the shells. The axis 𝑦 =0\n is horizontal, so the shells are horizontal: slice parallel to the axis with thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑦) =𝑦\n. The height is right minus left: ℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫8\n0𝑦⁢(3√𝑦−\n𝑦\n4\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫8\n0(−\n𝑦2\n4\n+𝑦\n4\n3\n) 𝑑𝑦\n =2⁢𝜋⁢[−\n𝑦3\n12\n+\n3⁢𝑦\n7\n3\n7\n]8\n0\n =\n512\n21\n⁢𝜋",
+          "renderedMath": [
+            "y=0",
+            "dy",
+            "r(y)=y",
+            "h(y)=\\sqrt[3]{y}-\\frac{y}{4}",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{8}y\\left(\\sqrt[3]{y}-\\frac{y}{4}\\right)\\,dy",
+            "\\displaystyle 2\\pi\\int_{0}^{8}\\left(-\\frac{y^{2}}{4} + y^{\\frac{4}{3}}\\right)\\,dy",
+            "\\displaystyle =2\\pi\\left[-\\frac{y^{3}}{12} + \\frac{3y^{\\frac{7}{3}}}{7}\\right]_{0}^{8}",
+            "\\displaystyle =\\frac{512}{21}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=4x|y=x^{3}-y0-160jdmd",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "shells",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "u6-expr",
+          "prompt": "Find the radius \\(r(y)\\) of a shell, measured from the axis of rotation.",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nMeasure the perpendicular distance from the axis to the slice; the radius is not the length across the region.\nCorrect answer: 𝑟⁡(𝑦) =𝑦\nThe region, the axis and one slice. Each slice parallel to the axis sweeps out a cylindrical shell: its radius 𝑟\n is the distance from the axis to the slice, and its height ℎ\n is the length of the slice. One slice is drawn on the graph; the second picture shows what it sweeps out.\nh\nr\n-2\n-1\n1\n2\n3\n4\n1\n2\n3\n4\n5\n6\n7\n8\n𝑦 =4⁢𝑥\n𝑦 =𝑥3\naxis of rotation\n𝑦 =0\nshell height\nℎ\nshell radius\n𝑟\nr\nh\nOne shell, on its side: volume 2⁢𝜋⁢𝑟⁢ℎ\n times its thickness\nChoose parallel slices. The axis 𝑦 =0\n is horizontal, so a horizontal slice sweeps out a cylindrical shell.\nMeasure the shell radius. The radius is the perpendicular distance from the axis 𝑦 =0\n to the slice at 𝑦\n. Use a positive distance on the interval [0,8]\n.\n𝑟⁡(𝑦) =|𝑦−(0)| =𝑦",
+          "renderedMath": [
+            "r(y)=y",
+            "r",
+            "h",
+            "y=4x",
+            "y=x^{3}",
+            "y=0",
+            "h",
+            "r",
+            "2\\pi r h",
+            "y=0",
+            "y=0",
+            "y",
+            "[0,8]",
+            "\\displaystyle r(y)=\\left|y-\\left(0\\right)\\right|=y"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "u6-expr",
+          "prompt": "Find the height \\(h(y)\\) of a shell.",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: ℎ⁡(𝑦) =−\n𝑦\n4\n +3√𝑦\nMeasure the shell height. The height is the length of the slice across the region, right minus left: subtract 𝑥 =\n𝑦\n4\n from 𝑥 =3√𝑦\n.\nℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4",
+          "renderedMath": [
+            "h(y)=-\\frac{y}{4} + \\sqrt[3]{y}",
+            "x=\\frac{y}{4}",
+            "x=\\sqrt[3]{y}",
+            "\\displaystyle h(y)=\\sqrt[3]{y}-\\frac{y}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "Find the volume of the solid.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: \n512\n21\n⁢𝜋\nChoose the shells. The axis 𝑦 =0\n is horizontal, so the shells are horizontal: slice parallel to the axis with thickness 𝑑⁢𝑦\n, and every boundary is written as x in terms of y.\nFind the radius and height. The radius is the distance from the axis to the shell: 𝑟⁡(𝑦) =𝑦\n. The height is right minus left: ℎ⁡(𝑦) =3√𝑦 −\n𝑦\n4\n.\nSet up the volume. Each shell has volume 2⁢𝜋 𝑟 ℎ\n times its thickness.\n𝑉 =2⁢𝜋⁢∫8\n0𝑦⁢(3√𝑦−\n𝑦\n4\n) 𝑑𝑦\nEvaluate. Expand the integrand, find an antiderivative and evaluate it at the limits.\n2⁢𝜋⁢∫8\n0(−\n𝑦2\n4\n+𝑦\n4\n3\n) 𝑑𝑦\n =2⁢𝜋⁢[−\n𝑦3\n12\n+\n3⁢𝑦\n7\n3\n7\n]8\n0\n =\n512\n21\n⁢𝜋",
+          "renderedMath": [
+            "\\frac{512}{21}\\pi",
+            "y=0",
+            "dy",
+            "r(y)=y",
+            "h(y)=\\sqrt[3]{y}-\\frac{y}{4}",
+            "2\\pi\\,r\\,h",
+            "\\displaystyle V=2\\pi\\int_{0}^{8}y\\left(\\sqrt[3]{y}-\\frac{y}{4}\\right)\\,dy",
+            "\\displaystyle 2\\pi\\int_{0}^{8}\\left(-\\frac{y^{2}}{4} + y^{\\frac{4}{3}}\\right)\\,dy",
+            "\\displaystyle =2\\pi\\left[-\\frac{y^{3}}{12} + \\frac{3y^{\\frac{7}{3}}}{7}\\right]_{0}^{8}",
+            "\\displaystyle =\\frac{512}{21}\\pi"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-solids-shell-y=4x|y=x^{3}-y0-160jdmd",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_derivative",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(6)\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nUse the graph of f. By the Fundamental Theorem of Calculus, 𝑔⁡(6) =𝑔⁡(0) +∫6\n0𝑓⁡(𝑥) 𝑑𝑥\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative.\nAdd the signed areas. Split [0,6]\n at 𝑥 =2\n, 𝑥 =3\n and 𝑥 =4\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫2\n0𝑓⁡(𝑥) 𝑑𝑥 =6 −𝜋\n (rectangle of height 3\n minus a quarter disk of radius 2\n); ∫3\n2𝑓⁡(𝑥) 𝑑𝑥 =\n3\n2\n (triangle above the x-axis); ∫4\n3𝑓⁡(𝑥) 𝑑𝑥 =−\n3\n2\n (triangle below the x-axis); ∫6\n4𝑓⁡(𝑥) 𝑑𝑥 =−3\n (triangle below the x-axis).\n∫6\n0𝑓⁡(𝑥) 𝑑𝑥 =3 −𝜋\n𝑔⁡(6) =4 +(3−𝜋) =7 −𝜋",
+          "renderedMath": [
+            "g(6)=g(0)+\\int_{0}^{6}f(x)\\,dx",
+            "f",
+            "[0,6]",
+            "x=2",
+            "x=3",
+            "x=4",
+            "f",
+            "f",
+            "\\int_{0}^{2}f(x)\\,dx=6 - \\pi",
+            "3",
+            "2",
+            "\\int_{2}^{3}f(x)\\,dx=\\frac{3}{2}",
+            "\\int_{3}^{4}f(x)\\,dx=-\\frac{3}{2}",
+            "\\int_{4}^{6}f(x)\\,dx=-3",
+            "\\displaystyle \\int_{0}^{6}f(x)\\,dx=3 - \\pi",
+            "\\displaystyle g(6)=4+\\left(3 - \\pi\\right)=7 - \\pi"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a point of inflection of \\(g\\)?",
+          "correct": true,
+          "renderedText": "Part B is correct.\nReason. A point of inflection of 𝑔\n needs 𝑔″\n to change sign. Because 𝑔″ =𝑓′\n, that happens where 𝑓\n changes direction. Sign changes of 𝑓\n itself give the local maxima and minima of 𝑔\n instead.",
+          "renderedMath": [
+            "g",
+            "g''",
+            "g''=f'",
+            "f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-5,6)\\) does \\(g\\) have a point of inflection? Enter every value, separated by commas.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nConnect g to the graph of f. Since 𝑔′ =𝑓\n, 𝑔″ =𝑓′\n. The graph of 𝑔\n has a point of inflection where 𝑔″\n changes sign, that is, where 𝑓\n changes from increasing to decreasing or from decreasing to increasing.\nRead the graph. At 𝑥 =−3\n 𝑓\n changes from decreasing to increasing; at 𝑥 =−2\n 𝑓\n changes from increasing to decreasing; at 𝑥 =0\n (the lowest point of the semicircle) 𝑓\n changes from decreasing to increasing; at 𝑥 =2\n 𝑓\n changes from increasing to decreasing; at 𝑥 =4\n 𝑓\n changes from decreasing to increasing. A zero of 𝑓\n is not a point of inflection by itself.\nA complete written answer. 𝑔\n has points of inflection at 𝑥 =−3\n, 𝑥 =−2\n, 𝑥 =0\n, 𝑥 =2\n and 𝑥 =4\n because 𝑔′ =𝑓\n changes from increasing to decreasing or from decreasing to increasing there, so 𝑔″\n changes sign.",
+          "renderedMath": [
+            "g'=f",
+            "g''=f'",
+            "g",
+            "g''",
+            "f",
+            "x=-3",
+            "f",
+            "x=-2",
+            "f",
+            "x=0",
+            "f",
+            "x=2",
+            "f",
+            "x=4",
+            "f",
+            "f",
+            "g",
+            "x=-3",
+            "x=-2",
+            "x=0",
+            "x=2",
+            "x=4",
+            "g'=f",
+            "g''"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute maximum value of \\(g\\) on the interval \\([-5,6]\\).",
+          "correct": true,
+          "renderedText": "Part D is correct.\nCandidates Test. An absolute maximum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =3\n; the endpoints are 𝑥 =−5\n and 𝑥 =6\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =4 +∫𝑥\n0𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−5) =𝜋 −7 ≈−3.86\n𝑔⁡(3) =\n23\n2\n −𝜋 ≈8.36\n𝑔⁡(6) =7 −𝜋 ≈3.86\nA complete written answer. The absolute maximum of 𝑔\n on [−5,6]\n is \n23\n2\n −𝜋\n, at 𝑥 =3\n, the largest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "g'=f=0",
+            "x=3",
+            "x=-5",
+            "x=6",
+            "g(x)=4+\\int_{0}^{x}f(t)\\,dt",
+            "\\displaystyle g(-5)=\\pi - 7\\approx -3.86",
+            "\\displaystyle g(3)=\\frac{23}{2} - \\pi\\approx 8.36",
+            "\\displaystyle g(6)=7 - \\pi\\approx 3.86",
+            "g",
+            "[-5,6]",
+            "\\frac{23}{2} - \\pi",
+            "x=3",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-gd-seg-521seg-313semi-233-10seg23-3seg4-30-0-4-6-4-jbusfv",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_derivative",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(6)\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: 7 −𝜋\nUse the graph of f. By the Fundamental Theorem of Calculus, 𝑔⁡(6) =𝑔⁡(0) +∫6\n0𝑓⁡(𝑥) 𝑑𝑥\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative.\nAdd the signed areas. Split [0,6]\n at 𝑥 =2\n, 𝑥 =3\n and 𝑥 =4\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫2\n0𝑓⁡(𝑥) 𝑑𝑥 =6 −𝜋\n (rectangle of height 3\n minus a quarter disk of radius 2\n); ∫3\n2𝑓⁡(𝑥) 𝑑𝑥 =\n3\n2\n (triangle above the x-axis); ∫4\n3𝑓⁡(𝑥) 𝑑𝑥 =−\n3\n2\n (triangle below the x-axis); ∫6\n4𝑓⁡(𝑥) 𝑑𝑥 =−3\n (triangle below the x-axis).\n∫6\n0𝑓⁡(𝑥) 𝑑𝑥 =3 −𝜋\n𝑔⁡(6) =4 +(3−𝜋) =7 −𝜋",
+          "renderedMath": [
+            "7 - \\pi",
+            "g(6)=g(0)+\\int_{0}^{6}f(x)\\,dx",
+            "f",
+            "[0,6]",
+            "x=2",
+            "x=3",
+            "x=4",
+            "f",
+            "f",
+            "\\int_{0}^{2}f(x)\\,dx=6 - \\pi",
+            "3",
+            "2",
+            "\\int_{2}^{3}f(x)\\,dx=\\frac{3}{2}",
+            "\\int_{3}^{4}f(x)\\,dx=-\\frac{3}{2}",
+            "\\int_{4}^{6}f(x)\\,dx=-3",
+            "\\displaystyle \\int_{0}^{6}f(x)\\,dx=3 - \\pi",
+            "\\displaystyle g(6)=4+\\left(3 - \\pi\\right)=7 - \\pi"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a point of inflection of \\(g\\)?",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑔″ =𝑓′\n changes sign there: 𝑓\n changes from increasing to decreasing or from decreasing to increasing.\nReason. A point of inflection of 𝑔\n needs 𝑔″\n to change sign. Because 𝑔″ =𝑓′\n, that happens where 𝑓\n changes direction. Sign changes of 𝑓\n itself give the local maxima and minima of 𝑔\n instead.",
+          "renderedMath": [
+            "g''=f'",
+            "f",
+            "g",
+            "g''",
+            "g''=f'",
+            "f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-5,6)\\) does \\(g\\) have a point of inflection? Enter every value, separated by commas.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: −3,  −2, 0, 2, 4\nConnect g to the graph of f. Since 𝑔′ =𝑓\n, 𝑔″ =𝑓′\n. The graph of 𝑔\n has a point of inflection where 𝑔″\n changes sign, that is, where 𝑓\n changes from increasing to decreasing or from decreasing to increasing.\nRead the graph. At 𝑥 =−3\n 𝑓\n changes from decreasing to increasing; at 𝑥 =−2\n 𝑓\n changes from increasing to decreasing; at 𝑥 =0\n (the lowest point of the semicircle) 𝑓\n changes from decreasing to increasing; at 𝑥 =2\n 𝑓\n changes from increasing to decreasing; at 𝑥 =4\n 𝑓\n changes from decreasing to increasing. A zero of 𝑓\n is not a point of inflection by itself.\nA complete written answer. 𝑔\n has points of inflection at 𝑥 =−3\n, 𝑥 =−2\n, 𝑥 =0\n, 𝑥 =2\n and 𝑥 =4\n because 𝑔′ =𝑓\n changes from increasing to decreasing or from decreasing to increasing there, so 𝑔″\n changes sign.",
+          "renderedMath": [
+            "-3,\\ -2,\\ 0,\\ 2,\\ 4",
+            "g'=f",
+            "g''=f'",
+            "g",
+            "g''",
+            "f",
+            "x=-3",
+            "f",
+            "x=-2",
+            "f",
+            "x=0",
+            "f",
+            "x=2",
+            "f",
+            "x=4",
+            "f",
+            "f",
+            "g",
+            "x=-3",
+            "x=-2",
+            "x=0",
+            "x=2",
+            "x=4",
+            "g'=f",
+            "g''"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute maximum value of \\(g\\) on the interval \\([-5,6]\\).",
+          "correct": false,
+          "renderedText": "Part D is not correct.\nCorrect answer: \n23\n2\n −𝜋\nCandidates Test. An absolute maximum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =3\n; the endpoints are 𝑥 =−5\n and 𝑥 =6\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =4 +∫𝑥\n0𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−5) =𝜋 −7 ≈−3.86\n𝑔⁡(3) =\n23\n2\n −𝜋 ≈8.36\n𝑔⁡(6) =7 −𝜋 ≈3.86\nA complete written answer. The absolute maximum of 𝑔\n on [−5,6]\n is \n23\n2\n −𝜋\n, at 𝑥 =3\n, the largest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "\\frac{23}{2} - \\pi",
+            "g'=f=0",
+            "x=3",
+            "x=-5",
+            "x=6",
+            "g(x)=4+\\int_{0}^{x}f(t)\\,dt",
+            "\\displaystyle g(-5)=\\pi - 7\\approx -3.86",
+            "\\displaystyle g(3)=\\frac{23}{2} - \\pi\\approx 8.36",
+            "\\displaystyle g(6)=7 - \\pi\\approx 3.86",
+            "g",
+            "[-5,6]",
+            "\\frac{23}{2} - \\pi",
+            "x=3",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-gd-seg-521seg-313semi-233-10seg23-3seg4-30-0-4-6-4-jbusfv",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_derivative",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(6)\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nUse the graph of f. By the Fundamental Theorem of Calculus, 𝑔⁡(6) =𝑔⁡(0) +∫6\n0𝑓⁡(𝑥) 𝑑𝑥\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative.\nAdd the signed areas. Split [0,6]\n at 𝑥 =2\n, 𝑥 =3\n and 𝑥 =4\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫2\n0𝑓⁡(𝑥) 𝑑𝑥 =6 −𝜋\n (rectangle of height 3\n minus a quarter disk of radius 2\n); ∫3\n2𝑓⁡(𝑥) 𝑑𝑥 =\n3\n2\n (triangle above the x-axis); ∫4\n3𝑓⁡(𝑥) 𝑑𝑥 =−\n3\n2\n (triangle below the x-axis); ∫6\n4𝑓⁡(𝑥) 𝑑𝑥 =−3\n (triangle below the x-axis).\n∫6\n0𝑓⁡(𝑥) 𝑑𝑥 =3 −𝜋\n𝑔⁡(6) =4 +(3−𝜋) =7 −𝜋",
+          "renderedMath": [
+            "g(6)=g(0)+\\int_{0}^{6}f(x)\\,dx",
+            "f",
+            "[0,6]",
+            "x=2",
+            "x=3",
+            "x=4",
+            "f",
+            "f",
+            "\\int_{0}^{2}f(x)\\,dx=6 - \\pi",
+            "3",
+            "2",
+            "\\int_{2}^{3}f(x)\\,dx=\\frac{3}{2}",
+            "\\int_{3}^{4}f(x)\\,dx=-\\frac{3}{2}",
+            "\\int_{4}^{6}f(x)\\,dx=-3",
+            "\\displaystyle \\int_{0}^{6}f(x)\\,dx=3 - \\pi",
+            "\\displaystyle g(6)=4+\\left(3 - \\pi\\right)=7 - \\pi"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a point of inflection of \\(g\\)?",
+          "correct": true,
+          "renderedText": "Part B is correct.\nReason. A point of inflection of 𝑔\n needs 𝑔″\n to change sign. Because 𝑔″ =𝑓′\n, that happens where 𝑓\n changes direction. Sign changes of 𝑓\n itself give the local maxima and minima of 𝑔\n instead.",
+          "renderedMath": [
+            "g",
+            "g''",
+            "g''=f'",
+            "f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-5,6)\\) does \\(g\\) have a point of inflection? Enter every value, separated by commas.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nConnect g to the graph of f. Since 𝑔′ =𝑓\n, 𝑔″ =𝑓′\n. The graph of 𝑔\n has a point of inflection where 𝑔″\n changes sign, that is, where 𝑓\n changes from increasing to decreasing or from decreasing to increasing.\nRead the graph. At 𝑥 =−3\n 𝑓\n changes from decreasing to increasing; at 𝑥 =−2\n 𝑓\n changes from increasing to decreasing; at 𝑥 =0\n (the lowest point of the semicircle) 𝑓\n changes from decreasing to increasing; at 𝑥 =2\n 𝑓\n changes from increasing to decreasing; at 𝑥 =4\n 𝑓\n changes from decreasing to increasing. A zero of 𝑓\n is not a point of inflection by itself.\nA complete written answer. 𝑔\n has points of inflection at 𝑥 =−3\n, 𝑥 =−2\n, 𝑥 =0\n, 𝑥 =2\n and 𝑥 =4\n because 𝑔′ =𝑓\n changes from increasing to decreasing or from decreasing to increasing there, so 𝑔″\n changes sign.",
+          "renderedMath": [
+            "g'=f",
+            "g''=f'",
+            "g",
+            "g''",
+            "f",
+            "x=-3",
+            "f",
+            "x=-2",
+            "f",
+            "x=0",
+            "f",
+            "x=2",
+            "f",
+            "x=4",
+            "f",
+            "f",
+            "g",
+            "x=-3",
+            "x=-2",
+            "x=0",
+            "x=2",
+            "x=4",
+            "g'=f",
+            "g''"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute maximum value of \\(g\\) on the interval \\([-5,6]\\).",
+          "correct": true,
+          "renderedText": "Part D is correct.\nCandidates Test. An absolute maximum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =3\n; the endpoints are 𝑥 =−5\n and 𝑥 =6\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =4 +∫𝑥\n0𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−5) =𝜋 −7 ≈−3.86\n𝑔⁡(3) =\n23\n2\n −𝜋 ≈8.36\n𝑔⁡(6) =7 −𝜋 ≈3.86\nA complete written answer. The absolute maximum of 𝑔\n on [−5,6]\n is \n23\n2\n −𝜋\n, at 𝑥 =3\n, the largest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "g'=f=0",
+            "x=3",
+            "x=-5",
+            "x=6",
+            "g(x)=4+\\int_{0}^{x}f(t)\\,dt",
+            "\\displaystyle g(-5)=\\pi - 7\\approx -3.86",
+            "\\displaystyle g(3)=\\frac{23}{2} - \\pi\\approx 8.36",
+            "\\displaystyle g(6)=7 - \\pi\\approx 3.86",
+            "g",
+            "[-5,6]",
+            "\\frac{23}{2} - \\pi",
+            "x=3",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-gd-seg-521seg-313semi-233-10seg23-3seg4-30-0-4-6-4-jbusfv",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_derivative",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(6)\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: 7 −𝜋\nUse the graph of f. By the Fundamental Theorem of Calculus, 𝑔⁡(6) =𝑔⁡(0) +∫6\n0𝑓⁡(𝑥) 𝑑𝑥\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative.\nAdd the signed areas. Split [0,6]\n at 𝑥 =2\n, 𝑥 =3\n and 𝑥 =4\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫2\n0𝑓⁡(𝑥) 𝑑𝑥 =6 −𝜋\n (rectangle of height 3\n minus a quarter disk of radius 2\n); ∫3\n2𝑓⁡(𝑥) 𝑑𝑥 =\n3\n2\n (triangle above the x-axis); ∫4\n3𝑓⁡(𝑥) 𝑑𝑥 =−\n3\n2\n (triangle below the x-axis); ∫6\n4𝑓⁡(𝑥) 𝑑𝑥 =−3\n (triangle below the x-axis).\n∫6\n0𝑓⁡(𝑥) 𝑑𝑥 =3 −𝜋\n𝑔⁡(6) =4 +(3−𝜋) =7 −𝜋",
+          "renderedMath": [
+            "7 - \\pi",
+            "g(6)=g(0)+\\int_{0}^{6}f(x)\\,dx",
+            "f",
+            "[0,6]",
+            "x=2",
+            "x=3",
+            "x=4",
+            "f",
+            "f",
+            "\\int_{0}^{2}f(x)\\,dx=6 - \\pi",
+            "3",
+            "2",
+            "\\int_{2}^{3}f(x)\\,dx=\\frac{3}{2}",
+            "\\int_{3}^{4}f(x)\\,dx=-\\frac{3}{2}",
+            "\\int_{4}^{6}f(x)\\,dx=-3",
+            "\\displaystyle \\int_{0}^{6}f(x)\\,dx=3 - \\pi",
+            "\\displaystyle g(6)=4+\\left(3 - \\pi\\right)=7 - \\pi"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a point of inflection of \\(g\\)?",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑔″ =𝑓′\n changes sign there: 𝑓\n changes from increasing to decreasing or from decreasing to increasing.\nReason. A point of inflection of 𝑔\n needs 𝑔″\n to change sign. Because 𝑔″ =𝑓′\n, that happens where 𝑓\n changes direction. Sign changes of 𝑓\n itself give the local maxima and minima of 𝑔\n instead.",
+          "renderedMath": [
+            "g''=f'",
+            "f",
+            "g",
+            "g''",
+            "g''=f'",
+            "f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-5,6)\\) does \\(g\\) have a point of inflection? Enter every value, separated by commas.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: −3,  −2, 0, 2, 4\nConnect g to the graph of f. Since 𝑔′ =𝑓\n, 𝑔″ =𝑓′\n. The graph of 𝑔\n has a point of inflection where 𝑔″\n changes sign, that is, where 𝑓\n changes from increasing to decreasing or from decreasing to increasing.\nRead the graph. At 𝑥 =−3\n 𝑓\n changes from decreasing to increasing; at 𝑥 =−2\n 𝑓\n changes from increasing to decreasing; at 𝑥 =0\n (the lowest point of the semicircle) 𝑓\n changes from decreasing to increasing; at 𝑥 =2\n 𝑓\n changes from increasing to decreasing; at 𝑥 =4\n 𝑓\n changes from decreasing to increasing. A zero of 𝑓\n is not a point of inflection by itself.\nA complete written answer. 𝑔\n has points of inflection at 𝑥 =−3\n, 𝑥 =−2\n, 𝑥 =0\n, 𝑥 =2\n and 𝑥 =4\n because 𝑔′ =𝑓\n changes from increasing to decreasing or from decreasing to increasing there, so 𝑔″\n changes sign.",
+          "renderedMath": [
+            "-3,\\ -2,\\ 0,\\ 2,\\ 4",
+            "g'=f",
+            "g''=f'",
+            "g",
+            "g''",
+            "f",
+            "x=-3",
+            "f",
+            "x=-2",
+            "f",
+            "x=0",
+            "f",
+            "x=2",
+            "f",
+            "x=4",
+            "f",
+            "f",
+            "g",
+            "x=-3",
+            "x=-2",
+            "x=0",
+            "x=2",
+            "x=4",
+            "g'=f",
+            "g''"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute maximum value of \\(g\\) on the interval \\([-5,6]\\).",
+          "correct": false,
+          "renderedText": "Part D is not correct.\nCorrect answer: \n23\n2\n −𝜋\nCandidates Test. An absolute maximum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =3\n; the endpoints are 𝑥 =−5\n and 𝑥 =6\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =4 +∫𝑥\n0𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−5) =𝜋 −7 ≈−3.86\n𝑔⁡(3) =\n23\n2\n −𝜋 ≈8.36\n𝑔⁡(6) =7 −𝜋 ≈3.86\nA complete written answer. The absolute maximum of 𝑔\n on [−5,6]\n is \n23\n2\n −𝜋\n, at 𝑥 =3\n, the largest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "\\frac{23}{2} - \\pi",
+            "g'=f=0",
+            "x=3",
+            "x=-5",
+            "x=6",
+            "g(x)=4+\\int_{0}^{x}f(t)\\,dt",
+            "\\displaystyle g(-5)=\\pi - 7\\approx -3.86",
+            "\\displaystyle g(3)=\\frac{23}{2} - \\pi\\approx 8.36",
+            "\\displaystyle g(6)=7 - \\pi\\approx 3.86",
+            "g",
+            "[-5,6]",
+            "\\frac{23}{2} - \\pi",
+            "x=3",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-gd-seg-521seg-313semi-233-10seg23-3seg4-30-0-4-6-4-jbusfv",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_accum",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(-5)\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nUse the graph of f. 𝑔⁡(−5) =∫−5\n5𝑓⁡(𝑡) 𝑑𝑡\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative. Because −5 <5\n, ∫−5\n5𝑓 =−∫5\n−5𝑓\n.\nAdd the signed areas. Split [−5,5]\n at 𝑥 =−3\n, 𝑥 =−2\n, 𝑥 =2\n, 𝑥 =3\n and 𝑥 =4\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫−3\n−5𝑓⁡(𝑥) 𝑑𝑥 =3\n (trapezoid above the x-axis); ∫−2\n−3𝑓⁡(𝑥) 𝑑𝑥 =2\n (trapezoid above the x-axis); ∫2\n−2𝑓⁡(𝑥) 𝑑𝑥 =12 −2⁢𝜋\n (rectangle of height 3\n minus a half disk of radius 2\n); ∫3\n2𝑓⁡(𝑥) 𝑑𝑥 =\n3\n2\n (triangle above the x-axis); ∫4\n3𝑓⁡(𝑥) 𝑑𝑥 =−\n3\n2\n (triangle below the x-axis); ∫5\n4𝑓⁡(𝑥) 𝑑𝑥 =−\n9\n4\n (trapezoid below the x-axis).\n∫5\n−5𝑓⁡(𝑥) 𝑑𝑥 =\n59\n4\n −2⁢𝜋\n𝑔⁡(−5) =−(\n59\n4\n−2⁢𝜋) =2⁢𝜋 −\n59\n4",
+          "renderedMath": [
+            "g(-5)=\\int_{5}^{-5}f(t)\\,dt",
+            "f",
+            "-5<5",
+            "\\int_{5}^{-5}f=-\\int_{-5}^{5}f",
+            "[-5,5]",
+            "x=-3",
+            "x=-2",
+            "x=2",
+            "x=3",
+            "x=4",
+            "f",
+            "f",
+            "\\int_{-5}^{-3}f(x)\\,dx=3",
+            "\\int_{-3}^{-2}f(x)\\,dx=2",
+            "\\int_{-2}^{2}f(x)\\,dx=12 - 2\\pi",
+            "3",
+            "2",
+            "\\int_{2}^{3}f(x)\\,dx=\\frac{3}{2}",
+            "\\int_{3}^{4}f(x)\\,dx=-\\frac{3}{2}",
+            "\\int_{4}^{5}f(x)\\,dx=-\\frac{9}{4}",
+            "\\displaystyle \\int_{-5}^{5}f(x)\\,dx=\\frac{59}{4} - 2\\pi",
+            "\\displaystyle g(-5)=-\\left(\\frac{59}{4} - 2\\pi\\right)=2\\pi - \\frac{59}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a local maximum of \\(g\\)?",
+          "correct": true,
+          "renderedText": "Part B is correct.\nReason. The extrema of 𝑔\n come from sign changes of 𝑔′ =𝑓\n. Changes in the direction of 𝑓\n give points of inflection of 𝑔\n, not extrema.",
+          "renderedMath": [
+            "g",
+            "g'=f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-5,6)\\) does \\(g\\) have a local maximum? Enter every value, separated by commas.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nUse the sign of g'. 𝑔′ =𝑓\n. 𝑔\n has a local maximum where 𝑔′\n changes from positive to negative: the graph of 𝑓\n crosses the x-axis going down at 𝑥 =3\n.\nA complete written answer. 𝑔\n has a local maximum at 𝑥 =3\n because 𝑔′ =𝑓\n changes from positive to negative there.",
+          "renderedMath": [
+            "g'=f",
+            "g",
+            "g'",
+            "f",
+            "x=3",
+            "g",
+            "x=3",
+            "g'=f"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute minimum value of \\(g\\) on the interval \\([-5,6]\\).",
+          "correct": true,
+          "renderedText": "Part D is correct.\nCandidates Test. An absolute minimum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =3\n; the endpoints are 𝑥 =−5\n and 𝑥 =6\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =∫𝑥\n5𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−5) =2⁢𝜋 −\n59\n4\n ≈−8.47\n𝑔⁡(3) =\n15\n4\n ≈3.75\n𝑔⁡(6) =−\n3\n4\n ≈−0.75\nA complete written answer. The absolute minimum of 𝑔\n on [−5,6]\n is 2⁢𝜋 −\n59\n4\n, at 𝑥 =−5\n, the smallest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "g'=f=0",
+            "x=3",
+            "x=-5",
+            "x=6",
+            "g(x)=\\int_{5}^{x}f(t)\\,dt",
+            "\\displaystyle g(-5)=2\\pi - \\frac{59}{4}\\approx -8.47",
+            "\\displaystyle g(3)=\\frac{15}{4}\\approx 3.75",
+            "\\displaystyle g(6)=-\\frac{3}{4}\\approx -0.75",
+            "g",
+            "[-5,6]",
+            "2\\pi - \\frac{59}{4}",
+            "x=-5",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-ga-seg-521seg-313semi-233-10seg23-3seg4-30-5--5-6-4-1ymrvil",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_accum",
+      "wrapped": true,
+      "width": 1366,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(-5)\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: 2⁢𝜋 −\n59\n4\nUse the graph of f. 𝑔⁡(−5) =∫−5\n5𝑓⁡(𝑡) 𝑑𝑡\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative. Because −5 <5\n, ∫−5\n5𝑓 =−∫5\n−5𝑓\n.\nAdd the signed areas. Split [−5,5]\n at 𝑥 =−3\n, 𝑥 =−2\n, 𝑥 =2\n, 𝑥 =3\n and 𝑥 =4\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫−3\n−5𝑓⁡(𝑥) 𝑑𝑥 =3\n (trapezoid above the x-axis); ∫−2\n−3𝑓⁡(𝑥) 𝑑𝑥 =2\n (trapezoid above the x-axis); ∫2\n−2𝑓⁡(𝑥) 𝑑𝑥 =12 −2⁢𝜋\n (rectangle of height 3\n minus a half disk of radius 2\n); ∫3\n2𝑓⁡(𝑥) 𝑑𝑥 =\n3\n2\n (triangle above the x-axis); ∫4\n3𝑓⁡(𝑥) 𝑑𝑥 =−\n3\n2\n (triangle below the x-axis); ∫5\n4𝑓⁡(𝑥) 𝑑𝑥 =−\n9\n4\n (trapezoid below the x-axis).\n∫5\n−5𝑓⁡(𝑥) 𝑑𝑥 =\n59\n4\n −2⁢𝜋\n𝑔⁡(−5) =−(\n59\n4\n−2⁢𝜋) =2⁢𝜋 −\n59\n4",
+          "renderedMath": [
+            "2\\pi - \\frac{59}{4}",
+            "g(-5)=\\int_{5}^{-5}f(t)\\,dt",
+            "f",
+            "-5<5",
+            "\\int_{5}^{-5}f=-\\int_{-5}^{5}f",
+            "[-5,5]",
+            "x=-3",
+            "x=-2",
+            "x=2",
+            "x=3",
+            "x=4",
+            "f",
+            "f",
+            "\\int_{-5}^{-3}f(x)\\,dx=3",
+            "\\int_{-3}^{-2}f(x)\\,dx=2",
+            "\\int_{-2}^{2}f(x)\\,dx=12 - 2\\pi",
+            "3",
+            "2",
+            "\\int_{2}^{3}f(x)\\,dx=\\frac{3}{2}",
+            "\\int_{3}^{4}f(x)\\,dx=-\\frac{3}{2}",
+            "\\int_{4}^{5}f(x)\\,dx=-\\frac{9}{4}",
+            "\\displaystyle \\int_{-5}^{5}f(x)\\,dx=\\frac{59}{4} - 2\\pi",
+            "\\displaystyle g(-5)=-\\left(\\frac{59}{4} - 2\\pi\\right)=2\\pi - \\frac{59}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a local maximum of \\(g\\)?",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑔′ =𝑓\n changes from positive to negative there.\nReason. The extrema of 𝑔\n come from sign changes of 𝑔′ =𝑓\n. Changes in the direction of 𝑓\n give points of inflection of 𝑔\n, not extrema.",
+          "renderedMath": [
+            "g'=f",
+            "g",
+            "g'=f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-5,6)\\) does \\(g\\) have a local maximum? Enter every value, separated by commas.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 3\nUse the sign of g'. 𝑔′ =𝑓\n. 𝑔\n has a local maximum where 𝑔′\n changes from positive to negative: the graph of 𝑓\n crosses the x-axis going down at 𝑥 =3\n.\nA complete written answer. 𝑔\n has a local maximum at 𝑥 =3\n because 𝑔′ =𝑓\n changes from positive to negative there.",
+          "renderedMath": [
+            "3",
+            "g'=f",
+            "g",
+            "g'",
+            "f",
+            "x=3",
+            "g",
+            "x=3",
+            "g'=f"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute minimum value of \\(g\\) on the interval \\([-5,6]\\).",
+          "correct": false,
+          "renderedText": "Part D is not correct.\nCorrect answer: 2⁢𝜋 −\n59\n4\nCandidates Test. An absolute minimum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =3\n; the endpoints are 𝑥 =−5\n and 𝑥 =6\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =∫𝑥\n5𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−5) =2⁢𝜋 −\n59\n4\n ≈−8.47\n𝑔⁡(3) =\n15\n4\n ≈3.75\n𝑔⁡(6) =−\n3\n4\n ≈−0.75\nA complete written answer. The absolute minimum of 𝑔\n on [−5,6]\n is 2⁢𝜋 −\n59\n4\n, at 𝑥 =−5\n, the smallest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "2\\pi - \\frac{59}{4}",
+            "g'=f=0",
+            "x=3",
+            "x=-5",
+            "x=6",
+            "g(x)=\\int_{5}^{x}f(t)\\,dt",
+            "\\displaystyle g(-5)=2\\pi - \\frac{59}{4}\\approx -8.47",
+            "\\displaystyle g(3)=\\frac{15}{4}\\approx 3.75",
+            "\\displaystyle g(6)=-\\frac{3}{4}\\approx -0.75",
+            "g",
+            "[-5,6]",
+            "2\\pi - \\frac{59}{4}",
+            "x=-5",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-ga-seg-521seg-313semi-233-10seg23-3seg4-30-5--5-6-4-1ymrvil",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_accum",
+      "wrapped": true,
+      "width": 390,
+      "wrong": false,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(-5)\\).",
+          "correct": true,
+          "renderedText": "Part A is correct.\nUse the graph of f. 𝑔⁡(−5) =∫−5\n5𝑓⁡(𝑡) 𝑑𝑡\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative. Because −5 <5\n, ∫−5\n5𝑓 =−∫5\n−5𝑓\n.\nAdd the signed areas. Split [−5,5]\n at 𝑥 =−3\n, 𝑥 =−2\n, 𝑥 =2\n, 𝑥 =3\n and 𝑥 =4\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫−3\n−5𝑓⁡(𝑥) 𝑑𝑥 =3\n (trapezoid above the x-axis); ∫−2\n−3𝑓⁡(𝑥) 𝑑𝑥 =2\n (trapezoid above the x-axis); ∫2\n−2𝑓⁡(𝑥) 𝑑𝑥 =12 −2⁢𝜋\n (rectangle of height 3\n minus a half disk of radius 2\n); ∫3\n2𝑓⁡(𝑥) 𝑑𝑥 =\n3\n2\n (triangle above the x-axis); ∫4\n3𝑓⁡(𝑥) 𝑑𝑥 =−\n3\n2\n (triangle below the x-axis); ∫5\n4𝑓⁡(𝑥) 𝑑𝑥 =−\n9\n4\n (trapezoid below the x-axis).\n∫5\n−5𝑓⁡(𝑥) 𝑑𝑥 =\n59\n4\n −2⁢𝜋\n𝑔⁡(−5) =−(\n59\n4\n−2⁢𝜋) =2⁢𝜋 −\n59\n4",
+          "renderedMath": [
+            "g(-5)=\\int_{5}^{-5}f(t)\\,dt",
+            "f",
+            "-5<5",
+            "\\int_{5}^{-5}f=-\\int_{-5}^{5}f",
+            "[-5,5]",
+            "x=-3",
+            "x=-2",
+            "x=2",
+            "x=3",
+            "x=4",
+            "f",
+            "f",
+            "\\int_{-5}^{-3}f(x)\\,dx=3",
+            "\\int_{-3}^{-2}f(x)\\,dx=2",
+            "\\int_{-2}^{2}f(x)\\,dx=12 - 2\\pi",
+            "3",
+            "2",
+            "\\int_{2}^{3}f(x)\\,dx=\\frac{3}{2}",
+            "\\int_{3}^{4}f(x)\\,dx=-\\frac{3}{2}",
+            "\\int_{4}^{5}f(x)\\,dx=-\\frac{9}{4}",
+            "\\displaystyle \\int_{-5}^{5}f(x)\\,dx=\\frac{59}{4} - 2\\pi",
+            "\\displaystyle g(-5)=-\\left(\\frac{59}{4} - 2\\pi\\right)=2\\pi - \\frac{59}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a local maximum of \\(g\\)?",
+          "correct": true,
+          "renderedText": "Part B is correct.\nReason. The extrema of 𝑔\n come from sign changes of 𝑔′ =𝑓\n. Changes in the direction of 𝑓\n give points of inflection of 𝑔\n, not extrema.",
+          "renderedMath": [
+            "g",
+            "g'=f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-5,6)\\) does \\(g\\) have a local maximum? Enter every value, separated by commas.",
+          "correct": true,
+          "renderedText": "Part C is correct.\nUse the sign of g'. 𝑔′ =𝑓\n. 𝑔\n has a local maximum where 𝑔′\n changes from positive to negative: the graph of 𝑓\n crosses the x-axis going down at 𝑥 =3\n.\nA complete written answer. 𝑔\n has a local maximum at 𝑥 =3\n because 𝑔′ =𝑓\n changes from positive to negative there.",
+          "renderedMath": [
+            "g'=f",
+            "g",
+            "g'",
+            "f",
+            "x=3",
+            "g",
+            "x=3",
+            "g'=f"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute minimum value of \\(g\\) on the interval \\([-5,6]\\).",
+          "correct": true,
+          "renderedText": "Part D is correct.\nCandidates Test. An absolute minimum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =3\n; the endpoints are 𝑥 =−5\n and 𝑥 =6\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =∫𝑥\n5𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−5) =2⁢𝜋 −\n59\n4\n ≈−8.47\n𝑔⁡(3) =\n15\n4\n ≈3.75\n𝑔⁡(6) =−\n3\n4\n ≈−0.75\nA complete written answer. The absolute minimum of 𝑔\n on [−5,6]\n is 2⁢𝜋 −\n59\n4\n, at 𝑥 =−5\n, the smallest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "g'=f=0",
+            "x=3",
+            "x=-5",
+            "x=6",
+            "g(x)=\\int_{5}^{x}f(t)\\,dt",
+            "\\displaystyle g(-5)=2\\pi - \\frac{59}{4}\\approx -8.47",
+            "\\displaystyle g(3)=\\frac{15}{4}\\approx 3.75",
+            "\\displaystyle g(6)=-\\frac{3}{4}\\approx -0.75",
+            "g",
+            "[-5,6]",
+            "2\\pi - \\frac{59}{4}",
+            "x=-5",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-ga-seg-521seg-313semi-233-10seg23-3seg4-30-5--5-6-4-1ymrvil",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    },
+    {
+      "fixture": "graph_accum",
+      "wrapped": true,
+      "width": 390,
+      "wrong": true,
+      "route": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+      "source": "current",
+      "parts": [
+        {
+          "index": 0,
+          "control": "input",
+          "prompt": "Find \\(g(-5)\\).",
+          "correct": false,
+          "renderedText": "Part A is not correct.\nCorrect answer: 2⁢𝜋 −\n59\n4\nUse the graph of f. 𝑔⁡(−5) =∫−5\n5𝑓⁡(𝑡) 𝑑𝑡\n. The integral is the signed area between the graph of 𝑓\n and the x-axis: regions above the axis count as positive, regions below as negative. Because −5 <5\n, ∫−5\n5𝑓 =−∫5\n−5𝑓\n.\nAdd the signed areas. Split [−5,5]\n at 𝑥 =−3\n, 𝑥 =−2\n, 𝑥 =2\n, 𝑥 =3\n and 𝑥 =4\n, where the graph of 𝑓\n changes from one piece to the next or crosses the x-axis, so that each part is a single shape whose area is known. The split is only a way to find the signed area: it is still the one integral of 𝑓\n. ∫−3\n−5𝑓⁡(𝑥) 𝑑𝑥 =3\n (trapezoid above the x-axis); ∫−2\n−3𝑓⁡(𝑥) 𝑑𝑥 =2\n (trapezoid above the x-axis); ∫2\n−2𝑓⁡(𝑥) 𝑑𝑥 =12 −2⁢𝜋\n (rectangle of height 3\n minus a half disk of radius 2\n); ∫3\n2𝑓⁡(𝑥) 𝑑𝑥 =\n3\n2\n (triangle above the x-axis); ∫4\n3𝑓⁡(𝑥) 𝑑𝑥 =−\n3\n2\n (triangle below the x-axis); ∫5\n4𝑓⁡(𝑥) 𝑑𝑥 =−\n9\n4\n (trapezoid below the x-axis).\n∫5\n−5𝑓⁡(𝑥) 𝑑𝑥 =\n59\n4\n −2⁢𝜋\n𝑔⁡(−5) =−(\n59\n4\n−2⁢𝜋) =2⁢𝜋 −\n59\n4",
+          "renderedMath": [
+            "2\\pi - \\frac{59}{4}",
+            "g(-5)=\\int_{5}^{-5}f(t)\\,dt",
+            "f",
+            "-5<5",
+            "\\int_{5}^{-5}f=-\\int_{-5}^{5}f",
+            "[-5,5]",
+            "x=-3",
+            "x=-2",
+            "x=2",
+            "x=3",
+            "x=4",
+            "f",
+            "f",
+            "\\int_{-5}^{-3}f(x)\\,dx=3",
+            "\\int_{-3}^{-2}f(x)\\,dx=2",
+            "\\int_{-2}^{2}f(x)\\,dx=12 - 2\\pi",
+            "3",
+            "2",
+            "\\int_{2}^{3}f(x)\\,dx=\\frac{3}{2}",
+            "\\int_{3}^{4}f(x)\\,dx=-\\frac{3}{2}",
+            "\\int_{4}^{5}f(x)\\,dx=-\\frac{9}{4}",
+            "\\displaystyle \\int_{-5}^{5}f(x)\\,dx=\\frac{59}{4} - 2\\pi",
+            "\\displaystyle g(-5)=-\\left(\\frac{59}{4} - 2\\pi\\right)=2\\pi - \\frac{59}{4}"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 1,
+          "control": "choice",
+          "prompt": "Which condition on the graph of \\(f\\) identifies a local maximum of \\(g\\)?",
+          "correct": false,
+          "renderedText": "Part B is not correct.\nCorrect answer: 𝑔′ =𝑓\n changes from positive to negative there.\nReason. The extrema of 𝑔\n come from sign changes of 𝑔′ =𝑓\n. Changes in the direction of 𝑓\n give points of inflection of 𝑔\n, not extrema.",
+          "renderedMath": [
+            "g'=f",
+            "g",
+            "g'=f",
+            "f",
+            "g"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 2,
+          "control": "input",
+          "prompt": "For what values of \\(x\\) on \\((-5,6)\\) does \\(g\\) have a local maximum? Enter every value, separated by commas.",
+          "correct": false,
+          "renderedText": "Part C is not correct.\nCorrect answer: 3\nUse the sign of g'. 𝑔′ =𝑓\n. 𝑔\n has a local maximum where 𝑔′\n changes from positive to negative: the graph of 𝑓\n crosses the x-axis going down at 𝑥 =3\n.\nA complete written answer. 𝑔\n has a local maximum at 𝑥 =3\n because 𝑔′ =𝑓\n changes from positive to negative there.",
+          "renderedMath": [
+            "3",
+            "g'=f",
+            "g",
+            "g'",
+            "f",
+            "x=3",
+            "g",
+            "x=3",
+            "g'=f"
+          ],
+          "futureDisclosures": []
+        },
+        {
+          "index": 3,
+          "control": "input",
+          "prompt": "Find the absolute minimum value of \\(g\\) on the interval \\([-5,6]\\).",
+          "correct": false,
+          "renderedText": "Part D is not correct.\nCorrect answer: 2⁢𝜋 −\n59\n4\nCandidates Test. An absolute minimum on a closed interval occurs at an endpoint or at a critical point. 𝑔′ =𝑓 =0\n at 𝑥 =3\n; the endpoints are 𝑥 =−5\n and 𝑥 =6\n.\nEvaluate g at each candidate. Use 𝑔⁡(𝑥) =∫𝑥\n5𝑓⁡(𝑡) 𝑑𝑡\n with the signed areas from the graph.\n𝑔⁡(−5) =2⁢𝜋 −\n59\n4\n ≈−8.47\n𝑔⁡(3) =\n15\n4\n ≈3.75\n𝑔⁡(6) =−\n3\n4\n ≈−0.75\nA complete written answer. The absolute minimum of 𝑔\n on [−5,6]\n is 2⁢𝜋 −\n59\n4\n, at 𝑥 =−5\n, the smallest of the values of 𝑔\n at the critical points and endpoints.",
+          "renderedMath": [
+            "2\\pi - \\frac{59}{4}",
+            "g'=f=0",
+            "x=3",
+            "x=-5",
+            "x=6",
+            "g(x)=\\int_{5}^{x}f(t)\\,dt",
+            "\\displaystyle g(-5)=2\\pi - \\frac{59}{4}\\approx -8.47",
+            "\\displaystyle g(3)=\\frac{15}{4}\\approx 3.75",
+            "\\displaystyle g(6)=-\\frac{3}{4}\\approx -0.75",
+            "g",
+            "[-5,6]",
+            "2\\pi - \\frac{59}{4}",
+            "x=-5",
+            "g"
+          ],
+          "futureDisclosures": []
+        }
+      ],
+      "failures": [],
+      "id": "u6-frq-ga-seg-521seg-313semi-233-10seg23-3seg4-30-5--5-6-4-1ymrvil",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "fields": 3,
+        "locked": true
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "expectedOriginalDisclosures": 0
+}

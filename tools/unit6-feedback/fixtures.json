@@ -1,0 +1,363 @@
+[
+  {
+    "name": "choose_dx_dy",
+    "config": {
+      "engine": "area",
+      "api": "BatchMathUnit6Area",
+      "method": "make",
+      "slug": "area-below-and-between-curves",
+      "family": "choose_dx_dy",
+      "calc": "non-calculator",
+      "tier": "challenging"
+    },
+    "seed": 20,
+    "id": "u6-area-choose-wedge-y=3x|y=x|x=2-3-1wpvu5g",
+    "parts": [
+      {
+        "prompt": "Write the area of \\(R\\) as a single integral.",
+        "answer": "\\int_{0}^{2}\\left(3x-x\\right)\\,dx",
+        "control": "u6-integral"
+      },
+      {
+        "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to y.",
+        "answer": "\\int_{0}^{2}\\left(y-\\frac{y}{3}\\right)\\,dy + \\int_{2}^{6}\\left(2-\\frac{y}{3}\\right)\\,dy",
+        "control": "u6-integral"
+      },
+      {
+        "prompt": "Find the exact area of \\(R\\).",
+        "answer": "4",
+        "control": "input"
+      }
+    ]
+  },
+  {
+    "name": "washer",
+    "config": {
+      "engine": "solids",
+      "api": "BatchMathUnit6Volume",
+      "method": "makeSolid",
+      "slug": "solids-of-revolution",
+      "family": "washer",
+      "calc": "non-calculator",
+      "tier": "intermediate"
+    },
+    "seed": 5,
+    "id": "u6-solids-wash-y=2x|y=x|x=3-y-3-3-f49nd7",
+    "parts": [
+      {
+        "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+        "answer": "R(x)=3 + 2x",
+        "control": "u6-expr"
+      },
+      {
+        "prompt": "Find the inner radius \\(r(x)\\).",
+        "answer": "r(x)=3 + x",
+        "control": "u6-expr"
+      },
+      {
+        "prompt": "Find the volume of the solid.",
+        "answer": "54\\pi",
+        "control": "input"
+      }
+    ]
+  },
+  {
+    "name": "shells",
+    "config": {
+      "engine": "solids",
+      "api": "BatchMathUnit6Volume",
+      "method": "makeSolid",
+      "slug": "solids-of-revolution",
+      "family": "shells",
+      "calc": "non-calculator",
+      "tier": "intermediate"
+    },
+    "seed": 2,
+    "id": "u6-solids-shell-y=4x|y=x^{3}-y0-160jdmd",
+    "parts": [
+      {
+        "prompt": "Find the radius \\(r(y)\\) of a shell, measured from the axis of rotation.",
+        "answer": "r(y)=y",
+        "control": "u6-expr"
+      },
+      {
+        "prompt": "Find the height \\(h(y)\\) of a shell.",
+        "answer": "h(y)=-\\frac{y}{4} + \\sqrt[3]{y}",
+        "control": "u6-expr"
+      },
+      {
+        "prompt": "Find the volume of the solid.",
+        "answer": "\\frac{512}{21}\\pi",
+        "control": "input"
+      }
+    ]
+  },
+  {
+    "name": "graph_derivative",
+    "config": {
+      "engine": "frq",
+      "api": "BatchMathUnit6FRQ",
+      "method": "make",
+      "slug": null,
+      "family": "graph_derivative",
+      "calc": "non-calculator",
+      "tier": "intermediate"
+    },
+    "seed": 1,
+    "id": "u6-frq-gd-seg-521seg-313semi-233-10seg23-3seg4-30-0-4-6-4-1d2ry9p",
+    "parts": [
+      {
+        "prompt": "Find \\(g(6)\\).",
+        "answer": "7 - \\pi",
+        "control": "input"
+      },
+      {
+        "prompt": "For what values of \\(x\\) on \\((-5,6)\\) does \\(g\\) have a point of inflection? Enter every value, separated by commas.",
+        "answer": "-3,\\ -2,\\ 0,\\ 2,\\ 4",
+        "control": "input"
+      },
+      {
+        "prompt": "Which statement explains why \\(g\\) has a point of inflection at each of these values?",
+        "answer": "\\(g''=f'\\) changes sign there: \\(f\\) changes from increasing to decreasing or from decreasing to increasing.",
+        "control": "choice"
+      },
+      {
+        "prompt": "Find the absolute maximum value of \\(g\\) on the interval \\([-5,6]\\).",
+        "answer": "\\frac{23}{2} - \\pi",
+        "control": "input"
+      }
+    ]
+  },
+  {
+    "name": "graph_accum",
+    "config": {
+      "engine": "frq",
+      "api": "BatchMathUnit6FRQ",
+      "method": "make",
+      "slug": null,
+      "family": "graph_accum",
+      "calc": "non-calculator",
+      "tier": "intermediate"
+    },
+    "seed": 1,
+    "id": "u6-frq-ga-seg-521seg-313semi-233-10seg23-3seg4-30-5--5-6-4-1j6uw5p",
+    "parts": [
+      {
+        "prompt": "Find \\(g(-5)\\).",
+        "answer": "2\\pi - \\frac{59}{4}",
+        "control": "input"
+      },
+      {
+        "prompt": "For what values of \\(x\\) on \\((-5,6)\\) does \\(g\\) have a local maximum? Enter every value, separated by commas.",
+        "answer": "3",
+        "control": "input"
+      },
+      {
+        "prompt": "Which statement explains why \\(g\\) has a local maximum at each of these values?",
+        "answer": "\\(g'=f\\) changes from positive to negative there.",
+        "control": "choice"
+      },
+      {
+        "prompt": "Find the absolute minimum value of \\(g\\) on the interval \\([-5,6]\\).",
+        "answer": "2\\pi - \\frac{59}{4}",
+        "control": "input"
+      }
+    ]
+  },
+  {
+    "name": "choose_dy",
+    "config": {
+      "engine": "area",
+      "api": "BatchMathUnit6Area",
+      "method": "make",
+      "slug": "area-below-and-between-curves",
+      "family": "choose_dx_dy",
+      "calc": "non-calculator",
+      "tier": "challenging"
+    },
+    "seed": 7,
+    "id": "u6-area-choose-rootLineAxis-y=\\sqrt{x}|y=x-2|y=0-3-gtx20z",
+    "parts": [
+      {
+        "prompt": "Write the area of \\(R\\) as a single integral.",
+        "answer": "\\int_{0}^{2}\\left(y + 2-y^{2}\\right)\\,dy",
+        "control": "u6-integral"
+      },
+      {
+        "prompt": "Now write the area of \\(R\\) as a sum of integrals with respect to x.",
+        "answer": "\\int_{0}^{2}\\sqrt{x}\\,dx + \\int_{2}^{4}\\left(\\sqrt{x}-\\left(x - 2\\right)\\right)\\,dx",
+        "control": "u6-integral"
+      },
+      {
+        "prompt": "Find the exact area of \\(R\\).",
+        "answer": "\\frac{10}{3}",
+        "control": "input"
+      }
+    ]
+  },
+  {
+    "name": "washer_vertical",
+    "config": {
+      "engine": "solids",
+      "api": "BatchMathUnit6Volume",
+      "method": "makeSolid",
+      "slug": "solids-of-revolution",
+      "family": "washer",
+      "calc": "non-calculator",
+      "tier": "intermediate"
+    },
+    "seed": 20,
+    "id": "u6-solids-wash-x=-y^{3} + 2y^{2}|x=0-x-2-3-1tgk0n0",
+    "parts": [
+      {
+        "prompt": "Find the outer radius \\(R(y)\\), measured from the axis of rotation.",
+        "answer": "R(y)=2 - y^{3} + 2y^{2}",
+        "control": "u6-expr"
+      },
+      {
+        "prompt": "Find the inner radius \\(r(y)\\).",
+        "answer": "r(y)=2",
+        "control": "u6-expr"
+      },
+      {
+        "prompt": "Find the volume of the solid.",
+        "answer": "\\frac{688}{105}\\pi",
+        "control": "input"
+      }
+    ]
+  },
+  {
+    "name": "washer_above",
+    "config": {
+      "engine": "solids",
+      "api": "BatchMathUnit6Volume",
+      "method": "makeSolid",
+      "slug": "solids-of-revolution",
+      "family": "washer",
+      "calc": "non-calculator",
+      "tier": "intermediate"
+    },
+    "seed": 25,
+    "id": "u6-solids-wash-y=-\\frac{3x}{4} + 3|x=0|y=0-y3-3-m6hqzk",
+    "parts": [
+      {
+        "prompt": "Find the outer radius \\(R(x)\\), measured from the axis of rotation.",
+        "answer": "R(x)=3",
+        "control": "u6-expr"
+      },
+      {
+        "prompt": "Find the inner radius \\(r(x)\\).",
+        "answer": "r(x)=\\frac{3x}{4}",
+        "control": "u6-expr"
+      },
+      {
+        "prompt": "Find the volume of the solid.",
+        "answer": "24\\pi",
+        "control": "input"
+      }
+    ]
+  },
+  {
+    "name": "shells_vertical",
+    "config": {
+      "engine": "solids",
+      "api": "BatchMathUnit6Volume",
+      "method": "makeSolid",
+      "slug": "solids-of-revolution",
+      "family": "shells",
+      "calc": "non-calculator",
+      "tier": "intermediate"
+    },
+    "seed": 6,
+    "id": "u6-solids-shell-y=-x^{2} + 4|y=0-x2-escnfl",
+    "parts": [
+      {
+        "prompt": "Find the radius \\(r(x)\\) of a shell, measured from the axis of rotation.",
+        "answer": "r(x)=2 - x",
+        "control": "u6-expr"
+      },
+      {
+        "prompt": "Find the height \\(h(x)\\) of a shell.",
+        "answer": "h(x)=-x^{2} + 4",
+        "control": "u6-expr"
+      },
+      {
+        "prompt": "Find the volume of the solid.",
+        "answer": "\\frac{40}{3}\\pi",
+        "control": "input"
+      }
+    ]
+  },
+  {
+    "name": "graph_accum_minimum",
+    "config": {
+      "engine": "frq",
+      "api": "BatchMathUnit6FRQ",
+      "method": "make",
+      "slug": null,
+      "family": "graph_accum",
+      "calc": "non-calculator",
+      "tier": "intermediate"
+    },
+    "seed": 2,
+    "id": "u6-frq-ga-seg-6-2-3seg-4-30semi-10011seg303seg531-1--6-7-4-1kbdbe7",
+    "parts": [
+      {
+        "prompt": "Find \\(g(-6)\\).",
+        "answer": "\\frac{19}{2} - \\pi",
+        "control": "input"
+      },
+      {
+        "prompt": "For what values of \\(x\\) on \\((-6,8)\\) does \\(g\\) have a local minimum? Enter every value, separated by commas.",
+        "answer": "-1",
+        "control": "input"
+      },
+      {
+        "prompt": "Which statement explains why \\(g\\) has a local minimum at each of these values?",
+        "answer": "\\(g'=f\\) changes from negative to positive there.",
+        "control": "choice"
+      },
+      {
+        "prompt": "Find the absolute maximum value of \\(g\\) on the interval \\([-6,8]\\).",
+        "answer": "9 + \\pi",
+        "control": "input"
+      }
+    ]
+  },
+  {
+    "name": "graph_accum_inflection",
+    "config": {
+      "engine": "frq",
+      "api": "BatchMathUnit6FRQ",
+      "method": "make",
+      "slug": null,
+      "family": "graph_accum",
+      "calc": "non-calculator",
+      "tier": "intermediate"
+    },
+    "seed": 4,
+    "id": "u6-frq-ga-seg-623seg-330quarter-10-1-10quarter0-1011seg10-1-1--5-2-4-1b6y1xm",
+    "parts": [
+      {
+        "prompt": "Find \\(g(-5)\\).",
+        "answer": "-\\frac{22}{3}",
+        "control": "input"
+      },
+      {
+        "prompt": "For what values of \\(x\\) on \\((-6,4)\\) does \\(g\\) have a point of inflection? Enter every value, separated by commas.",
+        "answer": "-3,\\ 0,\\ 1",
+        "control": "input"
+      },
+      {
+        "prompt": "Which statement explains why \\(g\\) has a point of inflection at each of these values?",
+        "answer": "\\(g''=f'\\) changes sign there: \\(f\\) changes from increasing to decreasing or from decreasing to increasing.",
+        "control": "choice"
+      },
+      {
+        "prompt": "Find the absolute minimum value of \\(g\\) on the interval \\([-6,4]\\).",
+        "answer": "-\\frac{19}{2}",
+        "control": "input"
+      }
+    ]
+  }
+]
