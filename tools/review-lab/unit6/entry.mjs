@@ -16,9 +16,12 @@
 // serving an extracted release ZIP) instead of starting the review lab's own server for BM_ROOT.
 import {serve,browser,context,open,outDir,randomPort} from '../lib/browser.mjs';
 import {keypadForm,parse,keypad,strokes} from '../lib/keypad.mjs';
+import {enterAnswer} from '../../keypad-completeness/enter-answer.mjs';
+import {parseInput} from '../../../assets/mathlive/answer-adapter.mjs';
 const [page,count='8',W='1366',H='768',mob='']=process.argv.slice(2);
 if(!page){console.error('usage: unit6/entry.mjs <page-path> [count] [width] [height] [mobile]');process.exit(2);}
 const LEGACY=process.env.BM_EDITOR==='legacy';
+const SETUP_KEYPAD_ONLY=process.env.BM_SETUP_KEYPAD_ONLY==='1';
 const PORT=process.env.BM_PORT?+process.env.BM_PORT:randomPort(9300),srv=process.env.BM_PORT?{close(){}}:await serve(PORT),b=await browser({scrollbars:true}),c=await context(b,{width:+W,height:+H,mobile:!!mob});
 const p=await open(c,`http://127.0.0.1:${PORT}/${page.replace(/^\/|\/$/g,'')}/?bm_seed=u6entry-${W}${LEGACY?'&editor=legacy':''}`);
 if(process.env.BM_MODE){await p.selectOption('#u6Mode',process.env.BM_MODE);await p.waitForTimeout(800);}
@@ -42,6 +45,11 @@ const plain=t=>/^-?\d+(\.\d+)?$/.test(String(t).trim());
 async function typePlain(scope,t,how){if(how==='keypad'){for(const ch of String(t))await mlKeyText(scope,ch==='-'?'−':ch);}else await p.keyboard.type(String(t));}
 // one integral setup, built in the field
 async function mlSetup(scope,rows,how){
+ if(SETUP_KEYPAD_ONLY){
+  const tree=raw=>{const parsed=parseInput(raw,'latex');if(parsed.status!=='complete')throw Error('Setup keypad driver cannot parse '+raw);return parsed.tree;};
+  await enterAnswer(p,mfIn(scope),'Unit 6 canonical integral setup',{tree:{type:'integral-setup',rows:rows.map(r=>({coefficient:r.coef&&r.coef!=='1'?tree(r.coef):null,lower:tree(r.lower),upper:tree(r.upper),integrand:tree(r.integrand),variable:r.v}))}});
+  return;
+ }
  for(const [i,r] of rows.entries()){
   let coef=r.coef&&r.coef!=='1'?r.coef:'',neg=coef.startsWith('-');if(neg)coef=coef.slice(1);
   if(neg||i>0)await typePlain(scope,neg?'-':'+',how==='keypad'&&!neg?'keyboard':how);
@@ -65,7 +73,7 @@ async function enter(editor,text,scope,how){
 }
 const linearSetup=rows=>rows.map((r,i)=>{let c=r.coef&&r.coef!=='1'?r.coef:'',neg=c.startsWith('-');if(neg)c=c.slice(1);return (neg?'-':i?'+':'')+(c?`(${lin(c)})*`:'')+`int(${lin(r.lower)},${lin(r.upper)},${lin(r.integrand)},${r.v})`;}).join('');
 
-const out={page,viewport:`${W}x${H}${mob?' mobile':''}`,editor:LEGACY?'legacy':'mathlive',mode:process.env.BM_MODE||'mixed',checked:0,parts:0,integrals:0,mathliveFields:0,blankAtStart:0,locked:0,failures:[],scrollBoxes:[],pageOverflow:0,errors:p._errs,entered:[]};
+const out={page,viewport:`${W}x${H}${mob?' mobile':''}`,editor:LEGACY?'legacy':'mathlive',mode:process.env.BM_MODE||'mixed',setupKeypadOnly:SETUP_KEYPAD_ONLY,checked:0,parts:0,integrals:0,mathliveFields:0,blankAtStart:0,locked:0,failures:[],scrollBoxes:[],pageOverflow:0,errors:p._errs,entered:[]};
 for(let i=0;i<+count;i++){
  const info=await p.evaluate(()=>{const q=window.BatchMathUnit5Last;return{id:q.id,variant:q.variant,staged:q.answerType==='unit5-staged',correctIndex:q.correctIndex,tier:q.unit5Meta?.tier,
   parts:(q.parts||[]).map(t=>({control:t.control||'input',answerTex:t.answerTex,answer:t.answer?{kind:t.answer.kind,rows:t.answer.rows,altRows:t.answer.altRows}:null,correctIndex:t.correctIndex,max:t.maxIntegrals}))};});
@@ -88,7 +96,7 @@ for(let i=0;i<+count;i++){
    if(part.control==='u6-integral'){out.integrals++;
     for(const kk of ['Insert definite integral','Insert dx','Insert dy'])if(!st.keys.includes(kk))out.failures.push(`${info.id} part ${k+1}: keypad lacks "${kk}"`);
     await mfIn(scope).click();await mlSetup(scope,part.answer.rows,how);
-    row.push(`integral ${how}/${submit}: ${part.answer.rows.length} integral(s)`);}
+    row.push(`integral ${SETUP_KEYPAD_ONLY?'keypad-only':how}/${submit}: ${part.answer.rows.length} integral(s)`);}
    else{await mfIn(scope).click();await mlAnswer(scope,part,how);row.push(`${part.control} ${how}/${submit}`);}
    await p.waitForTimeout(80);
    const latex=await mlValue(scope),hidden=await p.$eval(`${scope} input.staged-exact-input, ${scope} input.practice-answer-input`,e=>e.value).catch(()=>'');

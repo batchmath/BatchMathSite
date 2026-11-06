@@ -5,6 +5,11 @@
       "before": "4c76daa6f4f590861a755643b953b96c9755fd77",
       "after": "216859ed26db6e2e4373ad6b782eeac11b11a401",
       "reason": "Translate an explicit multiplication separator between a coefficient and an integral; mathematical checker and generators remain exact Source B."
+    },
+    "assets/mathlive/unit6.mjs": {
+      "before": "3b44f34a3cf89755c1dad9b9287522636a092428",
+      "after": "3b79295a88a9d8c93e1478d7d839ecf156ae9770",
+      "reason": "Expose the existing cube-root template for demonstrated canonical non-calculator integral setups and slice/radius expressions; preserve original functions and legacy profiles. Calculator setup keys are unchanged."
     }
   }
 }

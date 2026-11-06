@@ -1,0 +1,33 @@
+{
+  "results": [
+    {
+      "index": 1,
+      "width": 1366,
+      "questionId": "u6-area_y-ym-power-y=1|y=x^{3}|x=0-2-1qfigf4",
+      "serializedSource": "int(0,1,cbrt(y),y)",
+      "passed": true
+    },
+    {
+      "index": 11,
+      "width": 1366,
+      "questionId": "u6-solids-shell-y=4x|y=x^{3}-y9-13apahy",
+      "serializedSource": "cbrt(y)-(y)/(4)",
+      "passed": true
+    },
+    {
+      "index": 1,
+      "width": 390,
+      "questionId": "u6-area_y-ym-power-y=1|y=x^{3}|x=0-2-1qfigf4",
+      "serializedSource": "int(0,1,cbrt(y),y)",
+      "passed": true
+    },
+    {
+      "index": 11,
+      "width": 390,
+      "questionId": "u6-solids-shell-y=4x|y=x^{3}-y9-13apahy",
+      "serializedSource": "cbrt(y)-(y)/(4)",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

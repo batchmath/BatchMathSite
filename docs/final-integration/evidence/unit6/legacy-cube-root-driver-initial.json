@@ -1,0 +1,33 @@
+{
+  "results": [
+    {
+      "index": 1,
+      "width": 1366,
+      "questionId": "u6-area_y-ym-power-y=1|y=x^{3}|x=0-2-1qfigf4",
+      "passed": false,
+      "error": "page.evaluate: Error: Question mismatch\n    at eval (eval at evaluate (:311:30), <anonymous>:1:274)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /workspace/BatchMathSite/tools/final-integration/unit6-legacy-cube.mjs:17:27"
+    },
+    {
+      "index": 11,
+      "width": 1366,
+      "questionId": "u6-solids-shell-y=4x|y=x^{3}-y9-13apahy",
+      "passed": false,
+      "error": "page.evaluate: Error: Question mismatch\n    at eval (eval at evaluate (:311:30), <anonymous>:1:274)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /workspace/BatchMathSite/tools/final-integration/unit6-legacy-cube.mjs:17:27"
+    },
+    {
+      "index": 1,
+      "width": 390,
+      "questionId": "u6-area_y-ym-power-y=1|y=x^{3}|x=0-2-1qfigf4",
+      "passed": false,
+      "error": "page.evaluate: Error: Question mismatch\n    at eval (eval at evaluate (:311:30), <anonymous>:1:274)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /workspace/BatchMathSite/tools/final-integration/unit6-legacy-cube.mjs:17:27"
+    },
+    {
+      "index": 11,
+      "width": 390,
+      "questionId": "u6-solids-shell-y=4x|y=x^{3}-y9-13apahy",
+      "passed": false,
+      "error": "page.evaluate: Error: Question mismatch\n    at eval (eval at evaluate (:311:30), <anonymous>:1:274)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /workspace/BatchMathSite/tools/final-integration/unit6-legacy-cube.mjs:17:27"
+    }
+  ],
+  "errors": []
+}

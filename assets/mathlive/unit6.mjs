@@ -13,7 +13,12 @@ const api=window.BatchMathCalculusKeypad;
 // The setup keypad: only what Unit 6 integral setups use (fractions, roots, ln, sin, cos, pi, e, powers, x, y),
 // plus the integral, dx and dy keys; a decimal point on calculator setups (decimal limits)
 const setupKeys={fraction:true,radical:true,exponent:true,logarithm:true,constants:['pi','e'],variables:['x','y'],functions:[['sin','sin'],['cos','cos']],arithmetic:true,parentheses:true};
-api.registerProfile('ml-unit6-setup',setupKeys);
+// Canonical non-calculator setups and slice/radius expressions can contain cube
+// roots (for example x = cube-root(y)). Keep the original expression controls and
+// use the existing cube-root template in those profiles and their legacy modes.
+api.registerProfile('unit6-integral',{...setupKeys,cubeRoot:true,functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['tan⁻¹','atan'],['|u|','abs']]});
+api.registerProfile('unit6-setup',{...setupKeys,cubeRoot:true,list:true});
+api.registerProfile('ml-unit6-setup',{...setupKeys,cubeRoot:true});
 api.registerProfile('ml-unit6-setup-calc',{...setupKeys,decimal:true});
 const INTEGRAL_PADS=new Set(['ml-unit6-setup','ml-unit6-setup-calc']);
 // add the three keys to those pads (the shared keypad renderer is not changed)

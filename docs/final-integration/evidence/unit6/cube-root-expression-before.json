@@ -1,0 +1,22 @@
+{
+  "results": [
+    {
+      "catalogIndex": 11,
+      "width": 390,
+      "name": "BatchMathUnit6Volume",
+      "method": "makeSolid",
+      "family": "shells",
+      "calc": "non-calculator",
+      "tier": "intermediate",
+      "seed": 39793,
+      "questionId": "u6-solids-shell-y=4x|y=x^{3}-y9-13apahy",
+      "partIndex": 1,
+      "control": "u6-expr",
+      "canonical": "-\\frac{y}{4} + \\sqrt[3]{y}",
+      "alternative": "(-((y)/(4))+root(3,y))",
+      "passed": false,
+      "error": "locator.evaluate: Error: MISSING CONTROL ⁿ√ for -\\frac{y}{4} + \\sqrt[3]{y}\n    at click (eval at evaluate (:311:30), <anonymous>:4:193)\n    at emit (eval at evaluate (:311:30), <anonymous>:14:326)\n    at emit (eval at evaluate (:311:30), <anonymous>:11:238)\n    at eval (eval at evaluate (:311:30), <anonymous>:20:8)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at enterAnswer (/workspace/BatchMathSite/tools/keypad-completeness/enter-answer.mjs:13:679)\n    at async enter (/workspace/BatchMathSite/tools/final-integration/unit6-roots.mjs:41:148)\n    at async file:///workspace/BatchMathSite/tools/final-integration/unit6-roots.mjs:55:20"
+    }
+  ],
+  "errors": []
+}

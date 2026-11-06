@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "index": 1,
+      "width": 1366,
+      "questionId": "u6-area_y-ym-power-y=1|y=x^{3}|x=0-2-1qfigf4",
+      "serializedSource": "int(0,1,cbrt(y),y)",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /root\\(3,y\\)/. Input:\n\n'int(0,1,cbrt(y),y)'\n\n    at file:///workspace/BatchMathSite/tools/final-integration/unit6-legacy-cube.mjs:29:13"
+    },
+    {
+      "index": 11,
+      "width": 1366,
+      "questionId": "u6-solids-shell-y=4x|y=x^{3}-y9-13apahy",
+      "serializedSource": "cbrt(y)-(y)/(4)",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /root\\(3,y\\)/. Input:\n\n'cbrt(y)-(y)/(4)'\n\n    at file:///workspace/BatchMathSite/tools/final-integration/unit6-legacy-cube.mjs:29:13"
+    },
+    {
+      "index": 1,
+      "width": 390,
+      "questionId": "u6-area_y-ym-power-y=1|y=x^{3}|x=0-2-1qfigf4",
+      "serializedSource": "int(0,1,cbrt(y),y)",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /root\\(3,y\\)/. Input:\n\n'int(0,1,cbrt(y),y)'\n\n    at file:///workspace/BatchMathSite/tools/final-integration/unit6-legacy-cube.mjs:29:13"
+    },
+    {
+      "index": 11,
+      "width": 390,
+      "questionId": "u6-solids-shell-y=4x|y=x^{3}-y9-13apahy",
+      "serializedSource": "cbrt(y)-(y)/(4)",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /root\\(3,y\\)/. Input:\n\n'cbrt(y)-(y)/(4)'\n\n    at file:///workspace/BatchMathSite/tools/final-integration/unit6-legacy-cube.mjs:29:13"
+    }
+  ],
+  "errors": []
+}

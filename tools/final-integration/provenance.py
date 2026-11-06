@@ -81,7 +81,7 @@ def verify():
                   'tools/mathlive-sitewide/applications-keypads.test.mjs',
                   'tools/mathlive-sitewide/contracts.test.mjs',
                   'tools/mathlive-sitewide/unit1-contracts.test.mjs',
-                  'assets/mathlive/integral-setup.mjs'],
+                  'assets/mathlive/integral-setup.mjs', 'assets/mathlive/unit6.mjs'],
               'productionConflictResolution': 'None: the three-way product merge was clean. Shared keypad bridge is exactly Source B and retains Source A stability policy.'}
     return report
 

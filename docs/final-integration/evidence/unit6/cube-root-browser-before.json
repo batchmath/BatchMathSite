@@ -1,0 +1,49 @@
+{
+  "results": [
+    {
+      "catalogIndex": 0,
+      "width": 390,
+      "name": "BatchMathUnit6Area",
+      "method": "make",
+      "family": "area_directions",
+      "calc": "non-calculator",
+      "tier": "intermediate",
+      "seed": 8396,
+      "questionId": "u6-area-dir-y-y=\\sqrt{x}|y=x^{3}-1-zwdxrm",
+      "partIndex": 0,
+      "control": "u6-integral",
+      "rowIndex": 0,
+      "canonical": "\\sqrt[3]{y}-y^{2}",
+      "alternative": "(root(3,y)-(y^2))",
+      "rows": [
+        {
+          "coef": "",
+          "lower": "0",
+          "upper": "1",
+          "integrand": "\\left(\\sqrt[3]{y}-\\left({y}^{2}\\right)\\right)",
+          "v": "y"
+        }
+      ],
+      "passed": false,
+      "error": "locator.evaluate: Error: MISSING CONTROL ⁿ√ for canonical Unit 6 setup\n    at click (eval at evaluate (:311:30), <anonymous>:4:193)\n    at emit (eval at evaluate (:311:30), <anonymous>:14:326)\n    at emit (eval at evaluate (:311:30), <anonymous>:11:24)\n    at eval (eval at evaluate (:311:30), <anonymous>:19:184)\n    at Array.forEach (<anonymous>)\n    at eval (eval at evaluate (:311:30), <anonymous>:19:13)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at enterAnswer (/workspace/BatchMathSite/tools/keypad-completeness/enter-answer.mjs:13:679)\n    at async enter (/workspace/BatchMathSite/tools/final-integration/unit6-roots.mjs:41:40)\n    at async file:///workspace/BatchMathSite/tools/final-integration/unit6-roots.mjs:55:20"
+    },
+    {
+      "catalogIndex": 11,
+      "width": 390,
+      "name": "BatchMathUnit6Volume",
+      "method": "makeSolid",
+      "family": "shells",
+      "calc": "non-calculator",
+      "tier": "intermediate",
+      "seed": 39793,
+      "questionId": "u6-solids-shell-y=4x|y=x^{3}-y9-13apahy",
+      "partIndex": 1,
+      "control": "u6-expr",
+      "canonical": "-\\frac{y}{4} + \\sqrt[3]{y}",
+      "alternative": "(-((y)/(4))+root(3,y))",
+      "passed": false,
+      "error": "page.waitForFunction: Timeout 12000ms exceeded.\n    at /workspace/BatchMathSite/tools/final-integration/unit6-roots.mjs:25:16"
+    }
+  ],
+  "errors": []
+}
