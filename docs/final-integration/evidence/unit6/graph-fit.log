@@ -1,0 +1,171 @@
+{
+ "figures": 7623,
+ "problems": 7440,
+ "byFamily": {
+  "area/axis_basic/non-calculator": {
+   "figures": 0,
+   "failures": 0,
+   "tightest": 1
+  },
+  "area/axis_sign/non-calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.055
+  },
+  "area/between_enclosed/non-calculator": {
+   "figures": 360,
+   "failures": 0,
+   "tightest": 0.055
+  },
+  "area/between_switch/non-calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.053
+  },
+  "area/area_directions/non-calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.056
+  },
+  "area/choose_dx_dy/non-calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.056
+  },
+  "area/trig_area/non-calculator": {
+   "figures": 0,
+   "failures": 0,
+   "tightest": 1
+  },
+  "area/exp_log_under/non-calculator": {
+   "figures": 0,
+   "failures": 0,
+   "tightest": 1
+  },
+  "area/exp_log_between/non-calculator": {
+   "figures": 0,
+   "failures": 0,
+   "tightest": 1
+  },
+  "area/calc_given/calculator": {
+   "figures": 0,
+   "failures": 0,
+   "tightest": 1
+  },
+  "area/calc_find/calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.102
+  },
+  "area/calc_directions/calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.1
+  },
+  "area_y/y_given/non-calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.056
+  },
+  "area_y/y_between/non-calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.056
+  },
+  "area_y/y_axis_cross/non-calculator": {
+   "figures": 120,
+   "failures": 0,
+   "tightest": 0.067
+  },
+  "area_y/y_mixed/non-calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.056
+  },
+  "cs/cs_basic/non-calculator": {
+   "figures": 480,
+   "failures": 0,
+   "tightest": 0.077
+  },
+  "cs/cs_setup/non-calculator": {
+   "figures": 480,
+   "failures": 0,
+   "tightest": 0.056
+  },
+  "cs/cs_calc/calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.1
+  },
+  "solids/disk_basic/non-calculator": {
+   "figures": 368,
+   "failures": 0,
+   "tightest": 0.077
+  },
+  "solids/washer/non-calculator": {
+   "figures": 363,
+   "failures": 0,
+   "tightest": 0.071
+  },
+  "solids/shells/non-calculator": {
+   "figures": 356,
+   "failures": 0,
+   "tightest": 0.071
+  },
+  "solids/two_axes/non-calculator": {
+   "figures": 287,
+   "failures": 0,
+   "tightest": 0.061
+  },
+  "solids/trig_solid/non-calculator": {
+   "figures": 369,
+   "failures": 0,
+   "tightest": 0.125
+  },
+  "solids/solid_calc/calculator": {
+   "figures": 360,
+   "failures": 0,
+   "tightest": 0.083
+  },
+  "solids/calc_two_axes/calculator": {
+   "figures": 480,
+   "failures": 0,
+   "tightest": 0.083
+  },
+  "frq/frq_region/non-calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.056
+  },
+  "frq/frq_cap_line/non-calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.1
+  },
+  "frq/graph_derivative/non-calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.063
+  },
+  "frq/graph_accum/non-calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.063
+  },
+  "frq/frq_calc/calculator": {
+   "figures": 240,
+   "failures": 0,
+   "tightest": 0.1
+  }
+ },
+ "failures": [],
+ "tightest": [],
+ "reportedCase": {
+  "found": true,
+  "id": "u6-area-enc-cubic_lobes-y=x^{3} - 4x + 3|y=-x^{3} + 4x + 3-2-x9z62",
+  "figures": 1,
+  "failures": 0,
+  "tightestMargin": "0.060"
+ },
+ "failureCount": 0
+}

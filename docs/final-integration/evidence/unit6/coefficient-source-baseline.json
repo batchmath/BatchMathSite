@@ -1,0 +1,7 @@
+{
+  "sourceB": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
+  "sourceBAdapterBlob": "4c76daa6f4f590861a755643b953b96c9755fd77",
+  "case": "Explicit multiplication of a coefficient and a definite integral",
+  "beforeEvidence": "cross-integration-before.json",
+  "classification": "Existing Unit 6 MathLive translation limitation exposed by the merged keypad-only tests; Source A has no Unit 6 adapter."
+}

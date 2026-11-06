@@ -1,0 +1,15 @@
+✔ explicit coefficient multiplication reaches the original structural checker (153.928193ms)
+✔ implicit coefficients and parenthesized coefficients retain their meaning (5.875392ms)
+✔ missing pi and the retired radius-across area coefficient are still rejected (13.056391ms)
+✔ same-value wrong integrands remain structurally wrong (16.746661ms)
+✔ wrong limits and variables remain rejected (47.034103ms)
+✔ bare or doubled multiplication cannot become an implied coefficient of one (7.840883ms)
+✔ multiplication after an integral remains outside the accepted setup grammar (1.09546ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1479.718231

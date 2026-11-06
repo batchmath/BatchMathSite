@@ -1,0 +1,10 @@
+{
+  "sourceB": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
+  "assets": {
+    "assets/mathlive/integral-setup.mjs": {
+      "before": "4c76daa6f4f590861a755643b953b96c9755fd77",
+      "after": "216859ed26db6e2e4373ad6b782eeac11b11a401",
+      "reason": "Translate an explicit multiplication separator between a coefficient and an integral; mathematical checker and generators remain exact Source B."
+    }
+  }
+}

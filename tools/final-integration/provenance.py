@@ -35,9 +35,10 @@ def verify():
     ancestor = git('merge-base', A, B).decode().strip()
     at, bt, ct = tree(A), tree(B), tree(ancestor)
     rows = []
+    compatibility = json.loads((ROOT / 'tools/final-integration/approved-compatibility.json').read_text())['assets']
     names = set(git('ls-files', '-z').decode().strip('\0').split('\0'))
     assert set(at) | set(bt) <= names, 'A source file was dropped'
-    for name in sorted(names):
+    for name in sorted(names - {'docs/final-integration/evidence/provenance.csv', 'docs/final-integration/evidence/provenance.json'}):
         path = ROOT / name
         assert path.is_file(), name + ': missing file'
         data = path.read_bytes()
@@ -48,6 +49,10 @@ def verify():
         if qa(name):
             category = ('source-a-preserved' if blob == at.get(name) else
                         'source-b-imported' if blob == bt.get(name) else 'qa-only')
+        elif name in compatibility:
+            entry=compatibility[name]
+            assert expected==entry['before'] and blob==entry['after'], name + ': unapproved compatibility change'
+            category='manually-reconciled'
         elif blob == expected:
             category = 'source-b-imported' if ref == B and blob != at.get(name) else 'source-a-preserved'
         else:
@@ -61,7 +66,12 @@ def verify():
                for n in at if n.endswith('.pdf')), 'PDF changed'
     for n in bt:
         if n.startswith(('assets/unit6-', 'assets/mathlive/unit6.mjs', 'assets/mathlive/integral-setup.mjs')):
-            assert (ROOT / n).read_bytes() == git('show', B + ':' + n), n
+            if n in compatibility:
+                assert git('rev-parse', B + ':' + n).decode().strip()==compatibility[n]['before']
+                data=(ROOT / n).read_bytes()
+                assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==compatibility[n]['after'], n
+            else:
+                assert (ROOT / n).read_bytes() == git('show', B + ':' + n), n
     counts = {c: sum(r['category'] == c for r in rows) for c in sorted({r['category'] for r in rows})}
     report = {'sourceA': A, 'sourceB': B, 'commonAncestor': ancestor, 'ok': True,
               'counts': counts, 'files': rows,
@@ -70,7 +80,8 @@ def verify():
                   'tools/mathlive-advanced-pilot/basic.test.mjs',
                   'tools/mathlive-sitewide/applications-keypads.test.mjs',
                   'tools/mathlive-sitewide/contracts.test.mjs',
-                  'tools/mathlive-sitewide/unit1-contracts.test.mjs'],
+                  'tools/mathlive-sitewide/unit1-contracts.test.mjs',
+                  'assets/mathlive/integral-setup.mjs'],
               'productionConflictResolution': 'None: the three-way product merge was clean. Shared keypad bridge is exactly Source B and retains Source A stability policy.'}
     return report
 

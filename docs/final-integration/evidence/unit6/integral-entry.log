@@ -1,0 +1,10 @@
+{
+ "setups": 798,
+ "calculator": 170,
+ "alternativesAccepted": 176,
+ "excludedRefused": 113,
+ "engineeredSameValueRefused": 1562,
+ "oneDecimalLimits": "127 of 132 rejected",
+ "failures": 0,
+ "wrongAccepted": 0
+}

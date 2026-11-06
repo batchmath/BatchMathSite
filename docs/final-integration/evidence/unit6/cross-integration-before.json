@@ -1,0 +1,4961 @@
+{
+  "results": [
+    {
+      "case": "semi",
+      "width": 1366,
+      "variant": "correct",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi correct",
+        "latex": "\\frac{\\pi}{8}\\cdot\\int_0^4(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "(?)*int(0,4,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "undoRedo": true,
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "semi",
+      "width": 1366,
+      "variant": "same-value-integrand",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi same-value-integrand",
+        "latex": "\\frac{\\pi}{8}\\cdot\\int_0^4((2\\sqrt{4-y})^2)+y-\\frac{(0)+(4)}{2}\\,dy",
+        "serializedSource": "(?)*int(0,4,((2sqrt(4-y))^2)+y-((0)+(4))/(2),y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "semi",
+      "width": 1366,
+      "variant": "wrong-limit",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi wrong-limit",
+        "latex": "\\frac{\\pi}{8}\\cdot\\int_0^{(4)+1}(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "(?)*int(0,(4)+1,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "semi",
+      "width": 1366,
+      "variant": "missing-pi",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi missing-pi",
+        "latex": "\\frac18\\cdot\\int_0^4(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "(?)*int(0,4,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "semi",
+      "width": 1366,
+      "variant": "old-radius-semicircle",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi old-radius-semicircle",
+        "latex": "4\\cdot(\\frac{\\pi}{8})\\cdot\\int_0^4(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "(?)*int(0,4,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "split",
+      "width": 1366,
+      "variant": "correct",
+      "seed": 645,
+      "questionId": "u6-cross_sections-css-y=2\\sqrt{x}|y=x-8|y=0-x-rectangles whose height is twice the base across the region-1gjyglu",
+      "entry": {
+        "raw": "split correct",
+        "latex": "2\\cdot\\int_0^8(2\\sqrt{x})^2\\,dx+2\\cdot\\int_8^{16}(2\\sqrt{x}-(x-8))^2\\,dx",
+        "serializedSource": "(?)*int(0,8,(2sqrt(x))^2,x)+(?)*int(8,16,(2sqrt(x)-(x-8))^2,x)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          }
+        ]
+      },
+      "undoRedo": true,
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "split",
+      "width": 1366,
+      "variant": "same-value-integrand",
+      "seed": 645,
+      "questionId": "u6-cross_sections-css-y=2\\sqrt{x}|y=x-8|y=0-x-rectangles whose height is twice the base across the region-1gjyglu",
+      "entry": {
+        "raw": "split same-value-integrand",
+        "latex": "2\\cdot\\int_0^8((2\\sqrt{x})^2)+x-\\frac{(0)+(8)}{2}\\,dx+2\\cdot\\int_8^{16}(2\\sqrt{x}-(x-8))^2\\,dx",
+        "serializedSource": "(?)*int(0,8,((2sqrt(x))^2)+x-((0)+(8))/(2),x)+(?)*int(8,16,(2sqrt(x)-(x-8))^2,x)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          }
+        ]
+      },
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "split",
+      "width": 1366,
+      "variant": "wrong-limit",
+      "seed": 645,
+      "questionId": "u6-cross_sections-css-y=2\\sqrt{x}|y=x-8|y=0-x-rectangles whose height is twice the base across the region-1gjyglu",
+      "entry": {
+        "raw": "split wrong-limit",
+        "latex": "2\\cdot\\int_0^{(8)+1}(2\\sqrt{x})^2\\,dx+2\\cdot\\int_8^{16}(2\\sqrt{x}-(x-8))^2\\,dx",
+        "serializedSource": "(?)*int(0,(8)+1,(2sqrt(x))^2,x)+(?)*int(8,16,(2sqrt(x)-(x-8))^2,x)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          }
+        ]
+      },
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "semi",
+      "width": 390,
+      "variant": "correct",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi correct",
+        "latex": "\\frac{\\pi}{8}\\cdot\\int_0^4(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "(?)*int(0,4,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "undoRedo": true,
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "semi",
+      "width": 390,
+      "variant": "same-value-integrand",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi same-value-integrand",
+        "latex": "\\frac{\\pi}{8}\\cdot\\int_0^4((2\\sqrt{4-y})^2)+y-\\frac{(0)+(4)}{2}\\,dy",
+        "serializedSource": "(?)*int(0,4,((2sqrt(4-y))^2)+y-((0)+(4))/(2),y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "semi",
+      "width": 390,
+      "variant": "wrong-limit",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi wrong-limit",
+        "latex": "\\frac{\\pi}{8}\\cdot\\int_0^{(4)+1}(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "(?)*int(0,(4)+1,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "semi",
+      "width": 390,
+      "variant": "missing-pi",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi missing-pi",
+        "latex": "\\frac18\\cdot\\int_0^4(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "(?)*int(0,4,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "semi",
+      "width": 390,
+      "variant": "old-radius-semicircle",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi old-radius-semicircle",
+        "latex": "4\\cdot(\\frac{\\pi}{8})\\cdot\\int_0^4(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "(?)*int(0,4,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "split",
+      "width": 390,
+      "variant": "correct",
+      "seed": 645,
+      "questionId": "u6-cross_sections-css-y=2\\sqrt{x}|y=x-8|y=0-x-rectangles whose height is twice the base across the region-1gjyglu",
+      "entry": {
+        "raw": "split correct",
+        "latex": "2\\cdot\\int_0^8(2\\sqrt{x})^2\\,dx+2\\cdot\\int_8^{16}(2\\sqrt{x}-(x-8))^2\\,dx",
+        "serializedSource": "(?)*int(0,8,(2sqrt(x))^2,x)+(?)*int(8,16,(2sqrt(x)-(x-8))^2,x)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          }
+        ]
+      },
+      "undoRedo": true,
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "split",
+      "width": 390,
+      "variant": "same-value-integrand",
+      "seed": 645,
+      "questionId": "u6-cross_sections-css-y=2\\sqrt{x}|y=x-8|y=0-x-rectangles whose height is twice the base across the region-1gjyglu",
+      "entry": {
+        "raw": "split same-value-integrand",
+        "latex": "2\\cdot\\int_0^8((2\\sqrt{x})^2)+x-\\frac{(0)+(8)}{2}\\,dx+2\\cdot\\int_8^{16}(2\\sqrt{x}-(x-8))^2\\,dx",
+        "serializedSource": "(?)*int(0,8,((2sqrt(x))^2)+x-((0)+(8))/(2),x)+(?)*int(8,16,(2sqrt(x)-(x-8))^2,x)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          }
+        ]
+      },
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    },
+    {
+      "case": "split",
+      "width": 390,
+      "variant": "wrong-limit",
+      "seed": 645,
+      "questionId": "u6-cross_sections-css-y=2\\sqrt{x}|y=x-8|y=0-x-rectangles whose height is twice the base across the region-1gjyglu",
+      "entry": {
+        "raw": "split wrong-limit",
+        "latex": "2\\cdot\\int_0^{(8)+1}(2\\sqrt{x})^2\\,dx+2\\cdot\\int_8^{16}(2\\sqrt{x}-(x-8))^2\\,dx",
+        "serializedSource": "(?)*int(0,(8)+1,(2sqrt(x))^2,x)+(?)*int(8,16,(2sqrt(x)-(x-8))^2,x)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          }
+        ]
+      },
+      "passed": false,
+      "error": "locator.innerText: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#choices .unit5-part-1 .staged-feedback')\u001b[22m\n\n    at /workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:63:88"
+    }
+  ],
+  "errors": []
+}

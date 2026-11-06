@@ -1,0 +1,10 @@
+{
+  "semi": {
+    "seed": 1162,
+    "id": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf"
+  },
+  "split": {
+    "seed": 645,
+    "id": "u6-cross_sections-css-y=2\\sqrt{x}|y=x-8|y=0-x-rectangles whose height is twice the base across the region-1gjyglu"
+  }
+}

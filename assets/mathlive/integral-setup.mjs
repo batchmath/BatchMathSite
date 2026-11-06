@@ -103,6 +103,14 @@ export function translateIntegralSetup(source){
       // something multiplies the integral from the right: keep it visible to the checker as an error
       const rest=[];while(k<ts.length&&!(ts[k].kind==='ch'&&'+-'.includes(ts[k].ch)))rest.push(ts[k++]);trailing='*'+(piece(rest).text||'?');
     }
+    // A displayed multiplication sign can separate a coefficient from the
+    // integral. Remove that separator, leaving the coefficient expression intact.
+    // A bare or doubled separator still fails ordinary expression translation.
+    while(coef.length&&isSpace(coef[coef.length-1]))coef.pop();
+    const separator=coef[coef.length-1];
+    if(coef.length>1&&(separator.kind==='cmd'&&['cdot','times'].includes(separator.name)||separator.kind==='ch'&&['*','·','×'].includes(separator.ch))){
+      coef.pop();while(coef.length&&isSpace(coef[coef.length-1]))coef.pop();
+    }
     const c=piece(coef),lo=piece(lower||[]),up=piece(upper||[]),f=piece(body);
     if(!lo.complete||!up.complete||!f.complete||!v||coef.length&&!c.complete)complete=false;
     const co=coef.length?(c.text||'?'):'';

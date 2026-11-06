@@ -1,0 +1,5049 @@
+{
+  "results": [
+    {
+      "case": "semi",
+      "width": 1366,
+      "variant": "correct",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi correct",
+        "latex": "\\frac{\\pi}{8}\\cdot\\int_0^4(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "((pi)/(8))*int(0,4,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "undoRedo": true,
+      "accepted": true,
+      "feedback": "Correct.\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the y-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat. For a semicircle the whole slice is its diameter, so its radius is \n𝑠\n2\n.\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\none slice (length\n𝑠\n)\nd = s\ns/2\nOne cross section: a semicircle with diameter 𝑠\n (radius \n𝑠\n2\n); 𝐴 =\n𝜋\n8\n⁢𝑠2\nFind the bounds. −𝑥2 +4 =0\n at 𝑥 =±2\n; the top of the region is 𝑦 =4\n. Solved for x, 𝑥 =±√4−𝑦\n.\nChoose the slices. Cross sections are perpendicular to the y-axis, so integrate with respect to 𝑦\n. Each slice is horizontal; its length across the region is right minus left: 𝑠⁡(𝑦) =2⁢√4−𝑦\n.\nFind the area of one cross section. The slice across the region is the diameter of the semicircle: 𝑑 =𝑠\n. So its radius is 𝑟 =\n𝑠\n2\n, and its area is \n1\n2\n⁢𝜋⁢𝑟2 =\n1\n2\n⁢𝜋⁢(\n𝑠\n2\n)2 =\n𝜋\n8\n⁢𝑠2\n. So 𝐴⁡(𝑦) =\n𝜋\n8\n⁢(2⁢√4−𝑦)2\n.\nSet up the volume. Add the cross sections: integrate their area.\n𝑉 =\n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    },
+    {
+      "case": "semi",
+      "width": 1366,
+      "variant": "same-value-integrand",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi same-value-integrand",
+        "latex": "\\frac{\\pi}{8}\\cdot\\int_0^4((2\\sqrt{4-y})^2)+y-\\frac{(0)+(4)}{2}\\,dy",
+        "serializedSource": "((pi)/(8))*int(0,4,((2sqrt(4-y))^2)+y-((0)+(4))/(2),y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "accepted": false,
+      "feedback": "Not correct.\nYour integral has the right value, but it is not a setup for this region: check the integrand (the boundary difference, radius or height) and the limits.\nCorrect answer: \n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the y-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat. For a semicircle the whole slice is its diameter, so its radius is \n𝑠\n2\n.\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\none slice (length\n𝑠\n)\nd = s\ns/2\nOne cross section: a semicircle with diameter 𝑠\n (radius \n𝑠\n2\n); 𝐴 =\n𝜋\n8\n⁢𝑠2\nFind the bounds. −𝑥2 +4 =0\n at 𝑥 =±2\n; the top of the region is 𝑦 =4\n. Solved for x, 𝑥 =±√4−𝑦\n.\nChoose the slices. Cross sections are perpendicular to the y-axis, so integrate with respect to 𝑦\n. Each slice is horizontal; its length across the region is right minus left: 𝑠⁡(𝑦) =2⁢√4−𝑦\n.\nFind the area of one cross section. The slice across the region is the diameter of the semicircle: 𝑑 =𝑠\n. So its radius is 𝑟 =\n𝑠\n2\n, and its area is \n1\n2\n⁢𝜋⁢𝑟2 =\n1\n2\n⁢𝜋⁢(\n𝑠\n2\n)2 =\n𝜋\n8\n⁢𝑠2\n. So 𝐴⁡(𝑦) =\n𝜋\n8\n⁢(2⁢√4−𝑦)2\n.\nSet up the volume. Add the cross sections: integrate their area.\n𝑉 =\n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    },
+    {
+      "case": "semi",
+      "width": 1366,
+      "variant": "wrong-limit",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi wrong-limit",
+        "latex": "\\frac{\\pi}{8}\\cdot\\int_0^{(4)+1}(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "((pi)/(8))*int(0,(4)+1,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "accepted": false,
+      "feedback": "Not correct.\nThe integrand is undefined on part of its interval of integration. Check the limits and the expression.\nCorrect answer: \n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the y-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat. For a semicircle the whole slice is its diameter, so its radius is \n𝑠\n2\n.\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\none slice (length\n𝑠\n)\nd = s\ns/2\nOne cross section: a semicircle with diameter 𝑠\n (radius \n𝑠\n2\n); 𝐴 =\n𝜋\n8\n⁢𝑠2\nFind the bounds. −𝑥2 +4 =0\n at 𝑥 =±2\n; the top of the region is 𝑦 =4\n. Solved for x, 𝑥 =±√4−𝑦\n.\nChoose the slices. Cross sections are perpendicular to the y-axis, so integrate with respect to 𝑦\n. Each slice is horizontal; its length across the region is right minus left: 𝑠⁡(𝑦) =2⁢√4−𝑦\n.\nFind the area of one cross section. The slice across the region is the diameter of the semicircle: 𝑑 =𝑠\n. So its radius is 𝑟 =\n𝑠\n2\n, and its area is \n1\n2\n⁢𝜋⁢𝑟2 =\n1\n2\n⁢𝜋⁢(\n𝑠\n2\n)2 =\n𝜋\n8\n⁢𝑠2\n. So 𝐴⁡(𝑦) =\n𝜋\n8\n⁢(2⁢√4−𝑦)2\n.\nSet up the volume. Add the cross sections: integrate their area.\n𝑉 =\n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    },
+    {
+      "case": "semi",
+      "width": 1366,
+      "variant": "missing-pi",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi missing-pi",
+        "latex": "\\frac18\\cdot\\int_0^4(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "((1)/(8))*int(0,4,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "accepted": false,
+      "feedback": "Not correct.\nYour integral is missing the factor 𝜋\n.\nCorrect answer: \n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the y-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat. For a semicircle the whole slice is its diameter, so its radius is \n𝑠\n2\n.\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\none slice (length\n𝑠\n)\nd = s\ns/2\nOne cross section: a semicircle with diameter 𝑠\n (radius \n𝑠\n2\n); 𝐴 =\n𝜋\n8\n⁢𝑠2\nFind the bounds. −𝑥2 +4 =0\n at 𝑥 =±2\n; the top of the region is 𝑦 =4\n. Solved for x, 𝑥 =±√4−𝑦\n.\nChoose the slices. Cross sections are perpendicular to the y-axis, so integrate with respect to 𝑦\n. Each slice is horizontal; its length across the region is right minus left: 𝑠⁡(𝑦) =2⁢√4−𝑦\n.\nFind the area of one cross section. The slice across the region is the diameter of the semicircle: 𝑑 =𝑠\n. So its radius is 𝑟 =\n𝑠\n2\n, and its area is \n1\n2\n⁢𝜋⁢𝑟2 =\n1\n2\n⁢𝜋⁢(\n𝑠\n2\n)2 =\n𝜋\n8\n⁢𝑠2\n. So 𝐴⁡(𝑦) =\n𝜋\n8\n⁢(2⁢√4−𝑦)2\n.\nSet up the volume. Add the cross sections: integrate their area.\n𝑉 =\n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    },
+    {
+      "case": "semi",
+      "width": 1366,
+      "variant": "old-radius-semicircle",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi old-radius-semicircle",
+        "latex": "4\\cdot(\\frac{\\pi}{8})\\cdot\\int_0^4(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "(4*((pi)/(8)))*int(0,4,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "accepted": false,
+      "feedback": "Not correct.\nCorrect answer: \n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the y-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat. For a semicircle the whole slice is its diameter, so its radius is \n𝑠\n2\n.\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\none slice (length\n𝑠\n)\nd = s\ns/2\nOne cross section: a semicircle with diameter 𝑠\n (radius \n𝑠\n2\n); 𝐴 =\n𝜋\n8\n⁢𝑠2\nFind the bounds. −𝑥2 +4 =0\n at 𝑥 =±2\n; the top of the region is 𝑦 =4\n. Solved for x, 𝑥 =±√4−𝑦\n.\nChoose the slices. Cross sections are perpendicular to the y-axis, so integrate with respect to 𝑦\n. Each slice is horizontal; its length across the region is right minus left: 𝑠⁡(𝑦) =2⁢√4−𝑦\n.\nFind the area of one cross section. The slice across the region is the diameter of the semicircle: 𝑑 =𝑠\n. So its radius is 𝑟 =\n𝑠\n2\n, and its area is \n1\n2\n⁢𝜋⁢𝑟2 =\n1\n2\n⁢𝜋⁢(\n𝑠\n2\n)2 =\n𝜋\n8\n⁢𝑠2\n. So 𝐴⁡(𝑦) =\n𝜋\n8\n⁢(2⁢√4−𝑦)2\n.\nSet up the volume. Add the cross sections: integrate their area.\n𝑉 =\n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    },
+    {
+      "case": "split",
+      "width": 1366,
+      "variant": "correct",
+      "seed": 645,
+      "questionId": "u6-cross_sections-css-y=2\\sqrt{x}|y=x-8|y=0-x-rectangles whose height is twice the base across the region-1gjyglu",
+      "entry": {
+        "raw": "split correct",
+        "latex": "2\\cdot\\int_0^8(2\\sqrt{x})^2\\,dx+2\\cdot\\int_8^{16}(2\\sqrt{x}-(x-8))^2\\,dx",
+        "serializedSource": "(2)*int(0,8,(2sqrt(x))^2,x)+(2)*int(8,16,(2sqrt(x)-(x-8))^2,x)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          }
+        ]
+      },
+      "undoRedo": true,
+      "accepted": true,
+      "feedback": "Correct.\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the x-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat.\n2\n4\n6\n8\n10\n12\n14\n16\n2\n4\n6\n8\n𝑦 =2⁢√𝑥\n𝑦 =𝑥 −8\none slice (length\n𝑠\n)\ns\n2s\nOne cross section: a rectangle with base 𝑠\n and height 2⁢𝑠\n; 𝐴 =2⁢𝑠2\nFind the bounds. 2⁢√𝑥 =𝑥 −8\n at 𝑥 =16\n (then 𝑦 =8\n); the line meets the x-axis at 𝑥 =8\n. In terms of y the left boundary is 𝑥 =\n𝑦2\n4\n and the right boundary is 𝑥 =𝑦 +8\n, for 0 ≤𝑦 ≤8\n.\nChoose the slices. Cross sections are perpendicular to the x-axis, so integrate with respect to 𝑥\n. Each slice is vertical; its length across the region is top minus bottom, 𝑠⁡(𝑥)\n.\nSplit the integral at 𝑥 =8\n. At 𝑥 =8\n, 𝑦 =𝑥 −8\n meets the x-axis, 𝑦 =0\n: 𝑥 −8 =0\n when 𝑥 =8\n. Before 𝑥 =8\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −8\n. The upper boundary, 𝑦 =2⁢√𝑥\n, is the same on both sides. Because the lower boundary changes, the slice length 𝑠⁡(𝑥)\n has a different formula on each side of 𝑥 =8\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =8\n, with one integral for each piece.\n𝑠⁡(𝑥) ={2⁢√𝑥,\t0≤𝑥≤8\n2⁢√𝑥−(𝑥−8),\t8≤𝑥≤16\nFind the area of one cross section. The base is 𝑠\n and the height is 2⁢𝑠\n, so the area is 2⁢𝑠2\n. On each piece, 𝐴⁡(𝑥) =2⁢(𝑠⁡(𝑥))2\n, with the slice length 𝑠⁡(𝑥)\n of that piece.\nSet up the volume. Integrate the cross-sectional area over each piece and add the results.\n𝑉 =2⁢∫8\n0(2⁢√𝑥)2 𝑑𝑥 +2⁢∫16\n8(2⁢√𝑥−(𝑥−8))2 𝑑𝑥",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Split the integral at x\\s*=\\s*8/. Input:\n\n'Correct.\\n' +\n  'The base and one cross section. The highlighted segment is one slice of the base, perpendicular to the x-axis; its length across the region is 𝑠\\n' +\n  '. A cross section stands on every such slice; the second picture shows one of them, drawn flat.\\n' +\n  '2\\n' +\n  '4\\n' +\n  '6\\n' +\n  '8\\n' +\n  '10\\n' +\n  '12\\n' +\n  '14\\n' +\n  '16\\n' +\n  '2\\n' +\n  '4\\n' +\n  '6\\n' +\n  '8\\n' +\n  '𝑦 =2⁢√𝑥\\n' +\n  '𝑦 =𝑥 −8\\n' +\n  'one slice (length\\n' +\n  '𝑠\\n' +\n  ')\\n' +\n  's\\n' +\n  '2s\\n' +\n  'One cross section: a rectangle with base 𝑠\\n' +\n  ' and height 2⁢𝑠\\n' +\n  '; 𝐴 =2⁢𝑠2\\n' +\n  'Find the bounds. 2⁢√𝑥 =𝑥 −8\\n' +\n  ' at 𝑥 =16\\n' +\n  ' (then 𝑦 =8\\n' +\n  '); the line meets the x-axis at 𝑥 =8\\n' +\n  '. In terms of y the left boundary is 𝑥 =\\n' +\n  '𝑦2\\n' +\n  '4\\n' +\n  ' and the right boundary is 𝑥 =𝑦 +8\\n' +\n  ', for 0 ≤𝑦 ≤8\\n' +\n  '.\\n' +\n  'Choose the slices. Cross sections are perpendicular to the x-axis, so integrate with respect to 𝑥\\n' +\n  '. Each slice is vertical; its length across the region is top minus bottom, 𝑠⁡(𝑥)\\n' +\n  '.\\n' +\n  'Split the integral at 𝑥 =8\\n' +\n  '. At 𝑥 =8\\n' +\n  ', 𝑦 =𝑥 −8\\n' +\n  ' meets the x-axis, 𝑦 =0\\n' +\n  ': 𝑥 −8 =0\\n' +\n  ' when 𝑥 =8\\n' +\n  '. Before 𝑥 =8\\n' +\n  ' the lower boundary of the region is the x-axis, 𝑦 =0\\n' +\n  '; after it, the lower boundary is 𝑦 =𝑥 −8\\n' +\n  '. The upper boundary, 𝑦 =2⁢√𝑥\\n' +\n  ', is the same on both sides. Because the lower boundary changes, the slice length 𝑠⁡(𝑥)\\n' +\n  ' has a different formula on each side of 𝑥 =8\\n' +\n  ', so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =8\\n' +\n  ', with one integral for each piece.\\n' +\n  '𝑠⁡(𝑥) ={2⁢√𝑥,\\t0≤𝑥≤8\\n' +\n  '2⁢√𝑥−(𝑥−8),\\t8≤𝑥≤16\\n' +\n  'Find the area of one cross section. The base is 𝑠\\n' +\n  ' and the height is 2⁢𝑠\\n' +\n  ', so the area is 2⁢𝑠2\\n' +\n  '. On each piece, 𝐴⁡(𝑥) =2⁢(𝑠⁡(𝑥))2\\n' +\n  ', with the slice length 𝑠⁡(𝑥)\\n' +\n  ' of that piece.\\n' +\n  'Set up the volume. Integrate the cross-sectional area over each piece and add the results.\\n' +\n  '𝑉 =2⁢∫8\\n' +\n  '0(2⁢√𝑥)2 𝑑𝑥 +2⁢∫16\\n' +\n  '8(2⁢√𝑥−(𝑥−8))2 𝑑𝑥'\n\n    at file:///workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:73:20"
+    },
+    {
+      "case": "split",
+      "width": 1366,
+      "variant": "same-value-integrand",
+      "seed": 645,
+      "questionId": "u6-cross_sections-css-y=2\\sqrt{x}|y=x-8|y=0-x-rectangles whose height is twice the base across the region-1gjyglu",
+      "entry": {
+        "raw": "split same-value-integrand",
+        "latex": "2\\cdot\\int_0^8((2\\sqrt{x})^2)+x-\\frac{(0)+(8)}{2}\\,dx+2\\cdot\\int_8^{16}(2\\sqrt{x}-(x-8))^2\\,dx",
+        "serializedSource": "(2)*int(0,8,((2sqrt(x))^2)+x-((0)+(8))/(2),x)+(2)*int(8,16,(2sqrt(x)-(x-8))^2,x)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          }
+        ]
+      },
+      "accepted": false,
+      "feedback": "Not correct.\nYour integral has the right value, but it is not a setup for this region: check the integrand (the boundary difference, radius or height) and the limits.\nCorrect answer: 2⁢∫8\n0(2⁢√𝑥)2 𝑑𝑥 +2⁢∫16\n8(2⁢√𝑥−(𝑥−8))2 𝑑𝑥\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the x-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat.\n2\n4\n6\n8\n10\n12\n14\n16\n2\n4\n6\n8\n𝑦 =2⁢√𝑥\n𝑦 =𝑥 −8\none slice (length\n𝑠\n)\ns\n2s\nOne cross section: a rectangle with base 𝑠\n and height 2⁢𝑠\n; 𝐴 =2⁢𝑠2\nFind the bounds. 2⁢√𝑥 =𝑥 −8\n at 𝑥 =16\n (then 𝑦 =8\n); the line meets the x-axis at 𝑥 =8\n. In terms of y the left boundary is 𝑥 =\n𝑦2\n4\n and the right boundary is 𝑥 =𝑦 +8\n, for 0 ≤𝑦 ≤8\n.\nChoose the slices. Cross sections are perpendicular to the x-axis, so integrate with respect to 𝑥\n. Each slice is vertical; its length across the region is top minus bottom, 𝑠⁡(𝑥)\n.\nSplit the integral at 𝑥 =8\n. At 𝑥 =8\n, 𝑦 =𝑥 −8\n meets the x-axis, 𝑦 =0\n: 𝑥 −8 =0\n when 𝑥 =8\n. Before 𝑥 =8\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −8\n. The upper boundary, 𝑦 =2⁢√𝑥\n, is the same on both sides. Because the lower boundary changes, the slice length 𝑠⁡(𝑥)\n has a different formula on each side of 𝑥 =8\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =8\n, with one integral for each piece.\n𝑠⁡(𝑥) ={2⁢√𝑥,\t0≤𝑥≤8\n2⁢√𝑥−(𝑥−8),\t8≤𝑥≤16\nFind the area of one cross section. The base is 𝑠\n and the height is 2⁢𝑠\n, so the area is 2⁢𝑠2\n. On each piece, 𝐴⁡(𝑥) =2⁢(𝑠⁡(𝑥))2\n, with the slice length 𝑠⁡(𝑥)\n of that piece.\nSet up the volume. Integrate the cross-sectional area over each piece and add the results.\n𝑉 =2⁢∫8\n0(2⁢√𝑥)2 𝑑𝑥 +2⁢∫16\n8(2⁢√𝑥−(𝑥−8))2 𝑑𝑥",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    },
+    {
+      "case": "split",
+      "width": 1366,
+      "variant": "wrong-limit",
+      "seed": 645,
+      "questionId": "u6-cross_sections-css-y=2\\sqrt{x}|y=x-8|y=0-x-rectangles whose height is twice the base across the region-1gjyglu",
+      "entry": {
+        "raw": "split wrong-limit",
+        "latex": "2\\cdot\\int_0^{(8)+1}(2\\sqrt{x})^2\\,dx+2\\cdot\\int_8^{16}(2\\sqrt{x}-(x-8))^2\\,dx",
+        "serializedSource": "(2)*int(0,(8)+1,(2sqrt(x))^2,x)+(2)*int(8,16,(2sqrt(x)-(x-8))^2,x)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          }
+        ]
+      },
+      "accepted": false,
+      "feedback": "Not correct.\nCorrect answer: 2⁢∫8\n0(2⁢√𝑥)2 𝑑𝑥 +2⁢∫16\n8(2⁢√𝑥−(𝑥−8))2 𝑑𝑥\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the x-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat.\n2\n4\n6\n8\n10\n12\n14\n16\n2\n4\n6\n8\n𝑦 =2⁢√𝑥\n𝑦 =𝑥 −8\none slice (length\n𝑠\n)\ns\n2s\nOne cross section: a rectangle with base 𝑠\n and height 2⁢𝑠\n; 𝐴 =2⁢𝑠2\nFind the bounds. 2⁢√𝑥 =𝑥 −8\n at 𝑥 =16\n (then 𝑦 =8\n); the line meets the x-axis at 𝑥 =8\n. In terms of y the left boundary is 𝑥 =\n𝑦2\n4\n and the right boundary is 𝑥 =𝑦 +8\n, for 0 ≤𝑦 ≤8\n.\nChoose the slices. Cross sections are perpendicular to the x-axis, so integrate with respect to 𝑥\n. Each slice is vertical; its length across the region is top minus bottom, 𝑠⁡(𝑥)\n.\nSplit the integral at 𝑥 =8\n. At 𝑥 =8\n, 𝑦 =𝑥 −8\n meets the x-axis, 𝑦 =0\n: 𝑥 −8 =0\n when 𝑥 =8\n. Before 𝑥 =8\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −8\n. The upper boundary, 𝑦 =2⁢√𝑥\n, is the same on both sides. Because the lower boundary changes, the slice length 𝑠⁡(𝑥)\n has a different formula on each side of 𝑥 =8\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =8\n, with one integral for each piece.\n𝑠⁡(𝑥) ={2⁢√𝑥,\t0≤𝑥≤8\n2⁢√𝑥−(𝑥−8),\t8≤𝑥≤16\nFind the area of one cross section. The base is 𝑠\n and the height is 2⁢𝑠\n, so the area is 2⁢𝑠2\n. On each piece, 𝐴⁡(𝑥) =2⁢(𝑠⁡(𝑥))2\n, with the slice length 𝑠⁡(𝑥)\n of that piece.\nSet up the volume. Integrate the cross-sectional area over each piece and add the results.\n𝑉 =2⁢∫8\n0(2⁢√𝑥)2 𝑑𝑥 +2⁢∫16\n8(2⁢√𝑥−(𝑥−8))2 𝑑𝑥",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    },
+    {
+      "case": "semi",
+      "width": 390,
+      "variant": "correct",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi correct",
+        "latex": "\\frac{\\pi}{8}\\cdot\\int_0^4(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "((pi)/(8))*int(0,4,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "undoRedo": true,
+      "accepted": true,
+      "feedback": "Correct.\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the y-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat. For a semicircle the whole slice is its diameter, so its radius is \n𝑠\n2\n.\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\none slice (length\n𝑠\n)\nd = s\ns/2\nOne cross section: a semicircle with diameter 𝑠\n (radius \n𝑠\n2\n); 𝐴 =\n𝜋\n8\n⁢𝑠2\nFind the bounds. −𝑥2 +4 =0\n at 𝑥 =±2\n; the top of the region is 𝑦 =4\n. Solved for x, 𝑥 =±√4−𝑦\n.\nChoose the slices. Cross sections are perpendicular to the y-axis, so integrate with respect to 𝑦\n. Each slice is horizontal; its length across the region is right minus left: 𝑠⁡(𝑦) =2⁢√4−𝑦\n.\nFind the area of one cross section. The slice across the region is the diameter of the semicircle: 𝑑 =𝑠\n. So its radius is 𝑟 =\n𝑠\n2\n, and its area is \n1\n2\n⁢𝜋⁢𝑟2 =\n1\n2\n⁢𝜋⁢(\n𝑠\n2\n)2 =\n𝜋\n8\n⁢𝑠2\n. So 𝐴⁡(𝑦) =\n𝜋\n8\n⁢(2⁢√4−𝑦)2\n.\nSet up the volume. Add the cross sections: integrate their area.\n𝑉 =\n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    },
+    {
+      "case": "semi",
+      "width": 390,
+      "variant": "same-value-integrand",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi same-value-integrand",
+        "latex": "\\frac{\\pi}{8}\\cdot\\int_0^4((2\\sqrt{4-y})^2)+y-\\frac{(0)+(4)}{2}\\,dy",
+        "serializedSource": "((pi)/(8))*int(0,4,((2sqrt(4-y))^2)+y-((0)+(4))/(2),y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "accepted": false,
+      "feedback": "Not correct.\nYour integral has the right value, but it is not a setup for this region: check the integrand (the boundary difference, radius or height) and the limits.\nCorrect answer: \n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the y-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat. For a semicircle the whole slice is its diameter, so its radius is \n𝑠\n2\n.\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\none slice (length\n𝑠\n)\nd = s\ns/2\nOne cross section: a semicircle with diameter 𝑠\n (radius \n𝑠\n2\n); 𝐴 =\n𝜋\n8\n⁢𝑠2\nFind the bounds. −𝑥2 +4 =0\n at 𝑥 =±2\n; the top of the region is 𝑦 =4\n. Solved for x, 𝑥 =±√4−𝑦\n.\nChoose the slices. Cross sections are perpendicular to the y-axis, so integrate with respect to 𝑦\n. Each slice is horizontal; its length across the region is right minus left: 𝑠⁡(𝑦) =2⁢√4−𝑦\n.\nFind the area of one cross section. The slice across the region is the diameter of the semicircle: 𝑑 =𝑠\n. So its radius is 𝑟 =\n𝑠\n2\n, and its area is \n1\n2\n⁢𝜋⁢𝑟2 =\n1\n2\n⁢𝜋⁢(\n𝑠\n2\n)2 =\n𝜋\n8\n⁢𝑠2\n. So 𝐴⁡(𝑦) =\n𝜋\n8\n⁢(2⁢√4−𝑦)2\n.\nSet up the volume. Add the cross sections: integrate their area.\n𝑉 =\n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    },
+    {
+      "case": "semi",
+      "width": 390,
+      "variant": "wrong-limit",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi wrong-limit",
+        "latex": "\\frac{\\pi}{8}\\cdot\\int_0^{(4)+1}(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "((pi)/(8))*int(0,(4)+1,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "accepted": false,
+      "feedback": "Not correct.\nThe integrand is undefined on part of its interval of integration. Check the limits and the expression.\nCorrect answer: \n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the y-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat. For a semicircle the whole slice is its diameter, so its radius is \n𝑠\n2\n.\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\none slice (length\n𝑠\n)\nd = s\ns/2\nOne cross section: a semicircle with diameter 𝑠\n (radius \n𝑠\n2\n); 𝐴 =\n𝜋\n8\n⁢𝑠2\nFind the bounds. −𝑥2 +4 =0\n at 𝑥 =±2\n; the top of the region is 𝑦 =4\n. Solved for x, 𝑥 =±√4−𝑦\n.\nChoose the slices. Cross sections are perpendicular to the y-axis, so integrate with respect to 𝑦\n. Each slice is horizontal; its length across the region is right minus left: 𝑠⁡(𝑦) =2⁢√4−𝑦\n.\nFind the area of one cross section. The slice across the region is the diameter of the semicircle: 𝑑 =𝑠\n. So its radius is 𝑟 =\n𝑠\n2\n, and its area is \n1\n2\n⁢𝜋⁢𝑟2 =\n1\n2\n⁢𝜋⁢(\n𝑠\n2\n)2 =\n𝜋\n8\n⁢𝑠2\n. So 𝐴⁡(𝑦) =\n𝜋\n8\n⁢(2⁢√4−𝑦)2\n.\nSet up the volume. Add the cross sections: integrate their area.\n𝑉 =\n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    },
+    {
+      "case": "semi",
+      "width": 390,
+      "variant": "missing-pi",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi missing-pi",
+        "latex": "\\frac18\\cdot\\int_0^4(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "((1)/(8))*int(0,4,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "accepted": false,
+      "feedback": "Not correct.\nYour integral is missing the factor 𝜋\n.\nCorrect answer: \n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the y-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat. For a semicircle the whole slice is its diameter, so its radius is \n𝑠\n2\n.\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\none slice (length\n𝑠\n)\nd = s\ns/2\nOne cross section: a semicircle with diameter 𝑠\n (radius \n𝑠\n2\n); 𝐴 =\n𝜋\n8\n⁢𝑠2\nFind the bounds. −𝑥2 +4 =0\n at 𝑥 =±2\n; the top of the region is 𝑦 =4\n. Solved for x, 𝑥 =±√4−𝑦\n.\nChoose the slices. Cross sections are perpendicular to the y-axis, so integrate with respect to 𝑦\n. Each slice is horizontal; its length across the region is right minus left: 𝑠⁡(𝑦) =2⁢√4−𝑦\n.\nFind the area of one cross section. The slice across the region is the diameter of the semicircle: 𝑑 =𝑠\n. So its radius is 𝑟 =\n𝑠\n2\n, and its area is \n1\n2\n⁢𝜋⁢𝑟2 =\n1\n2\n⁢𝜋⁢(\n𝑠\n2\n)2 =\n𝜋\n8\n⁢𝑠2\n. So 𝐴⁡(𝑦) =\n𝜋\n8\n⁢(2⁢√4−𝑦)2\n.\nSet up the volume. Add the cross sections: integrate their area.\n𝑉 =\n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    },
+    {
+      "case": "semi",
+      "width": 390,
+      "variant": "old-radius-semicircle",
+      "seed": 1162,
+      "questionId": "u6-cross_sections-css-y=-x^{2} + 4|y=0-y-semicircles whose diameter lies across the region-1w35qpf",
+      "entry": {
+        "raw": "semi old-radius-semicircle",
+        "latex": "4\\cdot(\\frac{\\pi}{8})\\cdot\\int_0^4(2\\sqrt{4-y})^2\\,dy",
+        "serializedSource": "(4*((pi)/(8)))*int(0,4,(2sqrt(4-y))^2,y)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          }
+        ]
+      },
+      "accepted": false,
+      "feedback": "Not correct.\nCorrect answer: \n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the y-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat. For a semicircle the whole slice is its diameter, so its radius is \n𝑠\n2\n.\n-2\n-1\n1\n2\n1\n2\n3\n4\n𝑦 =−𝑥2 +4\none slice (length\n𝑠\n)\nd = s\ns/2\nOne cross section: a semicircle with diameter 𝑠\n (radius \n𝑠\n2\n); 𝐴 =\n𝜋\n8\n⁢𝑠2\nFind the bounds. −𝑥2 +4 =0\n at 𝑥 =±2\n; the top of the region is 𝑦 =4\n. Solved for x, 𝑥 =±√4−𝑦\n.\nChoose the slices. Cross sections are perpendicular to the y-axis, so integrate with respect to 𝑦\n. Each slice is horizontal; its length across the region is right minus left: 𝑠⁡(𝑦) =2⁢√4−𝑦\n.\nFind the area of one cross section. The slice across the region is the diameter of the semicircle: 𝑑 =𝑠\n. So its radius is 𝑟 =\n𝑠\n2\n, and its area is \n1\n2\n⁢𝜋⁢𝑟2 =\n1\n2\n⁢𝜋⁢(\n𝑠\n2\n)2 =\n𝜋\n8\n⁢𝑠2\n. So 𝐴⁡(𝑦) =\n𝜋\n8\n⁢(2⁢√4−𝑦)2\n.\nSet up the volume. Add the cross sections: integrate their area.\n𝑉 =\n𝜋\n8\n⁢∫4\n0(2⁢√4−𝑦)2 𝑑𝑦",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    },
+    {
+      "case": "split",
+      "width": 390,
+      "variant": "correct",
+      "seed": 645,
+      "questionId": "u6-cross_sections-css-y=2\\sqrt{x}|y=x-8|y=0-x-rectangles whose height is twice the base across the region-1gjyglu",
+      "entry": {
+        "raw": "split correct",
+        "latex": "2\\cdot\\int_0^8(2\\sqrt{x})^2\\,dx+2\\cdot\\int_8^{16}(2\\sqrt{x}-(x-8))^2\\,dx",
+        "serializedSource": "(2)*int(0,8,(2sqrt(x))^2,x)+(2)*int(8,16,(2sqrt(x)-(x-8))^2,x)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          }
+        ]
+      },
+      "undoRedo": true,
+      "accepted": true,
+      "feedback": "Correct.\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the x-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat.\n2\n4\n6\n8\n10\n12\n14\n16\n2\n4\n6\n8\n𝑦 =2⁢√𝑥\n𝑦 =𝑥 −8\none slice (length\n𝑠\n)\ns\n2s\nOne cross section: a rectangle with base 𝑠\n and height 2⁢𝑠\n; 𝐴 =2⁢𝑠2\nFind the bounds. 2⁢√𝑥 =𝑥 −8\n at 𝑥 =16\n (then 𝑦 =8\n); the line meets the x-axis at 𝑥 =8\n. In terms of y the left boundary is 𝑥 =\n𝑦2\n4\n and the right boundary is 𝑥 =𝑦 +8\n, for 0 ≤𝑦 ≤8\n.\nChoose the slices. Cross sections are perpendicular to the x-axis, so integrate with respect to 𝑥\n. Each slice is vertical; its length across the region is top minus bottom, 𝑠⁡(𝑥)\n.\nSplit the integral at 𝑥 =8\n. At 𝑥 =8\n, 𝑦 =𝑥 −8\n meets the x-axis, 𝑦 =0\n: 𝑥 −8 =0\n when 𝑥 =8\n. Before 𝑥 =8\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −8\n. The upper boundary, 𝑦 =2⁢√𝑥\n, is the same on both sides. Because the lower boundary changes, the slice length 𝑠⁡(𝑥)\n has a different formula on each side of 𝑥 =8\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =8\n, with one integral for each piece.\n𝑠⁡(𝑥) ={2⁢√𝑥,\t0≤𝑥≤8\n2⁢√𝑥−(𝑥−8),\t8≤𝑥≤16\nFind the area of one cross section. The base is 𝑠\n and the height is 2⁢𝑠\n, so the area is 2⁢𝑠2\n. On each piece, 𝐴⁡(𝑥) =2⁢(𝑠⁡(𝑥))2\n, with the slice length 𝑠⁡(𝑥)\n of that piece.\nSet up the volume. Integrate the cross-sectional area over each piece and add the results.\n𝑉 =2⁢∫8\n0(2⁢√𝑥)2 𝑑𝑥 +2⁢∫16\n8(2⁢√𝑥−(𝑥−8))2 𝑑𝑥",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Split the integral at x\\s*=\\s*8/. Input:\n\n'Correct.\\n' +\n  'The base and one cross section. The highlighted segment is one slice of the base, perpendicular to the x-axis; its length across the region is 𝑠\\n' +\n  '. A cross section stands on every such slice; the second picture shows one of them, drawn flat.\\n' +\n  '2\\n' +\n  '4\\n' +\n  '6\\n' +\n  '8\\n' +\n  '10\\n' +\n  '12\\n' +\n  '14\\n' +\n  '16\\n' +\n  '2\\n' +\n  '4\\n' +\n  '6\\n' +\n  '8\\n' +\n  '𝑦 =2⁢√𝑥\\n' +\n  '𝑦 =𝑥 −8\\n' +\n  'one slice (length\\n' +\n  '𝑠\\n' +\n  ')\\n' +\n  's\\n' +\n  '2s\\n' +\n  'One cross section: a rectangle with base 𝑠\\n' +\n  ' and height 2⁢𝑠\\n' +\n  '; 𝐴 =2⁢𝑠2\\n' +\n  'Find the bounds. 2⁢√𝑥 =𝑥 −8\\n' +\n  ' at 𝑥 =16\\n' +\n  ' (then 𝑦 =8\\n' +\n  '); the line meets the x-axis at 𝑥 =8\\n' +\n  '. In terms of y the left boundary is 𝑥 =\\n' +\n  '𝑦2\\n' +\n  '4\\n' +\n  ' and the right boundary is 𝑥 =𝑦 +8\\n' +\n  ', for 0 ≤𝑦 ≤8\\n' +\n  '.\\n' +\n  'Choose the slices. Cross sections are perpendicular to the x-axis, so integrate with respect to 𝑥\\n' +\n  '. Each slice is vertical; its length across the region is top minus bottom, 𝑠⁡(𝑥)\\n' +\n  '.\\n' +\n  'Split the integral at 𝑥 =8\\n' +\n  '. At 𝑥 =8\\n' +\n  ', 𝑦 =𝑥 −8\\n' +\n  ' meets the x-axis, 𝑦 =0\\n' +\n  ': 𝑥 −8 =0\\n' +\n  ' when 𝑥 =8\\n' +\n  '. Before 𝑥 =8\\n' +\n  ' the lower boundary of the region is the x-axis, 𝑦 =0\\n' +\n  '; after it, the lower boundary is 𝑦 =𝑥 −8\\n' +\n  '. The upper boundary, 𝑦 =2⁢√𝑥\\n' +\n  ', is the same on both sides. Because the lower boundary changes, the slice length 𝑠⁡(𝑥)\\n' +\n  ' has a different formula on each side of 𝑥 =8\\n' +\n  ', so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =8\\n' +\n  ', with one integral for each piece.\\n' +\n  '𝑠⁡(𝑥) ={2⁢√𝑥,\\t0≤𝑥≤8\\n' +\n  '2⁢√𝑥−(𝑥−8),\\t8≤𝑥≤16\\n' +\n  'Find the area of one cross section. The base is 𝑠\\n' +\n  ' and the height is 2⁢𝑠\\n' +\n  ', so the area is 2⁢𝑠2\\n' +\n  '. On each piece, 𝐴⁡(𝑥) =2⁢(𝑠⁡(𝑥))2\\n' +\n  ', with the slice length 𝑠⁡(𝑥)\\n' +\n  ' of that piece.\\n' +\n  'Set up the volume. Integrate the cross-sectional area over each piece and add the results.\\n' +\n  '𝑉 =2⁢∫8\\n' +\n  '0(2⁢√𝑥)2 𝑑𝑥 +2⁢∫16\\n' +\n  '8(2⁢√𝑥−(𝑥−8))2 𝑑𝑥'\n\n    at file:///workspace/BatchMathSite/tools/final-integration/unit6-cross.mjs:73:20"
+    },
+    {
+      "case": "split",
+      "width": 390,
+      "variant": "same-value-integrand",
+      "seed": 645,
+      "questionId": "u6-cross_sections-css-y=2\\sqrt{x}|y=x-8|y=0-x-rectangles whose height is twice the base across the region-1gjyglu",
+      "entry": {
+        "raw": "split same-value-integrand",
+        "latex": "2\\cdot\\int_0^8((2\\sqrt{x})^2)+x-\\frac{(0)+(8)}{2}\\,dx+2\\cdot\\int_8^{16}(2\\sqrt{x}-(x-8))^2\\,dx",
+        "serializedSource": "(2)*int(0,8,((2sqrt(x))^2)+x-((0)+(8))/(2),x)+(2)*int(8,16,(2sqrt(x)-(x-8))^2,x)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          }
+        ]
+      },
+      "accepted": false,
+      "feedback": "Not correct.\nYour integral has the right value, but it is not a setup for this region: check the integrand (the boundary difference, radius or height) and the limits.\nCorrect answer: 2⁢∫8\n0(2⁢√𝑥)2 𝑑𝑥 +2⁢∫16\n8(2⁢√𝑥−(𝑥−8))2 𝑑𝑥\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the x-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat.\n2\n4\n6\n8\n10\n12\n14\n16\n2\n4\n6\n8\n𝑦 =2⁢√𝑥\n𝑦 =𝑥 −8\none slice (length\n𝑠\n)\ns\n2s\nOne cross section: a rectangle with base 𝑠\n and height 2⁢𝑠\n; 𝐴 =2⁢𝑠2\nFind the bounds. 2⁢√𝑥 =𝑥 −8\n at 𝑥 =16\n (then 𝑦 =8\n); the line meets the x-axis at 𝑥 =8\n. In terms of y the left boundary is 𝑥 =\n𝑦2\n4\n and the right boundary is 𝑥 =𝑦 +8\n, for 0 ≤𝑦 ≤8\n.\nChoose the slices. Cross sections are perpendicular to the x-axis, so integrate with respect to 𝑥\n. Each slice is vertical; its length across the region is top minus bottom, 𝑠⁡(𝑥)\n.\nSplit the integral at 𝑥 =8\n. At 𝑥 =8\n, 𝑦 =𝑥 −8\n meets the x-axis, 𝑦 =0\n: 𝑥 −8 =0\n when 𝑥 =8\n. Before 𝑥 =8\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −8\n. The upper boundary, 𝑦 =2⁢√𝑥\n, is the same on both sides. Because the lower boundary changes, the slice length 𝑠⁡(𝑥)\n has a different formula on each side of 𝑥 =8\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =8\n, with one integral for each piece.\n𝑠⁡(𝑥) ={2⁢√𝑥,\t0≤𝑥≤8\n2⁢√𝑥−(𝑥−8),\t8≤𝑥≤16\nFind the area of one cross section. The base is 𝑠\n and the height is 2⁢𝑠\n, so the area is 2⁢𝑠2\n. On each piece, 𝐴⁡(𝑥) =2⁢(𝑠⁡(𝑥))2\n, with the slice length 𝑠⁡(𝑥)\n of that piece.\nSet up the volume. Integrate the cross-sectional area over each piece and add the results.\n𝑉 =2⁢∫8\n0(2⁢√𝑥)2 𝑑𝑥 +2⁢∫16\n8(2⁢√𝑥−(𝑥−8))2 𝑑𝑥",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    },
+    {
+      "case": "split",
+      "width": 390,
+      "variant": "wrong-limit",
+      "seed": 645,
+      "questionId": "u6-cross_sections-css-y=2\\sqrt{x}|y=x-8|y=0-x-rectangles whose height is twice the base across the region-1gjyglu",
+      "entry": {
+        "raw": "split wrong-limit",
+        "latex": "2\\cdot\\int_0^{(8)+1}(2\\sqrt{x})^2\\,dx+2\\cdot\\int_8^{16}(2\\sqrt{x}-(x-8))^2\\,dx",
+        "serializedSource": "(2)*int(0,(8)+1,(2sqrt(x))^2,x)+(2)*int(8,16,(2sqrt(x)-(x-8))^2,x)",
+        "profile": "ml-unit6-setup",
+        "buttons": [
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "dy",
+            "aria": "Insert dy"
+          },
+          {
+            "label": "7",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "9",
+            "aria": null
+          },
+          {
+            "label": "4",
+            "aria": null
+          },
+          {
+            "label": "5",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "3",
+            "aria": null
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "y",
+            "aria": null
+          },
+          {
+            "label": "ab",
+            "aria": "Insert stacked fraction"
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "ln",
+            "aria": "Insert ln"
+          },
+          {
+            "label": "sin",
+            "aria": "Insert sin"
+          },
+          {
+            "label": "cos",
+            "aria": "Insert cos"
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "π",
+            "aria": null
+          },
+          {
+            "label": "e",
+            "aria": null
+          },
+          {
+            "label": "←",
+            "aria": "Move cursor left"
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "↑",
+            "aria": "Move from denominator to numerator"
+          },
+          {
+            "label": "↓",
+            "aria": "Move from numerator to denominator"
+          },
+          {
+            "label": "⌫",
+            "aria": "Backspace"
+          },
+          {
+            "label": "Del",
+            "aria": "Delete"
+          },
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "Check",
+            "aria": "Check answer"
+          }
+        ],
+        "used": [
+          {
+            "label": "Clear",
+            "aria": "Clear answer"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "0",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          },
+          {
+            "label": "+",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "·",
+            "aria": null
+          },
+          {
+            "label": "∫",
+            "aria": "Insert definite integral"
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "1",
+            "aria": null
+          },
+          {
+            "label": "6",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "√",
+            "aria": "Insert √"
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "(",
+            "aria": null
+          },
+          {
+            "label": "x",
+            "aria": null
+          },
+          {
+            "label": "−",
+            "aria": null
+          },
+          {
+            "label": "8",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": ")",
+            "aria": null
+          },
+          {
+            "label": "xⁿ",
+            "aria": "Insert exponent"
+          },
+          {
+            "label": "2",
+            "aria": null
+          },
+          {
+            "label": "→",
+            "aria": "Move cursor right"
+          },
+          {
+            "label": "dx",
+            "aria": "Insert dx"
+          }
+        ]
+      },
+      "accepted": false,
+      "feedback": "Not correct.\nCorrect answer: 2⁢∫8\n0(2⁢√𝑥)2 𝑑𝑥 +2⁢∫16\n8(2⁢√𝑥−(𝑥−8))2 𝑑𝑥\nThe base and one cross section. The highlighted segment is one slice of the base, perpendicular to the x-axis; its length across the region is 𝑠\n. A cross section stands on every such slice; the second picture shows one of them, drawn flat.\n2\n4\n6\n8\n10\n12\n14\n16\n2\n4\n6\n8\n𝑦 =2⁢√𝑥\n𝑦 =𝑥 −8\none slice (length\n𝑠\n)\ns\n2s\nOne cross section: a rectangle with base 𝑠\n and height 2⁢𝑠\n; 𝐴 =2⁢𝑠2\nFind the bounds. 2⁢√𝑥 =𝑥 −8\n at 𝑥 =16\n (then 𝑦 =8\n); the line meets the x-axis at 𝑥 =8\n. In terms of y the left boundary is 𝑥 =\n𝑦2\n4\n and the right boundary is 𝑥 =𝑦 +8\n, for 0 ≤𝑦 ≤8\n.\nChoose the slices. Cross sections are perpendicular to the x-axis, so integrate with respect to 𝑥\n. Each slice is vertical; its length across the region is top minus bottom, 𝑠⁡(𝑥)\n.\nSplit the integral at 𝑥 =8\n. At 𝑥 =8\n, 𝑦 =𝑥 −8\n meets the x-axis, 𝑦 =0\n: 𝑥 −8 =0\n when 𝑥 =8\n. Before 𝑥 =8\n the lower boundary of the region is the x-axis, 𝑦 =0\n; after it, the lower boundary is 𝑦 =𝑥 −8\n. The upper boundary, 𝑦 =2⁢√𝑥\n, is the same on both sides. Because the lower boundary changes, the slice length 𝑠⁡(𝑥)\n has a different formula on each side of 𝑥 =8\n, so one integrand cannot be used on the whole interval: the integral must be split at 𝑥 =8\n, with one integral for each piece.\n𝑠⁡(𝑥) ={2⁢√𝑥,\t0≤𝑥≤8\n2⁢√𝑥−(𝑥−8),\t8≤𝑥≤16\nFind the area of one cross section. The base is 𝑠\n and the height is 2⁢𝑠\n, so the area is 2⁢𝑠2\n. On each piece, 𝐴⁡(𝑥) =2⁢(𝑠⁡(𝑥))2\n, with the slice length 𝑠⁡(𝑥)\n of that piece.\nSet up the volume. Integrate the cross-sectional area over each piece and add the results.\n𝑉 =2⁢∫8\n0(2⁢√𝑥)2 𝑑𝑥 +2⁢∫16\n8(2⁢√𝑥−(𝑥−8))2 𝑑𝑥",
+      "layout": {
+        "overflow": 0,
+        "mathErrors": 0,
+        "raw": false
+      },
+      "passed": true
+    }
+  ],
+  "errors": []
+}

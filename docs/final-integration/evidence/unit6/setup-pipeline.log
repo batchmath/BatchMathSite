@@ -1,0 +1,14 @@
+{
+ "setups": 387,
+ "accepted": 387,
+ "reversed": 387,
+ "rounded": 57,
+ "alternatives": 84,
+ "excludedRefused": 49,
+ "impostorsRefused": 770,
+ "mistakesRefused": 101,
+ "malformedMessages": 9,
+ "failures": [],
+ "wrongAccepted": [],
+ "impostorsEqualToModel": 4
+}

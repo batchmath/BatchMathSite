@@ -2,8 +2,8 @@ import{verifyKeypadGeometry}from'./keypad-geometry.mjs';
 import {parseInput} from '../../assets/mathlive/answer-adapter.mjs';
 // The only mutations of a student answer are clicks on the displayed keypad.
 // Reading public MathLive selection/lastOffset lets the driver leave nested slots.
-export async function enterAnswer(page,field,raw,{format='batchmath'}={}){
- let parsed=parseInput(String(raw),format);const source=String(raw).trim();if(/\b(?:lim|sum)\s*\(/.test(source)){const n=await page.evaluate(raw=>window.BatchMathNewtonNotation?.read(raw),source);if(n?.complete&&n.outer==='@'){if(n.index.join(',')!=='k,1'||n.upper!=='n'||n.limit&&n.limit.join(',')!=='n,infinity')throw Error('Audit Newton bounds need additional button navigation: '+source);parsed={status:'complete',tree:{type:'newton',limit:!!n.limit,body:parseInput(n.body).tree}};}}
+export async function enterAnswer(page,field,raw,{format='batchmath',tree:requestedTree}={}){
+ let parsed=requestedTree?{status:'complete',tree:requestedTree}:parseInput(String(raw),format);const source=String(raw).trim();if(/\b(?:lim|sum)\s*\(/.test(source)){const n=await page.evaluate(raw=>window.BatchMathNewtonNotation?.read(raw),source);if(n?.complete&&n.outer==='@'){if(n.index.join(',')!=='k,1'||n.upper!=='n'||n.limit&&n.limit.join(',')!=='n,infinity')throw Error('Audit Newton bounds need additional button navigation: '+source);parsed={status:'complete',tree:{type:'newton',limit:!!n.limit,body:parseInput(n.body).tree}};}}
  if(/[∪]|[)\]]\s*U\s*[(\[]/.test(source)||/^[[(].*,.*[)\]]$/.test(source)&&parsed.status!=='complete'){
   const intervals=source.split(/\s*(?:∪|\bU\b)\s*/).map(x=>{const m=x.match(/^([[(])(.*),(.*)([)\]])$/);if(!m)throw Error('Audit interval parser: '+x);return{type:'interval',open:m[1],close:m[4],left:parseInput(m[2].replace(/\binf\b/gi,'infinity')).tree,right:parseInput(m[3].replace(/\binf\b/gi,'infinity')).tree};});parsed={status:'complete',tree:{type:'union',items:intervals}};
  }
@@ -26,6 +26,10 @@ export async function enterAnswer(page,field,raw,{format='batchmath'}={}){
  if(n.name==='exp'){click('e');template('xⁿ',n.args[0]);return;}if(n.name==='root'||n.name==='cbrt'){const tail=right();if((n.name==='cbrt'||n.name==='root'&&n.args[0]?.raw==='3')&&has('∛')){template('∛',n.args[n.name==='cbrt'?0:1]);return;}if(n.name==='root'&&n.args[0]?.raw==='2'&&has('√')){template('√',n.args[1]);return;}click('ⁿ√');emit(n.name==='cbrt'?{type:'num',raw:'3'}:n.args[0]);click('→');emit(n.args[n.name==='cbrt'?0:1]);exit(tail);return;}
  const label=({sqrt:'√',abs:'|u|',asin:'sin⁻¹',acos:'cos⁻¹',atan:'tan⁻¹',asec:'sec⁻¹',acsc:'csc⁻¹',acot:'cot⁻¹',fp:'f′',gp:'g′'})[n.name]||n.name;template(label,n.args[0]);return;}
  throw Error('Unsupported audit AST '+JSON.stringify(n));}
- click('Clear');emit(tree);if(!mf.value.trim())throw Error('Keypad did not enter text into the requested field');const mirror=mf.nextElementSibling?.matches('input')?mf.nextElementSibling:null;return{raw,latex:mf.value,serializedSource:mirror?.value??null,profile:pad.dataset.auditProfile||[...pad.classList].find(c=>c.startsWith('bm-calc-mode-'))?.slice(13)||null,buttons:bs.map(b=>({label:b.textContent.trim(),aria:b.getAttribute('aria-label')})),used};
+ click('Clear');
+ if(tree.type==='integral-setup'){
+  tree.rows.forEach((r,i)=>{if(i)click('+');if(r.coefficient){emit(r.coefficient);click('·');}click(null,'Insert definite integral');emit(r.lower);click('→');emit(r.upper);click('→');emit(r.integrand);click(null,'Insert d'+r.variable);});
+ }else emit(tree);
+ if(!mf.value.trim())throw Error('Keypad did not enter text into the requested field');const mirror=mf.nextElementSibling?.matches('input')?mf.nextElementSibling:null;return{raw,latex:mf.value,serializedSource:mirror?.value??null,profile:pad.dataset.auditProfile||[...pad.classList].find(c=>c.startsWith('bm-calc-mode-'))?.slice(13)||null,buttons:bs.map(b=>({label:b.textContent.trim(),aria:b.getAttribute('aria-label')})),used};
  },{tree:parsed.tree,raw:String(raw)});
 }

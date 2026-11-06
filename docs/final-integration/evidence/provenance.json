@@ -4,17 +4,18 @@
   "commonAncestor": "63ef79b1271974072daa2f1f99a968671a45f2c7",
   "ok": true,
   "counts": {
-    "qa-only": 9,
-    "source-a-preserved": 1518,
-    "source-b-imported": 122
+    "manually-reconciled": 1,
+    "qa-only": 36,
+    "source-a-preserved": 1512,
+    "source-b-imported": 121
   },
   "files": [
     {
       "path": ".gitattributes",
-      "category": "source-a-preserved",
+      "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": "6712dd1140459a8f21020c9dff239b8a2c78368a",
-      "finalBlob": "6712dd1140459a8f21020c9dff239b8a2c78368a"
+      "finalBlob": "a77855801c2a4992c717a8cad2b23f8bacd8a258"
     },
     {
       "path": ".github/workflows/batchmath-qa.yml",
@@ -3434,10 +3435,10 @@
     },
     {
       "path": "assets/mathlive/integral-setup.mjs",
-      "category": "source-b-imported",
+      "category": "manually-reconciled",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "4c76daa6f4f590861a755643b953b96c9755fd77",
-      "finalBlob": "4c76daa6f4f590861a755643b953b96c9755fd77"
+      "finalBlob": "216859ed26db6e2e4373ad6b782eeac11b11a401"
     },
     {
       "path": "assets/mathlive/interval-adapter.mjs",
@@ -4309,10 +4310,10 @@
     },
     {
       "path": "docs/audits/VIDEO-SIZING-INVENTORY.json",
-      "category": "source-a-preserved",
+      "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": "80ee251a1f249b4bcf033c552a4c3c5678819faf",
-      "finalBlob": "80ee251a1f249b4bcf033c552a4c3c5678819faf"
+      "finalBlob": "8baf45622542aaa26d564cfcb904f2d255c0ab7b"
     },
     {
       "path": "docs/audits/evidence/FINAL-QA.json",
@@ -5596,6 +5597,125 @@
       "finalBlob": "6cc5474f9698a6f41519dec1886c516385f0b59f"
     },
     {
+      "path": "docs/final-integration/evidence/unit6/adversarial-after.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "e85b89d61ff55ca3c2ff42dccd2dcea02b383c76"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/adversarial.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "e85b89d61ff55ca3c2ff42dccd2dcea02b383c76"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/coefficient-multiplication-after.tap",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "64a02d861d21ab4dbaa64cf46ea7a0239a073da4"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/coefficient-multiplication-before.tap",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "89694d9e38a4a6964369f44519c1049f52329d0a"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/coefficient-source-baseline.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "a3dfdf93550bc4d993597ca781aa886a6c92e979"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/cross-integration-before.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "582d7f6892878410dfbd522920e04ce1b01e6f45"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/cross-integration-rendered-text-initial.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "9dcd09bf531e8ef37083bb81f98e7e8291b7dca8"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/cross-integration.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "49d60dd797506a463307c22f1578f85ea8904e9a"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/deep.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "cfcf7d7016ad0ec7c18e7365ee8b99b81c47b572"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/display.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "4ba29d5ac47c60dbfc485211b3952dd1cc527f59"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/graph-fit.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "3b4261242b8b34eb3968a77f93460666f1a1c240"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/integral-entry.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "fb2a4a01e88acab9fb5e69097174700e7c4e9207"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/node-summary.txt",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "de46385b4df4fd7976aa5585a1cb4abbb6e3253b"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/setup-pipeline-after.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "a076fc22f0187a91a7d307d7e46c0fa08aaf32cb"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/setup-pipeline.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "a076fc22f0187a91a7d307d7e46c0fa08aaf32cb"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/split-audit.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "68f0a8fae0e6912ef86d41b660d036b468674119"
+    },
+    {
+      "path": "docs/final-integration/evidence/unit6/unit6.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "f1e34c61ff8a98658377d4483d976418fa0cd826"
+    },
+    {
       "path": "docs/integration/LOCAL-KEYPAD-VIDEO-CHECKS.md",
       "category": "source-a-preserved",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
@@ -5621,7 +5741,7 @@
       "category": "qa-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "e88b034ed95fd51322e547223e2caa01606eab4b",
-      "finalBlob": "2fc32a25660148e075baec0e0ecbddde313c2b41"
+      "finalBlob": "d48a63680b826820d067f1b41bf6d3692ee2537c"
     },
     {
       "path": "docs/integration/evidence/focused-browser/applications/applications-browser-final-regression.json",
@@ -6244,7 +6364,7 @@
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": null,
-      "finalBlob": "12d5f201d6ff5c51ef4becbae654e04661a6dc75"
+      "finalBlob": "f3e8e43c9a52b38348c6964c3f43bce9fefba5fa"
     },
     {
       "path": "experiments/mathlive-advanced-notation/index.html",
@@ -7738,11 +7858,39 @@
       "finalBlob": "ccb2ba473ad32c527a8693eded9643b728126e8f"
     },
     {
+      "path": "tools/final-integration/approved-compatibility.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "f5c3da559d1e34bbafb6c8929c5108adae5b1289"
+    },
+    {
+      "path": "tools/final-integration/integral-coefficients.test.mjs",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "8e4e43a0052587ffb379f9235aeb67a057a1ef20"
+    },
+    {
       "path": "tools/final-integration/provenance.py",
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": null,
-      "finalBlob": "32b222f9864116e7162190771122813eba21db1a"
+      "finalBlob": "e98c6cc651b31c81f6fbc51eee43b36efe4e3c96"
+    },
+    {
+      "path": "tools/final-integration/teacher-seeds.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "dc657353cc76ff30c71d09326f0b46e360bfaff8"
+    },
+    {
+      "path": "tools/final-integration/unit6-cross.mjs",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "da3b708a847dec2a4f73b47cae55fcc51d35414f"
     },
     {
       "path": "tools/fraction-sign-equivalence-qa.mjs",
@@ -7833,7 +7981,7 @@
       "category": "qa-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "3ad306924cc3cf1780639ec8406052c8d99ae5ac",
-      "finalBlob": "17ca9f4accd2f151b161229c5a7a019eabaa0a8f"
+      "finalBlob": "ad73c8695c5093efa4015f964ee0ae909b95a8bc"
     },
     {
       "path": "tools/integration/editor-source-guards.mjs",
@@ -7851,10 +7999,10 @@
     },
     {
       "path": "tools/integration/keypad-stability-routes.json",
-      "category": "source-a-preserved",
+      "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": "1b0ea2128da990550cab142015f1171d962670bb",
-      "finalBlob": "1b0ea2128da990550cab142015f1171d962670bb"
+      "finalBlob": "50491353bc50490c734b323df6a44431fe7182d4"
     },
     {
       "path": "tools/integration/keypad-viewport-probe.mjs",
@@ -8019,10 +8167,10 @@
     },
     {
       "path": "tools/keypad-completeness/enter-answer.mjs",
-      "category": "source-a-preserved",
+      "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": "95bd8a8857b11f3c59c95ac35e15ecf35eef3935",
-      "finalBlob": "95bd8a8857b11f3c59c95ac35e15ecf35eef3935"
+      "finalBlob": "431d7fca447223fc8efbb0ff7276793e9782ad96"
     },
     {
       "path": "tools/keypad-completeness/final-evidence.json",
@@ -10553,10 +10701,10 @@
     },
     {
       "path": "tools/review-lab/lib/browser.mjs",
-      "category": "source-a-preserved",
+      "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": "98da803a81c1ee9aeede15069e29d229efbab584",
-      "finalBlob": "98da803a81c1ee9aeede15069e29d229efbab584"
+      "finalBlob": "1632d52fe504ba505295d93d17de79408d0a4dc2"
     },
     {
       "path": "tools/review-lab/lib/engines.mjs",
@@ -11540,10 +11688,10 @@
     },
     {
       "path": "tools/video-sizing-inventory.py",
-      "category": "source-a-preserved",
+      "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": "a3a0a636639dc69dbda971df1931966c997ea39c",
-      "finalBlob": "a3a0a636639dc69dbda971df1931966c997ea39c"
+      "finalBlob": "e1dc6a0172481cc8a13a1fbc71b87cf23e31d646"
     },
     {
       "path": "tools/video-sizing-qa.mjs",
@@ -11558,7 +11706,8 @@
     "tools/mathlive-advanced-pilot/basic.test.mjs",
     "tools/mathlive-sitewide/applications-keypads.test.mjs",
     "tools/mathlive-sitewide/contracts.test.mjs",
-    "tools/mathlive-sitewide/unit1-contracts.test.mjs"
+    "tools/mathlive-sitewide/unit1-contracts.test.mjs",
+    "assets/mathlive/integral-setup.mjs"
   ],
   "productionConflictResolution": "None: the three-way product merge was clean. Shared keypad bridge is exactly Source B and retains Source A stability policy."
 }

@@ -158,8 +158,14 @@ def verify():
     assert set(git('diff', '--name-only', approved['baseline'], '--', 'assets').splitlines()) <= permitted | unit6_assets, 'Unexpected production asset changed since findings'
     for name in permitted:
         approved_keypad_source(name, (ROOT / name).read_text())
+    compatibility = json.loads((ROOT / 'tools/final-integration/approved-compatibility.json').read_text())['assets']
     for name in unit6_assets - permitted:
-        assert (ROOT / name).read_text() == source(final_b, name), name + ': Unit 6 approved asset changed'
+        if name in compatibility:
+            data=(ROOT / name).read_bytes()
+            assert git('rev-parse', final_b + ':' + name).strip()==compatibility[name]['before']
+            assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==compatibility[name]['after'], name
+        else:
+            assert (ROOT / name).read_text() == source(final_b, name), name + ': Unit 6 approved asset changed'
     unit6_modules = {'assets/mathlive/unit6.mjs', 'assets/mathlive/integral-setup.mjs'}
     assert git('ls-tree', MATHLIVE, '--', *sorted(unit6_modules)) == '', 'Unit 6 modules not new'
     assert set(editor_changes) <= {'assets/mathlive/keypad-bridge.mjs', 'assets/mathlive/pilot.css', 'assets/mathlive/answer-field.mjs', 'assets/mathlive/native-fields.mjs', 'assets/mathlive/dynamic-fields.mjs'} | permitted | unit6_modules, editor_changes
@@ -202,6 +208,7 @@ def verify():
               'unit6PracticePagesWiredForMathLive': len(unit6_practice), 'unit6MathLiveModules': sorted(unit6_modules),
               'approvedEditorViewportChanges': editor_changes,
               'approvedReviewInstructionChange': review_path,
+              'unit6FinalSource': final_b, 'approvedUnit6Compatibility': compatibility,
               'reviewGeneratorsAnswersAndGradersUnchanged': True}
     return report
 
