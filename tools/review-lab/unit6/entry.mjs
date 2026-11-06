@@ -12,12 +12,14 @@
 // screenshots problem 1. BM_MODE=<practice type> selects a Practice Type. BM_GRAPH_AFTER=1 checks that the graph
 // appears only in Part A's explanation after it is graded (calculator cross sections).
 // Usage: node tools/review-lab/unit6/entry.mjs <page-path> [count=8] [width=1366] [height=768] [mobile]
+// BM_PORT=<port>: use a server that is already running on 127.0.0.1:<port> (for example python3 -m http.server
+// serving an extracted release ZIP) instead of starting the review lab's own server for BM_ROOT.
 import {serve,browser,context,open,outDir,randomPort} from '../lib/browser.mjs';
 import {keypadForm,parse,keypad,strokes} from '../lib/keypad.mjs';
 const [page,count='8',W='1366',H='768',mob='']=process.argv.slice(2);
 if(!page){console.error('usage: unit6/entry.mjs <page-path> [count] [width] [height] [mobile]');process.exit(2);}
 const LEGACY=process.env.BM_EDITOR==='legacy';
-const PORT=randomPort(9300),srv=await serve(PORT),b=await browser({scrollbars:true}),c=await context(b,{width:+W,height:+H,mobile:!!mob});
+const PORT=process.env.BM_PORT?+process.env.BM_PORT:randomPort(9300),srv=process.env.BM_PORT?{close(){}}:await serve(PORT),b=await browser({scrollbars:true}),c=await context(b,{width:+W,height:+H,mobile:!!mob});
 const p=await open(c,`http://127.0.0.1:${PORT}/${page.replace(/^\/|\/$/g,'')}/?bm_seed=u6entry-${W}${LEGACY?'&editor=legacy':''}`);
 if(process.env.BM_MODE){await p.selectOption('#u6Mode',process.env.BM_MODE);await p.waitForTimeout(800);}
 const typeStrokes=async(lin,scope)=>{for(const st of strokes(lin)){if(st.key)await p.keyboard.press(st.key);else if(st.pad)await keypad(p,scope).key(st.pad);else await p.keyboard.type(st.text);}};
