@@ -4,7 +4,7 @@ from collections import Counter
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];D=ROOT/'docs/audits';data=json.loads((D/'KEYPAD-COMPLETENESS-INVENTORY.json').read_text());s=data['summary']
 assert not s['pendingRoutes'] and not s['unresolvedDriverFailures'];assert all(r['runtimeProfile'] for r in data['fields'] if not r['retainedControl'])
-columns=['course','unit','route','family','questionId','selector','seed','representation','part','field','runtimeProfile','requiredAnswer','requiredRepresentation','answerForms','requiredControls','displayedControls','keypadEnterable','originalCorrectAccepted','wrongRejected','missingControl','semanticCorrectAccepted','meaningfulAlternatives','evidence','error']
+columns=['course','unit','route','family','questionId','selector','seed','representation','part','field','runtimeProfile','requiredAnswer','requiredRepresentation','enteredLatex','serializedSource','answerForms','requiredControls','displayedControls','keypadEnterable','originalCorrectAccepted','wrongRejected','missingControl','semanticCorrectAccepted','meaningfulAlternatives','evidencePhase','resumedFrom','driverRetestEvidence','evidence','error']
 def labels(keys):return' | '.join(data['controls'][k]['aria'] or data['controls'][k]['label'] for k in keys)
 with (D/'KEYPAD-COMPLETENESS-MATRIX.csv').open('w',newline='') as f:
  w=csv.DictWriter(f,fieldnames=columns,lineterminator="\n");w.writeheader()
@@ -15,6 +15,7 @@ with (D/'KEYPAD-COMPLETENESS-MATRIX.csv').open('w',newline='') as f:
   w.writerow(row)
 if '--matrix-only' in sys.argv:
  print('Wrote',len(data['fields']),'current field rows');raise SystemExit
+if data['state']!='findings-complete':raise SystemExit('Only --matrix-only is supported for corrected/final inventories; preserve the C/D report text.')
 counts=Counter()
 for r in data['coverage']:
  if r['kind']=='mathematical':

@@ -1,0 +1,12 @@
+{
+  "browser": "154.0.8037.57",
+  "pageErrors": [],
+  "gradingPairs": 4,
+  "results":[
+{"name":"basic simplification gate, advanced equivalence and incomplete answer policy","passed":true},
+{"name":"every required function button is editable and serialized","passed":true},
+{"name":"physical input, nested fractions, cursor deletion, undo/redo, Enter and reset","passed":true},
+{"name":"narrow layout and current answer survive runtime failure","passed":true},
+{"name":"uninstrumented default and missing runtime fallback","passed":true}
+  ]
+}

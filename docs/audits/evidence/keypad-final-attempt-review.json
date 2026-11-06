@@ -1,0 +1,38 @@
+{
+  "unit1": {
+    "resolvedCases": 1,
+    "before": "keypad-completeness-unit1-final-d-driver-before.json",
+    "after": "keypad-completeness-unit1-driver-recheck-final-d.json"
+  },
+  "dynamic": {
+    "resolvedCases": 1,
+    "before": "keypad-completeness-dynamic-final-d-driver-before.json",
+    "after": "keypad-completeness-dynamic-driver-recheck-final-d.json"
+  },
+  "multipartRevalidation": {
+    "unit1Cases": 13,
+    "dynamicContexts": 69,
+    "allPassed": true
+  },
+  "stability": {
+    "initialPassed": 129,
+    "initialCases": 130,
+    "focusedBeforePassed": 2,
+    "focusedBeforeCases": 3,
+    "focusedAfterPassed": 3,
+    "focusedAfterCases": 3,
+    "finalPassed": 130,
+    "finalCases": 130,
+    "cause": "The initial question typesetting queue had not finished; its height grew 15px while the keypad stayed within 0.2px in the viewport. Await the current typeset queue and fonts before taking initial movement baselines. Movement assertions are unchanged."
+  },
+  "route": {
+    "initialPassed": 368,
+    "initialVisits": 374,
+    "initialNavigationTimeouts": 6,
+    "pageErrors": 0,
+    "finalPassed": 374,
+    "finalVisits": 374,
+    "timeoutUnchangedMs": 6000,
+    "note": "Fresh full single-worker rerun after CPU-heavy jobs finished; no overlay or relaxed timeout."
+  }
+}

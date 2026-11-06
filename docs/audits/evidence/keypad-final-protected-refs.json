@@ -1,0 +1,33 @@
+{
+  "protectedRefs": {
+    "refs/heads/main": {
+      "before": "26ec4f15185c37f9e8843e96a09d583b47babcdf",
+      "after": "26ec4f15185c37f9e8843e96a09d583b47babcdf",
+      "unchanged": true
+    },
+    "refs/heads/migration/mathlive-sitewide": {
+      "before": "919ca1806f07e3cd2af552142926e7ca2b78e8d5",
+      "after": "919ca1806f07e3cd2af552142926e7ca2b78e8d5",
+      "unchanged": true
+    },
+    "refs/heads/content/im1-video-notes-cleanup": {
+      "before": "bba32f929d6630d096bc4510ceafd586ab8c4a53",
+      "after": "bba32f929d6630d096bc4510ceafd586ab8c4a53",
+      "unchanged": true
+    }
+  },
+  "mainAndSourceHeadsUnchanged": true,
+  "otherObservedExternalHeadChanges": {
+    "refs/heads/integration/unit6-mathlive-videos-final-test": {
+      "before": "29c0a9f3fd4ffc1f29dc04064d66bb06b9603bb2",
+      "after": "353c5f93ed95e7d72a076183314c61ca085c8c92"
+    }
+  },
+  "note": "The independent integration/unit6-mathlive-videos-final-test head advanced externally during this task; it was only observed through ls-remote and was not fetched, copied, merged or pushed here.",
+  "unit6Source": "919ca1806f07e3cd2af552142926e7ca2b78e8d5",
+  "unit6Tree": "f50ff9c7c56ca6b02c93d8f8bb88299b37ef2c11",
+  "onlyIntegrationBranchPushed": true,
+  "deployed": false,
+  "unit6SourceTree": "f50ff9c7c56ca6b02c93d8f8bb88299b37ef2c11",
+  "observedIntegrationHead": "f5d0a73a446e0fe55b285aab5c933cf1548911bf"
+}

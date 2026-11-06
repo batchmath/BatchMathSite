@@ -7,3 +7,6 @@ docs/audits/evidence export-ignore
 docs/audits/COMPREHENSIVE-REVIEW-INSTRUCTIONS.json export-ignore
 docs/audits/VIDEO-HIERARCHY.json export-ignore
 .gitattributes export-ignore
+docs/audits/VIDEO-SIZING-INVENTORY.json export-ignore
+docs/audits/KEYPAD-COMPLETENESS-INVENTORY.json export-ignore
+docs/audits/KEYPAD-COMPLETENESS-MATRIX.csv export-ignore

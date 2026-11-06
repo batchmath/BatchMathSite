@@ -1,63 +1,30 @@
-# MathLive, video and review corrections — final tested state
+# MathLive, videos and keypad completeness — final test build
 
-The current correction audit supersedes the historical integration results
-below. Checkpoints A, B and C are complete and pushed; D verifies their combined
-behavior. The previous multiplication overflow is fixed, and the current IM1
-responsive result is **102/102**. All implementation files match tested source
-`96309582a69ea7c8b38d51156ae75ea47baf65b2`; the delivery URL is pinned to the
-final pushed audit commit. Nothing has been merged into main or deployed.
+The final integration preserves video-sizing checkpoint `57a51aae`, findings checkpoint `961f54e`, and keypad corrections `db3fff9` plus the legacy-root precedence follow-up `f5d0a73`. All 119 previously blocked field rows now pass actual keypad entry and original correct/wrong grading. The final website code is identical to `f5d0a73a446e0fe55b285aab5c933cf1548911bf`; the delivery archive is pinned to the final pushed QA commit.
 
-| Final verification | Result |
+| Fresh final verification | Result |
 |---|---|
-| MathLive Node | **274/274** |
-| Routes / default, legacy, missing runtime | **374/374 visits, 138 routes** |
-| Broad ordinary-key stability | **118 typed routes, 708 activations** |
-| Detailed responsive/focus stability | **130/130, 16 controllers, 27 URLs** |
-| Focused mathematical browsers | **132/132, 543 counted grader pairs** |
-| IM1 overlapping content pages | **102/102 widths and typing/focus** |
-| Review instructions | **416/416 browser checks; 144,100 generated questions, 99 contexts** |
-| Video | **66 pages, 198 visits, 288 simulated activations** |
-| Preservation | **34 overlaps, all 90 IM1 pages, 96 exact HTML + 15 guarded video layouts, all PDFs** |
-| Static/reference checks | **Zero errors, warnings or broken references** |
-| Unit 6 | Exact tree from `919ca1806f07e3cd2af552142926e7ca2b78e8d5` |
+| Mathematical scope | 118 routes; 20 specialized/navigation routes retained |
+| Keypad-only evidence | 6,038 question/form cases; 6,614 mathematical fields; 4,066 contract signatures |
+| Original grading through displayed controls | 6,034 correct-part assertions; 6,022 wrong-part rejections |
+| Profiles | 117 observed runtime names; 153 registered/pattern definitions |
+| Shared Node tests | 274/274 |
+| Default / legacy / missing-runtime routes | 374/374 visits across 138 routes |
+| Detailed pointer/touch/focus stability | 130/130; 3,232 actions, 16 controllers and 27 URLs |
+| Focused mathematical browsers | 132/132; 543 counted grader pairs |
+| IM1 responsive overlap checks | 102/102 |
+| Video presentation | 198 visits; 288 simulated activations |
+| Video sizing | 340/340 visits; 1,056 player checks |
+| Static QA | Zero errors, warnings and broken references |
+| Preservation | 34 overlaps, all 90 IM1 pages, all PDFs and the exact Unit 6 tree |
 
-Video checkpoint A is intact: one designated lecture remains large and inline;
-multiple designated lectures follow the established collection count rule.
-Supporting examples/proofs form one subordinate gallery and always open the
-shared modal, even for one or two cards. Proof context, assignment-specific
-walkthroughs and all 13 IM1 recordings remain preserved. Pages without a
-primary lecture retain the one-large/two-medium/three-plus-gallery rule.
-The [66-page ledger](../audits/VIDEO-HIERARCHY.md) lists all 15 changed pages.
+Corrections provide scoped inverse-chain absolute value, field-specific exact/rounded interval controls, supported linearization decimals, rendered degree detection, justified indexed-root templates and the θ-substitution square root. Legacy derivative roots keep editable visible slots and submit fully parenthesized fractional powers to the original checkers. No mathematical generator, checker or permitted-answer rule changed. Existing focus, undo/redo, non-bouncing and responsive fixes remain.
 
-Keypad fixes address MathLive host scrolling, hidden-source focus, IM1 card
-transforms, intrinsic field height, the broad multiplication Check minimum
-width, legacy input stacking and clipped continuation rows. Shared policy covers
-16 controllers; original failures were directly reproduced on multiplication,
-Power Rule, sequence formulas, basic integrals and legacy IM1 equation/interval
-inputs. No grader, translator, token mapping or answer-history contract changes.
-See [causes and measurements](../audits/KEYPAD-STABILITY.md).
+All 13 IM1 instructional videos, lecture/supporting-gallery roles, homework/review sizing, table-video overrides, notes-link removal, numbering, assignments and keys are preserved. Unit 6 remains identical to `919ca1806f07e3cd2af552142926e7ca2b78e8d5`. Main and both original source heads are unchanged; no main merge, deployment or release occurred.
 
-Mixed Derivatives retains authored quotient-simplification, derivative-order,
-implicit-differentiation, domain and complete-simplification instructions.
-The audit records 5,352 family/selector/contract groups; 93 changed records
-represent 47 distinct family/instruction combinations. All original question
-IDs, answers, solutions, variables and distributions are preserved. There is
-no genuine derivative-by-limit family in the existing review; that curriculum
-coverage gap is documented without manufacturing an answer/method mismatch.
-Standalone deliberately simplified directions are unchanged.
-See [the instruction ledger](../audits/COMPREHENSIVE-REVIEW-INSTRUCTIONS.md).
+See the [full final report](../audits/KEYPAD-COMPLETENESS-FINAL.md), [119-row before/after comparison](../audits/evidence/keypad-corrections-before-after.json), [fresh QA summary](../audits/evidence/KEYPAD-FINAL-QA.json), and [local test checklist](LOCAL-KEYPAD-VIDEO-CHECKS.md). The report distinguishes historical findings, corrected rows, exact resumption, driver retests, initial timing failures and fresh complete passing runs. The cumulative ledger retains 7,415 mathematical field observations; it is not the fresh-only count above.
 
-[Full final audit and limitations](../audits/VIDEO-KEYPAD-REVIEW-CORRECTIONS.md)
-and [machine results](../audits/evidence/FINAL-QA.json) provide exact evidence,
-including the initial historical-source guard failure and its fresh all-pass
-rerun. YouTube responses are simulated; actual external availability/audio and
-universal physical-device/browser behavior are not claimed. Unit 6 and observed
-source/main refs are unchanged.
-
-Download the commit-specific ZIP linked in the final delivery response. Extract
-it, open a terminal beside `index.html`, run `py -m http.server 8000`, and open
-`http://localhost:8000/`. The local package contains all site pages/resources and
-pinned MathLive files. Normal MathJax CDN and YouTube use require internet.
+Download `batchmath-video-sizing-keypad-audit.zip` or the exact commit-pinned GitHub archive linked in the delivery response. Extract it, open a terminal beside `index.html`, run `py -m http.server 8000`, and open `http://localhost:8000/`. All site pages, PDFs and pinned local MathLive files are included. Normal MathJax and YouTube use require internet. YouTube UI responses are simulated in automated tests; external playback/audio, arbitrary equivalent expressions and every physical-device/browser combination are not certified.
 
 ---
 

@@ -78,7 +78,7 @@ async function run(job){
   await p.goto(base+'/'+job.route+'?bm_seed=final-route-sweep'+(job.mode==='legacy'?'&editor=legacy':''),{waitUntil:'domcontentloaded'});await reach(p,job.mode);
   if(job.resizeFrom)await p.setViewportSize({width:job.width,height:job.height});
   if(job.zoom)await p.evaluate(zoom=>document.documentElement.style.zoom=String(zoom),job.zoom);
-  await p.evaluate(async()=>{await window.MathJax?.startup?.promise;await document.fonts.ready;});await p.waitForTimeout(200);await instrument(p);
+  await p.evaluate(async()=>{await window.MathJax?.startup?.promise;await window.MathJax?.typesetPromise?.();await document.fonts.ready;});await p.waitForTimeout(200);await instrument(p);
   const visiblePad=p.locator(padSelector.split(',').map(s=>s+':visible').join(',')).first();
   async function press(label,options={}){
    let b=options.aria?visiblePad.locator('button[aria-label="'+options.aria+'"]'):visiblePad.locator('button').filter({hasText:new RegExp('^'+label.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'$')});

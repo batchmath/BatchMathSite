@@ -1,0 +1,2261 @@
+{
+  "testedProductionCommit": "f5d0a73a446e0fe55b285aab5c933cf1548911bf",
+  "freshKeypad": {
+    "scopeRoutes": 138,
+    "mathematicalRoutes": 118,
+    "reviewedMathematicalRoutes": 118,
+    "retainedRoutes": 20,
+    "questionFormCases": 6038,
+    "fieldRows": 7044,
+    "mathematicalFieldRows": 6614,
+    "familyFieldContracts": 4066,
+    "keypadCorrectPartTests": 6034,
+    "wrongPartTests": 6022,
+    "semanticOnlyAcceptanceWitnesses": 3,
+    "runtimeProfileNames": 117,
+    "runtimeButtonSets": 99,
+    "pendingRoutes": [],
+    "unresolvedDriverFailures": 0,
+    "cancelledAttemptsExcluded": 0,
+    "missingControlRows": 0
+  },
+  "freshKeypadFiles": [
+    "keypad-completeness-unit1-final-d.json",
+    "keypad-completeness-unit2-final-d.json",
+    "keypad-completeness-dynamic-final-d.json",
+    "keypad-completeness-im1-final-d.json",
+    "keypad-completeness-im1-unit3-final-d.json",
+    "keypad-completeness-prep-final-d.json",
+    "keypad-completeness-slope-final-d.json",
+    "keypad-approximation-investigation-final-d.json",
+    "keypad-degree-investigation-final-d.json",
+    "keypad-completeness-unit2-roots-final-d.json",
+    "keypad-completeness-dynamic-unit4-roots-final-d.json",
+    "keypad-completeness-dynamic-unit5-roots-final-d.json",
+    "keypad-completeness-dynamic-unit3-gaps-final-d.json",
+    "keypad-completeness-dynamic-assignment-gap-final-d.json",
+    "keypad-completeness-unit1-multipart-final-d.json",
+    "keypad-completeness-dynamic-multipart-final-d.json"
+  ],
+  "allPreviouslyBlockedFields": {
+    "before": 119,
+    "resolved": 119,
+    "unresolved": 0,
+    "evidence": "keypad-corrections-before-after.json"
+  },
+  "node": {
+    "tests": 274,
+    "passed": 274,
+    "failed": 0
+  },
+  "nativeDegreeRadianAdvance": {
+    "results": [
+      {
+        "format": "degrees",
+        "wrongQuestionId": "ref-420-false",
+        "correctQuestionId": "ref-1050-false",
+        "correctExpected": "30\u00b0",
+        "wrongEntry": {
+          "raw": "987654321\u00b0",
+          "latex": "987654321^{\\circ}",
+          "serializedSource": "987654321\u00b0",
+          "profile": "ml-prep-degrees",
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "\u2212",
+              "aria": null
+            },
+            {
+              "label": ".",
+              "aria": null
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            },
+            {
+              "label": "+",
+              "aria": null
+            },
+            {
+              "label": "\u00b7",
+              "aria": null
+            },
+            {
+              "label": "\u00b0",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "\u2190",
+              "aria": "Move cursor left"
+            },
+            {
+              "label": "\u2192",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "\u2191",
+              "aria": "Move from denominator to numerator"
+            },
+            {
+              "label": "\u2193",
+              "aria": "Move from numerator to denominator"
+            },
+            {
+              "label": "\u232b",
+              "aria": "Backspace"
+            },
+            {
+              "label": "Del",
+              "aria": "Delete"
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer"
+            }
+          ],
+          "used": [
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "\u00b0",
+              "aria": null
+            }
+          ]
+        },
+        "correctEntry": {
+          "raw": "30\u00b0",
+          "latex": "30^{\\circ}",
+          "serializedSource": "30\u00b0",
+          "profile": "ml-prep-degrees",
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "\u2212",
+              "aria": null
+            },
+            {
+              "label": ".",
+              "aria": null
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            },
+            {
+              "label": "+",
+              "aria": null
+            },
+            {
+              "label": "\u00b7",
+              "aria": null
+            },
+            {
+              "label": "\u00b0",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "\u2190",
+              "aria": "Move cursor left"
+            },
+            {
+              "label": "\u2192",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "\u2191",
+              "aria": "Move from denominator to numerator"
+            },
+            {
+              "label": "\u2193",
+              "aria": "Move from numerator to denominator"
+            },
+            {
+              "label": "\u232b",
+              "aria": "Backspace"
+            },
+            {
+              "label": "Del",
+              "aria": "Delete"
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer"
+            }
+          ],
+          "used": [
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "\u00b0",
+              "aria": null
+            }
+          ]
+        },
+        "wrongRejected": true,
+        "correctAccepted": true,
+        "nativeNext": true,
+        "nativeAutomaticAdvance": true,
+        "cleared": true,
+        "profile": "ml-prep-degrees",
+        "passed": true
+      },
+      {
+        "format": "radians",
+        "wrongQuestionId": "ref--600-true",
+        "correctQuestionId": "ref--675-true",
+        "correctExpected": "\u03c0/4",
+        "wrongEntry": {
+          "raw": "987654321",
+          "latex": "987654321",
+          "serializedSource": "987654321",
+          "profile": "ml-prep-radians",
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "\u2212",
+              "aria": null
+            },
+            {
+              "label": ".",
+              "aria": null
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            },
+            {
+              "label": "+",
+              "aria": null
+            },
+            {
+              "label": "\u00b7",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "\u03c0",
+              "aria": null
+            },
+            {
+              "label": "\u2190",
+              "aria": "Move cursor left"
+            },
+            {
+              "label": "\u2192",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "\u2191",
+              "aria": "Move from denominator to numerator"
+            },
+            {
+              "label": "\u2193",
+              "aria": "Move from numerator to denominator"
+            },
+            {
+              "label": "\u232b",
+              "aria": "Backspace"
+            },
+            {
+              "label": "Del",
+              "aria": "Delete"
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer"
+            }
+          ],
+          "used": [
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            }
+          ]
+        },
+        "correctEntry": {
+          "raw": "\u03c0/4",
+          "latex": "\\frac{\\pi}{4}",
+          "serializedSource": "(pi)/(4)",
+          "profile": "ml-prep-radians",
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "\u2212",
+              "aria": null
+            },
+            {
+              "label": ".",
+              "aria": null
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            },
+            {
+              "label": "+",
+              "aria": null
+            },
+            {
+              "label": "\u00b7",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "\u03c0",
+              "aria": null
+            },
+            {
+              "label": "\u2190",
+              "aria": "Move cursor left"
+            },
+            {
+              "label": "\u2192",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "\u2191",
+              "aria": "Move from denominator to numerator"
+            },
+            {
+              "label": "\u2193",
+              "aria": "Move from numerator to denominator"
+            },
+            {
+              "label": "\u232b",
+              "aria": "Backspace"
+            },
+            {
+              "label": "Del",
+              "aria": "Delete"
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer"
+            }
+          ],
+          "used": [
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "\u03c0",
+              "aria": null
+            },
+            {
+              "label": "\u2192",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "\u2192",
+              "aria": "Move cursor right"
+            }
+          ]
+        },
+        "wrongRejected": true,
+        "correctAccepted": true,
+        "nativeNext": true,
+        "nativeAutomaticAdvance": true,
+        "cleared": true,
+        "profile": "ml-prep-radians",
+        "passed": true
+      }
+    ],
+    "note": "Native Next and the original 650ms automatic advance, with real unpinned generated questions. Correct and wrong assertions use separately recorded question IDs; these UI-flow checks are separate from same-question field-ledger counts."
+  },
+  "legacyRootCompleteAnswers": {
+    "results": [
+      {
+        "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+        "questionId": "pr-frac-1-1_1_-1_3--4_2_4_3--3_1_3_4",
+        "selector": {
+          "derivativeOrder": "first",
+          "powerType": "mixed"
+        },
+        "seed": 719,
+        "requiredAnswer": "((-1)/(3))*x^((-4)/(3)) + ((-8)/(3))*x^((1)/(3)) + ((-9)/(4))*x^((-1)/(4))",
+        "meaningfulAlternative": "((((((-(1))/(3)))*(1/(root(3,x)^4)))+((((-(8))/(3)))*root(3,x)))+((((-(9))/(4)))*(1/root(4,x))))",
+        "visible": "(((((\ue000(-(1))\ue001(3)\ue002))*(\ue0001\ue001(root(3,x)^(4))\ue002))+(((\ue000(-(8))\ue001(3)\ue002))*root(3,x)))+(((\ue000(-(9))\ue001(4)\ue002))*(\ue0001\ue001root(4,x)\ue002)))",
+        "serializedSource": "(((((((-(1)))/((3))))*((1)/((((x)^(1/(3)))^(4)))))+(((((-(8)))/((3))))*((x)^(1/(3)))))+(((((-(9)))/((4))))*((1)/(((x)^(1/(4)))))))",
+        "wrongRejected": true,
+        "feedback": "Correct.\nOne correct form: \u2212\n1\n3\n\u2062\ud835\udc65\u2212\n4\n3\n \u2212\n8\n3\n\u2062\ud835\udc65\n1\n3\n \u2212\n9\n4\n\u2062\ud835\udc65\u2212\n1\n4\nFirst rewrite roots and reciprocal roots as rational powers. Then apply the power rule to each term. The first derivative is \u2212\n1\n3\n\u2062\ud835\udc65\u2212\n4\n3\n \u2212\n8\n3\n\u2062\ud835\udc65\n1\n3\n \u2212\n9\n4\n\u2062\ud835\udc65\u2212\n1\n4\n.",
+        "correctAccepted": true,
+        "passed": true
+      },
+      {
+        "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html",
+        "questionId": "csj-cube-3-6",
+        "selector": {
+          "chain-mode": "simple",
+          "category": "chain"
+        },
+        "seed": 2157,
+        "requiredAnswer": "(2*3*x)/(3*(3*x^2+6)^(2/3))",
+        "meaningfulAlternative": "((((2*3)*x))/((3*(root(3,(((3*(x^2))+6)))^2))))",
+        "visible": "(\ue000(((2*3)*x))\ue001((3*(root(3,(((3*(x^(2)))+6)))^(2))))\ue002)",
+        "serializedSource": "(((((2*3)*x)))/(((3*((((((3*(x^(2)))+6)))^(1/(3)))^(2))))))",
+        "wrongRejected": true,
+        "feedback": "Correct.\nOne correct form: \n6\u2062\ud835\udc65\n3\u2062(3\u2062\ud835\udc652+6)\n2\n3\nWrite the cube root as (3\u2062\ud835\udc652+6)\n1\n3\n. The power rule and chain rule give \n1\n3\n\u2062(3\u2062\ud835\udc652+6)\u2212\n2\n3\n\u2062(6\u2062\ud835\udc65).",
+        "correctAccepted": true,
+        "passed": true
+      }
+    ],
+    "note": "Complete generated answers constructed through the visible legacy keypad and graded by the original page checker; separate from MathLive-only counts."
+  },
+  "routes": {
+    "visits": 374,
+    "routes": 138,
+    "knownMathJaxErrors": 0,
+    "unexpectedErrors": 0
+  },
+  "stability": {
+    "cases": 130,
+    "controllers": 16,
+    "routes": 27,
+    "actions": 3232,
+    "pageErrors": 0
+  },
+  "overlap": {
+    "checks": 102,
+    "pageErrors": 0
+  },
+  "focusedSuites": [
+    {
+      "suite": "power",
+      "script": "tools/mathlive-power-rule/browser.mjs",
+      "environment": {},
+      "exitCode": 0,
+      "evidence": "docs/audits/evidence/keypad-final-focused/power/browser-results.json"
+    },
+    {
+      "suite": "chain",
+      "script": "tools/mathlive-derivatives-pilot/browser.mjs",
+      "environment": {},
+      "exitCode": 0,
+      "evidence": "docs/audits/evidence/keypad-final-focused/chain/browser-results.json"
+    },
+    {
+      "suite": "product",
+      "script": "tools/mathlive-batch1/browser.mjs",
+      "environment": {
+        "RULE": "product",
+        "INTERACTIONS_ONLY": "1"
+      },
+      "exitCode": 0,
+      "evidence": "docs/audits/evidence/keypad-final-focused/product/product-current-profile-browser.json"
+    },
+    {
+      "suite": "quotient",
+      "script": "tools/mathlive-batch1/browser.mjs",
+      "environment": {
+        "RULE": "quotient",
+        "INTERACTIONS_ONLY": "1"
+      },
+      "exitCode": 0,
+      "evidence": "docs/audits/evidence/keypad-final-focused/quotient/quotient-current-profile-browser.json"
+    },
+    {
+      "suite": "basic",
+      "script": "tools/mathlive-advanced-pilot/basic-browser.mjs",
+      "environment": {},
+      "exitCode": 0,
+      "evidence": "docs/audits/evidence/keypad-final-focused/basic/basic-browser.json"
+    },
+    {
+      "suite": "limits",
+      "script": "tools/mathlive-sitewide/unit1-browser.mjs",
+      "environment": {
+        "ROUTE_INDEX": "0,2,4",
+        "INTERACTIONS_ONLY": "1",
+        "REPORT_SUFFIX": "-final-regression"
+      },
+      "exitCode": 0,
+      "evidence": "docs/audits/evidence/keypad-final-focused/limits/unit1-browser-final-regression.json"
+    },
+    {
+      "suite": "applications",
+      "script": "tools/mathlive-sitewide/applications-browser.mjs",
+      "environment": {
+        "ROUTE_INDEX": "1,5,16",
+        "CONTROLS": "1",
+        "ENTER": "1",
+        "RECOVERY": "1",
+        "REPORT_SUFFIX": "-final-regression"
+      },
+      "exitCode": 0,
+      "evidence": "docs/audits/evidence/keypad-final-focused/applications/applications-browser-final-regression.json"
+    },
+    {
+      "suite": "integrals-de",
+      "script": "tools/mathlive-sitewide/staged-browser.mjs",
+      "environment": {
+        "ROUTE_INDEX": "3,8,9,11",
+        "CONTROLS": "1",
+        "ENTER": "1",
+        "RECOVERY": "1",
+        "REPORT_SUFFIX": "-final-regression"
+      },
+      "exitCode": 0,
+      "evidence": "docs/audits/evidence/keypad-final-focused/integrals-de/staged-browser-final-regression.json"
+    },
+    {
+      "suite": "im1-values",
+      "script": "tools/mathlive-sitewide/im1-batch5-browser.mjs",
+      "environment": {
+        "ROUTE_INDEX": "1,2,9,10,11",
+        "INTERACTIONS_ONLY": "1",
+        "RECOVERY": "1",
+        "REPORT_SUFFIX": "-final-regression"
+      },
+      "exitCode": 0,
+      "evidence": "docs/audits/evidence/keypad-final-focused/im1-values/im1-batch5-browser-final-regression.json"
+    },
+    {
+      "suite": "im1-structured",
+      "script": "tools/mathlive-sitewide/im1-batch6-browser.mjs",
+      "environment": {
+        "ROUTE_INDEX": "0,5,8,11",
+        "RECOVERY": "1",
+        "REPORT_SUFFIX": "-final-regression"
+      },
+      "exitCode": 0,
+      "evidence": "docs/audits/evidence/keypad-final-focused/im1-structured/im1-batch6-browser-final-regression.json"
+    },
+    {
+      "suite": "prep",
+      "script": "tools/mathlive-sitewide/prep-browser.mjs",
+      "environment": {
+        "ROUTE_INDEX": "1,2,4,5",
+        "RECOVERY": "1",
+        "REPORT_SUFFIX": "-final-regression"
+      },
+      "exitCode": 0,
+      "evidence": "docs/audits/evidence/keypad-final-focused/prep/prep-browser-final-regression.json"
+    }
+  ],
+  "focusedBrowser": {
+    "cases": 132,
+    "countedGraderPairs": 543,
+    "suites": 11,
+    "pageErrors": 0
+  },
+  "driverCorrections": {
+    "unit1": {
+      "resolvedCases": 1,
+      "before": "keypad-completeness-unit1-final-d-driver-before.json",
+      "after": "keypad-completeness-unit1-driver-recheck-final-d.json"
+    },
+    "dynamic": {
+      "resolvedCases": 1,
+      "before": "keypad-completeness-dynamic-final-d-driver-before.json",
+      "after": "keypad-completeness-dynamic-driver-recheck-final-d.json"
+    },
+    "multipartRevalidation": {
+      "unit1Cases": 13,
+      "dynamicContexts": 69,
+      "allPassed": true
+    },
+    "stability": {
+      "initialPassed": 129,
+      "initialCases": 130,
+      "focusedBeforePassed": 2,
+      "focusedBeforeCases": 3,
+      "focusedAfterPassed": 3,
+      "focusedAfterCases": 3,
+      "finalPassed": 130,
+      "finalCases": 130,
+      "cause": "The initial question typesetting queue had not finished; its height grew 15px while the keypad stayed within 0.2px in the viewport. Await the current typeset queue and fonts before taking initial movement baselines. Movement assertions are unchanged."
+    },
+    "route": {
+      "initialPassed": 368,
+      "initialVisits": 374,
+      "initialNavigationTimeouts": 6,
+      "pageErrors": 0,
+      "finalPassed": 374,
+      "finalVisits": 374,
+      "timeoutUnchangedMs": 6000,
+      "note": "Fresh full single-worker rerun after CPU-heavy jobs finished; no overlay or relaxed timeout."
+    }
+  },
+  "videoPresentation": {
+    "ok": true,
+    "htmlPagesAudited": 257,
+    "deferredUnit6HtmlPages": 13,
+    "deferredUnit6VideoPages": [
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/index.html",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/index.html",
+      "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/index.html",
+      "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/index.html",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/index.html",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/index.html"
+    ],
+    "videoPages": 66,
+    "standardPages": 61,
+    "collections": {
+      "1": 64,
+      "2": 8,
+      "3": 1,
+      "4": 2,
+      "5": 1
+    },
+    "layoutCollections": {
+      "pair": 4,
+      "large": 55,
+      "gallery": 17
+    },
+    "supportingCollections": 15,
+    "modalPages": [
+      "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/index.html",
+      "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/index.html",
+      "ap-calculus/unit-2-derivatives/topics/exponential-functions/index.html",
+      "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/index.html",
+      "ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/index.html",
+      "ap-calculus/unit-2-derivatives/topics/the-chain-rule/index.html",
+      "ap-calculus/unit-2-derivatives/topics/the-product-rule/index.html",
+      "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/motion/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/related-rates/index.html",
+      "ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/index.html",
+      "ap-calculus/unit-4-integrals/topics/mean-value-theorem-for-integrals/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/index.html"
+    ],
+    "pageLoads": 198,
+    "selections": 288,
+    "specializedChecks": 3,
+    "migratedProofChecks": 4,
+    "externalPlaybackVerified": false,
+    "errors": []
+  },
+  "videoSizing": {
+    "visits": 340,
+    "playerChecks": 1056,
+    "pageErrors": 0
+  },
+  "preservation": {
+    "ok": true,
+    "mathliveSource": "919ca1806f07e3cd2af552142926e7ca2b78e8d5",
+    "contentSource": "bba32f929d6630d096bc4510ceafd586ab8c4a53",
+    "commonAncestor": "26ec4f15185c37f9e8843e96a09d583b47babcdf",
+    "overlapsReconciled": 34,
+    "overlaps": [
+      {
+        "path": "im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "b962e4981b86f169aca4fdbf4936cf7e7bdee00d6a9756954e0f2f5d6875d1b6"
+      },
+      {
+        "path": "im1/unit-1-review/topics/decimals/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "f66c622d0ed064c8966d58c554c2906f641561e236d35475a15c11b2ec873c95"
+      },
+      {
+        "path": "im1/unit-1-review/topics/fractions/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "fb5d9c5f66a11c6515708d7d37340c744ff4126a2ba5e9629aa53804a671150b"
+      },
+      {
+        "path": "im1/unit-1-review/topics/multiplication/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "5a17149cba5de21e0487739f084408142b48e014639e7a4962ec1752783deadf"
+      },
+      {
+        "path": "im1/unit-1-review/topics/multiplying-and-dividing-negative-numbers/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "347a4e94b8c3bf586ffb374645629325e9481660ca5d4be47c76f2580ffdd6e4"
+      },
+      {
+        "path": "im1/unit-1-review/topics/order-of-operations/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "58b06e7b76b099e5eedc15eb961bd15af842ba7d00ecf7dc264e9bb621364c28"
+      },
+      {
+        "path": "im1/unit-1-review/topics/percents/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "cc7f6aea715725a172f93d6d740897e862cf9ff01b3de61aff07d371fb58010c"
+      },
+      {
+        "path": "im1/unit-1-review/topics/reducing-fractions/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "d1c1eacced2e6a44da189918f58d7daacc6bb5a5ce1563e69633f6b1a513263d"
+      },
+      {
+        "path": "im1/unit-1-review/topics/square-roots-and-exponents/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "02c8fa03be5942ea4fe748629eb0d61860a2ffbce8ba81f0469d4432e99312e4"
+      },
+      {
+        "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/equivalent-expressions-combining-like-terms/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "1546b38c70f02dd02e4baf6b7fbde2c446fd82071077476fb77721521b3ab040"
+      },
+      {
+        "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "89cbf4abd050628a1f903371e9824a9b0f0f76af95e9365346d5ff44a89b0891"
+      },
+      {
+        "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "9939efbc65489f556c89e3eec5811de2519d2a55537b57b65f62261d051fa8fb"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "219f10afe9d1bbdabee61422cdbdf47fd09783b4a3553c5e0b149db86c8f9a4f"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "e61cccf6680fc9aa3663597669f0b675c9f3ebfea82b6efe59236d4a4f51bf85"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "0c6430413d3d4b1acbeb1f1ad746483d418ed3d63d67d6dacced5ce5c87ad215"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "ee89e4e44faac57831066ddec6bf75f549cf1a3f65f5e69cd6267b8348499007"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "ba2b4e2cdf0d33889633c379e31d2323f81c3c2ecb75cf539fad21e9288f6f76"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "f9373a006c3511fe6d8fef98d78c4ecb004be7c074ef898d3d39f4a46628c7a8"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "90dcb2dbc3dce74e0ba58f1db190a9ffe98cdeec42fe668077a0e17eb89c1603"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "d124d830e8ed23e34d54478d3bd2230f38671d94744775f6c9019326e6113e3d"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/section-b-review/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "5cece66657375fd9555d81d9d0b9d179c76ef233b083ee49ec1ad4376835213a"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "da33595a3f6801e8c3825a914faf645f750b0f1dd4f396b6dfdc8381e09cc2c8"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "d42d903e5036877fb4199e125813918b3bb7d3c67930bea37af287f93dea1d66"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "1dc7deca54e591ccc182d053519b37cd7acd6f916dd9d21dee8ad7420b8ca21c"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "47e7e431f1d5852a7ae64cbe8579e7b93a2c70f1a5e4a8ee7a20247a824f43c5"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "36bc37ed65cea58ed16fb6396d18a9550a695db4928c558cdefba653fee36032"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/section-c-review/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "d723d7fb1c28cd1357f37e60933da2b0533901ef269513b71653c65cb545882b"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "ed5e310431fbc1906fdad0396f630cf1e5911a09521b6b24317de86cd80d6898"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "c21a5c2e5903832b1eded56cb60021ae9fbb1f1c45c0ba15b72e5e607e6c904f"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/comprehensive-review/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "1570b6e7c8aa0aa01d12b25a114f817b25c645db46d1a857b93f3548a4755d8e"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "1733c10462af88fc5899c889a11217416dd73f8bc5191606f371b3ce604d31e6"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "866409055c5269c686fe66d5c2cf2f531ad550c7cf67f0fb8aeafed756a160c7"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "3ad1bdef76acd4a3a26f11e35b31a068b3c3d3c9aec758471726298afa7b1e3a"
+      },
+      {
+        "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/index.html",
+        "executableScriptsEqualMathLive": true,
+        "inputContractsEqualMathLive": true,
+        "linksAndHeadingsEqualContent": true,
+        "sha256": "cde5a9a58660c3fe228c0e74a9fa62a560cb0756f498a0acf259cd3b8a4ae0d9"
+      }
+    ],
+    "nonoverlapContentHtmlExact": [
+      "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/index.html",
+      "ap-calculus/unit-1-limits-continuity/topics/delta-epsilon-proofs/index.html",
+      "ap-calculus/unit-1-limits-continuity/topics/intermediate-value-theorem/index.html",
+      "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/index.html",
+      "ap-calculus/unit-1-limits-continuity/topics/introduction-to-limits/index.html",
+      "ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/index.html",
+      "ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/index.html",
+      "ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/index.html",
+      "ap-calculus/unit-1-limits-continuity/topics/sin-one-over-x/index.html",
+      "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/index.html",
+      "ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/index.html",
+      "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/index.html",
+      "ap-calculus/unit-2-derivatives/topics/difference-quotient/index.html",
+      "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/graphing-functions/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/graphing-the-derivative/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/optimization/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/index.html",
+      "ap-calculus/unit-4-integrals/topics/basic-integrals/index.html",
+      "ap-calculus/unit-4-integrals/topics/converting-a-rectangular-approximation-into-exact-area/index.html",
+      "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/index.html",
+      "ap-calculus/unit-4-integrals/topics/integrals-resulting-in-natural-log-and-inverse-trigonometric-functions/index.html",
+      "ap-calculus/unit-4-integrals/topics/integrals-using-geometry/index.html",
+      "ap-calculus/unit-4-integrals/topics/introduction-to-sigma-notation/index.html",
+      "ap-calculus/unit-4-integrals/topics/rectangular-approximations/index.html",
+      "ap-calculus/unit-4-integrals/topics/trapezoidal-approximations/index.html",
+      "ap-calculus/unit-4-integrals/topics/u-substitution-integrals/index.html",
+      "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/index.html",
+      "ap-calculus/unit-5-differential-equations/topics/exponential-growth-and-decay-interest-newton-s-law-of-cooling/index.html",
+      "ap-calculus/unit-5-differential-equations/topics/motion-problems/index.html",
+      "ap-calculus/unit-5-differential-equations/topics/rate-problems/index.html",
+      "ap-calculus/unit-5-differential-equations/topics/separable-differential-equations/index.html",
+      "ap-calculus/unit-5-differential-equations/topics/slope-fields/index.html",
+      "im1/index.html",
+      "im1/unit-1-review/index.html",
+      "im1/unit-1-review/practice/index.html",
+      "im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/index.html",
+      "im1/unit-1-review/topics/classifying-numbers/index.html",
+      "im1/unit-1-review/topics/classifying-numbers/practice/index.html",
+      "im1/unit-1-review/topics/comprehensive-review/index.html",
+      "im1/unit-1-review/topics/decimals/index.html",
+      "im1/unit-1-review/topics/fractions/index.html",
+      "im1/unit-1-review/topics/multiplication/index.html",
+      "im1/unit-1-review/topics/multiplying-and-dividing-negative-numbers/index.html",
+      "im1/unit-1-review/topics/order-of-operations/index.html",
+      "im1/unit-1-review/topics/percents/index.html",
+      "im1/unit-1-review/topics/reducing-fractions/index.html",
+      "im1/unit-1-review/topics/square-roots-and-exponents/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/practice/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/distributive-property/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/distributive-property/practice/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/equivalent-expressions-combining-like-terms/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-inequalities/index.html",
+      "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-inequalities/practice/index.html",
+      "im1/unit-3-linear-equation/index.html",
+      "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/index.html",
+      "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/index.html",
+      "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/index.html",
+      "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/index.html",
+      "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/index.html",
+      "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/index.html",
+      "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/index.html",
+      "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/index.html",
+      "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/collinearity-and-slope/index.html",
+      "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/collinearity-and-slope/practice/index.html",
+      "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/index.html",
+      "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/index.html",
+      "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/section-b-review/index.html",
+      "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/index.html",
+      "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/index.html",
+      "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/index.html",
+      "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/index.html",
+      "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/index.html",
+      "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/index.html",
+      "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/section-c-review/index.html",
+      "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/index.html",
+      "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/index.html",
+      "im1/unit-3-linear-equation/topics/comprehensive-review/index.html",
+      "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/index.html",
+      "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/index.html",
+      "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/index.html",
+      "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/index.html",
+      "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/index.html"
+    ],
+    "authorizedVideoLayoutHtml": [
+      "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/index.html",
+      "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/index.html",
+      "ap-calculus/unit-2-derivatives/topics/exponential-functions/index.html",
+      "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/index.html",
+      "ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/index.html",
+      "ap-calculus/unit-2-derivatives/topics/the-chain-rule/index.html",
+      "ap-calculus/unit-2-derivatives/topics/the-product-rule/index.html",
+      "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/motion/index.html",
+      "ap-calculus/unit-3-applications-derivative/topics/related-rates/index.html",
+      "ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/index.html",
+      "ap-calculus/unit-4-integrals/topics/mean-value-theorem-for-integrals/index.html"
+    ],
+    "approvedNonoverlapContentHtmlVerified": 111,
+    "im1PagesChecked": 90,
+    "studentNotesLinks": 0,
+    "pdfsUnchanged": true,
+    "unit6TreeUnchanged": true,
+    "approvedEditorViewportChanges": [
+      "assets/mathlive/answer-field.mjs",
+      "assets/mathlive/applications-profiles.mjs",
+      "assets/mathlive/dynamic-fields.mjs",
+      "assets/mathlive/keypad-bridge.mjs",
+      "assets/mathlive/native-fields.mjs",
+      "assets/mathlive/pilot.css",
+      "assets/mathlive/prep.mjs",
+      "assets/mathlive/review-contracts.mjs",
+      "assets/mathlive/review-static.mjs",
+      "assets/mathlive/separable.mjs",
+      "assets/mathlive/staged-profiles.mjs"
+    ],
+    "approvedReviewInstructionChange": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+    "reviewGeneratorsAnswersAndGradersUnchanged": true,
+    "unit6Tree": "f50ff9c7c56ca6b02c93d8f8bb88299b37ef2c11"
+  },
+  "static": {
+    "ok": true,
+    "generatedAt": "2026-11-06T08:22:23.909Z",
+    "stats": {
+      "htmlPages": 280,
+      "standaloneJs": 71,
+      "gaTagged": 274,
+      "inlineJs": 1077,
+      "images": 628,
+      "internalReferences": 8355,
+      "brokenInternalReferences": 0,
+      "indexablePages": 272,
+      "sitemapUrls": 272,
+      "noindexPages": 8,
+      "version": "12.8.Y",
+      "practiceEngines": 139,
+      "mathjaxRefs": 131,
+      "frqRows": 228,
+      "frqExamSets": 38,
+      "frqVideos": 216,
+      "pdfFiles": 290,
+      "docxFiles": 0,
+      "identifyingStringHits": 0,
+      "seededRngUnitTest": "pass"
+    },
+    "warnings": [],
+    "errors": [],
+    "engines": [
+      {
+        "rel": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_basic_techniques_indeterminate_limits",
+        "generatorVersion": "10"
+      },
+      {
+        "rel": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_limits_comprehensive",
+        "generatorVersion": "19"
+      },
+      {
+        "rel": "ap-calculus/unit-1-limits-continuity/topics/intermediate-value-theorem/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_intermediate_value_theorem",
+        "generatorVersion": "8"
+      },
+      {
+        "rel": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/continuity-parameters/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_continuity_parameters",
+        "generatorVersion": "6"
+      },
+      {
+        "rel": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_classifying_discontinuities",
+        "generatorVersion": "10"
+      },
+      {
+        "rel": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-limits/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_introduction_to_limits",
+        "generatorVersion": "7"
+      },
+      {
+        "rel": "ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_limits_at_infinity",
+        "generatorVersion": "11"
+      },
+      {
+        "rel": "ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_limits_of_continuous_functions",
+        "generatorVersion": "6"
+      },
+      {
+        "rel": "ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_one_sided_limits",
+        "generatorVersion": "8"
+      },
+      {
+        "rel": "ap-calculus/unit-1-limits-continuity/topics/sin-one-over-x/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_sin_one_over_x",
+        "generatorVersion": "5"
+      },
+      {
+        "rel": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/course-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_squeeze_course_practice",
+        "generatorVersion": "6"
+      },
+      {
+        "rel": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_advanced_trig_limits",
+        "generatorVersion": "5"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/conceptual-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_derivatives_conceptual_review",
+        "generatorVersion": "6"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_derivatives_at_point",
+        "generatorVersion": "4"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_derivatives_comprehensive",
+        "generatorVersion": "15"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_derivatives_of_inverse_functions",
+        "generatorVersion": "6"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_logarithmic_at_point",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_derivatives_of_logarithmic_functions",
+        "generatorVersion": "7"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_trig_derivatives_at_point",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_derivatives_of_trigonometric_functions",
+        "generatorVersion": "7"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_power_rule_at_point",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_derivatives_with_the_power_rule",
+        "generatorVersion": "7"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/difference-quotient/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_difference_quotient",
+        "generatorVersion": "6"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_exponential_at_point",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_exponential_functions",
+        "generatorVersion": "6"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_implicit_at_point",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_implicit_differentiation",
+        "generatorVersion": "8"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_inverse_trig_at_point",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_inverse_trigonometric_functions",
+        "generatorVersion": "6"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_logarithmic_differentiation",
+        "generatorVersion": "6"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_chain_rule_at_point",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_nested_chain_rule",
+        "generatorVersion": "2"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_the_chain_rule",
+        "generatorVersion": "8"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_product_rule_at_point",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/the-product-rule/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_the_product_rule",
+        "generatorVersion": "7"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_quotient_rule_at_point",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_the_quotient_rule",
+        "generatorVersion": "7"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_absolute-and-local-extrema-and-the-extreme-value-theorem_noncalculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_review_noncalculator",
+        "generatorVersion": "12.8.I"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_review_calculator",
+        "generatorVersion": "12.8.I"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_equations-of-tangent-and-normal-lines_noncalculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_horizontal-and-vertical-tangent-lines_noncalculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_horizontal-and-vertical-tangent-lines-implicitly_calculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_horizontal-and-vertical-tangent-lines-implicitly_noncalculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_increasing-decreasing-intervals-concavity-and-extrema_calculator",
+        "generatorVersion": "11.13"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_increasing-decreasing-intervals-concavity-and-extrema_noncalculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_l-hopital-s-rule_noncalculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_linearization-and-differentials_noncalculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/motion/calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_motion_calculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/motion/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_motion_noncalculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_newton-s-method-for-approximating-roots-of-a-function_calculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/optimization/calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_optimization_calculator",
+        "generatorVersion": "12.8.I"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_optimization_noncalculator",
+        "generatorVersion": "12.8.I"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/related-rates/calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_related-rates_calculator",
+        "generatorVersion": "12.8.I"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/related-rates/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_related-rates_noncalculator",
+        "generatorVersion": "12.8.I"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_rolle-s-theorem-and-the-mean-value-theorem_noncalculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_tangent-and-secant-line-approximations_noncalculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit3_using-your-graphing-calculator_calculator",
+        "generatorVersion": "11.11"
+      },
+      {
+        "rel": "ap-calculus/unit-4-integrals/topics/basic-integrals/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_basic_integrals",
+        "generatorVersion": "12.8.V"
+      },
+      {
+        "rel": "ap-calculus/unit-4-integrals/topics/comprehensive-review/assignment-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit4_assignment_review",
+        "generatorVersion": "2"
+      },
+      {
+        "rel": "ap-calculus/unit-4-integrals/topics/comprehensive-review/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_integrals_comprehensive",
+        "generatorVersion": "12.8.V"
+      },
+      {
+        "rel": "ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_evaluating_definite_integrals_with_a_limit_and_summation",
+        "generatorVersion": "12.8.N-newton2"
+      },
+      {
+        "rel": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/integral-rules-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_combining_integral_rules",
+        "generatorVersion": "12.8.T"
+      },
+      {
+        "rel": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_fundamental_theorem_of_calculus",
+        "generatorVersion": "12.8.T"
+      },
+      {
+        "rel": "ap-calculus/unit-4-integrals/topics/integrals-resulting-in-natural-log-and-inverse-trigonometric-functions/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_integrals_resulting_in_natural_log_and_inverse_trigonometric_functions",
+        "generatorVersion": "12.8.V"
+      },
+      {
+        "rel": "ap-calculus/unit-4-integrals/topics/integrals-using-geometry/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_integrals_using_geometry",
+        "generatorVersion": "12.8.T"
+      },
+      {
+        "rel": "ap-calculus/unit-4-integrals/topics/introduction-to-sigma-notation/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_introduction_to_sigma_notation",
+        "generatorVersion": "12.8.N"
+      },
+      {
+        "rel": "ap-calculus/unit-4-integrals/topics/mean-value-theorem-for-integrals/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_mean_value_theorem_for_integrals",
+        "generatorVersion": "12.8.V"
+      },
+      {
+        "rel": "ap-calculus/unit-4-integrals/topics/rectangular-approximations/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_rectangular_approximations",
+        "generatorVersion": "12.8.N"
+      },
+      {
+        "rel": "ap-calculus/unit-4-integrals/topics/trapezoidal-approximations/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_trapezoidal_approximations",
+        "generatorVersion": "12.8.N"
+      },
+      {
+        "rel": "ap-calculus/unit-4-integrals/topics/u-substitution-integrals/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_u_substitution_integrals",
+        "generatorVersion": "12.8.V"
+      },
+      {
+        "rel": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_basic_first_order_differential_equations_calculator",
+        "generatorVersion": "12.8.Y"
+      },
+      {
+        "rel": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/non-calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_basic_first_order_differential_equations_noncalculator",
+        "generatorVersion": "12.8.Y"
+      },
+      {
+        "rel": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit5_assignment_review_calculator",
+        "generatorVersion": "12.8.Y"
+      },
+      {
+        "rel": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/non-calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit5_assignment_review_noncalculator",
+        "generatorVersion": "12.8.Y"
+      },
+      {
+        "rel": "ap-calculus/unit-5-differential-equations/topics/exponential-growth-and-decay-interest-newton-s-law-of-cooling/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_exponential_growth_and_decay_interest_newton_s_law_of_cooling",
+        "generatorVersion": "12.8.Y"
+      },
+      {
+        "rel": "ap-calculus/unit-5-differential-equations/topics/motion-problems/calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_motion_problems_calculator",
+        "generatorVersion": "12.8.Y"
+      },
+      {
+        "rel": "ap-calculus/unit-5-differential-equations/topics/motion-problems/non-calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_motion_problems_noncalculator",
+        "generatorVersion": "12.8.Y"
+      },
+      {
+        "rel": "ap-calculus/unit-5-differential-equations/topics/rate-problems/calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_rate_problems_calculator",
+        "generatorVersion": "12.8.Y"
+      },
+      {
+        "rel": "ap-calculus/unit-5-differential-equations/topics/rate-problems/non-calculator-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_rate_problems_noncalculator",
+        "generatorVersion": "12.8.Y"
+      },
+      {
+        "rel": "ap-calculus/unit-5-differential-equations/topics/separable-differential-equations/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_separable_differential_equations",
+        "generatorVersion": "12.8.Y"
+      },
+      {
+        "rel": "ap-calculus/unit-5-differential-equations/topics/slope-fields/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_slope_fields",
+        "generatorVersion": "12.8.Y"
+      },
+      {
+        "rel": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_area_below_and_between_curves",
+        "generatorVersion": "7"
+      },
+      {
+        "rel": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/assignment-practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_unit6_assignment_review",
+        "generatorVersion": "2"
+      },
+      {
+        "rel": "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_finding_area_in_terms_of_y",
+        "generatorVersion": "6"
+      },
+      {
+        "rel": "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_integrals_on_piecewise_defined_functions",
+        "generatorVersion": "6"
+      },
+      {
+        "rel": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_solids_of_revolution",
+        "generatorVersion": "7"
+      },
+      {
+        "rel": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/practice/index.html",
+        "course": "ap_calculus_ab",
+        "engineId": "ap_topic_volume_by_cross_sections",
+        "generatorVersion": "6"
+      },
+      {
+        "rel": "calculus-prep/calculus-algebra/index.html",
+        "course": "calculus_prep",
+        "engineId": "calc_prep_algebra",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "calculus-prep/domains/index.html",
+        "course": "calculus_prep",
+        "engineId": "calc_prep_domains",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "calculus-prep/function-graphs/index.html",
+        "course": "calculus_prep",
+        "engineId": "calc_prep_function_graphs",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "calculus-prep/log-rules/index.html",
+        "course": "calculus_prep",
+        "engineId": "calc_prep_log_rules",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "calculus-prep/rational-functions/index.html",
+        "course": "calculus_prep",
+        "engineId": "calc_prep_rational_functions",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "calculus-prep/special-factoring/index.html",
+        "course": "calculus_prep",
+        "engineId": "calc_prep_special_factoring",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "calculus-prep/synthetic-division/index.html",
+        "course": "calculus_prep",
+        "engineId": "calc_prep_synthetic_division_rrt",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "calculus-prep/trig-angle-skills/index.html",
+        "course": "calculus_prep",
+        "engineId": "calc_prep_angle_skills",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "calculus-prep/trig-equations/index.html",
+        "course": "calculus_prep",
+        "engineId": "calc_prep_trig_equations",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "calculus-prep/trig-identities/index.html",
+        "course": "calculus_prep",
+        "engineId": "calc_prep_trig_identities",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "calculus-prep/unit-circle-values/index.html",
+        "course": "calculus_prep",
+        "engineId": "calc_prep_unit_circle_values",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-1-review/topics/adding-and-subtracting-negative-numbers/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_integer_add_subtract",
+        "generatorVersion": "2"
+      },
+      {
+        "rel": "im1/unit-1-review/topics/classifying-numbers/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_classifying_numbers",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-1-review/topics/decimals/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_decimals",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-1-review/topics/fractions/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_fractions",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-1-review/topics/multiplication/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_multiplication",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-1-review/topics/multiplying-and-dividing-negative-numbers/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_integer_multiply_divide",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-1-review/topics/order-of-operations/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_order_of_operations",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-1-review/topics/percents/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_percents",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-1-review/topics/reducing-fractions/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_reducing_fractions",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-1-review/topics/square-roots-and-exponents/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_exponents_radicals",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/comprehensive-review/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit2_comprehensive_review",
+        "generatorVersion": "8"
+      },
+      {
+        "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit2_coordinate_system_nine_key_features",
+        "generatorVersion": "6"
+      },
+      {
+        "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/distributive-property/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit2_distributive_property",
+        "generatorVersion": "4"
+      },
+      {
+        "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/equivalent-expressions-combining-like-terms/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit2_equivalent_expressions_combining_like_terms",
+        "generatorVersion": "4"
+      },
+      {
+        "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit2_graphing_inequalities_interval_notation",
+        "generatorVersion": "4"
+      },
+      {
+        "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit2_solving_linear_equations",
+        "generatorVersion": "4"
+      },
+      {
+        "rel": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-inequalities/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit2_solving_linear_inequalities",
+        "generatorVersion": "4"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_arithmetic_sequence_word_problems",
+        "generatorVersion": "3"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_common_difference_next_terms",
+        "generatorVersion": "3"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_explicit_formulas_arithmetic_sequences",
+        "generatorVersion": "3"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_finding_a_specific_term",
+        "generatorVersion": "3"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_finding_the_term_number",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_identifying_arithmetic_sequences",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/section-a-review/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_section_a_review",
+        "generatorVersion": "3"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/collinearity-and-slope/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_collinearity_and_slope",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_evaluating_functions",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/section-b-review/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_section_b_review",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_slope_from_graphs",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_slope_from_two_points",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_solving_function_equations",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_converting_point_slope_to_slope_intercept",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_linear_function_word_problems",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/section-c-review/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_section_c_review",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_slope_intercept_form",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_writing_equations_of_lines",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/comprehensive-review/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_unit_3_comprehensive_review",
+        "generatorVersion": "3"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_common_difference_recursive_formulas",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_recursive_formulas_from_sequences",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_recursive_to_explicit_formulas",
+        "generatorVersion": "1"
+      },
+      {
+        "rel": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/index.html",
+        "course": "im1",
+        "engineId": "im1_unit3_section_d_review",
+        "generatorVersion": "1"
+      }
+    ]
+  },
+  "protection": {
+    "protectedRefs": {
+      "refs/heads/main": {
+        "before": "26ec4f15185c37f9e8843e96a09d583b47babcdf",
+        "after": "26ec4f15185c37f9e8843e96a09d583b47babcdf",
+        "unchanged": true
+      },
+      "refs/heads/migration/mathlive-sitewide": {
+        "before": "919ca1806f07e3cd2af552142926e7ca2b78e8d5",
+        "after": "919ca1806f07e3cd2af552142926e7ca2b78e8d5",
+        "unchanged": true
+      },
+      "refs/heads/content/im1-video-notes-cleanup": {
+        "before": "bba32f929d6630d096bc4510ceafd586ab8c4a53",
+        "after": "bba32f929d6630d096bc4510ceafd586ab8c4a53",
+        "unchanged": true
+      }
+    },
+    "mainAndSourceHeadsUnchanged": true,
+    "otherObservedExternalHeadChanges": {
+      "refs/heads/integration/unit6-mathlive-videos-final-test": {
+        "before": "29c0a9f3fd4ffc1f29dc04064d66bb06b9603bb2",
+        "after": "353c5f93ed95e7d72a076183314c61ca085c8c92"
+      }
+    },
+    "note": "The independent integration/unit6-mathlive-videos-final-test head advanced externally during this task; it was only observed through ls-remote and was not fetched, copied, merged or pushed here.",
+    "unit6Source": "919ca1806f07e3cd2af552142926e7ca2b78e8d5",
+    "unit6Tree": "f50ff9c7c56ca6b02c93d8f8bb88299b37ef2c11",
+    "onlyIntegrationBranchPushed": true,
+    "deployed": false,
+    "unit6SourceTree": "f50ff9c7c56ca6b02c93d8f8bb88299b37ef2c11",
+    "observedIntegrationHead": "f5d0a73a446e0fe55b285aab5c933cf1548911bf"
+  },
+  "excludedAttempts": [
+    {
+      "suite": "unit2",
+      "retainedResults": 157,
+      "retainedPassingCases": 157,
+      "evidence": "docs/audits/evidence/keypad-completeness-unit2-final-d-initial-pointer-waits.json",
+      "includedInFinalCounts": false,
+      "reason": "Stopped to replace animation-sensitive pointer targeting with visible/enabled DOM button activation for functional checks. Final full runs start from the beginning; unrecorded in-flight work is not counted.",
+      "terminationEvidence": "docs/audits/evidence/keypad-completeness-unit2-final-d-terminated-before-restart.json",
+      "recordedPassingBeforeTermination": 208,
+      "recordedCancelledResults": 378,
+      "terminationNote": "The browser termination handler closed the old browser while its loop was still alive; all recorded closed-target errors are deliberate cancellation, excluded from final counts. The old process was then stopped completely. Fresh full result files supersede it."
+    },
+    {
+      "suite": "dynamic",
+      "retainedResults": 197,
+      "retainedPassingCases": 197,
+      "evidence": "docs/audits/evidence/keypad-completeness-dynamic-final-d-initial-pointer-waits.json",
+      "includedInFinalCounts": false,
+      "reason": "Stopped to replace animation-sensitive pointer targeting with visible/enabled DOM button activation for functional checks. Final full runs start from the beginning; unrecorded in-flight work is not counted."
+    },
+    {
+      "suite": "unit1",
+      "action": "resume verified partial final run",
+      "retainedPassingCases": 189,
+      "evidence": "docs/audits/evidence/keypad-completeness-unit1-final-d-resume-1.json",
+      "includedInFinalCounts": true,
+      "reason": "Only explicitly passing recorded cases are reused, after matching route/question/family/seed/selector against the regenerated catalog. Remaining cases use public field focus, visible enabled buttons and fresh page contexts every 40 new cases. Unrecorded in-flight work is not counted."
+    },
+    {
+      "suite": "unit2",
+      "action": "resume verified partial final run",
+      "retainedPassingCases": 1016,
+      "evidence": "docs/audits/evidence/keypad-completeness-unit2-final-d-resume-1.json",
+      "includedInFinalCounts": true,
+      "reason": "Only explicitly passing recorded cases are reused, after matching route/question/family/seed/selector against the regenerated catalog. Remaining cases use public field focus, visible enabled buttons and fresh page contexts every 40 new cases. Unrecorded in-flight work is not counted."
+    },
+    {
+      "suite": "dynamic",
+      "action": "resume verified partial final run",
+      "retainedPassingCases": 988,
+      "evidence": "docs/audits/evidence/keypad-completeness-dynamic-final-d-resume-1.json",
+      "includedInFinalCounts": true,
+      "reason": "Only explicitly passing recorded cases are reused, after matching route/question/family/seed/selector against the regenerated catalog. Remaining cases use public field focus, visible enabled buttons and fresh page contexts every 40 new cases. Unrecorded in-flight work is not counted."
+    }
+  ],
+  "limitations": "Finite generated educational forms and meaningful accepted alternatives; no arbitrary equivalence, physical-device or assistive-technology certification. YouTube is simulated; external playback/audio is not verified."
+}

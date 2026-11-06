@@ -1,0 +1,46 @@
+[
+  {
+    "suite": "unit2",
+    "retainedResults": 157,
+    "retainedPassingCases": 157,
+    "evidence": "docs/audits/evidence/keypad-completeness-unit2-final-d-initial-pointer-waits.json",
+    "includedInFinalCounts": false,
+    "reason": "Stopped to replace animation-sensitive pointer targeting with visible/enabled DOM button activation for functional checks. Final full runs start from the beginning; unrecorded in-flight work is not counted.",
+    "terminationEvidence": "docs/audits/evidence/keypad-completeness-unit2-final-d-terminated-before-restart.json",
+    "recordedPassingBeforeTermination": 208,
+    "recordedCancelledResults": 378,
+    "terminationNote": "The browser termination handler closed the old browser while its loop was still alive; all recorded closed-target errors are deliberate cancellation, excluded from final counts. The old process was then stopped completely. Fresh full result files supersede it."
+  },
+  {
+    "suite": "dynamic",
+    "retainedResults": 197,
+    "retainedPassingCases": 197,
+    "evidence": "docs/audits/evidence/keypad-completeness-dynamic-final-d-initial-pointer-waits.json",
+    "includedInFinalCounts": false,
+    "reason": "Stopped to replace animation-sensitive pointer targeting with visible/enabled DOM button activation for functional checks. Final full runs start from the beginning; unrecorded in-flight work is not counted."
+  },
+  {
+    "suite": "unit1",
+    "action": "resume verified partial final run",
+    "retainedPassingCases": 189,
+    "evidence": "docs/audits/evidence/keypad-completeness-unit1-final-d-resume-1.json",
+    "includedInFinalCounts": true,
+    "reason": "Only explicitly passing recorded cases are reused, after matching route/question/family/seed/selector against the regenerated catalog. Remaining cases use public field focus, visible enabled buttons and fresh page contexts every 40 new cases. Unrecorded in-flight work is not counted."
+  },
+  {
+    "suite": "unit2",
+    "action": "resume verified partial final run",
+    "retainedPassingCases": 1016,
+    "evidence": "docs/audits/evidence/keypad-completeness-unit2-final-d-resume-1.json",
+    "includedInFinalCounts": true,
+    "reason": "Only explicitly passing recorded cases are reused, after matching route/question/family/seed/selector against the regenerated catalog. Remaining cases use public field focus, visible enabled buttons and fresh page contexts every 40 new cases. Unrecorded in-flight work is not counted."
+  },
+  {
+    "suite": "dynamic",
+    "action": "resume verified partial final run",
+    "retainedPassingCases": 988,
+    "evidence": "docs/audits/evidence/keypad-completeness-dynamic-final-d-resume-1.json",
+    "includedInFinalCounts": true,
+    "reason": "Only explicitly passing recorded cases are reused, after matching route/question/family/seed/selector against the regenerated catalog. Remaining cases use public field focus, visible enabled buttons and fresh page contexts every 40 new cases. Unrecorded in-flight work is not counted."
+  }
+]

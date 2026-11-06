@@ -366,10 +366,16 @@
   "unit6TreeUnchanged": true,
   "approvedEditorViewportChanges": [
     "assets/mathlive/answer-field.mjs",
+    "assets/mathlive/applications-profiles.mjs",
     "assets/mathlive/dynamic-fields.mjs",
     "assets/mathlive/keypad-bridge.mjs",
     "assets/mathlive/native-fields.mjs",
-    "assets/mathlive/pilot.css"
+    "assets/mathlive/pilot.css",
+    "assets/mathlive/prep.mjs",
+    "assets/mathlive/review-contracts.mjs",
+    "assets/mathlive/review-static.mjs",
+    "assets/mathlive/separable.mjs",
+    "assets/mathlive/staged-profiles.mjs"
   ],
   "approvedReviewInstructionChange": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
   "reviewGeneratorsAnswersAndGradersUnchanged": true,

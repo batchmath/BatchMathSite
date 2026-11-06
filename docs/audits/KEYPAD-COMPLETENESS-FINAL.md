@@ -1,8 +1,67 @@
-# Sitewide keypad completeness — verified corrections
+# Sitewide keypad completeness — final verified audit
 
-**Checkpoints A and B are preserved. Checkpoint C is verified; final Checkpoint D regressions and delivery remain pending.**
+**Checkpoints A and B are preserved. Checkpoint C resolves all 119 blocked field rows, and Checkpoint D is complete. No confirmed control gap or unresolved driver failure remains.**
 
 The approved video work is preserved: 66 pages, 198 recordings, seven wider expandable review recordings and the narrow-heading correction. It has not been repeated or redesigned.
+
+## Checkpoint D — final results
+
+The final code checkpoint is `f5d0a73a446e0fe55b285aab5c933cf1548911bf`; subsequent delivery changes contain QA evidence, documentation and archive exclusions. The [consolidated QA record](evidence/KEYPAD-FINAL-QA.json) and [fresh field inventory](evidence/keypad-final-fresh-field-inventory.json) contain the new results, separately from B and C.
+
+| Fresh verification | Result |
+|---|---:|
+| Mathematical routes / retained specialized and navigation routes | **118 / 20** |
+| Deterministic question/form cases, including native interactions | **6,038** |
+| Mathematical field records | **6,614** |
+| Route/family/part/field/profile signature groups | **4,066** |
+| Keypad-only correct mathematical-part assertions | **6,034** |
+| Wrong mathematical-part rejection assertions | **6,022** |
+| Observed runtime names / registered or pattern definitions | **117 / 153** |
+| Node tests | **274/274** |
+| Default / legacy / missing-runtime route visits | **374/374 across 138 routes** |
+| Detailed pointer/touch, focus and viewport stability | **130/130; 16 controllers, 27 URLs, 3,232 actions** |
+| Focused mathematical browsers | **132/132; 543 counted grader pairs, 11 suites** |
+| IM1 responsive overlap checks | **102/102** |
+| Video presentation | **198 visits; 288 simulated activations** |
+| Video sizing | **340/340 visits; 1,056 player checks** |
+| Static QA | **0 errors, 0 warnings, 0 broken references** |
+| Unresolved controls / driver failures | **0 / 0** |
+
+Every one of the **6,614 fresh mathematical field rows** records the actual runtime profile, displayed controls, buttons used, rendered LaTeX, serialized answer, original correct acceptance and wrong rejection. Whole-part checks can contain multiple fields, so part and field counts differ. Twelve additional accepted-form assertions explain the difference between correct- and wrong-part totals. Three separately labeled original-checker degree probes are not counted as keypad-only successes.
+
+The final browser runs cover all seven Unit 1 runner routes, all 23 derivative routes, all 47 dynamic AP routes, all 13 primary IM1 value/algebra routes, all 22 IM1 Unit 3 routes, and all six Prep routes. Some course/review drawing contexts overlap these groups. Supplemental runs exercise 84 derivative root cases, 18 exact original Unit 4 root witnesses, ten Unit 5 root cases, the four original Unit 3 interval/decimal witnesses, **13 Unit 1 multipart cases and 69 dynamic multi-input contexts**. The original before/after comparison remains **119/119 resolved**. Separable solution cube-root controls remain intact.
+
+All default, `?editor=legacy` and missing-runtime paths pass their applicable route checks. Focused tests verify original correct/wrong distinctions, exactness, required rounding, reduced fractions and equation forms, student-entered `+C`, Enter/Next, physical typing, cursor navigation, undo/redo isolation, active-field changes and fallback recovery. The native degree/radian flow additionally verifies the real Next button and the original automatic advance, with fresh unpinned questions. Two complete legacy root answers and eight separate index/radicand serialization probes verify the precedence follow-up below.
+
+The A video assets and approved HTML remain preserved: 66 pages and 198 recordings, including all 13 IM1 instructional videos, the large lecture/supporting-gallery hierarchy, homework/review toggles and the intentional table-video overrides. A fresh sizing/presentation regression passes; it does not reopen the completed sizing audit. Assignment/key links, removed IM1 notes links, numbering, all 290 PDFs and the exact Unit 6 tree pass source/content checks.
+
+### Evidence phases and counts
+
+The cumulative [CSV](KEYPAD-COMPLETENESS-MATRIX.csv) / [JSON](KEYPAD-COMPLETENESS-INVENTORY.json) retain **6,680 question/form cases and 7,415 mathematical field rows**, with 6,835 correct-part and 6,823 wrong-part assertions. They combine retained findings, corrections and final observations; they are not a sum of every replay. Each row identifies its observation phase and evidence source. Earlier button observations remain historical; the separate fresh inventory is the complete post-correction scope above.
+
+B used additional coefficient/coverage witnesses. D uses the complete route/contract scope with its deterministic control-feature witnesses, root regressions and multipart revalidation. Thus fresh and cumulative counts differ; **all 118 mathematical routes and all 4,066 contract signature groups remain covered**, and no B evidence is deleted. These groups are not counts of independent mathematical families or a proof of arbitrary equivalent-expression closure.
+
+### Investigated test failures and exact resumption
+
+- The first full Node run passed 271/274. Its three failures were historical assertions that required no Chain Rule nth-root key or exact pre-metadata renderer bytes. The updated assertions require the new justified key and first verify exact approved asset hashes before historical comparisons. No mathematical grading assertion was relaxed. Fresh complete reruns pass 274/274.
+- Initial functional runs spent time targeting animated field/button geometry. Two diagnostic runs were stopped and excluded. Later final runs resumed **2,193 explicitly passing recorded cases** by exact route, question, family, seed and selector; every retained record must match the regenerated catalog. Unrecorded in-flight work is never counted. Fresh page contexts bound automated state after 40 new cases. See [attempt history](evidence/keypad-final-interrupted-attempts.json).
+- Direct MathfieldElement focus in the optimized driver failed to select a second/third active binding in one Unit 1 parameter case and one related-rates case. Their empty mirrors and original rejections are preserved. Using the site's established source-input focus route fixes activation; the values still come only from displayed keypad buttons. Both exact cases pass their original correct/wrong checks, and the full multipart revalidation above passes. The complete final ledgers explicitly link the failing and passing driver evidence.
+- One initial legacy stability case coincided with the question growing 15px while the keypad remained within 0.2px in the viewport. The current question typesetting queue was not finished. The harness now awaits that queue and fonts before taking its initial baseline. The old focused run passed 2/3; the ready-state repeat passes 3/3, and a **fresh full 130/130** passes. All original movement, clipping, focus, DOM-replacement and hook-restoration assertions remain unchanged.
+- Six of the initial 374 route visits timed out at the unchanged 6,000ms navigation limit while expensive jobs overlapped. They recorded zero page errors. A fresh full single-worker run under reduced load passes **374/374**; it is not an overlay of six reruns.
+
+All initial reports are retained. The 248 canceled B exploratory attempts remain labeled separately; the final fresh inventory includes no canceled attempts. [Attempt review](evidence/keypad-final-attempt-review.json) records the exact resolutions.
+
+### Isolation and delivery
+
+Only `integration/mathlive-im1-videos-content` was pushed. Main and the original MathLive/content heads match their protected values. Unit 6 has zero differences from `919ca1806f07e3cd2af552142926e7ca2b78e8d5`, tree `f50ff9c7c56ca6b02c93d8f8bb88299b37ef2c11`. An independent Unit 6 integration ref advanced externally; it was observed read-only and was not fetched, copied, merged or pushed here. Nothing was merged into main, deployed or published as a release.
+
+The complete local test package is `batchmath-video-sizing-keypad-audit.zip`, built from the final audit commit. `tools/keypad-completeness/package-test.py` checks every included blob, all 24 locked MathLive files, 280 HTML pages, 290 PDFs and eight extracted HTTP resources. Git metadata, temporary caches and machine QA evidence are excluded; the ZIP is not committed. The exact commit-pinned GitHub archive is the authorized fallback delivery.
+
+Extract the site, open a terminal beside `index.html`, run `py -m http.server 8000`, and visit `http://localhost:8000/`. See the [human test checklist](../integration/LOCAL-KEYPAD-VIDEO-CHECKS.md). The delivery response and external delivery manifest record the exact final commit and archive link.
+
+### Limits
+
+This is finite generated-family/control-feature coverage in Chromium 154 with MathLive 0.111.1 and real MathJax 4.1.3/NewCM fixtures. It is not exhaustive coefficient, arbitrary-algebraic-equivalence, physical-device, screen-reader, universal-browser or offline/PWA certification. YouTube responses are simulated: recording availability, audio and subjective handwriting quality require human checks. Normal MathJax and YouTube transports require internet. Unit 6 remains deliberately excluded. No confirmed unresolved keypad defect remains.
 
 ## Checkpoint C — all 119 blocked fields resolved
 
@@ -23,7 +82,7 @@ The [C test summary](evidence/keypad-correction-summary.json) records 185 questi
 
 Only eight production assets changed from B: keypad profile flags, field-control metadata/selection, rendered degree detection and derivative legacy root serialization. No generator, mathematical checker or acceptance rule changed. The exact approved asset blobs are recorded in `tools/keypad-completeness/approved-corrections.json`; historical source guards first verify those exact bytes before comparing against their original baselines. Source/content preservation passes, including unchanged PDFs and Unit 6. The registry now contains 153 registered/pattern definitions; 117 runtime names appear in the cumulative field ledger.
 
-The cumulative current ledger contains 6,580 question/form cases, 7,279 mathematical field rows, 6,699 correct-part assertions and 6,687 wrong-part assertions. These combine unchanged B evidence and corrected C replacements; they are **not a fresh sitewide post-correction regression count**. The historical findings section below retains its original counts and blocked examples. Final D must rerun the new harness across the complete scope and the established integration suites.
+At Checkpoint C, the cumulative ledger contained 6,580 question/form cases, 7,279 mathematical field rows, 6,699 correct-part assertions and 6,687 wrong-part assertions. These combine unchanged B evidence and corrected C replacements; they are **not a fresh sitewide post-correction regression count**. The historical findings section below retains its original counts and blocked examples. The completed D results above supersede that checkpoint-only status.
 
 ## Legacy-root precedence follow-up found during D
 
@@ -31,7 +90,7 @@ A new complete legacy-answer regression caught an input-serialization defect in 
 
 The [failing-before reproduction](evidence/keypad-legacy-root-grading-precedence-before.json) serves the exact initial C keypad from `db3fff911235018a1e7da7723a8ea94934dff9e1`. Complete generated Power Rule and Chain Rule answers fail there. Both now pass actual legacy keypad construction and original correct/wrong grading in [the corrected complete-answer evidence](evidence/keypad-legacy-root-grading-final-d.json). The Power Rule witness contains both third and fourth roots, including a powered root in a denominator. All eight separate index/radicand serialization probes still pass. These legacy tests are reported separately from MathLive-only assertion counts.
 
-The exact approved blob manifest and prepared correction patch include the final grouping. Historical Node assertions are reconciled only for those exact tested bytes; the Chain Rule profile assertion now requires its justified indexed-root key. Full D Node, route, pointer/focus, responsive, mathematical and video suites remain required before final delivery.
+The exact approved blob manifest and prepared correction patch include the final grouping. Historical Node assertions are reconciled only for those exact tested bytes; the Chain Rule profile assertion now requires its justified indexed-root key. The full D suites now pass as recorded above; the final product checkpoint is `f5d0a73a446e0fe55b285aab5c933cf1548911bf`.
 
 ## Checkpoint B — preserved findings
 
@@ -66,7 +125,7 @@ The [field matrix](KEYPAD-COMPLETENESS-MATRIX.csv) and [machine-readable invento
 | Field rows blocked by a confirmed control gap | 119 |
 | Unresolved driver failures / pending mathematical routes | 0 / 0 |
 
-These are finite metadata/signature groups, not counts of independent mathematical families or every possible coefficient. Correct-part counts include explicit meaningful-alternative assertions, while setup/replay submissions are not counted again. Semantic-only legacy/Node checker witnesses are never counted as keypad-only successes. The profile specification currently contains 150 registered names; registration alone does not establish reachability or completeness.
+These are finite metadata/signature groups, not counts of independent mathematical families or every possible coefficient. Correct-part counts include explicit meaningful-alternative assertions, while setup/replay submissions are not counted again. Semantic-only legacy/Node checker witnesses are never counted as keypad-only successes. At B, the profile specification contained 150 registered names; the final count is 153 above. Registration alone does not establish reachability or completeness.
 
 ## Confirmed gaps and planned corrections
 
@@ -240,9 +299,9 @@ Initial failures were investigated before being called website defects. The driv
 | im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/practice/index.html | 1 | 1 | 0 |
 | im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/index.html | 33 | 33 | 0 |
 
-## Remaining completion step
+## Completion
 
-Checkpoint C is complete. Checkpoint D must now run fresh established Node, default/legacy/missing-runtime route, detailed stability, IM1 responsive, focused browser, video-presentation and video-sizing suites; rerun the new keypad harness across the complete mathematical scope; repeat source/content protection and protected-branch checks; then commit/push and prepare the complete-site ZIP or exact commit-pinned archive link. No merge into main or deployment is authorized.
+A, B, C and D are complete. The original findings, corrected status and fresh final results remain distinct. The final audit commit contains QA/documentation and delivery exclusions; the tested website code remains identical to `f5d0a73a446e0fe55b285aab5c933cf1548911bf`. No merge or deployment occurred.
 
 ## Reproduction and limitations
 
@@ -250,11 +309,11 @@ Run from the repository root with Chromium/Playwright and `MATHJAX_FIXTURE_ROOT`
 
 ```sh
 node tools/keypad-completeness/unit2-browser.mjs
-ALTERNATIVE_ROOTS=1 REPORT_SUFFIX=-roots-before node tools/keypad-completeness/unit2-browser.mjs
+ALTERNATIVE_ROOTS=1 REPORT_SUFFIX=-root-recheck node tools/keypad-completeness/unit2-browser.mjs
 EXPAND_ANSWER_FORMS=1 ROUTE_INDEX=36,37,38,39,40,41,42,43,44,45,46 node tools/keypad-completeness/dynamic-browser.mjs
 REQUIRE_PASS=1 VERIFY_LAYOUT=1 REPORT_SUFFIX=-corrected node tools/keypad-completeness/unit2-browser.mjs
 ```
 
 `REQUIRE_PASS=1` makes any recorded failure or page error fail the run. Finding collection intentionally retains expected failures without claiming repair. `REPLAY_FILE` selects prior failed IDs; `AUDIT_PRIOR` reuses explicitly passing witnesses; retest-only rows do not substitute for a full route's coverage. `coverage-witnesses.mjs` records the finite control-feature proof.
 
-Finite seeded/source-family coverage does not prove every arbitrary equivalent expression. Tests use headless Chromium, rather than physical-device or assistive-technology certification. Original YouTube media playback is outside the keypad audit; the approved sizing/presentation evidence and its stated limits remain in the video report. No generator, checker or answer-acceptance rule has been changed in B.
+Finite seeded/source-family coverage does not prove every arbitrary equivalent expression. Tests use headless Chromium, rather than physical-device or assistive-technology certification. Original YouTube media playback is outside the keypad audit; the approved sizing/presentation evidence and its stated limits remain in the video report. No mathematical generator, checker or answer-acceptance rule changed in this keypad task.
