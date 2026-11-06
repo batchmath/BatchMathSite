@@ -1,0 +1,4310 @@
+{
+  "results": [
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/index.html",
+      "width": 320,
+      "height": 900,
+      "players": [
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "t2g8nXyS28Q",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Old AP Limits and Continuity Questions",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 936.25,
+              "width": 250,
+              "height": 138.875,
+              "right": 285,
+              "bottom": 1075.125
+            },
+            "box": {
+              "x": 33,
+              "y": 934.25,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 1077.125
+            },
+            "host": {
+              "x": 33,
+              "y": 934.25,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 1077.125
+            },
+            "available": 254,
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "jUTu8rtBYFM",
+          "iframe": 1,
+          "slotId": "bm-hw-video-2",
+          "resource": "More Limits and Continuity",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 506.03125,
+              "width": 250,
+              "height": 138.875,
+              "right": 285,
+              "bottom": 644.90625
+            },
+            "box": {
+              "x": 33,
+              "y": 504.03125,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 646.90625
+            },
+            "host": {
+              "x": 33,
+              "y": 504.03125,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 646.90625
+            },
+            "available": 254,
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "e-65Unj_U2A",
+          "iframe": 2,
+          "slotId": "bm-hw-video-3",
+          "resource": "Extra Practice",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 723.8125,
+              "width": 250,
+              "height": 138.875,
+              "right": 285,
+              "bottom": 862.6875
+            },
+            "box": {
+              "x": 33,
+              "y": 721.8125,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 864.6875
+            },
+            "host": {
+              "x": 33,
+              "y": 721.8125,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 864.6875
+            },
+            "available": 254,
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "K9LSfywWfgc",
+          "iframe": 3,
+          "slotId": "bm-hw-video-4",
+          "resource": "More Limit Proofs",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 936.59375,
+              "width": 250,
+              "height": 138.875,
+              "right": 285,
+              "bottom": 1075.46875
+            },
+            "box": {
+              "x": 33,
+              "y": 934.59375,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 1077.46875
+            },
+            "host": {
+              "x": 33,
+              "y": 934.59375,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 1077.46875
+            },
+            "available": 254,
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "VdixM4K8e8w",
+          "iframe": 4,
+          "slotId": "bm-review-video-1",
+          "resource": "Indeterminate Trigonometric Limit: Known Limits",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 482.90625,
+              "width": 252,
+              "height": 140.875,
+              "right": 286,
+              "bottom": 623.78125
+            },
+            "box": {
+              "x": 33,
+              "y": 481.90625,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 624.78125
+            },
+            "host": {
+              "x": 33,
+              "y": 481.90625,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 624.78125
+            },
+            "available": 254,
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "ErJvVoIi-z4",
+          "iframe": 5,
+          "slotId": "bm-review-video-2",
+          "resource": "Limits Review 1",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 600.03125,
+              "width": 252,
+              "height": 140.875,
+              "right": 286,
+              "bottom": 740.90625
+            },
+            "box": {
+              "x": 33,
+              "y": 599.03125,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 741.90625
+            },
+            "host": {
+              "x": 33,
+              "y": 599.03125,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 741.90625
+            },
+            "available": 254,
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "wtN4F8lJmnI",
+          "iframe": 6,
+          "slotId": "bm-review-video-3",
+          "resource": "Limits Review 2",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 717.15625,
+              "width": 252,
+              "height": 140.875,
+              "right": 286,
+              "bottom": 858.03125
+            },
+            "box": {
+              "x": 33,
+              "y": 716.15625,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 859.03125
+            },
+            "host": {
+              "x": 33,
+              "y": 716.15625,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 859.03125
+            },
+            "available": 254,
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "s_yec8M5TP4",
+          "iframe": 7,
+          "slotId": "bm-review-video-4",
+          "resource": "Limits Review 3",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 834.28125,
+              "width": 252,
+              "height": 140.875,
+              "right": 286,
+              "bottom": 975.15625
+            },
+            "box": {
+              "x": 33,
+              "y": 833.28125,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 976.15625
+            },
+            "host": {
+              "x": 33,
+              "y": 833.28125,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 976.15625
+            },
+            "available": 254,
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "M4A8YUuqZw0",
+          "iframe": 8,
+          "slotId": "bm-review-video-5",
+          "resource": "Limits Review 4",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 913.40625,
+              "width": 252,
+              "height": 140.875,
+              "right": 286,
+              "bottom": 1054.28125
+            },
+            "box": {
+              "x": 33,
+              "y": 912.40625,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 1055.28125
+            },
+            "host": {
+              "x": 33,
+              "y": 912.40625,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 1055.28125
+            },
+            "available": 254,
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "Na__0mQiOGg",
+          "iframe": 9,
+          "slotId": "bm-review-video-6",
+          "resource": "Limits Review 5",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 483.53125,
+              "width": 252,
+              "height": 140.875,
+              "right": 286,
+              "bottom": 624.40625
+            },
+            "box": {
+              "x": 33,
+              "y": 482.53125,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 625.40625
+            },
+            "host": {
+              "x": 33,
+              "y": 482.53125,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 625.40625
+            },
+            "available": 254,
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "EOp-BVCPNeg",
+          "iframe": 10,
+          "slotId": "bm-review-video-7",
+          "resource": "Limits Review 6",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 600.65625,
+              "width": 252,
+              "height": 140.875,
+              "right": 286,
+              "bottom": 741.53125
+            },
+            "box": {
+              "x": 33,
+              "y": 599.65625,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 742.53125
+            },
+            "host": {
+              "x": 33,
+              "y": 599.65625,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 742.53125
+            },
+            "available": 254,
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        }
+      ],
+      "issues": [],
+      "passed": true
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/index.html",
+      "width": 375,
+      "height": 900,
+      "players": [
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "t2g8nXyS28Q",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Old AP Limits and Continuity Questions",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 759.703125,
+              "width": 305,
+              "height": 169.8125,
+              "right": 340,
+              "bottom": 929.515625
+            },
+            "box": {
+              "x": 33,
+              "y": 757.703125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 931.515625
+            },
+            "host": {
+              "x": 33,
+              "y": 757.703125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 931.515625
+            },
+            "available": 309,
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "jUTu8rtBYFM",
+          "iframe": 1,
+          "slotId": "bm-hw-video-2",
+          "resource": "More Limits and Continuity",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 914.15625,
+              "width": 305,
+              "height": 169.8125,
+              "right": 340,
+              "bottom": 1083.96875
+            },
+            "box": {
+              "x": 33,
+              "y": 912.15625,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 1085.96875
+            },
+            "host": {
+              "x": 33,
+              "y": 912.15625,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 1085.96875
+            },
+            "available": 309,
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "e-65Unj_U2A",
+          "iframe": 2,
+          "slotId": "bm-hw-video-3",
+          "resource": "Extra Practice",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 484.609375,
+              "width": 305,
+              "height": 169.8125,
+              "right": 340,
+              "bottom": 654.421875
+            },
+            "box": {
+              "x": 33,
+              "y": 482.609375,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 656.421875
+            },
+            "host": {
+              "x": 33,
+              "y": 482.609375,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 656.421875
+            },
+            "available": 309,
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "K9LSfywWfgc",
+          "iframe": 3,
+          "slotId": "bm-hw-video-4",
+          "resource": "More Limit Proofs",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 652.0625,
+              "width": 305,
+              "height": 169.8125,
+              "right": 340,
+              "bottom": 821.875
+            },
+            "box": {
+              "x": 33,
+              "y": 650.0625,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 823.875
+            },
+            "host": {
+              "x": 33,
+              "y": 650.0625,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 823.875
+            },
+            "available": 309,
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "VdixM4K8e8w",
+          "iframe": 4,
+          "slotId": "bm-review-video-1",
+          "resource": "Indeterminate Trigonometric Limit: Known Limits",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 842.703125,
+              "width": 307,
+              "height": 171.8125,
+              "right": 341,
+              "bottom": 1014.515625
+            },
+            "box": {
+              "x": 33,
+              "y": 841.703125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 1015.515625
+            },
+            "host": {
+              "x": 33,
+              "y": 841.703125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 1015.515625
+            },
+            "available": 309,
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "ErJvVoIi-z4",
+          "iframe": 5,
+          "slotId": "bm-review-video-2",
+          "resource": "Limits Review 1",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 482.828125,
+              "width": 307,
+              "height": 171.8125,
+              "right": 341,
+              "bottom": 654.640625
+            },
+            "box": {
+              "x": 33,
+              "y": 481.828125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 655.640625
+            },
+            "host": {
+              "x": 33,
+              "y": 481.828125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 655.640625
+            },
+            "available": 309,
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "wtN4F8lJmnI",
+          "iframe": 6,
+          "slotId": "bm-review-video-3",
+          "resource": "Limits Review 2",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 599.953125,
+              "width": 307,
+              "height": 171.8125,
+              "right": 341,
+              "bottom": 771.765625
+            },
+            "box": {
+              "x": 33,
+              "y": 598.953125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 772.765625
+            },
+            "host": {
+              "x": 33,
+              "y": 598.953125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 772.765625
+            },
+            "available": 309,
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "s_yec8M5TP4",
+          "iframe": 7,
+          "slotId": "bm-review-video-4",
+          "resource": "Limits Review 3",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 717.078125,
+              "width": 307,
+              "height": 171.8125,
+              "right": 341,
+              "bottom": 888.890625
+            },
+            "box": {
+              "x": 33,
+              "y": 716.078125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 889.890625
+            },
+            "host": {
+              "x": 33,
+              "y": 716.078125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 889.890625
+            },
+            "available": 309,
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "M4A8YUuqZw0",
+          "iframe": 8,
+          "slotId": "bm-review-video-5",
+          "resource": "Limits Review 4",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 834.203125,
+              "width": 307,
+              "height": 171.8125,
+              "right": 341,
+              "bottom": 1006.015625
+            },
+            "box": {
+              "x": 33,
+              "y": 833.203125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 1007.015625
+            },
+            "host": {
+              "x": 33,
+              "y": 833.203125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 1007.015625
+            },
+            "available": 309,
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "Na__0mQiOGg",
+          "iframe": 9,
+          "slotId": "bm-review-video-6",
+          "resource": "Limits Review 5",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 913.328125,
+              "width": 307,
+              "height": 171.8125,
+              "right": 341,
+              "bottom": 1085.140625
+            },
+            "box": {
+              "x": 33,
+              "y": 912.328125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 1086.140625
+            },
+            "host": {
+              "x": 33,
+              "y": 912.328125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 1086.140625
+            },
+            "available": 309,
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "EOp-BVCPNeg",
+          "iframe": 10,
+          "slotId": "bm-review-video-7",
+          "resource": "Limits Review 6",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 483.453125,
+              "width": 307,
+              "height": 171.8125,
+              "right": 341,
+              "bottom": 655.265625
+            },
+            "box": {
+              "x": 33,
+              "y": 482.453125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 656.265625
+            },
+            "host": {
+              "x": 33,
+              "y": 482.453125,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 656.265625
+            },
+            "available": 309,
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        }
+      ],
+      "issues": [],
+      "passed": true
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/index.html",
+      "width": 390,
+      "height": 900,
+      "players": [
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "t2g8nXyS28Q",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Old AP Limits and Continuity Questions",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 734.90625,
+              "width": 320,
+              "height": 178.25,
+              "right": 355,
+              "bottom": 913.15625
+            },
+            "box": {
+              "x": 33,
+              "y": 732.90625,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 915.15625
+            },
+            "host": {
+              "x": 33,
+              "y": 732.90625,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 915.15625
+            },
+            "available": 324,
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "jUTu8rtBYFM",
+          "iframe": 1,
+          "slotId": "bm-hw-video-2",
+          "resource": "More Limits and Continuity",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 902.359375,
+              "width": 320,
+              "height": 178.25,
+              "right": 355,
+              "bottom": 1080.609375
+            },
+            "box": {
+              "x": 33,
+              "y": 900.359375,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 1082.609375
+            },
+            "host": {
+              "x": 33,
+              "y": 900.359375,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 1082.609375
+            },
+            "available": 324,
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "e-65Unj_U2A",
+          "iframe": 2,
+          "slotId": "bm-hw-video-3",
+          "resource": "Extra Practice",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 483.8125,
+              "width": 320,
+              "height": 178.25,
+              "right": 355,
+              "bottom": 662.0625
+            },
+            "box": {
+              "x": 33,
+              "y": 481.8125,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 664.0625
+            },
+            "host": {
+              "x": 33,
+              "y": 481.8125,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 664.0625
+            },
+            "available": 324,
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "K9LSfywWfgc",
+          "iframe": 3,
+          "slotId": "bm-hw-video-4",
+          "resource": "More Limit Proofs",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 651.265625,
+              "width": 320,
+              "height": 178.25,
+              "right": 355,
+              "bottom": 829.515625
+            },
+            "box": {
+              "x": 33,
+              "y": 649.265625,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 831.515625
+            },
+            "host": {
+              "x": 33,
+              "y": 649.265625,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 831.515625
+            },
+            "available": 324,
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "VdixM4K8e8w",
+          "iframe": 4,
+          "slotId": "bm-review-video-1",
+          "resource": "Indeterminate Trigonometric Limit: Known Limits",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 841.90625,
+              "width": 322,
+              "height": 180.25,
+              "right": 356,
+              "bottom": 1022.15625
+            },
+            "box": {
+              "x": 33,
+              "y": 840.90625,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 1023.15625
+            },
+            "host": {
+              "x": 33,
+              "y": 840.90625,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 1023.15625
+            },
+            "available": 324,
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "ErJvVoIi-z4",
+          "iframe": 5,
+          "slotId": "bm-review-video-2",
+          "resource": "Limits Review 1",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 483.03125,
+              "width": 322,
+              "height": 180.25,
+              "right": 356,
+              "bottom": 663.28125
+            },
+            "box": {
+              "x": 33,
+              "y": 482.03125,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 664.28125
+            },
+            "host": {
+              "x": 33,
+              "y": 482.03125,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 664.28125
+            },
+            "available": 324,
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "wtN4F8lJmnI",
+          "iframe": 6,
+          "slotId": "bm-review-video-3",
+          "resource": "Limits Review 2",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 600.15625,
+              "width": 322,
+              "height": 180.25,
+              "right": 356,
+              "bottom": 780.40625
+            },
+            "box": {
+              "x": 33,
+              "y": 599.15625,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 781.40625
+            },
+            "host": {
+              "x": 33,
+              "y": 599.15625,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 781.40625
+            },
+            "available": 324,
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "s_yec8M5TP4",
+          "iframe": 7,
+          "slotId": "bm-review-video-4",
+          "resource": "Limits Review 3",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 717.28125,
+              "width": 322,
+              "height": 180.25,
+              "right": 356,
+              "bottom": 897.53125
+            },
+            "box": {
+              "x": 33,
+              "y": 716.28125,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 898.53125
+            },
+            "host": {
+              "x": 33,
+              "y": 716.28125,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 898.53125
+            },
+            "available": 324,
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "M4A8YUuqZw0",
+          "iframe": 8,
+          "slotId": "bm-review-video-5",
+          "resource": "Limits Review 4",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 834.40625,
+              "width": 322,
+              "height": 180.25,
+              "right": 356,
+              "bottom": 1014.65625
+            },
+            "box": {
+              "x": 33,
+              "y": 833.40625,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 1015.65625
+            },
+            "host": {
+              "x": 33,
+              "y": 833.40625,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 1015.65625
+            },
+            "available": 324,
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "Na__0mQiOGg",
+          "iframe": 9,
+          "slotId": "bm-review-video-6",
+          "resource": "Limits Review 5",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 912.53125,
+              "width": 322,
+              "height": 180.25,
+              "right": 356,
+              "bottom": 1092.78125
+            },
+            "box": {
+              "x": 33,
+              "y": 911.53125,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 1093.78125
+            },
+            "host": {
+              "x": 33,
+              "y": 911.53125,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 1093.78125
+            },
+            "available": 324,
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "EOp-BVCPNeg",
+          "iframe": 10,
+          "slotId": "bm-review-video-7",
+          "resource": "Limits Review 6",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 34,
+              "y": 483.65625,
+              "width": 322,
+              "height": 180.25,
+              "right": 356,
+              "bottom": 663.90625
+            },
+            "box": {
+              "x": 33,
+              "y": 482.65625,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 664.90625
+            },
+            "host": {
+              "x": 33,
+              "y": 482.65625,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 664.90625
+            },
+            "available": 324,
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        }
+      ],
+      "issues": [],
+      "passed": true
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/index.html",
+      "width": 768,
+      "height": 900,
+      "players": [
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "t2g8nXyS28Q",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Old AP Limits and Continuity Questions",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 635.828125,
+              "width": 698,
+              "height": 390.875,
+              "right": 733,
+              "bottom": 1026.703125
+            },
+            "box": {
+              "x": 33,
+              "y": 633.828125,
+              "width": 702,
+              "height": 394.875,
+              "right": 735,
+              "bottom": 1028.703125
+            },
+            "host": {
+              "x": 33,
+              "y": 633.828125,
+              "width": 702,
+              "height": 394.875,
+              "right": 735,
+              "bottom": 1028.703125
+            },
+            "available": 702,
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "jUTu8rtBYFM",
+          "iframe": 1,
+          "slotId": "bm-hw-video-2",
+          "resource": "More Limits and Continuity",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 757.421875,
+              "width": 698,
+              "height": 390.875,
+              "right": 733,
+              "bottom": 1148.296875
+            },
+            "box": {
+              "x": 33,
+              "y": 755.421875,
+              "width": 702,
+              "height": 394.875,
+              "right": 735,
+              "bottom": 1150.296875
+            },
+            "host": {
+              "x": 33,
+              "y": 755.421875,
+              "width": 702,
+              "height": 394.875,
+              "right": 735,
+              "bottom": 1150.296875
+            },
+            "available": 702,
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "e-65Unj_U2A",
+          "iframe": 2,
+          "slotId": "bm-hw-video-3",
+          "resource": "Extra Practice",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 879.015625,
+              "width": 698,
+              "height": 390.875,
+              "right": 733,
+              "bottom": 1269.890625
+            },
+            "box": {
+              "x": 33,
+              "y": 877.015625,
+              "width": 702,
+              "height": 394.875,
+              "right": 735,
+              "bottom": 1271.890625
+            },
+            "host": {
+              "x": 33,
+              "y": 877.015625,
+              "width": 702,
+              "height": 394.875,
+              "right": 735,
+              "bottom": 1271.890625
+            },
+            "available": 702,
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "K9LSfywWfgc",
+          "iframe": 3,
+          "slotId": "bm-hw-video-4",
+          "resource": "More Limit Proofs",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 486.609375,
+              "width": 698,
+              "height": 390.875,
+              "right": 733,
+              "bottom": 877.484375
+            },
+            "box": {
+              "x": 33,
+              "y": 484.609375,
+              "width": 702,
+              "height": 394.875,
+              "right": 735,
+              "bottom": 879.484375
+            },
+            "host": {
+              "x": 33,
+              "y": 484.609375,
+              "width": 702,
+              "height": 394.875,
+              "right": 735,
+              "bottom": 879.484375
+            },
+            "available": 702,
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "VdixM4K8e8w",
+          "iframe": 4,
+          "slotId": "bm-review-video-1",
+          "resource": "Indeterminate Trigonometric Limit: Known Limits",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 105,
+              "y": 656.921875,
+              "width": 558,
+              "height": 313,
+              "right": 663,
+              "bottom": 969.921875
+            },
+            "box": {
+              "x": 104,
+              "y": 655.921875,
+              "width": 560,
+              "height": 315,
+              "right": 664,
+              "bottom": 970.921875
+            },
+            "host": {
+              "x": 33,
+              "y": 655.921875,
+              "width": 702,
+              "height": 315,
+              "right": 735,
+              "bottom": 970.921875
+            },
+            "available": 702,
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "ErJvVoIi-z4",
+          "iframe": 5,
+          "slotId": "bm-review-video-2",
+          "resource": "Limits Review 1",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 105,
+              "y": 778.515625,
+              "width": 558,
+              "height": 313,
+              "right": 663,
+              "bottom": 1091.515625
+            },
+            "box": {
+              "x": 104,
+              "y": 777.515625,
+              "width": 560,
+              "height": 315,
+              "right": 664,
+              "bottom": 1092.515625
+            },
+            "host": {
+              "x": 33,
+              "y": 777.515625,
+              "width": 702,
+              "height": 315,
+              "right": 735,
+              "bottom": 1092.515625
+            },
+            "available": 702,
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "wtN4F8lJmnI",
+          "iframe": 6,
+          "slotId": "bm-review-video-3",
+          "resource": "Limits Review 2",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 105,
+              "y": 900.109375,
+              "width": 558,
+              "height": 313,
+              "right": 663,
+              "bottom": 1213.109375
+            },
+            "box": {
+              "x": 104,
+              "y": 899.109375,
+              "width": 560,
+              "height": 315,
+              "right": 664,
+              "bottom": 1214.109375
+            },
+            "host": {
+              "x": 33,
+              "y": 899.109375,
+              "width": 702,
+              "height": 315,
+              "right": 735,
+              "bottom": 1214.109375
+            },
+            "available": 702,
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "s_yec8M5TP4",
+          "iframe": 7,
+          "slotId": "bm-review-video-4",
+          "resource": "Limits Review 3",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 105,
+              "y": 485.703125,
+              "width": 558,
+              "height": 313,
+              "right": 663,
+              "bottom": 798.703125
+            },
+            "box": {
+              "x": 104,
+              "y": 484.703125,
+              "width": 560,
+              "height": 315,
+              "right": 664,
+              "bottom": 799.703125
+            },
+            "host": {
+              "x": 33,
+              "y": 484.703125,
+              "width": 702,
+              "height": 315,
+              "right": 735,
+              "bottom": 799.703125
+            },
+            "available": 702,
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "M4A8YUuqZw0",
+          "iframe": 8,
+          "slotId": "bm-review-video-5",
+          "resource": "Limits Review 4",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 105,
+              "y": 607.296875,
+              "width": 558,
+              "height": 313,
+              "right": 663,
+              "bottom": 920.296875
+            },
+            "box": {
+              "x": 104,
+              "y": 606.296875,
+              "width": 560,
+              "height": 315,
+              "right": 664,
+              "bottom": 921.296875
+            },
+            "host": {
+              "x": 33,
+              "y": 606.296875,
+              "width": 702,
+              "height": 315,
+              "right": 735,
+              "bottom": 921.296875
+            },
+            "available": 702,
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "Na__0mQiOGg",
+          "iframe": 9,
+          "slotId": "bm-review-video-6",
+          "resource": "Limits Review 5",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 105,
+              "y": 728.890625,
+              "width": 558,
+              "height": 313,
+              "right": 663,
+              "bottom": 1041.890625
+            },
+            "box": {
+              "x": 104,
+              "y": 727.890625,
+              "width": 560,
+              "height": 315,
+              "right": 664,
+              "bottom": 1042.890625
+            },
+            "host": {
+              "x": 33,
+              "y": 727.890625,
+              "width": 702,
+              "height": 315,
+              "right": 735,
+              "bottom": 1042.890625
+            },
+            "available": 702,
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "EOp-BVCPNeg",
+          "iframe": 10,
+          "slotId": "bm-review-video-7",
+          "resource": "Limits Review 6",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 105,
+              "y": 850.484375,
+              "width": 558,
+              "height": 313,
+              "right": 663,
+              "bottom": 1163.484375
+            },
+            "box": {
+              "x": 104,
+              "y": 849.484375,
+              "width": 560,
+              "height": 315,
+              "right": 664,
+              "bottom": 1164.484375
+            },
+            "host": {
+              "x": 33,
+              "y": 849.484375,
+              "width": 702,
+              "height": 315,
+              "right": 735,
+              "bottom": 1164.484375
+            },
+            "available": 702,
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "index": 4,
+          "system": "review",
+          "id": "VdixM4K8e8w",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 5,
+          "system": "review",
+          "id": "ErJvVoIi-z4",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 6,
+          "system": "review",
+          "id": "wtN4F8lJmnI",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 7,
+          "system": "review",
+          "id": "s_yec8M5TP4",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 8,
+          "system": "review",
+          "id": "M4A8YUuqZw0",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 9,
+          "system": "review",
+          "id": "Na__0mQiOGg",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 10,
+          "system": "review",
+          "id": "EOp-BVCPNeg",
+          "issue": "review smaller than available instructional width"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/index.html",
+      "width": 1280,
+      "height": 900,
+      "players": [
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "t2g8nXyS28Q",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Old AP Limits and Continuity Questions",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 277,
+              "y": 658.984375,
+              "width": 726,
+              "height": 406.625,
+              "right": 1003,
+              "bottom": 1065.609375
+            },
+            "box": {
+              "x": 275,
+              "y": 656.984375,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 1067.609375
+            },
+            "host": {
+              "x": 275,
+              "y": 656.984375,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 1067.609375
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "jUTu8rtBYFM",
+          "iframe": 1,
+          "slotId": "bm-hw-video-2",
+          "resource": "More Limits and Continuity",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 277,
+              "y": 780.578125,
+              "width": 726,
+              "height": 406.625,
+              "right": 1003,
+              "bottom": 1187.203125
+            },
+            "box": {
+              "x": 275,
+              "y": 778.578125,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 1189.203125
+            },
+            "host": {
+              "x": 275,
+              "y": 778.578125,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 1189.203125
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "e-65Unj_U2A",
+          "iframe": 2,
+          "slotId": "bm-hw-video-3",
+          "resource": "Extra Practice",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 277,
+              "y": 902.171875,
+              "width": 726,
+              "height": 406.625,
+              "right": 1003,
+              "bottom": 1308.796875
+            },
+            "box": {
+              "x": 275,
+              "y": 900.171875,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 1310.796875
+            },
+            "host": {
+              "x": 275,
+              "y": 900.171875,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 1310.796875
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "K9LSfywWfgc",
+          "iframe": 3,
+          "slotId": "bm-hw-video-4",
+          "resource": "More Limit Proofs",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 277,
+              "y": 486.765625,
+              "width": 726,
+              "height": 406.625,
+              "right": 1003,
+              "bottom": 893.390625
+            },
+            "box": {
+              "x": 275,
+              "y": 484.765625,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 895.390625
+            },
+            "host": {
+              "x": 275,
+              "y": 484.765625,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 895.390625
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "VdixM4K8e8w",
+          "iframe": 4,
+          "slotId": "bm-review-video-1",
+          "resource": "Indeterminate Trigonometric Limit: Known Limits",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 657.078125,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 970.078125
+            },
+            "box": {
+              "x": 360,
+              "y": 656.078125,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 971.078125
+            },
+            "host": {
+              "x": 275,
+              "y": 656.078125,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 971.078125
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "ErJvVoIi-z4",
+          "iframe": 5,
+          "slotId": "bm-review-video-2",
+          "resource": "Limits Review 1",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 778.671875,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 1091.671875
+            },
+            "box": {
+              "x": 360,
+              "y": 777.671875,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 1092.671875
+            },
+            "host": {
+              "x": 275,
+              "y": 777.671875,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 1092.671875
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "wtN4F8lJmnI",
+          "iframe": 6,
+          "slotId": "bm-review-video-3",
+          "resource": "Limits Review 2",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 900.265625,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 1213.265625
+            },
+            "box": {
+              "x": 360,
+              "y": 899.265625,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 1214.265625
+            },
+            "host": {
+              "x": 275,
+              "y": 899.265625,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 1214.265625
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "s_yec8M5TP4",
+          "iframe": 7,
+          "slotId": "bm-review-video-4",
+          "resource": "Limits Review 3",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 485.859375,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 798.859375
+            },
+            "box": {
+              "x": 360,
+              "y": 484.859375,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 799.859375
+            },
+            "host": {
+              "x": 275,
+              "y": 484.859375,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 799.859375
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "M4A8YUuqZw0",
+          "iframe": 8,
+          "slotId": "bm-review-video-5",
+          "resource": "Limits Review 4",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 607.453125,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 920.453125
+            },
+            "box": {
+              "x": 360,
+              "y": 606.453125,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 921.453125
+            },
+            "host": {
+              "x": 275,
+              "y": 606.453125,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 921.453125
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "Na__0mQiOGg",
+          "iframe": 9,
+          "slotId": "bm-review-video-6",
+          "resource": "Limits Review 5",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 729.046875,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 1042.046875
+            },
+            "box": {
+              "x": 360,
+              "y": 728.046875,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 1043.046875
+            },
+            "host": {
+              "x": 275,
+              "y": 728.046875,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 1043.046875
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "EOp-BVCPNeg",
+          "iframe": 10,
+          "slotId": "bm-review-video-7",
+          "resource": "Limits Review 6",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 850.640625,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 1163.640625
+            },
+            "box": {
+              "x": 360,
+              "y": 849.640625,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 1164.640625
+            },
+            "host": {
+              "x": 275,
+              "y": 849.640625,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 1164.640625
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "index": 4,
+          "system": "review",
+          "id": "VdixM4K8e8w",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 5,
+          "system": "review",
+          "id": "ErJvVoIi-z4",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 6,
+          "system": "review",
+          "id": "wtN4F8lJmnI",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 7,
+          "system": "review",
+          "id": "s_yec8M5TP4",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 8,
+          "system": "review",
+          "id": "M4A8YUuqZw0",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 9,
+          "system": "review",
+          "id": "Na__0mQiOGg",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 10,
+          "system": "review",
+          "id": "EOp-BVCPNeg",
+          "issue": "review smaller than available instructional width"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/index.html",
+      "width": 844,
+      "height": 390,
+      "players": [
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "t2g8nXyS28Q",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Old AP Limits and Continuity Questions",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 59,
+              "y": 230.953125,
+              "width": 726,
+              "height": 406.625,
+              "right": 785,
+              "bottom": 637.578125
+            },
+            "box": {
+              "x": 57,
+              "y": 228.953125,
+              "width": 730,
+              "height": 410.625,
+              "right": 787,
+              "bottom": 639.578125
+            },
+            "host": {
+              "x": 57,
+              "y": 228.953125,
+              "width": 730,
+              "height": 410.625,
+              "right": 787,
+              "bottom": 639.578125
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 844,
+            "viewWidth": 844
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "jUTu8rtBYFM",
+          "iframe": 1,
+          "slotId": "bm-hw-video-2",
+          "resource": "More Limits and Continuity",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 59,
+              "y": 352.546875,
+              "width": 726,
+              "height": 406.625,
+              "right": 785,
+              "bottom": 759.171875
+            },
+            "box": {
+              "x": 57,
+              "y": 350.546875,
+              "width": 730,
+              "height": 410.625,
+              "right": 787,
+              "bottom": 761.171875
+            },
+            "host": {
+              "x": 57,
+              "y": 350.546875,
+              "width": 730,
+              "height": 410.625,
+              "right": 787,
+              "bottom": 761.171875
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 844,
+            "viewWidth": 844
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "e-65Unj_U2A",
+          "iframe": 2,
+          "slotId": "bm-hw-video-3",
+          "resource": "Extra Practice",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 59,
+              "y": 231.140625,
+              "width": 726,
+              "height": 406.625,
+              "right": 785,
+              "bottom": 637.765625
+            },
+            "box": {
+              "x": 57,
+              "y": 229.140625,
+              "width": 730,
+              "height": 410.625,
+              "right": 787,
+              "bottom": 639.765625
+            },
+            "host": {
+              "x": 57,
+              "y": 229.140625,
+              "width": 730,
+              "height": 410.625,
+              "right": 787,
+              "bottom": 639.765625
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 844,
+            "viewWidth": 844
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "K9LSfywWfgc",
+          "iframe": 3,
+          "slotId": "bm-hw-video-4",
+          "resource": "More Limit Proofs",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 59,
+              "y": 352.734375,
+              "width": 726,
+              "height": 406.625,
+              "right": 785,
+              "bottom": 759.359375
+            },
+            "box": {
+              "x": 57,
+              "y": 350.734375,
+              "width": 730,
+              "height": 410.625,
+              "right": 787,
+              "bottom": 761.359375
+            },
+            "host": {
+              "x": 57,
+              "y": 350.734375,
+              "width": 730,
+              "height": 410.625,
+              "right": 787,
+              "bottom": 761.359375
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 844,
+            "viewWidth": 844
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "VdixM4K8e8w",
+          "iframe": 4,
+          "slotId": "bm-review-video-1",
+          "resource": "Indeterminate Trigonometric Limit: Known Limits",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 143,
+              "y": 230.046875,
+              "width": 558,
+              "height": 313,
+              "right": 701,
+              "bottom": 543.046875
+            },
+            "box": {
+              "x": 142,
+              "y": 229.046875,
+              "width": 560,
+              "height": 315,
+              "right": 702,
+              "bottom": 544.046875
+            },
+            "host": {
+              "x": 57,
+              "y": 229.046875,
+              "width": 730,
+              "height": 315,
+              "right": 787,
+              "bottom": 544.046875
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 844,
+            "viewWidth": 844
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "ErJvVoIi-z4",
+          "iframe": 5,
+          "slotId": "bm-review-video-2",
+          "resource": "Limits Review 1",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 143,
+              "y": 351.640625,
+              "width": 558,
+              "height": 313,
+              "right": 701,
+              "bottom": 664.640625
+            },
+            "box": {
+              "x": 142,
+              "y": 350.640625,
+              "width": 560,
+              "height": 315,
+              "right": 702,
+              "bottom": 665.640625
+            },
+            "host": {
+              "x": 57,
+              "y": 350.640625,
+              "width": 730,
+              "height": 315,
+              "right": 787,
+              "bottom": 665.640625
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 844,
+            "viewWidth": 844
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "wtN4F8lJmnI",
+          "iframe": 6,
+          "slotId": "bm-review-video-3",
+          "resource": "Limits Review 2",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 143,
+              "y": 230.234375,
+              "width": 558,
+              "height": 313,
+              "right": 701,
+              "bottom": 543.234375
+            },
+            "box": {
+              "x": 142,
+              "y": 229.234375,
+              "width": 560,
+              "height": 315,
+              "right": 702,
+              "bottom": 544.234375
+            },
+            "host": {
+              "x": 57,
+              "y": 229.234375,
+              "width": 730,
+              "height": 315,
+              "right": 787,
+              "bottom": 544.234375
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 844,
+            "viewWidth": 844
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "s_yec8M5TP4",
+          "iframe": 7,
+          "slotId": "bm-review-video-4",
+          "resource": "Limits Review 3",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 143,
+              "y": 351.828125,
+              "width": 558,
+              "height": 313,
+              "right": 701,
+              "bottom": 664.828125
+            },
+            "box": {
+              "x": 142,
+              "y": 350.828125,
+              "width": 560,
+              "height": 315,
+              "right": 702,
+              "bottom": 665.828125
+            },
+            "host": {
+              "x": 57,
+              "y": 350.828125,
+              "width": 730,
+              "height": 315,
+              "right": 787,
+              "bottom": 665.828125
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 844,
+            "viewWidth": 844
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "M4A8YUuqZw0",
+          "iframe": 8,
+          "slotId": "bm-review-video-5",
+          "resource": "Limits Review 4",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 143,
+              "y": 230.421875,
+              "width": 558,
+              "height": 313,
+              "right": 701,
+              "bottom": 543.421875
+            },
+            "box": {
+              "x": 142,
+              "y": 229.421875,
+              "width": 560,
+              "height": 315,
+              "right": 702,
+              "bottom": 544.421875
+            },
+            "host": {
+              "x": 57,
+              "y": 229.421875,
+              "width": 730,
+              "height": 315,
+              "right": 787,
+              "bottom": 544.421875
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 844,
+            "viewWidth": 844
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "Na__0mQiOGg",
+          "iframe": 9,
+          "slotId": "bm-review-video-6",
+          "resource": "Limits Review 5",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 143,
+              "y": 352.015625,
+              "width": 558,
+              "height": 313,
+              "right": 701,
+              "bottom": 665.015625
+            },
+            "box": {
+              "x": 142,
+              "y": 351.015625,
+              "width": 560,
+              "height": 315,
+              "right": 702,
+              "bottom": 666.015625
+            },
+            "host": {
+              "x": 57,
+              "y": 351.015625,
+              "width": 730,
+              "height": 315,
+              "right": 787,
+              "bottom": 666.015625
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 844,
+            "viewWidth": 844
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "EOp-BVCPNeg",
+          "iframe": 10,
+          "slotId": "bm-review-video-7",
+          "resource": "Limits Review 6",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 143,
+              "y": 230.609375,
+              "width": 558,
+              "height": 313,
+              "right": 701,
+              "bottom": 543.609375
+            },
+            "box": {
+              "x": 142,
+              "y": 229.609375,
+              "width": 560,
+              "height": 315,
+              "right": 702,
+              "bottom": 544.609375
+            },
+            "host": {
+              "x": 57,
+              "y": 229.609375,
+              "width": 730,
+              "height": 315,
+              "right": 787,
+              "bottom": 544.609375
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 844,
+            "viewWidth": 844
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "index": 4,
+          "system": "review",
+          "id": "VdixM4K8e8w",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 5,
+          "system": "review",
+          "id": "ErJvVoIi-z4",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 6,
+          "system": "review",
+          "id": "wtN4F8lJmnI",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 7,
+          "system": "review",
+          "id": "s_yec8M5TP4",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 8,
+          "system": "review",
+          "id": "M4A8YUuqZw0",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 9,
+          "system": "review",
+          "id": "Na__0mQiOGg",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 10,
+          "system": "review",
+          "id": "EOp-BVCPNeg",
+          "issue": "review smaller than available instructional width"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/index.html",
+      "width": 1280,
+      "height": 480,
+      "players": [
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "t2g8nXyS28Q",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Old AP Limits and Continuity Questions",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 277,
+              "y": 275.984375,
+              "width": 726,
+              "height": 406.625,
+              "right": 1003,
+              "bottom": 682.609375
+            },
+            "box": {
+              "x": 275,
+              "y": 273.984375,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 684.609375
+            },
+            "host": {
+              "x": 275,
+              "y": 273.984375,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 684.609375
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "jUTu8rtBYFM",
+          "iframe": 1,
+          "slotId": "bm-hw-video-2",
+          "resource": "More Limits and Continuity",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 277,
+              "y": 397.578125,
+              "width": 726,
+              "height": 406.625,
+              "right": 1003,
+              "bottom": 804.203125
+            },
+            "box": {
+              "x": 275,
+              "y": 395.578125,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 806.203125
+            },
+            "host": {
+              "x": 275,
+              "y": 395.578125,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 806.203125
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "e-65Unj_U2A",
+          "iframe": 2,
+          "slotId": "bm-hw-video-3",
+          "resource": "Extra Practice",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 277,
+              "y": 494.171875,
+              "width": 726,
+              "height": 406.625,
+              "right": 1003,
+              "bottom": 900.796875
+            },
+            "box": {
+              "x": 275,
+              "y": 492.171875,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 902.796875
+            },
+            "host": {
+              "x": 275,
+              "y": 492.171875,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 902.796875
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "K9LSfywWfgc",
+          "iframe": 3,
+          "slotId": "bm-hw-video-4",
+          "resource": "More Limit Proofs",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 277,
+              "y": 276.765625,
+              "width": 726,
+              "height": 406.625,
+              "right": 1003,
+              "bottom": 683.390625
+            },
+            "box": {
+              "x": 275,
+              "y": 274.765625,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 685.390625
+            },
+            "host": {
+              "x": 275,
+              "y": 274.765625,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 685.390625
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": []
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "VdixM4K8e8w",
+          "iframe": 4,
+          "slotId": "bm-review-video-1",
+          "resource": "Indeterminate Trigonometric Limit: Known Limits",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 447.078125,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 760.078125
+            },
+            "box": {
+              "x": 360,
+              "y": 446.078125,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 761.078125
+            },
+            "host": {
+              "x": 275,
+              "y": 446.078125,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 761.078125
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "ErJvVoIi-z4",
+          "iframe": 5,
+          "slotId": "bm-review-video-2",
+          "resource": "Limits Review 1",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 275.671875,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 588.671875
+            },
+            "box": {
+              "x": 360,
+              "y": 274.671875,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 589.671875
+            },
+            "host": {
+              "x": 275,
+              "y": 274.671875,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 589.671875
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "wtN4F8lJmnI",
+          "iframe": 6,
+          "slotId": "bm-review-video-3",
+          "resource": "Limits Review 2",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 397.265625,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 710.265625
+            },
+            "box": {
+              "x": 360,
+              "y": 396.265625,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 711.265625
+            },
+            "host": {
+              "x": 275,
+              "y": 396.265625,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 711.265625
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "s_yec8M5TP4",
+          "iframe": 7,
+          "slotId": "bm-review-video-4",
+          "resource": "Limits Review 3",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 492.859375,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 805.859375
+            },
+            "box": {
+              "x": 360,
+              "y": 491.859375,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 806.859375
+            },
+            "host": {
+              "x": 275,
+              "y": 491.859375,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 806.859375
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "M4A8YUuqZw0",
+          "iframe": 8,
+          "slotId": "bm-review-video-5",
+          "resource": "Limits Review 4",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 275.453125,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 588.453125
+            },
+            "box": {
+              "x": 360,
+              "y": 274.453125,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 589.453125
+            },
+            "host": {
+              "x": 275,
+              "y": 274.453125,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 589.453125
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "Na__0mQiOGg",
+          "iframe": 9,
+          "slotId": "bm-review-video-6",
+          "resource": "Limits Review 5",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 397.046875,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 710.046875
+            },
+            "box": {
+              "x": 360,
+              "y": 396.046875,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 711.046875
+            },
+            "host": {
+              "x": 275,
+              "y": 396.046875,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 711.046875
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "EOp-BVCPNeg",
+          "iframe": 10,
+          "slotId": "bm-review-video-7",
+          "resource": "Limits Review 6",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          },
+          "measurements": {
+            "frame": {
+              "x": 361,
+              "y": 492.640625,
+              "width": 558,
+              "height": 313,
+              "right": 919,
+              "bottom": 805.640625
+            },
+            "box": {
+              "x": 360,
+              "y": 491.640625,
+              "width": 560,
+              "height": 315,
+              "right": 920,
+              "bottom": 806.640625
+            },
+            "host": {
+              "x": 275,
+              "y": 491.640625,
+              "width": 730,
+              "height": 315,
+              "right": 1005,
+              "bottom": 806.640625
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": [
+            "review smaller than available instructional width"
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "index": 4,
+          "system": "review",
+          "id": "VdixM4K8e8w",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 5,
+          "system": "review",
+          "id": "ErJvVoIi-z4",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 6,
+          "system": "review",
+          "id": "wtN4F8lJmnI",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 7,
+          "system": "review",
+          "id": "s_yec8M5TP4",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 8,
+          "system": "review",
+          "id": "M4A8YUuqZw0",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 9,
+          "system": "review",
+          "id": "Na__0mQiOGg",
+          "issue": "review smaller than available instructional width"
+        },
+        {
+          "index": 10,
+          "system": "review",
+          "id": "EOp-BVCPNeg",
+          "issue": "review smaller than available instructional width"
+        }
+      ],
+      "passed": false
+    }
+  ],
+  "errors": [],
+  "videoPages": 66,
+  "sourcePlayers": 198,
+  "systems": {
+    "shared-pair": 8,
+    "homework": 95,
+    "review": 7,
+    "shared-large": 55,
+    "shared-gallery": 33
+  },
+  "externalPlaybackVerified": false
+}

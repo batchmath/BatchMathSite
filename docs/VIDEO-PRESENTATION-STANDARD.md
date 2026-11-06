@@ -174,6 +174,24 @@ workflow is preserved and the owner requests or approves that change.
 Existing legacy `.video-cover` listeners exclude `[data-bm-standard-cover]`, so
 proof controls continue working without competing with the shared player.
 
+### Expandable player sizing
+
+Homework walkthroughs stay within their assignment containers. Expandable
+review frames use the available instructional width, up to 760px, through the
+scoped `body .review-video-slot .review-video-frame` rule in `assets/site.css`.
+Their existing 16:9 wrapper, source URLs and expand/collapse handlers remain
+page-owned. Do not globally size unrelated iframes.
+
+The Chain Rule and Quotient Rule table-walkthrough overrides intentionally use
+an automatic-height wrapper around a 16:9 iframe. Their measured content area
+fits without extra wrapper space; preserve these verified overrides.
+
+The additional sizing suite inventories all 198 recordings across 66 eligible
+pages, including 95 homework and seven review players. Run
+`python3 tools/video-sizing-inventory.py` and `node tools/video-sizing-qa.mjs`
+to check 320/375/390/768/1280px widths and representative landscape/short-height
+views. Its measurements and rationale are in `docs/audits/VIDEO-SIZING-FINAL.md`.
+
 ## Verification for future changes
 
 Run the browser regression suite and release reference/syntax checks:

@@ -647,6 +647,9 @@ body .hw-video-frame iframe{
   height:100%!important;
   border:0!important;
 }
+/* Expandable review recordings need the same usable mathematical-writing width
+   as assignment walkthroughs. Keep the page-owned 16:9 wrapper and toggles. */
+body .review-video-slot .review-video-frame{width:min(100%,760px)}
 body .video-cover{
   border-radius:16px!important;
   overflow:hidden!important;
@@ -830,3 +833,8 @@ body .topic-pager-slot{display:block}
 
 /* Existing infinity controls share mathematical glyphs; geometry stays engine-owned. */
 button.math-infinity-key{font-family:"Cambria Math","STIX Two Math","DejaVu Math TeX Gyre","Times New Roman",serif;font-weight:400;font-style:normal;font-size:1.08rem}
+
+/* Keep long compound Unit 3 topic headings inside narrow phone layouts. */
+@media(max-width:360px){
+  body:has(.bm-breadcrumbs a[href="/ap-calculus/unit-3-applications-derivative/"]) .page-title{overflow-wrap:anywhere}
+}

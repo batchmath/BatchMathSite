@@ -1,0 +1,1010 @@
+{
+  "results": [
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/index.html",
+      "width": 375,
+      "height": 900,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/sVVpBWBRf4I?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 8 - Increasing/Decreasing Intervals, Concavity, and Extrema",
+          "id": "sVVpBWBRf4I",
+          "measurements": {
+            "frame": {
+              "x": 20,
+              "y": 713.671875,
+              "width": 335,
+              "height": 186.6875,
+              "right": 355,
+              "bottom": 900.359375
+            },
+            "box": {
+              "x": 18,
+              "y": 711.671875,
+              "width": 339,
+              "height": 190.6875,
+              "right": 357,
+              "bottom": 902.359375
+            },
+            "host": {
+              "x": 18,
+              "y": 656.890625,
+              "width": 339,
+              "height": 245.46875,
+              "right": 357,
+              "bottom": 902.359375
+            },
+            "available": 339,
+            "src": "https://www.youtube.com/embed/sVVpBWBRf4I?rel=0&playsinline=1&autoplay=1",
+            "title": "Applications of the Derivative Lecture 8 - Increasing/Decreasing Intervals, Concavity, and Extrema",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/_1iY7iety2U?rel=0&playsinline=1",
+          "title": "Maxima, Minima, Increasing and Decreasing Intervals",
+          "id": "_1iY7iety2U",
+          "measurements": {
+            "frame": {
+              "x": 25,
+              "y": 387.03125,
+              "width": 325,
+              "height": 181.9375,
+              "right": 350,
+              "bottom": 568.96875
+            },
+            "box": {
+              "x": 24,
+              "y": 386.03125,
+              "width": 327,
+              "height": 183.9375,
+              "right": 351,
+              "bottom": 569.96875
+            },
+            "host": {
+              "x": 12,
+              "y": 318.03125,
+              "width": 351,
+              "height": 263.9375,
+              "right": 363,
+              "bottom": 581.96875
+            },
+            "available": 327,
+            "src": "https://www.youtube.com/embed/_1iY7iety2U?rel=0&playsinline=1&autoplay=1",
+            "title": "Maxima, Minima, Increasing and Decreasing Intervals",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+          "title": "Basic Applications of the Derivative Homework Walkthrough",
+          "id": "EKUldN90y-c",
+          "iframe": 0,
+          "slotId": "hw-video-EKUldN90y-c",
+          "resource": "Basic Applications of the Derivative",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+            "title": "Basic Applications of the Derivative Homework Walkthrough"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 798.9375,
+              "width": 305,
+              "height": 169.8125,
+              "right": 340,
+              "bottom": 968.75
+            },
+            "box": {
+              "x": 33,
+              "y": 796.9375,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 970.75
+            },
+            "host": {
+              "x": 33,
+              "y": 796.9375,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 970.75
+            },
+            "available": 309,
+            "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+            "title": "Basic Applications of the Derivative Homework Walkthrough",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+          "title": "Second Derivative Test for Extrema Homework Walkthrough",
+          "id": "vER0btRLtmA",
+          "iframe": 1,
+          "slotId": "hw-video-vER0btRLtmA",
+          "resource": "Second Derivative Test for Extrema",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+            "title": "Second Derivative Test for Extrema Homework Walkthrough"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 484.390625,
+              "width": 305,
+              "height": 169.8125,
+              "right": 340,
+              "bottom": 654.203125
+            },
+            "box": {
+              "x": 33,
+              "y": 482.390625,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 656.203125
+            },
+            "host": {
+              "x": 33,
+              "y": 482.390625,
+              "width": 309,
+              "height": 173.8125,
+              "right": 342,
+              "bottom": 656.203125
+            },
+            "available": 309,
+            "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+            "title": "Second Derivative Test for Extrema Homework Walkthrough",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 375,
+            "viewWidth": 375
+          },
+          "issues": []
+        }
+      ],
+      "issues": [],
+      "passed": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/index.html",
+      "width": 320,
+      "height": 900,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/sVVpBWBRf4I?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 8 - Increasing/Decreasing Intervals, Concavity, and Extrema",
+          "id": "sVVpBWBRf4I",
+          "measurements": {
+            "frame": {
+              "x": 20,
+              "y": 744.3125,
+              "width": 280,
+              "height": 155.75,
+              "right": 300,
+              "bottom": 900.0625
+            },
+            "box": {
+              "x": 18,
+              "y": 742.3125,
+              "width": 284,
+              "height": 159.75,
+              "right": 302,
+              "bottom": 902.0625
+            },
+            "host": {
+              "x": 18,
+              "y": 687.53125,
+              "width": 284,
+              "height": 214.53125,
+              "right": 302,
+              "bottom": 902.0625
+            },
+            "available": 284,
+            "src": "https://www.youtube.com/embed/sVVpBWBRf4I?rel=0&playsinline=1&autoplay=1",
+            "title": "Applications of the Derivative Lecture 8 - Increasing/Decreasing Intervals, Concavity, and Extrema",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/_1iY7iety2U?rel=0&playsinline=1",
+          "title": "Maxima, Minima, Increasing and Decreasing Intervals",
+          "id": "_1iY7iety2U",
+          "measurements": {
+            "frame": {
+              "x": 25,
+              "y": 412.421875,
+              "width": 270,
+              "height": 151,
+              "right": 295,
+              "bottom": 563.421875
+            },
+            "box": {
+              "x": 24,
+              "y": 411.421875,
+              "width": 272,
+              "height": 153,
+              "right": 296,
+              "bottom": 564.421875
+            },
+            "host": {
+              "x": 12,
+              "y": 323.578125,
+              "width": 296,
+              "height": 252.84375,
+              "right": 308,
+              "bottom": 576.421875
+            },
+            "available": 272,
+            "src": "https://www.youtube.com/embed/_1iY7iety2U?rel=0&playsinline=1&autoplay=1",
+            "title": "Maxima, Minima, Increasing and Decreasing Intervals",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+          "title": "Basic Applications of the Derivative Homework Walkthrough",
+          "id": "EKUldN90y-c",
+          "iframe": 0,
+          "slotId": "hw-video-EKUldN90y-c",
+          "resource": "Basic Applications of the Derivative",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+            "title": "Basic Applications of the Derivative Homework Walkthrough"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 874.765625,
+              "width": 250,
+              "height": 138.875,
+              "right": 285,
+              "bottom": 1013.640625
+            },
+            "box": {
+              "x": 33,
+              "y": 872.765625,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 1015.640625
+            },
+            "host": {
+              "x": 33,
+              "y": 872.765625,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 1015.640625
+            },
+            "available": 254,
+            "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+            "title": "Basic Applications of the Derivative Homework Walkthrough",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+          "title": "Second Derivative Test for Extrema Homework Walkthrough",
+          "id": "vER0btRLtmA",
+          "iframe": 1,
+          "slotId": "hw-video-vER0btRLtmA",
+          "resource": "Second Derivative Test for Extrema",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+            "title": "Second Derivative Test for Extrema Homework Walkthrough"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 484.34375,
+              "width": 250,
+              "height": 138.875,
+              "right": 285,
+              "bottom": 623.21875
+            },
+            "box": {
+              "x": 33,
+              "y": 482.34375,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 625.21875
+            },
+            "host": {
+              "x": 33,
+              "y": 482.34375,
+              "width": 254,
+              "height": 142.875,
+              "right": 287,
+              "bottom": 625.21875
+            },
+            "available": 254,
+            "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+            "title": "Second Derivative Test for Extrema Homework Walkthrough",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 320,
+            "viewWidth": 320
+          },
+          "issues": []
+        }
+      ],
+      "issues": [],
+      "passed": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/index.html",
+      "width": 390,
+      "height": 900,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/sVVpBWBRf4I?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 8 - Increasing/Decreasing Intervals, Concavity, and Extrema",
+          "id": "sVVpBWBRf4I",
+          "measurements": {
+            "frame": {
+              "x": 20,
+              "y": 704.796875,
+              "width": 350,
+              "height": 195.125,
+              "right": 370,
+              "bottom": 899.921875
+            },
+            "box": {
+              "x": 18,
+              "y": 702.796875,
+              "width": 354,
+              "height": 199.125,
+              "right": 372,
+              "bottom": 901.921875
+            },
+            "host": {
+              "x": 18,
+              "y": 648.015625,
+              "width": 354,
+              "height": 253.90625,
+              "right": 372,
+              "bottom": 901.921875
+            },
+            "available": 354,
+            "src": "https://www.youtube.com/embed/sVVpBWBRf4I?rel=0&playsinline=1&autoplay=1",
+            "title": "Applications of the Derivative Lecture 8 - Increasing/Decreasing Intervals, Concavity, and Extrema",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/_1iY7iety2U?rel=0&playsinline=1",
+          "title": "Maxima, Minima, Increasing and Decreasing Intervals",
+          "id": "_1iY7iety2U",
+          "measurements": {
+            "frame": {
+              "x": 25,
+              "y": 382.8125,
+              "width": 340,
+              "height": 190.375,
+              "right": 365,
+              "bottom": 573.1875
+            },
+            "box": {
+              "x": 24,
+              "y": 381.8125,
+              "width": 342,
+              "height": 192.375,
+              "right": 366,
+              "bottom": 574.1875
+            },
+            "host": {
+              "x": 12,
+              "y": 313.8125,
+              "width": 366,
+              "height": 272.375,
+              "right": 378,
+              "bottom": 586.1875
+            },
+            "available": 342,
+            "src": "https://www.youtube.com/embed/_1iY7iety2U?rel=0&playsinline=1&autoplay=1",
+            "title": "Maxima, Minima, Increasing and Decreasing Intervals",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+          "title": "Basic Applications of the Derivative Homework Walkthrough",
+          "id": "EKUldN90y-c",
+          "iframe": 0,
+          "slotId": "hw-video-EKUldN90y-c",
+          "resource": "Basic Applications of the Derivative",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+            "title": "Basic Applications of the Derivative Homework Walkthrough"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 799.5,
+              "width": 320,
+              "height": 178.25,
+              "right": 355,
+              "bottom": 977.75
+            },
+            "box": {
+              "x": 33,
+              "y": 797.5,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 979.75
+            },
+            "host": {
+              "x": 33,
+              "y": 797.5,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 979.75
+            },
+            "available": 324,
+            "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+            "title": "Basic Applications of the Derivative Homework Walkthrough",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+          "title": "Second Derivative Test for Extrema Homework Walkthrough",
+          "id": "vER0btRLtmA",
+          "iframe": 1,
+          "slotId": "hw-video-vER0btRLtmA",
+          "resource": "Second Derivative Test for Extrema",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+            "title": "Second Derivative Test for Extrema Homework Walkthrough"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 483.953125,
+              "width": 320,
+              "height": 178.25,
+              "right": 355,
+              "bottom": 662.203125
+            },
+            "box": {
+              "x": 33,
+              "y": 481.953125,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 664.203125
+            },
+            "host": {
+              "x": 33,
+              "y": 481.953125,
+              "width": 324,
+              "height": 182.25,
+              "right": 357,
+              "bottom": 664.203125
+            },
+            "available": 324,
+            "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+            "title": "Second Derivative Test for Extrema Homework Walkthrough",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 390,
+            "viewWidth": 390
+          },
+          "issues": []
+        }
+      ],
+      "issues": [],
+      "passed": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/index.html",
+      "width": 768,
+      "height": 900,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/sVVpBWBRf4I?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 8 - Increasing/Decreasing Intervals, Concavity, and Extrema",
+          "id": "sVVpBWBRf4I",
+          "measurements": {
+            "frame": {
+              "x": 20,
+              "y": 491.984375,
+              "width": 728,
+              "height": 407.75,
+              "right": 748,
+              "bottom": 899.734375
+            },
+            "box": {
+              "x": 18,
+              "y": 489.984375,
+              "width": 732,
+              "height": 411.75,
+              "right": 750,
+              "bottom": 901.734375
+            },
+            "host": {
+              "x": 18,
+              "y": 457.59375,
+              "width": 732,
+              "height": 444.140625,
+              "right": 750,
+              "bottom": 901.734375
+            },
+            "available": 732,
+            "src": "https://www.youtube.com/embed/sVVpBWBRf4I?rel=0&playsinline=1&autoplay=1",
+            "title": "Applications of the Derivative Lecture 8 - Increasing/Decreasing Intervals, Concavity, and Extrema",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": []
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/_1iY7iety2U?rel=0&playsinline=1",
+          "title": "Maxima, Minima, Increasing and Decreasing Intervals",
+          "id": "_1iY7iety2U",
+          "measurements": {
+            "frame": {
+              "x": 31,
+              "y": 279.875,
+              "width": 706,
+              "height": 396.25,
+              "right": 737,
+              "bottom": 676.125
+            },
+            "box": {
+              "x": 30,
+              "y": 278.875,
+              "width": 708,
+              "height": 398.25,
+              "right": 738,
+              "bottom": 677.125
+            },
+            "host": {
+              "x": 12,
+              "y": 204.875,
+              "width": 744,
+              "height": 490.25,
+              "right": 756,
+              "bottom": 695.125
+            },
+            "available": 708,
+            "src": "https://www.youtube.com/embed/_1iY7iety2U?rel=0&playsinline=1&autoplay=1",
+            "title": "Maxima, Minima, Increasing and Decreasing Intervals",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+          "title": "Basic Applications of the Derivative Homework Walkthrough",
+          "id": "EKUldN90y-c",
+          "iframe": 0,
+          "slotId": "hw-video-EKUldN90y-c",
+          "resource": "Basic Applications of the Derivative",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+            "title": "Basic Applications of the Derivative Homework Walkthrough"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 753.453125,
+              "width": 698,
+              "height": 390.875,
+              "right": 733,
+              "bottom": 1144.328125
+            },
+            "box": {
+              "x": 33,
+              "y": 751.453125,
+              "width": 702,
+              "height": 394.875,
+              "right": 735,
+              "bottom": 1146.328125
+            },
+            "host": {
+              "x": 33,
+              "y": 751.453125,
+              "width": 702,
+              "height": 394.875,
+              "right": 735,
+              "bottom": 1146.328125
+            },
+            "available": 702,
+            "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+            "title": "Basic Applications of the Derivative Homework Walkthrough",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+          "title": "Second Derivative Test for Extrema Homework Walkthrough",
+          "id": "vER0btRLtmA",
+          "iframe": 1,
+          "slotId": "hw-video-vER0btRLtmA",
+          "resource": "Second Derivative Test for Extrema",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+            "title": "Second Derivative Test for Extrema Homework Walkthrough"
+          },
+          "measurements": {
+            "frame": {
+              "x": 35,
+              "y": 875.046875,
+              "width": 698,
+              "height": 390.875,
+              "right": 733,
+              "bottom": 1265.921875
+            },
+            "box": {
+              "x": 33,
+              "y": 873.046875,
+              "width": 702,
+              "height": 394.875,
+              "right": 735,
+              "bottom": 1267.921875
+            },
+            "host": {
+              "x": 33,
+              "y": 873.046875,
+              "width": 702,
+              "height": 394.875,
+              "right": 735,
+              "bottom": 1267.921875
+            },
+            "available": 702,
+            "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+            "title": "Second Derivative Test for Extrema Homework Walkthrough",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 768,
+            "viewWidth": 768
+          },
+          "issues": []
+        }
+      ],
+      "issues": [],
+      "passed": true
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/index.html",
+      "width": 1280,
+      "height": 900,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/sVVpBWBRf4I?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 8 - Increasing/Decreasing Intervals, Concavity, and Extrema",
+          "id": "sVVpBWBRf4I",
+          "measurements": {
+            "frame": {
+              "x": 262,
+              "y": 476.484375,
+              "width": 756,
+              "height": 423.5,
+              "right": 1018,
+              "bottom": 899.984375
+            },
+            "box": {
+              "x": 260,
+              "y": 474.484375,
+              "width": 760,
+              "height": 427.5,
+              "right": 1020,
+              "bottom": 901.984375
+            },
+            "host": {
+              "x": 260,
+              "y": 442.09375,
+              "width": 760,
+              "height": 459.890625,
+              "right": 1020,
+              "bottom": 901.984375
+            },
+            "available": 760,
+            "src": "https://www.youtube.com/embed/sVVpBWBRf4I?rel=0&playsinline=1&autoplay=1",
+            "title": "Applications of the Derivative Lecture 8 - Increasing/Decreasing Intervals, Concavity, and Extrema",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": []
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/_1iY7iety2U?rel=0&playsinline=1",
+          "title": "Maxima, Minima, Increasing and Decreasing Intervals",
+          "id": "_1iY7iety2U",
+          "measurements": {
+            "frame": {
+              "x": 31,
+              "y": 135.875,
+              "width": 1218,
+              "height": 684.25,
+              "right": 1249,
+              "bottom": 820.125
+            },
+            "box": {
+              "x": 30,
+              "y": 134.875,
+              "width": 1220,
+              "height": 686.25,
+              "right": 1250,
+              "bottom": 821.125
+            },
+            "host": {
+              "x": 12,
+              "y": 60.875,
+              "width": 1256,
+              "height": 778.25,
+              "right": 1268,
+              "bottom": 839.125
+            },
+            "available": 1220,
+            "src": "https://www.youtube.com/embed/_1iY7iety2U?rel=0&playsinline=1&autoplay=1",
+            "title": "Maxima, Minima, Increasing and Decreasing Intervals",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+          "title": "Basic Applications of the Derivative Homework Walkthrough",
+          "id": "EKUldN90y-c",
+          "iframe": 0,
+          "slotId": "hw-video-EKUldN90y-c",
+          "resource": "Basic Applications of the Derivative",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+            "title": "Basic Applications of the Derivative Homework Walkthrough"
+          },
+          "measurements": {
+            "frame": {
+              "x": 277,
+              "y": 753.703125,
+              "width": 726,
+              "height": 406.625,
+              "right": 1003,
+              "bottom": 1160.328125
+            },
+            "box": {
+              "x": 275,
+              "y": 751.703125,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 1162.328125
+            },
+            "host": {
+              "x": 275,
+              "y": 751.703125,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 1162.328125
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+            "title": "Basic Applications of the Derivative Homework Walkthrough",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": []
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+          "title": "Second Derivative Test for Extrema Homework Walkthrough",
+          "id": "vER0btRLtmA",
+          "iframe": 1,
+          "slotId": "hw-video-vER0btRLtmA",
+          "resource": "Second Derivative Test for Extrema",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+            "title": "Second Derivative Test for Extrema Homework Walkthrough"
+          },
+          "measurements": {
+            "frame": {
+              "x": 277,
+              "y": 875.296875,
+              "width": 726,
+              "height": 406.625,
+              "right": 1003,
+              "bottom": 1281.921875
+            },
+            "box": {
+              "x": 275,
+              "y": 873.296875,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 1283.921875
+            },
+            "host": {
+              "x": 275,
+              "y": 873.296875,
+              "width": 730,
+              "height": 410.625,
+              "right": 1005,
+              "bottom": 1283.921875
+            },
+            "available": 730,
+            "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+            "title": "Second Derivative Test for Extrema Homework Walkthrough",
+            "boxAspect": "16 / 9",
+            "iframeAspect": "auto",
+            "documentWidth": 1280,
+            "viewWidth": 1280
+          },
+          "issues": []
+        }
+      ],
+      "issues": [],
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "videoPages": 66,
+  "sourcePlayers": 198,
+  "systems": {
+    "shared-pair": 8,
+    "homework": 95,
+    "review": 7,
+    "shared-large": 55,
+    "shared-gallery": 33
+  },
+  "externalPlaybackVerified": false
+}

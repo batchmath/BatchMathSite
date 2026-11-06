@@ -1,0 +1,3129 @@
+{
+  "baseline": "63ef79b1271974072daa2f1f99a968671a45f2c7",
+  "videoPages": 66,
+  "players": 198,
+  "systems": {
+    "shared-pair": 8,
+    "homework": 95,
+    "review": 7,
+    "shared-large": 55,
+    "shared-gallery": 33
+  },
+  "pages": [
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/basic-techniques-indeterminate-limits/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-pair",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/Ljnd_eLH3wg?rel=0&playsinline=1",
+          "title": "Indeterminate Limits - Lecture 4",
+          "id": "Ljnd_eLH3wg"
+        },
+        {
+          "system": "shared-pair",
+          "role": "collection",
+          "grid": 0,
+          "card": 1,
+          "src": "https://www.youtube.com/embed/pNheQAgVeg4?rel=0&playsinline=1",
+          "title": "Indeterminate Limits - Lecture 5",
+          "id": "pNheQAgVeg4"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/KLn-LyPSHDk?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "KLn-LyPSHDk",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Limits 1",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/KLn-LyPSHDk?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/_Bb0fRykNVI?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "_Bb0fRykNVI",
+          "iframe": 1,
+          "slotId": "bm-hw-video-2",
+          "resource": "Limits 2",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/_Bb0fRykNVI?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/comprehensive-review/index.html",
+      "sharedAsset": false,
+      "players": [
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "t2g8nXyS28Q",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Old AP Limits and Continuity Questions",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/t2g8nXyS28Q?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "jUTu8rtBYFM",
+          "iframe": 1,
+          "slotId": "bm-hw-video-2",
+          "resource": "More Limits and Continuity",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/jUTu8rtBYFM?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "e-65Unj_U2A",
+          "iframe": 2,
+          "slotId": "bm-hw-video-3",
+          "resource": "Extra Practice",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/e-65Unj_U2A?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "K9LSfywWfgc",
+          "iframe": 3,
+          "slotId": "bm-hw-video-4",
+          "resource": "More Limit Proofs",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/K9LSfywWfgc?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "VdixM4K8e8w",
+          "iframe": 4,
+          "slotId": "bm-review-video-1",
+          "resource": "Indeterminate Trigonometric Limit: Known Limits",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/VdixM4K8e8w?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          }
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "ErJvVoIi-z4",
+          "iframe": 5,
+          "slotId": "bm-review-video-2",
+          "resource": "Limits Review 1",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ErJvVoIi-z4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          }
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "wtN4F8lJmnI",
+          "iframe": 6,
+          "slotId": "bm-review-video-3",
+          "resource": "Limits Review 2",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/wtN4F8lJmnI?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          }
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "s_yec8M5TP4",
+          "iframe": 7,
+          "slotId": "bm-review-video-4",
+          "resource": "Limits Review 3",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/s_yec8M5TP4?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          }
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "M4A8YUuqZw0",
+          "iframe": 8,
+          "slotId": "bm-review-video-5",
+          "resource": "Limits Review 4",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/M4A8YUuqZw0?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          }
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "Na__0mQiOGg",
+          "iframe": 9,
+          "slotId": "bm-review-video-6",
+          "resource": "Limits Review 5",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Na__0mQiOGg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          }
+        },
+        {
+          "system": "review",
+          "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+          "title": "Additional Limits Review Video",
+          "id": "EOp-BVCPNeg",
+          "iframe": 10,
+          "slotId": "bm-review-video-7",
+          "resource": "Limits Review 6",
+          "buttonLabel": "Watch Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EOp-BVCPNeg?rel=0&playsinline=1",
+            "title": "Additional Limits Review Video"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/delta-epsilon-proofs/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/DukYT9E62Qw?rel=0&playsinline=1",
+          "title": "Delta Epsilon Proofs",
+          "id": "DukYT9E62Qw"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/Q5wgC-vUBEE?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "Q5wgC-vUBEE",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Delta Epsilon Limits",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Q5wgC-vUBEE?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/intermediate-value-theorem/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/ZDgV3OJ_kxM?rel=0&playsinline=1",
+          "title": "Intermediate Value Theorem",
+          "id": "ZDgV3OJ_kxM"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/Ow24qD-ZkLI?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "Ow24qD-ZkLI",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Continuity and IVT",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Ow24qD-ZkLI?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-continuity/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/U5QO-KbNEMU?rel=0&playsinline=1",
+          "title": "Introduction to Continuity",
+          "id": "U5QO-KbNEMU"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/ktwagirgsFU?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "ktwagirgsFU",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Classifying Discontinuities",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ktwagirgsFU?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/faWIdPvVlJY?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "faWIdPvVlJY",
+          "iframe": 1,
+          "slotId": "bm-hw-video-2",
+          "resource": "Extra Continuity",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/faWIdPvVlJY?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/introduction-to-limits/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/16_FsVglpWk?rel=0&playsinline=1",
+          "title": "Introduction to Limits",
+          "id": "16_FsVglpWk"
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/limits-at-infinity/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-pair",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/KX79R9pBIWY?rel=0&playsinline=1",
+          "title": "Limits at Infinity - Lecture 9",
+          "id": "KX79R9pBIWY"
+        },
+        {
+          "system": "shared-pair",
+          "role": "collection",
+          "grid": 0,
+          "card": 1,
+          "src": "https://www.youtube.com/embed/Y3MGsvoMyhQ?rel=0&playsinline=1",
+          "title": "Limits at Infinity - Lecture 10",
+          "id": "Y3MGsvoMyhQ"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/7mNdBde0BrA?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "7mNdBde0BrA",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Even More Limits",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/7mNdBde0BrA?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/nTZOzr_wbcI?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "nTZOzr_wbcI",
+          "iframe": 1,
+          "slotId": "bm-hw-video-2",
+          "resource": "Delta Epsilon Limits Involving Infinity",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/nTZOzr_wbcI?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/limits-of-continuous-functions/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/TUx3lwnZrYs?rel=0&playsinline=1",
+          "title": "Limits of Continuous Functions",
+          "id": "TUx3lwnZrYs"
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/one-sided-limits/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/z7gLOAvQoMk?rel=0&playsinline=1",
+          "title": "One-sided Limits",
+          "id": "z7gLOAvQoMk"
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/sin-one-over-x/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/Glrn1ZZFYjc?rel=0&playsinline=1",
+          "title": "sin(1/x)",
+          "id": "Glrn1ZZFYjc"
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-1-limits-continuity/topics/squeeze-theorem-trigonometric-limits/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/1h7GuPZxSDk?rel=0&playsinline=1",
+          "title": "Squeeze Theorem and Trigonometric Limits",
+          "id": "1h7GuPZxSDk"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/ti3vVAo5waY?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "ti3vVAo5waY",
+          "iframe": 0,
+          "slotId": "bm-hw-video-1",
+          "resource": "Limits 3",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ti3vVAo5waY?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/YUJPFba4_3c?rel=0&playsinline=1",
+          "title": "HW Walkthrough Video",
+          "id": "YUJPFba4_3c",
+          "iframe": 1,
+          "slotId": "bm-hw-video-2",
+          "resource": "Limits 4",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/YUJPFba4_3c?rel=0&playsinline=1",
+            "title": "HW Walkthrough Video"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/index.html",
+      "sharedAsset": false,
+      "players": [
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/Oy_rgrn83pk?rel=0&playsinline=1",
+          "title": "Finding More Derivatives Homework Walkthrough",
+          "id": "Oy_rgrn83pk",
+          "iframe": 0,
+          "slotId": "hw-video-Oy_rgrn83pk",
+          "resource": "Finding More Derivatives",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Oy_rgrn83pk?rel=0&playsinline=1",
+            "title": "Finding More Derivatives Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/pyaW6eLHP14?rel=0&playsinline=1",
+          "title": "More Derivatives Homework Walkthrough",
+          "id": "pyaW6eLHP14",
+          "iframe": 1,
+          "slotId": "hw-video-pyaW6eLHP14",
+          "resource": "More Derivatives",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/pyaW6eLHP14?rel=0&playsinline=1",
+            "title": "More Derivatives Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/_BRBmw0JYhc?rel=0&playsinline=1",
+          "title": "Finding the Derivative at a Point Homework Walkthrough",
+          "id": "_BRBmw0JYhc",
+          "iframe": 2,
+          "slotId": "hw-video-_BRBmw0JYhc",
+          "resource": "Finding Derivatives at a Point",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/_BRBmw0JYhc?rel=0&playsinline=1",
+            "title": "Finding the Derivative at a Point Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/dsd1ovE8l0U?rel=0&playsinline=1",
+          "title": "Multiple Choice Derivatives Homework Walkthrough",
+          "id": "dsd1ovE8l0U",
+          "iframe": 3,
+          "slotId": "hw-video-dsd1ovE8l0U",
+          "resource": "Multiple Choice Derivatives",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/dsd1ovE8l0U?rel=0&playsinline=1",
+            "title": "Multiple Choice Derivatives Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/j1rLMtqrZKM?rel=0&playsinline=1",
+          "title": "Derivatives Lecture 12 - Derivatives of Inverse Functions",
+          "id": "j1rLMtqrZKM"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/8PPcoWN_rPU?rel=0&playsinline=1",
+          "title": "Derivatives of Inverse Functions Homework Walkthrough",
+          "id": "8PPcoWN_rPU",
+          "iframe": 0,
+          "slotId": "hw-video-8PPcoWN_rPU",
+          "resource": "Derivatives of Inverse Functions",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/8PPcoWN_rPU?rel=0&playsinline=1",
+            "title": "Derivatives of Inverse Functions Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/9YZFu4lrvS0?rel=0&playsinline=1",
+          "title": "Extra Inverse Derivatives Homework Walkthrough",
+          "id": "9YZFu4lrvS0",
+          "iframe": 1,
+          "slotId": "hw-video-9YZFu4lrvS0",
+          "resource": "Extra Inverse Derivatives",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/9YZFu4lrvS0?rel=0&playsinline=1",
+            "title": "Extra Inverse Derivatives Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/rJpEafUr51A?rel=0&playsinline=1",
+          "title": "Derivatives Lecture 9 - Derivatives of Logarithmic Functions",
+          "id": "rJpEafUr51A"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/8F5ZXmZ2dZA?rel=0&playsinline=1",
+          "title": "Extra Examples of Derivatives of ln(u)",
+          "id": "8F5ZXmZ2dZA"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/wBx2lEbPLZg?rel=0&playsinline=1",
+          "title": "Derivatives of Logarithmic Functions Homework Walkthrough",
+          "id": "wBx2lEbPLZg",
+          "iframe": 0,
+          "slotId": "hw-video-wBx2lEbPLZg",
+          "resource": "Derivatives of Logarithmic Functions",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/wBx2lEbPLZg?rel=0&playsinline=1",
+            "title": "Derivatives of Logarithmic Functions Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/lT4KU2w9mPY?rel=0&playsinline=1",
+          "title": "Derivatives Lecture 5 - Derivatives of Trigonometric Functions",
+          "id": "lT4KU2w9mPY"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/KzF5g2jkLHk?rel=0&playsinline=1",
+          "title": "Trig Derivatives Homework Walkthrough",
+          "id": "KzF5g2jkLHk",
+          "iframe": 0,
+          "slotId": "hw-video-KzF5g2jkLHk",
+          "resource": "Trig Derivatives",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/KzF5g2jkLHk?rel=0&playsinline=1",
+            "title": "Trig Derivatives Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/UyiyDGQLnow?rel=0&playsinline=1",
+          "title": "Derivatives Lecture 2 - Derivatives with the Power Rule",
+          "id": "UyiyDGQLnow"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/_wU4zrFpLHY?rel=0&playsinline=1",
+          "title": "Proof of the Power Rule for Derivatives",
+          "id": "_wU4zrFpLHY"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 1,
+          "src": "https://www.youtube.com/embed/3RAsTDL3jfI?rel=0&playsinline=1",
+          "title": "Extra Examples of Derivatives Using the Power Rule",
+          "id": "3RAsTDL3jfI"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/kUg2o4BGGg4?rel=0&playsinline=1",
+          "title": "Basic Derivatives Homework Walkthrough",
+          "id": "kUg2o4BGGg4",
+          "iframe": 0,
+          "slotId": "hw-video-kUg2o4BGGg4",
+          "resource": "Basic Derivatives",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/kUg2o4BGGg4?rel=0&playsinline=1",
+            "title": "Basic Derivatives Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/difference-quotient/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/HvbXJFesiRU?rel=0&playsinline=1",
+          "title": "Derivatives Lecture 1 - Difference Quotient",
+          "id": "HvbXJFesiRU"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/RfBZMku81fw?rel=0&playsinline=1",
+          "title": "Limits of the Difference Quotient Homework Walkthrough",
+          "id": "RfBZMku81fw",
+          "iframe": 0,
+          "slotId": "hw-video-RfBZMku81fw",
+          "resource": "Limits of the Difference Quotient",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/RfBZMku81fw?rel=0&playsinline=1",
+            "title": "Limits of the Difference Quotient Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/D_Um7e2527c?rel=0&playsinline=1",
+          "title": "Limits of the Difference Quotient 2 Homework Walkthrough",
+          "id": "D_Um7e2527c",
+          "iframe": 1,
+          "slotId": "hw-video-D_Um7e2527c",
+          "resource": "Limits of the Difference Quotient 2",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/D_Um7e2527c?rel=0&playsinline=1",
+            "title": "Limits of the Difference Quotient 2 Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/exponential-functions/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/MEhihZBZtKs?rel=0&playsinline=1",
+          "title": "Derivatives Lecture 7 - Exponential Functions",
+          "id": "MEhihZBZtKs"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/oic-94J1fbo?rel=0&playsinline=1",
+          "title": "Extra Examples of Derivatives of e^u",
+          "id": "oic-94J1fbo"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/zZKxhmwyV2k?rel=0&playsinline=1",
+          "title": "Derivatives of Exponential Functions Homework Walkthrough",
+          "id": "zZKxhmwyV2k",
+          "iframe": 0,
+          "slotId": "hw-video-zZKxhmwyV2k",
+          "resource": "Derivatives of Exponential Functions",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/zZKxhmwyV2k?rel=0&playsinline=1",
+            "title": "Derivatives of Exponential Functions Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/RcIT0GS-Gks?rel=0&playsinline=1",
+          "title": "Derivatives Lecture 8 - Implicit Differentiation",
+          "id": "RcIT0GS-Gks"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/B1Dj13cwByI?rel=0&playsinline=1",
+          "title": "Extra Examples of Implicit Differentiation",
+          "id": "B1Dj13cwByI"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/aeLDPnt0zjA?rel=0&playsinline=1",
+          "title": "Basic Implicit Differentiation Homework Walkthrough",
+          "id": "aeLDPnt0zjA",
+          "iframe": 0,
+          "slotId": "hw-video-aeLDPnt0zjA",
+          "resource": "Basic Implicit Differentiation",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/aeLDPnt0zjA?rel=0&playsinline=1",
+            "title": "Basic Implicit Differentiation Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/8RQu9vGX0P8?rel=0&playsinline=1",
+          "title": "Basic Implicit Differentiation 2 Homework Walkthrough",
+          "id": "8RQu9vGX0P8",
+          "iframe": 1,
+          "slotId": "hw-video-8RQu9vGX0P8",
+          "resource": "Basic Implicit Differentiation 2",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/8RQu9vGX0P8?rel=0&playsinline=1",
+            "title": "Basic Implicit Differentiation 2 Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/MujBVCfTbX8?rel=0&playsinline=1",
+          "title": "Advanced Implicit Differentiation Homework Walkthrough",
+          "id": "MujBVCfTbX8",
+          "iframe": 2,
+          "slotId": "hw-video-MujBVCfTbX8",
+          "resource": "Advanced Implicit Differentiation",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/MujBVCfTbX8?rel=0&playsinline=1",
+            "title": "Advanced Implicit Differentiation Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/AoOm_lNCLds?rel=0&playsinline=1",
+          "title": "Finding Second Derivatives Implicitly Homework Walkthrough",
+          "id": "AoOm_lNCLds",
+          "iframe": 3,
+          "slotId": "hw-video-AoOm_lNCLds",
+          "resource": "Finding Second Derivatives Implicitly",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/AoOm_lNCLds?rel=0&playsinline=1",
+            "title": "Finding Second Derivatives Implicitly Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/BljH7ZxHjKg?rel=0&playsinline=1",
+          "title": "Derivatives Lecture 11 - Inverse Trigonometric Functions",
+          "id": "BljH7ZxHjKg"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/0Mr91p9uun4?rel=0&playsinline=1",
+          "title": "Derivatives of Inverse Trigonometric Functions Homework Walkthrough",
+          "id": "0Mr91p9uun4",
+          "iframe": 0,
+          "slotId": "hw-video-0Mr91p9uun4",
+          "resource": "Derivatives of Inverse Trigonometric Functions",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/0Mr91p9uun4?rel=0&playsinline=1",
+            "title": "Derivatives of Inverse Trigonometric Functions Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/yyIml6s83mg?rel=0&playsinline=1",
+          "title": "Derivatives Lecture 10 - Logarithmic Differentiation",
+          "id": "yyIml6s83mg"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/O-TWAHeU6uQ?rel=0&playsinline=1",
+          "title": "Extra Examples of Logarithmic Differentiation",
+          "id": "O-TWAHeU6uQ"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/TOEH2iKTAPQ?rel=0&playsinline=1",
+          "title": "Logarithmic Differentiation Homework Walkthrough",
+          "id": "TOEH2iKTAPQ",
+          "iframe": 0,
+          "slotId": "hw-video-TOEH2iKTAPQ",
+          "resource": "Logarithmic Differentiation",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/TOEH2iKTAPQ?rel=0&playsinline=1",
+            "title": "Logarithmic Differentiation Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/73RKQ9ybsDc?rel=0&playsinline=1",
+          "title": "Derivatives Lecture 6 - The Chain Rule",
+          "id": "73RKQ9ybsDc"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/RhxU25eA1a8?rel=0&playsinline=1",
+          "title": "Proof of the Chain Rule",
+          "id": "RhxU25eA1a8"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 1,
+          "src": "https://www.youtube.com/embed/uDWcP2R8UMo?rel=0&playsinline=1",
+          "title": "Extra Examples of Derivatives using the Chain Rule",
+          "id": "uDWcP2R8UMo"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 2,
+          "src": "https://www.youtube.com/embed/JbPkKwquxm0?rel=0&playsinline=1",
+          "title": "Extra Examples of using the Chain Rule within the Chain Rule",
+          "id": "JbPkKwquxm0"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/mtPMQKwYI4w?rel=0&playsinline=1",
+          "title": "Power, Product, Quotient, Chain Rule with Trig Functions Homework Walkthrough",
+          "id": "mtPMQKwYI4w",
+          "iframe": 0,
+          "slotId": "hw-video-mtPMQKwYI4w",
+          "resource": "Power, Product, Quotient, Chain Rule with Trig Functions",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/mtPMQKwYI4w?rel=0&playsinline=1",
+            "title": "Power, Product, Quotient, Chain Rule with Trig Functions Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/mJRx9_5o564?rel=0&playsinline=1",
+          "title": "More Chain Rule Homework Walkthrough",
+          "id": "mJRx9_5o564",
+          "iframe": 1,
+          "slotId": "hw-video-mJRx9_5o564",
+          "resource": "More Chain Rule",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/mJRx9_5o564?rel=0&playsinline=1",
+            "title": "More Chain Rule Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/AO8bpmrze8Y?rel=0&playsinline=1",
+          "title": "Even More Chain Rule Homework Walkthrough",
+          "id": "AO8bpmrze8Y",
+          "iframe": 2,
+          "slotId": "hw-video-AO8bpmrze8Y",
+          "resource": "Even More Chain Rule",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/AO8bpmrze8Y?rel=0&playsinline=1",
+            "title": "Even More Chain Rule Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/HMngqzrVM98?rel=0&playsinline=1",
+          "title": "Derivatives from Tables",
+          "id": "HMngqzrVM98",
+          "iframe": 3,
+          "slotId": "hw-video-HMngqzrVM98",
+          "resource": "Derivatives from Tables",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/HMngqzrVM98?rel=0&playsinline=1",
+            "title": "Derivatives from Tables"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/2XwwwSuLO24?rel=0&playsinline=1",
+          "title": "Finding Derivatives at a Point with Power, Product, Quotient, Trig, and Chain Rules Homework Walkthrough",
+          "id": "2XwwwSuLO24",
+          "iframe": 4,
+          "slotId": "hw-video-2XwwwSuLO24",
+          "resource": "Finding Derivatives at a Point with Power, Product, Quotient, Trig, and Chain Rules",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/2XwwwSuLO24?rel=0&playsinline=1",
+            "title": "Finding Derivatives at a Point with Power, Product, Quotient, Trig, and Chain Rules Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/_tkaZzJF9XY?rel=0&playsinline=1",
+          "title": "Nested Chain Rule Derivatives Homework Walkthrough",
+          "id": "_tkaZzJF9XY",
+          "iframe": 5,
+          "slotId": "hw-video-_tkaZzJF9XY",
+          "resource": "Nested Chain Rule Derivatives",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/_tkaZzJF9XY?rel=0&playsinline=1",
+            "title": "Nested Chain Rule Derivatives Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/the-product-rule/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/IiKXJsCYa-Y?rel=0&playsinline=1",
+          "title": "Derivatives Lecture 3 - The Product Rule",
+          "id": "IiKXJsCYa-Y"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/dRy6WBrkFRc?rel=0&playsinline=1",
+          "title": "Proof of the Product Rule",
+          "id": "dRy6WBrkFRc"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 1,
+          "src": "https://www.youtube.com/embed/VYG85O3J6vw?rel=0&playsinline=1",
+          "title": "Extra Examples of the Product Rule",
+          "id": "VYG85O3J6vw"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/Z9mNk5zIf9k?rel=0&playsinline=1",
+          "title": "Product and Quotient Rule Homework Walkthrough",
+          "id": "Z9mNk5zIf9k",
+          "iframe": 0,
+          "slotId": "hw-video-Z9mNk5zIf9k",
+          "resource": "Product Rule and Quotient Rule",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Z9mNk5zIf9k?rel=0&playsinline=1",
+            "title": "Product and Quotient Rule Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/iDzKaWT4OhQ?rel=0&playsinline=1",
+          "title": "Derivatives Lecture 4 - The Quotient Rule",
+          "id": "iDzKaWT4OhQ"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/LZRaoshvlQo?rel=0&playsinline=1",
+          "title": "Proof of the Quotient Rule",
+          "id": "LZRaoshvlQo"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 1,
+          "src": "https://www.youtube.com/embed/GBd3kS24sNc?rel=0&playsinline=1",
+          "title": "Extra Examples of the Quotient Rule",
+          "id": "GBd3kS24sNc"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/Z9mNk5zIf9k?rel=0&playsinline=1",
+          "title": "Product and Quotient Rule Homework Walkthrough",
+          "id": "Z9mNk5zIf9k",
+          "iframe": 0,
+          "slotId": "hw-video-Z9mNk5zIf9k",
+          "resource": "Product Rule and Quotient Rule",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Z9mNk5zIf9k?rel=0&playsinline=1",
+            "title": "Product and Quotient Rule Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/1CtXXmE-Gms?rel=0&playsinline=1",
+          "title": "Extra Power, Product, Quotient Rule Derivatives Homework Walkthrough",
+          "id": "1CtXXmE-Gms",
+          "iframe": 1,
+          "slotId": "hw-video-1CtXXmE-Gms",
+          "resource": "Extra Power, Product, Quotient Rule Practice",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/1CtXXmE-Gms?rel=0&playsinline=1",
+            "title": "Extra Power, Product, Quotient Rule Derivatives Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/SBptj5k5CUQ?rel=0&playsinline=1",
+          "title": "Derivatives with Tables \u2014 Product & Quotient Rule",
+          "id": "SBptj5k5CUQ",
+          "iframe": 2,
+          "slotId": "hw-video-SBptj5k5CUQ",
+          "resource": "Product and Quotient Rule Derivatives from Tables",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/SBptj5k5CUQ?rel=0&playsinline=1",
+            "title": "Derivatives with Tables \u2014 Product & Quotient Rule"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/0PUO1X6rUrQ?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 7 - Absolute and Local Extrema and the Extreme Value Theorem",
+          "id": "0PUO1X6rUrQ"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/B687_ghJXMU?rel=0&playsinline=1",
+          "title": "Finding Absolute Extrema on an Interval Homework Walkthrough",
+          "id": "B687_ghJXMU",
+          "iframe": 0,
+          "slotId": "hw-video-B687_ghJXMU",
+          "resource": "Finding Absolute Extrema on an Interval",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/B687_ghJXMU?rel=0&playsinline=1",
+            "title": "Finding Absolute Extrema on an Interval Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/8gfgmrelheo?rel=0&playsinline=1",
+          "title": "Finding Local Extrema and Intervals of Increasing and Decreasing Homework Walkthrough",
+          "id": "8gfgmrelheo",
+          "iframe": 1,
+          "slotId": "hw-video-8gfgmrelheo",
+          "resource": "Finding Local Extrema and Intervals of Increasing and Decreasing",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/8gfgmrelheo?rel=0&playsinline=1",
+            "title": "Finding Local Extrema and Intervals of Increasing and Decreasing Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-pair",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/T4wVGEHUgz8?rel=0&playsinline=1",
+          "title": "Simple Critical Value Problems",
+          "id": "T4wVGEHUgz8"
+        },
+        {
+          "system": "shared-pair",
+          "role": "collection",
+          "grid": 0,
+          "card": 1,
+          "src": "https://www.youtube.com/embed/YjXdN1IoDDw?rel=0&playsinline=1",
+          "title": "AP Style Critical Value Problems",
+          "id": "YjXdN1IoDDw"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/v-m8fdnRmS0?rel=0&playsinline=1",
+          "title": "More Optimization and Related Rates Homework Walkthrough",
+          "id": "v-m8fdnRmS0",
+          "iframe": 0,
+          "slotId": "hw-video-v-m8fdnRmS0",
+          "resource": "More Optimization and Related Rates",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/v-m8fdnRmS0?rel=0&playsinline=1",
+            "title": "More Optimization and Related Rates Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/sx-MdU9xSaY?rel=0&playsinline=1",
+          "title": "Even More Optimization and Related Rates Homework Walkthrough",
+          "id": "sx-MdU9xSaY",
+          "iframe": 1,
+          "slotId": "hw-video-sx-MdU9xSaY",
+          "resource": "Even More Optimization and Related Rates",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/sx-MdU9xSaY?rel=0&playsinline=1",
+            "title": "Even More Optimization and Related Rates Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/g7eXRi1stXc?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Multiple Choice Homework Walkthrough",
+          "id": "g7eXRi1stXc",
+          "iframe": 2,
+          "slotId": "hw-video-g7eXRi1stXc",
+          "resource": "Applications of the Derivative Multiple Choice",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/g7eXRi1stXc?rel=0&playsinline=1",
+            "title": "Applications of the Derivative Multiple Choice Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/K9X8M_ixkNo?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 1- Equations of Tangent and Normal Lines",
+          "id": "K9X8M_ixkNo"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/S9dqxUKyEJQ?rel=0&playsinline=1",
+          "title": "Example of Finding Tangent and Normal Line Equations",
+          "id": "S9dqxUKyEJQ"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 1,
+          "src": "https://www.youtube.com/embed/nWR4-J7XrIY?rel=0&playsinline=1",
+          "title": "Example of Finding the Tangent Line to a Parabola that is Parallel to a Given Line",
+          "id": "nWR4-J7XrIY"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 2,
+          "src": "https://www.youtube.com/embed/XjD3eQL0G6Y?rel=0&playsinline=1",
+          "title": "Example of Finding Tangent and Normal Lines Using Implicit Differentiation",
+          "id": "XjD3eQL0G6Y"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 3,
+          "src": "https://www.youtube.com/embed/jPhEpjNCszw?rel=0&playsinline=1",
+          "title": "Example of Finding a Normal Line to an Ellipse",
+          "id": "jPhEpjNCszw"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/Q2Swoc3ZGm0?rel=0&playsinline=1",
+          "title": "Equations of Tangent and Normal Lines Homework Walkthrough",
+          "id": "Q2Swoc3ZGm0",
+          "iframe": 0,
+          "slotId": "hw-video-Q2Swoc3ZGm0",
+          "resource": "Equations of Tangent and Normal Lines",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Q2Swoc3ZGm0?rel=0&playsinline=1",
+            "title": "Equations of Tangent and Normal Lines Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/graphing-functions/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/yTn1Sbsx6fU?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 9 - Graphing Functions",
+          "id": "yTn1Sbsx6fU"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/bHoQlaLXoLM?rel=0&playsinline=1",
+          "title": "More Difficult Applications of the Derivative Homework Walkthrough",
+          "id": "bHoQlaLXoLM",
+          "iframe": 0,
+          "slotId": "hw-video-bHoQlaLXoLM",
+          "resource": "More Difficult Applications of the Derivative",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/bHoQlaLXoLM?rel=0&playsinline=1",
+            "title": "More Difficult Applications of the Derivative Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/M9bb2V5C2WQ?rel=0&playsinline=1",
+          "title": "Functions to Graph Homework Walkthrough",
+          "id": "M9bb2V5C2WQ",
+          "iframe": 1,
+          "slotId": "hw-video-M9bb2V5C2WQ",
+          "resource": "Functions to Graph",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/M9bb2V5C2WQ?rel=0&playsinline=1",
+            "title": "Functions to Graph Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/graphing-the-derivative/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/w23hEDw-bLY?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 6 - Graphing the Derivative",
+          "id": "w23hEDw-bLY"
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/bz7iHJOFofo?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 2 - Horizontal and Vertical Tangent Lines",
+          "id": "bz7iHJOFofo"
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/hNO4jK3IV84?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 3 - Horizontal and Vertical Tangent Lines Implicitly",
+          "id": "hNO4jK3IV84"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/dKN-gweSO9Y?rel=0&playsinline=1",
+          "title": "Horizontal and Vertical Tangent Lines using Implicit Differentiation",
+          "id": "dKN-gweSO9Y"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/OmijJffl2eY?rel=0&playsinline=1",
+          "title": "Horizontal and Vertical Tangent Lines with Implicit Equations Homework Walkthrough",
+          "id": "OmijJffl2eY",
+          "iframe": 0,
+          "slotId": "hw-video-OmijJffl2eY",
+          "resource": "Horizontal and Vertical Tangent Lines with Implicit Equations (No Calculator)",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/OmijJffl2eY?rel=0&playsinline=1",
+            "title": "Horizontal and Vertical Tangent Lines with Implicit Equations Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/sVVpBWBRf4I?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 8 - Increasing/Decreasing Intervals, Concavity, and Extrema",
+          "id": "sVVpBWBRf4I"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/_1iY7iety2U?rel=0&playsinline=1",
+          "title": "Maxima, Minima, Increasing and Decreasing Intervals",
+          "id": "_1iY7iety2U"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+          "title": "Basic Applications of the Derivative Homework Walkthrough",
+          "id": "EKUldN90y-c",
+          "iframe": 0,
+          "slotId": "hw-video-EKUldN90y-c",
+          "resource": "Basic Applications of the Derivative",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EKUldN90y-c?rel=0&playsinline=1",
+            "title": "Basic Applications of the Derivative Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+          "title": "Second Derivative Test for Extrema Homework Walkthrough",
+          "id": "vER0btRLtmA",
+          "iframe": 1,
+          "slotId": "hw-video-vER0btRLtmA",
+          "resource": "Second Derivative Test for Extrema",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/vER0btRLtmA?rel=0&playsinline=1",
+            "title": "Second Derivative Test for Extrema Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/Bhc6QggspwU?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 14 - L'Hopital's Rule",
+          "id": "Bhc6QggspwU"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/5kmTfxbapjg?rel=0&playsinline=1",
+          "title": "L'Hopital's Rule Homework Walkthrough",
+          "id": "5kmTfxbapjg",
+          "iframe": 0,
+          "slotId": "hw-video-5kmTfxbapjg",
+          "resource": "L'Hopital's Rule",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/5kmTfxbapjg?rel=0&playsinline=1",
+            "title": "L'Hopital's Rule Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/M5uAbHaJEyg?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 10 - Linearization and Differentials",
+          "id": "M5uAbHaJEyg"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/hrq3K4UPYa4?rel=0&playsinline=1",
+          "title": "Linearization and Differentials Homework Walkthrough",
+          "id": "hrq3K4UPYa4",
+          "iframe": 0,
+          "slotId": "hw-video-hrq3K4UPYa4",
+          "resource": "Linearization and Differentials",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/hrq3K4UPYa4?rel=0&playsinline=1",
+            "title": "Linearization and Differentials Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/zU4AtsCnFHw?rel=0&playsinline=1",
+          "title": "More Linearization and Differentials Homework Walkthrough",
+          "id": "zU4AtsCnFHw",
+          "iframe": 1,
+          "slotId": "hw-video-zU4AtsCnFHw",
+          "resource": "More Linearization and Differentials",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/zU4AtsCnFHw?rel=0&playsinline=1",
+            "title": "More Linearization and Differentials Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/motion/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/zMvkYGkhq-M?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 5 - Motion",
+          "id": "zMvkYGkhq-M"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/vnNp-kmdvx0?rel=0&playsinline=1",
+          "title": "Basic Particle Motion (Finding acceleration given position equation)",
+          "id": "vnNp-kmdvx0"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 1,
+          "src": "https://www.youtube.com/embed/Z_cGOIgOZ5c?rel=0&playsinline=1",
+          "title": "Trigonometric Particle Motion",
+          "id": "Z_cGOIgOZ5c"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/Je7BRYARXB8?rel=0&playsinline=1",
+          "title": "Derivative Motion Homework Walkthrough",
+          "id": "Je7BRYARXB8",
+          "iframe": 0,
+          "slotId": "hw-video-Je7BRYARXB8",
+          "resource": "Derivative Motion",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/Je7BRYARXB8?rel=0&playsinline=1",
+            "title": "Derivative Motion Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/FlgWcuUTHm4?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 11 - Newton's Method for Approximating Roots of a Function",
+          "id": "FlgWcuUTHm4"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/kPTKk69w-cE?rel=0&playsinline=1",
+          "title": "Newton's Method Homework Walkthrough",
+          "id": "kPTKk69w-cE",
+          "iframe": 0,
+          "slotId": "hw-video-kPTKk69w-cE",
+          "resource": "Newton's Method",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/kPTKk69w-cE?rel=0&playsinline=1",
+            "title": "Newton's Method Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/optimization/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/eTYUAd0mKeg?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 15 - Optimization",
+          "id": "eTYUAd0mKeg"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/n-EnDRKejsk?rel=0&playsinline=1",
+          "title": "Optimization Homework Walkthrough",
+          "id": "n-EnDRKejsk",
+          "iframe": 0,
+          "slotId": "hw-video-n-EnDRKejsk",
+          "resource": "Optimization",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/n-EnDRKejsk?rel=0&playsinline=1",
+            "title": "Optimization Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/related-rates/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/6KH4UGE-YAQ?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 16 - Related Rates",
+          "id": "6KH4UGE-YAQ"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/EttdvevQb3E?rel=0&playsinline=1",
+          "title": "Related Rate Problem",
+          "id": "EttdvevQb3E"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/t3T3Q9GYOz8?rel=0&playsinline=1",
+          "title": "Related Rates Homework Walkthrough",
+          "id": "t3T3Q9GYOz8",
+          "iframe": 0,
+          "slotId": "hw-video-t3T3Q9GYOz8",
+          "resource": "Related Rates",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/t3T3Q9GYOz8?rel=0&playsinline=1",
+            "title": "Related Rates Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/mSL5MYVjWts?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 13 - Rolle's Theorem and the Mean Value Theorem",
+          "id": "mSL5MYVjWts"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/H75zSsRxBBY?rel=0&playsinline=1",
+          "title": "Mean Value Theorem for Derivatives Homework Walkthrough",
+          "id": "H75zSsRxBBY",
+          "iframe": 0,
+          "slotId": "hw-video-H75zSsRxBBY",
+          "resource": "Mean Value Theorem for Derivatives",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/H75zSsRxBBY?rel=0&playsinline=1",
+            "title": "Mean Value Theorem for Derivatives Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/semester-1-review/index.html",
+      "sharedAsset": false,
+      "players": [
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/yoGiVM1mN7w?rel=0&playsinline=1",
+          "title": "Semester 1 Review Homework Walkthrough",
+          "id": "yoGiVM1mN7w",
+          "iframe": 0,
+          "slotId": "hw-video-yoGiVM1mN7w",
+          "resource": "Semester 1 Review",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/yoGiVM1mN7w?rel=0&playsinline=1",
+            "title": "Semester 1 Review Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/845oZNJ6HBQ?rel=0&playsinline=1",
+          "title": "More Semester 1 Review Homework Walkthrough",
+          "id": "845oZNJ6HBQ",
+          "iframe": 1,
+          "slotId": "hw-video-845oZNJ6HBQ",
+          "resource": "More Semester 1 Review",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/845oZNJ6HBQ?rel=0&playsinline=1",
+            "title": "More Semester 1 Review Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/5YFxjoCiNVM?rel=0&playsinline=1",
+          "title": "Limits and Continuity Extra Review Homework Walkthrough",
+          "id": "5YFxjoCiNVM",
+          "iframe": 2,
+          "slotId": "hw-video-5YFxjoCiNVM",
+          "resource": "Limits and Continuity Extra Review",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/5YFxjoCiNVM?rel=0&playsinline=1",
+            "title": "Limits and Continuity Extra Review Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/TcP1jNMyz20?rel=0&playsinline=1",
+          "title": "Derivatives Extra Review Homework Walkthrough",
+          "id": "TcP1jNMyz20",
+          "iframe": 3,
+          "slotId": "hw-video-TcP1jNMyz20",
+          "resource": "Derivatives Extra Review",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/TcP1jNMyz20?rel=0&playsinline=1",
+            "title": "Derivatives Extra Review Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/WxZ9he2UKzg?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Extra Practice Homework Walkthrough",
+          "id": "WxZ9he2UKzg",
+          "iframe": 4,
+          "slotId": "hw-video-WxZ9he2UKzg",
+          "resource": "Applications of the Derivative Extra Review",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/WxZ9he2UKzg?rel=0&playsinline=1",
+            "title": "Applications of the Derivative Extra Practice Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/08ckxSogD_I?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 12 - Tangent and Secant Line Approximations",
+          "id": "08ckxSogD_I"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/BiTaTdxm580?rel=0&playsinline=1",
+          "title": "Tangent and Secant Line Approximations Homework Walkthrough",
+          "id": "BiTaTdxm580",
+          "iframe": 0,
+          "slotId": "hw-video-BiTaTdxm580",
+          "resource": "Tangent and Secant Line Approximations",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/BiTaTdxm580?rel=0&playsinline=1",
+            "title": "Tangent and Secant Line Approximations Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/owTAnXvPT98?rel=0&playsinline=1",
+          "title": "Applications of the Derivative Lecture 4 - Using Your Graphing Calculator",
+          "id": "owTAnXvPT98"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/AGGCr6QdmP8?rel=0&playsinline=1",
+          "title": "Calculator Derivatives Homework Walkthrough",
+          "id": "AGGCr6QdmP8",
+          "iframe": 0,
+          "slotId": "hw-video-AGGCr6QdmP8",
+          "resource": "Calculator Derivatives, Tangent Lines, and Motion",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/AGGCr6QdmP8?rel=0&playsinline=1",
+            "title": "Calculator Derivatives Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/basic-integrals/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/cj-o4H4Ubcc?rel=0&playsinline=1",
+          "title": "Integrals Lecture 8 - Basic Integrals",
+          "id": "cj-o4H4Ubcc"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/XXSagVf_xL8?rel=0&playsinline=1",
+          "title": "Basic Integrals Homework Walkthrough",
+          "id": "XXSagVf_xL8",
+          "iframe": 0,
+          "slotId": "hw-video-XXSagVf_xL8",
+          "resource": "Basic Integrals",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/XXSagVf_xL8?rel=0&playsinline=1",
+            "title": "Basic Integrals Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/k_2uXC0Jv78?rel=0&playsinline=1",
+          "title": "Integrate by Dividing Each Term Homework Walkthrough",
+          "id": "k_2uXC0Jv78",
+          "iframe": 1,
+          "slotId": "hw-video-k_2uXC0Jv78",
+          "resource": "Integrate by Dividing Each Term",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/k_2uXC0Jv78?rel=0&playsinline=1",
+            "title": "Integrate by Dividing Each Term Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/comprehensive-review/index.html",
+      "sharedAsset": false,
+      "players": [
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/EDdHf8-2oLg?rel=0&playsinline=1",
+          "title": "Extra Integrals Review Homework Walkthrough",
+          "id": "EDdHf8-2oLg",
+          "iframe": 0,
+          "slotId": "hw-video-EDdHf8-2oLg",
+          "resource": "Extra Integrals Review",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/EDdHf8-2oLg?rel=0&playsinline=1",
+            "title": "Extra Integrals Review Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/p_f4oaj8lSo?rel=0&playsinline=1",
+          "title": "Integrals Test Review Homework Walkthrough",
+          "id": "p_f4oaj8lSo",
+          "iframe": 1,
+          "slotId": "hw-video-p_f4oaj8lSo",
+          "resource": "Integrals Test Review",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/p_f4oaj8lSo?rel=0&playsinline=1",
+            "title": "Integrals Test Review Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/asrYCt28co4?rel=0&playsinline=1",
+          "title": "More Fun Integrals Homework Walkthrough",
+          "id": "asrYCt28co4",
+          "iframe": 2,
+          "slotId": "hw-video-asrYCt28co4",
+          "resource": "More Fun Integrals",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/asrYCt28co4?rel=0&playsinline=1",
+            "title": "More Fun Integrals Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/qZKAgXArqQ8?rel=0&playsinline=1",
+          "title": "Extra Integrals Test Review Homework Walkthrough",
+          "id": "qZKAgXArqQ8",
+          "iframe": 3,
+          "slotId": "hw-video-qZKAgXArqQ8",
+          "resource": "Extra Integrals Test Review",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/qZKAgXArqQ8?rel=0&playsinline=1",
+            "title": "Extra Integrals Test Review Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/converting-a-rectangular-approximation-into-exact-area/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/37q2h1ykz88?rel=0&playsinline=1",
+          "title": "Integrals Lecture 4 - Converting a Rectangular Approximation into Exact Area",
+          "id": "37q2h1ykz88"
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/vVworyPqJ8E?rel=0&playsinline=1",
+          "title": "Integrals Lecture 5 - Evaluating Definite Integrals with a Limit and Summation",
+          "id": "vVworyPqJ8E"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/jCX4Gni8pfU?rel=0&playsinline=1",
+          "title": "Evaluating an Integral using Newton\u2019s notation",
+          "id": "jCX4Gni8pfU"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/qEiYtY17G4g?rel=0&playsinline=1",
+          "title": "Integrals in Newton's Notation Homework Walkthrough",
+          "id": "qEiYtY17G4g",
+          "iframe": 0,
+          "slotId": "hw-video-qEiYtY17G4g",
+          "resource": "Integrals in Newton's Notation",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/qEiYtY17G4g?rel=0&playsinline=1",
+            "title": "Integrals in Newton's Notation Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/Z--wh8P0z7c?rel=0&playsinline=1",
+          "title": "Integrals Lecture 7 - Fundamental Theorem of Calculus and Basic Integral Rules",
+          "id": "Z--wh8P0z7c"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/8dLZd4gwCYQ?rel=0&playsinline=1",
+          "title": "Fundamental Theorem of Calculus Homework Walkthrough",
+          "id": "8dLZd4gwCYQ",
+          "iframe": 0,
+          "slotId": "hw-video-8dLZd4gwCYQ",
+          "resource": "Fundamental Theorem of Calculus",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/8dLZd4gwCYQ?rel=0&playsinline=1",
+            "title": "Fundamental Theorem of Calculus Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/dULrL1LdVkk?rel=0&playsinline=1",
+          "title": "Combining Integrals Rules Homework Walkthrough",
+          "id": "dULrL1LdVkk",
+          "iframe": 1,
+          "slotId": "hw-video-dULrL1LdVkk",
+          "resource": "Combining Integrals Rules",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/dULrL1LdVkk?rel=0&playsinline=1",
+            "title": "Combining Integrals Rules Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/integrals-resulting-in-natural-log-and-inverse-trigonometric-functions/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/aN8k5rHqtw4?rel=0&playsinline=1",
+          "title": "Integrals Lecture 10 - Integrals Resulting in Natural Log",
+          "id": "aN8k5rHqtw4"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/WXvTi5qtG0A?rel=0&playsinline=1",
+          "title": "Integrating by Dividing by a Binomial Homework Walkthrough",
+          "id": "WXvTi5qtG0A",
+          "iframe": 0,
+          "slotId": "hw-video-WXvTi5qtG0A",
+          "resource": "Integration by Dividing by a Binomial",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/WXvTi5qtG0A?rel=0&playsinline=1",
+            "title": "Integrating by Dividing by a Binomial Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/integrals-using-geometry/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/Zwufu2kahro?rel=0&playsinline=1",
+          "title": "Integrals Lecture 6 - Integrals using Geometry",
+          "id": "Zwufu2kahro"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/OUFu-HswTZI?rel=0&playsinline=1",
+          "title": "Integrals Using Geometry Homework Walkthrough",
+          "id": "OUFu-HswTZI",
+          "iframe": 0,
+          "slotId": "hw-video-OUFu-HswTZI",
+          "resource": "Integrals Using Geometry",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/OUFu-HswTZI?rel=0&playsinline=1",
+            "title": "Integrals Using Geometry Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/introduction-to-sigma-notation/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/FxEoyqHhDTc?rel=0&playsinline=1",
+          "title": "Integrals Lecture 3 - Introduction to Sigma Notation",
+          "id": "FxEoyqHhDTc"
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/mean-value-theorem-for-integrals/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "lecture",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/ZsTK7Qmz-KI?rel=0&playsinline=1",
+          "title": "Integrals Lecture 11 - Mean Value Theorem for Integrals",
+          "id": "ZsTK7Qmz-KI"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "supporting",
+          "grid": 1,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/jwc5DkJWXwA?rel=0&playsinline=1",
+          "title": "Mean Value Theorem for Integrals",
+          "id": "jwc5DkJWXwA"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/PKRngTT3xGE?rel=0&playsinline=1",
+          "title": "Mean Value Theorem for Integrals Homework Walkthrough",
+          "id": "PKRngTT3xGE",
+          "iframe": 0,
+          "slotId": "hw-video-PKRngTT3xGE",
+          "resource": "Mean Value Theorem for Integrals",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/PKRngTT3xGE?rel=0&playsinline=1",
+            "title": "Mean Value Theorem for Integrals Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/rectangular-approximations/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/FPJ5yxRkK9E?rel=0&playsinline=1",
+          "title": "Integrals Lecture 1 - Rectangular Approximations",
+          "id": "FPJ5yxRkK9E"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/IRssoB4aiUg?rel=0&playsinline=1",
+          "title": "Basic Rectangular Approximations Homework Walkthrough",
+          "id": "IRssoB4aiUg",
+          "iframe": 0,
+          "slotId": "hw-video-IRssoB4aiUg",
+          "resource": "Basic Rectangular Approximations",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/IRssoB4aiUg?rel=0&playsinline=1",
+            "title": "Basic Rectangular Approximations Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/trapezoidal-approximations/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/wPiyZZqV_ZA?rel=0&playsinline=1",
+          "title": "Integrals Lecture 2 - Trapezoidal Approximations",
+          "id": "wPiyZZqV_ZA"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/uc3iQVZDzx0?rel=0&playsinline=1",
+          "title": "Trapezoidal Sum Approximations Homework Walkthrough",
+          "id": "uc3iQVZDzx0",
+          "iframe": 0,
+          "slotId": "hw-video-uc3iQVZDzx0",
+          "resource": "Trapezoidal Sum Approximations",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/uc3iQVZDzx0?rel=0&playsinline=1",
+            "title": "Trapezoidal Sum Approximations Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-4-integrals/topics/u-substitution-integrals/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/4qlbDNSkenI?rel=0&playsinline=1",
+          "title": "Integrals Lecture 9 - U-Substitution Integrals",
+          "id": "4qlbDNSkenI"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/W88ZugPQfPo?rel=0&playsinline=1",
+          "title": "Basic U Substitution Integrals Homework Walkthrough",
+          "id": "W88ZugPQfPo",
+          "iframe": 0,
+          "slotId": "hw-video-W88ZugPQfPo",
+          "resource": "Basic U-Substitution Integrals",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/W88ZugPQfPo?rel=0&playsinline=1",
+            "title": "Basic U Substitution Integrals Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/gVcRNwECcG0?rel=0&playsinline=1",
+          "title": "Integral Practice Homework Walkthrough",
+          "id": "gVcRNwECcG0",
+          "iframe": 1,
+          "slotId": "hw-video-gVcRNwECcG0",
+          "resource": "Integral Practice",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/gVcRNwECcG0?rel=0&playsinline=1",
+            "title": "Integral Practice Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/465U3FW0mGY?rel=0&playsinline=1",
+          "title": "Differential Equations Lecture 1 - Basic First Order Differential Equations",
+          "id": "465U3FW0mGY"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/IPDSKlivfAE?rel=0&playsinline=1",
+          "title": "Initial Value Homework Walkthrough",
+          "id": "IPDSKlivfAE",
+          "iframe": 0,
+          "slotId": "hw-video-IPDSKlivfAE",
+          "resource": "Initial Value",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/IPDSKlivfAE?rel=0&playsinline=1",
+            "title": "Initial Value Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/ZQX8YNiZAqQ?rel=0&playsinline=1",
+          "title": "Calculator Initial Value Homework Walkthrough",
+          "id": "ZQX8YNiZAqQ",
+          "iframe": 1,
+          "slotId": "hw-video-ZQX8YNiZAqQ",
+          "resource": "Calculator Initial Value",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ZQX8YNiZAqQ?rel=0&playsinline=1",
+            "title": "Calculator Initial Value Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/5SYPe24wgkE?rel=0&playsinline=1",
+          "title": "Initial Value Extra Practice Homework Walkthrough",
+          "id": "5SYPe24wgkE",
+          "iframe": 2,
+          "slotId": "hw-video-5SYPe24wgkE",
+          "resource": "Initial Value Extra Practice",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/5SYPe24wgkE?rel=0&playsinline=1",
+            "title": "Initial Value Extra Practice Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/comprehensive-review/index.html",
+      "sharedAsset": false,
+      "players": [
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/BtCZWUjB1oU?rel=0&playsinline=1",
+          "title": "Differential Equations Test Review Homework Walkthrough",
+          "id": "BtCZWUjB1oU",
+          "iframe": 0,
+          "slotId": "hw-video-BtCZWUjB1oU",
+          "resource": "Differential Equations Test Review",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/BtCZWUjB1oU?rel=0&playsinline=1",
+            "title": "Differential Equations Test Review Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/exponential-growth-and-decay-interest-newton-s-law-of-cooling/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/wRxUrjiE6Cc?rel=0&playsinline=1",
+          "title": "Differential Equations Lecture 5 - Exponential Growth and Decay, Interest, Newton's Law of Cooling",
+          "id": "wRxUrjiE6Cc"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/XyznHwScoiU?rel=0&playsinline=1",
+          "title": "Exponential Growth and Decay Homework Walkthrough",
+          "id": "XyznHwScoiU",
+          "iframe": 0,
+          "slotId": "hw-video-XyznHwScoiU",
+          "resource": "Exponential Growth and Decay",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/XyznHwScoiU?rel=0&playsinline=1",
+            "title": "Exponential Growth and Decay Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/motion-problems/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/jq6X6uhMHag?rel=0&playsinline=1",
+          "title": "Differential Equations Lecture 2 - Motion Problems",
+          "id": "jq6X6uhMHag"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/8OjblBeGdV4?rel=0&playsinline=1",
+          "title": "Integral Motion Homework Walkthrough",
+          "id": "8OjblBeGdV4",
+          "iframe": 0,
+          "slotId": "hw-video-8OjblBeGdV4",
+          "resource": "Integral Motion",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/8OjblBeGdV4?rel=0&playsinline=1",
+            "title": "Integral Motion Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/3HFPpztrz7Q?rel=0&playsinline=1",
+          "title": "More Integral Motion Homework Walkthrough",
+          "id": "3HFPpztrz7Q",
+          "iframe": 1,
+          "slotId": "hw-video-3HFPpztrz7Q",
+          "resource": "More Integral Motion",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/3HFPpztrz7Q?rel=0&playsinline=1",
+            "title": "More Integral Motion Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/rate-problems/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/QVw-xyduCio?rel=0&playsinline=1",
+          "title": "Differential Equations Lecture 6 - Rate Problems",
+          "id": "QVw-xyduCio"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/ofxeNtrTfH0?rel=0&playsinline=1",
+          "title": "Accumulation Homework Walkthrough",
+          "id": "ofxeNtrTfH0",
+          "iframe": 0,
+          "slotId": "hw-video-ofxeNtrTfH0",
+          "resource": "Accumulation",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ofxeNtrTfH0?rel=0&playsinline=1",
+            "title": "Accumulation Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/separable-differential-equations/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/pkxyU0YAzJ0?rel=0&playsinline=1",
+          "title": "Differential Equations Lecture 4 - Separable Differential Equations",
+          "id": "pkxyU0YAzJ0"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/ixcXJ_muthc?rel=0&playsinline=1",
+          "title": "Separable Differential Equations Homework Walkthrough",
+          "id": "ixcXJ_muthc",
+          "iframe": 0,
+          "slotId": "hw-video-ixcXJ_muthc",
+          "resource": "Separable Differential Equations",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/ixcXJ_muthc?rel=0&playsinline=1",
+            "title": "Separable Differential Equations Homework Walkthrough"
+          }
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/K5AZ704hqdQ?rel=0&playsinline=1",
+          "title": "Extra Separable Differential Equations Homework Walkthrough",
+          "id": "K5AZ704hqdQ",
+          "iframe": 1,
+          "slotId": "hw-video-K5AZ704hqdQ",
+          "resource": "Extra Separable Differential Equations",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/K5AZ704hqdQ?rel=0&playsinline=1",
+            "title": "Extra Separable Differential Equations Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "ap-calculus/unit-5-differential-equations/topics/slope-fields/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/6KJxcjtQnDU?rel=0&playsinline=1",
+          "title": "Differential Equations Lecture 3 - Slope Fields",
+          "id": "6KJxcjtQnDU"
+        },
+        {
+          "system": "homework",
+          "src": "https://www.youtube.com/embed/iQiU3IV_kWg?rel=0&playsinline=1",
+          "title": "Slope Fields Homework Walkthrough",
+          "id": "iQiU3IV_kWg",
+          "iframe": 0,
+          "slotId": "hw-video-iQiU3IV_kWg",
+          "resource": "Slope Fields",
+          "buttonLabel": "HW Walkthrough Video",
+          "attrs": {
+            "allow": "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            "allowfullscreen": "",
+            "loading": "lazy",
+            "referrerpolicy": "strict-origin-when-cross-origin",
+            "src": "https://www.youtube.com/embed/iQiU3IV_kWg?rel=0&playsinline=1",
+            "title": "Slope Fields Homework Walkthrough"
+          }
+        }
+      ]
+    },
+    {
+      "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-gallery",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/xalP_Y75UaM?rel=0&playsinline=1",
+          "title": "Domain",
+          "id": "xalP_Y75UaM"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "collection",
+          "grid": 0,
+          "card": 1,
+          "src": "https://www.youtube.com/embed/BrU_7ThMrpY?rel=0&playsinline=1",
+          "title": "Range",
+          "id": "BrU_7ThMrpY"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "collection",
+          "grid": 0,
+          "card": 2,
+          "src": "https://www.youtube.com/embed/jwuWyvokBmY?rel=0&playsinline=1",
+          "title": "Increasing, Decreasing, and Constant Intervals",
+          "id": "jwuWyvokBmY"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "collection",
+          "grid": 0,
+          "card": 3,
+          "src": "https://www.youtube.com/embed/MJu2qdXJeGY?rel=0&playsinline=1",
+          "title": "Finding x and y Intercepts from a Graph",
+          "id": "MJu2qdXJeGY"
+        }
+      ]
+    },
+    {
+      "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/distributive-property/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/2FyZO5iTPYI?rel=0&playsinline=1",
+          "title": "Distributive Property",
+          "id": "2FyZO5iTPYI"
+        }
+      ]
+    },
+    {
+      "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/equivalent-expressions-combining-like-terms/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-large",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/EgVS-qqYKVs?rel=0&playsinline=1",
+          "title": "Combining Like Terms",
+          "id": "EgVS-qqYKVs"
+        }
+      ]
+    },
+    {
+      "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/graphing-inequalities-interval-notation/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-pair",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/lTUmdsLb0cc?rel=0&playsinline=1",
+          "title": "Graphing Linear Inequalities on a Number Line",
+          "id": "lTUmdsLb0cc"
+        },
+        {
+          "system": "shared-pair",
+          "role": "collection",
+          "grid": 0,
+          "card": 1,
+          "src": "https://www.youtube.com/embed/He4DtkI0EMw?rel=0&playsinline=1",
+          "title": "Interval Notation",
+          "id": "He4DtkI0EMw"
+        }
+      ]
+    },
+    {
+      "path": "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/index.html",
+      "sharedAsset": true,
+      "players": [
+        {
+          "system": "shared-gallery",
+          "role": "collection",
+          "grid": 0,
+          "card": 0,
+          "src": "https://www.youtube.com/embed/rLTzuyGUl1I?rel=0&playsinline=1",
+          "title": "Solving Linear Equations Using Addition and Subtraction",
+          "id": "rLTzuyGUl1I"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "collection",
+          "grid": 0,
+          "card": 1,
+          "src": "https://www.youtube.com/embed/fggYnVaqV-4?rel=0&playsinline=1",
+          "title": "Solving Linear Equations Using Multiplication and Division",
+          "id": "fggYnVaqV-4"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "collection",
+          "grid": 0,
+          "card": 2,
+          "src": "https://www.youtube.com/embed/iLAKVKLYowI?rel=0&playsinline=1",
+          "title": "Solving Linear Equations with Fractional Coefficients",
+          "id": "iLAKVKLYowI"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "collection",
+          "grid": 0,
+          "card": 3,
+          "src": "https://www.youtube.com/embed/wsPw-zD0BPs?rel=0&playsinline=1",
+          "title": "Solving Two Step Linear Equations",
+          "id": "wsPw-zD0BPs"
+        },
+        {
+          "system": "shared-gallery",
+          "role": "collection",
+          "grid": 0,
+          "card": 4,
+          "src": "https://www.youtube.com/embed/Ad43JwhtAFY?rel=0&playsinline=1",
+          "title": "Solving Linear Equations when the Variable is Being Subtracted",
+          "id": "Ad43JwhtAFY"
+        }
+      ]
+    }
+  ],
+  "unrelatedIframes": [],
+  "deferredUnit6": [
+    "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/index.html"
+  ],
+  "specialSizingRules": [
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/index.html",
+      "rule": "body [data-v11-resource=\"07a-tables\"] .hw-video-frame iframe{aspect-ratio:16/9;height:auto!important}"
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/index.html",
+      "rule": "body [data-v11-resource=\"05a-tables\"] .hw-video-frame iframe{aspect-ratio:16/9;height:auto!important}"
+    }
+  ]
+}
