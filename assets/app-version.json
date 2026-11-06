@@ -1,6 +1,6 @@
 {
-  "version": "12.9.C",
-  "release": "v12.9.C",
+  "version": "12.9.E",
+  "release": "v12.9.E",
   "architecture": "pwa-foundation",
   "storageSchema": 1,
   "serviceWorker": "/sw.js",

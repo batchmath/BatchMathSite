@@ -384,5 +384,12 @@
     "remainingInheritedGroups": 10,
     "allComparedWithBothSources": true,
     "failureComparison": "site-suite/failure-comparison.json"
+  },
+  "finalVersionChecks": {
+    "version": "12.9.E",
+    "release": "v12.9.E",
+    "nodePass": 281,
+    "staticAnalyticsPwaPassed": true,
+    "actualServiceWorkerActivationAndOfflineHashesPassed": true
   }
 }

@@ -1,8 +1,8 @@
-/* BatchMath PWA registration/update foundation — v12.9.C */
+/* BatchMath PWA registration/update foundation — v12.9.E */
 (() => {
   'use strict';
 
-  const APP_VERSION = '12.9.C';
+  const APP_VERSION = '12.9.E';
   const state = {
     version: APP_VERSION,
     supported: 'serviceWorker' in navigator,

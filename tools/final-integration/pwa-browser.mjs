@@ -9,7 +9,7 @@ import {serve,randomPort,ROOT} from '../review-lab/lib/browser.mjs';
 
 const port=randomPort(10800),server=await serve(port),base='http://127.0.0.1:'+port;
 const proxy=process.env.HTTPS_PROXY||process.env.HTTP_PROXY;
-const browser=await chromium.launch({executablePath:'/usr/bin/chromium',...(proxy?{proxy:{server:proxy}}:{})});
+const browser=await chromium.launch({executablePath:'/usr/bin/chromium',...(proxy?{proxy:{server:proxy,bypass:'localhost,127.0.0.1,[::1]'}}:{})});
 const context=await browser.newContext({serviceWorkers:'allow'}),page=await context.newPage();
 const out={version:'12.9.E',oldCachesSeeded:2,resources:[],failures:[]};
 const names=['assets/mathlive/keypad-bridge.mjs','assets/mathlive/integral-setup.mjs',

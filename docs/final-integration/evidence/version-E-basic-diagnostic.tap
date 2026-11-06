@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: Basic Integrals: polynomial_power_rule — 200 generated questions, actual checker parity
+ok 1 - Basic Integrals: polynomial_power_rule — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 1352.842494
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: radicals_negative_powers — 200 generated questions, actual checker parity
+ok 2 - Basic Integrals: radicals_negative_powers — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 1471.470823
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: expand_first — 200 generated questions, actual checker parity
+ok 3 - Basic Integrals: expand_first — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 1107.879068
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: divide_each_term — 200 generated questions, actual checker parity
+ok 4 - Basic Integrals: divide_each_term — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 1568.663072
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: divide_each_term_ln — 200 generated questions, actual checker parity
+ok 5 - Basic Integrals: divide_each_term_ln — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 2138.523785
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: basic_trig_exponential — 200 generated questions, actual checker parity
+ok 6 - Basic Integrals: basic_trig_exponential — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 2378.504363
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: trig_identity_rewrite — 200 generated questions, actual checker parity
+ok 7 - Basic Integrals: trig_identity_rewrite — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 709.195523
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: definite_power_root — 200 generated questions, actual checker parity
+ok 8 - Basic Integrals: definite_power_root — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 106.019362
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: definite_trig_exponential — 200 generated questions, actual checker parity
+ok 9 - Basic Integrals: definite_trig_exponential — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 212.487361
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: power_reduction — 200 generated questions, actual checker parity
+ok 10 - Basic Integrals: power_reduction — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 786.016713
+  type: 'test'
+  ...
+# Subtest: Basic Integrals: exponential_base_a — 200 generated questions, actual checker parity
+ok 11 - Basic Integrals: exponential_base_a — 200 generated questions, actual checker parity
+  ---
+  duration_ms: 506.600508
+  type: 'test'
+  ...
+# Subtest: advanced translation preserves constants, precision, roots and unsupported content
+ok 12 - advanced translation preserves constants, precision, roots and unsupported content
+  ---
+  duration_ms: 0.56466
+  type: 'test'
+  ...
+# Subtest: production generators, graders and UI renderer match the verified Batch 7 checkpoint
+ok 13 - production generators, graders and UI renderer match the verified Batch 7 checkpoint
+  ---
+  duration_ms: 87.129644
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 12676.043642

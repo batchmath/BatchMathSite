@@ -1,0 +1,14 @@
+BatchMath v12.9.E — complete integration test build
+
+Extract batchmath-site-v12.9.E.zip.
+Open a terminal inside the single folder batchmath-site-v12.9.E.
+Run exactly:
+
+py -m http.server 8000
+
+Open http://localhost:8000/ in your browser.
+Keep the terminal open while testing. Stop the server with Ctrl+C.
+
+The website, practice engines, PDFs, local MathLive runtime and fonts are included.
+Normal MathJax rendering and YouTube video playback require internet.
+This is a test prerelease, not a production deployment.

@@ -5,9 +5,10 @@
   "ok": true,
   "counts": {
     "manually-reconciled": 2,
-    "qa-only": 327,
+    "qa-only": 343,
     "source-a-preserved": 1507,
-    "source-b-imported": 119
+    "source-b-imported": 101,
+    "version-only": 16
   },
   "files": [
     {
@@ -187,10 +188,10 @@
     },
     {
       "path": "BATCHMATH-WORKING-COPY.txt",
-      "category": "source-b-imported",
+      "category": "qa-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "7d78c763b61d88112589dd0eb9c9f544449bc54a",
-      "finalBlob": "7d78c763b61d88112589dd0eb9c9f544449bc54a"
+      "finalBlob": "2e21ff294095bbc35161fbf050b3d9606aa18fcc"
     },
     {
       "path": "CLOUDFLARE-REPORT-PROBLEM-SETUP.md",
@@ -205,6 +206,13 @@
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": "0501c9e72a06d8d1c055731abfb6a678d697ca5b",
       "finalBlob": "0501c9e72a06d8d1c055731abfb6a678d697ca5b"
+    },
+    {
+      "path": "LOCAL-TESTING.txt",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "fd9ab8ec4a5dfbc8d6ccc9d814992c32820d7ed0"
     },
     {
       "path": "QA.md",
@@ -2791,10 +2799,10 @@
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "f674f51c444296cbf6ce49a2488d40f4740b3138",
-      "finalBlob": "f674f51c444296cbf6ce49a2488d40f4740b3138"
+      "finalBlob": "b5f7238f242fd04ec2e483d543bf562419409f73"
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/index.html",
@@ -2805,10 +2813,10 @@
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "56064518eeb4d9c07f26ae9fd9cde1e5d105da2f",
-      "finalBlob": "56064518eeb4d9c07f26ae9fd9cde1e5d105da2f"
+      "finalBlob": "fa678e4b30844822a05a402bd15c6d9fd807d4b3"
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/practice/index.html",
@@ -2826,10 +2834,10 @@
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "3020aab06fd62d7aa6176963d5b0ad449a82c76c",
-      "finalBlob": "3020aab06fd62d7aa6176963d5b0ad449a82c76c"
+      "finalBlob": "bbf9242bb0693797a7c64ce2201d65a6a2a67f1d"
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/index.html",
@@ -2840,10 +2848,10 @@
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "9761f06310bfb603106402493259a732ac85091d",
-      "finalBlob": "9761f06310bfb603106402493259a732ac85091d"
+      "finalBlob": "86ab7b8ac72196744928a6542249d6359b97ea46"
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/index.html",
@@ -2854,10 +2862,10 @@
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/practice/index.html",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "815e6a32ad91e411033042231fdf219547733b7e",
-      "finalBlob": "815e6a32ad91e411033042231fdf219547733b7e"
+      "finalBlob": "c7b661f19c142c35a98e804f80a5cf55eab5b64e"
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/index.html",
@@ -2868,17 +2876,17 @@
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/practice/index.html",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "58bcd32ae04f142beba03817dce2c4d23873e2f4",
-      "finalBlob": "58bcd32ae04f142beba03817dce2c4d23873e2f4"
+      "finalBlob": "b730a616d78a8f091a862bd9d7b1c3cff29bce3b"
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice/index.html",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "94a86c1d0f174e5215672591bfac56babda7e4a0",
-      "finalBlob": "94a86c1d0f174e5215672591bfac56babda7e4a0"
+      "finalBlob": "afec40dbb25493a93ba09810bfb891b7aba8a426"
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/index.html",
@@ -2889,10 +2897,10 @@
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "11961259c5bbbfff5d9dc76bd61fd6b35f0654fc",
-      "finalBlob": "11961259c5bbbfff5d9dc76bd61fd6b35f0654fc"
+      "finalBlob": "710bb12ca31afd61080c84848b2658a0df2ab74d"
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/practice/index.html",
@@ -2903,10 +2911,10 @@
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice/index.html",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "36102f1f12de4a9a90ae1c8b642f8dfaf5c7408d",
-      "finalBlob": "36102f1f12de4a9a90ae1c8b642f8dfaf5c7408d"
+      "finalBlob": "36622262c967b4e1f90e39d50bfbea80a2edc458"
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/index.html",
@@ -2917,10 +2925,10 @@
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/index.html",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "70945b77169ba5256c8a02016983b56a68b6b134",
-      "finalBlob": "70945b77169ba5256c8a02016983b56a68b6b134"
+      "finalBlob": "3a39ae687f122a0d7f0a2b0d72069f58e7b432ee"
     },
     {
       "path": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/practice/index.html",
@@ -2994,10 +3002,10 @@
     },
     {
       "path": "assets/app-version.json",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "2977b7a74f8fea870259ae893d04b65532e28683",
-      "finalBlob": "2977b7a74f8fea870259ae893d04b65532e28683"
+      "finalBlob": "2ae716454474642d9306b6049761f92f2ab8db01"
     },
     {
       "path": "assets/archive-running-document.css",
@@ -3806,24 +3814,24 @@
     },
     {
       "path": "assets/problem-tracking.js",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "35fb5227f2714586cb313a5cd57f04d4f2c7357a",
-      "finalBlob": "35fb5227f2714586cb313a5cd57f04d4f2c7357a"
+      "finalBlob": "52377ff9cc61ca45c44f6502c305e0d9dbbc7dc8"
     },
     {
       "path": "assets/pwa.js",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "93cccc60f61c5dd7ebf9ff1a666ef17f5631dbc4",
-      "finalBlob": "93cccc60f61c5dd7ebf9ff1a666ef17f5631dbc4"
+      "finalBlob": "d5dea18be2eca0bf45edaefe62335a6afa34ceab"
     },
     {
       "path": "assets/reproducible-rng.js",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "5fde060540334bd956f0075bc492f09eed6e8db9",
-      "finalBlob": "5fde060540334bd956f0075bc492f09eed6e8db9"
+      "finalBlob": "c62b1a237db5d52e052ff7c1f6d0b5182623d6c5"
     },
     {
       "path": "assets/site.css",
@@ -5646,6 +5654,13 @@
       "finalBlob": "42a8b43a6f8213eabe330b0a0420165571ab2b8e"
     },
     {
+      "path": "docs/final-integration/evidence/content-preservation-E.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "42a8b43a6f8213eabe330b0a0420165571ab2b8e"
+    },
+    {
       "path": "docs/final-integration/evidence/content-preservation.json",
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
@@ -5678,7 +5693,7 @@
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": null,
-      "finalBlob": "fddee1674f0f00aba6b3f006d6c948550f784608"
+      "finalBlob": "4d6915558b498281ffdeb51225df92219d6f1f1e"
     },
     {
       "path": "docs/final-integration/evidence/focused/applications/applications-browser-final-regression.json",
@@ -5847,6 +5862,27 @@
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": null,
       "finalBlob": "cd6957de7d5091fc6bc81c146574f9742a5197c5"
+    },
+    {
+      "path": "docs/final-integration/evidence/pwa-browser-proxy-initial.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "b43764081d6994292f9ffc6c080206fbc001397d"
+    },
+    {
+      "path": "docs/final-integration/evidence/pwa-browser-version-E.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "c2af565490d7a5559335c5afd02735bb3436ad42"
+    },
+    {
+      "path": "docs/final-integration/evidence/pwa-browser.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "347e382f136181128d642f24ad7c68af9396fb44"
     },
     {
       "path": "docs/final-integration/evidence/route-sweep-initial.json",
@@ -7613,6 +7649,69 @@
       "finalBlob": "d0059e579f6f783ad691352da24b125a816271be"
     },
     {
+      "path": "docs/final-integration/evidence/version-E-analytics.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "abac97363dd0d06b54999a53065924c97a406eda"
+    },
+    {
+      "path": "docs/final-integration/evidence/version-E-applications-node.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "da2729964d0d318d9d09b65b4f6258bed4be3b1c"
+    },
+    {
+      "path": "docs/final-integration/evidence/version-E-basic-diagnostic.tap",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "0d2ea3bd24d7e30133e7e8510c039f51b7d63e93"
+    },
+    {
+      "path": "docs/final-integration/evidence/version-E-checks.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "bfc9928bd9c6c8c83616f8b14f1b28ea8f996954"
+    },
+    {
+      "path": "docs/final-integration/evidence/version-E-node-sandbox-initial.tap",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "0f8d06b262eb73ccf4ba9d9b225ec301bd8abe8f"
+    },
+    {
+      "path": "docs/final-integration/evidence/version-E-node.tap",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "0e6af6d930666340dcb0bf4169634373562dfddf"
+    },
+    {
+      "path": "docs/final-integration/evidence/version-E-pwa.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "fcbd291eef85eb5b08a1c8c4fdc26ab4cfad9c51"
+    },
+    {
+      "path": "docs/final-integration/evidence/version-E-static.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "55a25eb9fea028756593abc503c926ac59d1c272"
+    },
+    {
+      "path": "docs/final-integration/evidence/version-metadata.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "596ce494f37784b75b15f2bac89b820bd36b945f"
+    },
+    {
       "path": "docs/final-integration/evidence/video-presentation-environment-initial.log",
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
@@ -8282,7 +8381,7 @@
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": null,
-      "finalBlob": "95041efcb28a3882d548b322afacf8154469f78b"
+      "finalBlob": "8b1a66f898cbf1090c2a8ec82b2ce7c1cadb55b1"
     },
     {
       "path": "experiments/mathlive-advanced-notation/index.html",
@@ -9581,10 +9680,10 @@
     },
     {
       "path": "package.json",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "2219e66da0594fcf71cc5c51145405ec026cb216",
-      "finalBlob": "2219e66da0594fcf71cc5c51145405ec026cb216"
+      "finalBlob": "bebe641bf46a80d8622e2df59f585b1b54d1dc83"
     },
     {
       "path": "robots.txt",
@@ -9602,10 +9701,10 @@
     },
     {
       "path": "sw.js",
-      "category": "source-b-imported",
+      "category": "version-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "abc2b1ce6167135df95f62c6e2b9167a2beb98f1",
-      "finalBlob": "abc2b1ce6167135df95f62c6e2b9167a2beb98f1"
+      "finalBlob": "221520b58f34cdd3b969f3f911fb259c368eeabe"
     },
     {
       "path": "tools/advanced-trig-hints-qa.mjs",
@@ -9721,10 +9820,10 @@
     },
     {
       "path": "tools/build-unit6-pages.py",
-      "category": "source-b-imported",
+      "category": "qa-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "0934441270e1d4d4015e6909242d7f14daf00c26",
-      "finalBlob": "0934441270e1d4d4015e6909242d7f14daf00c26"
+      "finalBlob": "e5059f35302d26f4c7edd7be07c0203f010bc02c"
     },
     {
       "path": "tools/calc-prep-semantic-qa.mjs",
@@ -9815,14 +9914,14 @@
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": null,
-      "finalBlob": "b5236b7c5b0beef90163c132dba7577c0c7aa8d7"
+      "finalBlob": "f03d6e2049967c22c2234f362d6c2ee1d851f73b"
     },
     {
       "path": "tools/final-integration/pwa-browser.mjs",
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": null,
-      "finalBlob": "1178aa77920e6fe0d3b0129b7cac8ce717982050"
+      "finalBlob": "1a34f2471788df3b556fd8d0fe3aef132859ae47"
     },
     {
       "path": "tools/final-integration/site-suite.py",
@@ -9836,7 +9935,7 @@
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": null,
-      "finalBlob": "ec9676f6c76096893b5790155d0c1a2faf076607"
+      "finalBlob": "bbed60b83fa2e2b25f28705f258d5107425c7ac2"
     },
     {
       "path": "tools/final-integration/teacher-seeds.json",
@@ -9976,7 +10075,7 @@
       "category": "qa-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "3ad306924cc3cf1780639ec8406052c8d99ae5ac",
-      "finalBlob": "ad73c8695c5093efa4015f964ee0ae909b95a8bc"
+      "finalBlob": "763147440d75b00c30c03a1e1fdc95b672aceac2"
     },
     {
       "path": "tools/integration/editor-source-guards.mjs",

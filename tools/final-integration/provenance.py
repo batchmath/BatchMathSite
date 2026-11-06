@@ -20,7 +20,7 @@ def tree(ref):
             for row in git('ls-tree', '-rz', ref).split(b'\0') if row}
 
 def qa(path):
-    return path.startswith(('tools/', 'docs/', '.github/')) or path in ('.gitattributes', 'BATCHMATH-WORKING-COPY.txt')
+    return path.startswith(('tools/', 'docs/', '.github/')) or path in ('.gitattributes', 'BATCHMATH-WORKING-COPY.txt', 'LOCAL-TESTING.txt')
 
 def version_normalized(path, content):
     allowed = path in {'assets/app-version.json', 'assets/pwa.js', 'assets/problem-tracking.js',

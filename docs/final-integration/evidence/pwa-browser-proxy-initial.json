@@ -1,0 +1,9 @@
+{
+  "version": "12.9.E",
+  "oldCachesSeeded": 2,
+  "resources": [],
+  "failures": [
+    "page.evaluate: TypeError: Failed to register a ServiceWorker for scope ('http://127.0.0.1:10896/') with script ('http://127.0.0.1:10896/sw.js'): A bad HTTP response code (403) was received when fetching the script.\n    at /workspace/BatchMathSite/tools/final-integration/pwa-browser.mjs:22:14"
+  ],
+  "passed": false
+}

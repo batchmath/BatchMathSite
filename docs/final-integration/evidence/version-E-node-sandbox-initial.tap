@@ -1,0 +1,256 @@
+TAP version 13
+# Subtest: tools/final-integration/integral-coefficients.test.mjs
+ok 1 - tools/final-integration/integral-coefficients.test.mjs
+  ---
+  duration_ms: 594.607836
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-advanced-pilot/basic.test.mjs
+not ok 2 - tools/mathlive-advanced-pilot/basic.test.mjs
+  ---
+  duration_ms: 9956.973231
+  type: 'test'
+  location: '/workspace/BatchMathSite/tools/mathlive-advanced-pilot/basic.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tools/mathlive-advanced-pilot/corrections.test.mjs
+ok 3 - tools/mathlive-advanced-pilot/corrections.test.mjs
+  ---
+  duration_ms: 12717.05786
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-advanced-pilot/ftc.test.mjs
+ok 4 - tools/mathlive-advanced-pilot/ftc.test.mjs
+  ---
+  duration_ms: 45726.213725
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-advanced-pilot/newton.test.mjs
+ok 5 - tools/mathlive-advanced-pilot/newton.test.mjs
+  ---
+  duration_ms: 30170.952633
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-advanced-pilot/separable.test.mjs
+ok 6 - tools/mathlive-advanced-pilot/separable.test.mjs
+  ---
+  duration_ms: 15573.536967
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-batch1/qa8.test.mjs
+ok 7 - tools/mathlive-batch1/qa8.test.mjs
+  ---
+  duration_ms: 198.110545
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-batch1/rules.test.mjs
+not ok 8 - tools/mathlive-batch1/rules.test.mjs
+  ---
+  duration_ms: 2232.590612
+  type: 'test'
+  location: '/workspace/BatchMathSite/tools/mathlive-batch1/rules.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tools/mathlive-derivatives-pilot/chain.test.mjs
+not ok 9 - tools/mathlive-derivatives-pilot/chain.test.mjs
+  ---
+  duration_ms: 15393.066798
+  type: 'test'
+  location: '/workspace/BatchMathSite/tools/mathlive-derivatives-pilot/chain.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tools/mathlive-power-rule/adapter.test.mjs
+not ok 10 - tools/mathlive-power-rule/adapter.test.mjs
+  ---
+  duration_ms: 3492.350663
+  type: 'test'
+  location: '/workspace/BatchMathSite/tools/mathlive-power-rule/adapter.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tools/mathlive-power-rule/keypad-audit.test.mjs
+not ok 11 - tools/mathlive-power-rule/keypad-audit.test.mjs
+  ---
+  duration_ms: 2042.58157
+  type: 'test'
+  location: '/workspace/BatchMathSite/tools/mathlive-power-rule/keypad-audit.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tools/mathlive-sitewide/applications-contracts.test.mjs
+ok 12 - tools/mathlive-sitewide/applications-contracts.test.mjs
+  ---
+  duration_ms: 655.004106
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/applications-families.test.mjs
+ok 13 - tools/mathlive-sitewide/applications-families.test.mjs
+  ---
+  duration_ms: 4538.885691
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/applications-keypads.test.mjs
+not ok 14 - tools/mathlive-sitewide/applications-keypads.test.mjs
+  ---
+  duration_ms: 161.15756
+  type: 'test'
+  location: '/workspace/BatchMathSite/tools/mathlive-sitewide/applications-keypads.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tools/mathlive-sitewide/applications.test.mjs
+ok 15 - tools/mathlive-sitewide/applications.test.mjs
+  ---
+  duration_ms: 14225.851977
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/continuity.test.mjs
+ok 16 - tools/mathlive-sitewide/continuity.test.mjs
+  ---
+  duration_ms: 1937.575968
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/contracts.test.mjs
+not ok 17 - tools/mathlive-sitewide/contracts.test.mjs
+  ---
+  duration_ms: 160.985192
+  type: 'test'
+  location: '/workspace/BatchMathSite/tools/mathlive-sitewide/contracts.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tools/mathlive-sitewide/im1-batch5.test.mjs
+ok 18 - tools/mathlive-sitewide/im1-batch5.test.mjs
+  ---
+  duration_ms: 5143.187325
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/im1-batch6.test.mjs
+ok 19 - tools/mathlive-sitewide/im1-batch6.test.mjs
+  ---
+  duration_ms: 4686.979986
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/im1-contracts.test.mjs
+not ok 20 - tools/mathlive-sitewide/im1-contracts.test.mjs
+  ---
+  duration_ms: 128.897203
+  type: 'test'
+  location: '/workspace/BatchMathSite/tools/mathlive-sitewide/im1-contracts.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tools/mathlive-sitewide/im1-review-unit2.test.mjs
+ok 21 - tools/mathlive-sitewide/im1-review-unit2.test.mjs
+  ---
+  duration_ms: 654.830668
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/im1-review-unit3.test.mjs
+ok 22 - tools/mathlive-sitewide/im1-review-unit3.test.mjs
+  ---
+  duration_ms: 4711.765261
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/list-braces.test.mjs
+ok 23 - tools/mathlive-sitewide/list-braces.test.mjs
+  ---
+  duration_ms: 85.101201
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/math-corrections.test.mjs
+ok 24 - tools/mathlive-sitewide/math-corrections.test.mjs
+  ---
+  duration_ms: 363.155374
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/prep-factoring-math.test.mjs
+ok 25 - tools/mathlive-sitewide/prep-factoring-math.test.mjs
+  ---
+  duration_ms: 66.354822
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/prep-math.test.mjs
+ok 26 - tools/mathlive-sitewide/prep-math.test.mjs
+  ---
+  duration_ms: 85.740754
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/prep.test.mjs
+ok 27 - tools/mathlive-sitewide/prep.test.mjs
+  ---
+  duration_ms: 2765.769086
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/review-h.test.mjs
+ok 28 - tools/mathlive-sitewide/review-h.test.mjs
+  ---
+  duration_ms: 125.753473
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/review-instructions.test.mjs
+not ok 29 - tools/mathlive-sitewide/review-instructions.test.mjs
+  ---
+  duration_ms: 93.281887
+  type: 'test'
+  location: '/workspace/BatchMathSite/tools/mathlive-sitewide/review-instructions.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tools/mathlive-sitewide/review-list-normalization.test.mjs
+ok 30 - tools/mathlive-sitewide/review-list-normalization.test.mjs
+  ---
+  duration_ms: 284.98881
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/review-qa8.test.mjs
+ok 31 - tools/mathlive-sitewide/review-qa8.test.mjs
+  ---
+  duration_ms: 219.646385
+  type: 'test'
+  ...
+# Subtest: tools/mathlive-sitewide/review-startup.test.mjs
+not ok 32 - tools/mathlive-sitewide/review-startup.test.mjs
+  ---
+  duration_ms: 100.943731
+  type: 'test'
+  location: '/workspace/BatchMathSite/tools/mathlive-sitewide/review-startup.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Interrupted while running: tools/mathlive-sitewide/reviews-dynamic.test.mjs at /workspace/BatchMathSite/tools/mathlive-sitewide/reviews-dynamic.test.mjs:1:1
+# Interrupted while running: tools/mathlive-sitewide/reviews-static.test.mjs at /workspace/BatchMathSite/tools/mathlive-sitewide/reviews-static.test.mjs:1:1
+# Interrupted while running: tools/mathlive-sitewide/staged.test.mjs at /workspace/BatchMathSite/tools/mathlive-sitewide/staged.test.mjs:1:1

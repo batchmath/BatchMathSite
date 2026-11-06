@@ -1,7 +1,15 @@
 BatchMath cumulative working copy
-Current build: 12.9.C integration test (review build, not production)
-Archive: batchmath-site-v12.9.C-integration-test.zip
-Sources: the Unit 6 v12.9.B corrections (claude/v12.9b-unit6-teacher-corrections, bfabb6c) with the Unit 6 graph fix (claude/unit6-final-graph-corrections, e265804), merged with the approved MathLive, IM1 video and content work (integration/mathlive-im1-videos-content, 9c395be); main is v12.8.Y (26ec4f1).
-Changes beyond the sources: Unit 6 graphs keep every shaded region, intersection and extreme inside the frame; every Unit 6 integral setup is one blank MathLive field graded by the structural checker; every Unit 6 typed answer uses MathLive; Unit 6 topic pages use the approved video presentation.
-No deployment performed.
-Current update: see docs/v12.9.C-integration-test.md and docs/v12.9.C-integration-test-progress.md. Tests: npm run qa:unit6; MathLive Node suite (docs/integration/MATHLIVE-VIDEOS-CONTENT.md).
+Current build: 12.9.E / v12.9.E final integration test (not production)
+Archive: batchmath-site-v12.9.E.zip
+Root directory: batchmath-site-v12.9.E/
+Branch: integration/v12.9e-final
+Source A: integration/mathlive-im1-videos-content at 98c9beb3c0eb58a952f6bb29e410e63aa280003e
+Source B: claude/v12.9d-unit6-final-corrections at 049e8a49d22f3d5ff67f5a79a855ec0028452ab7
+The complete MathLive/video/keypad foundation and final Unit 6 mathematics are preserved.
+Compatibility corrections: explicit coefficient multiplication before an integral; canonical cube-root keypad controls.
+The original Unit 6 structural checker, split explanations, graph fitting and semicircle diameter convention are retained.
+All application, PWA/cache and analytics versions are 12.9.E; Unit 6 build markers are 12.9.E. Other generator revision markers retain their actual engine revision.
+Main and both source branches are unchanged. No deployment performed.
+See LOCAL-TESTING.txt. Run: py -m http.server 8000
+Test ZIP: https://github.com/batchmath/BatchMathSite/releases/download/v12.9.E/batchmath-site-v12.9.E.zip
+Integration report: https://github.com/batchmath/BatchMathSite/blob/integration/v12.9e-final/docs/v12.9.E-final-integration.md

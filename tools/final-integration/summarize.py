@@ -93,6 +93,13 @@ def main():
                         'staleKeypadAssertionReconciled':1, 'finalEffectivePass':38,
                         'remainingInheritedGroups':10, 'allComparedWithBothSources':True,
                         'failureComparison':'site-suite/failure-comparison.json'}
+    if (E/'version-E-node.tap').exists():
+        version_tap=(E/'version-E-node.tap').read_text()
+        assert '# tests 281' in version_tap and '# pass 281' in version_tap and '# fail 0' in version_tap
+        assert all(r['exitCode']==0 for r in read('version-E-checks.json'))
+        assert read('version-metadata.json')['passed'] and read('pwa-browser.json')['passed']
+        out['finalVersionChecks']={'version':'12.9.E','release':'v12.9.E','nodePass':281,
+                                   'staticAnalyticsPwaPassed':True,'actualServiceWorkerActivationAndOfflineHashesPassed':True}
     if (E/'downloaded-package-matrix').exists():
         out['downloadedPackageMatrix'] = entries('downloaded-package-matrix/*.json',56)
     (E/'final-qa.json').write_text(json.dumps(out,indent=2)+'\n')

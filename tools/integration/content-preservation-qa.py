@@ -165,7 +165,11 @@ def verify():
             assert git('rev-parse', final_b + ':' + name).strip()==compatibility[name]['before']
             assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==compatibility[name]['after'], name
         else:
-            assert (ROOT / name).read_text() == source(final_b, name), name + ': Unit 6 approved asset changed'
+            current, before = (ROOT / name).read_text(), source(final_b, name)
+            # These four shared runtime files differ only by the final release label.
+            if name in {'assets/app-version.json','assets/pwa.js','assets/problem-tracking.js','assets/reproducible-rng.js'}:
+                current = current.replace('12.9.E','12.9.C')
+            assert current == before, name + ': Unit 6 approved asset changed'
     unit6_modules = {'assets/mathlive/unit6.mjs', 'assets/mathlive/integral-setup.mjs'}
     assert git('ls-tree', MATHLIVE, '--', *sorted(unit6_modules)) == '', 'Unit 6 modules not new'
     assert set(editor_changes) <= {'assets/mathlive/keypad-bridge.mjs', 'assets/mathlive/pilot.css', 'assets/mathlive/answer-field.mjs', 'assets/mathlive/native-fields.mjs', 'assets/mathlive/dynamic-fields.mjs'} | permitted | unit6_modules, editor_changes

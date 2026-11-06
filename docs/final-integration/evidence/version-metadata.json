@@ -1,0 +1,19 @@
+{
+  "version": "12.9.E",
+  "release": "v12.9.E",
+  "unit6PracticeBuildMarkers": [
+    "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/practice/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/practice/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/index.html"
+  ],
+  "applicationPwaAnalyticsAndRngConsistent": true,
+  "otherGeneratorRevisionMarkers": "Retain actual unchanged engine revision; app_version is universally 12.9.E.",
+  "passed": true
+}
