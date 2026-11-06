@@ -1,7 +1,7 @@
 BatchMath cumulative working copy
-Current full release: 12.8.Y (review build)
-Archive: batchmath-site-v12.8.Y.zip
-Baseline: v12.8.X (review build, tag v12.8.X), built on v12.8.W and v12.8.V (origin/main b349803).
-Changes: v12.8.Y is a scoped Unit 5 cleanup of v12.8.X: the combined Mixed Practice pages (Basic First-Order, Motion, Rate) and the Mixed Review are retired (old URLs redirect to the topic page); Basic First-Order Calculator has one question family, no dropdown and fraction coefficients in the numerator; calculator total distance is explained as the integral of speed; every Unit 5 Practice Type menu uses the compact choices. Everything else is as in v12.8.X.
+Current build: 12.9.C integration test (review build, not production)
+Archive: batchmath-site-v12.9.C-integration-test.zip
+Sources: the Unit 6 v12.9.B corrections (claude/v12.9b-unit6-teacher-corrections, bfabb6c) with the Unit 6 graph fix (claude/unit6-final-graph-corrections, e265804), merged with the approved MathLive, IM1 video and content work (integration/mathlive-im1-videos-content, 9c395be); main is v12.8.Y (26ec4f1).
+Changes beyond the sources: Unit 6 graphs keep every shaded region, intersection and extreme inside the frame; every Unit 6 integral setup is one blank MathLive field graded by the structural checker; every Unit 6 typed answer uses MathLive; Unit 6 topic pages use the approved video presentation.
 No deployment performed.
-Current update: see docs/v12.8.Y-revisions.md (changes, before/after inventory, teacher checklist) and docs/v12.8.Y-progress.md (commits, checks). Tests: npm run qa:unit5 (now with the Y page, menu and Basic Calculator checks).
+Current update: see docs/v12.9.C-integration-test.md and docs/v12.9.C-integration-test-progress.md. Tests: npm run qa:unit6; MathLive Node suite (docs/integration/MATHLIVE-VIDEOS-CONTENT.md).

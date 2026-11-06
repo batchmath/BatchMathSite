@@ -1,0 +1,43 @@
+[
+  {
+    "suite": "power",
+    "script": "tools/mathlive-power-rule/browser.mjs",
+    "environment": {},
+    "exitCode": 0,
+    "evidence": "tools/mathlive-sitewide/artifacts/final-regressions-v12.9.C/power/browser-results.json"
+  },
+  {
+    "suite": "chain",
+    "script": "tools/mathlive-derivatives-pilot/browser.mjs",
+    "environment": {},
+    "exitCode": 0,
+    "evidence": "tools/mathlive-sitewide/artifacts/final-regressions-v12.9.C/chain/browser-results.json"
+  },
+  {
+    "suite": "product",
+    "script": "tools/mathlive-batch1/browser.mjs",
+    "environment": {
+      "RULE": "product",
+      "INTERACTIONS_ONLY": "1"
+    },
+    "exitCode": 0,
+    "evidence": "tools/mathlive-sitewide/artifacts/final-regressions-v12.9.C/product/product-current-profile-browser.json"
+  },
+  {
+    "suite": "quotient",
+    "script": "tools/mathlive-batch1/browser.mjs",
+    "environment": {
+      "RULE": "quotient",
+      "INTERACTIONS_ONLY": "1"
+    },
+    "exitCode": 0,
+    "evidence": "tools/mathlive-sitewide/artifacts/final-regressions-v12.9.C/quotient/quotient-current-profile-browser.json"
+  },
+  {
+    "suite": "basic",
+    "script": "tools/mathlive-advanced-pilot/basic-browser.mjs",
+    "environment": {},
+    "exitCode": 0,
+    "evidence": "tools/mathlive-sitewide/artifacts/final-regressions-v12.9.C/basic/basic-browser.json"
+  }
+]

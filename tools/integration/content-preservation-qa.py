@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 MATHLIVE = '919ca1806f07e3cd2af552142926e7ca2b78e8d5'
 CONTENT = 'bba32f929d6630d096bc4510ceafd586ab8c4a53'
 UNIT6 = 'ap-calculus/unit-6-applications-integration/'
+UNIT6_APPROVED = 'e265804f440b2e521de00ecff0f6bc33118a12f1'  # Unit 6 corrections (v12.9.B and the graph fix)
 
 
 def git(*args):
@@ -106,7 +107,8 @@ def verify():
             assert outside(final) == outside(expected), name + ': non-video content changed'
             authorized_video.append(name)
         else:
-            assert final == expected, name
+            # exact, apart from an approved v12.9.A/B practice launch-row relabel (Unit 5 Growth: Calculator Practice)
+            assert final == video_audit['approved_launch_rows'](expected, name), name
             exact_content.append(name)
     im1_pages = sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / 'im1').rglob('*.html'))
     for name in im1_pages:
@@ -114,7 +116,22 @@ def verify():
         assert final.links == expected.links, name + ': resource or navigation href differs'
         assert final.headings == expected.headings, name + ': content heading differs'
         assert not any(link and re.search(r'(?:^|[/_-])notes?(?:[/_.-]|$)', link, re.I) for link in final.links), name + ': notes link restored'
-    assert git('diff', MATHLIVE, '--', UNIT6) == '', 'Unit 6 differs from exact MathLive base'
+    # Unit 6 comes from the approved Unit 6 corrections; only its five topic video pages adopt the content source's
+    # video markup (verified above by the video audit). Nothing else in the Unit 6 tree differs from that source.
+    unit6_changed = set(git('diff', '--name-only', UNIT6_APPROVED, '--', UNIT6).splitlines())
+    unit6_video = {UNIT6 + 'topics/' + t + '/index.html' for t in ['area-below-and-between-curves', 'finding-area-in-terms-of-y', 'integrals-on-piecewise-defined-functions', 'solids-of-revolution', 'volume-by-cross-sections']}
+    # the Unit 6 practice pages load the MathLive fields (head) and defer the practice driver; nothing else changes
+    # apart from the build version
+    ml_head = '<link rel="stylesheet" href="/assets/mathlive/pilot.css"><script type="module" src="/assets/mathlive/unit6.mjs"></script>'
+    def unwired(t):
+        t = t.replace(ml_head, '').replace('<script defer src="/assets/ap-topic-practice.js">', '<script src="/assets/ap-topic-practice.js">')
+        return re.sub(r'generatorVersion("?:)"12\.9\.[A-Z]"', r'generatorVersion\1"V"', t)
+    unit6_practice = set()
+    for name in sorted(unit6_changed - unit6_video):
+        final = (ROOT / name).read_text()
+        assert '/practice/index.html' in name or '-practice/index.html' in name, name
+        assert ml_head in final and unwired(final) == unwired(source(UNIT6_APPROVED, name)), name + ': changed beyond the MathLive wiring'
+        unit6_practice.add(name)
     assert git('diff', MATHLIVE, '--', '*.pdf') == '', 'Underlying PDFs changed'
     assert git('diff', MATHLIVE, '--', 'assets/im1-*.js') == '', 'IM1 generator/checker assets changed'
     name = 'assets/im1-keypad.css'
@@ -133,10 +150,19 @@ def verify():
     editor_changes = git('diff', '--name-only', MATHLIVE, '--', 'assets/mathlive').splitlines()
     approved = json.loads((ROOT / 'tools/keypad-completeness/approved-corrections.json').read_text())
     permitted = set(approved['assets'])
-    assert set(git('diff', '--name-only', approved['baseline'], '--', 'assets').splitlines()) <= permitted, 'Unexpected production asset changed since findings'
+    # Preserve both exact approved sources. Every Unit 6-side asset change is
+    # checked against B, while A's eight tested keypad corrections keep their hashes.
+    final_b = '049e8a49d22f3d5ff67f5a79a855ec0028452ab7'
+    integration_base = git('merge-base', '98c9beb3c0eb58a952f6bb29e410e63aa280003e', final_b).strip()
+    unit6_assets = set(git('diff', '--name-only', integration_base, final_b, '--', 'assets').splitlines())
+    assert set(git('diff', '--name-only', approved['baseline'], '--', 'assets').splitlines()) <= permitted | unit6_assets, 'Unexpected production asset changed since findings'
     for name in permitted:
         approved_keypad_source(name, (ROOT / name).read_text())
-    assert set(editor_changes) <= {'assets/mathlive/keypad-bridge.mjs', 'assets/mathlive/pilot.css', 'assets/mathlive/answer-field.mjs', 'assets/mathlive/native-fields.mjs', 'assets/mathlive/dynamic-fields.mjs'} | permitted, editor_changes
+    for name in unit6_assets - permitted:
+        assert (ROOT / name).read_text() == source(final_b, name), name + ': Unit 6 approved asset changed'
+    unit6_modules = {'assets/mathlive/unit6.mjs', 'assets/mathlive/integral-setup.mjs'}
+    assert git('ls-tree', MATHLIVE, '--', *sorted(unit6_modules)) == '', 'Unit 6 modules not new'
+    assert set(editor_changes) <= {'assets/mathlive/keypad-bridge.mjs', 'assets/mathlive/pilot.css', 'assets/mathlive/answer-field.mjs', 'assets/mathlive/native-fields.mjs', 'assets/mathlive/dynamic-fields.mjs'} | permitted | unit6_modules, editor_changes
     focus_routes = {
         'assets/mathlive/answer-field.mjs': '  dispose.push(redirectInputFocus(source,()=>legacy.focus(),()=>active&&!source.disabled));\n',
         'assets/mathlive/native-fields.mjs': '    removes.push(redirectInputFocus(r.input,guard(()=>{active=index;focus();}),()=>ready&&!disposed&&!r.input.disabled));\n',
@@ -158,6 +184,12 @@ def verify():
         body = final[final.index(marker):]
         body = body.replace('const mf=active();if(!mf)return;\n      stableKeypadAction(mf,()=>{\n      focusMathfield(mf);', 'const mf=active();if(!mf)return;focusMathfield(mf);')
         body = body.replace('onChange();\n      });', 'onChange();')
+        # v12.9.C Unit 6: the integral, dx and dy keys, exactly these two added mappings
+        unit6_keys = ("      // Unit 6 integral setups (v12.9.C): an editable definite integral, and its differential\n"
+                      "      else if(aria==='Insert definite integral')mf.insert('\\\\int_{#?}^{#?}#?');\n"
+                      "      else if(button.dataset.u6Key==='dx'||button.dataset.u6Key==='dy')mf.insert('\\\\,'+button.dataset.u6Key);\n")
+        assert body.count(unit6_keys) == 1, 'Unit 6 keypad mappings missing or changed'
+        body = body.replace(unit6_keys, '')
         assert body == before[before.index(marker):], 'Keypad dispatch or checker callbacks changed'
         assert final.split('export function focusMathfield')[0] == before.split('export function focusMathfield')[0], 'Keypad token/command definitions changed'
     report = {'ok': True, 'mathliveSource': MATHLIVE, 'contentSource': CONTENT,
@@ -166,11 +198,11 @@ def verify():
               'authorizedVideoLayoutHtml': authorized_video,
               'approvedNonoverlapContentHtmlVerified': len(exact_content) + len(authorized_video),
               'im1PagesChecked': len(im1_pages), 'studentNotesLinks': 0,
-              'pdfsUnchanged': True, 'unit6TreeUnchanged': True,
+              'pdfsUnchanged': True, 'unit6Source': UNIT6_APPROVED, 'unit6VideoPagesAdopted': len(unit6_video),
+              'unit6PracticePagesWiredForMathLive': len(unit6_practice), 'unit6MathLiveModules': sorted(unit6_modules),
               'approvedEditorViewportChanges': editor_changes,
               'approvedReviewInstructionChange': review_path,
-              'reviewGeneratorsAnswersAndGradersUnchanged': True,
-              'unit6Tree': git('rev-parse', MATHLIVE + ':' + UNIT6.rstrip('/')).strip()}
+              'reviewGeneratorsAnswersAndGradersUnchanged': True}
     return report
 
 

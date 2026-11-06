@@ -13,7 +13,7 @@ const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript','.mjs':'t
 export function serve(port){return new Promise(res=>{const srv=http.createServer((req,rs)=>{const p=decodeURIComponent(new URL(req.url,'http://x').pathname);let f=path.join(ROOT,p);if(!f.startsWith(ROOT)){rs.writeHead(403).end();return;}if(fs.existsSync(f)&&fs.statSync(f).isDirectory())f=path.join(f,'index.html');if(!fs.existsSync(f)){rs.writeHead(404).end('not found');return;}rs.writeHead(200,{'content-type':mime[path.extname(f)]||'application/octet-stream'});fs.createReadStream(f).pipe(rs);});srv.listen(port,'127.0.0.1',()=>res(srv));});}
 // Headless Chromium hides scrollbars by default, which hides exactly the scroll boxes students see on Windows
 // and ChromeOS. Pass {scrollbars:true} for any layout or screenshot check.
-export async function browser({scrollbars=false}={}){return chromium.launch(scrollbars?{ignoreDefaultArgs:['--hide-scrollbars']}:{});}
+export async function browser({scrollbars=false}={}){return chromium.launch({executablePath:process.env.BATCHMATH_CHROMIUM_PATH||'/usr/bin/chromium',...(scrollbars?{ignoreDefaultArgs:['--hide-scrollbars']}:{})});}
 const vendorFile=(dir,rel)=>{const f=path.join(VENDOR,dir,'package',rel);return fs.existsSync(f)?f:null;};
 export async function context(b,{width=1366,height=768,mobile=false}={}){
  const c=await b.newContext({viewport:{width,height},isMobile:mobile,hasTouch:mobile,deviceScaleFactor:mobile?2:1});

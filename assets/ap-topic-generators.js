@@ -2074,24 +2074,25 @@ G['derivatives-conceptual-review']=()=>{
   };
 
   G['integrals-on-piecewise-defined-functions']=()=>{
+    const cx=(n,v='x')=>`${n===1?'':n}${v}`; // a coefficient of 1 is not written (x, x^2)
     const fam=pick(['two_linear','three_poly','four_piece','trig_piece','reciprocal_log','mixed_constant_quad']);
     if(fam==='two_linear'){
       const a=ri(1,4),b=ri(1,4),c=ri(-3,3);const val=(a*1*1/2+c*1)-(a*4/2+c*(-2)) + (b*9/2)-(b*1/2); // [-2,1] then [1,3]
-      return ratMc(`u6-piece1-${a}-${b}-${c}`,'piecewise_two_linear','Evaluate the definite integral.',`f(x)=\\begin{cases}${a}x${c>=0?`+${c}`:c},&-2\\le x<1\\\\${b}x,&1\\le x\\le3\\end{cases},\\qquad \\int_{-2}^{3}f(x)\\,dx`,Math.round(val*2),2,`Split the integral at x=1 and integrate each formula only on its own interval.`);
+      return ratMc(`u6-piece1-${a}-${b}-${c}`,'piecewise_two_linear','Evaluate the definite integral.',`f(x)=\\begin{cases}${cx(a)}${c>=0?`+${c}`:c},&-2\\le x<1\\\\${cx(b)},&1\\le x\\le3\\end{cases},\\qquad \\int_{-2}^{3}f(x)\\,dx`,Math.round(val*2),2,`Split the integral at x=1 and integrate each formula only on its own interval.`);
     }
     if(fam==='three_poly'){
-      const a=ri(1,4),b=ri(1,4),c=ri(2,6),num=6*a+8*b+6*c-18;return ratMc(`u6-piece2-${a}-${b}-${c}`,'piecewise_three_polynomial','Evaluate the definite integral.',`f(x)=\\begin{cases}${a}x+${2*a},&-2\\le x<0\\\\${b}x^2,&0\\le x<2\\\\${c}-x,&2\\le x\\le4\\end{cases},\\qquad \\int_{-2}^{4}f(x)\\,dx`,num,3,`Break the integral at x=0 and x=2, then add the three definite integrals.`);
+      const a=ri(1,4),b=ri(1,4),c=ri(2,6),num=6*a+8*b+6*c-18;return ratMc(`u6-piece2-${a}-${b}-${c}`,'piecewise_three_polynomial','Evaluate the definite integral.',`f(x)=\\begin{cases}${cx(a)}+${2*a},&-2\\le x<0\\\\${cx(b,'x^2')},&0\\le x<2\\\\${c}-x,&2\\le x\\le4\\end{cases},\\qquad \\int_{-2}^{4}f(x)\\,dx`,num,3,`Break the integral at x=0 and x=2, then add the three definite integrals.`);
     }
     if(fam==='four_piece'){
-      const a=ri(1,3),b=ri(1,3),c=ri(3,6),d=ri(1,4),num=-9*a+4*b+6*c+3+12*d;return ratMc(`u6-piece3-${a}-${b}-${c}-${d}`,'piecewise_four_formula','Evaluate the definite integral.',`f(x)=\\begin{cases}${a}x,&-2\\le x<-1\\\\${b}x^2+1,&-1\\le x<1\\\\${c}-x,&1\\le x<2\\\\${d},&2\\le x\\le4\\end{cases},\\qquad \\int_{-2}^{4}f(x)\\,dx`,num,6,`Split at every formula change: -1, 1, and 2.`);
+      const a=ri(1,3),b=ri(1,3),c=ri(3,6),d=ri(1,4),num=-9*a+4*b+6*c+3+12*d;return ratMc(`u6-piece3-${a}-${b}-${c}-${d}`,'piecewise_four_formula','Evaluate the definite integral.',`f(x)=\\begin{cases}${cx(a)},&-2\\le x<-1\\\\${cx(b,'x^2')}+1,&-1\\le x<1\\\\${c}-x,&1\\le x<2\\\\${d},&2\\le x\\le4\\end{cases},\\qquad \\int_{-2}^{4}f(x)\\,dx`,num,6,`Split at every formula change: -1, 1, and 2.`);
     }
     if(fam==='trig_piece'){
       const k=ri(1,4),m=ri(1,3),base=piRat(m),delta=k-m,correct=delta===0?base:`${base}${delta>0?`+${delta}`:`-${-delta}`}`,altDelta=delta+1,alt=altDelta===0?base:`${base}${altDelta>0?`+${altDelta}`:`-${-altDelta}`}`;return mc6(`u6-piece4-${k}-${m}`,'piecewise_trig_stable','Evaluate the definite integral.',`f(x)=\\begin{cases}${k===1?'':k}\\cos x,&0\\le x<\\frac{\\pi}{2}\\\\${2*m}-${m===1?'':m}\\sin x,&\\frac{\\pi}{2}\\le x\\le\\pi\\end{cases},\\qquad \\int_0^\\pi f(x)\\,dx`,correct,[base,piRat(k),alt],`Integrate each branch on its stated interval and add.`);
     }
     if(fam==='reciprocal_log'){
-      const k=ri(1,4),c=ri(1,4),lt=k===1?'\\ln2':`${k}\\ln2`,correct=`${lt}+${6*c}`;return mc6(`u6-piece5-${k}-${c}`,'piecewise_log_linear','Evaluate the definite integral.',`f(x)=\\begin{cases}\\frac{${k}}{x},&1\\le x<2\\\\${c}x,&2\\le x\\le4\\end{cases},\\qquad \\int_1^4f(x)\\,dx`,correct,[`${lt}+${4*c}`,`${k===1?'\\ln4':`${k}\\ln4`}+${6*c}`,`${k}+${6*c}`],`The reciprocal branch contributes ${k===1?'ln 2':`${k} ln 2`}; the linear branch contributes ${6*c}.`);
+      const k=ri(1,4),c=ri(1,4),lt=k===1?'\\ln2':`${k}\\ln2`,correct=`${lt}+${6*c}`;return mc6(`u6-piece5-${k}-${c}`,'piecewise_log_linear','Evaluate the definite integral.',`f(x)=\\begin{cases}\\frac{${k}}{x},&1\\le x<2\\\\${cx(c)},&2\\le x\\le4\\end{cases},\\qquad \\int_1^4f(x)\\,dx`,correct,[`${lt}+${4*c}`,`${k===1?'\\ln4':`${k}\\ln4`}+${6*c}`,`${k}+${6*c}`],`The reciprocal branch contributes ${k===1?'ln 2':`${k} ln 2`}; the linear branch contributes ${6*c}.`);
     }
-    const a=ri(1,5),b=ri(1,4),num=9*a+19*b;return ratMc(`u6-piece6-${a}-${b}`,'piecewise_constant_quadratic','Evaluate the definite integral.',`f(x)=\\begin{cases}${a},&-1\\le x<2\\\\${b}x^2,&2\\le x\\le3\\end{cases},\\qquad \\int_{-1}^{3}f(x)\\,dx`,num,3,`Integrate the constant branch from -1 to 2 and the quadratic branch from 2 to 3.`);
+    const a=ri(1,5),b=ri(1,4),num=9*a+19*b;return ratMc(`u6-piece6-${a}-${b}`,'piecewise_constant_quadratic','Evaluate the definite integral.',`f(x)=\\begin{cases}${a},&-1\\le x<2\\\\${cx(b,'x^2')},&2\\le x\\le3\\end{cases},\\qquad \\int_{-1}^{3}f(x)\\,dx`,num,3,`Integrate the constant branch from -1 to 2 and the quadratic branch from 2 to 3.`);
   };
 
   G['volume-by-cross-sections']=()=>{

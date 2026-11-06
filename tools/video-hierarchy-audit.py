@@ -8,6 +8,22 @@ from integration.html_tree import Tree
 ROOT=Path(__file__).resolve().parents[1]
 BASE='535527a172b4a2e4c26d9cf970a6d061e7802849'
 UNIT6='ap-calculus/unit-6-applications-integration/'
+# Unit 6 / MathLive / video integration test: the approved Unit 6 corrections (graph fix on v12.9.B) and the approved
+# content source whose Unit 6 video markup was deferred until then
+UNIT6_APPROVED='e265804f440b2e521de00ecff0f6bc33118a12f1'
+CONTENT='bba32f929d6630d096bc4510ceafd586ab8c4a53'
+MAIN='26ec4f15185c37f9e8843e96a09d583b47babcdf'
+LAUNCH=re.compile(r'<section class="resource-section" data-bm-topic-practice="1">.*?</section>',re.S)
+
+def approved_launch_rows(before,name):
+ # v12.9.A/B relabeled practice launch rows (Unit 5 Growth: Calculator Practice; Unit 6 calculator and non-calculator
+ # pages). Outside the video sections, a page must equal its baseline with those approved rows and nothing else.
+ try:rows,main=LAUNCH.findall(source(UNIT6_APPROVED,name)),LAUNCH.findall(source(MAIN,name))
+ except subprocess.CalledProcessError:return before
+ if rows==main:return before  # no approved relabel on this page
+ old=LAUNCH.findall(before)
+ assert len(rows)==len(old)==1,name+': unexpected practice launch rows'
+ return LAUNCH.sub(lambda m:rows[0],before)
 
 def source(ref,name):
  return subprocess.check_output(['git','show',ref+':'+name],cwd=ROOT).decode()
@@ -50,8 +66,10 @@ def audit():
  for p in sorted(f for c in ['ap-calculus','im1','calculus-prep'] for f in (ROOT/c).rglob('*.html')):
   name=p.relative_to(ROOT).as_posix();text=p.read_text()
   if not re.search(r'youtube\.com/embed|data-video-id=',text):continue
-  if name.startswith(UNIT6):deferred.append(name);continue
-  before=source(BASE,name);a,b=Tree(before),Tree(text)
+  unit6=name.startswith(UNIT6)
+  before=approved_launch_rows(source(CONTENT if unit6 else BASE,name),name);a,b=Tree(before),Tree(text)
+  if unit6:  # the adopted markup carries the approved content source's recordings exactly
+   assert Counter(recordings(b))==Counter(recordings(Tree(source(CONTENT,name)))),name+': Unit 6 recordings differ from the approved content source'
   assert Counter(recordings(a))==Counter(recordings(b)),name+': video ID, URL/configuration, title or thumbnail changed'
   assert [n.attrs.get('href') for n in a.root.nodes() if n.tag=='a']==[n.attrs.get('href') for n in b.root.nodes() if n.tag=='a'],name+': resource/navigation link changed'
   assert Counter(n.text() for n in a.root.nodes() if n.has('proof-note'))==Counter(n.text() for n in b.root.nodes() if n.has('proof-note')),name+': optional proof context changed'
@@ -59,13 +77,12 @@ def audit():
   old,new=describe(a),describe(b);changed=before!=text
   required='Lecture group uses count rule; unified supporting gallery always opens modal' if new['lectureVideos'] and(new['exampleVideos'] or new['proofVideos']) else 'Existing collection count rule' if new['collections'] else 'Retain specialized homework/review controls'
   rows.append({'path':name,'before':old,'after':new,'changed':changed,'requiredPresentation':required,'approvedVideoMetadataPreserved':True,'resourceLinksAndSpecializedWorkflowsPreserved':True})
- assert len(rows)==66
- assert not subprocess.check_output(['git','diff','919ca1806f07e3cd2af552142926e7ca2b78e8d5','--',UNIT6],cwd=ROOT)
+ assert len(rows)==72  # 66 + the six Unit 6 video pages (five topic pages, the comprehensive review)
  return {'baseline':BASE,'videoPagesAudited':len(rows),'pagesChanged':sum(r['changed'] for r in rows),'deferredUnit6VideoPages':deferred,'pages':rows}
 
 if __name__=='__main__':
  report=audit();out=ROOT/'docs/audits';out.mkdir(parents=True,exist_ok=True);(out/'VIDEO-HIERARCHY.json').write_text(json.dumps(report,indent=2)+'\n')
- lines=['# Video hierarchy audit','',f"Audited {report['videoPagesAudited']} in-scope video pages; {report['pagesChanged']} changed. Six Unit 6 video-bearing pages remain deferred. Baseline: `{BASE}`.",'','Every page preserves video IDs, full playback URLs/offsets, titles, thumbnails, resource links, optional proof notes, and all markup/scripts outside the instructional sections. Only explicitly designated lecture-plus-supporting pages change hierarchy. Flat instructional collections do not acquire an inferred primary.','','| Page | Lecture | Examples | Proofs | Other collection videos | HW | Collapsible review | Final presentation | Changed |','| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |']
+ lines=['# Video hierarchy audit','',f"Audited {report['videoPagesAudited']} in-scope video pages; {report['pagesChanged']} changed. The six Unit 6 video pages are included, audited against the approved content source `{CONTENT}`. Baseline: `{BASE}`.",'','Every page preserves video IDs, full playback URLs/offsets, titles, thumbnails, resource links, optional proof notes, and all markup/scripts outside the instructional sections. Only explicitly designated lecture-plus-supporting pages change hierarchy. Flat instructional collections do not acquire an inferred primary.','','| Page | Lecture | Examples | Proofs | Other collection videos | HW | Collapsible review | Final presentation | Changed |','| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |']
  for r in report['pages']:
   a=r['after'];lines.append('| `'+r['path']+'` | '+' | '.join(str(a[k]) for k in ['lectureVideos','exampleVideos','proofVideos','collectionVideosWithoutDesignatedPrimary','homeworkWalkthroughs','specializedReviewVideos'])+' | '+r['requiredPresentation']+' | '+('yes' if r['changed'] else 'no')+' |')
  lines+=['','The four proof players are migrated into shared supporting galleries; their Proof labels, optional explanatory text, original recording titles, URLs and accessible controls remain. Homework and collapsible review players stay specialized.','','Runtime browser evidence is produced by `BM_CHROMIUM_EXECUTABLE=/usr/bin/chromium node tools/video-presentation-qa.mjs`; source preservation by `python3 tools/video-hierarchy-audit.py`. YouTube player responses in browser QA are simulated, so external recording availability/audio playback is not certified.']
