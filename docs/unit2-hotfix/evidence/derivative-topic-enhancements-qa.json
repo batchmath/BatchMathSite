@@ -1,0 +1,33 @@
+{
+  "ok": true,
+  "generatedAt": "2026-11-06T23:53:55.638Z",
+  "counts": {
+    "dq": 20000,
+    "productBasic": 8000,
+    "productAll": 8000,
+    "quotientBasic": 8000,
+    "quotientAll": 8000,
+    "trigWithout": 4000,
+    "trigWith": 12000,
+    "chainSimple": 5000,
+    "chainMultiple": 7000,
+    "chainOther": 7000,
+    "chainAll": 15000,
+    "comprehensive review inverse families": {
+      "iv1": 117,
+      "iv-log": 81,
+      "iv2": 101,
+      "iv-exp": 101,
+      "iv-table": 100
+    },
+    "focused inverse engine inverse families": {
+      "iv-table": 92,
+      "iv-log": 107,
+      "iv2": 100,
+      "iv-exp": 90,
+      "iv1": 111
+    }
+  },
+  "warnings": [],
+  "errors": []
+}

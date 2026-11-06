@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {definesInverse} from './inverse-prompt-contract.mjs';
 import fs from 'node:fs';import path from 'node:path';import vm from 'node:vm';import {fileURLToPath} from 'node:url';
 const HERE=path.dirname(fileURLToPath(import.meta.url)),ROOT=path.resolve(HERE,'..'),OUT=path.join(ROOT,'qa-results');fs.mkdirSync(OUT,{recursive:true});
 const errors=[],warnings=[],counts={dq:0,productBasic:0,productAll:0,quotientBasic:0,quotientAll:0,trigWithout:0,trigWith:0,chainSimple:0,chainMultiple:0,chainOther:0,chainAll:0};
@@ -48,12 +49,16 @@ for(const [rel,label] of [
  ['ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html','comprehensive review'],
  ['ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html','focused inverse engine']
 ]){
- const box=exposePage(rel,['inverseFunc'],`inverse-prompt-${label}`);
+ const box=exposePage(rel,['inverseFunc','parseExpression','evalTree'],`inverse-prompt-${label}`),families={};
  for(let i=0;i<500;i++){
   box.BatchMathRNG.random=rng(`inverse-prompt-${label}:${i}`);
   const p=box.QA.inverseFunc(),q=String(p.q||'');
-  if(!q.includes('are inverses')&&!q.includes('g=f^{-1}'))errors.push(`${label}: ${p.id} does not identify f and g as inverses`);
+  const family=p.id.match(/^iv(?:[12]|-exp|-log|-table)/)?.[0];families[family]=(families[family]||0)+1;
+  if(!answerParses(p,box))errors.push(`${label}: ${p.id} answer no longer parses`);
+  if(!definesInverse(q))errors.push(`${label}: ${p.id} does not identify f and g as inverses`);
  }
+ for(const family of ['iv1','iv2','iv-exp','iv-log','iv-table'])if(!families[family])errors.push(`${label}: missing inverse family ${family}`);
+ counts[label+' inverse families']=families;
 }
 // Later topic engines retain their current-topic default and offer a cumulative choice.
 for(const topic of ['exponential-functions','implicit-differentiation','derivatives-of-logarithmic-functions','logarithmic-differentiation','inverse-trigonometric-functions']){const rel=`ap-calculus/unit-2-derivatives/topics/${topic}/practice/index.html`,h=fs.readFileSync(path.join(ROOT,rel),'utf8');if(JSON.stringify(selectValues(rel,'practice-scope'))!==JSON.stringify(['topic','cumulative'])||!/<option value="topic" selected>/.test(h))errors.push(`${topic}: incorrect focused/cumulative menu`)}
