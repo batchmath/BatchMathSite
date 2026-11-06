@@ -1,0 +1,345 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice",
+ "viewport": "390x844 mobile",
+ "editor": "mathlive",
+ "mode": "perp_y",
+ "setupKeypadOnly": true,
+ "checked": 6,
+ "parts": 8,
+ "integrals": 2,
+ "mathliveFields": 8,
+ "blankAtStart": 8,
+ "locked": 8,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "cs_basic/intermediate: u6-expr keyboard/Enter: (root(3,y)-sqrt(y))^2 | input keypad/Enter: (1)/(110)",
+  "cs_setup/intermediate: integral keypad-only/Enter: 1 integral(s): int(-1,1,(2sqrt(1-y^2))^2,y)",
+  "cs_basic/foundational: input keyboard/Check: 16",
+  "cs_basic/foundational: input keypad/Enter: (32)/(15)",
+  "cs_setup/challenging: integral keypad-only/Enter: 1 integral(s): ((pi)/(8))*int(0,2,(-((3y)/(2))+3)^2,y) | input keypad/Check: (3)/(4)pi",
+  "cs_basic/foundational: input keypad/Check: (16)/(5)"
+ ],
+ "questionIds": [
+  "u6-cross_sections-csb-y=x^{2}|y=x^{3}-y-squares-1nhu68s",
+  "u6-cross_sections-css-x^{2}+y^{2}=1-y-squares-1rl21a6",
+  "u6-cross_sections-csb-y=-2x^{2} + 8|y=0-y-squares-1v7kjvy",
+  "u6-cross_sections-csb-y=2\\sqrt{x}|x=1|y=0-y-rectangles whose height is twice the base across the region-1jpy12d",
+  "u6-cross_sections-css-y=-\\frac{2x}{3} + 2|x=0|y=0-y-semicircles whose diameter lies across the region-k40jdl",
+  "u6-cross_sections-csb-y=x^{3}|x=2|y=0-y-squares-6yc6kc"
+ ],
+ "fieldEvidence": [
+  {
+   "questionId": "u6-cross_sections-csb-y=x^{2}|y=x^{3}-y-squares-1nhu68s",
+   "part": 0,
+   "control": "u6-expr",
+   "expectedTex": "A(y)=\\left(\\sqrt[3]{y}-\\sqrt{y}\\right)^{2}",
+   "blankAtStart": true,
+   "enteredLatex": "\\left(\\sqrt[3]{y}-\\sqrt{y}\\right)^{2}",
+   "serializedSource": "(root(3,y)-sqrt(y))^2",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-integral",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-cross_sections-csb-y=x^{2}|y=x^{3}-y-squares-1nhu68s",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\frac{1}{110}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{1}{110}",
+   "serializedSource": "(1)/(110)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-cross_sections-css-x^{2}+y^{2}=1-y-squares-1rl21a6",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{-1}^{1}\\left(2\\sqrt{1-y^{2}}\\right)^{2}\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_{-1}^1(2\\sqrt{1-y^2})^2\\,dy",
+   "serializedSource": "int(-1,1,(2sqrt(1-y^2))^2,y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "√",
+     "aria": "Insert √"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-cross_sections-csb-y=-2x^{2} + 8|y=0-y-squares-1v7kjvy",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "16",
+   "blankAtStart": true,
+   "enteredLatex": "16",
+   "serializedSource": "16",
+   "inputMethod": "keyboard",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-cross_sections-csb-y=2\\sqrt{x}|x=1|y=0-y-rectangles whose height is twice the base across the region-1jpy12d",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "\\frac{32}{15}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{32}{15}",
+   "serializedSource": "(32)/(15)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-cross_sections-css-y=-\\frac{2x}{3} + 2|x=0|y=0-y-semicircles whose diameter lies across the region-k40jdl",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\frac{\\pi}{8}\\int_{0}^{2}\\left(-\\frac{3y}{2} + 3\\right)^{2}\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{\\pi}{8}\\cdot\\int_0^2(-\\frac{3y}{2}+3)^2\\,dy",
+   "serializedSource": "((pi)/(8))*int(0,2,(-((3y)/(2))+3)^2,y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "ab",
+     "aria": "Insert stacked fraction"
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "8",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "ab",
+     "aria": "Insert stacked fraction"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-cross_sections-css-y=-\\frac{2x}{3} + 2|x=0|y=0-y-semicircles whose diameter lies across the region-k40jdl",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\frac{3}{4}\\pi",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{3}{4}\\pi",
+   "serializedSource": "(3)/(4)pi",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-cross_sections-csb-y=x^{3}|x=2|y=0-y-squares-6yc6kc",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "\\frac{16}{5}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{16}{5}",
+   "serializedSource": "(16)/(5)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  }
+ ]
+}

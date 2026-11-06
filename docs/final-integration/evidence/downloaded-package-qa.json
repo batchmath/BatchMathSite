@@ -1,0 +1,32 @@
+{
+  "matrixRuns": 56,
+  "checked": 336,
+  "parts": 627,
+  "integrals": 159,
+  "mathliveFields": 613,
+  "blankAtStart": 613,
+  "locked": 613,
+  "entireSetupKeypadOnly": 159,
+  "recordedSetupButtonActions": 4460,
+  "allFieldsInitiallyBlankCorrectAndLocked": true,
+  "allSetupProfilesLatexSerializationAndButtonsRecorded": true,
+  "nonSetupEntryPolicy": "Original mixed physical-keyboard/keypad/complex-LaTeX insertion; not all 627 parts are keypad-only.",
+  "zipSmoke": {
+    "pageVisits": 20,
+    "sameValueWrongSetupsRejected": 6,
+    "cubicGraphs": 2,
+    "fallbacks": 4,
+    "failures": 0
+  },
+  "downloadedServiceWorkerActivationAndOfflineHashesPassed": true,
+  "downloadedStaticQa": {
+    "htmlPages": 288,
+    "internalReferences": 8651,
+    "brokenReferences": 0,
+    "warnings": 0,
+    "errors": 0
+  },
+  "testedWebsiteCommit": "2fbfd3f7eb482fd6ef5f890ba86fe2a9554db8b6",
+  "archiveSha256": "c17cd35cf7972bd7eee6fedec906f2df25b28078e5acdfddd405d816e6812a7d",
+  "passed": true
+}

@@ -1,0 +1,17 @@
+{
+  "testedCommit": "2fbfd3f7eb482fd6ef5f890ba86fe2a9554db8b6",
+  "zip": "batchmath-site-v12.9.E.zip",
+  "rootDirectory": "batchmath-site-v12.9.E/",
+  "bytes": 314254305,
+  "sha256": "c17cd35cf7972bd7eee6fedec906f2df25b28078e5acdfddd405d816e6812a7d",
+  "includedFiles": 768,
+  "htmlPages": 288,
+  "pdfFiles": 290,
+  "lockedMathLiveFiles": 24,
+  "allFilesMatchTestedCommit": true,
+  "crcPassed": true,
+  "cleanExtraction": true,
+  "standaloneHttpChecks": 10,
+  "localMachinePaths": 0,
+  "testDownload": "https://github.com/batchmath/BatchMathSite/releases/download/v12.9.E/batchmath-site-v12.9.E.zip"
+}

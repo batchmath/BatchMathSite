@@ -5,7 +5,7 @@ import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
 const HERE=path.dirname(fileURLToPath(import.meta.url));
-const ROOT=path.resolve(HERE,'..');
+const ROOT=path.resolve(process.env.BM_ROOT||path.resolve(HERE,'..'));
 const SITE_ORIGIN='https://batchmath.net';
 const errors=[]; const warnings=[]; const stats={};
 const fail=(msg)=>errors.push(msg); const warn=(msg)=>warnings.push(msg);
@@ -180,6 +180,6 @@ const diag=fs.readFileSync(path.join(ROOT,'diagnostics/index.html'),'utf8');if(!
 const rng=fs.readFileSync(path.join(ROOT,'assets/reproducible-rng.js'),'utf8');for(const needle of ['window.BatchMathRNG','Report a Problem','noteProblem(problem)','bm_seed'])if(!rng.includes(needle))fail(`reproducible-rng.js missing ${needle}`);
 
 const report={ok:errors.length===0,generatedAt:new Date().toISOString(),stats,warnings,errors,engines};
-const outDir=path.join(ROOT,'qa-results');fs.mkdirSync(outDir,{recursive:true});fs.writeFileSync(path.join(outDir,'release-qa.json'),JSON.stringify(report,null,2)+'\n');
+const outDir=process.env.BM_STATIC_OUT||path.join(ROOT,'qa-results');fs.mkdirSync(outDir,{recursive:true});fs.writeFileSync(path.join(outDir,'release-qa.json'),JSON.stringify(report,null,2)+'\n');
 const lines=[`BatchMath ${version} automated release QA`,`Result: ${report.ok?'PASS':'FAIL'}`,'',...Object.entries(stats).map(([k,v])=>`${k}: ${v}`),'',`Warnings: ${warnings.length}`,...warnings.map(x=>`- ${x}`),'',`Errors: ${errors.length}`,...errors.map(x=>`- ${x}`),''];fs.writeFileSync(path.join(outDir,'release-qa.txt'),lines.join('\n'));
 console.log(lines.join('\n'));if(errors.length)process.exit(1);

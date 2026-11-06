@@ -1,0 +1,495 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "mixed",
+ "setupKeypadOnly": true,
+ "checked": 6,
+ "parts": 9,
+ "integrals": 2,
+ "mathliveFields": 9,
+ "blankAtStart": 9,
+ "locked": 9,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "between_switch/challenging: integral keypad-only/Enter: 3 integral(s): int(-4,-2,x^2+5x-4-(4x-2),x)+int(-2,1,4x-2-(x^2+5x-4),x)+int(1,3,x^2+5x-4-(4x-2),x) | input keypad/Enter: (131)/(6)",
+  "exp_log_between/foundational: input keypad/Enter: (5)/(2)+6ln(2)-6ln(3)",
+  "axis_sign/intermediate: input keyboard/Check: -1,(3)/(2) | input keypad/Enter: (109)/(12)",
+  "axis_basic/intermediate: input keypad/Enter: 108",
+  "exp_log_under/foundational: input keyboard/Enter: 8",
+  "choose_dx_dy/intermediate: integral keypad-only/Check: 1 integral(s): int(0,3,2x-x,x) | input keyboard/Enter: (9)/(2)"
+ ],
+ "questionIds": [
+  "u6-area-switch-x^{2} + 5x - 4--4-3-7hgmnv",
+  "u6-area-rl-2-3-1-p6qttn",
+  "u6-area-sign-2x^{2} - x - 3--2-2-6ork8o",
+  "u6-area-cap-27-3\\left(x+3\\right)^{2}--6-0-m9mox3",
+  "u6-area-exp-2-1-5-iv7n6r",
+  "u6-area-choose-wedge-y=2x|y=x|x=3-2-1nuhq6j"
+ ],
+ "fieldEvidence": [
+  {
+   "questionId": "u6-area-switch-x^{2} + 5x - 4--4-3-7hgmnv",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{-4}^{-2}\\left(x^{2} + 5x - 4-\\left(4x - 2\\right)\\right)\\,dx + \\int_{-2}^{1}\\left(4x - 2-\\left(x^{2} + 5x - 4\\right)\\right)\\,dx + \\int_{1}^{3}\\left(x^{2} + 5x - 4-\\left(4x - 2\\right)\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_{-4}^{-2}x^2+5x-4-(4x-2)\\,dx+\\int_{-2}^14x-2-(x^2+5x-4)\\,dx+\\int_1^3x^2+5x-4-(4x-2)\\,dx",
+   "serializedSource": "int(-4,-2,x^2+5x-4-(4x-2),x)+int(-2,1,4x-2-(x^2+5x-4),x)+int(1,3,x^2+5x-4-(4x-2),x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-switch-x^{2} + 5x - 4--4-3-7hgmnv",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\frac{131}{6}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{131}{6}",
+   "serializedSource": "(131)/(6)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-rl-2-3-1-p6qttn",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "\\frac{5}{2} + 6\\ln 2 - 6\\ln 3",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{5}{2} + 6\\ln 2 - 6\\ln 3",
+   "serializedSource": "(5)/(2)+6ln(2)-6ln(3)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-sign-2x^{2} - x - 3--2-2-6ork8o",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "-1,\\ \\frac{3}{2}",
+   "blankAtStart": true,
+   "enteredLatex": "-1,\\frac{3}{2}",
+   "serializedSource": "-1,(3)/(2)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-list",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-sign-2x^{2} - x - 3--2-2-6ork8o",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\frac{109}{12}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{109}{12}",
+   "serializedSource": "(109)/(12)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-cap-27-3\\left(x+3\\right)^{2}--6-0-m9mox3",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "108",
+   "blankAtStart": true,
+   "enteredLatex": "108",
+   "serializedSource": "108",
+   "inputMethod": "keypad",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-exp-2-1-5-iv7n6r",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "8",
+   "blankAtStart": true,
+   "enteredLatex": "8",
+   "serializedSource": "8",
+   "inputMethod": "keyboard",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-wedge-y=2x|y=x|x=3-2-1nuhq6j",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{3}\\left(2x-x\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^32x-x\\,dx",
+   "serializedSource": "int(0,3,2x-x,x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-choose-wedge-y=2x|y=x|x=3-2-1nuhq6j",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\frac{9}{2}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{9}{2}",
+   "serializedSource": "(9)/(2)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  }
+ ]
+}

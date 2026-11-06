@@ -1,0 +1,281 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+ "viewport": "390x844 mobile",
+ "editor": "mathlive",
+ "mode": "between",
+ "setupKeypadOnly": true,
+ "checked": 6,
+ "parts": 10,
+ "integrals": 2,
+ "mathliveFields": 10,
+ "blankAtStart": 10,
+ "locked": 10,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "between_enclosed/intermediate: input keyboard/Enter: -3,0 | input keypad/Enter: 9",
+  "area_directions/challenging: integral keypad-only/Enter: 1 integral(s): int(0,1,sqrt(x)-x,x) | input keyboard/Check: (1)/(6)",
+  "between_switch/intermediate: input keyboard/Check: -2,0 | input keypad/Enter: (44)/(3)",
+  "between_enclosed/foundational: input keypad/Enter: (4)/(3)",
+  "between_enclosed/foundational: input keyboard/Enter: (5)/(12)",
+  "area_directions/challenging: integral keypad-only/Check: 1 integral(s): int(0,1,root(3,y)-sqrt(y),y) | input keyboard/Enter: (1)/(12)"
+ ],
+ "questionIds": [
+  "u6-area-enc-line_parabola-y=-2x^{2} - 5x - 2|y=x - 2-2-7dvbhy",
+  "u6-area-dir-either-x=y^{2}|x=y-2-1sybeay",
+  "u6-area-switch-x^{2} + x + 4--4-2-n35l84",
+  "u6-area-enc-line_parabola-y=-x^{2} - 2x + 4|y=-2x + 3-1-13dem68",
+  "u6-area-enc-pair-y=\\sqrt{x}|y=x^{3}-1-1ohs2q4",
+  "u6-area-dir-y-y=x^{2}|y=x^{3}-2-1tvq1oz"
+ ],
+ "fieldEvidence": [
+  {
+   "questionId": "u6-area-enc-line_parabola-y=-2x^{2} - 5x - 2|y=x - 2-2-7dvbhy",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "-3,\\ 0",
+   "blankAtStart": true,
+   "enteredLatex": "-3,0",
+   "serializedSource": "-3,0",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-list",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-enc-line_parabola-y=-2x^{2} - 5x - 2|y=x - 2-2-7dvbhy",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "9",
+   "blankAtStart": true,
+   "enteredLatex": "9",
+   "serializedSource": "9",
+   "inputMethod": "keypad",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-dir-either-x=y^{2}|x=y-2-1sybeay",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{1}\\left(\\sqrt{x}-x\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^1\\sqrt{x}-x\\,dx",
+   "serializedSource": "int(0,1,sqrt(x)-x,x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "√",
+     "aria": "Insert √"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-dir-either-x=y^{2}|x=y-2-1sybeay",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\frac{1}{6}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{1}{6}",
+   "serializedSource": "(1)/(6)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-switch-x^{2} + x + 4--4-2-n35l84",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "-2,\\ 0",
+   "blankAtStart": true,
+   "enteredLatex": "-2,0",
+   "serializedSource": "-2,0",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-list",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-switch-x^{2} + x + 4--4-2-n35l84",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\frac{44}{3}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{44}{3}",
+   "serializedSource": "(44)/(3)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-enc-line_parabola-y=-x^{2} - 2x + 4|y=-2x + 3-1-13dem68",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "\\frac{4}{3}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{4}{3}",
+   "serializedSource": "(4)/(3)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-enc-pair-y=\\sqrt{x}|y=x^{3}-1-1ohs2q4",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "\\frac{5}{12}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{5}{12}",
+   "serializedSource": "(5)/(12)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-dir-y-y=x^{2}|y=x^{3}-2-1tvq1oz",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\int_{0}^{1}\\left(\\sqrt[3]{y}-\\sqrt{y}\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "\\int_0^1\\sqrt[3]{y}-\\sqrt{y}\\,dy",
+   "serializedSource": "int(0,1,root(3,y)-sqrt(y),y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "∛",
+     "aria": "Insert ∛"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "√",
+     "aria": "Insert √"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-area-dir-y-y=x^{2}|y=x^{3}-2-1tvq1oz",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\frac{1}{12}",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{1}{12}",
+   "serializedSource": "(1)/(12)",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  }
+ ]
+}

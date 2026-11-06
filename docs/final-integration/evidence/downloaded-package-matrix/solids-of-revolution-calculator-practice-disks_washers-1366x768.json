@@ -1,0 +1,320 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "disks_washers",
+ "setupKeypadOnly": true,
+ "checked": 6,
+ "parts": 8,
+ "integrals": 1,
+ "mathliveFields": 8,
+ "blankAtStart": 8,
+ "locked": 8,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "solid_calc/intermediate: input keyboard/Enter: 17.034",
+  "solid_calc/foundational: input keypad/Enter: 87.379",
+  "solid_calc/foundational: input keyboard/Check: 58.984",
+  "calc_two_axes/intermediate: input keypad/Enter: 21.157 | input keyboard/Enter: 82.853",
+  "solid_calc/intermediate: input keyboard/Enter: 5.595",
+  "solid_calc/challenging: integral keypad-only/Check: 1 integral(s): (pi)*int(0.050,1.910,(2+ln(x)+2)^2-(x^2-1+2)^2,x) | input keyboard/Enter: 49.249"
+ ],
+ "questionIds": [
+  "u6-solids-sc-y=2\\cos x|y=x^{2}-y0-washer-endu0d",
+  "u6-solids-d4-2-2.5-lmbsci",
+  "u6-solids-d1-3-1.5-1mh87ol",
+  "u6-solids-sc2-y=0|y=2\\ln(x+1)|y=-x+4-y0-washer-x-1-washer-1efcioa",
+  "u6-solids-sc-f(x)=1+\\ln x|g(x)=x^{2}-1-x0-washer-1iu2c1r",
+  "u6-solids-sc-f(x)=2+\\ln x|g(x)=x^{2}-1-y-2-washer-1xu7ebm"
+ ],
+ "fieldEvidence": [
+  {
+   "questionId": "u6-solids-sc-y=2\\cos x|y=x^{2}-y0-washer-endu0d",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "17.034",
+   "blankAtStart": true,
+   "enteredLatex": "17.034",
+   "serializedSource": "17.034",
+   "inputMethod": "keyboard",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-d4-2-2.5-lmbsci",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "87.379",
+   "blankAtStart": true,
+   "enteredLatex": "87.379",
+   "serializedSource": "87.379",
+   "inputMethod": "keypad",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-d1-3-1.5-1mh87ol",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "58.984",
+   "blankAtStart": true,
+   "enteredLatex": "58.984",
+   "serializedSource": "58.984",
+   "inputMethod": "keyboard",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc2-y=0|y=2\\ln(x+1)|y=-x+4-y0-washer-x-1-washer-1efcioa",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "21.157",
+   "blankAtStart": true,
+   "enteredLatex": "21.157",
+   "serializedSource": "21.157",
+   "inputMethod": "keypad",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc2-y=0|y=2\\ln(x+1)|y=-x+4-y0-washer-x-1-washer-1efcioa",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "82.853",
+   "blankAtStart": true,
+   "enteredLatex": "82.853",
+   "serializedSource": "82.853",
+   "inputMethod": "keyboard",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc-f(x)=1+\\ln x|g(x)=x^{2}-1-x0-washer-1iu2c1r",
+   "part": 0,
+   "control": "input",
+   "expectedTex": "5.595",
+   "blankAtStart": true,
+   "enteredLatex": "5.595",
+   "serializedSource": "5.595",
+   "inputMethod": "keyboard",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc-f(x)=2+\\ln x|g(x)=x^{2}-1-y-2-washer-1xu7ebm",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "\\pi\\int_{0.050}^{1.910}\\left(\\left(2+\\ln x+2\\right)^{2}-\\left(x^{2}-1+2\\right)^{2}\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "\\pi\\cdot\\int_{0.050}^{1.910}(2+\\ln(x)+2)^2-(x^2-1+2)^2\\,dx",
+   "serializedSource": "(pi)*int(0.050,1.910,(2+ln(x)+2)^2-(x^2-1+2)^2,x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup-calc",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "5",
+     "aria": null
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ".",
+     "aria": null
+    },
+    {
+     "label": "9",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "ln",
+     "aria": "Insert ln"
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-sc-f(x)=2+\\ln x|g(x)=x^{2}-1-y-2-washer-1xu7ebm",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "49.249",
+   "blankAtStart": true,
+   "enteredLatex": "49.249",
+   "serializedSource": "49.249",
+   "inputMethod": "keyboard",
+   "profile": "unit5-number",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  }
+ ]
+}

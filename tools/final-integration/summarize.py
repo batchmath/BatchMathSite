@@ -102,6 +102,10 @@ def main():
                                    'staticAnalyticsPwaPassed':True,'actualServiceWorkerActivationAndOfflineHashesPassed':True}
     if (E/'downloaded-package-matrix').exists():
         out['downloadedPackageMatrix'] = entries('downloaded-package-matrix/*.json',56)
+        proof=read('downloaded-package-qa.json')
+        assert proof['passed']
+        out['downloadedPackageVerification']=proof
+        out['deliveryReceipt']='delivery-receipt.json'
     (E/'final-qa.json').write_text(json.dumps(out,indent=2)+'\n')
     print(json.dumps({k:v for k,v in out.items() if k in ['routes','stability','focusedBrowsers','unit6Legacy','unit6GraphAfterEntry','siteSuite']},indent=2))
 

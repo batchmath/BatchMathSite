@@ -1,0 +1,69 @@
+{
+  "version": "12.9.E",
+  "oldCachesSeeded": 2,
+  "resources": [
+    {
+      "path": "assets/mathlive/keypad-bridge.mjs",
+      "expected": "66dc974a78d4d715d85b247214cfd9ab51138d561e5fcc4aece7131df2ee3fa8",
+      "online": {
+        "status": 200,
+        "bytes": 5833,
+        "sha256": "66dc974a78d4d715d85b247214cfd9ab51138d561e5fcc4aece7131df2ee3fa8"
+      },
+      "offline": {
+        "status": 200,
+        "bytes": 5833,
+        "sha256": "66dc974a78d4d715d85b247214cfd9ab51138d561e5fcc4aece7131df2ee3fa8"
+      }
+    },
+    {
+      "path": "assets/mathlive/integral-setup.mjs",
+      "expected": "5711cce5c209bb8bb6a3f3e83e3f65c4eac4bd3b050487e35f12e5939bd2c897",
+      "online": {
+        "status": 200,
+        "bytes": 8552,
+        "sha256": "5711cce5c209bb8bb6a3f3e83e3f65c4eac4bd3b050487e35f12e5939bd2c897"
+      },
+      "offline": {
+        "status": 200,
+        "bytes": 8552,
+        "sha256": "5711cce5c209bb8bb6a3f3e83e3f65c4eac4bd3b050487e35f12e5939bd2c897"
+      }
+    },
+    {
+      "path": "assets/mathlive/vendor/mathlive/mathlive.min.mjs",
+      "expected": "48a272a1c347c31eecefaf9baa0c317866f76fbcb83f9b2911a14e11c90e409f",
+      "online": {
+        "status": 200,
+        "bytes": 843079,
+        "sha256": "48a272a1c347c31eecefaf9baa0c317866f76fbcb83f9b2911a14e11c90e409f"
+      },
+      "offline": {
+        "status": 200,
+        "bytes": 843079,
+        "sha256": "48a272a1c347c31eecefaf9baa0c317866f76fbcb83f9b2911a14e11c90e409f"
+      }
+    },
+    {
+      "path": "assets/mathlive/vendor/mathlive/fonts/KaTeX_AMS-Regular.woff2",
+      "expected": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308",
+      "online": {
+        "status": 200,
+        "bytes": 28076,
+        "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+      },
+      "offline": {
+        "status": 200,
+        "bytes": 28076,
+        "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+      }
+    }
+  ],
+  "failures": [],
+  "activeWorkerVersion": "12.9.E",
+  "cacheKeysAfterActivation": [
+    "batchmath-shell-12.9.E",
+    "batchmath-mathjax-12.9.E"
+  ],
+  "passed": true
+}

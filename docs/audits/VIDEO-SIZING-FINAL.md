@@ -4,7 +4,7 @@ Final v12.9.E scope: 72 video pages and 215 players, including six Unit 6 pages 
 
 Starting checkpoint: `63ef79b1271974072daa2f1f99a968671a45f2c7` on
 `integration/mathlive-im1-videos-content`. The approved lecture/supporting
-hierarchy is preserved. Unit 6 remains excluded.
+hierarchy was preserved. Unit 6 was excluded at that historical checkpoint; the final E scope above includes all six Unit 6 video pages.
 
 ## Inventory and decisions
 

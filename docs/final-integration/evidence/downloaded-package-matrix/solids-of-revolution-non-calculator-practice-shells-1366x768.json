@@ -1,0 +1,833 @@
+{
+ "page": "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice",
+ "viewport": "1366x768",
+ "editor": "mathlive",
+ "mode": "shells",
+ "setupKeypadOnly": true,
+ "checked": 6,
+ "parts": 12,
+ "integrals": 6,
+ "mathliveFields": 12,
+ "blankAtStart": 12,
+ "locked": 12,
+ "failures": [],
+ "scrollBoxes": [],
+ "pageOverflow": 0,
+ "errors": [],
+ "entered": [
+  "shells/intermediate: integral keypad-only/Enter: 1 integral(s): (2pi)*int(0,3,y(9-y^2),y) | input keypad/Enter: (81)/(2)pi",
+  "shells/challenging: integral keypad-only/Enter: 1 integral(s): (2pi)*int(0,1,(1-x)(-2x^2+2),x) | input keyboard/Check: (5)/(3)pi",
+  "shells/challenging: integral keypad-only/Check: 1 integral(s): (2pi)*int(0,2,y(-((y)/(2))+1),y) | input keypad/Enter: (4)/(3)pi",
+  "shells/challenging: integral keypad-only/Enter: 2 integral(s): (2pi)*int(0,(1)/(2),y(4-2),y)+(2pi)*int((1)/(2),1,y((2)/(y)-2),y) | input keyboard/Enter: pi",
+  "shells/challenging: integral keypad-only/Enter: 1 integral(s): (2pi)*int(0,3,y(-y^3+3y^2),y) | input keypad/Check: (243)/(10)pi",
+  "shells/challenging: integral keypad-only/Check: 1 integral(s): (2pi)*int(0,1,(2-x)(x-x^3),x) | input keyboard/Enter: (11)/(15)pi"
+ ],
+ "questionIds": [
+  "u6-solids-shell-y=\\sqrt{x}|x=9|y=0-y0-dkln32",
+  "u6-solids-shell-y=-2x^{2} + 2|y=0-x1-1gc4mcn",
+  "u6-solids-shell-y=-2x + 2|x=0|y=0-y0-gv7myk",
+  "u6-solids-shell-y=\\frac{2}{x}|y=0|x=2|x=4-y0-1hbkb1g",
+  "u6-solids-shell-x=-y^{3} + 3y^{2}|x=0-y0-e2ae8y",
+  "u6-solids-shell-y=x|y=x^{3}-x2-1jypcgl"
+ ],
+ "fieldEvidence": [
+  {
+   "questionId": "u6-solids-shell-y=\\sqrt{x}|x=9|y=0-y0-dkln32",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "2\\pi\\int_{0}^{3}y\\left(9-y^{2}\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "2\\pi\\cdot\\int_0^3y(9-y^2)\\,dy",
+   "serializedSource": "(2pi)*int(0,3,y(9-y^2),y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "9",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-shell-y=\\sqrt{x}|x=9|y=0-y0-dkln32",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\frac{81}{2}\\pi",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{81}{2}\\pi",
+   "serializedSource": "(81)/(2)pi",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-shell-y=-2x^{2} + 2|y=0-x1-1gc4mcn",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "2\\pi\\int_{0}^{1}\\left(1 - x\\right)\\left(-2x^{2} + 2\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "2\\pi\\cdot\\int_0^1(1-x)(-2x^2+2)\\,dx",
+   "serializedSource": "(2pi)*int(0,1,(1-x)(-2x^2+2),x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-shell-y=-2x^{2} + 2|y=0-x1-1gc4mcn",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\frac{5}{3}\\pi",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{5}{3}\\pi",
+   "serializedSource": "(5)/(3)pi",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-shell-y=-2x + 2|x=0|y=0-y0-gv7myk",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "2\\pi\\int_{0}^{2}y\\left(-\\frac{y}{2} + 1\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "2\\pi\\cdot\\int_0^2y(-\\frac{y}{2}+1)\\,dy",
+   "serializedSource": "(2pi)*int(0,2,y(-((y)/(2))+1),y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "ab",
+     "aria": "Insert stacked fraction"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-shell-y=-2x + 2|x=0|y=0-y0-gv7myk",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\frac{4}{3}\\pi",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{4}{3}\\pi",
+   "serializedSource": "(4)/(3)pi",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-shell-y=\\frac{2}{x}|y=0|x=2|x=4-y0-1hbkb1g",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "2\\pi\\int_{0}^{\\frac{1}{2}}y\\left(4-2\\right)\\,dy + 2\\pi\\int_{\\frac{1}{2}}^{1}y\\left(\\frac{2}{y}-2\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "2\\pi\\cdot\\int_0^{\\frac12}y(4-2)\\,dy+2\\pi\\cdot\\int_{\\frac12}^1y(\\frac{2}{y}-2)\\,dy",
+   "serializedSource": "(2pi)*int(0,(1)/(2),y(4-2),y)+(2pi)*int((1)/(2),1,y((2)/(y)-2),y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "ab",
+     "aria": "Insert stacked fraction"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "4",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "ab",
+     "aria": "Insert stacked fraction"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "ab",
+     "aria": "Insert stacked fraction"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-shell-y=\\frac{2}{x}|y=0|x=2|x=4-y0-1hbkb1g",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\pi",
+   "blankAtStart": true,
+   "enteredLatex": "\\pi",
+   "serializedSource": "pi",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-shell-x=-y^{3} + 3y^{2}|x=0-y0-e2ae8y",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "2\\pi\\int_{0}^{3}y\\left(-y^{3} + 3y^{2}\\right)\\,dy",
+   "blankAtStart": true,
+   "enteredLatex": "2\\pi\\cdot\\int_0^3y(-y^3+3y^2)\\,dy",
+   "serializedSource": "(2pi)*int(0,3,y(-y^3+3y^2),y)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "+",
+     "aria": null
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "y",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dy",
+     "aria": "Insert dy"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-shell-x=-y^{3} + 3y^{2}|x=0-y0-e2ae8y",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\frac{243}{10}\\pi",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{243}{10}\\pi",
+   "serializedSource": "(243)/(10)pi",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-shell-y=x|y=x^{3}-x2-1jypcgl",
+   "part": 0,
+   "control": "u6-integral",
+   "expectedTex": "2\\pi\\int_{0}^{1}\\left(2 - x\\right)\\left(x-x^{3}\\right)\\,dx",
+   "blankAtStart": true,
+   "enteredLatex": "2\\pi\\cdot\\int_0^1(2-x)(x-x^3)\\,dx",
+   "serializedSource": "(2pi)*int(0,1,(2-x)(x-x^3),x)",
+   "inputMethod": "displayed-keypad-only",
+   "profile": "ml-unit6-setup",
+   "buttonsUsed": [
+    {
+     "label": "Clear",
+     "aria": "Clear answer"
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "π",
+     "aria": null
+    },
+    {
+     "label": "·",
+     "aria": null
+    },
+    {
+     "label": "∫",
+     "aria": "Insert definite integral"
+    },
+    {
+     "label": "0",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "1",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "2",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "(",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "−",
+     "aria": null
+    },
+    {
+     "label": "x",
+     "aria": null
+    },
+    {
+     "label": "xⁿ",
+     "aria": "Insert exponent"
+    },
+    {
+     "label": "3",
+     "aria": null
+    },
+    {
+     "label": "→",
+     "aria": "Move cursor right"
+    },
+    {
+     "label": ")",
+     "aria": null
+    },
+    {
+     "label": "dx",
+     "aria": "Insert dx"
+    }
+   ],
+   "correctAccepted": true,
+   "locked": true
+  },
+  {
+   "questionId": "u6-solids-shell-y=x|y=x^{3}-x2-1jypcgl",
+   "part": 1,
+   "control": "input",
+   "expectedTex": "\\frac{11}{15}\\pi",
+   "blankAtStart": true,
+   "enteredLatex": "\\frac{11}{15}\\pi",
+   "serializedSource": "(11)/(15)pi",
+   "inputMethod": "latex-insert",
+   "profile": "unit6-exact",
+   "buttonsUsed": null,
+   "correctAccepted": true,
+   "locked": true
+  }
+ ]
+}

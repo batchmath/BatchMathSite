@@ -5,9 +5,9 @@
   "ok": true,
   "counts": {
     "manually-reconciled": 2,
-    "qa-only": 343,
+    "qa-only": 428,
     "source-a-preserved": 1507,
-    "source-b-imported": 101,
+    "source-b-imported": 100,
     "version-only": 16
   },
   "files": [
@@ -143,6 +143,13 @@
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "dc33b2cad7d90deddec1ca7b375bee95f8c56ce7",
       "finalBlob": "dc33b2cad7d90deddec1ca7b375bee95f8c56ce7"
+    },
+    {
+      "path": ".github/workflows/package-v12-9-e-final-test.yml",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "20cc3f616db445ed86245cd713948ed0c10d6a0b"
     },
     {
       "path": ".github/workflows/unit4-v128j-qa.yml",
@@ -4265,7 +4272,7 @@
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": "c4678f22a7fe98b0047042631ad25d67dbc9419d",
-      "finalBlob": "35a785005379ecd2225e95026da0312c6f8032ac"
+      "finalBlob": "b0516b4732ad776ddd0194b8ee2b7abf3467e852"
     },
     {
       "path": "docs/audits/KEYPAD-COMPLETENESS-INVENTORY.json",
@@ -4286,7 +4293,7 @@
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": "b86c6300e0dda792291fc152cdbff2c2ec6507ce",
-      "finalBlob": "047b31bee4cbef1d07ae0ebf568126d24892321f"
+      "finalBlob": "73395fe8e4aea3fc6366e47f3a6629e96a73ef87"
     },
     {
       "path": "docs/audits/VIDEO-HIERARCHY.json",
@@ -4314,7 +4321,7 @@
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": "0cf67e905c3702f1969f8d844b9751972dbe5f94",
-      "finalBlob": "c3fa999a24dc0d01d6018d6df0309ac5a3091e16"
+      "finalBlob": "99e6df1db3b87bb8a17f86538affb12ec79b0e4b"
     },
     {
       "path": "docs/audits/VIDEO-SIZING-INVENTORY.json",
@@ -5612,6 +5619,13 @@
       "finalBlob": "da2729964d0d318d9d09b65b4f6258bed4be3b1c"
     },
     {
+      "path": "docs/final-integration/evidence/batchmath-site-v12.9.E.sha256",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "bc9a8546781973067b700a8c87436912f1fd071a"
+    },
+    {
       "path": "docs/final-integration/evidence/blocked-keypads-before-prior-mode-replay.json",
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
@@ -5661,6 +5675,13 @@
       "finalBlob": "42a8b43a6f8213eabe330b0a0420165571ab2b8e"
     },
     {
+      "path": "docs/final-integration/evidence/content-preservation-final.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "42a8b43a6f8213eabe330b0a0420165571ab2b8e"
+    },
+    {
       "path": "docs/final-integration/evidence/content-preservation.json",
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
@@ -5682,6 +5703,531 @@
       "finalBlob": "b32d8d4e8d01ef591131051c5b8def06a41beb01"
     },
     {
+      "path": "docs/final-integration/evidence/delivery-manifest.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "9d1a8c81db97aecf9d198f97bc996e43e5fe8a6f"
+    },
+    {
+      "path": "docs/final-integration/evidence/delivery-receipt.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "b94afb31a4b6b26891cedc56aa370382eb2cd4a0"
+    },
+    {
+      "path": "docs/final-integration/evidence/documentation-cleanup-review.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "8cf1608f6d57ed6825a6fe5e992be302b8c62c0c"
+    },
+    {
+      "path": "docs/final-integration/evidence/documentation-cleanup-verification.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "d0819cb43e1f5c922c9d337597b11a24fcb7ac61"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix-runs.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "cfd6d209c371ad533f3b4df0e3a06e2dccb12c57"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "d28f78a3cca44db7cf4eb807867b2330085047de"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-calculator-practice-between-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "88e38a2f7d60dabadd39fa6fddab96ba9ea0af4e"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-calculator-practice-between-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "ff32bc778274ae3634191e94662a9d3b280c2336"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-calculator-practice-mixed-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "5174ff515e468bef48f94005cbbedb9d03ac4e64"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "bbfc0d04a37119ec224130b8a40deb20c7f1901f"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-calculator-practice-under_curve-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "6c772543a5aad3ceda40b5682befcfbcb2976863"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-calculator-practice-under_curve-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "ff64abbc51c3b4d635965275966c95c22d47c171"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-between-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "57952e126e2490218e8ca6c94b7256e9f00d2835"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-between-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "ccb2b3b931bcdbf44df34270aadf1937581baa3b"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-choose-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "51e5df94a3aaf9f98f9635706fe0b40c6106279a"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-choose-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "141ceb1e91b61ce497e9bdb81bc151df53b15887"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-mixed-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "6e97fca1183c00a1d3fcb289c862706bc9047a11"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "95e1c7fdf1fa5fc1050753ea5323636adcacbc98"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-under_curve-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "c41a04bb945a7296e41c4273d5ae1ba2268f0b32"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/area-below-and-between-curves-non-calculator-practice-under_curve-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "6efbc3c5be8826aa0820530f91f7b194d9ba3b5f"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-calculator-practice-frq_region-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "51014f0bf13a609f4dea3f7941dd7afa08ab3b64"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-calculator-practice-frq_region-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "b0919a22040beb0999791cc79884889614509777"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-calculator-practice-mixed-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "774e447b89b3d8b48d737a3b9e36d7d7f8cf0f89"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "640c463fc7502b7756f33bf8201de11269528aab"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-calculator-practice-short-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "a5b474ea7761bf44faed4393e8252c63c2fc93b1"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-calculator-practice-short-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "a8ecd3cb9d907731c2a4f78486e375bd999e91ae"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-frq_graph-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "4e9f7057a8914b03bc7b8255e1e4993cafc7620e"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-frq_graph-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "427e18bfd821f04fe913d6d569b475790c4b701e"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-frq_region-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "baa926bd1b30c2ed4e533fd225e4878c060f53b5"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-frq_region-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "1e97d31a7772203a9c33b3d620c1f2317e1981e3"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-mixed-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "e55ba47058475a121a19ed1f326070edf073ce7d"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "3e5ec52fc38767cdee304dc77d2d9a06650c927f"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-short-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "6db47fbf0749f4bd8101842de8af36407f822aac"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/comprehensive-review-non-calculator-practice-short-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "49a256fdc4ffa8339e5cad447495246d387be9eb"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/finding-area-in-terms-of-y-practice---1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "e8da09bf75886e6ad58298b7ad071c7034c1f228"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/finding-area-in-terms-of-y-practice---390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "f262af084e63c3e14ba1d03707fdc393a2a94523"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/integrals-on-piecewise-defined-functions-practice---1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "6918ac505d5c477b728e5e45c03cb63a9c59776e"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/integrals-on-piecewise-defined-functions-practice---390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "33ea05de9ecb83ae40f7b8c103282d189fd67c6f"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/solids-of-revolution-calculator-practice-disks_washers-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "31a44d562394d0e5eb1ef4286e463dea0b6f7676"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/solids-of-revolution-calculator-practice-disks_washers-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "1c7aed013eb8416443032d27c15df73859855a0d"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/solids-of-revolution-calculator-practice-mixed-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "158d9f8c254c680fcb5347f88ab6152a9c52037f"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/solids-of-revolution-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "56a39104371f5cec3985fbc272eb94579a630410"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/solids-of-revolution-calculator-practice-shells-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "9ac55f0d867448ba145bb3046abc6c987f13d294"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/solids-of-revolution-calculator-practice-shells-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "5c1105cb26ecf8aeee2db7be0553c0f0164eee2e"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/solids-of-revolution-non-calculator-practice-disks_washers-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "89a6d895eab66e76c60a0192496cdfe4acd7c0ec"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/solids-of-revolution-non-calculator-practice-disks_washers-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "6a8b38d92f52f697ec69cbfb0f8158c9247e67ad"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/solids-of-revolution-non-calculator-practice-mixed-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "7197d8a989996f953526aadb8bcb92dff8299bb9"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/solids-of-revolution-non-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "8f02b7487e1903002f1e5f27dd8c63f243e92fbd"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/solids-of-revolution-non-calculator-practice-shells-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "5c6c7bd8dfa3d56fda83e17e818b7ad065644f66"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/solids-of-revolution-non-calculator-practice-shells-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "6162cd17d2db654e47813f432e56d9a15254d36f"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/volume-by-cross-sections-calculator-practice-mixed-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "108157a2a528fe69d89ccd58409e8b6da436b861"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/volume-by-cross-sections-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "a2f99b7c0e739e6d65c33e84c9880d9e9d7517e4"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/volume-by-cross-sections-calculator-practice-perp_x-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "24c80e69f5d4bab1187afeb5fbd8ae7395d0610a"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/volume-by-cross-sections-calculator-practice-perp_x-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "27e4fea8b39db794a6435840c308629db4aa53d3"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/volume-by-cross-sections-calculator-practice-perp_y-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "408553f340bde62ef782e8fa9d4f3e3f2383e952"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/volume-by-cross-sections-calculator-practice-perp_y-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "bb2b66477e8af6036e251ee58ab5e78c4f24bd77"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/volume-by-cross-sections-non-calculator-practice-mixed-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "eeb9ad79669734f2d1a839e571a9403ca760ddef"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/volume-by-cross-sections-non-calculator-practice-mixed-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "fb587a2360f0a101d6b772ebfadaa38439938e6a"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/volume-by-cross-sections-non-calculator-practice-perp_x-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "f5d0640da7b7648c2031ca58470e1d195d7a28eb"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/volume-by-cross-sections-non-calculator-practice-perp_x-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "ca82127044ea070a3ec514ba51d916969b5a9afa"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/volume-by-cross-sections-non-calculator-practice-perp_y-1366x768.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "23b1e4f7b25277c40082b0fdefce61675cfd6eff"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-matrix/volume-by-cross-sections-non-calculator-practice-perp_y-390x844xmobile.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "aa62081e6e0d4de0fe2edce0d251bb32afb5f80a"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-package-qa.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "4271c2abdc1b2b1659a36dcc1efb1bea49d1246d"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-static.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "85d73c49eed633c920a4e3531c3f3e7a54d55f3d"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-static.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "cf6bf50cf8cebbf3c2d51f30669236a29579aea4"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-unit6-fields.csv",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "d67282c3c17e2e13d7f41f72df9ef517fc0ed397"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-zip-smoke/cubic-1366x768.png",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "8f708d3fa1d1abb090ef3db4d20201be0f0cc0f7"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-zip-smoke/cubic-390x844.png",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "e5387ce781f25c03b8227e907e3a29f3ab7a1e53"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-zip-smoke/setup-impostor-constant-solids-of-revolution-1366x768.png",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "0507eac562649e8e3fe84b1c6798ee4528de565b"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-zip-smoke/setup-impostor-constant-solids-of-revolution-390x844.png",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "794dcf44d94805bf0acf306da086077f28d9734b"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-zip-smoke/setup-impostor-shifted-area-below-and-between-curves-1366x768.png",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "943ba80bea761e3f8dbc77caab72a91cf16057c7"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-zip-smoke/setup-impostor-shifted-area-below-and-between-curves-390x844.png",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "9e5b7db12b48aa703a766035050e4c60df49f1a0"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-zip-smoke/setup-impostor-shifted-solids-of-revolution-1366x768.png",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "36c24898baf4754ab702d76fda3edb48df22da35"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-zip-smoke/setup-impostor-shifted-solids-of-revolution-390x844.png",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "d5c78d4dd151ec7bea5b38d2aa16a43277761c53"
+    },
+    {
+      "path": "docs/final-integration/evidence/downloaded-zip-smoke/zip-smoke.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "f4b277f1540b6d50f7b5232dc8a23c1b85d5899f"
+    },
+    {
       "path": "docs/final-integration/evidence/final-node.tap",
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
@@ -5693,7 +6239,7 @@
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": null,
-      "finalBlob": "4d6915558b498281ffdeb51225df92219d6f1f1e"
+      "finalBlob": "854333c20d6b75e97b1010fd4d1aa528eab97b6f"
     },
     {
       "path": "docs/final-integration/evidence/focused/applications/applications-browser-final-regression.json",
@@ -5857,11 +6403,39 @@
       "finalBlob": "13b2971fc5642fbb26223f9c7390ea7c30c947ce"
     },
     {
+      "path": "docs/final-integration/evidence/packaging-workflow-receipt.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "c9f16b7d0876191f424651702a82bca78eb0c3be"
+    },
+    {
       "path": "docs/final-integration/evidence/protected-refs-C.txt",
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": null,
       "finalBlob": "cd6957de7d5091fc6bc81c146574f9742a5197c5"
+    },
+    {
+      "path": "docs/final-integration/evidence/protected-refs-after-release.txt",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "14b52488e6375d41ab89bca63a6cae31fac1d649"
+    },
+    {
+      "path": "docs/final-integration/evidence/pwa-browser-downloaded.json",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "347e382f136181128d642f24ad7c68af9396fb44"
+    },
+    {
+      "path": "docs/final-integration/evidence/pwa-browser-downloaded.log",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "c2af565490d7a5559335c5afd02735bb3436ad42"
     },
     {
       "path": "docs/final-integration/evidence/pwa-browser-proxy-initial.json",
@@ -8381,7 +8955,7 @@
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": null,
-      "finalBlob": "8b1a66f898cbf1090c2a8ec82b2ce7c1cadb55b1"
+      "finalBlob": "70d944adaa7a0cf8501d380636484f9c73636277"
     },
     {
       "path": "experiments/mathlive-advanced-notation/index.html",
@@ -9896,6 +10470,20 @@
       "finalBlob": "18e5798d445fc29061e2a41f544edffc4d66b134"
     },
     {
+      "path": "tools/final-integration/delivery-qa.py",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "3032bc19f186ff22da5d6883a46915bf9c4b29b6"
+    },
+    {
+      "path": "tools/final-integration/downloaded-matrix.py",
+      "category": "qa-only",
+      "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+      "sourceBlob": null,
+      "finalBlob": "4211caffc1697b2631fb2bbcdc249adda1f9d3b3"
+    },
+    {
       "path": "tools/final-integration/integral-coefficients.test.mjs",
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
@@ -9935,7 +10523,7 @@
       "category": "qa-only",
       "expectedSource": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
       "sourceBlob": null,
-      "finalBlob": "bbed60b83fa2e2b25f28705f258d5107425c7ac2"
+      "finalBlob": "555c5fceee55b6f278a979b6675c59c2d4fff46c"
     },
     {
       "path": "tools/final-integration/teacher-seeds.json",
@@ -12711,10 +13299,10 @@
     },
     {
       "path": "tools/release-qa.mjs",
-      "category": "source-b-imported",
+      "category": "qa-only",
       "expectedSource": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
       "sourceBlob": "ed3fe12883e423d268d143a5587df5ef10fb5ada",
-      "finalBlob": "ed3fe12883e423d268d143a5587df5ef10fb5ada"
+      "finalBlob": "63c5a82e561b483516e92a94d1f8b5f2150fb995"
     },
     {
       "path": "tools/review-lab/.gitignore",

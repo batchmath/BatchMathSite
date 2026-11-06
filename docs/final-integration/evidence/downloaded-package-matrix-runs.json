@@ -1,0 +1,982 @@
+[
+  {
+    "name": "area-below-and-between-curves-non-calculator-practice-mixed-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 9,
+    "integrals": 2,
+    "mathliveFields": 9
+  },
+  {
+    "name": "area-below-and-between-curves-non-calculator-practice-mixed-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 8,
+    "integrals": 2,
+    "mathliveFields": 8
+  },
+  {
+    "name": "area-below-and-between-curves-non-calculator-practice-under_curve-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "under_curve",
+    "checked": 6,
+    "parts": 6,
+    "integrals": 0,
+    "mathliveFields": 6
+  },
+  {
+    "name": "area-below-and-between-curves-non-calculator-practice-under_curve-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "under_curve",
+    "checked": 6,
+    "parts": 7,
+    "integrals": 0,
+    "mathliveFields": 7
+  },
+  {
+    "name": "area-below-and-between-curves-non-calculator-practice-between-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "between",
+    "checked": 6,
+    "parts": 10,
+    "integrals": 5,
+    "mathliveFields": 10
+  },
+  {
+    "name": "area-below-and-between-curves-non-calculator-practice-between-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "between",
+    "checked": 6,
+    "parts": 10,
+    "integrals": 2,
+    "mathliveFields": 10
+  },
+  {
+    "name": "area-below-and-between-curves-non-calculator-practice-choose-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "choose",
+    "checked": 6,
+    "parts": 16,
+    "integrals": 10,
+    "mathliveFields": 16
+  },
+  {
+    "name": "area-below-and-between-curves-non-calculator-practice-choose-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "choose",
+    "checked": 6,
+    "parts": 16,
+    "integrals": 10,
+    "mathliveFields": 16
+  },
+  {
+    "name": "area-below-and-between-curves-calculator-practice-mixed-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 10,
+    "integrals": 3,
+    "mathliveFields": 10
+  },
+  {
+    "name": "area-below-and-between-curves-calculator-practice-mixed-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 10,
+    "integrals": 4,
+    "mathliveFields": 10
+  },
+  {
+    "name": "area-below-and-between-curves-calculator-practice-under_curve-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "under_curve",
+    "checked": 6,
+    "parts": 6,
+    "integrals": 0,
+    "mathliveFields": 6
+  },
+  {
+    "name": "area-below-and-between-curves-calculator-practice-under_curve-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "under_curve",
+    "checked": 6,
+    "parts": 6,
+    "integrals": 0,
+    "mathliveFields": 6
+  },
+  {
+    "name": "area-below-and-between-curves-calculator-practice-between-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "between",
+    "checked": 6,
+    "parts": 14,
+    "integrals": 7,
+    "mathliveFields": 14
+  },
+  {
+    "name": "area-below-and-between-curves-calculator-practice-between-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "between",
+    "checked": 6,
+    "parts": 12,
+    "integrals": 5,
+    "mathliveFields": 12
+  },
+  {
+    "name": "finding-area-in-terms-of-y-practice---1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 8,
+    "integrals": 1,
+    "mathliveFields": 8
+  },
+  {
+    "name": "finding-area-in-terms-of-y-practice---390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/finding-area-in-terms-of-y/practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 10,
+    "integrals": 2,
+    "mathliveFields": 10
+  },
+  {
+    "name": "integrals-on-piecewise-defined-functions-practice---1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 6,
+    "integrals": 0,
+    "mathliveFields": 6
+  },
+  {
+    "name": "integrals-on-piecewise-defined-functions-practice---390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/integrals-on-piecewise-defined-functions/practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 6,
+    "integrals": 0,
+    "mathliveFields": 6
+  },
+  {
+    "name": "volume-by-cross-sections-non-calculator-practice-mixed-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 9,
+    "integrals": 2,
+    "mathliveFields": 9
+  },
+  {
+    "name": "volume-by-cross-sections-non-calculator-practice-mixed-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 8,
+    "integrals": 2,
+    "mathliveFields": 8
+  },
+  {
+    "name": "volume-by-cross-sections-non-calculator-practice-perp_x-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "perp_x",
+    "checked": 6,
+    "parts": 9,
+    "integrals": 3,
+    "mathliveFields": 9
+  },
+  {
+    "name": "volume-by-cross-sections-non-calculator-practice-perp_x-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "perp_x",
+    "checked": 6,
+    "parts": 7,
+    "integrals": 3,
+    "mathliveFields": 7
+  },
+  {
+    "name": "volume-by-cross-sections-non-calculator-practice-perp_y-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "perp_y",
+    "checked": 6,
+    "parts": 10,
+    "integrals": 1,
+    "mathliveFields": 10
+  },
+  {
+    "name": "volume-by-cross-sections-non-calculator-practice-perp_y-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "perp_y",
+    "checked": 6,
+    "parts": 8,
+    "integrals": 2,
+    "mathliveFields": 8
+  },
+  {
+    "name": "volume-by-cross-sections-calculator-practice-mixed-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 9,
+    "integrals": 3,
+    "mathliveFields": 9
+  },
+  {
+    "name": "volume-by-cross-sections-calculator-practice-mixed-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 10,
+    "integrals": 4,
+    "mathliveFields": 10
+  },
+  {
+    "name": "volume-by-cross-sections-calculator-practice-perp_x-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "perp_x",
+    "checked": 6,
+    "parts": 9,
+    "integrals": 3,
+    "mathliveFields": 9
+  },
+  {
+    "name": "volume-by-cross-sections-calculator-practice-perp_x-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "perp_x",
+    "checked": 6,
+    "parts": 9,
+    "integrals": 3,
+    "mathliveFields": 9
+  },
+  {
+    "name": "volume-by-cross-sections-calculator-practice-perp_y-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "perp_y",
+    "checked": 6,
+    "parts": 8,
+    "integrals": 2,
+    "mathliveFields": 8
+  },
+  {
+    "name": "volume-by-cross-sections-calculator-practice-perp_y-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "perp_y",
+    "checked": 6,
+    "parts": 10,
+    "integrals": 4,
+    "mathliveFields": 10
+  },
+  {
+    "name": "solids-of-revolution-non-calculator-practice-mixed-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 15,
+    "integrals": 5,
+    "mathliveFields": 15
+  },
+  {
+    "name": "solids-of-revolution-non-calculator-practice-mixed-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 12,
+    "integrals": 4,
+    "mathliveFields": 12
+  },
+  {
+    "name": "solids-of-revolution-non-calculator-practice-disks_washers-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "disks_washers",
+    "checked": 6,
+    "parts": 8,
+    "integrals": 2,
+    "mathliveFields": 8
+  },
+  {
+    "name": "solids-of-revolution-non-calculator-practice-disks_washers-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "disks_washers",
+    "checked": 6,
+    "parts": 9,
+    "integrals": 1,
+    "mathliveFields": 9
+  },
+  {
+    "name": "solids-of-revolution-non-calculator-practice-shells-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "shells",
+    "checked": 6,
+    "parts": 12,
+    "integrals": 6,
+    "mathliveFields": 12
+  },
+  {
+    "name": "solids-of-revolution-non-calculator-practice-shells-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "shells",
+    "checked": 6,
+    "parts": 13,
+    "integrals": 5,
+    "mathliveFields": 13
+  },
+  {
+    "name": "solids-of-revolution-calculator-practice-mixed-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 8,
+    "integrals": 0,
+    "mathliveFields": 8
+  },
+  {
+    "name": "solids-of-revolution-calculator-practice-mixed-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 7,
+    "integrals": 1,
+    "mathliveFields": 7
+  },
+  {
+    "name": "solids-of-revolution-calculator-practice-disks_washers-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "disks_washers",
+    "checked": 6,
+    "parts": 8,
+    "integrals": 1,
+    "mathliveFields": 8
+  },
+  {
+    "name": "solids-of-revolution-calculator-practice-disks_washers-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "disks_washers",
+    "checked": 6,
+    "parts": 13,
+    "integrals": 4,
+    "mathliveFields": 13
+  },
+  {
+    "name": "solids-of-revolution-calculator-practice-shells-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "shells",
+    "checked": 6,
+    "parts": 10,
+    "integrals": 3,
+    "mathliveFields": 10
+  },
+  {
+    "name": "solids-of-revolution-calculator-practice-shells-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "shells",
+    "checked": 6,
+    "parts": 7,
+    "integrals": 1,
+    "mathliveFields": 7
+  },
+  {
+    "name": "comprehensive-review-non-calculator-practice-mixed-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 16,
+    "integrals": 3,
+    "mathliveFields": 15
+  },
+  {
+    "name": "comprehensive-review-non-calculator-practice-mixed-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 17,
+    "integrals": 3,
+    "mathliveFields": 16
+  },
+  {
+    "name": "comprehensive-review-non-calculator-practice-frq_region-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "frq_region",
+    "checked": 6,
+    "parts": 21,
+    "integrals": 9,
+    "mathliveFields": 21
+  },
+  {
+    "name": "comprehensive-review-non-calculator-practice-frq_region-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "frq_region",
+    "checked": 6,
+    "parts": 19,
+    "integrals": 8,
+    "mathliveFields": 19
+  },
+  {
+    "name": "comprehensive-review-non-calculator-practice-frq_graph-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "frq_graph",
+    "checked": 6,
+    "parts": 27,
+    "integrals": 0,
+    "mathliveFields": 21
+  },
+  {
+    "name": "comprehensive-review-non-calculator-practice-frq_graph-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "frq_graph",
+    "checked": 6,
+    "parts": 28,
+    "integrals": 0,
+    "mathliveFields": 22
+  },
+  {
+    "name": "comprehensive-review-non-calculator-practice-short-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "short",
+    "checked": 6,
+    "parts": 7,
+    "integrals": 1,
+    "mathliveFields": 7
+  },
+  {
+    "name": "comprehensive-review-non-calculator-practice-short-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/non-calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "short",
+    "checked": 6,
+    "parts": 12,
+    "integrals": 3,
+    "mathliveFields": 12
+  },
+  {
+    "name": "comprehensive-review-calculator-practice-mixed-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 12,
+    "integrals": 3,
+    "mathliveFields": 12
+  },
+  {
+    "name": "comprehensive-review-calculator-practice-mixed-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "",
+    "checked": 6,
+    "parts": 13,
+    "integrals": 3,
+    "mathliveFields": 13
+  },
+  {
+    "name": "comprehensive-review-calculator-practice-frq_region-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "frq_region",
+    "checked": 6,
+    "parts": 20,
+    "integrals": 1,
+    "mathliveFields": 20
+  },
+  {
+    "name": "comprehensive-review-calculator-practice-frq_region-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "frq_region",
+    "checked": 6,
+    "parts": 18,
+    "integrals": 0,
+    "mathliveFields": 18
+  },
+  {
+    "name": "comprehensive-review-calculator-practice-short-1366x768",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice",
+      "6",
+      "1366",
+      "768"
+    ],
+    "mode": "short",
+    "checked": 6,
+    "parts": 9,
+    "integrals": 3,
+    "mathliveFields": 9
+  },
+  {
+    "name": "comprehensive-review-calculator-practice-short-390x844xmobile",
+    "exitCode": 0,
+    "arguments": [
+      "node",
+      "tools/review-lab/unit6/entry.mjs",
+      "ap-calculus/unit-6-applications-integration/topics/comprehensive-review/calculator-practice",
+      "6",
+      "390",
+      "844",
+      "mobile"
+    ],
+    "mode": "short",
+    "checked": 6,
+    "parts": 10,
+    "integrals": 4,
+    "mathliveFields": 10
+  }
+]
