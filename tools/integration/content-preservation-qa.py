@@ -22,6 +22,18 @@ def source(ref, name):
     return git('show', ref + ':' + name)
 
 
+def approved_keypad_source(name, current):
+    approved = json.loads((ROOT / 'tools/keypad-completeness/approved-corrections.json').read_text())
+    entry = approved['assets'].get(name)
+    if not entry:
+        return current
+    raw = current.encode()
+    blob = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+    assert blob == entry['after'], name + ': edit outside the exact tested keypad correction'
+    assert git('rev-parse', approved['baseline'] + ':' + name).strip() == entry['before']
+    return source(approved['baseline'], name)
+
+
 class Markup(HTMLParser):
     def __init__(self, text):
         super().__init__(convert_charrefs=True)
@@ -110,7 +122,7 @@ def verify():
     assert (ROOT / name).read_text() == expected, 'Unapproved IM1 editor styling change'
     name = 'assets/calculus-keypad.js'
     original = source(MATHLIVE, name)
-    current = (ROOT / name).read_text().replace('\n      input.focus=()=>{if(!input.disabled)activateBinding(binding,true);};', '').replace('\n    input.focus=()=>{if(!input.disabled)editor.focus({preventScroll:true});};', '')
+    current = approved_keypad_source(name, (ROOT / name).read_text()).replace('\n      input.focus=()=>{if(!input.disabled)activateBinding(binding,true);};', '').replace('\n    input.focus=()=>{if(!input.disabled)editor.focus({preventScroll:true});};', '')
     assert current == original, 'Legacy keypad parsing/editing/serialization changed'
     review_path = 'ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html'
     before = source('9c395be1b765366b9459bd8db7af6d5d70468b9d', review_path)
@@ -119,7 +131,12 @@ def verify():
     expected = (before[:start] + '  const taskPrompt=String(prompt||"Find the derivative.");\n' + before[end:]).replace('${neutralPrompt}', '${taskPrompt}')
     assert (ROOT / review_path).read_text() == expected, 'Review change extends beyond authored prompt handling'
     editor_changes = git('diff', '--name-only', MATHLIVE, '--', 'assets/mathlive').splitlines()
-    assert set(editor_changes) <= {'assets/mathlive/keypad-bridge.mjs', 'assets/mathlive/pilot.css', 'assets/mathlive/answer-field.mjs', 'assets/mathlive/native-fields.mjs', 'assets/mathlive/dynamic-fields.mjs'}, editor_changes
+    approved = json.loads((ROOT / 'tools/keypad-completeness/approved-corrections.json').read_text())
+    permitted = set(approved['assets'])
+    assert set(git('diff', '--name-only', approved['baseline'], '--', 'assets').splitlines()) <= permitted, 'Unexpected production asset changed since findings'
+    for name in permitted:
+        approved_keypad_source(name, (ROOT / name).read_text())
+    assert set(editor_changes) <= {'assets/mathlive/keypad-bridge.mjs', 'assets/mathlive/pilot.css', 'assets/mathlive/answer-field.mjs', 'assets/mathlive/native-fields.mjs', 'assets/mathlive/dynamic-fields.mjs'} | permitted, editor_changes
     focus_routes = {
         'assets/mathlive/answer-field.mjs': '  dispose.push(redirectInputFocus(source,()=>legacy.focus(),()=>active&&!source.disabled));\n',
         'assets/mathlive/native-fields.mjs': '    removes.push(redirectInputFocus(r.input,guard(()=>{active=index;focus();}),()=>ready&&!disposed&&!r.input.disabled));\n',

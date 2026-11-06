@@ -1,0 +1,38 @@
+{
+  "baseline": "961f54ed0d6e42701df0f65f43b2ea625d2c946c",
+  "assets": {
+    "assets/ap-topic-practice.js": {
+      "before": "c6596885b8a7ea758e2682beb41297a5780cd0fe",
+      "after": "ff28986e5d9b9fc4ac0abca09117336124c866dd"
+    },
+    "assets/calculus-keypad.js": {
+      "before": "4ac6dbcba76c9e18080756b602aa3705a70f40de",
+      "after": "d7c0e3f819be727c27ba5e582e1ab0f484dd7fd7"
+    },
+    "assets/mathlive/applications-profiles.mjs": {
+      "before": "9cfb42e4180d414af23b088ff59e7d2bc180901a",
+      "after": "47e4d51536685290552d19a1a152122801771b8a"
+    },
+    "assets/mathlive/prep.mjs": {
+      "before": "78ff0d09afecf945f045e5712f4682ca42e96da9",
+      "after": "6576b6c01096184c5fca23873d691c9c1e3ea151"
+    },
+    "assets/mathlive/review-contracts.mjs": {
+      "before": "d006544c1724a5d35db4e230f1ff2cd36346aedc",
+      "after": "0b0b0ef86cfce5c7e3b93504f023d8bd336d8e65"
+    },
+    "assets/mathlive/review-static.mjs": {
+      "before": "cab145a34cbbbbe01f2e1fd1edc56417b90e350e",
+      "after": "1792c9a58efc9111b6541704f538c4be76b3173b"
+    },
+    "assets/mathlive/separable.mjs": {
+      "before": "d69555ec867ed469fcad525eb09b88c7f810fdc1",
+      "after": "08ef7dd0a04e6a49031afcd7da89142703a28f29"
+    },
+    "assets/mathlive/staged-profiles.mjs": {
+      "before": "aa71504cabe64ef5774d311aa81fc53a4d886ee6",
+      "after": "01f91dc3ad0945b772da58ec3c29b20e3228758f"
+    }
+  },
+  "scope": "Exact approved keypad profile flags, field-control metadata and derivative legacy root serialization. Mathematical generators and checkers remain unchanged."
+}

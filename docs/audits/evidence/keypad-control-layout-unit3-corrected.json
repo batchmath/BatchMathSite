@@ -1,0 +1,2854 @@
+{
+  "checks": [
+    {
+      "route": "/ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
+      "width": 320,
+      "profile": "ml-unit3-interval",
+      "field": {
+        "x": 29,
+        "y": 536.359375,
+        "width": 262,
+        "height": 56
+      },
+      "pad": {
+        "x": 29,
+        "y": 661.359375,
+        "width": 262,
+        "height": 305
+      },
+      "documentWidth": 320,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 35,
+          "y": 667.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 85.59375,
+          "y": 667.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 136.1875,
+          "y": 667.359375,
+          "width": 47.609375,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 35,
+          "y": 704.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 85.59375,
+          "y": 704.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 136.1875,
+          "y": 704.359375,
+          "width": 47.609375,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 35,
+          "y": 741.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 85.59375,
+          "y": 741.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 136.1875,
+          "y": 741.359375,
+          "width": 47.609375,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 136.1875,
+          "y": 778.359375,
+          "width": 47.609375,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 186.796875,
+          "y": 667.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 237.390625,
+          "y": 667.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 186.796875,
+          "y": 704.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 237.390625,
+          "y": 704.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 186.796875,
+          "y": 741.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": ",",
+          "aria": null,
+          "x": 237.390625,
+          "y": 741.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 35,
+          "y": 778.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 85.59375,
+          "y": 778.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "x": 186.796875,
+          "y": 778.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "sin⁻¹",
+          "aria": "Insert sin⁻¹",
+          "x": 237.390625,
+          "y": 778.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "cos⁻¹",
+          "aria": "Insert cos⁻¹",
+          "x": 35,
+          "y": 815.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "tan⁻¹",
+          "aria": "Insert tan⁻¹",
+          "x": 85.59375,
+          "y": 815.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "x": 136.1875,
+          "y": 815.359375,
+          "width": 47.609375,
+          "height": 34
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 186.796875,
+          "y": 815.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "x": 237.390625,
+          "y": 815.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "x": 35,
+          "y": 852.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "x": 85.59375,
+          "y": 852.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "[",
+          "aria": "Insert left bracket",
+          "x": 136.1875,
+          "y": 852.359375,
+          "width": 47.609375,
+          "height": 34
+        },
+        {
+          "label": "]",
+          "aria": "Insert right bracket",
+          "x": 186.796875,
+          "y": 852.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "∪",
+          "aria": "Insert union",
+          "x": 237.390625,
+          "y": 852.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 35,
+          "y": 889.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 85.59375,
+          "y": 889.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 136.1875,
+          "y": 889.359375,
+          "width": 47.609375,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 186.796875,
+          "y": 889.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 237.390625,
+          "y": 889.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 35,
+          "y": 926.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 85.59375,
+          "y": 926.359375,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 136.1875,
+          "y": 926.359375,
+          "width": 47.609375,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
+      "width": 375,
+      "profile": "ml-unit3-interval",
+      "field": {
+        "x": 29,
+        "y": 516.84375,
+        "width": 317,
+        "height": 56
+      },
+      "pad": {
+        "x": 29,
+        "y": 641.84375,
+        "width": 317,
+        "height": 305
+      },
+      "documentWidth": 375,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 35,
+          "y": 647.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 96.59375,
+          "y": 647.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 158.1875,
+          "y": 647.84375,
+          "width": 58.609375,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 35,
+          "y": 684.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 96.59375,
+          "y": 684.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 158.1875,
+          "y": 684.84375,
+          "width": 58.609375,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 35,
+          "y": 721.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 96.59375,
+          "y": 721.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 158.1875,
+          "y": 721.84375,
+          "width": 58.609375,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 158.1875,
+          "y": 758.84375,
+          "width": 58.609375,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 219.796875,
+          "y": 647.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 281.390625,
+          "y": 647.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 219.796875,
+          "y": 684.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 281.390625,
+          "y": 684.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 219.796875,
+          "y": 721.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": ",",
+          "aria": null,
+          "x": 281.390625,
+          "y": 721.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 35,
+          "y": 758.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 96.59375,
+          "y": 758.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "x": 219.796875,
+          "y": 758.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "sin⁻¹",
+          "aria": "Insert sin⁻¹",
+          "x": 281.390625,
+          "y": 758.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "cos⁻¹",
+          "aria": "Insert cos⁻¹",
+          "x": 35,
+          "y": 795.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "tan⁻¹",
+          "aria": "Insert tan⁻¹",
+          "x": 96.59375,
+          "y": 795.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "x": 158.1875,
+          "y": 795.84375,
+          "width": 58.609375,
+          "height": 34
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 219.796875,
+          "y": 795.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "x": 281.390625,
+          "y": 795.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "x": 35,
+          "y": 832.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "x": 96.59375,
+          "y": 832.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "[",
+          "aria": "Insert left bracket",
+          "x": 158.1875,
+          "y": 832.84375,
+          "width": 58.609375,
+          "height": 34
+        },
+        {
+          "label": "]",
+          "aria": "Insert right bracket",
+          "x": 219.796875,
+          "y": 832.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "∪",
+          "aria": "Insert union",
+          "x": 281.390625,
+          "y": 832.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 35,
+          "y": 869.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 96.59375,
+          "y": 869.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 158.1875,
+          "y": 869.84375,
+          "width": 58.609375,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 219.796875,
+          "y": 869.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 281.390625,
+          "y": 869.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 35,
+          "y": 906.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 96.59375,
+          "y": 906.84375,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 158.1875,
+          "y": 906.84375,
+          "width": 58.609375,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
+      "width": 390,
+      "profile": "ml-unit3-interval",
+      "field": {
+        "x": 29,
+        "y": 492.046875,
+        "width": 332,
+        "height": 56
+      },
+      "pad": {
+        "x": 29,
+        "y": 617.046875,
+        "width": 332,
+        "height": 305
+      },
+      "documentWidth": 390,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 35,
+          "y": 623.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 99.59375,
+          "y": 623.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 164.1875,
+          "y": 623.046875,
+          "width": 61.609375,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 35,
+          "y": 660.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 99.59375,
+          "y": 660.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 164.1875,
+          "y": 660.046875,
+          "width": 61.609375,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 35,
+          "y": 697.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 99.59375,
+          "y": 697.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 164.1875,
+          "y": 697.046875,
+          "width": 61.609375,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 164.1875,
+          "y": 734.046875,
+          "width": 61.609375,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 228.796875,
+          "y": 623.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 293.390625,
+          "y": 623.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 228.796875,
+          "y": 660.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 293.390625,
+          "y": 660.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 228.796875,
+          "y": 697.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": ",",
+          "aria": null,
+          "x": 293.390625,
+          "y": 697.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 35,
+          "y": 734.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 99.59375,
+          "y": 734.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "x": 228.796875,
+          "y": 734.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "sin⁻¹",
+          "aria": "Insert sin⁻¹",
+          "x": 293.390625,
+          "y": 734.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "cos⁻¹",
+          "aria": "Insert cos⁻¹",
+          "x": 35,
+          "y": 771.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "tan⁻¹",
+          "aria": "Insert tan⁻¹",
+          "x": 99.59375,
+          "y": 771.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "x": 164.1875,
+          "y": 771.046875,
+          "width": 61.609375,
+          "height": 34
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 228.796875,
+          "y": 771.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "x": 293.390625,
+          "y": 771.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "x": 35,
+          "y": 808.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "x": 99.59375,
+          "y": 808.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "[",
+          "aria": "Insert left bracket",
+          "x": 164.1875,
+          "y": 808.046875,
+          "width": 61.609375,
+          "height": 34
+        },
+        {
+          "label": "]",
+          "aria": "Insert right bracket",
+          "x": 228.796875,
+          "y": 808.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "∪",
+          "aria": "Insert union",
+          "x": 293.390625,
+          "y": 808.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 35,
+          "y": 845.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 99.59375,
+          "y": 845.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 164.1875,
+          "y": 845.046875,
+          "width": 61.609375,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 228.796875,
+          "y": 845.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 293.390625,
+          "y": 845.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 35,
+          "y": 882.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 99.59375,
+          "y": 882.046875,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 164.1875,
+          "y": 882.046875,
+          "width": 61.609375,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
+      "width": 768,
+      "profile": "ml-unit3-interval",
+      "field": {
+        "x": 124,
+        "y": 407.34375,
+        "width": 520,
+        "height": 64
+      },
+      "pad": {
+        "x": 124,
+        "y": 543.34375,
+        "width": 520,
+        "height": 351.1875
+      },
+      "documentWidth": 768,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 134,
+          "y": 553.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 235,
+          "y": 553.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 336,
+          "y": 553.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 134,
+          "y": 595.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 235,
+          "y": 595.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 336,
+          "y": 595.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 134,
+          "y": 637.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 235,
+          "y": 637.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 336,
+          "y": 637.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 336,
+          "y": 679.34375,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 437,
+          "y": 553.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 538,
+          "y": 553.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 437,
+          "y": 595.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 538,
+          "y": 595.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 437,
+          "y": 637.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": ",",
+          "aria": null,
+          "x": 538,
+          "y": 637.34375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 134,
+          "y": 679.34375,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 235,
+          "y": 679.34375,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "x": 437,
+          "y": 679.34375,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "sin⁻¹",
+          "aria": "Insert sin⁻¹",
+          "x": 538,
+          "y": 679.34375,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "cos⁻¹",
+          "aria": "Insert cos⁻¹",
+          "x": 134,
+          "y": 721.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "tan⁻¹",
+          "aria": "Insert tan⁻¹",
+          "x": 235,
+          "y": 721.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "x": 336,
+          "y": 721.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 437,
+          "y": 721.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "x": 538,
+          "y": 721.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "x": 134,
+          "y": 763.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "x": 235,
+          "y": 763.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "[",
+          "aria": "Insert left bracket",
+          "x": 336,
+          "y": 763.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "]",
+          "aria": "Insert right bracket",
+          "x": 437,
+          "y": 763.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "∪",
+          "aria": "Insert union",
+          "x": 538,
+          "y": 763.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 134,
+          "y": 805.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 235,
+          "y": 805.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 336,
+          "y": 805.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 437,
+          "y": 805.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 538,
+          "y": 805.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 134,
+          "y": 847.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 235,
+          "y": 847.53125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 336,
+          "y": 847.53125,
+          "width": 96,
+          "height": 37
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html",
+      "width": 1280,
+      "profile": "ml-unit3-interval",
+      "field": {
+        "x": 380,
+        "y": 466.453125,
+        "width": 520,
+        "height": 64
+      },
+      "pad": {
+        "x": 380,
+        "y": 602.453125,
+        "width": 520,
+        "height": 351.1875
+      },
+      "documentWidth": 1280,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 390,
+          "y": 612.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 491,
+          "y": 612.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 592,
+          "y": 612.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 390,
+          "y": 654.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 491,
+          "y": 654.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 592,
+          "y": 654.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 390,
+          "y": 696.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 491,
+          "y": 696.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 592,
+          "y": 696.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 592,
+          "y": 738.453125,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 693,
+          "y": 612.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 794,
+          "y": 612.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 693,
+          "y": 654.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 794,
+          "y": 654.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 693,
+          "y": 696.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": ",",
+          "aria": null,
+          "x": 794,
+          "y": 696.453125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 390,
+          "y": 738.453125,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 491,
+          "y": 738.453125,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln",
+          "x": 693,
+          "y": 738.453125,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "sin⁻¹",
+          "aria": "Insert sin⁻¹",
+          "x": 794,
+          "y": 738.453125,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "cos⁻¹",
+          "aria": "Insert cos⁻¹",
+          "x": 390,
+          "y": 780.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "tan⁻¹",
+          "aria": "Insert tan⁻¹",
+          "x": 491,
+          "y": 780.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "x": 592,
+          "y": 780.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 693,
+          "y": 780.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "e",
+          "aria": null,
+          "x": 794,
+          "y": 780.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "∞",
+          "aria": "Insert infinity",
+          "x": 390,
+          "y": 822.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "−∞",
+          "aria": "Insert negative infinity",
+          "x": 491,
+          "y": 822.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "[",
+          "aria": "Insert left bracket",
+          "x": 592,
+          "y": 822.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "]",
+          "aria": "Insert right bracket",
+          "x": 693,
+          "y": 822.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "∪",
+          "aria": "Insert union",
+          "x": 794,
+          "y": 822.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 390,
+          "y": 864.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 491,
+          "y": 864.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 592,
+          "y": 864.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 693,
+          "y": 864.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 794,
+          "y": 864.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 390,
+          "y": 906.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 491,
+          "y": 906.640625,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 592,
+          "y": 906.640625,
+          "width": 96,
+          "height": 37
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html",
+      "width": 320,
+      "profile": "ml-unit3-algebraic-exact-decimal",
+      "field": {
+        "x": 29,
+        "y": 712.390625,
+        "width": 262,
+        "height": 56
+      },
+      "pad": {
+        "x": 29,
+        "y": 837.390625,
+        "width": 262,
+        "height": 231
+      },
+      "documentWidth": 320,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 35,
+          "y": 843.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 85.59375,
+          "y": 843.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 136.1875,
+          "y": 843.390625,
+          "width": 47.609375,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 35,
+          "y": 880.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 85.59375,
+          "y": 880.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 136.1875,
+          "y": 880.390625,
+          "width": 47.609375,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 35,
+          "y": 917.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 85.59375,
+          "y": 917.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 136.1875,
+          "y": 917.390625,
+          "width": 47.609375,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 136.1875,
+          "y": 954.390625,
+          "width": 47.609375,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 186.796875,
+          "y": 843.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 237.390625,
+          "y": 843.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 186.796875,
+          "y": 880.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 237.390625,
+          "y": 880.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 186.796875,
+          "y": 917.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 237.390625,
+          "y": 917.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 35,
+          "y": 954.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 85.59375,
+          "y": 954.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "x": 186.796875,
+          "y": 954.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 237.390625,
+          "y": 954.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 35,
+          "y": 991.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 85.59375,
+          "y": 991.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 136.1875,
+          "y": 991.390625,
+          "width": 47.609375,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 186.796875,
+          "y": 991.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 237.390625,
+          "y": 991.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 35,
+          "y": 1028.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 85.59375,
+          "y": 1028.390625,
+          "width": 47.59375,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 136.1875,
+          "y": 1028.390625,
+          "width": 47.609375,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html",
+      "width": 375,
+      "profile": "ml-unit3-algebraic-exact-decimal",
+      "field": {
+        "x": 29,
+        "y": 712.390625,
+        "width": 317,
+        "height": 56
+      },
+      "pad": {
+        "x": 29,
+        "y": 837.390625,
+        "width": 317,
+        "height": 231
+      },
+      "documentWidth": 375,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 35,
+          "y": 843.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 96.59375,
+          "y": 843.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 158.1875,
+          "y": 843.390625,
+          "width": 58.609375,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 35,
+          "y": 880.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 96.59375,
+          "y": 880.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 158.1875,
+          "y": 880.390625,
+          "width": 58.609375,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 35,
+          "y": 917.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 96.59375,
+          "y": 917.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 158.1875,
+          "y": 917.390625,
+          "width": 58.609375,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 158.1875,
+          "y": 954.390625,
+          "width": 58.609375,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 219.796875,
+          "y": 843.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 281.390625,
+          "y": 843.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 219.796875,
+          "y": 880.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 281.390625,
+          "y": 880.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 219.796875,
+          "y": 917.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 281.390625,
+          "y": 917.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 35,
+          "y": 954.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 96.59375,
+          "y": 954.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "x": 219.796875,
+          "y": 954.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 281.390625,
+          "y": 954.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 35,
+          "y": 991.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 96.59375,
+          "y": 991.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 158.1875,
+          "y": 991.390625,
+          "width": 58.609375,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 219.796875,
+          "y": 991.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 281.390625,
+          "y": 991.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 35,
+          "y": 1028.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 96.59375,
+          "y": 1028.390625,
+          "width": 58.59375,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 158.1875,
+          "y": 1028.390625,
+          "width": 58.609375,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html",
+      "width": 390,
+      "profile": "ml-unit3-algebraic-exact-decimal",
+      "field": {
+        "x": 29,
+        "y": 687.59375,
+        "width": 332,
+        "height": 56
+      },
+      "pad": {
+        "x": 29,
+        "y": 812.59375,
+        "width": 332,
+        "height": 231
+      },
+      "documentWidth": 390,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 35,
+          "y": 818.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 99.59375,
+          "y": 818.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 164.1875,
+          "y": 818.59375,
+          "width": 61.609375,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 35,
+          "y": 855.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 99.59375,
+          "y": 855.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 164.1875,
+          "y": 855.59375,
+          "width": 61.609375,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 35,
+          "y": 892.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 99.59375,
+          "y": 892.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 164.1875,
+          "y": 892.59375,
+          "width": 61.609375,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 164.1875,
+          "y": 929.59375,
+          "width": 61.609375,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 228.796875,
+          "y": 818.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 293.390625,
+          "y": 818.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 228.796875,
+          "y": 855.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 293.390625,
+          "y": 855.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 228.796875,
+          "y": 892.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 293.390625,
+          "y": 892.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 35,
+          "y": 929.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 99.59375,
+          "y": 929.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "x": 228.796875,
+          "y": 929.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 293.390625,
+          "y": 929.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 35,
+          "y": 966.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 99.59375,
+          "y": 966.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 164.1875,
+          "y": 966.59375,
+          "width": 61.609375,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 228.796875,
+          "y": 966.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 293.390625,
+          "y": 966.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 35,
+          "y": 1003.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 99.59375,
+          "y": 1003.59375,
+          "width": 61.59375,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 164.1875,
+          "y": 1003.59375,
+          "width": 61.609375,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html",
+      "width": 768,
+      "profile": "ml-unit3-algebraic-exact-decimal",
+      "field": {
+        "x": 124,
+        "y": 615.296875,
+        "width": 520,
+        "height": 64
+      },
+      "pad": {
+        "x": 124,
+        "y": 751.296875,
+        "width": 520,
+        "height": 267.1875
+      },
+      "documentWidth": 768,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 134,
+          "y": 761.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 235,
+          "y": 761.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 336,
+          "y": 761.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 134,
+          "y": 803.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 235,
+          "y": 803.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 336,
+          "y": 803.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 134,
+          "y": 845.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 235,
+          "y": 845.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 336,
+          "y": 845.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 336,
+          "y": 887.296875,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 437,
+          "y": 761.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 538,
+          "y": 761.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 437,
+          "y": 803.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 538,
+          "y": 803.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 437,
+          "y": 845.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 538,
+          "y": 845.296875,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 134,
+          "y": 887.296875,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 235,
+          "y": 887.296875,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "x": 437,
+          "y": 887.296875,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 538,
+          "y": 887.296875,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 134,
+          "y": 929.484375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 235,
+          "y": 929.484375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 336,
+          "y": 929.484375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 437,
+          "y": 929.484375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 538,
+          "y": 929.484375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 134,
+          "y": 971.484375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 235,
+          "y": 971.484375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 336,
+          "y": 971.484375,
+          "width": 96,
+          "height": 37
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html",
+      "width": 1280,
+      "profile": "ml-unit3-algebraic-exact-decimal",
+      "field": {
+        "x": 380,
+        "y": 660.59375,
+        "width": 520,
+        "height": 64
+      },
+      "pad": {
+        "x": 380,
+        "y": 796.59375,
+        "width": 520,
+        "height": 267.1875
+      },
+      "documentWidth": 1280,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 390,
+          "y": 806.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 491,
+          "y": 806.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 592,
+          "y": 806.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 390,
+          "y": 848.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 491,
+          "y": 848.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 592,
+          "y": 848.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 390,
+          "y": 890.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 491,
+          "y": 890.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 592,
+          "y": 890.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 592,
+          "y": 932.59375,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 693,
+          "y": 806.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 794,
+          "y": 806.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 693,
+          "y": 848.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 794,
+          "y": 848.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 693,
+          "y": 890.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 794,
+          "y": 890.59375,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 390,
+          "y": 932.59375,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 491,
+          "y": 932.59375,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent",
+          "x": 693,
+          "y": 932.59375,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 794,
+          "y": 932.59375,
+          "width": 96,
+          "height": 37.1875
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 390,
+          "y": 974.78125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 491,
+          "y": 974.78125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 592,
+          "y": 974.78125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 693,
+          "y": 974.78125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 794,
+          "y": 974.78125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 390,
+          "y": 1016.78125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 491,
+          "y": 1016.78125,
+          "width": 96,
+          "height": 37
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 592,
+          "y": 1016.78125,
+          "width": 96,
+          "height": 37
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

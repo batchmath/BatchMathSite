@@ -1,5 +1,5 @@
 """Write the auditable field CSV and readable findings checkpoint."""
-import csv,json,re
+import csv,json,re,sys
 from collections import Counter
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];D=ROOT/'docs/audits';data=json.loads((D/'KEYPAD-COMPLETENESS-INVENTORY.json').read_text());s=data['summary']
@@ -13,6 +13,8 @@ with (D/'KEYPAD-COMPLETENESS-MATRIX.csv').open('w',newline='') as f:
   for k,v in row.items():
    if isinstance(v,(dict,list)):row[k]=json.dumps(v,separators=(',',':'))
   w.writerow(row)
+if '--matrix-only' in sys.argv:
+ print('Wrote',len(data['fields']),'current field rows');raise SystemExit
 counts=Counter()
 for r in data['coverage']:
  if r['kind']=='mathematical':

@@ -18,7 +18,7 @@ if(new URLSearchParams(location.search).get('editor')!=='legacy'){
   if(names[input.id])return'ml-prep-'+names[input.id];
   if(location.pathname.includes('unit-circle-values'))return'ml-prep-value';if(location.pathname.includes('trig-equations'))return'ml-prep-solutions';
   const prompt=document.getElementById('prompt').textContent,question=document.getElementById('question').textContent;
-  return'ml-prep-'+(prompt.includes('point')?'coordinates':prompt.includes('degrees')||!prompt.includes('radians')&&question.includes('°')?'degrees':'radians');
+  return'ml-prep-'+(prompt.includes('point')?'coordinates':prompt.includes('degrees')||!prompt.includes('radians')&&/[°∘]|\\circ\b/.test(question)?'degrees':'radians');
  }
  installNativeFields({hostSelector:'.practice-shell',inputSelector:'#answerRaw,#freeAnswer,#factorAnswer,#pascalAnswer,#rrtAnswer,#quotient,#remainder',padSelector:'#exactEditor,#exactKeypad,#submit,#insertPM,#insertComma',whenVisible:true,
   contract:{fieldContract:input=>({onKey:input.id==='answerRaw'?exactKey:undefined,translate:s=>fieldContract(input).translate(s),toLatex:s=>fieldContract(input).toLatex(s)})},profile,submitSelector:'#submit',onSubmit:()=>binding?binding.onCheck():document.getElementById('submit').click(),onRestore:(input,value)=>{if(input===raw){binding.api.set(value);if(!binding.locked)binding.api.focus();}},label:'Calculus Prep answer'});

@@ -1,0 +1,1418 @@
+{
+  "results": [
+    {
+      "course": "AP Calculus",
+      "unit": 3,
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+      "family": "analysis_from_f_quadratic_formula",
+      "questionId": "u3-analysis-f-qf-increasing",
+      "selector": {},
+      "seed": 21570,
+      "generatorSlug": "increasing-decreasing-intervals-concavity-and-extrema",
+      "generatorMetadata": {
+        "variant": "analysis_from_f_quadratic_formula"
+      },
+      "answerForms": [],
+      "parts": [
+        {
+          "index": 0,
+          "mode": "unit3-interval",
+          "profile": "ml-unit3-interval",
+          "requiredAnswers": [
+            "(-inf,-1-sqrt(2)]U[-1+sqrt(2),inf)"
+          ],
+          "meaningfulRootAlternative": false,
+          "answers": [
+            "(-inf,-1-sqrt(2)]U[-1+sqrt(2),inf)"
+          ],
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "8",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "9",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "4",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "5",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "6",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "1",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "2",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "3",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "0",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "−",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "(",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": ")",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "+",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "·",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": ",",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction",
+              "disabled": false
+            },
+            {
+              "label": "√",
+              "aria": "Insert √",
+              "disabled": false
+            },
+            {
+              "label": "ln",
+              "aria": "Insert ln",
+              "disabled": false
+            },
+            {
+              "label": "sin⁻¹",
+              "aria": "Insert sin⁻¹",
+              "disabled": false
+            },
+            {
+              "label": "cos⁻¹",
+              "aria": "Insert cos⁻¹",
+              "disabled": false
+            },
+            {
+              "label": "tan⁻¹",
+              "aria": "Insert tan⁻¹",
+              "disabled": false
+            },
+            {
+              "label": "xⁿ",
+              "aria": "Insert exponent",
+              "disabled": false
+            },
+            {
+              "label": "π",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "e",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "∞",
+              "aria": "Insert infinity",
+              "disabled": false
+            },
+            {
+              "label": "−∞",
+              "aria": "Insert negative infinity",
+              "disabled": false
+            },
+            {
+              "label": "[",
+              "aria": "Insert left bracket",
+              "disabled": false
+            },
+            {
+              "label": "]",
+              "aria": "Insert right bracket",
+              "disabled": false
+            },
+            {
+              "label": "∪",
+              "aria": "Insert union",
+              "disabled": false
+            },
+            {
+              "label": "←",
+              "aria": "Move cursor left",
+              "disabled": false
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right",
+              "disabled": false
+            },
+            {
+              "label": "↑",
+              "aria": "Move from denominator to numerator",
+              "disabled": false
+            },
+            {
+              "label": "↓",
+              "aria": "Move from numerator to denominator",
+              "disabled": false
+            },
+            {
+              "label": "⌫",
+              "aria": "Backspace",
+              "disabled": false
+            },
+            {
+              "label": "Del",
+              "aria": "Delete",
+              "disabled": false
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer",
+              "disabled": false
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer",
+              "disabled": false
+            }
+          ],
+          "runtimeProfile": "ml-unit3-interval",
+          "fields": [
+            {
+              "field": 0,
+              "raw": "(-inf,-1-sqrt(2)]U[-1+sqrt(2),inf)",
+              "latex": "(-\\infty,-1-\\sqrt2]\\cup[-1+\\sqrt2,\\infty)",
+              "serializedSource": "(-infinity,-1-sqrt(2)]∪[-1+sqrt(2),infinity)",
+              "profile": "ml-unit3-interval",
+              "buttons": [
+                {
+                  "label": "7",
+                  "aria": null
+                },
+                {
+                  "label": "8",
+                  "aria": null
+                },
+                {
+                  "label": "9",
+                  "aria": null
+                },
+                {
+                  "label": "4",
+                  "aria": null
+                },
+                {
+                  "label": "5",
+                  "aria": null
+                },
+                {
+                  "label": "6",
+                  "aria": null
+                },
+                {
+                  "label": "1",
+                  "aria": null
+                },
+                {
+                  "label": "2",
+                  "aria": null
+                },
+                {
+                  "label": "3",
+                  "aria": null
+                },
+                {
+                  "label": "0",
+                  "aria": null
+                },
+                {
+                  "label": "−",
+                  "aria": null
+                },
+                {
+                  "label": "(",
+                  "aria": null
+                },
+                {
+                  "label": ")",
+                  "aria": null
+                },
+                {
+                  "label": "+",
+                  "aria": null
+                },
+                {
+                  "label": "·",
+                  "aria": null
+                },
+                {
+                  "label": ",",
+                  "aria": null
+                },
+                {
+                  "label": "ab",
+                  "aria": "Insert stacked fraction"
+                },
+                {
+                  "label": "√",
+                  "aria": "Insert √"
+                },
+                {
+                  "label": "ln",
+                  "aria": "Insert ln"
+                },
+                {
+                  "label": "sin⁻¹",
+                  "aria": "Insert sin⁻¹"
+                },
+                {
+                  "label": "cos⁻¹",
+                  "aria": "Insert cos⁻¹"
+                },
+                {
+                  "label": "tan⁻¹",
+                  "aria": "Insert tan⁻¹"
+                },
+                {
+                  "label": "xⁿ",
+                  "aria": "Insert exponent"
+                },
+                {
+                  "label": "π",
+                  "aria": null
+                },
+                {
+                  "label": "e",
+                  "aria": null
+                },
+                {
+                  "label": "∞",
+                  "aria": "Insert infinity"
+                },
+                {
+                  "label": "−∞",
+                  "aria": "Insert negative infinity"
+                },
+                {
+                  "label": "[",
+                  "aria": "Insert left bracket"
+                },
+                {
+                  "label": "]",
+                  "aria": "Insert right bracket"
+                },
+                {
+                  "label": "∪",
+                  "aria": "Insert union"
+                },
+                {
+                  "label": "←",
+                  "aria": "Move cursor left"
+                },
+                {
+                  "label": "→",
+                  "aria": "Move cursor right"
+                },
+                {
+                  "label": "↑",
+                  "aria": "Move from denominator to numerator"
+                },
+                {
+                  "label": "↓",
+                  "aria": "Move from numerator to denominator"
+                },
+                {
+                  "label": "⌫",
+                  "aria": "Backspace"
+                },
+                {
+                  "label": "Del",
+                  "aria": "Delete"
+                },
+                {
+                  "label": "Clear",
+                  "aria": "Clear answer"
+                },
+                {
+                  "label": "Check",
+                  "aria": "Check answer"
+                }
+              ],
+              "used": [
+                {
+                  "label": "Clear",
+                  "aria": "Clear answer"
+                },
+                {
+                  "label": "(",
+                  "aria": null
+                },
+                {
+                  "label": "−",
+                  "aria": null
+                },
+                {
+                  "label": "∞",
+                  "aria": "Insert infinity"
+                },
+                {
+                  "label": ",",
+                  "aria": null
+                },
+                {
+                  "label": "−",
+                  "aria": null
+                },
+                {
+                  "label": "1",
+                  "aria": null
+                },
+                {
+                  "label": "−",
+                  "aria": null
+                },
+                {
+                  "label": "√",
+                  "aria": "Insert √"
+                },
+                {
+                  "label": "2",
+                  "aria": null
+                },
+                {
+                  "label": "→",
+                  "aria": "Move cursor right"
+                },
+                {
+                  "label": "]",
+                  "aria": "Insert right bracket"
+                },
+                {
+                  "label": "∪",
+                  "aria": "Insert union"
+                },
+                {
+                  "label": "[",
+                  "aria": "Insert left bracket"
+                },
+                {
+                  "label": "−",
+                  "aria": null
+                },
+                {
+                  "label": "1",
+                  "aria": null
+                },
+                {
+                  "label": "+",
+                  "aria": null
+                },
+                {
+                  "label": "√",
+                  "aria": "Insert √"
+                },
+                {
+                  "label": "2",
+                  "aria": null
+                },
+                {
+                  "label": "→",
+                  "aria": "Move cursor right"
+                },
+                {
+                  "label": ",",
+                  "aria": null
+                },
+                {
+                  "label": "∞",
+                  "aria": "Insert infinity"
+                },
+                {
+                  "label": ")",
+                  "aria": null
+                }
+              ]
+            }
+          ],
+          "wrongFeedback": "Check Answer\n7\n8\n9\n4\n5\n6\n1\n2\n3\n0\n−\n(\n)\n+\n·\n,\na\nb\n√\nln\nsin⁻¹\ncos⁻¹\ntan⁻¹\nxⁿ\nπ\ne\n∞\n−∞\n[\n]\n∪\n←\n→\n↑\n↓\n⌫\nDel\nClear\nCheck",
+          "wrongRejected": true,
+          "feedback": "Check Answer\n7\n8\n9\n4\n5\n6\n1\n2\n3\n0\n−\n(\n)\n+\n·\n,\na\nb\n√\nln\nsin⁻¹\ncos⁻¹\ntan⁻¹\nxⁿ\nπ\ne\n∞\n−∞\n[\n]\n∪\n←\n→\n↑\n↓\n⌫\nDel\nClear\nCheck",
+          "correctAccepted": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "course": "AP Calculus",
+      "unit": 3,
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+      "family": "analysis_from_f_trigonometric",
+      "questionId": "u3-analysis-f-trig-increasing",
+      "selector": {},
+      "seed": 100660,
+      "generatorSlug": "increasing-decreasing-intervals-concavity-and-extrema",
+      "generatorMetadata": {
+        "variant": "analysis_from_f_trigonometric"
+      },
+      "answerForms": [],
+      "parts": [
+        {
+          "index": 0,
+          "mode": "unit3-interval",
+          "profile": "ml-unit3-interval",
+          "requiredAnswers": [
+            "[0,pi/2]U[3*pi/2,2*pi]"
+          ],
+          "meaningfulRootAlternative": false,
+          "answers": [
+            "[0,pi/2]U[3*pi/2,2*pi]"
+          ],
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "8",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "9",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "4",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "5",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "6",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "1",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "2",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "3",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "0",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "−",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "(",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": ")",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "+",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "·",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": ",",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction",
+              "disabled": false
+            },
+            {
+              "label": "√",
+              "aria": "Insert √",
+              "disabled": false
+            },
+            {
+              "label": "ln",
+              "aria": "Insert ln",
+              "disabled": false
+            },
+            {
+              "label": "sin⁻¹",
+              "aria": "Insert sin⁻¹",
+              "disabled": false
+            },
+            {
+              "label": "cos⁻¹",
+              "aria": "Insert cos⁻¹",
+              "disabled": false
+            },
+            {
+              "label": "tan⁻¹",
+              "aria": "Insert tan⁻¹",
+              "disabled": false
+            },
+            {
+              "label": "xⁿ",
+              "aria": "Insert exponent",
+              "disabled": false
+            },
+            {
+              "label": "π",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "e",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "∞",
+              "aria": "Insert infinity",
+              "disabled": false
+            },
+            {
+              "label": "−∞",
+              "aria": "Insert negative infinity",
+              "disabled": false
+            },
+            {
+              "label": "[",
+              "aria": "Insert left bracket",
+              "disabled": false
+            },
+            {
+              "label": "]",
+              "aria": "Insert right bracket",
+              "disabled": false
+            },
+            {
+              "label": "∪",
+              "aria": "Insert union",
+              "disabled": false
+            },
+            {
+              "label": "←",
+              "aria": "Move cursor left",
+              "disabled": false
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right",
+              "disabled": false
+            },
+            {
+              "label": "↑",
+              "aria": "Move from denominator to numerator",
+              "disabled": false
+            },
+            {
+              "label": "↓",
+              "aria": "Move from numerator to denominator",
+              "disabled": false
+            },
+            {
+              "label": "⌫",
+              "aria": "Backspace",
+              "disabled": false
+            },
+            {
+              "label": "Del",
+              "aria": "Delete",
+              "disabled": false
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer",
+              "disabled": false
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer",
+              "disabled": false
+            }
+          ],
+          "runtimeProfile": "ml-unit3-interval",
+          "fields": [
+            {
+              "field": 0,
+              "raw": "[0,pi/2]U[3*pi/2,2*pi]",
+              "latex": "[0,\\frac{\\pi}{2}]\\cup[\\frac{3\\cdot\\pi}{2},2\\cdot\\pi]",
+              "serializedSource": "[0,(pi)/(2)]∪[(3*pi)/(2),2*pi]",
+              "profile": "ml-unit3-interval",
+              "buttons": [
+                {
+                  "label": "7",
+                  "aria": null
+                },
+                {
+                  "label": "8",
+                  "aria": null
+                },
+                {
+                  "label": "9",
+                  "aria": null
+                },
+                {
+                  "label": "4",
+                  "aria": null
+                },
+                {
+                  "label": "5",
+                  "aria": null
+                },
+                {
+                  "label": "6",
+                  "aria": null
+                },
+                {
+                  "label": "1",
+                  "aria": null
+                },
+                {
+                  "label": "2",
+                  "aria": null
+                },
+                {
+                  "label": "3",
+                  "aria": null
+                },
+                {
+                  "label": "0",
+                  "aria": null
+                },
+                {
+                  "label": "−",
+                  "aria": null
+                },
+                {
+                  "label": "(",
+                  "aria": null
+                },
+                {
+                  "label": ")",
+                  "aria": null
+                },
+                {
+                  "label": "+",
+                  "aria": null
+                },
+                {
+                  "label": "·",
+                  "aria": null
+                },
+                {
+                  "label": ",",
+                  "aria": null
+                },
+                {
+                  "label": "ab",
+                  "aria": "Insert stacked fraction"
+                },
+                {
+                  "label": "√",
+                  "aria": "Insert √"
+                },
+                {
+                  "label": "ln",
+                  "aria": "Insert ln"
+                },
+                {
+                  "label": "sin⁻¹",
+                  "aria": "Insert sin⁻¹"
+                },
+                {
+                  "label": "cos⁻¹",
+                  "aria": "Insert cos⁻¹"
+                },
+                {
+                  "label": "tan⁻¹",
+                  "aria": "Insert tan⁻¹"
+                },
+                {
+                  "label": "xⁿ",
+                  "aria": "Insert exponent"
+                },
+                {
+                  "label": "π",
+                  "aria": null
+                },
+                {
+                  "label": "e",
+                  "aria": null
+                },
+                {
+                  "label": "∞",
+                  "aria": "Insert infinity"
+                },
+                {
+                  "label": "−∞",
+                  "aria": "Insert negative infinity"
+                },
+                {
+                  "label": "[",
+                  "aria": "Insert left bracket"
+                },
+                {
+                  "label": "]",
+                  "aria": "Insert right bracket"
+                },
+                {
+                  "label": "∪",
+                  "aria": "Insert union"
+                },
+                {
+                  "label": "←",
+                  "aria": "Move cursor left"
+                },
+                {
+                  "label": "→",
+                  "aria": "Move cursor right"
+                },
+                {
+                  "label": "↑",
+                  "aria": "Move from denominator to numerator"
+                },
+                {
+                  "label": "↓",
+                  "aria": "Move from numerator to denominator"
+                },
+                {
+                  "label": "⌫",
+                  "aria": "Backspace"
+                },
+                {
+                  "label": "Del",
+                  "aria": "Delete"
+                },
+                {
+                  "label": "Clear",
+                  "aria": "Clear answer"
+                },
+                {
+                  "label": "Check",
+                  "aria": "Check answer"
+                }
+              ],
+              "used": [
+                {
+                  "label": "Clear",
+                  "aria": "Clear answer"
+                },
+                {
+                  "label": "[",
+                  "aria": "Insert left bracket"
+                },
+                {
+                  "label": "0",
+                  "aria": null
+                },
+                {
+                  "label": ",",
+                  "aria": null
+                },
+                {
+                  "label": "ab",
+                  "aria": "Insert stacked fraction"
+                },
+                {
+                  "label": "π",
+                  "aria": null
+                },
+                {
+                  "label": "→",
+                  "aria": "Move cursor right"
+                },
+                {
+                  "label": "2",
+                  "aria": null
+                },
+                {
+                  "label": "→",
+                  "aria": "Move cursor right"
+                },
+                {
+                  "label": "]",
+                  "aria": "Insert right bracket"
+                },
+                {
+                  "label": "∪",
+                  "aria": "Insert union"
+                },
+                {
+                  "label": "[",
+                  "aria": "Insert left bracket"
+                },
+                {
+                  "label": "ab",
+                  "aria": "Insert stacked fraction"
+                },
+                {
+                  "label": "3",
+                  "aria": null
+                },
+                {
+                  "label": "·",
+                  "aria": null
+                },
+                {
+                  "label": "π",
+                  "aria": null
+                },
+                {
+                  "label": "→",
+                  "aria": "Move cursor right"
+                },
+                {
+                  "label": "2",
+                  "aria": null
+                },
+                {
+                  "label": "→",
+                  "aria": "Move cursor right"
+                },
+                {
+                  "label": ",",
+                  "aria": null
+                },
+                {
+                  "label": "2",
+                  "aria": null
+                },
+                {
+                  "label": "·",
+                  "aria": null
+                },
+                {
+                  "label": "π",
+                  "aria": null
+                },
+                {
+                  "label": "]",
+                  "aria": "Insert right bracket"
+                }
+              ]
+            }
+          ],
+          "wrongFeedback": "Check Answer\n7\n8\n9\n4\n5\n6\n1\n2\n3\n0\n−\n(\n)\n+\n·\n,\na\nb\n√\nln\nsin⁻¹\ncos⁻¹\ntan⁻¹\nxⁿ\nπ\ne\n∞\n−∞\n[\n]\n∪\n←\n→\n↑\n↓\n⌫\nDel\nClear\nCheck",
+          "wrongRejected": true,
+          "feedback": "Check Answer\n7\n8\n9\n4\n5\n6\n1\n2\n3\n0\n−\n(\n)\n+\n·\n,\na\nb\n√\nln\nsin⁻¹\ncos⁻¹\ntan⁻¹\nxⁿ\nπ\ne\n∞\n−∞\n[\n]\n∪\n←\n→\n↑\n↓\n⌫\nDel\nClear\nCheck",
+          "correctAccepted": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/assignment-practice/index.html",
+      "coverage": true,
+      "retestOnly": true,
+      "expandedForms": true,
+      "generated": 3600,
+      "plans": [
+        {
+          "slug": "equations-of-tangent-and-normal-lines",
+          "options": {}
+        },
+        {
+          "slug": "horizontal-and-vertical-tangent-lines",
+          "options": {}
+        },
+        {
+          "slug": "horizontal-and-vertical-tangent-lines-implicitly",
+          "options": {}
+        },
+        {
+          "slug": "motion",
+          "options": {}
+        },
+        {
+          "slug": "absolute-and-local-extrema-and-the-extreme-value-theorem",
+          "options": {}
+        },
+        {
+          "slug": "increasing-decreasing-intervals-concavity-and-extrema",
+          "options": {}
+        },
+        {
+          "slug": "linearization-and-differentials",
+          "options": {}
+        },
+        {
+          "slug": "tangent-and-secant-line-approximations",
+          "options": {}
+        },
+        {
+          "slug": "rolle-s-theorem-and-the-mean-value-theorem",
+          "options": {}
+        },
+        {
+          "slug": "l-hopital-s-rule",
+          "options": {}
+        },
+        {
+          "slug": "optimization",
+          "options": {}
+        },
+        {
+          "slug": "related-rates",
+          "options": {}
+        }
+      ],
+      "familyControlContracts": 424
+    },
+    {
+      "course": "AP Calculus",
+      "unit": 3,
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
+      "family": "analysis_calculator_validated_incdec_logarithmic-polynomial-mix",
+      "questionId": "u3-analysis-validated-incdec-logarithmic-polynomial-mix-4.1-0.4-1.9-2.4-increasing-n",
+      "selector": {},
+      "seed": 2157,
+      "generatorSlug": "increasing-decreasing-intervals-concavity-and-extrema",
+      "generatorMetadata": {
+        "variant": "analysis_calculator_validated_incdec_logarithmic-polynomial-mix"
+      },
+      "answerForms": [],
+      "parts": [
+        {
+          "index": 0,
+          "mode": "unit3-interval",
+          "profile": "ml-unit3-rounded-interval",
+          "requiredAnswers": [
+            "[-3.600,-0.534]"
+          ],
+          "meaningfulRootAlternative": false,
+          "answers": [
+            "[-3.600,-0.534]"
+          ],
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "8",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "9",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "4",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "5",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "6",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "1",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "2",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "3",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "0",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "−",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": ".",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "(",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": ")",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": ",",
+              "aria": null,
+              "disabled": false
+            },
+            {
+              "label": "∞",
+              "aria": "Insert infinity",
+              "disabled": false
+            },
+            {
+              "label": "−∞",
+              "aria": "Insert negative infinity",
+              "disabled": false
+            },
+            {
+              "label": "[",
+              "aria": "Insert left bracket",
+              "disabled": false
+            },
+            {
+              "label": "]",
+              "aria": "Insert right bracket",
+              "disabled": false
+            },
+            {
+              "label": "∪",
+              "aria": "Insert union",
+              "disabled": false
+            },
+            {
+              "label": "←",
+              "aria": "Move cursor left",
+              "disabled": false
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right",
+              "disabled": false
+            },
+            {
+              "label": "⌫",
+              "aria": "Backspace",
+              "disabled": false
+            },
+            {
+              "label": "Del",
+              "aria": "Delete",
+              "disabled": false
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer",
+              "disabled": false
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer",
+              "disabled": false
+            }
+          ],
+          "runtimeProfile": "ml-unit3-rounded-interval",
+          "fields": [
+            {
+              "field": 0,
+              "raw": "[-3.600,-0.534]",
+              "latex": "[-3.600,-0.534]",
+              "serializedSource": "[-3.600,-0.534]",
+              "profile": "ml-unit3-rounded-interval",
+              "buttons": [
+                {
+                  "label": "7",
+                  "aria": null
+                },
+                {
+                  "label": "8",
+                  "aria": null
+                },
+                {
+                  "label": "9",
+                  "aria": null
+                },
+                {
+                  "label": "4",
+                  "aria": null
+                },
+                {
+                  "label": "5",
+                  "aria": null
+                },
+                {
+                  "label": "6",
+                  "aria": null
+                },
+                {
+                  "label": "1",
+                  "aria": null
+                },
+                {
+                  "label": "2",
+                  "aria": null
+                },
+                {
+                  "label": "3",
+                  "aria": null
+                },
+                {
+                  "label": "0",
+                  "aria": null
+                },
+                {
+                  "label": "−",
+                  "aria": null
+                },
+                {
+                  "label": ".",
+                  "aria": null
+                },
+                {
+                  "label": "(",
+                  "aria": null
+                },
+                {
+                  "label": ")",
+                  "aria": null
+                },
+                {
+                  "label": ",",
+                  "aria": null
+                },
+                {
+                  "label": "∞",
+                  "aria": "Insert infinity"
+                },
+                {
+                  "label": "−∞",
+                  "aria": "Insert negative infinity"
+                },
+                {
+                  "label": "[",
+                  "aria": "Insert left bracket"
+                },
+                {
+                  "label": "]",
+                  "aria": "Insert right bracket"
+                },
+                {
+                  "label": "∪",
+                  "aria": "Insert union"
+                },
+                {
+                  "label": "←",
+                  "aria": "Move cursor left"
+                },
+                {
+                  "label": "→",
+                  "aria": "Move cursor right"
+                },
+                {
+                  "label": "⌫",
+                  "aria": "Backspace"
+                },
+                {
+                  "label": "Del",
+                  "aria": "Delete"
+                },
+                {
+                  "label": "Clear",
+                  "aria": "Clear answer"
+                },
+                {
+                  "label": "Check",
+                  "aria": "Check answer"
+                }
+              ],
+              "used": [
+                {
+                  "label": "Clear",
+                  "aria": "Clear answer"
+                },
+                {
+                  "label": "[",
+                  "aria": "Insert left bracket"
+                },
+                {
+                  "label": "−",
+                  "aria": null
+                },
+                {
+                  "label": "3",
+                  "aria": null
+                },
+                {
+                  "label": ".",
+                  "aria": null
+                },
+                {
+                  "label": "6",
+                  "aria": null
+                },
+                {
+                  "label": "0",
+                  "aria": null
+                },
+                {
+                  "label": "0",
+                  "aria": null
+                },
+                {
+                  "label": ",",
+                  "aria": null
+                },
+                {
+                  "label": "−",
+                  "aria": null
+                },
+                {
+                  "label": "0",
+                  "aria": null
+                },
+                {
+                  "label": ".",
+                  "aria": null
+                },
+                {
+                  "label": "5",
+                  "aria": null
+                },
+                {
+                  "label": "3",
+                  "aria": null
+                },
+                {
+                  "label": "4",
+                  "aria": null
+                },
+                {
+                  "label": "]",
+                  "aria": "Insert right bracket"
+                }
+              ]
+            }
+          ],
+          "wrongFeedback": "Check Answer\nWrite every finite endpoint with exactly 3 digits after the decimal.\n7\n8\n9\n4\n5\n6\n1\n2\n3\n0\n−\n.\n(\n)\n,\n∞\n−∞\n[\n]\n∪\n←\n→\n⌫\nDel\nClear\nCheck",
+          "wrongRejected": true,
+          "feedback": "Check Answer\nWrite every finite endpoint with exactly 3 digits after the decimal.\n7\n8\n9\n4\n5\n6\n1\n2\n3\n0\n−\n.\n(\n)\n,\n∞\n−∞\n[\n]\n∪\n←\n→\n⌫\nDel\nClear\nCheck",
+          "correctAccepted": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-3-applications-derivative/topics/comprehensive-review/calculator-practice/index.html",
+      "coverage": true,
+      "retestOnly": true,
+      "expandedForms": true,
+      "generated": 2100,
+      "plans": [
+        {
+          "slug": "horizontal-and-vertical-tangent-lines-implicitly",
+          "options": {}
+        },
+        {
+          "slug": "using-your-graphing-calculator",
+          "options": {}
+        },
+        {
+          "slug": "motion",
+          "options": {}
+        },
+        {
+          "slug": "increasing-decreasing-intervals-concavity-and-extrema",
+          "options": {}
+        },
+        {
+          "slug": "newton-s-method-for-approximating-roots-of-a-function",
+          "options": {}
+        },
+        {
+          "slug": "optimization",
+          "options": {}
+        },
+        {
+          "slug": "related-rates",
+          "options": {}
+        }
+      ],
+      "familyControlContracts": 182
+    }
+  ],
+  "errors": []
+}

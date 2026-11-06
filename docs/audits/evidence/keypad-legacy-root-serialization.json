@@ -1,0 +1,151 @@
+{
+  "results": [
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+      "profile": "derivative-power",
+      "index": 3,
+      "used": [
+        "Clear",
+        "ⁿ√",
+        "3",
+        "→",
+        "x",
+        "→"
+      ],
+      "incomplete": "root(3,)",
+      "source": "(x)^(1/(3))",
+      "visible": "root(3,x)",
+      "equivalent": true,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+      "profile": "derivative-power",
+      "index": 4,
+      "used": [
+        "Clear",
+        "ⁿ√",
+        "4",
+        "→",
+        "x",
+        "→"
+      ],
+      "incomplete": "root(4,)",
+      "source": "(x)^(1/(4))",
+      "visible": "root(4,x)",
+      "equivalent": true,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+      "profile": "derivative-power",
+      "index": 5,
+      "used": [
+        "Clear",
+        "ⁿ√",
+        "5",
+        "→",
+        "x",
+        "→"
+      ],
+      "incomplete": "root(5,)",
+      "source": "(x)^(1/(5))",
+      "visible": "root(5,x)",
+      "equivalent": true,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+      "profile": "derivative-power",
+      "index": 12,
+      "used": [
+        "Clear",
+        "ⁿ√",
+        "1",
+        "2",
+        "→",
+        "x",
+        "→"
+      ],
+      "incomplete": "root(12,)",
+      "source": "(x)^(1/(12))",
+      "visible": "root(12,x)",
+      "equivalent": true,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html",
+      "profile": "derivative-chain",
+      "index": 3,
+      "used": [
+        "Clear",
+        "ⁿ√",
+        "3",
+        "→",
+        "x",
+        "→"
+      ],
+      "incomplete": "root(3,)",
+      "source": "(x)^(1/(3))",
+      "visible": "root(3,x)",
+      "equivalent": true,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html",
+      "profile": "derivative-chain",
+      "index": 4,
+      "used": [
+        "Clear",
+        "ⁿ√",
+        "4",
+        "→",
+        "x",
+        "→"
+      ],
+      "incomplete": "root(4,)",
+      "source": "(x)^(1/(4))",
+      "visible": "root(4,x)",
+      "equivalent": true,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html",
+      "profile": "derivative-chain",
+      "index": 5,
+      "used": [
+        "Clear",
+        "ⁿ√",
+        "5",
+        "→",
+        "x",
+        "→"
+      ],
+      "incomplete": "root(5,)",
+      "source": "(x)^(1/(5))",
+      "visible": "root(5,x)",
+      "equivalent": true,
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/the-chain-rule/practice/index.html",
+      "profile": "derivative-chain",
+      "index": 12,
+      "used": [
+        "Clear",
+        "ⁿ√",
+        "1",
+        "2",
+        "→",
+        "x",
+        "→"
+      ],
+      "incomplete": "root(12,)",
+      "source": "(x)^(1/(12))",
+      "visible": "root(12,x)",
+      "equivalent": true,
+      "passed": true
+    }
+  ],
+  "note": "Serialization probes, excluded from complete-answer assertion counts."
+}

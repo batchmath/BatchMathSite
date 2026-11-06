@@ -4,6 +4,7 @@ import {translateDerivative,batchmathToLatex} from './answer-adapter.mjs';
 const api=window.BatchMathCalculusKeypad,limits=location.pathname.includes('/unit-1-');
 for(const [name,spec]of Object.entries(unit1Profiles))api.registerProfile(name,spec);
 api.registerProfile('ml-review-difference',{fraction:true,radical:true,exponent:true,variables:['x','h'],arithmetic:true,parentheses:true});
+api.registerProfile('ml-review-chain-inverse',{fraction:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:['x'],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log'],['|u|','abs']],arithmetic:true,parentheses:true});
 const source=document.getElementById('answer');
 if(new URLSearchParams(location.search).get('editor')!=='legacy'){
  const reset=api.reset;api.reset=()=>{reset();source.dispatchEvent(new Event('batchmath:mathlive-reset'));};
@@ -13,6 +14,7 @@ if(new URLSearchParams(location.search).get('editor')!=='legacy'){
  const profile=()=>{
   if(limits)return /u1-review-question-(?:oneSided|infinity)\b/.test(document.getElementById('question').className)?'migration-limit-signed':'migration-limit-finite';
   const cat=document.getElementById('question').dataset.mathliveFamily;
+  if(cat==='chain'&&document.getElementById('category')?.value==='review_chain_inverse_trig')return'ml-review-chain-inverse';
   return({difference:'ml-review-difference',basic:'derivative-power',product:'derivative-product',quotient:'derivative-product',trig:'migration-derivative-trig',chain:'migration-derivative-exp',exponential:'migration-derivative-exp',implicit:'migration-derivative-implicit',log:'migration-derivative-log',logdiff:'migration-derivative-log',invtrig:'migration-derivative-inverse',inverse:'migration-derivative-rational',point:'migration-derivative-comprehensive-value'})[cat]||'derivative-product';
  };
  installNativeFields({hostSelector:'.practice-shell',inputSelector:'#answer',padSelector:'.bm-calc-editor,.bm-calc-keypad:not([data-experimental-bridge])',whenVisible:true,submitSelector:'#submit',contract:{...(limits?limitContract:derivative),visible:input=>!input.hidden},profile,onRestore:(input,value)=>api.setRaw(value),label:limits?'Review limit':'Review derivative'});

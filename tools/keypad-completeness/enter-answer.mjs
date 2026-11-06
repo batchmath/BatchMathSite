@@ -26,6 +26,6 @@ export async function enterAnswer(page,field,raw,{format='batchmath'}={}){
  if(n.name==='exp'){click('e');template('xⁿ',n.args[0]);return;}if(n.name==='root'||n.name==='cbrt'){const tail=right();if((n.name==='cbrt'||n.name==='root'&&n.args[0]?.raw==='3')&&has('∛')){template('∛',n.args[n.name==='cbrt'?0:1]);return;}if(n.name==='root'&&n.args[0]?.raw==='2'&&has('√')){template('√',n.args[1]);return;}click('ⁿ√');emit(n.name==='cbrt'?{type:'num',raw:'3'}:n.args[0]);click('→');emit(n.args[n.name==='cbrt'?0:1]);exit(tail);return;}
  const label=({sqrt:'√',abs:'|u|',asin:'sin⁻¹',acos:'cos⁻¹',atan:'tan⁻¹',asec:'sec⁻¹',acsc:'csc⁻¹',acot:'cot⁻¹',fp:'f′',gp:'g′'})[n.name]||n.name;template(label,n.args[0]);return;}
  throw Error('Unsupported audit AST '+JSON.stringify(n));}
- click('Clear');emit(tree);return{raw,latex:mf.value,profile:pad.dataset.auditProfile||[...pad.classList].find(c=>c.startsWith('bm-calc-mode-'))?.slice(13)||null,buttons:bs.map(b=>({label:b.textContent.trim(),aria:b.getAttribute('aria-label')})),used};
+ click('Clear');emit(tree);const mirror=mf.nextElementSibling?.matches('input')?mf.nextElementSibling:null;return{raw,latex:mf.value,serializedSource:mirror?.value??null,profile:pad.dataset.auditProfile||[...pad.classList].find(c=>c.startsWith('bm-calc-mode-'))?.slice(13)||null,buttons:bs.map(b=>({label:b.textContent.trim(),aria:b.getAttribute('aria-label')})),used};
  },{tree:parsed.tree,raw:String(raw)});
 }

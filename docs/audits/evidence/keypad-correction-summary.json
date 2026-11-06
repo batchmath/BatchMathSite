@@ -1,0 +1,89 @@
+{
+  "suites": [
+    {
+      "file": "keypad-completeness-unit2-indexed-roots-corrected.json",
+      "cases": 84,
+      "correctParts": 84,
+      "wrongParts": 84,
+      "pageErrors": 0
+    },
+    {
+      "file": "keypad-completeness-unit2-absolute-corrected.json",
+      "cases": 5,
+      "correctParts": 5,
+      "wrongParts": 5,
+      "pageErrors": 0
+    },
+    {
+      "file": "keypad-completeness-dynamic-unit3-corrected.json",
+      "cases": 3,
+      "correctParts": 3,
+      "wrongParts": 3,
+      "pageErrors": 0
+    },
+    {
+      "file": "keypad-completeness-dynamic-assignment-decimal-corrected.json",
+      "cases": 1,
+      "correctParts": 1,
+      "wrongParts": 1,
+      "pageErrors": 0
+    },
+    {
+      "file": "keypad-completeness-dynamic-unit4-roots-corrected.json",
+      "cases": 46,
+      "correctParts": 48,
+      "wrongParts": 48,
+      "pageErrors": 0
+    },
+    {
+      "file": "keypad-completeness-dynamic-unit4-witnesses-corrected.json",
+      "cases": 18,
+      "correctParts": 18,
+      "wrongParts": 18,
+      "pageErrors": 0
+    },
+    {
+      "file": "keypad-completeness-dynamic-unit5-roots-corrected.json",
+      "cases": 10,
+      "correctParts": 18,
+      "wrongParts": 18,
+      "pageErrors": 0
+    },
+    {
+      "file": "keypad-completeness-prep-degree-corrected.json",
+      "cases": 10,
+      "correctParts": 9,
+      "wrongParts": 9,
+      "pageErrors": 0
+    },
+    {
+      "file": "keypad-degree-investigation-corrected.json",
+      "cases": 3,
+      "correctParts": 3,
+      "wrongParts": 3,
+      "pageErrors": 0
+    },
+    {
+      "file": "keypad-approximation-investigation-corrected.json",
+      "cases": 2,
+      "correctParts": 2,
+      "wrongParts": 2,
+      "pageErrors": 0
+    },
+    {
+      "file": "keypad-completeness-dynamic-review-intervals-corrected.json",
+      "cases": 3,
+      "correctParts": 3,
+      "wrongParts": 3,
+      "pageErrors": 0
+    }
+  ],
+  "layoutChecks": 315,
+  "focusCases": 2,
+  "sourcePreservationNodeTests": 34,
+  "legacyRootSerializationProbes": 8,
+  "questionCases": 185,
+  "keypadCorrectPartAssertions": 194,
+  "wrongPartAssertions": 194,
+  "retainedNativeChoiceCases": 1
+}

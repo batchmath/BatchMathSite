@@ -404,6 +404,7 @@
     },
     "unit4-basic-indef": {
       "fraction": true,
+      "nthRoot": true,
       "radical": true,
       "exponent": true,
       "logarithm": true,
@@ -461,6 +462,7 @@
     },
     "unit4-usub-x": {
       "fraction": true,
+      "nthRoot": true,
       "radical": true,
       "exponent": true,
       "logarithm": true,
@@ -502,6 +504,7 @@
     },
     "unit4-usub-t": {
       "fraction": true,
+      "nthRoot": true,
       "radical": true,
       "exponent": true,
       "constants": [
@@ -542,6 +545,7 @@
     },
     "unit4-usub-theta": {
       "fraction": true,
+      "radical": true,
       "exponent": true,
       "constants": [
         "e"
@@ -581,6 +585,7 @@
     },
     "unit4-usub-r": {
       "fraction": true,
+      "nthRoot": true,
       "radical": true,
       "exponent": true,
       "variables": [
@@ -793,6 +798,7 @@
     "unit5-sep-interval": {
       "fraction": true,
       "radical": true,
+      "nthRoot": true,
       "exponent": true,
       "logarithm": true,
       "constants": [
@@ -1039,6 +1045,7 @@
     },
     "derivative-power": {
       "fraction": true,
+      "nthRoot": true,
       "radical": true,
       "exponent": true,
       "constants": [
@@ -1110,6 +1117,7 @@
     },
     "migration-derivative-inverse": {
       "fraction": true,
+      "nthRoot": true,
       "radical": true,
       "logarithm": true,
       "exponent": true,
@@ -1198,6 +1206,7 @@
     },
     "migration-derivative-trig": {
       "fraction": true,
+      "nthRoot": true,
       "radical": true,
       "exponent": true,
       "decimal": true,
@@ -1244,6 +1253,7 @@
     },
     "migration-derivative-exp": {
       "fraction": true,
+      "nthRoot": true,
       "radical": true,
       "exponent": true,
       "decimal": true,
@@ -1290,6 +1300,7 @@
     },
     "migration-derivative-log": {
       "fraction": true,
+      "nthRoot": true,
       "radical": true,
       "exponent": true,
       "decimal": true,
@@ -1337,6 +1348,7 @@
     },
     "migration-derivative-implicit": {
       "fraction": true,
+      "nthRoot": true,
       "radical": true,
       "exponent": true,
       "decimal": true,
@@ -1476,6 +1488,7 @@
     },
     "derivative-product": {
       "fraction": true,
+      "nthRoot": true,
       "radical": true,
       "decimal": true,
       "exponent": true,
@@ -1550,6 +1563,7 @@
     },
     "derivative-chain": {
       "fraction": true,
+      "nthRoot": true,
       "radical": true,
       "logarithm": true,
       "exponent": true,
@@ -2241,6 +2255,40 @@
         ]
       ]
     },
+    "ml-unit3-exact-decimal": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ]
+      ],
+      "decimal": true
+    },
+    "ml-unit3-algebraic-exact-decimal": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "constants": [
+        "pi"
+      ],
+      "arithmetic": true,
+      "parentheses": true,
+      "decimal": true
+    },
     "ml-unit5-basic-x-c": {
       "fraction": true,
       "radical": true,
@@ -2565,6 +2613,7 @@
       "parentheses": true,
       "decimal": true,
       "radical": true,
+      "nthRoot": true,
       "logarithm": true,
       "constants": [
         "pi",
@@ -2619,6 +2668,7 @@
       "parentheses": true,
       "decimal": true,
       "radical": true,
+      "nthRoot": true,
       "logarithm": true,
       "constants": [
         "pi",
@@ -2727,6 +2777,56 @@
       "variables": "actual generated p.variables only",
       "exponent": true,
       "arithmetic": true
+    },
+    "ml-review-chain-inverse": {
+      "fraction": true,
+      "radical": true,
+      "exponent": true,
+      "decimal": true,
+      "logarithm": true,
+      "constants": [
+        "pi",
+        "e"
+      ],
+      "variables": [
+        "x"
+      ],
+      "functions": [
+        [
+          "sin",
+          "sin"
+        ],
+        [
+          "cos",
+          "cos"
+        ],
+        [
+          "tan",
+          "tan"
+        ],
+        [
+          "sec",
+          "sec"
+        ],
+        [
+          "csc",
+          "csc"
+        ],
+        [
+          "cot",
+          "cot"
+        ],
+        [
+          "log",
+          "log"
+        ],
+        [
+          "|u|",
+          "abs"
+        ]
+      ],
+      "arithmetic": true,
+      "parentheses": true
     }
   }
 }

@@ -1,0 +1,3479 @@
+{
+  "checks": [
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 320,
+      "profile": "ml-prep-coordinates",
+      "field": {
+        "x": 26,
+        "y": 788.921875,
+        "width": 268,
+        "height": 56
+      },
+      "pad": {
+        "x": 26,
+        "y": 900.921875,
+        "width": 268,
+        "height": 231
+      },
+      "documentWidth": 320,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 32,
+          "y": 906.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 83.796875,
+          "y": 906.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 135.59375,
+          "y": 906.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 32,
+          "y": 943.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 83.796875,
+          "y": 943.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 135.59375,
+          "y": 943.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 32,
+          "y": 980.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 83.796875,
+          "y": 980.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 135.59375,
+          "y": 980.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 135.59375,
+          "y": 1017.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 187.390625,
+          "y": 906.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 239.1875,
+          "y": 906.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 187.390625,
+          "y": 943.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 239.1875,
+          "y": 943.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 187.390625,
+          "y": 980.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 239.1875,
+          "y": 980.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": ",",
+          "aria": null,
+          "x": 32,
+          "y": 1017.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 83.796875,
+          "y": 1017.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 187.390625,
+          "y": 1017.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 239.1875,
+          "y": 1017.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 32,
+          "y": 1054.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 83.796875,
+          "y": 1054.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 135.59375,
+          "y": 1054.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 187.390625,
+          "y": 1054.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 239.1875,
+          "y": 1054.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 32,
+          "y": 1091.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 83.796875,
+          "y": 1091.921875,
+          "width": 48.796875,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 375,
+      "profile": "ml-prep-coordinates",
+      "field": {
+        "x": 26,
+        "y": 788.921875,
+        "width": 323,
+        "height": 56
+      },
+      "pad": {
+        "x": 26,
+        "y": 900.921875,
+        "width": 323,
+        "height": 231
+      },
+      "documentWidth": 375,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 32,
+          "y": 906.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 94.796875,
+          "y": 906.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 157.59375,
+          "y": 906.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 32,
+          "y": 943.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 94.796875,
+          "y": 943.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 157.59375,
+          "y": 943.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 32,
+          "y": 980.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 94.796875,
+          "y": 980.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 157.59375,
+          "y": 980.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 157.59375,
+          "y": 1017.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 220.390625,
+          "y": 906.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 283.1875,
+          "y": 906.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 220.390625,
+          "y": 943.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 283.1875,
+          "y": 943.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 220.390625,
+          "y": 980.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 283.1875,
+          "y": 980.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": ",",
+          "aria": null,
+          "x": 32,
+          "y": 1017.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 94.796875,
+          "y": 1017.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 220.390625,
+          "y": 1017.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 283.1875,
+          "y": 1017.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 32,
+          "y": 1054.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 94.796875,
+          "y": 1054.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 157.59375,
+          "y": 1054.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 220.390625,
+          "y": 1054.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 283.1875,
+          "y": 1054.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 32,
+          "y": 1091.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 94.796875,
+          "y": 1091.921875,
+          "width": 59.796875,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 390,
+      "profile": "ml-prep-coordinates",
+      "field": {
+        "x": 26,
+        "y": 788.921875,
+        "width": 338,
+        "height": 56
+      },
+      "pad": {
+        "x": 26,
+        "y": 900.921875,
+        "width": 338,
+        "height": 231
+      },
+      "documentWidth": 390,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 32,
+          "y": 906.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 97.796875,
+          "y": 906.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 163.59375,
+          "y": 906.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 32,
+          "y": 943.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 97.796875,
+          "y": 943.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 163.59375,
+          "y": 943.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 32,
+          "y": 980.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 97.796875,
+          "y": 980.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 163.59375,
+          "y": 980.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 163.59375,
+          "y": 1017.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 229.390625,
+          "y": 906.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 295.1875,
+          "y": 906.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 229.390625,
+          "y": 943.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 295.1875,
+          "y": 943.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 229.390625,
+          "y": 980.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 295.1875,
+          "y": 980.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": ",",
+          "aria": null,
+          "x": 32,
+          "y": 1017.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 97.796875,
+          "y": 1017.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 229.390625,
+          "y": 1017.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 295.1875,
+          "y": 1017.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 32,
+          "y": 1054.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 97.796875,
+          "y": 1054.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 163.59375,
+          "y": 1054.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 229.390625,
+          "y": 1054.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 295.1875,
+          "y": 1054.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 32,
+          "y": 1091.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 97.796875,
+          "y": 1091.921875,
+          "width": 62.796875,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 768,
+      "profile": "ml-prep-coordinates",
+      "field": {
+        "x": 32,
+        "y": 643.09375,
+        "width": 704,
+        "height": 64
+      },
+      "pad": {
+        "x": 228.53125,
+        "y": 766.09375,
+        "width": 310.9375,
+        "height": 267.1875
+      },
+      "documentWidth": 768,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 238.53125,
+          "y": 776.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 297.71875,
+          "y": 776.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 356.90625,
+          "y": 776.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 238.53125,
+          "y": 818.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 297.71875,
+          "y": 818.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 356.90625,
+          "y": 818.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 238.53125,
+          "y": 860.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 297.71875,
+          "y": 860.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 356.90625,
+          "y": 860.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 356.90625,
+          "y": 902.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 416.09375,
+          "y": 776.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 475.28125,
+          "y": 776.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 416.09375,
+          "y": 818.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 475.28125,
+          "y": 818.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 416.09375,
+          "y": 860.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 475.28125,
+          "y": 860.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ",",
+          "aria": null,
+          "x": 238.53125,
+          "y": 902.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 297.71875,
+          "y": 902.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 416.09375,
+          "y": 902.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 475.28125,
+          "y": 902.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 238.53125,
+          "y": 944.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 297.71875,
+          "y": 944.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 356.90625,
+          "y": 944.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 416.09375,
+          "y": 944.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 475.28125,
+          "y": 944.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 238.53125,
+          "y": 986.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 297.71875,
+          "y": 986.28125,
+          "width": 54.1875,
+          "height": 37
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 1280,
+      "profile": "ml-prep-coordinates",
+      "field": {
+        "x": 227,
+        "y": 664.453125,
+        "width": 826,
+        "height": 64
+      },
+      "pad": {
+        "x": 484.53125,
+        "y": 787.453125,
+        "width": 310.9375,
+        "height": 267.1875
+      },
+      "documentWidth": 1280,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 494.53125,
+          "y": 797.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 553.71875,
+          "y": 797.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 612.90625,
+          "y": 797.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 494.53125,
+          "y": 839.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 553.71875,
+          "y": 839.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 612.90625,
+          "y": 839.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 494.53125,
+          "y": 881.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 553.71875,
+          "y": 881.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 612.90625,
+          "y": 881.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 612.90625,
+          "y": 923.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 672.09375,
+          "y": 797.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 731.28125,
+          "y": 797.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 672.09375,
+          "y": 839.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 731.28125,
+          "y": 839.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 672.09375,
+          "y": 881.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 731.28125,
+          "y": 881.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ",",
+          "aria": null,
+          "x": 494.53125,
+          "y": 923.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 553.71875,
+          "y": 923.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "√",
+          "aria": "Insert √",
+          "x": 672.09375,
+          "y": 923.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 731.28125,
+          "y": 923.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 494.53125,
+          "y": 965.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 553.71875,
+          "y": 965.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 612.90625,
+          "y": 965.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 672.09375,
+          "y": 965.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 731.28125,
+          "y": 965.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 494.53125,
+          "y": 1007.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 553.71875,
+          "y": 1007.640625,
+          "width": 54.1875,
+          "height": 37
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 320,
+      "profile": "ml-prep-radians",
+      "field": {
+        "x": 26,
+        "y": 305.921875,
+        "width": 268,
+        "height": 56
+      },
+      "pad": {
+        "x": 26,
+        "y": 417.921875,
+        "width": 268,
+        "height": 231
+      },
+      "documentWidth": 320,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 32,
+          "y": 423.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 83.796875,
+          "y": 423.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 135.59375,
+          "y": 423.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 32,
+          "y": 460.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 83.796875,
+          "y": 460.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 135.59375,
+          "y": 460.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 32,
+          "y": 497.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 83.796875,
+          "y": 497.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 135.59375,
+          "y": 497.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 135.59375,
+          "y": 534.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 187.390625,
+          "y": 423.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 239.1875,
+          "y": 423.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 187.390625,
+          "y": 460.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 239.1875,
+          "y": 460.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 187.390625,
+          "y": 497.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 239.1875,
+          "y": 497.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 32,
+          "y": 534.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 83.796875,
+          "y": 534.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 187.390625,
+          "y": 534.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 239.1875,
+          "y": 534.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 32,
+          "y": 571.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 83.796875,
+          "y": 571.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 135.59375,
+          "y": 571.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 187.390625,
+          "y": 571.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 239.1875,
+          "y": 571.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 32,
+          "y": 608.921875,
+          "width": 48.796875,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 375,
+      "profile": "ml-prep-radians",
+      "field": {
+        "x": 26,
+        "y": 305.921875,
+        "width": 323,
+        "height": 56
+      },
+      "pad": {
+        "x": 26,
+        "y": 417.921875,
+        "width": 323,
+        "height": 231
+      },
+      "documentWidth": 375,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 32,
+          "y": 423.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 94.796875,
+          "y": 423.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 157.59375,
+          "y": 423.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 32,
+          "y": 460.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 94.796875,
+          "y": 460.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 157.59375,
+          "y": 460.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 32,
+          "y": 497.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 94.796875,
+          "y": 497.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 157.59375,
+          "y": 497.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 157.59375,
+          "y": 534.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 220.390625,
+          "y": 423.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 283.1875,
+          "y": 423.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 220.390625,
+          "y": 460.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 283.1875,
+          "y": 460.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 220.390625,
+          "y": 497.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 283.1875,
+          "y": 497.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 32,
+          "y": 534.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 94.796875,
+          "y": 534.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 220.390625,
+          "y": 534.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 283.1875,
+          "y": 534.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 32,
+          "y": 571.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 94.796875,
+          "y": 571.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 157.59375,
+          "y": 571.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 220.390625,
+          "y": 571.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 283.1875,
+          "y": 571.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 32,
+          "y": 608.921875,
+          "width": 59.796875,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 390,
+      "profile": "ml-prep-radians",
+      "field": {
+        "x": 26,
+        "y": 305.921875,
+        "width": 338,
+        "height": 56
+      },
+      "pad": {
+        "x": 26,
+        "y": 417.921875,
+        "width": 338,
+        "height": 231
+      },
+      "documentWidth": 390,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 32,
+          "y": 423.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 97.796875,
+          "y": 423.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 163.59375,
+          "y": 423.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 32,
+          "y": 460.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 97.796875,
+          "y": 460.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 163.59375,
+          "y": 460.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 32,
+          "y": 497.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 97.796875,
+          "y": 497.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 163.59375,
+          "y": 497.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 163.59375,
+          "y": 534.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 229.390625,
+          "y": 423.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 295.1875,
+          "y": 423.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 229.390625,
+          "y": 460.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 295.1875,
+          "y": 460.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 229.390625,
+          "y": 497.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 295.1875,
+          "y": 497.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 32,
+          "y": 534.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 97.796875,
+          "y": 534.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 229.390625,
+          "y": 534.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 295.1875,
+          "y": 534.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 32,
+          "y": 571.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 97.796875,
+          "y": 571.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 163.59375,
+          "y": 571.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 229.390625,
+          "y": 571.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 295.1875,
+          "y": 571.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 32,
+          "y": 608.921875,
+          "width": 62.796875,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 768,
+      "profile": "ml-prep-radians",
+      "field": {
+        "x": 32,
+        "y": 225.09375,
+        "width": 704,
+        "height": 64
+      },
+      "pad": {
+        "x": 228.53125,
+        "y": 348.09375,
+        "width": 310.9375,
+        "height": 267.1875
+      },
+      "documentWidth": 768,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 238.53125,
+          "y": 358.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 297.71875,
+          "y": 358.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 356.90625,
+          "y": 358.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 238.53125,
+          "y": 400.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 297.71875,
+          "y": 400.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 356.90625,
+          "y": 400.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 238.53125,
+          "y": 442.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 297.71875,
+          "y": 442.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 356.90625,
+          "y": 442.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 356.90625,
+          "y": 484.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 416.09375,
+          "y": 358.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 475.28125,
+          "y": 358.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 416.09375,
+          "y": 400.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 475.28125,
+          "y": 400.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 416.09375,
+          "y": 442.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 475.28125,
+          "y": 442.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 238.53125,
+          "y": 484.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 297.71875,
+          "y": 484.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 416.09375,
+          "y": 484.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 475.28125,
+          "y": 484.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 238.53125,
+          "y": 526.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 297.71875,
+          "y": 526.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 356.90625,
+          "y": 526.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 416.09375,
+          "y": 526.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 475.28125,
+          "y": 526.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 238.53125,
+          "y": 568.28125,
+          "width": 54.1875,
+          "height": 37
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 1280,
+      "profile": "ml-prep-radians",
+      "field": {
+        "x": 227,
+        "y": 246.453125,
+        "width": 826,
+        "height": 64
+      },
+      "pad": {
+        "x": 484.53125,
+        "y": 369.453125,
+        "width": 310.9375,
+        "height": 267.1875
+      },
+      "documentWidth": 1280,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 494.53125,
+          "y": 379.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 553.71875,
+          "y": 379.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 612.90625,
+          "y": 379.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 494.53125,
+          "y": 421.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 553.71875,
+          "y": 421.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 612.90625,
+          "y": 421.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 494.53125,
+          "y": 463.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 553.71875,
+          "y": 463.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 612.90625,
+          "y": 463.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 612.90625,
+          "y": 505.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 672.09375,
+          "y": 379.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 731.28125,
+          "y": 379.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 672.09375,
+          "y": 421.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 731.28125,
+          "y": 421.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 672.09375,
+          "y": 463.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 731.28125,
+          "y": 463.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 494.53125,
+          "y": 505.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "π",
+          "aria": null,
+          "x": 553.71875,
+          "y": 505.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 672.09375,
+          "y": 505.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 731.28125,
+          "y": 505.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 494.53125,
+          "y": 547.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 553.71875,
+          "y": 547.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 612.90625,
+          "y": 547.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 672.09375,
+          "y": 547.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 731.28125,
+          "y": 547.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 494.53125,
+          "y": 589.640625,
+          "width": 54.1875,
+          "height": 37
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 320,
+      "profile": "ml-prep-degrees",
+      "field": {
+        "x": 26,
+        "y": 370.921875,
+        "width": 268,
+        "height": 56
+      },
+      "pad": {
+        "x": 26,
+        "y": 482.921875,
+        "width": 268,
+        "height": 231
+      },
+      "documentWidth": 320,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 32,
+          "y": 488.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 83.796875,
+          "y": 488.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 135.59375,
+          "y": 488.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 32,
+          "y": 525.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 83.796875,
+          "y": 525.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 135.59375,
+          "y": 525.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 32,
+          "y": 562.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 83.796875,
+          "y": 562.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 135.59375,
+          "y": 562.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 135.59375,
+          "y": 599.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 187.390625,
+          "y": 488.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 239.1875,
+          "y": 488.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 187.390625,
+          "y": 525.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 239.1875,
+          "y": 525.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 187.390625,
+          "y": 562.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 239.1875,
+          "y": 562.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "°",
+          "aria": null,
+          "x": 32,
+          "y": 599.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 83.796875,
+          "y": 599.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 187.390625,
+          "y": 599.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 239.1875,
+          "y": 599.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 32,
+          "y": 636.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 83.796875,
+          "y": 636.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 135.59375,
+          "y": 636.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 187.390625,
+          "y": 636.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 239.1875,
+          "y": 636.921875,
+          "width": 48.796875,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 32,
+          "y": 673.921875,
+          "width": 48.796875,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 375,
+      "profile": "ml-prep-degrees",
+      "field": {
+        "x": 26,
+        "y": 370.921875,
+        "width": 323,
+        "height": 56
+      },
+      "pad": {
+        "x": 26,
+        "y": 482.921875,
+        "width": 323,
+        "height": 231
+      },
+      "documentWidth": 375,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 32,
+          "y": 488.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 94.796875,
+          "y": 488.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 157.59375,
+          "y": 488.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 32,
+          "y": 525.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 94.796875,
+          "y": 525.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 157.59375,
+          "y": 525.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 32,
+          "y": 562.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 94.796875,
+          "y": 562.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 157.59375,
+          "y": 562.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 157.59375,
+          "y": 599.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 220.390625,
+          "y": 488.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 283.1875,
+          "y": 488.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 220.390625,
+          "y": 525.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 283.1875,
+          "y": 525.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 220.390625,
+          "y": 562.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 283.1875,
+          "y": 562.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "°",
+          "aria": null,
+          "x": 32,
+          "y": 599.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 94.796875,
+          "y": 599.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 220.390625,
+          "y": 599.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 283.1875,
+          "y": 599.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 32,
+          "y": 636.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 94.796875,
+          "y": 636.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 157.59375,
+          "y": 636.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 220.390625,
+          "y": 636.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 283.1875,
+          "y": 636.921875,
+          "width": 59.796875,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 32,
+          "y": 673.921875,
+          "width": 59.796875,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 390,
+      "profile": "ml-prep-degrees",
+      "field": {
+        "x": 26,
+        "y": 370.921875,
+        "width": 338,
+        "height": 56
+      },
+      "pad": {
+        "x": 26,
+        "y": 482.921875,
+        "width": 338,
+        "height": 231
+      },
+      "documentWidth": 390,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 32,
+          "y": 488.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 97.796875,
+          "y": 488.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 163.59375,
+          "y": 488.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 32,
+          "y": 525.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 97.796875,
+          "y": 525.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 163.59375,
+          "y": 525.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 32,
+          "y": 562.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 97.796875,
+          "y": 562.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 163.59375,
+          "y": 562.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 163.59375,
+          "y": 599.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 229.390625,
+          "y": 488.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 295.1875,
+          "y": 488.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 229.390625,
+          "y": 525.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 295.1875,
+          "y": 525.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 229.390625,
+          "y": 562.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 295.1875,
+          "y": 562.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "°",
+          "aria": null,
+          "x": 32,
+          "y": 599.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 97.796875,
+          "y": 599.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 229.390625,
+          "y": 599.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 295.1875,
+          "y": 599.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 32,
+          "y": 636.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 97.796875,
+          "y": 636.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 163.59375,
+          "y": 636.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 229.390625,
+          "y": 636.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 295.1875,
+          "y": 636.921875,
+          "width": 62.796875,
+          "height": 34
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 32,
+          "y": 673.921875,
+          "width": 62.796875,
+          "height": 34
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 768,
+      "profile": "ml-prep-degrees",
+      "field": {
+        "x": 32,
+        "y": 225.09375,
+        "width": 704,
+        "height": 64
+      },
+      "pad": {
+        "x": 228.53125,
+        "y": 348.09375,
+        "width": 310.9375,
+        "height": 267.1875
+      },
+      "documentWidth": 768,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 238.53125,
+          "y": 358.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 297.71875,
+          "y": 358.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 356.90625,
+          "y": 358.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 238.53125,
+          "y": 400.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 297.71875,
+          "y": 400.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 356.90625,
+          "y": 400.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 238.53125,
+          "y": 442.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 297.71875,
+          "y": 442.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 356.90625,
+          "y": 442.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 356.90625,
+          "y": 484.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 416.09375,
+          "y": 358.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 475.28125,
+          "y": 358.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 416.09375,
+          "y": 400.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 475.28125,
+          "y": 400.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 416.09375,
+          "y": 442.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 475.28125,
+          "y": 442.09375,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "°",
+          "aria": null,
+          "x": 238.53125,
+          "y": 484.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 297.71875,
+          "y": 484.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 416.09375,
+          "y": 484.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 475.28125,
+          "y": 484.09375,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 238.53125,
+          "y": 526.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 297.71875,
+          "y": 526.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 356.90625,
+          "y": 526.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 416.09375,
+          "y": 526.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 475.28125,
+          "y": 526.28125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 238.53125,
+          "y": 568.28125,
+          "width": 54.1875,
+          "height": 37
+        }
+      ],
+      "passed": true
+    },
+    {
+      "route": "/calculus-prep/trig-angle-skills/index.html",
+      "width": 1280,
+      "profile": "ml-prep-degrees",
+      "field": {
+        "x": 227,
+        "y": 246.453125,
+        "width": 826,
+        "height": 64
+      },
+      "pad": {
+        "x": 484.53125,
+        "y": 369.453125,
+        "width": 310.9375,
+        "height": 267.1875
+      },
+      "documentWidth": 1280,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null,
+          "x": 494.53125,
+          "y": 379.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "8",
+          "aria": null,
+          "x": 553.71875,
+          "y": 379.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "9",
+          "aria": null,
+          "x": 612.90625,
+          "y": 379.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "4",
+          "aria": null,
+          "x": 494.53125,
+          "y": 421.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "5",
+          "aria": null,
+          "x": 553.71875,
+          "y": 421.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "6",
+          "aria": null,
+          "x": 612.90625,
+          "y": 421.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "1",
+          "aria": null,
+          "x": 494.53125,
+          "y": 463.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "2",
+          "aria": null,
+          "x": 553.71875,
+          "y": 463.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "3",
+          "aria": null,
+          "x": 612.90625,
+          "y": 463.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "0",
+          "aria": null,
+          "x": 612.90625,
+          "y": 505.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "−",
+          "aria": null,
+          "x": 672.09375,
+          "y": 379.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ".",
+          "aria": null,
+          "x": 731.28125,
+          "y": 379.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "(",
+          "aria": null,
+          "x": 672.09375,
+          "y": 421.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": ")",
+          "aria": null,
+          "x": 731.28125,
+          "y": 421.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "+",
+          "aria": null,
+          "x": 672.09375,
+          "y": 463.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "·",
+          "aria": null,
+          "x": 731.28125,
+          "y": 463.453125,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "°",
+          "aria": null,
+          "x": 494.53125,
+          "y": 505.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction",
+          "x": 553.71875,
+          "y": 505.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left",
+          "x": 672.09375,
+          "y": 505.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right",
+          "x": 731.28125,
+          "y": 505.453125,
+          "width": 54.1875,
+          "height": 37.1875
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator",
+          "x": 494.53125,
+          "y": 547.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator",
+          "x": 553.71875,
+          "y": 547.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace",
+          "x": 612.90625,
+          "y": 547.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Del",
+          "aria": "Delete",
+          "x": 672.09375,
+          "y": 547.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer",
+          "x": 731.28125,
+          "y": 547.640625,
+          "width": 54.1875,
+          "height": 37
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer",
+          "x": 494.53125,
+          "y": 589.640625,
+          "width": 54.1875,
+          "height": 37
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,1522 @@
+{
+  "results": [
+    {
+      "course": "AP Calculus",
+      "unit": 2,
+      "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+      "family": "chain:review",
+      "field": "answer",
+      "selector": {
+        "category": "review_chain_inverse_trig"
+      },
+      "seed": 719,
+      "questionId": "review-chain-inverse_trig-asin-3-5",
+      "requiredAnswer": "3/(11*sqrt(1-((3x+5)/11)^2))",
+      "requiredForms": "call:sqrt,operator:*,operator:+,operator:-,operator:/,operator:^,symbol:x",
+      "meaningfulAlternative": null,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null
+        },
+        {
+          "label": "8",
+          "aria": null
+        },
+        {
+          "label": "9",
+          "aria": null
+        },
+        {
+          "label": "4",
+          "aria": null
+        },
+        {
+          "label": "5",
+          "aria": null
+        },
+        {
+          "label": "6",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "0",
+          "aria": null
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": ".",
+          "aria": null
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "x",
+          "aria": null
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "√",
+          "aria": "Insert √"
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln"
+        },
+        {
+          "label": "sin",
+          "aria": "Insert sin"
+        },
+        {
+          "label": "cos",
+          "aria": "Insert cos"
+        },
+        {
+          "label": "tan",
+          "aria": "Insert tan"
+        },
+        {
+          "label": "sec",
+          "aria": "Insert sec"
+        },
+        {
+          "label": "csc",
+          "aria": "Insert csc"
+        },
+        {
+          "label": "cot",
+          "aria": "Insert cot"
+        },
+        {
+          "label": "log",
+          "aria": "Insert log"
+        },
+        {
+          "label": "|u|",
+          "aria": "Insert |u|"
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent"
+        },
+        {
+          "label": "π",
+          "aria": null
+        },
+        {
+          "label": "e",
+          "aria": null
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left"
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator"
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator"
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace"
+        },
+        {
+          "label": "Del",
+          "aria": "Delete"
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer"
+        }
+      ],
+      "profile": "ml-review-chain-inverse",
+      "wrongRejected": true,
+      "raw": "3/(11*sqrt(1-((3x+5)/11)^2))",
+      "latex": "\\frac{3}{(11\\cdot\\sqrt{1-(\\frac{(3x+5)}{11})^2})}",
+      "serializedSource": "(3)/((11*sqrt(1-(((3x+5))/(11))^2)))",
+      "used": [
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "√",
+          "aria": "Insert √"
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "x",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "5",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent"
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        }
+      ],
+      "feedback": "Correct.\nOne correct form: \n3\n11⁢√1−(\n3⁢𝑥+5\n11\n)2\nUse the inverse sin derivative with its full argument, then multiply by the argument's derivative 3. Hence 𝑓′⁡(𝑥) =\n3\n11⁢√1−(\n3⁢𝑥+5\n11\n)2\n.",
+      "source": "(3)/((11*sqrt(1-(((3x+5))/(11))^2)))",
+      "passed": true
+    },
+    {
+      "course": "AP Calculus",
+      "unit": 2,
+      "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+      "family": "chain:review",
+      "field": "answer",
+      "selector": {
+        "category": "review_chain_inverse_trig"
+      },
+      "seed": 2157,
+      "questionId": "review-chain-inverse_trig-atan-2-6",
+      "requiredAnswer": "2/(1+(2*x+6)^2)",
+      "requiredForms": "operator:*,operator:+,operator:/,operator:^,symbol:x",
+      "meaningfulAlternative": null,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null
+        },
+        {
+          "label": "8",
+          "aria": null
+        },
+        {
+          "label": "9",
+          "aria": null
+        },
+        {
+          "label": "4",
+          "aria": null
+        },
+        {
+          "label": "5",
+          "aria": null
+        },
+        {
+          "label": "6",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "0",
+          "aria": null
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": ".",
+          "aria": null
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "x",
+          "aria": null
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "√",
+          "aria": "Insert √"
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln"
+        },
+        {
+          "label": "sin",
+          "aria": "Insert sin"
+        },
+        {
+          "label": "cos",
+          "aria": "Insert cos"
+        },
+        {
+          "label": "tan",
+          "aria": "Insert tan"
+        },
+        {
+          "label": "sec",
+          "aria": "Insert sec"
+        },
+        {
+          "label": "csc",
+          "aria": "Insert csc"
+        },
+        {
+          "label": "cot",
+          "aria": "Insert cot"
+        },
+        {
+          "label": "log",
+          "aria": "Insert log"
+        },
+        {
+          "label": "|u|",
+          "aria": "Insert |u|"
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent"
+        },
+        {
+          "label": "π",
+          "aria": null
+        },
+        {
+          "label": "e",
+          "aria": null
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left"
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator"
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator"
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace"
+        },
+        {
+          "label": "Del",
+          "aria": "Delete"
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer"
+        }
+      ],
+      "profile": "ml-review-chain-inverse",
+      "wrongRejected": true,
+      "raw": "2/(1+(2*x+6)^2)",
+      "latex": "\\frac{2}{(1+(2\\cdot x+6)^2)}",
+      "serializedSource": "(2)/((1+(2*x+6)^2))",
+      "used": [
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "x",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "6",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent"
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        }
+      ],
+      "feedback": "Correct.\nOne correct form: \n2\n1+(2⁢𝑥+6)2\nUse the inverse tan derivative with its full argument, then multiply by the argument's derivative 2. Hence 𝑓′⁡(𝑥) =\n2\n1+(2⁢𝑥+6)2\n.",
+      "source": "(2)/((1+(2*x+6)^2))",
+      "passed": true
+    },
+    {
+      "course": "AP Calculus",
+      "unit": 2,
+      "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+      "family": "chain:review",
+      "field": "answer",
+      "selector": {
+        "category": "review_chain_inverse_trig"
+      },
+      "seed": 3595,
+      "questionId": "review-chain-inverse_trig-asec-3-4",
+      "requiredAnswer": "3/(abs((3*x+7))*sqrt((3*x+7)^2-1))",
+      "requiredForms": "call:abs,call:sqrt,operator:*,operator:+,operator:-,operator:/,operator:^,symbol:x",
+      "meaningfulAlternative": null,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null
+        },
+        {
+          "label": "8",
+          "aria": null
+        },
+        {
+          "label": "9",
+          "aria": null
+        },
+        {
+          "label": "4",
+          "aria": null
+        },
+        {
+          "label": "5",
+          "aria": null
+        },
+        {
+          "label": "6",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "0",
+          "aria": null
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": ".",
+          "aria": null
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "x",
+          "aria": null
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "√",
+          "aria": "Insert √"
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln"
+        },
+        {
+          "label": "sin",
+          "aria": "Insert sin"
+        },
+        {
+          "label": "cos",
+          "aria": "Insert cos"
+        },
+        {
+          "label": "tan",
+          "aria": "Insert tan"
+        },
+        {
+          "label": "sec",
+          "aria": "Insert sec"
+        },
+        {
+          "label": "csc",
+          "aria": "Insert csc"
+        },
+        {
+          "label": "cot",
+          "aria": "Insert cot"
+        },
+        {
+          "label": "log",
+          "aria": "Insert log"
+        },
+        {
+          "label": "|u|",
+          "aria": "Insert |u|"
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent"
+        },
+        {
+          "label": "π",
+          "aria": null
+        },
+        {
+          "label": "e",
+          "aria": null
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left"
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator"
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator"
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace"
+        },
+        {
+          "label": "Del",
+          "aria": "Delete"
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer"
+        }
+      ],
+      "profile": "ml-review-chain-inverse",
+      "wrongRejected": true,
+      "raw": "3/(abs((3*x+7))*sqrt((3*x+7)^2-1))",
+      "latex": "\\frac{3}{(\\left|(3\\cdot x+7)\\right|\\cdot\\sqrt{(3\\cdot x+7)^2-1})}",
+      "serializedSource": "(3)/((abs((3*x+7))*sqrt((3*x+7)^2-1)))",
+      "used": [
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "|u|",
+          "aria": "Insert |u|"
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "x",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "7",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "√",
+          "aria": "Insert √"
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "x",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "7",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent"
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        }
+      ],
+      "feedback": "Correct.\nOne correct form: \n3\n|3⁢𝑥+7|⁢√(3⁢𝑥+7)2−1\nUse the inverse sec derivative with its full argument, then multiply by the argument's derivative 3. Hence 𝑓′⁡(𝑥) =\n3\n|3⁢𝑥+7|⁢√(3⁢𝑥+7)2−1\n.",
+      "source": "(3)/((abs((3*x+7))*sqrt((3*x+7)^2-1)))",
+      "passed": true
+    },
+    {
+      "course": "AP Calculus",
+      "unit": 2,
+      "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+      "family": "chain:review",
+      "field": "answer",
+      "selector": {
+        "category": "review_chain_inverse_trig"
+      },
+      "seed": 5033,
+      "questionId": "review-chain-inverse_trig-acos-2-7",
+      "requiredAnswer": "-2/(13*sqrt(1-((2x+7)/13)^2))",
+      "requiredForms": "call:sqrt,operator:*,operator:+,operator:-,operator:/,operator:^,sign:-,symbol:x",
+      "meaningfulAlternative": null,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null
+        },
+        {
+          "label": "8",
+          "aria": null
+        },
+        {
+          "label": "9",
+          "aria": null
+        },
+        {
+          "label": "4",
+          "aria": null
+        },
+        {
+          "label": "5",
+          "aria": null
+        },
+        {
+          "label": "6",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "0",
+          "aria": null
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": ".",
+          "aria": null
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "x",
+          "aria": null
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "√",
+          "aria": "Insert √"
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln"
+        },
+        {
+          "label": "sin",
+          "aria": "Insert sin"
+        },
+        {
+          "label": "cos",
+          "aria": "Insert cos"
+        },
+        {
+          "label": "tan",
+          "aria": "Insert tan"
+        },
+        {
+          "label": "sec",
+          "aria": "Insert sec"
+        },
+        {
+          "label": "csc",
+          "aria": "Insert csc"
+        },
+        {
+          "label": "cot",
+          "aria": "Insert cot"
+        },
+        {
+          "label": "log",
+          "aria": "Insert log"
+        },
+        {
+          "label": "|u|",
+          "aria": "Insert |u|"
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent"
+        },
+        {
+          "label": "π",
+          "aria": null
+        },
+        {
+          "label": "e",
+          "aria": null
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left"
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator"
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator"
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace"
+        },
+        {
+          "label": "Del",
+          "aria": "Delete"
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer"
+        }
+      ],
+      "profile": "ml-review-chain-inverse",
+      "wrongRejected": true,
+      "raw": "-2/(13*sqrt(1-((2x+7)/13)^2))",
+      "latex": "\\frac{-2}{(13\\cdot\\sqrt{1-(\\frac{(2x+7)}{13})^2})}",
+      "serializedSource": "(-2)/((13*sqrt(1-(((2x+7))/(13))^2)))",
+      "used": [
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "√",
+          "aria": "Insert √"
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "x",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "7",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent"
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        }
+      ],
+      "feedback": "Correct.\nOne correct form: −\n2\n13⁢√1−(\n2⁢𝑥+7\n13\n)2\nUse the inverse cos derivative with its full argument, then multiply by the argument's derivative 2. Hence 𝑓′⁡(𝑥) =−\n2\n13⁢√1−(\n2⁢𝑥+7\n13\n)2\n.",
+      "source": "-2/(13*sqrt(1-(((2x+7))/(13))^2))",
+      "passed": true
+    },
+    {
+      "course": "AP Calculus",
+      "unit": 2,
+      "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+      "family": "chain:review",
+      "field": "answer",
+      "selector": {
+        "category": "review_chain_inverse_trig"
+      },
+      "seed": 6471,
+      "questionId": "review-chain-inverse_trig-acsc-3-3",
+      "requiredAnswer": "-3/(abs((3*x+6))*sqrt((3*x+6)^2-1))",
+      "requiredForms": "call:abs,call:sqrt,operator:*,operator:+,operator:-,operator:/,operator:^,sign:-,symbol:x",
+      "meaningfulAlternative": null,
+      "buttons": [
+        {
+          "label": "7",
+          "aria": null
+        },
+        {
+          "label": "8",
+          "aria": null
+        },
+        {
+          "label": "9",
+          "aria": null
+        },
+        {
+          "label": "4",
+          "aria": null
+        },
+        {
+          "label": "5",
+          "aria": null
+        },
+        {
+          "label": "6",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "0",
+          "aria": null
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": ".",
+          "aria": null
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "x",
+          "aria": null
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "√",
+          "aria": "Insert √"
+        },
+        {
+          "label": "ln",
+          "aria": "Insert ln"
+        },
+        {
+          "label": "sin",
+          "aria": "Insert sin"
+        },
+        {
+          "label": "cos",
+          "aria": "Insert cos"
+        },
+        {
+          "label": "tan",
+          "aria": "Insert tan"
+        },
+        {
+          "label": "sec",
+          "aria": "Insert sec"
+        },
+        {
+          "label": "csc",
+          "aria": "Insert csc"
+        },
+        {
+          "label": "cot",
+          "aria": "Insert cot"
+        },
+        {
+          "label": "log",
+          "aria": "Insert log"
+        },
+        {
+          "label": "|u|",
+          "aria": "Insert |u|"
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent"
+        },
+        {
+          "label": "π",
+          "aria": null
+        },
+        {
+          "label": "e",
+          "aria": null
+        },
+        {
+          "label": "←",
+          "aria": "Move cursor left"
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "↑",
+          "aria": "Move from denominator to numerator"
+        },
+        {
+          "label": "↓",
+          "aria": "Move from numerator to denominator"
+        },
+        {
+          "label": "⌫",
+          "aria": "Backspace"
+        },
+        {
+          "label": "Del",
+          "aria": "Delete"
+        },
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "Check",
+          "aria": "Check answer"
+        }
+      ],
+      "profile": "ml-review-chain-inverse",
+      "wrongRejected": true,
+      "raw": "-3/(abs((3*x+6))*sqrt((3*x+6)^2-1))",
+      "latex": "\\frac{-3}{(\\left|(3\\cdot x+6)\\right|\\cdot\\sqrt{(3\\cdot x+6)^2-1})}",
+      "serializedSource": "(-3)/((abs((3*x+6))*sqrt((3*x+6)^2-1)))",
+      "used": [
+        {
+          "label": "Clear",
+          "aria": "Clear answer"
+        },
+        {
+          "label": "ab",
+          "aria": "Insert stacked fraction"
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "|u|",
+          "aria": "Insert |u|"
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "x",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "6",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "√",
+          "aria": "Insert √"
+        },
+        {
+          "label": "(",
+          "aria": null
+        },
+        {
+          "label": "3",
+          "aria": null
+        },
+        {
+          "label": "·",
+          "aria": null
+        },
+        {
+          "label": "x",
+          "aria": null
+        },
+        {
+          "label": "+",
+          "aria": null
+        },
+        {
+          "label": "6",
+          "aria": null
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "xⁿ",
+          "aria": "Insert exponent"
+        },
+        {
+          "label": "2",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": "−",
+          "aria": null
+        },
+        {
+          "label": "1",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        },
+        {
+          "label": ")",
+          "aria": null
+        },
+        {
+          "label": "→",
+          "aria": "Move cursor right"
+        }
+      ],
+      "feedback": "Correct.\nOne correct form: −\n3\n|3⁢𝑥+6|⁢√(3⁢𝑥+6)2−1\nUse the inverse csc derivative with its full argument, then multiply by the argument's derivative 3. Hence 𝑓′⁡(𝑥) =−\n3\n|3⁢𝑥+6|⁢√(3⁢𝑥+6)2−1\n.",
+      "source": "-3/(abs((3*x+6))*sqrt((3*x+6)^2-1))",
+      "passed": true
+    },
+    {
+      "route": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+      "coverage": true,
+      "generated": 6600,
+      "selectors": [
+        "{\"category\":\"mixed\"}",
+        "{\"category\":\"difference\"}",
+        "{\"category\":\"basic\"}",
+        "{\"category\":\"product\"}",
+        "{\"category\":\"quotient\"}",
+        "{\"category\":\"trig\"}",
+        "{\"category\":\"chain\"}",
+        "{\"category\":\"exponential\"}",
+        "{\"category\":\"implicit\"}",
+        "{\"category\":\"log\"}",
+        "{\"category\":\"logdiff\"}",
+        "{\"category\":\"invtrig\"}",
+        "{\"category\":\"inverse\"}",
+        "{\"category\":\"review_chain_power\"}",
+        "{\"category\":\"review_chain_radical\"}",
+        "{\"category\":\"review_chain_reciprocal\"}",
+        "{\"category\":\"review_chain_trig\"}",
+        "{\"category\":\"review_chain_exponential\"}",
+        "{\"category\":\"review_chain_logarithmic\"}",
+        "{\"category\":\"review_chain_inverse_trig\"}",
+        "{\"category\":\"review_product_all\"}",
+        "{\"category\":\"review_quotient_all\"}"
+      ],
+      "familyControlContracts": 412
+    }
+  ],
+  "errors": []
+}

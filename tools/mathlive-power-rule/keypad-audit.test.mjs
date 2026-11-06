@@ -5,13 +5,13 @@ import vm from 'node:vm';
 import {execFileSync} from 'node:child_process';
 import {engine,rng,root} from './engine.mjs';
 import {parseInput} from '../../assets/mathlive/answer-adapter.mjs';
-import {withoutHiddenInputFocusRoutes} from '../integration/editor-source-guards.mjs';
+import {withoutHiddenInputFocusRoutes,withoutApprovedKeypadCorrections} from '../integration/editor-source-guards.mjs';
 
 test('the shared keypad implementation and unrelated profiles are unchanged from the successful pilot',()=>{
   const before=execFileSync('git',['show','adae2a2b00580f29befba88f593f4f627e2850c5:assets/calculus-keypad.js'],{cwd:root,encoding:'utf8'});
   const current=fs.readFileSync(root+'assets/calculus-keypad.js','utf8');
   const withoutPilots=s=>withoutHiddenInputFocusRoutes(s).replace('createPad:buildPad,','').split('\n').filter(line=>!line.includes('"migration-derivative-')&&!line.includes('"migration-limit-')&&!line.includes('(contextualUnit3.operators||[]).forEach')&&!line.includes('if(contextualUnit3.signed===false)')).join('\n').replace('/[+−·()=,±]/','/[+−·()=,]/');
-  assert.equal(withoutPilots(current),withoutPilots(before));
+  assert.equal(withoutPilots(withoutApprovedKeypadCorrections(current)),withoutPilots(before));
 });
 
 test('Power Rule profile covers the actual generated answer grammar, including all irrational constants',()=>{
@@ -43,7 +43,8 @@ test('Power Rule profile covers the actual generated answer grammar, including a
   for(const key of ['sqrt2','sqrt3','pi','e'])assert.ok(irrational.has(key));
   assert.ok(operators.has('/')&&operators.has('^'));
   assert.equal(profile.functions,undefined);assert.equal(profile.logarithm,undefined);
-  // The unchanged checker has no root() identifier. Nth roots have an existing
-  // keypad-only representation x^(p/q), rather than an ungradeable root() key.
-  assert.equal(profile.nthRoot,undefined);
+  // The unchanged checker expects powers. Both adapters serialize the new
+  // editable indexed root to that existing power grammar. Browser evidence
+  // covers complete generated answers and legacy index/radicand editing.
+  assert.equal(profile.nthRoot,true);
 });

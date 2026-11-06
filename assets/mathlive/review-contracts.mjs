@@ -4,7 +4,7 @@ import {translateAdvancedExpression} from './answer-adapter.mjs';
 import {translateInterval,intervalToLatex} from './interval-adapter.mjs';
 import {translateNewtonLatex,newtonToLatex} from './newton-notation.mjs';
 export const reviewKeypads={...applicationKeypads,...stagedKeypads,
- 'unit5-sep-interval':{fraction:true,radical:true,exponent:true,logarithm:true,constants:['pi','e'],functions:[['sin⁻¹','asin']],arithmetic:true,parentheses:true,list:true,interval:true,brackets:true,union:true,infinity:true}
+ 'unit5-sep-interval':{fraction:true,radical:true,nthRoot:true,exponent:true,logarithm:true,constants:['pi','e'],functions:[['sin⁻¹','asin']],arithmetic:true,parentheses:true,list:true,interval:true,brackets:true,union:true,infinity:true}
 };
 export function reviewProfiles({calculator=false,newton=()=>window.BatchMathNewtonNotation}={}){
  const expression={translate:translateAdvancedExpression};

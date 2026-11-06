@@ -1,8 +1,31 @@
-# Sitewide keypad completeness — completed findings
+# Sitewide keypad completeness — verified corrections
 
-**Checkpoint B is complete. These are findings before corrections. Product keypad files are unchanged from video checkpoint `57a51aae03ba6ef7544b746e1e5f4c504f1fdfdf`; Checkpoints C and D remain pending.**
+**Checkpoints A and B are preserved. Checkpoint C is verified; final Checkpoint D regressions and delivery remain pending.**
 
 The approved video work is preserved: 66 pages, 198 recordings, seven wider expandable review recordings and the narrow-heading correction. It has not been repeated or redesigned.
+
+## Checkpoint C — all 119 blocked fields resolved
+
+The [explicit before/after comparison](evidence/keypad-corrections-before-after.json) maps **119/119** blocked B field rows to distinct passing current field rows. Every replacement includes actual displayed controls, buttons pressed, rendered LaTeX, the serialized hidden answer, original correct-answer acceptance and wrong-answer rejection. There are **zero unresolved control gaps or driver failures**. Original before-fix evidence remains unchanged and is also pinned at findings commit `961f54ed0d6e42701df0f65f43b2ea625d2c946c`.
+
+| Correction | Verified behavior |
+|---|---|
+| Inverse-chain absolute value | `ml-review-chain-inverse` adds absolute value only to the targeted inverse-chain review category; five generated inverse-function cases pass |
+| Exact interval endpoints | Active controls follow the generated field precision; radical/π endpoints pass on standalone and assignment review, while rounded calculator-review intervals retain decimal controls |
+| Accepted linearization decimal | Two field-specific decimal aliases accept `4.125` in standalone and assignment review; exact-required approximation fields retain their original controls |
+| Degree switching | Existing degree/radian profiles recognize both raw TeX and rendered `∘`; the three prior-mode witnesses and the full ten-case angle subset pass |
+| Indexed roots | The 15 demonstrated profiles gain the existing editable nth-root template; standalone/review separable interval registrations agree; original checker rules are unchanged |
+| θ-substitution square root | Only the demonstrated square-root control is added to `unit4-usub-theta`; all three original blocked radical witnesses pass |
+
+The derivative MathLive adapter already translates roots to the original fractional-power grammar. The legacy editor now keeps its visible `root(index,radicand)` slots and serializes complete roots to `(radicand)^(1/(index))` only in the eight affected derivative modes. Incomplete structures remain incomplete. Eight separate legacy serialization probes cover indices 3, 4, 5 and 12 on Power Rule and Chain Rule; these are not counted as complete-answer passes. Generated whole-answer root tests cover third and fourth roots. Existing cube-root controls remain unchanged where they already suffice.
+
+The [C test summary](evidence/keypad-correction-summary.json) records 185 question/form cases, including one retained native choice, **194 keypad-only correct mathematical-part assertions and 194 wrong-part rejection assertions**. These runs include replay/setup overlap and are reported separately from the deduplicated full ledger. There are 315 active-field/keypad/control geometry checks at 320, 375, 390, 768 and 1280px, two focused pointer/touch stability cases, 34 passing source/contract Node tests, and zero page errors. Tangent/Secant Approximations still passes at both tested widths with exact numerical entry and native classification choices.
+
+Only eight production assets changed from B: keypad profile flags, field-control metadata/selection, rendered degree detection and derivative legacy root serialization. No generator, mathematical checker or acceptance rule changed. The exact approved asset blobs are recorded in `tools/keypad-completeness/approved-corrections.json`; historical source guards first verify those exact bytes before comparing against their original baselines. Source/content preservation passes, including unchanged PDFs and Unit 6. The registry now contains 153 registered/pattern definitions; 117 runtime names appear in the cumulative field ledger.
+
+The cumulative current ledger contains 6,580 question/form cases, 7,279 mathematical field rows, 6,699 correct-part assertions and 6,687 wrong-part assertions. These combine unchanged B evidence and corrected C replacements; they are **not a fresh sitewide post-correction regression count**. The historical findings section below retains its original counts and blocked examples. Final D must rerun the new harness across the complete scope and the established integration suites.
+
+## Checkpoint B — preserved findings
 
 ## Scope and new evidence
 
@@ -52,7 +75,7 @@ The 119 blocked rows are repeated question/form witnesses, **not 119 independent
 
 Indexed-root gaps affect `derivative-power`, `derivative-product`, `derivative-chain`, `migration-derivative-exp`, `migration-derivative-log`, `migration-derivative-trig`, `migration-derivative-implicit`, `migration-derivative-inverse`, `unit4-basic-indef`, `unit4-usub-x`, `unit4-usub-t`, `unit4-usub-r`, `ml-unit5-basic-x`, `ml-unit5-basic-t`, and `unit5-sep-interval`. Standalone and review registrations of the last profile must remain aligned.
 
-No product fix is claimed at this checkpoint. The source patch is prepared separately for application after this findings commit is pushed.
+This table preserves the findings as recorded in B. The corresponding product corrections and passing evidence are documented in Checkpoint C above.
 
 ## Priority approximation investigation
 
@@ -209,11 +232,9 @@ Initial failures were investigated before being called website defects. The driv
 | im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/practice/index.html | 1 | 1 | 0 |
 | im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/section-d-review/practice/index.html | 33 | 33 | 0 |
 
-## Completion steps
+## Remaining completion step
 
-Checkpoint C must apply only the confirmed profile/renderer corrections, preserve the failing-before evidence, demonstrate correct insertion and original correct/wrong grading, test shared profiles and dynamic fields, update profile documentation, then commit/push.
-
-Checkpoint D must run fresh established Node, default/legacy/missing-runtime route, stability, IM1 responsive, video-presentation and video-sizing suites; complete source/content protection checks; verify the unchanged Unit 6 tree; then commit/push and prepare the complete-site test ZIP. This findings checkpoint is not final regression or delivery approval.
+Checkpoint C is complete. Checkpoint D must now run fresh established Node, default/legacy/missing-runtime route, detailed stability, IM1 responsive, focused browser, video-presentation and video-sizing suites; rerun the new keypad harness across the complete mathematical scope; repeat source/content protection and protected-branch checks; then commit/push and prepare the complete-site ZIP or exact commit-pinned archive link. No merge into main or deployment is authorized.
 
 ## Reproduction and limitations
 

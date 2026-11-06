@@ -113,9 +113,18 @@
     return {numStart:i+1,numClose,denStart:denOpen+1,denClose,end:denClose+1};
   }
 
+  // Derivative graders retain their original power dialect. Keep the visible
+  // root node and serialize only its hidden answer mirror as a rational power.
+  const derivativeRootModes=new Set(['derivative-power', 'derivative-product', 'derivative-chain', 'migration-derivative-exp', 'migration-derivative-log', 'migration-derivative-trig', 'migration-derivative-implicit', 'migration-derivative-inverse']);
   function serializeRange(start=0,end=state.raw.length){
     let out="",i=start;
     while(i<end){
+      const root=derivativeRootModes.has(state.mode)?rootAt(state.raw,i,end):null;
+      if(root){
+        const index=serializeRange(root.indexStart,root.indexEnd),radicand=serializeRange(root.radStart,root.radEnd);
+        out+=index.trim()&&radicand.trim()?`(${radicand})^(1/(${index}))`:state.raw.slice(i,root.end);
+        i=root.end;continue;
+      }
       const f=fractionAt(state.raw,i,end);
       if(f&&f.internal){
         out+=`(${serializeRange(f.numStart,f.numClose)})/(${serializeRange(f.denStart,f.denClose)})`;
@@ -888,12 +897,12 @@
       "unit4-ftc":{fraction:true,radical:true,exponent:true,constants:["pi","e"],variables:["x"],logarithm:true,functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"]],arithmetic:true,parentheses:true},
       "unit4-sigma":{fraction:true,exponent:true,variables:["n"],arithmetic:true,parentheses:true},
       // v12.8.U final four integrals engines: one profile per engine and answer kind.
-      "unit4-basic-indef":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["e"],variables:["x","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"],["|u|","abs"]],arithmetic:true,parentheses:true},
+      "unit4-basic-indef":{fraction:true,nthRoot:true,radical:true,exponent:true,logarithm:true,constants:["e"],variables:["x","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"],["|u|","abs"]],arithmetic:true,parentheses:true},
       "unit4-basic-def":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["pi","e"],arithmetic:true,parentheses:true},
-      "unit4-usub-x":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["e"],variables:["x","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
-      "unit4-usub-t":{fraction:true,radical:true,exponent:true,constants:["e"],variables:["t","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
-      "unit4-usub-theta":{fraction:true,exponent:true,constants:["e"],variables:["θ","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
-      "unit4-usub-r":{fraction:true,radical:true,exponent:true,variables:["r","C"],arithmetic:true,parentheses:true},
+      "unit4-usub-x":{fraction:true,nthRoot:true,radical:true,exponent:true,logarithm:true,constants:["e"],variables:["x","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "unit4-usub-t":{fraction:true,nthRoot:true,radical:true,exponent:true,constants:["e"],variables:["t","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "unit4-usub-theta":{fraction:true,radical:true,exponent:true,constants:["e"],variables:["θ","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "unit4-usub-r":{fraction:true,nthRoot:true,radical:true,exponent:true,variables:["r","C"],arithmetic:true,parentheses:true},
       "unit4-usub-def":{fraction:true,radical:true,exponent:true,constants:["e"],arithmetic:true,parentheses:true},
       "unit4-log-indef":{fraction:true,radical:true,exponent:true,logarithm:true,constants:["e"],variables:["x","C"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["sin⁻¹","asin"],["tan⁻¹","atan"],["|u|","abs"]],arithmetic:true,parentheses:true},
       "unit4-log-def":{fraction:true,logarithm:true,arithmetic:true,parentheses:true},
@@ -914,21 +923,21 @@
       "unit3-rounded-line":{decimal:true,equality:true,variables:["x","y"]},
       "limits-finite":{fraction:true,radical:true,cubeRoot:true,nthRoot:true,logarithm:true,exponent:true,constants:["pi","e"],arithmetic:true,parentheses:true},
       "limits-no-infinity":{fraction:true,radical:true,cubeRoot:true,nthRoot:true,logarithm:true,exponent:true,constants:["pi","e"],arithmetic:true,parentheses:true,dne:true},
-      "derivative-power":{fraction:true,radical:true,exponent:true,constants:["pi","e"],variables:["x"],arithmetic:true,parentheses:true},
+      "derivative-power":{fraction:true,nthRoot:true,radical:true,exponent:true,constants:["pi","e"],variables:["x"],arithmetic:true,parentheses:true},
       "derivative-algebra":{fraction:true,exponent:true,radical:true,variables:["x"],arithmetic:true,parentheses:true},
       "derivative-at-point-basic":{fraction:true,radical:true,constants:["pi"],arithmetic:true,parentheses:true},
       "derivative-trig":{fraction:true,exponent:true,variables:["x"],constants:["pi"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
-      "migration-derivative-inverse":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x","y"],constants:["pi","e"],functions:[["log","log"],["|u|","abs"],["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"],["sin⁻¹","asin"],["cos⁻¹","acos"],["tan⁻¹","atan"],["cot⁻¹","acot"],["sec⁻¹","asec"],["csc⁻¹","acsc"]],arithmetic:true,parentheses:true} ,
+      "migration-derivative-inverse":{fraction:true,nthRoot:true,radical:true,logarithm:true,exponent:true,variables:["x","y"],constants:["pi","e"],functions:[["log","log"],["|u|","abs"],["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"],["sin⁻¹","asin"],["cos⁻¹","acos"],["tan⁻¹","atan"],["cot⁻¹","acot"],["sec⁻¹","asec"],["csc⁻¹","acsc"]],arithmetic:true,parentheses:true} ,
       "migration-derivative-rational":{fraction:true,decimal:true,arithmetic:true,parentheses:true},
       "migration-derivative-algebraic-value":{fraction:true,radical:true,exponent:true,decimal:true,arithmetic:true,parentheses:true},
-      "migration-derivative-trig":{fraction:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:['x'],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
-      "migration-derivative-exp":{fraction:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:['x'],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
-      "migration-derivative-log":{fraction:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:['x','y'],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
-      "migration-derivative-implicit":{fraction:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:['x','y'],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
+      "migration-derivative-trig":{fraction:true,nthRoot:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:['x'],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
+      "migration-derivative-exp":{fraction:true,nthRoot:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:['x'],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
+      "migration-derivative-log":{fraction:true,nthRoot:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:['x','y'],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
+      "migration-derivative-implicit":{fraction:true,nthRoot:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:['x','y'],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
       "migration-derivative-value":{fraction:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:[],functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
       "migration-derivative-comprehensive-value":{fraction:true,radical:true,exponent:true,decimal:true,logarithm:true,constants:['pi','e'],variables:[],functions:[['tan⁻¹','atan'],['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['log','log']],arithmetic:true,parentheses:true},
-      "derivative-product":{fraction:true,radical:true,decimal:true,exponent:true,logarithm:true,constants:['e','pi'],variables:['x'],arithmetic:true,parentheses:true,functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['sin⁻¹','asin'],['cos⁻¹','acos'],['tan⁻¹','atan'],['cot⁻¹','acot'],['sec⁻¹','asec'],['csc⁻¹','acsc'],['log','log'],['|u|','abs']]},
-      "derivative-chain":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x"],constants:["e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
+      "derivative-product":{fraction:true,nthRoot:true,radical:true,decimal:true,exponent:true,logarithm:true,constants:['e','pi'],variables:['x'],arithmetic:true,parentheses:true,functions:[['sin','sin'],['cos','cos'],['tan','tan'],['sec','sec'],['csc','csc'],['cot','cot'],['sin⁻¹','asin'],['cos⁻¹','acos'],['tan⁻¹','atan'],['cot⁻¹','acot'],['sec⁻¹','asec'],['csc⁻¹','acsc'],['log','log'],['|u|','abs']]},
+      "derivative-chain":{fraction:true,nthRoot:true,radical:true,logarithm:true,exponent:true,variables:["x"],constants:["e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"],["sec","sec"],["csc","csc"],["cot","cot"]],arithmetic:true,parentheses:true},
       "derivative-exponential":{fraction:true,logarithm:true,exponent:true,variables:["x"],constants:["e"],arithmetic:true,parentheses:true},
       "derivative-implicit":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x","y"],constants:["pi","e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"]],arithmetic:true,parentheses:true},
       "derivative-log":{fraction:true,radical:true,logarithm:true,exponent:true,variables:["x","y"],constants:["pi","e"],functions:[["sin","sin"],["cos","cos"],["tan","tan"]],arithmetic:true,parentheses:true},

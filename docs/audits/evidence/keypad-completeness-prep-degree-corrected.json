@@ -1,0 +1,2067 @@
+{
+  "results": [
+    {
+      "course": "Calculus Prep",
+      "unit": "Prep",
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "family": "coord",
+      "questionId": "coord-180-true",
+      "selector": {
+        "mode": "coordinates",
+        "angleSet": "all",
+        "format": "radians"
+      },
+      "seed": 719,
+      "fields": [
+        {
+          "field": "answerRaw",
+          "contract": "coordinates",
+          "requiredAnswer": "(−1, 0)",
+          "raw": "(−1, 0)",
+          "latex": "(-1,0)",
+          "serializedSource": "(-1,0)",
+          "profile": "ml-prep-coordinates",
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "−",
+              "aria": null
+            },
+            {
+              "label": ".",
+              "aria": null
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            },
+            {
+              "label": "+",
+              "aria": null
+            },
+            {
+              "label": "·",
+              "aria": null
+            },
+            {
+              "label": ",",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "√",
+              "aria": "Insert √"
+            },
+            {
+              "label": "←",
+              "aria": "Move cursor left"
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "↑",
+              "aria": "Move from denominator to numerator"
+            },
+            {
+              "label": "↓",
+              "aria": "Move from numerator to denominator"
+            },
+            {
+              "label": "⌫",
+              "aria": "Backspace"
+            },
+            {
+              "label": "Del",
+              "aria": "Delete"
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer"
+            }
+          ],
+          "used": [
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": "−",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": ",",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            }
+          ]
+        }
+      ],
+      "wrongRejected": true,
+      "passed": true
+    },
+    {
+      "course": "Calculus Prep",
+      "unit": "Prep",
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "family": "coord",
+      "questionId": "coord-45-true",
+      "selector": {
+        "mode": "coordinates",
+        "angleSet": "all",
+        "format": "radians"
+      },
+      "seed": 2876,
+      "fields": [
+        {
+          "field": "answerRaw",
+          "contract": "coordinates",
+          "requiredAnswer": "(√2/2, √2/2)",
+          "raw": "(√2/2, √2/2)",
+          "latex": "(\\frac{\\sqrt2}{2},\\frac{\\sqrt2}{2})",
+          "serializedSource": "((sqrt(2))/(2),(sqrt(2))/(2))",
+          "profile": "ml-prep-coordinates",
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "−",
+              "aria": null
+            },
+            {
+              "label": ".",
+              "aria": null
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            },
+            {
+              "label": "+",
+              "aria": null
+            },
+            {
+              "label": "·",
+              "aria": null
+            },
+            {
+              "label": ",",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "√",
+              "aria": "Insert √"
+            },
+            {
+              "label": "←",
+              "aria": "Move cursor left"
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "↑",
+              "aria": "Move from denominator to numerator"
+            },
+            {
+              "label": "↓",
+              "aria": "Move from numerator to denominator"
+            },
+            {
+              "label": "⌫",
+              "aria": "Backspace"
+            },
+            {
+              "label": "Del",
+              "aria": "Delete"
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer"
+            }
+          ],
+          "used": [
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "√",
+              "aria": "Insert √"
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": ",",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "√",
+              "aria": "Insert √"
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": ")",
+              "aria": null
+            }
+          ]
+        }
+      ],
+      "wrongRejected": true,
+      "passed": true
+    },
+    {
+      "course": "Calculus Prep",
+      "unit": "Prep",
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "family": "exact",
+      "questionId": "d2r-180",
+      "selector": {
+        "mode": "d2r",
+        "angleSet": "all",
+        "format": "radians"
+      },
+      "seed": 719,
+      "fields": [
+        {
+          "field": "answerRaw",
+          "contract": "exact",
+          "requiredAnswer": "π",
+          "raw": "π",
+          "latex": "\\pi ",
+          "serializedSource": "pi",
+          "profile": "ml-prep-radians",
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "−",
+              "aria": null
+            },
+            {
+              "label": ".",
+              "aria": null
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            },
+            {
+              "label": "+",
+              "aria": null
+            },
+            {
+              "label": "·",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "π",
+              "aria": null
+            },
+            {
+              "label": "←",
+              "aria": "Move cursor left"
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "↑",
+              "aria": "Move from denominator to numerator"
+            },
+            {
+              "label": "↓",
+              "aria": "Move from numerator to denominator"
+            },
+            {
+              "label": "⌫",
+              "aria": "Backspace"
+            },
+            {
+              "label": "Del",
+              "aria": "Delete"
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer"
+            }
+          ],
+          "used": [
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "π",
+              "aria": null
+            }
+          ]
+        }
+      ],
+      "wrongRejected": true,
+      "passed": true
+    },
+    {
+      "course": "Calculus Prep",
+      "unit": "Prep",
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "family": "exact",
+      "questionId": "d2r-45",
+      "selector": {
+        "mode": "d2r",
+        "angleSet": "all",
+        "format": "radians"
+      },
+      "seed": 2876,
+      "fields": [
+        {
+          "field": "answerRaw",
+          "contract": "exact",
+          "requiredAnswer": "π/4",
+          "raw": "π/4",
+          "latex": "\\frac{\\pi}{4}",
+          "serializedSource": "(pi)/(4)",
+          "profile": "ml-prep-radians",
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "−",
+              "aria": null
+            },
+            {
+              "label": ".",
+              "aria": null
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            },
+            {
+              "label": "+",
+              "aria": null
+            },
+            {
+              "label": "·",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "π",
+              "aria": null
+            },
+            {
+              "label": "←",
+              "aria": "Move cursor left"
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "↑",
+              "aria": "Move from denominator to numerator"
+            },
+            {
+              "label": "↓",
+              "aria": "Move from numerator to denominator"
+            },
+            {
+              "label": "⌫",
+              "aria": "Backspace"
+            },
+            {
+              "label": "Del",
+              "aria": "Delete"
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer"
+            }
+          ],
+          "used": [
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "π",
+              "aria": null
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            }
+          ]
+        }
+      ],
+      "wrongRejected": true,
+      "passed": true
+    },
+    {
+      "course": "Calculus Prep",
+      "unit": "Prep",
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "family": "exact",
+      "questionId": "r2d-180",
+      "selector": {
+        "mode": "r2d",
+        "angleSet": "all",
+        "format": "radians"
+      },
+      "seed": 719,
+      "fields": [
+        {
+          "field": "answerRaw",
+          "contract": "exact",
+          "requiredAnswer": "180°",
+          "raw": "180°",
+          "latex": "180^{\\circ}",
+          "serializedSource": "180°",
+          "profile": "ml-prep-degrees",
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "−",
+              "aria": null
+            },
+            {
+              "label": ".",
+              "aria": null
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            },
+            {
+              "label": "+",
+              "aria": null
+            },
+            {
+              "label": "·",
+              "aria": null
+            },
+            {
+              "label": "°",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "←",
+              "aria": "Move cursor left"
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "↑",
+              "aria": "Move from denominator to numerator"
+            },
+            {
+              "label": "↓",
+              "aria": "Move from numerator to denominator"
+            },
+            {
+              "label": "⌫",
+              "aria": "Backspace"
+            },
+            {
+              "label": "Del",
+              "aria": "Delete"
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer"
+            }
+          ],
+          "used": [
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "°",
+              "aria": null
+            }
+          ]
+        }
+      ],
+      "wrongRejected": true,
+      "passed": true
+    },
+    {
+      "course": "Calculus Prep",
+      "unit": "Prep",
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "family": "exact",
+      "questionId": "ref-210-true",
+      "selector": {
+        "mode": "reference",
+        "angleSet": "all",
+        "format": "radians"
+      },
+      "seed": 719,
+      "fields": [
+        {
+          "field": "answerRaw",
+          "contract": "exact",
+          "requiredAnswer": "π/6",
+          "raw": "π/6",
+          "latex": "\\frac{\\pi}{6}",
+          "serializedSource": "(pi)/(6)",
+          "profile": "ml-prep-radians",
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "−",
+              "aria": null
+            },
+            {
+              "label": ".",
+              "aria": null
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            },
+            {
+              "label": "+",
+              "aria": null
+            },
+            {
+              "label": "·",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "π",
+              "aria": null
+            },
+            {
+              "label": "←",
+              "aria": "Move cursor left"
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "↑",
+              "aria": "Move from denominator to numerator"
+            },
+            {
+              "label": "↓",
+              "aria": "Move from numerator to denominator"
+            },
+            {
+              "label": "⌫",
+              "aria": "Backspace"
+            },
+            {
+              "label": "Del",
+              "aria": "Delete"
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer"
+            }
+          ],
+          "used": [
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "π",
+              "aria": null
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            }
+          ]
+        }
+      ],
+      "wrongRejected": true,
+      "passed": true
+    },
+    {
+      "course": "Calculus Prep",
+      "unit": "Prep",
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "family": "exact",
+      "questionId": "ref-210-false",
+      "selector": {
+        "mode": "reference",
+        "angleSet": "all",
+        "format": "degrees"
+      },
+      "seed": 719,
+      "fields": [
+        {
+          "field": "answerRaw",
+          "contract": "exact",
+          "requiredAnswer": "30°",
+          "raw": "30°",
+          "latex": "30^{\\circ}",
+          "serializedSource": "30°",
+          "profile": "ml-prep-degrees",
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "−",
+              "aria": null
+            },
+            {
+              "label": ".",
+              "aria": null
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            },
+            {
+              "label": "+",
+              "aria": null
+            },
+            {
+              "label": "·",
+              "aria": null
+            },
+            {
+              "label": "°",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "←",
+              "aria": "Move cursor left"
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "↑",
+              "aria": "Move from denominator to numerator"
+            },
+            {
+              "label": "↓",
+              "aria": "Move from numerator to denominator"
+            },
+            {
+              "label": "⌫",
+              "aria": "Backspace"
+            },
+            {
+              "label": "Del",
+              "aria": "Delete"
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer"
+            }
+          ],
+          "used": [
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "°",
+              "aria": null
+            }
+          ]
+        }
+      ],
+      "wrongRejected": true,
+      "passed": true
+    },
+    {
+      "course": "Calculus Prep",
+      "unit": "Prep",
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "family": "exact",
+      "questionId": "cot-540-true",
+      "selector": {
+        "mode": "coterminal",
+        "angleSet": "all",
+        "format": "radians"
+      },
+      "seed": 719,
+      "fields": [
+        {
+          "field": "answerRaw",
+          "contract": "exact",
+          "requiredAnswer": "π",
+          "raw": "π",
+          "latex": "\\pi ",
+          "serializedSource": "pi",
+          "profile": "ml-prep-radians",
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "−",
+              "aria": null
+            },
+            {
+              "label": ".",
+              "aria": null
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            },
+            {
+              "label": "+",
+              "aria": null
+            },
+            {
+              "label": "·",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "π",
+              "aria": null
+            },
+            {
+              "label": "←",
+              "aria": "Move cursor left"
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "↑",
+              "aria": "Move from denominator to numerator"
+            },
+            {
+              "label": "↓",
+              "aria": "Move from numerator to denominator"
+            },
+            {
+              "label": "⌫",
+              "aria": "Backspace"
+            },
+            {
+              "label": "Del",
+              "aria": "Delete"
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer"
+            }
+          ],
+          "used": [
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "π",
+              "aria": null
+            }
+          ]
+        }
+      ],
+      "wrongRejected": true,
+      "passed": true
+    },
+    {
+      "course": "Calculus Prep",
+      "unit": "Prep",
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "family": "exact",
+      "questionId": "cot-1125-true",
+      "selector": {
+        "mode": "coterminal",
+        "angleSet": "all",
+        "format": "radians"
+      },
+      "seed": 2876,
+      "fields": [
+        {
+          "field": "answerRaw",
+          "contract": "exact",
+          "requiredAnswer": "π/4",
+          "raw": "π/4",
+          "latex": "\\frac{\\pi}{4}",
+          "serializedSource": "(pi)/(4)",
+          "profile": "ml-prep-radians",
+          "buttons": [
+            {
+              "label": "7",
+              "aria": null
+            },
+            {
+              "label": "8",
+              "aria": null
+            },
+            {
+              "label": "9",
+              "aria": null
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "5",
+              "aria": null
+            },
+            {
+              "label": "6",
+              "aria": null
+            },
+            {
+              "label": "1",
+              "aria": null
+            },
+            {
+              "label": "2",
+              "aria": null
+            },
+            {
+              "label": "3",
+              "aria": null
+            },
+            {
+              "label": "0",
+              "aria": null
+            },
+            {
+              "label": "−",
+              "aria": null
+            },
+            {
+              "label": ".",
+              "aria": null
+            },
+            {
+              "label": "(",
+              "aria": null
+            },
+            {
+              "label": ")",
+              "aria": null
+            },
+            {
+              "label": "+",
+              "aria": null
+            },
+            {
+              "label": "·",
+              "aria": null
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "π",
+              "aria": null
+            },
+            {
+              "label": "←",
+              "aria": "Move cursor left"
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "↑",
+              "aria": "Move from denominator to numerator"
+            },
+            {
+              "label": "↓",
+              "aria": "Move from numerator to denominator"
+            },
+            {
+              "label": "⌫",
+              "aria": "Backspace"
+            },
+            {
+              "label": "Del",
+              "aria": "Delete"
+            },
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "Check",
+              "aria": "Check answer"
+            }
+          ],
+          "used": [
+            {
+              "label": "Clear",
+              "aria": "Clear answer"
+            },
+            {
+              "label": "ab",
+              "aria": "Insert stacked fraction"
+            },
+            {
+              "label": "π",
+              "aria": null
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            },
+            {
+              "label": "4",
+              "aria": null
+            },
+            {
+              "label": "→",
+              "aria": "Move cursor right"
+            }
+          ]
+        }
+      ],
+      "wrongRejected": true,
+      "passed": true
+    },
+    {
+      "course": "Calculus Prep",
+      "unit": "Prep",
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "family": "choice",
+      "questionId": "quad-210-true",
+      "selector": {
+        "mode": "quadrant",
+        "angleSet": "all",
+        "format": "radians"
+      },
+      "seed": 719,
+      "fields": [],
+      "retainedChoice": true,
+      "passed": true
+    },
+    {
+      "route": "calculus-prep/trig-angle-skills/index.html",
+      "coverage": true,
+      "plans": [
+        {
+          "mode": "coordinates",
+          "angleSet": "all",
+          "format": "radians"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "all",
+          "format": "degrees"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "all",
+          "format": "mixed"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "q1",
+          "format": "radians"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "q1",
+          "format": "degrees"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "q1",
+          "format": "mixed"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "q2",
+          "format": "radians"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "q2",
+          "format": "degrees"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "q2",
+          "format": "mixed"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "q3",
+          "format": "radians"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "q3",
+          "format": "degrees"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "q3",
+          "format": "mixed"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "q4",
+          "format": "radians"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "q4",
+          "format": "degrees"
+        },
+        {
+          "mode": "coordinates",
+          "angleSet": "q4",
+          "format": "mixed"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "all",
+          "format": "radians"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "all",
+          "format": "degrees"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "all",
+          "format": "mixed"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "q1",
+          "format": "radians"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "q1",
+          "format": "degrees"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "q1",
+          "format": "mixed"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "q2",
+          "format": "radians"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "q2",
+          "format": "degrees"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "q2",
+          "format": "mixed"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "q3",
+          "format": "radians"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "q3",
+          "format": "degrees"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "q3",
+          "format": "mixed"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "q4",
+          "format": "radians"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "q4",
+          "format": "degrees"
+        },
+        {
+          "mode": "d2r",
+          "angleSet": "q4",
+          "format": "mixed"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "all",
+          "format": "radians"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "all",
+          "format": "degrees"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "all",
+          "format": "mixed"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "q1",
+          "format": "radians"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "q1",
+          "format": "degrees"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "q1",
+          "format": "mixed"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "q2",
+          "format": "radians"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "q2",
+          "format": "degrees"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "q2",
+          "format": "mixed"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "q3",
+          "format": "radians"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "q3",
+          "format": "degrees"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "q3",
+          "format": "mixed"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "q4",
+          "format": "radians"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "q4",
+          "format": "degrees"
+        },
+        {
+          "mode": "r2d",
+          "angleSet": "q4",
+          "format": "mixed"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "all",
+          "format": "radians"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "all",
+          "format": "degrees"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "all",
+          "format": "mixed"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "q1",
+          "format": "radians"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "q1",
+          "format": "degrees"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "q1",
+          "format": "mixed"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "q2",
+          "format": "radians"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "q2",
+          "format": "degrees"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "q2",
+          "format": "mixed"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "q3",
+          "format": "radians"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "q3",
+          "format": "degrees"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "q3",
+          "format": "mixed"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "q4",
+          "format": "radians"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "q4",
+          "format": "degrees"
+        },
+        {
+          "mode": "conversion",
+          "angleSet": "q4",
+          "format": "mixed"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "all",
+          "format": "radians"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "all",
+          "format": "degrees"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "all",
+          "format": "mixed"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "q1",
+          "format": "radians"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "q1",
+          "format": "degrees"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "q1",
+          "format": "mixed"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "q2",
+          "format": "radians"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "q2",
+          "format": "degrees"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "q2",
+          "format": "mixed"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "q3",
+          "format": "radians"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "q3",
+          "format": "degrees"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "q3",
+          "format": "mixed"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "q4",
+          "format": "radians"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "q4",
+          "format": "degrees"
+        },
+        {
+          "mode": "reference",
+          "angleSet": "q4",
+          "format": "mixed"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "all",
+          "format": "radians"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "all",
+          "format": "degrees"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "all",
+          "format": "mixed"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "q1",
+          "format": "radians"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "q1",
+          "format": "degrees"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "q1",
+          "format": "mixed"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "q2",
+          "format": "radians"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "q2",
+          "format": "degrees"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "q2",
+          "format": "mixed"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "q3",
+          "format": "radians"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "q3",
+          "format": "degrees"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "q3",
+          "format": "mixed"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "q4",
+          "format": "radians"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "q4",
+          "format": "degrees"
+        },
+        {
+          "mode": "coterminal",
+          "angleSet": "q4",
+          "format": "mixed"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "all",
+          "format": "radians"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "all",
+          "format": "degrees"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "all",
+          "format": "mixed"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "q1",
+          "format": "radians"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "q1",
+          "format": "degrees"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "q1",
+          "format": "mixed"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "q2",
+          "format": "radians"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "q2",
+          "format": "degrees"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "q2",
+          "format": "mixed"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "q3",
+          "format": "radians"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "q3",
+          "format": "degrees"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "q3",
+          "format": "mixed"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "q4",
+          "format": "radians"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "q4",
+          "format": "degrees"
+        },
+        {
+          "mode": "quadrant",
+          "angleSet": "q4",
+          "format": "mixed"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "all",
+          "format": "radians"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "all",
+          "format": "degrees"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "all",
+          "format": "mixed"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "q1",
+          "format": "radians"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "q1",
+          "format": "degrees"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "q1",
+          "format": "mixed"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "q2",
+          "format": "radians"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "q2",
+          "format": "degrees"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "q2",
+          "format": "mixed"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "q3",
+          "format": "radians"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "q3",
+          "format": "degrees"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "q3",
+          "format": "mixed"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "q4",
+          "format": "radians"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "q4",
+          "format": "degrees"
+        },
+        {
+          "mode": "mixed",
+          "angleSet": "q4",
+          "format": "mixed"
+        }
+      ],
+      "generated": 14400,
+      "familyControlContracts": 10
+    }
+  ],
+  "errors": []
+}

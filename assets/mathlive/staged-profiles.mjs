@@ -41,7 +41,7 @@ for(const name of Object.keys(stagedKeypads)){
 }
 const inverseBasic=[...trig6,['sin⁻¹','asin'],['tan⁻¹','atan'],['|u|','abs']];
 for(const v of ['x','t']){
- stagedKeypads['ml-unit5-basic-'+v]={...exact,decimal:true,radical:true,logarithm:true,constants:['pi','e'],variables:[v],functions:inverseBasic};
+ stagedKeypads['ml-unit5-basic-'+v]={...exact,decimal:true,radical:true,nthRoot:true,logarithm:true,constants:['pi','e'],variables:[v],functions:inverseBasic};
  stagedProfiles['unit5-basic-'+v]={...expression,keypad:'ml-unit5-basic-'+v};
 }
 stagedKeypads['ml-unit5-motion-t']={...exact,decimal:true,variables:['t']};
