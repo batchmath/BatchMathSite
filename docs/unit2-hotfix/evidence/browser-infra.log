@@ -1,0 +1,11 @@
+Keyboard/accounting executable regressions: PASS (46 cases; production scripts in Node VM, not a browser)
+BatchMath browser-infrastructure regression QA
+Result: PASS
+reportRaceGuards: 2
+integerIdKeyGuards: 2
+unit5LiveReviewGenerators: 6
+seededHarnessGuards: 3
+keyboardBehaviorSuite: 1
+seededCustomEngineGuards: 3
+unit1ReviewCleanupGuards: 4
+Errors: 0

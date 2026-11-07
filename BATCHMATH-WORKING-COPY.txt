@@ -11,6 +11,6 @@ The original Unit 6 structural checker, split explanations, graph fitting and se
 All application, PWA/cache and analytics versions are 12.9.G; Unit 6 build markers are 12.9.G. Other generator revision markers retain their actual engine revision.
 Main and both source branches are unchanged. No deployment performed.
 See LOCAL-TESTING.txt. Run: py -m http.server 8000
-Test ZIP: https://github.com/batchmath/BatchMathSite/releases/download/v12.9.G/batchmath-site-v12.9.G.zip
+Test ZIP: batchmath-site-v12.9.G.zip (provided separately with this hotfix; not deployed)
 Integration report: https://github.com/batchmath/BatchMathSite/blob/hotfix/v12.9g-unit2-inverse-qa/docs/v12.9.G-unit2-hotfix.md
 Approved E foundation: 6de1b027f45f43285be9fdc98d38d5f49419aecd. Unit 6 feedback corrections preserve mathematics, models and grading.

@@ -1,0 +1,19 @@
+{
+  "baseline": "0bf61ebd86ae0da06d9f9e4f580ab9b3d386a81a",
+  "pages": [
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html",
+      "onlyTwoPromptStringsChanged": true,
+      "allOtherBytesPreserved": true,
+      "beforeBlob": "4e15eb7adbeb94206def67f22b714327f6b9b36a",
+      "afterBlob": "c406712e3fe8f73b1f2c84172614e721a830f56f"
+    },
+    {
+      "path": "ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html",
+      "onlyTwoPromptStringsChanged": true,
+      "allOtherBytesPreserved": true,
+      "beforeBlob": "aee98d29805d2fd64e8f7b37910ba43fe5a42e9e",
+      "afterBlob": "1bbe77f6b2d56dab9a541307624e353e3625b06f"
+    }
+  ]
+}

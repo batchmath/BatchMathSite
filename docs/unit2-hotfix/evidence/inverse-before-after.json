@@ -1,0 +1,77 @@
+{
+  "baseline": "0bf61ebd86ae0da06d9f9e4f580ab9b3d386a81a",
+  "results": [
+    {
+      "topic": "comprehensive-review",
+      "samples": 500,
+      "oldAssertionFailures": 400,
+      "falsePositives": 218,
+      "ambiguous": 182,
+      "currentFailures": 0,
+      "allNonPromptContractsPreserved": true,
+      "families": {
+        "iv1": {
+          "count": 117,
+          "before": "<div class=\"question-prompt\">Let g be the inverse of f. Find the indicated derivative.</div><div>\\(f(x)=x^3 + 5x - 2,\\quad g'(-8)=?\\)</div>",
+          "after": "<div class=\"question-prompt\">Let g be the inverse of f. Find the indicated derivative.</div><div>\\(f(x)=x^3 + 5x - 2,\\quad g'(-8)=?\\)</div>"
+        },
+        "iv-log": {
+          "count": 81,
+          "before": "<div class=\"question-prompt\">Find the indicated derivative.</div><div>\\(f(x)=\\ln x+3,\\quad g'(3)=?\\)</div>",
+          "after": "<div class=\"question-prompt\">Let g be the inverse of f. Find the indicated derivative.</div><div>\\(f(x)=\\ln x+3,\\quad g'(3)=?\\)</div>"
+        },
+        "iv2": {
+          "count": 101,
+          "before": "<div class=\"question-prompt\">Let g be the inverse of f. Find the indicated derivative.</div><div>\\(f(x)=3x + 2,\\quad g'(-1)=?\\)</div>",
+          "after": "<div class=\"question-prompt\">Let g be the inverse of f. Find the indicated derivative.</div><div>\\(f(x)=3x + 2,\\quad g'(-1)=?\\)</div>"
+        },
+        "iv-exp": {
+          "count": 101,
+          "before": "<div class=\"question-prompt\">Find the indicated derivative.</div><div>\\(f(x)=4+e^{4x},\\quad g'(5)=?\\)</div>",
+          "after": "<div class=\"question-prompt\">Let g be the inverse of f. Find the indicated derivative.</div><div>\\(f(x)=4+e^{4x},\\quad g'(5)=?\\)</div>"
+        },
+        "iv-table": {
+          "count": 100,
+          "before": "<div class=\"question-prompt\">The table gives values of \\(f\\) and \\(f'\\). If \\(g=f^{-1}\\), find \\(g'(4)\\).</div><table><tr><th>\\(x\\)</th><th>\\(f(x)\\)</th><th>\\(f'(x)\\)</th></tr><tr><td>-2</td><td>3</td><td>2</td></tr><tr><td>-1</td><td>-1</td><td>-3</td></tr><tr><td>1</td><td>4</td><td>5</td></tr><tr><td>2</td><td>0</td><td>4</td></tr></table>",
+          "after": "<div class=\"question-prompt\">The table gives values of \\(f\\) and \\(f'\\). If \\(g=f^{-1}\\), find \\(g'(4)\\).</div><table><tr><th>\\(x\\)</th><th>\\(f(x)\\)</th><th>\\(f'(x)\\)</th></tr><tr><td>-2</td><td>3</td><td>2</td></tr><tr><td>-1</td><td>-1</td><td>-3</td></tr><tr><td>1</td><td>4</td><td>5</td></tr><tr><td>2</td><td>0</td><td>4</td></tr></table>"
+        }
+      }
+    },
+    {
+      "topic": "derivatives-of-inverse-functions",
+      "samples": 500,
+      "oldAssertionFailures": 0,
+      "falsePositives": 0,
+      "ambiguous": 0,
+      "currentFailures": 0,
+      "allNonPromptContractsPreserved": true,
+      "families": {
+        "iv-table": {
+          "count": 92,
+          "before": "<div class=\"question-prompt\">The table gives values of \\(f\\) and \\(f'\\). If \\(g=f^{-1}\\), find \\(g'(-1)\\).</div><table><tr><th>\\(x\\)</th><th>\\(f(x)\\)</th><th>\\(f'(x)\\)</th></tr><tr><td>-2</td><td>3</td><td>2</td></tr><tr><td>-1</td><td>-1</td><td>-3</td></tr><tr><td>1</td><td>4</td><td>5</td></tr><tr><td>2</td><td>0</td><td>4</td></tr></table>",
+          "after": "<div class=\"question-prompt\">The table gives values of \\(f\\) and \\(f'\\). If \\(g=f^{-1}\\), find \\(g'(-1)\\).</div><table><tr><th>\\(x\\)</th><th>\\(f(x)\\)</th><th>\\(f'(x)\\)</th></tr><tr><td>-2</td><td>3</td><td>2</td></tr><tr><td>-1</td><td>-1</td><td>-3</td></tr><tr><td>1</td><td>4</td><td>5</td></tr><tr><td>2</td><td>0</td><td>4</td></tr></table>"
+        },
+        "iv-log": {
+          "count": 107,
+          "before": "<div class=\"question-prompt\">The functions \\(f\\) and \\(g\\) are inverses. Find the indicated derivative.</div><div>\\(f(x)=\\ln x+1,\\quad g'(1)=?\\)</div>",
+          "after": "<div class=\"question-prompt\">The functions \\(f\\) and \\(g\\) are inverses. Find the indicated derivative.</div><div>\\(f(x)=\\ln x+1,\\quad g'(1)=?\\)</div>"
+        },
+        "iv2": {
+          "count": 100,
+          "before": "<div class=\"question-prompt\">The functions \\(f\\) and \\(g\\) are inverses. Find the indicated derivative.</div><div>\\(f(x)=4x + 1,\\quad g'(5)=?\\)</div>",
+          "after": "<div class=\"question-prompt\">The functions \\(f\\) and \\(g\\) are inverses. Find the indicated derivative.</div><div>\\(f(x)=4x + 1,\\quad g'(5)=?\\)</div>"
+        },
+        "iv-exp": {
+          "count": 90,
+          "before": "<div class=\"question-prompt\">The functions \\(f\\) and \\(g\\) are inverses. Find the indicated derivative.</div><div>\\(f(x)=3+e^{3x},\\quad g'(4)=?\\)</div>",
+          "after": "<div class=\"question-prompt\">The functions \\(f\\) and \\(g\\) are inverses. Find the indicated derivative.</div><div>\\(f(x)=3+e^{3x},\\quad g'(4)=?\\)</div>"
+        },
+        "iv1": {
+          "count": 111,
+          "before": "<div class=\"question-prompt\">The functions \\(f\\) and \\(g\\) are inverses. Find the indicated derivative.</div><div>\\(f(x)=x^3 + 3x - 1,\\quad g'(-15)=?\\)</div>",
+          "after": "<div class=\"question-prompt\">The functions \\(f\\) and \\(g\\) are inverses. Find the indicated derivative.</div><div>\\(f(x)=x^3 + 3x - 1,\\quad g'(-15)=?\\)</div>"
+        }
+      }
+    }
+  ]
+}

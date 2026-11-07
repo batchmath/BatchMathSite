@@ -1,0 +1,508 @@
+TAP version 13
+# Subtest: clear inverse definitions, including existing English, TeX and Unicode
+ok 1 - clear inverse definitions, including existing English, TeX and Unicode
+  ---
+  duration_ms: 1.572249
+  type: 'test'
+  ...
+# Subtest: ambiguous or different function relations remain invalid
+ok 2 - ambiguous or different function relations remain invalid
+  ---
+  duration_ms: 0.283587
+  type: 'test'
+  ...
+# Subtest: numeric Number-first checkers cannot mistake MathLive multiplication by e for scientific notation
+ok 3 - numeric Number-first checkers cannot mistake MathLive multiplication by e for scientific notation
+  ---
+  duration_ms: 67.745439
+  type: 'test'
+  ...
+# Subtest: decimal spelling, approximation annotations and thousands separators retain original formatting policy
+ok 4 - decimal spelling, approximation annotations and thousands separators retain original formatting policy
+  ---
+  duration_ms: 8.671776
+  type: 'test'
+  ...
+# Subtest: equations stay equations, including required-left-side failures and unsimplified forms
+ok 5 - equations stay equations, including required-left-side failures and unsimplified forms
+  ---
+  duration_ms: 11.576103
+  type: 'test'
+  ...
+# Subtest: ordered pairs and intervals keep their distinct brackets, order and endpoint contracts
+ok 6 - ordered pairs and intervals keep their distinct brackets, order and endpoint contracts
+  ---
+  duration_ms: 2.249078
+  type: 'test'
+  ...
+# Subtest: visible Unit 3 practice selectors preserve actual checker results
+ok 7 - visible Unit 3 practice selectors preserve actual checker results
+  ---
+  duration_ms: 1796.375752
+  type: 'test'
+  ...
+# Subtest: every source descriptor optimization calculator
+ok 8 - every source descriptor optimization calculator
+  ---
+  duration_ms: 55.532246
+  type: 'test'
+  ...
+# Subtest: every source descriptor optimization noncalculator
+ok 9 - every source descriptor optimization noncalculator
+  ---
+  duration_ms: 141.774546
+  type: 'test'
+  ...
+# Subtest: every source descriptor related-rates calculator
+ok 10 - every source descriptor related-rates calculator
+  ---
+  duration_ms: 111.223637
+  type: 'test'
+  ...
+# Subtest: every source descriptor related-rates noncalculator
+ok 11 - every source descriptor related-rates noncalculator
+  ---
+  duration_ms: 115.40193
+  type: 'test'
+  ...
+# Subtest: all observed Unit 3 answer grammar has controls in its field-specific profile
+ok 12 - all observed Unit 3 answer grammar has controls in its field-specific profile
+  ---
+  duration_ms: 5.696647
+  type: 'test'
+  ...
+# Subtest: Unit 3 sources and inline configuration are unchanged
+ok 13 - Unit 3 sources and inline configuration are unchanged
+  ---
+  duration_ms: 94.946822
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/practice/index.html
+ok 14 - ap-calculus/unit-3-applications-derivative/topics/absolute-and-local-extrema-and-the-extreme-value-theorem/practice/index.html
+  ---
+  duration_ms: 555.478067
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html
+ok 15 - ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/practice/index.html
+  ---
+  duration_ms: 830.132446
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/practice/index.html
+ok 16 - ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines/practice/index.html
+  ---
+  duration_ms: 589.303549
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/calculator-practice/index.html
+ok 17 - ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/calculator-practice/index.html
+  ---
+  duration_ms: 460.665762
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/practice/index.html
+ok 18 - ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/practice/index.html
+  ---
+  duration_ms: 439.067913
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html
+ok 19 - ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/calculator-practice/index.html
+  ---
+  duration_ms: 2296.633035
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html
+ok 20 - ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/practice/index.html
+  ---
+  duration_ms: 577.08107
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/practice/index.html
+ok 21 - ap-calculus/unit-3-applications-derivative/topics/l-hopital-s-rule/practice/index.html
+  ---
+  duration_ms: 652.85822
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html
+ok 22 - ap-calculus/unit-3-applications-derivative/topics/linearization-and-differentials/practice/index.html
+  ---
+  duration_ms: 482.837779
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/motion/calculator-practice/index.html
+ok 23 - ap-calculus/unit-3-applications-derivative/topics/motion/calculator-practice/index.html
+  ---
+  duration_ms: 414.994321
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/motion/practice/index.html
+ok 24 - ap-calculus/unit-3-applications-derivative/topics/motion/practice/index.html
+  ---
+  duration_ms: 479.811634
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/practice/index.html
+ok 25 - ap-calculus/unit-3-applications-derivative/topics/newton-s-method-for-approximating-roots-of-a-function/practice/index.html
+  ---
+  duration_ms: 456.11209
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/optimization/calculator-practice/index.html
+ok 26 - ap-calculus/unit-3-applications-derivative/topics/optimization/calculator-practice/index.html
+  ---
+  duration_ms: 571.992796
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html
+ok 27 - ap-calculus/unit-3-applications-derivative/topics/optimization/practice/index.html
+  ---
+  duration_ms: 718.013679
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/related-rates/calculator-practice/index.html
+ok 28 - ap-calculus/unit-3-applications-derivative/topics/related-rates/calculator-practice/index.html
+  ---
+  duration_ms: 606.060216
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/related-rates/practice/index.html
+ok 29 - ap-calculus/unit-3-applications-derivative/topics/related-rates/practice/index.html
+  ---
+  duration_ms: 625.512221
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/practice/index.html
+ok 30 - ap-calculus/unit-3-applications-derivative/topics/rolle-s-theorem-and-the-mean-value-theorem/practice/index.html
+  ---
+  duration_ms: 1079.859275
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/practice/index.html
+ok 31 - ap-calculus/unit-3-applications-derivative/topics/tangent-and-secant-line-approximations/practice/index.html
+  ---
+  duration_ms: 800.942685
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/practice/index.html
+ok 32 - ap-calculus/unit-3-applications-derivative/topics/using-your-graphing-calculator/practice/index.html
+  ---
+  duration_ms: 341.155978
+  type: 'test'
+  ...
+# Subtest: only opt-in profiles change the shared keypad; existing engines retain their layouts
+ok 33 - only opt-in profiles change the shared keypad; existing engines retain their layouts
+  ---
+  duration_ms: 10.449399
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html
+ok 34 - keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 503.247749
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html
+ok 35 - keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html
+  ---
+  duration_ms: 621.611029
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html
+ok 36 - keypad grammar ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 51.298711
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html
+ok 37 - keypad grammar ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 613.722525
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html
+ok 38 - keypad grammar ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html
+  ---
+  duration_ms: 1230.725384
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html
+ok 39 - keypad grammar ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 43.847389
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html
+ok 40 - keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html
+  ---
+  duration_ms: 12.334953
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html
+ok 41 - keypad grammar ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 92.826513
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html
+ok 42 - keypad grammar ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html
+  ---
+  duration_ms: 170.04063
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html
+ok 43 - keypad grammar ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 2061.168877
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html
+ok 44 - keypad grammar ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html
+  ---
+  duration_ms: 885.774295
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html
+ok 45 - keypad grammar ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 875.523264
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html
+ok 46 - keypad grammar ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html
+  ---
+  duration_ms: 88.179472
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html
+ok 47 - keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 700.532192
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html
+ok 48 - keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html
+  ---
+  duration_ms: 420.160366
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html
+ok 49 - keypad grammar ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html
+  ---
+  duration_ms: 374.576042
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html
+ok 50 - keypad grammar ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html
+  ---
+  duration_ms: 108.083731
+  type: 'test'
+  ...
+# Subtest: keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html
+ok 51 - keypad grammar ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 40.547393
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html
+ok 52 - ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 706.21108
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html
+ok 53 - ap-calculus/unit-2-derivatives/topics/derivatives-of-trigonometric-functions/practice/index.html
+  ---
+  duration_ms: 628.750879
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html
+ok 54 - ap-calculus/unit-2-derivatives/topics/the-product-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 53.265531
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html
+ok 55 - ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 747.11783
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html
+ok 56 - ap-calculus/unit-2-derivatives/topics/inverse-trigonometric-functions/practice/index.html
+  ---
+  duration_ms: 1883.651162
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html
+ok 57 - ap-calculus/unit-2-derivatives/topics/the-quotient-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 60.843207
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html
+ok 58 - ap-calculus/unit-2-derivatives/topics/derivatives-of-inverse-functions/practice/index.html
+  ---
+  duration_ms: 13.146849
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html
+ok 59 - ap-calculus/unit-2-derivatives/topics/the-chain-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 84.851453
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html
+ok 60 - ap-calculus/unit-2-derivatives/topics/the-chain-rule/nested-chain-rule-practice/index.html
+  ---
+  duration_ms: 1246.026163
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html
+ok 61 - ap-calculus/unit-2-derivatives/topics/implicit-differentiation/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 2339.617223
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html
+ok 62 - ap-calculus/unit-2-derivatives/topics/implicit-differentiation/practice/index.html
+  ---
+  duration_ms: 953.087337
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html
+ok 63 - ap-calculus/unit-2-derivatives/topics/exponential-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 1013.65539
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html
+ok 64 - ap-calculus/unit-2-derivatives/topics/exponential-functions/practice/index.html
+  ---
+  duration_ms: 247.445198
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html
+ok 65 - ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 765.787633
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html
+ok 66 - ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/practice/index.html
+  ---
+  duration_ms: 772.273005
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html
+ok 67 - ap-calculus/unit-2-derivatives/topics/comprehensive-review/derivatives-at-a-point-practice/index.html
+  ---
+  duration_ms: 538.521914
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html
+ok 68 - ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/practice/index.html
+  ---
+  duration_ms: 645.935748
+  type: 'test'
+  ...
+# Subtest: ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html
+ok 69 - ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/derivative-at-a-point-practice/index.html
+  ---
+  duration_ms: 65.649431
+  type: 'test'
+  ...
+# Subtest: only markup changed in converted engines; generator/checker source unchanged
+ok 70 - only markup changed in converted engines; generator/checker source unchanged
+  ---
+  duration_ms: 92.312524
+  type: 'test'
+  ...
+# Subtest: choose_dx_dy: no completed part supplies a future answer
+ok 71 - choose_dx_dy: no completed part supplies a future answer
+  ---
+  duration_ms: 19.806111
+  type: 'test'
+  ...
+# Subtest: washer: no completed part supplies a future answer
+ok 72 - washer: no completed part supplies a future answer
+  ---
+  duration_ms: 6.149436
+  type: 'test'
+  ...
+# Subtest: shells: no completed part supplies a future answer
+ok 73 - shells: no completed part supplies a future answer
+  ---
+  duration_ms: 10.206708
+  type: 'test'
+  ...
+# Subtest: graph_derivative: no completed part supplies a future answer
+ok 74 - graph_derivative: no completed part supplies a future answer
+  ---
+  duration_ms: 25.192736
+  type: 'test'
+  ...
+# Subtest: graph_accum: no completed part supplies a future answer
+ok 75 - graph_accum: no completed part supplies a future answer
+  ---
+  duration_ms: 15.019569
+  type: 'test'
+  ...
+# Subtest: choose_dy: no completed part supplies a future answer
+ok 76 - choose_dy: no completed part supplies a future answer
+  ---
+  duration_ms: 14.097441
+  type: 'test'
+  ...
+# Subtest: washer_vertical: no completed part supplies a future answer
+ok 77 - washer_vertical: no completed part supplies a future answer
+  ---
+  duration_ms: 5.148908
+  type: 'test'
+  ...
+# Subtest: washer_above: no completed part supplies a future answer
+ok 78 - washer_above: no completed part supplies a future answer
+  ---
+  duration_ms: 7.59979
+  type: 'test'
+  ...
+# Subtest: shells_vertical: no completed part supplies a future answer
+ok 79 - shells_vertical: no completed part supplies a future answer
+  ---
+  duration_ms: 6.570199
+  type: 'test'
+  ...
+# Subtest: graph_accum_minimum: no completed part supplies a future answer
+ok 80 - graph_accum_minimum: no completed part supplies a future answer
+  ---
+  duration_ms: 1.842256
+  type: 'test'
+  ...
+# Subtest: graph_accum_inflection: no completed part supplies a future answer
+ok 81 - graph_accum_inflection: no completed part supplies a future answer
+  ---
+  duration_ms: 1.557176
+  type: 'test'
+  ...
+# Subtest: area_both_directions: no completed part supplies a future answer
+ok 82 - area_both_directions: no completed part supplies a future answer
+  ---
+  duration_ms: 5.219744
+  type: 'test'
+  ...
+# Subtest: calculator_both_directions: no completed part supplies a future answer
+ok 83 - calculator_both_directions: no completed part supplies a future answer
+  ---
+  duration_ms: 7.497937
+  type: 'test'
+  ...
+1..83
+# tests 83
+# suites 0
+# pass 83
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 37965.483234

@@ -1,0 +1,7 @@
+{
+  "restrictedInitialAttempt": "Subprocess sandbox EPERM invalidated the initial broad local run; unmodified raw logs are retained outside Git. It is not reported as a product regression or passing run.",
+  "permittedRerun": "83 relevant tests pass after reconciling only the four exact reviewed prompt strings in the historical source guard.",
+  "mathematicalAssertionsRemoved": 0,
+  "unit6MathematicalErrors": 0,
+  "oldSiteSuite": "The historical ten inherited groups remain historical; this hotfix does not claim that all 48 historical scripts pass."
+}
