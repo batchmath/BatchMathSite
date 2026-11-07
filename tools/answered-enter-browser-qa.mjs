@@ -11,14 +11,26 @@ export const realEnterEngines = new Set([
   'calc_prep_unit_circle_values',
   'calc_prep_trig_equations',
 ]);
-// Enter text through the student's active editor; MathLive owns its mirror input.
-async function fillVisibleAnswer(page,legacy,value,host=page){
-  const field=host.locator('math-field:visible').first();
-  if(await field.count()){
+// Wait for opt-in adapters to finish; a still-visible legacy editor can be replaced mid-click.
+export async function readyVisibleEditor(page,host=page){
+  const migrated=await page.locator('script[src*="/assets/mathlive/"]').count();
+  if(migrated&&new URL(page.url()).searchParams.get('editor')!=='legacy'){
+    await host.locator('math-field:visible').first().waitFor({state:'visible',timeout:12000});
+    return host.locator('math-field:visible').first();
+  }
+  return null;
+}
+export async function fillVisibleAnswer(page,legacy,value,host=page){
+  const field=await readyVisibleEditor(page,host);
+  if(field){
     await field.click();await page.keyboard.press('ControlOrMeta+A');
     if(value)await page.keyboard.type(value);else await page.keyboard.press('Backspace');
-    await page.waitForTimeout(80);return field;
+    await page.waitForTimeout(80);
+    const proof=await field.evaluate(e=>{const input=e.nextElementSibling?.matches('input,textarea')?e.nextElementSibling:e.parentElement.querySelector('[data-editor="mathlive"]');return {latex:e.value,source:input?.value,editor:input?.dataset.editor};});
+    if(proof.editor!=='mathlive'||typeof proof.source!=='string'||Boolean(proof.source.trim())!==Boolean(value))throw Error('Visible MathLive answer did not serialize: '+JSON.stringify(proof));
+    (page._answerEvidence??=[]).push(proof);return field;
   }
+  if(!await legacy.isVisible())throw Error('Legacy answer control is not visible');
   await legacy.fill(value);return legacy;
 }
 export async function exerciseAnsweredEnter(page) {
@@ -29,6 +41,7 @@ export async function exerciseAnsweredEnter(page) {
   const input=page.locator('#numeric-answer, #stage2-answer, #approx-answer').first();
   const exact=page.locator('#exactEditor');
   const derivative=page.locator('.bm-calc-editor');
+  if(!await page.locator('#choices .choice:visible').count())await readyVisibleEditor(page);
   if(await input.count()){
     const active=await fillVisibleAnswer(page,input,'12345');
     if(await page.locator('.classification-choice').count())await page.locator('.classification-choice').first().click();
@@ -73,6 +86,7 @@ async function exerciseStagedAnsweredEnter(page){
     const choices=host.locator('.staged-choice:enabled');
     if(await choices.count())await choices.first().click();
     else{
+      await readyVisibleEditor(page,host);
       const field=host.locator('math-field:visible').first();
       const editor=host.locator('.bm-calc-editor');
       if(await field.count()){const active=await fillVisibleAnswer(page,host.locator('.staged-exact-input'),'12345',host);await active.press('Enter');}

@@ -1,0 +1,188 @@
+{
+  "run": 42317236327,
+  "head": "db9b06f8b216f5a6228fe000d5a5441efd7e7f35",
+  "jobs": [
+    {
+      "id": 128232737612,
+      "name": "qa",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 42317236327,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Check out site",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Set up Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install QA dependency",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Install Chromium for seeded generator QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Static release QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Sitewide display-safety QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Independent semantic-answer QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Calculus Prep semantic QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Analytics instrumentation QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "PWA and cache architecture QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Deterministic AP generator stress QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Limits explanation QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Targeted Limits family QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "AP topic generator structural QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "AP individual-topic deep audit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "New calculus engine stress QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Derivative topic enhancement QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Unit 1 IVT and Limits-at-Infinity QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Keyboard and browser-infrastructure regressions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Advanced trig explanations and hints",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Seeded generator browser QA",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 22
+        },
+        {
+          "name": "Upload QA reports",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        },
+        {
+          "name": "Post Set up Node.js",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 45
+        },
+        {
+          "name": "Post Check out site",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 46
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 47
+        }
+      ]
+    }
+  ],
+  "seededSummary": [
+    "BatchMath seeded generator browser QA",
+    "2026-11-07T00:29:07.5028849Z Result: FAIL",
+    "2026-11-07T00:29:07.5029551Z Engines: 143",
+    "2026-11-07T00:29:07.5030909Z Seeds per engine: 3",
+    "2026-11-07T00:29:07.5031419Z Reproducibility samples: 425",
+    "2026-11-07T00:29:07.5032459Z Calculus/Calculus Prep Enter routing checks: 98",
+    "2026-11-07T00:29:07.5032996Z Real answer/Enter workflow checks: 6",
+    "2026-11-07T00:29:07.5033407Z Rectangular one/two-part regressions: 0/2",
+    "2026-11-07T00:29:07.5033646Z ",
+    "2026-11-07T00:29:07.5033746Z Warnings: 0",
+    "2026-11-07T00:29:07.5033865Z ",
+    "2026-11-07T00:29:07.5034196Z Errors: 7",
+    "2026-11-07T00:29:07.5034652Z - Unit 1 approved workflows: locator.c"
+  ],
+  "disposition": "Original seven Playwright hidden-control failures retained. Focused normal/legacy regressions are recorded separately. No mathematical or grading failure established by these timeouts."
+}

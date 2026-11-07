@@ -1,0 +1,210 @@
+name: Package BatchMath v12.9.G Unit 2 hotfix test
+on:
+  push:
+    branches: [hotfix/v12.9g-unit2-inverse-qa]
+    paths: [.github/workflows/package-v12-9-g-unit2-test.yml]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  package:
+    if: github.repository == 'batchmath/BatchMathSite' && github.ref == 'refs/heads/hotfix/v12.9g-unit2-inverse-qa'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      QA_COMMIT: ${{ github.sha }}
+      SOURCE_A: 98c9beb3c0eb58a952f6bb29e410e63aa280003e
+      SOURCE_B: 049e8a49d22f3d5ff67f5a79a855ec0028452ab7
+      MAIN_SHA: 0bf61ebd86ae0da06d9f9e4f580ab9b3d386a81a
+      TAG: v12.9.G
+      ZIP: batchmath-site-v12.9.G.zip
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify the tested tree and both preserved histories
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git merge-base --is-ancestor "$SOURCE_A" "$QA_COMMIT"
+          git merge-base --is-ancestor "$SOURCE_B" "$QA_COMMIT"
+          git merge-base --is-ancestor "$MAIN_SHA" "$QA_COMMIT"
+          python3 tools/unit2-hotfix-preservation.py
+      - name: Require the complete production QA workflow for this exact commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'GATE'
+          import json,os,subprocess,time
+          R=os.environ['GITHUB_REPOSITORY'];sha=os.environ['QA_COMMIT']
+          def api(path):return json.loads(subprocess.check_output(['gh','api',f'repos/{R}/'+path],text=True))
+          required=['Static release QA','Sitewide display-safety QA','Independent semantic-answer QA','Calculus Prep semantic QA','Analytics instrumentation QA','PWA and cache architecture QA','Deterministic AP generator stress QA','Limits explanation QA','Targeted Limits family QA','AP topic generator structural QA','AP individual-topic deep audit','New calculus engine stress QA','Derivative topic enhancement QA','Unit 1 IVT and Limits-at-Infinity QA','Keyboard and browser-infrastructure regressions','Advanced trig explanations and hints','Seeded generator browser QA']
+          for attempt in range(100):
+              runs=api(f'actions/runs?head_sha={sha}&event=pull_request&per_page=30')['workflow_runs']
+              runs=[r for r in runs if r['name']=='BatchMath QA' and r['head_sha']==sha]
+              if runs:
+                  run=max(runs,key=lambda r:r['id'])
+                  if run['status']=='completed':
+                      assert run['conclusion']=='success',run
+                      jobs=api(f"actions/runs/{run['id']}/jobs")['jobs']
+                      steps=[s for j in jobs for s in j['steps']]
+                      assert all(any(s['name']==n and s['conclusion']=='success' for s in steps) for n in required),steps
+                      assert all(j['conclusion']=='success' for j in jobs),jobs
+                      print('Production QA gate passed:',run['html_url'],flush=True)
+                      break
+              print('Waiting for complete production QA:',sha,flush=True);time.sleep(20)
+          else:raise RuntimeError('Production QA did not succeed; no package may be built or published')
+          GATE
+      - name: Build and programmatically verify the exact complete website package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/unit2-hotfix-package.py --commit "$QA_COMMIT" --out "$RUNNER_TEMP/delivery"
+      - name: Snapshot protected sources, tags, prereleases and latest status
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          R="$GITHUB_REPOSITORY"
+          ref() { gh api "repos/$R/git/ref/heads/$1" --jq .object.sha; }
+          test "$(ref main)" = "$MAIN_SHA"
+          test "$(ref integration/v12.9e-final)" = '6de1b027f45f43285be9fdc98d38d5f49419aecd'
+          test "$(ref integration/mathlive-im1-videos-content)" = "$SOURCE_A"
+          test "$(ref claude/v12.9d-unit6-final-corrections)" = "$SOURCE_B"
+          test "$(ref migration/mathlive-sitewide)" = '919ca1806f07e3cd2af552142926e7ca2b78e8d5'
+          test "$(ref content/im1-video-notes-cleanup)" = 'bba32f929d6630d096bc4510ceafd586ab8c4a53'
+          test "$(ref hotfix/v12.9g-unit2-inverse-qa)" = "$GITHUB_SHA"
+          test "$(gh api "repos/$R/git/ref/tags/v12.9.F" --jq .object.sha)" = "$MAIN_SHA"
+          gh api "repos/$R/releases/tags/v12.9.F" > "$RUNNER_TEMP/protected-f-release.json"
+          python3 - <<'F_CHECK'
+          import json,os
+          from pathlib import Path
+          f=json.loads((Path(os.environ['RUNNER_TEMP'])/'protected-f-release.json').read_text())
+          assert f['id']==437149712 and f['prerelease'] and not f['draft']
+          z=next(a for a in f['assets'] if a['name']=='batchmath-site-v12.9.F.zip')
+          assert z['id']==718875628 and z['size']==314255648
+          assert z['digest']=='sha256:ded11f29464de73405a4dfaf2f046f2570f2e18b140a906582d85edf31b93fac'
+          F_CHECK
+          gh api "repos/$R/git/matching-refs/tags/" > "$RUNNER_TEMP/tags-before.json"
+          python3 - <<'CHECK'
+          import json, os
+          from pathlib import Path
+          rows=json.loads((Path(os.environ['RUNNER_TEMP'])/'tags-before.json').read_text())
+          assert not any(r['ref']=='refs/tags/'+os.environ['TAG'] for r in rows),'The requested tag already exists; it will not be reused or changed.'
+          CHECK
+          gh api --paginate --slurp "repos/$R/releases?per_page=100" > "$RUNNER_TEMP/releases-before.json"
+          test "$(gh api "repos/$R/git/ref/tags/v12.9.E" --jq .object.sha)" = '2fbfd3f7eb482fd6ef5f890ba86fe2a9554db8b6'
+          gh api "repos/$R/releases/tags/v12.9.E" > "$RUNNER_TEMP/protected-e-release.json"
+          python3 - <<'CHECK'
+          import json, os
+          from pathlib import Path
+          e=json.loads((Path(os.environ['RUNNER_TEMP'])/'protected-e-release.json').read_text())
+          assert e['id']==436754962 and e['prerelease'] and not e['draft']
+          z=next(a for a in e['assets'] if a['name']=='batchmath-site-v12.9.E.zip')
+          assert z['id']==717837139 and z['size']==314254305
+          assert z['digest']=='sha256:c17cd35cf7972bd7eee6fedec906f2df25b28078e5acdfddd405d816e6812a7d'
+          CHECK
+          if gh release view "$TAG" --repo "$R" > /dev/null 2>&1; then
+            echo "::error::The requested test prerelease already exists; it will not be overwritten."
+            exit 1
+          fi
+          if gh api "repos/$R/releases/latest" --jq .tag_name > "$RUNNER_TEMP/latest-before.txt" 2>/dev/null; then :; else echo none > "$RUNNER_TEMP/latest-before.txt"; fi
+      - name: Publish only the authorized test prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'NOTES'
+          import os
+          from pathlib import Path
+          sha=os.environ['QA_COMMIT']
+          notes=f'''BatchMath v12.9.G Unit 2 hotfix test build. Prerelease, not latest. Production main, the approved E integration/source branches and every earlier release are unchanged; no deployment is performed.
+
+          This clarifies exponential/logarithmic inverse-function prompts in both Unit 2 engines and corrects QA drivers to use the active MathLive interface. The complete production QA workflow passes for the packaged commit. All v12.9.F Unit 6 corrections, mathematics, grading, keypads and videos are preserved.
+
+          Tested website commit: {sha}.
+
+          [Unit 2 hotfix report and complete QA results](https://github.com/batchmath/BatchMathSite/blob/hotfix/v12.9g-unit2-inverse-qa/docs/v12.9.G-unit2-hotfix.md)
+
+          Extract batchmath-site-v12.9.G.zip. Open a terminal inside batchmath-site-v12.9.G, run `py -m http.server 8000`, and open http://localhost:8000/.
+
+          The ZIP contains the complete website, practice engines, PDFs, and pinned local MathLive runtime/fonts. Normal MathJax and YouTube use requires internet. Actual YouTube availability and audio need human review.
+          '''
+          (Path(os.environ['RUNNER_TEMP'])/'release-notes-g.md').write_text(notes)
+          NOTES
+          gh release create "$TAG" "$RUNNER_TEMP/delivery/$ZIP" "$RUNNER_TEMP/delivery/batchmath-site-v12.9.G.sha256" "$RUNNER_TEMP/delivery/delivery-manifest.json" --repo "$GITHUB_REPOSITORY" --target "$QA_COMMIT" --title 'BatchMath v12.9.G — Unit 2 Hotfix Test' --notes-file "$RUNNER_TEMP/release-notes-g.md" --prerelease --latest=false
+      - name: Download the published ZIP and verify its bytes and complete site tree
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/downloaded"
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "$ZIP" --dir "$RUNNER_TEMP/downloaded"
+          cmp "$RUNNER_TEMP/downloaded/$ZIP" "$RUNNER_TEMP/delivery/$ZIP"
+          python3 tools/unit2-hotfix-package.py --commit "$QA_COMMIT" --zip "$RUNNER_TEMP/downloaded/$ZIP" --out "$RUNNER_TEMP/download-verified"
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/$TAG" > "$RUNNER_TEMP/g-release.json"
+          python3 - <<'CHECK'
+          import json, os
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])
+          release=json.loads((root/'g-release.json').read_text())
+          manifest=json.loads((root/'delivery/delivery-manifest.json').read_text())
+          assert release['prerelease'] is True and release['draft'] is False
+          assets=[a for a in release['assets'] if a['name']==os.environ['ZIP']]
+          assert len(assets)==1 and assets[0]['state']=='uploaded'
+          assert assets[0]['size']==manifest['bytes']
+          assert assets[0].get('digest') in (None,'sha256:'+manifest['sha256'])
+          print('Verified download:',assets[0]['browser_download_url'])
+          CHECK
+      - name: Recheck every protected source, tag, prerelease and latest status
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          R="$GITHUB_REPOSITORY"
+          ref() { gh api "repos/$R/git/ref/heads/$1" --jq .object.sha; }
+          test "$(ref main)" = "$MAIN_SHA"
+          test "$(ref integration/v12.9e-final)" = '6de1b027f45f43285be9fdc98d38d5f49419aecd'
+          test "$(ref integration/mathlive-im1-videos-content)" = "$SOURCE_A"
+          test "$(ref claude/v12.9d-unit6-final-corrections)" = "$SOURCE_B"
+          test "$(ref migration/mathlive-sitewide)" = '919ca1806f07e3cd2af552142926e7ca2b78e8d5'
+          test "$(ref content/im1-video-notes-cleanup)" = 'bba32f929d6630d096bc4510ceafd586ab8c4a53'
+          test "$(gh api "repos/$R/git/ref/tags/$TAG" --jq .object.sha)" = "$QA_COMMIT"
+          test "$(gh api "repos/$R/git/ref/tags/v12.9.F" --jq .object.sha)" = "$MAIN_SHA"
+          gh api "repos/$R/releases/tags/v12.9.F" > "$RUNNER_TEMP/protected-f-release.json"
+          python3 - <<'F_CHECK'
+          import json,os
+          from pathlib import Path
+          f=json.loads((Path(os.environ['RUNNER_TEMP'])/'protected-f-release.json').read_text())
+          assert f['id']==437149712 and f['prerelease'] and not f['draft']
+          z=next(a for a in f['assets'] if a['name']=='batchmath-site-v12.9.F.zip')
+          assert z['id']==718875628 and z['size']==314255648
+          assert z['digest']=='sha256:ded11f29464de73405a4dfaf2f046f2570f2e18b140a906582d85edf31b93fac'
+          F_CHECK
+          gh api "repos/$R/git/matching-refs/tags/" > "$RUNNER_TEMP/tags-after.json"
+          gh api --paginate --slurp "repos/$R/releases?per_page=100" > "$RUNNER_TEMP/releases-after.json"
+          if gh api "repos/$R/releases/latest" --jq .tag_name > "$RUNNER_TEMP/latest-after.txt" 2>/dev/null; then :; else echo none > "$RUNNER_TEMP/latest-after.txt"; fi
+          cmp "$RUNNER_TEMP/latest-before.txt" "$RUNNER_TEMP/latest-after.txt"
+          python3 - <<'CHECK'
+          import json, os
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP']);tag=os.environ['TAG']
+          def tags(name):
+              return sorted((x['ref'],x['object']['sha']) for x in json.loads((root/name).read_text()) if x['ref']!='refs/tags/'+tag)
+          assert tags('tags-before.json')==tags('tags-after.json'),'An earlier tag changed'
+          def releases(name):
+              rows=[r for page in json.loads((root/name).read_text()) for r in page if r['tag_name']!=tag]
+              keys=['id','tag_name','name','body','prerelease','draft','target_commitish','updated_at']
+              return sorted([{**{k:r[k] for k in keys},'assets':sorted([(a['id'],a['name'],a['size'],a.get('digest'),a['state'],a['updated_at']) for a in r['assets']])} for r in rows],key=lambda r:r['id'])
+          assert releases('releases-before.json')==releases('releases-after.json'),'An earlier prerelease changed'
+          print('Protected sources, earlier tags/prereleases and latest status are unchanged.')
+          CHECK
