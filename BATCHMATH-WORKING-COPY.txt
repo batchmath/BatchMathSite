@@ -1,14 +1,15 @@
 BatchMath cumulative working copy
-Current build: 13.0.A / v13.0.A experimental interactive 3D cross sections (not production)
-Archive: bm-v13.0.A.zip
-Root directory: bm-v13.0.A/
-Branch: claude/v13.0a-cross-sections-3d
-Base: main at 9dbb4f841c6b4e6300c640e1b83b2dad82df1521 (v12.9.G integrated release)
-New: an interactive 3D model (Beta) for one problem type: Volume by Cross Sections, Non-Calculator Practice, square cross sections perpendicular to the x-axis.
+Current build: 13.0.B / v13.0.B experimental complete interactive 3D Volume by Cross Sections (not production)
+Archive: bm-v13.0.B.zip
+Root directory: bm-v13.0.B/
+Branch: claude/v13.0b-cross-sections-3d-complete
+Base: claude/v13.0a-cross-sections-3d at 3993639a284f86632e11ec675bddecbf7f6b2294 (v13.0.A), itself from main at 9dbb4f841c6b4e6300c640e1b83b2dad82df1521 (v12.9.G)
+New: the interactive 3D model (Beta) for EVERY Volume by Cross Sections problem: all eight cross-section shapes (squares, rectangles 2s and 3s, semicircles on their diameter, quarter circles on their radius, equilateral triangles, isosceles right triangles on a leg or on the hypotenuse), slices perpendicular to the x-axis or the y-axis, Non-Calculator and Calculator Practice.
+On Calculator Practice the model appears only after Part A is checked, beside the region's first picture in Part A's explanation.
 The model is built from the generator's own region; three.js 0.169.0 is vendored locally and loads only when the model is opened.
 Generators, answer checking, explanations, the 2D diagrams and every other page are unchanged.
-All application, PWA/cache and analytics versions are 13.0.A; Unit 6 build markers are 13.0.A. Other generator revision markers retain their actual engine revision.
+All application, PWA/cache and analytics versions are 13.0.B; Unit 6 build markers are 13.0.B. Other generator revision markers retain their actual engine revision.
 Main is unchanged. No deployment performed.
 See LOCAL-TESTING.txt. Run: py -m http.server 8000
-Test ZIP: https://github.com/batchmath/BatchMathSite/releases/download/v13.0.A/bm-v13.0.A.zip
-Previous build: 12.9.G / v12.9.G final integration test (batchmath-site-v12.9.G.zip)
+Test ZIP: https://github.com/batchmath/BatchMathSite/releases/download/v13.0.B/bm-v13.0.B.zip
+Previous build: 13.0.A / v13.0.A experimental 3D cross sections, squares perpendicular to the x-axis only (bm-v13.0.A.zip)

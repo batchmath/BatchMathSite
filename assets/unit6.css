@@ -58,7 +58,7 @@
 .bm-u6-integral-key span{font-family:"Times New Roman",Times,serif;font-size:1.45em;line-height:1}
 /* v12.9.D: a piecewise brace in a split explanation cannot wrap; on narrow phones it is set a little smaller */
 @media (max-width:420px){.u6-piecewise{font-size:86%}}
-/* v13.0.A (experimental): the 3D model of a solid with square cross sections (Volume by Cross Sections, non-calculator) */
+/* v13.0.A/B (experimental): the 3D model of a solid with known cross sections (Volume by Cross Sections) */
 .u6-3d{width:100%;margin-top:12px;text-align:center}
 .u6-3d-stage{margin:12px auto 0;max-width:760px;border:1px solid #2f2f2f;border-radius:14px;background:#050505;overflow:hidden;text-align:left}
 .u6-3d-view{width:100%;min-height:260px}

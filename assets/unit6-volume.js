@@ -56,15 +56,22 @@ const baseToggle=R=>graphToggle(figure(R,{label:'The base of the solid'}));
 function areaFn(T,shape,v){const t=T[0],k=C.U5?shape.k:shape.k,kv=qv(k.q)*(k.atom?k.atom.val:1);
  return fnc({tex:()=>shape.area(t.stex),key:()=>'',f:z=>kv*t.g.f(z)});}
 
-// v13.0.A (experimental 3D model): the generator's own base region and cross-section shape, kept on the problem as a
+// v13.0.A/B (experimental 3D model): the generator's own base region and cross-section shape, kept on the problem as a
 // non-enumerable property. Nothing random is drawn and nothing visible or stored changes (questions, answers and saved
 // data are as before); assets/unit6-3d/ reads it to build the solid. Each piece gives the boundaries as functions of
-// the slicing variable: for slices perpendicular to the x-axis, bot(x) and top(x) on [a, b].
-function withSolid(p,R,v,shape){
- const ps=v==='x'?R.xs:R.ys;if(!ps)return p;
+// the slicing variable: for slices perpendicular to the x-axis, bot(x) and top(x) on [a, b]; perpendicular to the
+// y-axis, left(y) and right(y) (as bot and top). Calculator regions keep their intersections at full precision.
+// k is the shape's area factor (A = k s^2), as the answer uses it.
+function describeSolid(R,v,shape){
+ const ps=v==='x'?R.xs:R.ys;if(!ps)return null;
  const pieces=ps.map(q=>Object.freeze({a:q.a.v,b:q.b.v,aTex:q.a.tex,bTex:q.b.tex,top:(v==='x'?q.top:q.right).f,bot:(v==='x'?q.bot:q.left).f,
   topTex:(v==='x'?q.top:q.right).tex(v),botTex:(v==='x'?q.bot:q.left).tex(v)}));
- Object.defineProperty(p,'u6Solid',{value:Object.freeze({dir:v,shape:shape.id,mult:shape.mult||null,pieces:Object.freeze(pieces),slice:sliceAt(R,v),eqs:Object.freeze([...R.eqs])}),enumerable:false});
+ const k=qv(shape.k.q)*(shape.k.atom?shape.k.atom.val:1);
+ return Object.freeze({dir:v,shape:shape.id,mult:shape.mult||null,k,pieces:Object.freeze(pieces),slice:sliceAt(R,v),eqs:Object.freeze([...R.eqs]),region:R.data.kind});
+}
+function withSolid(p,R,v,shape){
+ const d=describeSolid(R,v,shape);if(!d)return p;
+ Object.defineProperty(p,'u6Solid',{value:d,enumerable:false});
  return p;
 }
 function famCsBasic(tier){
@@ -101,7 +108,7 @@ function famCsCalc(tier){
  const graph=csPicture(R,v,shape,'Compare it with the region on your calculator graph. ');
  const parts=tier==='challenging'?[integralPart('Write an integral expression for the volume of the solid. You may use decimal limits.',T,graph+W.boundsStep(R)+W.sectionWork(R,v,shape,T),{variable:v,help:'Do not round intermediate values: keep calculator intersections at full precision as limits. Round only the final answer as directed.'}),numPart('Find the volume of the solid.',val,W.calcWork(T))]
   :[numPart('Find the volume of the solid.',val,graph+W.boundsStep(R)+W.sectionWork(R,v,shape,T)+W.calcWork(T))];
- return one('Answer each part.',parts,{engine:'cross_sections',family:'cs_calc',tier,id:`csc-${R.eqs.join('|')}-${v}-${shape.name}`,calc:true,context:csContext(R,v,shape),formulas:R.eqs,data:{dir:v,shape:shape.name,region:R.data.kind}});
+ return withSolid(one('Answer each part.',parts,{engine:'cross_sections',family:'cs_calc',tier,id:`csc-${R.eqs.join('|')}-${v}-${shape.name}`,calc:true,context:csContext(R,v,shape),formulas:R.eqs,data:{dir:v,shape:shape.name,region:R.data.kind}}),R,v,shape);
 }
 const CS={
  cs_basic:{weight:45,tiers:['foundational','intermediate'],make:famCsBasic,calculator:false},
@@ -309,7 +316,7 @@ const SOLIDS={
 const shownMethod=p=>p.unit5Meta.shown||p.unit5Meta.method;
 const SOLID_MODES={disks_washers:{families:{disk_basic:true,washer:true,trig_solid:true,solid_calc:true,calc_two_axes:true},accept:p=>!['shell','both'].includes(shownMethod(p))},shells:{families:{shells:true,solid_calc:true,calc_two_axes:true},accept:p=>shownMethod(p)==='shell'}};
 const csEngine=U5.makeEngine('unit6-cross-sections',CS,CS_MODES),solidEngine=U5.makeEngine('unit6-solids',SOLIDS,SOLID_MODES);
-window.BatchMathUnit6Volume=Object.freeze({makeCS:csEngine.make,FAMILIES_CS:CS,MODES_CS:CS_MODES,makeSolid:solidEngine.make,FAMILIES_SOLID:SOLIDS,MODES_SOLID:SOLID_MODES,axesFor,termsFor,workFor,methodVar,axisWords,expBase,shapeOf,SH});
+window.BatchMathUnit6Volume=Object.freeze({makeCS:csEngine.make,FAMILIES_CS:CS,MODES_CS:CS_MODES,makeSolid:solidEngine.make,FAMILIES_SOLID:SOLIDS,MODES_SOLID:SOLID_MODES,axesFor,termsFor,workFor,methodVar,axisWords,expBase,shapeOf,SH,describeSolid});
 U5.register('volume-by-cross-sections',o=>csEngine.make(o||{}));
 U5.register('solids-of-revolution',o=>solidEngine.make(o||{}));
 })();

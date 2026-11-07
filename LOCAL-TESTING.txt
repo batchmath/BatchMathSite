@@ -1,7 +1,7 @@
-BatchMath v13.0.A — experimental interactive 3D cross sections (test build, not production)
+BatchMath v13.0.B — complete interactive 3D Volume by Cross Sections (experimental test build, not production)
 
-Extract bm-v13.0.A.zip.
-Open a terminal inside the single folder bm-v13.0.A.
+Extract bm-v13.0.B.zip.
+Open a terminal inside the single folder bm-v13.0.B.
 Run exactly:
 
 py -m http.server 8000
@@ -10,17 +10,35 @@ py -m http.server 8000
 Open http://localhost:8000/ in your browser.
 Keep the terminal open while testing. Stop the server with Ctrl+C.
 
-To see the 3D model: AP Calculus AB > Unit 6 > Volume by Cross Sections > Non-Calculator Practice.
-It appears for square cross sections perpendicular to the x-axis. Choose the Practice Type "Perpendicular to the
-x-axis"; when a question has square cross sections, press "Show 3D Model (Beta)" under it. Drag to rotate; scroll or
-pinch to zoom. (Answer a question and press Next Question, or reload, for another one.)
+Where the 3D model is: AP Calculus AB > Unit 6 > Volume by Cross Sections.
+- Non-Calculator Practice: every question has "Show 3D Model (Beta)" right under the "Show Graph" button.
+- Calculator Practice: the region is not shown until Part A is checked (students graph it on their calculators).
+  Check Part A (right or wrong); its explanation shows the 2D picture, and "Show 3D Model (Beta)" appears right under it.
+Every cross-section shape and both directions are supported. Drag to rotate; scroll or pinch to zoom; Reset view.
+(Answer a question and press Next Question, or reload, for another one.)
 
-These links open directly on a supported question (the same question every time):
-http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3d68   (y = 4 - x^2 and y = 0)
-http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3d16   (a triangle)
-http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3d72   (y = e^x, y = 1, x = 1)
-http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3d128  (y = sqrt(x), y = x - 6, y = 0: two pieces)
-http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3d139  (y = 2 sqrt(x), x = 1, y = 0)
+These links always open the same question (non-calculator):
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db4   (square, perpendicular to the x-axis; y = 2 sqrt(x), y = x - 3, y = 0: two pieces)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db2   (square, perpendicular to the y-axis; y = 4 - x^2, first quadrant)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db43   (rectangles 2s, perpendicular to the x-axis; the disk x^2 + y^2 <= 1)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db19   (rectangles 2s, perpendicular to the y-axis; y = x, y = x^3)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db5   (rectangles 3s, perpendicular to the x-axis; y = sqrt(x), x = 4, y = 0)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db41   (rectangles 3s, perpendicular to the y-axis; y = 27, y = x^3, x = 0)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db1   (semicircles (diameter s), perpendicular to the x-axis; y = 4 - x^2, y = 0)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db3   (semicircles (diameter s), perpendicular to the y-axis; y = x^2, x = 1, y = 0)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db6   (quarter circles (radius s), perpendicular to the x-axis; y = sqrt(4 - x^2), y = 0)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db10   (quarter circles (radius s), perpendicular to the y-axis; y = 3 sqrt(x), x = 4, y = 0)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db9   (equilateral triangles, perpendicular to the x-axis; the disk x^2 + y^2 <= 1)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db49   (equilateral triangles, perpendicular to the y-axis; a triangle)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db11   (isosceles right triangles, leg s, perpendicular to the x-axis; y = x^2, x = 1, y = 0)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db7   (isosceles right triangles, leg s, perpendicular to the y-axis; y = 3 sqrt(x), x = 1, y = 0)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db29   (isosceles right triangles, hypotenuse s, perpendicular to the x-axis; y = sqrt(4 - x^2), y = 0)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3db13   (isosceles right triangles, hypotenuse s, perpendicular to the y-axis; y = 8, y = x^3, x = 0)
+
+Calculator practice (check Part A first; the 3D button then appears in Part A's explanation):
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice/?bm_seed=3dbc1   (y = 4 ln(x+1), y = -x + 2, y = 0; rectangles 2s perpendicular to the x-axis (two parts))
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice/?bm_seed=3dbc3   (y = ln(x+1), y = -x + 2, y = 0; equilateral triangles perpendicular to the y-axis)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice/?bm_seed=3dbc2   (y = e^(2x), the axes, x = 1; semicircles perpendicular to the x-axis)
 
 The website, practice engines, PDFs, local MathLive runtime and fonts, and the local three.js library are included.
 Normal MathJax rendering and YouTube video playback require internet.

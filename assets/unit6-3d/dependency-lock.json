@@ -4,7 +4,7 @@
     "tarball": "https://registry.npmjs.org/three/-/three-0.169.0.tgz",
     "integrity": "sha512-Ed906MA3dR4TS5riErd4QBsRGPcx+HBDX2O5yYE5GqJeFQTPU+M56Va/f/Oph9X7uZo3W3o4l2ZhBZ6f6qUv0w==",
     "license": "MIT",
-    "purpose": "v13.0.A experimental 3D cross sections; loaded only when a student opens the 3D model",
+    "purpose": "v13.0.A/B experimental 3D cross sections; loaded only when a student opens the 3D model",
     "files": [
       {
         "path": "vendor/three/three.module.min.mjs",
