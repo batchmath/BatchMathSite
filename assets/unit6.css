@@ -74,3 +74,7 @@
 .u6-3d-key-slice{background:#ffd400}
 .u6-3d-note{margin:0;padding:28px 14px;color:#bdbdbd;text-align:center}
 .u6-3d-s{font-family:"Times New Roman",Times,serif;font-style:italic;font-size:1.1em}
+/* v13.0.C (experimental): Solids of Revolution models (the axis of rotation in pink; which rotation a model shows) */
+.u6-3d-key-axis{background:#ff4fa3;height:4px;vertical-align:3px}
+.u6-3d-for{margin:0 auto 6px;font-size:.92rem;color:#d8d8d8}
+.u6-3d-title{padding:10px 12px 0;font-size:.95rem;font-weight:700;color:#f4f4f4;text-align:center}

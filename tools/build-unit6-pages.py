@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parent.parent
 UNIT = 'unit-6-applications-integration'
 U6 = ROOT / 'ap-calculus' / UNIT / 'topics'
 SITE = 'https://batchmath.net'
-VERSION = '13.0.B'
+VERSION = '13.0.C'
 COMMON_HEAD = ['/assets/derivative-expression-checker.js', '/assets/unit4-exact-answers.js', '/assets/calculus-keypad.js']
 COMMON_BODY = ['/assets/unit5-core.js', '/assets/unit5-answers.js', '/assets/unit5-ui.js', '/assets/unit6-core.js', '/assets/unit6-ui.js', '/assets/unit6-regions.js']
 STYLES = ['/assets/calculus-keypad.css', '/assets/unit5.css', '/assets/unit6.css']
@@ -198,6 +198,12 @@ def wire(cfg):
     if cfg['topic'] == 'volume-by-cross-sections' and cfg['page'] in ('non-calculator-practice', 'calculator-practice'):
         text = text.replace(m3, '')
         text = text.replace(ml, m3 + ml, 1)
+    # v13.0.C (experimental): the 3D models of solids of revolution, on Solids of Revolution, Non-Calculator Practice and
+    # Calculator Practice (a model appears only where the region's 2D picture for that rotation is shown)
+    m4 = '<script type="module" src="/assets/unit6-3d/solids-3d.mjs"></script>'
+    if cfg['topic'] == 'solids-of-revolution' and cfg['page'] in ('non-calculator-practice', 'calculator-practice'):
+        text = text.replace(m4, '')
+        text = text.replace(ml, m4 + ml, 1)
     path.write_text(text, encoding='utf-8')
     return path
 

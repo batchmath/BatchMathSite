@@ -148,19 +148,41 @@ const solidFig=(R,o={})=>figure(withPicture(R),{compact:true,uniform:true,maxH:3
 const maybeFig=(R,o)=>pick([true,false])?{extra:solidFig(R,o),graph:'shown'}:{extra:'',graph:'none'};
 // the region, the axis and one slice (R and r of a disk or washer, or the radius and height of a shell), next to the
 // disk, washer or shell that slice sweeps out: the first explanation of each rotation
-function solidStep(R,method,axis,lead=''){
+// the representative slice of a rotation (the explanation's picture and the 3D model both use it): its variable, its
+// position, its end points and what it sweeps out (a disk, a washer or a shell)
+function sliceOf(R,method,axis){
  const v=methodVar(method,axis),at=sliceAt(R,v),seg=sliceSegment(R,v,at);let kind=method==='shell'?'shell':'washer';
  if(kind==='washer'&&seg){const d=(x,y)=>v==='x'?Math.abs(y-axis.c):Math.abs(x-axis.c);if(Math.min(d(seg[0],seg[1]),d(seg[2],seg[3]))<1e-6)kind='disk';}
+ return{v,at,seg,kind};
+}
+function solidStep(R,method,axis,lead=''){
+ const {v,at,seg}=sliceOf(R,method,axis);let {kind}=sliceOf(R,method,axis);
  const text={disk:'Each slice perpendicular to the axis sweeps out a disk: its radius \\(R\\) runs from the axis to the boundary.',
   washer:'Each slice perpendicular to the axis sweeps out a washer: the outer radius \\(R\\) runs from the axis to the farther boundary, the inner radius \\(r\\) to the nearer one.',
   shell:'Each slice parallel to the axis sweeps out a cylindrical shell: its radius \\(r\\) is the distance from the axis to the slice, and its height \\(h\\) is the length of the slice.'}[kind];
  return step(lead?'Region R and the axis of rotation.':'The region, the axis and one slice.',`${lead}${text} One slice is drawn on the graph; the second picture shows what it sweeps out.`)
   +`<div class="u6-fig-row">${solidFig(R,{axis,maxH:280,maxW:300,label:'Region R, the axis of rotation and one slice',slice:{v,at,kind,axis}})}${solidPicture(kind,axis.type==='y')}</div>`;
 }
+// v13.0.C (experimental 3D model): the generator's own region and each rotation of it, kept on the problem as a
+// non-enumerable property (nothing random is drawn; questions, answers, explanations and saved data are unchanged).
+// assets/unit6-3d/ revolves the region about each axis. Each rotation records its axis, the method the explanation uses,
+// that explanation's representative slice, the part that first asks about it (ask) and the part whose explanation first
+// draws it (reveal); graph: whether the question itself shows the region ('shown') or not.
+function describeRevolution(R,rotations,graph){
+ const piece=(q,v)=>Object.freeze({a:q.a.v,b:q.b.v,aTex:q.a.tex,bTex:q.b.tex,top:(v==='x'?q.top:q.right).f,bot:(v==='x'?q.bot:q.left).f});
+ const rots=rotations.map(({axis,method,ask,reveal})=>{const S=sliceOf(R,method,axis);
+  return Object.freeze({axis:Object.freeze({type:axis.type,c:axis.c}),axisTex:`${axis.type}=${axis.tex??axis.c}`,axisWords:axisWords(axis),method,kind:S.kind,v:S.v,at:S.at,seg:S.seg?Object.freeze([...S.seg]):null,ask,reveal});});
+ return Object.freeze({xs:R.xs?Object.freeze(R.xs.map(q=>piece(q,'x'))):null,ys:R.ys?Object.freeze(R.ys.map(q=>piece(q,'y'))):null,
+  eqs:Object.freeze([...(R.eqs||[])]),region:R.data?.kind||null,graph:graph||'none',rotations:Object.freeze(rots)});
+}
+function withRevolution(p,R,rotations,graph){
+ Object.defineProperty(p,'u6Revolution',{value:describeRevolution(R,rotations,graph),enumerable:false});
+ return p;
+}
 function famDisk(tier){
  const {R,axis,T,e}=solidPick('washer',{touch:true}),G=maybeFig(R,{axis});
- return one('',[exactPart('Find the volume of the solid.',exactAnswer(e),solidStep(R,'washer',axis)+W.boundsStep(R)+W.washerWork(R,axis,T)+W.evalWork(T))],
-  {engine:'solids',family:'disk_basic',tier,id:`disk-${R.eqs.join('|')}-${axis.type}${axis.c}`,context:solidContext(R,axis),formulas:R.eqs,extra:G.extra,data:{method:'washer',axis:`${axis.type}=${axis.c}`,region:R.data.kind,graph:G.graph}});
+ return withRevolution(one('',[exactPart('Find the volume of the solid.',exactAnswer(e),solidStep(R,'washer',axis)+W.boundsStep(R)+W.washerWork(R,axis,T)+W.evalWork(T))],
+  {engine:'solids',family:'disk_basic',tier,id:`disk-${R.eqs.join('|')}-${axis.type}${axis.c}`,context:solidContext(R,axis),formulas:R.eqs,extra:G.extra,data:{method:'washer',axis:`${axis.type}=${axis.c}`,region:R.data.kind,graph:G.graph}}),R,[{axis,method:'washer',ask:0,reveal:0}],G.graph);
 }
 // A typed radius/height part explains only its own quantity. The original combined
 // washer/shell work remains with the final volume part, after both expressions.
@@ -190,7 +212,7 @@ function famWasher(tier){
    exprPart(`Find the inner radius \\(r(${v})\\).`,`r(${v})=`,t.r,v,dom,washerRadiusWork(R,axis,t,v,true),{notes:[{expr:t.R,note:'That is the outer radius: the boundary farther from the axis.'}]}),
    exactPart('Find the volume of the solid.',exactAnswer(e),work+W.evalWork(T))];
  }else parts=[integralPart(`Using ${methodName('washer',T)}, write an integral expression for the volume of the solid.`,T,pic+W.boundsStep(R)+work,{variable:v,methodNote:`That integral has the right value, but with ${methodName('washer',T)} about this axis you integrate with respect to ${v}.`}),exactPart('Find the volume of the solid.',exactAnswer(e),W.evalWork(T))];
- return one('Answer each part.',parts,{engine:'solids',family:'washer',tier,id:`wash-${R.eqs.join('|')}-${axis.type}${axis.c}-${parts.length}`,context:solidContext(R,axis),formulas:R.eqs,extra:G.extra,data:{method:'washer',axis:`${axis.type}=${axis.c}`,region:R.data.kind,graph:G.graph}});
+ return withRevolution(one('Answer each part.',parts,{engine:'solids',family:'washer',tier,id:`wash-${R.eqs.join('|')}-${axis.type}${axis.c}-${parts.length}`,context:solidContext(R,axis),formulas:R.eqs,extra:G.extra,data:{method:'washer',axis:`${axis.type}=${axis.c}`,region:R.data.kind,graph:G.graph}}),R,[{axis,method:'washer',ask:0,reveal:0}],G.graph);
 }
 function famShell(tier){
  const {R,axis,T,e}=solidPick('shell'),v=methodVar('shell',axis),work=solidStep(R,'shell',axis)+W.boundsStep(R)+W.shellWork(R,axis,T),G=maybeFig(R,{axis});
@@ -200,7 +222,7 @@ function famShell(tier){
    exprPart(`Find the height \\(h(${v})\\) of a shell.`,`h(${v})=`,t.h,v,dom,shellHeightWork(R,t,v),{notes:[{expr:t.rad,note:'That is the radius; the height is '+(v==='x'?'top minus bottom.':'right minus left.')}]}),
    exactPart('Find the volume of the solid.',exactAnswer(e),W.shellWork(R,axis,T)+W.evalWork(T))]
   :[integralPart('Using cylindrical shells, write an integral expression for the volume of the solid.',T,work,{variable:v,methodNote:`That integral has the right value, but shells about this axis are integrated with respect to ${v}.`}),exactPart('Find the volume of the solid.',exactAnswer(e),W.evalWork(T))];
- return one('Answer each part.',parts,{engine:'solids',family:'shells',tier,id:`shell-${R.eqs.join('|')}-${axis.type}${axis.c}`,context:solidContext(R,axis),formulas:R.eqs,extra:G.extra,data:{method:'shell',axis:`${axis.type}=${axis.c}`,region:R.data.kind,graph:G.graph}});
+ return withRevolution(one('Answer each part.',parts,{engine:'solids',family:'shells',tier,id:`shell-${R.eqs.join('|')}-${axis.type}${axis.c}`,context:solidContext(R,axis),formulas:R.eqs,extra:G.extra,data:{method:'shell',axis:`${axis.type}=${axis.c}`,region:R.data.kind,graph:G.graph}}),R,[{axis,method:'shell',ask:0,reveal:0}],G.graph);
 }
 function famTwoAxes(tier){ // assignment: the same region about several lines, with washers and with shells
  for(let i=0;i<60;i++){
@@ -211,7 +233,7 @@ function famTwoAxes(tier){ // assignment: the same region about several lines, w
    integralPart(`\\(R\\) is revolved about ${axisWords(a2)}. Using cylindrical shells, write an integral expression for the volume.`,T2,solidStep(R,'shell',a2)+W.shellWork(R,a2,T2),{variable:v2}),
    exactPart(`Find the volume of the solid generated when \\(R\\) is revolved about ${axisWords(a2)}.`,exactAnswer(e2),W.evalWork(T2))];
   const G=maybeFig(R,{axes:[{...a1,name:'axis in Part A'},{...a2,name:'axis in Parts B and C'}],label:'Region R and the two axes of rotation'});
-  return one('Answer each part.',parts,{engine:'solids',family:'two_axes',tier,id:`two-${R.eqs.join('|')}-${a1.type}${a1.c}-${a2.type}${a2.c}`,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:G.extra,data:{method:'both',region:R.data.kind,graph:G.graph}});
+  return withRevolution(one('Answer each part.',parts,{engine:'solids',family:'two_axes',tier,id:`two-${R.eqs.join('|')}-${a1.type}${a1.c}-${a2.type}${a2.c}`,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,extra:G.extra,data:{method:'both',region:R.data.kind,graph:G.graph}}),R,[{axis:a1,method:'washer',ask:0,reveal:0},{axis:a2,method:'shell',ask:1,reveal:1}],G.graph);
  }
  throw Error('two_axes failed');
 }
@@ -230,7 +252,7 @@ function famTrigSolid(tier){ // y = A + sin x, the x-axis, 0 <= x <= pi/2, about
  const work=W.washerWork(R,axis,T)+step('Evaluate.','Use \\(\\sin^{2}x=\\frac{1-\\cos 2x}{2}\\), so \\(\\int_{0}^{\\frac{\\pi}{2}}\\sin^{2}x\\,dx=\\frac{\\pi}{4}\\), and \\(\\int_{0}^{\\frac{\\pi}{2}}\\sin x\\,dx=1\\).',expand,`=${etex(e)}`);
  const pic=solidStep(R,'washer',axis),G=maybeFig(R,{axis});
  const parts=tier==='challenging'?[integralPart('Write an integral expression for the volume of the solid.',T,pic+W.washerWork(R,axis,T),{variable:'x'}),exactPart('Find the volume.',exactAnswer(e),work)]:[exactPart('Find the volume.',exactAnswer(e),pic+work)];
- return one('Answer each part.',parts,{engine:'solids',family:'trig_solid',tier,id:`trig-${A}-${axis.c}`,context:solidContext(R,axis),formulas:R.eqs,extra:G.extra,data:{method:'washer',axis:`y=${axis.c}`,region:'trig',graph:G.graph}});
+ return withRevolution(one('Answer each part.',parts,{engine:'solids',family:'trig_solid',tier,id:`trig-${A}-${axis.c}`,context:solidContext(R,axis),formulas:R.eqs,extra:G.extra,data:{method:'washer',axis:`y=${axis.c}`,region:'trig',graph:G.graph}}),R,[{axis,method:'washer',ask:0,reveal:0}],G.graph);
 }
 // v10.6 calculator solids, bounds given (the region under the curve); v12.9.B: each also builds its region, so the
 // explanation can show it with the axis and one slice
@@ -274,14 +296,14 @@ function calcSetup(prompt,R,method,axis,T,explanation){
 }
 function famSolidCalc(tier){
  if(tier==='foundational'){const o=pick(OLD_CALC)();
-  return one('',[numPart('Find the volume of the solid.',o.v,solidStep(o.R,o.method,o.axis,CALC_LEAD)+step('Set up and evaluate with the calculator.',o.why,`V\\approx ${fixed(o.v,3)}`))],{engine:'solids',family:'solid_calc',tier,id:o.id,calc:true,context:`The region under the curve on the interval is revolved about ${axisWords(o.axis)}.`,formulas:[o.tex],data:{method:o.method,axis:`${o.axis.type}=${o.axis.c}`,axisKind:o.axis.c===0?(o.axis.type==='y'?'x_axis':'y_axis'):'right'}});}
+  return withRevolution(one('',[numPart('Find the volume of the solid.',o.v,solidStep(o.R,o.method,o.axis,CALC_LEAD)+step('Set up and evaluate with the calculator.',o.why,`V\\approx ${fixed(o.v,3)}`))],{engine:'solids',family:'solid_calc',tier,id:o.id,calc:true,context:`The region under the curve on the interval is revolved about ${axisWords(o.axis)}.`,formulas:[o.tex],data:{method:o.method,axis:`${o.axis.type}=${o.axis.c}`,axisKind:o.axis.c===0?(o.axis.type==='y'?'x_axis':'y_axis'):'right'}}),o.R,[{axis:o.axis,method:o.method,ask:0,reveal:0}],'none');}
  for(let i=0;i<40;i++){
   const R=RG.build(pick(CALC_S)),A=calcAxes(R),kind=pick(Object.keys(A)),axis=A[kind],ms=methodsFor(R,axis);if(!ms.length)continue;
   const method=pick(ms),T=termsFor(R,method,axis),val=numValue(T),work=solidStep(R,method,axis,CALC_LEAD)+W.boundsStep(R)+workFor(R,method,axis,T);
   let parts,free=true;
   if(tier==='challenging'){const S=calcSetup('Write an integral expression for the volume of the solid',R,method,axis,T,work);free=S.free;parts=[S.part,numPart('Find the volume of the solid.',val,W.calcWork(T))];}
   else parts=[numPart('Find the volume of the solid.',val,work+W.calcWork(T))];
-  return one('Answer each part.',parts,{engine:'solids',family:'solid_calc',tier,id:`sc-${R.eqs.join('|')}-${axis.type}${axis.c}-${method}`,calc:true,context:solidContext(R,axis),formulas:R.eqs,data:{method:free?'any':method,shown:method,axis:`${axis.type}=${axis.c}`,axisKind:kind,region:R.data.kind}});
+  return withRevolution(one('Answer each part.',parts,{engine:'solids',family:'solid_calc',tier,id:`sc-${R.eqs.join('|')}-${axis.type}${axis.c}-${method}`,calc:true,context:solidContext(R,axis),formulas:R.eqs,data:{method:free?'any':method,shown:method,axis:`${axis.type}=${axis.c}`,axisKind:kind,region:R.data.kind}}),R,[{axis,method,ask:0,reveal:0}],'none');
  }
  throw Error('solid_calc failed');
 }
@@ -298,8 +320,8 @@ function famCalcTwoAxes(tier){
   if(tier==='challenging'){const S=calcSetup(`\\(R\\) is revolved about ${axisWords(a2)}. Write an integral expression for the volume of this solid`,R,m2,a2,T2,workB);free=S.free;parts=[pA,S.part,numPart('Find the volume of the solid in Part B.',v2,W.calcWork(T2))];}
   else parts=[pA,numPart(`\\(R\\) is revolved about ${axisWords(a2)}. Find the volume of this solid.`,v2,workB+W.calcWork(T2))];
   const shown=m1===m2?m1:'both';
-  return one('Answer each part.',parts,{engine:'solids',family:'calc_two_axes',tier,id:`sc2-${R.eqs.join('|')}-${a1.type}${a1.c}-${m1}-${a2.type}${a2.c}-${m2}`,calc:true,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,
-   data:{method:free&&shown!=='both'?'any':shown,shown,axis:`${a1.type}=${a1.c}; ${a2.type}=${a2.c}`,axisKind:`${k1}; ${k2}`,region:R.data.kind}});
+  return withRevolution(one('Answer each part.',parts,{engine:'solids',family:'calc_two_axes',tier,id:`sc2-${R.eqs.join('|')}-${a1.type}${a1.c}-${m1}-${a2.type}${a2.c}-${m2}`,calc:true,context:`Let \\(R\\) be ${R.text}.`,formulas:R.eqs,
+   data:{method:free&&shown!=='both'?'any':shown,shown,axis:`${a1.type}=${a1.c}; ${a2.type}=${a2.c}`,axisKind:`${k1}; ${k2}`,region:R.data.kind}}),R,[{axis:a1,method:m1,ask:0,reveal:0},{axis:a2,method:m2,ask:1,reveal:1}],'none');
  }
  throw Error('calc_two_axes failed');
 }
@@ -316,7 +338,7 @@ const SOLIDS={
 const shownMethod=p=>p.unit5Meta.shown||p.unit5Meta.method;
 const SOLID_MODES={disks_washers:{families:{disk_basic:true,washer:true,trig_solid:true,solid_calc:true,calc_two_axes:true},accept:p=>!['shell','both'].includes(shownMethod(p))},shells:{families:{shells:true,solid_calc:true,calc_two_axes:true},accept:p=>shownMethod(p)==='shell'}};
 const csEngine=U5.makeEngine('unit6-cross-sections',CS,CS_MODES),solidEngine=U5.makeEngine('unit6-solids',SOLIDS,SOLID_MODES);
-window.BatchMathUnit6Volume=Object.freeze({makeCS:csEngine.make,FAMILIES_CS:CS,MODES_CS:CS_MODES,makeSolid:solidEngine.make,FAMILIES_SOLID:SOLIDS,MODES_SOLID:SOLID_MODES,axesFor,termsFor,workFor,methodVar,axisWords,expBase,shapeOf,SH,describeSolid});
+window.BatchMathUnit6Volume=Object.freeze({makeCS:csEngine.make,FAMILIES_CS:CS,MODES_CS:CS_MODES,makeSolid:solidEngine.make,FAMILIES_SOLID:SOLIDS,MODES_SOLID:SOLID_MODES,axesFor,termsFor,workFor,methodVar,axisWords,expBase,shapeOf,SH,describeSolid,describeRevolution,sliceOf,methodsFor});
 U5.register('volume-by-cross-sections',o=>csEngine.make(o||{}));
 U5.register('solids-of-revolution',o=>solidEngine.make(o||{}));
 })();

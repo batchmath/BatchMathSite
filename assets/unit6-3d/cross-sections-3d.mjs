@@ -11,11 +11,11 @@
 //    explanation is on the page: before that nothing of the model is in the page.
 // When the question changes the previous model (if any) is released, so stale geometry is never shown. The model is
 // built from the problem's own data (problem.u6Solid) only when it is opened; three.js is loaded at that moment.
+// v13.0.C: the toggle itself (markup, lazy loading, release) is shared with Solids of Revolution (model-toggle.mjs).
 import {validate,shapeKey,SHAPE_WORDS} from './solid-geometry.mjs';
+import {createToggle,disposals} from './model-toggle.mjs';
 
-const SHOW='Show 3D Model (Beta)',HIDE='Hide 3D Model';
-let current=null; // {problem, wrap, button, stage, view, viewer, opening}
-const disposals=[]; // what each released model left in GPU memory (for the review lab's browser tests)
+let current=null; // the toggle of the problem shown (model-toggle.mjs)
 
 const checked=new WeakMap(); // descriptor -> validate() result (the page asks on every change of the question area)
 const check=d=>{let v=checked.get(d);if(!v){v=validate(d);checked.set(d,v);}return v;};
@@ -38,28 +38,7 @@ function anchorFor(p){
 }
 function release(){
  if(!current)return;
- const c=current;current=null;
- try{if(c.viewer){c.viewer.dispose();disposals.push(c.viewer.info.released);}}catch(_){}
- c.viewer=null;c.wrap.remove();
-}
-function close(c){
- try{if(c.viewer){c.viewer.dispose();disposals.push(c.viewer.info.released);}}catch(_){}
- c.viewer=null;c.opening=null;c.stage.hidden=true;c.view.innerHTML='';c.button.textContent=SHOW;c.button.setAttribute('aria-expanded','false');c.wrap.classList.remove('is-open');
-}
-async function open(c){
- c.button.textContent=HIDE;c.button.setAttribute('aria-expanded','true');c.stage.hidden=false;c.wrap.classList.add('is-open');
- c.view.innerHTML='<p class="u6-3d-note">Loading the 3D model…</p>';
- const token=c.opening={};
- try{
-  const {createViewer}=await import('./viewer.mjs');
-  if(current!==c||c.opening!==token||c.stage.hidden)return; // the question changed or the model was closed meanwhile
-  c.view.innerHTML='';
-  c.viewer=createViewer(c.view,c.problem.u6Solid,{problemId:c.problem.id});
- }catch(e){
-  if(current!==c||c.opening!==token)return;
-  c.viewer=null;c.view.innerHTML=`<p class="u6-3d-note">${e&&e.webgl===false?'This browser cannot show the 3D model (WebGL is not available). The 2D graph above still shows the base.':'The 3D model could not be shown for this question. The 2D graph above still shows the base.'}</p>`;
-  console.warn('3D model:',e&&e.message);
- }
+ const c=current;current=null;c.release();
 }
 function legend(d){
  const w=SHAPE_WORDS[shapeKey(d)],em=t=>t.replace(/\b(\d?)s\b/g,(m,n)=>`${n}<em class="u6-3d-s">s</em>`).replace(/\bd\b/g,'<em class="u6-3d-s">d</em>');
@@ -70,17 +49,10 @@ function sync(){
  if(current&&(current.problem!==p||!current.wrap.isConnected))release();
  if(current||!supported(p))return;
  const at=anchorFor(p);if(!at||!(at.el||at.fallback))return;
- const wrap=document.createElement('div');wrap.className='u6-3d';wrap.dataset.problemId=p.id;wrap.dataset.shape=shapeKey(p.u6Solid);wrap.dataset.dir=p.u6Solid.dir;
- const id=`u6-3d-${Math.random().toString(36).slice(2,8)}`;
- wrap.innerHTML=`<button type="button" class="u6-graph-btn u6-3d-btn" aria-expanded="false" aria-controls="${id}">${SHOW}</button>`
-  +`<div class="u6-3d-stage" id="${id}" hidden><div class="u6-3d-view"></div>`
-  +`<div class="u6-3d-bar"><span class="u6-3d-help">Drag to rotate · scroll or pinch to zoom</span><button type="button" class="u6-3d-reset">Reset view</button></div>`
-  +legend(p.u6Solid)+`</div>`;
- if(at.el)at.el.after(wrap);else at.fallback.appendChild(wrap);
- const c={problem:p,wrap,button:wrap.querySelector('.u6-3d-btn'),stage:wrap.querySelector('.u6-3d-stage'),view:wrap.querySelector('.u6-3d-view'),viewer:null,opening:null};
+ const c=createToggle({problem:p,legend:legend(p.u6Solid),load:()=>import('./viewer.mjs'),make:(m,host)=>m.createViewer(host,p.u6Solid,{problemId:p.id})});
+ c.wrap.dataset.shape=shapeKey(p.u6Solid);c.wrap.dataset.dir=p.u6Solid.dir;
+ if(at.el)at.el.after(c.wrap);else at.fallback.appendChild(c.wrap);
  current=c;
- c.button.addEventListener('click',()=>{if(current!==c)return;if(c.stage.hidden)open(c);else close(c);});
- wrap.querySelector('.u6-3d-reset').addEventListener('click',()=>c.viewer?.resetView());
 }
 function start(){
  const q=document.getElementById('question');if(!q)return;

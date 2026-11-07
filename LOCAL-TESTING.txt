@@ -1,7 +1,7 @@
-BatchMath v13.0.B — complete interactive 3D Volume by Cross Sections (experimental test build, not production)
+BatchMath v13.0.C — interactive 3D Solids of Revolution and Volume by Cross Sections (experimental test build, not production)
 
-Extract bm-v13.0.B.zip.
-Open a terminal inside the single folder bm-v13.0.B.
+Extract bm-v13.0.C.zip.
+Open a terminal inside the single folder bm-v13.0.C.
 Run exactly:
 
 py -m http.server 8000
@@ -10,7 +10,7 @@ py -m http.server 8000
 Open http://localhost:8000/ in your browser.
 Keep the terminal open while testing. Stop the server with Ctrl+C.
 
-Where the 3D model is: AP Calculus AB > Unit 6 > Volume by Cross Sections.
+VOLUME BY CROSS SECTIONS (v13.0.B, unchanged): AP Calculus AB > Unit 6 > Volume by Cross Sections.
 - Non-Calculator Practice: every question has "Show 3D Model (Beta)" right under the "Show Graph" button.
 - Calculator Practice: the region is not shown until Part A is checked (students graph it on their calculators).
   Check Part A (right or wrong); its explanation shows the 2D picture, and "Show 3D Model (Beta)" appears right under it.
@@ -39,6 +39,33 @@ Calculator practice (check Part A first; the 3D button then appears in Part A's 
 http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice/?bm_seed=3dbc1   (y = 4 ln(x+1), y = -x + 2, y = 0; rectangles 2s perpendicular to the x-axis (two parts))
 http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice/?bm_seed=3dbc3   (y = ln(x+1), y = -x + 2, y = 0; equilateral triangles perpendicular to the y-axis)
 http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice/?bm_seed=3dbc2   (y = e^(2x), the axes, x = 1; semicircles perpendicular to the x-axis)
+
+
+SOLIDS OF REVOLUTION (new in v13.0.C): AP Calculus AB > Unit 6 > Solids of Revolution.
+- Each model shows the region (gold), the axis of rotation (a pink line labelled with its equation), the solid (blue) and
+  one highlighted disk, washer (R and r) or cylindrical shell (r and h). Drag to rotate; scroll or pinch to zoom; Reset view.
+- A model appears where the 2D picture of the region and that axis is shown: under the graph when the question shows it;
+  otherwise (every calculator question, and non-calculator questions without a graph) in the explanation of the part that
+  first draws that rotation, after the part is checked. Questions about two axes have one model per axis, with its part.
+
+These links always open the same question (non-calculator):
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/?bm_seed=3dcn14   (disk_basic: y = 9 - x^2 and y = 0 about the x-axis (disks); the graph is in the question)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/?bm_seed=3dcn1   (washer: y = x^3, x = 2, y = 0 about y = -1 (washers, shifted axis); graph in the question)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/?bm_seed=3dcn2   (washer: y = 2/x, y = 0, x = 2, x = 4 about the x-axis (disks); graph in the question)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/?bm_seed=3dcn4   (shells: y = x, x = 3, y = 0 about the y-axis; graph in the question)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/?bm_seed=3dcn3   (two_axes: y = sqrt(x), y = x^2: Part A about x = -3 (washers), Part B about y = 0 (shells); each part has its own model)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/?bm_seed=3dcn13   (trig_solid: y = 1 + sin x about y = -2; graph in the question)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/?bm_seed=3dcn11   (washer, no graph in the question: y = sqrt(x), y = x/2 about y = -3; the model appears after Part A is checked)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/?bm_seed=3dcn19   (shells, no graph in the question: y = 3x, y = x^2 about x = -1; after Part A is checked)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/?bm_seed=3dcn8   (disk_basic, no graph: x = -y^3 + 3y^2 and the y-axis about the y-axis; after the answer is checked)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/non-calculator-practice/?bm_seed=3dcn5   (two_axes, no graph: y = 4, y = x^2, x = 0: Part A model after Part A, Part B model after Part B)
+
+Calculator practice (check Part A first; for two axes, also Part B):
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice/?bm_seed=3dcc5   (solid_calc: a v10.6 calculator solid (disks about the x-axis))
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice/?bm_seed=3dcc2   (solid_calc: 1 + ln x and x^2 - 2 about y = 3 (washers))
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice/?bm_seed=3dcc3   (solid_calc, two parts: y = e^(2x), the axes, x = 1 about y = -1 (shells))
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice/?bm_seed=3dcc10   (calc_two_axes: y = e^(2x), the axes and x = 1: Part A about x = 3 (shells), Part B about y = -2 (washers))
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/calculator-practice/?bm_seed=3dcc13   (calc_two_axes, three parts: y = cos x and y = 3x^2: Part A about y = -1, Part B about x = 2)
 
 The website, practice engines, PDFs, local MathLive runtime and fonts, and the local three.js library are included.
 Normal MathJax rendering and YouTube video playback require internet.
