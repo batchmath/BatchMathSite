@@ -1,7 +1,8 @@
 // BatchMath v13.0.B (experimental): the interactive 3D model of a solid with known cross sections (every shape of the
 // Volume by Cross Sections engine, slices perpendicular to the x-axis or to the y-axis). Loaded only when a student opens
 // the model (three.js is about 0.7 MB). v13.0.C: the stage (renderer, grid, axes, camera, controls, release) is shared
-// with the Solids of Revolution model through scene-kit.mjs; what is drawn and how is unchanged.
+// with the Solids of Revolution model through scene-kit.mjs; what is drawn and how is unchanged. v13.0.D: a Transparent /
+// Opaque display mode (displayModes in scene-kit.mjs); Transparent, the default, is exactly the look above.
 //
 // The scene uses the math coordinates directly (x, y, z), at ONE scale on every axis so every shape keeps its true
 // proportions: the base region lies in the xy-plane, z points up. Drawn: the base region (gold, as the shaded region of
@@ -11,7 +12,7 @@
 // picture), and the x, y and z axes with a light grid on the base plane. Mouse: drag to rotate, wheel to zoom; touch:
 // one finger rotates, two fingers pinch to zoom. The scene is drawn only when something changes (no animation loop) and
 // everything is released when the model is hidden or the question changes. No volume, integral or area formula is shown.
-import {THREE,COLORS,label,pts3,line,loop,mesh,createStage} from './scene-kit.mjs';
+import {THREE,COLORS,label,pts3,line,loop,mesh,createStage,displayModes} from './scene-kit.mjs';
 import {buildSolid,SHAPE_WORDS} from './solid-geometry.mjs';
 
 // host: the element the canvas goes in. desc: problem.u6Solid. Returns {dispose, resetView, info, canvas}.
@@ -20,7 +21,7 @@ export function createViewer(host,desc,{problemId=''}={}){
  const S=createStage(host,{bounds:B,unit:u,ariaLabel:`Interactive 3D model: the base region ${desc.eqs.join(', ')} with ${words.solid} perpendicular to the ${desc.dir}-axis; one cross section is ${words.one}. Drag to rotate; scroll or pinch to zoom.`});
  const scene=S.scene;
  // the base region (gold, a little above the grid), and its boundary
- scene.add(mesh(G.base,new THREE.MeshBasicMaterial({color:COLORS.base,transparent:true,opacity:0.32,side:THREE.DoubleSide,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1})));
+ const baseMesh=mesh(G.base,new THREE.MeshBasicMaterial({color:COLORS.base,transparent:true,opacity:0.32,side:THREE.DoubleSide,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}));scene.add(baseMesh);
  scene.add(line(G.outline.lo,COLORS.baseEdge,0.9),line(G.outline.hi,COLORS.baseEdge,0.9));for(const e of G.outline.ends)scene.add(line(e,COLORS.baseEdge,0.9));
  // the solid: flat faces (swept by straight sides, and the end sections) and curved faces (swept by arcs), translucent
  const flatMat=new THREE.MeshPhongMaterial({color:COLORS.solid,transparent:true,opacity:0.3,side:THREE.DoubleSide,depthWrite:false,shininess:40,flatShading:true});
@@ -36,7 +37,7 @@ export function createViewer(host,desc,{problemId=''}={}){
  const hm=new THREE.Mesh(hq,new THREE.MeshBasicMaterial({color:COLORS.slice,transparent:true,opacity:0.62,side:THREE.DoubleSide,depthWrite:false}));hm.renderOrder=3;scene.add(hm);
  const hl=loop(H.pts,COLORS.slice);hl.renderOrder=4;scene.add(hl);
  const seg=line(H.slice,0xffffff);seg.renderOrder=5;scene.add(seg);
- for(const a of [...H.aux,...H.marks]){const l=line(a,COLORS.mark,0.95);l.renderOrder=5;scene.add(l);}
+ const marks=[];for(const a of [...H.aux,...H.marks]){const l=line(a,COLORS.mark,0.95);l.renderOrder=5;scene.add(l);marks.push(l);}
  for(const l of H.labels){const sp=label(l.text,{size:u*(l.text.length>2?1.45:1.6),color:'#ffd400'});sp.position.set(...l.at);scene.add(sp);}
  // the camera: in front of the base, to one side and above it, so the cross sections are seen partly face on (for slices
  // perpendicular to the y-axis the sections face the y-axis, so the view turns with them); the whole scene (solid, axes
@@ -45,9 +46,15 @@ export function createViewer(host,desc,{problemId=''}={}){
  for(const a of [G.outline.lo,G.outline.hi,...G.edges,...(G.crest?[G.crest]:[])])keyPts.push(...pts3(every(a,6)));
  for(const a of [...G.ends,...G.sections.map(q=>q.pts),H.pts])keyPts.push(...pts3(every(a,4)));
  const V=S.finish(keyPts,{dir:desc.dir==='y'?[0.74,-0.62,0.5]:[0.62,-0.74,0.5]});
+ // v13.0.D: Transparent (above, unchanged) or Opaque. An opaque solid also needs its floor (the gold base covers it, a
+ // little in front, in both modes); the highlighted section inside it, its rim and its marks are drawn faintly (dashed
+ // lines) where the solid hides them
+ const floor=mesh(G.base,flatMat);floor.renderOrder=2;floor.userData.kind='floor';scene.add(floor);
+ const D=displayModes(scene,{solids:[flatMat,curvedMat],closers:[floor],overlays:[[hm,0.2],[hl,0.8],[seg,0.7],...marks.map(l=>[l,0.7])],dash:u*0.22});
  const info={problemId,key,dir:desc.dir,highlight:{t:H.t,lo:H.lo,hi:H.hi,s:H.s,area:H.area},bounds:{...B},sections:G.sections.length,samples:G.samples.length,disposed:false,released:null,
   get frames(){return V.frames;},get resizes(){return V.resizes;},get distance(){return V.distance;},get azimuth(){return V.azimuth;},get polar(){return V.polar;},
-  get memory(){return V.memory;},
+  get memory(){return V.memory;},get display(){return D.mode;},get ghosts(){return D.ghosts;},materials:()=>D.materials(),savedMaterials:()=>D.saved(),testGhosts:v=>{D.showGhosts(v);V.render();},snapshot:()=>{V.render();return S.canvas.toDataURL('image/png');},
+  geometryIds:()=>[...parts,floor,hm,baseMesh].map(m=>m.geometry.uuid),project:p=>V.project(p),look:d=>V.look(d),hitSolid:(x,y)=>V.hit(x,y,[...parts,...(floor.visible?[floor]:[])]),
   // what is actually drawn, read back from the GPU-bound buffers (for the review lab's browser tests)
   drawn(){const h=hl.geometry.getAttribute('position').array,outline=[];for(let i=0;i<h.length;i+=3)outline.push([h[i],h[i+1],h[i+2]]);
    let x0=Infinity,x1=-Infinity,y0=Infinity,y1=-Infinity,z0=Infinity,z1=-Infinity,n=0,curvedN=0;
@@ -57,5 +64,5 @@ export function createViewer(host,desc,{problemId=''}={}){
     shading:{flat:flatMat.flatShading===true,curvedSmooth:curvedMat.flatShading!==true&&parts.some(m=>m.userData.kind==='curved'&&!!m.geometry.getAttribute('normal'))},
     labels:(()=>{const l=[];scene.traverse(o=>{if(o.isSprite)l.push(o.userData.label);});return l;})(),marks:H.marks.length,aux:H.aux.length};}};
  S.canvas.__bm3d=info;
- return{info,canvas:S.canvas,resetView:()=>V.resetView(),dispose:()=>V.dispose(info)};
+ return{info,canvas:S.canvas,resetView:()=>V.resetView(),setDisplay:m=>{if(D.set(m))V.render();},dispose:()=>V.dispose(info)};
 }

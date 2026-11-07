@@ -7,8 +7,9 @@
 // (translucent blue, smooth around the axis, with a hole wherever the region stays away from the axis), the circles
 // traced by the region's corners, light outlines of the region turned to eight positions, and the representative disk,
 // washer or shell (yellow) at the explanation's own slice, with R and r (disks and washers, measured from the axis) or
-// r and h (shells). No volume or integral is shown.
-import {THREE,COLORS,label,pts3,line,loop,mesh,createStage} from './scene-kit.mjs';
+// r and h (shells). No volume or integral is shown. v13.0.D: a Transparent / Opaque display mode (displayModes in
+// scene-kit.mjs); Transparent, the default, is exactly the look above.
+import {THREE,COLORS,label,pts3,line,loop,mesh,createStage,displayModes} from './scene-kit.mjs';
 import {buildRevolution,rhoOf} from './revolution-geometry.mjs';
 
 const KIND_WORDS={disk:'disk',washer:'washer',shell:'cylindrical shell'};
@@ -18,8 +19,8 @@ export function createRevolutionViewer(host,desc,i,{problemId=''}={}){
  const S=createStage(host,{bounds:B,unit:u,ariaLabel:`Interactive 3D model: the region${desc.eqs.length?` ${desc.eqs.join(', ')}`:''} revolved about the line ${rot.axisTex.replace('=',' = ')}; one ${KIND_WORDS[rot.kind]} is highlighted. Drag to rotate; scroll or pinch to zoom.`});
  const scene=S.scene;
  // the region (gold, a little above the grid) and its outline
- scene.add(mesh(G.base,new THREE.MeshBasicMaterial({color:COLORS.base,transparent:true,opacity:0.32,side:THREE.DoubleSide,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1})));
- scene.add(loop(G.outline,COLORS.baseEdge,0.9));
+ const baseMesh=mesh(G.base,new THREE.MeshBasicMaterial({color:COLORS.base,transparent:true,opacity:0.32,side:THREE.DoubleSide,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}));scene.add(baseMesh);
+ const outline=loop(G.outline,COLORS.baseEdge,0.9);scene.add(outline);
  // the solid: one smooth translucent surface, with its normals turned with it
  const solidMat=new THREE.MeshPhongMaterial({color:COLORS.solid,transparent:true,opacity:0.3,side:THREE.DoubleSide,depthWrite:false,shininess:60,specular:0x557799});
  const solid=mesh(G.solid.positions,solidMat,G.solid.normals,G.solid.index);solid.renderOrder=2;scene.add(solid);
@@ -32,9 +33,9 @@ export function createRevolutionViewer(host,desc,i,{problemId=''}={}){
  // the representative disk, washer or shell: yellow, with the circles of its edges, the slice itself (white), its radii
  // (and height) and their labels
  const H=G.highlight,hm=mesh(H.mesh.positions,new THREE.MeshBasicMaterial({color:COLORS.slice,transparent:true,opacity:0.55,side:THREE.DoubleSide,depthWrite:false}),H.mesh.normals,H.mesh.index);hm.renderOrder=3;scene.add(hm);
- for(const r of H.rings){const l=line(r,COLORS.slice,0.95);l.renderOrder=4;scene.add(l);}
+ const rings=[],lines=[];for(const r of H.rings){const l=line(r,COLORS.slice,0.95);l.renderOrder=4;scene.add(l);rings.push(l);}
  const seg=line(H.slice,0xffffff);seg.renderOrder=5;scene.add(seg);
- for(const L of H.lines){const l=line([L.from,L.to],COLORS.mark,0.95);l.renderOrder=5;scene.add(l);}
+ for(const L of H.lines){const l=line([L.from,L.to],COLORS.mark,0.95);l.renderOrder=5;scene.add(l);lines.push(l);}
  for(const l of H.labels){const sp=label(l.text,{size:u*1.6,color:'#ffd400'});sp.position.set(...l.at);scene.add(sp);}
  // the camera: as in the 2D graph (x to the right, y up the screen) seen a little from the right and from above, so the
  // region keeps its familiar orientation and the solid comes out of the page around the axis; the solid, the axis and
@@ -43,10 +44,14 @@ export function createRevolutionViewer(host,desc,i,{problemId=''}={}){
  keyPts.push(...pts3(every(G.outline,4)),...pts3(G.axisLine));
  for(const e of [...G.edges,...G.meridians,...H.rings])keyPts.push(...pts3(every(e,8)));
  const V=S.finish(keyPts,{dir:[0.42,0.3,0.86],up:[0,1,0],centerZ:(B.zmin+B.zmax)/2});
+ // v13.0.D: Transparent (above, unchanged) or Opaque. The solid is closed, so it needs nothing more; the region, the
+ // axis of rotation and the highlighted disk, washer or shell inside it are drawn faintly where the solid hides them
+ const D=displayModes(scene,{solids:[solidMat],overlays:[[baseMesh,0.14],[outline,0.7],[rod,0.45],[hm,0.18],...rings.map(l=>[l,0.8]),[seg,0.7],...lines.map(l=>[l,0.7])],dash:u*0.22});
  const axisPts=()=>{rod.updateMatrixWorld();const a=rod.geometry.getAttribute('position'),v=new THREE.Vector3(),out=[];for(let j=0;j<a.count;j++){v.fromBufferAttribute(a,j).applyMatrix4(rod.matrixWorld);out.push([v.x,v.y,v.z]);}return out;};
  const info={problemId,rotation:i,axis:{...ax},method:rot.method,kind:rot.kind,highlight:{kind:H.kind,R:H.R,r:H.r,radius:H.radius,height:H.height,thickness:H.thickness,at:H.at,axial:H.axial},bounds:{...B},disposed:false,released:null,
   get frames(){return V.frames;},get resizes(){return V.resizes;},get distance(){return V.distance;},get azimuth(){return V.azimuth;},get polar(){return V.polar;},
-  get memory(){return V.memory;},
+  get memory(){return V.memory;},get display(){return D.mode;},get ghosts(){return D.ghosts;},materials:()=>D.materials(),savedMaterials:()=>D.saved(),testGhosts:v=>{D.showGhosts(v);V.render();},snapshot:()=>{V.render();return S.canvas.toDataURL('image/png');},
+  geometryIds:()=>[solid,hm,baseMesh,rod].map(m=>m.geometry.uuid),project:p=>V.project(p),look:d=>V.look(d),hitSolid:(x,y)=>V.hit(x,y,[solid]),
   // what is actually drawn, read back from the GPU-bound buffers (for the review lab's browser tests): every vertex of
   // the solid and of the highlighted slice as (distance along the axis, distance from the axis), and the drawn rod
   drawn(){const meas=a=>{let a0=Infinity,a1=-Infinity,r0=Infinity,r1=-Infinity;for(let j=0;j<a.length;j+=3){const p=[a[j],a[j+1],a[j+2]],al=ax.type==='y'?p[0]:p[1],rr=Math.hypot(ax.type==='y'?p[1]-ax.c:p[0]-ax.c,p[2]);a0=Math.min(a0,al);a1=Math.max(a1,al);r0=Math.min(r0,rr);r1=Math.max(r1,rr);}return{axial:[a0,a1],radius:[r0,r1],vertices:a.length/3};};
@@ -56,6 +61,6 @@ export function createRevolutionViewer(host,desc,i,{problemId=''}={}){
     rod:{center:[mid(0),mid(1),mid(2)],along:ax.type==='y'?[Math.min(...rp.map(p=>p[0])),Math.max(...rp.map(p=>p[0]))]:[Math.min(...rp.map(p=>p[1])),Math.max(...rp.map(p=>p[1]))]},
     labels:(()=>{const l=[];scene.traverse(o=>{if(o.isSprite)l.push(o.userData.label);});return l;})()};}};
  S.canvas.__bm3d=info;
- return{info,canvas:S.canvas,resetView:()=>V.resetView(),dispose:()=>V.dispose(info)};
+ return{info,canvas:S.canvas,resetView:()=>V.resetView(),setDisplay:m=>{if(D.set(m))V.render();},dispose:()=>V.dispose(info)};
 }
 export {rhoOf};

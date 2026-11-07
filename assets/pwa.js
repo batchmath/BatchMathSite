@@ -1,8 +1,8 @@
-/* BatchMath PWA registration/update foundation — v13.0.C */
+/* BatchMath PWA registration/update foundation — v13.0.D */
 (() => {
   'use strict';
 
-  const APP_VERSION = '13.0.C';
+  const APP_VERSION = '13.0.D';
   const state = {
     version: APP_VERSION,
     supported: 'serviceWorker' in navigator,
@@ -155,7 +155,9 @@
     };
     window.addEventListener('keydown', event => {
       if (event.key !== 'Enter' || event.isComposing || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) return;
-      if (event.target?.closest?.('dialog, textarea, select, a, .dropdown, .menu-toggle')) return;
+      // (v13.0.D: Enter on a control of a Unit 6 3D model, such as Transparent / Opaque or Reset view, activates that
+      // control instead of going to the next question)
+      if (event.target?.closest?.('dialog, textarea, select, a, .dropdown, .menu-toggle, .u6-3d')) return;
       const next = document.querySelector('button#next');
       const fresh = document.querySelector('button#new');
       const target = visibleEnabled(next) ? next : feedbackShown() && visibleEnabled(fresh) ? fresh : null;

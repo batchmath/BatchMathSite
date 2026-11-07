@@ -1,7 +1,7 @@
-BatchMath v13.0.C — interactive 3D Solids of Revolution and Volume by Cross Sections (experimental test build, not production)
+BatchMath v13.0.D — 3D models with a Transparent / Opaque display toggle (experimental test build, not production)
 
-Extract bm-v13.0.C.zip.
-Open a terminal inside the single folder bm-v13.0.C.
+Extract bm-v13.0.D.zip.
+Open a terminal inside the single folder bm-v13.0.D.
 Run exactly:
 
 py -m http.server 8000
@@ -10,7 +10,14 @@ py -m http.server 8000
 Open http://localhost:8000/ in your browser.
 Keep the terminal open while testing. Stop the server with Ctrl+C.
 
-VOLUME BY CROSS SECTIONS (v13.0.B, unchanged): AP Calculus AB > Unit 6 > Volume by Cross Sections.
+NEW IN v13.0.D: every 3D model (both topics below) has a "Transparent | Opaque" switch beside Reset view.
+- Transparent (the default) is the look of v13.0.A-C. Opaque shows the solid's outside fully opaque, so its shape is
+  easier to see; parts of the highlighted slice (and, for solids of revolution, the region and the axis) that the solid
+  hides are then drawn faintly, with dashed outlines. The switch is immediate: the view (rotation and zoom) stays.
+- It works with the mouse, the keyboard (Tab to it, Enter or Space) and touch. Reset view keeps the chosen display.
+  The choice is kept when the model is hidden and shown again; a new question starts Transparent.
+
+VOLUME BY CROSS SECTIONS (v13.0.B): AP Calculus AB > Unit 6 > Volume by Cross Sections.
 - Non-Calculator Practice: every question has "Show 3D Model (Beta)" right under the "Show Graph" button.
 - Calculator Practice: the region is not shown until Part A is checked (students graph it on their calculators).
   Check Part A (right or wrong); its explanation shows the 2D picture, and "Show 3D Model (Beta)" appears right under it.
@@ -41,7 +48,7 @@ http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-
 http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice/?bm_seed=3dbc2   (y = e^(2x), the axes, x = 1; semicircles perpendicular to the x-axis)
 
 
-SOLIDS OF REVOLUTION (new in v13.0.C): AP Calculus AB > Unit 6 > Solids of Revolution.
+SOLIDS OF REVOLUTION (v13.0.C): AP Calculus AB > Unit 6 > Solids of Revolution.
 - Each model shows the region (gold), the axis of rotation (a pink line labelled with its equation), the solid (blue) and
   one highlighted disk, washer (R and r) or cylindrical shell (r and h). Drag to rotate; scroll or pinch to zoom; Reset view.
 - A model appears where the 2D picture of the region and that axis is shown: under the graph when the question shows it;

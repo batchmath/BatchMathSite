@@ -67,6 +67,14 @@
 .u6-3d-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 12px;padding:8px 12px;border-top:1px solid #1f1f1f;font-size:.9rem;color:#bdbdbd}
 .u6-3d-reset{min-height:34px;padding:4px 12px;border:1px solid #454545;border-radius:8px;background:#111;color:#f4f4f4;font-weight:700;font-size:.9rem;cursor:pointer}
 .u6-3d-reset:hover,.u6-3d-reset:focus-visible{border-color:var(--yellow);color:var(--yellow)}
+/* v13.0.D (experimental): Transparent / Opaque display control beside Reset view */
+.u6-3d-actions{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px}
+.u6-3d-display{display:inline-flex;border:1px solid #454545;border-radius:8px;overflow:hidden}
+.u6-3d-mode{min-height:34px;padding:4px 11px;border:0;background:#111;color:#bdbdbd;font-weight:700;font-size:.9rem;cursor:pointer}
+.u6-3d-mode+.u6-3d-mode{border-left:1px solid #454545}
+.u6-3d-mode[aria-pressed="true"]{background:#2b2b2b;color:var(--yellow)}
+.u6-3d-mode[aria-pressed="false"]:hover{color:#f4f4f4}
+.u6-3d-mode:focus-visible{outline:2px solid var(--yellow);outline-offset:-2px}
 .u6-3d-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;padding:0 12px 12px;font-size:.9rem;color:#d8d8d8}
 .u6-3d-key{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:6px;vertical-align:-2px}
 .u6-3d-key-base{background:rgba(255,212,0,.32);border:1px solid #f4f4f4}

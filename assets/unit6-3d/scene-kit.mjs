@@ -33,6 +33,40 @@ function context(canvas){
  return gl;
 }
 
+// v13.0.D: display modes. 'transparent' is the look of v13.0.A-C, unchanged; 'opaque' gives the solid a fully opaque
+// exterior so its shape reads at once. Switching changes material states only: no geometry is rebuilt, nothing is
+// regenerated and the camera does not move. In opaque mode:
+//  - the solid's materials are opaque and write depth, pushed back a little (polygon offset) so that the lines lying on
+//    its surface (edges, outlines, the highlighted slice's rim) stay visible instead of flickering;
+//  - `closers` are shown: faces that only an opaque solid needs (the floor of a cross-section solid, which the gold base
+//    covers in transparent mode);
+//  - each overlay the solid now hides (the highlighted slice, the region, the axis of rotation) also gets a faint copy
+//    drawn ONLY where it is hidden (depth test "greater": the classic hidden-line convention: dashed lines, a faint
+//    film for faces), so it stays visible and is never drawn as if it were in front of the surface.
+// 'transparent' restores every saved material state exactly and hides the closers and the faint copies.
+export function displayModes(scene,{solids,closers=[],overlays=[],dash=0.1}){
+ const keys=['transparent','opacity','depthWrite','polygonOffset','polygonOffsetFactor','polygonOffsetUnits'];
+ const saved=solids.map(m=>({m,s:Object.fromEntries(keys.map(k=>[k,m[k]]))}));
+ let mode='transparent',ghosts=null;
+ for(const c of closers)c.visible=false;
+ // a hidden line is dashed (on its own copy of the line's points, with the dash lengths along it); a hidden face is a
+ // faint film of its colour
+ const ghost=([o,opacity])=>{let g;
+  if(o.isLine){const geo=o.geometry.clone(),m=new THREE.LineDashedMaterial({color:o.material.color,dashSize:dash,gapSize:dash*0.7,transparent:true,opacity,depthWrite:false,depthFunc:THREE.GreaterDepth});g=new o.constructor(geo,m);g.computeLineDistances();}
+  else{const m=o.material.clone();Object.assign(m,{transparent:true,opacity,depthWrite:false,depthTest:true,depthFunc:THREE.GreaterDepth});g=new o.constructor(o.geometry,m);}
+  g.position.copy(o.position);g.quaternion.copy(o.quaternion);g.scale.copy(o.scale);g.renderOrder=(o.renderOrder||0)+20;g.userData.ghost=true;scene.add(g);return g;};
+ return{get mode(){return mode;},get ghosts(){return ghosts?ghosts.length:0;},
+  // returns true when the mode changed (the caller redraws once)
+  set(next){next=next==='opaque'?'opaque':'transparent';if(next===mode)return false;mode=next;const op=mode==='opaque';
+   if(op&&!ghosts)ghosts=overlays.map(ghost);
+   for(const {m,s} of saved){Object.assign(m,op?{transparent:false,opacity:1,depthWrite:true,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1}:s);m.needsUpdate=true;}
+   for(const c of closers)c.visible=op;for(const g of ghosts||[])g.visible=op;return true;},
+  // for the review lab's browser tests: the faint hidden copies off or on again (opaque mode only)
+  showGhosts(v){for(const g of ghosts||[])g.visible=!!v&&mode==='opaque';},
+  materials(){return saved.map(({m})=>Object.fromEntries(keys.map(k=>[k,m[k]])));},
+  saved(){return saved.map(({s})=>({...s}));}};
+}
+
 // The stage: canvas, renderer, scene, lights, grid and axes for the bounds B ({xmin,xmax,ymin,ymax,zmax}, and zmin when
 // the model reaches below the base plane), with u the size unit for labels and arrow heads. The model is added to
 // stage.scene; stage.finish(keyPoints, {dir, centerZ, up}) then fits the camera so those points, the axes and every
@@ -83,6 +117,12 @@ export function createStage(host,{bounds:B,unit:u,ariaLabel}){
     get frames(){return frames;},get resizes(){return sized;},get distance(){return camera.position.distanceTo(controls.target);},get azimuth(){return controls.getAzimuthalAngle();},get polar(){return controls.getPolarAngle();},
     get memory(){return{...renderer.info.memory};},
     resetView(){touched=false;home();controls.target.copy(center);controls.update();render();},
+    // for the review lab's browser tests: where a point of the scene is drawn on the canvas (CSS pixels), and a view
+    // from a given direction at the present distance (as a student's rotation would give)
+    project(p){const v=new THREE.Vector3(...p).project(camera);return{x:(v.x+1)/2*canvas.clientWidth,y:(1-v.y)/2*canvas.clientHeight,inFront:v.z<1};},
+    // the first surface among `objects` under a canvas point (CSS pixels), by ray casting the actual geometry
+    hit(x,y,objects){const rc=new THREE.Raycaster(),v=new THREE.Vector2(x/canvas.clientWidth*2-1,-(y/canvas.clientHeight*2-1));rc.setFromCamera(v,camera);const h=rc.intersectObjects(objects,false)[0];return h?{distance:h.distance,point:h.point.toArray()}:null;},
+    look(dir){touched=true;const d=camera.position.distanceTo(controls.target);camera.position.copy(controls.target).addScaledVector(new THREE.Vector3(...dir).normalize(),d);controls.update();render();},
     // releases every geometry, material and texture, then the renderer and its context; info gets what was left
     dispose(info){ro.disconnect();controls.dispose();scene.traverse(o=>{o.geometry?.dispose?.();const m=o.material;if(m){m.map?.dispose?.();m.dispose?.();}});
      info.released={...renderer.info.memory};info.disposed=true;renderer.dispose();renderer.forceContextLoss?.();canvas.remove();}};
