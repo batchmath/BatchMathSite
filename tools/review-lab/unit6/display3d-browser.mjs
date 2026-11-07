@@ -6,8 +6,9 @@
 //  - after a rotation and a zoom, Opaque (click, Enter/Space, or tap) switches at once: one redraw, the same viewer and
 //    canvas, the same geometry buffers (by id), the same camera; the solid's materials are opaque and write depth; a
 //    pixel where a ray actually hits the solid's surface turns from the dark see-through blend into solid blue;
-//  - the highlighted slice stays visible: its hidden parts are drawn (dashed rim, faint film), measured by switching
-//    those copies off and on (the pixels they change, at least 10), and its labels remain;
+//  - the highlighted slice stays visible: its yellow is on the canvas, and its hidden parts are drawn (dashed rim, faint
+//    film), measured by switching those copies off and on (the pixels they change, at least 10); when the zoom left the
+//    slice off the screen, this is measured in the starting view (Reset view, which keeps Opaque);
 //  - washers with a hole: looking down the axis, a ray at a fraction of the least inner radius misses the solid (by ray
 //    casting the geometry) and its pixel is not solid blue in Opaque mode: the hole stays open;
 //  - Reset view in Opaque mode restores the starting view and keeps Opaque; back to Transparent, the picture is the
@@ -91,7 +92,7 @@ async function exercise(p,cs,tag,run,{mob,cdp,hole,shot}){
  run.start={display:s0.display,pressed:s0.pressed,materials:s0.mat};
  if(s0.display!=='transparent'||s0.pressed!=='transparent:true opaque:false'||!same(s0.mat,s0.saved)||s0.ghosts)fail(`${tag}: does not open Transparent: ${JSON.stringify(run.start)}`);
  const home=await canvasPng(p);
- await drag(p,mob,cdp);const s1=await st(p,cs),t1=await canvasPng(p);
+ await drag(p,mob,cdp);const t1=await canvasPng(p),s1=await st(p,cs); // (the snapshot redraws once: read the count after it)
  // Opaque: immediate, nothing rebuilt, view kept
  await clickMode(p,'opaque',mob?'tap':'click',mob);const s2=await st(p,cs);
  run.opaque={frames:s2.frames-s1.frames,camera:same([s1.az,s1.d,s1.polar],[s2.az,s2.d,s2.polar]),sameGeometry:s1.ids===s2.ids,sameCanvas:s2.marker==='first',materials:s2.mat,ghosts:s2.ghosts,pressed:s2.pressed};
@@ -104,10 +105,15 @@ async function exercise(p,cs,tag,run,{mob,cdp,hole,shot}){
  else{const po=pix(o,sp.x,sp.y,dpr),pt=pix(t,sp.x,sp.y,dpr);run.surfacePixel={transparent:pt,opaque:po};
   if(!(po[2]>=120&&po[2]>po[0]+25&&po[0]+po[1]+po[2]>pt[0]+pt[1]+pt[2]+40))fail(`${tag}: the surface pixel is not opaque blue: transparent ${pt}, opaque ${po}`);}
  // the highlighted slice stays visible: what its hidden copies add
- const withImg=await decode(p,await canvasPng(p));await p.evaluate(([api,f])=>window.__v(api).testGhosts(false),[API(cs),vinfo]);
- const withoutImg=await decode(p,await canvasPng(p));await p.evaluate(([api,f])=>window.__v(api).testGhosts(true),[API(cs),vinfo]);
- run.hiddenSlice={pixelsDrawnForHiddenParts:changed(withImg,withoutImg),yellowWith:yellowCount(withImg),yellowWithout:yellowCount(withoutImg)};
+ const hidden=async()=>{const withImg=await decode(p,await canvasPng(p));await p.evaluate(([api,f])=>window.__v(api).testGhosts(false),[API(cs),vinfo]);
+  const withoutImg=await decode(p,await canvasPng(p));await p.evaluate(([api,f])=>window.__v(api).testGhosts(true),[API(cs),vinfo]);
+  return{pixelsDrawnForHiddenParts:changed(withImg,withoutImg),yellowWith:yellowCount(withImg),yellowWithout:yellowCount(withoutImg)};};
+ run.hiddenSlice=await hidden();
+ // (a zoom toward the middle of the canvas can leave a small slice off the screen altogether, in either mode: then it is
+ // measured in the starting view, which Reset view gives back in Opaque mode)
+ if(!run.hiddenSlice.yellowWith){await p.click('.u6-3d .u6-3d-reset');await p.waitForTimeout(200);run.hiddenSlice={...await hidden(),afterReset:true,offScreenAfterZoom:true};}
  if(run.hiddenSlice.pixelsDrawnForHiddenParts<10)fail(`${tag}: the hidden parts of the highlighted slice are not drawn (${JSON.stringify(run.hiddenSlice)})`);
+ if(!run.hiddenSlice.yellowWith)fail(`${tag}: no yellow of the highlighted slice on the canvas in Opaque mode (${JSON.stringify(run.hiddenSlice)})`);
  if(shot)await p.locator('.u6-3d').first().screenshot({path:`${shots}/${shot}-opaque.png`});
  // a hole along the axis stays open
  if(hole){const h=await p.evaluate(([api,f])=>{const v=window.__v(api),d=window.BatchMathUnit5Last.u6Revolution,r=d.rotations[0],ax=r.axis,ps=d.xs||d.ys,X=!!d.xs;let m=Infinity,a0=Infinity,a1=-Infinity;
