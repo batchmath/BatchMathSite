@@ -1,0 +1,10 @@
+{ visible: true, fields: 1 }
+file://<repo>/tools/answered-enter-browser-qa.mjs:102
+  if(await page.evaluate(()=>window.BatchMathRepro.problemCount)!==before)throw new Error('invalid input Enter advanced');
+                                                                                ^
+
+Error: invalid input Enter advanced
+    at exerciseAdvancedHints (file://<repo>/tools/answered-enter-browser-qa.mjs:102:81)
+    at async file://<repo>/[eval1]:6:275
+
+Node.js v24.19.0

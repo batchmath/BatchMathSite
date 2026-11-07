@@ -9,7 +9,7 @@ import { exerciseAnsweredEnter, exerciseAdvancedHints, realEnterEngines } from '
 
 const HERE=path.dirname(fileURLToPath(import.meta.url));
 const ROOT=path.resolve(HERE,'..');
-const OUT=path.join(ROOT,'qa-results');
+const OUT=path.resolve(process.env.BM_QA_OUT||path.join(ROOT,'qa-results'));
 fs.mkdirSync(OUT,{recursive:true});
 const PORT=Number(process.env.BM_QA_PORT||4173);
 const SEED_COUNT=Math.max(2,Number(process.env.BM_QA_SEEDS||3));
@@ -112,7 +112,7 @@ async function sample(context,engine,seed,checkEnterAdvance=false){
 const server=staticServer();let browser;
 try{
   await waitForServer(server);
-  browser=await chromium.launch({headless:true,args:['--disable-background-networking']});
+  browser=await chromium.launch({headless:true,args:['--disable-background-networking'],...(process.env.BATCHMATH_CHROMIUM_PATH?{executablePath:process.env.BATCHMATH_CHROMIUM_PATH}:{})});
   const context=await browser.newContext({serviceWorkers:'block'});
   // CI tests generator behavior, not third-party availability. Abort external traffic
   // so Analytics/MathJax/YouTube cannot make results flaky or consume time.
@@ -133,6 +133,7 @@ try{
         results.push({engineId:engine.engineId,route:engine.route,seed,problemId:a.snap.problemId,randomCalls:a.snap.randomCalls,ok:true});
       }catch(e){errors.push(`${engine.engineId} seed=${seed}: ${e.message}`);results.push({engineId:engine.engineId,route:engine.route,seed,ok:false,error:e.message});}
     }
+    console.log(`Seeded QA: ${engine.engineId}: ${results.slice(-SEED_COUNT).filter(r=>r.ok).length}/${SEED_COUNT}`);
     if(seen.size<2)warnings.push(`${engine.engineId}: ${SEED_COUNT} sampled seeds produced only ${seen.size} unique first-problem ID(s)`);
   }
   // Both shapes are deterministic regression requirements, independent of any

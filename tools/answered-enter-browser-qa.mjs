@@ -11,6 +11,16 @@ export const realEnterEngines = new Set([
   'calc_prep_unit_circle_values',
   'calc_prep_trig_equations',
 ]);
+// Enter text through the student's active editor; MathLive owns its mirror input.
+async function fillVisibleAnswer(page,legacy,value,host=page){
+  const field=host.locator('math-field:visible').first();
+  if(await field.count()){
+    await field.click();await page.keyboard.press('ControlOrMeta+A');
+    if(value)await page.keyboard.type(value);else await page.keyboard.press('Backspace');
+    await page.waitForTimeout(80);return field;
+  }
+  await legacy.fill(value);return legacy;
+}
 export async function exerciseAnsweredEnter(page) {
   if(await page.locator('#choices.unit4-typed-answer.staged-calculus-answer').count())return exerciseStagedAnsweredEnter(page);
   const before=await page.evaluate(()=>window.BatchMathRepro.problemCount);
@@ -20,9 +30,11 @@ export async function exerciseAnsweredEnter(page) {
   const exact=page.locator('#exactEditor');
   const derivative=page.locator('.bm-calc-editor');
   if(await input.count()){
-    await input.fill('12345');
+    const active=await fillVisibleAnswer(page,input,'12345');
     if(await page.locator('.classification-choice').count())await page.locator('.classification-choice').first().click();
-    else await input.press('Enter');
+    else await active.press('Enter');
+  } else if(await page.locator('math-field:visible').count()){
+    const active=await fillVisibleAnswer(page,page.locator('#answer'),'12345');await active.press('Enter');
   } else if(await exact.count()){
     await exact.click();await page.keyboard.type('12345');await page.keyboard.press('Enter');
   } else if(await derivative.count()){
@@ -61,7 +73,10 @@ async function exerciseStagedAnsweredEnter(page){
     const choices=host.locator('.staged-choice:enabled');
     if(await choices.count())await choices.first().click();
     else{
+      const field=host.locator('math-field:visible').first();
       const editor=host.locator('.bm-calc-editor');
+      if(await field.count()){const active=await fillVisibleAnswer(page,host.locator('.staged-exact-input'),'12345',host);await active.press('Enter');}
+      else
       if(await editor.count()){await editor.click();await page.keyboard.type('12345');await page.keyboard.press('Enter');}
       else{const input=host.locator('.staged-exact-input');await input.fill('12345');await input.press('Enter');}
     }
@@ -90,17 +105,19 @@ async function exerciseStagedAnsweredEnter(page){
 
 export async function exerciseAdvancedHints(page){
   const before=await page.evaluate(()=>window.BatchMathRepro.problemCount);
-  await page.locator('#answer').fill('7/9');
+  await fillVisibleAnswer(page,page.locator('#answer'),'7/9');
+  const entered=await page.locator('#answer').inputValue();
+  if(!entered.trim())throw new Error('visible editor did not serialize the draft answer');
   await page.locator('#hint').click();
   if(!await page.locator('#hint-panel').isVisible())throw new Error('hint did not open');
-  if(await page.locator('#answer').inputValue()!=='7/9')throw new Error('hint changed the answer');
+  if(await page.locator('#answer').inputValue()!==entered)throw new Error('hint changed the answer');
   if(await page.evaluate(()=>window.BatchMathRepro.problemCount)!==before)throw new Error('hint generated another problem');
   if(await page.locator('#attempted').textContent()!=='0')throw new Error('hint counted as an attempt');
   await page.locator('#hint').click();
   if(await page.locator('#hint-panel').isVisible())throw new Error('hint did not close');
-  await page.locator('#answer').fill('');await page.locator('#answer').press('Enter');await page.locator('#answer').press('Enter');
+  const empty=await fillVisibleAnswer(page,page.locator('#answer'),'');await empty.press('Enter');await empty.press('Enter');
   if(await page.evaluate(()=>window.BatchMathRepro.problemCount)!==before)throw new Error('invalid input Enter advanced');
-  await page.locator('#answer').fill('1234567');await page.locator('#answer').press('Enter');
+  const active=await fillVisibleAnswer(page,page.locator('#answer'),'1234567');await active.press('Enter');
   await page.waitForTimeout(220);
   if(await page.evaluate(()=>window.BatchMathRepro.problemCount)!==before)throw new Error('submission skipped the explanation');
   if(await page.locator('#feedback .method-steps li').count()<2)throw new Error('numbered method missing');
