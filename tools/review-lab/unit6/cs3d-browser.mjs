@@ -14,12 +14,13 @@
 //    unsupported problems (other shapes, slices perpendicular to the y-axis) and the calculator page show no toggle;
 //  - no page wider than the screen, no console errors.
 // Usage: node tools/review-lab/unit6/cs3d-browser.mjs   (writes screenshots to $REVIEW_OUT/unit6/3d)
+//        BM_PORT=<port>: use a server already running on 127.0.0.1:<port> (python3 -m http.server serving an extracted ZIP)
 import {serve,browser,context,open,randomPort,outDir} from '../lib/browser.mjs';
 const PAGE='ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice';
 const CALC='ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/calculator-practice';
 const REGIONS=[['cap','cs_basic','foundational'],['half_cap','cs_basic','foundational'],['semicircle','cs_basic','foundational'],['disk','cs_basic','foundational'],['triangle','cs_basic','intermediate'],
  ['pair','cs_basic','foundational'],['under_root','cs_basic','foundational'],['under_power','cs_basic','foundational'],['left_of_power','cs_basic','foundational'],['exp_base','cs_setup','intermediate'],['root_line_axis','cs_setup','challenging']];
-const shots=outDir('unit6','3d'),PORT=randomPort(9820),srv=await serve(PORT),b=await browser(),out={runs:[],failures:[]};
+const shots=outDir('unit6','3d'),PORT=process.env.BM_PORT?+process.env.BM_PORT:randomPort(9820),srv=process.env.BM_PORT?{close(){}}:await serve(PORT),b=await browser(),out={runs:[],failures:[]};
 const fail=m=>out.failures.push(m);
 // make the page's generator serve the next problem matching `want` (generated in the page by its own engine)
 // (never one of the last six problems shown on this page: the driver skips a problem it showed that recently)
