@@ -11,8 +11,16 @@ Open http://localhost:8000/ in your browser.
 Keep the terminal open while testing. Stop the server with Ctrl+C.
 
 To see the 3D model: AP Calculus AB > Unit 6 > Volume by Cross Sections > Non-Calculator Practice.
-Choose the Practice Type "Perpendicular to the x-axis" and press Next until the cross sections are squares,
-then press "Show 3D Model (Beta)" under the question. Drag to rotate; scroll or pinch to zoom.
+It appears for square cross sections perpendicular to the x-axis. Choose the Practice Type "Perpendicular to the
+x-axis"; when a question has square cross sections, press "Show 3D Model (Beta)" under it. Drag to rotate; scroll or
+pinch to zoom. (Answer a question and press Next Question, or reload, for another one.)
+
+These links open directly on a supported question (the same question every time):
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3d68   (y = 4 - x^2 and y = 0)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3d16   (a triangle)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3d72   (y = e^x, y = 1, x = 1)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3d128  (y = sqrt(x), y = x - 6, y = 0: two pieces)
+http://localhost:8000/ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/?bm_seed=3d139  (y = 2 sqrt(x), x = 1, y = 0)
 
 The website, practice engines, PDFs, local MathLive runtime and fonts, and the local three.js library are included.
 Normal MathJax rendering and YouTube video playback require internet.
