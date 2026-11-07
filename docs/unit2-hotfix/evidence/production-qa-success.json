@@ -1,0 +1,190 @@
+{
+  "id": 42333436501,
+  "url": "https://github.com/batchmath/BatchMathSite/actions/runs/42333436501",
+  "head": "001d05d8e8165377c272af9927fe7f11dbe476e5",
+  "conclusion": "success",
+  "status": "completed",
+  "createdAt": "2026-11-07T03:18:58Z",
+  "updatedAt": "2026-11-07T03:28:37Z",
+  "jobs": [
+    {
+      "id": 128284889327,
+      "name": "qa",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 42333436501,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Check out site",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Set up Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install QA dependency",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Install Chromium for seeded generator QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Static release QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Sitewide display-safety QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Independent semantic-answer QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Calculus Prep semantic QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Analytics instrumentation QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "PWA and cache architecture QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Deterministic AP generator stress QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Limits explanation QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Targeted Limits family QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "AP topic generator structural QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "AP individual-topic deep audit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "New calculus engine stress QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Derivative topic enhancement QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Unit 1 IVT and Limits-at-Infinity QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Keyboard and browser-infrastructure regressions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Advanced trig explanations and hints",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Seeded generator browser QA",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Upload QA reports",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        },
+        {
+          "name": "Post Set up Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45
+        },
+        {
+          "name": "Post Check out site",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 46
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 47
+        }
+      ]
+    }
+  ],
+  "seededJobOutput": [
+    "2026-11-07T03:28:32.9050981Z Result: PASS",
+    "2026-11-07T03:28:32.9051194Z Engines: 143",
+    "2026-11-07T03:28:32.9051672Z Seeds per engine: 3",
+    "2026-11-07T03:28:32.9051962Z Reproducibility samples: 429",
+    "2026-11-07T03:28:32.9052341Z Calculus/Calculus Prep Enter routing checks: 104",
+    "2026-11-07T03:28:32.9052766Z Real answer/Enter workflow checks: 25",
+    "2026-11-07T03:28:32.9053127Z Rectangular one/two-part regressions: 2/2",
+    "2026-11-07T03:28:32.9053451Z Warnings: 0",
+    "2026-11-07T03:28:32.9053647Z Errors: 0"
+  ],
+  "all17TestStepsPassed": true,
+  "workflowDefinitionUnchanged": true
+}

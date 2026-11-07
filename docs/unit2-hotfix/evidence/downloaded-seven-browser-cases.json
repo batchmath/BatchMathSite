@@ -1,0 +1,304 @@
+{
+  "results": [
+    {
+      "case": "unit1-approved",
+      "seed": 173,
+      "editor": "mathlive",
+      "errors": [],
+      "answerEvidence": [
+        {
+          "editor": "mathlive",
+          "source": "(1)/(2)",
+          "operation": "visible-keypad fraction 1/2"
+        },
+        {
+          "latex": "",
+          "source": "",
+          "editor": "mathlive"
+        },
+        {
+          "latex": "undef\\in ed",
+          "source": "?",
+          "editor": "mathlive"
+        },
+        {
+          "latex": "\\frac10",
+          "source": "(1)/(0)",
+          "editor": "mathlive"
+        },
+        {
+          "latex": "\\frac01",
+          "source": "(0)/(1)",
+          "editor": "mathlive"
+        },
+        {
+          "latex": "DNE",
+          "source": "DNE",
+          "editor": "mathlive"
+        },
+        {
+          "latex": "-\\infty",
+          "source": "-infinity",
+          "editor": "mathlive"
+        },
+        {
+          "latex": "-10",
+          "source": "-10",
+          "editor": "mathlive"
+        },
+        {
+          "latex": "undef\\in ed",
+          "source": "?",
+          "editor": "mathlive"
+        },
+        {
+          "latex": "\\frac10",
+          "source": "(1)/(0)",
+          "editor": "mathlive"
+        },
+        {
+          "latex": "0",
+          "source": "0",
+          "editor": "mathlive"
+        },
+        {
+          "latex": "0",
+          "source": "0",
+          "editor": "mathlive"
+        },
+        {
+          "latex": "5",
+          "source": "5",
+          "editor": "mathlive"
+        }
+      ],
+      "checks": 13,
+      "passed": true
+    },
+    {
+      "case": "unit1-approved",
+      "seed": 173,
+      "editor": "legacy",
+      "errors": [],
+      "answerEvidence": [
+        {
+          "editor": "legacy",
+          "source": "1/2",
+          "operation": "visible-keypad fraction 1/2"
+        }
+      ],
+      "checks": 13,
+      "passed": true
+    },
+    {
+      "case": "power-rule",
+      "seed": 1040000,
+      "editor": "mathlive",
+      "errors": [],
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+      "flow": {
+        "staged": false,
+        "parts": 1
+      },
+      "answerEvidence": [
+        {
+          "latex": "12345",
+          "source": "12345",
+          "editor": "mathlive"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "power-rule",
+      "seed": 1040000,
+      "editor": "legacy",
+      "errors": [],
+      "route": "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/practice/index.html",
+      "flow": {
+        "staged": false,
+        "parts": 1
+      },
+      "answerEvidence": [],
+      "passed": true
+    },
+    {
+      "case": "ftc",
+      "seed": 1040000,
+      "editor": "mathlive",
+      "errors": [],
+      "route": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/practice/index.html",
+      "flow": {
+        "staged": true,
+        "parts": 1,
+        "feedback": true,
+        "nextAfterCompletion": true,
+        "heldEnter": true
+      },
+      "answerEvidence": [
+        {
+          "latex": "12345",
+          "source": "12345",
+          "editor": "mathlive"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "ftc",
+      "seed": 1040000,
+      "editor": "legacy",
+      "errors": [],
+      "route": "ap-calculus/unit-4-integrals/topics/fundamental-theorem-of-calculus-and-integral-rules/practice/index.html",
+      "flow": {
+        "staged": true,
+        "parts": 1,
+        "feedback": true,
+        "nextAfterCompletion": true,
+        "heldEnter": true
+      },
+      "answerEvidence": [],
+      "passed": true
+    },
+    {
+      "case": "prep-trig",
+      "seed": 1040000,
+      "editor": "mathlive",
+      "errors": [],
+      "route": "calculus-prep/trig-equations/index.html",
+      "flow": {
+        "staged": false,
+        "parts": 1
+      },
+      "answerEvidence": [
+        {
+          "latex": "12345",
+          "source": "12345",
+          "editor": "mathlive"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "prep-trig",
+      "seed": 1040000,
+      "editor": "legacy",
+      "errors": [],
+      "route": "calculus-prep/trig-equations/index.html",
+      "flow": {
+        "staged": false,
+        "parts": 1
+      },
+      "answerEvidence": [],
+      "passed": true
+    },
+    {
+      "case": "prep-circle",
+      "seed": 1040000,
+      "editor": "mathlive",
+      "errors": [],
+      "route": "calculus-prep/unit-circle-values/index.html",
+      "flow": {
+        "staged": false,
+        "parts": 1
+      },
+      "answerEvidence": [
+        {
+          "latex": "12345",
+          "source": "12345",
+          "editor": "mathlive"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "prep-circle",
+      "seed": 1040000,
+      "editor": "legacy",
+      "errors": [],
+      "route": "calculus-prep/unit-circle-values/index.html",
+      "flow": {
+        "staged": false,
+        "parts": 1
+      },
+      "answerEvidence": [],
+      "passed": true
+    },
+    {
+      "case": "rectangular-one",
+      "seed": 1040000,
+      "editor": "mathlive",
+      "errors": [],
+      "route": "ap-calculus/unit-4-integrals/topics/rectangular-approximations/practice/index.html",
+      "flow": {
+        "staged": true,
+        "parts": 1,
+        "feedback": true,
+        "nextAfterCompletion": true,
+        "heldEnter": true
+      },
+      "answerEvidence": [
+        {
+          "latex": "12345",
+          "source": "12345",
+          "editor": "mathlive"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "rectangular-one",
+      "seed": 1040000,
+      "editor": "legacy",
+      "errors": [],
+      "route": "ap-calculus/unit-4-integrals/topics/rectangular-approximations/practice/index.html",
+      "flow": {
+        "staged": true,
+        "parts": 1,
+        "feedback": true,
+        "nextAfterCompletion": true,
+        "heldEnter": true
+      },
+      "answerEvidence": [],
+      "passed": true
+    },
+    {
+      "case": "rectangular-two",
+      "seed": 1040001,
+      "editor": "mathlive",
+      "errors": [],
+      "route": "ap-calculus/unit-4-integrals/topics/rectangular-approximations/practice/index.html",
+      "flow": {
+        "staged": true,
+        "parts": 2,
+        "feedback": true,
+        "nextAfterCompletion": true,
+        "heldEnter": true
+      },
+      "answerEvidence": [
+        {
+          "latex": "12345",
+          "source": "12345",
+          "editor": "mathlive"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "rectangular-two",
+      "seed": 1040001,
+      "editor": "legacy",
+      "errors": [],
+      "route": "ap-calculus/unit-4-integrals/topics/rectangular-approximations/practice/index.html",
+      "flow": {
+        "staged": true,
+        "parts": 2,
+        "feedback": true,
+        "nextAfterCompletion": true,
+        "heldEnter": true
+      },
+      "answerEvidence": [],
+      "passed": true
+    }
+  ]
+}

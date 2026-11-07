@@ -1,0 +1,450 @@
+{
+  "branches": {
+    "refs/heads/audit/mathlive-keypad-requirements": "33ed2ffbbe6f3582fe301dc8d1c18f65ca289ed2",
+    "refs/heads/claude/new-session-2hxnhy": "b9fb2142e13ca2cabb988cd186730c533ff8dd86",
+    "refs/heads/claude/unit6-final-graph-corrections": "e265804f440b2e521de00ecff0f6bc33118a12f1",
+    "refs/heads/claude/v12.8v-integrals-polish-ftc-checker": "33265ac7dde15cad14c5a3c5c9d25520a365fafb",
+    "refs/heads/claude/v12.8w-unit5-differential-equations-rebuild": "3f9e088bf77605f36fa5772a04f601bc9b3fb277",
+    "refs/heads/claude/v12.8x-unit5-calculator-rounding-polish": "ffe7d7cfe4ec4475f790a4bca537a33c723fd471",
+    "refs/heads/claude/v12.8y-unit5-targeted-menu-cleanup": "26ec4f15185c37f9e8843e96a09d583b47babcdf",
+    "refs/heads/claude/v12.9a-unit6-curriculum-alignment": "dccdd153f1522b9e72c94e97279b528483749c87",
+    "refs/heads/claude/v12.9b-unit6-display-checkpoint": "0d4dfbaad4e98176ba75c7ce56a2b742f0f8d363",
+    "refs/heads/claude/v12.9b-unit6-teacher-corrections": "bfabb6cecfba03a68ff6bbf8c591c1172861f10f",
+    "refs/heads/claude/v12.9d-unit6-final-corrections": "049e8a49d22f3d5ff67f5a79a855ec0028452ab7",
+    "refs/heads/content/im1-video-notes-cleanup": "bba32f929d6630d096bc4510ceafd586ab8c4a53",
+    "refs/heads/deploy/v12.8v-approved-source": "60e4e0a5a30fbe89c1ae8770d4fedbaa3482a12a",
+    "refs/heads/experiment/math-entry-comparison": "e4481a410a8c3c8b36376295514226e3215bf9b2",
+    "refs/heads/experiment/mathlive-advanced-pilot": "d01896853c8af0950089714fdc2a7a8eccba23d0",
+    "refs/heads/experiment/mathlive-derivatives-pilot": "58d98cda663ff21b0a7e9f434bf0e5ca504ae03b",
+    "refs/heads/experiment/mathlive-power-rule-pilot": "1fdbcbec2550d08dc900aacbc83529389e942e7f",
+    "refs/heads/fix/v12.9f-unit6-feedback": "02e2bbeb3359c1e5cadd15d036f9b917ad064783",
+    "refs/heads/hotfix/v12.9g-unit2-inverse-qa": "001d05d8e8165377c272af9927fe7f11dbe476e5",
+    "refs/heads/integration/mathlive-im1-videos-content": "98c9beb3c0eb58a952f6bb29e410e63aa280003e",
+    "refs/heads/integration/unit6-mathlive-videos-final-test": "353c5f93ed95e7d72a076183314c61ca085c8c92",
+    "refs/heads/integration/v12.9e-final": "6de1b027f45f43285be9fdc98d38d5f49419aecd",
+    "refs/heads/main": "0bf61ebd86ae0da06d9f9e4f580ab9b3d386a81a",
+    "refs/heads/migration/mathlive-batch1-derivatives": "adae2a2b00580f29befba88f593f4f627e2850c5",
+    "refs/heads/migration/mathlive-sitewide": "919ca1806f07e3cd2af552142926e7ca2b78e8d5",
+    "refs/heads/work/optimization-related-rates-diagram-hints": "af2189e27fb86c7f995631ab1e7a1ba204453537",
+    "refs/heads/work/unit4-approximation-sigma-engines": "6e3dbc6711f4082484c622a7b06072b093168699",
+    "refs/heads/work/v12.8k-unit4-mogollon2026": "555f96aca77803d086f73ed14d821ae2633f8bee",
+    "refs/heads/work/v12.8l-unit4-polish-mogollon-live-videos": "f7da158cbba60b9a2b03871cb811a62ccf5390fd",
+    "refs/heads/work/v12.8m-approximation-running-docs-video-fixes": "e85d71434195edc5c377997f1702d163a57a74c4",
+    "refs/heads/work/v12.8n-unit4-definite-integrals-ftc-rules": "d29a0d3782398df4e01ae26456a4af3610bb3393",
+    "refs/heads/work/v12.8q-unit4-polish-derivative-videos": "efe36680acc003446a4a010e78db61edfd4a67d3"
+  },
+  "tags": {
+    "refs/tags/v12.8.G": "e7bbd9bed215e24075b0d05aa91f5a36937c7f28",
+    "refs/tags/v12.8.H": "3345fdf84c9a0280c5260e0dc83fee4e4c2e3785",
+    "refs/tags/v12.8.I": "af2189e27fb86c7f995631ab1e7a1ba204453537",
+    "refs/tags/v12.8.J": "6e3dbc6711f4082484c622a7b06072b093168699",
+    "refs/tags/v12.8.K": "555f96aca77803d086f73ed14d821ae2633f8bee",
+    "refs/tags/v12.8.L": "f7da158cbba60b9a2b03871cb811a62ccf5390fd",
+    "refs/tags/v12.8.M": "e85d71434195edc5c377997f1702d163a57a74c4",
+    "refs/tags/v12.8.N": "561ca3e1a20ded8a0443bed73d07b3a00d1ccf70",
+    "refs/tags/v12.8.P": "d29a0d3782398df4e01ae26456a4af3610bb3393",
+    "refs/tags/v12.8.V": "60e4e0a5a30fbe89c1ae8770d4fedbaa3482a12a",
+    "refs/tags/v12.8.W": "dd2689ed15088c906cbb15892f0eeea408d1242c",
+    "refs/tags/v12.8.X": "6f27a9496db1085eb7927a4d3f1fe7f27c9d687f",
+    "refs/tags/v12.8.Y": "b645d79e39d5ff330f7ebde3aad128ae431e350e",
+    "refs/tags/v12.9.A": "8e58d2f4cd2513bcc52693f4fa050a4e6218e4f9",
+    "refs/tags/v12.9.B": "ca4fb4aa463ba43a8d66dc3d5ad91c9300343fbb",
+    "refs/tags/v12.9.C-integration-test": "c5068a8c09ba64b8ce7d9c7e89af2c5dfecb5ad8",
+    "refs/tags/v12.9.E": "2fbfd3f7eb482fd6ef5f890ba86fe2a9554db8b6",
+    "refs/tags/v12.9.F": "0bf61ebd86ae0da06d9f9e4f580ab9b3d386a81a"
+  },
+  "releases": [
+    {
+      "id": 437149712,
+      "tag_name": "v12.9.F",
+      "target_commitish": "0bf61ebd86ae0da06d9f9e4f580ab9b3d386a81a",
+      "name": "BatchMath v12.9.F — Unit 6 Feedback Test",
+      "body": "BatchMath v12.9.F teacher test build. Prerelease, not latest. Production main, the approved E integration/source branches and every earlier release are unchanged; no deployment is performed.\n\nThis corrects premature Unit 6 answer disclosure on the approved v12.9.E foundation (6de1b02). Area, washer and shell feedback is part-specific; graph criteria precede the location exercises. Mathematical parameters, models, original grading, MathLive/keypads, graph geometry and videos are preserved.\n\nTested website commit: 0bf61ebd86ae0da06d9f9e4f580ab9b3d386a81a.\n\n[Final integration report and inherited-test classifications](https://github.com/batchmath/BatchMathSite/blob/fix/v12.9f-unit6-feedback/docs/v12.9.F-feedback-audit.md)\n\nExtract batchmath-site-v12.9.F.zip. Open a terminal inside batchmath-site-v12.9.F, run `py -m http.server 8000`, and open http://localhost:8000/.\n\nThe ZIP contains the complete website, practice engines, PDFs, and pinned local MathLive runtime/fonts. Normal MathJax and YouTube use requires internet. Actual YouTube availability and audio need human review.\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-11-06T23:05:58Z",
+      "assets": [
+        {
+          "id": 718875633,
+          "name": "batchmath-site-v12.9.F.sha256",
+          "state": "uploaded",
+          "size": 93,
+          "digest": "sha256:d508680bcc079d6a84e49f6793bdd08ae2134e6545047529434569c105038254",
+          "updated_at": "2026-11-06T23:05:48Z"
+        },
+        {
+          "id": 718875628,
+          "name": "batchmath-site-v12.9.F.zip",
+          "state": "uploaded",
+          "size": 314255648,
+          "digest": "sha256:ded11f29464de73405a4dfaf2f046f2570f2e18b140a906582d85edf31b93fac",
+          "updated_at": "2026-11-06T23:05:58Z"
+        },
+        {
+          "id": 718875631,
+          "name": "delivery-manifest.json",
+          "state": "uploaded",
+          "size": 602,
+          "digest": "sha256:e0ddc47d380697783be8b45cda336b05eddba5bf98df71c29cb1f8ead4d902c3",
+          "updated_at": "2026-11-06T23:05:48Z"
+        }
+      ]
+    },
+    {
+      "id": 436754962,
+      "tag_name": "v12.9.E",
+      "target_commitish": "2fbfd3f7eb482fd6ef5f890ba86fe2a9554db8b6",
+      "name": "BatchMath v12.9.E — Final Integration Test",
+      "body": "BatchMath v12.9.E teacher test build. Prerelease, not latest. Production main and both approved sources are unchanged; no deployment is performed.\n\nThis combines the completed MathLive/video/keypad foundation (98c9beb) with the final Unit 6 mathematics, one blank integral-setup field, structural grading and videos (049e8a4).\n\nTested website commit: 2fbfd3f7eb482fd6ef5f890ba86fe2a9554db8b6.\n\n[Final integration report and inherited-test classifications](https://github.com/batchmath/BatchMathSite/blob/eae5bdbf4cba60bc7a6c87bc433f447b9fff2d7e/docs/v12.9.E-final-integration.md)\n\nExtract batchmath-site-v12.9.E.zip. Open a terminal inside batchmath-site-v12.9.E, run `py -m http.server 8000`, and open http://localhost:8000/.\n\nThe ZIP contains the complete website, practice engines, PDFs, and pinned local MathLive runtime/fonts. Normal MathJax and YouTube use requires internet. Actual YouTube availability and audio need human review.\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-11-06T16:50:01Z",
+      "assets": [
+        {
+          "id": 717837140,
+          "name": "batchmath-site-v12.9.E.sha256",
+          "state": "uploaded",
+          "size": 93,
+          "digest": "sha256:2f478cb90c8bca4c9a86c8d8662c9ed625a39445a674a725c82b9a9a464144b8",
+          "updated_at": "2026-11-06T16:49:52Z"
+        },
+        {
+          "id": 717837139,
+          "name": "batchmath-site-v12.9.E.zip",
+          "state": "uploaded",
+          "size": 314254305,
+          "digest": "sha256:c17cd35cf7972bd7eee6fedec906f2df25b28078e5acdfddd405d816e6812a7d",
+          "updated_at": "2026-11-06T16:50:00Z"
+        },
+        {
+          "id": 717837141,
+          "name": "delivery-manifest.json",
+          "state": "uploaded",
+          "size": 602,
+          "digest": "sha256:4eb31808117d3ed0d3f081f7408bc0613fb1e6dee9e7c0ef15e23c7f7d45f976",
+          "updated_at": "2026-11-06T16:49:52Z"
+        }
+      ]
+    },
+    {
+      "id": 435917797,
+      "tag_name": "v12.9.C-integration-test",
+      "target_commitish": "c5068a8c09ba64b8ce7d9c7e89af2c5dfecb5ad8",
+      "name": "BatchMath v12.9.C — MathLive, Videos & Unit 6 Integration Test",
+      "body": "INTEGRATION TEST BUILD for teacher testing. Not production, not deployed, not approved: production `main` is unchanged (v12.8.Y, 26ec4f1). The v12.9.A and v12.9.B prereleases are unchanged.\n\nSource: branch `integration/unit6-mathlive-videos-final-test`, tested commit c5068a8c09ba64b8ce7d9c7e89af2c5dfecb5ad8. It combines the Unit 6 v12.9.B corrections (bfabb6c), the Unit 6 graph fix (e265804) and the approved MathLive, IM1 video and content work (63ef79b).\n\n- Unit 6 graphs: the frame always holds every shaded region, intersection and extreme with padding (the cut-off cubic lobes are fixed); axes of rotation stay in the frame; compact and single-scale graphs as before.\n- Unit 6 integral setups: ONE blank MathLive field in which the student writes the whole setup (integral key or \"int\", limits, integrand, dx/dy, numbers in front, sums of integrals); graded by the v12.9.B structural checker (a setup with only the right value is still refused).\n- Every Unit 6 typed answer uses MathLive; Unit 6 topic pages use the approved video presentation.\n- MathLive migrations, IM1 videos and content from the integration branch are preserved.\n- Not included: 3D models; collapsing Part A explanations.\n\nSee docs/v12.9.C-integration-test.md and docs/v12.9.C-integration-test-progress.md. Serve the extracted folder with `py -m http.server 8000` (Windows) or `python3 -m http.server 8000`, then open http://localhost:8000/.\n\nSHA-256 of batchmath-site-v12.9.C-integration-test.zip: e43377386c2ab31bed50cc3061693ae5755720a34529855e02b91ed240acb427\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-11-06T00:05:56Z",
+      "assets": [
+        {
+          "id": 715288830,
+          "name": "batchmath-site-v12.9.C-integration-test.zip",
+          "state": "uploaded",
+          "size": 314562202,
+          "digest": "sha256:e43377386c2ab31bed50cc3061693ae5755720a34529855e02b91ed240acb427",
+          "updated_at": "2026-11-06T00:05:54Z"
+        }
+      ]
+    },
+    {
+      "id": 435295547,
+      "tag_name": "v12.9.B",
+      "target_commitish": "ca4fb4aa463ba43a8d66dc3d5ad91c9300343fbb",
+      "name": "BatchMath v12.9.B (review build)",
+      "body": "Review build for teacher testing. Not deployed: production `main` is unchanged (v12.8.Y, 26ec4f1).\nNot approved: automated QA passed, and the build awaits the teacher's review. The v12.9.A prerelease is unchanged.\n\nSource: branch `claude/v12.9b-unit6-teacher-corrections`, commit ca4fb4aa463ba43a8d66dc3d5ad91c9300343fbb.\n\nUnit 6 teacher-testing corrections to v12.9.A; everything else is as in v12.9.A.\n- Explanations: no redundant parentheses or written coefficients of 1, signed-area arithmetic shown, round only the final answer; compact area graphs.\n- Area: setups with respect to x, y, either or both; setup only or with the value; graphs in explanations; a Choosing dx or dy Practice Type with typed integrals.\n- Area in terms of y: a graph in every explanation, mixed y = f(x) and x = g(y) forms, no supplied bounds the curves define.\n- Piecewise integrals: typed exact answers; the explanation splits the integral and evaluates each piece.\n- Cross sections: Show Graph / Hide Graph in non-calculator questions; the base with one slice and the cross section in the explanation; half perpendicular to each axis.\n- Solids: the graph in about half the non-calculator questions with the axis inside the frame; R and r or the shell radius and height drawn in the explanation; no question graph on calculator problems; more calculator axes; a two-axis calculator problem.\n- Integral setups are graded by their structure, not only their value: other methods or variables are accepted where the problem lists them, and a setup that only has the right value is refused.\n- Review Practice Types renamed: Area & Volume — Multi-Part Practice; Graph Analysis & Accumulation — Multi-Part Practice (labels only).\n- MathLive is not part of this build (separate migration); see docs/v12.9.B-unit6-mathlive-handoff.md.\n\nSee docs/v12.9.B-revisions.md (changes, distributions, teacher checklist, limitations) and docs/v12.9.B-progress.md (commits, checks). Serve the extracted folder with `py -m http.server 8000`.\n\nSHA-256 of batchmath-site-v12.9.B.zip: 4d6a98d4674b2abe0b95b0efbc07bec8b357301ba712fcc72e739207577cdd67\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-11-05T14:18:16Z",
+      "assets": [
+        {
+          "id": 713655115,
+          "name": "batchmath-site-v12.9.B.zip",
+          "state": "uploaded",
+          "size": 314260918,
+          "digest": "sha256:4d6a98d4674b2abe0b95b0efbc07bec8b357301ba712fcc72e739207577cdd67",
+          "updated_at": "2026-11-05T14:18:15Z"
+        }
+      ]
+    },
+    {
+      "id": 429783025,
+      "tag_name": "v12.9.A",
+      "target_commitish": "8e58d2f4cd2513bcc52693f4fa050a4e6218e4f9",
+      "name": "BatchMath v12.9.A (review build)",
+      "body": "Review build for teacher testing. Not deployed: production `main` is unchanged (v12.8.Y, 26ec4f1).\nNot approved: automated QA passed, and the build awaits the teacher's review.\n\nSource: branch `claude/v12.9a-unit6-curriculum-alignment`, commit 8e58d2f4cd2513bcc52693f4fa050a4e6218e4f9.\n\nUnit 6 (Applications of Integration) rebuilt to match the course materials; everything else is as in v12.8.Y.\n- Area below and between curves (dx) and in terms of y (dy): crossing the axis, intersections, switching and multiple boundaries, trigonometric, exponential, logarithmic, polynomial and radical curves.\n- Volume by cross sections (perpendicular to either axis, nine shapes), disks and washers, and shells, about the axes and shifted lines; typed radii, A(x) and integral setups.\n- Integral setups are typed as integrals and graded by value (any correct method; decimal limits on calculator problems).\n- Non-Calculator and Calculator Practice pages for Area, Cross Sections and Solids; a Non-Calculator Review and a Calculator Review with multipart area and volume free-response problems and graph free-response problems (written reasoning is not graded; the reason is a choice with a model justification). Retired URLs redirect.\n- Unit 5 Growth and Decay labeled Calculator Practice with the calculator icon (labels only).\n\nSee docs/v12.9.A-revisions.md (implementation, alignment, inventory, QA, teacher checklist, limitations) and docs/v12.9.A-progress.md. Serve the extracted folder with `py -m http.server 8000`.\n\nSHA-256 of batchmath-site-v12.9.A.zip: 08d7db410bf82068ca1e5e6f9ead71f34a13e79ca652a0d57777b1ad49263f06\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-31T07:19:20Z",
+      "assets": [
+        {
+          "id": 694684150,
+          "name": "batchmath-site-v12.9.A.zip",
+          "state": "uploaded",
+          "size": 314227886,
+          "digest": "sha256:08d7db410bf82068ca1e5e6f9ead71f34a13e79ca652a0d57777b1ad49263f06",
+          "updated_at": "2026-10-31T07:19:19Z"
+        }
+      ]
+    },
+    {
+      "id": 429703740,
+      "tag_name": "v12.8.Y",
+      "target_commitish": "b645d79e39d5ff330f7ebde3aad128ae431e350e",
+      "name": "BatchMath v12.8.Y (review build)",
+      "body": "Review build for teacher testing. Not deployed: production `main` is unchanged (v12.8.V, b349803).\nNot approved: automated QA passed, and the build awaits the teacher's review.\n\nSource: branch `claude/v12.8y-unit5-targeted-menu-cleanup`, commit b645d79e39d5ff330f7ebde3aad128ae431e350e.\n\nA scoped Unit 5 cleanup of the v12.8.X review build (tag v12.8.X); everything else is as in v12.8.X.\n- Combined Mixed Practice pages (Basic First-Order, Motion, Rate) and the Mixed Review retired: Calculator and Non-Calculator pages and Reviews only; old URLs redirect to the topic page.\n- Basic First-Order Calculator: one question family (a value from a known value), no Practice Type dropdown, coefficients written inside the fraction numerator.\n- Calculator total distance explained as the integral of speed, |v(t)|; answers unchanged.\n- Every Unit 5 Practice Type menu uses the compact choices (none on Basic Calculator and Separable); reviews by difficulty only.\n\nSee docs/v12.8.Y-revisions.md (changes, before/after inventory, teacher checklist) and docs/v12.8.Y-progress.md. Serve the extracted folder with `py -m http.server 8000`.\n\nSHA-256 of batchmath-site-v12.8.Y.zip: dd132245bf43079a1160141e519dc4b5fa42cf0ad6edeefc5becab72c10b780c\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-31T03:46:19Z",
+      "assets": [
+        {
+          "id": 694274138,
+          "name": "batchmath-site-v12.8.Y.zip",
+          "state": "uploaded",
+          "size": 314120429,
+          "digest": "sha256:dd132245bf43079a1160141e519dc4b5fa42cf0ad6edeefc5becab72c10b780c",
+          "updated_at": "2026-10-31T03:46:18Z"
+        }
+      ]
+    },
+    {
+      "id": 429542395,
+      "tag_name": "v12.8.X",
+      "target_commitish": "25de1cfb28d90ae22a7c679ec9b2215aee8d0cc3",
+      "name": "BatchMath v12.8.X (review build)",
+      "body": "Review build for teacher testing. Not deployed: production `main` is unchanged (v12.8.V, b349803).\nNot approved: automated QA passed, and the build awaits the teacher's review.\n\nSource: branch `claude/v12.8x-unit5-calculator-rounding-polish`, commit 6f27a9496db1085eb7927a4d3f1fe7f27c9d687f (the reviewed commit 8e3a7d07ebbfdbef34abd3185ec626c59e3aff75 without its packaging workflow).\n\nRebuild: replaces the first v12.8.X build (commit 25de1cfb28d90ae22a7c679ec9b2215aee8d0cc3, SHA-256 f307a3d7f391178568d061536e05773fa5b99f348bee7eea41e24ba187da215c). That build showed W's static \"Calculator Active\" line on the Rate Mixed and Non-Calculator pages and placed each review problem's topic tag beside the question instead of above it; both are fixed. Nothing else changed.\n\nBuilds on the v12.8.W Unit 5 review build (tag v12.8.W).\n- Strict rounding: a rounded answer must equal the correctly rounded value (half away from zero); .923, trailing zeros, $1.2 for $1.20 accepted; neighbouring values and unrounded values rejected.\n- Calculator Practice and Non-Calculator Practice pages for Basic First-Order, Motion and Rate Problems (the practice/ pages remain as Mixed Practice), with more calculator variety.\n- Rate Problems limited to accumulation (25/25/25/15/10); FRQ-style derivative, increasing/decreasing, extreme and threshold questions removed; exact non-calculator problems in every family.\n- Clearer explanations: Motion total distance with absolute values only on negative pieces; Separable exponent laws and branches.\n- Calculator Review (2:2:1:1) and Non-Calculator Review (2:2:2:2:1) next to the Mixed Review (20/20/20/20/10/10); difficulty 40/40/20 in all three.\n\nSee docs/v12.8.X-revisions.md and docs/v12.8.X-progress.md. Serve the extracted folder with `py -m http.server 8000`.\n\nSHA-256 of batchmath-site-v12.8.X.zip: c7665d4353cd33b6feead65533b0524ead50409646dfe5b485708043b104af86\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-31T01:38:13Z",
+      "assets": [
+        {
+          "id": 694016266,
+          "name": "batchmath-site-v12.8.X.zip",
+          "state": "uploaded",
+          "size": 314116631,
+          "digest": "sha256:c7665d4353cd33b6feead65533b0524ead50409646dfe5b485708043b104af86",
+          "updated_at": "2026-10-31T01:38:13Z"
+        }
+      ]
+    },
+    {
+      "id": 429006742,
+      "tag_name": "v12.8.W",
+      "target_commitish": "dd2689ed15088c906cbb15892f0eeea408d1242c",
+      "name": "BatchMath v12.8.W (review build)",
+      "body": "Review build for teacher testing. Not deployed: production `main` is unchanged (v12.8.V, b349803).\nNot approved: automated QA passed, and the build awaits the teacher's review.\n\nSource: branch `claude/v12.8w-unit5-differential-equations-rebuild`, commit dd2689ed15088c906cbb15892f0eeea408d1242c.\n\n- AP Calculus AB Unit 5 rebuilt: Basic First-Order, Motion, Separable (every problem: particular solution + interval of validity) and Rate Problems.\n- New Slope Fields practice: draw segments and solution curves (graded, with the correct answer overlaid after checking), match fields, analyze.\n- New Growth, Decay, Interest and Newton's Law practice (calculator active, about 30% multi-part).\n- Comprehensive Review from all six engines: topics 20/20/20/20/10/10, difficulty 40/40/20.\n\nSee docs/v12.8.W-revisions.md and docs/v12.8.W-progress.md. Serve the extracted folder with `py -m http.server 8000`.\n\nSHA-256 of batchmath-site-v12.8.W.zip: 2b3c40b2f23b77fd4a92681e80f53cabbd258105071c78019fe8a9c1dcd494af\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-30T12:27:28Z",
+      "assets": [
+        {
+          "id": 692052980,
+          "name": "batchmath-site-v12.8.W.zip",
+          "state": "uploaded",
+          "size": 314054350,
+          "digest": "sha256:2b3c40b2f23b77fd4a92681e80f53cabbd258105071c78019fe8a9c1dcd494af",
+          "updated_at": "2026-10-30T12:27:27Z"
+        }
+      ]
+    },
+    {
+      "id": 428539463,
+      "tag_name": "v12.8.V",
+      "target_commitish": "60e4e0a5a30fbe89c1ae8770d4fedbaa3482a12a",
+      "name": "BatchMath v12.8.V (review build)",
+      "body": "Review build. Not deployed: production `main` is unchanged (v12.8.T, bea5cc9).\n\nSource: branch `claude/v12.8v-integrals-polish-ftc-checker`, commit 60e4e0a5a30fbe89c1ae8770d4fedbaa3482a12a (v12.8.U plus the V corrections).\n\n- Short mathematics in questions and explanations no longer shows small scrollbars; long equations wrap.\n- Inverse-trig arguments are reduced, e.g. tan^-1(4x/2) is now tan^-1(2x).\n- The FTC checker accepts keypad products such as 2xsec(x^6); wrong derivatives are still rejected.\n- FTC and Integral Rules practice buttons are in their own section on the topic page.\n\nSee docs/v12.8.V-revisions.md. Serve the extracted folder with `py -m http.server 8000`.\n\nSHA-256 of batchmath-site-v12.8.V.zip: 9ef4011fd64303c04a59a97b0cef465475682d06b7c04aaa3b699f93c62d39d8\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-30T00:47:13Z",
+      "assets": [
+        {
+          "id": 690418990,
+          "name": "batchmath-site-v12.8.V.zip",
+          "state": "uploaded",
+          "size": 313933855,
+          "digest": "sha256:9ef4011fd64303c04a59a97b0cef465475682d06b7c04aaa3b699f93c62d39d8",
+          "updated_at": "2026-10-30T00:47:12Z"
+        }
+      ]
+    },
+    {
+      "id": 427400675,
+      "tag_name": "v12.8.P",
+      "target_commitish": "d29a0d3782398df4e01ae26456a4af3610bb3393",
+      "name": "BatchMath v12.8.P",
+      "body": "BatchMath v12.8.P review build. These revisions are ready for teacher review; they are not described as approved. Production is unchanged.\n\nDownload the attached batchmath-site-v12.8.P.zip asset. It extracts into batchmath-site-v12.8.P/, without GitHub repository or commit-hash prefixes.\nGeometry: natural-height questions and explanations; labeled signed regions, dimensions and exact area calculations; balanced full semicircle locations and sides. FTC: standard spacing and upper-minus-lower antiderivative explanations. Integral Rules: one answer per problem, clean equal-bound questions and no antiderivative warning.\nThe Newton/limit-and-summation engine is unchanged from dfe1f8a2ea8eff1e9cdc7cf2abe6c550aa59928f. Shared editor/checker files are unchanged. Comprehensive Review inherits only the three requested revisions.\nGreen QA commit: a6078f741a1a266662ddb9e1efcdbb86fd9aecec\nN/P targeted and full production-equivalent QA: https://github.com/batchmath/BatchMathSite/actions/runs/40780702057\nAll 17 ordered commands from the unchanged production BatchMath QA workflow passed, including full seeded browser QA. The same run includes P region/distribution/layout/scope tests and retained N, Newton and M regressions.\nPackage commit: d29a0d3782398df4e01ae26456a4af3610bb3393\nRevision details: https://github.com/batchmath/BatchMathSite/blob/d29a0d3782398df4e01ae26456a4af3610bb3393/docs/v12.8.P-revisions.md\n\nEvery committed Git blob is included and verified byte-for-byte. Installed dependencies and generated QA files are excluded.\nLongest archive path: 180 characters.\nWindows path check: all entries are shorter than 260 characters even with an additional Extract All folder under C:\\Users\\Teacher\\Downloads. A deeply nested extraction destination can still add length.\nExisting N release, main and completed M remain untouched.\n\nZIP: batchmath-site-v12.8.P.zip\nZIP bytes: 313874267\nCommitted files verified: 784\nSHA-256: 2c36cb9118ee40b80bc69351163644095b5b11b4ef1393bd8d9a114a08877b33\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-29T02:28:02Z",
+      "assets": [
+        {
+          "id": 687100499,
+          "name": "batchmath-site-v12.8.P.zip",
+          "state": "uploaded",
+          "size": 313874267,
+          "digest": "sha256:2c36cb9118ee40b80bc69351163644095b5b11b4ef1393bd8d9a114a08877b33",
+          "updated_at": "2026-10-29T02:28:01Z"
+        }
+      ]
+    },
+    {
+      "id": 426736820,
+      "tag_name": "v12.8.N",
+      "target_commitish": "561ca3e1a20ded8a0443bed73d07b3a00d1ccf70",
+      "name": "BatchMath v12.8.N",
+      "body": "Complete BatchMath v12.8.N prerelease for teacher testing. No production deployment.\n\nContinued source-map checkpoint: 78bd74a341e4bc82d28751187111d729b2af8c01\nFinal version-sync / green QA commit: 49b5541994b176dc13024bac14780dfcb6b94c60\nN targeted and full production-equivalent QA: https://github.com/batchmath/BatchMathSite/actions/runs/40698872142\nThe production-equivalent job executes all 17 ordered commands from unchanged BatchMath QA, including complete seeded browser QA.\nPackage commit / tag target: 561ca3e1a20ded8a0443bed73d07b3a00d1ccf70\n\nSource-supported redesign: constructed Newton sums and finite-sum limits; typed signed geometry with worked diagrams; typed FTC derivatives; separate Combining Integral Rules engine. Topic 7 and all resource/video links remain. Comprehensive Review shares these factories and keeps the existing eleven-topic mix.\nIndependent deterministic sample: 12,000 per engine, 48,000 total. All four mathematical oracles pass; weights remain within 1.6 percentage points of source targets. All four engines use typed student production.\nUnique IDs/tasks: Newton 8384; Geometry 7194; FTC 8331; Rules 11753. Immediate-repeat rates: 0.0167%, 0.0417%, 0%, 0%. Site total: 133 unique instrumented engines.\nCurriculum evidence, before/after findings and all target/generated family shares: https://github.com/batchmath/BatchMathSite/blob/561ca3e1a20ded8a0443bed73d07b3a00d1ccf70/docs/v12.8.N-results.md\nThe existing Rectangular seed regression is fixed in the QA helper; no Rectangular curriculum redesign was made.\nFinal package checks repeat N independent math and actual desktop/mobile editor QA plus retained M print/PDF, graph, Sigma, archive and walkthrough regressions.\nZIP includes every committed repository file; generated QA output/screenshots and installed dependencies are excluded.\nMain and completed J/K/L/M branches remain untouched.\n\nZIP: batchmath-site-v12.8.N.zip\nZIP bytes: 313843370\nCommitted files verified: 776\nSHA-256: 49dca1628ea42ba52e0433a9fe5586abe56ac059cdf4b73862d8d488f367fcf9\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-28T13:56:05Z",
+      "assets": [
+        {
+          "id": 685163426,
+          "name": "batchmath-site-v12.8.N.zip",
+          "state": "uploaded",
+          "size": 313843370,
+          "digest": "sha256:49dca1628ea42ba52e0433a9fe5586abe56ac059cdf4b73862d8d488f367fcf9",
+          "updated_at": "2026-10-28T13:56:04Z"
+        }
+      ]
+    },
+    {
+      "id": 426259026,
+      "tag_name": "v12.8.M",
+      "target_commitish": "e85d71434195edc5c377997f1702d163a57a74c4",
+      "name": "BatchMath v12.8.M",
+      "body": "Complete BatchMath v12.8.M prerelease from the M working branch.\n\nImplementation checkpoint: d454b6154c500baf800a1fd3f18352d01b570cbd\nGreen version-sync QA commit: 77c887599d85aea290612e330d446dc30d59fcb4\nSuccessful QA run: https://github.com/batchmath/BatchMathSite/actions/runs/40634337399\nPackage commit: e85d71434195edc5c377997f1702d163a57a74c4\n\nFinal package checks repeated the M-specific running-document and desktop/mobile browser QA, exact approximation mathematics, graph geometry, shared review, Sigma alignment, walkthrough placement, and both archive regressions.\nCorrections included: a clear red rounded Mogollon border at the smaller size; separate condensed Problems Only printing in both live running documents; caption-free Rectangular and Trapezoidal conceptual graphs with accessible labels. Sigma is unchanged.\nThe ZIP contains every committed site file; generated QA results and screenshots are excluded.\nMain and the completed J/K/L working branches remain unchanged.\n\nZIP: batchmath-site-v12.8.M.zip\nSHA-256: 87b00f6484453fe463a4e2e6fd980252a82705371dcc0619809605a029107429\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-28T05:09:27Z",
+      "assets": [
+        {
+          "id": 683900208,
+          "name": "batchmath-site-v12.8.M.zip",
+          "state": "uploaded",
+          "size": 313796473,
+          "digest": "sha256:87b00f6484453fe463a4e2e6fd980252a82705371dcc0619809605a029107429",
+          "updated_at": "2026-10-28T05:09:26Z"
+        }
+      ]
+    },
+    {
+      "id": 426101384,
+      "tag_name": "v12.8.L",
+      "target_commitish": "f7da158cbba60b9a2b03871cb811a62ccf5390fd",
+      "name": "BatchMath v12.8.L",
+      "body": "Complete BatchMath v12.8.L test build from working-branch commit `f7da158cbba60b9a2b03871cb811a62ccf5390fd`.\n\nGreen implementation/version QA commit: `b1a9895005a223b6cd53cf3a94aadd05d55060e9`.\n\nUnit 4 staged flow, flowing explanations, unmarked tables, validated table reasoning and sketches, the live Mogollon CSV and smaller supplied-buckle homepage link, and both Quotient Rule table walkthroughs are included. Targeted desktop/mobile, mathematical, live-data, and existing Problem of the Day regression checks passed. YouTube playback itself could not be confirmed inside CI because of its bot-sign-in screen; the new embed destinations and independent controls were verified. Main and the completed J/K branches are unchanged.\n\nSHA-256: `fc47fb61da11276e5a4bd18e3202e6a2606daf62fb0043aaef86e3f8e8ccd713`\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-27T23:32:25Z",
+      "assets": [
+        {
+          "id": 683205958,
+          "name": "batchmath-site-v12.8.L.zip",
+          "state": "uploaded",
+          "size": 313762188,
+          "digest": "sha256:fc47fb61da11276e5a4bd18e3202e6a2606daf62fb0043aaef86e3f8e8ccd713",
+          "updated_at": "2026-10-27T23:32:24Z"
+        }
+      ]
+    },
+    {
+      "id": 425446614,
+      "tag_name": "v12.8.K",
+      "target_commitish": "555f96aca77803d086f73ed14d821ae2633f8bee",
+      "name": "BatchMath v12.8.K",
+      "body": "Complete BatchMath v12.8.K test build from working-branch commit `555f96aca77803d086f73ed14d821ae2633f8bee`.\n\nGreen implementation/version QA commit: `9c36009865db00f15a701dde1503473438706097`.\n\nMogollon displays the six verified starter miles; the dedicated Google Sheet CSV requires one-time connection as documented in `mogollon2026/SETUP.md`. Main and the completed J branch are unchanged.\n\nSHA-256: `b36d69fce119be54ab87e9229246a77ac6a95072de70be4974680fd1489f2711`\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-27T12:43:55Z",
+      "assets": [
+        {
+          "id": 681573502,
+          "name": "batchmath-site-v12.8.K.zip",
+          "state": "uploaded",
+          "size": 313698210,
+          "digest": "sha256:b36d69fce119be54ab87e9229246a77ac6a95072de70be4974680fd1489f2711",
+          "updated_at": "2026-10-27T12:43:54Z"
+        }
+      ]
+    },
+    {
+      "id": 424973562,
+      "tag_name": "v12.8.J",
+      "target_commitish": "6e3dbc6711f4082484c622a7b06072b093168699",
+      "name": "BatchMath v12.8.J",
+      "body": "Complete BatchMath v12.8.J test build from working-branch commit `6e3dbc6711f4082484c622a7b06072b093168699`.\n\nSHA-256: `bb11f6cc54f2a65b22afddb295ad2879c8394eacb8e48b71a1f8ff74f2664a1c`\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-27T02:29:47Z",
+      "assets": [
+        {
+          "id": 680196396,
+          "name": "batchmath-site-v12.8.J.zip",
+          "state": "uploaded",
+          "size": 313668910,
+          "digest": "sha256:bb11f6cc54f2a65b22afddb295ad2879c8394eacb8e48b71a1f8ff74f2664a1c",
+          "updated_at": "2026-10-27T02:29:46Z"
+        }
+      ]
+    },
+    {
+      "id": 423918916,
+      "tag_name": "v12.8.I",
+      "target_commitish": "af2189e27fb86c7f995631ab1e7a1ba204453537",
+      "name": "BatchMath v12.8.I",
+      "body": "Complete website package from working-branch commit `af2189e27fb86c7f995631ab1e7a1ba204453537`.\n\nSHA-256: `63f2fc3eabaaed448889b0f1c150faee172d641cb9fc2066746923d00d138cf2`\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-26T06:29:45Z",
+      "assets": [
+        {
+          "id": 677239852,
+          "name": "batchmath-site-v12.8.I.zip",
+          "state": "uploaded",
+          "size": 313646507,
+          "digest": "sha256:63f2fc3eabaaed448889b0f1c150faee172d641cb9fc2066746923d00d138cf2",
+          "updated_at": "2026-10-26T06:29:44Z"
+        }
+      ]
+    },
+    {
+      "id": 423903595,
+      "tag_name": "v12.8.H",
+      "target_commitish": "3345fdf84c9a0280c5260e0dc83fee4e4c2e3785",
+      "name": "BatchMath v12.8.H",
+      "body": "Complete website package from working-branch commit `3345fdf84c9a0280c5260e0dc83fee4e4c2e3785`.\n\nSHA-256: `d699fa363131d78f2cf23f8fbd72c667b75ebd7789a0705c9349e609af401263`\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-26T06:02:21Z",
+      "assets": [
+        {
+          "id": 677186378,
+          "name": "batchmath-site-v12.8.H.zip",
+          "state": "uploaded",
+          "size": 313642033,
+          "digest": "sha256:d699fa363131d78f2cf23f8fbd72c667b75ebd7789a0705c9349e609af401263",
+          "updated_at": "2026-10-26T06:02:21Z"
+        }
+      ]
+    },
+    {
+      "id": 423669556,
+      "tag_name": "v12.8.G",
+      "target_commitish": "e7bbd9bed215e24075b0d05aa91f5a36937c7f28",
+      "name": "BatchMath v12.8.G",
+      "body": "Complete website package from working-branch commit `e7bbd9bed215e24075b0d05aa91f5a36937c7f28`.\n\nSHA-256: `5f8ac178901c4b929229580a27c179b9e2dff9742ed6d552bd872ccc8c689049`\n",
+      "prerelease": true,
+      "draft": false,
+      "updated_at": "2026-10-25T21:21:14Z",
+      "assets": [
+        {
+          "id": 676156432,
+          "name": "batchmath-site-v12.8.G.zip",
+          "state": "uploaded",
+          "size": 313635523,
+          "digest": "sha256:5f8ac178901c4b929229580a27c179b9e2dff9742ed6d552bd872ccc8c689049",
+          "updated_at": "2026-10-25T21:21:13Z"
+        }
+      ]
+    }
+  ]
+}

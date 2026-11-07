@@ -1,0 +1,58 @@
+{
+  "testedAndPackagedCommit": "001d05d8e8165377c272af9927fe7f11dbe476e5",
+  "productionQa": {
+    "run": 42333436501,
+    "conclusion": "success",
+    "testStepsPassed": 17,
+    "engines": 143,
+    "seedsPerEngine": 3,
+    "reproducibilitySamplesPassed": 429,
+    "enterRoutingChecks": 104,
+    "realAnsweredEnterChecks": 25,
+    "rectangularRegressionsPassed": 2,
+    "errors": 0,
+    "warnings": 0
+  },
+  "packagingWorkflow": {
+    "run": 42333432516,
+    "conclusion": "success",
+    "gatedOnSuccessfulSameCommitProductionQa": true,
+    "uploadedZipDownloadedAndByteComparedByWorkflow": true
+  },
+  "independentPublicDownload": {
+    "manifestAndChecksumMatch": true,
+    "archive": {
+      "testedCommit": "001d05d8e8165377c272af9927fe7f11dbe476e5",
+      "zip": "batchmath-site-v12.9.G.zip",
+      "rootDirectory": "batchmath-site-v12.9.G/",
+      "bytes": 314255643,
+      "sha256": "b00cd8a93c87b22bc02911abefb9ca9b292f3f0f161d7ab4f217fdc6643b5252",
+      "includedFiles": 768,
+      "htmlPages": 288,
+      "pdfFiles": 290,
+      "lockedMathLiveFiles": 24,
+      "allFilesMatchTestedCommit": true,
+      "crcPassed": true,
+      "cleanExtraction": true,
+      "standaloneHttpChecks": 10,
+      "localMachinePaths": 0,
+      "testDownload": "https://github.com/batchmath/BatchMathSite/releases/download/v12.9.G/batchmath-site-v12.9.G.zip"
+    },
+    "sevenCasesNormalAndLegacyPassed": 14,
+    "sourceTreeBlobsAndCrcPassed": true
+  },
+  "preservation": {
+    "main": "0bf61ebd86ae0da06d9f9e4f580ab9b3d386a81a",
+    "FTag": "0bf61ebd86ae0da06d9f9e4f580ab9b3d386a81a",
+    "FZipSha256": "ded11f29464de73405a4dfaf2f046f2570f2e18b140a906582d85edf31b93fac",
+    "oldTagsUnchanged": 18,
+    "oldReleasesUnchanged": 18,
+    "otherBranchHeadsUnchanged": 31,
+    "latestUnchanged": true
+  },
+  "prerelease": true,
+  "latest": false,
+  "mainMerged": false,
+  "deployed": false,
+  "unresolvedHotfixProblems": []
+}

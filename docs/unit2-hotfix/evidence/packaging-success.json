@@ -1,0 +1,141 @@
+{
+  "run": 42333432516,
+  "url": "https://github.com/batchmath/BatchMathSite/actions/runs/42333432516",
+  "status": "completed",
+  "conclusion": "success",
+  "head": "001d05d8e8165377c272af9927fe7f11dbe476e5",
+  "jobs": [
+    {
+      "id": 128284877088,
+      "name": "package",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 42333432516,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Verify the tested tree and both preserved histories",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Require the complete production QA workflow for this exact commit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Build and programmatically verify the exact complete website package",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Snapshot protected sources, tags, prereleases and latest status",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Publish only the authorized test prerelease",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Download the published ZIP and verify its bytes and complete site tree",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Recheck every protected source, tag, prerelease and latest status",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        }
+      ]
+    }
+  ],
+  "productionQaRun": 42333436501,
+  "productionQaArtifact": {
+    "id": 13559035969,
+    "name": "batchmath-qa-results",
+    "size_in_bytes": 491284,
+    "url": "https://api.github.com/repos/batchmath/BatchMathSite/actions/artifacts/13559035969",
+    "archive_download_url": "https://api.github.com/repos/batchmath/BatchMathSite/actions/artifacts/13559035969/zip",
+    "expired": false,
+    "created_at": "2026-11-07T03:28:34Z",
+    "expires_at": "2027-02-05T03:18:58Z",
+    "updated_at": "2026-11-07T03:28:34Z",
+    "digest": "sha256:fd169608f79b94e0d2e95cace69c56883a271c2074799612ce617cac61bb9a94",
+    "workflow_run": {
+      "id": 42333436501,
+      "repository_id": 1333728882,
+      "head_repository_id": 1333728882,
+      "head_branch": "hotfix/v12.9g-unit2-inverse-qa",
+      "head_sha": "001d05d8e8165377c272af9927fe7f11dbe476e5"
+    }
+  },
+  "release": {
+    "id": 437298161,
+    "tag": "v12.9.G",
+    "target": "001d05d8e8165377c272af9927fe7f11dbe476e5",
+    "prerelease": true,
+    "draft": false,
+    "url": "https://github.com/batchmath/BatchMathSite/releases/tag/v12.9.G",
+    "assets": [
+      {
+        "id": 719473572,
+        "name": "batchmath-site-v12.9.G.sha256",
+        "bytes": 93,
+        "digest": "sha256:acf06da61c7ea51608c8b809a0200b5905d2230d37cd7e12c94454a63593c467",
+        "url": "https://github.com/batchmath/BatchMathSite/releases/download/v12.9.G/batchmath-site-v12.9.G.sha256"
+      },
+      {
+        "id": 719473573,
+        "name": "batchmath-site-v12.9.G.zip",
+        "bytes": 314255643,
+        "digest": "sha256:b00cd8a93c87b22bc02911abefb9ca9b292f3f0f161d7ab4f217fdc6643b5252",
+        "url": "https://github.com/batchmath/BatchMathSite/releases/download/v12.9.G/batchmath-site-v12.9.G.zip"
+      },
+      {
+        "id": 719473574,
+        "name": "delivery-manifest.json",
+        "bytes": 602,
+        "digest": "sha256:10049ffd976c8b6cfeea83b48a12acb5bea50f68e5546ff9653c4153bf97254d",
+        "url": "https://github.com/batchmath/BatchMathSite/releases/download/v12.9.G/delivery-manifest.json"
+      }
+    ]
+  },
+  "verifiedJobOutput": [
+    "2026-11-07T03:28:40.8398123Z Production QA gate passed: https://github.com/batchmath/BatchMathSite/actions/runs/42333436501",
+    "2026-11-07T03:29:16.0458688Z Verified download: https://github.com/batchmath/BatchMathSite/releases/download/v12.9.G/batchmath-site-v12.9.G.zip",
+    "2026-11-07T03:29:19.6636715Z Protected sources, earlier tags/prereleases and latest status are unchanged."
+  ]
+}
