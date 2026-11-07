@@ -193,8 +193,10 @@ def wire(cfg):
     # v13.0.A (experimental): the 3D model of square cross sections, on Volume by Cross Sections, Non-Calculator Practice
     # only. The module is small; three.js loads only when a student opens the model.
     m3 = '<script type="module" src="/assets/unit6-3d/cross-sections-3d.mjs"></script>'
-    if cfg['topic'] == 'volume-by-cross-sections' and cfg['page'] == 'non-calculator-practice' and m3 not in text:
-        text = text.replace('</head>', m3 + '</head>', 1)
+    # (placed before the MathLive tags, which stay last in the head as the Unit 6 QA expects)
+    if cfg['topic'] == 'volume-by-cross-sections' and cfg['page'] == 'non-calculator-practice':
+        text = text.replace(m3, '')
+        text = text.replace(ml, m3 + ml, 1)
     path.write_text(text, encoding='utf-8')
     return path
 
