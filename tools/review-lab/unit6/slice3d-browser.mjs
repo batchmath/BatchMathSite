@@ -22,6 +22,7 @@
 // Pictures are read from the WebGL canvas itself (the viewer's snapshot hook).
 // Usage: node tools/review-lab/unit6/slice3d-browser.mjs   (screenshots in $REVIEW_OUT/unit6/3d-e)
 //        BM_PORT=<port>: use a server already running on 127.0.0.1:<port> (an extracted ZIP)
+//        ONLY=cs or ONLY=solids: one topic only
 import {serve,browser,context,open,randomPort,outDir} from '../lib/browser.mjs';
 const T='ap-calculus/unit-6-applications-integration/topics';
 const CS_CASES={desktop:[['square','x','cap'],['semicircle_d','y','disk'],['equilateral','x','triangle'],['iso_hyp','y','under_root'],['rect2','x','pair'],['quarter','y','semicircle']],
@@ -50,20 +51,22 @@ async function force(p,want){
 }
 async function next(p){const cur=await p.$eval('#u6Mode',e=>e.value),opts=await p.$$eval('#u6Mode option',o=>o.map(x=>x.value));await p.selectOption('#u6Mode',opts.find(v=>v!==cur&&v!=='mixed')||opts.find(v=>v!==cur));await p.waitForTimeout(800);}
 const API=cs=>cs?'BatchMathCrossSections3D':'BatchMathSolids3D';
-const W=k=>`.u6-3d >> nth=${k}`;
-// the state of model k (the k-th 3D control on the page)
-const st=(p,k)=>p.evaluate(k=>{const w=document.querySelectorAll('.u6-3d')[k],cv=w?.querySelector('.u6-3d-canvas'),v=cv?.__bm3d;if(!w)return null;
+// a model is addressed by a CSS selector of its control: '.u6-3d' (the one cross-section model), or
+// '.u6-3d[data-rotation="i"]' for rotation i of a solid of revolution (Part B's panel can come before Part A's)
+const W=k=>k,ROT=i=>`.u6-3d[data-rotation="${i}"]`;
+// the state of model k
+const st=(p,k)=>p.evaluate(k=>{const w=document.querySelector(k),cv=w?.querySelector('.u6-3d-canvas'),v=cv?.__bm3d;if(!w)return null;
  const aria=[...w.querySelectorAll('[aria-label]')].map(e=>e.getAttribute('aria-label')).join(' | ');
  return{button:w.querySelector('.u6-3d-btn').textContent,aria,beta:/beta/i.test(w.textContent+' '+aria),slice:w.querySelector('.u6-3d-slice')?.textContent,dimmed:!!w.querySelector('.u6-3d-legend .u6-3d-off'),
   open:!w.querySelector('.u6-3d-stage').hidden,viewer:!!v,frames:v?.frames,cam:v?[v.azimuth,v.distance,v.polar]:null,display:v?.display,ids:v?.geometryIds().join(','),sliceVisible:v?.sliceVisible,parts:v?.sliceParts(),
   mark:cv?.__mark||null,problem:window.BatchMathUnit5Last?.id};},k);
-const snap=(p,k)=>p.evaluate(k=>document.querySelectorAll('.u6-3d')[k].querySelector('.u6-3d-canvas').__bm3d.snapshot().split(',')[1],k);
+const snap=(p,k)=>p.evaluate(k=>document.querySelector(k).querySelector('.u6-3d-canvas').__bm3d.snapshot().split(',')[1],k);
 async function decode(p,png){return p.evaluate(async png=>{const img=new Image();img.src='data:image/png;base64,'+png;await img.decode();const c=document.createElement('canvas');c.width=img.width;c.height=img.height;const g=c.getContext('2d');g.drawImage(img,0,0);return{w:c.width,h:c.height,data:Array.from(g.getImageData(0,0,c.width,c.height).data)};},png);}
 const yellow=im=>{let n=0;for(let i=0;i<im.data.length;i+=4){const [r,g,bb]=[im.data[i],im.data[i+1],im.data[i+2]];if(r>140&&g>120&&bb<110&&r-bb>70)n++;}return n;};
 const changed=(a,b)=>{let n=0;for(let i=0;i<a.data.length;i+=4)if(Math.max(Math.abs(a.data[i]-b.data[i]),Math.abs(a.data[i+1]-b.data[i+1]),Math.abs(a.data[i+2]-b.data[i+2]))>8)n++;return n;};
-async function press(p,k,sel,how){const loc=p.locator(W(k)).locator(sel);
+async function press(p,k,sel,how){const loc=p.locator(W(k)).first().locator(sel);
  if(how==='tap')await loc.tap();else if(how==='enter'||how==='space'){await loc.focus();await p.keyboard.press(how==='enter'?'Enter':'Space');}else await loc.click();await p.waitForTimeout(250);}
-async function drag(p,k,mob,cdp){const r=await p.locator(W(k)).locator('.u6-3d-canvas').boundingBox(),x=r.x+r.width/2,y=r.y+r.height/2;
+async function drag(p,k,mob,cdp){const r=await p.locator(W(k)).first().locator('.u6-3d-canvas').boundingBox(),x=r.x+r.width/2,y=r.y+r.height/2;
  if(!mob){await p.mouse.move(x,y);await p.mouse.down();await p.mouse.move(x+90,y+25,{steps:10});await p.mouse.up();await p.mouse.wheel(0,-120);}
  else{await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y,id:1}]});for(let i=1;i<=10;i++)await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+6*i,y:y+2*i,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
   await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:x-20,y,id:1},{x:x+20,y,id:2}]});for(let i=1;i<=4;i++)await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x-20-i*5,y,id:1},{x:x+20+i*5,y,id:2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
@@ -76,8 +79,8 @@ async function exercise(p,cs,k,name,tag,run,{mob,cdp,shot}){
  const how=mob?'tap':'click';
  const c0=await st(p,k);run.closed={button:c0.button,aria:c0.aria};
  if(c0.button!=='Show 3D Model'||c0.beta||c0.open)fail(`${tag}: closed control ${JSON.stringify(run.closed)}`);
- await press(p,k,'.u6-3d-btn',how);await p.waitForFunction(k=>!!document.querySelectorAll('.u6-3d')[k]?.querySelector('.u6-3d-canvas')?.__bm3d,k,{timeout:20000}).catch(()=>{});await p.waitForTimeout(300);
- await p.evaluate(k=>{document.querySelectorAll('.u6-3d')[k].querySelector('.u6-3d-canvas').__mark='first';},k);
+ await press(p,k,'.u6-3d-btn',how);await p.waitForFunction(k=>!!document.querySelector(k)?.querySelector('.u6-3d-canvas')?.__bm3d,k,{timeout:20000}).catch(()=>{});await p.waitForTimeout(300);
+ await p.evaluate(k=>{document.querySelector(k).querySelector('.u6-3d-canvas').__mark='first';},k);
  const s0=await st(p,k);if(!s0?.viewer){fail(`${tag}: the model did not open`);return;}
  const home=await snap(p,k),yHome=yellow(await decode(p,home));
  run.opened={button:s0.button,slice:s0.slice,visible:s0.sliceVisible,parts:s0.parts,yellow:yHome,display:s0.display};
@@ -91,7 +94,7 @@ async function exercise(p,cs,k,name,tag,run,{mob,cdp,shot}){
  if(run.hide.frames!==1||!run.hide.camera||!run.hide.sameGeometry||!run.hide.sameCanvas||s2.display!=='transparent')fail(`${tag}: Hide rebuilt or moved something: ${JSON.stringify(run.hide)}`);
  if(s2.sliceVisible!==false||!all(s2.parts.objects,false)||s2.slice!==`Show ${name}`||!s2.dimmed)fail(`${tag}: Hide did not hide the slice: ${JSON.stringify(run.hide)}`);
  if(!(run.hide.changed>0)||run.hide.yellowAfter>Math.max(12,run.hide.yellowBefore*0.03))fail(`${tag}: the slice's yellow is still on the canvas: ${JSON.stringify(run.hide)}`);
- if(shot)await p.locator(W(k)).screenshot({path:`${shots}/${shot}-hidden.png`});
+ if(shot)await p.locator(W(k)).first().screenshot({path:`${shots}/${shot}-hidden.png`});
  // Opaque while hidden; Show and Hide in Opaque
  await press(p,k,'.u6-3d-mode[data-mode="opaque"]',how);const s3=await st(p,k),C=await snap(p,k),yC=yellow(await decode(p,C));
  await press(p,k,'.u6-3d-slice',how);const s4=await st(p,k),Dp=await snap(p,k),yD=yellow(await decode(p,Dp));
@@ -116,7 +119,7 @@ async function exercise(p,cs,k,name,tag,run,{mob,cdp,shot}){
  await press(p,k,'.u6-3d-slice',how);
  const n0=await p.evaluate(api=>window[api].disposals.length,API(cs));await press(p,k,'.u6-3d-btn',how);
  const rel=await p.evaluate(([api,n0])=>window[api].disposals.slice(n0),[API(cs),n0]);
- await press(p,k,'.u6-3d-btn',how);await p.waitForFunction(k=>!!document.querySelectorAll('.u6-3d')[k]?.querySelector('.u6-3d-canvas')?.__bm3d,k,{timeout:20000}).catch(()=>{});await p.waitForTimeout(250);
+ await press(p,k,'.u6-3d-btn',how);await p.waitForFunction(k=>!!document.querySelector(k)?.querySelector('.u6-3d-canvas')?.__bm3d,k,{timeout:20000}).catch(()=>{});await p.waitForTimeout(250);
  const s9=await st(p,k);run.reopened={released:rel,visible:s9?.sliceVisible,button:s9?.slice,parts:s9?.parts?.objects};
  if(rel.length!==1||rel[0].geometries||rel[0].textures)fail(`${tag}: closing left GPU memory ${JSON.stringify(rel)}`);
  if(!s9||s9.sliceVisible!==false||s9.slice!==`Show ${name}`||!all(s9.parts.objects,false))fail(`${tag}: not kept hidden on reopening: ${JSON.stringify(run.reopened)}`);
@@ -131,25 +134,25 @@ async function nextQuestion(p,cs,tag,run){const before=await p.evaluate(()=>({id
 for(const [vi,[w,h,mob]] of [[1366,900,false],[390,844,true]].entries()){
  const vp=`${w}x${h}`;
  // ---- Volume by Cross Sections, Non-Calculator ----
- {recent=[];const c=await context(b,{width:w,height:h,mobile:mob}),p=await open(c,`http://127.0.0.1:${PORT}/${T}/volume-by-cross-sections/non-calculator-practice/?bm_seed=slice-${w}`),cdp=mob?await c.newCDPSession(p):null;
+ if(process.env.ONLY!=='solids'){recent=[];const c=await context(b,{width:w,height:h,mobile:mob}),p=await open(c,`http://127.0.0.1:${PORT}/${T}/volume-by-cross-sections/non-calculator-practice/?bm_seed=slice-${w}`),cdp=mob?await c.newCDPSession(p):null;
   await p.waitForSelector('#choices math-field',{timeout:20000}).catch(()=>{});let salt=5000+vi*300;
   for(const [shape,dir,region] of CS_CASES[mob?'phone':'desktop']){const tag=`${vp} cross sections ${shape} ${dir}`,run={viewport:vp,engine:'cross sections',shape,dir,region};out.runs.push(run);
    const id=await force(p,{cs:true,shape,dir,region,salt:++salt});if(!id){fail(`${tag}: not generated`);continue;}await next(p);
    if(await p.evaluate(()=>window.BatchMathUnit5Last.id)!==id){fail(`${tag}: not shown`);continue;}
-   try{await exercise(p,true,0,'Cross Section',tag,run,{mob,cdp,shot:`cs-${shape}-${dir}-${w}`});}catch(e){fail(`${tag}: ${String(e.message).split('\n')[0]}`);}}
+   try{await exercise(p,true,'.u6-3d','Cross Section',tag,run,{mob,cdp,shot:`cs-${shape}-${dir}-${w}`});}catch(e){fail(`${tag}: ${String(e.message).split('\n')[0]}`);}}
   {const run={viewport:vp,engine:'cross sections',check:'next question'};out.runs.push(run);await nextQuestion(p,true,`${vp} cross sections`,run);
-   const s=await st(p,0);run.newModel=s&&{button:s.button,open:s.open};if(s&&(s.open||s.button!=='Show 3D Model'))fail(`${vp} cross sections: the next question's control ${JSON.stringify(run.newModel)}`);}
+   const s=await st(p,'.u6-3d');run.newModel=s&&{button:s.button,open:s.open};if(s&&(s.open||s.button!=='Show 3D Model'))fail(`${vp} cross sections: the next question's control ${JSON.stringify(run.newModel)}`);}
   const lay=await p.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);if(lay>0)fail(`${vp} cross sections: page wider than the screen`);
   out[`errors ${vp} cs`]=p._errs.length;for(const e of p._errs)fail(`${vp} cs: ${e}`);await c.close();}
  // ---- Volume by Cross Sections, Calculator: the model appears after Part A ----
- {const c=await context(b,{width:w,height:h,mobile:mob}),p=await open(c,`http://127.0.0.1:${PORT}/${T}/volume-by-cross-sections/calculator-practice/?bm_seed=slice-calc-${w}`),cdp=mob?await c.newCDPSession(p):null;
+ if(process.env.ONLY!=='solids'){const c=await context(b,{width:w,height:h,mobile:mob}),p=await open(c,`http://127.0.0.1:${PORT}/${T}/volume-by-cross-sections/calculator-practice/?bm_seed=slice-calc-${w}`),cdp=mob?await c.newCDPSession(p):null;
   await p.waitForSelector('#choices math-field',{timeout:20000}).catch(()=>{});const tag=`${vp} cross sections calculator`,run={viewport:vp,engine:'cross sections',calc:true};out.runs.push(run);
   run.problem=await p.evaluate(()=>window.BatchMathUnit5Last.id);run.beforePartA=await p.$$eval('.u6-3d',e=>e.length);if(run.beforePartA)fail(`${tag}: a model before Part A`);
   await typePart(p,0);
-  try{await exercise(p,true,0,'Cross Section',tag,run,{mob,cdp,shot:`cs-calc-${w}`});}catch(e){fail(`${tag}: ${String(e.message).split('\n')[0]}`);}
+  try{await exercise(p,true,'.u6-3d','Cross Section',tag,run,{mob,cdp,shot:`cs-calc-${w}`});}catch(e){fail(`${tag}: ${String(e.message).split('\n')[0]}`);}
   out[`errors ${vp} cs calc`]=p._errs.length;for(const e of p._errs)fail(`${tag}: ${e}`);await c.close();}
  // ---- Solids of Revolution ----
- for(const page of ['non-calculator-practice','calculator-practice']){
+ for(const page of ['non-calculator-practice','calculator-practice'].filter(()=>process.env.ONLY!=='cs')){
   recent=[];const c=await context(b,{width:w,height:h,mobile:mob}),p=await open(c,`http://127.0.0.1:${PORT}/${T}/solids-of-revolution/${page}/?bm_seed=slice-${w}`),cdp=mob?await c.newCDPSession(p):null;
   await p.waitForSelector('#choices math-field',{timeout:20000}).catch(()=>{});let salt=6000+vi*300;
   for(const want of SOLIDS.filter(s=>(s.calc==='calculator')===(page==='calculator-practice'))){const tag=`${vp} solids ${want.family}`,run={viewport:vp,engine:'solids',...want};out.runs.push(run);
@@ -159,7 +162,7 @@ for(const [vi,[w,h,mob]] of [[1366,900,false],[390,844,true]].entries()){
    try{
     // the first model: under the graph, or once Part A is checked
     if(!(await p.$('.u6-3d-btn')))await typePart(p,0);
-    await exercise(p,false,0,NAME[rots[0].kind],`${tag} model 1`,run,{mob,cdp,shot:`sol-${want.family}-1-${w}`});
+    await exercise(p,false,ROT(0),NAME[rots[0].kind],`${tag} model 1`,run,{mob,cdp,shot:`sol-${want.family}-1-${w}`});
     if(rots.length>1){
      // the second model, with its own state: answer Part A, go on to Part B (and check it on the calculator page)
      const r1={viewport:vp,engine:'solids',family:want.family,model:2};out.runs.push(r1);
@@ -167,9 +170,9 @@ for(const [vi,[w,h,mob]] of [[1366,900,false],[390,844,true]].entries()){
      for(let j=0;j<nParts&&(await p.$$('.u6-3d')).length<2;j++){if(!(await answered(j)))await typePart(p,j);
       if((await p.$$('.u6-3d')).length<2){const cont=await p.$(`#choices .unit5-part-${j+1} .staged-continue`);if(cont){await cont.click();await p.waitForTimeout(500);}}}
      const n=(await p.$$('.u6-3d')).length;r1.models=n;if(n<2){fail(`${tag}: the second model did not appear`);}
-     else{const m1=await st(p,0);r1.firstStillHidden=m1.sliceVisible===false&&m1.slice===`Show ${NAME[rots[0].kind]}`;if(!r1.firstStillHidden)fail(`${tag}: model 1 lost its state: ${JSON.stringify(m1.slice)}`);
-      await exercise(p,false,1,NAME[rots[1].kind],`${tag} model 2`,r1,{mob,cdp,shot:`sol-${want.family}-2-${w}`});
-      const m1b=await st(p,0);if(m1b.sliceVisible!==false)fail(`${tag}: model 2's control changed model 1`);}}
+     else{const m1=await st(p,ROT(0));r1.firstStillHidden=m1.sliceVisible===false&&m1.slice===`Show ${NAME[rots[0].kind]}`;if(!r1.firstStillHidden)fail(`${tag}: model 1 lost its state: ${JSON.stringify(m1.slice)}`);
+      await exercise(p,false,ROT(1),NAME[rots[1].kind],`${tag} model 2`,r1,{mob,cdp,shot:`sol-${want.family}-2-${w}`});
+      const m1b=await st(p,ROT(0));if(m1b.sliceVisible!==false)fail(`${tag}: model 2's control changed model 1`);}}
    }catch(e){fail(`${tag}: ${String(e.message).split('\n')[0]}`);}
    const run2={viewport:vp,engine:'solids',family:want.family,check:'next question'};out.runs.push(run2);await nextQuestion(p,false,`${tag}`,run2);}
   const lay=await p.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);if(lay>0)fail(`${vp} ${page}: page wider than the screen`);
