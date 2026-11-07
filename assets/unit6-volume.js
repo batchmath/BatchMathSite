@@ -56,12 +56,23 @@ const baseToggle=R=>graphToggle(figure(R,{label:'The base of the solid'}));
 function areaFn(T,shape,v){const t=T[0],k=C.U5?shape.k:shape.k,kv=qv(k.q)*(k.atom?k.atom.val:1);
  return fnc({tex:()=>shape.area(t.stex),key:()=>'',f:z=>kv*t.g.f(z)});}
 
+// v13.0.A (experimental 3D model): the generator's own base region and cross-section shape, kept on the problem as a
+// non-enumerable property. Nothing random is drawn and nothing visible or stored changes (questions, answers and saved
+// data are as before); assets/unit6-3d/ reads it to build the solid. Each piece gives the boundaries as functions of
+// the slicing variable: for slices perpendicular to the x-axis, bot(x) and top(x) on [a, b].
+function withSolid(p,R,v,shape){
+ const ps=v==='x'?R.xs:R.ys;if(!ps)return p;
+ const pieces=ps.map(q=>Object.freeze({a:q.a.v,b:q.b.v,aTex:q.a.tex,bTex:q.b.tex,top:(v==='x'?q.top:q.right).f,bot:(v==='x'?q.bot:q.left).f,
+  topTex:(v==='x'?q.top:q.right).tex(v),botTex:(v==='x'?q.bot:q.left).tex(v)}));
+ Object.defineProperty(p,'u6Solid',{value:Object.freeze({dir:v,shape:shape.id,mult:shape.mult||null,pieces:Object.freeze(pieces),slice:sliceAt(R,v),eqs:Object.freeze([...R.eqs])}),enumerable:false});
+ return p;
+}
 function famCsBasic(tier){
  const {R,v}=csPick(),shape=shapeOf(pick(SH)),T=sectionTerms(R,v,shape),e=exactValue(T);if(!e)throw Error('not exact');
  const pic=csPicture(R,v,shape),work=pic+W.boundsStep(R)+W.sectionWork(R,v,shape,T)+W.evalWork(T);
  const parts=tier==='foundational'||T.length>1?[exactPart('Find the volume of the solid.',exactAnswer(e),work)]
   :[exprPart(`Write the area of a cross section as a function of ${v}.`,`A(${v})=`,areaFn(T,shape,v),v,[T[0].a.v,T[0].b.v],pic+W.boundsStep(R)+W.sectionWork(R,v,shape,T).split('Set up the volume.')[0].replace(/<div class="u4-work-step"><strong>$/,'')),exactPart('Find the volume of the solid.',exactAnswer(e),W.sectionWork(R,v,shape,T)+W.evalWork(T))];
- return one('Answer each part.',parts,{engine:'cross_sections',family:'cs_basic',tier,id:`csb-${R.eqs.join('|')}-${v}-${shape.name}`,context:csContext(R,v,shape),formulas:R.eqs,extra:baseToggle(R),data:{dir:v,shape:shape.name,region:R.data.kind,graph:'toggle'}});
+ return withSolid(one('Answer each part.',parts,{engine:'cross_sections',family:'cs_basic',tier,id:`csb-${R.eqs.join('|')}-${v}-${shape.name}`,context:csContext(R,v,shape),formulas:R.eqs,extra:baseToggle(R),data:{dir:v,shape:shape.name,region:R.data.kind,graph:'toggle'}}),R,v,shape);
 }
 // y = e^x, y = 1 and x = s (tests: setups in both directions)
 function expBase(){
@@ -80,7 +91,7 @@ function famCsSetup(tier){
  const shape=shapeOf(pick(SH)),T=sectionTerms(R,v,shape),e=exactValue(T);
  const setup=integralPart(`Write, but do not evaluate, an integral expression${T.length>1?' (or a sum of integrals)':''} for the volume of the solid.`,T,csPicture(R,v,shape)+W.boundsStep(R)+W.sectionWork(R,v,shape,T),{variable:v,methodNote:`That has the right value, but cross sections ${where(v)} are integrated with respect to ${v}.`});
  const parts=e&&tier==='challenging'&&pick([true,false])?[setup,exactPart('Evaluate the volume.',exactAnswer(e),W.evalWork(T))]:[setup];
- return one('Answer each part.',parts,{engine:'cross_sections',family:'cs_setup',tier,id:`css-${R.eqs.join('|')}-${v}-${shape.name}`,context:csContext(R,v,shape),formulas:R.eqs,extra:baseToggle(R),data:{dir:v,shape:shape.name,region:R.data.kind,graph:'toggle'}});
+ return withSolid(one('Answer each part.',parts,{engine:'cross_sections',family:'cs_setup',tier,id:`css-${R.eqs.join('|')}-${v}-${shape.name}`,context:csContext(R,v,shape),formulas:R.eqs,extra:baseToggle(R),data:{dir:v,shape:shape.name,region:R.data.kind,graph:'toggle'}}),R,v,shape);
 }
 function famCsCalc(tier){
  // v12.9.B: the direction first (about half perpendicular to the y-axis), then a region that can be sliced that way

@@ -1,14 +1,19 @@
-BatchMath v12.9.G — complete integration test build
+BatchMath v13.0.A — experimental interactive 3D cross sections (test build, not production)
 
-Extract batchmath-site-v12.9.G.zip.
-Open a terminal inside the single folder batchmath-site-v12.9.G.
+Extract bm-v13.0.A.zip.
+Open a terminal inside the single folder bm-v13.0.A.
 Run exactly:
 
 py -m http.server 8000
 
+(On macOS or Linux: python3 -m http.server 8000)
 Open http://localhost:8000/ in your browser.
 Keep the terminal open while testing. Stop the server with Ctrl+C.
 
-The website, practice engines, PDFs, local MathLive runtime and fonts are included.
+To see the 3D model: AP Calculus AB > Unit 6 > Volume by Cross Sections > Non-Calculator Practice.
+Choose the Practice Type "Perpendicular to the x-axis" and press Next until the cross sections are squares,
+then press "Show 3D Model (Beta)" under the question. Drag to rotate; scroll or pinch to zoom.
+
+The website, practice engines, PDFs, local MathLive runtime and fonts, and the local three.js library are included.
 Normal MathJax rendering and YouTube video playback require internet.
-This is a test prerelease, not a production deployment.
+This is an experimental test prerelease, not a production deployment.

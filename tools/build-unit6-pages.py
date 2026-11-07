@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parent.parent
 UNIT = 'unit-6-applications-integration'
 U6 = ROOT / 'ap-calculus' / UNIT / 'topics'
 SITE = 'https://batchmath.net'
-VERSION = '12.9.G'
+VERSION = '13.0.A'
 COMMON_HEAD = ['/assets/derivative-expression-checker.js', '/assets/unit4-exact-answers.js', '/assets/calculus-keypad.js']
 COMMON_BODY = ['/assets/unit5-core.js', '/assets/unit5-answers.js', '/assets/unit5-ui.js', '/assets/unit6-core.js', '/assets/unit6-ui.js', '/assets/unit6-regions.js']
 STYLES = ['/assets/calculus-keypad.css', '/assets/unit5.css', '/assets/unit6.css']
@@ -190,6 +190,11 @@ def wire(cfg):
         if text.count('</head>') != 1:
             raise SystemExit(f'{path}: head not found')
         text = text.replace('</head>', ml + '</head>', 1)
+    # v13.0.A (experimental): the 3D model of square cross sections, on Volume by Cross Sections, Non-Calculator Practice
+    # only. The module is small; three.js loads only when a student opens the model.
+    m3 = '<script type="module" src="/assets/unit6-3d/cross-sections-3d.mjs"></script>'
+    if cfg['topic'] == 'volume-by-cross-sections' and cfg['page'] == 'non-calculator-practice' and m3 not in text:
+        text = text.replace('</head>', m3 + '</head>', 1)
     path.write_text(text, encoding='utf-8')
     return path
 

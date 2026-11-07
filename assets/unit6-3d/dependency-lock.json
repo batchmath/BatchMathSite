@@ -1,0 +1,31 @@
+{
+  "three": {
+    "version": "0.169.0",
+    "tarball": "https://registry.npmjs.org/three/-/three-0.169.0.tgz",
+    "integrity": "sha512-Ed906MA3dR4TS5riErd4QBsRGPcx+HBDX2O5yYE5GqJeFQTPU+M56Va/f/Oph9X7uZo3W3o4l2ZhBZ6f6qUv0w==",
+    "license": "MIT",
+    "purpose": "v13.0.A experimental 3D cross sections; loaded only when a student opens the 3D model",
+    "files": [
+      {
+        "path": "vendor/three/three.module.min.js",
+        "from": "package/build/three.module.min.js",
+        "bytes": 687458,
+        "sha256": "f7cee3c7533449a1505cc12cb5128b89e3d4fd3d7ea62b05f9f5464a217472ee"
+      },
+      {
+        "path": "vendor/three/OrbitControls.js",
+        "from": "package/examples/jsm/controls/OrbitControls.js",
+        "bytes": 32150,
+        "sha256": "e9c4f26866d39a36c8c9e8215e7d2a90a8a0b50ea6d44a005906e3d1fc726b8f",
+        "sourceSha256": "80efaadea4f8a636a65fb0bd08bfef62f3d93a0bb94e2e7500f23176c5c07f4e",
+        "modified": "the bare import \"from 'three'\" points to './three.module.min.js' (no import map needed)"
+      },
+      {
+        "path": "vendor/three/LICENSE",
+        "from": "package/LICENSE",
+        "bytes": 1081,
+        "sha256": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454"
+      }
+    ]
+  }
+}
