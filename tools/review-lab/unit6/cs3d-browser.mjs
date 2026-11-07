@@ -132,7 +132,7 @@ async function controls(p,cdp,mob,tag,run){
  await p.click('.u6-3d-btn');await p.waitForTimeout(150);
  const hid=await p.evaluate(n0=>({st:window.BatchMathCrossSections3D.state,canvas:document.querySelectorAll('.u6-3d-canvas').length,text:document.querySelector('.u6-3d-btn').textContent,released:window.BatchMathCrossSections3D.disposals.slice(n0)}),n0);
  run.released=hid.released;
- if(hid.st.open||hid.st.viewer||hid.canvas||hid.text!=='Show 3D Model (Beta)')fail(`${tag}: hiding did not close the model: ${JSON.stringify(hid)}`);
+ if(hid.st.open||hid.st.viewer||hid.canvas||hid.text!=='Show 3D Model')fail(`${tag}: hiding did not close the model: ${JSON.stringify(hid)}`);
  if(hid.released.length!==1||hid.released[0].geometries!==0||hid.released[0].textures!==0)fail(`${tag}: hiding left GPU memory: ${JSON.stringify(hid.released)}`);
  for(let i=0;i<5;i++)await p.click('.u6-3d-btn');await p.waitForTimeout(1200);
  const quick=await p.evaluate(()=>({canvas:document.querySelectorAll('.u6-3d-canvas').length,open:window.BatchMathCrossSections3D.state.open,viewer:!!window.BatchMathCrossSections3D.state.viewer}));
@@ -165,7 +165,7 @@ for(const [vi,[w,h,mob]] of [[1366,900,false],[390,844,true]].entries()){
    const before=await p.evaluate(()=>({btn:document.querySelectorAll('.u6-3d-btn').length,text:document.querySelector('.u6-3d-btn')?.textContent,hidden:document.querySelector('.u6-3d-stage')?.hidden,canvas:document.querySelectorAll('.u6-3d-canvas').length,
     beside:document.querySelector('#question .u6-graph-toggle')?.nextElementSibling?.classList.contains('u6-3d')||false,pieces:window.BatchMathUnit5Last.u6Solid.pieces.length}));
    run.toggle=before;run.pieces=before.pieces;
-   if(before.btn!==1||before.text!=='Show 3D Model (Beta)'||!before.hidden||before.canvas||!before.beside)fail(`${tag}: toggle not present, closed and right after Show Graph: ${JSON.stringify(before)}`);
+   if(before.btn!==1||before.text!=='Show 3D Model'||!before.hidden||before.canvas||!before.beside)fail(`${tag}: toggle not present, closed and right after Show Graph: ${JSON.stringify(before)}`);
    if(i===1){run.threeBeforeOpen=req.length;if(req.length)fail(`${vp}: three.js was loaded before a model was opened`);}
    await p.click('#question .u6-graph-toggle>summary');await p.waitForTimeout(150);
    run.graph2d=await p.evaluate(()=>{const d=document.querySelector('#question .u6-graph-toggle');return d.open&&!!d.querySelector('svg.u6-svg .u6-shade');});
@@ -232,7 +232,7 @@ for(const [vi,[w,h,mob]] of [[1366,900,false],[390,844,true]].entries()){
    run.afterPartA=post;
    if(wrong&&/is correct/.test(run.partA))fail(`${tag}: the wrong answer was graded correct`);
    if(!wrong&&!/is correct\.|^Correct\./.test(run.partA))fail(`${tag}: Part A ${tex} was not graded correct: ${run.partA}`);
-   if(post.wraps!==1||!post.inPartA||!post.afterFigure||!post.hidden||post.text!=='Show 3D Model (Beta)'||post.canvas)fail(`${tag}: after Part A: ${JSON.stringify(post)}`);
+   if(post.wraps!==1||!post.inPartA||!post.afterFigure||!post.hidden||post.text!=='Show 3D Model'||post.canvas)fail(`${tag}: after Part A: ${JSON.stringify(post)}`);
    await openModel(p);const g=await geometry(p);if(!g){fail(`${tag}: the model did not open: ${await p.textContent('.u6-3d-view')}`);continue;}
    Object.assign(run,checkGeometry(tag,g));
    const px=await pixels(p);run.pixels={lit:px.lit,yellow:px.yellow};if(px.lit<px.w*px.h*0.02||px.yellow<30)fail(`${tag}: the canvas looks empty (${JSON.stringify(px)})`);
@@ -265,7 +265,7 @@ await b.close();
  const g2=await p.evaluate(()=>{const d=document.querySelector('#question .u6-graph-toggle');return d.open&&!!d.querySelector('svg.u6-svg .u6-shade');});
  await p.click('.u6-3d-btn');await p.waitForTimeout(150);const closed=await p.evaluate(()=>({button:document.querySelector('.u6-3d-btn')?.textContent,hidden:document.querySelector('.u6-3d-stage')?.hidden}));
  out.noWebGL={problem:id,webgl2Available:st.gl,message:st.text,canvas:st.canvas,button:st.button,graph2d:g2,closesAgain:closed,errors:p._errs};
- if(st.gl||!/cannot show the 3D model \(WebGL is not available\)/.test(st.text||'')||st.canvas||st.state?.viewer||!g2||closed.button!=='Show 3D Model (Beta)'||!closed.hidden||p._errs.length)fail(`no WebGL: ${JSON.stringify(out.noWebGL)}`);
+ if(st.gl||!/cannot show the 3D model \(WebGL is not available\)/.test(st.text||'')||st.canvas||st.state?.viewer||!g2||closed.button!=='Show 3D Model'||!closed.hidden||p._errs.length)fail(`no WebGL: ${JSON.stringify(out.noWebGL)}`);
  await nb.close();}
 srv.close();
 console.log(JSON.stringify(out,null,1));

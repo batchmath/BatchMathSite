@@ -1,7 +1,7 @@
-BatchMath v13.0.D — 3D models with a Transparent / Opaque display toggle (experimental test build, not production)
+BatchMath v13.0.E — 3D models: "Show 3D Model" and a Hide / Show control for the highlighted slice (experimental test build, not production)
 
-Extract bm-v13.0.D.zip.
-Open a terminal inside the single folder bm-v13.0.D.
+Extract bm-v13.0.E.zip.
+Open a terminal inside the single folder bm-v13.0.E.
 Run exactly:
 
 py -m http.server 8000
@@ -10,7 +10,17 @@ py -m http.server 8000
 Open http://localhost:8000/ in your browser.
 Keep the terminal open while testing. Stop the server with Ctrl+C.
 
-NEW IN v13.0.D: every 3D model (both topics below) has a "Transparent | Opaque" switch beside Reset view.
+NEW IN v13.0.E: the button is now called "Show 3D Model" (no "Beta"); it becomes "Hide 3D Model" while the model is open.
+Every open 3D model has a new button beside Transparent | Opaque and Reset view that hides or shows the highlighted
+(yellow) slice with everything that belongs to it: its outline, the slice line, its marks or radii, and its labels
+(s, R, r, h). It is called "Hide Cross Section" on Volume by Cross Sections, and "Hide Disk", "Hide Washer" or
+"Hide Shell" on Solids of Revolution (named after the slice the model shows); it then reads "Show ...".
+- The slice is shown when a model first opens. Hiding and showing it is immediate: the view (rotation and zoom), the
+  Transparent / Opaque choice and the question stay. It works in both Transparent and Opaque, and the choice stays when
+  you switch between them, press Reset view, or hide the model and show it again. A new question starts with it shown.
+- Mouse, keyboard (Tab to it, Enter or Space) and touch.
+
+FROM v13.0.D: every 3D model (both topics below) has a "Transparent | Opaque" switch beside Reset view.
 - Transparent (the default) is the look of v13.0.A-C. Opaque shows the solid's outside fully opaque, so its shape is
   easier to see; parts of the highlighted slice (and, for solids of revolution, the region and the axis) that the solid
   hides are then drawn faintly, with dashed outlines. The switch is immediate: the view (rotation and zoom) stays.
@@ -18,9 +28,9 @@ NEW IN v13.0.D: every 3D model (both topics below) has a "Transparent | Opaque" 
   The choice is kept when the model is hidden and shown again; a new question starts Transparent.
 
 VOLUME BY CROSS SECTIONS (v13.0.B): AP Calculus AB > Unit 6 > Volume by Cross Sections.
-- Non-Calculator Practice: every question has "Show 3D Model (Beta)" right under the "Show Graph" button.
+- Non-Calculator Practice: every question has "Show 3D Model" right under the "Show Graph" button.
 - Calculator Practice: the region is not shown until Part A is checked (students graph it on their calculators).
-  Check Part A (right or wrong); its explanation shows the 2D picture, and "Show 3D Model (Beta)" appears right under it.
+  Check Part A (right or wrong); its explanation shows the 2D picture, and "Show 3D Model" appears right under it.
 Every cross-section shape and both directions are supported. Drag to rotate; scroll or pinch to zoom; Reset view.
 (Answer a question and press Next Question, or reload, for another one.)
 

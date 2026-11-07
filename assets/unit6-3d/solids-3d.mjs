@@ -1,4 +1,4 @@
-// BatchMath v13.0.C (experimental): "Show 3D Model (Beta)" on Solids of Revolution, Non-Calculator Practice and
+// BatchMath v13.0.C (experimental): "Show 3D Model" on Solids of Revolution, Non-Calculator Practice and
 // Calculator Practice. Every family is supported (disk_basic, washer, shells, two_axes, trig_solid, solid_calc,
 // calc_two_axes), about every axis the engine uses: the x- and y-axes, lines y = c and x = c on any side of the region,
 // and lines along its boundary. A rotation whose data cannot be drawn safely gets no button (the geometry module gives
@@ -36,6 +36,8 @@ function anchorFor(p,i){
  }
  return document.querySelector(`#choices .unit5-part-${rot.reveal+1} .staged-feedback .u6-fig-row`);
 }
+// v13.0.E: the name of the highlighted slice on its Hide / Show button
+const SLICE={disk:'Disk',washer:'Washer',shell:'Shell'};
 const KEY={disk:'one disk: radius <em class="u6-3d-s">R</em> from the axis',washer:'one washer: outer radius <em class="u6-3d-s">R</em>, inner radius <em class="u6-3d-s">r</em>, from the axis',
  shell:'one cylindrical shell: radius <em class="u6-3d-s">r</em>, height <em class="u6-3d-s">h</em>'};
 const eq=r=>`${r.axis.type} = ${String(r.axis.c).replace('-','\u2212')}`;
@@ -55,7 +57,7 @@ function sync(){
   if(c||!supported(p,i))return;
   const at=anchorFor(p,i);if(!at)return;
   const what=`R revolved about the line ${eq(rot)}`;
-  c=createToggle({problem:p,legend:legend(rot),above:multi?`Part ${PART(rot.ask)}: ${what}`:'',caption:`${what}${multi?` (Part ${PART(rot.ask)})`:''}`,label:`Show 3D Model (Beta): ${what}`,
+  c=createToggle({problem:p,legend:legend(rot),above:multi?`Part ${PART(rot.ask)}: ${what}`:'',caption:`${what}${multi?` (Part ${PART(rot.ask)})`:''}`,label:what,slice:SLICE[rot.kind],
    fallback:'The 2D graph still shows the region and the axis.',load:()=>import('./revolution-viewer.mjs'),make:(m,host)=>m.createRevolutionViewer(host,d,i,{problemId:p.id})});
   c.wrap.dataset.rotation=String(i);c.wrap.dataset.axis=rot.axisTex;c.wrap.dataset.kind=rot.kind;c.wrap.classList.add('u6-3d-rev');
   at.after(c.wrap);current.slots[i]=c;

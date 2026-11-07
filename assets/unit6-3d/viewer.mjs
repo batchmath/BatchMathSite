@@ -2,7 +2,9 @@
 // Volume by Cross Sections engine, slices perpendicular to the x-axis or to the y-axis). Loaded only when a student opens
 // the model (three.js is about 0.7 MB). v13.0.C: the stage (renderer, grid, axes, camera, controls, release) is shared
 // with the Solids of Revolution model through scene-kit.mjs; what is drawn and how is unchanged. v13.0.D: a Transparent /
-// Opaque display mode (displayModes in scene-kit.mjs); Transparent, the default, is exactly the look above.
+// Opaque display mode (displayModes in scene-kit.mjs); Transparent, the default, is exactly the look above. v13.0.E: the
+// highlighted cross section (its face, rim, slice, marks and labels, and their faint hidden copies) can be hidden and
+// shown again (setSlice), by visibility only.
 //
 // The scene uses the math coordinates directly (x, y, z), at ONE scale on every axis so every shape keeps its true
 // proportions: the base region lies in the xy-plane, z points up. Drawn: the base region (gold, as the shaded region of
@@ -38,7 +40,7 @@ export function createViewer(host,desc,{problemId=''}={}){
  const hl=loop(H.pts,COLORS.slice);hl.renderOrder=4;scene.add(hl);
  const seg=line(H.slice,0xffffff);seg.renderOrder=5;scene.add(seg);
  const marks=[];for(const a of [...H.aux,...H.marks]){const l=line(a,COLORS.mark,0.95);l.renderOrder=5;scene.add(l);marks.push(l);}
- for(const l of H.labels){const sp=label(l.text,{size:u*(l.text.length>2?1.45:1.6),color:'#ffd400'});sp.position.set(...l.at);scene.add(sp);}
+ const sliceLabels=[];for(const l of H.labels){const sp=label(l.text,{size:u*(l.text.length>2?1.45:1.6),color:'#ffd400'});sp.position.set(...l.at);scene.add(sp);sliceLabels.push(sp);}
  // the camera: in front of the base, to one side and above it, so the cross sections are seen partly face on (for slices
  // perpendicular to the y-axis the sections face the y-axis, so the view turns with them); the whole scene (solid, axes
  // and labels) fits the canvas at its actual shape
@@ -51,9 +53,12 @@ export function createViewer(host,desc,{problemId=''}={}){
  // lines) where the solid hides them
  const floor=mesh(G.base,flatMat);floor.renderOrder=2;floor.userData.kind='floor';scene.add(floor);
  const D=displayModes(scene,{solids:[flatMat,curvedMat],closers:[floor],overlays:[[hm,0.2],[hl,0.8],[seg,0.7],...marks.map(l=>[l,0.7])],dash:u*0.22});
+ // v13.0.E: everything that belongs to the highlighted cross section, shown (the default) or hidden
+ const slice=[hm,hl,seg,...marks,...sliceLabels];let sliceOn=true;
+ const setSlice=v=>{v=v!==false;if(v===sliceOn)return false;sliceOn=v;for(const o of slice)o.visible=v;D.sync();return true;};
  const info={problemId,key,dir:desc.dir,highlight:{t:H.t,lo:H.lo,hi:H.hi,s:H.s,area:H.area},bounds:{...B},sections:G.sections.length,samples:G.samples.length,disposed:false,released:null,
   get frames(){return V.frames;},get resizes(){return V.resizes;},get distance(){return V.distance;},get azimuth(){return V.azimuth;},get polar(){return V.polar;},
-  get memory(){return V.memory;},get display(){return D.mode;},get ghosts(){return D.ghosts;},materials:()=>D.materials(),savedMaterials:()=>D.saved(),testGhosts:v=>{D.showGhosts(v);V.render();},snapshot:()=>{V.render();return S.canvas.toDataURL('image/png');},
+  get memory(){return V.memory;},get display(){return D.mode;},get ghosts(){return D.ghosts;},materials:()=>D.materials(),savedMaterials:()=>D.saved(),testGhosts:v=>{D.showGhosts(v);V.render();},get sliceVisible(){return sliceOn;},sliceParts:()=>({objects:slice.map(o=>o.visible),ghosts:D.ghostsOf(slice).map(g=>g.visible),labels:sliceLabels.length}),snapshot:()=>{V.render();return S.canvas.toDataURL('image/png');},
   geometryIds:()=>[...parts,floor,hm,baseMesh].map(m=>m.geometry.uuid),project:p=>V.project(p),look:d=>V.look(d),hitSolid:(x,y)=>V.hit(x,y,[...parts,...(floor.visible?[floor]:[])]),
   // what is actually drawn, read back from the GPU-bound buffers (for the review lab's browser tests)
   drawn(){const h=hl.geometry.getAttribute('position').array,outline=[];for(let i=0;i<h.length;i+=3)outline.push([h[i],h[i+1],h[i+2]]);
@@ -64,5 +69,5 @@ export function createViewer(host,desc,{problemId=''}={}){
     shading:{flat:flatMat.flatShading===true,curvedSmooth:curvedMat.flatShading!==true&&parts.some(m=>m.userData.kind==='curved'&&!!m.geometry.getAttribute('normal'))},
     labels:(()=>{const l=[];scene.traverse(o=>{if(o.isSprite)l.push(o.userData.label);});return l;})(),marks:H.marks.length,aux:H.aux.length};}};
  S.canvas.__bm3d=info;
- return{info,canvas:S.canvas,resetView:()=>V.resetView(),setDisplay:m=>{if(D.set(m))V.render();},dispose:()=>V.dispose(info)};
+ return{info,canvas:S.canvas,resetView:()=>V.resetView(),setDisplay:m=>{if(D.set(m))V.render();},setSlice:v=>{if(setSlice(v))V.render();},dispose:()=>V.dispose(info)};
 }

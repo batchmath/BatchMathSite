@@ -1,4 +1,4 @@
-// BatchMath v13.0.B (experimental): "Show 3D Model (Beta)" on Volume by Cross Sections, Non-Calculator Practice and
+// BatchMath v13.0.B (experimental): "Show 3D Model" on Volume by Cross Sections, Non-Calculator Practice and
 // Calculator Practice. Every problem of the engine is supported: all eight cross-section shapes, slices perpendicular to
 // the x-axis or to the y-axis, every family and tier. A problem whose data cannot be drawn safely gets no button (the
 // geometry module gives the reason), and the question is left exactly as it is.

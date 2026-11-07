@@ -44,25 +44,31 @@ function context(canvas){
 //    drawn ONLY where it is hidden (depth test "greater": the classic hidden-line convention: dashed lines, a faint
 //    film for faces), so it stays visible and is never drawn as if it were in front of the surface.
 // 'transparent' restores every saved material state exactly and hides the closers and the faint copies.
+// v13.0.E: a faint copy is shown only while its overlay is (so hiding the highlighted slice hides its hidden parts too);
+// sync() applies that after an overlay is shown or hidden.
 export function displayModes(scene,{solids,closers=[],overlays=[],dash=0.1}){
  const keys=['transparent','opacity','depthWrite','polygonOffset','polygonOffsetFactor','polygonOffsetUnits'];
  const saved=solids.map(m=>({m,s:Object.fromEntries(keys.map(k=>[k,m[k]]))}));
- let mode='transparent',ghosts=null;
+ let mode='transparent',ghosts=null,ghostsOn=true;
  for(const c of closers)c.visible=false;
  // a hidden line is dashed (on its own copy of the line's points, with the dash lengths along it); a hidden face is a
  // faint film of its colour
  const ghost=([o,opacity])=>{let g;
   if(o.isLine){const geo=o.geometry.clone(),m=new THREE.LineDashedMaterial({color:o.material.color,dashSize:dash,gapSize:dash*0.7,transparent:true,opacity,depthWrite:false,depthFunc:THREE.GreaterDepth});g=new o.constructor(geo,m);g.computeLineDistances();}
   else{const m=o.material.clone();Object.assign(m,{transparent:true,opacity,depthWrite:false,depthTest:true,depthFunc:THREE.GreaterDepth});g=new o.constructor(o.geometry,m);}
-  g.position.copy(o.position);g.quaternion.copy(o.quaternion);g.scale.copy(o.scale);g.renderOrder=(o.renderOrder||0)+20;g.userData.ghost=true;scene.add(g);return g;};
+  g.position.copy(o.position);g.quaternion.copy(o.quaternion);g.scale.copy(o.scale);g.renderOrder=(o.renderOrder||0)+20;g.userData.ghost=true;g.userData.src=o;g.visible=o.visible;scene.add(g);return g;};
+ const sync=()=>{for(const g of ghosts||[])g.visible=mode==='opaque'&&ghostsOn&&g.userData.src.visible;};
  return{get mode(){return mode;},get ghosts(){return ghosts?ghosts.length:0;},
   // returns true when the mode changed (the caller redraws once)
   set(next){next=next==='opaque'?'opaque':'transparent';if(next===mode)return false;mode=next;const op=mode==='opaque';
    if(op&&!ghosts)ghosts=overlays.map(ghost);
    for(const {m,s} of saved){Object.assign(m,op?{transparent:false,opacity:1,depthWrite:true,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1}:s);m.needsUpdate=true;}
-   for(const c of closers)c.visible=op;for(const g of ghosts||[])g.visible=op;return true;},
+   for(const c of closers)c.visible=op;sync();return true;},
+  sync,
   // for the review lab's browser tests: the faint hidden copies off or on again (opaque mode only)
-  showGhosts(v){for(const g of ghosts||[])g.visible=!!v&&mode==='opaque';},
+  showGhosts(v){ghostsOn=!!v;sync();},
+  // the faint copies of the given overlays (none before Opaque is first chosen)
+  ghostsOf(list){return(ghosts||[]).filter(g=>list.includes(g.userData.src));},
   materials(){return saved.map(({m})=>Object.fromEntries(keys.map(k=>[k,m[k]])));},
   saved(){return saved.map(({s})=>({...s}));}};
 }

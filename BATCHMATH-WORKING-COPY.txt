@@ -1,15 +1,15 @@
 BatchMath cumulative working copy
-Current build: 13.0.D / v13.0.D experimental: a Transparent / Opaque display toggle for the Unit 6 3D models (not production)
-Archive: bm-v13.0.D.zip
-Root directory: bm-v13.0.D/
-Branch: claude/v13.0d-3d-opacity-toggle
-Base: claude/v13.0c-solids-revolution-3d at cb9738a (v13.0.C), from v13.0.B, from v13.0.A, from main at 9dbb4f841c6b4e6300c640e1b83b2dad82df1521 (v12.9.G)
-New: a "Transparent | Opaque" control beside Reset view in every 3D model (Volume by Cross Sections and Solids of Revolution). Transparent is the default and exactly the v13.0.C look; Opaque gives the solid a fully opaque blue exterior, with the hidden parts of the highlighted slice (and of the region and the axis of rotation) drawn faintly with dashed outlines. Switching is immediate: no geometry is rebuilt and the view is kept.
-Kept: the v13.0.B cross-section models and the v13.0.C solids of revolution, unchanged in Transparent mode (pixel-identical).
+Current build: 13.0.E / v13.0.E experimental: "Show 3D Model" without "Beta", and a Hide / Show control for the highlighted slice of the Unit 6 3D models (not production)
+Archive: bm-v13.0.E.zip
+Root directory: bm-v13.0.E/
+Branch: claude/v13.0e-3d-cross-section-toggle
+Base: claude/v13.0d-3d-opacity-toggle (v13.0.D), from v13.0.C, v13.0.B, v13.0.A, from main at 9dbb4f841c6b4e6300c640e1b83b2dad82df1521 (v12.9.G)
+New: the 3D button reads "Show 3D Model" / "Hide 3D Model" (no "Beta"). Every open 3D model has a "Hide Cross Section" button (Volume by Cross Sections) or "Hide Disk" / "Hide Washer" / "Hide Shell" (Solids of Revolution) beside Transparent | Opaque and Reset view. It hides or shows the highlighted slice with its outline, slice line, marks or radii, labels and (in Opaque) its faint hidden parts, by visibility only: nothing is rebuilt and the view, the display mode and the question are kept.
+Kept: the v13.0.D Transparent / Opaque control, the v13.0.B cross-section models and the v13.0.C solids of revolution; the models look exactly as in v13.0.D when they open.
 three.js 0.169.0 is vendored locally and loads only when a model is opened.
 Generators, answer checking, explanations, the 2D diagrams and every other page are unchanged.
-All application, PWA/cache and analytics versions are 13.0.D; Unit 6 build markers are 13.0.D. Other generator revision markers retain their actual engine revision.
+All application, PWA/cache and analytics versions are 13.0.E; Unit 6 build markers are 13.0.E. Other generator revision markers retain their actual engine revision.
 Main is unchanged. No deployment performed.
 See LOCAL-TESTING.txt. Run: py -m http.server 8000
-Test ZIP: https://github.com/batchmath/BatchMathSite/releases/download/v13.0.D/bm-v13.0.D.zip
-Previous builds: v13.0.C (https://github.com/batchmath/BatchMathSite/releases/download/v13.0.C/bm-v13.0.C.zip), v13.0.B (https://github.com/batchmath/BatchMathSite/releases/download/v13.0.B/bm-v13.0.B.zip)
+Test ZIP: https://github.com/batchmath/BatchMathSite/releases/download/v13.0.E/bm-v13.0.E.zip
+Previous builds: v13.0.D (https://github.com/batchmath/BatchMathSite/releases/download/v13.0.D/bm-v13.0.D.zip), v13.0.C (https://github.com/batchmath/BatchMathSite/releases/download/v13.0.C/bm-v13.0.C.zip)
