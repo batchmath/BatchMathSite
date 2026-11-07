@@ -8,8 +8,8 @@
 // x, y and z axes with a light grid on the base plane. Mouse: drag to rotate, wheel to zoom; touch: one finger rotates,
 // two fingers pinch to zoom. The scene is drawn only when something changes (no animation loop) and everything is
 // released when the model is hidden or the question changes. No volume or integral is shown.
-import * as THREE from './vendor/three/three.module.min.js';
-import {OrbitControls} from './vendor/three/OrbitControls.js';
+import * as THREE from './vendor/three/three.module.min.mjs';
+import {OrbitControls} from './vendor/three/OrbitControls.mjs';
 import {buildSquareSolid} from './solid-geometry.mjs';
 
 const COLORS={solid:0x4aa3ff,solidEdge:0x9fd0ff,section:0x7fb8f0,base:0xffd400,baseEdge:0xf4f4f4,slice:0xffd400,axis:0xd8d8d8,grid:0x2a2a2a};
