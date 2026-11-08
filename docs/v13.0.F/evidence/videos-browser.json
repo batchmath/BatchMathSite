@@ -6,6 +6,7 @@
       "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/index.html",
       "width": 1366,
       "video": "j5XM6_T7CA4",
+      "interaction": "keyboard Enter",
       "passed": true,
       "playerUrl": "https://www.youtube.com/embed/j5XM6_T7CA4?rel=0&playsinline=1&autoplay=1",
       "layout": {
@@ -19,6 +20,7 @@
       "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/index.html",
       "width": 1366,
       "video": "s0m0DmnDaBc",
+      "interaction": "keyboard Enter",
       "passed": true,
       "playerUrl": "https://www.youtube.com/embed/s0m0DmnDaBc?rel=0&playsinline=1&autoplay=1",
       "layout": {
@@ -32,6 +34,7 @@
       "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/index.html",
       "width": 1366,
       "video": "ovVDNHoGAss",
+      "interaction": "keyboard Enter",
       "passed": true,
       "playerUrl": "https://www.youtube.com/embed/ovVDNHoGAss?rel=0&playsinline=1&autoplay=1",
       "layout": {
@@ -45,6 +48,7 @@
       "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/index.html",
       "width": 1366,
       "video": "UiY9RnfNnIg",
+      "interaction": "keyboard Enter",
       "passed": true,
       "playerUrl": "https://www.youtube.com/embed/UiY9RnfNnIg?rel=0&playsinline=1&autoplay=1",
       "layout": {
@@ -58,6 +62,7 @@
       "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/index.html",
       "width": 1366,
       "video": "YSDRVZcl-RE",
+      "interaction": "keyboard Enter",
       "passed": true,
       "playerUrl": "https://www.youtube.com/embed/YSDRVZcl-RE?rel=0&playsinline=1&autoplay=1",
       "layout": {
@@ -71,6 +76,7 @@
       "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/index.html",
       "width": 390,
       "video": "j5XM6_T7CA4",
+      "interaction": "touch tap",
       "passed": true,
       "playerUrl": "https://www.youtube.com/embed/j5XM6_T7CA4?rel=0&playsinline=1&autoplay=1",
       "layout": {
@@ -84,6 +90,7 @@
       "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/index.html",
       "width": 390,
       "video": "s0m0DmnDaBc",
+      "interaction": "touch tap",
       "passed": true,
       "playerUrl": "https://www.youtube.com/embed/s0m0DmnDaBc?rel=0&playsinline=1&autoplay=1",
       "layout": {
@@ -97,6 +104,7 @@
       "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/index.html",
       "width": 390,
       "video": "ovVDNHoGAss",
+      "interaction": "touch tap",
       "passed": true,
       "playerUrl": "https://www.youtube.com/embed/ovVDNHoGAss?rel=0&playsinline=1&autoplay=1",
       "layout": {
@@ -110,6 +118,7 @@
       "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/index.html",
       "width": 390,
       "video": "UiY9RnfNnIg",
+      "interaction": "touch tap",
       "passed": true,
       "playerUrl": "https://www.youtube.com/embed/UiY9RnfNnIg?rel=0&playsinline=1&autoplay=1",
       "layout": {
@@ -123,6 +132,7 @@
       "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/index.html",
       "width": 390,
       "video": "YSDRVZcl-RE",
+      "interaction": "touch tap",
       "passed": true,
       "playerUrl": "https://www.youtube.com/embed/YSDRVZcl-RE?rel=0&playsinline=1&autoplay=1",
       "layout": {

@@ -1,0 +1,136 @@
+{
+  "siteRoot": "source checkout",
+  "results": [
+    {
+      "part": "A",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/index.html",
+      "width": 1366,
+      "video": "j5XM6_T7CA4",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/j5XM6_T7CA4?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "B",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/index.html",
+      "width": 1366,
+      "video": "s0m0DmnDaBc",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/s0m0DmnDaBc?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "C",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/index.html",
+      "width": 1366,
+      "video": "ovVDNHoGAss",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/ovVDNHoGAss?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "D",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/index.html",
+      "width": 1366,
+      "video": "UiY9RnfNnIg",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/UiY9RnfNnIg?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "E",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/index.html",
+      "width": 1366,
+      "video": "YSDRVZcl-RE",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/YSDRVZcl-RE?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "A",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/index.html",
+      "width": 390,
+      "video": "j5XM6_T7CA4",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/j5XM6_T7CA4?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "B",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/index.html",
+      "width": 390,
+      "video": "s0m0DmnDaBc",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/s0m0DmnDaBc?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "C",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/index.html",
+      "width": 390,
+      "video": "ovVDNHoGAss",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/ovVDNHoGAss?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "D",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/index.html",
+      "width": 390,
+      "video": "UiY9RnfNnIg",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/UiY9RnfNnIg?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "E",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/index.html",
+      "width": 390,
+      "video": "YSDRVZcl-RE",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/YSDRVZcl-RE?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    }
+  ],
+  "externalPlaybackVerified": false
+}

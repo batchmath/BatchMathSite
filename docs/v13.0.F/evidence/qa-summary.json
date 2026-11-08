@@ -1,0 +1,122 @@
+{
+  "baseline": "0604079082f58c3168e52bc009d1330ba1f20c68",
+  "passed": true,
+  "checks": [
+    {
+      "name": "slice3d",
+      "passed": true,
+      "runs": 41,
+      "failures": 0,
+      "models": 27
+    },
+    {
+      "name": "display3d",
+      "passed": true,
+      "runs": 42,
+      "failures": 0
+    },
+    {
+      "name": "solids3d",
+      "passed": true,
+      "runs": 30,
+      "failures": 0,
+      "models": 38
+    },
+    {
+      "name": "cross-sections3d",
+      "passed": true,
+      "nonCalculatorRuns": 32,
+      "calculatorRuns": 12,
+      "failures": 0
+    },
+    {
+      "name": "solid-geometry",
+      "passed": true,
+      "checks": 617899,
+      "failures": 0
+    },
+    {
+      "name": "revolution-geometry",
+      "passed": true,
+      "checks": 32674,
+      "failures": 0
+    },
+    {
+      "name": "videos",
+      "passed": true,
+      "visits": 10,
+      "externalPlaybackVerified": false
+    },
+    {
+      "name": "video-presentation",
+      "passed": true,
+      "pages": 77,
+      "pageLoads": 231,
+      "selections": 330
+    },
+    {
+      "name": "entry",
+      "passed": true,
+      "runs": 8,
+      "checked": 48,
+      "parts": 78,
+      "integrals": 21,
+      "mathliveFields": 78,
+      "blankAtStart": 78,
+      "locked": 78
+    },
+    {
+      "name": "unit6-math",
+      "passed": true,
+      "errors": 0
+    },
+    {
+      "name": "im1-math",
+      "passed": true,
+      "errors": 0
+    },
+    {
+      "name": "static",
+      "passed": true,
+      "errors": 0
+    },
+    {
+      "name": "pwa",
+      "passed": true,
+      "errors": 0
+    },
+    {
+      "name": "analytics",
+      "passed": true,
+      "errors": 0
+    },
+    {
+      "name": "preservation",
+      "passed": true,
+      "local-test-instructions": 2,
+      "unchanged": 759,
+      "version-only": 16,
+      "video-addition-only": 5
+    },
+    {
+      "name": "source-python-videos",
+      "passed": true,
+      "runs": 10
+    },
+    {
+      "name": "source-python-3d",
+      "passed": true,
+      "runs": 4
+    },
+    {
+      "name": "unit6-pages-smoke",
+      "passed": true,
+      "pageVisits": 20,
+      "sameValueWrongSetupsRejected": 6,
+      "cubicGraphs": 2,
+      "fallbackChecks": 4
+    }
+  ],
+  "finalSitewideProductionVerificationDeferredUntilManualApproval": true,
+  "historicalSiteSuite": "Approved E documents 39/48 passing with nine inherited groups; not claimed as a fresh F full-site run."
+}

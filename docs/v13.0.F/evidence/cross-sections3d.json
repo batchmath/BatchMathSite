@@ -1,0 +1,2965 @@
+{
+ "nonCalculator": [
+  {
+   "viewport": "1366x900",
+   "shape": "square",
+   "dir": "x",
+   "region": "cap",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "threeBeforeOpen": 0,
+   "graph2d": true,
+   "threeAfterOpen": 3,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": -0.48,
+    "s": 8.7696,
+    "height": 8.7696,
+    "area": 76.90588,
+    "expectedArea": 76.90588
+   },
+   "solid": {
+    "vertices": 1296,
+    "curved": 0,
+    "zmax": 9
+   },
+   "labels": [
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 43432,
+    "yellow": 11054
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "rect2",
+   "dir": "x",
+   "region": "half_cap",
+   "family": "cs_basic",
+   "tier": "intermediate",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": 0.42,
+    "s": 0.8236,
+    "height": 1.6472,
+    "area": 1.35663,
+    "expectedArea": 1.35663
+   },
+   "solid": {
+    "vertices": 1302,
+    "curved": 0,
+    "zmax": 2
+   },
+   "labels": [
+    "s",
+    "2s"
+   ],
+   "pixels": {
+    "lit": 22394,
+    "yellow": 5401
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "rect3",
+   "dir": "x",
+   "region": "semicircle",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": -0.48,
+    "s": 2.9614,
+    "height": 8.8841,
+    "area": 26.3088,
+    "expectedArea": 26.3088
+   },
+   "solid": {
+    "vertices": 1296,
+    "curved": 0,
+    "zmax": 9
+   },
+   "labels": [
+    "s",
+    "3s"
+   ],
+   "pixels": {
+    "lit": 26496,
+    "yellow": 7097
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "semicircle_d",
+   "dir": "x",
+   "region": "disk",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": -0.16,
+    "s": 1.9742,
+    "height": 0.9871,
+    "area": 1.52997,
+    "expectedArea": 1.52997
+   },
+   "solid": {
+    "vertices": 27648,
+    "curved": 27648,
+    "zmax": 1
+   },
+   "labels": [
+    "d = s",
+    "r = s/2"
+   ],
+   "pixels": {
+    "lit": 54512,
+    "yellow": 17102
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "quarter",
+   "dir": "x",
+   "region": "triangle",
+   "family": "cs_basic",
+   "tier": "intermediate",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": 0.84,
+    "s": 0.58,
+    "height": 0.58,
+    "area": 0.2641,
+    "expectedArea": 0.2641
+   },
+   "solid": {
+    "vertices": 14352,
+    "curved": 13824,
+    "zmax": 1
+   },
+   "labels": [
+    "r = s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 23547,
+    "yellow": 2918
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "equilateral",
+   "dir": "x",
+   "region": "pair",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": 0.42,
+    "s": 0.2281,
+    "height": 0.1975,
+    "area": 0.02252,
+    "expectedArea": 0.02252
+   },
+   "solid": {
+    "vertices": 864,
+    "curved": 0,
+    "zmax": 0.2165
+   },
+   "labels": [
+    "s",
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 19058,
+    "yellow": 993
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "iso_leg",
+   "dir": "x",
+   "region": "under_root",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": 1.68,
+    "s": 2.5923,
+    "height": 2.5923,
+    "area": 3.36,
+    "expectedArea": 3.36
+   },
+   "solid": {
+    "vertices": 867,
+    "curved": 0,
+    "zmax": 4
+   },
+   "labels": [
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 34355,
+    "yellow": 4424
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "iso_hyp",
+   "dir": "x",
+   "region": "under_power",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": 0.42,
+    "s": 0.1764,
+    "height": 0.0882,
+    "area": 0.00778,
+    "expectedArea": 0.00778
+   },
+   "solid": {
+    "vertices": 867,
+    "curved": 0,
+    "zmax": 0.5
+   },
+   "labels": [
+    "s"
+   ],
+   "pixels": {
+    "lit": 24023,
+    "yellow": 313
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "square",
+   "dir": "y",
+   "region": "left_of_power",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 3.36,
+    "s": 1.4978,
+    "height": 1.4978,
+    "area": 2.24333,
+    "expectedArea": 2.24333
+   },
+   "solid": {
+    "vertices": 1302,
+    "curved": 0,
+    "zmax": 2
+   },
+   "labels": [
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 32451,
+    "yellow": 1573
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "rect2",
+   "dir": "y",
+   "region": "exp_base",
+   "family": "cs_setup",
+   "tier": "intermediate",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 3.6834,
+    "s": 0.6962,
+    "height": 1.3923,
+    "area": 0.96929,
+    "expectedArea": 0.96929
+   },
+   "solid": {
+    "vertices": 1302,
+    "curved": 0,
+    "zmax": 4
+   },
+   "labels": [
+    "s",
+    "2s"
+   ],
+   "pixels": {
+    "lit": 24888,
+    "yellow": 499
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "rect3",
+   "dir": "y",
+   "region": "wedge",
+   "family": "cs_setup",
+   "tier": "challenging",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 2
+   },
+   "pieces": 2,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 0.84,
+    "s": 0.14,
+    "height": 0.42,
+    "area": 0.0588,
+    "expectedArea": 0.0588
+   },
+   "solid": {
+    "vertices": 2592,
+    "curved": 0,
+    "zmax": 1
+   },
+   "labels": [
+    "s",
+    "3s"
+   ],
+   "pixels": {
+    "lit": 21627,
+    "yellow": 476
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "semicircle_d",
+   "dir": "y",
+   "region": "cap",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 1.68,
+    "s": 3.0463,
+    "height": 1.5232,
+    "area": 3.64278,
+    "expectedArea": 3.64278
+   },
+   "solid": {
+    "vertices": 27837,
+    "curved": 27648,
+    "zmax": 2
+   },
+   "labels": [
+    "d = s",
+    "r = s/2"
+   ],
+   "pixels": {
+    "lit": 33063,
+    "yellow": 5775
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "quarter",
+   "dir": "y",
+   "region": "half_cap",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 3.78,
+    "s": 2.2847,
+    "height": 2.2847,
+    "area": 4.09813,
+    "expectedArea": 4.09813
+   },
+   "solid": {
+    "vertices": 14352,
+    "curved": 13824,
+    "zmax": 3
+   },
+   "labels": [
+    "r = s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 31825,
+    "yellow": 2455
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "equilateral",
+   "dir": "y",
+   "region": "semicircle",
+   "family": "cs_basic",
+   "tier": "intermediate",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 0.42,
+    "s": 1.815,
+    "height": 1.5719,
+    "area": 1.42652,
+    "expectedArea": 1.42652
+   },
+   "solid": {
+    "vertices": 867,
+    "curved": 0,
+    "zmax": 1.7321
+   },
+   "labels": [
+    "s",
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 25896,
+    "yellow": 5733
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "iso_leg",
+   "dir": "y",
+   "region": "disk",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": -0.32,
+    "s": 3.9485,
+    "height": 3.9485,
+    "area": 7.7952,
+    "expectedArea": 7.7952
+   },
+   "solid": {
+    "vertices": 864,
+    "curved": 0,
+    "zmax": 4
+   },
+   "labels": [
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 43580,
+    "yellow": 8867
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "shape": "iso_hyp",
+   "dir": "y",
+   "region": "triangle",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 0.84,
+    "s": 2.32,
+    "height": 1.16,
+    "area": 1.3456,
+    "expectedArea": 1.3456
+   },
+   "solid": {
+    "vertices": 867,
+    "curved": 0,
+    "zmax": 2
+   },
+   "labels": [
+    "s"
+   ],
+   "pixels": {
+    "lit": 16646,
+    "yellow": 2158
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 702,
+    "stage": 704
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "square",
+   "dir": "x",
+   "region": "left_of_power",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "threeBeforeOpen": 0,
+   "graph2d": true,
+   "threeAfterOpen": 3,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": 1.26,
+    "s": 24.9996,
+    "height": 24.9996,
+    "area": 624.98121,
+    "expectedArea": 624.9812
+   },
+   "solid": {
+    "vertices": 1302,
+    "curved": 0,
+    "zmax": 27
+   },
+   "labels": [
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 56549,
+    "yellow": 5106
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.217,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "rect2",
+   "dir": "x",
+   "region": "exp_base",
+   "family": "cs_setup",
+   "tier": "intermediate",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": 0.84,
+    "s": 1.3164,
+    "height": 2.6327,
+    "area": 3.46564,
+    "expectedArea": 3.46564
+   },
+   "solid": {
+    "vertices": 1302,
+    "curved": 0,
+    "zmax": 12.7781
+   },
+   "labels": [
+    "s",
+    "2s"
+   ],
+   "pixels": {
+    "lit": 28197,
+    "yellow": 546
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.217,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "rect3",
+   "dir": "x",
+   "region": "root_line_axis",
+   "family": "cs_setup",
+   "tier": "challenging",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 2
+   },
+   "pieces": 2,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": 3.36,
+    "s": 3.6661,
+    "height": 10.9982,
+    "area": 40.32,
+    "expectedArea": 40.32
+   },
+   "solid": {
+    "vertices": 2592,
+    "curved": 0,
+    "zmax": 16.9706
+   },
+   "labels": [
+    "s",
+    "3s"
+   ],
+   "pixels": {
+    "lit": 43126,
+    "yellow": 4455
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.217,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "semicircle_d",
+   "dir": "x",
+   "region": "cap",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": -0.48,
+    "s": 8.7696,
+    "height": 4.3848,
+    "area": 30.18874,
+    "expectedArea": 30.18874
+   },
+   "solid": {
+    "vertices": 27648,
+    "curved": 27648,
+    "zmax": 4.5
+   },
+   "labels": [
+    "d = s",
+    "r = s/2"
+   ],
+   "pixels": {
+    "lit": 51400,
+    "yellow": 19589
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.217,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "quarter",
+   "dir": "x",
+   "region": "half_cap",
+   "family": "cs_basic",
+   "tier": "intermediate",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": 0.42,
+    "s": 0.8236,
+    "height": 0.8236,
+    "area": 0.53253,
+    "expectedArea": 0.53253
+   },
+   "solid": {
+    "vertices": 14352,
+    "curved": 13824,
+    "zmax": 1
+   },
+   "labels": [
+    "r = s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 51536,
+    "yellow": 16744
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.217,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "equilateral",
+   "dir": "x",
+   "region": "semicircle",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": -0.32,
+    "s": 1.9742,
+    "height": 1.7097,
+    "area": 1.68771,
+    "expectedArea": 1.68771
+   },
+   "solid": {
+    "vertices": 864,
+    "curved": 0,
+    "zmax": 1.7321
+   },
+   "labels": [
+    "s",
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 50522,
+    "yellow": 7010
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.224,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "iso_leg",
+   "dir": "x",
+   "region": "disk",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": -0.32,
+    "s": 3.9485,
+    "height": 3.9485,
+    "area": 7.7952,
+    "expectedArea": 7.7952
+   },
+   "solid": {
+    "vertices": 864,
+    "curved": 0,
+    "zmax": 4
+   },
+   "labels": [
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 48771,
+    "yellow": 15803
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.217,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "iso_hyp",
+   "dir": "x",
+   "region": "triangle",
+   "family": "cs_basic",
+   "tier": "intermediate",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "x",
+    "at": 0.84,
+    "s": 0.58,
+    "height": 0.29,
+    "area": 0.0841,
+    "expectedArea": 0.0841
+   },
+   "solid": {
+    "vertices": 867,
+    "curved": 0,
+    "zmax": 0.5
+   },
+   "labels": [
+    "s"
+   ],
+   "pixels": {
+    "lit": 27173,
+    "yellow": 1689
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.231,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "square",
+   "dir": "y",
+   "region": "pair",
+   "family": "cs_basic",
+   "tier": "intermediate",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 0.42,
+    "s": 0.3289,
+    "height": 0.3289,
+    "area": 0.10817,
+    "expectedArea": 0.10817
+   },
+   "solid": {
+    "vertices": 1296,
+    "curved": 0,
+    "zmax": 0.3849
+   },
+   "labels": [
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 39929,
+    "yellow": 1976
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.217,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "rect2",
+   "dir": "y",
+   "region": "under_root",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 1.68,
+    "s": 3.2944,
+    "height": 6.5888,
+    "area": 21.70614,
+    "expectedArea": 21.70614
+   },
+   "solid": {
+    "vertices": 1302,
+    "curved": 0,
+    "zmax": 8
+   },
+   "labels": [
+    "s",
+    "2s"
+   ],
+   "pixels": {
+    "lit": 37115,
+    "yellow": 6100
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.217,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "rect3",
+   "dir": "y",
+   "region": "under_power",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 0.42,
+    "s": 0.3519,
+    "height": 1.0558,
+    "area": 0.37156,
+    "expectedArea": 0.37156
+   },
+   "solid": {
+    "vertices": 1302,
+    "curved": 0,
+    "zmax": 3
+   },
+   "labels": [
+    "s",
+    "3s"
+   ],
+   "pixels": {
+    "lit": 20209,
+    "yellow": 612
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.217,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "semicircle_d",
+   "dir": "y",
+   "region": "left_of_power",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 0.42,
+    "s": 0.7489,
+    "height": 0.3744,
+    "area": 0.22015,
+    "expectedArea": 0.22015
+   },
+   "solid": {
+    "vertices": 27837,
+    "curved": 27648,
+    "zmax": 0.5
+   },
+   "labels": [
+    "d = s",
+    "r = s/2"
+   ],
+   "pixels": {
+    "lit": 53645,
+    "yellow": 8057
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.217,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "quarter",
+   "dir": "y",
+   "region": "exp_base",
+   "family": "cs_setup",
+   "tier": "intermediate",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 3.6834,
+    "s": 0.6962,
+    "height": 0.6962,
+    "area": 0.38048,
+    "expectedArea": 0.38048
+   },
+   "solid": {
+    "vertices": 14352,
+    "curved": 13824,
+    "zmax": 2
+   },
+   "labels": [
+    "r = s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 28959,
+    "yellow": 746
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.217,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "equilateral",
+   "dir": "y",
+   "region": "wedge",
+   "family": "cs_setup",
+   "tier": "challenging",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 2
+   },
+   "pieces": 2,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 5.52,
+    "s": 1.16,
+    "height": 1.0046,
+    "area": 0.58266,
+    "expectedArea": 0.58266
+   },
+   "solid": {
+    "vertices": 1728,
+    "curved": 0,
+    "zmax": 1.7321
+   },
+   "labels": [
+    "s",
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 27061,
+    "yellow": 696
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.225,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "iso_leg",
+   "dir": "y",
+   "region": "cap",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 3.78,
+    "s": 4.5695,
+    "height": 4.5695,
+    "area": 10.44,
+    "expectedArea": 10.44
+   },
+   "solid": {
+    "vertices": 867,
+    "curved": 0,
+    "zmax": 6
+   },
+   "labels": [
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 54065,
+    "yellow": 2625
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.217,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  },
+  {
+   "viewport": "390x844",
+   "shape": "iso_hyp",
+   "dir": "y",
+   "region": "half_cap",
+   "family": "cs_basic",
+   "tier": "foundational",
+   "toggle": {
+    "btn": 1,
+    "text": "Show 3D Model",
+    "hidden": true,
+    "canvas": 0,
+    "beside": true,
+    "pieces": 1
+   },
+   "pieces": 1,
+   "graph2d": true,
+   "button": "Hide 3D Model",
+   "slice": {
+    "dir": "y",
+    "at": 3.78,
+    "s": 2.2847,
+    "height": 1.1424,
+    "area": 1.305,
+    "expectedArea": 1.305
+   },
+   "solid": {
+    "vertices": 867,
+    "curved": 0,
+    "zmax": 1.5
+   },
+   "labels": [
+    "s"
+   ],
+   "pixels": {
+    "lit": 29925,
+    "yellow": 1079
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.224,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "answer": "Correct.",
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 308,
+    "stage": 310
+   }
+  }
+ ],
+ "calculator": [
+  {
+   "viewport": "1366x900",
+   "region": "log_line",
+   "dir": "x",
+   "shape": "rect2",
+   "tier": "intermediate",
+   "beforePartA": {
+    "wraps": 0,
+    "canvas": 0,
+    "state": false,
+    "figure": 0,
+    "descriptor": true,
+    "calc": true,
+    "parts": 1
+   },
+   "parts": 1,
+   "partA": "Correct.",
+   "partAWrongOnPurpose": false,
+   "afterPartA": {
+    "wraps": 1,
+    "inPartA": true,
+    "afterFigure": true,
+    "hidden": true,
+    "text": "Show 3D Model",
+    "canvas": 0
+   },
+   "slice": {
+    "dir": "x",
+    "at": 1.8217,
+    "s": 1.1783,
+    "height": 2.3567,
+    "area": 2.77698,
+    "expectedArea": 2.77698
+   },
+   "solid": {
+    "vertices": 2592,
+    "curved": 0,
+    "zmax": 4.0633
+   },
+   "labels": [
+    "s",
+    "2s"
+   ],
+   "pixels": {
+    "lit": 23669,
+    "yellow": 2560
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 710,
+    "stage": 712
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "region": "log_line",
+   "dir": "y",
+   "shape": "iso_leg",
+   "tier": "challenging",
+   "beforePartA": {
+    "wraps": 0,
+    "canvas": 0,
+    "state": false,
+    "figure": 0,
+    "descriptor": true,
+    "calc": true,
+    "parts": 2
+   },
+   "parts": 2,
+   "partA": "Part A is correct.",
+   "partAWrongOnPurpose": false,
+   "afterPartA": {
+    "wraps": 1,
+    "inPartA": true,
+    "afterFigure": true,
+    "hidden": true,
+    "text": "Show 3D Model",
+    "canvas": 0
+   },
+   "slice": {
+    "dir": "y",
+    "at": 0.6314,
+    "s": 3.4884,
+    "height": 3.4884,
+    "area": 6.08431,
+    "expectedArea": 6.08431
+   },
+   "solid": {
+    "vertices": 867,
+    "curved": 0,
+    "zmax": 5
+   },
+   "labels": [
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 17801,
+    "yellow": 3032
+   },
+   "controls": {
+    "rotated": -1.912,
+    "zoomed": 0.735,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 710,
+    "stage": 712
+   },
+   "partB": {
+    "partB": true,
+    "open": true,
+    "viewer": true,
+    "connected": true,
+    "wraps": 1
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "region": "log_parabola",
+   "dir": "x",
+   "shape": "semicircle_d",
+   "tier": "challenging",
+   "beforePartA": {
+    "wraps": 0,
+    "canvas": 0,
+    "state": false,
+    "figure": 0,
+    "descriptor": true,
+    "calc": true,
+    "parts": 2
+   },
+   "parts": 2,
+   "partA": "Part A is correct.",
+   "partAWrongOnPurpose": false,
+   "afterPartA": {
+    "wraps": 1,
+    "inPartA": true,
+    "afterFigure": true,
+    "hidden": true,
+    "text": "Show 3D Model",
+    "canvas": 0
+   },
+   "slice": {
+    "dir": "x",
+    "at": 0.831,
+    "s": 2.1243,
+    "height": 1.0622,
+    "area": 1.77141,
+    "expectedArea": 1.77141
+   },
+   "solid": {
+    "vertices": 27648,
+    "curved": 27648,
+    "zmax": 1.0767
+   },
+   "labels": [
+    "d = s",
+    "r = s/2"
+   ],
+   "pixels": {
+    "lit": 32379,
+    "yellow": 7816
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 710,
+    "stage": 712
+   },
+   "partB": {
+    "partB": true,
+    "open": true,
+    "viewer": true,
+    "connected": true,
+    "wraps": 1
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "region": "cos_parabola",
+   "dir": "x",
+   "shape": "quarter",
+   "tier": "intermediate",
+   "beforePartA": {
+    "wraps": 0,
+    "canvas": 0,
+    "state": false,
+    "figure": 0,
+    "descriptor": true,
+    "calc": true,
+    "parts": 1
+   },
+   "parts": 1,
+   "partA": "Not correct.",
+   "partAWrongOnPurpose": true,
+   "afterPartA": {
+    "wraps": 1,
+    "inPartA": true,
+    "afterFigure": true,
+    "hidden": true,
+    "text": "Show 3D Model",
+    "canvas": 0
+   },
+   "slice": {
+    "dir": "x",
+    "at": -0.0857,
+    "s": 0.9743,
+    "height": 0.9743,
+    "area": 0.74527,
+    "expectedArea": 0.74527
+   },
+   "solid": {
+    "vertices": 14256,
+    "curved": 13824,
+    "zmax": 1
+   },
+   "labels": [
+    "r = s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 30384,
+    "yellow": 13922
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 710,
+    "stage": 712
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "region": "exp_axes",
+   "dir": "y",
+   "shape": "equilateral",
+   "tier": "intermediate",
+   "beforePartA": {
+    "wraps": 0,
+    "canvas": 0,
+    "state": false,
+    "figure": 0,
+    "descriptor": true,
+    "calc": true,
+    "parts": 1
+   },
+   "parts": 1,
+   "partA": "Correct.",
+   "partAWrongOnPurpose": false,
+   "afterPartA": {
+    "wraps": 1,
+    "inPartA": true,
+    "afterFigure": true,
+    "hidden": true,
+    "text": "Show 3D Model",
+    "canvas": 0
+   },
+   "slice": {
+    "dir": "y",
+    "at": 3.6834,
+    "s": 0.3481,
+    "height": 0.3014,
+    "area": 0.05246,
+    "expectedArea": 0.05246
+   },
+   "solid": {
+    "vertices": 1731,
+    "curved": 0,
+    "zmax": 0.866
+   },
+   "labels": [
+    "s",
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 16898,
+    "yellow": 419
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 710,
+    "stage": 712
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "region": "exp_axes",
+   "dir": "x",
+   "shape": "iso_hyp",
+   "tier": "challenging",
+   "beforePartA": {
+    "wraps": 0,
+    "canvas": 0,
+    "state": false,
+    "figure": 0,
+    "descriptor": true,
+    "calc": true,
+    "parts": 2
+   },
+   "parts": 2,
+   "partA": "Part A is correct.",
+   "partAWrongOnPurpose": false,
+   "afterPartA": {
+    "wraps": 1,
+    "inPartA": true,
+    "afterFigure": true,
+    "hidden": true,
+    "text": "Show 3D Model",
+    "canvas": 0
+   },
+   "slice": {
+    "dir": "x",
+    "at": 0.42,
+    "s": 2.3164,
+    "height": 1.1582,
+    "area": 1.34139,
+    "expectedArea": 1.34139
+   },
+   "solid": {
+    "vertices": 870,
+    "curved": 0,
+    "zmax": 3.6945
+   },
+   "labels": [
+    "s"
+   ],
+   "pixels": {
+    "lit": 21772,
+    "yellow": 977
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 710,
+    "stage": 712
+   },
+   "partB": {
+    "partB": true,
+    "open": true,
+    "viewer": true,
+    "connected": true,
+    "wraps": 1
+   }
+  },
+  {
+   "viewport": "390x844",
+   "region": "exp_axes",
+   "dir": "x",
+   "shape": "iso_hyp",
+   "tier": "challenging",
+   "beforePartA": {
+    "wraps": 0,
+    "canvas": 0,
+    "state": false,
+    "figure": 0,
+    "descriptor": true,
+    "calc": true,
+    "parts": 2
+   },
+   "parts": 2,
+   "partA": "Part A is correct.",
+   "partAWrongOnPurpose": false,
+   "afterPartA": {
+    "wraps": 1,
+    "inPartA": true,
+    "afterFigure": true,
+    "hidden": true,
+    "text": "Show 3D Model",
+    "canvas": 0
+   },
+   "slice": {
+    "dir": "x",
+    "at": 0.42,
+    "s": 1.522,
+    "height": 0.761,
+    "area": 0.57909,
+    "expectedArea": 0.57909
+   },
+   "solid": {
+    "vertices": 870,
+    "curved": 0,
+    "zmax": 1.3591
+   },
+   "labels": [
+    "s"
+   ],
+   "pixels": {
+    "lit": 40059,
+    "yellow": 5007
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.217,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 300,
+    "stage": 302
+   },
+   "partB": {
+    "partB": true,
+    "open": true,
+    "viewer": true,
+    "connected": true,
+    "wraps": 1
+   }
+  },
+  {
+   "viewport": "390x844",
+   "region": "log_line",
+   "dir": "x",
+   "shape": "square",
+   "tier": "challenging",
+   "beforePartA": {
+    "wraps": 0,
+    "canvas": 0,
+    "state": false,
+    "figure": 0,
+    "descriptor": true,
+    "calc": true,
+    "parts": 2
+   },
+   "parts": 2,
+   "partA": "Part A is correct.",
+   "partAWrongOnPurpose": false,
+   "afterPartA": {
+    "wraps": 1,
+    "inPartA": true,
+    "afterFigure": true,
+    "hidden": true,
+    "text": "Show 3D Model",
+    "canvas": 0
+   },
+   "slice": {
+    "dir": "x",
+    "at": 3.548,
+    "s": 1.452,
+    "height": 1.452,
+    "area": 2.10842,
+    "expectedArea": 2.10842
+   },
+   "solid": {
+    "vertices": 2592,
+    "curved": 0,
+    "zmax": 2.5035
+   },
+   "labels": [
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 47140,
+    "yellow": 5460
+   },
+   "controls": {
+    "rotated": -3.142,
+    "zoomed": 0.218,
+    "idleFrames": 0,
+    "reset": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "quickToggle": {
+    "canvas": 1,
+    "open": true,
+    "viewer": true
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 300,
+    "stage": 302
+   },
+   "partB": {
+    "partB": true,
+    "open": true,
+    "viewer": true,
+    "connected": true,
+    "wraps": 1
+   }
+  },
+  {
+   "viewport": "390x844",
+   "region": "exp_axes",
+   "dir": "y",
+   "shape": "rect3",
+   "tier": "intermediate",
+   "beforePartA": {
+    "wraps": 0,
+    "canvas": 0,
+    "state": false,
+    "figure": 0,
+    "descriptor": true,
+    "calc": true,
+    "parts": 1
+   },
+   "parts": 1,
+   "partA": "Not correct.",
+   "partAWrongOnPurpose": true,
+   "afterPartA": {
+    "wraps": 1,
+    "inPartA": true,
+    "afterFigure": true,
+    "hidden": true,
+    "text": "Show 3D Model",
+    "canvas": 0
+   },
+   "slice": {
+    "dir": "y",
+    "at": 1.7217,
+    "s": 0.4567,
+    "height": 1.3701,
+    "area": 0.62573,
+    "expectedArea": 0.62573
+   },
+   "solid": {
+    "vertices": 2598,
+    "curved": 0,
+    "zmax": 3
+   },
+   "labels": [
+    "s",
+    "3s"
+   ],
+   "pixels": {
+    "lit": 49165,
+    "yellow": 947
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 300,
+    "stage": 302
+   }
+  },
+  {
+   "viewport": "390x844",
+   "region": "log_line",
+   "dir": "y",
+   "shape": "square",
+   "tier": "intermediate",
+   "beforePartA": {
+    "wraps": 0,
+    "canvas": 0,
+    "state": false,
+    "figure": 0,
+    "descriptor": true,
+    "calc": true,
+    "parts": 1
+   },
+   "parts": 1,
+   "partA": "Correct.",
+   "partAWrongOnPurpose": false,
+   "afterPartA": {
+    "wraps": 1,
+    "inPartA": true,
+    "afterFigure": true,
+    "hidden": true,
+    "text": "Show 3D Model",
+    "canvas": 0
+   },
+   "slice": {
+    "dir": "y",
+    "at": 0.8533,
+    "s": 1.8177,
+    "height": 1.8177,
+    "area": 3.30409,
+    "expectedArea": 3.30409
+   },
+   "solid": {
+    "vertices": 1302,
+    "curved": 0,
+    "zmax": 3
+   },
+   "labels": [
+    "s",
+    "s"
+   ],
+   "pixels": {
+    "lit": 41136,
+    "yellow": 10018
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 300,
+    "stage": 302
+   }
+  },
+  {
+   "viewport": "390x844",
+   "region": "cos_parabola",
+   "dir": "x",
+   "shape": "semicircle_d",
+   "tier": "challenging",
+   "beforePartA": {
+    "wraps": 0,
+    "canvas": 0,
+    "state": false,
+    "figure": 0,
+    "descriptor": true,
+    "calc": true,
+    "parts": 2
+   },
+   "parts": 2,
+   "partA": "Part A is correct.",
+   "partAWrongOnPurpose": false,
+   "afterPartA": {
+    "wraps": 1,
+    "inPartA": true,
+    "afterFigure": true,
+    "hidden": true,
+    "text": "Show 3D Model",
+    "canvas": 0
+   },
+   "slice": {
+    "dir": "x",
+    "at": -0.0857,
+    "s": 0.9743,
+    "height": 0.4872,
+    "area": 0.37264,
+    "expectedArea": 0.37264
+   },
+   "solid": {
+    "vertices": 27648,
+    "curved": 27648,
+    "zmax": 0.5
+   },
+   "labels": [
+    "d = s",
+    "r = s/2"
+   ],
+   "pixels": {
+    "lit": 43914,
+    "yellow": 15237
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 300,
+    "stage": 302
+   },
+   "partB": {
+    "partB": true,
+    "open": true,
+    "viewer": true,
+    "connected": true,
+    "wraps": 1
+   }
+  },
+  {
+   "viewport": "390x844",
+   "region": "log_line",
+   "dir": "x",
+   "shape": "rect2",
+   "tier": "intermediate",
+   "beforePartA": {
+    "wraps": 0,
+    "canvas": 0,
+    "state": false,
+    "figure": 0,
+    "descriptor": true,
+    "calc": true,
+    "parts": 1
+   },
+   "parts": 1,
+   "partA": "Correct.",
+   "partAWrongOnPurpose": false,
+   "afterPartA": {
+    "wraps": 1,
+    "inPartA": true,
+    "afterFigure": true,
+    "hidden": true,
+    "text": "Show 3D Model",
+    "canvas": 0
+   },
+   "slice": {
+    "dir": "x",
+    "at": 1.1109,
+    "s": 0.8891,
+    "height": 1.7782,
+    "area": 1.58107,
+    "expectedArea": 1.58107
+   },
+   "solid": {
+    "vertices": 2592,
+    "curved": 0,
+    "zmax": 3.0659
+   },
+   "labels": [
+    "s",
+    "2s"
+   ],
+   "pixels": {
+    "lit": 31759,
+    "yellow": 3551
+   },
+   "layout": {
+    "over": 0,
+    "inside": true,
+    "legend": true,
+    "canvas": 300,
+    "stage": 302
+   }
+  }
+ ],
+ "failures": [],
+ "switch1366x900": {
+  "from": {
+   "id": "u6-cross_sections-csb-y=-\\frac{x}{2} + 2|x=0|y=0-y-isosceles right triangles with the hypotenuse across the region-7tgam5",
+   "shape": "iso_hyp",
+   "dir": "y",
+   "open": true
+  },
+  "to": {
+   "id": "u6-cross_sections-csb-x^{2}+y^{2}=4-x-quarter circles whose radius lies across the region-kj8ief",
+   "shape": "quarter",
+   "dir": "x"
+  },
+  "after": {
+   "problemId": "u6-cross_sections-csb-x^{2}+y^{2}=4-x-quarter circles whose radius lies across the region-kj8ief",
+   "shape": "quarter",
+   "dir": "x",
+   "open": false,
+   "canvas": 0,
+   "wraps": 1
+  }
+ },
+ "resize1366x900": [
+  {
+   "canvas": 618,
+   "view": 618,
+   "over": 0,
+   "resizes": 4
+  },
+  {
+   "canvas": 702,
+   "view": 702,
+   "over": 0,
+   "resizes": 6
+  }
+ ],
+ "cycles1366x900": {
+  "cycles": 12,
+  "released": 13,
+  "leftGeometries": 0,
+  "leftTextures": 0,
+  "canvas": 0
+ },
+ "errors1366x900": 0,
+ "calcModule1366x900": true,
+ "calcNext1366x900": {
+  "from": true,
+  "id": "u6-cross_sections-csc-y=e^{x}|y=0|x=0|x=1-x-squares-4m2z5e",
+  "wraps": 0,
+  "canvas": 0,
+  "state": false
+ },
+ "calcErrors1366x900": 0,
+ "switch390x844": {
+  "from": {
+   "id": "u6-cross_sections-csb-y=-x^{2} + 9|y=0-y-isosceles right triangles with the hypotenuse across the region-1nq7elz",
+   "shape": "iso_hyp",
+   "dir": "y",
+   "open": true
+  },
+  "to": {
+   "id": "u6-cross_sections-csb-x^{2}+y^{2}=9-x-quarter circles whose radius lies across the region-11icvl4",
+   "shape": "quarter",
+   "dir": "x"
+  },
+  "after": {
+   "problemId": "u6-cross_sections-csb-x^{2}+y^{2}=9-x-quarter circles whose radius lies across the region-11icvl4",
+   "shape": "quarter",
+   "dir": "x",
+   "open": false,
+   "canvas": 0,
+   "wraps": 1
+  }
+ },
+ "resize390x844": [
+  {
+   "canvas": 702,
+   "view": 702,
+   "over": 0,
+   "resizes": 4
+  },
+  {
+   "canvas": 308,
+   "view": 308,
+   "over": 0,
+   "resizes": 6
+  }
+ ],
+ "cycles390x844": {
+  "cycles": 12,
+  "released": 13,
+  "leftGeometries": 0,
+  "leftTextures": 0,
+  "canvas": 0
+ },
+ "errors390x844": 0,
+ "calcModule390x844": true,
+ "calcNext390x844": {
+  "from": true,
+  "id": "u6-cross_sections-csc-y=e^{x}|y=0|x=0|x=1-x-squares-4m2z5e",
+  "wraps": 0,
+  "canvas": 0,
+  "state": false
+ },
+ "calcErrors390x844": 0,
+ "noWebGL": {
+  "problem": "u6-cross_sections-csb-y=-2x^{2} + 8|y=0-y-semicircles whose diameter lies across the region-1k8fdgi",
+  "webgl2Available": false,
+  "message": "This browser cannot show the 3D model (WebGL is not available). The 2D graph above still shows the base.",
+  "canvas": 0,
+  "button": "Hide 3D Model",
+  "graph2d": true,
+  "closesAgain": {
+   "button": "Show 3D Model",
+   "hidden": true
+  },
+  "errors": []
+ }
+}

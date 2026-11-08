@@ -1,0 +1,3697 @@
+{
+ "runs": [
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "square",
+   "dir": "x",
+   "region": "disk",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     48,
+     92,
+     137
+    ],
+    "opaque": [
+     72,
+     159,
+     250
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 18331,
+    "yellowWith": 501,
+    "yellowWithout": 435
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "rect2",
+   "dir": "x",
+   "region": "pair",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     82,
+     98,
+     78
+    ],
+    "opaque": [
+     74,
+     162,
+     254
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 3153,
+    "yellowWith": 412,
+    "yellowWithout": 367
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "rect3",
+   "dir": "x",
+   "region": "triangle",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     38,
+     82,
+     127
+    ],
+    "opaque": [
+     70,
+     154,
+     241
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 1832,
+    "yellowWith": 299,
+    "yellowWithout": 252
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "semicircle_d",
+   "dir": "x",
+   "region": "under_root",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 4,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     103,
+     119,
+     89
+    ],
+    "opaque": [
+     137,
+     213,
+     255
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 1702,
+    "yellowWith": 903,
+    "yellowWithout": 880
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "quarter",
+   "dir": "x",
+   "region": "semicircle",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     99,
+     114,
+     89
+    ],
+    "opaque": [
+     126,
+     199,
+     255
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 6204,
+    "yellowWith": 513,
+    "yellowWithout": 479
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "equilateral",
+   "dir": "x",
+   "region": "half_cap",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     39,
+     83,
+     125
+    ],
+    "opaque": [
+     78,
+     171,
+     255
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 6957,
+    "yellowWith": 443,
+    "yellowWithout": 356
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "iso_leg",
+   "dir": "x",
+   "region": "under_power",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 4,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     36,
+     78,
+     121
+    ],
+    "opaque": [
+     70,
+     154,
+     241
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 1368,
+    "yellowWith": 205,
+    "yellowWithout": 205
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "iso_hyp",
+   "dir": "x",
+   "region": "cap",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 4,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     83,
+     102,
+     79
+    ],
+    "opaque": [
+     80,
+     173,
+     255
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 5221,
+    "yellowWith": 285,
+    "yellowWithout": 259
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "square",
+   "dir": "y",
+   "region": "disk",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     38,
+     81,
+     122
+    ],
+    "opaque": [
+     77,
+     169,
+     255
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 35352,
+    "yellowWith": 597,
+    "yellowWithout": 407
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "rect2",
+   "dir": "y",
+   "region": "triangle",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     36,
+     76,
+     117
+    ],
+    "opaque": [
+     70,
+     154,
+     241
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 5329,
+    "yellowWith": 288,
+    "yellowWithout": 213
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "rect3",
+   "dir": "y",
+   "region": "pair",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     45,
+     73,
+     99
+    ],
+    "opaque": [
+     93,
+     179,
+     253
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 6569,
+    "yellowWith": 434,
+    "yellowWithout": 361
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "semicircle_d",
+   "dir": "y",
+   "region": "under_root",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 4,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     100,
+     116,
+     89
+    ],
+    "opaque": [
+     130,
+     204,
+     255
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 6679,
+    "yellowWith": 784,
+    "yellowWithout": 742
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "quarter",
+   "dir": "y",
+   "region": "semicircle",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     80,
+     96,
+     74
+    ],
+    "opaque": [
+     69,
+     153,
+     240
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 23353,
+    "yellowWith": 385,
+    "yellowWithout": 231
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "equilateral",
+   "dir": "y",
+   "region": "half_cap",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     80,
+     96,
+     75
+    ],
+    "opaque": [
+     70,
+     154,
+     241
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 3656,
+    "yellowWith": 402,
+    "yellowWithout": 344
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "iso_leg",
+   "dir": "y",
+   "region": "left_of_power",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 4,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     81,
+     97,
+     76
+    ],
+    "opaque": [
+     71,
+     156,
+     245
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 2802,
+    "yellowWith": 316,
+    "yellowWithout": 313
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "iso_hyp",
+   "dir": "y",
+   "region": "cap",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 4,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     89,
+     105,
+     83
+    ],
+    "opaque": [
+     69,
+     153,
+     240
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 3564,
+    "yellowWith": 221,
+    "yellowWithout": 219
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "disk_basic",
+   "tier": "foundational",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "problem": "y=0 disk",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 10,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     32,
+     68,
+     107
+    ],
+    "opaque": [
+     61,
+     137,
+     215
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 18471,
+    "yellowWith": 878,
+    "yellowWithout": 137
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "washer",
+   "tier": "intermediate",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "kind": "washer",
+   "problem": "x=-3 washer",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 11,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     36,
+     78,
+     118
+    ],
+    "opaque": [
+     77,
+     168,
+     255
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 17234,
+    "yellowWith": 8445,
+    "yellowWithout": 4161
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "shells",
+   "tier": "intermediate",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "problem": "x=2 shell",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 11,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     46,
+     84,
+     113
+    ],
+    "opaque": [
+     52,
+     120,
+     189
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 27341,
+    "yellowWith": 5561,
+    "yellowWithout": 3824
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "two_axes",
+   "tier": "challenging",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "problem": "y=0 disk, x=-1 shell",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 10,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     33,
+     72,
+     111
+    ],
+    "opaque": [
+     60,
+     135,
+     212
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 2172,
+    "yellowWith": 668,
+    "yellowWithout": 468
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "trig_solid",
+   "tier": "intermediate",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "problem": "y=4 washer",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 11,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     31,
+     67,
+     105
+    ],
+    "opaque": [
+     53,
+     120,
+     190
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 18830,
+    "yellowWith": 3686,
+    "yellowWithout": 2119
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "washer",
+   "tier": "challenging",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "kind": "washer",
+   "hole": {
+    "least": 2,
+    "fraction": 0.3,
+    "x": 344.5459421864686,
+    "y": 230.00015489336036,
+    "pixel": [
+     196,
+     94,
+     147
+    ]
+   },
+   "axisType": "y",
+   "problem": "y=11 washer",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 11,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     35,
+     76,
+     118
+    ],
+    "opaque": [
+     67,
+     148,
+     233
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 9241,
+    "yellowWith": 6085,
+    "yellowWithout": 3720
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "washer",
+   "tier": "intermediate",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "kind": "washer",
+   "hole": {
+    "least": 1,
+    "fraction": 0.3,
+    "x": 330.83819425361946,
+    "y": 243.44085437324955,
+    "pixel": [
+     5,
+     5,
+     5
+    ]
+   },
+   "axisType": "x",
+   "problem": "x=2 washer",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 11,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     31,
+     67,
+     104
+    ],
+    "opaque": [
+     59,
+     132,
+     208
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 12816,
+    "yellowWith": 5559,
+    "yellowWithout": 3971
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "solid_calc",
+   "tier": "intermediate",
+   "calc": "calculator",
+   "problem": "y=0 disk",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 10,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     36,
+     75,
+     116
+    ],
+    "opaque": [
+     75,
+     159,
+     246
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 11810,
+    "yellowWith": 1073,
+    "yellowWithout": 570
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "calc_two_axes",
+   "tier": "challenging",
+   "calc": "calculator",
+   "problem": "y=0 shell, x=0 washer",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 11,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     34,
+     73,
+     114
+    ],
+    "opaque": [
+     70,
+     154,
+     241
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 15604,
+    "yellowWith": 4193,
+    "yellowWithout": 1336
+   },
+   "keyboard": [
+    "transparent",
+    "opaque"
+   ],
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "cross sections",
+   "shape": "square",
+   "dir": "x",
+   "region": "disk",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     38,
+     81,
+     123
+    ],
+    "opaque": [
+     76,
+     168,
+     255
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 215428,
+    "yellowWith": 1175,
+    "yellowWithout": 1068
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "cross sections",
+   "shape": "rect2",
+   "dir": "y",
+   "region": "triangle",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     35,
+     74,
+     115
+    ],
+    "opaque": [
+     59,
+     133,
+     210
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 42449,
+    "yellowWith": 1873,
+    "yellowWithout": 1768
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "cross sections",
+   "shape": "rect3",
+   "dir": "x",
+   "region": "triangle",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     36,
+     77,
+     119
+    ],
+    "opaque": [
+     62,
+     138,
+     217
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 18030,
+    "yellowWith": 1534,
+    "yellowWithout": 1375
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "cross sections",
+   "shape": "semicircle_d",
+   "dir": "y",
+   "region": "under_root",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 4,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     100,
+     116,
+     89
+    ],
+    "opaque": [
+     129,
+     203,
+     255
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 78595,
+    "yellowWith": 2424,
+    "yellowWithout": 2327
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "cross sections",
+   "shape": "quarter",
+   "dir": "x",
+   "region": "semicircle",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     99,
+     115,
+     89
+    ],
+    "opaque": [
+     127,
+     200,
+     255
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 69805,
+    "yellowWith": 2076,
+    "yellowWithout": 1939
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "cross sections",
+   "shape": "equilateral",
+   "dir": "y",
+   "region": "half_cap",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 3,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     81,
+     98,
+     77
+    ],
+    "opaque": [
+     72,
+     159,
+     250
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 9777,
+    "yellowWith": 4012,
+    "yellowWithout": 3980
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "cross sections",
+   "shape": "iso_leg",
+   "dir": "x",
+   "region": "under_power",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 4,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     34,
+     73,
+     114
+    ],
+    "opaque": [
+     62,
+     139,
+     218
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 143,
+    "yellowWith": 168,
+    "yellowWithout": 159,
+    "afterReset": true,
+    "offScreenAfterZoom": true
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "cross sections",
+   "shape": "iso_hyp",
+   "dir": "y",
+   "region": "cap",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     },
+     {
+      "transparent": true,
+      "opacity": 0.34,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     },
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 4,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     82,
+     99,
+     79
+    ],
+    "opaque": [
+     74,
+     163,
+     255
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 41060,
+    "yellowWith": 1045,
+    "yellowWithout": 1028
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "disk_basic",
+   "tier": "foundational",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "problem": "y=0 disk",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 10,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     77,
+     113,
+     120
+    ],
+    "opaque": [
+     88,
+     148,
+     185
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 147271,
+    "yellowWith": 8680,
+    "yellowWithout": 6956
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "washer",
+   "tier": "intermediate",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "kind": "washer",
+   "problem": "y=0 washer",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 11,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     33,
+     72,
+     111
+    ],
+    "opaque": [
+     60,
+     134,
+     211
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 50584,
+    "yellowWith": 17842,
+    "yellowWithout": 11480
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "shells",
+   "tier": "intermediate",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "problem": "y=3 shell",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 11,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     38,
+     81,
+     121
+    ],
+    "opaque": [
+     62,
+     138,
+     217
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 234970,
+    "yellowWith": 42325,
+    "yellowWithout": 14793
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "two_axes",
+   "tier": "challenging",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "problem": "y=5 washer, x=-1 shell",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 11,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     32,
+     71,
+     110
+    ],
+    "opaque": [
+     59,
+     133,
+     209
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 108695,
+    "yellowWith": 37124,
+    "yellowWithout": 21721
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "trig_solid",
+   "tier": "intermediate",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "problem": "y=4 washer",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 11,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     39,
+     84,
+     125
+    ],
+    "opaque": [
+     80,
+     175,
+     255
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 239676,
+    "yellowWith": 13170,
+    "yellowWithout": 9063
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "washer",
+   "tier": "challenging",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "kind": "washer",
+   "hole": {
+    "least": 2,
+    "fraction": 0.3,
+    "x": 134.8959696667748,
+    "y": 140.00045848480758,
+    "pixel": [
+     255,
+     124,
+     192
+    ]
+   },
+   "axisType": "y",
+   "problem": "y=6 washer",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 11,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     34,
+     74,
+     114
+    ],
+    "opaque": [
+     62,
+     138,
+     217
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 216423,
+    "yellowWith": 9888,
+    "yellowWithout": 7629
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "washer",
+   "tier": "intermediate",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "kind": "washer",
+   "hole": {
+    "least": 2,
+    "fraction": 0.3,
+    "x": 117.29011693661383,
+    "y": 164.4726190957658,
+    "pixel": [
+     5,
+     5,
+     5
+    ]
+   },
+   "axisType": "x",
+   "problem": "x=-2 washer",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 11,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     34,
+     73,
+     114
+    ],
+    "opaque": [
+     69,
+     152,
+     239
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 66914,
+    "yellowWith": 15487,
+    "yellowWithout": 9304
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "solid_calc",
+   "tier": "intermediate",
+   "calc": "calculator",
+   "problem": "x=3 shell",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 11,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     33,
+     71,
+     110
+    ],
+    "opaque": [
+     54,
+     123,
+     194
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 241700,
+    "yellowWith": 27921,
+    "yellowWithout": 16284
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "calc_two_axes",
+   "tier": "challenging",
+   "calc": "calculator",
+   "problem": "y=0 disk, x=-2 washer",
+   "start": {
+    "display": "transparent",
+    "pressed": "transparent:true opaque:false",
+    "materials": [
+     {
+      "transparent": true,
+      "opacity": 0.3,
+      "depthWrite": false,
+      "polygonOffset": false,
+      "polygonOffsetFactor": 0,
+      "polygonOffsetUnits": 0
+     }
+    ]
+   },
+   "opaque": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "materials": [
+     {
+      "transparent": false,
+      "opacity": 1,
+      "depthWrite": true,
+      "polygonOffset": true,
+      "polygonOffsetFactor": 1,
+      "polygonOffsetUnits": 1
+     }
+    ],
+    "ghosts": 10,
+    "pressed": "transparent:false opaque:true"
+   },
+   "surfacePixel": {
+    "transparent": [
+     71,
+     101,
+     106
+    ],
+    "opaque": [
+     83,
+     137,
+     169
+    ]
+   },
+   "hiddenSlice": {
+    "pixelsDrawnForHiddenParts": 17051,
+    "yellowWith": 1933,
+    "yellowWithout": 1093
+   },
+   "reset": {
+    "display": "opaque",
+    "home": true
+   },
+   "restored": {
+    "materials": true,
+    "identicalPicture": true
+   },
+   "released": [
+    {
+     "geometries": 0,
+     "textures": 0
+    }
+   ],
+   "reopened": {
+    "display": "opaque",
+    "pressed": "transparent:false opaque:true"
+   }
+  }
+ ],
+ "failures": [],
+ "newQuestion 1366x900 cs": "transparent:true opaque:false",
+ "errors 1366x900 cs": 0,
+ "newQuestion 1366x900 non-calculator-practice": "transparent:true opaque:false",
+ "errors 1366x900 non-calculator-practice": 0,
+ "newQuestion 1366x900 calculator-practice": "transparent:true opaque:false",
+ "errors 1366x900 calculator-practice": 0,
+ "newQuestion 390x844 cs": "transparent:true opaque:false",
+ "errors 390x844 cs": 0,
+ "newQuestion 390x844 non-calculator-practice": "transparent:true opaque:false",
+ "errors 390x844 non-calculator-practice": 0,
+ "newQuestion 390x844 calculator-practice": "transparent:true opaque:false",
+ "errors 390x844 calculator-practice": 0
+}

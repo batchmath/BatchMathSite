@@ -1,0 +1,2173 @@
+{
+ "runs": [
+  {
+   "viewport": "1366x900",
+   "page": "non-calculator-practice",
+   "family": "disk_basic",
+   "tier": "foundational",
+   "graph": "shown",
+   "axisType": "y",
+   "models": [
+    {
+     "model": {
+      "axis": "y=0",
+      "kind": "disk",
+      "solidRadius": [
+       0,
+       4
+      ],
+      "slice": {
+       "R": 2.5923,
+       "r": 0,
+       "at": 1.68
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line y = 0",
+     "pixels": {
+      "lit": 25864,
+      "yellow": 6207,
+      "pink": 194
+     },
+     "controls": {
+      "rotated": -1.912,
+      "zoomed": 0.735,
+      "idleFrames": 0,
+      "reset": true
+     },
+     "released": [
+      {
+       "geometries": 0,
+       "textures": 0
+      }
+     ],
+     "quickToggle": {
+      "canvas": 1,
+      "open": true
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-disk-y=2\\sqrt{x}|x=4|y=0-y0-15cfwjp",
+    "graph": "shown",
+    "rotations": [
+     {
+      "axis": "y=0",
+      "kind": "disk",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 1
+   },
+   "atStart": [
+    {
+     "rotation": 0,
+     "axis": "y=0",
+     "kind": "disk",
+     "part": null,
+     "inQuestion": true,
+     "afterFigure": false,
+     "afterGraph": true,
+     "afterPrompt": false,
+     "open": false
+    }
+   ],
+   "answers": [
+    "Correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "non-calculator-practice",
+   "family": "disk_basic",
+   "tier": "intermediate",
+   "graph": "none",
+   "axisType": "x",
+   "models": [
+    {
+     "model": {
+      "axis": "x=0",
+      "kind": "disk",
+      "solidRadius": [
+       0,
+       2
+      ],
+      "slice": {
+       "R": 1.16,
+       "r": 0,
+       "at": 1.26
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line x = 0",
+     "pixels": {
+      "lit": 38865,
+      "yellow": 5532,
+      "pink": 204
+     },
+     "controls": {
+      "rotated": -1.912,
+      "zoomed": 0.735,
+      "idleFrames": 0,
+      "reset": true
+     },
+     "released": [
+      {
+       "geometries": 0,
+       "textures": 0
+      }
+     ],
+     "quickToggle": {
+      "canvas": 1,
+      "open": true
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-disk-y=-\\frac{3x}{2} + 3|x=0|y=0-x0-1adp0ra",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "x=0",
+      "kind": "disk",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 1
+   },
+   "atStart": [],
+   "answers": [
+    "Correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "non-calculator-practice",
+   "family": "washer",
+   "tier": "intermediate",
+   "graph": "shown",
+   "kind": "washer",
+   "shifted": true,
+   "models": [
+    {
+     "model": {
+      "axis": "x=-2",
+      "kind": "washer",
+      "solidRadius": [
+       2,
+       5.9995
+      ],
+      "slice": {
+       "R": 4.7624,
+       "r": 2,
+       "at": 1.26
+      },
+      "triangles": 36864
+     },
+     "caption": "R revolved about the line x = −2",
+     "pixels": {
+      "lit": 38923,
+      "yellow": 15485,
+      "pink": 572
+     },
+     "controls": {
+      "rotated": -1.912,
+      "zoomed": 0.735,
+      "idleFrames": 0,
+      "reset": true
+     },
+     "released": [
+      {
+       "geometries": 0,
+       "textures": 0
+      }
+     ],
+     "quickToggle": {
+      "canvas": 1,
+      "open": true
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-wash-x=-y^{3} + 3y^{2}|x=0-x-2-2-1trw0nk",
+    "graph": "shown",
+    "rotations": [
+     {
+      "axis": "x=-2",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 2
+   },
+   "atStart": [
+    {
+     "rotation": 0,
+     "axis": "x=-2",
+     "kind": "washer",
+     "part": null,
+     "inQuestion": true,
+     "afterFigure": false,
+     "afterGraph": true,
+     "afterPrompt": false,
+     "open": false
+    }
+   ],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "non-calculator-practice",
+   "family": "washer",
+   "tier": "challenging",
+   "graph": "none",
+   "kind": "washer",
+   "axisType": "x",
+   "models": [
+    {
+     "model": {
+      "axis": "x=3",
+      "kind": "washer",
+      "solidRadius": [
+       2,
+       3
+      ],
+      "slice": {
+       "R": 2.58,
+       "r": 2,
+       "at": 0.42
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line x = 3",
+     "pixels": {
+      "lit": 34557,
+      "yellow": 9286,
+      "pink": 437
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-wash-y=x|x=1|y=0-x3-2-hv2p3u",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "x=3",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 2
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "non-calculator-practice",
+   "family": "shells",
+   "tier": "intermediate",
+   "graph": "shown",
+   "axisType": "x",
+   "models": [
+    {
+     "model": {
+      "axis": "x=0",
+      "kind": "shell",
+      "solidRadius": [
+       0,
+       1
+      ],
+      "slice": {
+       "r": 0.42,
+       "h": 1.16
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line x = 0",
+     "pixels": {
+      "lit": 32667,
+      "yellow": 12402,
+      "pink": 148
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-shell-y=-2x + 2|x=0|y=0-x0-i40etu",
+    "graph": "shown",
+    "rotations": [
+     {
+      "axis": "x=0",
+      "kind": "shell",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 2
+   },
+   "atStart": [
+    {
+     "rotation": 0,
+     "axis": "x=0",
+     "kind": "shell",
+     "part": null,
+     "inQuestion": true,
+     "afterFigure": false,
+     "afterGraph": true,
+     "afterPrompt": false,
+     "open": false
+    }
+   ],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "non-calculator-practice",
+   "family": "shells",
+   "tier": "challenging",
+   "graph": "none",
+   "axisType": "y",
+   "models": [
+    {
+     "model": {
+      "axis": "y=4",
+      "kind": "shell",
+      "solidRadius": [
+       1,
+       4
+      ],
+      "slice": {
+       "r": 3.16,
+       "h": 0.14
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line y = 4",
+     "pixels": {
+      "lit": 18361,
+      "yellow": 2655,
+      "pink": 164
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-shell-y=3x|y=2x|x=1-y4-am5wua",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "y=4",
+      "kind": "shell",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 2
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "non-calculator-practice",
+   "family": "two_axes",
+   "tier": "challenging",
+   "graph": "shown",
+   "models": [
+    {
+     "model": {
+      "axis": "y=0",
+      "kind": "disk",
+      "solidRadius": [
+       0,
+       9
+      ],
+      "slice": {
+       "R": 5.8327,
+       "r": 0,
+       "at": 3.78
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line y = 0 (Part A)",
+     "pixels": {
+      "lit": 26288,
+      "yellow": 6236,
+      "pink": 196
+     }
+    },
+    {
+     "model": {
+      "axis": "x=10",
+      "kind": "shell",
+      "solidRadius": [
+       1,
+       10
+      ],
+      "slice": {
+       "r": 6.22,
+       "h": 5.8327
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line x = 10 (Part B)",
+     "pixels": {
+      "lit": 52226,
+      "yellow": 23670,
+      "pink": 393
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-two-y=3\\sqrt{x}|x=9|y=0-y0-x10-1856kbc",
+    "graph": "shown",
+    "rotations": [
+     {
+      "axis": "y=0",
+      "kind": "disk",
+      "ask": 0,
+      "reveal": 0
+     },
+     {
+      "axis": "x=10",
+      "kind": "shell",
+      "ask": 1,
+      "reveal": 1
+     }
+    ],
+    "parts": 3
+   },
+   "atStart": [
+    {
+     "rotation": 0,
+     "axis": "y=0",
+     "kind": "disk",
+     "part": "0",
+     "inQuestion": false,
+     "afterFigure": false,
+     "afterGraph": false,
+     "afterPrompt": true,
+     "open": false
+    }
+   ],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct.",
+    "Part C is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "non-calculator-practice",
+   "family": "two_axes",
+   "tier": "challenging",
+   "graph": "none",
+   "models": [
+    {
+     "model": {
+      "axis": "x=3",
+      "kind": "washer",
+      "solidRadius": [
+       2,
+       3
+      ],
+      "slice": {
+       "R": 2.8236,
+       "r": 2.3519,
+       "at": 0.42
+      },
+      "triangles": 36864
+     },
+     "caption": "R revolved about the line x = 3 (Part A)",
+     "pixels": {
+      "lit": 34660,
+      "yellow": 9568,
+      "pink": 437
+     }
+    },
+    {
+     "model": {
+      "axis": "y=-2",
+      "kind": "shell",
+      "solidRadius": [
+       2,
+       3
+      ],
+      "slice": {
+       "r": 2.42,
+       "h": 0.4717
+      },
+      "triangles": 36864
+     },
+     "caption": "R revolved about the line y = −2 (Part B)",
+     "pixels": {
+      "lit": 19245,
+      "yellow": 5981,
+      "pink": 239
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-two-y=\\sqrt{x}|y=x^{2}-x3-y-2-o4meua",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "x=3",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     },
+     {
+      "axis": "y=-2",
+      "kind": "shell",
+      "ask": 1,
+      "reveal": 1
+     }
+    ],
+    "parts": 3
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct.",
+    "Part C is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "non-calculator-practice",
+   "family": "trig_solid",
+   "tier": "intermediate",
+   "graph": "shown",
+   "models": [
+    {
+     "model": {
+      "axis": "y=-3",
+      "kind": "washer",
+      "solidRadius": [
+       3,
+       6
+      ],
+      "slice": {
+       "R": 5.6129,
+       "r": 3,
+       "at": 0.6597
+      },
+      "triangles": 37376
+     },
+     "caption": "R revolved about the line y = −3",
+     "pixels": {
+      "lit": 20920,
+      "yellow": 9505,
+      "pink": 192
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-trig-2--3-1so3foa",
+    "graph": "shown",
+    "rotations": [
+     {
+      "axis": "y=-3",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 1
+   },
+   "atStart": [
+    {
+     "rotation": 0,
+     "axis": "y=-3",
+     "kind": "washer",
+     "part": null,
+     "inQuestion": true,
+     "afterFigure": false,
+     "afterGraph": true,
+     "afterPrompt": false,
+     "open": false
+    }
+   ],
+   "answers": [
+    "Correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "non-calculator-practice",
+   "family": "trig_solid",
+   "tier": "challenging",
+   "graph": "none",
+   "models": [
+    {
+     "model": {
+      "axis": "y=4",
+      "kind": "washer",
+      "solidRadius": [
+       1,
+       4
+      ],
+      "slice": {
+       "R": 4,
+       "r": 1.3871,
+       "at": 0.6597
+      },
+      "triangles": 37376
+     },
+     "caption": "R revolved about the line y = 4",
+     "pixels": {
+      "lit": 26287,
+      "yellow": 13060,
+      "pink": 170
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-trig-2-4-1ic87ft",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "y=4",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 2
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "calculator-practice",
+   "family": "solid_calc",
+   "tier": "foundational",
+   "models": [
+    {
+     "model": {
+      "axis": "x=0",
+      "kind": "shell",
+      "solidRadius": [
+       0,
+       2
+      ],
+      "slice": {
+       "r": 0.84,
+       "h": 3.4938
+      },
+      "triangles": 37376
+     },
+     "caption": "R revolved about the line x = 0",
+     "pixels": {
+      "lit": 50353,
+      "yellow": 17829,
+      "pink": 142
+     },
+     "controls": {
+      "rotated": -1.912,
+      "zoomed": 0.735,
+      "idleFrames": 0,
+      "reset": true
+     },
+     "released": [
+      {
+       "geometries": 0,
+       "textures": 0
+      }
+     ],
+     "quickToggle": {
+      "canvas": 1,
+      "open": true
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-s1-3-2-1y1aopf",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "x=0",
+      "kind": "shell",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 1
+   },
+   "atStart": [],
+   "answers": [
+    "Correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "calculator-practice",
+   "family": "solid_calc",
+   "tier": "intermediate",
+   "kind": "shell",
+   "models": [
+    {
+     "model": {
+      "axis": "y=2",
+      "kind": "shell",
+      "solidRadius": [
+       0.3531,
+       3.9975
+      ],
+      "slice": {
+       "r": 2.4668,
+       "h": 1.0076
+      },
+      "triangles": 36864
+     },
+     "caption": "R revolved about the line y = 2",
+     "pixels": {
+      "lit": 20998,
+      "yellow": 6292,
+      "pink": 145
+     },
+     "controls": {
+      "rotated": -1.912,
+      "zoomed": 0.735,
+      "idleFrames": 0,
+      "reset": true
+     },
+     "released": [
+      {
+       "geometries": 0,
+       "textures": 0
+      }
+     ],
+     "quickToggle": {
+      "canvas": 1,
+      "open": true
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-sc-f(x)=1+\\ln x|g(x)=x^{2}-2-y2-shell-1st6zm2",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "y=2",
+      "kind": "shell",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 1
+   },
+   "atStart": [],
+   "answers": [
+    "Correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "calculator-practice",
+   "family": "solid_calc",
+   "tier": "challenging",
+   "kind": "washer",
+   "models": [
+    {
+     "model": {
+      "axis": "y=0",
+      "kind": "washer",
+      "solidRadius": [
+       0,
+       1
+      ],
+      "slice": {
+       "R": 0.9913,
+       "r": 0.0174,
+       "at": -0.1319
+      },
+      "triangles": 36864
+     },
+     "caption": "R revolved about the line y = 0",
+     "pixels": {
+      "lit": 40683,
+      "yellow": 15362,
+      "pink": 206
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-sc-y=\\cos x|y=x^{2}-y0-washer-1ee67xy",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "y=0",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 2
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "calculator-practice",
+   "family": "calc_two_axes",
+   "tier": "intermediate",
+   "models": [
+    {
+     "model": {
+      "axis": "x=3",
+      "kind": "shell",
+      "solidRadius": [
+       1.0903,
+       2.9501
+      ],
+      "slice": {
+       "r": 2.169,
+       "h": 2.1243
+      },
+      "triangles": 36864
+     },
+     "caption": "R revolved about the line x = 3 (Part A)",
+     "pixels": {
+      "lit": 56384,
+      "yellow": 26514,
+      "pink": 340
+     }
+    },
+    {
+     "model": {
+      "axis": "y=-4",
+      "kind": "washer",
+      "solidRadius": [
+       2.0025,
+       5.6469
+      ],
+      "slice": {
+       "R": 4.8149,
+       "r": 2.6906,
+       "at": 0.831
+      },
+      "triangles": 36864
+     },
+     "caption": "R revolved about the line y = −4 (Part B)",
+     "pixels": {
+      "lit": 20292,
+      "yellow": 7896,
+      "pink": 227
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-sc2-f(x)=1+\\ln x|g(x)=x^{2}-2-x3-shell-y-4-washer-d9ro94",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "x=3",
+      "kind": "shell",
+      "ask": 0,
+      "reveal": 0
+     },
+     {
+      "axis": "y=-4",
+      "kind": "washer",
+      "ask": 1,
+      "reveal": 1
+     }
+    ],
+    "parts": 2
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "page": "calculator-practice",
+   "family": "calc_two_axes",
+   "tier": "challenging",
+   "models": [
+    {
+     "model": {
+      "axis": "y=0",
+      "kind": "disk",
+      "solidRadius": [
+       0,
+       7.3891
+      ],
+      "slice": {
+       "R": 2.3164,
+       "r": 0,
+       "at": 0.42
+      },
+      "triangles": 37376
+     },
+     "caption": "R revolved about the line y = 0 (Part A)",
+     "pixels": {
+      "lit": 17386,
+      "yellow": 1416,
+      "pink": 150
+     }
+    },
+    {
+     "model": {
+      "axis": "x=0",
+      "kind": "washer",
+      "solidRadius": [
+       0,
+       1
+      ],
+      "slice": {
+       "R": 1,
+       "r": 0.6519,
+       "at": 3.6834
+      },
+      "triangles": 37376
+     },
+     "caption": "R revolved about the line x = 0 (Part B)",
+     "pixels": {
+      "lit": 16036,
+      "yellow": 955,
+      "pink": 198
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-sc2-y=e^{2x}|y=0|x=0|x=1-y0-washer-x0-washer-si5zp1",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "y=0",
+      "kind": "disk",
+      "ask": 0,
+      "reveal": 0
+     },
+     {
+      "axis": "x=0",
+      "kind": "washer",
+      "ask": 1,
+      "reveal": 1
+     }
+    ],
+    "parts": 3
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct.",
+    "Part C is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "non-calculator-practice",
+   "family": "disk_basic",
+   "tier": "foundational",
+   "graph": "shown",
+   "axisType": "y",
+   "models": [
+    {
+     "model": {
+      "axis": "y=0",
+      "kind": "disk",
+      "solidRadius": [
+       0,
+       4
+      ],
+      "slice": {
+       "R": 2.32,
+       "r": 0,
+       "at": 0.84
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line y = 0",
+     "pixels": {
+      "lit": 29820,
+      "yellow": 7209,
+      "pink": 234
+     },
+     "controls": {
+      "rotated": -3.142,
+      "zoomed": 0.217,
+      "idleFrames": 0,
+      "reset": true
+     },
+     "released": [
+      {
+       "geometries": 0,
+       "textures": 0
+      }
+     ],
+     "quickToggle": {
+      "canvas": 1,
+      "open": true
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-disk-y=-2x + 4|x=0|y=0-y0-16ysptp",
+    "graph": "shown",
+    "rotations": [
+     {
+      "axis": "y=0",
+      "kind": "disk",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 1
+   },
+   "atStart": [
+    {
+     "rotation": 0,
+     "axis": "y=0",
+     "kind": "disk",
+     "part": null,
+     "inQuestion": true,
+     "afterFigure": false,
+     "afterGraph": true,
+     "afterPrompt": false,
+     "open": false
+    }
+   ],
+   "answers": [
+    "Correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "non-calculator-practice",
+   "family": "disk_basic",
+   "tier": "intermediate",
+   "graph": "none",
+   "axisType": "x",
+   "models": [
+    {
+     "model": {
+      "axis": "x=0",
+      "kind": "disk",
+      "solidRadius": [
+       0,
+       2
+      ],
+      "slice": {
+       "R": 1.16,
+       "r": 0,
+       "at": 0.84
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line x = 0",
+     "pixels": {
+      "lit": 43502,
+      "yellow": 7589,
+      "pink": 362
+     },
+     "controls": {
+      "rotated": -3.142,
+      "zoomed": 0.22,
+      "idleFrames": 0,
+      "reset": true
+     },
+     "released": [
+      {
+       "geometries": 0,
+       "textures": 0
+      }
+     ],
+     "quickToggle": {
+      "canvas": 1,
+      "open": true
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-disk-y=-x + 2|x=0|y=0-x0-ken4as",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "x=0",
+      "kind": "disk",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 1
+   },
+   "atStart": [],
+   "answers": [
+    "Correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "non-calculator-practice",
+   "family": "washer",
+   "tier": "intermediate",
+   "graph": "shown",
+   "kind": "washer",
+   "shifted": true,
+   "models": [
+    {
+     "model": {
+      "axis": "y=6",
+      "kind": "washer",
+      "solidRadius": [
+       0,
+       6
+      ],
+      "slice": {
+       "R": 4.32,
+       "r": 3.48,
+       "at": 0.84
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line y = 6",
+     "pixels": {
+      "lit": 29415,
+      "yellow": 5911,
+      "pink": 237
+     },
+     "controls": {
+      "rotated": -3.142,
+      "zoomed": 0.217,
+      "idleFrames": 0,
+      "reset": true
+     },
+     "released": [
+      {
+       "geometries": 0,
+       "textures": 0
+      }
+     ],
+     "quickToggle": {
+      "canvas": 1,
+      "open": true
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-wash-y=3x|y=2x|x=2-y6-3-vhfwza",
+    "graph": "shown",
+    "rotations": [
+     {
+      "axis": "y=6",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 3
+   },
+   "atStart": [
+    {
+     "rotation": 0,
+     "axis": "y=6",
+     "kind": "washer",
+     "part": null,
+     "inQuestion": true,
+     "afterFigure": false,
+     "afterGraph": true,
+     "afterPrompt": false,
+     "open": false
+    }
+   ],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct.",
+    "Part C is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "non-calculator-practice",
+   "family": "washer",
+   "tier": "challenging",
+   "graph": "none",
+   "kind": "washer",
+   "axisType": "x",
+   "models": [
+    {
+     "model": {
+      "axis": "x=0",
+      "kind": "washer",
+      "solidRadius": [
+       1,
+       2
+      ],
+      "slice": {
+       "R": 2,
+       "r": 1,
+       "at": 1.26
+      },
+      "triangles": 37376
+     },
+     "caption": "R revolved about the line x = 0",
+     "pixels": {
+      "lit": 50051,
+      "yellow": 7422,
+      "pink": 229
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-wash-y=\\frac{6}{x}|y=0|x=1|x=2-x0-2-19q6gqs",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "x=0",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 2
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "non-calculator-practice",
+   "family": "shells",
+   "tier": "intermediate",
+   "graph": "shown",
+   "axisType": "x",
+   "models": [
+    {
+     "model": {
+      "axis": "x=0",
+      "kind": "shell",
+      "solidRadius": [
+       0,
+       1
+      ],
+      "slice": {
+       "r": 0.42,
+       "h": 0.8236
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line x = 0",
+     "pixels": {
+      "lit": 42733,
+      "yellow": 18756,
+      "pink": 551
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-shell-y=1|y=x^{2}|x=0-x0-10aisr9",
+    "graph": "shown",
+    "rotations": [
+     {
+      "axis": "x=0",
+      "kind": "shell",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 2
+   },
+   "atStart": [
+    {
+     "rotation": 0,
+     "axis": "x=0",
+     "kind": "shell",
+     "part": null,
+     "inQuestion": true,
+     "afterFigure": false,
+     "afterGraph": true,
+     "afterPrompt": false,
+     "open": false
+    }
+   ],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "non-calculator-practice",
+   "family": "shells",
+   "tier": "challenging",
+   "graph": "none",
+   "axisType": "y",
+   "models": [
+    {
+     "model": {
+      "axis": "y=10",
+      "kind": "shell",
+      "solidRadius": [
+       1,
+       10
+      ],
+      "slice": {
+       "r": 4.48,
+       "h": 1.16
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line y = 10",
+     "pixels": {
+      "lit": 32047,
+      "yellow": 3867,
+      "pink": 245
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-shell-y=3x|y=x|x=3-y10-tln9eu",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "y=10",
+      "kind": "shell",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 2
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "non-calculator-practice",
+   "family": "two_axes",
+   "tier": "challenging",
+   "graph": "shown",
+   "models": [
+    {
+     "model": {
+      "axis": "y=0",
+      "kind": "washer",
+      "solidRadius": [
+       0,
+       9
+      ],
+      "slice": {
+       "R": 9,
+       "r": 1.5876,
+       "at": 1.26
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line y = 0 (Part A)",
+     "pixels": {
+      "lit": 36092,
+      "yellow": 20990,
+      "pink": 336
+     }
+    },
+    {
+     "model": {
+      "axis": "x=-1",
+      "kind": "shell",
+      "solidRadius": [
+       1,
+       4
+      ],
+      "slice": {
+       "r": 2.26,
+       "h": 7.4124
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line x = −1 (Part B)",
+     "pixels": {
+      "lit": 55212,
+      "yellow": 30768,
+      "pink": 275
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-two-y=9|y=x^{2}|x=0-y0-x-1-1li8qsl",
+    "graph": "shown",
+    "rotations": [
+     {
+      "axis": "y=0",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     },
+     {
+      "axis": "x=-1",
+      "kind": "shell",
+      "ask": 1,
+      "reveal": 1
+     }
+    ],
+    "parts": 3
+   },
+   "atStart": [
+    {
+     "rotation": 0,
+     "axis": "y=0",
+     "kind": "washer",
+     "part": "0",
+     "inQuestion": false,
+     "afterFigure": false,
+     "afterGraph": false,
+     "afterPrompt": true,
+     "open": false
+    }
+   ],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct.",
+    "Part C is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "non-calculator-practice",
+   "family": "two_axes",
+   "tier": "challenging",
+   "graph": "none",
+   "models": [
+    {
+     "model": {
+      "axis": "x=0",
+      "kind": "disk",
+      "solidRadius": [
+       0,
+       2
+      ],
+      "slice": {
+       "R": 1.2961,
+       "r": 0,
+       "at": 1.68
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line x = 0 (Part A)",
+     "pixels": {
+      "lit": 56242,
+      "yellow": 7702,
+      "pink": 411
+     }
+    },
+    {
+     "model": {
+      "axis": "y=5",
+      "kind": "shell",
+      "solidRadius": [
+       1,
+       5
+      ],
+      "slice": {
+       "r": 3.32,
+       "h": 1.2961
+      },
+      "triangles": 37120
+     },
+     "caption": "R revolved about the line y = 5 (Part B)",
+     "pixels": {
+      "lit": 31288,
+      "yellow": 10610,
+      "pink": 243
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-two-y=4|y=x^{2}|x=0-x0-y5-1dg5je4",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "x=0",
+      "kind": "disk",
+      "ask": 0,
+      "reveal": 0
+     },
+     {
+      "axis": "y=5",
+      "kind": "shell",
+      "ask": 1,
+      "reveal": 1
+     }
+    ],
+    "parts": 3
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct.",
+    "Part C is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "non-calculator-practice",
+   "family": "trig_solid",
+   "tier": "intermediate",
+   "graph": "shown",
+   "models": [
+    {
+     "model": {
+      "axis": "y=3",
+      "kind": "washer",
+      "solidRadius": [
+       1,
+       3
+      ],
+      "slice": {
+       "R": 3,
+       "r": 1.3871,
+       "at": 0.6597
+      },
+      "triangles": 37376
+     },
+     "caption": "R revolved about the line y = 3",
+     "pixels": {
+      "lit": 43883,
+      "yellow": 18090,
+      "pink": 278
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-trig-1-3-rnbktn",
+    "graph": "shown",
+    "rotations": [
+     {
+      "axis": "y=3",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 1
+   },
+   "atStart": [
+    {
+     "rotation": 0,
+     "axis": "y=3",
+     "kind": "washer",
+     "part": null,
+     "inQuestion": true,
+     "afterFigure": false,
+     "afterGraph": true,
+     "afterPrompt": false,
+     "open": false
+    }
+   ],
+   "answers": [
+    "Correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "non-calculator-practice",
+   "family": "trig_solid",
+   "tier": "challenging",
+   "graph": "none",
+   "models": [
+    {
+     "model": {
+      "axis": "y=4",
+      "kind": "washer",
+      "solidRadius": [
+       2,
+       4
+      ],
+      "slice": {
+       "R": 4,
+       "r": 2.3871,
+       "at": 0.6597
+      },
+      "triangles": 37376
+     },
+     "caption": "R revolved about the line y = 4",
+     "pixels": {
+      "lit": 37468,
+      "yellow": 15704,
+      "pink": 312
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-trig-1-4-10ktf77",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "y=4",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 2
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "calculator-practice",
+   "family": "solid_calc",
+   "tier": "foundational",
+   "models": [
+    {
+     "model": {
+      "axis": "y=0",
+      "kind": "disk",
+      "solidRadius": [
+       0,
+       4
+      ],
+      "slice": {
+       "R": 3.3866,
+       "r": 0,
+       "at": 0.63
+      },
+      "triangles": 37376
+     },
+     "caption": "R revolved about the line y = 0",
+     "pixels": {
+      "lit": 30032,
+      "yellow": 15511,
+      "pink": 241
+     },
+     "controls": {
+      "rotated": -3.142,
+      "zoomed": 0.217,
+      "idleFrames": 0,
+      "reset": true
+     },
+     "released": [
+      {
+       "geometries": 0,
+       "textures": 0
+      }
+     ],
+     "quickToggle": {
+      "canvas": 1,
+      "open": true
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-d1-3-1.5-1mh87ol",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "y=0",
+      "kind": "disk",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 1
+   },
+   "atStart": [],
+   "answers": [
+    "Correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "calculator-practice",
+   "family": "solid_calc",
+   "tier": "intermediate",
+   "kind": "shell",
+   "models": [
+    {
+     "model": {
+      "axis": "y=3",
+      "kind": "shell",
+      "solidRadius": [
+       1.5525,
+       3.981
+      ],
+      "slice": {
+       "r": 2.961,
+       "h": 0.6368
+      },
+      "triangles": 36864
+     },
+     "caption": "R revolved about the line y = 3",
+     "pixels": {
+      "lit": 29341,
+      "yellow": 8403,
+      "pink": 283
+     },
+     "controls": {
+      "rotated": -3.142,
+      "zoomed": 0.217,
+      "idleFrames": 0,
+      "reset": true
+     },
+     "released": [
+      {
+       "geometries": 0,
+       "textures": 0
+      }
+     ],
+     "quickToggle": {
+      "canvas": 1,
+      "open": true
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-sc-f(x)=1+\\ln x|g(x)=x^{2}-1-y3-shell-12xk76t",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "y=3",
+      "kind": "shell",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 1
+   },
+   "atStart": [],
+   "answers": [
+    "Correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "calculator-practice",
+   "family": "solid_calc",
+   "tier": "challenging",
+   "kind": "washer",
+   "models": [
+    {
+     "model": {
+      "axis": "x=3",
+      "kind": "washer",
+      "solidRadius": [
+       1.4355,
+       2.8621
+      ],
+      "slice": {
+       "R": 2.6175,
+       "r": 1.9807,
+       "at": 0.039
+      },
+      "triangles": 36864
+     },
+     "caption": "R revolved about the line x = 3",
+     "pixels": {
+      "lit": 47250,
+      "yellow": 8281,
+      "pink": 276
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-sc-f(x)=1+\\ln x|g(x)=x^{2}-1-x3-washer-1diraxh",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "x=3",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     }
+    ],
+    "parts": 2
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "calculator-practice",
+   "family": "calc_two_axes",
+   "tier": "intermediate",
+   "models": [
+    {
+     "model": {
+      "axis": "y=-1",
+      "kind": "washer",
+      "solidRadius": [
+       1,
+       2
+      ],
+      "slice": {
+       "R": 1.9949,
+       "r": 1.0206,
+       "at": -0.1015
+      },
+      "triangles": 36864
+     },
+     "caption": "R revolved about the line y = −1 (Part A)",
+     "pixels": {
+      "lit": 39250,
+      "yellow": 17697,
+      "pink": 383
+     }
+    },
+    {
+     "model": {
+      "axis": "x=1",
+      "kind": "shell",
+      "solidRadius": [
+       0.3654,
+       1.6346
+      ],
+      "slice": {
+       "r": 1.1015,
+       "h": 0.9742
+      },
+      "triangles": 36864
+     },
+     "caption": "R revolved about the line x = 1 (Part B)",
+     "pixels": {
+      "lit": 37300,
+      "yellow": 24429,
+      "pink": 453
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-sc2-y=\\cos x|y=2x^{2}-y-1-washer-x1-shell-ib3arf",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "y=-1",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     },
+     {
+      "axis": "x=1",
+      "kind": "shell",
+      "ask": 1,
+      "reveal": 1
+     }
+    ],
+    "parts": 2
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  },
+  {
+   "viewport": "390x844",
+   "page": "calculator-practice",
+   "family": "calc_two_axes",
+   "tier": "challenging",
+   "models": [
+    {
+     "model": {
+      "axis": "x=5",
+      "kind": "washer",
+      "solidRadius": [
+       1,
+       5
+      ],
+      "slice": {
+       "R": 4.6407,
+       "r": 2.2278,
+       "at": 1.2278
+      },
+      "triangles": 73728
+     },
+     "caption": "R revolved about the line x = 5 (Part A)",
+     "pixels": {
+      "lit": 45921,
+      "yellow": 12773,
+      "pink": 213
+     }
+    },
+    {
+     "model": {
+      "axis": "y=5",
+      "kind": "shell",
+      "solidRadius": [
+       2.0768,
+       5
+      ],
+      "slice": {
+       "r": 3.7722,
+       "h": 2.413
+      },
+      "triangles": 73728
+     },
+     "caption": "R revolved about the line y = 5 (Part B)",
+     "pixels": {
+      "lit": 51168,
+      "yellow": 20557,
+      "pink": 414
+     }
+    }
+   ],
+   "problem": {
+    "id": "u6-solids-sc2-y=0|y=4\\ln(x+1)|y=-x+4-x5-washer-y5-shell-10qf5vf",
+    "graph": "none",
+    "rotations": [
+     {
+      "axis": "x=5",
+      "kind": "washer",
+      "ask": 0,
+      "reveal": 0
+     },
+     {
+      "axis": "y=5",
+      "kind": "shell",
+      "ask": 1,
+      "reveal": 1
+     }
+    ],
+    "parts": 3
+   },
+   "atStart": [],
+   "answers": [
+    "Part A is correct.",
+    "Part B is correct.",
+    "Part C is correct."
+   ],
+   "layout": {
+    "over": 0,
+    "inside": true
+   }
+  }
+ ],
+ "failures": [],
+ "next 1366x900 non-calculator-practice": {
+  "openBefore": 1,
+  "id": "u6-solids-disk-y=x^{2}|x=3|y=0-y0-7av4wd",
+  "wraps": 0,
+  "canvas": 0,
+  "released": [
+   {
+    "geometries": 0,
+    "textures": 0
+   }
+  ]
+ },
+ "cycles 1366x900": {
+  "problem": "u6-solids-wash-y=1|y=x^{3}|x=0-x3-2-t7e5y6",
+  "cycles": 10,
+  "released": 10,
+  "left": 0,
+  "canvas": 0
+ },
+ "errors 1366x900 non-calculator-practice": 0,
+ "next 1366x900 calculator-practice": {
+  "openBefore": 2,
+  "id": "u6-solids-sc-f(x)=1+\\ln x|g(x)=x^{2}-2-x0-shell-z5wpaf",
+  "wraps": 0,
+  "canvas": 0,
+  "released": [
+   {
+    "geometries": 0,
+    "textures": 0
+   },
+   {
+    "geometries": 0,
+    "textures": 0
+   }
+  ]
+ },
+ "errors 1366x900 calculator-practice": 0,
+ "next 390x844 non-calculator-practice": {
+  "openBefore": 1,
+  "id": "u6-solids-disk-x=-y^{3} + 2y^{2}|x=0-x0-1fdc09z",
+  "wraps": 0,
+  "canvas": 0,
+  "released": [
+   {
+    "geometries": 0,
+    "textures": 0
+   }
+  ]
+ },
+ "cycles 390x844": {
+  "problem": "u6-solids-wash-y=\\sqrt{x}|x=1|y=0-y0-2-1mloare",
+  "cycles": 10,
+  "released": 10,
+  "left": 0,
+  "canvas": 0
+ },
+ "errors 390x844 non-calculator-practice": 0,
+ "next 390x844 calculator-practice": {
+  "openBefore": 2,
+  "id": "u6-solids-sc-y=\\cos x|y=x^{2}-y2-washer-qwdl9i",
+  "wraps": 0,
+  "canvas": 0,
+  "released": [
+   {
+    "geometries": 0,
+    "textures": 0
+   },
+   {
+    "geometries": 0,
+    "textures": 0
+   }
+  ]
+ },
+ "errors 390x844 calculator-practice": 0,
+ "noWebGL": {
+  "problem": "u6-solids-wash-y=8|y=x^{3}|x=0-x3-2-1o0j841",
+  "text": "This browser cannot show the 3D model (WebGL is not available). The 2D graph still shows the region and the axis.",
+  "canvas": 0,
+  "graph": true,
+  "errors": []
+ }
+}

@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {serve,browser,context,open,randomPort} from '../review-lab/lib/browser.mjs';
-const port=randomPort(11600),server=await serve(port),b=await browser(),results=[];
+const port=process.env.BM_PORT?Number(process.env.BM_PORT):randomPort(11600),server=process.env.BM_PORT?{close(done){done?.();}}:await serve(port),b=await browser(),results=[];
 const fixtures=[['cross-sections','volume-by-cross-sections','3db4'],['solids','solids-of-revolution','3dcn14']];
 try{
  for(const width of [1366,390])for(const [kind,topic,seed] of fixtures){
