@@ -1,0 +1,61 @@
+{
+  "run": {
+    "id": 42444702605,
+    "url": "https://github.com/batchmath/BatchMathSite/actions/runs/42444702605",
+    "name": "Package BatchMath v13.0.F IM1 videos experimental test",
+    "event": "push",
+    "branch": "codex/v13.0f-im1-videos",
+    "workflowCommit": "2a2d18e2c257f861c8099863430003c70a2b3dee",
+    "status": "completed",
+    "conclusion": "success",
+    "createdAt": "2026-11-08T03:55:34Z",
+    "updatedAt": "2026-11-08T03:56:38Z",
+    "jobId": 128621071066
+  },
+  "release": {
+    "id": 438019208,
+    "tag": "v13.0.F",
+    "url": "https://github.com/batchmath/BatchMathSite/releases/tag/v13.0.F",
+    "testedCommit": "9ba215feeefbc15d351a2d234609c2292e220f5b",
+    "prerelease": true,
+    "draft": false,
+    "createdAt": "2026-11-08T03:55:00Z",
+    "publishedAt": "2026-11-08T03:56:16Z",
+    "assets": [
+      {
+        "id": 722813748,
+        "name": "bm-v13.0.F.sha256",
+        "state": "uploaded",
+        "bytes": 81,
+        "digest": "sha256:5e946f2c031e0c2dfb5cadcce3c900362f8bb5a70f74b4aada6e63fa4ecdd064",
+        "url": "https://github.com/batchmath/BatchMathSite/releases/download/v13.0.F/bm-v13.0.F.sha256",
+        "updatedAt": "2026-11-08T03:56:07Z"
+      },
+      {
+        "id": 722813746,
+        "name": "bm-v13.0.F.zip",
+        "state": "uploaded",
+        "bytes": 314445099,
+        "digest": "sha256:ca6f60dd924b757dad49f85ce2f1e4e291514d50565dcca87db9c29e0557a499",
+        "url": "https://github.com/batchmath/BatchMathSite/releases/download/v13.0.F/bm-v13.0.F.zip",
+        "updatedAt": "2026-11-08T03:56:16Z"
+      },
+      {
+        "id": 722813750,
+        "name": "delivery-manifest.json",
+        "state": "uploaded",
+        "bytes": 591,
+        "digest": "sha256:07e52a33774510e5f0859cb6be08be61d44b0f3ea0d6adcdd2fffc7b494b2413",
+        "url": "https://github.com/batchmath/BatchMathSite/releases/download/v13.0.F/delivery-manifest.json",
+        "updatedAt": "2026-11-08T03:56:07Z"
+      }
+    ]
+  },
+  "checks": {
+    "exactTestedTreePackage": true,
+    "publishedDownloadComparedByteForByte": true,
+    "downloadedArchiveVerifiedAgain": true,
+    "earlierSourcesTagsReleasesAndLatestStatusUnchanged": true,
+    "noDeployment": true
+  }
+}

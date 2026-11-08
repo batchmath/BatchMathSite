@@ -1,0 +1,18 @@
+{
+  "testedCommit": "9ba215feeefbc15d351a2d234609c2292e220f5b",
+  "zip": "bm-v13.0.F.zip",
+  "rootDirectory": "bm-v13.0.F/",
+  "bytes": 314445099,
+  "sha256": "ca6f60dd924b757dad49f85ce2f1e4e291514d50565dcca87db9c29e0557a499",
+  "includedFiles": 780,
+  "htmlPages": 288,
+  "pdfFiles": 290,
+  "lockedMathLiveFiles": 24,
+  "lockedThreeFiles": 3,
+  "allFilesMatchTestedCommit": true,
+  "crcPassed": true,
+  "cleanExtraction": true,
+  "standaloneHttpChecks": 14,
+  "localMachinePaths": 0,
+  "testDownload": "https://github.com/batchmath/BatchMathSite/releases/download/v13.0.F/bm-v13.0.F.zip"
+}

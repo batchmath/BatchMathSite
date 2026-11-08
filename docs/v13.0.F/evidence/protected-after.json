@@ -1,0 +1,24 @@
+{
+  "originalBranches": 37,
+  "originalTags": 24,
+  "originalReleases": 24,
+  "allOriginalBranchesUnchanged": true,
+  "allOriginalTagsUnchanged": true,
+  "allOriginalReleasesUnchanged": true,
+  "newBranches": [
+    "refs/heads/codex/v13.0f-im1-videos"
+  ],
+  "newTags": [
+    "refs/tags/v13.0.F"
+  ],
+  "newReleases": [
+    {
+      "id": 438019208,
+      "tag": "v13.0.F"
+    }
+  ],
+  "main": "9dbb4f841c6b4e6300c640e1b83b2dad82df1521",
+  "approvedE": "0604079082f58c3168e52bc009d1330ba1f20c68",
+  "testedTag": "9ba215feeefbc15d351a2d234609c2292e220f5b",
+  "latestStatusUnchangedBySuccessfulWorkflow": true
+}
