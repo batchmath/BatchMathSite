@@ -1,0 +1,14 @@
+
+> batchmath-site-qa@13.0.F qa:pwa
+> node tools/pwa-cache-qa.mjs
+
+BatchMath PWA / cache architecture QA
+Result: PASS
+Version: 13.0.F
+APP_SHELL entries: 40
+APP_SHELL local payload: 1157.6 KiB
+Practice pages audited: 111
+Local practice dependencies audited: 1421
+Warnings: 1
+- APP_SHELL local payload is 1.13 MiB; still acceptable but watch growth.
+Errors: 0

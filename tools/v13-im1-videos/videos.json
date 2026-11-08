@@ -1,0 +1,41 @@
+{
+  "baseline": "0604079082f58c3168e52bc009d1330ba1f20c68",
+  "mapping": "User confirmed existing topic order: B Common Difference, C Explicit Formula",
+  "videos": [
+    {
+      "part": "A",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/index.html",
+      "title": "Determining is a Sequence is Arithmetic",
+      "id": "j5XM6_T7CA4",
+      "url": "https://www.youtube.com/watch?v=j5XM6_T7CA4"
+    },
+    {
+      "part": "B",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/index.html",
+      "title": "Find the Common Difference and Next Terms of an Arithmetic Sequence",
+      "id": "s0m0DmnDaBc",
+      "url": "https://www.youtube.com/watch?v=s0m0DmnDaBc"
+    },
+    {
+      "part": "C",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/index.html",
+      "title": "Writing the Explicit Formula of an Arithmetic Sequence",
+      "id": "ovVDNHoGAss",
+      "url": "https://www.youtube.com/watch?v=ovVDNHoGAss"
+    },
+    {
+      "part": "D",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/index.html",
+      "title": "Finding a Specific Term in an Arithmetic Sequence",
+      "id": "UiY9RnfNnIg",
+      "url": "https://www.youtube.com/watch?v=UiY9RnfNnIg"
+    },
+    {
+      "part": "E",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/index.html",
+      "title": "Finding the Term Number in an Arithmetic Sequence",
+      "id": "YSDRVZcl-RE",
+      "url": "https://www.youtube.com/watch?v=YSDRVZcl-RE"
+    }
+  ]
+}

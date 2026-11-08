@@ -1,0 +1,738 @@
+{
+ "fixtures": {
+  "cases": 1488,
+  "sections": 22080,
+  "byShape": {
+   "square x": 96,
+   "rect2 x": 96,
+   "rect3 x": 96,
+   "semicircle_d x": 96,
+   "quarter x": 96,
+   "equilateral x": 96,
+   "iso_leg x": 96,
+   "iso_hyp x": 96,
+   "square y": 90,
+   "rect2 y": 90,
+   "rect3 y": 90,
+   "semicircle_d y": 90,
+   "quarter y": 90,
+   "equilateral y": 90,
+   "iso_leg y": 90,
+   "iso_hyp y": 90
+  },
+  "byRegion": {
+   "cap x (1 piece)": 1,
+   "cap y (1 piece)": 1,
+   "half_cap x (1 piece)": 1,
+   "half_cap y (1 piece)": 1,
+   "semicircle x (1 piece)": 1,
+   "semicircle y (1 piece)": 1,
+   "disk x (1 piece)": 1,
+   "disk y (1 piece)": 1,
+   "triangle x (1 piece)": 1,
+   "triangle y (1 piece)": 1,
+   "pair x (1 piece)": 1,
+   "pair y (1 piece)": 1,
+   "under_root x (1 piece)": 1,
+   "under_root y (1 piece)": 1,
+   "under_power x (1 piece)": 1,
+   "under_power y (1 piece)": 1,
+   "left_of_power x (1 piece)": 1,
+   "left_of_power y (1 piece)": 1,
+   "root_line_axis x (2 pieces)": 1,
+   "root_line_axis y (1 piece)": 1,
+   "wedge x (1 piece)": 1,
+   "wedge y (2 pieces)": 1,
+   "exp_base x (1 piece)": 1,
+   "exp_base y (1 piece)": 1,
+   "log_line x (2 pieces)": 1,
+   "log_line y (1 piece)": 1,
+   "log_parabola x (1 piece)": 1,
+   "log_parabola y (1 piece)": 1,
+   "exp_axes x (1 piece)": 1,
+   "exp_axes y (2 pieces)": 1,
+   "cos_parabola x (1 piece)": 1
+  },
+  "noSlices": [
+   "cosParabola y"
+  ]
+ },
+ "checks": 617899,
+ "maxDiscrepancy": {
+  "square": {
+   "max": 0.0009717338469782479,
+   "at": "fixture underPower#4 y square"
+  },
+  "rect2": {
+   "max": 0.0009717338469782479,
+   "at": "fixture underPower#4 y rect2"
+  },
+  "rect3": {
+   "max": 0.0009717252152686836,
+   "at": "fixture underPower#4 y rect3"
+  },
+  "semicircle_d": {
+   "max": 0.0009717294968202181,
+   "at": "fixture underPower#4 y semicircle_d"
+  },
+  "quarter": {
+   "max": 0.0009717280195534437,
+   "at": "fixture underPower#4 y quarter"
+  },
+  "equilateral": {
+   "max": 0.0009717251653674729,
+   "at": "fixture underPower#4 y equilateral"
+  },
+  "iso_leg": {
+   "max": 0.0009717337520808245,
+   "at": "fixture underPower#4 y iso_leg"
+  },
+  "iso_hyp": {
+   "max": 0.0009717342422502576,
+   "at": "fixture underPower#4 y iso_hyp"
+  },
+  "answer equilateral": {
+   "max": -0.0006423231587893419,
+   "at": "u6-cross_sections-csc-y=2\\cos x|y=x^{2}-x-equilateral triangles with one side across the region-11y1me8 [cs_calc intermediate calculator perp_x]"
+  },
+  "answer iso_leg": {
+   "max": -0.0006377359589141248,
+   "at": "u6-cross_sections-csc-y=\\cos x|y=x^{2}-x-isosceles right triangles with one leg across the region-nreqzf [cs_calc intermediate calculator all]"
+  },
+  "answer semicircle_d": {
+   "max": -0.0007924607207284124,
+   "at": "u6-cross_sections-css-y=x^{2}|y=x^{3}-x-semicircles whose diameter lies across the region-nwkg34 [cs_setup intermediate non-calculator all]"
+  },
+  "answer square": {
+   "max": 0.0009717333611855561,
+   "at": "u6-cross_sections-csb-y=x^{3}|x=2|y=0-y-squares-6yc6kc [cs_basic foundational non-calculator perp_y]"
+  },
+  "answer rect3": {
+   "max": -0.0006377366274726408,
+   "at": "u6-cross_sections-csc-y=2\\cos x|y=2x^{2}-x-rectangles whose height is three times the base across the region-1jrp358 [cs_calc intermediate calculator perp_x]"
+  },
+  "answer quarter": {
+   "max": -0.0006420728201461572,
+   "at": "u6-cross_sections-csc-y=2\\cos x|y=x^{2}-x-quarter circles whose radius lies across the region-13jkxrz [cs_calc challenging calculator all]"
+  },
+  "answer iso_hyp": {
+   "max": -0.0006377359589139979,
+   "at": "u6-cross_sections-csc-y=\\cos x|y=x^{2}-x-isosceles right triangles with the hypotenuse across the region-1bzc02v [cs_calc challenging calculator perp_x]"
+  },
+  "answer rect2": {
+   "max": 0.0009717121799828144,
+   "at": "u6-cross_sections-csb-y=x^{3}|x=3|y=0-y-rectangles whose height is twice the base across the region-2g9ns0 [cs_basic foundational non-calculator all]"
+  }
+ },
+ "convergence": {
+  "worstRatio": 0.2503965924473562
+ },
+ "problems": {
+  "total": 720,
+  "areaParts": 120
+ },
+ "refusals": {
+  "pieces do not join": "the pieces do not join",
+  "boundaries jump": "the boundaries jump at x = 12",
+  "undefined boundary": "a boundary is undefined at x = 1.0850877342660492",
+  "out of order": "the boundaries are out of order at x = 0.005710670508853211",
+  "no width": "the region has no width",
+  "too large": "the region is too large to draw",
+  "slice outside": "no slice inside the region",
+  "unknown shape": "unknown cross-section shape hexagon",
+  "wrong area factor": "the engine's area factor 0.5 is not the square factor 1",
+  "unknown direction": "unknown slicing direction z",
+  "no data": "the problem has no base-region data"
+ },
+ "failures": [],
+ "coverageTable": {
+  "square x": {
+   "problems": 67,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cap",
+    "cos_parabola",
+    "exp_axes",
+    "exp_base",
+    "log_line",
+    "log_parabola",
+    "root_line_axis",
+    "semicircle",
+    "triangle",
+    "under_power"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "square y": {
+   "problems": 80,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cap",
+    "disk",
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "left_of_power",
+    "log_line",
+    "pair",
+    "triangle",
+    "under_power",
+    "under_root",
+    "wedge"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "rect2 x": {
+   "problems": 35,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cos_parabola",
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "left_of_power",
+    "log_line",
+    "log_parabola",
+    "pair",
+    "root_line_axis",
+    "triangle",
+    "under_root"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "rect2 y": {
+   "problems": 27,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cap",
+    "disk",
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "pair",
+    "semicircle",
+    "triangle",
+    "under_power",
+    "under_root"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "rect3 x": {
+   "problems": 33,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cos_parabola",
+    "disk",
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "left_of_power",
+    "log_parabola",
+    "root_line_axis",
+    "triangle",
+    "under_root"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "rect3 y": {
+   "problems": 31,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "left_of_power",
+    "pair",
+    "semicircle",
+    "under_root",
+    "wedge"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "semicircle_d x": {
+   "problems": 70,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cap",
+    "cos_parabola",
+    "disk",
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "left_of_power",
+    "log_line",
+    "log_parabola",
+    "pair",
+    "root_line_axis",
+    "triangle",
+    "under_power",
+    "under_root"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "semicircle_d y": {
+   "problems": 46,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cap",
+    "disk",
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "left_of_power",
+    "pair",
+    "semicircle",
+    "triangle",
+    "under_power",
+    "under_root",
+    "wedge"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "quarter x": {
+   "problems": 29,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cos_parabola",
+    "disk",
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "log_parabola",
+    "pair",
+    "root_line_axis",
+    "semicircle",
+    "under_power",
+    "under_root"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "quarter y": {
+   "problems": 26,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "disk",
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "left_of_power",
+    "triangle",
+    "under_power",
+    "under_root",
+    "wedge"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "equilateral x": {
+   "problems": 26,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cos_parabola",
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "log_parabola",
+    "pair",
+    "root_line_axis",
+    "semicircle",
+    "under_power"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "equilateral y": {
+   "problems": 64,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cap",
+    "disk",
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "left_of_power",
+    "log_line",
+    "pair",
+    "triangle",
+    "under_power",
+    "under_root",
+    "wedge"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "iso_leg x": {
+   "problems": 39,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cap",
+    "cos_parabola",
+    "disk",
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "log_parabola",
+    "root_line_axis",
+    "semicircle",
+    "triangle",
+    "under_root"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "iso_leg y": {
+   "problems": 61,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cap",
+    "disk",
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "log_line",
+    "semicircle",
+    "triangle",
+    "under_power",
+    "under_root",
+    "wedge"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "iso_hyp x": {
+   "problems": 43,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cap",
+    "cos_parabola",
+    "disk",
+    "exp_base",
+    "half_cap",
+    "left_of_power",
+    "log_parabola",
+    "pair",
+    "root_line_axis",
+    "semicircle",
+    "triangle",
+    "under_power"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  },
+  "iso_hyp y": {
+   "problems": 43,
+   "families": [
+    "cs_basic",
+    "cs_calc",
+    "cs_setup"
+   ],
+   "tiers": [
+    "cs_basic:foundational",
+    "cs_basic:intermediate",
+    "cs_calc:challenging",
+    "cs_calc:intermediate",
+    "cs_setup:challenging",
+    "cs_setup:intermediate"
+   ],
+   "kinds": [
+    "calculator",
+    "non-calculator"
+   ],
+   "regions": [
+    "cap",
+    "exp_axes",
+    "exp_base",
+    "half_cap",
+    "pair",
+    "semicircle",
+    "triangle",
+    "under_power",
+    "under_root",
+    "wedge"
+   ],
+   "pieces": [
+    "multi",
+    "single"
+   ]
+  }
+ },
+ "coverageCells": 361
+}

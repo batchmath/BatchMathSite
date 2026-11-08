@@ -1,0 +1,295 @@
+{
+ "checks": 32674,
+ "fixtures": {
+  "rotations": 644,
+  "regions": {
+   "pair washer": 24,
+   "pair shell": 24,
+   "under_root washer": 24,
+   "under_root shell": 24,
+   "under_power washer": 24,
+   "under_power shell": 24,
+   "left_of_power washer": 24,
+   "left_of_power shell": 24,
+   "cap washer": 20,
+   "cap shell": 20,
+   "half_cap washer": 24,
+   "half_cap shell": 24,
+   "triangle washer": 24,
+   "triangle shell": 24,
+   "reciprocal washer": 24,
+   "reciprocal shell": 24,
+   "sideways_cubic shell": 12,
+   "sideways_cubic washer": 12,
+   "wedge washer": 24,
+   "wedge shell": 24,
+   "semicircle washer": 20,
+   "semicircle shell": 20,
+   "log_parabola washer": 20,
+   "log_parabola shell": 20,
+   "exp_axes washer": 24,
+   "exp_axes shell": 24,
+   "log_line washer": 24,
+   "log_line shell": 24,
+   "cos_parabola washer": 12,
+   "cos_parabola shell": 8
+  }
+ },
+ "problems": {
+  "total": 640,
+  "rotations": 780,
+  "typedParts": 106
+ },
+ "maxDiscrepancy": {
+  "washer": {
+   "max": -0.0005654219251576034,
+   "at": "fixture cap#3 about y=-1 by washer"
+  },
+  "shell": {
+   "max": 0.000634524452574965,
+   "at": "fixture underPower#1 about x=2 by shell"
+  },
+  "disk": {
+   "max": -0.0007927914284865722,
+   "at": "fixture sidewaysCubic#0 about x=0 by washer"
+  },
+  "two axes": {
+   "max": 0.000634524452574965,
+   "at": "u6-solids-two-y=x^{3}|x=2|y=0-y9-x2-1pumbsx [two_axes challenging all] rotation 2 about x=2"
+  }
+ },
+ "methodAgreement": 1179,
+ "convergence": {
+  "worstRatio": 0.25011600846782145
+ },
+ "refusals": {
+  "axis cuts the region": "the axis y = 0.3 cuts the region",
+  "unknown axis": "unknown axis of rotation",
+  "undefined boundary": "a boundary is undefined at x = 0.5382513867649661",
+  "out of order": "the boundaries are out of order at x = 0.0009517784181422018",
+  "no area": "the region has no area",
+  "too large": "the region is too large to draw",
+  "no slice": "no representative slice",
+  "unknown method": "unknown method cones/cone",
+  "shell on the axis": "the representative shell has no radius",
+  "no data": "the problem has no region data"
+ },
+ "failures": [],
+ "coverageByFamily": {
+  "disk_basic": {
+   "problems": 80,
+   "tiers": [
+    "foundational",
+    "intermediate"
+   ],
+   "kinds": [
+    "non-calculator"
+   ],
+   "methods": [
+    "washer:disk"
+   ],
+   "axes": [
+    "x-axis (touching)",
+    "y-axis (touching)"
+   ],
+   "regions": [
+    "cap",
+    "half_cap",
+    "left_of_power",
+    "reciprocal",
+    "sideways_cubic",
+    "triangle",
+    "under_power",
+    "under_root"
+   ]
+  },
+  "washer": {
+   "problems": 80,
+   "tiers": [
+    "challenging",
+    "intermediate"
+   ],
+   "kinds": [
+    "non-calculator"
+   ],
+   "methods": [
+    "washer:disk",
+    "washer:washer"
+   ],
+   "axes": [
+    "x-axis (touching)",
+    "x=c left",
+    "x=c on the right edge",
+    "x=c right",
+    "y-axis (touching)",
+    "y=c above",
+    "y=c below",
+    "y=c on the top edge"
+   ],
+   "regions": [
+    "cap",
+    "half_cap",
+    "left_of_power",
+    "pair",
+    "reciprocal",
+    "sideways_cubic",
+    "triangle",
+    "under_power",
+    "under_root",
+    "wedge"
+   ]
+  },
+  "shells": {
+   "problems": 80,
+   "tiers": [
+    "challenging",
+    "intermediate"
+   ],
+   "kinds": [
+    "non-calculator"
+   ],
+   "methods": [
+    "shell:shell"
+   ],
+   "axes": [
+    "x-axis (touching)",
+    "x=c left",
+    "x=c on the right edge",
+    "x=c right",
+    "y-axis",
+    "y-axis (touching)",
+    "y=c above",
+    "y=c below",
+    "y=c on the top edge"
+   ],
+   "regions": [
+    "cap",
+    "half_cap",
+    "left_of_power",
+    "pair",
+    "reciprocal",
+    "sideways_cubic",
+    "triangle",
+    "under_power",
+    "under_root",
+    "wedge"
+   ]
+  },
+  "two_axes": {
+   "problems": 40,
+   "tiers": [
+    "challenging"
+   ],
+   "kinds": [
+    "non-calculator"
+   ],
+   "methods": [
+    "shell:shell",
+    "washer:disk",
+    "washer:washer"
+   ],
+   "axes": [
+    "x-axis (touching)",
+    "x=c left",
+    "x=c on the right edge",
+    "x=c right",
+    "y-axis (touching)",
+    "y=c above",
+    "y=c below",
+    "y=c on the top edge"
+   ],
+   "regions": [
+    "left_of_power",
+    "pair",
+    "triangle",
+    "under_power",
+    "under_root"
+   ]
+  },
+  "trig_solid": {
+   "problems": 80,
+   "tiers": [
+    "challenging",
+    "intermediate"
+   ],
+   "kinds": [
+    "non-calculator"
+   ],
+   "methods": [
+    "washer:washer"
+   ],
+   "axes": [
+    "y=c above",
+    "y=c below"
+   ],
+   "regions": [
+    "trig"
+   ]
+  },
+  "solid_calc": {
+   "problems": 180,
+   "tiers": [
+    "challenging",
+    "foundational",
+    "intermediate"
+   ],
+   "kinds": [
+    "calculator"
+   ],
+   "methods": [
+    "shell:shell",
+    "washer:disk",
+    "washer:washer"
+   ],
+   "axes": [
+    "x-axis (touching)",
+    "x=c left",
+    "x=c on the right edge",
+    "x=c right",
+    "y-axis",
+    "y-axis (touching)",
+    "y=c above",
+    "y=c below"
+   ],
+   "regions": [
+    "cos_parabola",
+    "exp_axes",
+    "log_line",
+    "log_parabola",
+    "under_curve"
+   ]
+  },
+  "calc_two_axes": {
+   "problems": 240,
+   "tiers": [
+    "challenging",
+    "intermediate"
+   ],
+   "kinds": [
+    "calculator"
+   ],
+   "methods": [
+    "shell:shell",
+    "washer:disk",
+    "washer:washer"
+   ],
+   "axes": [
+    "x-axis (touching)",
+    "x=c left",
+    "x=c on the right edge",
+    "x=c right",
+    "y-axis",
+    "y-axis (touching)",
+    "y=c above",
+    "y=c below"
+   ],
+   "regions": [
+    "cos_parabola",
+    "exp_axes",
+    "log_line",
+    "log_parabola"
+   ]
+  }
+ },
+ "coverageCells": 291
+}

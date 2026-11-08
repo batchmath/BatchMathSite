@@ -1,7 +1,7 @@
-BatchMath v13.0.E — 3D models: "Show 3D Model" and a Hide / Show control for the highlighted slice (experimental test build, not production)
+BatchMath v13.0.F — IM1 arithmetic-sequence videos; complete v13.0.E 3D controls retained (experimental, not production)
 
-Extract bm-v13.0.E.zip.
-Open a terminal inside the single folder bm-v13.0.E.
+Extract bm-v13.0.F.zip.
+Open a terminal inside the single folder bm-v13.0.F.
 Run exactly:
 
 py -m http.server 8000

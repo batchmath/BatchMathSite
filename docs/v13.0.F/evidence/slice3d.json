@@ -1,0 +1,4128 @@
+{
+ "runs": [
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "square",
+   "dir": "x",
+   "region": "cap",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Cross Section",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 10010,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Cross Section",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 6699,
+    "yellowAfter": 0,
+    "changed": 7453
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 407,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Cross Section",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Cross Section",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "semicircle_d",
+   "dir": "y",
+   "region": "disk",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Cross Section",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 17920,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Cross Section",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 22368,
+    "yellowAfter": 0,
+    "changed": 24152
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 1033,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Cross Section",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Cross Section",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "equilateral",
+   "dir": "x",
+   "region": "triangle",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Cross Section",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 3
+    },
+    "yellow": 3408,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Cross Section",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 3
+    },
+    "yellowBefore": 2189,
+    "yellowAfter": 0,
+    "changed": 2667
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false
+     ],
+     "labels": 3
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true
+     ],
+     "labels": 3
+    },
+    "yellowShown": 268,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Cross Section",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Cross Section",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "iso_hyp",
+   "dir": "y",
+   "region": "under_root",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Cross Section",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 1
+    },
+    "yellow": 6084,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Cross Section",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 1
+    },
+    "yellowBefore": 7096,
+    "yellowAfter": 0,
+    "changed": 8130
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 1
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 1
+    },
+    "yellowShown": 220,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Cross Section",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Cross Section",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "rect2",
+   "dir": "x",
+   "region": "pair",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Cross Section",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 6438,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Cross Section",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 3969,
+    "yellowAfter": 0,
+    "changed": 5107
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 523,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Cross Section",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Cross Section",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "shape": "quarter",
+   "dir": "y",
+   "region": "semicircle",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Cross Section",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 13611,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Cross Section",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 19455,
+    "yellowAfter": 0,
+    "changed": 20917
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 359,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Cross Section",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Cross Section",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "check": "next question",
+   "next": {
+    "from": "u6-cross_sections-csb-y=\\sqrt{1-x^{2}}|y=0-y-quarter circles whose radius lies across the region-brfd49",
+    "to": "u6-cross_sections-csb-y=-\\frac{x}{2} + 2|x=0|y=0-x-isosceles right triangles with the hypotenuse across the region-1btol0f",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   },
+   "newModel": {
+    "button": "Show 3D Model",
+    "open": false
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "cross sections",
+   "calc": true,
+   "problem": "u6-cross_sections-csc-y=0|y=4\\ln(x+1)|y=-x+5-x-semicircles whose diameter lies across the region-1o3oiia",
+   "beforePartA": 0,
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Cross Section",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 3362,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Cross Section",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 2464,
+    "yellowAfter": 0,
+    "changed": 3345
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 648,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Cross Section",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Cross Section",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "disk_basic",
+   "tier": "foundational",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "kind": "disk",
+   "rotations": "y=0 disk",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line y = 0 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Disk",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 1
+    },
+    "yellow": 5324,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Disk",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 1
+    },
+    "yellowBefore": 7690,
+    "yellowAfter": 0,
+    "changed": 8179
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 1
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 1
+    },
+    "yellowShown": 1178,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Disk",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Disk",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "disk_basic",
+   "check": "next question",
+   "next": {
+    "from": "u6-solids-disk-y=-\\frac{x}{2} + 1|x=0|y=0-y0-6bk77t",
+    "to": "u6-solids-shell-y=x|y=x^{3}-y1-1jbd5wg",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "washer",
+   "tier": "intermediate",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "kind": "washer",
+   "rotations": "x=0 washer",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line x = 0 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Washer",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 3986,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Washer",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 7505,
+    "yellowAfter": 0,
+    "changed": 8680
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 1934,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Washer",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Washer",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "washer",
+   "check": "next question",
+   "next": {
+    "from": "u6-solids-wash-y=3x|y=x|x=2-x0-2-140m5s2",
+    "to": "u6-solids-shell-x=-y^{3} + 2y^{2}|x=0-y0-1rms5za",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "shells",
+   "tier": "intermediate",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "rotations": "y=4 shell",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line y = 4 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Shell",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 15865,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Shell",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 18906,
+    "yellowAfter": 0,
+    "changed": 20776
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 4236,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Shell",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Shell",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "shells",
+   "check": "next question",
+   "next": {
+    "from": "u6-solids-shell-x=-y^{3} + 3y^{2}|x=0-y4-1ef7ycv",
+    "to": "u6-solids-shell-y=2\\sqrt{x}|y=\\frac{x^{2}}{4}-y4-1eb734b",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "two_axes",
+   "tier": "challenging",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "rotations": "x=0 washer, y=-3 shell",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line x = 0 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Washer",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 16583,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Washer",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 30083,
+    "yellowAfter": 0,
+    "changed": 32215
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 5208,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Washer",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Washer",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "two_axes",
+   "model": 2,
+   "models": 2,
+   "firstStillHidden": true,
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line y = −3 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Shell",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 4409,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Shell",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 5513,
+    "yellowAfter": 0,
+    "changed": 6441
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 2640,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Shell",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Shell",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "two_axes",
+   "check": "next question",
+   "next": {
+    "from": "u6-solids-two-y=x^{2}|x=1|y=0-x0-y-3-fa5ly",
+    "to": "u6-solids-shell-y=-x^{2} + 1|y=0-x-3-1qhdash",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     },
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "solid_calc",
+   "tier": "intermediate",
+   "calc": "calculator",
+   "rotations": "x=4 washer",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line x = 4 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Washer",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 13589,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Washer",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 24272,
+    "yellowAfter": 0,
+    "changed": 26899
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 6140,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Washer",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Washer",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "solid_calc",
+   "check": "next question",
+   "next": {
+    "from": "u6-solids-sc-y=0|y=3\\ln(x+1)|y=-x+2-x4-washer-bazubq",
+    "to": "u6-solids-s2-2-1.5-4-w7bidc",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "calc_two_axes",
+   "tier": "challenging",
+   "calc": "calculator",
+   "rotations": "x=-1 shell, y=0 shell",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line x = −1 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Shell",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 21619,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Shell",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 22611,
+    "yellowAfter": 0,
+    "changed": 24600
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 4883,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Shell",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Shell",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "calc_two_axes",
+   "model": 2,
+   "models": 2,
+   "firstStillHidden": true,
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line y = 0 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Shell",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 9469,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Shell",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 10988,
+    "yellowAfter": 0,
+    "changed": 12139
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 3470,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Shell",
+    "shownIdenticalToFirst": true
+   },
+   "keyboard": {
+    "enter": false,
+    "space": true,
+    "sameQuestion": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Shell",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "1366x900",
+   "engine": "solids",
+   "family": "calc_two_axes",
+   "check": "next question",
+   "next": {
+    "from": "u6-solids-sc2-y=0|y=4\\ln(x+1)|y=-x+3-x-1-shell-y0-shell-ykt6ad",
+    "to": "u6-solids-sc-f(x)=1+\\ln x|g(x)=x^{2}-1-x0-shell-1iu2c1r",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     },
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "cross sections",
+   "shape": "square",
+   "dir": "x",
+   "region": "cap",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Cross Section",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 37488,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Cross Section",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 111298,
+    "yellowAfter": 0,
+    "changed": 115063
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 1183,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Cross Section",
+    "shownIdenticalToFirst": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Cross Section",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "cross sections",
+   "shape": "semicircle_d",
+   "dir": "y",
+   "region": "disk",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Cross Section",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 26676,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Cross Section",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 98821,
+    "yellowAfter": 0,
+    "changed": 102474
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 2635,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Cross Section",
+    "shownIdenticalToFirst": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Cross Section",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "cross sections",
+   "shape": "iso_leg",
+   "dir": "x",
+   "region": "pair",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Cross Section",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 8010,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Cross Section",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 19238,
+    "yellowAfter": 0,
+    "changed": 20806
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 1012,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Cross Section",
+    "shownIdenticalToFirst": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Cross Section",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "cross sections",
+   "check": "next question",
+   "next": {
+    "from": "u6-cross_sections-csb-y=\\sqrt{x}|y=x^{3}-x-isosceles right triangles with one leg across the region-16o10n7",
+    "to": "u6-cross_sections-csb-y=-x^{2} + 4|y=0-y-rectangles whose height is three times the base across the region-1iri1w0",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   },
+   "newModel": {
+    "button": "Show 3D Model",
+    "open": false
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "cross sections",
+   "calc": true,
+   "problem": "u6-cross_sections-csc-y=\\cos x|y=x^{2}-x-isosceles right triangles with one leg across the region-nreqzf",
+   "beforePartA": 0,
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Cross Section",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 9697,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Cross Section",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 22555,
+    "yellowAfter": 0,
+    "changed": 24535
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 1181,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Cross Section",
+    "shownIdenticalToFirst": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Cross Section",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "disk_basic",
+   "tier": "foundational",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "kind": "disk",
+   "rotations": "y=0 disk",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line y = 0 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Disk",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 1
+    },
+    "yellow": 9186,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Disk",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 1
+    },
+    "yellowBefore": 50674,
+    "yellowAfter": 0,
+    "changed": 54116
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 1
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 1
+    },
+    "yellowShown": 14898,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Disk",
+    "shownIdenticalToFirst": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Disk",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "disk_basic",
+   "check": "next question",
+   "next": {
+    "from": "u6-solids-disk-y=3\\sqrt{x}|x=1|y=0-y0-1t111e5",
+    "to": "u6-solids-shell-y=1|y=x^{2}|x=0-y-1-1q286v3",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "washer",
+   "tier": "intermediate",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "kind": "washer",
+   "rotations": "x=-1 washer",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line x = −1 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Washer",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 5169,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Washer",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 30861,
+    "yellowAfter": 0,
+    "changed": 33982
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 5097,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Washer",
+    "shownIdenticalToFirst": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Washer",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "washer",
+   "check": "next question",
+   "next": {
+    "from": "u6-solids-wash-y=3x|y=x^{2}-x-1-2-1t7jk4f",
+    "to": "u6-solids-shell-y=x^{2}|x=2|y=0-x-3-ar25ti",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "shells",
+   "tier": "intermediate",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "rotations": "x=0 shell",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line x = 0 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Shell",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 9570,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Shell",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 39102,
+    "yellowAfter": 0,
+    "changed": 41705
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 8390,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Shell",
+    "shownIdenticalToFirst": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Shell",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "shells",
+   "check": "next question",
+   "next": {
+    "from": "u6-solids-shell-y=\\sqrt{x}|x=4|y=0-x0-1mah8i8",
+    "to": "u6-solids-shell-y=2\\sqrt{x}|y=x-x4-19rhqf7",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "two_axes",
+   "tier": "challenging",
+   "calc": "non-calculator",
+   "graph": "shown",
+   "rotations": "x=0 washer, y=5 shell",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line x = 0 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Washer",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 5905,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Washer",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 39157,
+    "yellowAfter": 0,
+    "changed": 42219
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 5404,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Washer",
+    "shownIdenticalToFirst": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Washer",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "two_axes",
+   "model": 2,
+   "models": 2,
+   "firstStillHidden": true,
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line y = 5 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Shell",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 5257,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Shell",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 23177,
+    "yellowAfter": 0,
+    "changed": 25223
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 8989,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Shell",
+    "shownIdenticalToFirst": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Shell",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "two_axes",
+   "check": "next question",
+   "next": {
+    "from": "u6-solids-two-y=2x|y=x^{2}-x0-y5-1l0g398",
+    "to": "u6-solids-shell-y=-4x + 4|x=0|y=0-y-3-17zbi8r",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     },
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "solid_calc",
+   "tier": "intermediate",
+   "calc": "calculator",
+   "rotations": "y=4 shell",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line y = 4 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Shell",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 5296,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Shell",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 21480,
+    "yellowAfter": 0,
+    "changed": 23565
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 7647,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Shell",
+    "shownIdenticalToFirst": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Shell",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "solid_calc",
+   "check": "next question",
+   "next": {
+    "from": "u6-solids-sc-y=e^{x}|y=0|x=0|x=1-y4-shell-gvelgn",
+    "to": "u6-solids-s2-2-1.5-3-1esby4u",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "calc_two_axes",
+   "tier": "challenging",
+   "calc": "calculator",
+   "rotations": "x=2 washer, y=2 washer",
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line x = 2 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Washer",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 10120,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Washer",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 10120,
+    "yellowAfter": 0,
+    "changed": 11343
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 2545,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Washer",
+    "shownIdenticalToFirst": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Washer",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "calc_two_axes",
+   "model": 2,
+   "models": 2,
+   "firstStillHidden": true,
+   "closed": {
+    "button": "Show 3D Model",
+    "aria": "Show 3D Model: R revolved about the line y = 2 | Solid display"
+   },
+   "opened": {
+    "button": "Hide 3D Model",
+    "slice": "Hide Washer",
+    "visible": true,
+    "parts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellow": 11732,
+    "display": "transparent"
+   },
+   "hide": {
+    "frames": 1,
+    "camera": true,
+    "sameGeometry": true,
+    "sameCanvas": true,
+    "display": "transparent",
+    "button": "Show Washer",
+    "dimmed": true,
+    "parts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [],
+     "labels": 2
+    },
+    "yellowBefore": 66399,
+    "yellowAfter": 0,
+    "changed": 70711
+   },
+   "opaque": {
+    "hiddenDisplay": "opaque",
+    "hiddenParts": {
+     "objects": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "ghosts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "labels": 2
+    },
+    "yellowHidden": 0,
+    "shownParts": {
+     "objects": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "ghosts": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "labels": 2
+    },
+    "yellowShown": 9510,
+    "hideAgainIdentical": true,
+    "camera": true
+   },
+   "transparentHidden": {
+    "display": "transparent",
+    "visible": false,
+    "identical": true
+   },
+   "reset": {
+    "hiddenAfterReset": true,
+    "home": true,
+    "button": "Show Washer",
+    "shownIdenticalToFirst": true
+   },
+   "reopened": {
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ],
+    "visible": false,
+    "button": "Show Washer",
+    "parts": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  {
+   "viewport": "390x844",
+   "engine": "solids",
+   "family": "calc_two_axes",
+   "check": "next question",
+   "next": {
+    "from": "u6-solids-sc2-f(x)=1+\\ln x|g(x)=x^{2}-1-x2-washer-y2-washer-t7b7eg",
+    "to": "u6-solids-sc-y=0|y=2\\ln(x+1)|y=-x+3-x0-shell-phujby",
+    "old": 0,
+    "canvases": 0,
+    "released": [
+     {
+      "geometries": 0,
+      "textures": 0
+     },
+     {
+      "geometries": 0,
+      "textures": 0
+     }
+    ]
+   }
+  }
+ ],
+ "models": 27,
+ "failures": [],
+ "errors 1366x900 cs": 0,
+ "errors 1366x900 cs calc": 0,
+ "errors 1366x900 non-calculator-practice": 0,
+ "errors 1366x900 calculator-practice": 0,
+ "errors 390x844 cs": 0,
+ "errors 390x844 cs calc": 0,
+ "errors 390x844 non-calculator-practice": 0,
+ "errors 390x844 calculator-practice": 0
+}

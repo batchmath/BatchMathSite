@@ -1,0 +1,36 @@
+{
+  "results": [
+    {
+      "kind": "cross-sections",
+      "width": 1366,
+      "seed": "3db4",
+      "errors": [],
+      "passed": true,
+      "rotationZoomResetAndBothToggles": true
+    },
+    {
+      "kind": "solids",
+      "width": 1366,
+      "seed": "3dcn14",
+      "errors": [],
+      "passed": true,
+      "rotationZoomResetAndBothToggles": true
+    },
+    {
+      "kind": "cross-sections",
+      "width": 390,
+      "seed": "3db4",
+      "errors": [],
+      "passed": true,
+      "rotationZoomResetAndBothToggles": true
+    },
+    {
+      "kind": "solids",
+      "width": 390,
+      "seed": "3dcn14",
+      "errors": [],
+      "passed": true,
+      "rotationZoomResetAndBothToggles": true
+    }
+  ]
+}
