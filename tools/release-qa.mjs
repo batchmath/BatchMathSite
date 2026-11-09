@@ -144,7 +144,7 @@ const sandbox={window:{}};vm.createContext(sandbox);vm.runInContext(fs.readFileS
 if(!frq?.rows||!frq?.examLinks)fail('FRQ data missing rows/examLinks');else{
   const rows=frq.rows, examEntries=Object.entries(frq.examLinks), videos=rows.filter(r=>r.video).map(r=>r.video);
   if(rows.length!==228)fail(`FRQ rows ${rows.length} != 228`);if(examEntries.length!==38)fail(`FRQ exam sets ${examEntries.length} != 38`);if(new Set(videos).size!==videos.length)fail('FRQ video URLs are not unique');if(videos.length!==216)fail(`FRQ video count ${videos.length} != 216`);
-  for(const [key,e] of examEntries){if(!e.frq)fail(`${key}: missing FRQ URL`);if(key!=='2026|Regular'&&!e.scoring)fail(`${key}: missing scoring URL`);if(!Array.isArray(e.frqPages)||e.frqPages.length!==6)fail(`${key}: FRQ page map incomplete`);if(e.scoring&&(!Array.isArray(e.scoringPages)||e.scoringPages.length!==6))fail(`${key}: scoring page map incomplete`);}
+  for(const [key,e] of examEntries){if(!e.frq)fail(`${key}: missing FRQ URL`);if(!e.scoring)fail(`${key}: missing scoring URL`);if(!Array.isArray(e.frqPages)||e.frqPages.length!==6)fail(`${key}: FRQ page map incomplete`);if(e.scoring&&(!Array.isArray(e.scoringPages)||e.scoringPages.length!==6))fail(`${key}: scoring page map incomplete`);}
   stats.frqRows=rows.length;stats.frqExamSets=examEntries.length;stats.frqVideos=videos.length;
 }
 
