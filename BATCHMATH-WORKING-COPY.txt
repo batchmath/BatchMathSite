@@ -1,9 +1,9 @@
 BatchMath cumulative working copy
-Current build: 13.0.G / v13.0.G — 18 IM1 Unit 3 instructional videos
-Development branch: codex/v13.0g-im1-unit3-videos
-Production baseline: d846d75a427b44cda4c7840e0e2c67054b533e43
-Permanent rollback reference: safety/pre-v13.0g-im1-unit3-videos
+Current build: 13.0.H / v13.0.H — IM1 Unit 4 (all four sections) and the Section 1 practice engines
+Development branch: claude/v13.0h-im1-unit4-section1
+Production baseline: 66af306ffc2f8133910bcd874605fafaf8e3387a (v13.0.G)
+Rollback reference: main at 66af306 (v13.0.G); earlier: safety/pre-v13.0g-im1-unit3-videos
 All Version 13 3D engines and controls, mathematics, grading, explanations, MathLive and other course content are retained.
-Application, PWA/cache, analytics and Unit 6 build markers are 13.0.G. Historical engine revision markers remain unchanged.
+Application, PWA/cache, analytics and Unit 6 build markers are 13.0.H. Historical engine revision markers remain unchanged.
 See LOCAL-TESTING.txt. Run: py -m http.server 8000
-Deployment status and verification: docs/v13.0.G-im1-unit3-videos.md
+Deployment status and verification: docs/v13.0.H-im1-unit4-section1.md (v13.0.G: docs/v13.0.G-im1-unit3-videos.md)

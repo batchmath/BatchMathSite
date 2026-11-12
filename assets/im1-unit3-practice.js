@@ -2,8 +2,10 @@
 'use strict';
 const cfg=window.BM_UNIT3_PRACTICE||{};
 const sectionBSlugs=new Set(['evaluating-functions','solving-function-equations','slope-from-two-points','collinearity-and-slope','slope-from-graphs','section-b-review']);
-if(sectionBSlugs.has(cfg.slug))document.documentElement.classList.add('bm-u3-section-b-practice');
-const generator=window.BatchMathIM1Unit3Generators?.get?.(cfg.slug);
+// Other IM1 units reuse this runtime by naming their generator registry (cfg.registry); Unit 3 pages name none.
+const registry=cfg.registry?window[cfg.registry]:window.BatchMathIM1Unit3Generators;
+if(!cfg.registry&&sectionBSlugs.has(cfg.slug))document.documentElement.classList.add('bm-u3-section-b-practice');
+const generator=registry?.get?.(cfg.slug);
 const byId=id=>document.getElementById(id);
 let problem=null,score=0,attempted=0,locked=false,enterAdvanceAllowed=false,recent=[],problemSerial=0;
 
@@ -195,7 +197,7 @@ function markChoices(index){document.querySelectorAll('.choice-btn').forEach((bu
 function renderArithmeticDifferenceStage(){
  const stage=document.createElement('div');stage.className='bm-u3-arithmetic-followup';
  const label=document.createElement('label');label.htmlFor='answer';label.className='answer-label';label.textContent=problem.differencePrompt;
- const input=document.createElement('input');input.id='answer';input.type='text';input.autocomplete='off';input.spellcheck=false;input.dataset.bmKeypad='integer';
+ const input=document.createElement('input');input.id='answer';input.type='text';input.autocomplete='off';input.spellcheck=false;input.dataset.bmKeypad=problem.followupKeypad||'integer';
  const check=document.createElement('button');check.id='checkBtn';check.type='button';check.className='check-answer';check.textContent='Check Answer';check.addEventListener('click',checkArithmeticDifference);
  stage.append(label,input,check);byId('answerArea').appendChild(stage);
  input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();event.stopPropagation();checkArithmeticDifference();}});

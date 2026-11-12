@@ -1,6 +1,7 @@
-BatchMath v13.0.G — complete IM1 Unit 3 video integration; Version 13 3D controls retained
+BatchMath v13.0.H — IM1 Unit 4 (Exponential Functions): all four sections, Section 1 practice engines
 
-Open a terminal inside the BatchMathSite working copy.
+Extract bm-v13.0.H.zip.
+Open a terminal inside the single folder bm-v13.0.H.
 Run exactly:
 
 py -m http.server 8000
@@ -8,6 +9,18 @@ py -m http.server 8000
 (On macOS or Linux: python3 -m http.server 8000)
 Open http://localhost:8000/ in your browser.
 Keep the terminal open while testing. Stop the server with Ctrl+C.
+
+NEW IN v13.0.H: Integrated Math 1 > Unit 4 - Exponential Functions.
+- Sections 1-4 each have a section page and a page per assignment or review, with the Assignment PDF and Answer Key PDF
+  (56 PDFs, exactly as supplied). Menus, breadcrumbs and previous/next links use Section 1-4 and part codes 1A-4E.
+- Section 1 (Geometric Sequences) has practice engines; Sections 2-4 get theirs in later releases (no practice button
+  is shown there yet):
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/a-geometric-sequences/geometric-or-not/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/a-geometric-sequences/common-ratios-and-next-terms/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/a-geometric-sequences/finding-terms-of-geometric-sequences/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/a-geometric-sequences/geometric-growth-and-decay-modeling/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/a-geometric-sequences/section-a-review/practice/
+  Add ?bm_seed=<anything> to a practice address to get the same questions again.
 
 NEW IN v13.0.E: the button is now called "Show 3D Model" (no "Beta"); it becomes "Hide 3D Model" while the model is open.
 Every open 3D model has a new button beside Transparent | Opaque and Reset view that hides or shows the highlighted
