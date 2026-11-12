@@ -1,0 +1,769 @@
+{
+  "siteRoot": "source checkout",
+  "results": [
+    {
+      "part": "A",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/index.html",
+      "width": 1366,
+      "video": "j5XM6_T7CA4",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/j5XM6_T7CA4?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "B",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/index.html",
+      "width": 1366,
+      "video": "s0m0DmnDaBc",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/s0m0DmnDaBc?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "C",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/index.html",
+      "width": 1366,
+      "video": "ovVDNHoGAss",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/ovVDNHoGAss?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "D",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/index.html",
+      "width": 1366,
+      "video": "UiY9RnfNnIg",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/UiY9RnfNnIg?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "E",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/index.html",
+      "width": 1366,
+      "video": "YSDRVZcl-RE",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/YSDRVZcl-RE?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "01F",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/index.html",
+      "width": 1366,
+      "video": "NDB4sAt_2yg",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/NDB4sAt_2yg?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02A",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/index.html",
+      "width": 1366,
+      "video": "2Y3QrZchgOQ",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/2Y3QrZchgOQ?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02B",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/index.html",
+      "width": 1366,
+      "video": "99JsVdn8CCM",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/99JsVdn8CCM?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02C",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/index.html",
+      "width": 1366,
+      "video": "mpP1jd8FLHQ",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/mpP1jd8FLHQ?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02D",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/collinearity-and-slope/index.html",
+      "width": 1366,
+      "video": "JUJkW71VNAQ",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/JUJkW71VNAQ?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02E",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/index.html",
+      "width": 1366,
+      "video": "qtpP9QC56iA",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/qtpP9QC56iA?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "03A",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/index.html",
+      "width": 1366,
+      "video": "Y9OLXmbrqfE",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/Y9OLXmbrqfE?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "03B",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/index.html",
+      "width": 1366,
+      "video": "6nwoMANQHeU",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/6nwoMANQHeU?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "03C",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/index.html",
+      "width": 1366,
+      "video": "PNh7PJ0hSQI",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/PNh7PJ0hSQI?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "03D",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/index.html",
+      "width": 1366,
+      "video": "S_yk7sK82JE",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/S_yk7sK82JE?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "04A",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/index.html",
+      "width": 1366,
+      "video": "88m0VeMXMWw",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/88m0VeMXMWw?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "04B",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/index.html",
+      "width": 1366,
+      "video": "nbvAHuKuonk",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/nbvAHuKuonk?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "04C",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/index.html",
+      "width": 1366,
+      "video": "9h4sADgV21k",
+      "interaction": "keyboard Enter",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/9h4sADgV21k?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 756,
+        "height": 423.5,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "A",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/index.html",
+      "width": 768,
+      "video": "j5XM6_T7CA4",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/j5XM6_T7CA4?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "B",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/index.html",
+      "width": 768,
+      "video": "s0m0DmnDaBc",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/s0m0DmnDaBc?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "C",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/index.html",
+      "width": 768,
+      "video": "ovVDNHoGAss",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/ovVDNHoGAss?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "D",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/index.html",
+      "width": 768,
+      "video": "UiY9RnfNnIg",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/UiY9RnfNnIg?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "E",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/index.html",
+      "width": 768,
+      "video": "YSDRVZcl-RE",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/YSDRVZcl-RE?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "01F",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/index.html",
+      "width": 768,
+      "video": "NDB4sAt_2yg",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/NDB4sAt_2yg?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02A",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/index.html",
+      "width": 768,
+      "video": "2Y3QrZchgOQ",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/2Y3QrZchgOQ?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02B",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/index.html",
+      "width": 768,
+      "video": "99JsVdn8CCM",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/99JsVdn8CCM?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02C",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/index.html",
+      "width": 768,
+      "video": "mpP1jd8FLHQ",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/mpP1jd8FLHQ?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02D",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/collinearity-and-slope/index.html",
+      "width": 768,
+      "video": "JUJkW71VNAQ",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/JUJkW71VNAQ?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02E",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/index.html",
+      "width": 768,
+      "video": "qtpP9QC56iA",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/qtpP9QC56iA?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "03A",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/index.html",
+      "width": 768,
+      "video": "Y9OLXmbrqfE",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/Y9OLXmbrqfE?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "03B",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/index.html",
+      "width": 768,
+      "video": "6nwoMANQHeU",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/6nwoMANQHeU?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "03C",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/index.html",
+      "width": 768,
+      "video": "PNh7PJ0hSQI",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/PNh7PJ0hSQI?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "03D",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/index.html",
+      "width": 768,
+      "video": "S_yk7sK82JE",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/S_yk7sK82JE?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "04A",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/index.html",
+      "width": 768,
+      "video": "88m0VeMXMWw",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/88m0VeMXMWw?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "04B",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/index.html",
+      "width": 768,
+      "video": "nbvAHuKuonk",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/nbvAHuKuonk?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "04C",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/index.html",
+      "width": 768,
+      "video": "9h4sADgV21k",
+      "interaction": "pointer click",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/9h4sADgV21k?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 728,
+        "height": 407.75,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "A",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/index.html",
+      "width": 390,
+      "video": "j5XM6_T7CA4",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/j5XM6_T7CA4?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "B",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/index.html",
+      "width": 390,
+      "video": "s0m0DmnDaBc",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/s0m0DmnDaBc?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "C",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/index.html",
+      "width": 390,
+      "video": "ovVDNHoGAss",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/ovVDNHoGAss?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "D",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/index.html",
+      "width": 390,
+      "video": "UiY9RnfNnIg",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/UiY9RnfNnIg?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "E",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/index.html",
+      "width": 390,
+      "video": "YSDRVZcl-RE",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/YSDRVZcl-RE?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "01F",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/index.html",
+      "width": 390,
+      "video": "NDB4sAt_2yg",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/NDB4sAt_2yg?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02A",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/index.html",
+      "width": 390,
+      "video": "2Y3QrZchgOQ",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/2Y3QrZchgOQ?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02B",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/index.html",
+      "width": 390,
+      "video": "99JsVdn8CCM",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/99JsVdn8CCM?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02C",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/index.html",
+      "width": 390,
+      "video": "mpP1jd8FLHQ",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/mpP1jd8FLHQ?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02D",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/collinearity-and-slope/index.html",
+      "width": 390,
+      "video": "JUJkW71VNAQ",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/JUJkW71VNAQ?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "02E",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/index.html",
+      "width": 390,
+      "video": "qtpP9QC56iA",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/qtpP9QC56iA?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "03A",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/index.html",
+      "width": 390,
+      "video": "Y9OLXmbrqfE",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/Y9OLXmbrqfE?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "03B",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/index.html",
+      "width": 390,
+      "video": "6nwoMANQHeU",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/6nwoMANQHeU?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "03C",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/index.html",
+      "width": 390,
+      "video": "PNh7PJ0hSQI",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/PNh7PJ0hSQI?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "03D",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/index.html",
+      "width": 390,
+      "video": "S_yk7sK82JE",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/S_yk7sK82JE?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "04A",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/index.html",
+      "width": 390,
+      "video": "88m0VeMXMWw",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/88m0VeMXMWw?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "04B",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/index.html",
+      "width": 390,
+      "video": "nbvAHuKuonk",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/nbvAHuKuonk?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    },
+    {
+      "part": "04C",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/index.html",
+      "width": 390,
+      "video": "9h4sADgV21k",
+      "interaction": "touch tap",
+      "passed": true,
+      "playerUrl": "https://www.youtube.com/embed/9h4sADgV21k?rel=0&playsinline=1&autoplay=1",
+      "layout": {
+        "width": 350,
+        "height": 195.125,
+        "overflow": 0
+      }
+    }
+  ],
+  "thumbnailFallback": {
+    "id": "9h4sADgV21k",
+    "passed": true,
+    "titleAndNativePlayRemainUsableWithThumbnailUnavailable": true
+  },
+  "externalPlaybackVerified": false,
+  "thumbnailTransportSimulated": true,
+  "internalLinksChecked": 88
+}

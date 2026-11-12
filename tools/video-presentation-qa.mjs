@@ -172,7 +172,7 @@ try {
   const im1Ids = html.filter(p => p.includes(path.sep + 'im1' + path.sep)).flatMap(p => [...fs.readFileSync(p, 'utf8').matchAll(/data-video-id="([^"]+)"/g)].map(m => m[1]));
   const additions = JSON.parse(fs.readFileSync(path.join(root, 'tools/v13-im1-videos/videos.json'), 'utf8')).videos;
   const expectedIm1Ids = [...Object.values(approved).flat().map(([id]) => id), ...additions.map(v => v.id)];
-  assert.equal(additions.length, 5);
+  assert.equal(additions.length, 18);
   assert.deepEqual([...im1Ids].sort(), [...expectedIm1Ids].sort());
   assert.equal(new Set(im1Ids).size, expectedIm1Ids.length);
   for (const query of ['modal', 'inline']) {

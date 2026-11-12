@@ -1,6 +1,6 @@
 {
-  "baseline": "0604079082f58c3168e52bc009d1330ba1f20c68",
-  "mapping": "User confirmed existing topic order: B Common Difference, C Explicit Formula",
+  "baseline": "d846d75a427b44cda4c7840e0e2c67054b533e43",
+  "mapping": "18 approved Unit 3 lessons: original A-E unchanged; Section 4C intentionally uses 9h4sADgV21k, distinct from Section 1B",
   "videos": [
     {
       "part": "A",
@@ -36,6 +36,97 @@
       "title": "Finding the Term Number in an Arithmetic Sequence",
       "id": "YSDRVZcl-RE",
       "url": "https://www.youtube.com/watch?v=YSDRVZcl-RE"
+    },
+    {
+      "part": "01F",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/index.html",
+      "title": "Arithmetic Sequence Word Problems",
+      "id": "NDB4sAt_2yg",
+      "url": "https://www.youtube.com/watch?v=NDB4sAt_2yg"
+    },
+    {
+      "part": "02A",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/index.html",
+      "title": "Evaluating Functions",
+      "id": "2Y3QrZchgOQ",
+      "url": "https://www.youtube.com/watch?v=2Y3QrZchgOQ"
+    },
+    {
+      "part": "02B",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/index.html",
+      "title": "Solving Function Equations",
+      "id": "99JsVdn8CCM",
+      "url": "https://youtu.be/99JsVdn8CCM"
+    },
+    {
+      "part": "02C",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/index.html",
+      "title": "Slope from Two Points",
+      "id": "mpP1jd8FLHQ",
+      "url": "https://www.youtube.com/watch?v=mpP1jd8FLHQ"
+    },
+    {
+      "part": "02D",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/collinearity-and-slope/index.html",
+      "title": "Collinearity",
+      "id": "JUJkW71VNAQ",
+      "url": "https://youtu.be/JUJkW71VNAQ"
+    },
+    {
+      "part": "02E",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/index.html",
+      "title": "Slope from Graphs",
+      "id": "qtpP9QC56iA",
+      "url": "https://youtu.be/qtpP9QC56iA"
+    },
+    {
+      "part": "03A",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/index.html",
+      "title": "Slope-Intercept Form",
+      "id": "Y9OLXmbrqfE",
+      "url": "https://youtu.be/Y9OLXmbrqfE"
+    },
+    {
+      "part": "03B",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/index.html",
+      "title": "Writing Equations of Lines",
+      "id": "6nwoMANQHeU",
+      "url": "https://youtu.be/6nwoMANQHeU"
+    },
+    {
+      "part": "03C",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/index.html",
+      "title": "Converting Point Slope into Slope Intercept Form",
+      "id": "PNh7PJ0hSQI",
+      "url": "https://youtu.be/PNh7PJ0hSQI"
+    },
+    {
+      "part": "03D",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/index.html",
+      "title": "Linear Word Problems",
+      "id": "S_yk7sK82JE",
+      "url": "https://youtu.be/S_yk7sK82JE"
+    },
+    {
+      "part": "04A",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/index.html",
+      "title": "Recursive Formulas for Arithmetic Sequences",
+      "id": "88m0VeMXMWw",
+      "url": "https://youtu.be/88m0VeMXMWw"
+    },
+    {
+      "part": "04B",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/index.html",
+      "title": "Recursive to Explicit Formulas",
+      "id": "nbvAHuKuonk",
+      "url": "https://youtu.be/nbvAHuKuonk"
+    },
+    {
+      "part": "04C",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/index.html",
+      "title": "Finding Common Difference",
+      "id": "9h4sADgV21k",
+      "url": "https://www.youtube.com/watch?v=9h4sADgV21k"
     }
   ]
 }

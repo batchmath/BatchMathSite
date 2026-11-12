@@ -1,0 +1,80 @@
+name: v13.0.G video and live verification
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'im1/unit-3-linear-equation/**'
+      - 'tools/v13g-im1-videos/**'
+      - 'tools/v13-im1-videos/**'
+      - '.github/workflows/v13-0-g-video-verification.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'im1/unit-3-linear-equation/**'
+      - 'tools/v13g-im1-videos/**'
+      - 'tools/v13-im1-videos/**'
+      - '.github/workflows/v13-0-g-video-verification.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.repository == 'batchmath/BatchMathSite'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install unchanged QA dependencies and browser
+        run: |
+          npm install --ignore-scripts --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          echo "BATCHMATH_CHROMIUM_PATH=$(node -e 'process.stdout.write(require("playwright").chromium.executablePath())')" >> "$GITHUB_ENV"
+          echo "REVIEW_HOME=$RUNNER_TEMP/review" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/review/vendor/mathjax" "$RUNNER_TEMP/review/vendor/newcm"
+          ln -s "$GITHUB_WORKSPACE/node_modules/mathjax" "$RUNNER_TEMP/review/vendor/mathjax/package"
+          ln -s "$GITHUB_WORKSPACE/node_modules/@mathjax/mathjax-newcm-font" "$RUNNER_TEMP/review/vendor/newcm/package"
+      - name: Confirm mapping, inert builder reproduction and source preservation
+        run: |
+          node tools/v13g-im1-videos/source-qa.mjs
+          python3 tools/v13g-im1-videos/preservation.py
+      - name: Test all 18 lessons at desktop, tablet and mobile widths
+        env:
+          VIDEO_QA_OUT: qa-results/v13g-source-videos.json
+        run: node tools/v13g-im1-videos/browser.mjs
+      - name: Verify production baseline and inspect available public video metadata
+        if: github.event_name == 'pull_request'
+        env:
+          LIVE_MODE: preflight
+          LIVE_OUT: qa-results/v13g-preflight.json
+        run: node tools/v13g-im1-videos/live.mjs
+      - name: Verify actual Pages content and cached-context update after merge
+        if: github.event_name == 'push'
+        env:
+          LIVE_MODE: deployed
+          LIVE_OUT: qa-results/v13g-live.json
+        run: node tools/v13g-im1-videos/live.mjs
+      - name: Test all 18 actual live players and their assignment/navigation links
+        if: github.event_name == 'push'
+        env:
+          BM_BASE_URL: https://batchmath.net/
+          VIDEO_QA_OUT: qa-results/v13g-live-videos.json
+        run: node tools/v13g-im1-videos/browser.mjs
+      - name: Test actual live 3D controls and MathLive dependency loading
+        if: github.event_name == 'push'
+        env:
+          BM_BASE_URL: https://batchmath.net/
+          ZIP_3D_OUT: qa-results/v13g-live-3d.json
+        run: node tools/v13g-im1-videos/3d-smoke.mjs
+      - name: Upload verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v13g-video-live-evidence
+          path: |
+            qa-results/v13g-*.json
+            docs/v13.0.G/evidence/source-builder.json
+            docs/v13.0.G/evidence/preservation.json
