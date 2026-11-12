@@ -1,0 +1,238 @@
+name: Package BatchMath IM1 Unit 4 test build
+on:
+  push:
+    branches: [claude/im1-unit4-materials]
+    paths: [.github/workflows/package-im1-u4-test.yml]
+permissions:
+  contents: write
+jobs:
+  package:
+    if: github.repository == 'batchmath/BatchMathSite' && github.ref == 'refs/heads/claude/im1-unit4-materials'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      QA_COMMIT: d99e06e388dcae5342efad18cb58703dc49c9280
+      MAIN_SHA: 66af306ffc2f8133910bcd874605fafaf8e3387a
+      TAG: im1-u4-test
+      ZIP: bm-im1-u4-test.zip
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify the tested commit, main as its ancestor, and a workflow-only diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git show -s --format=%P HEAD)" = "$QA_COMMIT"
+          test "$(git diff --name-status "$QA_COMMIT" "$GITHUB_SHA")" = $'A\t.github/workflows/package-im1-u4-test.yml'
+          git merge-base --is-ancestor "$MAIN_SHA" "$QA_COMMIT"
+      - name: Build the complete website ZIP from the tested commit and verify every file
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/delivery"
+          git archive --format=zip -9 --prefix=bm-im1-u4-test/ --output="$RUNNER_TEMP/delivery/$ZIP" "$QA_COMMIT"
+          cat > "$RUNNER_TEMP/verify_zip.py" <<'VERIFY'
+          """Verify the BatchMath IM1 Unit 4 test ZIP against its tested commit (the established v13.0.F export rules).
+          Usage: python3 verify_zip.py <repo> <commit> <zip> <out-dir>   (writes delivery-manifest.json and <name>.sha256)"""
+          import functools, hashlib, http.server, json, re, subprocess, sys, tempfile, threading, urllib.parse, urllib.request, zipfile
+          from pathlib import Path
+
+          REPO, COMMIT, ARCHIVE, OUT = Path(sys.argv[1]), sys.argv[2], Path(sys.argv[3]), Path(sys.argv[4])
+          NAME = 'bm-im1-u4-test'
+          PREFIX = NAME + '/'
+          UNIT4 = 'im1/unit-4-exponential-functions/'
+          OUT.mkdir(parents=True, exist_ok=True)
+
+
+          def git(*args):
+              return subprocess.check_output(['git', *args], cwd=REPO)
+
+
+          attrs = git('show', COMMIT + ':.gitattributes').decode()
+          ignored = [l.split()[0].strip('/') for l in attrs.splitlines() if l.strip() and not l.startswith('#') and 'export-ignore' in l.split()[1:]]
+          assert {'tools', '.github', 'docs', '.gitattributes'} <= set(ignored)
+          assert not any(re.search(r'[*?\[!]', p) for p in ignored), 'Export policy must use explicit files/directories'
+          expected = {}
+          for row in git('ls-tree', '-rz', COMMIT).split(b'\0'):
+              if not row:
+                  continue
+              meta, name = row.split(b'\t', 1)
+              name = name.decode()
+              if not any(name == p or name.startswith(p + '/') for p in ignored):
+                  expected[name] = meta.split()[2].decode()
+          unit4_hashes = {'/' + m['published']: m['sha256'] for m in json.loads(git('show', COMMIT + ':tools/im1-unit4/pdf-manifest.json'))}
+
+          with zipfile.ZipFile(ARCHIVE) as z:
+              assert z.comment.decode() == COMMIT, 'ZIP comment must identify the tested commit'
+              infos = z.infolist()
+              assert all(i.filename.startswith(PREFIX) for i in infos), 'Exactly one short root folder is required'
+              files = {i.filename[len(PREFIX):]: i for i in infos if not i.is_dir()}
+              assert len(files) == sum(not i.is_dir() for i in infos), 'Duplicate ZIP entry'
+              assert set(files) == set(expected), 'Archive file list differs from the tested tree/export policy'
+              for name, blob in expected.items():
+                  assert not any(part in ['..', '.git', 'node_modules', '__pycache__'] for part in Path(name).parts), name
+                  assert not re.search(r'[<>:"\\|?*]', name) and not name.endswith((' ', '.')), name
+                  data = z.read(PREFIX + name)
+                  assert hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest() == blob, name
+                  extra = files[name].extra
+                  while extra:  # git archive carries timestamps only, never machine or user identity fields
+                      ident = int.from_bytes(extra[:2], 'little'); size = int.from_bytes(extra[2:4], 'little')
+                      assert ident in (0x5455, 0x0001), (name, hex(ident))
+                      extra = extra[4 + size:]
+                  if name.endswith(('.html', '.js', '.mjs', '.css', '.json', '.txt', '.webmanifest')):
+                      assert b'/workspace/' not in data and b'/home/agent/' not in data and b'/home/user/' not in data and b'/tmp/claude' not in data, name + ': local machine path'
+              assert z.testzip() is None
+              version = json.loads(z.read(PREFIX + 'assets/app-version.json'))
+              lock = json.loads(z.read(PREFIX + 'assets/mathlive/dependency-lock.json'))['mathlive']['files']
+              for entry in lock:
+                  data = z.read(PREFIX + 'assets/mathlive/' + entry['path'])
+                  assert len(data) == entry['bytes'] and hashlib.sha256(data).hexdigest() == entry['sha256'], entry['path']
+              three = json.loads(z.read(PREFIX + 'assets/unit6-3d/dependency-lock.json'))['three']['files']
+              for entry in three:
+                  data = z.read(PREFIX + 'assets/unit6-3d/' + entry['path'])
+                  assert len(data) == entry['bytes'] and hashlib.sha256(data).hexdigest() == entry['sha256'], entry['path']
+              for name in ['cross-sections-3d.mjs', 'solids-3d.mjs', 'model-toggle.mjs', 'viewer.mjs', 'revolution-viewer.mjs', 'scene-kit.mjs']:
+                  assert 'assets/unit6-3d/' + name in files, name
+              for need in ['index.html', 'LOCAL-TESTING.txt', 'sw.js', 'assets/unit6-core.js', 'assets/unit6.css', 'assets/im1-unit3.css', 'assets/im1-unit3-nav.js',
+                           'assets/instructional-videos.js', 'assets/instructional-videos.css', 'assets/mathlive/integral-setup.mjs', 'assets/mathlive/unit6.mjs',
+                           'im1/index.html', UNIT4 + 'index.html', UNIT4 + 'topics/comprehensive-review/index.html']:
+                  assert need in files, need
+              html = sum(n.endswith('.html') for n in files); pdf = sum(n.endswith('.pdf') for n in files)
+              u4html = [n for n in files if n.startswith(UNIT4) and n.endswith('.html')]
+              u4pdf = [n for n in files if n.startswith(UNIT4) and n.endswith('.pdf')]
+              assert len(u4html) == 27 and len(u4pdf) == 56, (len(u4html), len(u4pdf))
+              assert not any(n.lower().endswith('.docx') for n in files), 'no DOCX sources in the website'
+              for n in u4pdf:  # the supplied classroom PDFs, byte for byte
+                  assert hashlib.sha256(z.read(PREFIX + n)).hexdigest() == unit4_hashes['/' + n], n
+              for n in u4html:  # no notes, video players or practice engines in Unit 4
+                  page = z.read(PREFIX + n).decode()
+                  assert 'data-video-id' not in page and '<iframe' not in page and 'data-bm-resource="practice"' not in page, n
+                  assert not re.search(r'>[^<]*\bnotes?\b[^<]*<', page, re.I), n + ': notes text'
+              extraction = Path(tempfile.mkdtemp(prefix='clean-extract-', dir=OUT))
+              z.extractall(extraction)
+
+          site = extraction / NAME
+
+
+          class Quiet(http.server.SimpleHTTPRequestHandler):
+              def log_message(self, *args):
+                  pass
+
+
+          server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(Quiet, directory=str(site)))
+          thread = threading.Thread(target=server.serve_forever, daemon=True); thread.start()
+          smoke = ['index.html', 'ap-calculus/index.html', 'im1/index.html', 'calculus-prep/index.html', 'im1/unit-3-linear-equation/index.html',
+                   'ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/non-calculator-practice/index.html',
+                   'ap-calculus/unit-2-derivatives/topics/comprehensive-review/practice/index.html',
+                   'assets/mathlive/integral-setup.mjs', 'assets/mathlive/vendor/mathlive/mathlive.min.mjs',
+                   'assets/unit6-3d/cross-sections-3d.mjs', 'assets/unit6-3d/solids-3d.mjs',
+                   'assets/unit6-3d/vendor/three/three.module.min.mjs', 'assets/unit6-3d/vendor/three/OrbitControls.mjs',
+                   'assets/mathlive/' + next(e['path'] for e in lock if e['path'].endswith('.woff2')),
+                   *sorted(u4html), *sorted(u4pdf)]
+          try:
+              for name in smoke:
+                  with urllib.request.urlopen(f'http://127.0.0.1:{server.server_port}/' + urllib.parse.quote(name, safe='/')) as response:
+                      assert response.status == 200 and response.read() == (site / name).read_bytes(), name
+          finally:
+              server.shutdown(); server.server_close(); thread.join()
+
+          sha = hashlib.sha256(ARCHIVE.read_bytes()).hexdigest()
+          manifest = {'testedCommit': COMMIT, 'zip': ARCHIVE.name, 'rootDirectory': PREFIX, 'bytes': ARCHIVE.stat().st_size, 'sha256': sha,
+                      'siteVersion': version['version'], 'includedFiles': len(expected), 'htmlPages': html, 'pdfFiles': pdf,
+                      'unit4Pages': len(u4html), 'unit4Pdfs': len(u4pdf), 'unit4PdfsMatchSuppliedFiles': True,
+                      'lockedMathLiveFiles': len(lock), 'lockedThreeFiles': len(three), 'allFilesMatchTestedCommit': True, 'crcPassed': True,
+                      'cleanExtraction': True, 'standaloneHttpChecks': len(smoke), 'localMachinePaths': 0}
+          (OUT / 'delivery-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
+          (OUT / (NAME + '.sha256')).write_text(sha + '  ' + ARCHIVE.name + '\n')
+          print(json.dumps(manifest, indent=2))
+          print('Extracted test directory:', site)
+          VERIFY
+          python3 "$RUNNER_TEMP/verify_zip.py" "$GITHUB_WORKSPACE" "$QA_COMMIT" "$RUNNER_TEMP/delivery/$ZIP" "$RUNNER_TEMP/delivery"
+      - name: Snapshot main, tags, releases and latest status
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          R="$GITHUB_REPOSITORY"
+          test "$(gh api "repos/$R/git/ref/heads/main" --jq .object.sha)" = "$MAIN_SHA"
+          test "$(gh api "repos/$R/git/ref/heads/claude/im1-unit4-materials" --jq .object.sha)" = "$GITHUB_SHA"
+          gh api "repos/$R/git/matching-refs/tags/" > "$RUNNER_TEMP/tags-before.json"
+          python3 -c "import json,os,sys;rows=json.load(open(os.environ['RUNNER_TEMP']+'/tags-before.json'));sys.exit('tag exists' if any(r['ref']=='refs/tags/'+os.environ['TAG'] for r in rows) else 0)"
+          if gh release view "$TAG" --repo "$R" > /dev/null 2>&1; then echo "::error::$TAG already exists; not changing it."; exit 1; fi
+          gh api --paginate --slurp "repos/$R/releases?per_page=100" > "$RUNNER_TEMP/releases-before.json"
+          if gh api "repos/$R/releases/latest" --jq .tag_name > "$RUNNER_TEMP/latest-before.txt" 2>/dev/null; then :; else echo none > "$RUNNER_TEMP/latest-before.txt"; fi
+      - name: Publish the test prerelease (not latest)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          checksum="$(cut -d' ' -f1 "$RUNNER_TEMP/delivery/bm-im1-u4-test.sha256")"
+          {
+            echo 'TEST BUILD for manual review. Prerelease, not latest. Production `main` is unchanged and nothing is deployed.'
+            echo
+            echo "Source: branch \`claude/im1-unit4-materials\`, tested commit $QA_COMMIT (from main at 66af306, v13.0.G)."
+            echo
+            echo '- New: Integrated Math 1 Unit 4 - Exponential Functions at /im1/unit-4-exponential-functions/: Sections A-D (Geometric Sequences; Recursive Formulas; Explicit Formulas and Exponential Models; Solving Exponential Equations), a review page for each section, and the Unit 4 Comprehensive Review.'
+            echo '- 28 assignments and their 28 answer keys (56 PDFs), published byte for byte as supplied. No student notes, no videos and no practice engines in Unit 4.'
+            echo '- The IM1 page, the Unit 1 unit menu and the home page now list Unit 4. Unit 3 and its instructional videos are unchanged; everything else is the v13.0.G site.'
+            echo
+            echo 'Extract bm-im1-u4-test.zip, open a terminal inside the folder bm-im1-u4-test, run `py -m http.server 8000` (Windows) or `python3 -m http.server 8000` (macOS/Linux), and open http://localhost:8000/im1/unit-4-exponential-functions/.'
+            echo
+            echo "SHA-256 of bm-im1-u4-test.zip: $checksum"
+          } > "$RUNNER_TEMP/release-notes.md"
+          gh release create "$TAG" "$RUNNER_TEMP/delivery/$ZIP" "$RUNNER_TEMP/delivery/bm-im1-u4-test.sha256" "$RUNNER_TEMP/delivery/delivery-manifest.json" --repo "$GITHUB_REPOSITORY" --target "$QA_COMMIT" --title 'BatchMath IM1 Unit 4 Test Build (not production)' --notes-file "$RUNNER_TEMP/release-notes.md" --prerelease --latest=false
+      - name: Download the published ZIP and verify it is the built file
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/downloaded"
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "$ZIP" --dir "$RUNNER_TEMP/downloaded"
+          cmp "$RUNNER_TEMP/downloaded/$ZIP" "$RUNNER_TEMP/delivery/$ZIP"
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/$TAG" > "$RUNNER_TEMP/release.json"
+          python3 - <<'CHECK'
+          import json, os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP'])
+          release = json.loads((root / 'release.json').read_text())
+          manifest = json.loads((root / 'delivery/delivery-manifest.json').read_text())
+          assert release['prerelease'] is True and release['draft'] is False
+          assets = [a for a in release['assets'] if a['name'] == os.environ['ZIP']]
+          assert len(assets) == 1 and assets[0]['state'] == 'uploaded' and assets[0]['size'] == manifest['bytes']
+          assert assets[0].get('digest') in (None, 'sha256:' + manifest['sha256'])
+          print('Verified download:', assets[0]['browser_download_url'], manifest['sha256'])
+          CHECK
+      - name: Recheck main, earlier tags and releases, and latest status
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          R="$GITHUB_REPOSITORY"
+          test "$(gh api "repos/$R/git/ref/heads/main" --jq .object.sha)" = "$MAIN_SHA"
+          test "$(gh api "repos/$R/git/ref/tags/$TAG" --jq .object.sha)" = "$QA_COMMIT"
+          gh api "repos/$R/git/matching-refs/tags/" > "$RUNNER_TEMP/tags-after.json"
+          gh api --paginate --slurp "repos/$R/releases?per_page=100" > "$RUNNER_TEMP/releases-after.json"
+          if gh api "repos/$R/releases/latest" --jq .tag_name > "$RUNNER_TEMP/latest-after.txt" 2>/dev/null; then :; else echo none > "$RUNNER_TEMP/latest-after.txt"; fi
+          cmp "$RUNNER_TEMP/latest-before.txt" "$RUNNER_TEMP/latest-after.txt"
+          python3 - <<'CHECK'
+          import json, os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP']); tag = os.environ['TAG']
+          def tags(name):
+              return sorted((x['ref'], x['object']['sha']) for x in json.loads((root / name).read_text()) if x['ref'] != 'refs/tags/' + tag)
+          assert tags('tags-before.json') == tags('tags-after.json'), 'An earlier tag changed'
+          def releases(name):
+              rows = [r for page in json.loads((root / name).read_text()) for r in page if r['tag_name'] != tag]
+              keys = ['id', 'tag_name', 'name', 'body', 'prerelease', 'draft', 'target_commitish', 'updated_at']
+              return sorted([{**{k: r[k] for k in keys}, 'assets': sorted([(a['id'], a['name'], a['size'], a.get('digest'), a['state'], a['updated_at']) for a in r['assets']])} for r in rows], key=lambda r: r['id'])
+          assert releases('releases-before.json') == releases('releases-after.json'), 'An earlier release changed'
+          print('main, earlier tags and releases, and the latest status are unchanged.')
+          CHECK
