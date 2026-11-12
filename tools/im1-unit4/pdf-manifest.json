@@ -1,0 +1,450 @@
+[
+ {
+  "code": "01A",
+  "kind": "assignment",
+  "source": "01A - Geometric or Not HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/01a-geometric-or-not.pdf",
+  "bytes": 113642,
+  "sha256": "097c94a02b9e1e69d830dc8eaaf1a93e86a38d5ae78458e1b6ffbc93a416bfec"
+ },
+ {
+  "code": "01A",
+  "kind": "answer-key",
+  "source": "01A - Geometric or Not HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/01a-geometric-or-not-answer-key.pdf",
+  "bytes": 90925,
+  "sha256": "7a20da55dca60eb14c57ea162005cb86630f177bf1a6a7c36b9ca6382fba9c50"
+ },
+ {
+  "code": "01B",
+  "kind": "assignment",
+  "source": "01B - Common Ratios and Next Terms HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/01b-common-ratios-and-next-terms.pdf",
+  "bytes": 111143,
+  "sha256": "eab67cdc583a2f54ebe30e54308f240796c53fc725f7ee984d80fdf59d4ef945"
+ },
+ {
+  "code": "01B",
+  "kind": "answer-key",
+  "source": "01B - Common Ratios and Next Terms HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/01b-common-ratios-and-next-terms-answer-key.pdf",
+  "bytes": 111399,
+  "sha256": "28c16078ee938d8c217000cd889e47312ad0130c58c3d326bf9299e639b59a15"
+ },
+ {
+  "code": "01C",
+  "kind": "assignment",
+  "source": "01C - Finding Terms of Geometric Sequences HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/01c-finding-terms-of-geometric-sequences.pdf",
+  "bytes": 128935,
+  "sha256": "26d642290258c6055c74048bbc2f5e10897fa037343685262442a41bc0ebd546"
+ },
+ {
+  "code": "01C",
+  "kind": "answer-key",
+  "source": "01C - Finding Terms of Geometric Sequences HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/01c-finding-terms-of-geometric-sequences-answer-key.pdf",
+  "bytes": 112422,
+  "sha256": "5b2ca3d0e5de235f021bfd2e5101877ec0648cc01ae039124077d86dec01ab6a"
+ },
+ {
+  "code": "01D",
+  "kind": "assignment",
+  "source": "01D - Geometric Growth and Decay Modeling HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/01d-geometric-growth-and-decay-modeling.pdf",
+  "bytes": 122088,
+  "sha256": "9f4da5c76a94b49e5ed3817b0e79f2b8e3802e70dc3b4702875ecb4ce62433c6"
+ },
+ {
+  "code": "01D",
+  "kind": "answer-key",
+  "source": "01D - Geometric Growth and Decay Modeling HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/01d-geometric-growth-and-decay-modeling-answer-key.pdf",
+  "bytes": 101194,
+  "sha256": "bd05943d1451726672e3caf65c14d45ddec7b434243633cd5b04a9db9fe8e1a9"
+ },
+ {
+  "code": "01E",
+  "kind": "assignment",
+  "source": "01E - Section A Comprehensive Review HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/01e-section-a-comprehensive-review.pdf",
+  "bytes": 155452,
+  "sha256": "b414e0e01016da597e41cfce1513e2a867a701f97e2e43bebd6cdf21955ad430"
+ },
+ {
+  "code": "01E",
+  "kind": "answer-key",
+  "source": "01E - Section A Comprehensive Review HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/01e-section-a-comprehensive-review-answer-key.pdf",
+  "bytes": 145213,
+  "sha256": "c9b22d7841fb0fc72cfc6a20a1aa9c8098530d2a2bdcc228882c65126d076c5d"
+ },
+ {
+  "code": "01F",
+  "kind": "assignment",
+  "source": "01F - Section A Comprehensive Review HW - Mixed.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/01f-section-a-comprehensive-review-mixed.pdf",
+  "bytes": 156420,
+  "sha256": "07e72446118c2bdaa9b096ad6805274a58304937535dc336ce8a57670a492626"
+ },
+ {
+  "code": "01F",
+  "kind": "answer-key",
+  "source": "01F - Section A Comprehensive Review HW - Mixed - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/01f-section-a-comprehensive-review-mixed-answer-key.pdf",
+  "bytes": 141817,
+  "sha256": "cdba62a7e0d285fb3819d0cb47bed36fe56d617ab27fc2360e9fbcf96262a799"
+ },
+ {
+  "code": "02A",
+  "kind": "assignment",
+  "source": "02A - Writing Recursive Formulas HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/02a-writing-recursive-formulas.pdf",
+  "bytes": 115870,
+  "sha256": "fdace883eea6504888def8524c77b44132add713b9d96a127b36e4cd8c28a3f9"
+ },
+ {
+  "code": "02A",
+  "kind": "answer-key",
+  "source": "02A - Writing Recursive Formulas HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/02a-writing-recursive-formulas-answer-key.pdf",
+  "bytes": 117364,
+  "sha256": "bfe1773eaf1c3b1a54b264c2778d222f2de4a1ad608d935fba5687e7dbdba090"
+ },
+ {
+  "code": "02B",
+  "kind": "assignment",
+  "source": "02B - Using Recursive Formulas HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/02b-using-recursive-formulas.pdf",
+  "bytes": 118069,
+  "sha256": "8a87a1c6daaaaf0374eafdbbe42be4a4277146c47a847099f00bc2815e259aa8"
+ },
+ {
+  "code": "02B",
+  "kind": "answer-key",
+  "source": "02B - Using Recursive Formulas HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/02b-using-recursive-formulas-answer-key.pdf",
+  "bytes": 112973,
+  "sha256": "9b56abe045a2e0f3b5f8710756afc6cec7ff154337e9bd79e32ea06fc4a4d093"
+ },
+ {
+  "code": "02C",
+  "kind": "assignment",
+  "source": "02C - Recursive Formulas from Tables and Contexts HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/02c-recursive-formulas-from-tables-and-contexts.pdf",
+  "bytes": 145067,
+  "sha256": "9543c59dffebdd211112c2a446767ea303cad23ff27b5c36765c5ac533f902af"
+ },
+ {
+  "code": "02C",
+  "kind": "answer-key",
+  "source": "02C - Recursive Formulas from Tables and Contexts HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/02c-recursive-formulas-from-tables-and-contexts-answer-key.pdf",
+  "bytes": 115019,
+  "sha256": "bc0c0d356ed090a025b53be587d3db7aba0753bd3c3fdf9626692a423ae11aad"
+ },
+ {
+  "code": "02D",
+  "kind": "assignment",
+  "source": "02D - Section B Comprehensive Review HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/02d-section-b-comprehensive-review.pdf",
+  "bytes": 175497,
+  "sha256": "c7bff6c843b0aa2025e6d084e5cd782cded4ffdba6bcfd9e6a5f0e1a445ced69"
+ },
+ {
+  "code": "02D",
+  "kind": "answer-key",
+  "source": "02D - Section B Comprehensive Review HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/02d-section-b-comprehensive-review-answer-key.pdf",
+  "bytes": 148602,
+  "sha256": "475146038b8842897e2e9f140f86e2631789a12f99d26f0993c1b4ae6f7a18d3"
+ },
+ {
+  "code": "02E",
+  "kind": "assignment",
+  "source": "02E - Section B Comprehensive Review HW - Mixed.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/02e-section-b-comprehensive-review-mixed.pdf",
+  "bytes": 176339,
+  "sha256": "a026dc927bd2a826d622d91a51e1608c77448c84796a9a866b33a33ac14b3e37"
+ },
+ {
+  "code": "02E",
+  "kind": "answer-key",
+  "source": "02E - Section B Comprehensive Review HW - Mixed - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/02e-section-b-comprehensive-review-mixed-answer-key.pdf",
+  "bytes": 147874,
+  "sha256": "365f0d7516a15856f20968bec2aad25ee286f55022e9744d5ea9b3791c93427c"
+ },
+ {
+  "code": "03A",
+  "kind": "assignment",
+  "source": "03A - Writing Explicit Formulas HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/03a-writing-explicit-formulas.pdf",
+  "bytes": 116172,
+  "sha256": "4c4cb132dad7be1f2e151a8d39979719ccb8c63a9084bf9fcf34454bd76b98d2"
+ },
+ {
+  "code": "03A",
+  "kind": "answer-key",
+  "source": "03A - Writing Explicit Formulas HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/03a-writing-explicit-formulas-answer-key.pdf",
+  "bytes": 116971,
+  "sha256": "b4d44d504752b26c1a0da83a4d86e30d9b767cb38a3d940448cdf17fa45fa0e3"
+ },
+ {
+  "code": "03B",
+  "kind": "assignment",
+  "source": "03B - Converting Recursive to Explicit HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/03b-converting-recursive-to-explicit.pdf",
+  "bytes": 118345,
+  "sha256": "4c8c744b1e00455009e998006d2815af4dfc66aa3aa908055aec205a2fef2145"
+ },
+ {
+  "code": "03B",
+  "kind": "answer-key",
+  "source": "03B - Converting Recursive to Explicit HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/03b-converting-recursive-to-explicit-answer-key.pdf",
+  "bytes": 115785,
+  "sha256": "007535e5424100a1116301e28ee4bde2f8ab5f1657bc07f978903e037a1cb4b6"
+ },
+ {
+  "code": "03C",
+  "kind": "assignment",
+  "source": "03C - Converting Explicit to Recursive HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/03c-converting-explicit-to-recursive.pdf",
+  "bytes": 117531,
+  "sha256": "be91e61439681c955e90f795766d39964614b245e2d54f579288a65ca61d39a6"
+ },
+ {
+  "code": "03C",
+  "kind": "answer-key",
+  "source": "03C - Converting Explicit to Recursive HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/03c-converting-explicit-to-recursive-answer-key.pdf",
+  "bytes": 117217,
+  "sha256": "2a85e78776e48a3b057875b2be12d31175b223bc601dcfe8b145e3344c9e5f28"
+ },
+ {
+  "code": "03D",
+  "kind": "assignment",
+  "source": "03D - Explicit Formulas from Tables and Terms HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/03d-explicit-formulas-from-tables-and-terms.pdf",
+  "bytes": 143792,
+  "sha256": "424c315fc35b42b2be94b1033db96fa85af41d4abc0922d7bc2cd57641f2dc7f"
+ },
+ {
+  "code": "03D",
+  "kind": "answer-key",
+  "source": "03D - Explicit Formulas from Tables and Terms HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/03d-explicit-formulas-from-tables-and-terms-answer-key.pdf",
+  "bytes": 117086,
+  "sha256": "e9604ab0991275df0af95334a9cbdd50f264ae80d840bce7ce4b9ec17fd723b3"
+ },
+ {
+  "code": "03E",
+  "kind": "assignment",
+  "source": "03E - Exponential Growth and Decay Models HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/03e-exponential-growth-and-decay-models.pdf",
+  "bytes": 136276,
+  "sha256": "559b13d0b4d86495e37419a99afc79ec3a797ef2ed541aea68a543ed87ad505d"
+ },
+ {
+  "code": "03E",
+  "kind": "answer-key",
+  "source": "03E - Exponential Growth and Decay Models HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/03e-exponential-growth-and-decay-models-answer-key.pdf",
+  "bytes": 124444,
+  "sha256": "1a4f188422f6d72f73a53fdd216f569a7dde3e8f3cddd699431a62625837fb8f"
+ },
+ {
+  "code": "03F",
+  "kind": "assignment",
+  "source": "03F - Writing Exponential Equations from y-Intercept and Common Ratio HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/03f-writing-exponential-equations-from-y-intercept-and-common-ratio.pdf",
+  "bytes": 128497,
+  "sha256": "2021ea37047a94805a4d4476e89b7c8a6a2eb2b12b363d819185b7711a30121c"
+ },
+ {
+  "code": "03F",
+  "kind": "answer-key",
+  "source": "03F - Writing Exponential Equations from y-Intercept and Common Ratio HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/03f-writing-exponential-equations-from-y-intercept-and-common-ratio-answer-key.pdf",
+  "bytes": 122485,
+  "sha256": "d3d0a8207b3be45b0ac28dcb8d6f62383296a6785c6f655ee3b88f1ef2c5b4fb"
+ },
+ {
+  "code": "03G",
+  "kind": "assignment",
+  "source": "03G - Writing Equivalent Explicit Exponential Equations from a Point HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/03g-writing-equivalent-explicit-exponential-equations-from-a-point.pdf",
+  "bytes": 123777,
+  "sha256": "65f8e9a1467ac92455ec2f28b379f049ee7c3d225f1681eec32b4a9fab71a4cc"
+ },
+ {
+  "code": "03G",
+  "kind": "answer-key",
+  "source": "03G - Writing Equivalent Explicit Exponential Equations from a Point HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/03g-writing-equivalent-explicit-exponential-equations-from-a-point-answer-key.pdf",
+  "bytes": 133292,
+  "sha256": "aca6a1280cf78fd1d21f62341c149676c17e763aacdeaaac0269dd8d70520bda"
+ },
+ {
+  "code": "03H",
+  "kind": "assignment",
+  "source": "03H - Section C Comprehensive Review HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/03h-section-c-comprehensive-review.pdf",
+  "bytes": 179558,
+  "sha256": "a71ca2962a8d104324f9bbe93f0e545f499531707aaa9424539db640a868af4a"
+ },
+ {
+  "code": "03H",
+  "kind": "answer-key",
+  "source": "03H - Section C Comprehensive Review HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/03h-section-c-comprehensive-review-answer-key.pdf",
+  "bytes": 186071,
+  "sha256": "5ff669a14918a0afa94e0f56eea5f595feb0cdb29294343aeb2b2a1ce8882187"
+ },
+ {
+  "code": "03I",
+  "kind": "assignment",
+  "source": "03I - Section C Comprehensive Review HW - Mixed.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/03i-section-c-comprehensive-review-mixed.pdf",
+  "bytes": 185418,
+  "sha256": "2497e48d8226c835eec5550f81cf95d13be15b1efcfe02d8bf0d326ae7b7be60"
+ },
+ {
+  "code": "03I",
+  "kind": "answer-key",
+  "source": "03I - Section C Comprehensive Review HW - Mixed - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/03i-section-c-comprehensive-review-mixed-answer-key.pdf",
+  "bytes": 180613,
+  "sha256": "474d44da71f039e1e722b1de0983ffa78af2b41fb7fb7889e31fa227eb9be9f8"
+ },
+ {
+  "code": "04A",
+  "kind": "assignment",
+  "source": "04A - Solving Basic Exponential Equations HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/04a-solving-basic-exponential-equations.pdf",
+  "bytes": 110990,
+  "sha256": "40c322ca398a012591bdfe4ef58a2ce0b299aa4a6efb1b98f7055b203acb50f8"
+ },
+ {
+  "code": "04A",
+  "kind": "answer-key",
+  "source": "04A - Solving Basic Exponential Equations HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/04a-solving-basic-exponential-equations-answer-key.pdf",
+  "bytes": 105386,
+  "sha256": "35fb8fde2af11eb923d330d3a014a0b062928774efa5a4a9e3fb24c13e3904e1"
+ },
+ {
+  "code": "04B",
+  "kind": "assignment",
+  "source": "04B - Solving Exponential Equations with Algebraic Exponents HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/04b-solving-exponential-equations-with-algebraic-exponents.pdf",
+  "bytes": 112969,
+  "sha256": "999f1a5d9561953de4ee3507edfc47bc5b049c543a6e4692aff704723a148374"
+ },
+ {
+  "code": "04B",
+  "kind": "answer-key",
+  "source": "04B - Solving Exponential Equations with Algebraic Exponents HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/04b-solving-exponential-equations-with-algebraic-exponents-answer-key.pdf",
+  "bytes": 105403,
+  "sha256": "c551a4feca7b6a8c5efeafea24f22237c97d13ad92db58e4c97fdebba68455fb"
+ },
+ {
+  "code": "04C",
+  "kind": "assignment",
+  "source": "04C - Solving Exponential Equations with Coefficients HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/04c-solving-exponential-equations-with-coefficients.pdf",
+  "bytes": 112356,
+  "sha256": "3b2684c677971342b74ae2d2cf0870f0341dfcccb04462c7d8e5a9d23bf85283"
+ },
+ {
+  "code": "04C",
+  "kind": "answer-key",
+  "source": "04C - Solving Exponential Equations with Coefficients HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/04c-solving-exponential-equations-with-coefficients-answer-key.pdf",
+  "bytes": 104629,
+  "sha256": "38462b216b0ec1f23aa68444230f83d7783b8505ed6713df5342ff34c688b738"
+ },
+ {
+  "code": "04D",
+  "kind": "assignment",
+  "source": "04D - Section D Comprehensive Review HW.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/04d-section-d-comprehensive-review.pdf",
+  "bytes": 135382,
+  "sha256": "0dd22f2529c65bcd34081586c6d1643af7bc5ec7c1d92917fb0c63a61289a637"
+ },
+ {
+  "code": "04D",
+  "kind": "answer-key",
+  "source": "04D - Section D Comprehensive Review HW - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/04d-section-d-comprehensive-review-answer-key.pdf",
+  "bytes": 135923,
+  "sha256": "3825fd36530085ee85772b73ccb1ec7b1d192a49200b0d0915a0ab6e349f7aca"
+ },
+ {
+  "code": "04E",
+  "kind": "assignment",
+  "source": "04E - Section D Comprehensive Review HW - Mixed.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/04e-section-d-comprehensive-review-mixed.pdf",
+  "bytes": 136150,
+  "sha256": "245d726c058c84ceda6d3bf2352b00c05b0f93f7c5240f7ad2976a6def323ca2"
+ },
+ {
+  "code": "04E",
+  "kind": "answer-key",
+  "source": "04E - Section D Comprehensive Review HW - Mixed - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/04e-section-d-comprehensive-review-mixed-answer-key.pdf",
+  "bytes": 138423,
+  "sha256": "2cb842369eb477c2f740cdbf36850da04e8b3ef341397392c2827383caad8c0d"
+ },
+ {
+  "code": "05A",
+  "kind": "assignment",
+  "source": "05A - Unit 4 Comprehensive Review - Version 1.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/05a-unit-4-comprehensive-review-version-1.pdf",
+  "bytes": 264692,
+  "sha256": "855a7870cb0b4c1f315991e2a295cacca589abac8e2dc43cdd57f8af0c478dbe"
+ },
+ {
+  "code": "05A",
+  "kind": "answer-key",
+  "source": "05A - Unit 4 Comprehensive Review - Version 1 - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/05a-unit-4-comprehensive-review-version-1-answer-key.pdf",
+  "bytes": 226916,
+  "sha256": "df301e61bea328e112764b731ef73737353e5bfb85df00799b2fe3b258df1c5e"
+ },
+ {
+  "code": "05B",
+  "kind": "assignment",
+  "source": "05B - Unit 4 Comprehensive Review - Version 2.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/05b-unit-4-comprehensive-review-version-2.pdf",
+  "bytes": 263266,
+  "sha256": "52cc9cb72de2887e3b01122cc369145ca8f0b83e582a5d811c9b138dc77d0f55"
+ },
+ {
+  "code": "05B",
+  "kind": "answer-key",
+  "source": "05B - Unit 4 Comprehensive Review - Version 2 - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/05b-unit-4-comprehensive-review-version-2-answer-key.pdf",
+  "bytes": 226886,
+  "sha256": "cbc95ce18d0ae2780d7618254089212c9702f024d285348d4bed81fe6e1882d8"
+ },
+ {
+  "code": "05C",
+  "kind": "assignment",
+  "source": "05C - Unit 4 Comprehensive Review - Mixed.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/assignments/05c-unit-4-comprehensive-review-mixed.pdf",
+  "bytes": 255989,
+  "sha256": "ebcbaf37991389f563545f7dfadb12643ecdcae53876ae33a86570e1ca9c1660"
+ },
+ {
+  "code": "05C",
+  "kind": "answer-key",
+  "source": "05C - Unit 4 Comprehensive Review - Mixed - Answer Key.pdf",
+  "published": "im1/unit-4-exponential-functions/resources/answer-keys/05c-unit-4-comprehensive-review-mixed-answer-key.pdf",
+  "bytes": 188355,
+  "sha256": "d70264e609035f354187f50aafa72843174d1792af3bb56eff4a0f9d87a97718"
+ }
+]
