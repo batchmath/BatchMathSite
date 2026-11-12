@@ -1,0 +1,50 @@
+{
+  "ok": true,
+  "htmlPagesAudited": 278,
+  "deferredUnit6HtmlPages": 0,
+  "deferredUnit6VideoPages": [],
+  "videoPages": 90,
+  "standardPages": 84,
+  "collections": {
+    "1": 88,
+    "2": 8,
+    "3": 2,
+    "4": 2,
+    "5": 1
+  },
+  "layoutCollections": {
+    "pair": 4,
+    "large": 77,
+    "gallery": 20
+  },
+  "supportingCollections": 17,
+  "modalPages": [
+    "ap-calculus/unit-2-derivatives/topics/derivatives-of-logarithmic-functions/index.html",
+    "ap-calculus/unit-2-derivatives/topics/derivatives-with-the-power-rule/index.html",
+    "ap-calculus/unit-2-derivatives/topics/exponential-functions/index.html",
+    "ap-calculus/unit-2-derivatives/topics/implicit-differentiation/index.html",
+    "ap-calculus/unit-2-derivatives/topics/logarithmic-differentiation/index.html",
+    "ap-calculus/unit-2-derivatives/topics/the-chain-rule/index.html",
+    "ap-calculus/unit-2-derivatives/topics/the-product-rule/index.html",
+    "ap-calculus/unit-2-derivatives/topics/the-quotient-rule/index.html",
+    "ap-calculus/unit-3-applications-derivative/topics/equations-of-tangent-and-normal-lines/index.html",
+    "ap-calculus/unit-3-applications-derivative/topics/horizontal-and-vertical-tangent-lines-implicitly/index.html",
+    "ap-calculus/unit-3-applications-derivative/topics/increasing-decreasing-intervals-concavity-and-extrema/index.html",
+    "ap-calculus/unit-3-applications-derivative/topics/motion/index.html",
+    "ap-calculus/unit-3-applications-derivative/topics/related-rates/index.html",
+    "ap-calculus/unit-4-integrals/topics/evaluating-definite-integrals-with-a-limit-and-summation/index.html",
+    "ap-calculus/unit-4-integrals/topics/mean-value-theorem-for-integrals/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/area-below-and-between-curves/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/solids-of-revolution/index.html",
+    "ap-calculus/unit-6-applications-integration/topics/volume-by-cross-sections/index.html",
+    "im1/unit-2-algebraic-operations-equations-inequalities/topics/coordinate-system-nine-key-features/index.html",
+    "im1/unit-2-algebraic-operations-equations-inequalities/topics/solving-linear-equations/index.html"
+  ],
+  "pageLoads": 270,
+  "selections": 369,
+  "specializedChecks": 3,
+  "migratedProofChecks": 4,
+  "unit6Checks": 2,
+  "externalPlaybackVerified": false,
+  "errors": []
+}

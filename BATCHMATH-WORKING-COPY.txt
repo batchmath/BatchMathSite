@@ -1,13 +1,9 @@
 BatchMath cumulative working copy
-Current build: 13.0.F / v13.0.F IM1 arithmetic-sequence videos (experimental, not production)
-Archive: bm-v13.0.F.zip
-Root directory: bm-v13.0.F/
-Branch: codex/v13.0f-im1-videos
-Approved foundation: claude/v13.0e-3d-cross-section-toggle at 0604079082f58c3168e52bc009d1330ba1f20c68
-All v13.0.E 3D engines, Transparent / Opaque, Show / Hide Cross Section (Disk / Washer / Shell), rotation, zoom and Reset view are retained.
-All mathematical generators, grading, explanations, MathLive, existing videos and course content are preserved.
-Application, PWA/cache, analytics and Unit 6 build markers are 13.0.F. Other engines retain their actual revision markers.
-Main and the original development branch are unchanged. No deployment or main merge performed.
+Current build: 13.0.G / v13.0.G — 18 IM1 Unit 3 instructional videos
+Development branch: codex/v13.0g-im1-unit3-videos
+Production baseline: d846d75a427b44cda4c7840e0e2c67054b533e43
+Permanent rollback reference: safety/pre-v13.0g-im1-unit3-videos
+All Version 13 3D engines and controls, mathematics, grading, explanations, MathLive and other course content are retained.
+Application, PWA/cache, analytics and Unit 6 build markers are 13.0.G. Historical engine revision markers remain unchanged.
 See LOCAL-TESTING.txt. Run: py -m http.server 8000
-Test ZIP: https://github.com/batchmath/BatchMathSite/releases/download/v13.0.F/bm-v13.0.F.zip
-Report: https://github.com/batchmath/BatchMathSite/blob/codex/v13.0f-im1-videos/docs/v13.0.F-im1-videos.md
+Deployment status and verification: docs/v13.0.G-im1-unit3-videos.md

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 const {videos}=JSON.parse(fs.readFileSync(new URL('./videos.json',import.meta.url)));
 const escape=s=>s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;');
-// Keep the historical static-page builder aware of the five additions without changing other pages.
+// Keep the historical static-page builder aware of the approved Unit 3 additions without changing other pages.
 export function withInstructionalVideo(content,slug){
  const video=videos.find(v=>v.path.endsWith('/'+slug+'/index.html'));if(!video)return content;
  if(content.includes('data-video-id='))throw Error('Do not overwrite an existing video collection');

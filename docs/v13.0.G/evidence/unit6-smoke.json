@@ -1,0 +1,441 @@
+{
+ "server": "python3 -m http.server on port 11800, serving the extracted ZIP",
+ "version": {
+  "version": "13.0.G",
+  "release": "v13.0.G",
+  "architecture": "pwa-foundation",
+  "storageSchema": 1,
+  "serviceWorker": "/sw.js",
+  "analyticsSchema": 1,
+  "engineAnalytics": true,
+  "reproducibleGenerators": true,
+  "releaseQa": true
+ },
+ "pages": [
+  {
+   "viewport": "1366x768",
+   "page": "area-below-and-between-curves/non-calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "input",
+   "problem": "u6-area-sec-true-1nm9afz",
+   "overflow": -15,
+   "errors": 0
+  },
+  {
+   "viewport": "1366x768",
+   "page": "area-below-and-between-curves/calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "u6-integral",
+   "problem": "u6-area-cdir-both-y=0|y=\\ln(x+1)|y=-x+4-wf7o1i",
+   "overflow": -15,
+   "errors": 0
+  },
+  {
+   "viewport": "1366x768",
+   "page": "finding-area-in-terms-of-y/practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "u6-integral",
+   "problem": "u6-area_y-ym-pair_line-x=y^{2}|y=\\frac{x}{2}-2-a561y6",
+   "overflow": -15,
+   "errors": 0
+  },
+  {
+   "viewport": "1366x768",
+   "page": "integrals-on-piecewise-defined-functions/practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "input",
+   "problem": "u6-piecewise-pw3-3-2-6-2-17exlfa",
+   "overflow": -15,
+   "errors": 0
+  },
+  {
+   "viewport": "1366x768",
+   "page": "volume-by-cross-sections/non-calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "u6-integral",
+   "problem": "u6-cross_sections-css-x^{2}+y^{2}=9-x-squares-vvt41h",
+   "overflow": -15,
+   "errors": 0
+  },
+  {
+   "viewport": "1366x768",
+   "page": "volume-by-cross-sections/calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "u6-integral",
+   "problem": "u6-cross_sections-csc-y=0|y=4\\ln(x+1)|y=-x+3-y-isosceles right triangles with one leg across the region-174zstu",
+   "overflow": -15,
+   "errors": 0
+  },
+  {
+   "viewport": "1366x768",
+   "page": "solids-of-revolution/non-calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "u6-integral",
+   "problem": "u6-solids-two-y=-2x + 4|x=0|y=0-y4-x2-1p774nl",
+   "overflow": -15,
+   "errors": 0
+  },
+  {
+   "viewport": "1366x768",
+   "page": "solids-of-revolution/calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "input",
+   "problem": "u6-solids-sc2-y=0|y=2\\ln(x+1)|y=-x+5-x-1-washer-y0-washer-12kr53r",
+   "overflow": -15,
+   "errors": 0
+  },
+  {
+   "viewport": "1366x768",
+   "page": "comprehensive-review/non-calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "input",
+   "problem": "u6-frq-ga-quarter-501-1-5quarter-4131-2seg-23-3seg0-30seg10-3--1--4-3-6-7hhq36",
+   "overflow": -15,
+   "errors": 0
+  },
+  {
+   "viewport": "1366x768",
+   "page": "comprehensive-review/calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "input",
+   "problem": "u6-frq-calc-f(x)=2+\\ln x|g(x)=x^{2}-1-0.050,\\ 1.910|2.783|1.918|73.161-b6bft3",
+   "overflow": -15,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "page": "area-below-and-between-curves/non-calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "input",
+   "problem": "u6-area-sign-x^{2} + x - 2--3-2-1adjosf",
+   "overflow": 0,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "page": "area-below-and-between-curves/calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "input",
+   "problem": "u6-area-c4-4-2.5-cojtju",
+   "overflow": 0,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "page": "finding-area-in-terms-of-y/practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "input",
+   "problem": "u6-area_y-yg-triangle-x=0|x=2\\left(4-y\\right)-cg3kct",
+   "overflow": 0,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "page": "integrals-on-piecewise-defined-functions/practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "input",
+   "problem": "u6-piecewise-pw6-4-3-1ng1bpq",
+   "overflow": 0,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "page": "volume-by-cross-sections/non-calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "u6-expr",
+   "problem": "u6-cross_sections-csb-y=\\sqrt{x}|y=\\frac{x}{2}-x-equilateral triangles with one side across the region-1e0m9oa",
+   "overflow": 0,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "page": "volume-by-cross-sections/calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "u6-integral",
+   "problem": "u6-cross_sections-csc-y=0|y=2\\ln(x+1)|y=-x+3-y-isosceles right triangles with one leg across the region-ky7m2w",
+   "overflow": 0,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "page": "solids-of-revolution/non-calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "input",
+   "problem": "u6-solids-disk-y=-\\frac{2x}{3} + 2|x=0|y=0-x0-1kf0hre",
+   "overflow": 0,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "page": "solids-of-revolution/calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "input",
+   "problem": "u6-solids-sc-y=0|y=3\\ln(x+1)|y=-x+3-y3-shell-1s7pgtn",
+   "overflow": 0,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "page": "comprehensive-review/non-calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "input",
+   "problem": "u6-area_y-ya--y^{2} + 2y-0-2-1of84gt",
+   "overflow": 0,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "page": "comprehensive-review/calculator-practice",
+   "mathlive": 1,
+   "legacyVisible": 0,
+   "oldIntegralBoxes": 0,
+   "firstControl": "input",
+   "problem": "u6-area-cf-cosParabola-y=\\cos x|y=2x^{2}-1psxmrg",
+   "overflow": 0,
+   "errors": 0
+  }
+ ],
+ "setup": [
+  {
+   "viewport": "1366x768",
+   "page": "solids-of-revolution/non-calculator-practice",
+   "kind": "shifted",
+   "problem": "u6-solids-shell-y=3\\sqrt{x}|x=4|y=0-x0-11srynr",
+   "fields": 1,
+   "blankAtStart": true,
+   "integralKeys": true,
+   "modelLinear": "(2pi)*int(0,4,(x*3sqrt(x)),x)",
+   "modelAccepted": true,
+   "value": 241.2743158040861,
+   "impostor": "2\\pi\\int_{0}^{4}\\left(x3\\sqrt{x}+x-\\frac{0+4}{2}\\right)\\,dx",
+   "impostorLinear": "(2pi)*int(0,4,(x*3sqrt(x)+x-(0+4)/(2)),x)",
+   "impostorValue": 241.27431580408552,
+   "sameValue": true,
+   "reachedAnswer": "(2pi)*int(0,4,(x*3sqrt(x)+x-(0+4)/(2)),x)",
+   "feedback": "Part A is not correct. Your integral has the right value, but it is not a setup for this region: check the integrand (the boundary difference, radius or height) and the limits. Correct answer: 2⁢𝜋⁢∫4 0𝑥⁢3⁢√𝑥 𝑑𝑥 The region, the axis and",
+   "impostorAccepted": false,
+   "locked": true,
+   "errors": 0
+  },
+  {
+   "viewport": "1366x768",
+   "page": "area-below-and-between-curves/non-calculator-practice",
+   "kind": "shifted",
+   "problem": "u6-area-dir-x-y=3\\sqrt{x}|x=4|y=0-1-1sqzxb3",
+   "fields": 1,
+   "blankAtStart": true,
+   "integralKeys": true,
+   "modelLinear": "int(0,4,(3sqrt(x)),x)",
+   "modelAccepted": true,
+   "value": 15.99999229815063,
+   "impostor": "\\int_{0}^{4}\\left(3\\sqrt{x}+x-\\frac{0+4}{2}\\right)\\,dx",
+   "impostorLinear": "int(0,4,(3sqrt(x)+x-(0+4)/(2)),x)",
+   "impostorValue": 15.999992298150625,
+   "sameValue": true,
+   "reachedAnswer": "int(0,4,(3sqrt(x)+x-(0+4)/(2)),x)",
+   "feedback": "Not correct. Your integral has the right value, but it is not a setup for this region: check the integrand (the boundary difference, radius or height) and the limits. Correct answer: ∫4 03⁢√𝑥 𝑑𝑥 The region. 1 2 3 4 1 2 3 4 5 6 𝑦 =3⁢√𝑥 ",
+   "impostorAccepted": false,
+   "locked": true,
+   "errors": 0
+  },
+  {
+   "viewport": "1366x768",
+   "page": "solids-of-revolution/calculator-practice",
+   "kind": "constant",
+   "problem": "u6-solids-sc-y=\\cos x|y=x^{2}-x2-shell-omz0xl",
+   "fields": 1,
+   "blankAtStart": true,
+   "integralKeys": true,
+   "modelLinear": "(2pi)*int(-0.824,0.824,((2-x)(cos(x)-x^2)),x)",
+   "modelAccepted": true,
+   "value": 13.75707905314551,
+   "impostor": "\\int_{-0.824}^{0.824}8.3477421439\\,dx",
+   "impostorLinear": "int(-0.824,0.824,8.3477421439,x)",
+   "impostorValue": 13.757079053146795,
+   "sameValue": true,
+   "reachedAnswer": "int(-0.824,0.824,8.3477421439,x)",
+   "feedback": "Part A is not correct. Write the integral itself: the integrand should be an expression in x or y, not a single number. Correct answer: 2⁢𝜋⁢∫0.824 −0.824(2−𝑥)⁢(cos⁡𝑥−𝑥2) 𝑑𝑥 Region R and the axis of rotation. Compare it with the region",
+   "impostorAccepted": false,
+   "locked": true,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "page": "solids-of-revolution/non-calculator-practice",
+   "kind": "shifted",
+   "problem": "u6-solids-wash-y=-x^{2} + 4|y=0-y-2-2-tm0981",
+   "fields": 1,
+   "blankAtStart": true,
+   "integralKeys": true,
+   "modelLinear": "(pi)*int(0,2,((6-x^2)^2-2^2),x)",
+   "modelAccepted": true,
+   "value": 120.63715789784852,
+   "impostor": "\\pi\\int_{0}^{2}\\left(\\left(6 - x^{2}\\right)^{2}-2^{2}+x-\\frac{0+2}{2}\\right)\\,dx",
+   "impostorLinear": "(pi)*int(0,2,((6-x^2)^2-2^2+x-(0+2)/(2)),x)",
+   "impostorValue": 120.6371578978485,
+   "sameValue": true,
+   "reachedAnswer": "(pi)*int(0,2,((6-x^2)^2-2^2+x-(0+2)/(2)),x)",
+   "feedback": "Part A is not correct. Your integral has the right value, but it is not a setup for this region: check the integrand (the boundary difference, radius or height) and the limits. Correct answer: 𝜋⁢∫2 0((6−𝑥2)2−22) 𝑑𝑥 The region, the axis ",
+   "impostorAccepted": false,
+   "locked": true,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "page": "area-below-and-between-curves/non-calculator-practice",
+   "kind": "shifted",
+   "problem": "u6-area-enc-line_parabola-y=-2x^{2} - 6x|y=0-2-1qpm02o",
+   "fields": 1,
+   "blankAtStart": true,
+   "integralKeys": true,
+   "modelLinear": "int(-3,0,(-2x^2-6x),x)",
+   "modelAccepted": true,
+   "value": 9.000000000000002,
+   "impostor": "\\int_{-3}^{0}\\left(-2x^{2} - 6x+x-\\frac{-3+0}{2}\\right)\\,dx",
+   "impostorLinear": "int(-3,0,(-2x^2-6x+x-(-3+0)/(2)),x)",
+   "impostorValue": 9.00000000000002,
+   "sameValue": true,
+   "reachedAnswer": "int(-3,0,(-2x^2-6x+x-(-3+0)/(2)),x)",
+   "feedback": "Part A is not correct. Your integral has the right value, but it is not a setup for this region: check the integrand (the boundary difference, radius or height) and the limits. Correct answer: ∫0 −3(−2⁢𝑥2−6⁢𝑥) 𝑑𝑥 Find where the curves m",
+   "impostorAccepted": false,
+   "locked": true,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "page": "solids-of-revolution/calculator-practice",
+   "kind": "constant",
+   "problem": "u6-solids-sc-f(x)=2+\\ln x|g(x)=x^{2}-1-y-3-washer-h7ce4n",
+   "fields": 1,
+   "blankAtStart": true,
+   "integralKeys": true,
+   "modelLinear": "(pi)*int(0.050,1.910,((2+ln(x)+3)^2-(x^2-1+3)^2),x)",
+   "modelAccepted": true,
+   "value": 66.73648283667079,
+   "impostor": "\\int_{0.050}^{1.910}35.8798294821\\,dx",
+   "impostorLinear": "int(0.050,1.910,35.8798294821,x)",
+   "impostorValue": 66.736482836706,
+   "sameValue": true,
+   "reachedAnswer": "int(0.050,1.910,35.8798294821,x)",
+   "feedback": "Part A is not correct. Write the integral itself: the integrand should be an expression in x or y, not a single number. Correct answer: 𝜋⁢∫1.910 0.050((2+ln⁡𝑥+3)2−(𝑥2−1+3)2) 𝑑𝑥 Region R and the axis of rotation. Compare it with the reg",
+   "impostorAccepted": false,
+   "locked": true,
+   "errors": 0
+  }
+ ],
+ "cubic": [
+  {
+   "viewport": "1366x768",
+   "found": true,
+   "id": "u6-area-enc-cubic_lobes-y=x^{3} - 4x + 3|y=-x^{3} + 4x + 3-2-x9z62",
+   "figures": [
+    {
+     "viewBox": [
+      360,
+      420
+     ],
+     "shadedPoints": 244,
+     "margin": 0.060238095238095236,
+     "shadingInsideRenderedSvg": true,
+     "figureInsideQuestionBox": true,
+     "ticksZero": 0
+    }
+   ],
+   "overflow": -15,
+   "errors": 0
+  },
+  {
+   "viewport": "390x844",
+   "found": true,
+   "id": "u6-area-enc-cubic_lobes-y=x^{3} - 4x + 3|y=-x^{3} + 4x + 3-2-x9z62",
+   "figures": [
+    {
+     "viewBox": [
+      360,
+      420
+     ],
+     "shadedPoints": 244,
+     "margin": 0.060238095238095236,
+     "shadingInsideRenderedSvg": true,
+     "figureInsideQuestionBox": true,
+     "ticksZero": 0
+    }
+   ],
+   "overflow": 0,
+   "errors": 0
+  }
+ ],
+ "fallback": [
+  {
+   "viewport": "1366x768",
+   "mode": "legacy",
+   "mathlive": 0,
+   "legacyVisible": 1,
+   "errors": 0,
+   "expectedRuntimeErrors": 0
+  },
+  {
+   "viewport": "1366x768",
+   "mode": "no-runtime",
+   "mathlive": 0,
+   "legacyVisible": 1,
+   "errors": 0,
+   "expectedRuntimeErrors": 0
+  },
+  {
+   "viewport": "390x844",
+   "mode": "legacy",
+   "mathlive": 0,
+   "legacyVisible": 1,
+   "errors": 0,
+   "expectedRuntimeErrors": 0
+  },
+  {
+   "viewport": "390x844",
+   "mode": "no-runtime",
+   "mathlive": 0,
+   "legacyVisible": 1,
+   "errors": 0,
+   "expectedRuntimeErrors": 0
+  }
+ ],
+ "failures": []
+}

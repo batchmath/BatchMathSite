@@ -1,0 +1,123 @@
+{
+  "baseline": "d846d75a427b44cda4c7840e0e2c67054b533e43",
+  "passed": true,
+  "originalFiveUnchanged": true,
+  "exactApprovedAdditions": 13,
+  "sections": {
+    "a": 6,
+    "b": 5,
+    "c": 4,
+    "d": 3
+  },
+  "generatedPagesChecked": 51,
+  "results": [
+    {
+      "part": "A",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/identifying-arithmetic-sequences/index.html",
+      "id": "j5XM6_T7CA4",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "B",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/common-difference-next-terms/index.html",
+      "id": "s0m0DmnDaBc",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "C",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/explicit-formulas-arithmetic-sequences/index.html",
+      "id": "ovVDNHoGAss",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "D",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-a-specific-term/index.html",
+      "id": "UiY9RnfNnIg",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "E",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/finding-the-term-number/index.html",
+      "id": "YSDRVZcl-RE",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "01F",
+      "path": "im1/unit-3-linear-equation/topics/a-arithmetic-sequences-and-arithmetic-progression-models/arithmetic-sequence-word-problems/index.html",
+      "id": "NDB4sAt_2yg",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "02A",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/evaluating-functions/index.html",
+      "id": "2Y3QrZchgOQ",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "02B",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/solving-function-equations/index.html",
+      "id": "99JsVdn8CCM",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "02C",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-two-points/index.html",
+      "id": "mpP1jd8FLHQ",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "02D",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/collinearity-and-slope/index.html",
+      "id": "JUJkW71VNAQ",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "02E",
+      "path": "im1/unit-3-linear-equation/topics/b-functions-function-notation-and-slope/slope-from-graphs/index.html",
+      "id": "qtpP9QC56iA",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "03A",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/slope-intercept-form/index.html",
+      "id": "Y9OLXmbrqfE",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "03B",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/writing-equations-of-lines/index.html",
+      "id": "6nwoMANQHeU",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "03C",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/index.html",
+      "id": "PNh7PJ0hSQI",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "03D",
+      "path": "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/linear-function-word-problems/index.html",
+      "id": "S_yk7sK82JE",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "04A",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-formulas-from-sequences/index.html",
+      "id": "88m0VeMXMWw",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "04B",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/recursive-to-explicit-formulas/index.html",
+      "id": "nbvAHuKuonk",
+      "sourceAndBuilderMatch": true
+    },
+    {
+      "part": "04C",
+      "path": "im1/unit-3-linear-equation/topics/d-recursive-formulas-for-linear-relationships/common-difference-recursive-formulas/index.html",
+      "id": "9h4sADgV21k",
+      "sourceAndBuilderMatch": true
+    }
+  ]
+}

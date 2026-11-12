@@ -1,7 +1,6 @@
-BatchMath v13.0.F — IM1 arithmetic-sequence videos; complete v13.0.E 3D controls retained (experimental, not production)
+BatchMath v13.0.G — complete IM1 Unit 3 video integration; Version 13 3D controls retained
 
-Extract bm-v13.0.F.zip.
-Open a terminal inside the single folder bm-v13.0.F.
+Open a terminal inside the BatchMathSite working copy.
 Run exactly:
 
 py -m http.server 8000
