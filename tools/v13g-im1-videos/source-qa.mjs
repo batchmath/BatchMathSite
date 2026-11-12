@@ -4,6 +4,10 @@ import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {withInstructionalVideo} from '../v13-im1-videos/markup.mjs';
+// The Unit 3 builder takes its labels from the IM1 navigation standard; section and part labels were standardized after
+// v13.0.G (1A, 1B, ...), so pages are compared with only those navigation labels blanked (navigationMask).
+import * as im1Nav from '../im1-nav/structure.mjs';
+const {navigationMask}=im1Nav;
 const baseline='d846d75a427b44cda4c7840e0e2c67054b533e43';
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'});
 const manifest=JSON.parse(fs.readFileSync('tools/v13-im1-videos/videos.json'));
@@ -14,7 +18,7 @@ assert.deepEqual(manifest.videos,[...original,...approved]);
 assert.equal(new Set(manifest.videos.map(v=>v.id)).size,18);
 const generated=new Map();
 const builder=fs.readFileSync('tools/build-im1-unit3-pages.mjs','utf8').replace(/^import .*;\n/gm,'');
-vm.runInNewContext(builder,{process:{cwd:()=>process.cwd()},path,fs:{mkdirSync(){},writeFileSync:(p,s)=>generated.set(path.relative(process.cwd(),p),s)},withInstructionalVideo,console:{log(){}}});
+vm.runInNewContext(builder,{...im1Nav,topicPager:im1Nav.pager,process:{cwd:()=>process.cwd()},path,fs:{mkdirSync(){},writeFileSync:(p,s)=>generated.set(path.relative(process.cwd(),p),s)},withInstructionalVideo,console:{log(){}}});
 const section=s=>s.match(/<section class="video-section lecture-section im1-video-section".*?<\/section>/s)?.[0];
 const results=[];
 for(const v of manifest.videos){
@@ -25,8 +29,8 @@ for(const v of manifest.videos){
  assert.ok(!/data-video-src|<iframe|[?&](?:start|t|end)=/.test(section(s)));
  assert.equal(section(generated.get(v.path)),section(s),'historical builder must reproduce exact video block');
  assert.ok(generated.get(v.path).includes('/assets/instructional-videos.js'));
- if(original.some(o=>o.path===v.path))assert.equal(s,old,'original five pages must remain byte-identical');
- else assert.equal(s,withInstructionalVideo(old,slug),'only approved addition allowed');
+ if(original.some(o=>o.path===v.path))assert.equal(navigationMask(s),navigationMask(old),'original five pages must remain byte-identical apart from standardized navigation labels');
+ else assert.equal(navigationMask(s),navigationMask(withInstructionalVideo(old,slug)),'only approved addition allowed (apart from standardized navigation labels)');
  results.push({part:v.part,path:v.path,id:v.id,sourceAndBuilderMatch:true});
 }
 for(const [p,s]of generated)if(p.endsWith('/index.html')&&!manifest.videos.some(v=>v.path===p))assert.ok(!section(s),'no video on reviews or practice pages');

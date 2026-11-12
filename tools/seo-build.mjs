@@ -2,6 +2,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+// Integrated Math 1 sections, part codes and breadcrumb labels come from the IM1 navigation standard.
+import { UNITS as IM1_UNITS, pageInfo as im1PageInfo } from "./im1-nav/structure.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "https://batchmath.net";
@@ -82,9 +84,7 @@ const titleOverrides = new Map(Object.entries({
   "ap-calculus/unit-4-integrals/topics/u-substitution-integrals/practice/index.html":
     "U-Substitution Integrals Practice | AP Calculus AB | BatchMath",
   "im1/unit-2-algebraic-operations-equations-inequalities/index.html":
-    "Unit 2: Algebra, Equations & Inequalities | Integrated Math 1 | BatchMath",
-  "im1/unit-3-linear-equation/topics/c-slope-intercept-form-and-point-slope-form/converting-point-slope-to-slope-intercept/practice/index.html":
-    "Point-Slope to Slope-Intercept Practice | Integrated Math 1 | BatchMath"
+    "Unit 2: Algebra, Equations & Inequalities | Integrated Math 1 | BatchMath"
 }));
 
 function courseFor(rel) {
@@ -96,11 +96,13 @@ function courseFor(rel) {
 function isPractice(rel, html) {
   return /(?:^|\/)(?:[^/]*practice|continuity-parameters)\/index\.html$/.test(rel);
 }
-function practiceSubject(html) {
+function practiceSubject(html, rel) {
+  const im1 = im1PageInfo(rel);
+  if (im1 && im1.subject) return im1.subject;
   return cleanLabel(h1From(html)).replace(/\s+Practice$/i, "").replace(/\s+/g, " ").trim() || "math";
 }
 function improveDescription(rel, html, description) {
-  const subject = practiceSubject(html);
+  const subject = practiceSubject(html, rel);
   if (rel.startsWith("im1/unit-3-linear-equation/") && isPractice(rel, html)) {
     let section = "Unit 3";
     if (rel.includes("/a-arithmetic-sequences-")) section = "Unit 3 arithmetic sequences";
@@ -115,7 +117,7 @@ function improveDescription(rel, html, description) {
   return description;
 }
 function contextSentence(rel, html) {
-  const subject = practiceSubject(html);
+  const subject = practiceSubject(html, rel);
   const course = courseFor(rel);
   if (/comprehensive review/i.test(subject)) {
     return "Use this interactive " + course + " review to practice skills from across the unit with immediate answer checking.";
@@ -233,27 +235,13 @@ function breadcrumbMarkup(crumbs) {
 }
 function cleanIm1Navigation(rel, html) {
   if (rel === "im1/index.html") {
+    const units = IM1_UNITS.map(unit => ({ href: unit.dir.replace(/^im1\//, "") + "/", name: escapeHtml(unit.name) }));
     const replacement =
-      '<div class="bm-context-bar"><strong>Available now:</strong><span>Units 1–4</span></div>' +
+      '<div class="bm-context-bar"><strong>Available now:</strong><span>Units 1–' + units.length + '</span></div>' +
       '<div class="unit-nav"><label for="unit-select">Jump to unit:</label><select id="unit-select" class="unit-select">' +
-      '<option value="">Select a unit</option><option value="unit-1-review/">Unit 1 - Review</option>' +
-      '<option value="unit-2-algebraic-operations-equations-inequalities/">Unit 2 - Algebraic Operations, Equations, and Inequalities</option>' +
-      '<option value="unit-3-linear-equation/">Unit 3 - Linear</option>' +
-      '<option value="unit-4-exponential-functions/">Unit 4 - Exponential Functions</option></select></div>' +
-      '<div class="unit-grid"><a class="card" href="unit-1-review/">Unit 1 - Review</a>' +
-      '<a class="card" href="unit-2-algebraic-operations-equations-inequalities/">Unit 2 - Algebraic Operations, Equations, and Inequalities</a>' +
-      '<a class="card" href="unit-3-linear-equation/">Unit 3 - Linear</a>' +
-      '<a class="card" href="unit-4-exponential-functions/">Unit 4 - Exponential Functions</a></div>';
+      '<option value="">Select a unit</option>' + units.map(unit => '<option value="' + unit.href + '">' + unit.name + "</option>").join("") + "</select></div>" +
+      '<div class="unit-grid">' + units.map(unit => '<a class="card" href="' + unit.href + '">' + unit.name + "</a>").join("") + "</div>";
     html = html.replace(/<div class="bm-context-bar">[\s\S]*?<\/div><div class="unit-nav">[\s\S]*?<\/div><div class="unit-grid">[\s\S]*?<\/div>(?=<\/main>)/, replacement);
-  }
-  if (rel === "im1/unit-1-review/index.html") {
-    const replacement =
-      '<div class="unit-nav"><label for="unit-select">Jump to unit:</label><select class="unit-select" id="unit-select">' +
-      '<option selected="" value="../unit-1-review/">Unit 1 - Review</option>' +
-      '<option value="../unit-2-algebraic-operations-equations-inequalities/">Unit 2 - Algebraic Operations, Equations, and Inequalities</option>' +
-      '<option value="../unit-3-linear-equation/">Unit 3 - Linear</option>' +
-      '<option value="../unit-4-exponential-functions/">Unit 4 - Exponential Functions</option></select></div>';
-    html = html.replace(/<div class="unit-nav"><label for="unit-select">Jump to unit:<\/label><select[\s\S]*?<\/select><\/div>/, replacement);
   }
   if (rel === "index.html") {
     html = html.replace(
@@ -288,6 +276,8 @@ const initial = new Map(publicFiles.map(file => {
 function crumbsFor(file) {
   const rel = relFor(file);
   if (rel === "index.html") return [];
+  const im1 = im1PageInfo(rel);
+  if (im1) return im1.crumbs;
   const crumbs = [{ name: "Home", route: "/" }];
   const dir = path.posix.dirname(rel);
   const pieces = dir === "." ? [] : dir.split("/");
