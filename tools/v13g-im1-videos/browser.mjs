@@ -11,6 +11,9 @@ try{
  for(const width of [1366,768,390])for(const video of videos){
   const context=await b.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390,serviceWorkers:'block'}),page=await context.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
+  page.on('console',m=>{if(m.type()==='error'&&!/Failed to load resource: net::(?:ERR_FAILED|ERR_BLOCKED_BY_CLIENT)/.test(m.text()))errors.push('console: '+m.text());});
+  page.on('requestfailed',r=>{if(new URL(r.url()).origin===origin)errors.push('local request failed: '+r.url());});
+  page.on('response',r=>{if(new URL(r.url()).origin===origin&&r.status()>=400)errors.push('local HTTP '+r.status()+': '+r.url());});
   await context.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin===origin)return r.continue();if(u.hostname.includes('youtube'))return r.fulfill({contentType:'text/html',body:'<title>Simulated video transport</title><button>Player</button>'});if(u.hostname==='i.ytimg.com')return r.fulfill({contentType:'image/svg+xml',body:'<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360"/>'});return r.abort();});
   const row={part:video.part,path:video.path,width,video:video.id};
   try{

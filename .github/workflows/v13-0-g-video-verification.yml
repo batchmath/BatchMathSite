@@ -8,7 +8,7 @@ on:
       - 'tools/v13-im1-videos/**'
       - '.github/workflows/v13-0-g-video-verification.yml'
   push:
-    branches: [main]
+    branches: [main, codex/v13.0g-im1-unit3-videos]
     paths:
       - 'im1/unit-3-linear-equation/**'
       - 'tools/v13g-im1-videos/**'
