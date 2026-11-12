@@ -1,0 +1,13 @@
+{
+  "productionBaseline": "d846d75a427b44cda4c7840e0e2c67054b533e43",
+  "productionMerge": "66af306ffc2f8133910bcd874605fafaf8e3387a",
+  "rollbackBranch": "safety/pre-v13.0g-im1-unit3-videos",
+  "rollbackSha": "d846d75a427b44cda4c7840e0e2c67054b533e43",
+  "allOtherOriginalBranchesUnchanged": true,
+  "originalBranchesOtherThanMain": 38,
+  "allOriginalTagsUnchanged": true,
+  "originalTags": 25,
+  "allOriginalReleasesUnchanged": true,
+  "originalReleases": 25,
+  "noExistingReleaseOrZipReplaced": true
+}

@@ -1,0 +1,30 @@
+{
+  "mode": "post-deployment",
+  "baseline": "d846d75a427b44cda4c7840e0e2c67054b533e43",
+  "externalPlaybackVerified": false,
+  "metadata": [],
+  "checks": [
+    "All 18 live lesson pages and all changed runtime/cache assets match tested source byte-for-byte",
+    "HTTP 200: /",
+    "HTTP 200: /im1/",
+    "HTTP 200: /ap-calculus/",
+    "HTTP 200: /calculus-prep/",
+    "HTTP 200: /assets/unit6-3d/vendor/three/three.module.min.mjs",
+    "HTTP 200: /assets/mathlive/vendor/mathlive/mathlive.min.mjs"
+  ],
+  "passed": true,
+  "cachedContext": {
+    "initialVersion": "13.0.G",
+    "initialController": true,
+    "warmedLessonPages": 18,
+    "finalCacheNames": [
+      "batchmath-shell-13.0.G",
+      "batchmath-mathjax-13.0.G",
+      "batchmath-runtime-13.0.G"
+    ],
+    "finalVersion": "13.0.G",
+    "registration": true,
+    "passed": true,
+    "previouslyF": false
+  }
+}

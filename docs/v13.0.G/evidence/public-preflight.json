@@ -1,0 +1,147 @@
+{
+  "mode": "production baseline preflight",
+  "baseline": "d846d75a427b44cda4c7840e0e2c67054b533e43",
+  "externalPlaybackVerified": false,
+  "metadata": [
+    {
+      "part": "01F",
+      "id": "NDB4sAt_2yg",
+      "approvedTitle": "Arithmetic Sequence Word Problems",
+      "status": 200,
+      "publicTitle": "Arithmetic Sequence Word Problems",
+      "author": "BatchMath",
+      "thumbnailStatus": 200,
+      "thumbnailBytes": 12492
+    },
+    {
+      "part": "02A",
+      "id": "2Y3QrZchgOQ",
+      "approvedTitle": "Evaluating Functions",
+      "status": 200,
+      "publicTitle": "Evaluating Functions",
+      "author": "BatchMath",
+      "thumbnailStatus": 200,
+      "thumbnailBytes": 5845
+    },
+    {
+      "part": "02B",
+      "id": "99JsVdn8CCM",
+      "approvedTitle": "Solving Function Equations",
+      "status": 200,
+      "publicTitle": "Solving Function Equations",
+      "author": "BatchMath",
+      "thumbnailStatus": 200,
+      "thumbnailBytes": 7208
+    },
+    {
+      "part": "02C",
+      "id": "mpP1jd8FLHQ",
+      "approvedTitle": "Slope from Two Points",
+      "status": 200,
+      "publicTitle": "Slope from Two Points",
+      "author": "BatchMath",
+      "thumbnailStatus": 200,
+      "thumbnailBytes": 9372
+    },
+    {
+      "part": "02D",
+      "id": "JUJkW71VNAQ",
+      "approvedTitle": "Collinearity",
+      "status": 200,
+      "publicTitle": "Collinearity",
+      "author": "BatchMath",
+      "thumbnailStatus": 200,
+      "thumbnailBytes": 13541
+    },
+    {
+      "part": "02E",
+      "id": "qtpP9QC56iA",
+      "approvedTitle": "Slope from Graphs",
+      "status": 200,
+      "publicTitle": "Slope from Graphs",
+      "author": "BatchMath",
+      "thumbnailStatus": 200,
+      "thumbnailBytes": 9530
+    },
+    {
+      "part": "03A",
+      "id": "Y9OLXmbrqfE",
+      "approvedTitle": "Slope-Intercept Form",
+      "status": 200,
+      "publicTitle": "Slope Intercept Form",
+      "author": "BatchMath",
+      "thumbnailStatus": 200,
+      "thumbnailBytes": 9055
+    },
+    {
+      "part": "03B",
+      "id": "6nwoMANQHeU",
+      "approvedTitle": "Writing Equations of Lines",
+      "status": 200,
+      "publicTitle": "Writing Equations of Lines",
+      "author": "BatchMath",
+      "thumbnailStatus": 200,
+      "thumbnailBytes": 9107
+    },
+    {
+      "part": "03C",
+      "id": "PNh7PJ0hSQI",
+      "approvedTitle": "Converting Point Slope into Slope Intercept Form",
+      "status": 200,
+      "publicTitle": "Converting Point Slope into Slope Intercept",
+      "author": "BatchMath",
+      "thumbnailStatus": 200,
+      "thumbnailBytes": 8938
+    },
+    {
+      "part": "03D",
+      "id": "S_yk7sK82JE",
+      "approvedTitle": "Linear Word Problems",
+      "status": 200,
+      "publicTitle": "Linear Word Problems",
+      "author": "BatchMath",
+      "thumbnailStatus": 200,
+      "thumbnailBytes": 14122
+    },
+    {
+      "part": "04A",
+      "id": "88m0VeMXMWw",
+      "approvedTitle": "Recursive Formulas for Arithmetic Sequences",
+      "status": 200,
+      "publicTitle": "Recursive Formulas for Arithmetic Sequences",
+      "author": "BatchMath",
+      "thumbnailStatus": 200,
+      "thumbnailBytes": 9255
+    },
+    {
+      "part": "04B",
+      "id": "nbvAHuKuonk",
+      "approvedTitle": "Recursive to Explicit Formulas",
+      "status": 200,
+      "publicTitle": "Recursive to Explicit Formulas",
+      "author": "BatchMath",
+      "thumbnailStatus": 200,
+      "thumbnailBytes": 9616
+    },
+    {
+      "part": "04C",
+      "id": "9h4sADgV21k",
+      "approvedTitle": "Finding Common Difference",
+      "status": 200,
+      "publicTitle": "Finding Common Difference",
+      "author": "BatchMath",
+      "thumbnailStatus": 200,
+      "thumbnailBytes": 14894
+    }
+  ],
+  "checks": [
+    "Production F version, original five pages and preserved video/3D/MathLive assets match baseline",
+    "HTTP 200: /",
+    "HTTP 200: /im1/",
+    "HTTP 200: /ap-calculus/",
+    "HTTP 200: /calculus-prep/",
+    "HTTP 200: /assets/unit6-3d/vendor/three/three.module.min.mjs",
+    "HTTP 200: /assets/mathlive/vendor/mathlive/mathlive.min.mjs"
+  ],
+  "passed": true
+}

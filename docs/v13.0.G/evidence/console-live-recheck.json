@@ -1,0 +1,109 @@
+{
+  "runId": 43139737215,
+  "url": "https://github.com/batchmath/BatchMathSite/actions/runs/43139737215",
+  "qaOnlyCommit": "559a95b119ddf8e49a141b5c32bb2608524035ce",
+  "productionCommit": "66af306ffc2f8133910bcd874605fafaf8e3387a",
+  "conclusion": "success",
+  "sourceAndLiveLessonVisits": 54,
+  "thumbnailFallbackChecked": true,
+  "live3dCases": 4,
+  "explicitConsoleErrorsAssertedAbsent": true,
+  "sameOriginRequestAndHttpErrorsAssertedAbsent": true,
+  "websiteFilesUnchangedFromProduction": true,
+  "jobs": [
+    {
+      "id": 130923544120,
+      "name": "verify",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 43139737215,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install unchanged QA dependencies and browser",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Confirm mapping, inert builder reproduction and source preservation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Test all 18 lessons at desktop, tablet and mobile widths",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Verify production baseline and inspect available public video metadata",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7
+        },
+        {
+          "name": "Verify actual Pages content and cached-context update after merge",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Test all 18 actual live players and their assignment/navigation links",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Test actual live 3D controls and MathLive dependency loading",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Upload verification evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        }
+      ]
+    }
+  ]
+}
