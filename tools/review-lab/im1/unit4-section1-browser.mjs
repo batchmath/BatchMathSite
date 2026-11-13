@@ -1,10 +1,12 @@
 // IM1 Unit 4 Section 1 practice engines in Chromium, at 1366x900 and 390x844 (touch): each engine and Practice Type is
-// answered through the page itself (MathLive fields, the keypad's keys, Enter, Yes/No and choice buttons), alternately
+// answered through the page itself (MathLive fields, the keypad's keys, Enter, Yes/No buttons, the typed growth/decay box),
+// alternately
 // correctly and incorrectly. Checks: the right feedback and a worked solution every time; the complete correct response
 // after a wrong answer; the Correct/Attempted counters; equivalent forms (a decimal or an unreduced fraction for a
 // fraction answer) accepted; Enter moves on after a correct typed answer and Next Problem always does; every Practice
 // Type option gives its own kind of problem; the keypad has digits, minus, decimal point and fraction keys; no script
-// errors, failed requests or horizontal overflow.
+// errors, failed requests or horizontal overflow. v13.0.I: 1D is typed only (no choice buttons); the growth/decay answer is a
+// plain text box. All Unit 4 engines, Section 1 included, are also tested by unit4-practice-browser.mjs.
 // Usage: BM_PORT=<port of a server for the site root> node tools/review-lab/im1/unit4-section1-browser.mjs
 import fs from 'node:fs';
 import {browser, context, outDir} from '../lib/browser.mjs';
@@ -51,7 +53,7 @@ for (const [w, h, mob] of [[1366, 900, false], [390, 844, true]]) {
    if (mode && mode !== 'mixed') {await p.selectOption('#practiceMode', mode); await p.waitForTimeout(500); out.modes++;}
    for (let r = 0; r < (mode && mode !== 'mixed' ? 2 : 4); r++, round++) {
     await p.waitForFunction(() => window.__bmProblem && document.querySelector('#question')?.textContent.trim(), null, {timeout: 15000}).catch(() => {});
-    const prob = await p.evaluate(() => {const x = window.__bmProblem; return x && {id: x.id, kind: x.kind, correctIndex: x.correctIndex, choices: x.choices, arithmetic: x.arithmetic, difference: x.difference, fields: x.fields?.map(f => f.answer)};});
+    const prob = await p.evaluate(() => {const x = window.__bmProblem; return x && {id: x.id, kind: x.kind, correctIndex: x.correctIndex, choices: x.choices, arithmetic: x.arithmetic, difference: x.difference, fields: x.fields?.map(f => f.answer), checks: x.fields?.map(f => f.check)};});
     const where = `${label}${mode ? `[${mode}]` : ''} ${prob?.id}`;
     if (!prob) {ok(false, `${where}: no problem`); break;}
     ok(prefix.test(prob.id) && (!MODE_PREFIX[mode] || MODE_PREFIX[mode].test(prob.id)), `${where}: wrong kind of problem for this page or Practice Type`);
@@ -67,14 +69,16 @@ for (const [w, h, mob] of [[1366, 900, false], [390, 844, true]]) {
       ok(await field.count() === 1, `${where}: no common-ratio field after "Yes"`);
       await typeInto(field, variantForm(prob.difference, round)); await p.keyboard.press('Enter'); typed = true;
      }
-    } else if (prob.kind === 'mc') {
-     await p.locator('.choice-btn').nth(right ? prob.correctIndex : (prob.correctIndex + 1) % prob.choices.length).click();
     } else {
-     const fields = p.locator('.bm-u3-answer-field math-field');
-     ok(await fields.count() === prob.fields.length, `${where}: ${await fields.count()} answer fields for ${prob.fields.length} answers`);
+     ok(prob.kind === 'multi' && await p.locator('.choice-btn').count() === 0, `${where}: a ${prob.kind} problem with choice buttons`);
+     const fields = p.locator('.bm-u3-answer-field math-field'), mathCount = prob.checks.filter(c => c !== 'word').length;
+     ok(await fields.count() === mathCount, `${where}: ${await fields.count()} MathLive fields for ${mathCount} answers`);
      const keys = await p.$$eval('button:visible', bs => bs.map(x => x.textContent.trim()));
      ok(['0', '1', '9', '−', '.', 'Check'].every(k => keys.includes(k)) && keys.some(k => /^a\s*b$|a⁄b|ab/.test(k)), `${where}: keypad keys ${keys.join(' ')}`);
-     for (let i = 0; i < prob.fields.length; i++) await typeInto(fields.nth(i), right ? variantForm(prob.fields[i], round + i) : i === 0 ? wrongOf(prob.fields[i]) : prob.fields[i]);
+     for (let i = 0, m = 0; i < prob.fields.length; i++) {
+      if (prob.checks[i] === 'word') {const box = p.locator('.bm-u3-answer-field input.bm-word-input'); await box.fill(''); await box.click(); await p.keyboard.type(right || i > 0 ? prob.fields[i] : (prob.fields[i] === 'growth' ? 'decay' : 'growth')); continue;}
+      await typeInto(fields.nth(m++), right ? variantForm(prob.fields[i], round + i) : i === 0 ? wrongOf(prob.fields[i]) : prob.fields[i]);
+     }
      if (round % 4 === 0) await p.locator('button:visible:text-is("Check")').first().click(); else await p.keyboard.press('Enter');
      typed = true;
     }

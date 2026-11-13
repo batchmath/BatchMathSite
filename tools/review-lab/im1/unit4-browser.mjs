@@ -1,8 +1,9 @@
 // IM1 Unit 4 (Exponential Functions) QA, in Chromium on the real pages, at 1366x900 and 390x844 (touch).
 // Checks: all 27 pages load with one H1, one breadcrumb and no console errors or failed requests, and fit the screen;
-// every document (28) appears exactly once with an assignment and an answer key of the same code; every PDF link (56)
+// every document (23) appears exactly once with an assignment and an answer key of the same code; every PDF link (46)
 // serves application/pdf with the SHA-256 recorded in tools/im1-unit4/pdf-manifest.json (the supplied file, byte for
-// byte); no student notes or video players; a practice button only on the Section 1 topic pages; the topic menu and the
+// byte); no student notes or video players; a practice button on every assignment and review page (v13.0.I) and none
+// on the unit and section pages; no retired mixed review (1F, 2E, 3I, 4E, 05C) anywhere; the topic menu and the
 // previous/next pager work; the IM1 landing page, the Unit 1 unit menu and the home page list Unit 4.
 // Usage: BM_PORT=<port of a server for the repository root> node tools/review-lab/im1/unit4-browser.mjs
 //        (screenshots in $REVIEW_OUT/im1-unit4)
@@ -10,7 +11,7 @@ import fs from 'node:fs';
 import crypto from 'node:crypto';
 import {browser, context, outDir} from '../lib/browser.mjs';
 import {UNITS, partLabel} from '../../im1-nav/structure.mjs';
-// Labels follow the IM1 navigation standard: parts 1A-4E (files keep 01a-...), the unit review's three versions.
+// Labels follow the IM1 navigation standard: parts 1A-4D (files keep 01a-...), the unit review's two versions.
 const U4 = UNITS.find(u => u.n === 4), MENU_OPTIONS = U4.sections.flatMap(s => s.topics.flatMap(t => t.parts)).length + 1;
 const LABEL_OF_DOC = new Map([...U4.sections.flatMap(s => s.topics.flatMap(t => t.parts.map(p => [p.doc, partLabel(p)]))), ...U4.review.documents.map(d => [d.doc, d.title])]);
 // these pages load no MathJax, so open them without the shared helper's MathJax wait
@@ -23,8 +24,9 @@ const shots = outDir('im1-unit4'), b = await browser(), out = {checks: 0, failur
 const ok = (c, m) => {out.checks++; if (!c) out.failures.push(m);};
 const pages = [];
 (function walk(d) {for (const e of fs.readdirSync(d, {withFileTypes: true})) {const p = `${d}/${e.name}`; if (e.isDirectory()) walk(p); else if (e.name === 'index.html' && !/\/practice$/.test(d)) pages.push('/' + p.replace(/index\.html$/, ''));}})('im1/unit-4-exponential-functions');
-// v13.0.H: Section 1 topics have practice engines (tested by unit4-section1-browser.mjs); Sections 2-4 have none yet.
-const SECTION1 = UNIT + 'topics/a-geometric-sequences/', practicePage = route => route.startsWith(SECTION1) && route !== SECTION1;
+// v13.0.I: every assignment page, section review and the unit review has a practice engine (tested by
+// unit4-practice-browser.mjs); the unit page and the four section pages have none.
+const SECTION_PAGES = U4.sections.map(s => `${UNIT}topics/${s.slug}/`), practicePage = route => route.startsWith(UNIT + 'topics/') && !SECTION_PAGES.includes(route);
 pages.sort();
 ok(pages.length === 27, `expected 27 Unit 4 pages, found ${pages.length}`);
 const seenCodes = new Map(), pdfLinks = new Set();
@@ -46,12 +48,13 @@ for (const [w, h, mob] of [[1366, 900, false], [390, 844, true]]) {
    pager: [...document.querySelectorAll('.topic-pager a')].map(a => a.href),
    options: [...document.querySelectorAll('#unit-select option')].map(o => o.value).filter(Boolean),
    overflow: document.documentElement.scrollWidth - window.innerWidth,
-   title: document.title}));
+   title: document.title, mixed: /\bMixed\b|0?1F\b|0?2E\b|0?3I\b|0?4E\b|05C\b/.test(document.querySelector('main').innerText)}));
   ok(s.h1.length === 1, `${vp} ${route}: ${s.h1.length} H1`);
   ok(s.crumbs === 1, `${vp} ${route}: ${s.crumbs} breadcrumbs`);
   ok(s.videos === 0, `${vp} ${route}: video markup present`);
   ok(s.practice === (practicePage(route) ? 1 : 0), `${vp} ${route}: ${s.practice} practice links, expected ${practicePage(route) ? 1 : 0}`);
   ok(s.notes === 0, `${vp} ${route}: notes present`);
+  ok(!s.mixed, `${vp} ${route}: a retired mixed review is mentioned`);
   ok(s.overflow <= 0, `${vp} ${route}: wider than the screen by ${s.overflow}px`);
   ok(s.options.length === MENU_OPTIONS, `${vp} ${route}: topic menu has ${s.options.length} options`);
   for (const it of s.items) {
@@ -79,8 +82,12 @@ for (const [w, h, mob] of [[1366, 900, false], [390, 844, true]]) {
  await p.close(); await c.close();
 }
 // every document once, every PDF the supplied file
-ok(seenCodes.size === 28 && [...seenCodes.values()].every(n => n === 1), `documents shown: ${JSON.stringify([...seenCodes])}`);
-ok(pdfLinks.size === 56, `distinct PDF links: ${pdfLinks.size}`);
+ok(seenCodes.size === 23 && [...seenCodes.values()].every(n => n === 1), `documents shown: ${JSON.stringify([...seenCodes])}`);
+ok(pdfLinks.size === 46, `distinct PDF links: ${pdfLinks.size}`);
+// the retired mixed reviews are not served
+for (const f of ['assignments/01f-section-a-comprehensive-review-mixed.pdf', 'assignments/05c-unit-4-comprehensive-review-mixed.pdf', 'answer-keys/03i-section-c-comprehensive-review-mixed-answer-key.pdf']) {
+ const r = await fetch(`${BASE}${UNIT}resources/${f}`); ok(r.status === 404, `${f}: retired file served (${r.status})`);
+}
 const bySha = new Map(manifest.map(m => ['/' + m.published, m]));
 for (const href of pdfLinks) {
  const res = await fetch(href), bytes = Buffer.from(await res.arrayBuffer()), m = bySha.get(new URL(href).pathname);

@@ -1,7 +1,7 @@
-BatchMath v13.0.H — IM1 Unit 4 (Exponential Functions): all four sections, Section 1 practice engines
+BatchMath v13.0.I — IM1 Unit 4 (Exponential Functions): practice engines for every section and the unit review
 
-Extract bm-v13.0.H.zip.
-Open a terminal inside the single folder bm-v13.0.H.
+Extract bm-v13.0.I.zip.
+Open a terminal inside the single folder bm-v13.0.I.
 Run exactly:
 
 py -m http.server 8000
@@ -10,17 +10,45 @@ py -m http.server 8000
 Open http://localhost:8000/ in your browser.
 Keep the terminal open while testing. Stop the server with Ctrl+C.
 
-NEW IN v13.0.H: Integrated Math 1 > Unit 4 - Exponential Functions.
-- Sections 1-4 each have a section page and a page per assignment or review, with the Assignment PDF and Answer Key PDF
-  (56 PDFs, exactly as supplied). Menus, breadcrumbs and previous/next links use Section 1-4 and part codes 1A-4E.
-- Section 1 (Geometric Sequences) has practice engines; Sections 2-4 get theirs in later releases (no practice button
-  is shown there yet):
-  http://localhost:8000/im1/unit-4-exponential-functions/topics/a-geometric-sequences/geometric-or-not/practice/
-  http://localhost:8000/im1/unit-4-exponential-functions/topics/a-geometric-sequences/common-ratios-and-next-terms/practice/
-  http://localhost:8000/im1/unit-4-exponential-functions/topics/a-geometric-sequences/finding-terms-of-geometric-sequences/practice/
+NEW IN v13.0.I: Integrated Math 1 > Unit 4 - Exponential Functions now has a practice engine on every assignment page,
+each section review and the Unit 4 Comprehensive Review (22 engines). Every answer is typed; there are no
+multiple-choice questions (1A keeps its Yes/No decision).
+- 1D (Geometric Growth and Decay Modeling): the common ratio is typed (1.25 or 5/4); a percent change and the word
+  growth or decay go in separate labeled boxes (for example 20 and Decay).
+- One comprehensive review per section (1E, 2D, 3H, 4D). The mixed reviews (1F, 2E, 3I, 4E) and the mixed unit review
+  (05C) are no longer published; the Unit 4 Comprehensive Review page lists Version 1 and Version 2.
+- Formulas and equations are checked by value, so any equivalent form is accepted
+  (a_n = 4(2)^(n-1) or 2(2)^n; y = (12)(1/4)^(x-1) or (48)(1/4)^x).
+- Section 2 (Recursive Formulas):
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/b-recursive-formulas/writing-recursive-formulas/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/b-recursive-formulas/using-recursive-formulas/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/b-recursive-formulas/recursive-formulas-from-tables-and-contexts/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/b-recursive-formulas/section-b-review/practice/
+- Section 3 (Explicit Formulas and Exponential Models):
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/c-explicit-formulas-and-exponential-models/writing-explicit-formulas/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/c-explicit-formulas-and-exponential-models/converting-recursive-to-explicit/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/c-explicit-formulas-and-exponential-models/converting-explicit-to-recursive/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/c-explicit-formulas-and-exponential-models/explicit-formulas-from-tables-and-terms/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/c-explicit-formulas-and-exponential-models/exponential-growth-and-decay-models/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/c-explicit-formulas-and-exponential-models/writing-exponential-equations-from-y-intercept-and-common-ratio/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/c-explicit-formulas-and-exponential-models/writing-equivalent-explicit-exponential-equations-from-a-point/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/c-explicit-formulas-and-exponential-models/section-c-review/practice/
+- Section 4 (Solving Exponential Equations):
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/d-solving-exponential-equations/solving-basic-exponential-equations/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/d-solving-exponential-equations/solving-exponential-equations-with-algebraic-exponents/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/d-solving-exponential-equations/solving-exponential-equations-with-coefficients/practice/
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/d-solving-exponential-equations/section-d-review/practice/
+- Unit 4 Comprehensive Review (Practice Type: Mixed, or one section):
+  http://localhost:8000/im1/unit-4-exponential-functions/topics/comprehensive-review/practice/
+- Section 1 (unchanged addresses):
   http://localhost:8000/im1/unit-4-exponential-functions/topics/a-geometric-sequences/geometric-growth-and-decay-modeling/practice/
   http://localhost:8000/im1/unit-4-exponential-functions/topics/a-geometric-sequences/section-a-review/practice/
   Add ?bm_seed=<anything> to a practice address to get the same questions again.
+
+FROM v13.0.H: Integrated Math 1 > Unit 4 - Exponential Functions.
+- Sections 1-4 each have a section page and a page per assignment or review, with the Assignment PDF and Answer Key PDF
+  (46 PDFs since v13.0.I, exactly as supplied). Menus, breadcrumbs and previous/next links use Section 1-4 and part
+  codes 1A-4D.
 
 NEW IN v13.0.E: the button is now called "Show 3D Model" (no "Beta"); it becomes "Hide 3D Model" while the model is open.
 Every open 3D model has a new button beside Transparent | Opaque and Reset view that hides or shows the highlighted

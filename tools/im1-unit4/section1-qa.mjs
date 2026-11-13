@@ -2,7 +2,8 @@
 // Each generated problem is re-read from its visible question text and solved independently with exact BigInt
 // fractions; the graded answers must agree. Grading uses the site's own checker (assets/im1-unit3-practice.js, loaded
 // in a sandbox): equivalent forms (3/2 = 1.5 = 6/4, a unicode minus, spaces) are accepted; wrong answers and rounded
-// decimals of repeating values (0.333 for 1/3) are rejected.
+// decimals of repeating values (0.333 for 1/3) are rejected. v13.0.I: 1D asks only typed questions (common ratios, percent
+// changes, and the typed words growth and decay); no Section 1 problem, in any engine or Practice Type, is multiple choice.
 // Usage: node tools/im1-unit4/section1-qa.mjs [problems per engine, default 4000]   (report: qa-results/im1-unit4-section1-qa.json)
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -15,7 +16,7 @@ function rng(seed) {let s = seed >>> 0; return () => {s = (s + 0x6D2B79F5) | 0; 
 // ---- the site's code ----
 const sandbox = {window: {}, Math, console}; sandbox.window.window = sandbox.window;
 sandbox.document = {addEventListener() {}, documentElement: {classList: {add() {}, toggle() {}}}, getElementById: () => null, querySelectorAll: () => []};
-sandbox.window.document = sandbox.document; sandbox.window.BM_UNIT3_PRACTICE = {};
+sandbox.window.document = sandbox.document; sandbox.window.BM_UNIT3_PRACTICE = {registry: 'BatchMathIM1Unit4Generators'};
 vm.createContext(sandbox);
 for (const f of ['assets/im1-unit4-generators.js', 'assets/im1-unit3-practice.js']) vm.runInContext(fs.readFileSync(path.join(ROOT, f), 'utf8'), sandbox, {filename: f});
 const G = sandbox.window.BatchMathIM1Unit4Generators, CHECK = sandbox.window.BatchMathIM1Unit3PracticeQA;
@@ -98,20 +99,42 @@ function factorFrom(text) {
  for (const [re, r] of words) {const w = text.match(re); if (w) return r || Q(+w[1]);}
  throw Error(`no rate in: ${text}`);
 }
+// the typed growth/decay word and percent fields, graded by the engine's own checks
+let wordChecks = 0;
+function gradeWord(field, label) {
+ const ok = raw => CHECK.fieldResult(raw, field, {}).ok === true, other = field.answer === 'growth' ? 'decay' : 'growth';
+ for (const raw of [field.answer, field.answer.toUpperCase(), ` ${field.answer[0].toUpperCase()}${field.answer.slice(1)} `, field.answer === 'growth' ? 'grows' : 'decays']) {wordChecks++; if (!ok(raw)) fail(`${label}: "${raw}" not accepted for ${field.answer}`);}
+ for (const raw of [other, '', 'linear', field.answer.slice(0, 3)]) {wordChecks++; if (ok(raw)) fail(`${label}: "${raw}" accepted for ${field.answer}`);}
+}
+function gradePercent(field, label) {
+ const ok = raw => CHECK.fieldResult(raw, field, {}).ok === true, p = Number(field.answer);
+ for (const raw of [String(p), `${p}%`, ` ${p} % `.replace(' %', '%'), `${p}.0`]) {wordChecks++; if (!ok(raw)) fail(`${label}: percent "${raw}" not accepted for ${p}`);}
+ for (const raw of [String(p / 100), String(100 - p), String(100 + p), String(-p)]) {if (Number(raw) === p) continue; wordChecks++; if (ok(raw)) fail(`${label}: percent "${raw}" accepted for ${p}`);}
+}
 function check1D(p, label) {
  const text = p.q.replace(/\\\(|\\\)/g, '');
- if (p.kind === 'mc') {
-  if (p.choices.length !== 4 || new Set(p.choices).size !== 4) fail(`${label}: four distinct choices expected`);
-  if (p.variant === 'read_factor') {
-   const r = parseNum(text.match(/multiplied by (\d+(?:\.\d+)?)/)[1]), pct = Number((Math.abs(Number(r.n) / Number(r.d) - 1) * 100).toFixed(6));
-   const want = `${Number(r.n) > Number(r.d) ? 'Growth' : 'Decay'} by ${pct}%`;
-   if (p.choices[p.correctIndex] !== want) fail(`${label}: chose ${p.choices[p.correctIndex]}, expected ${want}`);
-  } else if (!qeq(answerOf(p.choices[p.correctIndex]), factorFrom(text))) fail(`${label}: common ratio choice ${p.choices[p.correctIndex]} is wrong for "${text}"`);
-  note('1D', `factor ${p.variant}`); return;
+ if (p.kind !== 'multi') {fail(`${label}: 1D must be typed, found a ${p.kind} problem`); return;}
+ const typeField = p.fields.find(f => f.id === 'type');
+ if (p.variant === 'read_factor') {
+  const r = parseNum(text.match(/multiplied by (\d+(?:\.\d+)?|\\frac\{\d+\}\{\d+\})/)[1]), growth = r.n > r.d, pct = Q((growth ? r.n - r.d : r.d - r.n) * 100n, r.d);
+  const percentField = p.fields.find(f => f.id === 'percent');
+  if (p.fields.length !== 2 || !percentField || !typeField) fail(`${label}: read_factor needs a percent field and a growth/decay field`);
+  else {
+   if (!qeq(answerOf(percentField.answer), pct)) fail(`${label}: percent ${percentField.answer}, expected ${qstr(pct)}`);
+   if (typeField.answer !== (growth ? 'growth' : 'decay')) fail(`${label}: ${typeField.answer}, expected ${growth ? 'growth' : 'decay'}`);
+   gradePercent(percentField, label); gradeWord(typeField, label);
+  }
+  note('1D', 'factor read_factor'); note('1D', `read ${growth ? 'growth' : 'decay'}`); return;
+ }
+ if (p.variant === 'ratio_and_type') {
+  const r = factorFrom(text);
+  if (p.fields.length !== 2 || !typeField || typeField.answer !== (r.n > r.d ? 'growth' : 'decay')) fail(`${label}: growth/decay field is wrong for "${text}"`);
+  else gradeWord(typeField, label);
+  note('1D', 'factor ratio_and_type');
  }
  const r = factorFrom(text), ratioField = p.fields.find(f => f.id === 'ratio'), valueField = p.fields.find(f => f.id === 'value');
  if (ratioField && !qeq(answerOf(ratioField.answer), r)) fail(`${label}: ratio ${ratioField.answer}, expected ${qstr(r)} for "${text}"`);
- if (p.variant === 'state_factor') {if (!ratioField || p.fields.length !== 1) fail(`${label}: one ratio field expected`); note('1D', `factor ${qstr(r)}`);}
+ if (p.variant === 'state_factor' || p.variant === 'ratio_and_type') {if (!ratioField || p.fields.length !== (p.variant === 'state_factor' ? 1 : 2)) fail(`${label}: ratio field expected`); note('1D', `factor ${qstr(r)}`); note('1D', `factor ${p.variant}`);}
  else {
   const start = text.match(/(\d+) (?:cells|organisms|mg|shares|people|grams|points)|\$(\d+)/), a1 = Q(big(start[1] || start[2]));
   const n = +text.match(/(?:end of (?:hour|year|day)|on day|in level) (\d+)\.(?: \(Enter|$)/)?.[1];
@@ -123,7 +146,7 @@ function check1D(p, label) {
   if (!p.explain.includes(`${n} − 1 = ${n - 1} multiplications`)) fail(`${label}: explanation must count the ${n - 1} multiplications`);
   note('1D', `model ${p.variant}`); note('1D', r.d === 1n ? 'model whole ratio' : Number(r.n) > Number(r.d) ? 'model growth percent' : 'model decay');
  }
- p.fields.forEach(f => gradeField(f.answer, label));
+ p.fields.filter(f => !f.custom).forEach(f => gradeField(f.answer, label));
 }
 const CHECKERS = {'geometric-or-not': check1A, 'common-ratios-and-next-terms': check1B, 'finding-terms-of-geometric-sequences': check1C, 'geometric-growth-and-decay-modeling': check1D};
 const prefix = {'u4-01a': 'geometric-or-not', 'u4-01b': 'common-ratios-and-next-terms', 'u4-01c': 'finding-terms-of-geometric-sequences', 'u4-01d': 'geometric-growth-and-decay-modeling'};
@@ -135,11 +158,12 @@ function common(p, label) {
  if (!/bm-u3-worked-steps/.test(p.explain)) fail(`${label}: no worked solution`);
  if ((p.q.match(/\\\(/g) || []).length !== (p.q.match(/\\\)/g) || []).length) fail(`${label}: unbalanced math delimiters`);
  if (p.fields) for (const f of p.fields) if (!f.labelHtml && !f.label) fail(`${label}: unlabeled field`);
+ if (p.kind === 'mc' || (p.choices && !(p.kind === 'arithmetic-identification' && p.choices.join() === 'Yes,No'))) fail(`${label}: multiple choice (only the 1A Yes/No decision is allowed)`);
 }
 
 // ---- run ----
-const engines = G.list();
-if (JSON.stringify(engines) !== JSON.stringify(['geometric-or-not', 'common-ratios-and-next-terms', 'finding-terms-of-geometric-sequences', 'geometric-growth-and-decay-modeling', 'section-a-review'])) fail(`engines: ${engines}`);
+const engines = [...G.sections.a, G.reviews.a];
+if (JSON.stringify(engines) !== JSON.stringify(['geometric-or-not', 'common-ratios-and-next-terms', 'finding-terms-of-geometric-sequences', 'geometric-growth-and-decay-modeling', 'section-a-review']) || !engines.every(e => G.list().includes(e))) fail(`engines: ${engines}`);
 let generated = 0;
 for (const [slug, modes] of [['geometric-or-not', [undefined]], ['common-ratios-and-next-terms', [undefined]], ['finding-terms-of-geometric-sequences', [undefined]],
  ['geometric-growth-and-decay-modeling', [undefined, 'factors', 'models']], ['section-a-review', [undefined, ...Object.keys(CHECKERS)]]]) {
@@ -160,7 +184,7 @@ for (const [slug, modes] of [['geometric-or-not', [undefined]], ['common-ratios-
   if (seen.size < Math.min(N, 300) * .5) fail(`${slug}${mode ? `[${mode}]` : ''}: only ${seen.size} distinct problems in ${N}`);
  }
 }
-// the review mixes the lessons in the proportions of 01E and 01F (6 : 4 : 10 : 4)
+// the review mixes the lessons in the proportions of 01E (6 : 4 : 10 : 4)
 const mix = stats['section-a-review'].routed, want = {'geometric-or-not': 6 / 24, 'common-ratios-and-next-terms': 4 / 24, 'finding-terms-of-geometric-sequences': 10 / 24, 'geometric-growth-and-decay-modeling': 4 / 24};
 for (const [k, share] of Object.entries(want)) if (Math.abs((mix[k] || 0) / N - share) > .04) fail(`review mix: ${k} ${((mix[k] || 0) / N * 100).toFixed(1)}%, expected about ${(share * 100).toFixed(1)}%`);
 // variety the assignments require
@@ -168,14 +192,14 @@ const need = {
  '1A': ['geometric r=2', 'geometric r=3', 'geometric r=-2', 'geometric r=1/2', 'geometric r=-1/2', 'geometric r=1/3', 'geometric r=3/2', 'not_arithmetic', 'not_one_wrong_term', 'not_quadratic', 'not_irregular'],
  '1B': ['whole ratio', 'negative whole ratio', 'fraction ratio', 'negative fraction ratio', 'fractional next terms'],
  '1C': ['first five terms', 'fraction ratio', 'negative ratio', 'fractional a_n', 'negative a_n', 'find a_n (n=4)', 'find a_n (n=8)'],
- '1D': ['factor read_factor', 'factor choose_factor', 'factor 5/4', 'factor 4/5', 'factor 2/3', 'factor 2', 'model model_up', 'model model_down', 'model model_words', 'model model_times', 'model model_fraction']
+ '1D': ['factor read_factor', 'factor ratio_and_type', 'factor state_factor', 'read growth', 'read decay', 'factor 5/4', 'factor 4/5', 'factor 2/3', 'factor 2', 'model model_up', 'model model_down', 'model model_words', 'model model_times', 'model model_fraction']
 };
 for (const [k, keys] of Object.entries(need)) for (const key of keys) if (!variety[k]?.[key]) fail(`${k}: no "${key}" problems`);
-stats.variety = variety; stats.generated = generated; stats.gradingChecks = gradingChecks;
+stats.variety = variety; stats.generated = generated; stats.gradingChecks = gradingChecks; stats.wordAndPercentChecks = wordChecks;
 const report = {ok: !errors.length, generatedAt: new Date().toISOString(), problemsPerEngine: N, stats, errors};
 fs.mkdirSync(path.join(ROOT, 'qa-results'), {recursive: true});
 fs.writeFileSync(path.join(ROOT, 'qa-results/im1-unit4-section1-qa.json'), JSON.stringify(report, null, 1) + '\n');
 console.log(['BatchMath IM1 Unit 4 Section 1 practice QA', `Result: ${report.ok ? 'PASS' : 'FAIL'}`, `Engines: ${engines.length}`, `Generated problems checked: ${generated}`,
- `Grading checks (equivalent, wrong and approximate answers): ${gradingChecks}`, ...Object.entries(variety).map(([k, v]) => `${k} varieties: ${Object.keys(v).length}`),
+ `Grading checks (equivalent, wrong and approximate answers): ${gradingChecks}`, `Growth/decay word and percent checks: ${wordChecks}`, 'Multiple-choice problems: none (only the 1A Yes/No decision)', ...Object.entries(variety).map(([k, v]) => `${k} varieties: ${Object.keys(v).length}`),
  `Errors: ${errors.length}`, ...errors.slice(0, 40).map(e => '- ' + e), ''].join('\n'));
 if (errors.length) process.exit(1);

@@ -1,7 +1,7 @@
 {
   "name": "batchmath-site-qa",
   "private": true,
-  "version": "13.0.H",
+  "version": "13.0.I",
   "scripts": {
     "seo:build": "node tools/seo-build.mjs",
     "qa:seo": "node tools/seo-qa.mjs",
@@ -30,7 +30,7 @@
     "qa:fidelity": "node tools/assignment-fidelity-qa.mjs",
     "qa:im1-unit2": "node tools/im1-unit2-qa.mjs",
     "qa:im1-unit3": "node tools/im1-unit3-qa.mjs",
-    "qa:im1-unit4": "node tools/im1-unit4/section1-qa.mjs",
+    "qa:im1-unit4": "node tools/im1-unit4/section1-qa.mjs && node tools/im1-unit4/sections2-4-qa.mjs",
     "qa:im1-unit3-section-a": "node tools/im1-unit3-section-a-v109d-qa.mjs",
     "qa:unit4": "node tools/unit4-rebuild-qa.mjs",
     "qa:infinity-variety": "node tools/unit1-infinity-variety-qa.mjs",

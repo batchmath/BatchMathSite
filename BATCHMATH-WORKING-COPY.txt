@@ -1,9 +1,9 @@
 BatchMath cumulative working copy
-Current build: 13.0.H / v13.0.H — IM1 Unit 4 (all four sections) and the Section 1 practice engines
-Development branch: claude/v13.0h-im1-unit4-section1
-Production baseline: 66af306ffc2f8133910bcd874605fafaf8e3387a (v13.0.G)
-Rollback reference: main at 66af306 (v13.0.G); earlier: safety/pre-v13.0g-im1-unit3-videos
+Current build: 13.0.I / v13.0.I — IM1 Unit 4 complete: practice engines for Sections 1-4 and the Unit 4 Comprehensive Review
+Development branch: claude/v13.0i-im1-unit4-complete
+Production baseline: 6e67ac1 (main; v13.0.H deployed)
+Rollback reference: main at 6e67ac1 (v13.0.H); earlier: 66af306 (v13.0.G)
 All Version 13 3D engines and controls, mathematics, grading, explanations, MathLive and other course content are retained.
-Application, PWA/cache, analytics and Unit 6 build markers are 13.0.H. Historical engine revision markers remain unchanged.
+Application, PWA/cache, analytics and Unit 6 build markers are 13.0.I. Historical engine revision markers remain unchanged.
 See LOCAL-TESTING.txt. Run: py -m http.server 8000
-Deployment status and verification: docs/v13.0.H-im1-unit4-section1.md (v13.0.G: docs/v13.0.G-im1-unit3-videos.md)
+Deployment status and verification: docs/v13.0.I-im1-unit4-complete.md (v13.0.H: docs/v13.0.H-im1-unit4-section1.md)

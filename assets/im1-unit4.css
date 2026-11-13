@@ -1,0 +1,7 @@
+/* IM1 Unit 4 practice: value tables in questions, and the typed growth/decay answer field. */
+.bm-u4-table-wrap{max-width:100%;overflow-x:auto;margin:10px 0 12px}
+.bm-u4-table{border-collapse:collapse;margin:0 auto;font-size:.95rem}
+.bm-u4-table th,.bm-u4-table td{border:1px solid #444;padding:6px 11px;text-align:center;white-space:nowrap}
+.bm-u4-table th{color:var(--yellow,#ffd400);font-weight:800;text-align:left;background:#111}
+.bm-u3-answer-field input.bm-word-input{text-transform:none;font-family:inherit}
+@media(max-width:760px){.bm-u4-table{font-size:.88rem}.bm-u4-table th,.bm-u4-table td{padding:5px 7px}}

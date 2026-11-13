@@ -3,6 +3,13 @@
 This branch, `claude/im1-unit4-materials`, adds Unit 4 to the website as downloadable materials. It was created from
 `main` at `66af306` (v13.0.G) and has not been merged or deployed.
 
+> **v13.0.I update.** Every Unit 4 assignment page, each section review and the Unit 4 Comprehensive Review now has a
+> practice engine (`docs/v13.0.I-im1-unit4-complete.md`). The mixed reviews 01F, 02E, 03I, 04E and the mixed unit review
+> 05C are no longer published: each section has one comprehensive review (1E, 2D, 3H, 4D) and the unit review page lists
+> Version 1 and Version 2. The site now publishes 23 documents (46 PDFs). The retired files are kept, outside the site, in
+> `tools/im1-unit4/retired-mixed-reviews/` with their hashes (`manifest.json`). The rest of this page describes the
+> original v13.0.H materials release.
+
 **What Unit 4 contains.** Unit 4 publishes:
 - the student assignments and section reviews;
 - their answer keys;
@@ -11,8 +18,8 @@ This branch, `claude/im1-unit4-materials`, adds Unit 4 to the website as downloa
 **What it deliberately leaves out**
 - **Student notes,** by decision: no notes are published in Unit 4. The notes in Units 1–3 are untouched.
 - **Videos** (they will be supplied later): no players, placeholders or video URLs.
-- **Practice engines:** Section 1 has them from v13.0.H (`docs/v13.0.H-im1-unit4-section1.md`); Sections 2–4 get theirs
-  in later releases and show no practice button until then.
+- **Practice engines:** Section 1 has them from v13.0.H (`docs/v13.0.H-im1-unit4-section1.md`); Sections 2–4 and the
+  unit review have them from v13.0.I (`docs/v13.0.I-im1-unit4-complete.md`).
 
 **What else stays untouched.** Unit 3 and its 18 instructional videos are unchanged, byte for byte. No video player,
 video mapping or video behaviour changed.
@@ -59,11 +66,11 @@ Labels use Sections 1–4 and part codes such as 1A; the builder takes them from
   per part).
 - **One page per lesson document:** 17 pages, for example "Unit 4: 1A — Geometric or Not". Each page offers
   **Assignment PDF** and **Answer Key PDF**.
-- **One review page per section:** 4 pages, for example "Unit 4: 1E–1F — Section 1 Review". Each holds the section's
-  comprehensive review and its Mixed version, each labeled with its own part code and anchor (`#part-1e`, `#part-1f`):
-  1E–1F, 2D–2E, 3H–3I, 4D–4E.
-- **The Unit 4 Comprehensive Review page:** "Unit 4 Comprehensive Review — Version 1", "— Version 2" and "— Mixed"
-  (documents 05A, 05B and 05C), each with its key.
+- **One review page per section:** 4 pages. Since v13.0.I each holds one document, the section's comprehensive review:
+  "Unit 4: 1E — Section 1 Comprehensive Review", and likewise 2D, 3H and 4D. (In v13.0.H each page also held the Mixed
+  version: 1E–1F, 2D–2E, 3H–3I, 4D–4E.)
+- **The Unit 4 Comprehensive Review page:** "Unit 4 Comprehensive Review — Version 1" and "— Version 2" (documents 05A
+  and 05B), each with its key. (05C, "— Mixed", was published in v13.0.H only.)
 
 **Shared with the Unit 3 pages**
 - the page layout, styles (`assets/im1-unit3.css`) and navigation script (`assets/im1-unit3-nav.js`);
@@ -98,12 +105,12 @@ Unit 4 uses Sections 1–4 and part codes such as 1A, without leading zeros. The
 | 01C | Section 1 › 1C — Finding Terms of Geometric Sequences | `01c-finding-terms-of-geometric-sequences.pdf` | `…-answer-key.pdf` |
 | 01D | Section 1 › 1D — Geometric Growth and Decay Modeling | `01d-geometric-growth-and-decay-modeling.pdf` | `…-answer-key.pdf` |
 | 01E | Section 1 › 1E — Section 1 Review | `01e-section-a-comprehensive-review.pdf` | `…-answer-key.pdf` |
-| 01F | Section 1 › 1F — Section 1 Review (Mixed) | `01f-section-a-comprehensive-review-mixed.pdf` | `…-answer-key.pdf` |
+| 01F | Section 1 › 1F — Section 1 Review (Mixed) *(retired in v13.0.I; kept in `tools/im1-unit4/retired-mixed-reviews/`)* | `01f-section-a-comprehensive-review-mixed.pdf` | `…-answer-key.pdf` |
 | 02A | Section 2 › 2A — Writing Recursive Formulas | `02a-writing-recursive-formulas.pdf` | `…-answer-key.pdf` |
 | 02B | Section 2 › 2B — Using Recursive Formulas | `02b-using-recursive-formulas.pdf` | `…-answer-key.pdf` |
 | 02C | Section 2 › 2C — Recursive Formulas from Tables and Contexts | `02c-recursive-formulas-from-tables-and-contexts.pdf` | `…-answer-key.pdf` |
 | 02D | Section 2 › 2D — Section 2 Review | `02d-section-b-comprehensive-review.pdf` | `…-answer-key.pdf` |
-| 02E | Section 2 › 2E — Section 2 Review (Mixed) | `02e-section-b-comprehensive-review-mixed.pdf` | `…-answer-key.pdf` |
+| 02E | Section 2 › 2E — Section 2 Review (Mixed) *(retired in v13.0.I; kept in `tools/im1-unit4/retired-mixed-reviews/`)* | `02e-section-b-comprehensive-review-mixed.pdf` | `…-answer-key.pdf` |
 | 03A | Section 3 › 3A — Writing Explicit Formulas | `03a-writing-explicit-formulas.pdf` | `…-answer-key.pdf` |
 | 03B | Section 3 › 3B — Converting Recursive to Explicit | `03b-converting-recursive-to-explicit.pdf` | `…-answer-key.pdf` |
 | 03C | Section 3 › 3C — Converting Explicit to Recursive | `03c-converting-explicit-to-recursive.pdf` | `…-answer-key.pdf` |
@@ -112,15 +119,15 @@ Unit 4 uses Sections 1–4 and part codes such as 1A, without leading zeros. The
 | 03F | Section 3 › 3F — Writing Exponential Equations from y-Intercept and Common Ratio | `03f-writing-exponential-equations-from-y-intercept-and-common-ratio.pdf` | `…-answer-key.pdf` |
 | 03G | Section 3 › 3G — Writing Equivalent Explicit Exponential Equations from a Point | `03g-writing-equivalent-explicit-exponential-equations-from-a-point.pdf` | `…-answer-key.pdf` |
 | 03H | Section 3 › 3H — Section 3 Review | `03h-section-c-comprehensive-review.pdf` | `…-answer-key.pdf` |
-| 03I | Section 3 › 3I — Section 3 Review (Mixed) | `03i-section-c-comprehensive-review-mixed.pdf` | `…-answer-key.pdf` |
+| 03I | Section 3 › 3I — Section 3 Review (Mixed) *(retired in v13.0.I; kept in `tools/im1-unit4/retired-mixed-reviews/`)* | `03i-section-c-comprehensive-review-mixed.pdf` | `…-answer-key.pdf` |
 | 04A | Section 4 › 4A — Solving Basic Exponential Equations | `04a-solving-basic-exponential-equations.pdf` | `…-answer-key.pdf` |
 | 04B | Section 4 › 4B — Solving Exponential Equations with Algebraic Exponents | `04b-solving-exponential-equations-with-algebraic-exponents.pdf` | `…-answer-key.pdf` |
 | 04C | Section 4 › 4C — Solving Exponential Equations with Coefficients | `04c-solving-exponential-equations-with-coefficients.pdf` | `…-answer-key.pdf` |
 | 04D | Section 4 › 4D — Section 4 Review | `04d-section-d-comprehensive-review.pdf` | `…-answer-key.pdf` |
-| 04E | Section 4 › 4E — Section 4 Review (Mixed) | `04e-section-d-comprehensive-review-mixed.pdf` | `…-answer-key.pdf` |
+| 04E | Section 4 › 4E — Section 4 Review (Mixed) *(retired in v13.0.I; kept in `tools/im1-unit4/retired-mixed-reviews/`)* | `04e-section-d-comprehensive-review-mixed.pdf` | `…-answer-key.pdf` |
 | 05A | Unit 4 Comprehensive Review — Version 1 | `05a-unit-4-comprehensive-review-version-1.pdf` | `…-answer-key.pdf` |
 | 05B | Unit 4 Comprehensive Review — Version 2 | `05b-unit-4-comprehensive-review-version-2.pdf` | `…-answer-key.pdf` |
-| 05C | Unit 4 Comprehensive Review — Mixed | `05c-unit-4-comprehensive-review-mixed.pdf` | `…-answer-key.pdf` |
+| 05C | Unit 4 Comprehensive Review — Mixed *(retired in v13.0.I; kept in `tools/im1-unit4/retired-mixed-reviews/`)* | `05c-unit-4-comprehensive-review-mixed.pdf` | `…-answer-key.pdf` |
 
 Two pages use shortened browser-tab titles, because the full titles would exceed the site's 85-character limit:
 - 3F: "Exponential Equations from y-Intercept and Common Ratio";
@@ -136,6 +143,9 @@ The same mechanism can add your videos to these pages.
 - Slugs such as `section-a-review` exist in both Unit 3 and Unit 4.
 
 ## Tests
+
+The results below are those of the v13.0.H materials release; v13.0.I's are in `docs/v13.0.I-im1-unit4-complete.md`.
+
 
 - **`tools/review-lab/im1/unit4-browser.mjs`** (`BM_PORT=<port>`): **808 checks, 0 failures**, at 1366×900 and 390×844
   touch (with the standard labels: every document carries its part label).

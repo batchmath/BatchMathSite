@@ -105,14 +105,12 @@ export const UNITS = [
     {slug: 'common-ratios-and-next-terms', parts: [part('1B', 'Common Ratios and Next Terms', {doc: '01B'})]},
     {slug: 'finding-terms-of-geometric-sequences', parts: [part('1C', 'Finding Terms of Geometric Sequences', {doc: '01C'})]},
     {slug: 'geometric-growth-and-decay-modeling', parts: [part('1D', 'Geometric Growth and Decay Modeling', {doc: '01D'})]},
-    {slug: 'section-a-review', review: true, title: 'Section 1 Review',
-     parts: [part('1E', 'Section 1 Review', {doc: '01E'}), part('1F', 'Section 1 Review (Mixed)', {doc: '01F'})]}]},
+    {slug: 'section-a-review', review: true, parts: [part('1E', 'Section 1 Comprehensive Review', {doc: '01E'})]}]},
    {n: 2, name: 'Recursive Formulas', slug: 'b-recursive-formulas', topics: [
     {slug: 'writing-recursive-formulas', parts: [part('2A', 'Writing Recursive Formulas', {doc: '02A'})]},
     {slug: 'using-recursive-formulas', parts: [part('2B', 'Using Recursive Formulas', {doc: '02B'})]},
     {slug: 'recursive-formulas-from-tables-and-contexts', parts: [part('2C', 'Recursive Formulas from Tables and Contexts', {doc: '02C'})]},
-    {slug: 'section-b-review', review: true, title: 'Section 2 Review',
-     parts: [part('2D', 'Section 2 Review', {doc: '02D'}), part('2E', 'Section 2 Review (Mixed)', {doc: '02E'})]}]},
+    {slug: 'section-b-review', review: true, parts: [part('2D', 'Section 2 Comprehensive Review', {doc: '02D'})]}]},
    {n: 3, name: 'Explicit Formulas and Exponential Models', slug: 'c-explicit-formulas-and-exponential-models', topics: [
     {slug: 'writing-explicit-formulas', parts: [part('3A', 'Writing Explicit Formulas', {doc: '03A'})]},
     {slug: 'converting-recursive-to-explicit', parts: [part('3B', 'Converting Recursive to Explicit', {doc: '03B'})]},
@@ -124,17 +122,16 @@ export const UNITS = [
      parts: [part('3F', 'Writing Exponential Equations from y-Intercept and Common Ratio', {doc: '03F', short: 'Exponential Equations from y-Intercept and Common Ratio'})]},
     {slug: 'writing-equivalent-explicit-exponential-equations-from-a-point',
      parts: [part('3G', 'Writing Equivalent Explicit Exponential Equations from a Point', {doc: '03G', short: 'Equivalent Exponential Equations from a Point'})]},
-    {slug: 'section-c-review', review: true, title: 'Section 3 Review',
-     parts: [part('3H', 'Section 3 Review', {doc: '03H'}), part('3I', 'Section 3 Review (Mixed)', {doc: '03I'})]}]},
+    {slug: 'section-c-review', review: true, parts: [part('3H', 'Section 3 Comprehensive Review', {doc: '03H'})]}]},
    {n: 4, name: 'Solving Exponential Equations', slug: 'd-solving-exponential-equations', topics: [
     {slug: 'solving-basic-exponential-equations', parts: [part('4A', 'Solving Basic Exponential Equations', {doc: '04A'})]},
     {slug: 'solving-exponential-equations-with-algebraic-exponents', parts: [part('4B', 'Solving Exponential Equations with Algebraic Exponents', {doc: '04B'})]},
     {slug: 'solving-exponential-equations-with-coefficients', parts: [part('4C', 'Solving Exponential Equations with Coefficients', {doc: '04C'})]},
-    {slug: 'section-d-review', review: true, title: 'Section 4 Review',
-     parts: [part('4D', 'Section 4 Review', {doc: '04D'}), part('4E', 'Section 4 Review (Mixed)', {doc: '04E'})]}]}],
+    {slug: 'section-d-review', review: true, parts: [part('4D', 'Section 4 Comprehensive Review', {doc: '04D'})]}]}],
   review: {slug: 'comprehensive-review', title: 'Unit 4 Comprehensive Review',
-   documents: [{doc: '05A', title: 'Unit 4 Comprehensive Review — Version 1'}, {doc: '05B', title: 'Unit 4 Comprehensive Review — Version 2'},
-    {doc: '05C', title: 'Unit 4 Comprehensive Review — Mixed'}]}
+   // v13.0.I: one comprehensive review per section and two unit review versions; the mixed versions (1F, 2E, 3I, 4E
+   // and 05C) are no longer published.
+   documents: [{doc: '05A', title: 'Unit 4 Comprehensive Review — Version 1'}, {doc: '05B', title: 'Unit 4 Comprehensive Review — Version 2'}]}
  }
 ];
 

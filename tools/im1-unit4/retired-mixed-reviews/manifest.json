@@ -1,0 +1,105 @@
+{
+ "note": "Mixed-review documents supplied with Unit 4 and published until v13.0.H. From v13.0.I each section keeps only its regular comprehensive review (1E, 2D, 3H, 4D) and the unit review keeps Versions 1 and 2. The files are kept here, unchanged, as source references; they are not part of the website.",
+ "files": [
+  {
+   "code": "01F",
+   "kind": "assignment",
+   "source": "01F - Section A Comprehensive Review HW - Mixed.pdf",
+   "published": "im1/unit-4-exponential-functions/resources/assignments/01f-section-a-comprehensive-review-mixed.pdf",
+   "bytes": 156420,
+   "sha256": "07e72446118c2bdaa9b096ad6805274a58304937535dc336ce8a57670a492626",
+   "publishedUntil": "v13.0.H",
+   "keptAt": "tools/im1-unit4/retired-mixed-reviews/assignments/01f-section-a-comprehensive-review-mixed.pdf"
+  },
+  {
+   "code": "01F",
+   "kind": "answer-key",
+   "source": "01F - Section A Comprehensive Review HW - Mixed - Answer Key.pdf",
+   "published": "im1/unit-4-exponential-functions/resources/answer-keys/01f-section-a-comprehensive-review-mixed-answer-key.pdf",
+   "bytes": 141817,
+   "sha256": "cdba62a7e0d285fb3819d0cb47bed36fe56d617ab27fc2360e9fbcf96262a799",
+   "publishedUntil": "v13.0.H",
+   "keptAt": "tools/im1-unit4/retired-mixed-reviews/answer-keys/01f-section-a-comprehensive-review-mixed-answer-key.pdf"
+  },
+  {
+   "code": "02E",
+   "kind": "assignment",
+   "source": "02E - Section B Comprehensive Review HW - Mixed.pdf",
+   "published": "im1/unit-4-exponential-functions/resources/assignments/02e-section-b-comprehensive-review-mixed.pdf",
+   "bytes": 176339,
+   "sha256": "a026dc927bd2a826d622d91a51e1608c77448c84796a9a866b33a33ac14b3e37",
+   "publishedUntil": "v13.0.H",
+   "keptAt": "tools/im1-unit4/retired-mixed-reviews/assignments/02e-section-b-comprehensive-review-mixed.pdf"
+  },
+  {
+   "code": "02E",
+   "kind": "answer-key",
+   "source": "02E - Section B Comprehensive Review HW - Mixed - Answer Key.pdf",
+   "published": "im1/unit-4-exponential-functions/resources/answer-keys/02e-section-b-comprehensive-review-mixed-answer-key.pdf",
+   "bytes": 147874,
+   "sha256": "365f0d7516a15856f20968bec2aad25ee286f55022e9744d5ea9b3791c93427c",
+   "publishedUntil": "v13.0.H",
+   "keptAt": "tools/im1-unit4/retired-mixed-reviews/answer-keys/02e-section-b-comprehensive-review-mixed-answer-key.pdf"
+  },
+  {
+   "code": "03I",
+   "kind": "assignment",
+   "source": "03I - Section C Comprehensive Review HW - Mixed.pdf",
+   "published": "im1/unit-4-exponential-functions/resources/assignments/03i-section-c-comprehensive-review-mixed.pdf",
+   "bytes": 185418,
+   "sha256": "2497e48d8226c835eec5550f81cf95d13be15b1efcfe02d8bf0d326ae7b7be60",
+   "publishedUntil": "v13.0.H",
+   "keptAt": "tools/im1-unit4/retired-mixed-reviews/assignments/03i-section-c-comprehensive-review-mixed.pdf"
+  },
+  {
+   "code": "03I",
+   "kind": "answer-key",
+   "source": "03I - Section C Comprehensive Review HW - Mixed - Answer Key.pdf",
+   "published": "im1/unit-4-exponential-functions/resources/answer-keys/03i-section-c-comprehensive-review-mixed-answer-key.pdf",
+   "bytes": 180613,
+   "sha256": "474d44da71f039e1e722b1de0983ffa78af2b41fb7fb7889e31fa227eb9be9f8",
+   "publishedUntil": "v13.0.H",
+   "keptAt": "tools/im1-unit4/retired-mixed-reviews/answer-keys/03i-section-c-comprehensive-review-mixed-answer-key.pdf"
+  },
+  {
+   "code": "04E",
+   "kind": "assignment",
+   "source": "04E - Section D Comprehensive Review HW - Mixed.pdf",
+   "published": "im1/unit-4-exponential-functions/resources/assignments/04e-section-d-comprehensive-review-mixed.pdf",
+   "bytes": 136150,
+   "sha256": "245d726c058c84ceda6d3bf2352b00c05b0f93f7c5240f7ad2976a6def323ca2",
+   "publishedUntil": "v13.0.H",
+   "keptAt": "tools/im1-unit4/retired-mixed-reviews/assignments/04e-section-d-comprehensive-review-mixed.pdf"
+  },
+  {
+   "code": "04E",
+   "kind": "answer-key",
+   "source": "04E - Section D Comprehensive Review HW - Mixed - Answer Key.pdf",
+   "published": "im1/unit-4-exponential-functions/resources/answer-keys/04e-section-d-comprehensive-review-mixed-answer-key.pdf",
+   "bytes": 138423,
+   "sha256": "2cb842369eb477c2f740cdbf36850da04e8b3ef341397392c2827383caad8c0d",
+   "publishedUntil": "v13.0.H",
+   "keptAt": "tools/im1-unit4/retired-mixed-reviews/answer-keys/04e-section-d-comprehensive-review-mixed-answer-key.pdf"
+  },
+  {
+   "code": "05C",
+   "kind": "assignment",
+   "source": "05C - Unit 4 Comprehensive Review - Mixed.pdf",
+   "published": "im1/unit-4-exponential-functions/resources/assignments/05c-unit-4-comprehensive-review-mixed.pdf",
+   "bytes": 255989,
+   "sha256": "ebcbaf37991389f563545f7dfadb12643ecdcae53876ae33a86570e1ca9c1660",
+   "publishedUntil": "v13.0.H",
+   "keptAt": "tools/im1-unit4/retired-mixed-reviews/assignments/05c-unit-4-comprehensive-review-mixed.pdf"
+  },
+  {
+   "code": "05C",
+   "kind": "answer-key",
+   "source": "05C - Unit 4 Comprehensive Review - Mixed - Answer Key.pdf",
+   "published": "im1/unit-4-exponential-functions/resources/answer-keys/05c-unit-4-comprehensive-review-mixed-answer-key.pdf",
+   "bytes": 188355,
+   "sha256": "d70264e609035f354187f50aafa72843174d1792af3bb56eff4a0f9d87a97718",
+   "publishedUntil": "v13.0.H",
+   "keptAt": "tools/im1-unit4/retired-mixed-reviews/answer-keys/05c-unit-4-comprehensive-review-mixed-answer-key.pdf"
+  }
+ ]
+}

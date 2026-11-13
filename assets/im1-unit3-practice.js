@@ -182,7 +182,7 @@ function lineEquationEquivalent(raw,expected){
  }
  return{error:'This equation type is not available.'};
 }
-function fieldResult(raw,field){if(field.check==='formula')return formulaEquivalent(raw,field.formula);if(field.check==='recursive')return recursiveFormulaEquivalent(raw,field.recursive);if(field.check==='recursive-rule')return recursiveRuleEquivalent(raw,field.recursive);if(field.check==='initial-term')return initialTermEquivalent(raw,field.answer);if(field.check==='line')return lineEquationEquivalent(raw,field.line);return numericEqual(raw,field.answer);}
+function fieldResult(raw,field,values){if(field.custom&&typeof registry?.checkField==='function')return registry.checkField(raw,field,values||{});if(field.check==='formula')return formulaEquivalent(raw,field.formula);if(field.check==='recursive')return recursiveFormulaEquivalent(raw,field.recursive);if(field.check==='recursive-rule')return recursiveRuleEquivalent(raw,field.recursive);if(field.check==='initial-term')return initialTermEquivalent(raw,field.answer);if(field.check==='line')return lineEquationEquivalent(raw,field.line);return numericEqual(raw,field.answer);}
 
 function isYesNoProblem(item){return (item?.kind==='mc'||item?.kind==='arithmetic-identification')&&item.choices?.length===2&&[...item.choices].sort().join('|')==='No|Yes';}
 function enterAdvanceRule(ok,responseType){return Boolean(ok&&(responseType==='typed'||responseType==='completed-no'));}
@@ -222,9 +222,9 @@ function checkInput(){
 }
 function checkStructured(){
  if(locked)return;const fields=problem.kind==='formula'?[{id:'formula',label:'Explicit formula',check:'formula',formula:problem.formula,answerText:problem.answerText,inputKind:'formula'}]:problem.fields;
- let allCorrect=true;
+ let allCorrect=true;const values=Object.fromEntries(fields.map(field=>[field.id,byId(`answer-${field.id}`)?.value??'']));
  for(const field of fields){
-  const input=byId(`answer-${field.id}`),wrapper=input.closest('.bm-u3-answer-field'),result=fieldResult(input.value,field),display=wrapper.querySelector('.bm-u3-field-result');
+  const input=byId(`answer-${field.id}`),wrapper=input.closest('.bm-u3-answer-field'),result=fieldResult(input.value,field,values),display=wrapper.querySelector('.bm-u3-field-result');
   input.disabled=true;wrapper.classList.remove('is-correct','is-incorrect');
   if(result.ok){wrapper.classList.add('is-correct');display.innerHTML='✓ Correct';}
   else{allCorrect=false;wrapper.classList.add('is-incorrect');display.innerHTML=`✗ ${result.error||`Correct response: ${field.answerText}`}`;}
@@ -285,12 +285,15 @@ function renderStructured(){
   const label=document.createElement('label');label.htmlFor=`answer-${field.id}`;label.className='answer-label';
   if(field.labelHtml)label.innerHTML=field.labelHtml;else label.textContent=field.label;
   const input=document.createElement('input');input.id=`answer-${field.id}`;input.type='text';input.autocomplete='off';input.spellcheck=false;input.dataset.bmStructuredKind=field.check;input.setAttribute('aria-describedby',`result-${field.id}`);
+  if(field.mathKind)input.dataset.bmMathKind=field.mathKind;
+  if(field.check==='word'){input.dataset.bmCalcDynamicReady='text';input.inputMode='text';input.autocapitalize='none';input.className='bm-word-input';if(field.placeholder)input.placeholder=field.placeholder;}
   const result=document.createElement('div');result.id=`result-${field.id}`;result.className='bm-u3-field-result';result.setAttribute('aria-live','polite');
   input.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();event.stopPropagation();checkStructured();}});
-  wrapper.append(label,input,result);grid.appendChild(wrapper);inputs.push(input);
+  wrapper.append(label,input,result);grid.appendChild(wrapper);if(field.check!=='word')inputs.push(input);
  }
  const keypadMode=fields.some(field=>field.check==='line')?'equation':fields.some(field=>field.check==='recursive'||field.check==='recursive-rule')?'recursive':fields.some(field=>field.check==='formula')?'formula':'number';
  byId('answerArea').appendChild(grid);
+ if(!inputs.length){requestAnimationFrame(()=>grid.querySelector('input')?.focus({preventScroll:true}));return;}
  if(fields.some(field=>['line','initial-term','formula','recursive','recursive-rule'].includes(field.check))&&window.BatchMathCalculusKeypad?.mountInputs){
   const sharedMode={equation:'unit3-equation',formula:'unit3-formula',recursive:'unit3-recursive',number:'unit3-number'}[keypadMode]||'unit3-number';
   window.BatchMathCalculusKeypad.mountInputs(inputs,byId('answerArea'),{mode:sharedMode,onCheck:checkStructured});
