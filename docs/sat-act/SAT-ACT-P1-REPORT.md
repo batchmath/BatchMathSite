@@ -56,7 +56,55 @@ New: `sat-act-math/`, `assets/sat-act/`, `tools/sat-act/`, `docs/sat-act/`, `SAT
 
 ## QA results
 
-QA_RESULTS_PLACEHOLDER
+Environment: Node 22.23.4, Playwright 1.62.1 with the sandbox's pre-installed Chromium, pinned MathJax 4.1.3 served
+locally to the browser tests. Run on 2026-11-17.
+
+### New SAT & ACT checks
+
+| Command | Result |
+|---|---|
+| `npm run qa:sat-act` | **PASS** — 5 questions, 12 pages; 184 TeX strings found verbatim on their pages; fresh rebuild byte-identical to the committed output; registry permanence checked against git HEAD; explanation starts bound to MP4 hashes; real tracker contract in a sandbox; 13 approved-importer accept/refuse cases |
+| `npm run qa:sat-act-browser -- --real-youtube` | **PASS, 14/14** — filters and no-results state; mixed set of 5 with no repeats; first-attempt scoring with retry and pre-answer reveal (2 correct of 4 answered, 5 completed); reload without duplicate events; single-question topic finish; direct visit; video cued at 0:19 with no autoplay, Show Written Solution, ended → solution; player error, blocked API and silent-embed timeout fallbacks; keyboard; phone layout on every page; MathJax on all five; navigation and links; typed answers; real IFrame API builds `youtube-nocookie.com/embed/…?start=19&enablejsapi=1&autoplay=0` |
+| `npm run qa:sat-act-release` | **FAIL by design (18)** — 5 questions unapproved, library still development fixtures, 12 pages show the preview notice |
+| Fixture re-import from Shorts | Identical to the committed records; Shorts checkout unchanged at `22113846` |
+| `seo-build` default mode | Byte-identical output for all 325 existing pages and the sitemap, before vs after the `--only` change |
+
+### Existing site QA (every script in `qa:nobrowser`, plus `qa:seeded` and `qa:problem-of-day-archive`)
+
+Each script was run individually on the branch and on a pristine worktree of `main` (`c04baa0`), because
+`qa:nobrowser` is an `&&` chain that already stops at `qa:seo` on `main`.
+
+| | Branch | `main` baseline |
+|---|---|---|
+| Pass | 42 of 52 (including `qa:sat-act`) | 41 of 51 |
+| Fail | 10 | the same 10, with identical error messages |
+
+- **Pass on both:** `qa:static` (release QA: 337 indexable pages, sitemap exact, 0 broken references, 165 engines),
+  `qa:analytics` (165 engines), `qa:pwa`, `qa:display`, `qa:semantic`, `qa:prep`, `qa:math`, `qa:limits`, `qa:topics`,
+  `qa:deep`, `qa:newcalc`, `qa:browser-infra` and the rest, and **`qa:seeded`: 165 engines, 495 reproducibility
+  samples, 0 errors** with the modified shared tracker.
+- **Fail on both, unchanged by this branch (pre-existing on `main`):** `qa:seo` (32 errors: AP Calculus heading levels,
+  Mogollon metadata, one noindex page), `qa:topic-at-point`, `qa:unit3`, `qa:fractions`, `qa:clipboard`,
+  `qa:im1-like-terms`, `qa:im1-equations-update`, `qa:fractional-exponent-display`, `qa:practice-selects`.
+  Only their page/file counts change, by the new pages.
+- **Environment-blocked:** `qa:problem-of-day-archive` fetches the live archive from `docs.google.com`, which this
+  sandbox cannot resolve. Its homepage assertions (archive button markup and styles) were run directly and pass.
+- The seeded suite needed `PLAYWRIGHT_BROWSERS_PATH` pointed at the sandbox's Chromium build; no QA script was edited.
+- No file under `ap-calculus/`, `im1/`, `calculus-prep/`, `archive/`, `mogollon2026/` or `about/` changed.
+
+Not verified here: real YouTube playback and the ENDED event with a real video (this sandbox blocks the embedded player
+document; the player integration is covered by the mocked IFrame API, and the real API call by the smoke test), a real
+phone, and GA4 receipt of events (events were captured in the browser before sending).
+
+## Observations outside this task (not changed)
+
+- `main` currently fails 9 of its own QA scripts (listed above), and `qa:nobrowser` stops at `qa:seo`.
+- A full `node tools/seo-build.mjs` run on `main` would rewrite 285 existing pages (later page builders appended
+  assets after the SEO block, and the sitemap was last edited by hand). That is why this branch uses the new scoped mode.
+- On phones, the shared header's COURSES button overlaps the first breadcrumb line on existing pages (archive, About,
+  AP Calculus). SAT & ACT pages pad their breadcrumbs to stay clear; the shared header itself is unchanged.
+- `qa:seeded` needs the Playwright browser build matching 1.62.1; in environments without it, set
+  `PLAYWRIGHT_BROWSERS_PATH` or install that build.
 
 ## Remaining steps before approval and deployment
 
