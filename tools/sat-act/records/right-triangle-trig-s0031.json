@@ -1,0 +1,287 @@
+{
+  "schema": "batchmath.sat-act.problem/1",
+  "sourceId": "right-triangle-trig-s0031",
+  "contentStatus": "development-fixture",
+  "approval": {
+    "text": null,
+    "video": null,
+    "releaseEligible": false,
+    "note": "Development fixture. Independent content audit only; no human approval has been recorded. Not for publication."
+  },
+  "provenance": {
+    "repository": "batchmath/Shorts",
+    "branch": "claude/phase8-final-corrections",
+    "commit": "22113846d3f83f10eef9a9c19f64b2e5848a9b6f",
+    "recordPath": "data/problems/right-triangle-trig-s0031.json",
+    "recordSha256": "7842f50753a185f1862f4675dff60af9761135c5a63af8d622d16414a53da99c",
+    "contentHash": "e6b79785cc618f61",
+    "verification": {
+      "passed": true,
+      "checks": 59,
+      "failed": 0,
+      "tools": {
+        "python": "3.13.18",
+        "sympy": "1.14.0"
+      }
+    },
+    "video": {
+      "manifestPath": "output/videos/right-triangle-trig-s0031-narrated.json",
+      "manifestSha256": "92f38392d434f3b321bffcc93a136b5a8adca3d30170c18cfdee3245d34ef66d",
+      "scenePath": "data/scenes/right-triangle-trig-s0031-narrated.json",
+      "sceneCanonicalSha256": "fb92fb8d5433660faaeeb55036ded0061bb0888276067d51c196e1e77dfeb103",
+      "mediaPath": "output/videos/right-triangle-trig-s0031-narrated.mp4",
+      "mediaSha256": "e6ee6808e1f335488b54d25ac9068c0545ac46c72b3e20d9c7fe9389d0abfa73",
+      "renderInputsSha256": "ab58a9c1fcefe6dc4241b4d615db191076a7c57d766f0c72b390f9bede27aa86"
+    },
+    "audit": {
+      "branch": "codex/phase8-final-audit",
+      "commit": "4409e16316a615216f48db31e896d58f9849b421",
+      "report": "audit/CODEX_PHASE8_FINAL_AUDIT.md",
+      "reportSha256": "9527712f30ec3f84ce70291794202564563fe0cd0c822ef9ec6f86706a81e5ca",
+      "verdict": "PASS WITH MINOR ISSUES",
+      "auditDate": "2026-11-16"
+    }
+  },
+  "series": "SAT & ACT Math Prep",
+  "topicLabel": "Trigonometry · Right triangles",
+  "classification": {
+    "skills": [
+      "right-triangle-trig",
+      "pythagorean"
+    ],
+    "topic": "Geometry and trigonometry",
+    "exams": [
+      "SAT",
+      "ACT"
+    ],
+    "format": "multiple_choice_4",
+    "sat": {
+      "domains": [
+        "Geometry and Trigonometry"
+      ],
+      "testing_points": [
+        "Right triangles and trigonometry"
+      ]
+    },
+    "act": {
+      "categories": [
+        "Geometry"
+      ]
+    },
+    "needs_spec_check": [],
+    "spec_version": "sat-digital-2024 / act-enhanced-2025; access-limited recheck 2026-11-13"
+  },
+  "skillNames": {
+    "right-triangle-trig": "Sine, cosine and tangent in right triangles; complementary angles",
+    "pythagorean": "Pythagorean theorem and special right triangles"
+  },
+  "difficulty": "medium",
+  "format": "multiple_choice_4",
+  "template": {
+    "name": "right_triangle_trig",
+    "presentation": "diagram",
+    "techniques": [
+      "SOH-CAH-TOA",
+      "Pythagorean theorem",
+      "re-identify opposite/adjacent for a new angle"
+    ],
+    "misconceptions": [
+      "computing tan A instead of tan B",
+      "using sine instead of tangent"
+    ]
+  },
+  "concept": null,
+  "question": {
+    "stem": [
+      "In right triangle $ABC$, $\\angle C = 90^\\circ$.",
+      {
+        "math": "\\sin A = \\dfrac{15}{17}"
+      }
+    ],
+    "prompt": "What is $\\tan B$?"
+  },
+  "figure": {
+    "vertices": {
+      "C": [
+        0,
+        0
+      ],
+      "A": [
+        8,
+        0
+      ],
+      "B": [
+        0,
+        15
+      ]
+    },
+    "to_scale": true
+  },
+  "rightAngle": "C",
+  "choices": [
+    {
+      "label": "A",
+      "display": "$\\dfrac{8}{17}$",
+      "correct": false,
+      "note": "$\\sin B$: $\\dfrac{\\text{opp}}{\\text{hyp}}$",
+      "why": "$\\frac{8}{17}$ is opposite ÷ hypotenuse for angle $B$, which is $\\sin B$; $\\tan B$ needs opposite ÷ adjacent, $\\frac{8}{15}$.",
+      "rationale": "Uses sine or cosine instead of tangent."
+    },
+    {
+      "label": "B",
+      "display": "$\\dfrac{8}{15}$",
+      "correct": true,
+      "note": "Correct",
+      "why": "",
+      "rationale": ""
+    },
+    {
+      "label": "C",
+      "display": "$\\dfrac{15}{17}$",
+      "correct": false,
+      "note": "$\\sin A$, the given ratio",
+      "why": "$\\frac{15}{17}$ is opposite ÷ hypotenuse for angle $A$, which is $\\sin A$ (the given ratio); $\\tan B$ needs opposite ÷ adjacent, $\\frac{8}{15}$.",
+      "rationale": "Repeats the given sin A instead of finding tan B."
+    },
+    {
+      "label": "D",
+      "display": "$\\dfrac{15}{8}$",
+      "correct": false,
+      "note": "$\\tan A$: sides seen from angle $A$",
+      "why": "$\\frac{15}{8}$ uses the opposite and adjacent sides relative to angle $A$, not angle $B$, so it is $\\tan A$; $\\tan B$ is $\\frac{8}{15}$.",
+      "rationale": "Computes tan A: opposite and adjacent taken from the wrong angle."
+    }
+  ],
+  "answer": {
+    "label": "B",
+    "display": "$\\dfrac{8}{15}$"
+  },
+  "solution": {
+    "steps": [
+      {
+        "id": "angles",
+        "kind": "concept",
+        "title": "Watch the angles",
+        "caption": "**Watch the angles!** Given: $\\sin A$. Asked: $\\tan B$.",
+        "lines": []
+      },
+      {
+        "id": "known",
+        "kind": "concept",
+        "title": "Use the given ratio",
+        "caption": "**SOH** CAH TOA: $\\sin = \\dfrac{\\mathrm{opposite}}{\\mathrm{hypotenuse}}$. From $A$, the opposite side is $BC$.",
+        "note": "Any size has the same ratios, so use $BC = 15$, $AB = 17$.",
+        "lines": [
+          {
+            "tex": "\\sin A = \\dfrac{BC}{AB} = \\dfrac{15}{17}",
+            "kind": "chain_with_sides"
+          }
+        ]
+      },
+      {
+        "id": "triple",
+        "kind": "concept",
+        "title": "Shortcut: a Pythagorean triple",
+        "caption": "**Shortcut:** $8$, $15$, $17$ is a Pythagorean triple.",
+        "lines": [
+          {
+            "tex": "AC = 8",
+            "kind": "chain_with_sides"
+          }
+        ]
+      },
+      {
+        "id": "missing",
+        "kind": "simple",
+        "title": "Check with the Pythagorean theorem",
+        "caption": "No triple? Use the **Pythagorean theorem**.",
+        "lines": [
+          {
+            "tex": "AC^2 = 17^2 - 15^2 = 64",
+            "kind": "chain_with_sides"
+          },
+          {
+            "tex": "AC = \\sqrt{64} = 8",
+            "kind": "chain_with_sides"
+          }
+        ]
+      },
+      {
+        "id": "switch",
+        "kind": "concept",
+        "title": "Now look at angle B",
+        "caption": "Now look at angle $B$: opposite and adjacent **switch**.",
+        "lines": [
+          {
+            "tex": "\\text{opposite } B = AC = 8",
+            "kind": "role_at_B",
+            "role": "opposite"
+          },
+          {
+            "tex": "\\text{adjacent } B = BC = 15",
+            "kind": "role_at_B",
+            "role": "adjacent"
+          }
+        ]
+      },
+      {
+        "id": "compute",
+        "kind": "simple",
+        "title": "Calculate tan B",
+        "caption": "SOH CAH **TOA**: $\\tan = \\dfrac{\\mathrm{opposite}}{\\mathrm{adjacent}}$.",
+        "lines": [
+          {
+            "tex": "\\tan B = \\dfrac{AC}{BC} = \\dfrac{8}{15}",
+            "kind": "chain_with_sides"
+          }
+        ]
+      },
+      {
+        "id": "trap",
+        "kind": "concept",
+        "title": "The trap: tan A",
+        "caption": "**The trap:** using angle $A$ gives $\\tan A$, choice D.",
+        "lines": [
+          {
+            "tex": "\\tan A = \\dfrac{BC}{AC} = \\dfrac{15}{8}",
+            "kind": "chain_with_sides"
+          }
+        ]
+      }
+    ],
+    "keyIdea": "Opposite and adjacent depend on **which angle** you use.",
+    "trap": {
+      "label": "D",
+      "value": "15/8",
+      "is": [
+        "tan",
+        "A"
+      ]
+    },
+    "summary": "Watch the angles: the given ratio is sin A, but the question asks for tan B. sin A = 15/17 names two sides; any similar triangle has the same ratios, so use BC = 15 and AB = 17. 8, 15, 17 is a Pythagorean triple, so AC = 8; the Pythagorean theorem confirms it. From angle B the opposite side is AC = 8 and the adjacent side is BC = 15, so tan B = 8/15. Using angle A instead gives tan A = 15/8, the trap answer."
+  },
+  "meta": {
+    "title_hook": "tan A or tan B? The Right-Triangle Trap",
+    "description_lead": "In right triangle ABC, angle C = 90° and sin A = 15/17. What is tan B? Watch which angle you use."
+  },
+  "video": {
+    "variantId": "right-triangle-trig-s0031-narrated",
+    "mediaSha256": "e6ee6808e1f335488b54d25ac9068c0545ac46c72b3e20d9c7fe9389d0abfa73",
+    "durationSeconds": 87.144,
+    "explanationStartSeconds": 19,
+    "timing": {
+      "explanationStartSeconds": 19,
+      "rule": "first whole second at or after the end of the thinking countdown; never after the first spoken explanation sentence",
+      "countdownStartSeconds": 11.014,
+      "countdownSeconds": 7,
+      "countdownEndSeconds": 18.014,
+      "solutionVisualInSeconds": 18.514,
+      "firstExplanationSegment": "angles:0",
+      "firstExplanationNarrationSeconds": 19.114,
+      "sceneDurationSeconds": 87.144
+    },
+    "youtubeId": null,
+    "published": false,
+    "publication": null
+  }
+}

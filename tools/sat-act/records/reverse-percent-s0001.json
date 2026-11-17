@@ -1,0 +1,232 @@
+{
+  "schema": "batchmath.sat-act.problem/1",
+  "sourceId": "reverse-percent-s0001",
+  "contentStatus": "development-fixture",
+  "approval": {
+    "text": null,
+    "video": null,
+    "releaseEligible": false,
+    "note": "Development fixture. Independent content audit only; no human approval has been recorded. Not for publication."
+  },
+  "provenance": {
+    "repository": "batchmath/Shorts",
+    "branch": "claude/phase8-final-corrections",
+    "commit": "22113846d3f83f10eef9a9c19f64b2e5848a9b6f",
+    "recordPath": "data/bank/reverse-percent-s0001.json",
+    "recordSha256": "62445d3f1b7f1a0cb5952af37468b689d7f6ae0aa883d17daf2313e519321988",
+    "contentHash": "2209abffeafe0b6a",
+    "verification": {
+      "passed": true,
+      "checks": 53,
+      "failed": 0,
+      "tools": {
+        "python": "3.13.18",
+        "sympy": "1.14.0"
+      }
+    },
+    "video": {
+      "manifestPath": "output/videos/reverse-percent-s0001-narrated.json",
+      "manifestSha256": "edac50dfc65ce0e128a608f2d7771e31d86bbdce79966e75b9a3f0ea6f4668df",
+      "scenePath": "data/scenes/reverse-percent-s0001-narrated.json",
+      "sceneCanonicalSha256": "89f1b256c43d5701558c9a64cc6435c7678e18815514729329730a8cb7b5a589",
+      "mediaPath": "output/videos/reverse-percent-s0001-narrated.mp4",
+      "mediaSha256": "a5c3ba80db3a697f929215feb6d625c5437901e51e87f4d3f82e77f01ab76f90",
+      "renderInputsSha256": "ab58a9c1fcefe6dc4241b4d615db191076a7c57d766f0c72b390f9bede27aa86"
+    },
+    "audit": {
+      "branch": "codex/phase8-final-audit",
+      "commit": "4409e16316a615216f48db31e896d58f9849b421",
+      "report": "audit/CODEX_PHASE8_FINAL_AUDIT.md",
+      "reportSha256": "9527712f30ec3f84ce70291794202564563fe0cd0c822ef9ec6f86706a81e5ca",
+      "verdict": "PASS WITH MINOR ISSUES",
+      "auditDate": "2026-11-16"
+    }
+  },
+  "series": "SAT & ACT Math Prep",
+  "topicLabel": "Problem Solving · Percentages",
+  "classification": {
+    "skills": [
+      "percentages"
+    ],
+    "topic": "Ratios, proportions, and percentages",
+    "exams": [
+      "SAT",
+      "ACT"
+    ],
+    "format": "multiple_choice_4",
+    "sat": {
+      "domains": [
+        "Problem-Solving and Data Analysis"
+      ],
+      "testing_points": [
+        "Percentages"
+      ]
+    },
+    "act": {
+      "categories": [
+        "Integrating Essential Skills"
+      ]
+    },
+    "needs_spec_check": [],
+    "spec_version": "sat-digital-2024 / act-enhanced-2025; access-limited recheck 2026-11-13"
+  },
+  "skillNames": {
+    "percentages": "Percent, percent change and successive percents"
+  },
+  "difficulty": "medium",
+  "format": "multiple_choice_4",
+  "template": {
+    "name": "reverse_percent",
+    "presentation": "word",
+    "techniques": [
+      "percent changes as multipliers",
+      "undo multipliers by dividing",
+      "check by working forward"
+    ],
+    "misconceptions": [
+      "adding successive percents",
+      "undoing a percent with the opposite percent",
+      "undoing only one change"
+    ]
+  },
+  "concept": "Successive percent changes multiply; to undo them, divide by the multipliers.",
+  "question": {
+    "stem": [
+      "A store discounts a jacket by $20\\%$. Then a $6\\%$ sales tax is added to the discounted price. The final price is $\\$76.32$."
+    ],
+    "prompt": "What was the original price of the jacket?"
+  },
+  "figure": null,
+  "rightAngle": null,
+  "choices": [
+    {
+      "label": "A",
+      "display": "$\\$86.09$",
+      "correct": false,
+      "note": "opposite percents applied to the final price",
+      "why": "This applies the opposite percents to the final price: $76.32 \\times 1.2 \\times 0.94 \\approx 86.09$, rounded to the nearest cent. Undoing a $20\\%$ discount means dividing by $0.8$, not multiplying by $1.2$.",
+      "rationale": "Undoes each change with the opposite percent."
+    },
+    {
+      "label": "B",
+      "display": "$\\$88.74$",
+      "correct": false,
+      "note": "percents added instead of multiplied",
+      "why": "This treats the changes as one $14\\%$ decrease: $76.32 \\div 0.86 \\approx 88.74$, rounded to the nearest cent. Successive percents multiply instead: $0.8 \\times 1.06 = 0.848$.",
+      "rationale": "Adds the percents."
+    },
+    {
+      "label": "C",
+      "display": "$\\$90.00$",
+      "correct": true,
+      "note": "Correct",
+      "why": "",
+      "rationale": ""
+    },
+    {
+      "label": "D",
+      "display": "$\\$95.40$",
+      "correct": false,
+      "note": "the tax was not undone",
+      "why": "This undoes only the discount, treating the final price as if it were the price before tax: $95.40 \\times 0.8 = 76.32$. The $6\\%$ tax was also added, so it must be undone too.",
+      "rationale": "Undoes one of the two changes."
+    }
+  ],
+  "answer": {
+    "label": "C",
+    "display": "$\\$90.00$"
+  },
+  "solution": {
+    "steps": [
+      {
+        "id": "warn",
+        "kind": "concept",
+        "title": "Careful: the percents do not combine",
+        "caption": "**Careful:** this is **not** $14\\%$ off. The $20\\%$ comes off the **original** price; the $6\\%$ tax is added to the smaller, **discounted** price.",
+        "lines": []
+      },
+      {
+        "id": "multipliers",
+        "kind": "concept",
+        "title": "Each change is a multiplier",
+        "caption": "With $P$ the original price: $20\\%$ off leaves $80\\%$, and $6\\%$ tax makes $106\\%$.",
+        "lines": [
+          {
+            "tex": "0.8(1.06)P = 76.32",
+            "check": "equiv"
+          }
+        ]
+      },
+      {
+        "id": "calculator",
+        "kind": "concept",
+        "title": "Calculator time",
+        "caption": "**Calculator:** setting up the equation is the skill. Let the calculator do the decimals.",
+        "lines": [
+          {
+            "tex": "P = 76.32 \\div (0.8 \\times 1.06) = 90",
+            "check": "true"
+          }
+        ]
+      },
+      {
+        "id": "check",
+        "kind": "simple",
+        "title": "Check by working forward",
+        "caption": "Run $\\$90$ through both changes.",
+        "lines": [
+          {
+            "tex": "90 \\times 0.8 = 72",
+            "check": "numeric"
+          },
+          {
+            "tex": "72 \\times 1.06 = 76.32",
+            "check": "numeric"
+          }
+        ]
+      },
+      {
+        "id": "trap",
+        "kind": "concept",
+        "title": "The trap: adding the percents",
+        "caption": "**The trap:** $14\\%$ off would multiply by $0.86$, not by $0.848$.",
+        "lines": [
+          {
+            "tex": "76.32 \\div 0.86 \\approx 88.74",
+            "check": "true"
+          }
+        ]
+      }
+    ],
+    "keyIdea": "Percent changes **multiply**. To undo them, divide by the multipliers.",
+    "trap": {
+      "label": "B",
+      "value": "4437/50"
+    },
+    "summary": "The discount and the tax apply to different amounts, so they do not combine to 14% off. 0.8 × 1.06 × P = 76.32. With a calculator, P = 76.32 / (0.8 × 1.06) = 90. Check: 90 × 0.8 = 72 and 72 × 1.06 = 76.32."
+  },
+  "meta": {
+    "title_hook": "Undo Two Percent Changes",
+    "description_lead": "20% off, then 6% tax, total $76.32. Original price?"
+  },
+  "video": {
+    "variantId": "reverse-percent-s0001-narrated",
+    "mediaSha256": "a5c3ba80db3a697f929215feb6d625c5437901e51e87f4d3f82e77f01ab76f90",
+    "durationSeconds": 97.476,
+    "explanationStartSeconds": 23,
+    "timing": {
+      "explanationStartSeconds": 23,
+      "rule": "first whole second at or after the end of the thinking countdown; never after the first spoken explanation sentence",
+      "countdownStartSeconds": 15.143,
+      "countdownSeconds": 7,
+      "countdownEndSeconds": 22.143,
+      "solutionVisualInSeconds": 22.543,
+      "firstExplanationSegment": "warn:0",
+      "firstExplanationNarrationSeconds": 24.593,
+      "sceneDurationSeconds": 97.476
+    },
+    "youtubeId": null,
+    "published": false,
+    "publication": null
+  }
+}

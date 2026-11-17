@@ -1,0 +1,66 @@
+{
+  "schema": "batchmath.sat-act.import-manifest/1",
+  "contentStatus": "development-fixture",
+  "source": {
+    "repository": "batchmath/Shorts",
+    "branch": "claude/phase8-final-corrections",
+    "commit": "22113846d3f83f10eef9a9c19f64b2e5848a9b6f"
+  },
+  "audit": {
+    "branch": "codex/phase8-final-audit",
+    "commit": "4409e16316a615216f48db31e896d58f9849b421",
+    "verdict": "PASS WITH MINOR ISSUES"
+  },
+  "records": [
+    {
+      "sourceId": "right-triangle-trig-s0031",
+      "number": 1,
+      "recordSha256": "7842f50753a185f1862f4675dff60af9761135c5a63af8d622d16414a53da99c",
+      "contentHash": "e6b79785cc618f61",
+      "mediaSha256": "e6ee6808e1f335488b54d25ac9068c0545ac46c72b3e20d9c7fe9389d0abfa73",
+      "explanationStartSeconds": 19,
+      "countdownEndSeconds": 18.014,
+      "firstExplanationNarrationSeconds": 19.114
+    },
+    {
+      "sourceId": "radical-equation-s0003",
+      "number": 2,
+      "recordSha256": "3f6d2837d8271f17b1ea0ae7f7a315556caced12ffe3a772918d0f9e59f0674a",
+      "contentHash": "b716a52cf181a532",
+      "mediaSha256": "47757a00022fa8c99248bb8cbc3560a1fc056a1cc7c78e1b0c22b472a4632966",
+      "explanationStartSeconds": 16,
+      "countdownEndSeconds": 15.463,
+      "firstExplanationNarrationSeconds": 17.013
+    },
+    {
+      "sourceId": "system-no-solution-s0001",
+      "number": 3,
+      "recordSha256": "8d1495cbcd9304173a4b34e1fb203fd3264771b46ef6c7aee74216919b31aeae",
+      "contentHash": "1dcd8aaf55da83f6",
+      "mediaSha256": "d299b8525e6ec09c4f205ad318e379227d19ef14b16bb5929f71389c6b1ba085",
+      "explanationStartSeconds": 20,
+      "countdownEndSeconds": 19.482,
+      "firstExplanationNarrationSeconds": 21.332
+    },
+    {
+      "sourceId": "reverse-percent-s0001",
+      "number": 4,
+      "recordSha256": "62445d3f1b7f1a0cb5952af37468b689d7f6ae0aa883d17daf2313e519321988",
+      "contentHash": "2209abffeafe0b6a",
+      "mediaSha256": "a5c3ba80db3a697f929215feb6d625c5437901e51e87f4d3f82e77f01ab76f90",
+      "explanationStartSeconds": 23,
+      "countdownEndSeconds": 22.143,
+      "firstExplanationNarrationSeconds": 24.593
+    },
+    {
+      "sourceId": "circle-radius-s0001",
+      "number": 5,
+      "recordSha256": "a2a1935be1931894f70d9bd9d194f3f226b0a0b4a7e79163a8ae42faadc96458",
+      "contentHash": "81b90451bbe31404",
+      "mediaSha256": "fc62fa996219d5a8327025191c79f2773451900b3e4f0063cafee104547bc511",
+      "explanationStartSeconds": 18,
+      "countdownEndSeconds": 17.576,
+      "firstExplanationNarrationSeconds": 18.726
+    }
+  ]
+}

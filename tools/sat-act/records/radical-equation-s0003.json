@@ -1,0 +1,281 @@
+{
+  "schema": "batchmath.sat-act.problem/1",
+  "sourceId": "radical-equation-s0003",
+  "contentStatus": "development-fixture",
+  "approval": {
+    "text": null,
+    "video": null,
+    "releaseEligible": false,
+    "note": "Development fixture. Independent content audit only; no human approval has been recorded. Not for publication."
+  },
+  "provenance": {
+    "repository": "batchmath/Shorts",
+    "branch": "claude/phase8-final-corrections",
+    "commit": "22113846d3f83f10eef9a9c19f64b2e5848a9b6f",
+    "recordPath": "data/problems/radical-equation-s0003.json",
+    "recordSha256": "3f6d2837d8271f17b1ea0ae7f7a315556caced12ffe3a772918d0f9e59f0674a",
+    "contentHash": "b716a52cf181a532",
+    "verification": {
+      "passed": true,
+      "checks": 59,
+      "failed": 0,
+      "tools": {
+        "python": "3.13.18",
+        "sympy": "1.14.0"
+      }
+    },
+    "video": {
+      "manifestPath": "output/videos/radical-equation-s0003-narrated.json",
+      "manifestSha256": "6cfbae0cd81255dafa73d177319385079850005156d27731592ad2e63997d718",
+      "scenePath": "data/scenes/radical-equation-s0003-narrated.json",
+      "sceneCanonicalSha256": "6ad7791632d21d68f3d4d2b1fa543d650b1b1b901666a10f82412956a2d5aa06",
+      "mediaPath": "output/videos/radical-equation-s0003-narrated.mp4",
+      "mediaSha256": "47757a00022fa8c99248bb8cbc3560a1fc056a1cc7c78e1b0c22b472a4632966",
+      "renderInputsSha256": "ab58a9c1fcefe6dc4241b4d615db191076a7c57d766f0c72b390f9bede27aa86"
+    },
+    "audit": {
+      "branch": "codex/phase8-final-audit",
+      "commit": "4409e16316a615216f48db31e896d58f9849b421",
+      "report": "audit/CODEX_PHASE8_FINAL_AUDIT.md",
+      "reportSha256": "9527712f30ec3f84ce70291794202564563fe0cd0c822ef9ec6f86706a81e5ca",
+      "verdict": "PASS WITH MINOR ISSUES",
+      "auditDate": "2026-11-16"
+    }
+  },
+  "series": "SAT & ACT Math Prep",
+  "topicLabel": "Algebra · Radical equations",
+  "classification": {
+    "skills": [
+      "radical-equations",
+      "quadratic-solving"
+    ],
+    "topic": "Radicals and exponents",
+    "exams": [
+      "SAT",
+      "ACT"
+    ],
+    "format": "multiple_choice_4",
+    "sat": {
+      "domains": [
+        "Advanced Math"
+      ],
+      "testing_points": [
+        "Nonlinear equations in one variable and systems of equations in two variables"
+      ]
+    },
+    "act": {
+      "categories": [
+        "Algebra"
+      ]
+    },
+    "needs_spec_check": [],
+    "spec_version": "sat-digital-2024 / act-enhanced-2025; access-limited recheck 2026-11-13"
+  },
+  "skillNames": {
+    "radical-equations": "Radical equations and extraneous solutions",
+    "quadratic-solving": "Solving quadratics (factoring, formula, completing the square)"
+  },
+  "difficulty": "medium",
+  "format": "multiple_choice_4",
+  "template": {
+    "name": "radical_equation",
+    "presentation": "symbolic",
+    "techniques": [
+      "square both sides",
+      "factor a quadratic",
+      "check candidates in the original equation"
+    ],
+    "misconceptions": [
+      "keeping an extraneous root",
+      "expanding (x - b)^2 as x^2 + b^2"
+    ]
+  },
+  "concept": null,
+  "question": {
+    "stem": [
+      {
+        "math": "\\sqrt{x + 5} = x - 7"
+      }
+    ],
+    "prompt": "Which choice lists **all** real solutions of the equation?"
+  },
+  "figure": null,
+  "rightAngle": null,
+  "choices": [
+    {
+      "label": "A",
+      "display": "$4$",
+      "correct": false,
+      "note": "$4$ is extraneous",
+      "why": "$x = 4$ solves the squared equation, but in the original equation $\\sqrt{4 + 5} = 3$ while $4 - 7 = -3$, so $4$ is extraneous.",
+      "rationale": "Keeps the root of the squared equation that fails the original equation."
+    },
+    {
+      "label": "B",
+      "display": "$11$",
+      "correct": true,
+      "note": "Correct",
+      "why": "",
+      "rationale": ""
+    },
+    {
+      "label": "C",
+      "display": "$4$ and $11$",
+      "correct": false,
+      "note": "$4$ is extraneous",
+      "why": "$x = 11$ is a solution, but $4$ is not: it makes the left side $3$ and the right side $-3$, so the list includes an extraneous value.",
+      "rationale": "Accepts both roots of the squared equation without testing them in the original."
+    },
+    {
+      "label": "D",
+      "display": "No real solution",
+      "correct": false,
+      "note": "$11$ satisfies the equation",
+      "why": "$x = 11$ satisfies the original equation: $\\sqrt{11 + 5} = 4$ and $11 - 7 = 4$, so a real solution exists.",
+      "rationale": "Rejects the valid root as well as the extraneous one."
+    }
+  ],
+  "answer": {
+    "label": "B",
+    "display": "$11$"
+  },
+  "solution": {
+    "steps": [
+      {
+        "id": "square",
+        "kind": "concept",
+        "title": "Square both sides",
+        "caption": "Squaring can create **extra** solutions, so we will check them at the end.",
+        "lines": [
+          {
+            "tex": "x + 5 = \\htmlClass{hlbox}{(x - 7)^2}",
+            "relation": "squaring"
+          }
+        ]
+      },
+      {
+        "id": "expand",
+        "kind": "simple",
+        "title": "Expand and rearrange",
+        "caption": "Careful: $(x - 7)^2 = x^2 - 14x + 49$, not $x^2 + 49$.",
+        "lines": [
+          {
+            "tex": "x + 5 = \\htmlClass{hlbox}{x^2 - 14x + 49}",
+            "relation": "equivalent"
+          },
+          {
+            "tex": "0 = x^2 - 15x + 44",
+            "relation": "equivalent"
+          }
+        ]
+      },
+      {
+        "id": "factor",
+        "kind": "simple",
+        "title": "Factor",
+        "caption": "Product $44$, sum $-15$: use $-4$ and $-11$.",
+        "lines": [
+          {
+            "tex": "0 = (x - 4)(x - 11)",
+            "relation": "equivalent"
+          },
+          {
+            "tex": "x = 4\\ \\text{or}\\ x = 11",
+            "relation": "candidates",
+            "values": [
+              4,
+              11
+            ],
+            "label": "Candidates · not answers yet"
+          }
+        ]
+      },
+      {
+        "id": "check_valid",
+        "kind": "concept",
+        "title": "Test x = 11",
+        "caption": "Substitute into the **original** equation.",
+        "check": {
+          "value": 11,
+          "valid": true,
+          "lines": [
+            {
+              "tex": "\\sqrt{11 + 5} \\stackrel{?}{=} 11 - 7",
+              "lhs": "\\sqrt{11 + 5}",
+              "rhs": "11 - 7"
+            },
+            {
+              "tex": "4 = 4",
+              "lhs": "4",
+              "rhs": "4",
+              "relation": "="
+            }
+          ]
+        }
+      },
+      {
+        "id": "check_extraneous",
+        "kind": "concept",
+        "title": "Test x = 4",
+        "caption": "Substitute into the **original** equation.",
+        "check": {
+          "value": 4,
+          "valid": false,
+          "lines": [
+            {
+              "tex": "\\sqrt{4 + 5} \\stackrel{?}{=} 4 - 7",
+              "lhs": "\\sqrt{4 + 5}",
+              "rhs": "4 - 7"
+            },
+            {
+              "tex": "3 \\neq \\htmlClass{hlbad}{-3}",
+              "lhs": "3",
+              "rhs": "-3",
+              "relation": "\\neq"
+            }
+          ]
+        }
+      },
+      {
+        "id": "why",
+        "kind": "concept",
+        "title": "Why did 4 appear?",
+        "caption": "A principal square root is never negative, so it can't equal $-3$.",
+        "caption2": "Squaring hid the sign, so $4$ slipped in.",
+        "lines": [
+          {
+            "tex": "3^2 = (-3)^2 = 9",
+            "relation": "numeric"
+          }
+        ]
+      }
+    ],
+    "keyIdea": "Squaring both sides can create **extraneous solutions**. Always check every candidate in the **original** equation.",
+    "trap": null,
+    "summary": "Square both sides: x + 5 = (x - 7)^2, so x^2 - 15x + 44 = 0 and x = 4 or x = 11. In the original equation, x = 11 gives sqrt(16) = 4 = 11 - 7, so it works. x = 4 gives sqrt(9) = 3 but 4 - 7 = -3; a principal square root is never negative, so 4 is extraneous. Squaring hid the sign (3^2 = (-3)^2). Answer: x = 11 only."
+  },
+  "meta": {
+    "title_hook": "Squaring Both Sides Can Fool You",
+    "description_lead": "Solve √(x + 5) = x − 7. Squaring gives two candidates, but only one of them is a real solution. Can you spot the fake?"
+  },
+  "video": {
+    "variantId": "radical-equation-s0003-narrated",
+    "mediaSha256": "47757a00022fa8c99248bb8cbc3560a1fc056a1cc7c78e1b0c22b472a4632966",
+    "durationSeconds": 100.849,
+    "explanationStartSeconds": 16,
+    "timing": {
+      "explanationStartSeconds": 16,
+      "rule": "first whole second at or after the end of the thinking countdown; never after the first spoken explanation sentence",
+      "countdownStartSeconds": 8.463,
+      "countdownSeconds": 7,
+      "countdownEndSeconds": 15.463,
+      "solutionVisualInSeconds": 15.913,
+      "firstExplanationSegment": "square:0",
+      "firstExplanationNarrationSeconds": 17.013,
+      "sceneDurationSeconds": 100.849
+    },
+    "youtubeId": null,
+    "published": false,
+    "publication": null
+  }
+}

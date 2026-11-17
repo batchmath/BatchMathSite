@@ -1,0 +1,38 @@
+{
+  "schema": "batchmath.sat-act.taxonomy/1",
+  "notes": [
+    "Subjects are the Shorts taxonomy TOPICS (shorts/taxonomy.py); skills are its SKILLS, keyed by the source skill id.",
+    "The website only adds a URL slug, a display label and a display order. Classification itself always comes from the verified source record.",
+    "A problem is listed under its primary skill (the first skill in classification.skills); its other skills are shown as tags.",
+    "Slugs are part of permanent topic URLs (/sat-act-math/topics/<slug>/). Do not rename a slug after publication."
+  ],
+  "subjects": [
+    { "sourceTopic": "Linear equations and inequalities", "slug": "linear-equations-and-inequalities", "label": "Linear Equations and Inequalities", "order": 1 },
+    { "sourceTopic": "Systems of equations", "slug": "systems-of-equations", "label": "Systems of Equations", "order": 2 },
+    { "sourceTopic": "Quadratic equations", "slug": "quadratic-equations", "label": "Quadratic Equations", "order": 3 },
+    { "sourceTopic": "Polynomial and rational expressions", "slug": "polynomial-and-rational-expressions", "label": "Polynomial and Rational Expressions", "order": 4 },
+    { "sourceTopic": "Exponential functions", "slug": "exponential-functions", "label": "Exponential Functions", "order": 5 },
+    { "sourceTopic": "Radicals and exponents", "slug": "radicals-and-exponents", "label": "Radicals and Exponents", "order": 6 },
+    { "sourceTopic": "Functions and transformations", "slug": "functions-and-transformations", "label": "Functions and Transformations", "order": 7 },
+    { "sourceTopic": "Ratios, proportions, and percentages", "slug": "ratios-proportions-and-percentages", "label": "Ratios, Proportions, and Percentages", "order": 8 },
+    { "sourceTopic": "Word problems and modeling", "slug": "word-problems-and-modeling", "label": "Word Problems and Modeling", "order": 9 },
+    { "sourceTopic": "Statistics and probability", "slug": "statistics-and-probability", "label": "Statistics and Probability", "order": 10 },
+    { "sourceTopic": "Coordinate geometry", "slug": "coordinate-geometry", "label": "Coordinate Geometry", "order": 11 },
+    { "sourceTopic": "Geometry and trigonometry", "slug": "geometry-and-trigonometry", "label": "Geometry and Trigonometry", "order": 12 },
+    { "sourceTopic": "Number and quantity", "slug": "number-and-quantity", "label": "Number and Quantity", "order": 13 }
+  ],
+  "skills": {
+    "right-triangle-trig": { "label": "Right-Triangle Trigonometry" },
+    "pythagorean": { "label": "Pythagorean Theorem" },
+    "radical-equations": { "label": "Radical Equations" },
+    "quadratic-solving": { "label": "Solving Quadratics" },
+    "systems-solution-count": { "label": "Number of Solutions of a Linear System" },
+    "percentages": { "label": "Percentages and Percent Change" },
+    "circle-equations": { "label": "Equations of Circles" }
+  },
+  "difficulties": [
+    { "value": "easy", "label": "Easy", "order": 1 },
+    { "value": "medium", "label": "Medium", "order": 2 },
+    { "value": "hard", "label": "Hard", "order": 3 }
+  ]
+}

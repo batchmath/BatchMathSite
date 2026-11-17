@@ -1,0 +1,51 @@
+{
+  "schema": "batchmath.sat-act.registry/1",
+  "policy": [
+    "Append-only. A display number is assigned once and is never reused, renumbered or reassigned to another source record.",
+    "The slug is part of the permanent URL /sat-act-math/problems/<slug>/ and must not change once a problem is published.",
+    "Titles are website copy that describe the problem; they never replace the verified mathematics, which comes only from the source record.",
+    "To retire a problem, set status to \"retired\"; never delete the entry or reuse its number."
+  ],
+  "problems": [
+    {
+      "number": 1,
+      "sourceId": "right-triangle-trig-s0031",
+      "slug": "001-right-triangle-find-tan-b-from-sin-a",
+      "title": "Find tan B Given sin A = 15/17",
+      "status": "active",
+      "registeredIn": "sat-act-p1"
+    },
+    {
+      "number": 2,
+      "sourceId": "radical-equation-s0003",
+      "slug": "002-solve-radical-equation-square-root-x-plus-5",
+      "title": "Solve the Radical Equation √(x + 5) = x − 7",
+      "status": "active",
+      "registeredIn": "sat-act-p1"
+    },
+    {
+      "number": 3,
+      "sourceId": "system-no-solution-s0001",
+      "slug": "003-system-of-equations-find-k-for-no-solution",
+      "title": "Find k So the System Has No Solution",
+      "status": "active",
+      "registeredIn": "sat-act-p1"
+    },
+    {
+      "number": 4,
+      "sourceId": "reverse-percent-s0001",
+      "slug": "004-original-price-after-discount-and-sales-tax",
+      "title": "Original Price After a 20% Discount and 6% Tax",
+      "status": "active",
+      "registeredIn": "sat-act-p1"
+    },
+    {
+      "number": 5,
+      "sourceId": "circle-radius-s0001",
+      "slug": "005-circle-radius-by-completing-the-square",
+      "title": "Find the Radius of x² + y² − 4x + 4y = 73",
+      "status": "active",
+      "registeredIn": "sat-act-p1"
+    }
+  ]
+}

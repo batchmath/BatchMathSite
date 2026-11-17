@@ -69,7 +69,8 @@
     const last = document.getElementById('bm-analytics-debug-last');
     if (!engine || !counts || !last) return;
     engine.textContent = `${config.engineId || 'unknown engine'} · debug stays on in this tab`;
-    const names = ['practice_started','problem_generated','answer_checked','answer_correct','solution_revealed'];
+    const base = ['practice_started','problem_generated','answer_checked','answer_correct','solution_revealed'];
+    const names = base.concat(Object.keys(debugCounts).filter(name => !base.includes(name)));
     counts.innerHTML = names.map(name => `<div style="display:flex;justify-content:space-between;gap:10px"><span>${name}</span><strong>${debugCounts[name] || 0}</strong></div>`).join('');
     const queued = readQueue().length;
     last.textContent = `${debugLastEvent ? `Last: ${debugLastEvent} · ` : ''}Queued offline: ${queued}`;
@@ -285,6 +286,18 @@
     return Object.assign({}, meta, extra || {});
   }
 
+  // Additional named events (for example the SAT & ACT library's video and session events).
+  // They share the same queue, common parameters and debug panel. The five contract events
+  // above can only be sent through their own methods, so answerChecked() stays the single
+  // source of answer_checked / answer_correct.
+  const CONTRACT_EVENTS = ['practice_started','problem_generated','answer_checked','answer_correct','solution_revealed'];
+  function trackEvent(name, problem, extra = {}) {
+    const n = String(name || '');
+    if (!/^[a-z][a-z0-9_]{2,39}$/.test(n) || CONTRACT_EVENTS.includes(n) || /^(?:ga_|google_|firebase_)/.test(n)) return false;
+    emit(n, problem ? eventParams(problem, extra) : Object.assign({}, extra || {}));
+    return true;
+  }
+
   const api = {
     config: Object.freeze(Object.assign({}, config)),
     inferProblemMeta,
@@ -297,6 +310,7 @@
       if (correct) emit('answer_correct', params);
     },
     solutionRevealed(problem, extra = {}) { emit('solution_revealed', eventParams(problem, extra)); },
+    trackEvent,
     flush,
     queuedCount() { return readQueue().length; },
     debugEnabled: debugMode,
