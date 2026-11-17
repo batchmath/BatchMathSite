@@ -50,4 +50,12 @@ Pages use the live BatchMath GA4 tag. While testing, add ?bm_debug=1 to a URL (f
 http://localhost:8000/sat-act-math/?bm_debug=1) to see each event in a panel and in GA4 DebugView.
 See docs/sat-act/GA4-ANALYTICS.md.
 
-More: docs/sat-act/SAT-ACT-P1-REPORT.md (report), docs/sat-act/PUBLISHING-WORKFLOW.md (approval and publishing).
+About this package
+bm-sat-act-p1.zip is a short preview package: the complete site from the branch commit, minus the classroom PDF
+downloads of the other courses (about 310 MB, unchanged from main), so those PDF links show "not found" in this preview.
+The review documents are included in docs/sat-act/:
+  SAT-ACT-P1-REPORT.md     implementation and QA report, remaining steps
+  GA4-ANALYTICS.md         events, custom definitions to register, DebugView checks
+  PUBLISHING-WORKFLOW.md   approval boundary, adding approved problems
+  APPROVED-EXPORT-SPEC.md  the approved-content export the production importer accepts
+Build tools and QA (tools/sat-act/) are on the branch, not in this package.
