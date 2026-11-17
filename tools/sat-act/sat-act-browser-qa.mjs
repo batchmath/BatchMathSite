@@ -80,7 +80,7 @@ const MOCK_YT = `(() => {
   setTimeout(() => window.onYouTubeIframeAPIReady && window.onYouTubeIframeAPIReady(), 0);
 })();`;
 
-async function newContext(browser, origin, { viewport = { width: 1280, height: 900 }, youtube = 'mock', catalogPatch = null, videoFor = null } = {}) {
+async function newContext(browser, origin, { viewport = { width: 1280, height: 900 }, youtube = 'mock', catalogPatch = null, videoFor = null, videoId = MOCK_ID, withoutVideos = false } = {}) {
   const context = await browser.newContext({ viewport });
   await localMathJax(context);
   await context.route(/googletagmanager\.com|google-analytics\.com/, route => route.abort());
@@ -88,11 +88,11 @@ async function newContext(browser, origin, { viewport = { width: 1280, height: 9
   if (youtube === 'mock') await context.route('https://www.youtube.com/iframe_api', route => route.fulfill({ status: 200, contentType: 'text/javascript', body: MOCK_YT }));
   else if (youtube === 'blocked') await context.route('https://www.youtube.com/iframe_api', route => route.abort());
   if (catalogPatch) await context.route(`${origin}/assets/sat-act/catalog.js`, route => route.fulfill({ status: 200, contentType: 'text/javascript', body: catalogPatch(CATALOG_SRC) }));
-  if (videoFor) {
-    await context.route(`${origin}${videoFor}`, async route => {
+  if (videoFor || withoutVideos) {
+    await context.route(videoFor ? `${origin}${videoFor}` : `${origin}/sat-act-math/problems/*/`, async route => {
       const response = await route.fetch();
-      const body = (await response.text()).replace('"youtubeId":null', `"youtubeId":"${MOCK_ID}"`);
-      assert.ok(body.includes(MOCK_ID), 'test video injection failed');
+      const body = (await response.text()).replace(/"youtubeId":(?:null|"[\w-]+")/, `"youtubeId":${videoFor ? JSON.stringify(videoId) : 'null'}`);
+      if (videoFor) assert.ok(body.includes(videoId), 'test video injection failed');
       await route.fulfill({ response, body });
     });
   }
@@ -130,8 +130,12 @@ async function scenario(name, fn) {
 }
 
 const { server, origin } = await serve(ROOT);
+const browserPath = process.env.BATCHMATH_CHROMIUM_PATH;
 let browser;
-try { browser = await chromium.launch(); } catch (_) { browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' }); }
+try { browser = await chromium.launch(browserPath ? { executablePath: browserPath } : {}); } catch (e) {
+  if (browserPath || !fs.existsSync('/opt/pw-browsers/chromium')) throw e;
+  browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+}
 
 await scenario('library home: filters, counts and no-results state', async () => {
   const { context, page, pageErrors } = await newContext(browser, origin);
@@ -139,12 +143,14 @@ await scenario('library home: filters, counts and no-results state', async () =>
   await ready(page);
   assert.match(await page.locator('#satact-filter-summary').innerText(), new RegExp(`${problems.length} questions match`));
   assert.equal(await page.locator('.satact-subject-card:visible').count(), catalog.subjects.length);
-  await page.selectOption('#satact-exam', 'ACT');
-  assert.equal(await page.locator('.satact-subject-card:visible').count(), catalog.subjects.length, 'every current question is SAT and ACT');
+  assert.equal(await page.locator('#satact-exam').count(), 0);
+  const difficulty = problems[0].difficulty;
+  await page.selectOption('#satact-difficulty', difficulty);
   for (const s of catalog.subjects) {
-    const n = problems.filter(p => p.subject === s.slug).length;
+    const n = problems.filter(p => p.subject === s.slug && p.difficulty === difficulty).length;
     assert.equal(await page.locator(`[data-subject-count="${s.slug}"]`).innerText(), `${n} question${n === 1 ? '' : 's'}`);
   }
+  await page.selectOption('#satact-difficulty', 'all');
   await page.selectOption('#satact-mixed-subject', catalog.subjects[0].slug);
   const skillOptions = await page.locator('#satact-mixed-skill option:not([disabled])').allInnerTexts();
   assert.equal(skillOptions.length, 1 + catalog.subjects[0].skills.length, 'skill list follows the chosen subject');
@@ -152,23 +158,23 @@ await scenario('library home: filters, counts and no-results state', async () =>
   assert.deepEqual(pageErrors, []);
   await context.close();
 
-  // No-results state, using a modified catalog where every question is SAT-only.
-  const patched = await newContext(browser, origin, { catalogPatch: src => src.replace(/"exams": \[\s*"SAT",\s*"ACT"\s*\]/g, '"exams": ["SAT"]') });
+  // Simulate a displayed difficulty whose problems went away.
+  const patched = await newContext(browser, origin, { catalogPatch: src => src.replaceAll(`"difficulty": "${difficulty}"`, '"difficulty": "qa-other"') });
   await patched.page.goto(`${origin}/sat-act-math/`);
   await ready(patched.page);
-  await patched.page.selectOption('#satact-exam', 'ACT');
+  await patched.page.selectOption('#satact-difficulty', difficulty);
   assert.equal(await patched.page.locator('#satact-topic-empty').isVisible(), true);
   assert.equal(await patched.page.locator('#satact-mixed-empty').isVisible(), true);
   assert.equal(await patched.page.locator('#satact-mixed-start').isDisabled(), true);
   assert.match(await patched.page.locator('#satact-filter-summary').innerText(), /No questions match/);
   await patched.page.locator('#satact-topic-empty [data-reset-filters]').click();
   assert.equal(await patched.page.locator('#satact-topic-empty').isVisible(), false);
-  assert.equal(await patched.page.locator('#satact-exam').inputValue(), 'all');
+  assert.equal(await patched.page.locator('#satact-difficulty').inputValue(), 'all');
   await patched.context.close();
 });
 
 await scenario('mixed practice: no repeats, first-attempt scoring, retries, reveal, summary and events', async () => {
-  const { context, page, pageErrors } = await newContext(browser, origin);
+  const { context, page, pageErrors } = await newContext(browser, origin, { withoutVideos: true });
   await page.goto(`${origin}/sat-act-math/`);
   await ready(page);
   await page.locator('#satact-mixed-start').click();
@@ -249,6 +255,37 @@ await scenario('mixed practice: no repeats, first-attempt scoring, retries, reve
   assert.equal(s.status, 'completed');
   assert.deepEqual(pageErrors, []);
   await context.close();
+});
+
+await scenario('each initial question scores the first answer and preserves it through retries', async () => {
+  const keys = ['B', 'B', 'A', 'C', 'C'];
+  for (const [i, correct] of keys.entries()) {
+    const problem = problems.find(p => p.number === i + 1);
+    for (const firstTryCorrect of [true, false]) {
+      const { context, page } = await newContext(browser, origin, { withoutVideos: true });
+      try {
+        await page.goto(`${origin}${problem.url}`);
+        await ready(page);
+        const data = await problemData(page);
+        assert.equal(data.answer, correct, `question ${i + 1} disagrees with the independent answer key`);
+        const wrong = wrongLetter(data);
+        await answer(page, firstTryCorrect ? correct : wrong);
+        if (!firstTryCorrect) {
+          assert.equal(await page.locator('#satact-solution').evaluate(d => d.open), true);
+          assert.equal(await page.locator(`label[data-choice="${wrong}"] input`).isDisabled(), true);
+          await answer(page, correct);
+        }
+        assert.match(await page.locator('#satact-feedback').innerText(), /Correct!/);
+        const log = await events(page);
+        assert.deepEqual(named(log, 'answer_checked').map(e => e.params.answer_result), [firstTryCorrect ? 'correct' : 'incorrect']);
+        assert.equal(named(log, 'answer_correct').length, firstTryCorrect ? 1 : 0);
+        assert.equal(named(log, 'answer_retry').length, firstTryCorrect ? 0 : 1);
+        assert.equal(named(log, 'problem_completed').length, 1);
+      } finally {
+        await context.close();
+      }
+    }
+  }
 });
 
 await scenario('topic practice with one question finishes gracefully', async () => {
@@ -573,12 +610,7 @@ if (process.argv.includes('--real-youtube')) {
     const frq = fs.readFileSync(path.join(ROOT, 'ap-calculus/ap-test-preparation/free-response-questions/frq-data.js'), 'utf8');
     const realId = (frq.match(/youtu(?:\.be\/|be\.com\/watch\?v=)([A-Za-z0-9_-]{11})/) || [])[1];
     assert.ok(realId, 'no published BatchMath video found');
-    const { context, page } = await newContext(browser, origin, { youtube: 'real', videoFor: first.url });
-    await context.unroute(`${origin}${first.url}`);
-    await context.route(`${origin}${first.url}`, async route => {
-      const response = await route.fetch();
-      await route.fulfill({ response, body: (await response.text()).replace('"youtubeId":null', `"youtubeId":"${realId}"`) });
-    });
+    const { context, page } = await newContext(browser, origin, { youtube: 'real', videoFor: first.url, videoId: realId });
     await page.goto(`${origin}${first.url}`);
     await ready(page);
     await answer(page, wrongLetter(await problemData(page)));

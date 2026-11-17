@@ -30,7 +30,7 @@ Question events also carry: `problem_id` (stable source ID, e.g. `radical_equati
 
 | Requirement | Event | When | Extra parameters |
 |---|---|---|---|
-| Practice session started | `practice_started` | Once per session: first question page of a topic/mixed set, or the first interaction of a visitor who arrived directly on a question | `practice_mode`, `exam_filter`, `difficulty_filter`, `subject_filter`, `skill_filter`, `session_size`, `entry_page` |
+| Practice session started | `practice_started` | Once per session: first question page of a topic/mixed set, or the first interaction of a visitor who arrived directly on a question | `practice_mode`, `difficulty_filter`, `subject_filter`, `skill_filter`, `session_size`, `entry_page` |
 | Problem presented | `problem_generated` (existing name, kept so engine reports stay comparable) | Once per question per session (a reload does not resend) | — |
 | Answer submitted + result | `answer_checked` | **Once per question per session: the first (scored) answer** | `answer_result` (`correct`/`incorrect`), `attempt_number` = 1 |
 | Correct on first attempt | `answer_correct` | With `answer_checked`, only when that first answer is correct | same as above |
@@ -80,7 +80,7 @@ engines may already have `practice_mode` or `answer_result`).
 | Session end reason | `end_reason` |
 | Engine ID | `engine_id` (to separate this library from the course engines) |
 
-Optional: `entry_page`, `exam_filter`, `subject_filter`, `skill_filter`, `difficulty_filter`, `error_type`, `question_format`.
+Optional: `entry_page`, `subject_filter`, `skill_filter`, `difficulty_filter`, `error_type`, `question_format`.
 
 **Custom metrics (event-scoped, unit: Standard)**
 

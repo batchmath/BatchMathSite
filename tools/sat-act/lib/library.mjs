@@ -2,7 +2,8 @@
 // Fails closed on any inconsistency so a page can never be built from an ambiguous source.
 import fs from 'node:fs';
 import path from 'node:path';
-import { RECORD_SCHEMA, CONTENT_STATUSES } from './source-records.mjs';
+import { RECORD_SCHEMA, CONTENT_STATUSES, YOUTUBE_ID } from './source-records.mjs';
+import { initialWebsiteRelease } from './initial-website-release.mjs';
 
 export const SECTION = '/sat-act-math/';
 export const SLUG_RE = /^(\d{3})-[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -40,8 +41,16 @@ export function loadLibrary(toolDir, { recordsDir, registryPath } = {}) {
   }
   for (const id of records.keys()) if (!ids.has(id)) throw new Error(`record ${id} is not registered (no permanent number)`);
 
+  const initial = initialWebsiteRelease({
+    release: read('config/initial-website-release.json'),
+    source: read('config/dev-fixture-source.json'),
+    publications: read('config/youtube-publications.json'),
+    records,
+    registry
+  });
   const subjectByTopic = new Map(taxonomy.subjects.map(s => [s.sourceTopic, s]));
   const difficultyLabel = new Map(taxonomy.difficulties.map(d => [d.value, d]));
+  const videoIds = new Set();
   const problems = [];
   for (const entry of [...registry.problems].sort((a, b) => a.number - b.number)) {
     if (entry.status !== 'active') continue;
@@ -53,6 +62,18 @@ export function loadLibrary(toolDir, { recordsDir, registryPath } = {}) {
     const skillIds = record.classification.skills;
     const skillLabel = id => ((taxonomy.skills[id] || {}).label) || record.skillNames[id];
     if (!difficultyLabel.has(record.difficulty)) throw new Error(`${entry.sourceId}: unknown difficulty ${record.difficulty}`);
+    const websiteAuthorized = initial.authorized.has(entry.sourceId);
+    const shortsApproved = record.contentStatus === 'approved' && record.approval?.releaseEligible === true && Boolean(record.approval.text);
+    const initialVideo = initial.links.get(entry.sourceId);
+    const video = initialVideo || record.video;
+    const hasVideo = Boolean(video?.youtubeId && video.published);
+    if (video?.youtubeId) {
+      if (!hasVideo || !YOUTUBE_ID.test(video.youtubeId) || (!initialVideo && !(shortsApproved && record.approval.video))) {
+        throw new Error(`${entry.sourceId}: YouTube ID without a valid publication`);
+      }
+      if (videoIds.has(video.youtubeId)) throw new Error(`YouTube ID ${video.youtubeId} is assigned to more than one problem`);
+      videoIds.add(video.youtubeId);
+    }
     problems.push({
       ...entry,
       record,
@@ -64,7 +85,10 @@ export function loadLibrary(toolDir, { recordsDir, registryPath } = {}) {
       secondarySkills: skillIds.slice(1).map(id => ({ id, label: skillLabel(id), sourceName: record.skillNames[id] })),
       exams: [...record.classification.exams],
       difficulty: difficultyLabel.get(record.difficulty),
-      hasVideo: Boolean(record.video && record.video.youtubeId && record.video.published)
+      video,
+      hasVideo,
+      websiteAuthorized,
+      releaseAuthorized: websiteAuthorized || shortsApproved
     });
   }
 
@@ -80,10 +104,10 @@ export function loadLibrary(toolDir, { recordsDir, registryPath } = {}) {
     }
     s.skills = [...skills.values()].sort((a, b) => a.problems[0].number - b.problems[0].number);
   }
-  const statuses = new Set(problems.map(p => p.record.contentStatus));
+  const releaseReady = problems.length > 0 && problems.every(p => p.releaseAuthorized);
   return {
-    registry, taxonomy, problems, subjects,
-    contentStatus: statuses.has('development-fixture') ? 'development-fixture' : 'approved',
+    registry, taxonomy, problems, subjects, releaseReady,
+    contentStatus: releaseReady ? (problems.some(p => p.websiteAuthorized) ? 'website-authorized' : 'approved') : 'development-fixture',
     difficulties: taxonomy.difficulties.filter(d => problems.some(p => p.difficulty.value === d.value)).sort((a, b) => a.order - b.order)
   };
 }

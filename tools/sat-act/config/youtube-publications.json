@@ -1,9 +1,10 @@
 {
   "schema": "batchmath.sat-act.youtube-publications/1",
   "notes": [
-    "Maintained by hand after a human uploads an APPROVED narrated MP4 to YouTube.",
-    "Each entry binds a published YouTube ID to the SHA-256 of the exact approved MP4, so the explanation-start timestamp is known to match the uploaded file.",
-    "Never add an entry for an unapproved or unpublished video, and never guess an ID. The production importer refuses mismatches."
+    "Use initialWebsitePublications for a confirmed public upload of one of the five audited initial renders.",
+    "Use publications for videos with formal Shorts approval, which are read by the approved-export importer.",
+    "Each entry binds a real published YouTube ID to the SHA-256 of the exact uploaded MP4."
   ],
+  "initialWebsitePublications": [],
   "publications": []
 }

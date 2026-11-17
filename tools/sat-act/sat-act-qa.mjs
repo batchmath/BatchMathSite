@@ -2,8 +2,7 @@
 // SAT & ACT Math Practice — static QA (no browser).
 //
 //   node tools/sat-act/sat-act-qa.mjs            development checks (expected to pass on the prototype branch)
-//   node tools/sat-act/sat-act-qa.mjs --release  adds the publication gate: FAILS while any question is a
-//                                                development fixture or lacks a recorded human approval
+//   node tools/sat-act/sat-act-qa.mjs --release  also requires authorization for every question
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -12,7 +11,8 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { loadLibrary, SECTION, SLUG_RE } from './lib/library.mjs';
 import { escapeHtml, tokenize } from './lib/markup.mjs';
-import { ImportError, pythonCanonicalDigest, YOUTUBE_ID } from './lib/source-records.mjs';
+import { ImportError, pythonCanonicalDigest, sha256, stableJson, YOUTUBE_ID } from './lib/source-records.mjs';
+import { initialWebsiteRelease } from './lib/initial-website-release.mjs';
 import { importApprovedExport, EXPORT_SCHEMA } from './import-approved-export.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -45,16 +45,18 @@ for (const p of lib.problems) {
     `${where}: provenance must name a verified source commit`);
   const v = r.video || {};
   const t = v.timing || {};
-  check(Number.isInteger(v.explanationStartSeconds), `${where}: explanation start must be a whole second`);
-  check(v.explanationStartSeconds >= t.countdownEndSeconds && v.explanationStartSeconds <= t.firstExplanationNarrationSeconds,
-    `${where}: explanation start ${v.explanationStartSeconds}s is not between the countdown end and the first explanation sentence`);
-  check(/^[0-9a-f]{64}$/.test(String(v.mediaSha256 || '')), `${where}: timing is not bound to an MP4 hash`);
+  if (r.video) {
+    check(Number.isInteger(v.explanationStartSeconds), `${where}: explanation start must be a whole second`);
+    check(v.explanationStartSeconds >= t.countdownEndSeconds && v.explanationStartSeconds <= t.firstExplanationNarrationSeconds,
+      `${where}: explanation start ${v.explanationStartSeconds}s is not between the countdown end and the first explanation sentence`);
+    check(/^[0-9a-f]{64}$/.test(String(v.mediaSha256 || '')), `${where}: timing is not bound to an MP4 hash`);
+  }
   if (r.contentStatus === 'development-fixture') {
     check(r.approval && r.approval.releaseEligible === false && r.approval.text === null && r.approval.video === null,
       `${where}: a development fixture must not carry approvals`);
     check(v.youtubeId === null && v.published === false, `${where}: a development fixture must not have a YouTube ID`);
   }
-  if (v.youtubeId !== null) {
+  if (v.youtubeId) {
     check(YOUTUBE_ID.test(v.youtubeId) && v.published && r.contentStatus === 'approved' && r.approval.video,
       `${where}: YouTube ID without an approved, published video`);
   }
@@ -62,7 +64,9 @@ for (const p of lib.problems) {
 const expectedStarts = { 'right-triangle-trig-s0031': 19, 'radical-equation-s0003': 16, 'system-no-solution-s0001': 20, 'reverse-percent-s0001': 23, 'circle-radius-s0001': 18 };
 for (const [id, s] of Object.entries(expectedStarts)) {
   const p = lib.problems.find(x => x.id === id);
-  check(p && p.record.video.explanationStartSeconds === s, `${id}: explanation start changed from the audited render (${s}s)`);
+  if (p?.record.contentStatus === 'development-fixture') {
+    check(p.video?.explanationStartSeconds === s, `${id}: explanation start changed from the audited render (${s}s)`);
+  }
 }
 
 // ------------------------------------------------------------------ registry permanence
@@ -105,7 +109,7 @@ for (const url of pages) {
   check(!/(?:ghp_|github_pat_|gho_|x-access-token|Authorization:)/i.test(html), `${url}: credential-like text`);
   check(!/endorsed by|official (?:SAT|ACT) (?:practice )?question(?!s?\b[^<]{0,20}not)/i.test(html.replace(/not an official SAT® or ACT® question|not official SAT or ACT questions/g, '')),
     `${url}: implies an official SAT/ACT affiliation`);
-  if (lib.contentStatus === 'development-fixture') check(html.includes('satact-preview-notice'), `${url}: development preview notice missing`);
+  check(html.includes('satact-preview-notice') === !lib.releaseReady, `${url}: preview notice disagrees with authorization status`);
 }
 stats.pagesChecked = pages.length;
 const sitemapCount = (sitemap.match(/<loc>https:\/\/batchmath\.net\/sat-act-math\//g) || []).length;
@@ -133,7 +137,7 @@ for (const p of lib.problems) {
   }
   const data = JSON.parse((html.match(/<script type="application\/json" id="satact-problem-data">([\s\S]*?)<\/script>/) || [])[1] || '{}');
   check(data.id === p.id && data.number === p.number && data.answer === r.answer.label, `#${p.displayNumber}: page data does not match the record`);
-  check(data.video && data.video.explanationStartSeconds === r.video.explanationStartSeconds && data.video.youtubeId === (r.video.published ? r.video.youtubeId : null),
+  check(data.video && data.video.explanationStartSeconds === (p.video?.explanationStartSeconds ?? null) && data.video.youtubeId === (p.hasVideo ? p.video.youtubeId : null),
     `#${p.displayNumber}: page video data does not match the record`);
   check((html.match(/class="satact-choice"/g) || []).length === 4, `#${p.displayNumber}: expected four answer choices`);
   check((html.match(/class="satact-step"/g) || []).length === r.solution.steps.length, `#${p.displayNumber}: missing solution steps`);
@@ -283,17 +287,55 @@ check(/\.archive-spotlight\{[\s\S]*?border:2px solid var\(--red\)/.test(home), '
   }
 }
 
+// ------------------------------------------------------------------ initial website authorization and publication
+{
+  const json = file => JSON.parse(read(`tools/sat-act/config/${file}.json`));
+  const release = json('initial-website-release');
+  const source = json('dev-fixture-source');
+  const records = new Map(lib.problems.map(p => [p.id, p.record]));
+  const { registry } = lib;
+  if (release.records.every(r => records.get(r.sourceId)?.contentStatus === 'development-fixture')) {
+    const auth = { decision: 'authorize-website-publication', owner: 'QA only', authorizedOn: '2026-11-17', recordsSha256: sha256(stableJson(release.records)) };
+    const authorizedRelease = { ...release, authorization: auth };
+    const { sourceId } = release.records[0];
+    const record = records.get(sourceId);
+    const publication = { sourceId, youtubeId: 'Abc_123-xyZ', mediaSha256: record.video.mediaSha256, publishedOn: '2026-11-17' };
+    const publications = entries => ({ schema: 'batchmath.sat-act.youtube-publications/1', initialWebsitePublications: entries });
+    const input = { release: authorizedRelease, source, publications: publications([]), records, registry };
+    const linked = initialWebsiteRelease({ ...input, publications: publications([publication]) });
+    check(linked.authorized.size === 5 && linked.links.get(sourceId).explanationStartSeconds === record.video.explanationStartSeconds,
+      'initial website authorization or audited upload did not resolve');
+    check(!record.approval.text && !record.approval.video && !record.video.youtubeId, 'website authorization changed Shorts record state');
+    const pending = initialWebsiteRelease({ ...input, release: { ...release, authorization: null } });
+    check(pending.authorized.size === 0 && pending.links.size === 0, 'pending authorization unexpectedly released questions or videos');
+
+    const rejects = (overrides, message) => {
+      try {
+        initialWebsiteRelease({ ...input, ...overrides });
+        fail(`initial website release accepted ${message}`);
+      } catch (e) {
+        if (!(e instanceof ImportError)) throw e;
+      }
+    };
+    rejects({ release: { ...authorizedRelease, authorization: { ...auth, recordsSha256: '0'.repeat(64) } } }, 'signoff for another record set');
+    rejects({ release: { ...authorizedRelease, authorization: { ...auth, owner: '' } } }, 'signoff without an owner');
+    rejects({ records: new Map(records).set(sourceId, { ...record, question: { ...record.question, prompt: 'Changed' } }) }, 'changed verified text');
+    rejects({ records: new Map([...records].filter(([id]) => id !== sourceId)) }, 'missing signed question');
+    rejects({ publications: publications([{ ...publication, mediaSha256: '0'.repeat(64) }]) }, 'upload with a different MP4 hash');
+    rejects({ publications: publications([{ ...publication, youtubeId: 'bad-id' }]) }, 'malformed ID');
+    rejects({ publications: publications([{ ...publication, publishedOn: '2026-11-31' }]) }, 'invalid upload date');
+    rejects({ publications: publications([{ ...publication, sourceId: 'qa-extra' }]) }, 'upload outside the five records');
+    rejects({ publications: publications([publication, publication]) }, 'duplicate upload');
+    stats.initialWebsiteRelease = 'pending, signed and 9 refusal cases checked';
+  }
+}
+
 // ------------------------------------------------------------------ release gate
 if (RELEASE) {
   for (const p of lib.problems) {
-    const r = p.record;
-    check(r.contentStatus === 'approved' && r.approval && r.approval.releaseEligible === true && r.approval.text,
-      `RELEASE GATE: #${p.displayNumber} ${p.id} is ${r.contentStatus} without a recorded human approval`);
+    check(p.releaseAuthorized, `RELEASE GATE: #${p.displayNumber} ${p.id} has no recorded authorization for website publication`);
   }
-  check(lib.contentStatus === 'approved', 'RELEASE GATE: library still contains development fixtures');
-  for (const url of pages) {
-    if (fs.existsSync(pageFile(url))) check(!fs.readFileSync(pageFile(url), 'utf8').includes('satact-preview-notice'), `RELEASE GATE: ${url} shows the development preview notice`);
-  }
+  check(lib.releaseReady, 'RELEASE GATE: signoff is pending. See docs/sat-act/PUBLISHING-WORKFLOW.md');
 }
 
 const lines = [`SAT & ACT Math Practice QA${RELEASE ? ' (release gate)' : ''}`, `Result: ${errors.length ? 'FAIL' : 'PASS'}`, '',

@@ -1,61 +1,30 @@
-BatchMath — SAT & ACT Math Practice prototype (sat-act-p1)
-PRIVATE DEVELOPMENT PREVIEW. Not approved for publication. Do not deploy.
+BatchMath SAT & ACT Math Practice P2
+Development preview for owner review. Website publication authorization is pending.
 
-Windows local preview
-1. Extract bm-sat-act-p1.zip.
-2. Open the extracted folder bm-sat-act-p1 (the one that contains index.html).
-3. In File Explorer, click the address bar, type cmd and press Enter. A terminal opens in that folder.
-4. Run exactly:
+Local review
+1. Extract bm-sat-act-p2.zip.
+2. Open the extracted folder bm-sat-act-p2, which contains index.html.
+3. On Windows, click the File Explorer address bar, type cmd and press Enter.
+4. Run py -m http.server 8000
+   On macOS or Linux, run python3 -m http.server 8000
+5. Open http://localhost:8000/ in your browser. Keep the terminal open.
+   Use Ctrl+C to stop the server. Internet access is needed for MathJax.
 
-   py -m http.server 8000
+Review the homepage link, then open http://localhost:8000/sat-act-math/.
+- Select a difficulty and check the topic cards and mixed-practice count.
+- Start Mixed Practice and work through a set. The set ends with a session summary.
+- Answer incorrectly, then retry correctly. The score reflects the first answer.
+- Open a written solution before answering. The question is recorded as unscored.
+- Check the numbered questions at http://localhost:8000/sat-act-math/problems/.
+- Try a narrow browser window or your browser's phone emulator.
 
-   (macOS or Linux: python3 -m http.server 8000)
-5. Open http://localhost:8000/ in Chrome, Edge or Firefox. Keep the terminal open; stop it with Ctrl+C.
-   Use the http://localhost address, not a double-clicked file: the pages use site-root paths.
-   An internet connection is needed for math rendering (MathJax), as on the rest of the site.
+The preview includes all five questions and their written solutions. Real YouTube
+links can be added after each matching public upload is verified. The publishing
+workflow lists the five source IDs and cue times.
 
-Where to look
-- Homepage: the new wide "SAT & ACT Math Practice" button sits above the Calculus Problem of the Day Archive button.
-  http://localhost:8000/
-- Library home (Practice by Topic, Mixed Practice, filters):
-  http://localhost:8000/sat-act-math/
-- All numbered questions:
-  http://localhost:8000/sat-act-math/problems/
-- The five questions:
-  http://localhost:8000/sat-act-math/problems/001-right-triangle-find-tan-b-from-sin-a/
-  http://localhost:8000/sat-act-math/problems/002-solve-radical-equation-square-root-x-plus-5/
-  http://localhost:8000/sat-act-math/problems/003-system-of-equations-find-k-for-no-solution/
-  http://localhost:8000/sat-act-math/problems/004-original-price-after-discount-and-sales-tax/
-  http://localhost:8000/sat-act-math/problems/005-circle-radius-by-completing-the-square/
-- A topic page:
-  http://localhost:8000/sat-act-math/topics/geometry-and-trigonometry/
+The site uses the BatchMath GA4 tag. Append ?bm_debug=1 during manual analytics
+testing. See docs/sat-act/GA4-ANALYTICS.md.
 
-Things to try
-- Start Mixed Practice and work through all five: no question repeats, "Next Problem" becomes "Finish Session" on the
-  last one, and the summary shows "X correct out of Y answered on the first try".
-- Answer a question wrong, then right: the score keeps the first (wrong) answer.
-- Open "Show the step-by-step solution" before answering: the question is marked "not scored".
-- Click a topic's Practice button: a one-question topic finishes with "That's every question currently available...".
-- Change the Exam or Difficulty filter on the library home; the counts update.
-- Resize to phone width or use the browser's device toolbar.
-
-About videos
-None of the five videos is approved or published, so no YouTube IDs exist yet. The pages therefore show the written
-solution directly (the normal "no video yet" state). The video player, its explanation start times (0:19, 0:16, 0:20,
-0:23, 0:18), the "Show Written Solution" button and the automatic solution on video end are built and tested with a
-simulated YouTube player; they switch on automatically once an approved video's real ID is added.
-
-Analytics
-Pages use the live BatchMath GA4 tag. While testing, add ?bm_debug=1 to a URL (for example
-http://localhost:8000/sat-act-math/?bm_debug=1) to see each event in a panel and in GA4 DebugView.
-See docs/sat-act/GA4-ANALYTICS.md.
-
-About this package
-bm-sat-act-p1.zip is a short preview package: the complete site from the branch commit, minus the classroom PDF
-downloads of the other courses (about 310 MB, unchanged from main), so those PDF links show "not found" in this preview.
-The review documents are included in docs/sat-act/:
-  SAT-ACT-P1-REPORT.md     implementation and QA report, remaining steps
-  GA4-ANALYTICS.md         events, custom definitions to register, DebugView checks
-  PUBLISHING-WORKFLOW.md   approval boundary, adding approved problems
-  APPROVED-EXPORT-SPEC.md  the approved-content export the production importer accepts
-Build tools and QA (tools/sat-act/) are on the branch, not in this package.
+This review archive omits the existing classroom PDFs and Git's normal excluded
+developer files. The omitted PDF links require the full repository checkout.
+The archive includes the P2 audit and publishing instructions in docs/sat-act/.

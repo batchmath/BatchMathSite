@@ -30,8 +30,7 @@ const OUT = path.join(ROOT, SECTION.replace(/^\/|\/$/g, ''));
 const MAX_TITLE = 85;
 
 const count = (n, word = 'question') => `${n} ${word}${n === 1 ? '' : 's'}`;
-const examText = exams => exams.join(' · ');
-const isPreview = lib.contentStatus !== 'approved';
+const isPreview = !lib.releaseReady;
 
 function writePage(url, html) {
   const file = path.join(ROOT, url.replace(/^\//, ''), 'index.html');
@@ -137,7 +136,7 @@ document.addEventListener("DOMContentLoaded",function(){
 }
 
 function previewNotice() {
-  return `<div class="satact-preview-notice" role="note" data-satact-content-status="${esc(lib.contentStatus)}"><strong>Development preview.</strong> These questions are development fixtures: they passed an independent content audit but have not yet received final human approval. Not for publication.</div>
+  return `<div class="satact-preview-notice" role="note" data-satact-content-status="${esc(lib.contentStatus)}"><strong>Development preview.</strong> These practice questions are awaiting authorization for website publication.</div>
 `;
 }
 
@@ -145,7 +144,7 @@ function problemItem(p) {
   return `<li class="satact-problem-item" data-problem-id="${esc(p.id)}" data-subject="${esc(p.subject.slug)}" data-skill="${esc(p.skill.id)}" data-exams="${esc(p.exams.join(' '))}" data-difficulty="${esc(p.difficulty.value)}">
 <span class="satact-number" aria-hidden="true">#${p.displayNumber}</span>
 <span class="satact-problem-item-body"><a class="satact-problem-link" href="${p.url}"><span class="sr-only">Question ${p.displayNumber}: </span>${esc(p.title)}</a>
-<span class="satact-meta"><span>${esc(p.subject.label)} › ${esc(p.skill.label)}</span><span>${esc(examText(p.exams))}</span><span>${esc(p.difficulty.label)}</span><span>${p.hasVideo ? 'Video explanation' : 'Written solution'}</span></span></span>
+<span class="satact-meta"><span>${esc(p.subject.label)} › ${esc(p.skill.label)}</span><span>${esc(p.difficulty.label)}</span><span>${p.hasVideo ? 'Video explanation' : 'Written solution'}</span></span></span>
 </li>`;
 }
 
@@ -168,13 +167,12 @@ ${startLink({ label: 'Practice', href: k.problems[0].url, mode: 'topic', subject
 </article>`).join('\n');
   const subjectOptions = lib.subjects.map(s => `<option value="${esc(s.slug)}">${esc(s.label)} (${s.problems.length})</option>`).join('');
   const skillOptions = lib.subjects.flatMap(s => s.skills.map(k => `<option value="${esc(k.id)}" data-subject="${esc(s.slug)}">${esc(k.label)} (${k.problems.length})</option>`)).join('');
-  const examCount = e => lib.problems.filter(p => p.exams.includes(e)).length;
   const difficultyOptions = lib.difficulties.map(d => `<option value="${esc(d.value)}">${esc(d.label)} (${lib.problems.filter(p => p.difficulty.value === d.value).length})</option>`).join('');
   const body = `<section class="satact-hero" aria-labelledby="satact-title">
 <p class="satact-kicker">Original practice · instant feedback · worked solutions</p>
 <h1 id="satact-title">SAT &amp; ACT Math Practice</h1>
 <p class="satact-hero-text">Individually numbered SAT and ACT math questions, each with a permanent page. Check your answer instantly, then study a step-by-step written solution. Video explanations are added to questions as they are published.</p>
-<p class="satact-library-stats" data-satact-stats="1"><span>${count(total)} available</span><span>${count(lib.subjects.length, 'subject')}</span><span>SAT and ACT</span></p>
+<p class="satact-library-stats" data-satact-stats="1"><span>${count(total)} available</span><span>${count(lib.subjects.length, 'subject')}</span></p>
 </section>
 <section id="satact-resume" class="satact-resume" aria-label="Practice session in progress" hidden></section>
 <nav class="satact-mode-grid" aria-label="Ways to practice">
@@ -182,9 +180,8 @@ ${startLink({ label: 'Practice', href: k.problems[0].url, mode: 'topic', subject
 <a class="satact-mode-card" href="#mixed"><span class="satact-mode-icon" aria-hidden="true">⇄</span><span class="satact-mode-title">Mixed Practice</span><span class="satact-mode-text">A shuffled set from the whole library, with no repeats.</span></a>
 </nav>
 <section class="satact-filters" aria-labelledby="satact-filters-title">
-<h2 id="satact-filters-title">Filter Questions</h2>
+<h2 id="satact-filters-title">Filter by Difficulty</h2>
 <div class="satact-filter-row">
-<div class="satact-field"><label class="bm-practice-select-label" for="satact-exam">Exam</label><select id="satact-exam" class="bm-practice-select" data-filter="exam"><option value="all">SAT and ACT (${total})</option><option value="SAT">SAT (${examCount('SAT')})</option><option value="ACT">ACT (${examCount('ACT')})</option></select></div>
 <div class="satact-field"><label class="bm-practice-select-label" for="satact-difficulty">Difficulty</label><select id="satact-difficulty" class="bm-practice-select" data-filter="difficulty"><option value="all">Any difficulty (${total})</option>${difficultyOptions}</select></div>
 </div>
 <p class="satact-filter-summary" id="satact-filter-summary" role="status">${count(total)} match these filters.</p>
@@ -195,7 +192,7 @@ ${startLink({ label: 'Practice', href: k.problems[0].url, mode: 'topic', subject
 <div class="satact-subject-grid" id="satact-subject-grid">
 ${subjectCards}
 </div>
-<div class="satact-empty" id="satact-topic-empty" hidden><h3>No questions match these filters yet.</h3><p>Try a different exam or difficulty.</p><button type="button" class="satact-btn" data-reset-filters="1">Reset Filters</button></div>
+<div class="satact-empty" id="satact-topic-empty" hidden><h3>No questions match these filters yet.</h3><p>Choose a different difficulty.</p><button type="button" class="satact-btn" data-reset-filters="1">Reset Filters</button></div>
 </section>
 <section id="mixed" class="satact-section" aria-labelledby="mixed-title">
 <h2 id="mixed-title">Mixed Practice</h2>
@@ -208,7 +205,7 @@ ${subjectCards}
 </div>
 <p class="satact-filter-summary" id="satact-mixed-summary" role="status">${count(total)} available for mixed practice.</p>
 <button type="submit" class="satact-btn satact-btn-primary" id="satact-mixed-start">Start Mixed Practice</button>
-<div class="satact-empty" id="satact-mixed-empty" hidden><h3>No questions match these filters yet.</h3><p>Choose a different subject, skill, exam or difficulty.</p><button type="button" class="satact-btn" data-reset-filters="1">Reset Filters</button></div>
+<div class="satact-empty" id="satact-mixed-empty" hidden><h3>No questions match these filters yet.</h3><p>Choose a different subject, skill or difficulty.</p><button type="button" class="satact-btn" data-reset-filters="1">Reset Filters</button></div>
 </form>
 <noscript><p class="satact-noscript">Mixed practice needs JavaScript. You can still open any question from the <a href="${SECTION}problems/">numbered question list</a>.</p></noscript>
 </section>
@@ -296,7 +293,7 @@ ${step.caption2 ? `<p>${inline(step.caption2)}</p>\n` : ''}${step.note ? `<p cla
 }
 
 function problemData(p, next) {
-  const v = p.record.video || {};
+  const v = p.video || {};
   const data = {
     id: p.id,
     number: p.number,
@@ -311,7 +308,6 @@ function problemData(p, next) {
     format: p.record.format,
     answer: p.record.format === TYPED ? null : p.record.answer.label,
     accepted: p.record.format === TYPED ? p.record.answer.accepted : undefined,
-    contentStatus: p.record.contentStatus,
     video: {
       youtubeId: v.published && v.youtubeId ? v.youtubeId : null,
       explanationStartSeconds: v.explanationStartSeconds ?? null
@@ -342,7 +338,6 @@ function problemPage(p, index) {
 </div>`).join('\n');
   const tags = [
     `<li><a href="${p.subject.url}#${esc(p.skill.id)}">${esc(p.subject.label)} › ${esc(p.skill.label)}</a></li>`,
-    `<li>${esc(examText(p.exams))}</li>`,
     `<li>${esc(p.difficulty.label)}</li>`,
     ...p.secondarySkills.map(k => `<li>Also practices: ${esc(k.label)}</li>`)
   ].join('');

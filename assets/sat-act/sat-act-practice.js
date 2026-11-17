@@ -60,12 +60,11 @@
   const byId = new Map(CATALOG.problems.map(p => [p.id, p]));
   const subjectLabel = slug => (CATALOG.subjects.find(s => s.slug === slug) || {}).label || slug;
   const skillLabel = id => (CATALOG.skills.find(s => s.id === id) || {}).label || id;
-  const ALL = { exam: 'all', difficulty: 'all', subject: 'all', skill: 'all' };
+  const ALL = { difficulty: 'all', subject: 'all', skill: 'all' };
   const plural = (n, word = 'question') => `${n} ${word}${n === 1 ? '' : 's'}`;
 
   function filterProblems(f) {
     return CATALOG.problems.filter(p =>
-      (f.exam === 'all' || !f.exam || p.exams.includes(f.exam)) &&
       (f.difficulty === 'all' || !f.difficulty || p.difficulty === f.difficulty) &&
       (f.subject === 'all' || !f.subject || p.subject === f.subject) &&
       (f.skill === 'all' || !f.skill || p.skill === f.skill));
@@ -133,7 +132,7 @@
     return `${sc.correct} correct out of ${sc.answered} answered · ${sc.completed} completed`;
   }
   function startedParams(s) {
-    return { practice_mode: s.mode, exam_filter: s.filters.exam, difficulty_filter: s.filters.difficulty,
+    return { practice_mode: s.mode, difficulty_filter: s.filters.difficulty,
       subject_filter: s.filters.subject, skill_filter: s.filters.skill, session_size: s.queue.length, entry_page: s.entry };
   }
   function ensureStarted(s) {
@@ -196,13 +195,12 @@
 
   // ------------------------------------------------------------------ library home
   function initLanding() {
-    const exam = document.getElementById('satact-exam');
     const difficulty = document.getElementById('satact-difficulty');
     const mSubject = document.getElementById('satact-mixed-subject');
     const mSkill = document.getElementById('satact-mixed-skill');
     const mSize = document.getElementById('satact-mixed-size');
     const form = document.getElementById('satact-mixed-form');
-    const globalFilters = () => ({ exam: exam ? exam.value : 'all', difficulty: difficulty ? difficulty.value : 'all' });
+    const globalFilters = () => ({ difficulty: difficulty ? difficulty.value : 'all' });
 
     function update() {
       const g = globalFilters();
@@ -263,9 +261,9 @@
         if (empty) empty.hidden = mixedPool.length > 0;
       }
     }
-    [exam, difficulty, mSubject, mSkill, mSize].forEach(el => el && el.addEventListener('change', update));
+    [difficulty, mSubject, mSkill, mSize].forEach(el => el && el.addEventListener('change', update));
     document.querySelectorAll('[data-reset-filters]').forEach(b => b.addEventListener('click', () => {
-      [exam, difficulty, mSubject, mSkill].forEach(el => { if (el) el.value = 'all'; });
+      [difficulty, mSubject, mSkill].forEach(el => { if (el) el.value = 'all'; });
       update();
     }));
     if (form) form.addEventListener('submit', event => {
