@@ -518,6 +518,8 @@ await scenario('video: correct answer offers the video; Show Written Solution wo
   assert.equal(await page.evaluate(() => window.__yt.plays), 0);
   await page.locator('#satact-video-solution').click();
   await page.waitForFunction(() => document.getElementById('satact-solution').open);
+  // The native <details> toggle event is asynchronous; wait for the GA4 event, not just the open property.
+  await page.waitForFunction(() => JSON.parse(sessionStorage.getItem('qa.events') || '[]').some(e => e.name === 'solution_revealed'));
   const ev = await events(page);
   assert.equal(named(ev, 'solution_revealed')[0].params.reveal_trigger, 'video_panel_button');
   assert.equal(named(ev, 'problem_completed')[0].params.completion_method, 'correct_answer');
