@@ -5,6 +5,8 @@ on:
     branches: [codex/sat-act-launch]
     paths:
       - '.github/workflows/sat-act-launch-build.yml'
+      - 'assets/sat-act/sat-act.css'
+      - 'tools/sat-act/sat-act-browser-qa.mjs'
 
 permissions:
   contents: write
