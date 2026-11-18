@@ -51,7 +51,7 @@ a{color:inherit}
 /* Practice form */
 .satact-filter-row{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end}
 .satact-field{display:flex;flex-direction:column;gap:5px;min-width:min(220px,100%);flex:1 1 200px}
-.satact-field select{width:100%;min-height:44px}
+.satact-field select.bm-practice-select{width:100%;min-height:44px!important}
 .satact-filter-summary{margin:0;color:#bdbdbd;font-size:.86rem}
 .satact-practice-form{padding:16px;border:1px solid #282828;border-radius:13px;background:#070707}
 .satact-field[hidden]{display:none}
