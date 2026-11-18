@@ -32,5 +32,10 @@
       "websiteSha256": "e3697ce54d44a91508127e51a8e87c6eec48b7be543ae42e2db11a363ea62a19"
     }
   ],
-  "authorization": null
+  "authorization": {
+    "decision": "authorize-website-publication",
+    "owner": "batchmath",
+    "authorizedOn": "2026-11-18",
+    "recordsSha256": "6dbe044fc2518d5e23fc8673a11de93b350db8537b4c71035503f456a8964bc9"
+  }
 }
