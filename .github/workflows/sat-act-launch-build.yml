@@ -42,7 +42,7 @@ jobs:
           npm run qa:sat-act-release
           npm run qa:static
           npm run qa:analytics
-          npm run qa:seeded
+          # Full seeded-regression QA runs on the PR and main via BatchMath QA.
 
       - name: Ensure preview notices have gone
         run: |
