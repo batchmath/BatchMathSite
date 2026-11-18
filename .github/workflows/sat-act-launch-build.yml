@@ -1,0 +1,62 @@
+name: SAT ACT authorized release build
+
+on:
+  push:
+    branches: [codex/sat-act-launch]
+    paths:
+      - '.github/workflows/sat-act-launch-build.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-verified-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out launch branch
+        uses: actions/checkout@v4
+        with:
+          ref: codex/sat-act-launch
+          persist-credentials: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install QA dependencies
+        run: |
+          npm install --no-package-lock --ignore-scripts --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: Build authorized SAT ACT pages
+        run: npm run sat-act:build
+
+      - name: Test authorized output
+        run: |
+          npm run qa:sat-act
+          npm run qa:sat-act-browser
+          npm run qa:sat-act-release
+          npm run qa:static
+          npm run qa:analytics
+          npm run qa:seeded
+
+      - name: Ensure preview notices have gone
+        run: |
+          if grep -R -l 'Development preview.' sat-act-math/; then
+            echo "Preview notice remains in release pages"
+            exit 1
+          fi
+          test "$(find sat-act-math -name index.html | wc -l)" -eq 12
+
+      - name: Commit deterministic release pages
+        run: |
+          git config user.name "BatchMath release automation"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sat-act-math/ assets/sat-act/catalog.js sitemap.xml
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git commit -m "Build authorized SAT ACT practice release pages"
+            git push origin HEAD:codex/sat-act-launch
+          fi
