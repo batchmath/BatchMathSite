@@ -1,0 +1,51 @@
+name: SAT & ACT P3 review ZIP
+
+on:
+  push:
+    branches: [codex/sat-act-launch]
+    paths: ['.github/workflows/sat-act-p3-review-zip.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  review-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dd2ece0bdba57013c7251e2e9b1f08cbd746c827
+          persist-credentials: false
+
+      - name: Package the reviewed website
+        run: |
+          set -euo pipefail
+          name=bm-sat-act-p3
+          preview="review/$name"
+          mkdir -p review
+          git archive --format=tar --prefix="$name/" HEAD | tar -x --exclude='*.pdf' -C review
+          mkdir -p "$preview/docs/sat-act" "$preview/tools/sat-act/records"
+          cp docs/sat-act/{SAT-ACT-P2-REPORT,PUBLISHING-WORKFLOW,GA4-ANALYTICS,APPROVED-EXPORT-SPEC}.md "$preview/docs/sat-act/"
+          cp tools/sat-act/records/IMPORT-MANIFEST.json "$preview/tools/sat-act/records/"
+          git rev-parse HEAD > "$preview/REVIEW-COMMIT.txt"
+          git ls-files '*.pdf' > "$preview/OMITTED-PDFS.txt"
+          find review -depth -type d -empty -delete
+          test "$(wc -l < "$preview/OMITTED-PDFS.txt")" -eq 346
+          test "$(find "$preview/sat-act-math" -name index.html | wc -l)" -eq 12
+          test -z "$(find "$preview" -iname '*.pdf' -print -quit)"
+          grep -q 'id="satact-practice-form"' "$preview/sat-act-math/index.html"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bm-sat-act-p3
+          path: review/
+          include-hidden-files: true
+          if-no-files-found: error
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: bm-sat-act-p3
+          path: downloaded/
+
+      - name: Verify the uploaded ZIP
+        run: diff -qr review/ downloaded/
