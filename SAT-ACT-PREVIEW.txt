@@ -28,3 +28,4 @@ testing. See docs/sat-act/GA4-ANALYTICS.md.
 This review archive omits the existing classroom PDFs and Git's normal excluded
 developer files. The omitted PDF links require the full repository checkout.
 The archive includes the P2 audit and publishing instructions in docs/sat-act/.
+Use the full Git checkout for the build, QA and owner signoff commands.

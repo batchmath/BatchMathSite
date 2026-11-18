@@ -43,8 +43,19 @@ In `tools/sat-act/config/youtube-publications.json`, add one entry to `initialWe
 corresponding `sourceId`, real `youtubeId`, SHA-256 of the uploaded MP4 in `mediaSha256`, and actual public date
 in `publishedOn` (`YYYY-MM-DD`). The audited hashes are in
 [`records/IMPORT-MANIFEST.json`](../../tools/sat-act/records/IMPORT-MANIFEST.json). The build checks the hash,
-scope, ID format and uniqueness, and date. Leave the array empty for any Short still awaiting publication.
+scope, ID format and uniqueness, and date. Leave out any Short still awaiting publication.
 A YouTube URL cannot prove which local file was uploaded, so confirm the MP4 before recording the entry.
+
+For example, an entry for #001 has this shape. Replace the three placeholders with the actual publication details.
+
+```json
+{
+  "sourceId": "right-triangle-trig-s0031",
+  "youtubeId": "<ID from the public URL>",
+  "mediaSha256": "<SHA-256 of the uploaded MP4>",
+  "publishedOn": "<YYYY-MM-DD>"
+}
+```
 
 | Question | `sourceId` | Explanation start |
 |---|---|---|

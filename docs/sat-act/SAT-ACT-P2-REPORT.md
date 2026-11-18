@@ -37,9 +37,9 @@ record hashes, audited MP4 hashes, scene digests and narration timings.
 | Check | Result |
 |---|---|
 | Static, math and scoped SEO | Pass. 5 records, 12 pages, 184 verbatim TeX strings, deterministic rebuild, canonicals, breadcrumbs, structured data and sitemap. Existing importer passed 13 cases. Initial website authorization passed pending, signed and 9 refusal cases. |
-| Browser | 14/14 pass in Chromium at desktop width and 390 px phone width. Includes all five questions with each first-attempt result, retries, mixed and topic completion, navigation, keyboard, MathJax and analytics. Phone dimensions were emulated. |
+| Browser | 14/14 pass in Chromium at desktop width and 390 px phone width. Includes all five questions with each first-attempt result, retries, mixed and topic completion, navigation, keyboard, MathJax and analytics. The extracted preview also fit at 320, 768 and 1280 px. Phone dimensions were emulated. |
 | Unsigned release gate | Refused all five questions as expected. |
-| Authorized build rehearsal | In a disposable copy, the test signoff removed notices from all 12 pages and passed the release gate. A separate test upload populated only its matching question and kept the 0:19 cue. The branch retains empty signoff and upload fields. |
+| Authorized build rehearsal | In a disposable full checkout, the test signoff removed notices from all 12 pages and passed the release gate, static release and analytics checks. The gate refused a signed build with a stale preview page. A test upload populated only its matching question and kept the 0:19 cue. The branch retains empty signoff and upload fields. |
 | Video | Simulated player passed cue, autoplay disabled, start and end events, written solution reveal and fallback tests. The optional real YouTube smoke test timed out. The IFrame API request returned HTTP 403 from this environment. Actual playback remains unverified. |
 | Analytics | Captured the real tracker emitting session start and completion, question presentation, first attempts, first-try correct answers, retries, completion, solution reveals and video start/end/error. Tests covered deduplication and parameter hygiene. Live GA4 receipt was unverified. |
 
@@ -50,14 +50,24 @@ on both trees. Static QA found zero broken references and 12 additional indexabl
 The 165 existing analytics engines passed their instrumentation checks. No AP Calculus, IM1, Calculus Prep, Mogollon,
 About, archive or service-worker file changed.
 
+The standard BatchMath QA workflow passed on the review code and the exact baseline, including seeded
+browser QA for all 165 existing engines. [Review CI](https://github.com/batchmath/BatchMathSite/actions/runs/44205026690)
+[Baseline CI](https://github.com/batchmath/BatchMathSite/actions/runs/43450198186)
+
 The archive check passed against the live spreadsheet on both trees with Node's inherited proxy enabled.
-The existing sitewide SEO check reported the same 32 errors on both trees. All 12 SAT & ACT pages passed their
-section-specific SEO checks.
+The same existing sitewide failures reproduced on both trees.
+
+- `qa:seo` reported the same 32 findings in AP Calculus and Mogollon headings, metadata and indexing. All 12 SAT & ACT
+  pages passed their section-specific SEO checks.
+- `qa:topic-at-point`, `qa:unit3`, `qa:fractions`, `qa:clipboard`, `qa:im1-like-terms`, `qa:im1-equations-update`,
+  `qa:fractional-exponent-display` and `qa:practice-selects` reproduced their existing failures.
+
+The chained `qa:nobrowser` command exits at `qa:seo`. The baseline failures were checked individually.
 
 ## Owner handoff
 
 Follow the [publishing workflow](PUBLISHING-WORKFLOW.md) for signoff, YouTube URLs and the GitHub Pages deployment.
-For GA4, register the event-scoped dimensions for problem ID, subject, skill, practice mode, answer result,
+For GA4, register the event-scoped dimensions for engine ID, problem ID, subject, skill, practice mode, answer result,
 first attempt result and completion method. Add the four session metrics if session totals are needed. Verify
 receipt with GA4 DebugView after deployment. [GA4 setup and full event list](GA4-ANALYTICS.md)
 

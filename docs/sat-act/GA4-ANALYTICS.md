@@ -60,6 +60,7 @@ engines may already have `practice_mode` or `answer_result`).
 
 | Dimension name | Event parameter |
 |---|---|
+| Engine ID | `engine_id` |
 | Problem ID | `problem_id` |
 | Subject | `subject` |
 | Skill | `skill` |
@@ -78,7 +79,6 @@ engines may already have `practice_mode` or `answer_result`).
 | Reveal trigger | `reveal_trigger` |
 | Video trigger | `video_trigger` |
 | Session end reason | `end_reason` |
-| Engine ID | `engine_id` (to separate this library from the course engines) |
 
 Optional: `entry_page`, `subject_filter`, `skill_filter`, `difficulty_filter`, `error_type`, `question_format`.
 

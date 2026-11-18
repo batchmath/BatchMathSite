@@ -30,6 +30,7 @@ jobs:
           cp tools/sat-act/records/IMPORT-MANIFEST.json "$preview/tools/sat-act/records/"
           git rev-parse HEAD > "$preview/REVIEW-COMMIT.txt"
           git ls-files '*.pdf' > "$preview/OMITTED-PDFS.txt"
+          find review -depth -type d -empty -delete
           test "$(find "$preview/sat-act-math" -name index.html | wc -l)" -eq 12
           test -z "$(find "$preview" -iname '*.pdf' -print -quit)"
 
@@ -39,3 +40,11 @@ jobs:
           path: review/
           include-hidden-files: true
           if-no-files-found: error
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: bm-sat-act-p2
+          path: downloaded/
+
+      - name: Verify the uploaded review archive
+        run: diff -qr review/ downloaded/
