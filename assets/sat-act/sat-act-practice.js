@@ -57,6 +57,7 @@
   // ------------------------------------------------------------------ catalog
   const CATALOG = window.BM_SAT_ACT_CATALOG || { problems: [], subjects: [], skills: [], section: '/sat-act-math/' };
   const SECTION = CATALOG.section || '/sat-act-math/';
+  const PRACTICE = `${SECTION}#practice`;
   const byId = new Map(CATALOG.problems.map(p => [p.id, p]));
   const subjectLabel = slug => (CATALOG.subjects.find(s => s.slug === slug) || {}).label || slug;
   const skillLabel = id => (CATALOG.skills.find(s => s.id === id) || {}).label || id;
@@ -95,9 +96,9 @@
     if (!s.results[id]) s.results[id] = blankResult();
     return s.results[id];
   }
-  function createSession({ mode, filters, ids, label, entry, size }) {
+  function createSession({ mode, filters, ids, label, entry, size = 'all', randomized = mode === 'mixed' }) {
     let queue;
-    if (mode === 'mixed') {
+    if (randomized) {
       const seen = seenMap();
       queue = shuffle(ids.filter(id => !seen[id])).concat(shuffle(ids.filter(id => seen[id])));
     } else {
@@ -105,13 +106,12 @@
     }
     if (size && size !== 'all') queue = queue.slice(0, Number(size));
     return { v: 1, id: newId(), mode, filters: Object.assign({}, ALL, filters || {}), label, entry: entry || 'landing',
-      queue, index: 0, status: 'active', started: false, results: {}, completedSent: false, createdAt: Date.now() };
+      queue, size, randomized, index: 0, status: 'active', started: false, results: {}, completedSent: false, createdAt: Date.now() };
   }
   function sessionLabel(mode, f) {
-    if (mode === 'mixed') return 'Mixed practice';
     if (f.skill && f.skill !== 'all') return skillLabel(f.skill);
     if (f.subject && f.subject !== 'all') return subjectLabel(f.subject);
-    return 'Practice session';
+    return mode === 'mixed' ? 'Mixed practice' : 'Practice session';
   }
   const resolved = r => Boolean(r && (r.firstResult || r.revealedBeforeAnswer));
   function nextIndex(s) {
@@ -146,10 +146,10 @@
     const first = byId.get(s.queue[0]);
     if (first) location.href = first.url;
   }
-  function startFromControl(mode, filters, size, entry) {
+  function startFromControl(mode, filters, size, entry, randomized) {
     const ids = filterProblems(filters).map(p => p.id);
     if (!ids.length) return false;
-    goToSessionStart(createSession({ mode, filters, ids, size, entry, label: sessionLabel(mode, filters) }));
+    goToSessionStart(createSession({ mode, filters, ids, size, entry, randomized, label: sessionLabel(mode, filters) }));
     return true;
   }
   function recordHistory(s, sc, reason) {
@@ -162,20 +162,21 @@
     } catch (_) {}
   }
 
-  // Start buttons on the library home and topic pages (each also works as a plain link without JS).
-  function wireStartLinks(entry, currentFilters) {
+  // Start buttons on topic pages also work as plain links without JavaScript.
+  function wireTopicLinks() {
     document.querySelectorAll('[data-start-practice]').forEach(link => {
       link.addEventListener('click', event => {
-        const base = currentFilters ? currentFilters() : {};
-        const filters = Object.assign({}, ALL, base, { subject: link.dataset.subject || 'all', skill: link.dataset.skill || 'all' });
-        if (startFromControl(link.dataset.mode || 'topic', filters, 'all', entry)) event.preventDefault();
+        const filters = { ...ALL, subject: link.dataset.subject || 'all', skill: link.dataset.skill || 'all' };
+        if (startFromControl(link.dataset.mode || 'topic', filters, 'all', 'topic')) event.preventDefault();
       });
     });
   }
 
   function renderResume(container) {
+    if (!container) return;
+    container.hidden = true;
     const s = loadSession();
-    if (!container || !s || s.status !== 'active' || !s.started) return;
+    if (!s || s.status !== 'active' || !s.started) return;
     const current = byId.get(s.queue[s.index]);
     if (!current) return;
     const sc = scores(s);
@@ -195,85 +196,79 @@
 
   // ------------------------------------------------------------------ library home
   function initLanding() {
+    const form = document.getElementById('satact-practice-form');
+    if (!form) return;
+    const topic = document.getElementById('satact-topic');
+    const skill = document.getElementById('satact-skill');
+    const skillField = document.getElementById('satact-skill-field');
     const difficulty = document.getElementById('satact-difficulty');
-    const mSubject = document.getElementById('satact-mixed-subject');
-    const mSkill = document.getElementById('satact-mixed-skill');
-    const mSize = document.getElementById('satact-mixed-size');
-    const form = document.getElementById('satact-mixed-form');
-    const globalFilters = () => ({ difficulty: difficulty ? difficulty.value : 'all' });
+    const size = document.getElementById('satact-size');
+    const start = document.getElementById('satact-practice-start');
+    const summary = document.getElementById('satact-practice-summary');
+    const resume = document.getElementById('satact-resume');
+    const filters = () => ({ subject: topic.value, skill: skill.value, difficulty: difficulty.value });
+
+    function showCount() {
+      const available = filterProblems(filters()).length;
+      summary.textContent = available === 0 ? 'No questions match these selections.'
+        : size.value === 'all' ? `${plural(available)} available.`
+        : `${size.value} of ${plural(available)} per session.`;
+    }
 
     function update() {
-      const g = globalFilters();
-      const pool = filterProblems(Object.assign({}, ALL, g));
-      const summary = document.getElementById('satact-filter-summary');
-      if (summary) summary.textContent = pool.length ? `${plural(pool.length)} match these filters.` : 'No questions match these filters yet.';
-      let visibleSubjects = 0;
-      document.querySelectorAll('.satact-subject-card').forEach(card => {
-        const inSubject = pool.filter(p => p.subject === card.dataset.subject);
-        card.hidden = !inSubject.length;
-        if (inSubject.length) visibleSubjects++;
-        const c = card.querySelector('[data-subject-count]');
-        if (c) c.textContent = plural(inSubject.length);
-        card.querySelectorAll('.satact-skill-row').forEach(row => {
-          const inSkill = inSubject.filter(p => p.skill === row.dataset.skill);
-          row.hidden = !inSkill.length;
-          const rc = row.querySelector('[data-skill-count]');
-          if (rc) rc.textContent = plural(inSkill.length);
-          const link = row.querySelector('[data-start-practice]');
-          if (link && inSkill.length) { link.href = inSkill[0].url; link.dataset.size = String(inSkill.length); }
-        });
-      });
-      const topicEmpty = document.getElementById('satact-topic-empty');
-      if (topicEmpty) topicEmpty.hidden = visibleSubjects > 0;
-
-      if (mSubject && mSkill && mSize) {
-        [...mSubject.options].forEach(o => {
-          if (o.value === 'all') return;
-          const n = pool.filter(p => p.subject === o.value).length;
-          o.hidden = o.disabled = n === 0;
-          o.textContent = `${subjectLabel(o.value)} (${n})`;
-        });
-        if (mSubject.selectedOptions[0] && mSubject.selectedOptions[0].disabled) mSubject.value = 'all';
-        [...mSkill.options].forEach(o => {
-          if (o.value === 'all') return;
-          const n = pool.filter(p => p.skill === o.value).length;
-          const other = mSubject.value !== 'all' && o.dataset.subject !== mSubject.value;
-          o.hidden = o.disabled = other || n === 0;
-          o.textContent = `${skillLabel(o.value)} (${n})`;
-        });
-        if (mSkill.selectedOptions[0] && mSkill.selectedOptions[0].disabled) mSkill.value = 'all';
-        const mixedPool = filterProblems(Object.assign({}, g, { subject: mSubject.value, skill: mSkill.value }));
-        const previous = mSize.value;
-        mSize.innerHTML = '';
-        for (const n of [10, 20, 50]) {
-          if (n < mixedPool.length) mSize.add(new Option(`${n} questions`, String(n)));
-        }
-        mSize.add(new Option(`All available (${mixedPool.length})`, 'all'));
-        mSize.value = [...mSize.options].some(o => o.value === previous) ? previous : 'all';
-        const ms = document.getElementById('satact-mixed-summary');
-        const size = mSize.value === 'all' ? mixedPool.length : Math.min(Number(mSize.value), mixedPool.length);
-        if (ms) ms.textContent = mixedPool.length
-          ? `${plural(mixedPool.length)} available · this set will have ${plural(size)} with no repeats.`
-          : 'No questions match these filters yet.';
-        const start = document.getElementById('satact-mixed-start');
-        if (start) start.disabled = !mixedPool.length;
-        const empty = document.getElementById('satact-mixed-empty');
-        if (empty) empty.hidden = mixedPool.length > 0;
+      const topicCounts = new Map();
+      const skillCounts = new Map();
+      for (const problem of filterProblems({ difficulty: difficulty.value })) {
+        topicCounts.set(problem.subject, (topicCounts.get(problem.subject) || 0) + 1);
+        if (problem.subject === topic.value) skillCounts.set(problem.skill, (skillCounts.get(problem.skill) || 0) + 1);
       }
+      for (const option of topic.options) {
+        if (option.value !== 'all') option.textContent = `${subjectLabel(option.value)} (${topicCounts.get(option.value) || 0})`;
+      }
+
+      const previousSkill = skill.value;
+      const showSkills = topic.value !== 'all' && skillCounts.size > 1;
+      skillField.hidden = skill.disabled = !showSkills;
+      skill.replaceChildren(new Option('All Skills', 'all'));
+      if (showSkills) {
+        for (const item of CATALOG.skills) {
+          if (item.subject === topic.value && skillCounts.has(item.id)) {
+            skill.add(new Option(`${item.label} (${skillCounts.get(item.id)})`, item.id));
+          }
+        }
+        if (skillCounts.has(previousSkill)) skill.value = previousSkill;
+      }
+
+      const available = filterProblems(filters()).length;
+      const previousSize = size.value;
+      size.replaceChildren();
+      for (const count of [10, 20, 50]) {
+        if (count < available) size.add(new Option(plural(count), String(count)));
+      }
+      size.add(new Option('All available', 'all', true, true));
+      if ([...size.options].some(option => option.value === previousSize)) size.value = previousSize;
+      size.disabled = start.disabled = available === 0;
+      showCount();
     }
-    [difficulty, mSubject, mSkill, mSize].forEach(el => el && el.addEventListener('change', update));
-    document.querySelectorAll('[data-reset-filters]').forEach(b => b.addEventListener('click', () => {
-      [difficulty, mSubject, mSkill].forEach(el => { if (el) el.value = 'all'; });
+
+    topic.addEventListener('change', () => {
+      skill.value = 'all';
       update();
-    }));
-    if (form) form.addEventListener('submit', event => {
-      event.preventDefault();
-      const filters = Object.assign({}, ALL, globalFilters(), { subject: mSubject.value, skill: mSkill.value });
-      startFromControl('mixed', filters, mSize.value, 'landing');
     });
-    wireStartLinks('landing', globalFilters);
-    renderResume(document.getElementById('satact-resume'));
+    difficulty.addEventListener('change', update);
+    skill.addEventListener('change', update);
+    size.addEventListener('change', showCount);
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      startFromControl(topic.value === 'all' ? 'mixed' : 'topic', filters(), size.value, 'landing', true);
+    });
+    window.addEventListener('pageshow', event => {
+      if (!event.persisted) return;
+      update();
+      renderResume(resume);
+    });
     update();
+    renderResume(resume);
   }
 
   // ------------------------------------------------------------------ question page
@@ -392,8 +387,8 @@
       actions.className = 'satact-session-actions';
       const change = document.createElement('a');
       change.className = 'satact-btn';
-      change.href = `${SECTION}#by-topic`;
-      change.textContent = 'Change Topic';
+      change.href = PRACTICE;
+      change.textContent = 'Practice Options';
       const end = document.createElement('button');
       end.type = 'button';
       end.className = 'satact-btn';
@@ -643,7 +638,8 @@
       summary.append(h, score);
       if (reason === 'finished') {
         const note = document.createElement('p');
-        note.textContent = s.mode === 'topic' || (s.filters.skill !== 'all' || s.filters.subject !== 'all')
+        const fullTopic = s.filters.subject !== 'all' && s.filters.difficulty === 'all' && sc.size === filterProblems(s.filters).length;
+        note.textContent = fullTopic
           ? `That's every question currently available for ${s.label} (${plural(sc.size)}). More are added as they are approved.`
           : `You have worked through every question in this set (${plural(sc.size)}).`;
         summary.append(note);
@@ -671,14 +667,13 @@
       again.className = 'satact-btn satact-btn-primary';
       again.textContent = 'Practice Again';
       again.addEventListener('click', () => {
-        const ids = filterProblems(s.filters).map(p => p.id);
         const mode = s.mode === 'browse' ? 'mixed' : s.mode;
-        goToSessionStart(createSession({ mode, filters: s.filters, ids, entry: 'summary', label: sessionLabel(mode, s.filters) }));
+        startFromControl(mode, s.filters, s.size, 'summary', mode === 'mixed' || s.randomized);
       });
       const topics = document.createElement('a');
       topics.className = 'satact-btn';
-      topics.href = `${SECTION}#by-topic`;
-      topics.textContent = 'Choose a Topic';
+      topics.href = PRACTICE;
+      topics.textContent = 'Practice Options';
       const mixed = document.createElement('button');
       mixed.type = 'button';
       mixed.className = 'satact-btn';
@@ -701,6 +696,7 @@
         if (!rest.length && nextIndex(s) < 0) { ensureStarted(s); finish('finished'); return; }
         s.mode = 'mixed';
         s.label = 'Mixed practice';
+        s.randomized = true;
         s.queue = s.queue.concat(rest);
         ensureStarted(s);
       }
@@ -783,7 +779,7 @@
 
   // ------------------------------------------------------------------ topic pages
   function initTopic() {
-    wireStartLinks('topic', null);
+    wireTopicLinks();
     renderResume(document.getElementById('satact-resume'));
   }
 

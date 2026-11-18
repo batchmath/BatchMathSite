@@ -155,64 +155,29 @@ function startLink({ label, href, mode, subject = '', skill = '', size, primary 
 // ---------------------------------------------------------------- landing page
 function landingPage() {
   const total = lib.problems.length;
-  const subjectCards = lib.subjects.map(s => `<article class="satact-subject-card" data-subject="${esc(s.slug)}">
-<h3><a href="${s.url}">${esc(s.label)}</a></h3>
-<p class="satact-count" data-subject-count="${esc(s.slug)}">${count(s.problems.length)}</p>
-<ul class="satact-skill-list">
-${s.skills.map(k => `<li class="satact-skill-row" data-skill="${esc(k.id)}">
-<span class="satact-skill-name"><a href="${s.url}#${esc(k.id)}">${esc(k.label)}</a><span class="satact-count" data-skill-count="${esc(k.id)}">${count(k.problems.length)}</span></span>
-${startLink({ label: 'Practice', href: k.problems[0].url, mode: 'topic', subject: s.slug, skill: k.id, size: k.problems.length })}
-</li>`).join('\n')}
-</ul>
-</article>`).join('\n');
-  const subjectOptions = lib.subjects.map(s => `<option value="${esc(s.slug)}">${esc(s.label)} (${s.problems.length})</option>`).join('');
-  const skillOptions = lib.subjects.flatMap(s => s.skills.map(k => `<option value="${esc(k.id)}" data-subject="${esc(s.slug)}">${esc(k.label)} (${k.problems.length})</option>`)).join('');
-  const difficultyOptions = lib.difficulties.map(d => `<option value="${esc(d.value)}">${esc(d.label)} (${lib.problems.filter(p => p.difficulty.value === d.value).length})</option>`).join('');
+  const topicOptions = lib.subjects.map(s => `<option value="${esc(s.slug)}">${esc(s.label)} (${s.problems.length})</option>`).join('');
+  const difficultyOptions = lib.difficulties.map(d => `<option value="${esc(d.value)}">${esc(d.label)}</option>`).join('');
   const body = `<section class="satact-hero" aria-labelledby="satact-title">
-<p class="satact-kicker">Original practice · instant feedback · worked solutions</p>
 <h1 id="satact-title">SAT &amp; ACT Math Practice</h1>
-<p class="satact-hero-text">Individually numbered SAT and ACT math questions, each with a permanent page. Check your answer instantly, then study a step-by-step written solution. Video explanations are added to questions as they are published.</p>
-<p class="satact-library-stats" data-satact-stats="1"><span>${count(total)} available</span><span>${count(lib.subjects.length, 'subject')}</span></p>
+<p class="satact-hero-text">Practice with numbered SAT and ACT math questions, instant feedback, and step-by-step solutions.</p>
 </section>
 <section id="satact-resume" class="satact-resume" aria-label="Practice session in progress" hidden></section>
-<nav class="satact-mode-grid" aria-label="Ways to practice">
-<a class="satact-mode-card" href="#by-topic"><span class="satact-mode-icon" aria-hidden="true">∠</span><span class="satact-mode-title">Practice by Topic</span><span class="satact-mode-text">Choose a subject and a specific skill.</span></a>
-<a class="satact-mode-card" href="#mixed"><span class="satact-mode-icon" aria-hidden="true">⇄</span><span class="satact-mode-title">Mixed Practice</span><span class="satact-mode-text">A shuffled set from the whole library, with no repeats.</span></a>
-</nav>
-<section class="satact-filters" aria-labelledby="satact-filters-title">
-<h2 id="satact-filters-title">Filter by Difficulty</h2>
+<section id="practice" class="satact-section" aria-labelledby="practice-title">
+<h2 id="practice-title">Practice</h2>
+<form class="satact-practice-form" id="satact-practice-form">
 <div class="satact-filter-row">
-<div class="satact-field"><label class="bm-practice-select-label" for="satact-difficulty">Difficulty</label><select id="satact-difficulty" class="bm-practice-select" data-filter="difficulty"><option value="all">Any difficulty (${total})</option>${difficultyOptions}</select></div>
+<div class="satact-field"><label class="bm-practice-select-label" for="satact-topic">Topic</label><select id="satact-topic" class="bm-practice-select"><option value="all">Mixed — All Topics</option>${topicOptions}</select></div>
+<div class="satact-field" id="satact-skill-field" hidden><label class="bm-practice-select-label" for="satact-skill">Skill</label><select id="satact-skill" class="bm-practice-select" disabled><option value="all">All Skills</option></select></div>
+<div class="satact-field"><label class="bm-practice-select-label" for="satact-difficulty">Difficulty</label><select id="satact-difficulty" class="bm-practice-select"><option value="all">Any Difficulty</option>${difficultyOptions}</select></div>
+<div class="satact-field"><label class="bm-practice-select-label" for="satact-size">Questions</label><select id="satact-size" class="bm-practice-select"><option value="all">All available</option></select></div>
 </div>
-<p class="satact-filter-summary" id="satact-filter-summary" role="status">${count(total)} match these filters.</p>
-</section>
-<section id="by-topic" class="satact-section" aria-labelledby="by-topic-title">
-<h2 id="by-topic-title">Practice by Topic</h2>
-<p class="satact-section-intro">Each skill shows how many questions are available right now. The library grows as new questions are approved, so some skills currently have just one question.</p>
-<div class="satact-subject-grid" id="satact-subject-grid">
-${subjectCards}
+<div class="satact-practice-footer">
+<p class="satact-filter-summary" id="satact-practice-summary" role="status">${count(total)} available.</p>
+<button type="submit" class="satact-btn satact-btn-primary" id="satact-practice-start" disabled>Start Practice</button>
 </div>
-<div class="satact-empty" id="satact-topic-empty" hidden><h3>No questions match these filters yet.</h3><p>Choose a different difficulty.</p><button type="button" class="satact-btn" data-reset-filters="1">Reset Filters</button></div>
-</section>
-<section id="mixed" class="satact-section" aria-labelledby="mixed-title">
-<h2 id="mixed-title">Mixed Practice</h2>
-<p class="satact-section-intro">Work through a shuffled set of different questions. A question does not repeat until you have seen every question in the set.</p>
-<form class="satact-mixed-form" id="satact-mixed-form">
-<div class="satact-filter-row">
-<div class="satact-field"><label class="bm-practice-select-label" for="satact-mixed-subject">Subject</label><select id="satact-mixed-subject" class="bm-practice-select"><option value="all">All subjects</option>${subjectOptions}</select></div>
-<div class="satact-field"><label class="bm-practice-select-label" for="satact-mixed-skill">Skill</label><select id="satact-mixed-skill" class="bm-practice-select"><option value="all">All skills</option>${skillOptions}</select></div>
-<div class="satact-field"><label class="bm-practice-select-label" for="satact-mixed-size">Questions</label><select id="satact-mixed-size" class="bm-practice-select"><option value="all">All available (${total})</option></select></div>
-</div>
-<p class="satact-filter-summary" id="satact-mixed-summary" role="status">${count(total)} available for mixed practice.</p>
-<button type="submit" class="satact-btn satact-btn-primary" id="satact-mixed-start">Start Mixed Practice</button>
-<div class="satact-empty" id="satact-mixed-empty" hidden><h3>No questions match these filters yet.</h3><p>Choose a different subject, skill or difficulty.</p><button type="button" class="satact-btn" data-reset-filters="1">Reset Filters</button></div>
 </form>
-<noscript><p class="satact-noscript">Mixed practice needs JavaScript. You can still open any question from the <a href="${SECTION}problems/">numbered question list</a>.</p></noscript>
-</section>
-<section class="satact-section" aria-labelledby="browse-title">
-<h2 id="browse-title">Browse Every Question</h2>
-<p class="satact-section-intro">Every question keeps its number and its own page, so you can return to it or share it.</p>
-<p><a class="satact-btn" href="${SECTION}problems/">See All ${count(total)}</a></p>
+<noscript><p class="satact-noscript">Practice sessions require JavaScript. You can browse the numbered questions below.</p></noscript>
+<p class="satact-browse-link"><a href="${SECTION}problems/">Browse all questions</a></p>
 </section>`;
   return shell({
     pageTitle: 'SAT & ACT Math Practice | Numbered Practice Questions | BatchMath',
@@ -227,7 +192,7 @@ function problemsIndexPage() {
 <p class="satact-kicker">SAT &amp; ACT Math Practice</p>
 <h1 id="problems-title">All SAT &amp; ACT Practice Questions</h1>
 <p class="satact-hero-text">${count(lib.problems.length)} so far. Each number is permanent: questions are added to the end of the list and never renumbered.</p>
-<p><a class="satact-btn satact-btn-primary" href="${SECTION}#mixed">Start Mixed Practice</a> <a class="satact-btn" href="${SECTION}#by-topic">Practice by Topic</a></p>
+<p><a class="satact-btn satact-btn-primary" href="${SECTION}#practice">Practice Options</a></p>
 </section>
 <ol class="satact-problem-list" aria-label="Numbered questions">
 ${lib.problems.map(problemItem).join('\n')}

@@ -1,9 +1,9 @@
-BatchMath SAT & ACT Math Practice P2
+BatchMath SAT & ACT Math Practice P3
 Development preview for owner review. Website publication authorization is pending.
 
 Local review
-1. Extract bm-sat-act-p2.zip.
-2. Open the extracted folder bm-sat-act-p2, which contains index.html.
+1. Extract bm-sat-act-p3.zip.
+2. Open the extracted folder bm-sat-act-p3, which contains index.html.
 3. On Windows, click the File Explorer address bar, type cmd and press Enter.
 4. Run py -m http.server 8000
    On macOS or Linux, run python3 -m http.server 8000
@@ -11,8 +11,10 @@ Local review
    Use Ctrl+C to stop the server. Internet access is needed for MathJax.
 
 Review the homepage link, then open http://localhost:8000/sat-act-math/.
-- Select a difficulty and check the topic cards and mixed-practice count.
-- Start Mixed Practice and work through a set. The set ends with a session summary.
+- Choose Mixed — All Topics or an individual topic in the Practice panel. Select a
+  difficulty and check the available question count.
+- Use Start Practice and work through a set. The set ends with a session summary.
+- Open Practice Options midway through a set, then click Resume Session.
 - Answer incorrectly, then retry correctly. The score reflects the first answer.
 - Open a written solution before answering. The question is recorded as unscored.
 - Check the numbered questions at http://localhost:8000/sat-act-math/problems/.
@@ -25,7 +27,8 @@ workflow lists the five source IDs and cue times.
 The site uses the BatchMath GA4 tag. Append ?bm_debug=1 during manual analytics
 testing. See docs/sat-act/GA4-ANALYTICS.md.
 
-This review archive omits the existing classroom PDFs and Git's normal excluded
-developer files. The omitted PDF links require the full repository checkout.
+This review archive omits the existing classroom PDFs listed in OMITTED-PDFS.txt,
+along with Git's normal excluded developer files. The PDF links require the full
+repository checkout. Deploy from the full checkout after authorization.
 The archive includes the P2 audit and publishing instructions in docs/sat-act/.
 Use the full Git checkout for the build, QA and owner signoff commands.

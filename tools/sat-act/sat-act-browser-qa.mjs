@@ -137,48 +137,158 @@ try { browser = await chromium.launch(browserPath ? { executablePath: browserPat
   browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 }
 
-await scenario('library home: filters, counts and no-results state', async () => {
+await scenario('unified practice starts an individual topic with the selected difficulty', async () => {
   const { context, page, pageErrors } = await newContext(browser, origin);
+  const problem = problems[0];
+  const topic = catalog.subjects.find(s => s.slug === problem.subject);
   await page.goto(`${origin}/sat-act-math/`);
   await ready(page);
-  assert.match(await page.locator('#satact-filter-summary').innerText(), new RegExp(`${problems.length} questions match`));
-  assert.equal(await page.locator('.satact-subject-card:visible').count(), catalog.subjects.length);
-  assert.equal(await page.locator('#satact-exam').count(), 0);
-  const difficulty = problems[0].difficulty;
-  await page.selectOption('#satact-difficulty', difficulty);
-  for (const s of catalog.subjects) {
-    const n = problems.filter(p => p.subject === s.slug && p.difficulty === difficulty).length;
-    assert.equal(await page.locator(`[data-subject-count="${s.slug}"]`).innerText(), `${n} question${n === 1 ? '' : 's'}`);
-  }
-  await page.selectOption('#satact-difficulty', 'all');
-  await page.selectOption('#satact-mixed-subject', catalog.subjects[0].slug);
-  const skillOptions = await page.locator('#satact-mixed-skill option:not([disabled])').allInnerTexts();
-  assert.equal(skillOptions.length, 1 + catalog.subjects[0].skills.length, 'skill list follows the chosen subject');
-  assert.equal(await page.locator('#satact-mixed-size option').count(), 1, 'small pools only offer "All available"');
+  assert.equal(await page.getByRole('heading', { name: 'Practice', exact: true }).count(), 1);
+  assert.deepEqual(await page.locator('#practice select:visible').evaluateAll(els => els.map(el => el.labels[0].textContent)),
+    ['Topic', 'Difficulty', 'Questions']);
+  assert.match(await page.locator('#satact-practice-summary').innerText(), new RegExp(`${problems.length} questions available`));
+  assert.equal(await page.locator('#satact-topic option:checked').innerText(), 'Mixed — All Topics');
+  assert.equal(await page.locator('#satact-difficulty option:checked').innerText(), 'Any Difficulty');
+  assert.deepEqual(await page.locator('#satact-size option').allInnerTexts(), ['All available']);
+
+  await page.selectOption('#satact-topic', topic.slug);
+  await page.selectOption('#satact-difficulty', problem.difficulty);
+  assert.equal(await page.locator('#satact-skill').isVisible(), false, 'one eligible skill stays hidden');
+  assert.equal(await page.locator('#satact-skill').isDisabled(), true);
+  assert.match(await page.locator('#satact-practice-summary').innerText(), /1 question available/);
+  await page.getByRole('button', { name: 'Start Practice', exact: true }).click();
+  await page.waitForURL(`${origin}${problem.url}`);
+  await ready(page);
+  const s = await session(page);
+  assert.equal(s.mode, 'topic');
+  assert.equal(s.label, topic.label);
+  assert.deepEqual(s.filters, { subject: topic.slug, skill: 'all', difficulty: problem.difficulty });
+  assert.deepEqual(s.queue, [problem.id]);
+  assert.equal(s.randomized, true);
+  const started = named(await events(page), 'practice_started')[0].params;
+  assert.equal(started.practice_mode, 'topic');
+  assert.equal(started.subject_filter, topic.slug.replaceAll('-', '_'));
+  assert.equal(started.difficulty_filter, problem.difficulty);
+  assert.equal(started.skill_filter, 'all');
+  assert.equal(started.session_size, 1);
   assert.deepEqual(pageErrors, []);
   await context.close();
+});
 
-  // Simulate a displayed difficulty whose problems went away.
-  const patched = await newContext(browser, origin, { catalogPatch: src => src.replaceAll(`"difficulty": "${difficulty}"`, '"difficulty": "qa-other"') });
-  await patched.page.goto(`${origin}/sat-act-math/`);
-  await ready(patched.page);
-  await patched.page.selectOption('#satact-difficulty', difficulty);
-  assert.equal(await patched.page.locator('#satact-topic-empty').isVisible(), true);
-  assert.equal(await patched.page.locator('#satact-mixed-empty').isVisible(), true);
-  assert.equal(await patched.page.locator('#satact-mixed-start').isDisabled(), true);
-  assert.match(await patched.page.locator('#satact-filter-summary').innerText(), /No questions match/);
-  await patched.page.locator('#satact-topic-empty [data-reset-filters]').click();
-  assert.equal(await patched.page.locator('#satact-topic-empty').isVisible(), false);
-  assert.equal(await patched.page.locator('#satact-difficulty').inputValue(), 'all');
-  await patched.context.close();
+await scenario('expanded catalog: conditional skills, eligible set sizes, resume and Practice Again', async () => {
+  const fixture = structuredClone(catalog);
+  const [source, other] = fixture.problems;
+  const topic = fixture.subjects.find(s => s.slug === source.subject);
+  const alternateSkill = { id: 'qa-second-skill', label: 'QA Second Skill', subject: topic.slug };
+  const alternateDifficulty = 'qa-other-difficulty';
+  other.difficulty = alternateDifficulty;
+  topic.skills.push(alternateSkill.id);
+  fixture.skills.push(alternateSkill);
+  const extra = Array.from({ length: 12 }, (_, i) => ({
+    ...source,
+    id: `qa-extra-${i}`,
+    number: 100 + i,
+    url: `/sat-act-math/problems/qa-extra-${i}/`,
+    ...(i === 11 ? { skill: alternateSkill.id, difficulty: alternateDifficulty } : {})
+  }));
+  fixture.problems.push(...extra);
+
+  const { context, page } = await newContext(browser, origin, {
+    catalogPatch: () => `window.BM_SAT_ACT_CATALOG = ${JSON.stringify(fixture)};`
+  });
+  const sourceHtml = fs.readFileSync(path.join(ROOT, source.url, 'index.html'), 'utf8');
+  for (const problem of extra) {
+    const body = sourceHtml.replace(`"id":"${source.id}"`, `"id":"${problem.id}"`);
+    await context.route(`${origin}${problem.url}`, route => route.fulfill({ contentType: 'text/html', body }));
+  }
+  await page.goto(`${origin}/sat-act-math/`);
+  await ready(page);
+  assert.equal(await page.locator('#satact-skill').isVisible(), false, 'mixed mode hides skills');
+  await page.selectOption('#satact-topic', topic.slug);
+  assert.equal(await page.locator('#satact-skill').isVisible(), true);
+  assert.deepEqual(await page.locator('#satact-skill option').evaluateAll(els => els.map(el => el.value)),
+    ['all', source.skill, alternateSkill.id]);
+  assert.equal(await page.locator('#satact-skill option:checked').innerText(), 'All Skills');
+  assert.equal(await page.locator('#satact-topic option:checked').innerText(), `${topic.label} (13)`);
+
+  await page.selectOption('#satact-skill', alternateSkill.id);
+  assert.match(await page.locator('#satact-practice-summary').innerText(), /1 question available/);
+  assert.deepEqual(await page.locator('#satact-size option').allInnerTexts(), ['All available']);
+  await page.selectOption('#satact-topic', other.subject);
+  assert.equal(await page.locator('#satact-skill').isVisible(), false, 'one eligible skill hides the control');
+  assert.equal(await page.locator('#satact-skill').inputValue(), 'all', 'topic change clears the previous skill');
+  await page.selectOption('#satact-difficulty', source.difficulty);
+  assert.equal(await page.locator('#satact-skill').isVisible(), false, 'zero eligible skills hide the control');
+  assert.equal(await page.locator('#satact-practice-start').isDisabled(), true);
+  assert.match(await page.locator('#satact-practice-summary').innerText(), /No questions match/);
+  assert.equal(await page.locator('#satact-topic').inputValue(), other.subject, 'an empty topic stays selected');
+  await page.selectOption('#satact-topic', topic.slug);
+  assert.equal(await page.locator('#satact-skill').isVisible(), false, 'difficulty limits eligible skills');
+  await page.selectOption('#satact-difficulty', 'all');
+  assert.equal(await page.locator('#satact-skill').isVisible(), true);
+  assert.equal(await page.locator('#satact-skill').inputValue(), 'all');
+  await page.selectOption('#satact-skill', source.skill);
+  assert.deepEqual(await page.locator('#satact-size option').allInnerTexts(), ['10 questions', 'All available']);
+  await page.selectOption('#satact-size', '10');
+  assert.match(await page.locator('#satact-practice-summary').innerText(), /10 of 12 questions per session/);
+  await page.setViewportSize({ width: 320, height: 800 });
+  assert.equal(await page.locator('#satact-skill').isVisible(), true);
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'the expanded form fits a narrow phone');
+  await page.selectOption('#satact-skill', alternateSkill.id);
+  assert.equal(await page.locator('#satact-size').inputValue(), 'all', 'oversized selection resets when the pool shrinks');
+  await page.selectOption('#satact-skill', source.skill);
+  await page.selectOption('#satact-size', '10');
+  await page.getByRole('button', { name: 'Start Practice', exact: true }).click();
+  await page.waitForURL(/\/problems\//);
+  await ready(page);
+  const firstSession = await session(page);
+  assert.equal(firstSession.queue.length, 10);
+  assert.equal(new Set(firstSession.queue).size, 10, 'session contains no repeat IDs');
+  assert.ok(firstSession.queue.every(id => fixture.problems.find(p => p.id === id).skill === source.skill));
+  assert.equal(firstSession.label, fixture.skills.find(s => s.id === source.skill).label);
+  const started = named(await events(page), 'practice_started')[0].params;
+  assert.equal(started.skill_filter, source.skill.replaceAll('-', '_'));
+  assert.equal(started.session_size, 10);
+
+  await answer(page, (await problemData(page)).answer);
+  const question = page.url();
+  await page.locator('#satact-session-bar').getByRole('link', { name: 'Practice Options' }).click();
+  await page.waitForURL(`${origin}/sat-act-math/#practice`);
+  assert.match(await page.locator('#satact-resume').innerText(), /1 correct out of 1 answered/);
+  await page.getByRole('link', { name: 'Resume Session' }).click();
+  await page.waitForURL(question);
+  await ready(page);
+  assert.equal((await session(page)).id, firstSession.id);
+  assert.match(await page.locator('#satact-session-bar').innerText(), /1 correct out of 1 answered/);
+
+  await page.getByRole('button', { name: 'End Session' }).click();
+  assert.equal(await page.locator('#satact-summary').getByRole('link', { name: 'Practice Options' }).getAttribute('href'),
+    '/sat-act-math/#practice');
+  await page.locator('#satact-summary').getByRole('button', { name: 'Practice Again' }).click();
+  await page.waitForFunction(() => JSON.parse(sessionStorage.getItem('qa.events') || '[]')
+    .filter(event => event.name === 'practice_started').length === 2);
+  await ready(page);
+  const replay = await session(page);
+  assert.notEqual(replay.id, firstSession.id);
+  assert.deepEqual(replay.filters, firstSession.filters);
+  assert.equal(replay.queue.length, 10);
+  assert.equal(replay.randomized, true);
+  assert.equal(named(await events(page), 'practice_started').length, 2);
+  await context.close();
 });
 
 await scenario('mixed practice: no repeats, first-attempt scoring, retries, reveal, summary and events', async () => {
   const { context, page, pageErrors } = await newContext(browser, origin, { withoutVideos: true });
   await page.goto(`${origin}/sat-act-math/`);
   await ready(page);
-  await page.locator('#satact-mixed-start').click();
+  await page.getByRole('button', { name: 'Start Practice', exact: true }).click();
   await page.waitForURL(/\/sat-act-math\/problems\//);
+  await ready(page);
+  const initial = await session(page);
+  assert.equal(initial.mode, 'mixed');
+  assert.deepEqual(initial.filters, { subject: 'all', skill: 'all', difficulty: 'all' });
+  assert.equal(initial.size, 'all');
+  assert.equal(initial.randomized, true);
   const visited = [];
   for (let i = 0; i < problems.length; i++) {
     await ready(page);
@@ -484,6 +594,15 @@ await scenario('phone layout: no horizontal scrolling, single-column choices, 44
     }
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
     assert.ok(overflow <= 1, `${url}: horizontal overflow ${overflow}px`);
+    if (url === '/sat-act-math/') {
+      const targets = await page.locator('#practice :is(select,button):visible').evaluateAll(els => els.map(el => {
+        const { x, height } = el.getBoundingClientRect();
+        return { x, height };
+      }));
+      assert.equal(targets.length, 4);
+      assert.equal(new Set(targets.map(r => Math.round(r.x))).size, 1, 'controls and button stack on phones');
+      assert.ok(targets.every(r => r.height >= 44));
+    }
   }
   await context.close();
   // Opening every solution above marks those questions as viewed; answer in a fresh tab session.
@@ -542,6 +661,22 @@ await scenario('navigation: homepage button, breadcrumbs and links back to the s
   await page.locator('a.satact-spotlight').click();
   await page.waitForURL(`${origin}/sat-act-math/`);
   assert.equal(await page.locator('h1').innerText(), 'SAT & ACT Math Practice');
+  await page.getByRole('link', { name: 'Browse all questions' }).click();
+  await page.waitForURL(`${origin}/sat-act-math/problems/`);
+  await page.getByRole('link', { name: 'Practice Options' }).click();
+  await page.waitForURL(`${origin}/sat-act-math/#practice`);
+  assert.equal(await page.locator('#practice').isVisible(), true);
+  for (const url of ['/sat-act-math/', '/sat-act-math/problems/', ...catalog.subjects.map(s => s.url), ...problems.map(p => p.url)]) {
+    await page.goto(`${origin}${url}`);
+    const anchors = await page.locator('a[href*="#"]').evaluateAll(links => links.map(link => link.href));
+    for (const href of new Set(anchors)) {
+      const link = new URL(href);
+      if (link.origin !== origin || !link.hash || !link.pathname.startsWith('/sat-act-math/')) continue;
+      const response = await page.request.get(link.href);
+      assert.equal(response.status(), 200, href);
+      assert.ok((await response.text()).includes(`id="${decodeURIComponent(link.hash.slice(1))}"`), `broken anchor ${href}`);
+    }
+  }
   await page.goto(`${origin}${problems[0].url}`);
   const crumbs = await page.locator('.bm-breadcrumbs a').evaluateAll(as => as.map(a => a.getAttribute('href')));
   assert.deepEqual(crumbs, ['/', '/sat-act-math/', '/sat-act-math/problems/']);
