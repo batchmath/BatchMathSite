@@ -1,0 +1,25 @@
+{
+  "schema": "batchmath.sat-act.dev-fixture-source/1",
+  "purpose": "Development fixtures for the private SAT & ACT prototype branch only. These records passed an independent content audit but have NOT received final human approval and must not be published.",
+  "contentStatus": "development-fixture",
+  "repository": "batchmath/Shorts",
+  "branch": "claude/phase8-final-corrections",
+  "commit": "22113846d3f83f10eef9a9c19f64b2e5848a9b6f",
+  "audit": {
+    "branch": "codex/phase8-final-audit",
+    "commit": "4409e16316a615216f48db31e896d58f9849b421",
+    "parentCommit": "22113846d3f83f10eef9a9c19f64b2e5848a9b6f",
+    "report": "audit/CODEX_PHASE8_FINAL_AUDIT.md",
+    "verdict": "PASS WITH MINOR ISSUES",
+    "auditDate": "2026-11-16",
+    "releaseAuthorization": false
+  },
+  "videoVariant": "narrated",
+  "records": [
+    { "sourceId": "right-triangle-trig-s0031", "recordPath": "data/problems/right-triangle-trig-s0031.json" },
+    { "sourceId": "radical-equation-s0003", "recordPath": "data/problems/radical-equation-s0003.json" },
+    { "sourceId": "system-no-solution-s0001", "recordPath": "data/bank/system-no-solution-s0001.json" },
+    { "sourceId": "reverse-percent-s0001", "recordPath": "data/bank/reverse-percent-s0001.json" },
+    { "sourceId": "circle-radius-s0001", "recordPath": "data/bank/circle-radius-s0001.json" }
+  ]
+}

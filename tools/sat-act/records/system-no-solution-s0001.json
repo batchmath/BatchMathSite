@@ -1,0 +1,244 @@
+{
+  "schema": "batchmath.sat-act.problem/1",
+  "sourceId": "system-no-solution-s0001",
+  "contentStatus": "development-fixture",
+  "approval": {
+    "text": null,
+    "video": null,
+    "releaseEligible": false,
+    "note": "Development fixture. Independent content audit only; no human approval has been recorded. Not for publication."
+  },
+  "provenance": {
+    "repository": "batchmath/Shorts",
+    "branch": "claude/phase8-final-corrections",
+    "commit": "22113846d3f83f10eef9a9c19f64b2e5848a9b6f",
+    "recordPath": "data/bank/system-no-solution-s0001.json",
+    "recordSha256": "8d1495cbcd9304173a4b34e1fb203fd3264771b46ef6c7aee74216919b31aeae",
+    "contentHash": "1dcd8aaf55da83f6",
+    "verification": {
+      "passed": true,
+      "checks": 58,
+      "failed": 0,
+      "tools": {
+        "python": "3.13.18",
+        "sympy": "1.14.0"
+      }
+    },
+    "video": {
+      "manifestPath": "output/videos/system-no-solution-s0001-narrated.json",
+      "manifestSha256": "f964fbecce0e609a4ab1b785b28fee75db93e29a6d69da9d24cd97134509f1f1",
+      "scenePath": "data/scenes/system-no-solution-s0001-narrated.json",
+      "sceneCanonicalSha256": "61980b6b2950ecb24d0fbfb1ff1fa9977ef22473187445293d73fac368b03372",
+      "mediaPath": "output/videos/system-no-solution-s0001-narrated.mp4",
+      "mediaSha256": "d299b8525e6ec09c4f205ad318e379227d19ef14b16bb5929f71389c6b1ba085",
+      "renderInputsSha256": "ab58a9c1fcefe6dc4241b4d615db191076a7c57d766f0c72b390f9bede27aa86"
+    },
+    "audit": {
+      "branch": "codex/phase8-final-audit",
+      "commit": "4409e16316a615216f48db31e896d58f9849b421",
+      "report": "audit/CODEX_PHASE8_FINAL_AUDIT.md",
+      "reportSha256": "9527712f30ec3f84ce70291794202564563fe0cd0c822ef9ec6f86706a81e5ca",
+      "verdict": "PASS WITH MINOR ISSUES",
+      "auditDate": "2026-11-16"
+    }
+  },
+  "series": "SAT & ACT Math Prep",
+  "topicLabel": "Algebra · Systems of equations",
+  "classification": {
+    "skills": [
+      "systems-solution-count"
+    ],
+    "topic": "Systems of equations",
+    "exams": [
+      "SAT",
+      "ACT"
+    ],
+    "format": "multiple_choice_4",
+    "sat": {
+      "domains": [
+        "Algebra"
+      ],
+      "testing_points": [
+        "Systems of two linear equations in two variables"
+      ]
+    },
+    "act": {
+      "categories": [
+        "Algebra"
+      ]
+    },
+    "needs_spec_check": [],
+    "spec_version": "sat-digital-2024 / act-enhanced-2025; access-limited recheck 2026-11-13"
+  },
+  "skillNames": {
+    "systems-solution-count": "Systems with no / infinitely many solutions"
+  },
+  "difficulty": "medium",
+  "format": "multiple_choice_4",
+  "template": {
+    "name": "system_no_solution",
+    "presentation": "symbolic",
+    "techniques": [
+      "compare coefficients",
+      "parallel lines have equal slopes and different intercepts"
+    ],
+    "misconceptions": [
+      "sign error when matching coefficients",
+      "inverting the scale factor",
+      "not scaling the second coefficient"
+    ]
+  },
+  "concept": "A linear system has no solution exactly when the lines are parallel and distinct: proportional coefficients, constants not in that ratio.",
+  "question": {
+    "stem": [
+      "In the system of equations below, $k$ is a constant.",
+      {
+        "math": "6x - 3y = 1"
+      },
+      {
+        "math": "18x + ky = 10"
+      }
+    ],
+    "prompt": "For what value of $k$ does the system have **no** solution?"
+  },
+  "figure": null,
+  "rightAngle": null,
+  "choices": [
+    {
+      "label": "A",
+      "display": "$-9$",
+      "correct": true,
+      "note": "Correct",
+      "why": "",
+      "rationale": ""
+    },
+    {
+      "label": "B",
+      "display": "$-3$",
+      "correct": false,
+      "note": "y-coefficient not scaled",
+      "why": "With $k = -3$, the ratios $\\dfrac{6}{18}$ and $\\dfrac{-3}{-3}$ are not equal, so the lines have different slopes and intersect at exactly one point.",
+      "rationale": "Copies the first equation's y-coefficient."
+    },
+    {
+      "label": "C",
+      "display": "$-1$",
+      "correct": false,
+      "note": "scale factor inverted",
+      "why": "With $k = -1$, the ratios $\\dfrac{6}{18}$ and $\\dfrac{-3}{-1}$ are not equal, so the lines have different slopes and intersect at exactly one point.",
+      "rationale": "Divides by the scale factor instead of multiplying."
+    },
+    {
+      "label": "D",
+      "display": "$9$",
+      "correct": false,
+      "note": "slopes are opposites, not equal",
+      "why": "With $k = 9$, the ratios $\\dfrac{6}{18}$ and $\\dfrac{-3}{9}$ are not equal, so the lines have different slopes and intersect at exactly one point.",
+      "rationale": "Sign error when matching the y-coefficients."
+    }
+  ],
+  "answer": {
+    "label": "A",
+    "display": "$-9$"
+  },
+  "solution": {
+    "steps": [
+      {
+        "id": "meaning",
+        "kind": "concept",
+        "title": "No solution means parallel lines",
+        "caption": "**No solution** means the two lines never meet: they are **parallel**. Watch the **signs** when you match the equations.",
+        "lines": []
+      },
+      {
+        "id": "scale",
+        "kind": "concept",
+        "title": "Shortcut: scale the coefficients",
+        "caption": "**Shortcut:** parallel lines have $x$- and $y$-coefficients in the **same ratio**.",
+        "lines": [
+          {
+            "tex": "6 \\times 3 = 18",
+            "check": "numeric"
+          },
+          {
+            "tex": "k = -3 \\times 3 = -9",
+            "check": "true"
+          }
+        ]
+      },
+      {
+        "id": "distinct",
+        "kind": "concept",
+        "title": "Check the constants",
+        "caption": "If the constants scaled by $3$ too, both equations would be the **same line**.",
+        "lines": [
+          {
+            "tex": "1 \\times 3 = 3 \\neq 10",
+            "check": "numeric"
+          }
+        ]
+      },
+      {
+        "id": "slopes",
+        "kind": "simple",
+        "title": "See it: equal slopes",
+        "caption": "Solve each equation for $y$: both slopes are $2$, but the $y$-intercepts differ.",
+        "lines": [
+          {
+            "tex": "y = 2x - \\dfrac{1}{3}",
+            "check": "proportional",
+            "of": "eq1"
+          },
+          {
+            "tex": "y = 2x - \\dfrac{10}{9}",
+            "check": "proportional",
+            "of": "eq2"
+          }
+        ]
+      },
+      {
+        "id": "trap",
+        "kind": "concept",
+        "title": "The trap: the wrong sign",
+        "caption": "**The trap:** $k = 9$ has the wrong sign. The slopes are then $2$ and $-2$, so the lines cross.",
+        "lines": [
+          {
+            "tex": "y = -2x + \\dfrac{10}{9}",
+            "check": "proportional",
+            "of": "eq2_trap"
+          }
+        ]
+      }
+    ],
+    "keyIdea": "**No solution** means parallel lines: the $x$- and $y$-coefficients share one ratio, but the constants do not.",
+    "trap": {
+      "label": "D",
+      "value": "9"
+    },
+    "summary": "No solution means the lines are parallel and distinct. The x-coefficients scale by 3 (6 to 18), so the y-coefficients must too: k = -9. The constants do not scale the same way (3 is not 10), so the lines are different. Both have slope 2. With k = 9 the slopes would be 2 and -2, and the lines would cross."
+  },
+  "meta": {
+    "title_hook": "When a System Has No Solution",
+    "description_lead": "6x - 3y = 1 and 18x + ky = 10."
+  },
+  "video": {
+    "variantId": "system-no-solution-s0001-narrated",
+    "mediaSha256": "d299b8525e6ec09c4f205ad318e379227d19ef14b16bb5929f71389c6b1ba085",
+    "durationSeconds": 86.231,
+    "explanationStartSeconds": 20,
+    "timing": {
+      "explanationStartSeconds": 20,
+      "rule": "first whole second at or after the end of the thinking countdown; never after the first spoken explanation sentence",
+      "countdownStartSeconds": 12.482,
+      "countdownSeconds": 7,
+      "countdownEndSeconds": 19.482,
+      "solutionVisualInSeconds": 19.982,
+      "firstExplanationSegment": "meaning:0",
+      "firstExplanationNarrationSeconds": 21.332,
+      "sceneDurationSeconds": 86.231
+    },
+    "youtubeId": null,
+    "published": false,
+    "publication": null
+  }
+}

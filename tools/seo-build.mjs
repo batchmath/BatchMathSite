@@ -5,6 +5,16 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "https://batchmath.net";
+// Optional scope (used by generated sections such as tools/sat-act): `--only=sat-act-math/`
+// processes only pages under that top-level directory and replaces only that directory's
+// sitemap entries, leaving every other page and sitemap line untouched. Without --only the
+// build behaves exactly as before.
+const ONLY_ARG = process.argv.slice(2).find(arg => arg.startsWith("--only="));
+const ONLY = ONLY_ARG ? ONLY_ARG.slice("--only=".length).replace(/^\/+/, "") : "";
+if (ONLY_ARG && !/^[a-z0-9][a-z0-9-]*\/$/.test(ONLY)) {
+  console.error("seo-build: --only expects one top-level directory such as --only=sat-act-math/");
+  process.exit(2);
+}
 const VERSION = "11";
 const SOCIAL_IMAGE = ORIGIN + "/assets/batchmath-social-card-v1.png";
 const SOCIAL_ALT = "BatchMath — math resources for Integrated Math 1, Calculus Prep, and AP Calculus AB";
@@ -309,6 +319,7 @@ let breadcrumbs = 0;
 let cleanedLinks = 0;
 for (const file of publicFiles) {
   const rel = relFor(file);
+  if (ONLY && !rel.startsWith(ONLY)) continue;
   let html = fs.readFileSync(file, "utf8");
   const before = html;
   html = cleanIm1Navigation(rel, html);
@@ -344,7 +355,18 @@ for (const file of publicFiles) {
     changed++;
   }
 }
-const sitemapUrls = publicFiles.map(canonicalFor).sort();
+let sitemapUrls = publicFiles.map(canonicalFor).sort();
+if (ONLY) {
+  const prefix = ORIGIN + "/" + ONLY;
+  const existingXml = fs.existsSync(path.join(ROOT, "sitemap.xml")) ? fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8") : "";
+  const existing = [...existingXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => decode(match[1].trim()));
+  const merged = existing.filter(url => !url.startsWith(prefix));
+  for (const url of sitemapUrls.filter(url => url.startsWith(prefix))) {
+    const at = merged.findIndex(other => other > url);
+    if (at < 0) merged.push(url); else merged.splice(at, 0, url);
+  }
+  sitemapUrls = merged;
+}
 const sitemapXml = ['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',...sitemapUrls.map(url => '  <url><loc>' + escapeHtml(url) + '</loc></url>'),'</urlset>',''].join('\n');
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemapXml);
-console.log("SEO build " + VERSION + ": " + publicFiles.length + " public pages; " + changed + " files updated; " + breadcrumbs + " breadcrumb trails; " + contexts + " practice contexts; " + cleanedLinks + " tracking-only links cleaned.");
+console.log("SEO build " + VERSION + (ONLY ? " (scope " + ONLY + ")" : "") + ": " + publicFiles.length + " public pages; " + changed + " files updated; " + breadcrumbs + " breadcrumb trails; " + contexts + " practice contexts; " + cleanedLinks + " tracking-only links cleaned.");

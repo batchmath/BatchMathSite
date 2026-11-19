@@ -1,0 +1,10 @@
+{
+  "schema": "batchmath.sat-act.youtube-publications/1",
+  "notes": [
+    "Use initialWebsitePublications for a confirmed public upload of one of the five audited initial renders.",
+    "Use publications for videos with formal Shorts approval, which are read by the approved-export importer.",
+    "Each entry binds a real published YouTube ID to the SHA-256 of the exact uploaded MP4."
+  ],
+  "initialWebsitePublications": [],
+  "publications": []
+}

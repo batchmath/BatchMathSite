@@ -1,0 +1,239 @@
+/* BatchMath SAT & ACT Math Practice — library, topic and question pages.
+   Uses the BatchMath black / red / yellow system shared with the Problem of the Day Archive.
+   Shared focus rings, skip link, breadcrumbs, footer and selects come from /assets/site.css. */
+:root{
+  --black:#030303;--panel:#080808;--panel-2:#101010;--red:#d71920;--red-dark:#9e1116;
+  --yellow:#f5c400;--yellow-soft:#ffd93d;--white:#f4f4f4;--muted:#b4b4b4;--line:#292929;
+  --good:#66c977;--good-bg:#0e2412;--good-text:#a5efad;--bad:#d71920;--bad-bg:#28090b;--bad-text:#ff8f93;
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--black);color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+a{color:inherit}
+
+/* Header (same structure as the archive and About pages) */
+.topbar{min-height:82px;border-bottom:1px solid #181818;display:flex;align-items:center;justify-content:center;padding:14px 170px;position:relative}
+.logo{color:var(--red);text-decoration:none;font-weight:950;font-size:clamp(2rem,5vw,4rem);letter-spacing:-.05em;line-height:1}
+.tm-mark{font-size:.38em;vertical-align:super;margin-left:.08em;line-height:0}
+.corner{position:absolute;width:118px;height:145px;object-fit:cover;object-position:50% 20%;border-radius:10px;top:10px;left:18px}
+.profile{position:absolute;right:18px;top:8px;width:126px;z-index:40;text-align:center}
+.profile img{width:118px;height:145px;object-fit:cover;object-position:50% 20%;border-radius:10px;display:block;margin-left:auto}
+.menu-toggle{margin-top:5px;width:118px;min-height:36px;border:1px solid var(--yellow);background:#050505;color:var(--yellow);border-radius:7px;font-weight:900;cursor:pointer}
+.dropdown{position:absolute;top:184px;right:0;width:230px;padding:8px;background:#050505;border:1px solid var(--yellow);border-radius:10px;text-align:left}
+.dropdown a{display:block;text-decoration:none;color:var(--yellow);padding:10px 11px;border-radius:7px;font-weight:800;font-size:.91rem}
+.dropdown a:hover{background:#191300;color:#fff0a5}
+
+/* Layout */
+.satact-main{width:min(980px,calc(100% - 36px));margin:0 auto;padding:36px 0 56px}
+.satact-preview-notice{margin:0 0 18px;padding:11px 14px;border:1px solid #735f00;border-left:4px solid var(--yellow);border-radius:9px;background:#151200;color:#ffe9a0;font-size:.86rem;line-height:1.5}
+.satact-preview-notice strong{color:var(--yellow)}
+.satact-kicker{margin:0 0 8px;color:var(--yellow);font-size:.74rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+.satact-hero,.satact-page-head{text-align:center;padding:26px 20px 28px;border:1px solid #262626;border-radius:16px;background:radial-gradient(circle at 50% -20%,rgba(215,25,32,.21),transparent 55%),linear-gradient(180deg,#0d0d0d,#070707);box-shadow:0 18px 50px rgba(0,0,0,.34)}
+.satact-hero h1,.satact-page-head h1{margin:0;color:var(--yellow);font-size:clamp(1.9rem,5.4vw,3.4rem);line-height:1.08}
+.satact-hero-text{max-width:720px;margin:13px auto 0;color:#d4d4d4;font-size:clamp(.95rem,2vw,1.06rem);line-height:1.65}
+.satact-page-head p:last-child{margin-bottom:0}
+.satact-section{margin:34px 0 0}
+.satact-section h2,.satact-problem-nav h2,.satact-other-topics h2,.satact-skill-section h2{margin:0 0 8px;color:var(--yellow);font-size:clamp(1.25rem,3vw,1.6rem)}
+
+/* Buttons */
+.satact-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:9px 16px;border:1px solid var(--red);border-radius:8px;background:#090909;color:var(--yellow);font-family:inherit;font-weight:850;font-size:.92rem;line-height:1.2;text-decoration:none;cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease}
+.satact-btn:hover{background:#180909;border-color:var(--yellow)}
+.satact-btn-primary{background:var(--red);border-color:var(--red);color:#fff}
+.satact-btn-primary:hover{background:#b3141a;border-color:var(--yellow)}
+.satact-btn[disabled],.satact-btn[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
+.satact-btn[hidden]{display:none}
+.satact-btn-small{min-height:38px;padding:6px 12px;font-size:.82rem}
+
+/* Resume banner */
+.satact-resume{margin:18px 0 0;padding:14px 16px;border:1px solid var(--yellow);border-radius:12px;background:#110e00;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.satact-resume p{margin:0;color:#ffe9a0}
+.satact-resume[hidden]{display:none}
+
+/* Practice form */
+.satact-filter-row{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end}
+.satact-field{display:flex;flex-direction:column;gap:5px;min-width:min(220px,100%);flex:1 1 200px}
+.satact-field select.bm-practice-select{width:100%;min-height:44px!important}
+.satact-filter-summary{margin:0;color:#bdbdbd;font-size:.86rem}
+.satact-practice-form{padding:16px;border:1px solid #282828;border-radius:13px;background:#070707}
+.satact-field[hidden]{display:none}
+.satact-practice-footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+.satact-browse-link{margin:12px 0 0;font-size:.9rem}
+.satact-browse-link a{color:var(--yellow)}
+.satact-noscript{padding:12px 14px;border:1px solid #444;border-radius:9px;background:#0b0b0b;color:#ddd}
+
+/* Topic pages */
+.satact-count{color:#a9a9a9;font-size:.8rem;font-weight:700}
+
+/* Problem lists */
+.satact-problem-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px}
+.satact-problem-item{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;padding:12px 14px;border:1px solid #303030;border-left:4px solid var(--red);border-radius:11px;background:linear-gradient(145deg,#0d0d0d,#070707)}
+.satact-number{display:inline-flex;align-items:center;justify-content:center;min-width:64px;min-height:34px;padding:4px 10px;border:1px solid var(--red);border-radius:999px;background:#1b0707;color:var(--yellow);font-size:.92rem;font-weight:950;letter-spacing:.04em}
+.satact-problem-item-body{display:flex;flex-direction:column;gap:5px;min-width:0}
+.satact-problem-link{color:#f6f6f6;font-weight:850;text-decoration:none;overflow-wrap:anywhere}
+.satact-problem-link:hover{color:var(--yellow);text-decoration:underline}
+.satact-meta{display:flex;flex-wrap:wrap;gap:4px 12px;color:#aaa;font-size:.78rem;font-weight:700}
+.satact-meta span+span::before{content:"•";margin-right:12px;color:#5e5e5e}
+.satact-skill-section{margin:28px 0 0;padding:18px;border:1px solid #262626;border-radius:13px;background:#070707}
+.satact-skill-desc{margin:0 0 4px;color:#cfcfcf}
+.satact-other-topics{margin:30px 0 0}
+.satact-other-topics ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.satact-other-topics li{padding:8px 12px;border:1px solid #333;border-radius:999px;background:#080808}
+.satact-other-topics a{color:var(--yellow);font-weight:800;text-decoration:none}
+
+/* Question page */
+.satact-session-bar{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;margin:0 0 16px;padding:10px 14px;border:1px solid #333;border-radius:11px;background:rgba(6,6,6,.96);backdrop-filter:blur(8px);font-size:.86rem}
+.satact-session-bar[hidden]{display:none}
+.satact-session-label{color:var(--yellow);font-weight:900}
+.satact-session-score{color:#e6e6e6;font-weight:750}
+.satact-session-actions{display:flex;gap:8px;flex-wrap:wrap}
+.satact-session-actions .satact-btn{min-height:36px;padding:5px 11px;font-size:.8rem}
+.satact-problem-header h1{margin:0;color:var(--yellow);font-size:clamp(1.45rem,4.2vw,2.3rem);line-height:1.18;overflow-wrap:anywhere}
+.satact-problem-header .satact-number{margin-right:6px;vertical-align:.2em;font-size:.85rem}
+.satact-tags{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 0;padding:0}
+.satact-tags li{padding:5px 10px;border:1px solid #333;border-radius:999px;background:#080808;color:#cfcfcf;font-size:.78rem;font-weight:750}
+.satact-tags a{color:var(--yellow);text-decoration:none}
+.satact-tags a:hover{text-decoration:underline}
+.satact-original-note{margin:10px 0 0;color:#8f8f8f;font-size:.76rem}
+.satact-question-card{margin:18px 0 0;padding:20px;border:1px solid #333;border-left:4px solid var(--red);border-radius:14px;background:linear-gradient(145deg,#0d0d0d,#070707)}
+.satact-stem p,.satact-prompt{margin:0 0 10px;font-size:clamp(1.02rem,2.2vw,1.16rem);line-height:1.6}
+.satact-prompt{margin-top:12px;font-weight:700}
+.satact-math{width:100%;overflow-x:auto;overflow-y:hidden;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch;padding:4px 2px 8px;text-align:center;font-size:clamp(1.02rem,2.3vw,1.2rem)}
+.satact-math mjx-container[jax="CHTML"][display="true"]{margin:.35em 0!important;min-width:max-content}
+.satact-math .hlbox{background:rgba(245,196,0,.16);border-radius:4px;padding:0 2px}
+.satact-math .hlbad{color:var(--bad-text)}
+.satact-figure{margin:6px auto 10px;text-align:center}
+.satact-fig-svg{max-width:100%;height:auto;max-height:280px}
+.satact-fig-shape{fill:rgba(215,25,32,.10);stroke:#f4f4f4;stroke-width:3;stroke-linejoin:round}
+.satact-fig-right{fill:none;stroke:var(--yellow);stroke-width:2.5}
+.satact-fig-label{fill:#fff;font:italic 700 22px "Cambria Math","STIX Two Math","Times New Roman",serif}
+
+.satact-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0 0;padding:0;border:0;min-width:0}
+.satact-choice{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;min-height:58px;padding:10px 12px;border:1px solid #454545;border-radius:10px;background:#111;color:#f4f4f4;cursor:pointer;transition:border-color .15s ease,background .15s ease}
+.satact-choice input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.satact-choice-letter{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid #666;border-radius:50%;color:#ddd;font-weight:900;font-size:.9rem}
+.satact-choice-body{min-width:0;overflow-x:auto;font-size:1.08rem}
+.satact-choice-status{font-size:.75rem;font-weight:900;text-transform:uppercase;letter-spacing:.06em}
+.satact-choice:hover{border-color:var(--yellow)}
+.satact-choice:has(input:checked){border-color:var(--yellow);background:#171200}
+.satact-choice:has(input:checked) .satact-choice-letter{background:var(--yellow);border-color:var(--yellow);color:#000}
+.satact-choice:has(input:focus-visible){outline:3px solid var(--yellow);outline-offset:3px}
+.satact-choice.is-correct{border-color:var(--good);background:var(--good-bg)}
+.satact-choice.is-correct .satact-choice-letter{background:var(--good);border-color:var(--good);color:#04130a}
+.satact-choice.is-correct .satact-choice-status{color:var(--good-text)}
+.satact-choice.is-wrong{border-color:var(--bad);background:var(--bad-bg)}
+.satact-choice.is-wrong .satact-choice-letter{border-color:var(--bad);color:var(--bad-text)}
+.satact-choice.is-wrong .satact-choice-status{color:var(--bad-text)}
+.satact-choice.is-locked{cursor:default}
+.satact-choice.is-locked:hover{border-color:#454545}
+.satact-choice.is-correct.is-locked:hover{border-color:var(--good)}
+.satact-choice.is-wrong.is-locked:hover{border-color:var(--bad)}
+.satact-choice.is-dimmed{opacity:.6}
+
+.satact-typed{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin:14px 0 0}
+.satact-typed label{display:flex;flex-direction:column;gap:5px;font-weight:800;color:#ddd}
+.satact-typed input{min-height:46px;min-width:min(260px,100%);padding:10px 12px;border:1px solid #555;border-radius:8px;background:#050505;color:#fff;font-size:1.1rem}
+
+.satact-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 0}
+.satact-btn-next{margin-left:auto}
+.satact-feedback{margin:14px 0 0}
+.satact-feedback:empty{display:none}
+.satact-feedback:focus{outline:none}
+.satact-feedback:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.satact-feedback-box{padding:13px 15px;border:1px solid #303030;border-radius:10px;background:#070707;line-height:1.55}
+.satact-feedback-box.is-good{border-color:var(--good);background:var(--good-bg)}
+.satact-feedback-box.is-bad{border-color:var(--bad);background:var(--bad-bg)}
+.satact-feedback-title{display:block;font-weight:950;font-size:1.05rem;margin-bottom:3px}
+.is-good .satact-feedback-title{color:var(--good-text)}
+.is-bad .satact-feedback-title{color:var(--bad-text)}
+.satact-feedback-box p{margin:4px 0 0;color:#e7e7e7}
+
+/* Video */
+.satact-video{margin:22px 0 0;padding:18px;border:1px solid #333;border-radius:14px;background:#070707}
+.satact-video h2,.satact-solution-section h2{margin:0 0 8px;color:var(--yellow);font-size:clamp(1.2rem,3vw,1.5rem)}
+.satact-video-note{margin:0 0 12px;color:#cfcfcf;font-size:.9rem;line-height:1.5}
+.satact-video-layout{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:18px;align-items:start}
+.satact-video-frame{position:relative;width:min(100%,calc(72vh * 9 / 16));aspect-ratio:9 / 16;margin:0 auto;overflow:hidden;border:1px solid var(--red);border-radius:12px;background:#000}
+@supports(height:100dvh){.satact-video-frame{width:min(100%,calc(72dvh * 9 / 16))}}
+.satact-video-frame iframe,.satact-video-frame>div{position:absolute;inset:0;width:100%;height:100%;border:0}
+.satact-video-side{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.satact-video-status{margin:0;color:#cfcfcf;font-size:.88rem;line-height:1.5}
+.satact-video-status.is-error{color:var(--bad-text)}
+.satact-video-status:empty{display:none}
+.satact-youtube-link{color:var(--yellow);font-weight:800;font-size:.9rem}
+
+/* Written solution */
+.satact-solution-section{margin:22px 0 0;padding:18px;border:1px solid #333;border-radius:14px;background:#070707}
+.satact-solution>summary{display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;border:1px solid var(--red);border-radius:8px;background:#090909;color:var(--yellow);font-weight:850;cursor:pointer;list-style:none}
+.satact-solution>summary::-webkit-details-marker{display:none}
+.satact-solution>summary::before{content:"▸";margin-right:8px;color:var(--red)}
+.satact-solution[open]>summary::before{content:"▾"}
+.satact-solution>summary:hover{background:#180909;border-color:var(--yellow)}
+.satact-summary-open{display:none}
+.satact-solution[open] .satact-summary-open{display:inline}
+.satact-solution[open] .satact-summary-closed{display:none}
+.satact-solution-body{margin-top:14px;min-width:0}
+.satact-problem,.satact-question-card,.satact-stem,.satact-check,.satact-answer-box,.satact-key-idea,.satact-your-answer{min-width:0}
+.satact-your-answer{margin:0 0 16px;padding:13px 15px;border:1px solid var(--bad);border-radius:10px;background:var(--bad-bg)}
+.satact-your-answer[hidden]{display:none}
+.satact-your-answer h3{margin:0 0 4px;color:var(--bad-text);font-size:1rem}
+.satact-your-answer p{margin:0;line-height:1.6}
+.satact-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.satact-step{min-width:0;padding:14px 15px;border:1px solid #2b2b2b;border-left:3px solid var(--red);border-radius:10px;background:#0b0b0b}
+.satact-step h3{margin:0 0 6px;color:#fff;font-size:1.02rem}
+.satact-step-number{display:inline-block;margin-right:6px;color:var(--yellow);font-size:.78rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.satact-step p{margin:0 0 6px;line-height:1.62;color:#e2e2e2}
+.satact-step-note{color:#c9c9c9!important;font-size:.92rem}
+.satact-line-label{margin-top:4px!important;color:var(--yellow)!important;font-size:.8rem;font-weight:800;text-align:center}
+.satact-check{margin:6px 0 0;padding:6px 10px;border-radius:9px;border:1px solid #333}
+.satact-check.is-valid{border-color:#2f6b3a}
+.satact-check.is-invalid{border-color:#7a1d20}
+.satact-check-verdict{text-align:center;font-weight:850;font-size:.88rem;margin:0!important}
+.is-valid .satact-check-verdict{color:var(--good-text)!important}
+.is-invalid .satact-check-verdict{color:var(--bad-text)!important}
+.satact-answer-box,.satact-key-idea{margin:14px 0 0;padding:13px 15px;border-radius:10px}
+.satact-answer-box{border:1px solid var(--good);background:var(--good-bg)}
+.satact-key-idea{border:1px solid #735f00;background:#151200}
+.satact-answer-box h3,.satact-key-idea h3{margin:0 0 4px;font-size:.95rem;color:var(--yellow)}
+.satact-answer-box p,.satact-key-idea p{margin:0;line-height:1.6}
+.satact-wrong-choices{margin:14px 0 0;padding:10px 14px;border:1px solid #333;border-radius:10px;background:#090909}
+.satact-wrong-choices summary{cursor:pointer;color:var(--yellow);font-weight:850;min-height:32px;display:flex;align-items:center}
+.satact-wrong-choices ul{margin:8px 0 2px;padding-left:20px;display:grid;gap:8px;line-height:1.6}
+
+/* Session summary */
+.satact-summary{margin:22px 0 0;padding:20px;border:2px solid var(--yellow);border-radius:14px;background:#0d0b00}
+.satact-summary[hidden]{display:none}
+.satact-summary:focus{outline:none}
+.satact-summary h2{margin:0 0 6px;color:var(--yellow);font-size:1.5rem}
+.satact-summary-score{margin:0 0 12px;font-size:1.1rem;font-weight:800}
+.satact-summary ol{margin:0 0 14px;padding-left:22px;display:grid;gap:5px}
+.satact-summary-actions{display:flex;flex-wrap:wrap;gap:10px}
+
+.satact-problem-nav{margin:30px 0 0;padding:16px 18px;border:1px solid #262626;border-radius:13px;background:#070707}
+.satact-problem-nav ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.satact-problem-nav a{color:var(--yellow)}
+
+@media(max-width:760px){
+  .topbar{padding:13px 100px;min-height:74px}
+  .corner{width:72px;height:88px;left:8px}
+  .profile{width:78px;right:8px}
+  .profile img{width:72px;height:88px}
+  .menu-toggle{width:72px;font-size:.65rem}
+  .dropdown{top:122px;width:200px}
+  .satact-main{width:calc(100% - 24px);padding-top:24px}
+  /* The shared header's COURSES button sits over the first lines of the page on phones; keep breadcrumbs clear of it. */
+  .satact-main>.bm-breadcrumbs{padding-right:84px}
+  .satact-video-layout{grid-template-columns:1fr}
+  .satact-video-side{align-items:stretch}
+}
+@media(max-width:620px){
+  .satact-practice-footer .satact-btn-primary{width:100%}
+  .satact-choices{grid-template-columns:1fr}
+  .satact-question-card,.satact-video,.satact-solution-section{padding:14px}
+  .satact-btn-next{margin-left:0}
+  .satact-actions .satact-btn{flex:1 1 calc(50% - 10px)}
+  .satact-problem-item{grid-template-columns:1fr}
+  .satact-problem-item .satact-number{justify-self:start}
+  .satact-session-bar{position:static}
+}
+@media(prefers-reduced-motion:reduce){
+  .satact-btn,.satact-choice{transition:none}
+}

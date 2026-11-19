@@ -1,0 +1,245 @@
+{
+  "schema": "batchmath.sat-act.problem/1",
+  "sourceId": "circle-radius-s0001",
+  "contentStatus": "development-fixture",
+  "approval": {
+    "text": null,
+    "video": null,
+    "releaseEligible": false,
+    "note": "Development fixture. Independent content audit only; no human approval has been recorded. Not for publication."
+  },
+  "provenance": {
+    "repository": "batchmath/Shorts",
+    "branch": "claude/phase8-final-corrections",
+    "commit": "22113846d3f83f10eef9a9c19f64b2e5848a9b6f",
+    "recordPath": "data/bank/circle-radius-s0001.json",
+    "recordSha256": "a2a1935be1931894f70d9bd9d194f3f226b0a0b4a7e79163a8ae42faadc96458",
+    "contentHash": "81b90451bbe31404",
+    "verification": {
+      "passed": true,
+      "checks": 53,
+      "failed": 0,
+      "tools": {
+        "python": "3.13.18",
+        "sympy": "1.14.0"
+      }
+    },
+    "video": {
+      "manifestPath": "output/videos/circle-radius-s0001-narrated.json",
+      "manifestSha256": "8faa44616077350d4d4fb4a808662a61986793dc4d67cb054c0b3aa90bc2f3ea",
+      "scenePath": "data/scenes/circle-radius-s0001-narrated.json",
+      "sceneCanonicalSha256": "af87710c606dc47fb32fe80c0a84965f299fafdd74506345c5c7b623ec21b519",
+      "mediaPath": "output/videos/circle-radius-s0001-narrated.mp4",
+      "mediaSha256": "fc62fa996219d5a8327025191c79f2773451900b3e4f0063cafee104547bc511",
+      "renderInputsSha256": "ab58a9c1fcefe6dc4241b4d615db191076a7c57d766f0c72b390f9bede27aa86"
+    },
+    "audit": {
+      "branch": "codex/phase8-final-audit",
+      "commit": "4409e16316a615216f48db31e896d58f9849b421",
+      "report": "audit/CODEX_PHASE8_FINAL_AUDIT.md",
+      "reportSha256": "9527712f30ec3f84ce70291794202564563fe0cd0c822ef9ec6f86706a81e5ca",
+      "verdict": "PASS WITH MINOR ISSUES",
+      "auditDate": "2026-11-16"
+    }
+  },
+  "series": "SAT & ACT Math Prep",
+  "topicLabel": "Geometry · Circles",
+  "classification": {
+    "skills": [
+      "circle-equations"
+    ],
+    "topic": "Coordinate geometry",
+    "exams": [
+      "SAT",
+      "ACT"
+    ],
+    "format": "multiple_choice_4",
+    "sat": {
+      "domains": [
+        "Geometry and Trigonometry"
+      ],
+      "testing_points": [
+        "Circles"
+      ]
+    },
+    "act": {
+      "categories": [
+        "Geometry"
+      ]
+    },
+    "needs_spec_check": [],
+    "spec_version": "sat-digital-2024 / act-enhanced-2025; access-limited recheck 2026-11-13"
+  },
+  "skillNames": {
+    "circle-equations": "Equations of circles (completing the square)"
+  },
+  "difficulty": "medium",
+  "format": "multiple_choice_4",
+  "template": {
+    "name": "circle_radius",
+    "presentation": "symbolic",
+    "techniques": [
+      "complete the square in two variables",
+      "read center and radius from standard form"
+    ],
+    "misconceptions": [
+      "using the original constant as r squared",
+      "reporting r squared",
+      "confusing radius with distance to the origin"
+    ]
+  },
+  "concept": "Complete the square in x and in y, adding the same amounts to both sides, to reach (x − h)² + (y − k)² = r².",
+  "question": {
+    "stem": [
+      "The equation of a circle in the $xy$-plane is shown.",
+      {
+        "math": "x^2 + y^2 - 4x + 4y = 73"
+      }
+    ],
+    "prompt": "What is the radius of the circle?"
+  },
+  "figure": null,
+  "rightAngle": null,
+  "choices": [
+    {
+      "label": "A",
+      "display": "$2 \\sqrt{2}$",
+      "correct": false,
+      "note": "distance from the origin to the center",
+      "why": "$2 \\sqrt{2}$ is the distance from the origin to the center $(2, -2)$, not the distance from the center to a point on the circle.",
+      "rationale": "Confuses the radius with the center's distance from the origin."
+    },
+    {
+      "label": "B",
+      "display": "$\\sqrt{73}$",
+      "correct": false,
+      "note": "skips adding 4 and 4",
+      "why": "This uses only the constant $73$; completing the square adds $4$ and $4$ to the right side too, so $r^2 = 73 + 4 + 4 = 81$.",
+      "rationale": "Forgets to add the completing-the-square constants to the right side."
+    },
+    {
+      "label": "C",
+      "display": "$9$",
+      "correct": true,
+      "note": "Correct",
+      "why": "",
+      "rationale": ""
+    },
+    {
+      "label": "D",
+      "display": "$81$",
+      "correct": false,
+      "note": "this is r squared",
+      "why": "$81$ is $r^2$, the right side of $(x - 2)^2 + (y + 2)^2 = 81$; the radius is its square root, $9$.",
+      "rationale": "Reports r squared."
+    }
+  ],
+  "answer": {
+    "label": "C",
+    "display": "$9$"
+  },
+  "solution": {
+    "steps": [
+      {
+        "id": "form",
+        "kind": "concept",
+        "title": "Goal: standard form",
+        "caption": "**Standard form:** $(x - h)^2 + (y - k)^2 = r^2$. **Careful:** $73$ is **not** $r^2$ yet.",
+        "lines": []
+      },
+      {
+        "id": "square",
+        "kind": "concept",
+        "title": "Complete the square",
+        "caption": "Take **half** of each coefficient and **square** it.",
+        "lines": [
+          {
+            "tex": "(-4 \\div 2)^2 = (-2)^2 = 4",
+            "check": "numeric"
+          },
+          {
+            "tex": "(4 \\div 2)^2 = 2^2 = 4",
+            "check": "numeric"
+          }
+        ]
+      },
+      {
+        "id": "both",
+        "kind": "concept",
+        "title": "Add to both sides",
+        "caption": "Add $4$ and $4$ to **both** sides. Each group is now a perfect square.",
+        "lines": [
+          {
+            "tex": "(x^2 - 4x + 4) + (y^2 + 4y + 4) = 73 + 4 + 4",
+            "check": "same_equation"
+          },
+          {
+            "tex": "(x - 2)^2 + (y + 2)^2 = 81",
+            "check": "same_equation"
+          }
+        ]
+      },
+      {
+        "id": "read",
+        "kind": "simple",
+        "title": "Read the center and radius",
+        "caption": "The center is $(2, -2)$ and $r^2 = 81$.",
+        "lines": [
+          {
+            "tex": "r = \\sqrt{81} = 9",
+            "check": "true"
+          }
+        ]
+      },
+      {
+        "id": "shortcut",
+        "kind": "concept",
+        "title": "Shortcut: radius only",
+        "caption": "**Shortcut:** for the radius alone, the right side is all you need.",
+        "lines": [
+          {
+            "tex": "r^2 = 73 + 4 + 4 = 81",
+            "check": "true"
+          }
+        ]
+      },
+      {
+        "id": "trap",
+        "kind": "concept",
+        "title": "The traps",
+        "caption": "**The traps:** $\\sqrt{73}$ skips the added $4 + 4$, and $81$ is $r^2$, not $r$.",
+        "lines": []
+      }
+    ],
+    "keyIdea": "Complete the square in $x$ and $y$, adding the same amounts to **both** sides; the right side is $r^2$.",
+    "trap": {
+      "label": "B",
+      "value": "sqrt(73)"
+    },
+    "summary": "(x - 2)^2 + (y + 2)^2 = 73 + 4 + 4 = 81, so the center is (2, -2) and the radius is 9."
+  },
+  "meta": {
+    "title_hook": "Find the Radius by Completing the Square",
+    "description_lead": "Circle: x^2 + y^2 - 4x + 4y = 73. What is the radius?"
+  },
+  "video": {
+    "variantId": "circle-radius-s0001-narrated",
+    "mediaSha256": "fc62fa996219d5a8327025191c79f2773451900b3e4f0063cafee104547bc511",
+    "durationSeconds": 89.182,
+    "explanationStartSeconds": 18,
+    "timing": {
+      "explanationStartSeconds": 18,
+      "rule": "first whole second at or after the end of the thinking countdown; never after the first spoken explanation sentence",
+      "countdownStartSeconds": 10.576,
+      "countdownSeconds": 7,
+      "countdownEndSeconds": 17.576,
+      "solutionVisualInSeconds": 18.076,
+      "firstExplanationSegment": "form:0",
+      "firstExplanationNarrationSeconds": 18.726,
+      "sceneDurationSeconds": 89.182
+    },
+    "youtubeId": null,
+    "published": false,
+    "publication": null
+  }
+}

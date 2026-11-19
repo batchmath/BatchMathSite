@@ -1,0 +1,41 @@
+{
+  "schema": "batchmath.sat-act.initial-website-release/1",
+  "records": [
+    {
+      "number": 1,
+      "sourceId": "right-triangle-trig-s0031",
+      "slug": "001-right-triangle-find-tan-b-from-sin-a",
+      "websiteSha256": "3678522f094f681482fa2f508fd25b4be74bf933a55b7b3402ccf4b3073a3919"
+    },
+    {
+      "number": 2,
+      "sourceId": "radical-equation-s0003",
+      "slug": "002-solve-radical-equation-square-root-x-plus-5",
+      "websiteSha256": "c8e2d73ebf9fe153d9e672029004dc3c42e0e0618e055b233d7443bcf8c413bb"
+    },
+    {
+      "number": 3,
+      "sourceId": "system-no-solution-s0001",
+      "slug": "003-system-of-equations-find-k-for-no-solution",
+      "websiteSha256": "5625e2374603b25453e32315e15b100d543820e38a08f1171527aa98e9908f26"
+    },
+    {
+      "number": 4,
+      "sourceId": "reverse-percent-s0001",
+      "slug": "004-original-price-after-discount-and-sales-tax",
+      "websiteSha256": "481b8655b06d68a0153580e25060ef7fb858c3dabfa5f77ce4042d8ddcc28faf"
+    },
+    {
+      "number": 5,
+      "sourceId": "circle-radius-s0001",
+      "slug": "005-circle-radius-by-completing-the-square",
+      "websiteSha256": "e3697ce54d44a91508127e51a8e87c6eec48b7be543ae42e2db11a363ea62a19"
+    }
+  ],
+  "authorization": {
+    "decision": "authorize-website-publication",
+    "owner": "batchmath",
+    "authorizedOn": "2026-11-18",
+    "recordsSha256": "6dbe044fc2518d5e23fc8673a11de93b350db8537b4c71035503f456a8964bc9"
+  }
+}
