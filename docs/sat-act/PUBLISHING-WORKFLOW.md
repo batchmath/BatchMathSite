@@ -67,9 +67,9 @@ For example, an entry for #001 has this shape. Replace the three placeholders wi
 
 The start is the first whole second at or after the on-screen countdown ends, no later than the first spoken
 explanation line. Changing the upload can invalidate this timing. After editing the publication file, rebuild and
-run SAT & ACT QA. In a browser, answer the linked question incorrectly, confirm the player waits for Play at the
-expected start, and confirm the written solution opens at the end. The written solution is always available. A
-question without a published video needs no setup and opens its written solution after an incorrect answer.
+run SAT & ACT QA. Check an answer and confirm both explanation buttons appear. Click **Watch Video Explanation**
+and confirm the player waits for Play at the expected time. Let the video finish, then click **Show Written Solution**
+to open the worked solution. Questions awaiting a video show only the written-solution button after an answer.
 
 ## Build and deploy after authorization
 

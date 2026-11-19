@@ -357,11 +357,11 @@
     }
     function nextLabel() { return s.mode !== 'browse' && nextIndex(s) < 0 ? 'Finish Session' : 'Next Problem'; }
     function renderActions() {
-      const answeredOrDone = r.solved || r.revealedBeforeAnswer || Boolean(r.firstResult);
+      const answered = Boolean(r.firstResult);
       checkBtn.hidden = r.solved || r.revealedBeforeAnswer;
       checkBtn.textContent = r.firstResult && !r.solved ? 'Check Again' : 'Check Answer';
-      solutionBtn.hidden = !answeredOrDone || (details && details.open);
-      watchBtn.hidden = !(hasVideo && r.solved) || !videoSection.hidden;
+      solutionBtn.hidden = !(answered || r.revealedBeforeAnswer) || details.open;
+      watchBtn.hidden = !hasVideo || !answered || !videoSection.hidden;
       nextBtn.textContent = nextLabel();
       nextBtn.classList.toggle('satact-btn-primary', r.solved || r.revealedBeforeAnswer);
     }
@@ -406,10 +406,14 @@
 
     // ---------- solution and video
     function openSolution(trigger) {
-      if (!details) return;
-      if (details.open) { handleSolutionOpened(trigger); return; }
-      pendingTrigger = trigger;
-      details.open = true;
+      if (details.open) {
+        handleSolutionOpened(trigger);
+      } else {
+        pendingTrigger = trigger;
+        details.open = true;
+      }
+      details.querySelector('summary').focus({ preventScroll: true });
+      details.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
     }
     function handleSolutionOpened(trigger) {
       if (!r.firstResult && !r.solved && !r.revealedBeforeAnswer) {
@@ -445,8 +449,7 @@
         saveSession(s);
         track(a => a.trackEvent('explanation_video_error', meta, params({ error_type: errorType })));
       }
-      videoStatus(message, true);
-      openSolution('video_unavailable');
+      videoStatus(`${message} Choose Watch on YouTube or Show Written Solution.`, true);
     }
     function loadYouTubeApi(timeoutMs) {
       if (window.YT && window.YT.Player) return Promise.resolve(window.YT);
@@ -493,8 +496,9 @@
       solBtn.type = 'button';
       solBtn.className = 'satact-btn satact-btn-primary';
       solBtn.id = 'satact-video-solution';
+      solBtn.setAttribute('aria-controls', 'satact-solution');
       solBtn.textContent = 'Show Written Solution';
-      solBtn.addEventListener('click', () => { openSolution('video_panel_button'); details.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' }); });
+      solBtn.addEventListener('click', () => openSolution('video_panel_button'));
       const yt = document.createElement('a');
       yt.className = 'satact-youtube-link';
       yt.id = 'satact-youtube-link';
@@ -515,7 +519,7 @@
         // A network that blocks YouTube embeds can leave the player silent (no ready, no error).
         let playerReady = false;
         const readyTimer = setTimeout(() => {
-          if (!playerReady) videoFailed('player_timeout', 'The video is not loading here (YouTube may be blocked on this network). Use Watch on YouTube, or read the written solution below.');
+          if (!playerReady) videoFailed('player_timeout', 'The video is not loading here.');
         }, PLAYER_READY_TIMEOUT_MS);
         player = new YT.Player('satact-player', {
           host: 'https://www.youtube-nocookie.com',
@@ -540,16 +544,18 @@
                   track(a => a.trackEvent('explanation_video_complete', meta, params({ video_trigger: trigger })));
                 }
                 complete('video_ended');
-                videoStatus('Video finished. The written solution is open below.');
-                openSolution('video_ended');
+                renderBar();
+                videoStatus('Video finished.');
               }
             },
-            onError: event => videoFailed(`player_error_${event.data}`,
-              'This video cannot be played here. Use Watch on YouTube, or read the written solution below.')
+            onError: event => {
+              clearTimeout(readyTimer);
+              videoFailed(`player_error_${event.data}`, 'This video cannot be played here.');
+            }
           }
         });
       }).catch(error => videoFailed(error && error.message === 'blocked' ? 'api_blocked' : 'api_timeout',
-        'The video player could not load. Use Watch on YouTube, or read the written solution below.'));
+        'The video player could not load.'));
       return true;
     }
     const reducedMotion = () => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (_) { return false; } };
@@ -586,26 +592,20 @@
         track(a => a.trackEvent('answer_retry', meta, params({ answer_result: correct ? 'correct' : 'incorrect', attempt_number: r.attempts })));
       }
       markSeen(data.id);
+      const advice = hasVideo ? 'Choose an explanation below.' : 'You can open the written solution below.';
       if (correct) {
         r.solved = true;
         saveSession(s);
         complete('correct_answer');
         const firstTry = r.firstResult === 'correct';
         setFeedback('good', `Correct! The answer is ${data.answer}.`, firstTry
-          ? (hasVideo ? 'Watch the video explanation or read the written solution, or go on to the next problem.' : 'Read the written solution, or go on to the next problem.')
+          ? advice
           : `You found it on attempt ${r.attempts}. Your score counts your first answer.`);
       } else {
         const letter = typedInput ? '' : `${value} is not correct. `;
-        if (hasVideo) {
-          setFeedback('bad', 'Not quite.', `${letter}The video explanation is ready below, or open the written solution. You can also try another answer.`);
-        } else {
-          setFeedback('bad', 'Not quite.', `${letter}The written solution is open below. You can also try another answer.`);
-        }
+        setFeedback('bad', 'Not quite.', `${letter}Try another answer or choose an explanation.`);
       }
       renderAll();
-      if (!correct && r.attempts === 1) {
-        if (!showVideo('after_incorrect')) openSolution('incorrect_no_video');
-      }
       try { feedback.focus({ preventScroll: false }); } catch (_) { feedback.focus(); }
     }
 
@@ -735,12 +735,12 @@
     renderAll();
     if (form) form.addEventListener('submit', onSubmit);
     if (nextBtn) nextBtn.addEventListener('click', onNext);
-    if (solutionBtn) solutionBtn.addEventListener('click', () => {
-      openSolution('button');
-      details.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
-    });
+    if (solutionBtn) solutionBtn.addEventListener('click', () => openSolution('button'));
     if (watchBtn) watchBtn.addEventListener('click', () => {
-      if (showVideo(r.firstResult === 'correct' ? 'after_correct' : 'requested')) videoSection.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
+      if (showVideo(r.solved ? 'after_correct' : 'after_incorrect')) {
+        videoSection.focus({ preventScroll: true });
+        videoSection.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
+      }
     });
     window.addEventListener('pageshow', event => {
       if (!event.persisted) return;

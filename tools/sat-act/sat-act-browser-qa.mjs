@@ -119,6 +119,14 @@ async function answer(page, letter) {
 }
 const wrongLetter = data => ['A', 'B', 'C', 'D'].find(l => l !== data.answer);
 
+async function checkExplanationChoices(page, hasVideo) {
+  assert.equal(await page.getByRole('button', { name: 'Show Written Solution', exact: true }).isVisible(), true);
+  assert.equal(await page.locator('#satact-watch').isVisible(), hasVideo);
+  assert.equal(await page.locator('#satact-video').isVisible(), false);
+  assert.equal(await page.locator('#satact-solution').evaluate(details => details.open), false);
+  assert.equal(await page.evaluate(() => Boolean(window.__yt)), false, 'the player loads only on request');
+}
+
 async function scenario(name, fn) {
   const started = Date.now();
   try {
@@ -299,9 +307,7 @@ await scenario('mixed practice: no repeats, first-attempt scoring, retries, reve
     if (i === 0) {
       await answer(page, data.answer);
       assert.match(await page.locator('#satact-feedback').innerText(), /Correct!/);
-      assert.equal(await page.locator('#satact-show-solution').isVisible(), true, 'View Written Solution offered after a correct answer');
-      assert.equal(await page.locator('#satact-watch').isVisible(), false, 'no video button without a published video');
-      assert.equal(await page.locator('#satact-solution').evaluate(d => d.open), false, 'solution stays closed after a correct answer');
+      await checkExplanationChoices(page, false);
       await page.reload();
       await ready(page);
       assert.match(await page.locator('#satact-feedback').innerText(), /earlier in this session/);
@@ -310,14 +316,18 @@ await scenario('mixed practice: no repeats, first-attempt scoring, retries, reve
       const wrong = wrongLetter(data);
       await answer(page, wrong);
       assert.match(await page.locator('#satact-feedback').innerText(), /Not quite/);
-      assert.equal(await page.locator('#satact-solution').evaluate(d => d.open), true, 'no video: the written solution opens immediately');
-      assert.equal(await page.locator('#satact-video').isVisible(), false, 'no video interface without a published video');
-      assert.equal(await page.locator(`[data-your-answer="${wrong}"]`).isVisible(), true, 'the chosen wrong answer is explained');
+      await checkExplanationChoices(page, false);
+      assert.equal(await page.locator(`[data-your-answer="${wrong}"]`).isVisible(), false);
+      await page.getByRole('button', { name: 'Show Written Solution', exact: true }).click();
+      await page.locator(`[data-your-answer="${wrong}"]`).waitFor({ state: 'visible' });
       assert.equal(await page.locator(`label[data-choice="${wrong}"] input`).isDisabled(), true);
       await answer(page, data.answer);
       assert.match(await page.locator('#satact-feedback').innerText(), /attempt 2/);
     } else if (i === 2) {
       await answer(page, wrongLetter(data));
+      await checkExplanationChoices(page, false);
+      await page.getByRole('button', { name: 'Show Written Solution', exact: true }).click();
+      await page.waitForFunction(id => window.BMSatAct.session().results[id].solution, data.id);
     } else if (i === 3) {
       await page.locator('#satact-solution > summary').click();
       await page.waitForFunction(() => /not scored/.test(document.getElementById('satact-feedback').textContent));
@@ -381,7 +391,7 @@ await scenario('each initial question scores the first answer and preserves it t
         const wrong = wrongLetter(data);
         await answer(page, firstTryCorrect ? correct : wrong);
         if (!firstTryCorrect) {
-          assert.equal(await page.locator('#satact-solution').evaluate(d => d.open), true);
+          await checkExplanationChoices(page, false);
           assert.equal(await page.locator(`label[data-choice="${wrong}"] input`).isDisabled(), true);
           await answer(page, correct);
         }
@@ -458,14 +468,17 @@ await scenario('direct visit: lazy session start, then Next continues with other
 });
 
 const first = problems[0];
-await scenario('video: incorrect answer cues the explanation without autoplay; ended opens the solution', async () => {
+await scenario('incorrect answer offers both choices; #001 cues at 0:19 and ending leaves the solution closed', async () => {
   const { context, page, pageErrors } = await newContext(browser, origin, { videoFor: first.url });
   await page.goto(`${origin}${first.url}`);
   await ready(page);
   const data = await problemData(page);
   assert.equal(data.video.youtubeId, MOCK_ID);
   await answer(page, wrongLetter(data));
+  await checkExplanationChoices(page, true);
+  await page.getByRole('button', { name: 'Watch Video Explanation', exact: true }).press('Enter');
   await page.locator('#satact-video').waitFor({ state: 'visible' });
+  assert.equal(await page.locator('#satact-video').evaluate(el => el === document.activeElement), true);
   await page.waitForFunction(() => window.__yt && window.__yt.created.length === 1);
   const created = await page.evaluate(() => window.__yt.created[0]);
   assert.equal(created.videoId, MOCK_ID);
@@ -491,75 +504,97 @@ await scenario('video: incorrect answer cues the explanation without autoplay; e
   let ev = await events(page);
   assert.equal(named(ev, 'explanation_video_start').length, 1, 'start is sent once');
   assert.equal(named(ev, 'explanation_video_start')[0].params.start_seconds, 19);
+  assert.equal(named(ev, 'explanation_video_start')[0].params.video_trigger, 'after_incorrect');
   assert.equal(named(ev, 'problem_completed').length, 0, 'leaving early or mid-video is not a completion');
   await page.evaluate(() => window.__yt.fire(YT.PlayerState.ENDED));
-  await page.waitForFunction(() => document.getElementById('satact-solution').open);
+  assert.equal(await page.locator('#satact-video-status').innerText(), 'Video finished.');
+  assert.equal(await page.locator('#satact-solution').evaluate(details => details.open), false);
+  assert.match(await page.locator('#satact-session-bar').innerText(), /0 correct out of 1 answered · 1 completed/);
   ev = await events(page);
   assert.equal(named(ev, 'explanation_video_complete').length, 1);
-  assert.equal(named(ev, 'solution_revealed')[0].params.reveal_trigger, 'video_ended');
+  assert.equal(named(ev, 'solution_revealed').length, 0);
   assert.equal(named(ev, 'problem_completed')[0].params.completion_method, 'video_ended');
   await page.evaluate(() => window.__yt.fire(YT.PlayerState.ENDED));
-  await page.waitForTimeout(50);
   assert.equal(named(await events(page), 'explanation_video_complete').length, 1, 'complete is sent once');
+
+  await page.locator('#satact-video-solution').click();
+  await page.waitForFunction(id => window.BMSatAct.session().results[id].solution, data.id);
+  assert.equal(await page.locator('#satact-solution > summary').evaluate(el => el === document.activeElement), true);
+  ev = await events(page);
+  const revealed = named(ev, 'solution_revealed')[0].params;
+  assert.equal(revealed.reveal_trigger, 'video_panel_button');
+  assert.equal(revealed.first_attempt_result, 'incorrect');
+  assert.equal(named(ev, 'problem_completed').length, 1);
+  assert.equal(named(ev, 'answer_correct').length, 0);
   assert.deepEqual(pageErrors, []);
   await context.close();
 });
 
-await scenario('video: correct answer offers the video; Show Written Solution works immediately', async () => {
-  const { context, page, pageErrors } = await newContext(browser, origin, { videoFor: first.url });
-  await page.goto(`${origin}${first.url}`);
+await scenario('correct answer offers both choices; written solution is independent and #003 cues at 0:20', async () => {
+  const third = problems.find(problem => problem.number === 3);
+  const { context, page, pageErrors } = await newContext(browser, origin, { videoFor: third.url });
+  await page.goto(`${origin}${third.url}`);
   await ready(page);
   const data = await problemData(page);
   await answer(page, data.answer);
-  assert.equal(await page.locator('#satact-video').isVisible(), false, 'a correct answer does not open the video');
-  assert.equal(await page.locator('#satact-watch').isVisible(), true);
-  await page.locator('#satact-watch').click();
-  await page.waitForFunction(() => window.__yt && window.__yt.created.length === 1);
-  assert.equal(await page.evaluate(() => window.__yt.plays), 0);
-  await page.locator('#satact-video-solution').click();
-  await page.waitForFunction(() => document.getElementById('satact-solution').open);
-  // The native <details> toggle event is asynchronous; wait for the GA4 event, not just the open property.
-  await page.waitForFunction(() => JSON.parse(sessionStorage.getItem('qa.events') || '[]').some(e => e.name === 'solution_revealed'));
+  await checkExplanationChoices(page, true);
+
+  await page.getByRole('button', { name: 'Show Written Solution', exact: true }).click();
+  await page.waitForFunction(id => window.BMSatAct.session().results[id].solution, data.id);
+  assert.equal(await page.locator('#satact-video').isVisible(), false);
+  assert.equal(await page.evaluate(() => Boolean(window.__yt)), false);
   const ev = await events(page);
-  assert.equal(named(ev, 'solution_revealed')[0].params.reveal_trigger, 'video_panel_button');
+  assert.equal(named(ev, 'solution_revealed')[0].params.reveal_trigger, 'button');
+  assert.equal(named(ev, 'solution_revealed')[0].params.first_attempt_result, 'correct');
   assert.equal(named(ev, 'problem_completed')[0].params.completion_method, 'correct_answer');
+
+  await page.getByRole('button', { name: 'Watch Video Explanation', exact: true }).click();
+  await page.waitForFunction(() => window.__yt && window.__yt.created.length === 1);
+  const { playerVars, plays } = await page.evaluate(() => ({ playerVars: window.__yt.created[0].playerVars, plays: window.__yt.plays }));
+  assert.equal(playerVars.start, 20);
+  assert.equal(playerVars.autoplay, 0);
+  assert.equal(plays, 0);
+  assert.equal(await page.locator('#satact-video-solution').isVisible(), true);
+  assert.equal(await page.locator('#satact-youtube-link').getAttribute('href'), `https://www.youtube.com/watch?v=${MOCK_ID}&t=20s`);
   assert.deepEqual(pageErrors, []);
   await context.close();
 });
 
-await scenario('video: player error and blocked API fall back to the written solution', async () => {
-  for (const mode of ['error', 'blocked']) {
+await scenario('unavailable video offers manual fallbacks for player errors, a blocked API and a silent embed', async () => {
+  for (const [mode, errorType, statusText] of [
+    ['error', 'player_error_150', /cannot be played here/],
+    ['blocked', 'api_blocked', /could not load/],
+    ['silent', 'player_timeout', /not loading here/]
+  ]) {
     const { context, page } = await newContext(browser, origin, { videoFor: first.url, youtube: mode === 'blocked' ? 'blocked' : 'mock' });
-    await page.goto(`${origin}${first.url}`);
-    await ready(page);
-    const data = await problemData(page);
-    await answer(page, wrongLetter(data));
-    if (mode === 'error') {
-      await page.waitForFunction(() => window.__yt && window.__yt.error);
-      await page.evaluate(() => window.__yt.error(150));
+    try {
+      if (mode === 'silent') await context.addInitScript(() => { window.__ytSilent = true; });
+      await page.goto(`${origin}${first.url}`);
+      await ready(page);
+      const data = await problemData(page);
+      await answer(page, wrongLetter(data));
+      await checkExplanationChoices(page, true);
+      await page.getByRole('button', { name: 'Watch Video Explanation', exact: true }).click();
+      if (mode === 'error') {
+        await page.waitForFunction(() => window.__yt && window.__yt.error);
+        await page.evaluate(() => window.__yt.error(150));
+      }
+      const status = page.locator('#satact-video-status.is-error');
+      await status.waitFor({ state: 'visible', timeout: 20000 });
+      assert.match(await status.innerText(), statusText);
+      assert.equal(await page.locator('#satact-youtube-link').isVisible(), true);
+      assert.equal(await page.locator('#satact-video-solution').isVisible(), true);
+      assert.equal(await page.locator('#satact-solution').evaluate(details => details.open), false);
+      const ev = await events(page);
+      assert.deepEqual(named(ev, 'explanation_video_error').map(event => event.params.error_type), [errorType]);
+      assert.equal(named(ev, 'solution_revealed').length, 0);
+      await page.locator('#satact-video-solution').click();
+      await page.waitForFunction(id => window.BMSatAct.session().results[id].solution, data.id);
+      assert.equal(named(await events(page), 'solution_revealed')[0].params.reveal_trigger, 'video_panel_button');
+    } finally {
+      await context.close();
     }
-    await page.waitForFunction(() => document.getElementById('satact-solution').open);
-    assert.match(await page.locator('#satact-video-status').innerText(), mode === 'error' ? /cannot be played here/ : /could not load/);
-    assert.equal(await page.locator('#satact-youtube-link').isVisible(), true);
-    const err = named(await events(page), 'explanation_video_error');
-    assert.equal(err.length, 1);
-    assert.equal(err[0].params.error_type, mode === 'error' ? 'player_error_150' : 'api_blocked');
-    await context.close();
   }
-});
-
-await scenario('video: a silently blocked embed times out to the written solution', async () => {
-  const { context, page } = await newContext(browser, origin, { videoFor: first.url });
-  await context.addInitScript(() => { window.__ytSilent = true; });
-  await page.goto(`${origin}${first.url}`);
-  await ready(page);
-  await answer(page, wrongLetter(await problemData(page)));
-  await page.waitForFunction(() => window.__yt && window.__yt.created.length === 1);
-  assert.equal(await page.locator('#satact-solution').evaluate(d => d.open), false);
-  await page.waitForFunction(() => document.getElementById('satact-solution').open, null, { timeout: 20000 });
-  assert.match(await page.locator('#satact-video-status').innerText(), /not loading here/);
-  assert.equal(named(await events(page), 'explanation_video_error')[0].params.error_type, 'player_timeout');
-  await context.close();
 });
 
 await scenario('keyboard: skip link, arrow keys between choices, Enter checks, visible focus', async () => {
@@ -618,7 +653,13 @@ await scenario('phone layout: no horizontal scrolling, single-column choices, 44
   for (const h of await page2.locator('.satact-actions .satact-btn:visible').evaluateAll(els => els.map(e => e.getBoundingClientRect().height))) assert.ok(h >= 44);
   const data = await problemData(page2);
   await answer(page2, wrongLetter(data));
+  await checkExplanationChoices(page2, true);
+  for (const id of ['satact-watch', 'satact-show-solution']) {
+    assert.ok((await page2.locator(`#${id}`).boundingBox()).height >= 44);
+  }
+  await page2.getByRole('button', { name: 'Watch Video Explanation', exact: true }).click();
   await page2.waitForFunction(() => window.__yt && window.__yt.created.length === 1);
+  assert.ok((await page2.locator('#satact-video-solution').boundingBox()).height >= 44);
   const frame = await page2.locator('.satact-video-frame').boundingBox();
   assert.ok(frame.width >= 240 && frame.width <= 390 && frame.height <= 844 * 0.75, `phone player fits the screen, got ${frame.width}x${frame.height}`);
   assert.ok(Math.abs(frame.width / frame.height - 9 / 16) < 0.02);
@@ -751,6 +792,7 @@ if (process.argv.includes('--real-youtube')) {
     await page.goto(`${origin}${first.url}`);
     await ready(page);
     await answer(page, wrongLetter(await problemData(page)));
+    await page.getByRole('button', { name: 'Watch Video Explanation', exact: true }).click();
     await page.waitForSelector('.satact-video-frame iframe', { state: 'attached', timeout: 20000 });
     const box = await page.locator('.satact-video-frame iframe').boundingBox();
     assert.ok(box && box.width >= 240 && Math.abs(box.width / box.height - 9 / 16) < 0.02, `real player is laid out 9:16, got ${box && box.width}x${box && box.height}`);
