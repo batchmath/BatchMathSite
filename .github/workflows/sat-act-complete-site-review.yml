@@ -1,0 +1,41 @@
+name: SAT ACT complete website review archive
+on:
+  push:
+    branches: [packaging/sat-act-video-sheet-full-review]
+    paths: ['.github/workflows/sat-act-complete-site-review.yml']
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 198bf802ca7f7b75b7a14100e45e912da6474378
+          persist-credentials: false
+      - name: Package complete website checkout including PDFs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "198bf802ca7f7b75b7a14100e45e912da6474378"
+          git archive --format=zip --prefix=bm-sat-act-full-site/ -o bm-sat-act-full-site.zip HEAD
+          test -s bm-sat-act-full-site.zip
+          python3 - <<'PY'
+          import zipfile
+          p='bm-sat-act-full-site.zip'
+          with zipfile.ZipFile(p) as z:
+              names=z.namelist()
+              assert any(x.endswith('.pdf') for x in names), 'Expected classroom PDFs'
+              assert any(x.endswith('assets/sat-act/video-index.js') for x in names)
+              assert any(x.endswith('assets/sat-act/video-feed-config.js') for x in names)
+              assert any(x.endswith('docs/sat-act/video-publications-template.csv') for x in names)
+              assert z.testzip() is None, 'Corrupted archive'
+              print(f'Full checkout: {len(names)} files, {sum(x.endswith(".pdf") for x in names)} PDFs')
+          PY
+      - name: Upload full website ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: bm-sat-act-full-site-zip
+          path: bm-sat-act-full-site.zip
+          if-no-files-found: error
+          retention-days: 7
