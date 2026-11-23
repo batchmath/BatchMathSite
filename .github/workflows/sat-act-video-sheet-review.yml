@@ -1,0 +1,80 @@
+name: SAT & ACT video worksheet review
+
+on:
+  push:
+    branches: [codex/sat-act-explanation-controls]
+    paths: ['.github/workflows/sat-act-video-sheet-review.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 62dd974f6be82e8a9d7832816d69c0febfb6c50b
+          persist-credentials: false
+
+      - name: Assemble the localhost preview
+        run: |
+          set -euo pipefail
+          name=bm-sat-act-video-sheet
+          root="review/$name"
+          mkdir -p review
+          git archive --format=tar --prefix="$name/" HEAD | tar -x --exclude='*.pdf' -C review
+          mkdir -p "$root/docs/sat-act" "$root/tools/sat-act/records"
+          cp docs/sat-act/{PUBLISHING-WORKFLOW,GA4-ANALYTICS,APPROVED-EXPORT-SPEC,SAT-ACT-P2-REPORT}.md "$root/docs/sat-act/"
+          cp docs/sat-act/video-publications-template.csv "$root/docs/sat-act/"
+          cp docs/sat-act/video-publications-template.csv "$root/assets/sat-act/video-preview.csv"
+          cp tools/sat-act/records/IMPORT-MANIFEST.json "$root/tools/sat-act/records/"
+          printf "%s\n" "window.BM_SAT_ACT_VIDEO_FEED_URL = '/assets/sat-act/video-preview.csv';" > "$root/assets/sat-act/video-feed-config.js"
+          git rev-parse HEAD > "$root/REVIEW-COMMIT.txt"
+          git ls-files '*.pdf' > "$root/OMITTED-PDFS.txt"
+          find review -depth -type d -empty -delete
+          test "$(find "$root/sat-act-math" -name index.html | wc -l)" -eq 12
+          test "$(wc -l < "$root/OMITTED-PDFS.txt")" -eq 346
+          test -z "$(find "$root" -iname '*.pdf' -print -quit)"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bm-sat-act-video-sheet
+          path: review/
+          include-hidden-files: true
+          if-no-files-found: error
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: bm-sat-act-video-sheet
+          path: downloaded/
+
+      - name: Verify the retrieved archive
+        run: diff -qr review/ downloaded/
+
+  published-csv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 62dd974f6be82e8a9d7832816d69c0febfb6c50b
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install browser QA tools
+        run: |
+          npm install --no-package-lock --ignore-scripts --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: SAT ACT browser QA and public Google Sheets CORS check
+        run: npm run qa:sat-act-browser -- --real-sheet
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: video-sheet-browser-results
+          path: qa-results/sat-act-browser-qa.txt
+          if-no-files-found: warn
