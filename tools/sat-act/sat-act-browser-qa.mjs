@@ -28,6 +28,13 @@ const catalog = JSON.parse(CATALOG_SRC.slice(CATALOG_SRC.indexOf('{'), CATALOG_S
 const problems = catalog.problems;
 const results = [];
 const MOCK_ID = 'QAmockVid01';
+const FIXTURE_SHEET = 'https://docs.google.com/spreadsheets/d/e/batchmath-browser-qa/pub?gid=0&single=true&output=csv';
+const VIDEO_CSV = fs.readFileSync(path.join(ROOT, 'docs/sat-act/video-publications-template.csv'), 'utf8');
+const csvResponse = (route, body) => route.fulfill({
+  contentType: 'text/csv; charset=utf-8',
+  headers: { 'access-control-allow-origin': '*' },
+  body
+});
 
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.webp': 'image/webp', '.webmanifest': 'application/manifest+json', '.xml': 'application/xml' };
 function serve(root) {
@@ -80,13 +87,19 @@ const MOCK_YT = `(() => {
   setTimeout(() => window.onYouTubeIframeAPIReady && window.onYouTubeIframeAPIReady(), 0);
 })();`;
 
-async function newContext(browser, origin, { viewport = { width: 1280, height: 900 }, youtube = 'mock', catalogPatch = null, videoFor = null, videoId = MOCK_ID, withoutVideos = false } = {}) {
-  const context = await browser.newContext({ viewport });
+async function newContext(browser, origin, { viewport = { width: 1280, height: 900 }, youtube = 'mock', catalogPatch = null, videoFor = null, videoId = MOCK_ID, withoutVideos = false, videoCsv = null } = {}) {
+  const context = await browser.newContext({ viewport, serviceWorkers: videoCsv ? 'block' : 'allow' });
   await localMathJax(context);
   await context.route(/googletagmanager\.com|google-analytics\.com/, route => route.abort());
   await context.addInitScript(CAPTURE);
   if (youtube === 'mock') await context.route('https://www.youtube.com/iframe_api', route => route.fulfill({ status: 200, contentType: 'text/javascript', body: MOCK_YT }));
   else if (youtube === 'blocked') await context.route('https://www.youtube.com/iframe_api', route => route.abort());
+  if (videoCsv) {
+    await context.route(`${origin}/assets/sat-act/video-feed-config.js`, route => route.fulfill({
+      contentType: 'text/javascript', body: `window.BM_SAT_ACT_VIDEO_FEED_URL = ${JSON.stringify(FIXTURE_SHEET)};`
+    }));
+    await context.route(FIXTURE_SHEET, videoCsv);
+  }
   if (catalogPatch) await context.route(`${origin}/assets/sat-act/catalog.js`, route => route.fulfill({ status: 200, contentType: 'text/javascript', body: catalogPatch(CATALOG_SRC) }));
   if (videoFor || withoutVideos) {
     await context.route(videoFor ? `${origin}${videoFor}` : `${origin}/sat-act-math/problems/*/`, async route => {
@@ -468,6 +481,201 @@ await scenario('direct visit: lazy session start, then Next continues with other
 });
 
 const first = problems[0];
+await scenario('published sheet entries control question buttons, cues and list badges', async () => {
+  let requests = 0;
+  const { context, page, pageErrors } = await newContext(browser, origin, {
+    videoCsv: route => { requests += 1; return csvResponse(route, VIDEO_CSV); }
+  });
+  try {
+    await page.goto(`${origin}/sat-act-math/`);
+    await ready(page);
+    assert.equal(requests, 0, 'the landing page has no video badges and needs no sheet request');
+    await page.goto(`${origin}/sat-act-math/problems/`);
+    await waitForVideoLabel(page, first.id, 'Video explanation');
+    await waitForVideoLabel(page, problems[2].id, 'Video explanation');
+    for (const n of [2, 4, 5]) await waitForVideoLabel(page, problems[n - 1].id, 'Written solution');
+    await page.goto(origin + catalog.subjects.find(topic => topic.slug === first.subject).url);
+    await waitForVideoLabel(page, first.id, 'Video explanation');
+
+    for (const [number, youtubeId, start, correct] of [
+      [1, 'FbWva8v4ObM', 19, false],
+      [3, 'wah0Y-i_OJ0', 20, true]
+    ]) {
+      const problem = problems.find(candidate => candidate.number === number);
+      await page.goto(origin + problem.url);
+      await ready(page);
+      const data = await problemData(page);
+      await answer(page, correct ? data.answer : wrongLetter(data));
+      await page.locator('#satact-watch').waitFor({ state: 'visible' });
+      await checkExplanationChoices(page, true);
+      await page.locator('#satact-watch').click();
+      await page.waitForFunction(() => window.__yt?.created.length === 1);
+      const captured = await page.evaluate(() => window.__yt.created[0]);
+      assert.deepEqual([captured.videoId, captured.playerVars.start, captured.playerVars.autoplay], [youtubeId, start, 0]);
+      assert.equal(await page.evaluate(() => window.__yt.plays), 0);
+      assert.equal(await page.locator('#satact-youtube-link').getAttribute('href'), `https://www.youtube.com/watch?v=${youtubeId}&t=${start}s`);
+      const eventsBeforeEnd = await events(page);
+      const scoredProblem = data.id.replaceAll('-', '_');
+      assert.equal(named(eventsBeforeEnd, 'explanation_video_start').filter(event => event.params.problem_id === scoredProblem).length, 0);
+      const checked = named(eventsBeforeEnd, 'answer_checked').at(-1).params;
+      assert.equal(checked.answer_result, correct ? 'correct' : 'incorrect');
+
+      await page.evaluate(() => { window.__yt.fire(YT.PlayerState.PLAYING); window.__yt.fire(YT.PlayerState.ENDED); });
+      assert.equal(await page.locator('#satact-solution').evaluate(d => d.open), false);
+      const recorded = named(await events(page), 'explanation_video_start').at(-1).params;
+      assert.equal(recorded.start_seconds, start);
+      await page.locator('#satact-video-solution').click();
+      await page.waitForFunction(id => window.BMSatAct.session().results[id].solution, data.id);
+      assert.equal((await session(page)).results[data.id].firstResult, correct ? 'correct' : 'incorrect');
+    }
+
+    await page.goto(origin + problems[1].url);
+    await ready(page);
+    await answer(page, wrongLetter(await problemData(page)));
+    await checkExplanationChoices(page, false);
+    assert.equal(requests, 1, 'list, topic and question pages share the last successful fetch');
+    assert.deepEqual(pageErrors, []);
+  } finally {
+    await context.close();
+  }
+});
+
+function waitForVideoLabel(page, id, text) {
+  return page.waitForFunction(({ id, text }) => [...document.querySelectorAll('[data-satact-video-label]')]
+    .some(label => label.dataset.satactVideoLabel === id && label.textContent === text), { id, text });
+}
+
+function loadSheetEntries(page) {
+  return page.evaluate(async () => [...await window.BMSatActVideoIndex.load()]);
+}
+
+const csvLine = fields => fields.map(value => `"${String(value).replaceAll('"', '""')}"`).join(',');
+
+await scenario('sheet validation handles CSV quoting, URL formats, invalid rows and duplicate associations', async () => {
+  const header = 'ProblemID,YouTubeURL,ExplanationStartSeconds,Status,Notes';
+  const link1 = 'https://youtu.be/FbWva8v4ObM?si=qa';
+  const link3 = 'https://www.youtube.com/watch?v=wah0Y-i_OJ0';
+  const good1 = [first.id, link1, '19', 'Published', 'commas, "quotes" and\nline breaks'];
+  const good3 = [problems[2].id, link3, '20', 'Published', ''];
+  const format = rows => '\uFEFF' + [header, ...rows.map(csvLine)].join('\r\n') + '\r\n';
+  let csv = format([good1, good3]);
+  const { context, page } = await newContext(browser, origin, { videoCsv: route => csvResponse(route, csv) });
+  const start = new Date('2026-11-23T12:00:00Z').getTime();
+  try {
+    await page.clock.install({ time: start });
+    await page.goto(`${origin}/sat-act-math/problems/`);
+    const expected1 = [first.id, { youtubeId: 'FbWva8v4ObM', explanationStartSeconds: 19 }];
+    const expected3 = [problems[2].id, { youtubeId: 'wah0Y-i_OJ0', explanationStartSeconds: 20 }];
+    assert.deepEqual(await loadSheetEntries(page), [expected1, expected3]);
+
+    const invalid = [
+      ['pending', [good3[0], link3, '20', 'Pending']],
+      ['incomplete status', [good3[0], link3, '20']],
+      ['missing URL', [good3[0], '', '20', 'Published']],
+      ['short ID', [good3[0], 'https://youtu.be/wah0Y-i_OJ', '20', 'Published']],
+      ['untrusted hostname', [good3[0], 'https://youtube.com.example.net/watch?v=wah0Y-i_OJ0', '20', 'Published']],
+      ['unsafe scheme', [good3[0], 'javascript:alert(1)', '20', 'Published']],
+      ['credentials in URL', [good3[0], 'https://name@www.youtube.com/watch?v=wah0Y-i_OJ0', '20', 'Published']],
+      ['ambiguous watch ID', [good3[0], link3 + '&v=FbWva8v4ObM', '20', 'Published']],
+      ['missing timestamp', [good3[0], link3, '', 'Published']],
+      ['negative timestamp', [good3[0], link3, '-1', 'Published']],
+      ['fractional timestamp', [good3[0], link3, '20.5', 'Published']],
+      ['formatted timestamp', [good3[0], link3, '0:20', 'Published']],
+      ['oversized timestamp', [good3[0], link3, '999999', 'Published']],
+      ['unknown problem', ['unregistered-problem', link3, '20', 'Published']],
+      ['duplicate ProblemID', good3, [good3[0], '', '20', 'Pending']]
+    ];
+    for (const [index, [message, ...rows]] of invalid.entries()) {
+      csv = format([good1, ...rows]);
+      await page.clock.setSystemTime(start + (index + 1) * 6 * 60 * 1000);
+      assert.deepEqual(await loadSheetEntries(page), [expected1], message);
+    }
+    csv = format([good1, [good3[0], link1, '20', 'Published']]);
+    await page.clock.setSystemTime(start + 100 * 60 * 1000);
+    assert.deepEqual(await loadSheetEntries(page), [], 'duplicate YouTube associations are ambiguous');
+    csv = format([[good1[0], link1, '0', 'Published']]);
+    await page.clock.setSystemTime(start + 120 * 60 * 1000);
+    assert.deepEqual(await loadSheetEntries(page), [[first.id, { youtubeId: 'FbWva8v4ObM', explanationStartSeconds: 0 }]]);
+  } finally {
+    await context.close();
+  }
+});
+
+await scenario('sheet edits refresh across pages with a bounded cached fallback', async () => {
+  let requests = 0;
+  let csv = VIDEO_CSV;
+  const { context, page } = await newContext(browser, origin, {
+    videoCsv: route => { requests += 1; return csv === null ? route.abort() : csvResponse(route, csv); }
+  });
+  const list = `${origin}/sat-act-math/problems/`;
+  const start = new Date('2026-11-23T12:00:00Z').getTime();
+  const minutes = value => start + value * 60 * 1000;
+  try {
+    await page.clock.install({ time: start });
+    await page.goto(list);
+    await waitForVideoLabel(page, first.id, 'Video explanation');
+    csv = VIDEO_CSV.replace('19,Published', '19,Pending').replace('20,Published', '21,Published');
+    await page.reload();
+    await waitForVideoLabel(page, first.id, 'Video explanation');
+    assert.equal(requests, 1);
+
+    await page.clock.setSystemTime(minutes(6));
+    await page.reload();
+    await loadSheetEntries(page);
+    await waitForVideoLabel(page, first.id, 'Written solution');
+    await waitForVideoLabel(page, problems[2].id, 'Video explanation');
+    const updated = await loadSheetEntries(page);
+    assert.equal(updated[0][1].explanationStartSeconds, 21);
+    assert.equal(requests, 2, 'sheet edits apply after cache refresh without a rebuild');
+
+    for (const [minute, malformed] of [[12, '<html>Sign in</html>'], [18, VIDEO_CSV + '\n"unterminated'], [24, null]]) {
+      csv = malformed;
+      await page.clock.setSystemTime(minutes(minute));
+      await page.reload();
+      assert.deepEqual(await loadSheetEntries(page), updated, 'the previous valid snapshot survives a feed failure');
+      await waitForVideoLabel(page, first.id, 'Written solution');
+    }
+    const afterFailures = requests;
+    await page.goto(origin + problems[2].url);
+    await ready(page);
+    const data = await problemData(page);
+    await answer(page, data.answer);
+    await page.locator('#satact-watch').waitFor({ state: 'visible' });
+    assert.equal(requests, afterFailures, 'the last failed request is not repeated on every question');
+
+    await page.clock.setSystemTime(minutes(25 * 60));
+    await page.reload();
+    assert.deepEqual(await loadSheetEntries(page), [], 'the old cache expires during an extended outage');
+    await checkExplanationChoices(page, false);
+  } finally {
+    await context.close();
+  }
+});
+
+await scenario('a delayed sheet never blocks written solutions and times out safely', async () => {
+  let receive;
+  const requested = new Promise(resolve => { receive = resolve; });
+  const { context, page } = await newContext(browser, origin, { videoCsv: route => receive(route) });
+  try {
+    await page.clock.install();
+    await page.goto(origin + first.url);
+    await ready(page);
+    const route = await requested;
+    const data = await problemData(page);
+    await answer(page, wrongLetter(data));
+    await checkExplanationChoices(page, false);
+    await page.locator('#satact-show-solution').click();
+    await page.waitForFunction(id => window.BMSatAct.session().results[id].solution, data.id);
+    await page.clock.fastForward(4600);
+    assert.deepEqual(await loadSheetEntries(page), []);
+    await route.abort().catch(() => {});
+    assert.equal(await page.locator('#satact-watch').isVisible(), false);
+    assert.equal((await session(page)).results[data.id].firstResult, 'incorrect');
+  } finally {
+    await context.close();
+  }
+});
+
 await scenario('incorrect answer offers both choices; #001 cues at 0:19 and ending leaves the solution closed', async () => {
   const { context, page, pageErrors } = await newContext(browser, origin, { videoFor: first.url });
   await page.goto(`${origin}${first.url}`);
@@ -735,7 +943,7 @@ await scenario('navigation: homepage button, breadcrumbs and links back to the s
 await scenario('typed answers (future format): equivalent forms, first-attempt scoring — QA-only synthetic record', async () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'bm-satact-typed-'));
   try {
-    for (const rel of ['assets/site.css', 'assets/sat-act/sat-act.css', 'assets/sat-act/sat-act-practice.js', 'assets/batchmath-storage.js', 'assets/answer-normalization.js', 'assets/pwa.js', 'assets/problem-tracking.js']) {
+    for (const rel of ['assets/site.css', 'assets/sat-act/sat-act.css', 'assets/sat-act/sat-act-practice.js', 'assets/sat-act/video-feed-config.js', 'assets/sat-act/video-index.js', 'assets/batchmath-storage.js', 'assets/answer-normalization.js', 'assets/pwa.js', 'assets/problem-tracking.js']) {
       fs.mkdirSync(path.dirname(path.join(tmp, rel)), { recursive: true });
       fs.copyFileSync(path.join(ROOT, rel), path.join(tmp, rel));
     }
@@ -782,6 +990,31 @@ await scenario('typed answers (future format): equivalent forms, first-attempt s
     fs.rmSync(tmp, { recursive: true, force: true });
   }
 });
+
+if (process.argv.includes('--real-sheet')) {
+  await scenario('real cross-origin fetch of the published BatchMath archive CSV', async () => {
+    const archive = fs.readFileSync(path.join(ROOT, 'archive/archive.js'), 'utf8');
+    const url = archive.match(/const SHEET_URL = '([^']+)'/)?.[1];
+    assert.ok(url, 'published archive CSV URL is unavailable');
+    const { context, page } = await newContext(browser, origin);
+    try {
+      await page.goto(`${origin}/sat-act-math/`);
+      const result = await page.evaluate(async sheet => {
+        const response = await fetch(sheet, {
+          mode: 'cors', credentials: 'omit', cache: 'no-store', redirect: 'follow',
+          signal: AbortSignal.timeout(10000), headers: { Accept: 'text/csv,text/plain;q=0.9' }
+        });
+        return { status: response.status, type: response.type, contentType: response.headers.get('content-type'), body: await response.text() };
+      }, url);
+      assert.equal(result.status, 200);
+      assert.equal(result.type, 'cors');
+      assert.match(result.contentType, /text\/csv/i);
+      assert.match(result.body.split(/\r?\n/)[0], /problem/i);
+    } finally {
+      await context.close();
+    }
+  });
+}
 
 if (process.argv.includes('--real-youtube')) {
   await scenario('real YouTube IFrame API smoke test (published BatchMath video, QA only)', async () => {

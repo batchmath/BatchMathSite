@@ -5,7 +5,7 @@
 | Mathematical verification | The verified Shorts record, its answer key, source commit and hashes, and the independent content audit. The website imports the learner-facing content verbatim. |
 | Authorization to publish a website question | For #001–#005, the BatchMath owner's signoff in `config/initial-website-release.json`. Future additions use the formal approved-export path below. |
 | Narrated video approval | A formal Shorts review decision, recorded by its review server. |
-| Narrated video publication | The owner's manual upload to YouTube and the recorded ID, publication date and SHA-256 of the exact uploaded render. |
+| Website video association | The owner-managed public video worksheet. It supplies YouTube URLs, cue times and publication status for existing website questions. |
 
 All `config/` and `records/` paths below are under `tools/sat-act/`. The initial set comes from Shorts
 `22113846d3f83f10eef9a9c19f64b2e5848a9b6f` and the independent audit
@@ -16,7 +16,7 @@ approval fields in each initial record remain empty.
 
 ## Owner signoff for questions #001–#005
 
-1. Review the five numbered pages in the ZIP or locally on `codex/sat-act-launch`.
+1. Review the five numbered pages in the ZIP or locally on the development branch.
 2. In `tools/sat-act/config/initial-website-release.json`, replace only `"authorization": null` with the object
    below. Enter your GitHub username and the actual date of your decision. Commit the signoff from your GitHub
    account on the development branch. The digest binds your decision to the five entries above it, including their
@@ -32,44 +32,54 @@ approval fields in each initial record remain empty.
    ```
 
 3. Build and review the authorized output below. A separate owner decision authorizes merging to production.
-   The website signoff covers the five questions. Video approvals remain in Shorts and actual YouTube publications
-   are logged separately.
+   The website signoff covers the five questions. Formal Shorts video approvals and website video associations have separate records.
 
-## Add a public YouTube Short
+## Set up the video worksheet
 
-When a Short is public, open its link in a signed-out browser and confirm it is the matching problem. For a URL
-such as `youtube.com/shorts/<ID>`, `youtube.com/watch?v=<ID>` or `youtu.be/<ID>`, copy the 11-character ID.
-In `tools/sat-act/config/youtube-publications.json`, add one entry to `initialWebsitePublications` with the
-corresponding `sourceId`, real `youtubeId`, SHA-256 of the uploaded MP4 in `mediaSha256`, and actual public date
-in `publishedOn` (`YYYY-MM-DD`). The audited hashes are in
-[`records/IMPORT-MANIFEST.json`](../../tools/sat-act/records/IMPORT-MANIFEST.json). The build checks the hash,
-scope, ID format and uniqueness, and date. Leave out any Short still awaiting publication.
-A YouTube URL cannot prove which local file was uploaded, so confirm the MP4 before recording the entry.
+1. Download [the CSV template](video-publications-template.csv). In Google Sheets, create a spreadsheet and use
+   **File → Import → Upload** to import the CSV into a worksheet named **SAT ACT Videos**.
+2. Use **File → Share → Publish to web**. Select **SAT ACT Videos** in the worksheet menu and
+   **Comma-separated values (.csv)** in the format menu. Publish that worksheet and keep automatic
+   republication enabled under **Published content and settings**.
+3. Copy the public CSV link from that dialog. It uses `docs.google.com`, a path ending in `/pub`, and
+   `output=csv` in the query. Open the URL in a signed-out browser and confirm it returns the worksheet as CSV.
+4. Provide that URL for the one-time setting in `assets/sat-act/video-feed-config.js`. The tested branch leaves
+   the setting blank. Review the two links through the configured worksheet before authorizing deployment.
 
-For example, an entry for #001 has this shape. Replace the three placeholders with the actual publication details.
+The template already includes #001 and #003 as Published. Its five permanent IDs and cue times come from the
+[import manifest](../../tools/sat-act/records/IMPORT-MANIFEST.json). A public worksheet should contain the video
+columns and any public metadata you choose to include.
 
-```json
-{
-  "sourceId": "right-triangle-trig-s0031",
-  "youtubeId": "<ID from the public URL>",
-  "mediaSha256": "<SHA-256 of the uploaded MP4>",
-  "publishedOn": "<YYYY-MM-DD>"
-}
-```
+## Publish or update videos
 
-| Question | `sourceId` | Explanation start |
-|---|---|---|
-| #001 | `right-triangle-trig-s0031` | 0:19 |
-| #002 | `radical-equation-s0003` | 0:16 |
-| #003 | `system-no-solution-s0001` | 0:20 |
-| #004 | `reverse-percent-s0001` | 0:23 |
-| #005 | `circle-radius-s0001` | 0:18 |
+For an existing row, enter the YouTube Short, watch or youtu.be URL and select `Published` after confirming
+that the Short explains the listed problem. The existing cue time is prefilled. Use `Pending` to take a video out
+of rotation. When a new approved question is added to the website, append a row with its permanent
+`ProblemID` and cue from the imported record. Use whole seconds, with `0` for the start of the video.
 
-The start is the first whole second at or after the on-screen countdown ends, no later than the first spoken
-explanation line. Changing the upload can invalidate this timing. After editing the publication file, rebuild and
-run SAT & ACT QA. Check an answer and confirm both explanation buttons appear. Click **Watch Video Explanation**
-and confirm the player waits for Play at the expected time. Let the video finish, then click **Show Written Solution**
-to open the worked solution. Questions awaiting a video show only the written-solution button after an answer.
+Sheet edits take effect on navigation or reload after the five-minute browser cache expires and Google republishes
+the worksheet. An interrupted request can use the last valid snapshot for up to 24 hours. Without a usable
+snapshot, students can still open the written solution. Unknown problems, invalid entries and duplicate problem
+or YouTube IDs are excluded. Keep each problem on one row.
+
+The sheet authorizes **video association** for existing registered questions. The owner's matching check pairs the
+public video with the problem. The site uses the sheet's cue time and validates the association's fields.
+The published stream's bytes are outside that check. The content approval gate continues to verify imported
+mathematics and written solutions. Historical MP4 hashes and the hash-backed import workflow remain in the
+repository. When the video worksheet is configured, it controls video availability.
+
+## Check the configured feed in a browser
+
+Before the first deployment with the sheet, serve the checkout on localhost and open the numbered questions.
+In DevTools **Network**, confirm that the published CSV request succeeds from localhost, including any Google
+redirects. On #001 and #003, check an answer and verify both explanation buttons appear. Click **Watch Video
+Explanation** and confirm the player waits for Play at 0:19 or 0:20. Let the video finish and open the written
+solution manually. A Pending question shows only **Show Written Solution** after checking an answer.
+
+`npm run qa:sat-act-browser` tests the seeded CSV, invalid rows, cache refresh, and player behavior without a live
+worksheet. `npm run qa:sat-act-browser -- --real-sheet` also checks cross-origin CSV access in Chromium against
+the existing public BatchMath Problem of the Day worksheet. The first test above verifies the actual SAT/ACT URL
+when it is supplied.
 
 ## Build and deploy after authorization
 
@@ -77,7 +87,7 @@ to open the worked solution. Questions awaiting a video show only the written-so
    the repository root.
 
    ```sh
-   git switch codex/sat-act-launch
+   git switch codex/sat-act-explanation-controls
    git pull --ff-only
    npm install --no-package-lock --ignore-scripts --no-audit --no-fund
    npx playwright install chromium
@@ -93,17 +103,17 @@ to open the worked solution. Questions awaiting a video show only the written-so
    report and the recorded sitewide baseline failures in [the P2 audit](SAT-ACT-P2-REPORT.md). Register the GA4
    custom definitions before launch using [the analytics instructions](GA4-ANALYTICS.md).
 
-2. Review the generated changes, stage the publication config if edited, and commit and push the generated output.
+2. Review the generated changes, stage the video feed config if edited, and commit and push the generated output.
    Deploy from the full Git tree, which includes the classroom downloads.
 
    ```sh
-   git add tools/sat-act/config/initial-website-release.json tools/sat-act/config/youtube-publications.json sat-act-math assets/sat-act/catalog.js sitemap.xml
+   git add tools/sat-act/config/initial-website-release.json assets/sat-act/video-feed-config.js sat-act-math assets/sat-act/catalog.js sitemap.xml
    git diff --cached --check
    git commit -m "Build authorized SAT and ACT practice release"
-   git push origin codex/sat-act-launch
+   git push origin codex/sat-act-explanation-controls
    ```
 
-3. Once the owner authorizes production deployment, open a pull request from `codex/sat-act-launch` into `main`.
+3. Once the owner authorizes production deployment, open a pull request from `codex/sat-act-explanation-controls` into `main`.
    Wait for the `BatchMath QA` check, including its SAT & ACT release authorization step. Review current `main`
    and resolve and retest any conflicts on the development branch. Merge only the candidate that passed review.
    GitHub Pages serves the root of `main` at `https://batchmath.net/`. The merge starts the existing Pages
@@ -125,9 +135,8 @@ npm run sat-act:build
 ```
 
 Use `--replace` only for a complete approved export that intentionally supersedes the initial website records.
-If one of the five moves to the formal video approval path, move its publication entry to `publications` with the
-verified approved MP4 hash and import it with the corresponding approved export. The original fixture import remains
-available for verification against a local Shorts checkout. Write the result to a scratch directory for comparison.
+For a formal approved-export video, keep the verified approved MP4 hash with the corresponding export. The original
+fixture import remains available for verification against a local Shorts checkout. Write the result to a scratch directory for comparison.
 
 ```sh
 node tools/sat-act/import-shorts-fixtures.mjs --shorts <path-to-Shorts> --out <scratch-directory>

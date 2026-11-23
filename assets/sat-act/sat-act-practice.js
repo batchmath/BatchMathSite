@@ -56,6 +56,7 @@
 
   // ------------------------------------------------------------------ catalog
   const CATALOG = window.BM_SAT_ACT_CATALOG || { problems: [], subjects: [], skills: [], section: '/sat-act-math/' };
+  const videoIndex = window.BMSatActVideoIndex;
   const SECTION = CATALOG.section || '/sat-act-math/';
   const PRACTICE = `${SECTION}#practice`;
   const byId = new Map(CATALOG.problems.map(p => [p.id, p]));
@@ -291,8 +292,7 @@
     const summary = $('satact-summary');
     const choiceLabels = [...document.querySelectorAll('.satact-choice')];
     const typedInput = $('satact-answer-input');
-    const video = data.video || {};
-    const hasVideo = Boolean(video.youtubeId);
+    let video = videoIndex?.configured ? null : data.video;
     let s, r;
     let pendingTrigger = '';
     let player = null;
@@ -361,7 +361,7 @@
       checkBtn.hidden = r.solved || r.revealedBeforeAnswer;
       checkBtn.textContent = r.firstResult && !r.solved ? 'Check Again' : 'Check Answer';
       solutionBtn.hidden = !(answered || r.revealedBeforeAnswer) || details.open;
-      watchBtn.hidden = !hasVideo || !answered || !videoSection.hidden;
+      watchBtn.hidden = !video?.youtubeId || !answered || !videoSection.hidden;
       nextBtn.textContent = nextLabel();
       nextBtn.classList.toggle('satact-btn-primary', r.solved || r.revealedBeforeAnswer);
     }
@@ -471,7 +471,7 @@
       return loadYouTubeApi.promise;
     }
     function showVideo(trigger) {
-      if (!hasVideo || !videoSection || !videoBody) return false;
+      if (!video?.youtubeId || !videoSection || !videoBody) return false;
       if (!videoSection.hidden) return true;
       videoSection.hidden = false;
       const start = Math.max(0, Math.floor(Number(video.explanationStartSeconds) || 0));
@@ -592,7 +592,7 @@
         track(a => a.trackEvent('answer_retry', meta, params({ answer_result: correct ? 'correct' : 'incorrect', attempt_number: r.attempts })));
       }
       markSeen(data.id);
-      const advice = hasVideo ? 'Choose an explanation below.' : 'You can open the written solution below.';
+      const advice = video?.youtubeId ? 'Choose an explanation below.' : 'You can open the written solution below.';
       if (correct) {
         r.solved = true;
         saveSession(s);
@@ -733,6 +733,15 @@
     present();
     restore();
     renderAll();
+    function refreshVideo() {
+      if (!videoIndex?.configured || !videoSection.hidden) return;
+      videoIndex.load().then(index => {
+        if (!videoSection.hidden) return;
+        video = index.get(data.id) || null;
+        renderActions();
+      });
+    }
+    refreshVideo();
     if (form) form.addEventListener('submit', onSubmit);
     if (nextBtn) nextBtn.addEventListener('click', onNext);
     if (solutionBtn) solutionBtn.addEventListener('click', () => openSolution('button'));
@@ -747,6 +756,7 @@
       attach();
       restore();
       renderAll();
+      refreshVideo();
     });
     // Test and debugging hook (read-only snapshot; no state can be changed through it).
     window.BMSatAct = Object.freeze({ session: () => JSON.parse(JSON.stringify(loadSession())), player: () => player });
@@ -783,11 +793,26 @@
     renderResume(document.getElementById('satact-resume'));
   }
 
+  function initVideoLabels() {
+    if (!videoIndex?.configured) return;
+    const labels = document.querySelectorAll('[data-satact-video-label]');
+    if (!labels.length) return;
+    labels.forEach(label => { label.textContent = 'Written solution'; });
+    const refresh = () => videoIndex.load().then(index => {
+      labels.forEach(label => {
+        label.textContent = index.has(label.dataset.satactVideoLabel) ? 'Video explanation' : 'Written solution';
+      });
+    });
+    refresh();
+    window.addEventListener('pageshow', event => { if (event.persisted) refresh(); });
+  }
+
   function init() {
     const page = document.body && document.body.dataset.satactPage;
     if (page === 'landing') initLanding();
     else if (page === 'topic') initTopic();
     else if (page === 'problem') initProblem();
+    initVideoLabels();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
   else init();

@@ -85,6 +85,8 @@ ${math ? MATHJAX + '\n' : ''}<script src="/assets/batchmath-storage.js" defer></
 <script src="/assets/answer-normalization.js"></script>
 <script src="/assets/pwa.js" defer></script>
 <script src="/assets/sat-act/catalog.js" defer></script>
+<script src="/assets/sat-act/video-feed-config.js" defer></script>
+<script src="/assets/sat-act/video-index.js" defer></script>
 <script src="/assets/sat-act/sat-act-practice.js" defer></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-377MTFXSF3"></script>
@@ -144,7 +146,7 @@ function problemItem(p) {
   return `<li class="satact-problem-item" data-problem-id="${esc(p.id)}" data-subject="${esc(p.subject.slug)}" data-skill="${esc(p.skill.id)}" data-exams="${esc(p.exams.join(' '))}" data-difficulty="${esc(p.difficulty.value)}">
 <span class="satact-number" aria-hidden="true">#${p.displayNumber}</span>
 <span class="satact-problem-item-body"><a class="satact-problem-link" href="${p.url}"><span class="sr-only">Question ${p.displayNumber}: </span>${esc(p.title)}</a>
-<span class="satact-meta"><span>${esc(p.subject.label)} › ${esc(p.skill.label)}</span><span>${esc(p.difficulty.label)}</span><span>${p.hasVideo ? 'Video explanation' : 'Written solution'}</span></span></span>
+<span class="satact-meta"><span>${esc(p.subject.label)} › ${esc(p.skill.label)}</span><span>${esc(p.difficulty.label)}</span><span data-satact-video-label="${esc(p.id)}">${p.hasVideo ? 'Video explanation' : 'Written solution'}</span></span></span>
 </li>`;
 }
 

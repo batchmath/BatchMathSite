@@ -1,34 +1,22 @@
-BatchMath SAT & ACT Math Practice P3
-Development preview for owner review. Website publication authorization is pending.
+BatchMath SAT & ACT Math Practice — video worksheet review
 
-Local review
-1. Extract bm-sat-act-p3.zip.
-2. Open the extracted folder bm-sat-act-p3, which contains index.html.
-3. On Windows, click the File Explorer address bar, type cmd and press Enter.
-4. Run py -m http.server 8000
-   On macOS or Linux, run python3 -m http.server 8000
-5. Open http://localhost:8000/ in your browser. Keep the terminal open.
-   Use Ctrl+C to stop the server. Internet access is needed for MathJax.
+1. Extract the ZIP and open the extracted folder in a terminal.
+2. Run py -m http.server 8000 on Windows or python3 -m http.server 8000 on macOS
+   or Linux.
+3. Open http://localhost:8000/sat-act-math/ in your browser. Keep the terminal open.
 
-Review the homepage link, then open http://localhost:8000/sat-act-math/.
-- Choose Mixed — All Topics or an individual topic in the Practice panel. Select a
-  difficulty and check the available question count.
-- Use Start Practice and work through a set. The set ends with a session summary.
-- Open Practice Options midway through a set, then click Resume Session.
-- Answer incorrectly, then retry correctly. The score reflects the first answer.
-- Open a written solution before answering. The question is recorded as unscored.
-- Check the numbered questions at http://localhost:8000/sat-act-math/problems/.
-- Try a narrow browser window or your browser's phone emulator.
+The ZIP uses a bundled CSV served from localhost. The production Google Sheets
+URL will be configured separately after the owner supplies it.
 
-The preview includes all five questions and their written solutions. Real YouTube
-links can be added after each matching public upload is verified. The publishing
-workflow lists the five source IDs and cue times.
+- Open the numbered questions. Check an answer on #001 or #003 to see both
+  explanation buttons. Their videos are cued at 0:19 and 0:20. Press Play in the
+  embedded player when ready. Internet access is needed for YouTube and MathJax.
+- Open Show Written Solution before answering to try an unscored reveal, or open
+  it after checking an answer. The three Pending questions offer written
+  solutions after checking an answer.
+- Edit assets/sat-act/video-preview.csv to try a status change. Reload after the
+  five-minute cache refresh window or open the review in a fresh browser profile.
 
-The site uses the BatchMath GA4 tag. Append ?bm_debug=1 during manual analytics
-testing. See docs/sat-act/GA4-ANALYTICS.md.
-
-This review archive omits the existing classroom PDFs listed in OMITTED-PDFS.txt,
-along with Git's normal excluded developer files. The PDF links require the full
-repository checkout. Deploy from the full checkout after authorization.
-The archive includes the P2 audit and publishing instructions in docs/sat-act/.
-Use the full Git checkout for the build, QA and owner signoff commands.
+The import-ready sheet template and setup instructions are in docs/sat-act/.
+This archive omits the classroom PDFs listed in OMITTED-PDFS.txt. Use the full
+checkout for website QA and an authorized production deployment.
