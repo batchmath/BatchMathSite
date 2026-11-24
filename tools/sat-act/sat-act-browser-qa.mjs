@@ -28,6 +28,13 @@ const catalog = JSON.parse(CATALOG_SRC.slice(CATALOG_SRC.indexOf('{'), CATALOG_S
 const problems = catalog.problems;
 const results = [];
 const MOCK_ID = 'QAmockVid01';
+const FIXTURE_SHEET = 'https://docs.google.com/spreadsheets/d/e/batchmath-browser-qa/pub?gid=0&single=true&output=csv';
+const VIDEO_CSV = fs.readFileSync(path.join(ROOT, 'docs/sat-act/video-publications-template.csv'), 'utf8');
+const csvResponse = (route, body) => route.fulfill({
+  contentType: 'text/csv; charset=utf-8',
+  headers: { 'access-control-allow-origin': '*' },
+  body
+});
 
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.webp': 'image/webp', '.webmanifest': 'application/manifest+json', '.xml': 'application/xml' };
 function serve(root) {
@@ -38,6 +45,11 @@ function serve(root) {
     if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
     if (!fs.existsSync(file)) { res.writeHead(404); res.end('not found'); return; }
     res.writeHead(200, { 'content-type': TYPES[path.extname(file)] || 'application/octet-stream', 'cache-control': 'no-store' });
+    // Default to the static-video fixture paths. Sheet scenarios override this route with their own CSV.
+    if (p === '/assets/sat-act/video-feed-config.js') {
+      res.end("window.BM_SAT_ACT_VIDEO_FEED_URL = '';\n");
+      return;
+    }
     fs.createReadStream(file).pipe(res);
   });
   return new Promise(resolve => server.listen(0, '127.0.0.1', () => resolve({ server, origin: `http://127.0.0.1:${server.address().port}` })));
@@ -80,13 +92,19 @@ const MOCK_YT = `(() => {
   setTimeout(() => window.onYouTubeIframeAPIReady && window.onYouTubeIframeAPIReady(), 0);
 })();`;
 
-async function newContext(browser, origin, { viewport = { width: 1280, height: 900 }, youtube = 'mock', catalogPatch = null, videoFor = null, videoId = MOCK_ID, withoutVideos = false } = {}) {
-  const context = await browser.newContext({ viewport });
+async function newContext(browser, origin, { viewport = { width: 1280, height: 900 }, youtube = 'mock', catalogPatch = null, videoFor = null, videoId = MOCK_ID, withoutVideos = false, videoCsv = null } = {}) {
+  const context = await browser.newContext({ viewport, serviceWorkers: videoCsv ? 'block' : 'allow' });
   await localMathJax(context);
   await context.route(/googletagmanager\.com|google-analytics\.com/, route => route.abort());
   await context.addInitScript(CAPTURE);
   if (youtube === 'mock') await context.route('https://www.youtube.com/iframe_api', route => route.fulfill({ status: 200, contentType: 'text/javascript', body: MOCK_YT }));
   else if (youtube === 'blocked') await context.route('https://www.youtube.com/iframe_api', route => route.abort());
+  if (videoCsv) {
+    await context.route(`${origin}/assets/sat-act/video-feed-config.js`, route => route.fulfill({
+      contentType: 'text/javascript', body: `window.BM_SAT_ACT_VIDEO_FEED_URL = ${JSON.stringify(FIXTURE_SHEET)};`
+    }));
+    await context.route(FIXTURE_SHEET, videoCsv);
+  }
   if (catalogPatch) await context.route(`${origin}/assets/sat-act/catalog.js`, route => route.fulfill({ status: 200, contentType: 'text/javascript', body: catalogPatch(CATALOG_SRC) }));
   if (videoFor || withoutVideos) {
     await context.route(videoFor ? `${origin}${videoFor}` : `${origin}/sat-act-math/problems/*/`, async route => {
@@ -118,6 +136,56 @@ async function answer(page, letter) {
   await page.waitForFunction(() => document.getElementById('satact-feedback').textContent.trim().length > 0);
 }
 const wrongLetter = data => ['A', 'B', 'C', 'D'].find(l => l !== data.answer);
+
+async function assertChoiceLayout(page, label) {
+  const { pageOverflow, choices } = await page.evaluate(async () => {
+    await window.MathJax.startup.promise;
+    await document.fonts.ready;
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    return {
+      pageOverflow: document.documentElement.scrollWidth - innerWidth,
+      choices: Array.from(document.querySelectorAll('.satact-choice'), choice => {
+        const body = choice.querySelector('.satact-choice-body');
+        const bounds = body.getBoundingClientRect();
+        const status = choice.querySelector('.satact-choice-status').getBoundingClientRect();
+        const math = Array.from(body.querySelectorAll('mjx-container > mjx-math'), node => node.getBoundingClientRect());
+        return {
+          letter: choice.dataset.choice,
+          elements: [choice, body].map(node => {
+            const { overflowX, overflowY } = getComputedStyle(node);
+            return { overflowX, overflowY, x: node.scrollWidth - node.clientWidth, y: node.scrollHeight - node.clientHeight };
+          }),
+          mathFits: math.every(rect => rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1 &&
+            rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1),
+          statusFits: status.left >= bounds.right - 1 || status.bottom <= bounds.top + 1,
+          left: Math.round(choice.getBoundingClientRect().left),
+          width: choice.getBoundingClientRect().width,
+          height: choice.getBoundingClientRect().height
+        };
+      })
+    };
+  });
+  assert.ok(pageOverflow <= 1, `${label}: page overflow ${pageOverflow}px`);
+  assert.equal(choices.length, 4, `${label}: render all four choices`);
+  for (const { letter, elements, mathFits, statusFits } of choices) {
+    for (const { overflowX, overflowY, x, y } of elements) {
+      assert.equal(overflowX, 'visible', `${label} ${letter}: horizontal scrolling or clipping`);
+      assert.equal(overflowY, 'visible', `${label} ${letter}: vertical scrolling or clipping`);
+      assert.ok(x <= 1 && y <= 1, `${label} ${letter}: choice overflow (${x}px horizontal, ${y}px vertical)`);
+    }
+    assert.ok(mathFits, `${label} ${letter}: rendered MathJax stays inside its answer body`);
+    assert.ok(statusFits, `${label} ${letter}: feedback and answer have separate space`);
+  }
+  return choices;
+}
+
+async function checkExplanationChoices(page, hasVideo) {
+  assert.equal(await page.getByRole('button', { name: 'Show Written Solution', exact: true }).isVisible(), true);
+  assert.equal(await page.locator('#satact-watch').isVisible(), hasVideo);
+  assert.equal(await page.locator('#satact-video').isVisible(), false);
+  assert.equal(await page.locator('#satact-solution').evaluate(details => details.open), false);
+  assert.equal(await page.evaluate(() => Boolean(window.__yt)), false, 'the player loads only on request');
+}
 
 async function scenario(name, fn) {
   const started = Date.now();
@@ -294,14 +362,13 @@ await scenario('mixed practice: no repeats, first-attempt scoring, retries, reve
     await ready(page);
     const data = await problemData(page);
     visited.push(data.id);
+    await assertChoiceLayout(page, `${data.id} in mixed practice`);
     const label = await page.locator('#satact-session-bar').innerText();
     assert.match(label, new RegExp(`Mixed practice · Question ${i + 1} of ${problems.length}`));
     if (i === 0) {
       await answer(page, data.answer);
       assert.match(await page.locator('#satact-feedback').innerText(), /Correct!/);
-      assert.equal(await page.locator('#satact-show-solution').isVisible(), true, 'View Written Solution offered after a correct answer');
-      assert.equal(await page.locator('#satact-watch').isVisible(), false, 'no video button without a published video');
-      assert.equal(await page.locator('#satact-solution').evaluate(d => d.open), false, 'solution stays closed after a correct answer');
+      await checkExplanationChoices(page, false);
       await page.reload();
       await ready(page);
       assert.match(await page.locator('#satact-feedback').innerText(), /earlier in this session/);
@@ -310,14 +377,18 @@ await scenario('mixed practice: no repeats, first-attempt scoring, retries, reve
       const wrong = wrongLetter(data);
       await answer(page, wrong);
       assert.match(await page.locator('#satact-feedback').innerText(), /Not quite/);
-      assert.equal(await page.locator('#satact-solution').evaluate(d => d.open), true, 'no video: the written solution opens immediately');
-      assert.equal(await page.locator('#satact-video').isVisible(), false, 'no video interface without a published video');
-      assert.equal(await page.locator(`[data-your-answer="${wrong}"]`).isVisible(), true, 'the chosen wrong answer is explained');
+      await checkExplanationChoices(page, false);
+      assert.equal(await page.locator(`[data-your-answer="${wrong}"]`).isVisible(), false);
+      await page.getByRole('button', { name: 'Show Written Solution', exact: true }).click();
+      await page.locator(`[data-your-answer="${wrong}"]`).waitFor({ state: 'visible' });
       assert.equal(await page.locator(`label[data-choice="${wrong}"] input`).isDisabled(), true);
       await answer(page, data.answer);
       assert.match(await page.locator('#satact-feedback').innerText(), /attempt 2/);
     } else if (i === 2) {
       await answer(page, wrongLetter(data));
+      await checkExplanationChoices(page, false);
+      await page.getByRole('button', { name: 'Show Written Solution', exact: true }).click();
+      await page.waitForFunction(id => window.BMSatAct.session().results[id].solution, data.id);
     } else if (i === 3) {
       await page.locator('#satact-solution > summary').click();
       await page.waitForFunction(() => /not scored/.test(document.getElementById('satact-feedback').textContent));
@@ -327,6 +398,7 @@ await scenario('mixed practice: no repeats, first-attempt scoring, retries, reve
       await answer(page, data.answer);
       assert.equal((await page.locator('#satact-next').innerText()).trim(), 'Finish Session');
     }
+    await assertChoiceLayout(page, `${data.id} after feedback in mixed practice`);
     await page.locator('#satact-next').click();
     if (i < problems.length - 1) await page.waitForURL(u => !u.pathname.endsWith(new URL(page.url()).pathname) || true);
     if (i < problems.length - 1) await page.waitForFunction(id => { const el = document.getElementById('satact-problem-data'); return el && JSON.parse(el.textContent).id !== id; }, data.id);
@@ -381,7 +453,7 @@ await scenario('each initial question scores the first answer and preserves it t
         const wrong = wrongLetter(data);
         await answer(page, firstTryCorrect ? correct : wrong);
         if (!firstTryCorrect) {
-          assert.equal(await page.locator('#satact-solution').evaluate(d => d.open), true);
+          await checkExplanationChoices(page, false);
           assert.equal(await page.locator(`label[data-choice="${wrong}"] input`).isDisabled(), true);
           await answer(page, correct);
         }
@@ -458,14 +530,212 @@ await scenario('direct visit: lazy session start, then Next continues with other
 });
 
 const first = problems[0];
-await scenario('video: incorrect answer cues the explanation without autoplay; ended opens the solution', async () => {
+await scenario('published sheet entries control question buttons, cues and list badges', async () => {
+  let requests = 0;
+  const { context, page, pageErrors } = await newContext(browser, origin, {
+    videoCsv: route => { requests += 1; return csvResponse(route, VIDEO_CSV); }
+  });
+  try {
+    await page.goto(`${origin}/sat-act-math/`);
+    await ready(page);
+    assert.equal(requests, 0, 'the landing page has no video badges and needs no sheet request');
+    await page.goto(`${origin}/sat-act-math/problems/`);
+    await waitForVideoLabel(page, first.id, 'Video explanation');
+    await waitForVideoLabel(page, problems[2].id, 'Video explanation');
+    for (const n of [2, 4, 5]) await waitForVideoLabel(page, problems[n - 1].id, 'Written solution');
+    await page.goto(origin + catalog.subjects.find(topic => topic.slug === first.subject).url);
+    await waitForVideoLabel(page, first.id, 'Video explanation');
+
+    for (const [number, youtubeId, start, correct] of [
+      [1, 'FbWva8v4ObM', 19, false],
+      [3, 'wah0Y-i_OJ0', 20, true]
+    ]) {
+      const problem = problems.find(candidate => candidate.number === number);
+      await page.goto(origin + problem.url);
+      await ready(page);
+      const data = await problemData(page);
+      await answer(page, correct ? data.answer : wrongLetter(data));
+      await page.locator('#satact-watch').waitFor({ state: 'visible' });
+      await checkExplanationChoices(page, true);
+      await page.locator('#satact-watch').click();
+      await page.waitForFunction(() => window.__yt?.created.length === 1);
+      const captured = await page.evaluate(() => window.__yt.created[0]);
+      assert.deepEqual([captured.videoId, captured.playerVars.start, captured.playerVars.autoplay], [youtubeId, start, 0]);
+      assert.equal(await page.evaluate(() => window.__yt.plays), 0);
+      assert.equal(await page.locator('#satact-youtube-link').getAttribute('href'), `https://www.youtube.com/watch?v=${youtubeId}&t=${start}s`);
+      const eventsBeforeEnd = await events(page);
+      const scoredProblem = data.id.replaceAll('-', '_');
+      assert.equal(named(eventsBeforeEnd, 'explanation_video_start').filter(event => event.params.problem_id === scoredProblem).length, 0);
+      const checked = named(eventsBeforeEnd, 'answer_checked').at(-1).params;
+      assert.equal(checked.answer_result, correct ? 'correct' : 'incorrect');
+
+      await page.evaluate(() => { window.__yt.fire(YT.PlayerState.PLAYING); window.__yt.fire(YT.PlayerState.ENDED); });
+      assert.equal(await page.locator('#satact-solution').evaluate(d => d.open), false);
+      const recorded = named(await events(page), 'explanation_video_start').at(-1).params;
+      assert.equal(recorded.start_seconds, start);
+      await page.locator('#satact-video-solution').click();
+      await page.waitForFunction(id => window.BMSatAct.session().results[id].solution, data.id);
+      assert.equal((await session(page)).results[data.id].firstResult, correct ? 'correct' : 'incorrect');
+    }
+
+    await page.goto(origin + problems[1].url);
+    await ready(page);
+    await answer(page, wrongLetter(await problemData(page)));
+    await checkExplanationChoices(page, false);
+    assert.equal(requests, 1, 'list, topic and question pages share the last successful fetch');
+    assert.deepEqual(pageErrors, []);
+  } finally {
+    await context.close();
+  }
+});
+
+function waitForVideoLabel(page, id, text) {
+  return page.waitForFunction(({ id, text }) => [...document.querySelectorAll('[data-satact-video-label]')]
+    .some(label => label.dataset.satactVideoLabel === id && label.textContent === text), { id, text });
+}
+
+function loadSheetEntries(page) {
+  return page.evaluate(async () => [...await window.BMSatActVideoIndex.load()]);
+}
+
+const csvLine = fields => fields.map(value => `"${String(value).replaceAll('"', '""')}"`).join(',');
+
+await scenario('sheet validation handles CSV quoting, URL formats, invalid rows and duplicate associations', async () => {
+  const header = 'ProblemID,YouTubeURL,ExplanationStartSeconds,Status,Notes';
+  const link1 = 'https://youtu.be/FbWva8v4ObM?si=qa';
+  const link3 = 'https://www.youtube.com/watch?v=wah0Y-i_OJ0';
+  const good1 = [first.id, link1, '19', 'Published', 'commas, "quotes" and\nline breaks'];
+  const good3 = [problems[2].id, link3, '20', 'Published', ''];
+  const format = rows => '\uFEFF' + [header, ...rows.map(csvLine)].join('\r\n') + '\r\n';
+  let csv = format([good1, good3]);
+  const { context, page } = await newContext(browser, origin, { videoCsv: route => csvResponse(route, csv) });
+  const start = new Date('2026-11-23T12:00:00Z').getTime();
+  try {
+    await page.clock.install({ time: start });
+    await page.goto(`${origin}/sat-act-math/problems/`);
+    const expected1 = [first.id, { youtubeId: 'FbWva8v4ObM', explanationStartSeconds: 19 }];
+    const expected3 = [problems[2].id, { youtubeId: 'wah0Y-i_OJ0', explanationStartSeconds: 20 }];
+    assert.deepEqual(await loadSheetEntries(page), [expected1, expected3]);
+
+    const invalid = [
+      ['pending', [good3[0], link3, '20', 'Pending']],
+      ['incomplete status', [good3[0], link3, '20']],
+      ['missing URL', [good3[0], '', '20', 'Published']],
+      ['short ID', [good3[0], 'https://youtu.be/wah0Y-i_OJ', '20', 'Published']],
+      ['untrusted hostname', [good3[0], 'https://youtube.com.example.net/watch?v=wah0Y-i_OJ0', '20', 'Published']],
+      ['unsafe scheme', [good3[0], 'javascript:alert(1)', '20', 'Published']],
+      ['credentials in URL', [good3[0], 'https://name@www.youtube.com/watch?v=wah0Y-i_OJ0', '20', 'Published']],
+      ['ambiguous watch ID', [good3[0], link3 + '&v=FbWva8v4ObM', '20', 'Published']],
+      ['missing timestamp', [good3[0], link3, '', 'Published']],
+      ['negative timestamp', [good3[0], link3, '-1', 'Published']],
+      ['fractional timestamp', [good3[0], link3, '20.5', 'Published']],
+      ['formatted timestamp', [good3[0], link3, '0:20', 'Published']],
+      ['oversized timestamp', [good3[0], link3, '999999', 'Published']],
+      ['unknown problem', ['unregistered-problem', link3, '20', 'Published']],
+      ['duplicate ProblemID', good3, [good3[0], '', '20', 'Pending']]
+    ];
+    for (const [index, [message, ...rows]] of invalid.entries()) {
+      csv = format([good1, ...rows]);
+      await page.clock.setSystemTime(start + (index + 1) * 6 * 60 * 1000);
+      assert.deepEqual(await loadSheetEntries(page), [expected1], message);
+    }
+    csv = format([good1, [good3[0], link1, '20', 'Published']]);
+    await page.clock.setSystemTime(start + 100 * 60 * 1000);
+    assert.deepEqual(await loadSheetEntries(page), [], 'duplicate YouTube associations are ambiguous');
+    csv = format([[good1[0], link1, '0', 'Published']]);
+    await page.clock.setSystemTime(start + 120 * 60 * 1000);
+    assert.deepEqual(await loadSheetEntries(page), [[first.id, { youtubeId: 'FbWva8v4ObM', explanationStartSeconds: 0 }]]);
+  } finally {
+    await context.close();
+  }
+});
+
+await scenario('sheet edits refresh across pages with a bounded cached fallback', async () => {
+  let requests = 0;
+  let csv = VIDEO_CSV;
+  const { context, page } = await newContext(browser, origin, {
+    videoCsv: route => { requests += 1; return csv === null ? route.abort() : csvResponse(route, csv); }
+  });
+  const list = `${origin}/sat-act-math/problems/`;
+  const start = new Date('2026-11-23T12:00:00Z').getTime();
+  const minutes = value => start + value * 60 * 1000;
+  try {
+    await page.clock.install({ time: start });
+    await page.goto(list);
+    await waitForVideoLabel(page, first.id, 'Video explanation');
+    csv = VIDEO_CSV.replace('19,Published', '19,Pending').replace('20,Published', '21,Published');
+    await page.reload();
+    await waitForVideoLabel(page, first.id, 'Video explanation');
+    assert.equal(requests, 1);
+
+    await page.clock.setSystemTime(minutes(6));
+    await page.reload();
+    await loadSheetEntries(page);
+    await waitForVideoLabel(page, first.id, 'Written solution');
+    await waitForVideoLabel(page, problems[2].id, 'Video explanation');
+    const updated = await loadSheetEntries(page);
+    assert.equal(updated[0][1].explanationStartSeconds, 21);
+    assert.equal(requests, 2, 'sheet edits apply after cache refresh without a rebuild');
+
+    for (const [minute, malformed] of [[12, '<html>Sign in</html>'], [18, VIDEO_CSV + '\n"unterminated'], [24, null]]) {
+      csv = malformed;
+      await page.clock.setSystemTime(minutes(minute));
+      await page.reload();
+      assert.deepEqual(await loadSheetEntries(page), updated, 'the previous valid snapshot survives a feed failure');
+      await waitForVideoLabel(page, first.id, 'Written solution');
+    }
+    const afterFailures = requests;
+    await page.goto(origin + problems[2].url);
+    await ready(page);
+    const data = await problemData(page);
+    await answer(page, data.answer);
+    await page.locator('#satact-watch').waitFor({ state: 'visible' });
+    assert.equal(requests, afterFailures, 'the last failed request is not repeated on every question');
+
+    await page.clock.setSystemTime(minutes(25 * 60));
+    await page.reload();
+    assert.deepEqual(await loadSheetEntries(page), [], 'the old cache expires during an extended outage');
+    await checkExplanationChoices(page, false);
+  } finally {
+    await context.close();
+  }
+});
+
+await scenario('a delayed sheet never blocks written solutions and times out safely', async () => {
+  let receive;
+  const requested = new Promise(resolve => { receive = resolve; });
+  const { context, page } = await newContext(browser, origin, { videoCsv: route => receive(route) });
+  try {
+    await page.clock.install();
+    await page.goto(origin + first.url);
+    await ready(page);
+    const route = await requested;
+    const data = await problemData(page);
+    await answer(page, wrongLetter(data));
+    await checkExplanationChoices(page, false);
+    await page.locator('#satact-show-solution').click();
+    await page.waitForFunction(id => window.BMSatAct.session().results[id].solution, data.id);
+    await page.clock.fastForward(4600);
+    assert.deepEqual(await loadSheetEntries(page), []);
+    await route.abort().catch(() => {});
+    assert.equal(await page.locator('#satact-watch').isVisible(), false);
+    assert.equal((await session(page)).results[data.id].firstResult, 'incorrect');
+  } finally {
+    await context.close();
+  }
+});
+
+await scenario('incorrect answer offers both choices; #001 cues at 0:19 and ending leaves the solution closed', async () => {
   const { context, page, pageErrors } = await newContext(browser, origin, { videoFor: first.url });
   await page.goto(`${origin}${first.url}`);
   await ready(page);
   const data = await problemData(page);
   assert.equal(data.video.youtubeId, MOCK_ID);
   await answer(page, wrongLetter(data));
+  await checkExplanationChoices(page, true);
+  await page.getByRole('button', { name: 'Watch Video Explanation', exact: true }).press('Enter');
   await page.locator('#satact-video').waitFor({ state: 'visible' });
+  assert.equal(await page.locator('#satact-video').evaluate(el => el === document.activeElement), true);
   await page.waitForFunction(() => window.__yt && window.__yt.created.length === 1);
   const created = await page.evaluate(() => window.__yt.created[0]);
   assert.equal(created.videoId, MOCK_ID);
@@ -491,75 +761,97 @@ await scenario('video: incorrect answer cues the explanation without autoplay; e
   let ev = await events(page);
   assert.equal(named(ev, 'explanation_video_start').length, 1, 'start is sent once');
   assert.equal(named(ev, 'explanation_video_start')[0].params.start_seconds, 19);
+  assert.equal(named(ev, 'explanation_video_start')[0].params.video_trigger, 'after_incorrect');
   assert.equal(named(ev, 'problem_completed').length, 0, 'leaving early or mid-video is not a completion');
   await page.evaluate(() => window.__yt.fire(YT.PlayerState.ENDED));
-  await page.waitForFunction(() => document.getElementById('satact-solution').open);
+  assert.equal(await page.locator('#satact-video-status').innerText(), 'Video finished.');
+  assert.equal(await page.locator('#satact-solution').evaluate(details => details.open), false);
+  assert.match(await page.locator('#satact-session-bar').innerText(), /0 correct out of 1 answered · 1 completed/);
   ev = await events(page);
   assert.equal(named(ev, 'explanation_video_complete').length, 1);
-  assert.equal(named(ev, 'solution_revealed')[0].params.reveal_trigger, 'video_ended');
+  assert.equal(named(ev, 'solution_revealed').length, 0);
   assert.equal(named(ev, 'problem_completed')[0].params.completion_method, 'video_ended');
   await page.evaluate(() => window.__yt.fire(YT.PlayerState.ENDED));
-  await page.waitForTimeout(50);
   assert.equal(named(await events(page), 'explanation_video_complete').length, 1, 'complete is sent once');
+
+  await page.locator('#satact-video-solution').click();
+  await page.waitForFunction(id => window.BMSatAct.session().results[id].solution, data.id);
+  assert.equal(await page.locator('#satact-solution > summary').evaluate(el => el === document.activeElement), true);
+  ev = await events(page);
+  const revealed = named(ev, 'solution_revealed')[0].params;
+  assert.equal(revealed.reveal_trigger, 'video_panel_button');
+  assert.equal(revealed.first_attempt_result, 'incorrect');
+  assert.equal(named(ev, 'problem_completed').length, 1);
+  assert.equal(named(ev, 'answer_correct').length, 0);
   assert.deepEqual(pageErrors, []);
   await context.close();
 });
 
-await scenario('video: correct answer offers the video; Show Written Solution works immediately', async () => {
-  const { context, page, pageErrors } = await newContext(browser, origin, { videoFor: first.url });
-  await page.goto(`${origin}${first.url}`);
+await scenario('correct answer offers both choices; written solution is independent and #003 cues at 0:20', async () => {
+  const third = problems.find(problem => problem.number === 3);
+  const { context, page, pageErrors } = await newContext(browser, origin, { videoFor: third.url });
+  await page.goto(`${origin}${third.url}`);
   await ready(page);
   const data = await problemData(page);
   await answer(page, data.answer);
-  assert.equal(await page.locator('#satact-video').isVisible(), false, 'a correct answer does not open the video');
-  assert.equal(await page.locator('#satact-watch').isVisible(), true);
-  await page.locator('#satact-watch').click();
-  await page.waitForFunction(() => window.__yt && window.__yt.created.length === 1);
-  assert.equal(await page.evaluate(() => window.__yt.plays), 0);
-  await page.locator('#satact-video-solution').click();
-  await page.waitForFunction(() => document.getElementById('satact-solution').open);
-  // The native <details> toggle event is asynchronous; wait for the GA4 event, not just the open property.
-  await page.waitForFunction(() => JSON.parse(sessionStorage.getItem('qa.events') || '[]').some(e => e.name === 'solution_revealed'));
+  await checkExplanationChoices(page, true);
+
+  await page.getByRole('button', { name: 'Show Written Solution', exact: true }).click();
+  await page.waitForFunction(id => window.BMSatAct.session().results[id].solution, data.id);
+  assert.equal(await page.locator('#satact-video').isVisible(), false);
+  assert.equal(await page.evaluate(() => Boolean(window.__yt)), false);
   const ev = await events(page);
-  assert.equal(named(ev, 'solution_revealed')[0].params.reveal_trigger, 'video_panel_button');
+  assert.equal(named(ev, 'solution_revealed')[0].params.reveal_trigger, 'button');
+  assert.equal(named(ev, 'solution_revealed')[0].params.first_attempt_result, 'correct');
   assert.equal(named(ev, 'problem_completed')[0].params.completion_method, 'correct_answer');
+
+  await page.getByRole('button', { name: 'Watch Video Explanation', exact: true }).click();
+  await page.waitForFunction(() => window.__yt && window.__yt.created.length === 1);
+  const { playerVars, plays } = await page.evaluate(() => ({ playerVars: window.__yt.created[0].playerVars, plays: window.__yt.plays }));
+  assert.equal(playerVars.start, 20);
+  assert.equal(playerVars.autoplay, 0);
+  assert.equal(plays, 0);
+  assert.equal(await page.locator('#satact-video-solution').isVisible(), true);
+  assert.equal(await page.locator('#satact-youtube-link').getAttribute('href'), `https://www.youtube.com/watch?v=${MOCK_ID}&t=20s`);
   assert.deepEqual(pageErrors, []);
   await context.close();
 });
 
-await scenario('video: player error and blocked API fall back to the written solution', async () => {
-  for (const mode of ['error', 'blocked']) {
+await scenario('unavailable video offers manual fallbacks for player errors, a blocked API and a silent embed', async () => {
+  for (const [mode, errorType, statusText] of [
+    ['error', 'player_error_150', /cannot be played here/],
+    ['blocked', 'api_blocked', /could not load/],
+    ['silent', 'player_timeout', /not loading here/]
+  ]) {
     const { context, page } = await newContext(browser, origin, { videoFor: first.url, youtube: mode === 'blocked' ? 'blocked' : 'mock' });
-    await page.goto(`${origin}${first.url}`);
-    await ready(page);
-    const data = await problemData(page);
-    await answer(page, wrongLetter(data));
-    if (mode === 'error') {
-      await page.waitForFunction(() => window.__yt && window.__yt.error);
-      await page.evaluate(() => window.__yt.error(150));
+    try {
+      if (mode === 'silent') await context.addInitScript(() => { window.__ytSilent = true; });
+      await page.goto(`${origin}${first.url}`);
+      await ready(page);
+      const data = await problemData(page);
+      await answer(page, wrongLetter(data));
+      await checkExplanationChoices(page, true);
+      await page.getByRole('button', { name: 'Watch Video Explanation', exact: true }).click();
+      if (mode === 'error') {
+        await page.waitForFunction(() => window.__yt && window.__yt.error);
+        await page.evaluate(() => window.__yt.error(150));
+      }
+      const status = page.locator('#satact-video-status.is-error');
+      await status.waitFor({ state: 'visible', timeout: 20000 });
+      assert.match(await status.innerText(), statusText);
+      assert.equal(await page.locator('#satact-youtube-link').isVisible(), true);
+      assert.equal(await page.locator('#satact-video-solution').isVisible(), true);
+      assert.equal(await page.locator('#satact-solution').evaluate(details => details.open), false);
+      const ev = await events(page);
+      assert.deepEqual(named(ev, 'explanation_video_error').map(event => event.params.error_type), [errorType]);
+      assert.equal(named(ev, 'solution_revealed').length, 0);
+      await page.locator('#satact-video-solution').click();
+      await page.waitForFunction(id => window.BMSatAct.session().results[id].solution, data.id);
+      assert.equal(named(await events(page), 'solution_revealed')[0].params.reveal_trigger, 'video_panel_button');
+    } finally {
+      await context.close();
     }
-    await page.waitForFunction(() => document.getElementById('satact-solution').open);
-    assert.match(await page.locator('#satact-video-status').innerText(), mode === 'error' ? /cannot be played here/ : /could not load/);
-    assert.equal(await page.locator('#satact-youtube-link').isVisible(), true);
-    const err = named(await events(page), 'explanation_video_error');
-    assert.equal(err.length, 1);
-    assert.equal(err[0].params.error_type, mode === 'error' ? 'player_error_150' : 'api_blocked');
-    await context.close();
   }
-});
-
-await scenario('video: a silently blocked embed times out to the written solution', async () => {
-  const { context, page } = await newContext(browser, origin, { videoFor: first.url });
-  await context.addInitScript(() => { window.__ytSilent = true; });
-  await page.goto(`${origin}${first.url}`);
-  await ready(page);
-  await answer(page, wrongLetter(await problemData(page)));
-  await page.waitForFunction(() => window.__yt && window.__yt.created.length === 1);
-  assert.equal(await page.locator('#satact-solution').evaluate(d => d.open), false);
-  await page.waitForFunction(() => document.getElementById('satact-solution').open, null, { timeout: 20000 });
-  assert.match(await page.locator('#satact-video-status').innerText(), /not loading here/);
-  assert.equal(named(await events(page), 'explanation_video_error')[0].params.error_type, 'player_timeout');
-  await context.close();
 });
 
 await scenario('keyboard: skip link, arrow keys between choices, Enter checks, visible focus', async () => {
@@ -618,7 +910,13 @@ await scenario('phone layout: no horizontal scrolling, single-column choices, 44
   for (const h of await page2.locator('.satact-actions .satact-btn:visible').evaluateAll(els => els.map(e => e.getBoundingClientRect().height))) assert.ok(h >= 44);
   const data = await problemData(page2);
   await answer(page2, wrongLetter(data));
+  await checkExplanationChoices(page2, true);
+  for (const id of ['satact-watch', 'satact-show-solution']) {
+    assert.ok((await page2.locator(`#${id}`).boundingBox()).height >= 44);
+  }
+  await page2.getByRole('button', { name: 'Watch Video Explanation', exact: true }).click();
   await page2.waitForFunction(() => window.__yt && window.__yt.created.length === 1);
+  assert.ok((await page2.locator('#satact-video-solution').boundingBox()).height >= 44);
   const frame = await page2.locator('.satact-video-frame').boundingBox();
   assert.ok(frame.width >= 240 && frame.width <= 390 && frame.height <= 844 * 0.75, `phone player fits the screen, got ${frame.width}x${frame.height}`);
   assert.ok(Math.abs(frame.width / frame.height - 9 / 16) < 0.02);
@@ -653,6 +951,32 @@ await scenario('MathJax renders every question, choice and solution without erro
     if (p.id === 'radical-equation-s0003') assert.equal(await page.locator('mjx-container .hlbox').count() >= 2, true, '\\htmlClass highlights render');
   }
   await context.close();
+});
+
+await scenario('numbered answer choices fit before and after feedback on narrow phones, tablets and desktop', async () => {
+  for (const width of [320, 621, 1280]) {
+    const { context, page } = await newContext(browser, origin, { viewport: { width, height: 844 } });
+    try {
+      for (const problem of problems) {
+        await page.goto(`${origin}${problem.url}`);
+        await ready(page);
+        const data = await problemData(page);
+        if (data.format !== 'multiple_choice_4') continue;
+        const label = `#${problem.displayNumber} at ${width}px`;
+        const choices = await assertChoiceLayout(page, label);
+        if (width === 320) assert.equal(new Set(choices.map(c => c.left)).size, 1, `${label}: single column`);
+        if (width === 1280 && problem.id === 'right-triangle-trig-s0031') {
+          assert.equal(new Set(choices.map(c => c.left)).size, 2, `${label}: short answers retain two columns`);
+        }
+        await answer(page, wrongLetter(data));
+        await assertChoiceLayout(page, `${label}, incorrect`);
+        await answer(page, data.answer);
+        await assertChoiceLayout(page, `${label}, correct after retry`);
+      }
+    } finally {
+      await context.close();
+    }
+  }
 });
 
 await scenario('navigation: homepage button, breadcrumbs and links back to the site', async () => {
@@ -691,56 +1015,145 @@ await scenario('navigation: homepage button, breadcrumbs and links back to the s
   await context.close();
 });
 
-await scenario('typed answers (future format): equivalent forms, first-attempt scoring — QA-only synthetic record', async () => {
-  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'bm-satact-typed-'));
+async function withQaProblem(record, { slug, title }, run) {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'bm-satact-browser-'));
   try {
-    for (const rel of ['assets/site.css', 'assets/sat-act/sat-act.css', 'assets/sat-act/sat-act-practice.js', 'assets/batchmath-storage.js', 'assets/answer-normalization.js', 'assets/pwa.js', 'assets/problem-tracking.js']) {
+    for (const rel of ['assets/site.css', 'assets/sat-act/sat-act.css', 'assets/sat-act/sat-act-practice.js', 'assets/sat-act/video-feed-config.js', 'assets/sat-act/video-index.js', 'assets/batchmath-storage.js', 'assets/answer-normalization.js', 'assets/pwa.js', 'assets/problem-tracking.js']) {
       fs.mkdirSync(path.dirname(path.join(tmp, rel)), { recursive: true });
       fs.copyFileSync(path.join(ROOT, rel), path.join(tmp, rel));
     }
     const recDir = path.join(tmp, 'records');
     fs.mkdirSync(recDir);
-    const id = 'qa-typed-s0001';
-    fs.writeFileSync(path.join(recDir, `${id}.json`), JSON.stringify({
-      schema: 'batchmath.sat-act.problem/1', sourceId: id, contentStatus: 'development-fixture',
+    fs.writeFileSync(path.join(recDir, `${record.sourceId}.json`), JSON.stringify({
+      schema: 'batchmath.sat-act.problem/1', contentStatus: 'development-fixture',
       approval: { text: null, video: null, releaseEligible: false, note: 'QA-only synthetic record; never published.' },
       provenance: { commit: '0'.repeat(40), verification: { passed: true, checks: 0, failed: 0 } },
-      series: 'QA', topicLabel: 'QA', classification: { topic: 'Coordinate geometry', skills: ['circle-equations'], exams: ['SAT'], format: 'student_produced_response' },
-      skillNames: { 'circle-equations': 'QA skill' }, difficulty: 'medium', format: 'student_produced_response', template: {}, concept: null,
-      question: { stem: ['QA-only synthetic typed-answer item.'], prompt: 'Enter three fourths.' }, figure: null, rightAngle: null,
-      choices: [], answer: { display: '$\\dfrac{3}{4}$', accepted: ['3/4'] },
+      series: 'QA', topicLabel: 'QA',
+      classification: { topic: 'Coordinate geometry', skills: ['circle-equations'], exams: ['SAT'], format: record.format },
+      skillNames: { 'circle-equations': 'QA skill' }, difficulty: 'medium', template: {}, concept: null,
+      figure: null, rightAngle: null,
       solution: { steps: [{ id: 's1', kind: 'simple', title: 'QA', caption: 'Synthetic.', lines: [{ tex: '\\dfrac{3}{4} = 0.75' }] }, { id: 's2', kind: 'simple', title: 'QA', caption: 'Synthetic.', lines: [] }], keyIdea: 'QA only.', trap: null, summary: '' },
-      meta: {}, video: { explanationStartSeconds: null, youtubeId: null, published: false }
+      meta: {}, video: { explanationStartSeconds: null, youtubeId: null, published: false },
+      ...record
     }));
     const registry = path.join(tmp, 'registry.json');
-    fs.writeFileSync(registry, JSON.stringify({ problems: [{ number: 999, sourceId: id, slug: '999-qa-typed-answer', title: 'QA Typed Answer', status: 'active' }] }));
+    fs.writeFileSync(registry, JSON.stringify({ problems: [{ number: 999, sourceId: record.sourceId, slug, title, status: 'active' }] }));
     execFileSync(process.execPath, [path.join(HERE, 'build-sat-act-pages.mjs'), '--no-seo'], { env: Object.assign({}, process.env, { BM_ROOT: tmp, BM_SAT_ACT_RECORDS: recDir, BM_SAT_ACT_REGISTRY: registry }), stdio: 'pipe' });
     const local = await serve(tmp);
     try {
-      for (const [attempts, expectFirst] of [[['0.7', '6/8'], 'incorrect'], [['.75'], 'correct']]) {
-        const { context, page } = await newContext(browser, local.origin);
-        await page.goto(`${local.origin}/sat-act-math/problems/999-qa-typed-answer/`);
-        await ready(page);
-        for (const value of attempts) {
-          await page.fill('#satact-answer-input', value);
-          await page.locator('#satact-check').click();
-          await page.waitForFunction(() => document.getElementById('satact-feedback').textContent.trim().length > 0);
-        }
-        assert.match(await page.locator('#satact-feedback').innerText(), /Correct!/);
-        assert.equal(await page.locator('#satact-answer-input').isDisabled(), true);
-        const ev = await events(page);
-        assert.equal(named(ev, 'answer_checked')[0].params.answer_result, expectFirst);
-        assert.equal(named(ev, 'answer_correct').length, expectFirst === 'correct' ? 1 : 0);
-        assert.ok(!JSON.stringify(ev).includes('6/8') && !JSON.stringify(ev).includes('0.7'), 'typed answers must not be sent');
-        await context.close();
-      }
+      await run(local.origin, `${local.origin}/sat-act-math/problems/${slug}/`);
     } finally {
       local.server.close();
     }
   } finally {
     fs.rmSync(tmp, { recursive: true, force: true });
   }
+}
+
+await scenario('future multiple-choice records reflow long text and MathJax without clipping or scrollbars', async () => {
+  const displays = [
+    'The ratio stays the same when the two quantities are separated into equal groups. The same relationship holds when the measurements change, because both sides are multiplied by the same positive factor.',
+    String.raw`$\dfrac{\sqrt{144x^2 + 81y^2 + 64z^2 + 49w^2}}{(3x^2+4)^3}$`,
+    String.raw`$\begin{aligned}P(x)&=2x^5-3x^4+4x^3-5x^2\\P(2)&=64-48+32-20\end{aligned}$`,
+    String.raw`The value is $3x^7+4x^6-5x^5+6x^4-7x^3+8x^2-9x+10$ for every real value of $x$.`
+  ];
+  const choices = displays.map((display, i) => ({ label: 'ABCD'[i], display, correct: i === 1, why: 'Synthetic choice.' }));
+  const record = {
+    sourceId: 'qa-wide-choices-s0001', format: 'multiple_choice_4',
+    question: { stem: ['QA-only synthetic multiple-choice item.'], prompt: 'Select an answer.' },
+    choices, answer: { label: 'B', display: displays[1] }
+  };
+  await withQaProblem(record, { slug: '999-qa-wide-choices', title: 'QA Wide Choices' }, async (localOrigin, url) => {
+    const { context, page } = await newContext(browser, localOrigin);
+    try {
+      await page.goto(url);
+      await ready(page);
+      const desktop = await assertChoiceLayout(page, 'generated choices at 1280px');
+      assert.equal(new Set(desktop.map(c => c.left)).size, 2);
+      await page.setViewportSize({ width: 700, height: 900 });
+      const tablet = await assertChoiceLayout(page, 'generated choices at 700px');
+      assert.ok(tablet[1].width > 500 && tablet[2].width > 500, 'wide math can take an entire row above the phone breakpoint');
+      await page.setViewportSize({ width: 320, height: 780 });
+      await page.locator('[data-choice="B"][data-satact-stacked]').waitFor();
+      const phone = await assertChoiceLayout(page, 'generated choices at 320px');
+      assert.equal(new Set(phone.map(c => c.left)).size, 1);
+      assert.ok(phone[0].height > desktop[0].height, 'long text wraps and expands the box vertically');
+      assert.equal(await page.locator('[data-choice="B"] mjx-mfrac').count(), 1);
+      assert.equal(await page.locator('[data-choice="B"] mjx-msqrt').count(), 1);
+      assert.ok(await page.locator('[data-choice="B"] mjx-msup').count() >= 1);
+      assert.equal(await page.locator('[data-choice="C"] mjx-mtr').count(), 2);
+      assert.ok(await page.locator('[data-choice="D"] mjx-math[breakable] mjx-break').count() >= 1);
+      assert.equal(await page.locator('.satact-choice-body mjx-merror').count(), 0);
+      const mathSizes = await page.locator('.satact-choice-body mjx-container').evaluateAll(els => els.map(el => {
+        const style = getComputedStyle(el);
+        return parseFloat(style.fontSize) * Number(style.zoom);
+      }));
+      assert.ok(Math.min(...mathSizes) >= 14, 'oversized math stays at a readable size');
+      await answer(page, 'C');
+      await assertChoiceLayout(page, 'generated choices with incorrect feedback at 320px');
+      await answer(page, 'B');
+      await assertChoiceLayout(page, 'generated choices with correct feedback at 320px');
+      await page.setViewportSize({ width: 1280, height: 900 });
+      await page.locator('[data-choice="B"][data-satact-stacked]').waitFor({ state: 'detached' });
+      await assertChoiceLayout(page, 'generated choices after resizing back to desktop');
+      assert.equal(await page.locator('.satact-choice-body mjx-container').evaluateAll(els => els.some(el => el.style.zoom)), false, 'math returns to its natural size');
+    } finally {
+      await context.close();
+    }
+  });
 });
+
+await scenario('typed answers (future format): equivalent forms, first-attempt scoring — QA-only synthetic record', async () => {
+  const record = {
+    sourceId: 'qa-typed-s0001', format: 'student_produced_response',
+    question: { stem: ['QA-only synthetic typed-answer item.'], prompt: 'Enter three fourths.' },
+    choices: [], answer: { display: '$\\dfrac{3}{4}$', accepted: ['3/4'] }
+  };
+  await withQaProblem(record, { slug: '999-qa-typed-answer', title: 'QA Typed Answer' }, async (localOrigin, url) => {
+    for (const [attempts, expectFirst] of [[['0.7', '6/8'], 'incorrect'], [['.75'], 'correct']]) {
+      const { context, page } = await newContext(browser, localOrigin);
+      await page.goto(url);
+      await ready(page);
+      for (const value of attempts) {
+        await page.fill('#satact-answer-input', value);
+        await page.locator('#satact-check').click();
+        await page.waitForFunction(() => document.getElementById('satact-feedback').textContent.trim().length > 0);
+      }
+      assert.match(await page.locator('#satact-feedback').innerText(), /Correct!/);
+      assert.equal(await page.locator('#satact-answer-input').isDisabled(), true);
+      const ev = await events(page);
+      assert.equal(named(ev, 'answer_checked')[0].params.answer_result, expectFirst);
+      assert.equal(named(ev, 'answer_correct').length, expectFirst === 'correct' ? 1 : 0);
+      assert.ok(!JSON.stringify(ev).includes('6/8') && !JSON.stringify(ev).includes('0.7'), 'typed answers must not be sent');
+      await context.close();
+    }
+  });
+});
+
+if (process.argv.includes('--real-sheet')) {
+  await scenario('real cross-origin fetch of the published BatchMath archive CSV', async () => {
+    const archive = fs.readFileSync(path.join(ROOT, 'archive/archive.js'), 'utf8');
+    const url = archive.match(/const SHEET_URL = '([^']+)'/)?.[1];
+    assert.ok(url, 'published archive CSV URL is unavailable');
+    const { context, page } = await newContext(browser, origin);
+    try {
+      await page.goto(`${origin}/sat-act-math/`);
+      const result = await page.evaluate(async sheet => {
+        const response = await fetch(sheet, {
+          mode: 'cors', credentials: 'omit', cache: 'no-store', redirect: 'follow',
+          signal: AbortSignal.timeout(10000), headers: { Accept: 'text/csv,text/plain;q=0.9' }
+        });
+        return { status: response.status, type: response.type, contentType: response.headers.get('content-type'), body: await response.text() };
+      }, url);
+      assert.equal(result.status, 200);
+      assert.equal(result.type, 'cors');
+      assert.match(result.contentType, /text\/csv/i);
+      assert.match(result.body.split(/\r?\n/)[0], /problem/i);
+    } finally {
+      await context.close();
+    }
+  });
+}
 
 if (process.argv.includes('--real-youtube')) {
   await scenario('real YouTube IFrame API smoke test (published BatchMath video, QA only)', async () => {
@@ -751,6 +1164,7 @@ if (process.argv.includes('--real-youtube')) {
     await page.goto(`${origin}${first.url}`);
     await ready(page);
     await answer(page, wrongLetter(await problemData(page)));
+    await page.getByRole('button', { name: 'Watch Video Explanation', exact: true }).click();
     await page.waitForSelector('.satact-video-frame iframe', { state: 'attached', timeout: 20000 });
     const box = await page.locator('.satact-video-frame iframe').boundingBox();
     assert.ok(box && box.width >= 240 && Math.abs(box.width / box.height - 9 / 16) < 0.02, `real player is laid out 9:16, got ${box && box.width}x${box && box.height}`);

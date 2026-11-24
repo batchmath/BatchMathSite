@@ -36,8 +36,8 @@ Question events also carry: `problem_id` (stable source ID, e.g. `radical_equati
 | Correct on first attempt | `answer_correct` | With `answer_checked`, only when that first answer is correct | same as above |
 | Later attempts | `answer_retry` | Each later answer to the same question | `answer_result`, `attempt_number` |
 | Distinct problem completed | `problem_completed` | Once per question per session, when the student has the answer in hand: correct answer, written solution opened, or explanation video finished | `completion_method` (`correct_answer`, `written_solution`, `video_ended`), `first_attempt_result` (`correct`, `incorrect`, `not_answered`) |
-| Written solution revealed | `solution_revealed` (existing name) | Once per question per session | `reveal_trigger` (`button`, `summary_toggle`, `incorrect_no_video`, `video_panel_button`, `video_ended`, `video_unavailable`), `first_attempt_result` |
-| YouTube explanation started | `explanation_video_start` | First time the player reports PLAYING for that question | `video_trigger` (`after_incorrect`, `after_correct`, `requested`), `start_seconds` |
+| Written solution revealed | `solution_revealed` (existing name) | Once per question per session, when the student opens it | `reveal_trigger` (`button`, `summary_toggle`, `video_panel_button`), `first_attempt_result` |
+| YouTube explanation started | `explanation_video_start` | First time the player reports PLAYING for that question | `video_trigger` (`after_incorrect`, `after_correct`), `start_seconds` |
 | YouTube explanation completed | `explanation_video_complete` | Player reports ENDED | `video_trigger` |
 | Video problem (monitoring) | `explanation_video_error` | Player error, blocked/slow API, or a player that never becomes ready | `error_type` (`player_error_<code>`, `api_blocked`, `api_timeout`, `player_timeout`) |
 | Practice session completed | `practice_completed` | Once per session: the student finishes the set or presses End Session | `end_reason` (`finished`, `ended_early`), `problems_answered`, `problems_correct`, `problems_completed`, `problems_presented`, `session_size` |

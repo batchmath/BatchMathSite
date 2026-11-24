@@ -85,6 +85,8 @@ ${math ? MATHJAX + '\n' : ''}<script src="/assets/batchmath-storage.js" defer></
 <script src="/assets/answer-normalization.js"></script>
 <script src="/assets/pwa.js" defer></script>
 <script src="/assets/sat-act/catalog.js" defer></script>
+<script src="/assets/sat-act/video-feed-config.js" defer></script>
+<script src="/assets/sat-act/video-index.js" defer></script>
 <script src="/assets/sat-act/sat-act-practice.js" defer></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-377MTFXSF3"></script>
@@ -144,7 +146,7 @@ function problemItem(p) {
   return `<li class="satact-problem-item" data-problem-id="${esc(p.id)}" data-subject="${esc(p.subject.slug)}" data-skill="${esc(p.skill.id)}" data-exams="${esc(p.exams.join(' '))}" data-difficulty="${esc(p.difficulty.value)}">
 <span class="satact-number" aria-hidden="true">#${p.displayNumber}</span>
 <span class="satact-problem-item-body"><a class="satact-problem-link" href="${p.url}"><span class="sr-only">Question ${p.displayNumber}: </span>${esc(p.title)}</a>
-<span class="satact-meta"><span>${esc(p.subject.label)} › ${esc(p.skill.label)}</span><span>${esc(p.difficulty.label)}</span><span>${p.hasVideo ? 'Video explanation' : 'Written solution'}</span></span></span>
+<span class="satact-meta"><span>${esc(p.subject.label)} › ${esc(p.skill.label)}</span><span>${esc(p.difficulty.label)}</span><span data-satact-video-label="${esc(p.id)}">${p.hasVideo ? 'Video explanation' : 'Written solution'}</span></span></span>
 </li>`;
 }
 
@@ -326,15 +328,15 @@ ${choices}
 </fieldset>`}
 <div class="satact-actions" id="satact-actions">
 <button type="submit" class="satact-btn satact-btn-primary" id="satact-check">Check Answer</button>
-<button type="button" class="satact-btn" id="satact-watch" hidden>Watch Video Explanation</button>
-<button type="button" class="satact-btn" id="satact-show-solution" hidden>View Written Solution</button>
+<button type="button" class="satact-btn" id="satact-watch" aria-controls="satact-video" hidden>Watch Video Explanation</button>
+<button type="button" class="satact-btn" id="satact-show-solution" aria-controls="satact-solution" hidden>Show Written Solution</button>
 <a class="satact-btn satact-btn-next" id="satact-next" href="${next ? next.url : `${SECTION}problems/`}">Next Problem</a>
 </div>
 </form>
 <div id="satact-feedback" class="satact-feedback" tabindex="-1" role="status" aria-live="polite"></div>
 <noscript><p class="satact-noscript">Turn on JavaScript to check your answer. The written solution below shows the answer and every step.</p></noscript>
 </section>
-<section id="satact-video" class="satact-video" aria-labelledby="satact-video-title" hidden>
+<section id="satact-video" class="satact-video" aria-labelledby="satact-video-title" tabindex="-1" hidden>
 <h2 id="satact-video-title">Video Explanation</h2>
 <div class="satact-video-body" id="satact-video-body"></div>
 </section>

@@ -87,6 +87,12 @@ try {
 const pages = [SECTION, `${SECTION}problems/`, ...lib.subjects.map(s => s.url), ...lib.problems.map(p => p.url)];
 const titles = new Set();
 const sitemap = read('sitemap.xml');
+const feedConfig = { window: {}, URL, location: new URL('https://batchmath.net/') };
+vm.createContext(feedConfig);
+for (const script of ['video-feed-config.js', 'video-index.js']) {
+  vm.runInContext(read(`assets/sat-act/${script}`), feedConfig, { filename: script });
+}
+check(feedConfig.window.BMSatActVideoIndex?.valid, 'video feed configuration must be blank or a published Google Sheets CSV URL');
 for (const url of pages) {
   const file = pageFile(url);
   if (!fs.existsSync(file)) { fail(`${url}: page missing`); continue; }
@@ -100,7 +106,10 @@ for (const url of pages) {
   check(ld && /"BreadcrumbList"/.test(ld) && !/"(?:Course|PracticeProblem|VideoObject|Quiz)"/.test(ld), `${url}: structured data missing or unsupported type`);
   check(sitemap.includes(`<loc>https://batchmath.net${url}</loc>`), `${url}: not in sitemap.xml`);
   check(html.includes('G-377MTFXSF3'), `${url}: GA4 tag missing`);
-  check(html.includes('/assets/sat-act/sat-act-practice.js'), `${url}: runtime missing`);
+  const videoScripts = ['catalog.js', 'video-feed-config.js', 'video-index.js', 'sat-act-practice.js']
+    .map(script => html.indexOf(`/assets/sat-act/${script}`));
+  check(videoScripts.every((position, i) => position >= 0 && (!i || position > videoScripts[i - 1])),
+    `${url}: practice and video scripts are missing or out of order`);
   check(!html.includes('problem-tracking.js') && !html.includes('BM_ANALYTICS_CONFIG'),
     `${url}: must not declare a generator-engine analytics config (the runtime loads the shared tracker)`);
   check((html.match(/<h1\b/g) || []).length === 1, `${url}: expected one H1`);
