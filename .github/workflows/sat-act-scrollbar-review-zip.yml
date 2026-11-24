@@ -1,0 +1,63 @@
+name: SAT ACT scrollbar fix website review ZIPs
+on:
+  push:
+    branches:
+      - packaging/sat-act-scrollbar-review-20261123
+    paths:
+      - .github/workflows/sat-act-scrollbar-review-zip.yml
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 16843082cc3f593dd29a2eb96d28bad0fe4926ab
+          persist-credentials: false
+      - name: Create latest review ZIPs from fixed commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "16843082cc3f593dd29a2eb96d28bad0fe4926ab"
+          test -f assets/sat-act/sat-act.css
+          test -f assets/sat-act/video-feed-config.js
+          test -f assets/sat-act/sat-act-practice.js
+          grep -q 'satact-choice-body{min-width:0;overflow-wrap:anywhere' assets/sat-act/sat-act.css
+          grep -q '2PACX-1vRP9eQtW-' assets/sat-act/video-feed-config.js
+          git archive --format=zip --prefix=BatchMath/ -o /tmp/batchmath-full-site-scrollbar-fix.zip HEAD
+          python3 - <<'PY'
+          import zipfile
+          src='/tmp/batchmath-full-site-scrollbar-fix.zip'
+          dst='batchmath-sat-act-scrollbar-fix-preview.zip'
+          with zipfile.ZipFile(src) as z, zipfile.ZipFile(dst,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as out:
+              names=z.namelist()
+              assert z.testzip() is None
+              assert any(n.endswith('assets/sat-act/sat-act.css') for n in names)
+              assert any(n.endswith('assets/sat-act/video-feed-config.js') for n in names)
+              assert any(n.endswith('sat-act-math/index.html') for n in names)
+              pdfs=[n for n in names if n.lower().endswith('.pdf')]
+              assert len(pdfs)>20, f'Expected classroom PDF files, found {len(pdfs)}'
+              for n in names:
+                  if not n.lower().endswith('.pdf'):
+                      out.writestr(z.getinfo(n),z.read(n))
+              out.writestr('BatchMath/REVIEW-README.txt', 'BatchMath SAT/ACT development branch review ZIP\nFixed source commit: 16843082cc3f593dd29a2eb96d28bad0fe4926ab\nLive Google Sheets CSV configured. Not yet deployed.\nOn Windows, extract the ZIP, open a terminal in the BatchMath folder, run py -m http.server 8000, then open http://localhost:8000/sat-act-math/\nThis preview omits classroom PDFs; use the full-site ZIP for those files.\n')
+          with zipfile.ZipFile(dst) as z:
+              assert z.testzip() is None
+              assert not any(n.lower().endswith('.pdf') for n in z.namelist())
+              print(f'Preview files: {len(z.namelist())}; omitted PDF files: {len(pdfs)}')
+          PY
+          cp /tmp/batchmath-full-site-scrollbar-fix.zip batchmath-full-site-scrollbar-fix.zip
+          ls -lh *.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: batchmath-sat-act-scrollbar-fixed-preview
+          path: batchmath-sat-act-scrollbar-fix-preview.zip
+          if-no-files-found: error
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        with:
+          name: batchmath-sat-act-scrollbar-fixed-full-site
+          path: batchmath-full-site-scrollbar-fix.zip
+          if-no-files-found: error
+          retention-days: 14
