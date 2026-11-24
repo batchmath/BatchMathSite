@@ -35,6 +35,10 @@ jobs:
         if: ${{ hashFiles('tools/sat-act/config/initial-website-release.json') != '' && (github.base_ref == 'main' || github.ref == 'refs/heads/main') }}
         run: npm run qa:sat-act-release
 
+      - name: Approved SAT and ACT import regressions
+        if: ${{ hashFiles('tools/sat-act/approved-batch.test.mjs') != '' }}
+        run: node --test tools/sat-act/approved-batch.test.mjs
+
       - name: Sitewide display-safety QA
         run: npm run qa:display
 

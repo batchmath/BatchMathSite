@@ -6,7 +6,7 @@ import { RECORD_SCHEMA, CONTENT_STATUSES, YOUTUBE_ID } from './source-records.mj
 import { initialWebsiteRelease } from './initial-website-release.mjs';
 
 export const SECTION = '/sat-act-math/';
-export const SLUG_RE = /^(\d{3})-[a-z0-9]+(?:-[a-z0-9]+)*$/;
+export const SLUG_RE = /^(\d{3,})-[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export function displayNumber(n) {
   return String(n).padStart(3, '0');
@@ -29,11 +29,11 @@ export function loadLibrary(toolDir, { recordsDir, registryPath } = {}) {
 
   const numbers = new Set(), slugs = new Set(), ids = new Set();
   for (const p of registry.problems) {
-    if (!Number.isInteger(p.number) || p.number < 1 || p.number > 999) throw new Error(`registry: invalid number ${p.number}`);
+    if (!Number.isSafeInteger(p.number) || p.number < 1) throw new Error(`registry: invalid number ${p.number}`);
     if (numbers.has(p.number)) throw new Error(`registry: number ${p.number} is used twice`);
     if (ids.has(p.sourceId)) throw new Error(`registry: ${p.sourceId} is registered twice`);
     const m = String(p.slug).match(SLUG_RE);
-    if (!m || Number(m[1]) !== p.number) throw new Error(`registry: slug ${p.slug} must start with ${displayNumber(p.number)}-`);
+    if (!m || m[1] !== displayNumber(p.number)) throw new Error(`registry: slug ${p.slug} must start with ${displayNumber(p.number)}-`);
     if (slugs.has(p.slug)) throw new Error(`registry: slug ${p.slug} is used twice`);
     if (!p.title || !String(p.title).trim()) throw new Error(`registry: ${p.sourceId} has no title`);
     if (!['active', 'retired'].includes(p.status)) throw new Error(`registry: ${p.sourceId} has unknown status ${p.status}`);

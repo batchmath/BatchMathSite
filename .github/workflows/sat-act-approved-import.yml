@@ -1,0 +1,172 @@
+name: Prepare approved SAT and ACT questions
+
+on:
+  workflow_dispatch:
+    inputs:
+      shorts_approval_sha:
+        description: Full commit SHA for the private Shorts approval snapshot
+        required: true
+        type: string
+      dry_run:
+        description: Verify and generate review files only
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sat-act-approved-import
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      base: ${{ steps.stage.outputs.base }}
+      changes: ${{ steps.stage.outputs.changes }}
+    steps:
+      - name: Check the commit pin
+        env:
+          APPROVAL_SHA: ${{ inputs.shorts_approval_sha }}
+        run: '[[ "$APPROVAL_SHA" =~ ^[0-9a-f]{40}$ ]]'
+
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Read the trusted private Shorts snapshot
+        uses: actions/checkout@v4
+        with:
+          repository: batchmath/Shorts
+          ref: ${{ inputs.shorts_approval_sha }}
+          token: ${{ secrets.SAT_ACT_SHORTS_READ_TOKEN }}
+          path: .shorts-source
+          fetch-depth: 2
+          persist-credentials: false
+
+      - name: Read the pinned review runtime
+        id: runtime
+        working-directory: .shorts-source
+        run: |
+          versions=$(python3 -m shorts.website_export runtime)
+          for name in python sympy mpmath lark; do
+            version=$(jq -er --arg name "$name" '.[$name]' <<< "$versions")
+            [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+            printf '%s=%s\n' "$name" "$version" >> "$GITHUB_OUTPUT"
+          done
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ steps.runtime.outputs.python }}
+
+      - name: Recheck approvals and verified mathematical records
+        working-directory: .shorts-source
+        env:
+          SYMPY_VERSION: ${{ steps.runtime.outputs.sympy }}
+          MPMATH_VERSION: ${{ steps.runtime.outputs.mpmath }}
+          LARK_VERSION: ${{ steps.runtime.outputs.lark }}
+        run: |
+          python -m pip install "sympy==$SYMPY_VERSION" "mpmath==$MPMATH_VERSION" "lark==$LARK_VERSION"
+          python -m shorts.website_export export --output "$RUNNER_TEMP/approved-export.json"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install browser test dependencies
+        run: |
+          npm install --no-package-lock --ignore-scripts --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: Stage and validate the expanded website
+        id: stage
+        run: |
+          out="$RUNNER_TEMP/sat-act-review"
+          node tools/sat-act/stage-approved-batch.mjs --export "$RUNNER_TEMP/approved-export.json" --out "$out" --browser
+          printf 'base=%s\n' "$(jq -er '.base' "$out/summary.json")" >> "$GITHUB_OUTPUT"
+          if test -s "$out/website.patch"; then
+            echo changes=true >> "$GITHUB_OUTPUT"
+            cat "$out/review.md" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo changes=false >> "$GITHUB_OUTPUT"
+            echo 'All approved source IDs already have permanent registry entries.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sat-act-import-review
+          path: ${{ runner.temp }}/sat-act-review/
+          if-no-files-found: error
+
+  open-review-pr:
+    needs: prepare
+    if: needs.prepare.outputs.changes == 'true' && !inputs.dry_run
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.base }}
+          persist-credentials: false
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: sat-act-import-review
+          path: ${{ runner.temp }}/sat-act-review
+
+      - name: Push the validated candidate and open a draft PR
+        env:
+          GH_TOKEN: ${{ secrets.SAT_ACT_SITE_PR_TOKEN }}
+          BASE: ${{ needs.prepare.outputs.base }}
+          APPROVAL_SHA: ${{ inputs.shorts_approval_sha }}
+        run: |
+          root="$RUNNER_TEMP/sat-act-review"
+          [[ "$BASE" =~ ^[0-9a-f]{40}$ && "$APPROVAL_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$(git rev-parse HEAD)" = "$BASE"
+          check_base() {
+            test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)" = "$BASE" || {
+              echo 'main advanced during QA. Rerun this import against the new base.' >&2
+              return 1
+            }
+          }
+          check_base
+          branch="automation/sat-act-import-${APPROVAL_SHA:0:12}-${BASE:0:12}"
+          pending=$(gh pr list --base main --state open --limit 250 --json headRefName,url \
+            --jq ".[] | select((.headRefName | startswith(\"automation/sat-act-import-\")) and .headRefName != \"$branch\") | .url")
+          if test -n "$pending"; then
+            echo 'An earlier import is awaiting review. Resolve it before assigning more permanent numbers.' >&2
+            echo "$pending" >&2
+            exit 1
+          fi
+          git apply --index "$root/website.patch"
+          git diff --cached --check
+          test -z "$(git diff --cached --diff-filter=D --name-only)"
+          while IFS= read -r -d '' file; do
+            case "$file" in
+              assets/sat-act/catalog.js|sat-act-math/*/index.html|sat-act-math/index.html|sitemap.xml|tools/sat-act/config/registry.json|tools/sat-act/records/*.json) ;;
+              *) echo "Unexpected import output: $file" >&2; exit 1 ;;
+            esac
+          done < <(git diff --cached --name-only -z)
+          gh auth setup-git
+          remote_head=$(git ls-remote --heads origin "refs/heads/$branch")
+          if test -n "$remote_head"; then
+            git fetch --depth=1 origin "refs/heads/$branch"
+            test "$(git rev-parse 'FETCH_HEAD^{tree}')" = "$(git write-tree)" || {
+              echo 'Existing import branch differs from the vetted result. Review the branch before retrying.' >&2
+              exit 1
+            }
+          else
+            git -c user.name='BatchMath import' -c user.email='batchmath-import@users.noreply.github.com' \
+              commit -m 'Import approved SAT and ACT questions'
+            git push origin "HEAD:refs/heads/$branch"
+          fi
+          check_base
+          url=$(gh pr list --base main --head "$branch" --state open --json url --jq '.[0].url // ""')
+          if test -z "$url"; then
+            printf '\n[QA and video-row artifacts](%s/%s/actions/runs/%s)\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" >> "$root/review.md"
+            url=$(gh pr create --base main --head "$branch" --draft --title 'Import approved SAT and ACT questions' --body-file "$root/review.md")
+          fi
+          printf 'Draft import PR %s\n' "$url" >> "$GITHUB_STEP_SUMMARY"
