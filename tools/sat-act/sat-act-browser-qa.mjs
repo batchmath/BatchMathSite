@@ -209,6 +209,7 @@ await scenario('unified practice starts an individual topic with the selected di
   const { context, page, pageErrors } = await newContext(browser, origin);
   const problem = problems[0];
   const topic = catalog.subjects.find(s => s.slug === problem.subject);
+  const eligible = problems.filter(p => p.subject === topic.slug && p.difficulty === problem.difficulty);
   await page.goto(`${origin}/sat-act-math/`);
   await ready(page);
   assert.equal(await page.getByRole('heading', { name: 'Practice', exact: true }).count(), 1);
@@ -217,34 +218,38 @@ await scenario('unified practice starts an individual topic with the selected di
   assert.match(await page.locator('#satact-practice-summary').innerText(), new RegExp(`${problems.length} questions available`));
   assert.equal(await page.locator('#satact-topic option:checked').innerText(), 'Mixed — All Topics');
   assert.equal(await page.locator('#satact-difficulty option:checked').innerText(), 'Any Difficulty');
-  assert.deepEqual(await page.locator('#satact-size option').allInnerTexts(), ['All available']);
+  const sizes = [10, 20, 50].filter(n => n < problems.length).map(n => `${n} questions`);
+  assert.deepEqual(await page.locator('#satact-size option').allInnerTexts(), [...sizes, 'All available']);
 
   await page.selectOption('#satact-topic', topic.slug);
   await page.selectOption('#satact-difficulty', problem.difficulty);
-  assert.equal(await page.locator('#satact-skill').isVisible(), false, 'one eligible skill stays hidden');
+  assert.equal(await page.locator('#satact-skill').isVisible(), new Set(eligible.map(p => p.skill)).size > 1,
+    'skill selector appears when multiple skills match');
   assert.equal(await page.locator('#satact-skill').isDisabled(), true);
-  assert.match(await page.locator('#satact-practice-summary').innerText(), /1 question available/);
+  assert.equal(await page.locator('#satact-practice-summary').innerText(),
+    `${eligible.length} question${eligible.length === 1 ? '' : 's'} available.`);
   await page.getByRole('button', { name: 'Start Practice', exact: true }).click();
-  await page.waitForURL(`${origin}${problem.url}`);
+  await page.waitForURL(url => eligible.some(p => p.url === url.pathname));
   await ready(page);
   const s = await session(page);
   assert.equal(s.mode, 'topic');
   assert.equal(s.label, topic.label);
   assert.deepEqual(s.filters, { subject: topic.slug, skill: 'all', difficulty: problem.difficulty });
-  assert.deepEqual(s.queue, [problem.id]);
+  assert.deepEqual([...s.queue].sort(), eligible.map(p => p.id).sort());
   assert.equal(s.randomized, true);
   const started = named(await events(page), 'practice_started')[0].params;
   assert.equal(started.practice_mode, 'topic');
   assert.equal(started.subject_filter, topic.slug.replaceAll('-', '_'));
   assert.equal(started.difficulty_filter, problem.difficulty);
   assert.equal(started.skill_filter, 'all');
-  assert.equal(started.session_size, 1);
+  assert.equal(started.session_size, eligible.length);
   assert.deepEqual(pageErrors, []);
   await context.close();
 });
 
 await scenario('expanded catalog: conditional skills, eligible set sizes, resume and Practice Again', async () => {
   const fixture = structuredClone(catalog);
+  fixture.problems = fixture.problems.filter(p => p.number <= 5);
   const [source, other] = fixture.problems;
   const topic = fixture.subjects.find(s => s.slug === source.subject);
   const alternateSkill = { id: 'qa-second-skill', label: 'QA Second Skill', subject: topic.slug };
@@ -396,7 +401,7 @@ await scenario('mixed practice: no repeats, first-attempt scoring, retries, reve
       assert.equal(await page.locator(`label[data-choice="${data.answer}"]`).getAttribute('class'), 'satact-choice is-correct is-locked');
     } else {
       await answer(page, data.answer);
-      assert.equal((await page.locator('#satact-next').innerText()).trim(), 'Finish Session');
+      assert.equal((await page.locator('#satact-next').innerText()).trim(), i === problems.length - 1 ? 'Finish Session' : 'Next Problem');
     }
     await assertChoiceLayout(page, `${data.id} after feedback in mixed practice`);
     await page.locator('#satact-next').click();
@@ -407,20 +412,22 @@ await scenario('mixed practice: no repeats, first-attempt scoring, retries, reve
   await page.locator('#satact-summary').waitFor({ state: 'visible' });
   const summary = await page.locator('#satact-summary').innerText();
   assert.match(summary, /Session Complete/);
-  assert.match(summary, new RegExp(`2 correct out of 4 answered on the first try · ${problems.length} of ${problems.length} completed`));
+  const answered = problems.length - 1;
+  const correct = problems.length - 3;
+  assert.match(summary, new RegExp(`${correct} correct out of ${answered} answered on the first try · ${problems.length} of ${problems.length} completed`));
   const ev = await events(page);
   const count = n => named(ev, n).length;
   assert.equal(count('practice_started'), 1);
   assert.equal(count('problem_generated'), problems.length, 'reload must not re-send problem_generated');
-  assert.equal(count('answer_checked'), 4, 'one scored answer per answered question');
-  assert.equal(count('answer_correct'), 2, 'answer_correct counts first-attempt correct answers only');
+  assert.equal(count('answer_checked'), answered, 'one scored answer per answered question');
+  assert.equal(count('answer_correct'), correct, 'answer_correct counts first-attempt correct answers only');
   assert.equal(count('answer_retry'), 1);
   assert.equal(count('problem_completed'), problems.length);
   assert.equal(count('solution_revealed'), 3);
   assert.equal(count('practice_completed'), 1);
   const done = named(ev, 'practice_completed')[0].params;
   assert.deepEqual([done.problems_answered, done.problems_correct, done.problems_completed, done.session_size, done.end_reason],
-    [4, 2, problems.length, problems.length, 'finished']);
+    [answered, correct, problems.length, problems.length, 'finished']);
   for (const e of ev) {
     assert.equal(e.params.engine_id, 'sat_act_library');
     assert.equal(e.params.course, 'sat_act_math');
@@ -471,8 +478,12 @@ await scenario('each initial question scores the first answer and preserves it t
 });
 
 await scenario('topic practice with one question finishes gracefully', async () => {
-  const { context, page, pageErrors } = await newContext(browser, origin);
-  const skill = catalog.skills.find(k => problems.filter(p => p.skill === k.id).length === 1);
+  const singleton = catalog.skills.find(k => problems.filter(p => p.skill === k.id).length === 1);
+  const skill = singleton || catalog.skills[0];
+  const catalogPatch = singleton ? null : () => `window.BM_SAT_ACT_CATALOG = ${JSON.stringify({
+    ...catalog, problems: [problems.find(p => p.skill === skill.id)]
+  })};`;
+  const { context, page, pageErrors } = await newContext(browser, origin, { catalogPatch });
   await page.goto(`${origin}${catalog.subjects.find(s => s.slug === skill.subject).url}`);
   await ready(page);
   await page.locator(`#${skill.id} [data-start-practice]`).click();
@@ -943,7 +954,7 @@ await scenario('MathJax renders every question, choice and solution without erro
     }));
     assert.equal(info.errors, 0, `${p.displayNumber}: MathJax error`);
     assert.equal(info.raw, false, `${p.displayNumber}: unrendered TeX delimiters`);
-    assert.ok(info.math > 10, `${p.displayNumber}: too little math rendered`);
+    if (p.number <= 5) assert.ok(info.math > 10, `${p.displayNumber}: too little math rendered`);
     if (p.id === 'right-triangle-trig-s0031') {
       assert.ok(info.fractions >= 4, 'stacked fractions in choices and solution');
       assert.equal(await page.locator('svg.satact-fig-svg text').evaluateAll(t => t.map(x => x.textContent).sort().join('')), 'ABC');

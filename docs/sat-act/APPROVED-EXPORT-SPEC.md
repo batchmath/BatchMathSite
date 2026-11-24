@@ -1,8 +1,9 @@
 # Approved content export — format accepted by the website
 
-`tools/sat-act/import-approved-export.mjs` accepts only this format. Shorts does not produce it yet; this is the
-contract for a future Shorts exporter that runs **after** its release gate reports eligibility. JSON text fields carry
-the exact file bytes, so hashes and the Shorts canonical scene digest can be recomputed.
+`tools/sat-act/import-approved-export.mjs` accepts this format. The private Shorts exporter rechecks the committed
+owner decisions before producing it. The [automated import workflow](APPROVED-IMPORT-WORKFLOW.md) validates and
+stages new records through that importer. JSON text fields carry the pinned file bytes so both systems can check
+content identity.
 
 ```json
 {
@@ -59,7 +60,11 @@ the exact file bytes, so hashes and the Shorts canonical scene digest can be rec
 Any failure stops the import with `IMPORT REFUSED: <reason>` and writes nothing. `npm run qa:sat-act` exercises these
 rules with 13 synthetic accept/refuse cases.
 
-## youtube-publications.json
+## Legacy static publications
+
+The automated batch workflow leaves static publication records alone. The owner links published YouTube videos
+through the existing worksheet. The legacy importer accepts `youtube-publications.json` when explicitly used
+for a hash-backed static association.
 
 ```json
 {
