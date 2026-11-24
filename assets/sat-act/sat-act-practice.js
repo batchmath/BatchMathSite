@@ -273,6 +273,57 @@
   }
 
   // ------------------------------------------------------------------ question page
+  function watchChoiceLayout(fieldset, labels) {
+    if (!fieldset) return () => {};
+    const rows = labels.map(label => ({
+      label,
+      body: label.querySelector('.satact-choice-body'),
+      status: label.querySelector('.satact-choice-status')
+    }));
+    let frame;
+    function layout() {
+      // Measure at natural size again so widening the viewport restores the original layout.
+      for (const { label, body } of rows) {
+        label.removeAttribute('data-satact-stacked');
+        for (const math of body.querySelectorAll('mjx-container')) math.style.removeProperty('zoom');
+      }
+      // The last grid track reaches past the inner edge only when the content cannot fit.
+      const stacked = rows.filter(({ label, status }) => {
+        const style = getComputedStyle(label);
+        const right = label.getBoundingClientRect().right - parseFloat(style.borderRightWidth) - parseFloat(style.paddingRight);
+        return status.getBoundingClientRect().right > right + 1;
+      });
+      for (const { label } of stacked) label.setAttribute('data-satact-stacked', '');
+      const readableSize = parseFloat(getComputedStyle(document.documentElement).fontSize) * .875;
+      for (const { body } of stacked) {
+        const width = body.clientWidth;
+        for (const math of body.querySelectorAll('mjx-container > mjx-math')) {
+          const naturalWidth = math.getBoundingClientRect().width;
+          if (naturalWidth <= width) continue;
+          // Scale only math that still exceeds the full row. Keep it at a readable size.
+          const container = math.parentElement;
+          const minZoom = Math.min(1, readableSize / parseFloat(getComputedStyle(container).fontSize));
+          container.style.zoom = Math.max(minZoom, (width - 1) / naturalWidth);
+        }
+      }
+    }
+    const schedule = () => {
+      frame ??= requestAnimationFrame(() => {
+        frame = undefined;
+        layout();
+      });
+    };
+    window.addEventListener('resize', layout);
+    let width;
+    new ResizeObserver(([entry]) => {
+      if (width === entry.contentRect.width) return;
+      width = entry.contentRect.width;
+      schedule();
+    }).observe(fieldset);
+    window.MathJax?.startup?.promise?.then(() => document.fonts.ready).then(schedule, () => {});
+    return schedule;
+  }
+
   function initProblem() {
     const dataEl = document.getElementById('satact-problem-data');
     if (!dataEl) return;
@@ -291,6 +342,7 @@
     const bar = $('satact-session-bar');
     const summary = $('satact-summary');
     const choiceLabels = [...document.querySelectorAll('.satact-choice')];
+    const updateChoiceLayout = watchChoiceLayout(form.querySelector('.satact-choices'), choiceLabels);
     const typedInput = $('satact-answer-input');
     let video = videoIndex?.configured ? null : data.video;
     let s, r;
@@ -353,6 +405,7 @@
         const sr = label.querySelector('.sr-only');
         if (sr) sr.textContent = `Choice ${letter}${label.classList.contains('is-correct') ? ' (correct answer)' : label.classList.contains('is-wrong') ? ' (not correct)' : ''}: `;
       });
+      updateChoiceLayout();
       if (typedInput) typedInput.disabled = locked;
     }
     function nextLabel() { return s.mode !== 'browse' && nextIndex(s) < 0 ? 'Finish Session' : 'Next Problem'; }

@@ -45,6 +45,11 @@ function serve(root) {
     if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
     if (!fs.existsSync(file)) { res.writeHead(404); res.end('not found'); return; }
     res.writeHead(200, { 'content-type': TYPES[path.extname(file)] || 'application/octet-stream', 'cache-control': 'no-store' });
+    // Default to the static-video fixture paths. Sheet scenarios override this route with their own CSV.
+    if (p === '/assets/sat-act/video-feed-config.js') {
+      res.end("window.BM_SAT_ACT_VIDEO_FEED_URL = '';\n");
+      return;
+    }
     fs.createReadStream(file).pipe(res);
   });
   return new Promise(resolve => server.listen(0, '127.0.0.1', () => resolve({ server, origin: `http://127.0.0.1:${server.address().port}` })));
@@ -131,6 +136,48 @@ async function answer(page, letter) {
   await page.waitForFunction(() => document.getElementById('satact-feedback').textContent.trim().length > 0);
 }
 const wrongLetter = data => ['A', 'B', 'C', 'D'].find(l => l !== data.answer);
+
+async function assertChoiceLayout(page, label) {
+  const { pageOverflow, choices } = await page.evaluate(async () => {
+    await window.MathJax.startup.promise;
+    await document.fonts.ready;
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    return {
+      pageOverflow: document.documentElement.scrollWidth - innerWidth,
+      choices: Array.from(document.querySelectorAll('.satact-choice'), choice => {
+        const body = choice.querySelector('.satact-choice-body');
+        const bounds = body.getBoundingClientRect();
+        const status = choice.querySelector('.satact-choice-status').getBoundingClientRect();
+        const math = Array.from(body.querySelectorAll('mjx-container > mjx-math'), node => node.getBoundingClientRect());
+        return {
+          letter: choice.dataset.choice,
+          elements: [choice, body].map(node => {
+            const { overflowX, overflowY } = getComputedStyle(node);
+            return { overflowX, overflowY, x: node.scrollWidth - node.clientWidth, y: node.scrollHeight - node.clientHeight };
+          }),
+          mathFits: math.every(rect => rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1 &&
+            rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1),
+          statusFits: status.left >= bounds.right - 1 || status.bottom <= bounds.top + 1,
+          left: Math.round(choice.getBoundingClientRect().left),
+          width: choice.getBoundingClientRect().width,
+          height: choice.getBoundingClientRect().height
+        };
+      })
+    };
+  });
+  assert.ok(pageOverflow <= 1, `${label}: page overflow ${pageOverflow}px`);
+  assert.equal(choices.length, 4, `${label}: render all four choices`);
+  for (const { letter, elements, mathFits, statusFits } of choices) {
+    for (const { overflowX, overflowY, x, y } of elements) {
+      assert.equal(overflowX, 'visible', `${label} ${letter}: horizontal scrolling or clipping`);
+      assert.equal(overflowY, 'visible', `${label} ${letter}: vertical scrolling or clipping`);
+      assert.ok(x <= 1 && y <= 1, `${label} ${letter}: choice overflow (${x}px horizontal, ${y}px vertical)`);
+    }
+    assert.ok(mathFits, `${label} ${letter}: rendered MathJax stays inside its answer body`);
+    assert.ok(statusFits, `${label} ${letter}: feedback and answer have separate space`);
+  }
+  return choices;
+}
 
 async function checkExplanationChoices(page, hasVideo) {
   assert.equal(await page.getByRole('button', { name: 'Show Written Solution', exact: true }).isVisible(), true);
@@ -315,6 +362,7 @@ await scenario('mixed practice: no repeats, first-attempt scoring, retries, reve
     await ready(page);
     const data = await problemData(page);
     visited.push(data.id);
+    await assertChoiceLayout(page, `${data.id} in mixed practice`);
     const label = await page.locator('#satact-session-bar').innerText();
     assert.match(label, new RegExp(`Mixed practice · Question ${i + 1} of ${problems.length}`));
     if (i === 0) {
@@ -350,6 +398,7 @@ await scenario('mixed practice: no repeats, first-attempt scoring, retries, reve
       await answer(page, data.answer);
       assert.equal((await page.locator('#satact-next').innerText()).trim(), 'Finish Session');
     }
+    await assertChoiceLayout(page, `${data.id} after feedback in mixed practice`);
     await page.locator('#satact-next').click();
     if (i < problems.length - 1) await page.waitForURL(u => !u.pathname.endsWith(new URL(page.url()).pathname) || true);
     if (i < problems.length - 1) await page.waitForFunction(id => { const el = document.getElementById('satact-problem-data'); return el && JSON.parse(el.textContent).id !== id; }, data.id);
@@ -904,6 +953,32 @@ await scenario('MathJax renders every question, choice and solution without erro
   await context.close();
 });
 
+await scenario('numbered answer choices fit before and after feedback on narrow phones, tablets and desktop', async () => {
+  for (const width of [320, 621, 1280]) {
+    const { context, page } = await newContext(browser, origin, { viewport: { width, height: 844 } });
+    try {
+      for (const problem of problems) {
+        await page.goto(`${origin}${problem.url}`);
+        await ready(page);
+        const data = await problemData(page);
+        if (data.format !== 'multiple_choice_4') continue;
+        const label = `#${problem.displayNumber} at ${width}px`;
+        const choices = await assertChoiceLayout(page, label);
+        if (width === 320) assert.equal(new Set(choices.map(c => c.left)).size, 1, `${label}: single column`);
+        if (width === 1280 && problem.id === 'right-triangle-trig-s0031') {
+          assert.equal(new Set(choices.map(c => c.left)).size, 2, `${label}: short answers retain two columns`);
+        }
+        await answer(page, wrongLetter(data));
+        await assertChoiceLayout(page, `${label}, incorrect`);
+        await answer(page, data.answer);
+        await assertChoiceLayout(page, `${label}, correct after retry`);
+      }
+    } finally {
+      await context.close();
+    }
+  }
+});
+
 await scenario('navigation: homepage button, breadcrumbs and links back to the site', async () => {
   const { context, page } = await newContext(browser, origin);
   await page.goto(`${origin}/`);
@@ -940,8 +1015,8 @@ await scenario('navigation: homepage button, breadcrumbs and links back to the s
   await context.close();
 });
 
-await scenario('typed answers (future format): equivalent forms, first-attempt scoring — QA-only synthetic record', async () => {
-  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'bm-satact-typed-'));
+async function withQaProblem(record, { slug, title }, run) {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'bm-satact-browser-'));
   try {
     for (const rel of ['assets/site.css', 'assets/sat-act/sat-act.css', 'assets/sat-act/sat-act-practice.js', 'assets/sat-act/video-feed-config.js', 'assets/sat-act/video-index.js', 'assets/batchmath-storage.js', 'assets/answer-normalization.js', 'assets/pwa.js', 'assets/problem-tracking.js']) {
       fs.mkdirSync(path.dirname(path.join(tmp, rel)), { recursive: true });
@@ -949,46 +1024,110 @@ await scenario('typed answers (future format): equivalent forms, first-attempt s
     }
     const recDir = path.join(tmp, 'records');
     fs.mkdirSync(recDir);
-    const id = 'qa-typed-s0001';
-    fs.writeFileSync(path.join(recDir, `${id}.json`), JSON.stringify({
-      schema: 'batchmath.sat-act.problem/1', sourceId: id, contentStatus: 'development-fixture',
+    fs.writeFileSync(path.join(recDir, `${record.sourceId}.json`), JSON.stringify({
+      schema: 'batchmath.sat-act.problem/1', contentStatus: 'development-fixture',
       approval: { text: null, video: null, releaseEligible: false, note: 'QA-only synthetic record; never published.' },
       provenance: { commit: '0'.repeat(40), verification: { passed: true, checks: 0, failed: 0 } },
-      series: 'QA', topicLabel: 'QA', classification: { topic: 'Coordinate geometry', skills: ['circle-equations'], exams: ['SAT'], format: 'student_produced_response' },
-      skillNames: { 'circle-equations': 'QA skill' }, difficulty: 'medium', format: 'student_produced_response', template: {}, concept: null,
-      question: { stem: ['QA-only synthetic typed-answer item.'], prompt: 'Enter three fourths.' }, figure: null, rightAngle: null,
-      choices: [], answer: { display: '$\\dfrac{3}{4}$', accepted: ['3/4'] },
+      series: 'QA', topicLabel: 'QA',
+      classification: { topic: 'Coordinate geometry', skills: ['circle-equations'], exams: ['SAT'], format: record.format },
+      skillNames: { 'circle-equations': 'QA skill' }, difficulty: 'medium', template: {}, concept: null,
+      figure: null, rightAngle: null,
       solution: { steps: [{ id: 's1', kind: 'simple', title: 'QA', caption: 'Synthetic.', lines: [{ tex: '\\dfrac{3}{4} = 0.75' }] }, { id: 's2', kind: 'simple', title: 'QA', caption: 'Synthetic.', lines: [] }], keyIdea: 'QA only.', trap: null, summary: '' },
-      meta: {}, video: { explanationStartSeconds: null, youtubeId: null, published: false }
+      meta: {}, video: { explanationStartSeconds: null, youtubeId: null, published: false },
+      ...record
     }));
     const registry = path.join(tmp, 'registry.json');
-    fs.writeFileSync(registry, JSON.stringify({ problems: [{ number: 999, sourceId: id, slug: '999-qa-typed-answer', title: 'QA Typed Answer', status: 'active' }] }));
+    fs.writeFileSync(registry, JSON.stringify({ problems: [{ number: 999, sourceId: record.sourceId, slug, title, status: 'active' }] }));
     execFileSync(process.execPath, [path.join(HERE, 'build-sat-act-pages.mjs'), '--no-seo'], { env: Object.assign({}, process.env, { BM_ROOT: tmp, BM_SAT_ACT_RECORDS: recDir, BM_SAT_ACT_REGISTRY: registry }), stdio: 'pipe' });
     const local = await serve(tmp);
     try {
-      for (const [attempts, expectFirst] of [[['0.7', '6/8'], 'incorrect'], [['.75'], 'correct']]) {
-        const { context, page } = await newContext(browser, local.origin);
-        await page.goto(`${local.origin}/sat-act-math/problems/999-qa-typed-answer/`);
-        await ready(page);
-        for (const value of attempts) {
-          await page.fill('#satact-answer-input', value);
-          await page.locator('#satact-check').click();
-          await page.waitForFunction(() => document.getElementById('satact-feedback').textContent.trim().length > 0);
-        }
-        assert.match(await page.locator('#satact-feedback').innerText(), /Correct!/);
-        assert.equal(await page.locator('#satact-answer-input').isDisabled(), true);
-        const ev = await events(page);
-        assert.equal(named(ev, 'answer_checked')[0].params.answer_result, expectFirst);
-        assert.equal(named(ev, 'answer_correct').length, expectFirst === 'correct' ? 1 : 0);
-        assert.ok(!JSON.stringify(ev).includes('6/8') && !JSON.stringify(ev).includes('0.7'), 'typed answers must not be sent');
-        await context.close();
-      }
+      await run(local.origin, `${local.origin}/sat-act-math/problems/${slug}/`);
     } finally {
       local.server.close();
     }
   } finally {
     fs.rmSync(tmp, { recursive: true, force: true });
   }
+}
+
+await scenario('future multiple-choice records reflow long text and MathJax without clipping or scrollbars', async () => {
+  const displays = [
+    'The ratio stays the same when the two quantities are separated into equal groups. The same relationship holds when the measurements change, because both sides are multiplied by the same positive factor.',
+    String.raw`$\dfrac{\sqrt{144x^2 + 81y^2 + 64z^2 + 49w^2}}{(3x^2+4)^3}$`,
+    String.raw`$\begin{aligned}P(x)&=2x^5-3x^4+4x^3-5x^2\\P(2)&=64-48+32-20\end{aligned}$`,
+    String.raw`The value is $3x^7+4x^6-5x^5+6x^4-7x^3+8x^2-9x+10$ for every real value of $x$.`
+  ];
+  const choices = displays.map((display, i) => ({ label: 'ABCD'[i], display, correct: i === 1, why: 'Synthetic choice.' }));
+  const record = {
+    sourceId: 'qa-wide-choices-s0001', format: 'multiple_choice_4',
+    question: { stem: ['QA-only synthetic multiple-choice item.'], prompt: 'Select an answer.' },
+    choices, answer: { label: 'B', display: displays[1] }
+  };
+  await withQaProblem(record, { slug: '999-qa-wide-choices', title: 'QA Wide Choices' }, async (localOrigin, url) => {
+    const { context, page } = await newContext(browser, localOrigin);
+    try {
+      await page.goto(url);
+      await ready(page);
+      const desktop = await assertChoiceLayout(page, 'generated choices at 1280px');
+      assert.equal(new Set(desktop.map(c => c.left)).size, 2);
+      await page.setViewportSize({ width: 700, height: 900 });
+      const tablet = await assertChoiceLayout(page, 'generated choices at 700px');
+      assert.ok(tablet[1].width > 500 && tablet[2].width > 500, 'wide math can take an entire row above the phone breakpoint');
+      await page.setViewportSize({ width: 320, height: 780 });
+      await page.locator('[data-choice="B"][data-satact-stacked]').waitFor();
+      const phone = await assertChoiceLayout(page, 'generated choices at 320px');
+      assert.equal(new Set(phone.map(c => c.left)).size, 1);
+      assert.ok(phone[0].height > desktop[0].height, 'long text wraps and expands the box vertically');
+      assert.equal(await page.locator('[data-choice="B"] mjx-mfrac').count(), 1);
+      assert.equal(await page.locator('[data-choice="B"] mjx-msqrt').count(), 1);
+      assert.ok(await page.locator('[data-choice="B"] mjx-msup').count() >= 1);
+      assert.equal(await page.locator('[data-choice="C"] mjx-mtr').count(), 2);
+      assert.ok(await page.locator('[data-choice="D"] mjx-math[breakable] mjx-break').count() >= 1);
+      assert.equal(await page.locator('.satact-choice-body mjx-merror').count(), 0);
+      const mathSizes = await page.locator('.satact-choice-body mjx-container').evaluateAll(els => els.map(el => {
+        const style = getComputedStyle(el);
+        return parseFloat(style.fontSize) * Number(style.zoom);
+      }));
+      assert.ok(Math.min(...mathSizes) >= 14, 'oversized math stays at a readable size');
+      await answer(page, 'C');
+      await assertChoiceLayout(page, 'generated choices with incorrect feedback at 320px');
+      await answer(page, 'B');
+      await assertChoiceLayout(page, 'generated choices with correct feedback at 320px');
+      await page.setViewportSize({ width: 1280, height: 900 });
+      await page.locator('[data-choice="B"][data-satact-stacked]').waitFor({ state: 'detached' });
+      await assertChoiceLayout(page, 'generated choices after resizing back to desktop');
+      assert.equal(await page.locator('.satact-choice-body mjx-container').evaluateAll(els => els.some(el => el.style.zoom)), false, 'math returns to its natural size');
+    } finally {
+      await context.close();
+    }
+  });
+});
+
+await scenario('typed answers (future format): equivalent forms, first-attempt scoring — QA-only synthetic record', async () => {
+  const record = {
+    sourceId: 'qa-typed-s0001', format: 'student_produced_response',
+    question: { stem: ['QA-only synthetic typed-answer item.'], prompt: 'Enter three fourths.' },
+    choices: [], answer: { display: '$\\dfrac{3}{4}$', accepted: ['3/4'] }
+  };
+  await withQaProblem(record, { slug: '999-qa-typed-answer', title: 'QA Typed Answer' }, async (localOrigin, url) => {
+    for (const [attempts, expectFirst] of [[['0.7', '6/8'], 'incorrect'], [['.75'], 'correct']]) {
+      const { context, page } = await newContext(browser, localOrigin);
+      await page.goto(url);
+      await ready(page);
+      for (const value of attempts) {
+        await page.fill('#satact-answer-input', value);
+        await page.locator('#satact-check').click();
+        await page.waitForFunction(() => document.getElementById('satact-feedback').textContent.trim().length > 0);
+      }
+      assert.match(await page.locator('#satact-feedback').innerText(), /Correct!/);
+      assert.equal(await page.locator('#satact-answer-input').isDisabled(), true);
+      const ev = await events(page);
+      assert.equal(named(ev, 'answer_checked')[0].params.answer_result, expectFirst);
+      assert.equal(named(ev, 'answer_correct').length, expectFirst === 'correct' ? 1 : 0);
+      assert.ok(!JSON.stringify(ev).includes('6/8') && !JSON.stringify(ev).includes('0.7'), 'typed answers must not be sent');
+      await context.close();
+    }
+  });
 });
 
 if (process.argv.includes('--real-sheet')) {

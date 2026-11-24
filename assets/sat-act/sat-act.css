@@ -106,12 +106,18 @@ a{color:inherit}
 .satact-fig-right{fill:none;stroke:var(--yellow);stroke-width:2.5}
 .satact-fig-label{fill:#fff;font:italic 700 22px "Cambria Math","STIX Two Math","Times New Roman",serif}
 
-.satact-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0 0;padding:0;border:0;min-width:0}
-.satact-choice{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;min-height:58px;padding:10px 12px;border:1px solid #454545;border-radius:10px;background:#111;color:#f4f4f4;cursor:pointer;transition:border-color .15s ease,background .15s ease}
+/* Keep two columns when the widest unbreakable part of each choice fits. */
+.satact-choices{--choice-gap:10px;display:flex;flex-wrap:wrap;gap:var(--choice-gap);margin:14px 0 0;padding:0;border:0;min-width:0}
+.satact-choice{position:relative;flex:1 1 calc((100% - var(--choice-gap)) / 2);max-width:100%;display:grid;grid-template-columns:auto minmax(min-content,1fr) auto;align-items:center;gap:12px;min-height:58px;padding:10px 12px;border:1px solid #454545;border-radius:10px;background:#111;color:#f4f4f4;cursor:pointer;transition:border-color .15s ease,background .15s ease}
 .satact-choice input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
 .satact-choice-letter{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid #666;border-radius:50%;color:#ddd;font-weight:900;font-size:.9rem}
-.satact-choice-body{min-width:0;overflow-x:auto;font-size:1.08rem}
+.satact-choice-body{min-width:0;overflow-wrap:anywhere;font-size:1.08rem}
+/* Reserve room for MathJax's inline descenders while keeping the math centered. */
+.satact-choice-body:has(mjx-container){padding-block:.9em;margin-block:-.45em}
 .satact-choice-status{font-size:.75rem;font-weight:900;text-transform:uppercase;letter-spacing:.06em}
+.satact-choice[data-satact-stacked]{flex-basis:100%;grid-template-columns:auto minmax(0,1fr) auto}
+.satact-choice[data-satact-stacked] .satact-choice-body{grid-area:2 / 1 / 3 / -1}
+.satact-choice[data-satact-stacked] .satact-choice-status{grid-area:1 / 3}
 .satact-choice:hover{border-color:var(--yellow)}
 .satact-choice:has(input:checked){border-color:var(--yellow);background:#171200}
 .satact-choice:has(input:checked) .satact-choice-letter{background:var(--yellow);border-color:var(--yellow);color:#000}
@@ -226,7 +232,7 @@ a{color:inherit}
 }
 @media(max-width:620px){
   .satact-practice-footer .satact-btn-primary{width:100%}
-  .satact-choices{grid-template-columns:1fr}
+  .satact-choice{flex-basis:100%}
   .satact-question-card,.satact-video,.satact-solution-section{padding:14px}
   .satact-btn-next{margin-left:0}
   .satact-actions .satact-btn{flex:1 1 calc(50% - 10px)}
