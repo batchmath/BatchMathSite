@@ -1,0 +1,183 @@
+{
+  "schema": "batchmath.sat-act.problem/1",
+  "sourceId": "mean-median-change-s0001",
+  "contentStatus": "approved",
+  "approval": {
+    "text": {
+      "approvedRevision": "b2e4c22a21dc4591904385af8004f9fc",
+      "decidedAt": "2026-11-25T01:02:40+00:00"
+    },
+    "video": null,
+    "releaseEligible": true,
+    "note": "Approved through the Shorts review gate; imported from an approved content export."
+  },
+  "provenance": {
+    "repository": "batchmath/Shorts",
+    "commit": "d935e9e2b85519cd50cd2297e28d8aeaa904dbd9",
+    "exportedAt": "2026-11-25T01:10:16+00:00",
+    "recordSha256": "48c500b2ac52d1ed86bd1d4ae988b3487a9f9a6fb403520f875ce29015d641d0",
+    "contentHash": "1ecfee3d49e4171b",
+    "verification": {
+      "passed": true,
+      "checks": 53,
+      "failed": 0,
+      "tools": {
+        "python": "3.13.18",
+        "sympy": "1.14.0"
+      }
+    }
+  },
+  "series": "SAT & ACT Math Prep",
+  "topicLabel": "Problem Solving · Statistics",
+  "classification": {
+    "skills": [
+      "center-spread"
+    ],
+    "topic": "Statistics and probability",
+    "exams": [
+      "SAT",
+      "ACT"
+    ],
+    "format": "multiple_choice_4",
+    "sat": {
+      "domains": [
+        "Problem-Solving and Data Analysis"
+      ],
+      "testing_points": [
+        "One-variable data: distributions and measures of center and spread"
+      ]
+    },
+    "act": {
+      "categories": [
+        "Statistics & Probability"
+      ]
+    },
+    "needs_spec_check": [],
+    "spec_version": "sat-digital-2024 / act-enhanced-2025; access-limited recheck 2026-11-13"
+  },
+  "skillNames": {
+    "center-spread": "Mean, median, range, standard deviation; outliers"
+  },
+  "difficulty": "medium",
+  "format": "multiple_choice_4",
+  "template": {
+    "name": "mean_median_change",
+    "presentation": "table",
+    "techniques": [
+      "median depends on position, mean on every value",
+      "effect of changing an extreme value"
+    ],
+    "misconceptions": [
+      "thinking any change moves the median",
+      "thinking the mean is unaffected"
+    ]
+  },
+  "concept": "Lowering the largest value lowers the mean (it uses every value); the median (the middle position) stays the same when the corrected value is still above the middle value.",
+  "question": {
+    "stem": [
+      "The test scores of 7 students are listed below.",
+      {
+        "math": "62,\\ 72,\\ 77,\\ 82,\\ 94,\\ 97,\\ 99"
+      },
+      "The score $99$ was recorded incorrectly. The correct score is $86$."
+    ],
+    "prompt": "After the score is corrected, how do the mean and the median change?"
+  },
+  "figure": null,
+  "rightAngle": null,
+  "choices": [
+    {
+      "label": "A",
+      "display": "The mean stays the same, and the median decreases.",
+      "correct": false,
+      "note": "the mean drops",
+      "why": "The sum falls by $99 - 86 = 13$, so the mean falls by $\\dfrac{13}{7}$ points, while the median stays $82$.",
+      "rationale": "Swaps the roles of the mean and median."
+    },
+    {
+      "label": "B",
+      "display": "Both the mean and the median decrease.",
+      "correct": false,
+      "note": "the median stays 82",
+      "why": "The median is the 4th of the 7 ordered scores, $82$, before and after the change, because $86$ is still greater than $82$.",
+      "rationale": "Assumes every change moves the median."
+    },
+    {
+      "label": "C",
+      "display": "Neither the mean nor the median changes.",
+      "correct": false,
+      "note": "the mean drops",
+      "why": "The sum of the scores falls by $13$, so the mean falls from $\\dfrac{583}{7}$ to $\\dfrac{570}{7}$; only the median stays the same.",
+      "rationale": "Thinks one value cannot move the mean."
+    },
+    {
+      "label": "D",
+      "display": "The mean decreases, and the median stays the same.",
+      "correct": true,
+      "note": "Correct",
+      "why": "",
+      "rationale": ""
+    }
+  ],
+  "answer": {
+    "label": "D",
+    "display": "The mean decreases, and the median stays the same."
+  },
+  "solution": {
+    "steps": [
+      {
+        "id": "warn",
+        "kind": "concept",
+        "title": "One change, two measures",
+        "caption": "**Careful:** changing a score does not always change the median. The median uses **position**; the mean uses **every** value.",
+        "lines": []
+      },
+      {
+        "id": "median",
+        "kind": "concept",
+        "title": "The median uses position",
+        "caption": "With $7$ ordered scores the median $M$ is the 4th: $82$. The corrected score $86$ is still above it, so the 4th score does not change.",
+        "lines": [
+          {
+            "tex": "M = 82",
+            "check": "true"
+          }
+        ]
+      },
+      {
+        "id": "mean",
+        "kind": "simple",
+        "title": "The mean uses every value",
+        "caption": "**Shortcut:** no need to find either mean. The sum drops by $13$, so the mean drops by $\\dfrac{13}{7}$.",
+        "lines": [
+          {
+            "tex": "99 - 86 = 13",
+            "check": "numeric"
+          },
+          {
+            "tex": "\\dfrac{13}{7} \\approx 1.86",
+            "check": "true"
+          }
+        ]
+      },
+      {
+        "id": "conclusion",
+        "kind": "simple",
+        "title": "Conclusion",
+        "caption": "The mean decreases; the median stays the same.",
+        "lines": []
+      }
+    ],
+    "keyIdea": "The mean uses **every** value. The median depends only on the **middle position**, and here the corrected score is still above the middle.",
+    "trap": {
+      "label": "B",
+      "value": "both_down"
+    },
+    "summary": "The median is the 4th score, 82, before and after. The sum falls by 13, so the mean falls by 13/7, from 83.29 to 81.43 (rounded)."
+  },
+  "meta": {
+    "title_hook": "Mean vs Median",
+    "description_lead": "One score changes from 99 to 86. What happens to the mean and median?"
+  },
+  "video": null
+}

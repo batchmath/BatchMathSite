@@ -83,6 +83,38 @@ window.BM_SAT_ACT_CATALOG = {
    "difficulty": "medium",
    "format": "multiple_choice_4",
    "hasVideo": false
+  },
+  {
+   "id": "discriminant-one-solution-s0001",
+   "number": 6,
+   "displayNumber": "006",
+   "url": "/sat-act-math/problems/006-discriminant-one-solution-s0001/",
+   "title": "Advanced Math · Quadratics",
+   "subject": "quadratic-equations",
+   "skill": "discriminant",
+   "exams": [
+    "SAT",
+    "ACT"
+   ],
+   "difficulty": "medium",
+   "format": "multiple_choice_4",
+   "hasVideo": false
+  },
+  {
+   "id": "mean-median-change-s0001",
+   "number": 7,
+   "displayNumber": "007",
+   "url": "/sat-act-math/problems/007-mean-median-change-s0001/",
+   "title": "Problem Solving · Statistics",
+   "subject": "statistics-and-probability",
+   "skill": "center-spread",
+   "exams": [
+    "SAT",
+    "ACT"
+   ],
+   "difficulty": "medium",
+   "format": "multiple_choice_4",
+   "hasVideo": false
   }
  ],
  "subjects": [
@@ -92,6 +124,14 @@ window.BM_SAT_ACT_CATALOG = {
    "url": "/sat-act-math/topics/systems-of-equations/",
    "skills": [
     "systems-solution-count"
+   ]
+  },
+  {
+   "slug": "quadratic-equations",
+   "label": "Quadratic Equations",
+   "url": "/sat-act-math/topics/quadratic-equations/",
+   "skills": [
+    "discriminant"
    ]
   },
   {
@@ -108,6 +148,14 @@ window.BM_SAT_ACT_CATALOG = {
    "url": "/sat-act-math/topics/ratios-proportions-and-percentages/",
    "skills": [
     "percentages"
+   ]
+  },
+  {
+   "slug": "statistics-and-probability",
+   "label": "Statistics and Probability",
+   "url": "/sat-act-math/topics/statistics-and-probability/",
+   "skills": [
+    "center-spread"
    ]
   },
   {
@@ -134,6 +182,11 @@ window.BM_SAT_ACT_CATALOG = {
    "subject": "systems-of-equations"
   },
   {
+   "id": "discriminant",
+   "label": "Number of real solutions (discriminant)",
+   "subject": "quadratic-equations"
+  },
+  {
    "id": "radical-equations",
    "label": "Radical Equations",
    "subject": "radicals-and-exponents"
@@ -142,6 +195,11 @@ window.BM_SAT_ACT_CATALOG = {
    "id": "percentages",
    "label": "Percentages and Percent Change",
    "subject": "ratios-proportions-and-percentages"
+  },
+  {
+   "id": "center-spread",
+   "label": "Mean, median, range, standard deviation; outliers",
+   "subject": "statistics-and-probability"
   },
   {
    "id": "circle-equations",

@@ -46,6 +46,22 @@
       "title": "Find the Radius of x² + y² − 4x + 4y = 73",
       "status": "active",
       "registeredIn": "sat-act-p1"
+    },
+    {
+      "number": 6,
+      "sourceId": "discriminant-one-solution-s0001",
+      "slug": "006-discriminant-one-solution-s0001",
+      "title": "Advanced Math · Quadratics",
+      "status": "active",
+      "registeredIn": "shorts:d935e9e2b85519cd50cd2297e28d8aeaa904dbd9"
+    },
+    {
+      "number": 7,
+      "sourceId": "mean-median-change-s0001",
+      "slug": "007-mean-median-change-s0001",
+      "title": "Problem Solving · Statistics",
+      "status": "active",
+      "registeredIn": "shorts:d935e9e2b85519cd50cd2297e28d8aeaa904dbd9"
     }
   ]
 }
