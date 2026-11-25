@@ -33,6 +33,7 @@ jobs:
     outputs:
       base: ${{ steps.stage.outputs.base }}
       changes: ${{ steps.stage.outputs.changes }}
+      artifact: ${{ steps.stage.outputs.artifact }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -98,6 +99,7 @@ jobs:
           out="$RUNNER_TEMP/sat-act-review"
           node tools/sat-act/stage-approved-batch.mjs --export "$RUNNER_TEMP/approved-export.json" --out "$out" --browser
           printf 'base=%s\n' "$(jq -er '.base' "$out/summary.json")" >> "$GITHUB_OUTPUT"
+          printf 'artifact=sat-act-import-review-%s\n' "$GITHUB_RUN_ATTEMPT" >> "$GITHUB_OUTPUT"
           if test -s "$out/website.patch"; then
             echo changes=true >> "$GITHUB_OUTPUT"
             cat "$out/review.md" >> "$GITHUB_STEP_SUMMARY"
@@ -108,7 +110,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: sat-act-import-review
+          name: ${{ steps.stage.outputs.artifact }}
           path: ${{ runner.temp }}/sat-act-review/
           if-no-files-found: error
 
@@ -125,7 +127,7 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          name: sat-act-import-review
+          name: ${{ needs.prepare.outputs.artifact }}
           path: ${{ runner.temp }}/sat-act-review
 
       - name: Push the validated candidate and open a draft PR
