@@ -62,6 +62,17 @@
       "title": "Problem Solving · Statistics",
       "status": "active",
       "registeredIn": "shorts:d935e9e2b85519cd50cd2297e28d8aeaa904dbd9"
+    },
+    {
+      "number": 8,
+      "sourceId": "exponent-rules-s0003",
+      "slug": "008-exponent-rules-s0003",
+      "title": "Advanced Math · Exponents",
+      "status": "active",
+      "registeredIn": "shorts:bf8a3dea28b48caf0070d0a5d66abb69e818ab67"
     }
+  ],
+  "navigationBreaks": [
+    "mean-median-change-s0001"
   ]
 }

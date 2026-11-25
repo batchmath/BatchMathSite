@@ -1,0 +1,189 @@
+{
+  "schema": "batchmath.sat-act.problem/1",
+  "sourceId": "exponent-rules-s0003",
+  "contentStatus": "approved",
+  "approval": {
+    "text": {
+      "approvedRevision": "784792720586113290eb9fbf43fca0477e56bc5bc10dd56b0227922a515f0886",
+      "decidedAt": "2026-11-25T19:01:09Z"
+    },
+    "video": null,
+    "releaseEligible": true,
+    "note": "Approved through the Shorts review gate; imported from an approved content export."
+  },
+  "provenance": {
+    "repository": "batchmath/Shorts",
+    "commit": "bf8a3dea28b48caf0070d0a5d66abb69e818ab67",
+    "exportedAt": "2026-11-25T19:01:09+00:00",
+    "recordSha256": "ee4cd6e9975615b20d4f51f061bdf40b69ff1d618bd55ad5820418ff821eadff",
+    "contentHash": "8e7c2190360de0da",
+    "verification": {
+      "passed": true,
+      "checks": 55,
+      "failed": 0,
+      "tools": {
+        "python": "3.13.18",
+        "sympy": "1.14.0"
+      }
+    }
+  },
+  "series": "SAT & ACT Math Prep",
+  "topicLabel": "Advanced Math · Exponents",
+  "classification": {
+    "skills": [
+      "exponent-rules"
+    ],
+    "topic": "Radicals and exponents",
+    "exams": [
+      "SAT",
+      "ACT"
+    ],
+    "format": "multiple_choice_4",
+    "sat": {
+      "domains": [
+        "Advanced Math"
+      ],
+      "testing_points": [
+        "Equivalent expressions"
+      ]
+    },
+    "act": {
+      "categories": [
+        "Number & Quantity"
+      ]
+    },
+    "needs_spec_check": [],
+    "spec_version": "sat-digital-2024 / act-enhanced-2025; access-limited recheck 2026-11-13"
+  },
+  "skillNames": {
+    "exponent-rules": "Integer and rational exponents"
+  },
+  "difficulty": "medium",
+  "format": "multiple_choice_4",
+  "template": {
+    "name": "exponent_rules",
+    "presentation": "symbolic",
+    "techniques": [
+      "power of a power: multiply the exponents",
+      "quotient of powers: subtract the exponents",
+      "work on the coefficient and the variable separately"
+    ],
+    "misconceptions": [
+      "adding the exponents of a power of a power",
+      "multiplying the coefficient by the exponent",
+      "not raising the coefficient"
+    ]
+  },
+  "concept": "Raise every factor to the power, multiplying exponents; then divide, subtracting exponents.",
+  "question": {
+    "stem": [
+      {
+        "math": "\\dfrac{(2x^4)^3}{4x^3}"
+      }
+    ],
+    "prompt": "Which expression is equivalent to the expression above for $x \\neq 0$?"
+  },
+  "figure": null,
+  "rightAngle": null,
+  "choices": [
+    {
+      "label": "A",
+      "display": "$2x^4$",
+      "correct": false,
+      "note": "adds the exponents 4 and 3",
+      "why": "This takes $(x^4)^3$ as $x^{4 + 3} = x^7$; a power of a power multiplies the exponents: $x^{4 \\cdot 3} = x^{12}$.",
+      "rationale": "Adds the exponents of a power of a power."
+    },
+    {
+      "label": "B",
+      "display": "$\\dfrac{1}{2}x^9$",
+      "correct": false,
+      "note": "the 2 was not raised to the power 3",
+      "why": "This leaves the coefficient $2$ as it is; every factor inside the parentheses is raised to the power: $2^3 = 8$.",
+      "rationale": "Raises only the variable, not the coefficient."
+    },
+    {
+      "label": "C",
+      "display": "$\\dfrac{3}{2}x^9$",
+      "correct": false,
+      "note": "2 times 3 instead of 2 to the power 3",
+      "why": "This takes $2^3$ as $2 \\cdot 3 = 6$; the coefficient is raised to the power: $2^3 = 8$.",
+      "rationale": "Multiplies the coefficient by the exponent."
+    },
+    {
+      "label": "D",
+      "display": "$2x^9$",
+      "correct": true,
+      "note": "Correct",
+      "why": "",
+      "rationale": ""
+    }
+  ],
+  "answer": {
+    "label": "D",
+    "display": "$2x^9$"
+  },
+  "solution": {
+    "steps": [
+      {
+        "id": "warn",
+        "kind": "concept",
+        "title": "Multiply the exponents",
+        "caption": "**Careful:** a power of a power multiplies the exponents: $4 \\times 3 = 12$, not $4 + 3 = 7$.",
+        "lines": [
+          {
+            "tex": "(x^4)^3 = x^{12}",
+            "check": "identity"
+          }
+        ]
+      },
+      {
+        "id": "power",
+        "kind": "simple",
+        "title": "Cube each factor",
+        "caption": "Cube the coefficient: $2^3 = 8$. The exponent of $x$ is $12$.",
+        "lines": [
+          {
+            "tex": "(2x^4)^3 = 8x^{12}",
+            "check": "identity"
+          }
+        ]
+      },
+      {
+        "id": "divide",
+        "kind": "simple",
+        "title": "Divide",
+        "caption": "Divide the coefficients: $8 \\div 4 = 2$. Subtract the exponents: $12 - 3 = 9$.",
+        "lines": [
+          {
+            "tex": "\\dfrac{8x^{12}}{4x^3} = 2x^9",
+            "check": "identity"
+          }
+        ]
+      },
+      {
+        "id": "check",
+        "kind": "simple",
+        "title": "Check",
+        "caption": "A check with $x = 2$ (a check, not a proof).",
+        "lines": [
+          {
+            "tex": "\\dfrac{(2 \\cdot 2^4)^3}{4 \\cdot 2^3} = 1024",
+            "check": "numeric"
+          }
+        ]
+      }
+    ],
+    "keyIdea": "A power of a power **multiplies** exponents; dividing powers of the same base **subtracts** them.",
+    "trap": {
+      "label": "A",
+      "value": "2*x**4"
+    },
+    "summary": "(2x^4)^3 = 8x^12, and 8x^12 / (4x^3) = 2x^9."
+  },
+  "meta": {
+    "title_hook": "Exponent Rules, One Base at a Time",
+    "description_lead": "Simplify (2x^4)^3 / (4x^3)."
+  },
+  "video": null
+}
