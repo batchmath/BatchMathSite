@@ -115,6 +115,22 @@ window.BM_SAT_ACT_CATALOG = {
    "difficulty": "medium",
    "format": "multiple_choice_4",
    "hasVideo": false
+  },
+  {
+   "id": "exponent-rules-s0003",
+   "number": 8,
+   "displayNumber": "008",
+   "url": "/sat-act-math/problems/008-exponent-rules-s0003/",
+   "title": "Advanced Math · Exponents",
+   "subject": "radicals-and-exponents",
+   "skill": "exponent-rules",
+   "exams": [
+    "SAT",
+    "ACT"
+   ],
+   "difficulty": "medium",
+   "format": "multiple_choice_4",
+   "hasVideo": false
   }
  ],
  "subjects": [
@@ -139,7 +155,8 @@ window.BM_SAT_ACT_CATALOG = {
    "label": "Radicals and Exponents",
    "url": "/sat-act-math/topics/radicals-and-exponents/",
    "skills": [
-    "radical-equations"
+    "radical-equations",
+    "exponent-rules"
    ]
   },
   {
@@ -189,6 +206,11 @@ window.BM_SAT_ACT_CATALOG = {
   {
    "id": "radical-equations",
    "label": "Radical Equations",
+   "subject": "radicals-and-exponents"
+  },
+  {
+   "id": "exponent-rules",
+   "label": "Integer and rational exponents",
    "subject": "radicals-and-exponents"
   },
   {

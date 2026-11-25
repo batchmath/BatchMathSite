@@ -81,6 +81,16 @@
       "mediaSha256": null,
       "youtubeId": null,
       "explanationStartSeconds": null
+    },
+    {
+      "sourceId": "exponent-rules-s0003",
+      "number": 8,
+      "sourceCommit": "bf8a3dea28b48caf0070d0a5d66abb69e818ab67",
+      "recordSha256": "ee4cd6e9975615b20d4f51f061bdf40b69ff1d618bd55ad5820418ff821eadff",
+      "contentHash": "8e7c2190360de0da",
+      "mediaSha256": null,
+      "youtubeId": null,
+      "explanationStartSeconds": null
     }
   ]
 }
