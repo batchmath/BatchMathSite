@@ -58,7 +58,11 @@ export function planImport(exportData, registry) {
   });
   if (!additions.length) return { additions, skipped, records: [] };
   const items = additions.map(({ sourceId }) => byId.get(sourceId).item);
-  const nextRegistry = { ...registry, problems: [...registry.problems, ...additions] };
+  const lastPublished = registry.problems.filter(p => p.status === 'active')
+    .reduce((last, p) => !last || p.number > last.number ? p : last, null);
+  const navigationBreaks = new Set(registry.navigationBreaks);
+  if (lastPublished) navigationBreaks.add(lastPublished.sourceId);
+  const nextRegistry = { ...registry, problems: [...registry.problems, ...additions], navigationBreaks: [...navigationBreaks] };
   const records = importApprovedExport({ exportData: { ...exportData, items }, publications: PUBLICATIONS, registry: nextRegistry, write: false });
   verifyContentHashes(items);
   return { additions, skipped, records, registry: nextRegistry };
@@ -117,11 +121,10 @@ function stage(exportData, out, browser) {
       const baselineSeo = seoReport(checkout);
       summary.added = writeCandidate(checkout, plan);
       run(checkout, 'sat-act:build');
-      // Browsing links on existing question pages are part of the published pages.
-      // The catalog and index can grow without rewriting any of those pages.
+      // Diff ignores the newly added, untracked pages.
       const oldPages = git(checkout, 'diff', '--name-only', '-z', '--', 'sat-act-math/problems/')
         .split('\0').filter(file => /^sat-act-math\/problems\/[^/]+\/index\.html$/.test(file));
-      if (oldPages.length) git(checkout, 'restore', '--', ...oldPages);
+      must(!oldPages.length, `Build changed published question pages: ${oldPages.join(', ')}`);
       for (const script of ['qa:sat-act', 'qa:sat-act-release', 'qa:static', 'qa:analytics', 'qa:browser-infra']) run(checkout, script);
       const candidateSeo = seoReport(checkout);
       const newErrors = candidateSeo.errors.filter(error => error.startsWith('sat-act-math/') || !baselineSeo.errors.includes(error));

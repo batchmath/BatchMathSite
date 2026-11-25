@@ -62,6 +62,9 @@ test('append one question while preserving every published number and URL', () =
   assert.equal(result.additions[0].slug, '008-next-question');
   assert.deepEqual(result.registry.problems.slice(0, 7), published);
   assert.deepEqual(result.skipped, [published[6].sourceId]);
+  assert.deepEqual(result.registry.navigationBreaks, [published[6].sourceId]);
+  const later = planImport(batch([item('later-question')]), result.registry);
+  assert.deepEqual(later.registry.navigationBreaks, [published[6].sourceId, 'next-question']);
 });
 
 test('tables and figures cannot be silently omitted from approved questions', () => {

@@ -287,7 +287,8 @@ function problemData(p, next) {
 function problemPage(p, index) {
   const r = p.record;
   const prev = lib.problems[index - 1] || null;
-  const next = lib.problems[index + 1] || null;
+  // The last page of a published batch keeps its original link to the question list.
+  const next = lib.registry.navigationBreaks?.includes(p.id) ? null : lib.problems[index + 1] || null;
   const typed = r.format === TYPED;
   if (typed && !(Array.isArray(r.answer.accepted) && r.answer.accepted.length)) throw new Error(`${p.id}: typed answer without accepted values`);
   if (!typed && r.format !== 'multiple_choice_4') throw new Error(`${p.id}: unsupported question format ${r.format}`);
