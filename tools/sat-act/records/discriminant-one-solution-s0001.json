@@ -1,0 +1,184 @@
+{
+  "schema": "batchmath.sat-act.problem/1",
+  "sourceId": "discriminant-one-solution-s0001",
+  "contentStatus": "approved",
+  "approval": {
+    "text": {
+      "approvedRevision": "c74cc5898b7049f4810814aa14d1815f",
+      "decidedAt": "2026-11-25T01:01:55+00:00"
+    },
+    "video": null,
+    "releaseEligible": true,
+    "note": "Approved through the Shorts review gate; imported from an approved content export."
+  },
+  "provenance": {
+    "repository": "batchmath/Shorts",
+    "commit": "d935e9e2b85519cd50cd2297e28d8aeaa904dbd9",
+    "exportedAt": "2026-11-25T01:10:16+00:00",
+    "recordSha256": "1c5bbbecf38902633f50c1fc7406c8c5fae78e93c36c3f40a4a9ebf8f2db92ee",
+    "contentHash": "6dbd648017367d39",
+    "verification": {
+      "passed": true,
+      "checks": 58,
+      "failed": 0,
+      "tools": {
+        "python": "3.13.18",
+        "sympy": "1.14.0"
+      }
+    }
+  },
+  "series": "SAT & ACT Math Prep",
+  "topicLabel": "Advanced Math · Quadratics",
+  "classification": {
+    "skills": [
+      "discriminant"
+    ],
+    "topic": "Quadratic equations",
+    "exams": [
+      "SAT",
+      "ACT"
+    ],
+    "format": "multiple_choice_4",
+    "sat": {
+      "domains": [
+        "Advanced Math"
+      ],
+      "testing_points": [
+        "Nonlinear equations in one variable and systems of equations in two variables"
+      ]
+    },
+    "act": {
+      "categories": [
+        "Algebra"
+      ]
+    },
+    "needs_spec_check": [],
+    "spec_version": "sat-digital-2024 / act-enhanced-2025; access-limited recheck 2026-11-13"
+  },
+  "skillNames": {
+    "discriminant": "Number of real solutions (discriminant)"
+  },
+  "difficulty": "medium",
+  "format": "multiple_choice_4",
+  "template": {
+    "name": "discriminant_one_solution",
+    "presentation": "symbolic",
+    "techniques": [
+      "discriminant equals zero",
+      "recognize a perfect-square trinomial"
+    ],
+    "misconceptions": [
+      "sign of c",
+      "using b squared without the factor 4",
+      "halving b without squaring"
+    ]
+  },
+  "concept": "A quadratic (a ≠ 0) has exactly one real solution when its discriminant is 0 (it is a perfect square).",
+  "question": {
+    "stem": [
+      "In the equation below, $c$ is a constant.",
+      {
+        "math": "x^2 - 8x + c = 0"
+      }
+    ],
+    "prompt": "For what value of $c$ does the equation have **exactly one** real solution?"
+  },
+  "figure": null,
+  "rightAngle": null,
+  "choices": [
+    {
+      "label": "A",
+      "display": "$-16$",
+      "correct": false,
+      "note": "two real solutions",
+      "why": "With $c = -16$, $b^2 - 4ac = 64 - 4(-16) = 128$, which is positive, so the equation has two real solutions.",
+      "rationale": "Sign error in c."
+    },
+    {
+      "label": "B",
+      "display": "$4$",
+      "correct": false,
+      "note": "two real solutions",
+      "why": "With $c = 4$, $b^2 - 4ac = 64 - 4(4) = 48$, which is positive, so the equation has two real solutions.",
+      "rationale": "Halves b but does not square it."
+    },
+    {
+      "label": "C",
+      "display": "$16$",
+      "correct": true,
+      "note": "Correct",
+      "why": "",
+      "rationale": ""
+    },
+    {
+      "label": "D",
+      "display": "$64$",
+      "correct": false,
+      "note": "no real solutions",
+      "why": "With $c = 64$, $b^2 - 4ac = 64 - 4(64) = -192$, which is negative, so the equation has no real solutions.",
+      "rationale": "Uses b squared but forgets that the discriminant subtracts 4ac."
+    }
+  ],
+  "answer": {
+    "label": "C",
+    "display": "$16$"
+  },
+  "solution": {
+    "steps": [
+      {
+        "id": "meaning",
+        "kind": "concept",
+        "title": "What the discriminant tells you",
+        "caption": "The **discriminant** $b^2 - 4ac$ counts the real solutions: **positive**, two; **zero**, exactly one; **negative**, none. **Careful:** here $b = -8$.",
+        "lines": []
+      },
+      {
+        "id": "solve",
+        "kind": "simple",
+        "title": "Set it equal to $0$",
+        "caption": "Here $a = 1$. Watch the sign: $(-8)^2 = 64$.",
+        "lines": [
+          {
+            "tex": "(-8)^2 - 4(1)c = 0",
+            "check": "equiv"
+          },
+          {
+            "tex": "64 - 4c = 0",
+            "check": "equiv"
+          },
+          {
+            "tex": "c = 16",
+            "check": "equiv"
+          }
+        ]
+      },
+      {
+        "id": "shortcut",
+        "kind": "concept",
+        "title": "Shortcut: a perfect square",
+        "caption": "**Shortcut:** half of $-8$, squared. Then the left side is a perfect square, so its only root is $x = 4$.",
+        "lines": [
+          {
+            "tex": "\\left(\\dfrac{-8}{2}\\right)^2 = 16",
+            "check": "numeric"
+          },
+          {
+            "tex": "x^2 - 8x + 16 = (x - 4)^2",
+            "check": "identity"
+          }
+        ]
+      }
+    ],
+    "keyIdea": "A quadratic ($a \\neq 0$) has exactly one real solution when its discriminant $b^2 - 4ac$ equals $0$.",
+    "trap": {
+      "label": "A",
+      "value": "-16"
+    },
+    "summary": "b^2 - 4ac = 64 - 4c = 0 gives c = 16, and then x^2 - 8x + 16 = (x - 4)^2."
+  },
+  "meta": {
+    "title_hook": "Exactly One Solution",
+    "description_lead": "x^2 - 8x + c = 0 has exactly one real solution."
+  },
+  "video": null
+}

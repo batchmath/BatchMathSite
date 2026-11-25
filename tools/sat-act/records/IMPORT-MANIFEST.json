@@ -61,6 +61,26 @@
       "explanationStartSeconds": 18,
       "countdownEndSeconds": 17.576,
       "firstExplanationNarrationSeconds": 18.726
+    },
+    {
+      "sourceId": "discriminant-one-solution-s0001",
+      "number": 6,
+      "sourceCommit": "d935e9e2b85519cd50cd2297e28d8aeaa904dbd9",
+      "recordSha256": "1c5bbbecf38902633f50c1fc7406c8c5fae78e93c36c3f40a4a9ebf8f2db92ee",
+      "contentHash": "6dbd648017367d39",
+      "mediaSha256": null,
+      "youtubeId": null,
+      "explanationStartSeconds": null
+    },
+    {
+      "sourceId": "mean-median-change-s0001",
+      "number": 7,
+      "sourceCommit": "d935e9e2b85519cd50cd2297e28d8aeaa904dbd9",
+      "recordSha256": "48c500b2ac52d1ed86bd1d4ae988b3487a9f9a6fb403520f875ce29015d641d0",
+      "contentHash": "1ecfee3d49e4171b",
+      "mediaSha256": null,
+      "youtubeId": null,
+      "explanationStartSeconds": null
     }
   ]
 }
