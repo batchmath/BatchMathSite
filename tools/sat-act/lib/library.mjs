@@ -40,6 +40,11 @@ export function loadLibrary(toolDir, { recordsDir, registryPath } = {}) {
     numbers.add(p.number); slugs.add(p.slug); ids.add(p.sourceId);
   }
   for (const id of records.keys()) if (!ids.has(id)) throw new Error(`record ${id} is not registered (no permanent number)`);
+  if (registry.navigationBreaks !== undefined && (!Array.isArray(registry.navigationBreaks)
+      || new Set(registry.navigationBreaks).size !== registry.navigationBreaks.length
+      || registry.navigationBreaks.some(id => !ids.has(id)))) {
+    throw new Error('registry: navigation breaks must use unique registered source IDs');
+  }
 
   const initial = initialWebsiteRelease({
     release: read('config/initial-website-release.json'),

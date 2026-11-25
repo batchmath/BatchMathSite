@@ -53,6 +53,31 @@ test('registry retains retired IDs and can extend beyond #999', () => {
   assert.deepEqual(result.registry.problems[initialIds.length], retired);
 });
 
+test('append one question while preserving every published number and URL', () => {
+  const published = siteRegistry.problems.slice(0, 7);
+  const result = planImport(batch([item(published[6].sourceId), item('next-question')]),
+    { ...siteRegistry, problems: published });
+  assert.equal(published.length, 7);
+  assert.equal(result.additions[0].number, 8);
+  assert.equal(result.additions[0].slug, '008-next-question');
+  assert.deepEqual(result.registry.problems.slice(0, 7), published);
+  assert.deepEqual(result.skipped, [published[6].sourceId]);
+  assert.deepEqual(result.registry.navigationBreaks, [published[6].sourceId]);
+  const later = planImport(batch([item('later-question')]), result.registry);
+  assert.deepEqual(later.registry.navigationBreaks, [published[6].sourceId, 'next-question']);
+});
+
+test('tables and figures cannot be silently omitted from approved questions', () => {
+  for (const revise of [
+    rec => ({ ...rec, question: { ...rec.question, table: { columns: [], rows: [] } } }),
+    rec => ({ ...rec, question: { ...rec.question, figure: { points: {} } } }),
+    rec => ({ ...rec, visual: { type: 'scatter_fit' } })
+  ]) {
+    assert.throws(() => planImport(batch([item('qa-test-s0001', revise)]), registry),
+      /cannot yet display the table or figure/);
+  }
+});
+
 test('rejects missing or stale approvals, bad manifests, wrong keys and unsupported formats', () => {
   const valid = item('qa-test-s0001');
   const cases = [

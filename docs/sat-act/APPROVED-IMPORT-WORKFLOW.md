@@ -1,45 +1,27 @@
-# Import approved SAT and ACT questions
-
-The **Prepare approved SAT and ACT questions** GitHub Action imports formal Shorts text approvals and opens a draft website PR. `main` and production Pages change only when you separately authorize and merge the reviewed PR.
-
-## One-time setup
-
-1. Review the website automation changes and approve adding them to the website’s `main`. GitHub only accepts manual dispatches after the workflow exists on the default branch. Start future Shorts work from a revision that includes `shorts/website_export.py`. The current integration branch is `codex/sat-act-approved-export` in `batchmath/Shorts`.
-2. In `batchmath/BatchMathSite` under **Settings → Secrets and variables → Actions**, add these repository secrets. Use short-lived fine-grained credentials or an equivalent GitHub App token setup.
-
-   | Secret | Selected repository | Repository permissions |
-   | --- | --- | --- |
-   | `SAT_ACT_SHORTS_READ_TOKEN` | `batchmath/Shorts` only | Contents read |
-   | `SAT_ACT_SITE_PR_TOKEN` | `batchmath/BatchMathSite` only | Contents read/write and Pull requests read/write |
-
-   GitHub also includes read-only metadata. The write token allows the PR to trigger the existing BatchMath QA workflow. Keep normal `main` protections and limit approval snapshot publishing and workflow dispatch to the owner or delegated maintainers.
+# Approve SAT/ACT website questions
 
 ## Each batch
 
-1. Open the exact Shorts revision you reviewed. Run `review.bat` or `python -m shorts review`. In the server-backed question bank, review the question, answers, solution and flags, complete the text review checkboxes, enter your reviewer name and click **Approve** for each question. The private review file stays local. A separate approval on the video page is optional for website import and must pass the existing rendering gate.
-2. Finish the review and commit any source changes in Shorts before taking approval. With an empty Git index, in the same Python environment you used to approve, run the commands below. The snapshot command allows the review server’s generated page changes. Repeat `--id <ProblemID>` to select a specific batch when the checkout contains older decisions. Use `--text-only` to export without optional video evidence.
+1. In **Shorts**, open **Actions → Review SAT/ACT questions for the website → Run workflow**. Keep the branch GitHub selects and click **Run workflow** again. Open the finished run and click **Open the private review checklist**. [Open the Shorts workflow](https://github.com/batchmath/Shorts/actions/workflows/website-text-review.yml)
+2. Read the problem, choices, correct answer, solution, and quality notes. For each question you want on the website, tick all four boxes under that question. Leave the boxes blank for questions you want to skip. Click **Close issue** as completed to send the checked questions for import.
+3. Open the website import from the link GitHub adds to the checklist. Open the draft pull request linked in the import run summary. Check its list of questions and permanent links, and wait for **BatchMath QA** to pass. If an earlier batch still has an open website pull request, finish reviewing it before retrying the new import. [Open the website import workflow](https://github.com/batchmath/BatchMathSite/actions/workflows/sat-act-approved-import.yml)
+4. When you separately decide to publish, click **Ready for review**, then use the website pull request’s **Merge** button and confirm. This starts the website update.
+5. When your videos are live, use the **sat-act-import-review** download on the website import run. GitHub adds the attempt number to the download name. Add missing rows from **video-rows.csv** to the existing Google Sheet. Enter each YouTube URL and the verified explanation-start time in seconds, then set the row to **Published**.
 
-   ```sh
-   python -m shorts.website_export snapshot
-   git add review/website-approvals.json
-   git commit --only -m "Record owner approvals for website import" -- review/website-approvals.json
-   git push
-   git rev-parse HEAD
-   ```
+If the source changed, start again at step 1. The checklist link is good for 30 days. If an import fails temporarily, open the failed run in **Actions**, click **Re-run jobs**, then **Re-run failed jobs**. If a checklist closed with missing boxes, click **Reopen issue**, finish the review, and close it again.
 
-   Push to a branch in the **private** `batchmath/Shorts` repository. Commit only `review/website-approvals.json` in this commit. Its parent pins the reviewed source. Keep the original `review/reviews.json` local, and keep the snapshot and raw export out of the public website repository.
-3. In `batchmath/BatchMathSite`, open **Actions → Prepare approved SAT and ACT questions → Run workflow**, select `main` and paste the full approval commit SHA into `shorts_approval_sha`. Check **dry_run** to generate the review files without pushing an import branch or opening a draft PR. Use the latest approval snapshot for the batch you intend to import.
-4. Review the draft PR and wait for BatchMath QA. Its description lists the assigned numbers, permanent URLs and an artifact link. An existing open import PR must be resolved before another batch receives numbers. When you are ready to deploy, explicitly authorize and merge the tested PR through the normal release process.
-5. Append `video-rows.csv` from the run artifact to the existing video worksheet, using one row per permanent `ProblemID`. Rows have blank URLs and `Pending` status. If a cue is blank, add the verified explanation start time before marking the row `Published`. Add the YouTube URL after publishing the Short. The website reads the sheet, and spreadsheet edits require no deployment.
+## One-time GitHub setup
 
-## Verification and retries
+1. After you approve the implementation, merge both implementation pull requests. In **Shorts → Settings → General → Default branch**, click the switch-branch button, select `claude/gifted-meitner-wrb2v3`, then click **Update** and confirm. This is the branch with the current questions, videos, and prior approvals. [Open Shorts settings](https://github.com/batchmath/Shorts/settings)
+2. Open your GitHub avatar menu and choose **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**. Choose **batchmath** as the resource owner, set an expiration, and choose **Only select repositories**. Select **Shorts** only. Under **Repository permissions**, set **Contents** to **Read-only**, then click **Generate token**. [Open fine-grained tokens](https://github.com/settings/personal-access-tokens)
+3. In **BatchMathSite → Settings → Secrets and variables → Actions → New repository secret**, enter `SAT_ACT_SHORTS_READ_TOKEN` as the name, paste the Shorts token in **Secret**, and click **Add secret**. Use **Update** if the secret already exists. [Open BatchMathSite Actions secrets](https://github.com/batchmath/BatchMathSite/settings/secrets/actions)
+4. Generate a second fine-grained token the same way, selecting **BatchMathSite** only. Set **Actions**, **Contents**, and **Pull requests** to **Read and write**. Add this token as `SAT_ACT_SITE_PR_TOKEN` in **Actions secrets** in both **Shorts** and **BatchMathSite**. Enter the values directly in GitHub. [Open Shorts Actions secrets](https://github.com/batchmath/Shorts/settings/secrets/actions) · [Open BatchMathSite Actions secrets](https://github.com/batchmath/BatchMathSite/settings/secrets/actions)
+5. In **BatchMathSite → Settings → Rules → Rulesets**, click **New ruleset → New branch ruleset**. Name it **Website QA**, set **Enforcement status** to **Active**, and under **Target branches** click **Add target → Include default branch**. Turn on **Require status checks to pass**, click **Add checks**, select the **qa** check from GitHub Actions, and click **Create**. This keeps the website merge button locked until BatchMath QA passes. [Open BatchMathSite rulesets](https://github.com/batchmath/BatchMathSite/settings/rules)
 
-The exporter re-runs the Shorts mathematical and standards gate using the recorded Python, SymPy, mpmath and Lark versions. The approval SHA and its parent are checked before export. The workflow validates record hashes, approval revisions, the registry, generated pages, and the sitemap, then checks desktop and phone layouts and practice-session behavior. It compares sitewide SEO against the starting revision and fails on any new or SAT/ACT-specific findings. The ordinary PR also runs the sitewide BatchMath QA workflow.
+GitHub includes read-only metadata access with these tokens. The website token starts the import, opens the draft, and lets **BatchMath QA** start automatically. GitHub’s built-in workflow token would require another approval click for those pull request checks. [GitHub’s workflow trigger rules](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow)
 
-Temporary worktrees and output directories keep incomplete imports out of the branch. Previously registered IDs, including retired IDs, retain their numbers and URLs. New IDs are ordered alphabetically within the batch and appended after the highest reserved number. A retry reuses the approved candidate or reports that its IDs are already registered. If `main` advanced during verification, repeat the same workflow against the current base after the existing PR is resolved.
+## What GitHub checks
 
-Video identity is optional. If a full narrated approval can be revalidated on the review machine, the staged import binds the cue to the pinned MP4, manifest and scene. An unavailable or stale video approval leaves the corresponding cue blank and the mathematical question can still be imported. In that case confirm the cue separately when you add the published link. The Google worksheet remains the source for public video associations.
+The private checklist is tied to one source revision, one set of review tools, and GitHub’s record of who submitted it. Only the Shorts owner can submit it. The importer rechecks the recorded approvals, the mathematics, and the source before assigning new permanent numbers. The website tests check the draft’s pages and browser behavior. Existing numbered questions and URLs are preserved. Questions whose tables or figures the website cannot display are held back.
 
-An optional future Sheets API integration could append missing problem IDs using an account authorized to edit the worksheet. The public CSV is read-only, and the import works with the downloadable rows alone.
-
-Batch 2 and Batch 3 need formal text approval records even where an owner comment already approved a rendered video. Use the current verified revision in the private Shorts branch. A review made against an earlier verifier, dependency version or changed record can become stale, in which case repeat the text review on the intended revision.
+Video review stays separate. Website checklists grant approval for website text only. The existing manual import still accepts older formal approval snapshots for authorized recovery.
