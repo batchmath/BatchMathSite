@@ -74,6 +74,8 @@ export function importApprovedExport({ exportData, publications, registry, outDi
     importedIds.add(id);
     must(registered.has(id), `${id}: not registered; assign its permanent number in config/registry.json first`);
     validateSourceRecord(rec, id);
+    must(!rec.question.table && !rec.question.figure && rec.visual?.type !== 'scatter_fit',
+      `${id}: the website cannot yet display the table or figure required to answer this question`);
     approvedDecision(item.text, `${id} text approval`);
     must(item.text.contentHash === rec.content_hash, `${id}: text approval is for content ${item.text.contentHash}, record is ${rec.content_hash}`);
 

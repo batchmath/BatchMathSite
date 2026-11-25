@@ -11,6 +11,10 @@ on:
         description: Verify and generate review files only
         type: boolean
         default: false
+      browser_approval:
+        description: Require a private GitHub checklist approval
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -21,37 +25,41 @@ concurrency:
 
 jobs:
   prepare:
-    if: github.ref == 'refs/heads/main'
+    if: >-
+      github.repository == 'batchmath/BatchMathSite' && github.ref == 'refs/heads/main' &&
+      github.actor_id == '58087821' && github.triggering_actor == 'batchmath'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     outputs:
       base: ${{ steps.stage.outputs.base }}
       changes: ${{ steps.stage.outputs.changes }}
     steps:
-      - name: Check the commit pin
-        env:
-          APPROVAL_SHA: ${{ inputs.shorts_approval_sha }}
-        run: '[[ "$APPROVAL_SHA" =~ ^[0-9a-f]{40}$ ]]'
-
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
 
       - name: Read the trusted private Shorts snapshot
-        uses: actions/checkout@v4
-        with:
-          repository: batchmath/Shorts
-          ref: ${{ inputs.shorts_approval_sha }}
-          token: ${{ secrets.SAT_ACT_SHORTS_READ_TOKEN }}
-          path: .shorts-source
-          fetch-depth: 2
-          persist-credentials: false
-
-      - name: Read the pinned review runtime
         id: runtime
-        working-directory: .shorts-source
+        env:
+          GH_TOKEN: ${{ secrets.SAT_ACT_SHORTS_READ_TOKEN }}
         run: |
-          versions=$(python3 -m shorts.website_export runtime)
+          set -euo pipefail
+          if [[ -z "$GH_TOKEN" ]]; then
+            echo 'Add SAT_ACT_SHORTS_READ_TOKEN in BatchMathSite before running this import.' >&2
+            exit 1
+          fi
+          approval=$(jq -er '.inputs.shorts_approval_sha' "$GITHUB_EVENT_PATH")
+          [[ "$approval" =~ ^[0-9a-f]{40}$ ]] || { echo 'Invalid approval pin.' >&2; exit 1; }
+          echo "::add-mask::$approval"
+          if ! bash tools/sat-act/read-approved-source.sh "$approval" > "$RUNNER_TEMP/private-shorts.log" 2>&1; then
+            echo 'The private approval could not be read or no longer matches the Shorts branch. Check access and the private review run.' >&2
+            exit 1
+          fi
+          cd "$RUNNER_TEMP/shorts-source"
+          if ! versions=$(python3 -m shorts.website_export runtime 2>>"$RUNNER_TEMP/private-shorts.log"); then
+            echo 'The pinned approval or its review runtime is invalid.' >&2
+            exit 1
+          fi
           for name in python sympy mpmath lark; do
             version=$(jq -er --arg name "$name" '.[$name]' <<< "$versions")
             [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
@@ -63,14 +71,17 @@ jobs:
           python-version: ${{ steps.runtime.outputs.python }}
 
       - name: Recheck approvals and verified mathematical records
-        working-directory: .shorts-source
+        working-directory: ${{ runner.temp }}/shorts-source
         env:
           SYMPY_VERSION: ${{ steps.runtime.outputs.sympy }}
           MPMATH_VERSION: ${{ steps.runtime.outputs.mpmath }}
           LARK_VERSION: ${{ steps.runtime.outputs.lark }}
         run: |
           python -m pip install "sympy==$SYMPY_VERSION" "mpmath==$MPMATH_VERSION" "lark==$LARK_VERSION"
-          python -m shorts.website_export export --output "$RUNNER_TEMP/approved-export.json"
+          if ! python -m shorts.website_export export --output "$RUNNER_TEMP/approved-export.json" >>"$RUNNER_TEMP/private-shorts.log" 2>&1; then
+            echo 'The pinned approval failed mathematical or provenance verification.' >&2
+            exit 1
+          fi
 
       - uses: actions/setup-node@v4
         with:
@@ -121,10 +132,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.SAT_ACT_SITE_PR_TOKEN }}
           BASE: ${{ needs.prepare.outputs.base }}
-          APPROVAL_SHA: ${{ inputs.shorts_approval_sha }}
         run: |
+          set -euo pipefail
+          if [[ -z "$GH_TOKEN" ]]; then
+            echo 'Add SAT_ACT_SITE_PR_TOKEN in BatchMathSite to open the draft and run its PR checks.' >&2
+            exit 1
+          fi
           root="$RUNNER_TEMP/sat-act-review"
-          [[ "$BASE" =~ ^[0-9a-f]{40}$ && "$APPROVAL_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$BASE" =~ ^[0-9a-f]{40}$ ]]
           test "$(git rev-parse HEAD)" = "$BASE"
           check_base() {
             test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)" = "$BASE" || {
@@ -133,7 +148,8 @@ jobs:
             }
           }
           check_base
-          branch="automation/sat-act-import-${APPROVAL_SHA:0:12}-${BASE:0:12}"
+          patch_hash=$(sha256sum "$root/website.patch" | cut -d' ' -f1)
+          branch="automation/sat-act-import-${patch_hash:0:12}-${BASE:0:12}"
           pending=$(gh pr list --base main --state open --limit 250 --json headRefName,url \
             --jq ".[] | select((.headRefName | startswith(\"automation/sat-act-import-\")) and .headRefName != \"$branch\") | .url")
           if test -n "$pending"; then

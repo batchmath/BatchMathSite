@@ -112,11 +112,16 @@ function stage(exportData, out, browser) {
     worktree = true;
     const base = git(checkout, 'rev-parse', 'HEAD').trim();
     const plan = planImport(exportData, readJson(path.join(checkout, REGISTRY)));
-    const summary = { base, sourceCommit: exportData.source.commit, added: [], skipped: plan.skipped };
+    const summary = { base, added: [], skipped: plan.skipped };
     if (plan.records.length) {
       const baselineSeo = seoReport(checkout);
       summary.added = writeCandidate(checkout, plan);
       run(checkout, 'sat-act:build');
+      // Browsing links on existing question pages are part of the published pages.
+      // The catalog and index can grow without rewriting any of those pages.
+      const oldPages = git(checkout, 'diff', '--name-only', '-z', '--', 'sat-act-math/problems/')
+        .split('\0').filter(file => /^sat-act-math\/problems\/[^/]+\/index\.html$/.test(file));
+      if (oldPages.length) git(checkout, 'restore', '--', ...oldPages);
       for (const script of ['qa:sat-act', 'qa:sat-act-release', 'qa:static', 'qa:analytics', 'qa:browser-infra']) run(checkout, script);
       const candidateSeo = seoReport(checkout);
       const newErrors = candidateSeo.errors.filter(error => error.startsWith('sat-act-math/') || !baselineSeo.errors.includes(error));
@@ -136,7 +141,7 @@ function stage(exportData, out, browser) {
         `${row.sourceId},,${row.explanationStartSeconds ?? ''},Pending`), ''].join('\n');
       fs.writeFileSync(path.join(output, 'video-rows.csv'), csv);
       fs.writeFileSync(path.join(output, 'review.md'), [
-        '## Approved SAT/ACT questions', '', `Shorts source commit \`${summary.sourceCommit}\`.`, '',
+        '## Approved SAT/ACT questions', '',
         ...summary.added.map(p => `- #${displayNumber(p.number)} [${p.sourceId}](https://batchmath.net${p.url})`), '',
         'The links above are the permanent URLs once deployed. Append the `video-rows.csv` artifact to the owner video worksheet.',
         'Rows start Pending. A blank cue needs a timestamp before the owner marks that row Published.', '',
