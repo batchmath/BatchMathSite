@@ -1,0 +1,39 @@
+name: Package AP Calculus discoverability test build
+
+on:
+  push:
+    branches: [codex/ap-exam-discoverability-safe]
+    paths: [.github/workflows/package-ap-exam-discoverability-test.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    if: github.repository == 'batchmath/BatchMathSite' && github.ref == 'refs/heads/codex/ap-exam-discoverability-safe'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TAG: bm-discoverability-test
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Build the website ZIP and checksum
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git archive --format=zip -9 --prefix="$TAG/" --output="$RUNNER_TEMP/$TAG.zip" "$GITHUB_SHA"
+          cd "$RUNNER_TEMP"
+          sha256sum "$TAG.zip" | tee "$TAG.zip.sha256" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Upload to the existing test prerelease draft
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test "$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json isDraft,isPrerelease --jq '.isDraft and .isPrerelease')" = true
+          gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --latest=false
+          gh release upload "$TAG" "$RUNNER_TEMP/$TAG.zip" "$RUNNER_TEMP/$TAG.zip.sha256" --repo "$GITHUB_REPOSITORY"

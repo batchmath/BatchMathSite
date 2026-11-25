@@ -1,14 +1,17 @@
-BatchMath v13.0.I — IM1 Unit 4 (Exponential Functions): practice engines for every section and the unit review
+BatchMath AP Calculus AB exam and practice navigation test build
 
-Extract bm-v13.0.I.zip.
-Open a terminal inside the single folder bm-v13.0.I.
-Run exactly:
+Extract bm-discoverability-test.zip and open a terminal in the bm-discoverability-test folder.
+On Windows, run: py -m http.server 8000
+On macOS or Linux, run: python3 -m http.server 8000
+Open http://localhost:8000/ and keep the terminal open while you test. Stop the server with Ctrl+C.
 
-py -m http.server 8000
+In AP Calculus AB, open AP Test Preparation for the May 2027 exam format and the 2026 FRQ scoring links.
+Find Practice this topic on The Chain Rule in Unit 2 and Area Below and Between Curves in Unit 6.
 
-(On macOS or Linux: python3 -m http.server 8000)
-Open http://localhost:8000/ in your browser.
-Keep the terminal open while testing. Stop the server with Ctrl+C.
+The archive includes the site, practice engines, MathLive and fonts, the 3D viewer, and assignment PDFs.
+MathJax rendering, YouTube streaming and College Board documents use their existing internet URLs.
+
+Also included in this build from production v13.0.I and earlier:
 
 NEW IN v13.0.I: Integrated Math 1 > Unit 4 - Exponential Functions now has a practice engine on every assignment page,
 each section review and the Unit 4 Comprehensive Review (22 engines). Every answer is typed; there are no
