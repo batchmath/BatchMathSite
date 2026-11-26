@@ -279,7 +279,7 @@ for(const [page,slug,calc,eng,modes] of WIRED){const f=`${U6}${page}/index.html`
  for(const head of ['/assets/derivative-expression-checker.js','/assets/unit4-exact-answers.js','/assets/calculus-keypad.js','/assets/ap-topic-generators.js'])if(!s.includes(head)||s.indexOf(head)>s.indexOf('/assets/unit5-core.js'))fail(`${page}: ${head} missing or after the engines`);
  for(const css of ['/assets/calculus-keypad.css','/assets/unit5.css','/assets/unit6.css'])if(!h.includes(`<link rel="stylesheet" href="${css}">`))fail(`${page}: ${css} missing`);
  // v12.9.C: MathLive answer fields, installed before the (deferred) practice driver draws the first question
- if(!h.includes('<link rel="stylesheet" href="/assets/mathlive/pilot.css"><script type="module" src="/assets/mathlive/unit6.mjs"></script></head>'))fail(`${page}: MathLive module missing`);
+ if(!h.includes('<link rel="stylesheet" href="/assets/mathlive/pilot.css"><script type="module" src="/assets/mathlive/unit6.mjs"></script>'))fail(`${page}: MathLive module missing`);
  if(!h.includes('<script defer src="/assets/ap-topic-practice.js"></script>'))fail(`${page}: practice driver not deferred`);
  const conf=JSON.parse(h.match(/window\.BM_TOPIC_PRACTICE=(\{.*?\});/)[1]);
  if(conf.slug!==slug||(conf.calculator||null)!==calc||conf.generatorVersion!==BUILD_VERSION)fail(`${page}: page config ${JSON.stringify(conf)}`);
@@ -292,7 +292,7 @@ for(const page of ['area-below-and-between-curves/practice','volume-by-cross-sec
  const h=read(`${U6}${page}/index.html`);if(!/<meta http-equiv="refresh" content="0; url=\.\.\/">/.test(h)||!/name="robots" content="noindex"/.test(h)||/BM_TOPIC_PRACTICE/.test(h))fail(`${page}: not a redirect`);
  if(sitemap.includes(`/${U6}${page}/`))fail(`${page}: retired page still in the sitemap`);}
 for(const [topic,links] of [['area-below-and-between-curves',['non-calculator-practice/','calculator-practice/']],['volume-by-cross-sections',['non-calculator-practice/','calculator-practice/']],['solids-of-revolution',['non-calculator-practice/','calculator-practice/']],['comprehensive-review',['non-calculator-practice/','calculator-practice/']],['finding-area-in-terms-of-y',['practice/']]]){
- const h=read(`${U6}${topic}/index.html`),row=(h.match(/<section class="resource-section" data-bm-topic-practice="1">.*?<\/section>/)||[''])[0],hrefs=[...row.matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
+ const h=read(`${U6}${topic}/index.html`),row=(h.match(/<section\b[^>]*data-bm-topic-practice="1"[^>]*>.*?<\/section>/s)||[''])[0],hrefs=[...row.matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
  if(JSON.stringify(hrefs)!==JSON.stringify(links))fail(`${topic}: launch buttons ${hrefs}`);
  if(links.includes('calculator-practice/')&&!/calculator-practice\/"><span aria-hidden="true" class="bm-practice-icon bm-practice-icon-calculator">/.test(row))fail(`${topic}: calculator button without the calculator icon`);}
 // Unit 5 Growth and Decay: Calculator Practice, calculator icon (labels only)

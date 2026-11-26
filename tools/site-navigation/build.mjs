@@ -179,8 +179,11 @@ function engineLinks(page, engines, html, main) {
     const name = label(h1(document(engine.html).main));
     const mode = engineMode(engine);
     const text = mode ?? (found?.text || name);
-    return {route, text, anchor: found?.anchor, markup: found?.anchor && hasClass(found.anchor, 'bm-practice-launch') &&
-      (!mode || new RegExp(mode, 'i').test(found.text)) ? source(html, found.anchor) : null};
+    const namedMode = /\bcalculator\b/i.test(found?.text || '');
+    const keepsLabel = !mode || namedMode || (mode === 'Non-calculator practice' && engines.length === 1);
+    const markup = found?.anchor && hasClass(found.anchor, 'bm-practice-launch') && keepsLabel
+      ? source(html, found.anchor) : null;
+    return {route, text, markup};
   });
 }
 

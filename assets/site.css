@@ -962,7 +962,7 @@ button.math-infinity-key{font-family:"Cambria Math","STIX Two Math","DejaVu Math
   gap: .5rem !important;
   justify-content: flex-start !important;
 }
-#topic-practice .bm-practice-label { font-size: .92rem !important; }
+#topic-practice .bm-practice-label { font-size: .92rem !important; white-space: normal; }
 #topic-practice a.bm-practice-launch, #topic-practice a.resource-link {
   width: auto !important;
   max-width: 100%;
@@ -971,6 +971,16 @@ button.math-infinity-key{font-family:"Cambria Math","STIX Two Math","DejaVu Math
   overflow-wrap: anywhere;
 }
 #topic-practice .bm-practice-icon { display: none; }
+#topic-practice .bm-practice-icon-calculator {
+  display: flex;
+  width: 24px !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  height: 24px;
+  margin: 0 .4rem 0 0 !important;
+  padding: 0 !important;
+}
+#topic-practice .bm-calculator-glyph { flex: none; transform: scale(.58); }
 #topic-practice .bm-practice-arrow { display: none; }
 .bm-related-practice { margin-top: 1.75rem; border-top: 1px solid var(--bm-line-strong); padding-top: 1rem; }
 .bm-related-practice li { list-style: none; max-width: 100%; }

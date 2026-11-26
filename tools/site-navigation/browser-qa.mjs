@@ -132,6 +132,9 @@ try {
     {resource_type: 'related_practice', destination_category: 'practice_engine', ...apDetails});
   await page.locator('#chain-mode').selectOption('multiple');
   await page.waitForFunction(() => window.BatchMathRepro?.problemCount > 1);
+  await go(page, area);
+  assert.equal(await page.locator('#topic-practice a').count(), 2);
+  assert.ok(await page.locator('#topic-practice .bm-practice-icon-calculator').isVisible());
   await go(page, area + 'calculator-practice/?bm_seed=1040000');
   await page.waitForFunction(() => window.BatchMathRepro?.problemCount === 1);
   assert.match(await page.locator('.bm-related-practice a[data-bm-engagement="related-practice"]').getAttribute('href'), /non-calculator-practice/);
