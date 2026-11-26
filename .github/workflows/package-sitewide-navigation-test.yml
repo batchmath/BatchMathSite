@@ -15,15 +15,16 @@ jobs:
     timeout-minutes: 15
     env:
       TAG: bm-sitewide-navigation-test
-      TESTED_COMMIT: 5be6725540c355d6eec57021bffc4054a82f449e
-      TESTED_ZIP_SHA256: f38816746650bb8ec8bdb9ab3a853658e3aff522c35ad342f59fd6fefa4d2512
+      TESTED_COMMIT: a0db62a73eed35d9ab58090a9ede106617942ef0
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 5be6725540c355d6eec57021bffc4054a82f449e
+          ref: a0db62a73eed35d9ab58090a9ede106617942ef0
           persist-credentials: false
-      - name: Reproduce the tested website archive
-        id: archive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build the website archive
         shell: bash
         run: |
           set -euo pipefail
@@ -31,19 +32,7 @@ jobs:
           git archive --format=zip -9 --prefix="$TAG/" --output="$RUNNER_TEMP/$TAG.zip" "$TESTED_COMMIT"
           cd "$RUNNER_TEMP"
           sha256sum "$TAG.zip" | tee "$TAG.zip.sha256" | tee -a "$GITHUB_STEP_SUMMARY"
-          hash="$(cut -d ' ' -f 1 "$TAG.zip.sha256")"
-          if [[ "$hash" == "$TESTED_ZIP_SHA256" ]]; then
-            echo 'matches=true' >> "$GITHUB_OUTPUT"
-          else
-            echo 'matches=false' >> "$GITHUB_OUTPUT"
-          fi
-      - name: Set up Node.js for archive verification
-        if: steps.archive.outputs.matches == 'false'
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Verify archive if runner compression produced a different digest
-        if: steps.archive.outputs.matches == 'false'
+      - name: Verify the archive against the commit and test a clean extraction
         shell: bash
         run: |
           set -euo pipefail
@@ -51,9 +40,13 @@ jobs:
           npx playwright install --with-deps chromium
           mkdir "$RUNNER_TEMP/extracted"
           unzip -q "$RUNNER_TEMP/$TAG.zip" -d "$RUNNER_TEMP/extracted"
+          site="$RUNNER_TEMP/extracted/$TAG"
           git ls-tree -rz "$TESTED_COMMIT" | python3 -c '
-          import hashlib, os, pathlib, sys
+          import hashlib, os, pathlib, sys, zipfile
           root = pathlib.Path(sys.argv[1])
+          with zipfile.ZipFile(sys.argv[2]) as archive:
+              assert archive.comment.decode() == os.environ["TESTED_COMMIT"]
+          expected = set()
           for row in sys.stdin.buffer.read().split(bytes([0])):
               if not row:
                   continue
@@ -61,18 +54,39 @@ jobs:
               name = os.fsdecode(raw_name)
               if name.split("/")[0] in {"docs", "tools", ".github"} or name in {".gitattributes", "QA.md"}:
                   continue
+              expected.add(name)
               data = (root / name).read_bytes()
               actual = hashlib.sha1(f"blob {len(data)}".encode() + bytes([0]) + data).hexdigest()
               assert actual == metadata.split()[-1].decode(), name
-          ' "$RUNNER_TEMP/extracted/$TAG"
-          python3 -m http.server 4318 --bind 127.0.0.1 --directory "$RUNNER_TEMP/extracted/$TAG" &
+          actual = {p.relative_to(root).as_posix() for p in root.rglob("*") if p.is_file()}
+          assert actual == expected, (expected - actual, actual - expected)
+          print(f"Verified all {len(expected)} exported Git blobs.")
+          ' "$site" "$RUNNER_TEMP/$TAG.zip"
+          python3 -m http.server 4318 --bind 127.0.0.1 --directory "$site" > "$RUNNER_TEMP/http.log" 2>&1 &
           server=$!
           trap 'kill "$server"' EXIT
           for attempt in {1..10}; do
             if curl -fsS http://127.0.0.1:4318/ >/dev/null; then break; fi
             sleep 1
           done
+          python3 - "$site/sitemap.xml" <<'PY'
+          import concurrent.futures, sys, urllib.parse, urllib.request, xml.etree.ElementTree as ET
+          routes = [urllib.parse.urlsplit(loc.text).path for loc in ET.parse(sys.argv[1]).iter()
+                    if loc.tag.endswith('}loc')]
+          def check(route):
+              with urllib.request.urlopen('http://127.0.0.1:4318' + route, timeout=15) as response:
+                  assert response.status == 200 and response.headers.get_content_type() == 'text/html', route
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+              list(pool.map(check, routes))
+          print(f"Served all {len(routes)} sitemap routes.")
+          PY
           BM_NAV_ORIGIN=http://127.0.0.1:4318 node tools/site-navigation/browser-qa.mjs
+          export REVIEW_HOME="$RUNNER_TEMP/review"
+          export BATCHMATH_CHROMIUM_PATH="$(node -p 'require("playwright").chromium.executablePath()')"
+          mkdir -p "$REVIEW_HOME/vendor/mathjax" "$REVIEW_HOME/vendor/newcm"
+          ln -s "$GITHUB_WORKSPACE/node_modules/mathjax" "$REVIEW_HOME/vendor/mathjax/package"
+          ln -s "$GITHUB_WORKSPACE/node_modules/@mathjax/mathjax-newcm-font" "$REVIEW_HOME/vendor/newcm/package"
+          BM_PORT=4318 ZIP_3D_OUT="$RUNNER_TEMP/3d-smoke.json" node tools/v13g-im1-videos/3d-smoke.mjs
       - name: Upload to the existing prerelease draft
         shell: bash
         env:
@@ -82,4 +96,4 @@ jobs:
           current="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json isDraft,isPrerelease,targetCommitish)"
           jq -e --arg commit "$TESTED_COMMIT" \
             '.isDraft and .isPrerelease and .targetCommitish == $commit' <<< "$current"
-          gh release upload "$TAG" "$RUNNER_TEMP/$TAG.zip" "$RUNNER_TEMP/$TAG.zip.sha256" --repo "$GITHUB_REPOSITORY"
+          gh release upload "$TAG" "$RUNNER_TEMP/$TAG.zip" "$RUNNER_TEMP/$TAG.zip.sha256" --repo "$GITHUB_REPOSITORY" --clobber
