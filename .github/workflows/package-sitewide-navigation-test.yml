@@ -1,0 +1,85 @@
+name: Package BatchMath sitewide navigation test
+
+on:
+  push:
+    branches: [codex/sitewide-navigation-im1-discoverability]
+    paths: [.github/workflows/package-sitewide-navigation-test.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    if: github.repository == 'batchmath/BatchMathSite' && github.ref == 'refs/heads/codex/sitewide-navigation-im1-discoverability'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TAG: bm-sitewide-navigation-test
+      TESTED_COMMIT: 5be6725540c355d6eec57021bffc4054a82f449e
+      TESTED_ZIP_SHA256: f38816746650bb8ec8bdb9ab3a853658e3aff522c35ad342f59fd6fefa4d2512
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 5be6725540c355d6eec57021bffc4054a82f449e
+          persist-credentials: false
+      - name: Reproduce the tested website archive
+        id: archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$TESTED_COMMIT"
+          git archive --format=zip -9 --prefix="$TAG/" --output="$RUNNER_TEMP/$TAG.zip" "$TESTED_COMMIT"
+          cd "$RUNNER_TEMP"
+          sha256sum "$TAG.zip" | tee "$TAG.zip.sha256" | tee -a "$GITHUB_STEP_SUMMARY"
+          hash="$(cut -d ' ' -f 1 "$TAG.zip.sha256")"
+          if [[ "$hash" == "$TESTED_ZIP_SHA256" ]]; then
+            echo 'matches=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'matches=false' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Set up Node.js for archive verification
+        if: steps.archive.outputs.matches == 'false'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify archive if runner compression produced a different digest
+        if: steps.archive.outputs.matches == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --ignore-scripts --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          mkdir "$RUNNER_TEMP/extracted"
+          unzip -q "$RUNNER_TEMP/$TAG.zip" -d "$RUNNER_TEMP/extracted"
+          git ls-tree -rz "$TESTED_COMMIT" | python3 -c '
+          import hashlib, os, pathlib, sys
+          root = pathlib.Path(sys.argv[1])
+          for row in sys.stdin.buffer.read().split(bytes([0])):
+              if not row:
+                  continue
+              metadata, raw_name = row.split(bytes([9]), 1)
+              name = os.fsdecode(raw_name)
+              if name.split("/")[0] in {"docs", "tools", ".github"} or name in {".gitattributes", "QA.md"}:
+                  continue
+              data = (root / name).read_bytes()
+              actual = hashlib.sha1(f"blob {len(data)}".encode() + bytes([0]) + data).hexdigest()
+              assert actual == metadata.split()[-1].decode(), name
+          ' "$RUNNER_TEMP/extracted/$TAG"
+          python3 -m http.server 4318 --bind 127.0.0.1 --directory "$RUNNER_TEMP/extracted/$TAG" &
+          server=$!
+          trap 'kill "$server"' EXIT
+          for attempt in {1..10}; do
+            if curl -fsS http://127.0.0.1:4318/ >/dev/null; then break; fi
+            sleep 1
+          done
+          BM_NAV_ORIGIN=http://127.0.0.1:4318 node tools/site-navigation/browser-qa.mjs
+      - name: Upload to the existing prerelease draft
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          current="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json isDraft,isPrerelease,targetCommitish)"
+          jq -e --arg commit "$TESTED_COMMIT" \
+            '.isDraft and .isPrerelease and .targetCommitish == $commit' <<< "$current"
+          gh release upload "$TAG" "$RUNNER_TEMP/$TAG.zip" "$RUNNER_TEMP/$TAG.zip.sha256" --repo "$GITHUB_REPOSITORY"
