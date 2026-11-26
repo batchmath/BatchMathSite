@@ -15,6 +15,11 @@ if (ONLY_ARG && !/^[a-z0-9][a-z0-9-]*\/$/.test(ONLY)) {
   console.error("seo-build: --only expects one top-level directory such as --only=sat-act-math/");
   process.exit(2);
 }
+const PAGE_ARGS = process.argv.slice(2).filter(arg => arg.startsWith("--page=")).map(arg => arg.slice(7));
+// Scoped builders such as SAT/ACT can run with only their own source tree.
+const pageInfo = !ONLY || ONLY === "im1/"
+  ? (await import("./im1-nav/structure.mjs")).pageInfo
+  : () => null;
 const VERSION = "11";
 const SOCIAL_IMAGE = ORIGIN + "/assets/batchmath-social-card-v1.png";
 const SOCIAL_ALT = "BatchMath — math resources for Integrated Math 1, Calculus Prep, and AP Calculus AB";
@@ -111,7 +116,7 @@ function practiceSubject(html) {
 }
 function improveDescription(rel, html, description) {
   const subject = practiceSubject(html);
-  if (rel.startsWith("im1/unit-3-linear-equation/") && isPractice(rel, html)) {
+  if (!description && rel.startsWith("im1/unit-3-linear-equation/") && isPractice(rel, html)) {
     let section = "Unit 3";
     if (rel.includes("/a-arithmetic-sequences-")) section = "Unit 3 arithmetic sequences";
     else if (rel.includes("/b-functions-function-notation-and-slope/")) section = "Unit 3 functions and slope";
@@ -298,6 +303,8 @@ const initial = new Map(publicFiles.map(file => {
 function crumbsFor(file) {
   const rel = relFor(file);
   if (rel === "index.html") return [];
+  const im1 = pageInfo(rel);
+  if (im1) return im1.crumbs;
   const crumbs = [{ name: "Home", route: "/" }];
   const dir = path.posix.dirname(rel);
   const pieces = dir === "." ? [] : dir.split("/");
@@ -320,6 +327,7 @@ let cleanedLinks = 0;
 for (const file of publicFiles) {
   const rel = relFor(file);
   if (ONLY && !rel.startsWith(ONLY)) continue;
+  if (PAGE_ARGS.length && !PAGE_ARGS.includes(rel)) continue;
   let html = fs.readFileSync(file, "utf8");
   const before = html;
   html = cleanIm1Navigation(rel, html);
@@ -328,14 +336,15 @@ for (const file of publicFiles) {
   cleanedLinks += (html.match(/\?from=(?:topic|unit-practice)/g) || []).length;
   html = cleanInternalHrefs(html);
 
-  const title = titleOverrides.get(rel) || titleFrom(html);
+  const title = pageInfo(rel)?.title || titleOverrides.get(rel) || titleFrom(html);
   let description = decode(getMeta(html, "description")).replace(/\s+/g, " ").trim();
   description = improveDescription(rel, html, description);
   const canonical = canonicalFor(file);
   const crumbs = crumbsFor(file);
 
   html = html.replace(/<nav\b[^>]*data-batchmath-breadcrumbs[^>]*>[\s\S]*?<\/nav>\s*/gi, "");
-  html = html.replace(/<p\b[^>]*class=(["'])[^"']*\bbm-seo-context\b[^"']*\1[^>]*>[\s\S]*?<\/p>\s*/gi, "");
+
+  if (rel === "mogollon2026/index.html") html = html.replace(/<nav class="bm-breadcrumbs"[^>]*>[\s\S]*?<\/nav>\s*/i, "");
   html = removeSeoMetadata(html);
   html = html.replace(/<title\b[^>]*>[\s\S]*?<\/title>/i, "<title>" + escapeHtml(title) + "</title>");
   const graph = structuredGraph(rel, title, description, canonical, crumbs);
@@ -345,7 +354,7 @@ for (const file of publicFiles) {
     html = html.replace(/(<main\b[^>]*>)/i, "$1" + breadcrumbMarkup(crumbs));
     breadcrumbs++;
   }
-  if (isPractice(rel, html)) {
+  if (isPractice(rel, html) && !html.includes("data-batchmath-seo-context=")) {
     const context = escapeHtml(contextSentence(rel, html));
     html = html.replace(/(<h1\b[^>]*>[\s\S]*?<\/h1>)/i, '$1<p class="bm-seo-context" data-batchmath-seo-context="' + VERSION + '">' + context + "</p>");
     contexts++;

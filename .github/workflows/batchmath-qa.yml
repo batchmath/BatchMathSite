@@ -31,6 +31,9 @@ jobs:
       - name: Static release QA
         run: npm run qa:static
 
+      - name: Sitewide topic navigation and SEO QA
+        run: npm run qa:site-navigation && npm run qa:seo
+
       - name: SAT & ACT website release authorization
         if: ${{ hashFiles('tools/sat-act/config/initial-website-release.json') != '' && (github.base_ref == 'main' || github.ref == 'refs/heads/main') }}
         run: npm run qa:sat-act-release

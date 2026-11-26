@@ -22,3 +22,8 @@
  .running-problems-only .running-math-inner{font-size:10pt}
  .running-problems-only .running-math mjx-container[display="true"]{margin:.2em 0!important}
 }
+
+/* Trail shared by the two running documents. */
+.running-main .bm-breadcrumbs ol { display:flex; gap:.5rem; flex-wrap:wrap; padding:0; list-style:none; font-size:.88rem; }
+.running-main .bm-breadcrumbs li + li::before { content:"›"; margin-inline-end:.5rem; }
+.running-main .bm-breadcrumbs a { color:#f5c400; }

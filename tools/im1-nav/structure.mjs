@@ -1,8 +1,6 @@
 // The authoritative organization of Integrated Math 1 (IM1): every unit, its four sections, every part code, and how the
 // navigation that shows them is rendered, so section and part labels cannot drift between pages.
-// On the v13.0.H branch only Unit 4 is built from it (tools/build-im1-unit4-pages.mjs). The Unit 1-3 entries describe the
-// IM1 navigation standard proposed on branch claude/im1-standardize-sections-no-notes (with tools/im1-nav/apply.mjs and
-// docs/IM1-NAVIGATION-STANDARD.md); they are not applied to the Unit 1-3 pages here.
+// See docs/IM1-NAVIGATION-STANDARD.md for the maintenance workflow.
 //
 // Visible labels:  section  "Section 1 — Arithmetic Sequences"
 //                  part     "1A — Identifying Arithmetic Sequences"   (section number + letter; never a leading zero)

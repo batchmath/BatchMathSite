@@ -12,7 +12,7 @@ import crypto from 'node:crypto';
 import {browser, context, outDir} from '../lib/browser.mjs';
 import {UNITS, partLabel} from '../../im1-nav/structure.mjs';
 // Labels follow the IM1 navigation standard: parts 1A-4D (files keep 01a-...), the unit review's two versions.
-const U4 = UNITS.find(u => u.n === 4), MENU_OPTIONS = U4.sections.flatMap(s => s.topics.flatMap(t => t.parts)).length + 1;
+const U4 = UNITS.find(u => u.n === 4), MENU_OPTIONS = U4.sections.flatMap(s => s.topics.flatMap(t => t.parts)).length + U4.sections.length + 1;
 const LABEL_OF_DOC = new Map([...U4.sections.flatMap(s => s.topics.flatMap(t => t.parts.map(p => [p.doc, partLabel(p)]))), ...U4.review.documents.map(d => [d.doc, d.title])]);
 // these pages load no MathJax, so open them without the shared helper's MathJax wait
 async function open(c, url) {const p = await c.newPage(), errs = []; p.on('pageerror', e => errs.push('pageerror: ' + e.message));
@@ -46,7 +46,7 @@ for (const [w, h, mob] of [[1366, 900, false], [390, 844, true]]) {
    practice: [...document.querySelectorAll('a')].filter(a => a.dataset.bmResource === 'practice' || /\/practice\//.test(a.getAttribute('href') || '')).length,
    notes: [...document.querySelectorAll('a')].filter(a => /notes?\b/i.test(a.textContent) || /notes?/i.test(a.getAttribute('href') || '')).length + (/\bnotes\b/i.test(document.querySelector('main').innerText) ? 1 : 0),
    pager: [...document.querySelectorAll('.topic-pager a')].map(a => a.href),
-   options: [...document.querySelectorAll('#unit-select option')].map(o => o.value).filter(Boolean),
+   options: [...document.querySelectorAll('#bm-topics-panel a')].map(a => a.href),
    overflow: document.documentElement.scrollWidth - window.innerWidth,
    title: document.title, mixed: /\bMixed\b|0?1F\b|0?2E\b|0?3I\b|0?4E\b|05C\b/.test(document.querySelector('main').innerText)}));
   ok(s.h1.length === 1, `${vp} ${route}: ${s.h1.length} H1`);
@@ -77,7 +77,8 @@ for (const [w, h, mob] of [[1366, 900, false], [390, 844, true]]) {
  // the topic menu navigates (unit page -> a topic)
  const p = await open(c, BASE + UNIT);
  const target = UNIT + 'topics/c-explicit-formulas-and-exponential-models/converting-recursive-to-explicit/';
- await Promise.all([p.waitForURL(BASE + target), p.selectOption('#unit-select', target)]);
+ await p.locator('.bm-topics summary').click();
+ await Promise.all([p.waitForURL(BASE + target), p.locator(`#bm-topics-panel a[href="${target}"]`).click()]);
  ok(p.url() === BASE + target, `${vp}: topic menu did not navigate (${p.url()})`);
  await p.close(); await c.close();
 }

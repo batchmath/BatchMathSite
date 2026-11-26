@@ -200,6 +200,7 @@ for (const rel of orphanFiles) fail(rel + ": crawlable orphan with no normal int
 
 // v12.8.Y: the retired Unit 5 combined practice URLs are noindex redirects to their topic pages
 const expectedNoindex = new Set(["404.html", "diagnostics/index.html", "offline.html",
+  "experiments/mathlive-advanced-notation/index.html",
   "ap-calculus/unit-5-differential-equations/topics/basic-first-order-differential-equations/practice/index.html",
   "ap-calculus/unit-5-differential-equations/topics/motion-problems/practice/index.html",
   "ap-calculus/unit-5-differential-equations/topics/rate-problems/practice/index.html",

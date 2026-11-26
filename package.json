@@ -3,6 +3,9 @@
   "private": true,
   "version": "13.0.I",
   "scripts": {
+    "nav:build": "node tools/im1-nav/apply.mjs && node tools/site-navigation/build.mjs && node tools/build-sitemap.mjs",
+    "qa:site-navigation": "node tools/site-navigation/build.mjs --check && node tools/site-navigation/qa.mjs",
+    "qa:site-navigation-browser": "node tools/site-navigation/browser-qa.mjs",
     "seo:build": "node tools/seo-build.mjs",
     "qa:seo": "node tools/seo-qa.mjs",
     "qa:static": "node tools/release-qa.mjs",
@@ -71,6 +74,7 @@
   },
   "devDependencies": {
     "playwright": "1.62.1",
+    "parse5": "8.0.0",
     "mathjax": "4.1.3",
     "@mathjax/mathjax-newcm-font": "4.1.3"
   }

@@ -2,6 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {withInstructionalVideo} from './v13-im1-videos/markup.mjs';
 
+// Historical fixture builder used by tools/v13g-im1-videos/source-qa.mjs.
+// Publish current Unit 3 markup with npm run nav:build, which preserves the deployed lessons and practice features.
+if (process.argv && !process.argv.includes('--legacy-rebuild')) {
+  throw new Error('Unit 3 uses npm run nav:build. The historical builder requires --legacy-rebuild in an isolated checkout.');
+}
 const root=process.cwd();
 const unitRel='im1/unit-3-linear-equation';
 const unitDir=path.join(root,unitRel);

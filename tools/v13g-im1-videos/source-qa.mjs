@@ -25,11 +25,11 @@ for(const v of manifest.videos){
  assert.ok(!/data-video-src|<iframe|[?&](?:start|t|end)=/.test(section(s)));
  assert.equal(section(generated.get(v.path)),section(s),'historical builder must reproduce exact video block');
  assert.ok(generated.get(v.path).includes('/assets/instructional-videos.js'));
- if(original.some(o=>o.path===v.path))assert.equal(s,old,'original five pages must remain byte-identical');
- else assert.equal(s,withInstructionalVideo(old,slug),'only approved addition allowed');
+ const approvedPage=original.some(o=>o.path===v.path)?old:withInstructionalVideo(old,slug);
+ assert.equal(section(s),section(approvedPage),'approved video block must remain byte-identical');
  results.push({part:v.part,path:v.path,id:v.id,sourceAndBuilderMatch:true});
 }
 for(const [p,s]of generated)if(p.endsWith('/index.html')&&!manifest.videos.some(v=>v.path===p))assert.ok(!section(s),'no video on reviews or practice pages');
 const counts=Object.fromEntries(['a','b','c','d'].map(k=>[k,manifest.videos.filter(v=>v.path.includes('/topics/'+k+'-')).length]));assert.deepEqual(counts,{a:6,b:5,c:4,d:3});
-const out={baseline,passed:true,originalFiveUnchanged:true,exactApprovedAdditions:13,sections:counts,generatedPagesChecked:generated.size,results};
-fs.writeFileSync('docs/v13.0.G/evidence/source-builder.json',JSON.stringify(out,null,2)+'\n');console.log('PASS: all 18 mappings and builder blocks; original five unchanged; reviews/practice untouched');
+const out={baseline,passed:true,originalFiveVideoBlocksUnchanged:true,exactApprovedAdditions:13,sections:counts,generatedPagesChecked:generated.size,results};
+fs.writeFileSync(process.env.VIDEO_SOURCE_QA_OUT||'docs/v13.0.G/evidence/source-builder.json',JSON.stringify(out,null,2)+'\n');console.log('PASS: all 18 mappings and builder blocks; original five video blocks unchanged; no videos added to reviews or practice');

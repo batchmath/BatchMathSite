@@ -14,6 +14,7 @@ const APP_SHELL = [
   '/offline.html',
   '/manifest.webmanifest',
   '/assets/site.css',
+  '/assets/site-navigation.js',
   '/assets/answer-normalization.js',
   '/assets/im1-unit2-generators.js',
   '/assets/im1-unit2-practice.js',

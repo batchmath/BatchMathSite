@@ -1,15 +1,18 @@
-BatchMath AP Calculus AB exam and practice navigation test build
+BatchMath sitewide navigation test build
 
-Extract bm-discoverability-test.zip and open a terminal in the bm-discoverability-test folder.
+Extract bm-sitewide-navigation-test.zip and open a terminal in the bm-sitewide-navigation-test folder.
 On Windows, run: py -m http.server 8000
 On macOS or Linux, run: python3 -m http.server 8000
 Open http://localhost:8000/ and keep the terminal open while you test. Stop the server with Ctrl+C.
 
-In AP Calculus AB, open AP Test Preparation for the May 2027 exam format and the 2026 FRQ scoring links.
-Find Practice this topic on The Chain Rule in Unit 2 and Area Below and Between Curves in Unit 6.
+1. From the home page, open IM1, Calculus Prep, AP Calculus AB, SAT & ACT Math Practice and AP Calculus Exam Preparation.
+2. In IM1 Unit 1, verify Sections 1–4, open 1A Multiplication, and follow Practice This Topic. Try TOPICS with Tab, Enter, Space and Escape. At phone width, open TOPICS near the top of the content and choose another topic.
+3. In AP Calculus Unit 2, open The Chain Rule. Try the three practice links above the lecture videos and follow the lesson or sibling links beneath the exercise. Try both calculator modes under Area Below and Between Curves in Unit 6.
+4. In IM1 Unit 4, open a section review and the unit review. Check the assignments and answer keys. Try a Practice Type option and submit a typed answer with the keypad.
+5. In AP Calculus Unit 6, open Volume by Cross Sections or Solids of Revolution and try the 3D controls.
 
-The archive includes the site, practice engines, MathLive and fonts, the 3D viewer, and assignment PDFs.
-MathJax rendering, YouTube streaming and College Board documents use their existing internet URLs.
+The ZIP includes the site, practice engines, MathLive and fonts, the 3D viewer, and assignment PDFs.
+MathJax, YouTube, College Board PDFs, and live archive feeds use their existing internet URLs.
 
 Also included in this build from production v13.0.I and earlier:
 
