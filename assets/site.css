@@ -838,3 +838,118 @@ button.math-infinity-key{font-family:"Cambria Math","STIX Two Math","DejaVu Math
 @media(max-width:360px){
   body:has(.bm-breadcrumbs a[href="/ap-calculus/unit-3-applications-derivative/"]) .page-title{overflow-wrap:anywhere}
 }
+
+/* Topic navigation lives opposite the course menu on wide screens. */
+.bm-topics{
+  --bm-topics-left:18px;
+  position:absolute;
+  top:158px;
+  left:var(--bm-topics-left);
+  z-index:21;
+}
+.bm-topics-disclosure{position:relative}
+.bm-topics-disclosure.is-pinned{
+  position:fixed;
+  top:8px;
+  left:var(--bm-topics-left);
+}
+.bm-topics-toggle{
+  display:grid;
+  grid-auto-flow:column;
+  place-content:center;
+  gap:.25em;
+  width:118px;
+  min-height:36px;
+  margin-inline:auto;
+  padding:7px 10px;
+  border:1px solid var(--bm-yellow);
+  border-radius:7px;
+  background:#050505;
+  color:var(--bm-yellow);
+  font-weight:900;
+  cursor:pointer;
+  list-style:none;
+}
+.bm-topics-toggle::-webkit-details-marker{display:none}
+.bm-topics-toggle:hover{background:#171200;color:#fff0a5}
+.bm-topics-toggle:focus-visible,.bm-topics-menu a:focus-visible{
+  outline:2px solid var(--bm-yellow);
+  outline-offset:2px;
+}
+.bm-topics-menu{
+  position:absolute;
+  top:calc(100% + 6px);
+  left:0;
+  width:min(22rem,calc(100vw - 36px));
+  max-height:min(var(--bm-topics-menu-height,55dvh),26rem);
+  padding:8px;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  border:1px solid var(--bm-yellow);
+  border-radius:10px;
+  background:#050505;
+  box-shadow:0 16px 42px rgba(0,0,0,.55);
+}
+.bm-topics-menu.opens-above{
+  top:auto;
+  bottom:calc(100% + 6px);
+}
+.bm-topics-menu ul{margin:0;padding:0;list-style:none}
+.bm-topics-menu a,.bm-topics-group p{
+  display:block;
+  margin:0;
+  padding:8px 10px;
+  border-radius:7px;
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+.bm-topics-menu a{
+  color:var(--bm-yellow);
+  font-size:.88rem;
+  font-weight:750;
+  text-decoration:none;
+}
+.bm-topics-menu a:hover,.bm-topics-menu a:focus-visible{background:#191300}
+.bm-topics-group + .bm-topics-group{margin-top:6px}
+.bm-topics-group p{color:var(--bm-muted);font-size:.8rem;font-weight:750}
+.bm-topics-menu [aria-current]{
+  background:#231900;
+  color:#fff4ad;
+  box-shadow:inset 3px 0 var(--bm-yellow);
+}
+@media(max-width:1199px){
+  .topbar:has(> .bm-topics){flex-wrap:wrap}
+  .bm-topics{
+    position:relative;
+    inset:auto;
+    order:1;
+    flex:0 0 100%;
+    min-width:0;
+    margin-top:10px;
+  }
+  .bm-topics-menu,.bm-topics-menu.opens-above{
+    position:static;
+    width:min(100%,22rem);
+    margin:8px auto 0;
+  }
+}
+@media(max-width:760px){
+  .bm-topics-toggle{width:76px;min-height:44px;padding:7px;font-size:.65rem}
+}
+
+/* Compact the original launch buttons on AP Calculus and IM1 topic pages. */
+.resource-section[data-bm-topic-practice="1"]:has(> .bm-topic-practice-row){margin-top:0}
+.bm-topic-practice-row{gap:12px!important}
+.bm-topic-practice-row a.bm-practice-launch{
+  width:min(510px,100%)!important;
+  min-height:62px!important;
+  padding:6px 16px 6px 13px!important;
+}
+.bm-topic-practice-row .bm-practice-icon{min-height:50px!important}
+@media(max-width:620px){
+  .bm-topic-practice-row a.bm-practice-launch{
+    min-height:58px!important;
+    padding:5px 11px 5px 9px!important;
+  }
+  .bm-topic-practice-row .bm-practice-icon{min-height:44px!important}
+}
