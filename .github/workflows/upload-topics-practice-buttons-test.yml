@@ -1,0 +1,39 @@
+name: Upload TOPICS and practice buttons test assets
+
+on:
+  push:
+    branches: [codex/topics-practice-buttons-test-packaging]
+    paths: [.github/workflows/upload-topics-practice-buttons-test.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  upload:
+    if: github.repository == 'batchmath/BatchMathSite' && github.ref == 'refs/heads/codex/topics-practice-buttons-test-packaging'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      TESTED_COMMIT: ee10f8219f6c74bb936fdd175e8276660f08b194
+      TAG: bm-topics-practice-buttons-test
+      ZIP_SHA256: 7fa4a1d35834c5cb79fa64c3a9f281fcfc44a73158a2a608684d9f0db545cdbf
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Rebuild and verify the independently tested ZIP
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = "$TESTED_COMMIT"
+          git archive --format=zip -9 --prefix="$TAG/" --output="$RUNNER_TEMP/$TAG.zip" "$TESTED_COMMIT"
+          printf '%s  %s\n' "$ZIP_SHA256" "$RUNNER_TEMP/$TAG.zip" | sha256sum -c -
+          unzip -tq "$RUNNER_TEMP/$TAG.zip"
+      - name: Attach the verified ZIP and screenshots to the draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release view "$TAG" --json isDraft,isPrerelease,targetCommitish \
+            | jq -e --arg commit "$TESTED_COMMIT" '.isDraft and .isPrerelease and (.targetCommitish == $commit)'
+          gh release upload "$TAG" "$RUNNER_TEMP/$TAG.zip" .github/topics-practice-review/*.png
